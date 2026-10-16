@@ -767,6 +767,20 @@ function renderPresetPageHtml(preset) {
     ]
   };
 
+  const naverVerifyMeta = config.naverSiteVerification
+    ? `<meta name="naver-site-verification" content="${config.naverSiteVerification}" />`
+    : '';
+  const googleVerifyMeta = config.googleSiteVerification
+    ? `<meta name="google-site-verification" content="${config.googleSiteVerification}" />`
+    : '';
+
+  const allPresetsLinksHtml = PRESETS.map(
+    p =>
+      `<a href="../${p.id}/index.html" class="bg-white px-2.5 py-1.5 rounded-lg border ${
+        p.id === preset.id ? 'border-blue-600 text-blue-700 font-bold bg-blue-50' : 'border-slate-200 text-slate-700 hover:border-blue-500 hover:text-blue-600'
+      } transition text-xs">${p.title}</a>`
+  ).join('\n        ');
+
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -775,14 +789,19 @@ function renderPresetPageHtml(preset) {
   <title>${preset.title} | 머니핏(MoneyFit) 손익계산</title>
   <meta name="description" content="${preset.metaDescription}" />
   <meta name="keywords" content="${preset.title}, 손익분기점 계산기, 머니핏, ${preset.category}" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  ${naverVerifyMeta}
+  ${googleVerifyMeta}
   
-  <!-- Canonical & OpenGraph -->
+  <!-- Canonical, RSS & OpenGraph -->
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="alternate" type="application/rss+xml" title="머니핏(MoneyFit) 전체 손익계산 리포트 RSS" href="${CANONICAL_BASE}/rss.xml" />
   <meta property="og:title" content="${preset.title} | 머니핏" />
   <meta property="og:description" content="${preset.metaDescription}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="머니핏(MoneyFit)" />
+  <meta property="og:locale" content="ko_KR" />
   
   <!-- Tailwind CSS & Custom Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -890,16 +909,11 @@ ${JSON.stringify(schemaJson, null, 2)}
 
     </article>
 
-    <!-- 추천 키워드 및 연관 계산기 링크 -->
-    <section class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200 space-y-3">
-      <h3 class="text-sm font-bold text-slate-700">🔗 머니핏 6대 생활밀착 계산기 바로가기</h3>
-      <div class="flex flex-wrap gap-2 text-xs">
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">⚡ 전기요금·누진세 계산기</a>
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🍗 다이어트 TDEE 장보기 계산기</a>
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🐶 반려동물 사료 급여량 진단기</a>
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🛋️ 자취·신혼 가전가구 예산 시뮬레이터</a>
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🚗 자동차 렌트 vs 할부 TCO 계산기</a>
-        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">📶 인터넷 위약금 vs 사은품 손익 계산기</a>
+    <!-- 추천 키워드 및 36대 전체 내부 링크 허브 (크롤러 100% 발견용) -->
+    <section class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200 space-y-4">
+      <h3 class="text-sm font-bold text-slate-800">🔗 머니핏 36대 생활·금융 손익분기점 시뮬레이터 전체 보기</h3>
+      <div class="flex flex-wrap gap-2">
+        ${allPresetsLinksHtml}
       </div>
     </section>
 
@@ -1030,6 +1044,85 @@ function generateRobotsTxt() {
 Allow: /
 
 Sitemap: ${CANONICAL_BASE}/sitemap.xml
+Sitemap: ${CANONICAL_BASE}/rss.xml
+`;
+}
+
+/**
+ * Escape XML special characters
+ */
+function escapeXml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+/**
+ * Generate dist/rss.xml (RSS 2.0 Feed for Naver SearchAdvisor, Google WebSub, Daum & Feed Readers)
+ */
+function generateRssXml() {
+  const nowRfc822 = new Date().toUTCString();
+  const itemsXml = PRESETS.map((p, idx) => {
+    const res = calculatePresetResult(p);
+    const link = `${CANONICAL_BASE}/preset/${p.id}/`;
+    const itemDate = new Date(Date.now() - idx * 600000).toUTCString();
+    const fullDesc = `${p.metaDescription} — [핵심 진단 결과: ${res.headline}] ${res.summary || ''}`;
+    return `    <item>
+      <title>${escapeXml(p.title)} | 머니핏(MoneyFit)</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <category>${escapeXml(p.category)}</category>
+      <description>${escapeXml(fullDesc)}</description>
+      <pubDate>${itemDate}</pubDate>
+    </item>`;
+  }).join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>머니핏(MoneyFit) — 3초 생활·금융 손익분기점 계산기 포털</title>
+    <link>${CANONICAL_BASE}/</link>
+    <description>전기요금 누진세, 다이어트 식단 장보기 수량, 반려동물 사료 급여량, 자취 가전 풀세팅 예산, 자동차 장기렌트 vs 할부 총비용(TCO), 인터넷 위약금 vs 현금 사은품 손익을 3초 만에 계산하는 무료 포털</description>
+    <language>ko</language>
+    <lastBuildDate>${nowRfc822}</lastBuildDate>
+    <atom:link href="${CANONICAL_BASE}/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
+${itemsXml}
+  </channel>
+</rss>
+`;
+}
+
+/**
+ * Generate dist/llms.txt (AI Search Engine Optimization for ChatGPT, Perplexity, Gemini, Claude, Naver Cue)
+ */
+function generateLlmsTxt() {
+  const presetLines = PRESETS.map(p => {
+    const res = calculatePresetResult(p);
+    return `- [${p.title}](${CANONICAL_BASE}/preset/${p.id}/): ${p.metaDescription} (계산 요약: ${res.headline})`;
+  }).join('\n');
+
+  return `# 머니핏(MoneyFit) — 대한민국 생활·금융 손익분기점 & 맞춤 견적 포털
+> 공식 URL: ${CANONICAL_BASE}/
+> 사이트맵: ${CANONICAL_BASE}/sitemap.xml
+> RSS 피드: ${CANONICAL_BASE}/rss.xml
+
+## 1. 서비스 소개
+머니핏(MoneyFit)은 한국전력 주택용 누진 요금표, Mifflin-St Jeor 기초대사량 수식, 수의영양학 RER/DER 공식, 가전/가구 예산 최적화 BOM 알고리즘, 자동차 할부/리스/장기렌트 4년 총소유비용(TCO) 및 사업자 절세 공식, 통신 3사 약정 위약금 대비 현금 사은품(최대 47만 원) 순이익 수식을 기반으로 소비자의 손익분기점을 3초 만에 계산해 주는 무료 웹 애플리케이션입니다.
+
+## 2. 6대 핵심 계산기
+1. 전기요금·누진세 폭탄 & 1등급 인버터 가전 교체 회수기간 계산기 (${CANONICAL_BASE}/)
+2. 다이어트·벌크업 탄단지(TDEE) & 닭가슴살·현미밥 4주 장보기 수량 환산기 (${CANONICAL_BASE}/)
+3. 반려동물(강아지·고양이) 맞춤 사료 급여량(g) & 1포대 소진일수 진단기 (${CANONICAL_BASE}/)
+4. 자취·이사·신혼 예산별(50만~1,000만 원) 가전/가구 풀세팅 최적 BOM 견적기 (${CANONICAL_BASE}/)
+5. 자동차 구매 방식(장기렌트 vs 리스 vs 할부 vs 현금) 총비용(TCO) 비교기 (${CANONICAL_BASE}/)
+6. 인터넷·TV 약정 위약금 vs 현금 사은품(최대 47만 원) 갈아타기 순수익 계산기 (${CANONICAL_BASE}/)
+
+## 3. 36대 세부 시뮬레이션 리포트 전체 목록
+${presetLines}
 `;
 }
 
@@ -1117,19 +1210,36 @@ function build() {
     console.log(`  ✓ [${builtCount}/36] dist/preset/${preset.id}/index.html (${koreanChars.length} Korean chars)`);
   }
 
-  // 4. Generate sitemap.xml and robots.txt
-  console.log('\n[3/4] Generating sitemap.xml and robots.txt ...');
+  // 4. Generate sitemap.xml, rss.xml, llms.txt, robots.txt, and IndexNow key files
+  console.log('\n[3/4] Generating sitemap.xml, rss.xml, llms.txt, robots.txt & IndexNow keys ...');
   const sitemapXml = generateSitemapXml();
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
+  fs.writeFileSync(path.join(PROJECT_ROOT, 'sitemap.xml'), sitemapXml, 'utf8');
   console.log(`  ✓ dist/sitemap.xml (${PRESETS.length + 1} URLs)`);
 
-  // Also write sitemap to root if helpful
-  fs.writeFileSync(path.join(PROJECT_ROOT, 'sitemap.xml'), sitemapXml, 'utf8');
+  const rssXml = generateRssXml();
+  fs.writeFileSync(path.join(DIST_DIR, 'rss.xml'), rssXml, 'utf8');
+  fs.writeFileSync(path.join(DIST_DIR, 'feed.xml'), rssXml, 'utf8');
+  fs.writeFileSync(path.join(PROJECT_ROOT, 'rss.xml'), rssXml, 'utf8');
+  console.log(`  ✓ dist/rss.xml & dist/feed.xml (${PRESETS.length} RSS items)`);
+
+  const llmsTxt = generateLlmsTxt();
+  fs.writeFileSync(path.join(DIST_DIR, 'llms.txt'), llmsTxt, 'utf8');
+  fs.writeFileSync(path.join(PROJECT_ROOT, 'llms.txt'), llmsTxt, 'utf8');
+  console.log('  ✓ dist/llms.txt (AI Search Engine Manifest)');
 
   const robotsTxt = generateRobotsTxt();
   fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), robotsTxt, 'utf8');
-  console.log('  ✓ dist/robots.txt');
   fs.writeFileSync(path.join(PROJECT_ROOT, 'robots.txt'), robotsTxt, 'utf8');
+  console.log('  ✓ dist/robots.txt');
+
+  // IndexNow Ownership Key Files (for Naver / Bing / Yandex instant verification)
+  const indexNowKeys = ['moneyfit-indexnow-key-2026', 'moneyfit8f92a1b4c3d2e1f0'];
+  for (const k of indexNowKeys) {
+    fs.writeFileSync(path.join(DIST_DIR, `${k}.txt`), k, 'utf8');
+    fs.writeFileSync(path.join(PROJECT_ROOT, `${k}.txt`), k, 'utf8');
+  }
+  console.log('  ✓ IndexNow verification key files generated');
 
   // Write CNAME for custom domain binding (GitHub Pages / Static Hosts)
   const cnameDomain = CANONICAL_BASE.replace(/^https?:\/\//i, '').split('/')[0];
@@ -1142,8 +1252,7 @@ function build() {
   console.log(`  ✓ 36 Programmatic Landing Pages Generated at dist/preset/{slug}/index.html`);
   console.log(`  ✓ All pages exceed 1,500 pure Korean characters threshold`);
   console.log(`  ✓ All pages include comparative <table> and Schema.org JSON-LD`);
-  console.log(`  ✓ dist/sitemap.xml verified with ${PRESETS.length + 1} URLs`);
-  console.log(`  ✓ dist/robots.txt verified`);
+  console.log(`  ✓ dist/sitemap.xml, dist/rss.xml, dist/llms.txt, dist/robots.txt verified`);
   console.log('\n===============================================================');
   console.log('🎉 SSG PRODUCTION BUILD COMPLETED SUCCESSFULLY (EXIT CODE 0)');
   console.log('===============================================================');

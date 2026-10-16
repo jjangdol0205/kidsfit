@@ -13,6 +13,7 @@
     "night-grow": "node scripts/night-growth.js",
     "telegram:notify": "node scripts/telegram-notify.js",
     "telegram:discover": "node scripts/telegram-notify.js --discover",
+    "seo:autopilot": "node scripts/seo-autopilot.js",
     "auto:all": "node scripts/auto-master.js"
   },
   "keywords": [

@@ -92,23 +92,35 @@ const pipelineMetrics = {
     console.log(`  ✓ 오늘의_실전마케팅_스나이퍼_키트.md updated (${pipelineMetrics.sniperTargetsCount} targets)`);
 
     // -------------------------------------------------------------
-    // STEP 5: IndexNow Search Engine Submission
+    // STEP 5: Multi-Engine Search Autopilot (IndexNow + Google WebSub + RSS/Ping)
     // -------------------------------------------------------------
-    console.log('\n[STEP 5/6] IndexNow Search Engine Submission Protocol ...');
+    console.log('\n[STEP 5/6] Multi-Engine Search Autopilot (Naver / Google / Bing / AI Search) ...');
     const indexNowScript = path.join(PROJECT_ROOT, 'scripts', 'indexnow-submit.js');
-    const indexNowArgs = isLive ? ['--live'] : ['--dry-run'];
+    const seoAutopilotScript = path.join(PROJECT_ROOT, 'scripts', 'seo-autopilot.js');
+    const modeArgs = isLive ? ['--live'] : ['--dry-run'];
 
-    const indexNowRes = spawnSync(process.execPath, [indexNowScript, ...indexNowArgs], {
+    const indexNowRes = spawnSync(process.execPath, [indexNowScript, ...modeArgs], {
       cwd: PROJECT_ROOT,
       encoding: 'utf8',
-      timeout: 15000
+      timeout: 20000
     });
 
     if (indexNowRes.status !== 0) {
       throw new Error(`indexnow-submit.js failed with exit code ${indexNowRes.status}: ${indexNowRes.stderr || indexNowRes.stdout}`);
     }
-    console.log(`  ✓ IndexNow submission ${isDryRun ? '[DRY-RUN OK: Payload Verified]' : '[LIVE OK: Transmitted]'}`);
-    pipelineMetrics.indexNowStatus = isDryRun ? 'DRY_RUN_VERIFIED' : 'LIVE_SUBMITTED';
+
+    const seoAutopilotRes = spawnSync(process.execPath, [seoAutopilotScript, ...modeArgs], {
+      cwd: PROJECT_ROOT,
+      encoding: 'utf8',
+      timeout: 25000
+    });
+
+    if (seoAutopilotRes.status !== 0) {
+      throw new Error(`seo-autopilot.js failed with exit code ${seoAutopilotRes.status}: ${seoAutopilotRes.stderr || seoAutopilotRes.stdout}`);
+    }
+
+    console.log(`  ✓ Search Engine Autopilot ${isDryRun ? '[DRY-RUN OK: All Payloads Verified]' : '[LIVE OK: Broadcasted to Naver/Google/Bing]'}`);
+    pipelineMetrics.indexNowStatus = isDryRun ? 'DRY_RUN_VERIFIED (6 Channels)' : 'LIVE_SUBMITTED (Naver/Google/Bing/AI)';
 
     pipelineMetrics.durationMs = Date.now() - startTime;
 

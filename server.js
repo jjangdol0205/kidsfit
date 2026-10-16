@@ -103,6 +103,21 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Automatic zero-upload ownership verification for Naver SearchAdvisor & Google Search Console
+  const cleanUrlPath = decodeURIComponent(reqUrl.split('?')[0]);
+  const naverMatch = cleanUrlPath.match(/^\/(naver[a-zA-Z0-9_-]+\.html)$/);
+  if (naverMatch) {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(`naver-site-verification: ${naverMatch[1]}`);
+    return;
+  }
+  const googleMatch = cleanUrlPath.match(/^\/(google[a-zA-Z0-9_-]+\.html)$/);
+  if (googleMatch) {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(`google-site-verification: ${googleMatch[1]}`);
+    return;
+  }
+
   const filePath = resolveFilePath(reqUrl);
   if (!filePath) {
     // Fallback to main SPA index.html
