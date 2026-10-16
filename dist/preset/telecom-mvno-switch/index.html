@@ -199,13 +199,13 @@
 
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=http%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="https://www.ajd.co.kr/internet" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div class="text-sm font-extrabold mt-0.5 text-slate-950">위약금 10만 원 완벽 방어 + 현금 사은품 45만 원 당일 입금 무료 상담</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">위약금 10만 원 완벽 방어 + 현금 사은품 45만 원 당일 입금 무료 상담</div>
             </a>
           </div>
 
@@ -228,7 +228,7 @@
         <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
       </a>
     
-      <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=http%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+      <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%EA%B8%B0%EA%B0%80%20%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B4%20%EA%B3%B5%EC%9C%A0%EA%B8%B0" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
         <div class="text-[10px] font-bold text-amber-300 mb-0.5">🏷️ 공식몰 특별 기획전</div>
         <div class="text-xs font-bold text-white leading-snug">하이마트 통신·자급제·기가 공유기 특별 기획전</div>
@@ -621,8 +621,15 @@
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const cpaTitle = document.getElementById('res-cpa-title');
+      const cpaLink = document.getElementById('res-cpa-link');
       if (badge && res.badge) badge.textContent = res.badge;
       if (headline && res.headline) headline.textContent = res.headline;
+      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
+      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      }
       if (grid && res.metrics) {
         grid.innerHTML = res.metrics.map(m => `
           <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">

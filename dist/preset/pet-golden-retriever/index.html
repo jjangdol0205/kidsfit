@@ -191,13 +191,13 @@
 
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C&subid=mf_pet_AF7865143&q=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C&channel=user" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="https://www.petpermint.com/" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div class="text-sm font-extrabold mt-0.5 text-slate-950">슬개골·피부병 병원비 평균 180만 원! 30kg 우리 아이 펫보험 90% 보장 최저가 비교</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">슬개골·피부병 병원비 평균 180만 원! 30kg 우리 아이 펫보험 90% 보장 최저가 비교</div>
             </a>
           </div>
 
@@ -613,8 +613,15 @@
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const cpaTitle = document.getElementById('res-cpa-title');
+      const cpaLink = document.getElementById('res-cpa-link');
       if (badge && res.badge) badge.textContent = res.badge;
       if (headline && res.headline) headline.textContent = res.headline;
+      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
+      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      }
       if (grid && res.metrics) {
         grid.innerHTML = res.metrics.map(m => `
           <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">

@@ -179,31 +179,38 @@ function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
 }
 
 /**
- * Resolve live revenue-generating URL for CTA cards when no external CPA short link is set
+ * Resolve live matching URL for CTA cards when no external CPA short link is set
  */
 function buildLiveFallbackCpaUrl(calcId, config = null) {
   const cfg = config || currentConfig;
+  if (cfg && cfg.cpaUrls && typeof cfg.cpaUrls[calcId] === "string" && /^https?:\/\//i.test(cfg.cpaUrls[calcId])) {
+    return cfg.cpaUrls[calcId];
+  }
   const memberId = (cfg && cfg.cpaMemberId) || "tp_member_2370";
   if (/^https?:\/\//i.test(memberId)) {
     return memberId;
   }
-  const afId = (cfg && cfg.coupangAfId) || "AF7865143";
-  const lpId = (cfg && cfg.linkPriceId) || "A100708867";
   switch (calcId) {
     case "electric":
-      return buildCoupangUrl("에너지소비효율 1등급 인버터 에어컨 제습기", "electric", afId);
+      // 한국전력 고효율 가전제품 구매비용 지원사업 (에너지 1등급 환급금 공식 포털)
+      return "https://en-ter.co.kr/support/main/main.do";
     case "diet":
-      return buildCoupangUrl("다이어트 닭가슴살 대용량 패키지 단백질 보충제", "diet", afId);
+      // 쥬비스 다이어트 1:1 체질 맞춤 다이어트 무료 진단/상담 공식 사이트
+      return "https://www.juvis.co.kr/";
     case "pet":
-      return buildCoupangUrl("강아지 고양이 가수분해 사료 관절 영양제", "pet", afId);
+      // 메리츠화재 펫퍼민트 다이렉트 펫보험 실시간 비교견적 공식 사이트
+      return "https://www.petpermint.com/";
     case "room":
-      return buildLinkPriceDeepLink("hmall", "https://www.hmall.com/", lpId);
+      // 위매치다이사 전국 원룸·포장이사 및 입주청소 3초 무료 비교견적 공식 사이트
+      return "https://da24.wematch.com/";
     case "auto":
-      return buildCoupangUrl("자동차 신차 필수용품 2채널 블랙박스 코일매트", "auto", afId);
+      // 다나와 자동차 국내 렌트·리스사 신차 장기렌트·리스 통합 최저가 비교견적 공식 사이트
+      return "https://auto.danawa.com/leaserent/";
     case "telecom":
-      return buildLinkPriceDeepLink("himart", "http://www.e-himart.co.kr/", lpId);
+      // 아정당 인터넷·TV 가입 비교 및 현금 사은품 최대 47만 원 당일 입금 공식 사이트
+      return "https://www.ajd.co.kr/internet";
     default:
-      return buildCoupangUrl("에너지소비효율 1등급 가전", "portal", afId);
+      return "https://en-ter.co.kr/support/main/main.do";
   }
 }
 
@@ -431,6 +438,7 @@ if (typeof module !== "undefined" && module.exports) {
     buildCoupangUrl,
     buildLinkPriceDeepLink,
     buildCpaUrl,
+    buildLiveFallbackCpaUrl,
     getCpaCardDetails,
     renderAdfitSlot,
     calculateRevenueSimulation,
@@ -449,6 +457,7 @@ if (typeof window !== "undefined") {
     buildCoupangUrl,
     buildLinkPriceDeepLink,
     buildCpaUrl,
+    buildLiveFallbackCpaUrl,
     getCpaCardDetails,
     renderAdfitSlot,
     calculateRevenueSimulation,
@@ -460,5 +469,6 @@ if (typeof window !== "undefined") {
   window.buildCoupangUrl = buildCoupangUrl;
   window.buildLinkPriceDeepLink = buildLinkPriceDeepLink;
   window.buildCpaUrl = buildCpaUrl;
+  window.buildLiveFallbackCpaUrl = buildLiveFallbackCpaUrl;
   window.calculateRevenueSimulation = calculateRevenueSimulation;
 }

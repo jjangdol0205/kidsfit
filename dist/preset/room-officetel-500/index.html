@@ -187,13 +187,13 @@
 
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a href="https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2F" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="https://da24.wematch.com/" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div class="text-sm font-extrabold mt-0.5 text-slate-950">15평 맞춤 원룸·포장이사 3초 최저가 비교견적 + 입주청소 특가</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">15평 맞춤 원룸·포장이사 3초 최저가 비교견적 + 입주청소 특가</div>
             </a>
           </div>
 
@@ -216,7 +216,7 @@
         <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
       </a>
     
-      <a href="https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2F" target="_blank" rel="noopener noreferrer sponsored"
+      <a href="https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2Fmd%2Fpde%2Fsearch%3FsearchTerm%3D%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%20%EC%B9%A8%EB%8C%80%20%EA%B0%80%EA%B5%AC" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
         <div class="text-[10px] font-bold text-amber-300 mb-0.5">🏷️ 공식몰 특별 기획전</div>
         <div class="text-xs font-bold text-white leading-snug">현대Hmall 자취·신혼 가구 공간별 베스트 기획전</div>
@@ -633,8 +633,15 @@
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const cpaTitle = document.getElementById('res-cpa-title');
+      const cpaLink = document.getElementById('res-cpa-link');
       if (badge && res.badge) badge.textContent = res.badge;
       if (headline && res.headline) headline.textContent = res.headline;
+      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
+      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      }
       if (grid && res.metrics) {
         grid.innerHTML = res.metrics.map(m => `
           <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">

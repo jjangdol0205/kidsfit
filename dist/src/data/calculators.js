@@ -124,8 +124,8 @@ function calculateElectric(inputs = {}) {
     products: [
       { title: "쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송", kw: "에너지소비효율 1등급 인버터 에어컨 제습기", type: "coupang" },
       { title: "실시간 대기전력 차단 스마트 플러그 전력측정기", kw: "스마트 플러그 전력측정기", type: "coupang" },
-      { title: "하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/", type: "linkprice" },
-      { title: "지마켓 고효율 서큘레이터·절전 가전 베스트", merchant: "gmarket", url: "https://www.gmarket.co.kr/", type: "linkprice" }
+      { title: "하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=에너지 1등급 가전", type: "linkprice" },
+      { title: "지마켓 고효율 서큘레이터·절전 가전 베스트", merchant: "gmarket", url: "https://www.gmarket.co.kr/n/search?keyword=고효율 서큘레이터 절전가전", type: "linkprice" }
     ]
   };
 }
@@ -398,7 +398,7 @@ function calculateRoom(inputs = {}) {
     products: [
       { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang" },
       { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang" },
-      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/", type: "linkprice" },
+      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=원룸 자취 침대 가구", type: "linkprice" },
       { title: "필수 소형가전 3종 (전자레인지·전기밥솥·무선청소기)", kw: "자취 전자레인지 무선청소기", type: "coupang" }
     ]
   };
@@ -596,7 +596,7 @@ function calculateTelecom(inputs = {}) {
     products: [
       { title: "방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000", kw: "와이파이6 공유기 AX3000", type: "coupang" },
       { title: "거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함", kw: "셋톱박스 공유기 정리함", type: "coupang" },
-      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "http://www.e-himart.co.kr/", type: "linkprice" },
+      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=기가 와이파이 공유기", type: "linkprice" },
       { title: "초고속 CAT.8 기가 랜선 케이블 로켓배송", kw: "CAT8 기가 랜선", type: "coupang" }
     ]
   };

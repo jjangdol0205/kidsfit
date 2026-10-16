@@ -195,13 +195,13 @@
 
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&subid=mf_electric_AF7865143&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="https://en-ter.co.kr/support/main/main.do" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div class="text-sm font-extrabold mt-0.5 text-slate-950">초기비용 0원! 에너지 1등급 가전 렌탈 & 정부 환급금 조회 (월 11,956원 절감)</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">초기비용 0원! 에너지 1등급 가전 렌탈 & 정부 환급금 조회 (월 11,956원 절감)</div>
             </a>
           </div>
 
@@ -224,14 +224,14 @@
         <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
       </a>
     
-      <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+      <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EA%B0%80%EC%A0%84" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
         <div class="text-[10px] font-bold text-amber-300 mb-0.5">🏷️ 공식몰 특별 기획전</div>
         <div class="text-xs font-bold text-white leading-snug">하이마트 으뜸효율 1등급 가전 특별 기획전</div>
         <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
       </a>
     
-      <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+      <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%EA%B3%A0%ED%9A%A8%EC%9C%A8%20%EC%84%9C%ED%81%98%EB%A0%88%EC%9D%B4%ED%84%B0%20%EC%A0%88%EC%A0%84%EA%B0%80%EC%A0%84" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
         <div class="text-[10px] font-bold text-amber-300 mb-0.5">🏷️ 공식몰 특별 기획전</div>
         <div class="text-xs font-bold text-white leading-snug">지마켓 고효율 서큘레이터·절전 가전 베스트</div>
@@ -605,8 +605,15 @@
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const cpaTitle = document.getElementById('res-cpa-title');
+      const cpaLink = document.getElementById('res-cpa-link');
       if (badge && res.badge) badge.textContent = res.badge;
       if (headline && res.headline) headline.textContent = res.headline;
+      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
+      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      }
       if (grid && res.metrics) {
         grid.innerHTML = res.metrics.map(m => `
           <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">

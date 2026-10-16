@@ -702,13 +702,13 @@ function renderInteractiveCalculatorCard(preset, res) {
 
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div class="text-sm font-extrabold mt-0.5 text-slate-950">${res.cpaTitle}</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${res.cpaTitle}</div>
             </a>
           </div>
 
@@ -992,8 +992,15 @@ ${JSON.stringify(schemaJson, null, 2)}
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const cpaTitle = document.getElementById('res-cpa-title');
+      const cpaLink = document.getElementById('res-cpa-link');
       if (badge && res.badge) badge.textContent = res.badge;
       if (headline && res.headline) headline.textContent = res.headline;
+      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
+      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      }
       if (grid && res.metrics) {
         grid.innerHTML = res.metrics.map(m => \`
           <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
