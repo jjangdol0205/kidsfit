@@ -7,9 +7,9 @@
 
 const DEFAULT_MONETIZATION_CONFIG = {
   siteUrl: "https://truthofmarket.com",
-  coupangAfId: "AF1234567",
+  coupangAfId: "AF7865143",
   linkPriceId: "A100123456",
-  cpaMemberId: "tenping_myid",
+  cpaMemberId: "01080142370",
   adfitUnitId: "DAN-SAMPLE-TOP",
   adfitBottomUnitId: "DAN-SAMPLE-BOTTOM",
   telegramBotToken: "YOUR_TELEGRAM_BOT_TOKEN",
@@ -133,7 +133,7 @@ function updateConfig(newConfig = {}) {
  * Formula: https://www.coupang.com/np/search?q={encoded}&channel=user&lptag={afId}&subid=mf_{calcId}_{afId}
  */
 function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
-  let afId = currentConfig.coupangAfId || "AF1234567";
+  let afId = currentConfig.coupangAfId || "AF7865143";
   let calcId = "portal";
 
   if (typeof afIdOrCalcId === "string") {
@@ -168,7 +168,7 @@ function buildLinkPriceDeepLink(merchantId, targetUrl, lpId = null) {
  * Formula: https://leaderscpa.com/merchant/{campaignKey}?member={cpaMemberId}&benefit={encodedBenefit}
  */
 function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
-  const effectiveMemberId = memberId || currentConfig.cpaMemberId || "tenping_myid";
+  const effectiveMemberId = memberId || currentConfig.cpaMemberId || "01080142370";
   const encodedValue = encodeURIComponent(dynamicValue || "");
   return `https://leaderscpa.com/merchant/${campaignKey}?member=${effectiveMemberId}&benefit=${encodedValue}`;
 }
@@ -179,7 +179,7 @@ function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
  */
 function getCpaCardDetails(calcId, calculatedResult, config = null) {
   const cfg = config || currentConfig;
-  const memberId = cfg.cpaMemberId || "tenping_myid";
+  const memberId = cfg.cpaMemberId || "01080142370";
 
   const map = {
     electric: {

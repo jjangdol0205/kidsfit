@@ -377,9 +377,9 @@
     const tgChatIdInp = document.getElementById('cfg-tg-chat-id');
     const tgAutoNotifyInp = document.getElementById('cfg-tg-auto-notify');
 
-    if (coupangInp) coupangInp.value = config.coupangAfId || "AF1234567";
+    if (coupangInp) coupangInp.value = config.coupangAfId || "AF7865143";
     if (lpInp) lpInp.value = config.linkPriceId || "A100123456";
-    if (cpaInp) cpaInp.value = config.cpaMemberId || "tenping_myid";
+    if (cpaInp) cpaInp.value = config.cpaMemberId || "01080142370";
     if (adfitInp) adfitInp.value = config.adfitUnitId || "DAN-SAMPLE-TOP";
     if (siteUrlInp) siteUrlInp.value = config.siteUrl || "https://truthofmarket.com";
     if (tgTokenInp) tgTokenInp.value = config.telegramBotToken || "YOUR_TELEGRAM_BOT_TOKEN";
@@ -397,9 +397,9 @@
     const statusClicks = document.getElementById('status-click-count');
     const adfitLabel = document.getElementById('adfit-unit-label');
 
-    if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF1234567";
+    if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
     if (statusLp) statusLp.textContent = config.linkPriceId || "A100123456";
-    if (statusCpa) statusCpa.textContent = config.cpaMemberId || "tenping_myid";
+    if (statusCpa) statusCpa.textContent = config.cpaMemberId || "01080142370";
     if (statusClicks) statusClicks.textContent = config.clickCount || 0;
     if (adfitLabel) adfitLabel.textContent = config.adfitUnitId || "DAN-SAMPLE-TOP";
   }
@@ -422,9 +422,9 @@
    */
   window.applyMonetizationConfig = function () {
     const monetizationModule = getMonetizationModule();
-    const coupangAfId = (document.getElementById('cfg-coupang-id')?.value || "").trim() || "AF1234567";
+    const coupangAfId = (document.getElementById('cfg-coupang-id')?.value || "").trim() || "AF7865143";
     const linkPriceId = (document.getElementById('cfg-lp-id')?.value || "").trim() || "A100123456";
-    const cpaMemberId = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "tenping_myid";
+    const cpaMemberId = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "01080142370";
     const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim() || "DAN-SAMPLE-TOP";
     const siteUrl = (document.getElementById('cfg-site-url')?.value || "").trim() || "https://truthofmarket.com";
     const telegramBotToken = (document.getElementById('cfg-tg-token')?.value || "").trim() || "YOUR_TELEGRAM_BOT_TOKEN";
