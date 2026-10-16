@@ -69,7 +69,7 @@ A. 믹스커피나 과자 대신 아몬드 10알, 삶은 달걀 1개, 카카오 
 🔗 https://truthofmarket.com/preset/diet-office-worker
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 닭가슴살 로켓프레시 확인하기**:  
-🔗 https://www.coupang.com/np/categories/502492?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user
+🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 롯데ON WPI 프로틴 특가 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI

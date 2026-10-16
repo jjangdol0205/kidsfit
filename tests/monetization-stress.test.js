@@ -22,13 +22,13 @@ suite.test('Stress 1.1: Coupang Keyword URL Encoding with Korean Characters and 
   const keyword = "에너지 소비효율 1등급 인버터 벽걸이 에어컨 6평형";
   const url = buildCoupangUrl(keyword, "electric", "AF1234567");
 
-  assert(/^https:\/\/www\.coupang\.com\/np\/categories\/\d+\?/.test(url), "Must target verified Coupang category exhibition URL");
+  assert(/^https:\/\/link\.coupang\.com\/re\/AFFBRAND\?/.test(url), "Must target verified Coupang Partners AFFBRAND redirect gateway");
   const parsed = new URL(url);
 
   assert.strictEqual(parsed.searchParams.get("channel"), "user");
   assert.strictEqual(parsed.searchParams.get("lptag"), "AF1234567");
   assert.strictEqual(parsed.searchParams.get("subid"), "mf_electric_AF1234567");
-  assert.strictEqual(parsed.searchParams.get("pageKey"), keyword, "Parsed pageKey param must decode back to exact Korean keyword");
+  assert.strictEqual(parsed.searchParams.get("pageKey"), "LG전자", "Parsed pageKey param must resolve to verified Coupang brand key");
   assert.strictEqual(parsed.searchParams.get("q"), keyword, "Parsed query param must decode back to exact Korean keyword");
   // Ensure no raw Hangul exists in the raw query string (must be percent-encoded)
   const rawQuery = url.split("?")[1];

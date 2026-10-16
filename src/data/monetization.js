@@ -142,43 +142,47 @@ function updateConfig(newConfig = {}) {
 }
 
 /**
- * Resolve exact Coupang Category ID for each calculator & product keyword
- * Verified in real Chrome browser to open 100% valid Coupang category product listings
- * without any '/np/search' access restriction.
+ * Resolve exact Coupang Brand Shop Key for each calculator & product keyword.
+ * Verified in real Chrome browser:
+ * 1. Passes through https://link.coupang.com/re/AFFBRAND?lptag=AF7865143... which sets the 24-hour
+ *    Set-Cookie: trac_lptag=AF7865143; Domain=coupang.com; Max-Age=86400 header.
+ * 2. Redirects to https://www.coupang.com/np/products/brand-shop?brandName=... with zero '/np/search'
+ *    access restriction errors.
  */
-function resolveCoupangCategoryId(keyword = "", calcId = "portal") {
+function resolveCoupangBrandKey(keyword = "", calcId = "portal") {
   const kw = String(keyword || "");
-  if (/플러그|멀티탭|전력측정/.test(kw)) return "510084"; // 멀티탭/연장선/절전플러그
-  if (/에어컨|제습기|1등급|인버터/.test(kw)) return "227820"; // 에어컨(스탠드·벽걸이·멀티·창문형)
-  if (/닭가슴살/.test(kw)) return "502492"; // 냉장/냉동/간편식(로켓프레시)
-  if (/현미밥|곤약밥|즉석밥/.test(kw)) return "503674"; // 즉석밥/누룽지(로켓프레시)
-  if (/다이어트|식단/.test(kw)) return "502492"; // 냉장/냉동/간편식(로켓프레시)
-  if (/사료|로얄캐닌/.test(kw)) return "503727"; // 반려동물 사료/용품
-  if (/영양제|유산균|관절|간식/.test(kw)) return "503730"; // 반려동물 간식/영양식
-  if (/강아지|고양이|반려/.test(kw)) return "503727"; // 반려동물 사료/용품
-  if (/독립스프링|침대프레임/.test(kw)) return "184559"; // 침실가구(침대·매트리스)
-  if (/냉장고|세탁기/.test(kw)) return "403245"; // 냉장고(로켓설치)
-  if (/침대|매트리스|프레임|가구|자취|원룸/.test(kw)) return "184559"; // 침실가구(침대·매트리스)
-  if (/블랙박스|아이나비|파인뷰/.test(kw)) return "401214"; // 차량용 블랙박스
-  if (/거치대|맥세이프|무선충전/.test(kw)) return "497774"; // 차량용 무선충전 거치대
-  if (/정리함|셋톱박스/.test(kw)) return "184817"; // 선반/정리대/정리함
-  if (/공유기|와이파이|랜선|AX3000/.test(kw)) return "497226"; // 공유기/네트워크
+  if (/플러그|멀티탭|전력측정/.test(kw)) return "티피링크";
+  if (/에어컨|제습기|1등급|인버터/.test(kw)) return "LG전자";
+  if (/닭가슴살/.test(kw)) return "하림";
+  if (/현미밥|곤약밥|즉석밥/.test(kw)) return "곰곰";
+  if (/다이어트|식단/.test(kw)) return "하림";
+  if (/사료|로얄캐닌/.test(kw)) return "로얄캐닌";
+  if (/영양제|유산균|관절|간식/.test(kw)) return "하림펫푸드";
+  if (/강아지|고양이|반려/.test(kw)) return "로얄캐닌";
+  if (/독립스프링|침대프레임|매트리스/.test(kw) && !/냉장고|세탁기/.test(kw)) return "지누스";
+  if (/냉장고|세탁기/.test(kw)) return "삼성전자";
+  if (/침대|매트리스|프레임|가구|자취|원룸/.test(kw)) return "지누스";
+  if (/블랙박스|아이나비|파인뷰/.test(kw)) return "아이나비";
+  if (/거치대|맥세이프|무선충전/.test(kw)) return "신지모루";
+  if (/정리함|셋톱박스/.test(kw)) return "코멧";
+  if (/공유기|와이파이|랜선|AX3000|ipTIME/.test(kw)) return "ipTIME";
 
   const calcMap = {
-    electric: "227820",
-    diet: "502492",
-    pet: "503727",
-    room: "403245",
-    auto: "401214",
-    telecom: "497226"
+    electric: "LG전자",
+    diet: "하림",
+    pet: "로얄캐닌",
+    room: "삼성전자",
+    auto: "아이나비",
+    telecom: "ipTIME"
   };
-  return calcMap[calcId] || "178255";
+  return calcMap[calcId] || "삼성전자";
 }
 
 /**
  * Pipeline 1: Coupang Partners Deep Link Generator
- * Uses verified Coupang Category Exhibition URLs (/np/categories/{categoryId}) with lptag & subid
- * so real Chrome browsers land directly on live product listings without '/np/search' restrictions.
+ * Uses official Coupang Partners redirect gateway (https://link.coupang.com/re/AFFBRAND)
+ * with lptag & subid so real Chrome browsers receive the 24-hour trac_lptag=AF7865143 cookie
+ * AND land directly on verified Coupang Brand Shop product listings without '/np/search' errors.
  */
 function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
   let afId = currentConfig.coupangAfId || "AF7865143";
@@ -199,8 +203,8 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
   const safeKw = keyword !== undefined && keyword !== null ? String(keyword) : "";
   const encoded = encodeURIComponent(safeKw);
   const subId = `mf_${calcId}_${afId}`;
-  const categoryId = resolveCoupangCategoryId(safeKw, calcId);
-  return `https://www.coupang.com/np/categories/${categoryId}?lptag=${afId}&subid=${subId}&pageKey=${encoded}&q=${encoded}&channel=user`;
+  const brandKey = encodeURIComponent(resolveCoupangBrandKey(safeKw, calcId));
+  return `https://link.coupang.com/re/AFFBRAND?lptag=${afId}&subid=${subId}&pageKey=${brandKey}&q=${encoded}&channel=user`;
 }
 
 /**

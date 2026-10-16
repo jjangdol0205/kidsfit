@@ -69,7 +69,7 @@ A. 10세 이상 노령묘는 6개월마다 혈액검사(SDMA 신장 수치 포�
 🔗 https://truthofmarket.com/preset/pet-senior-cat
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 사료·영양제 로켓배송 확인하기**:  
-🔗 https://www.coupang.com/np/categories/503727?lptag=AF7865143&subid=mf_pet_AF7865143&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EB%B2%A0%EC%8A%A4%ED%8A%B8&q=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EB%B2%A0%EC%8A%A4%ED%8A%B8&channel=user
+🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_pet_AF7865143&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C&q=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EB%B2%A0%EC%8A%A4%ED%8A%B8&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 지마켓 펫 사료·영양제 특가 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EA%25B0%2595%25EC%2595%2584%25EC%25A7%2580%2520%25EA%25B0%2580%25EC%2588%2598%25EB%25B6%2584%25ED%2595%25B4%2520%25EC%2582%25AC%25EB%25A3%258C%2520%25EA%25B4%2580%25EC%25A0%2588%2520%25EC%2598%2581%25EC%2596%2591%25EC%25A0%259C

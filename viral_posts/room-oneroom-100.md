@@ -70,7 +70,7 @@ A. 최근 출시되는 고밀도 독립스프링 롤팩 매트리스는 압축 �
 🔗 https://truthofmarket.com/preset/room-oneroom-100
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 가전·침대 로켓설치 확인하기**:  
-🔗 https://www.coupang.com/np/categories/403245?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user
+🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 현대Hmall 자취·신혼 가구전 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2Fmd%2Fpde%2Fsearch%3FsearchTerm%3D%25EC%25B9%25A8%25EB%258C%2580%2520%25EB%25A7%25A4%25ED%258A%25B8%25EB%25A6%25AC%25EC%258A%25A4

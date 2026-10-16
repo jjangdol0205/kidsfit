@@ -70,7 +70,7 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 🔗 https://truthofmarket.com/preset/telecom-family-4p
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 와이파이6 공유기 로켓배송 확인하기**:  
-🔗 https://www.coupang.com/np/categories/497226?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&channel=user
+🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=ipTIME&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 하이마트 공유기·자급제 기획전 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0
