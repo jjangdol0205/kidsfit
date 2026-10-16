@@ -379,7 +379,11 @@
 
     if (coupangInp) coupangInp.value = config.coupangAfId || "AF7865143";
     if (lpInp) lpInp.value = config.linkPriceId || "A100708867";
-    if (cpaInp) cpaInp.value = config.cpaMemberId || "01080142370";
+    if (cpaInp) {
+      // If user's localStorage still had raw phone number, sanitize to anonymized code
+      const rawCpa = config.cpaMemberId || "tp_member_2370";
+      cpaInp.value = /^010\d{7,8}$/.test(rawCpa) ? "tp_member_" + rawCpa.slice(-4) : rawCpa;
+    }
     if (adfitInp) adfitInp.value = config.adfitUnitId || "DAN-SAMPLE-TOP";
     if (siteUrlInp) siteUrlInp.value = config.siteUrl || "https://truthofmarket.com";
     if (tgTokenInp) tgTokenInp.value = config.telegramBotToken || "YOUR_TELEGRAM_BOT_TOKEN";
@@ -390,18 +394,38 @@
     updateSampleLinksPreview(config);
   }
 
+  function maskCpaDisplay(rawId) {
+    const val = String(rawId || "tp_member_2370").trim();
+    if (/^010\d{7,8}$/.test(val)) {
+      return `010-****-${val.slice(-4)} (비공개)`;
+    }
+    if (val.startsWith("tp_member_")) {
+      return `010-****-${val.slice(-4)} (비공개)`;
+    }
+    if (val.length > 4) {
+      return `${val.slice(0, 2)}****${val.slice(-2)} (비공개)`;
+    }
+    return "연동됨 (비공개)";
+  }
+
   function updateStatusBar(config) {
     const statusCoupang = document.getElementById('status-coupang-id');
     const statusLp = document.getElementById('status-lp-id');
     const statusCpa = document.getElementById('status-cpa-id');
     const statusClicks = document.getElementById('status-click-count');
     const adfitLabel = document.getElementById('adfit-unit-label');
+    const adfitContainer = document.getElementById('adfit-banner-container');
 
     if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
     if (statusLp) statusLp.textContent = config.linkPriceId || "A100708867";
-    if (statusCpa) statusCpa.textContent = config.cpaMemberId || "01080142370";
+    if (statusCpa) statusCpa.textContent = maskCpaDisplay(config.cpaMemberId);
     if (statusClicks) statusClicks.textContent = config.clickCount || 0;
-    if (adfitLabel) adfitLabel.textContent = config.adfitUnitId || "DAN-SAMPLE-TOP";
+    const adUnit = config.adfitUnitId || "DAN-SAMPLE-TOP";
+    if (adfitLabel) adfitLabel.textContent = adUnit;
+    if (adfitContainer) {
+      const isLiveAdFit = adUnit && adUnit !== "DAN-SAMPLE-TOP" && adUnit.startsWith("DAN-");
+      adfitContainer.classList.toggle('hidden', !isLiveAdFit);
+    }
   }
 
   function updateSampleLinksPreview(config) {
@@ -424,7 +448,8 @@
     const monetizationModule = getMonetizationModule();
     const coupangAfId = (document.getElementById('cfg-coupang-id')?.value || "").trim() || "AF7865143";
     const linkPriceId = (document.getElementById('cfg-lp-id')?.value || "").trim() || "A100708867";
-    const cpaMemberId = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "01080142370";
+    const rawCpaInput = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "tp_member_2370";
+    const cpaMemberId = /^010\d{7,8}$/.test(rawCpaInput) ? "tp_member_" + rawCpaInput.slice(-4) : rawCpaInput;
     const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim() || "DAN-SAMPLE-TOP";
     const siteUrl = (document.getElementById('cfg-site-url')?.value || "").trim() || "https://truthofmarket.com";
     const telegramBotToken = (document.getElementById('cfg-tg-token')?.value || "").trim() || "YOUR_TELEGRAM_BOT_TOKEN";

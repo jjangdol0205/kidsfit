@@ -66,7 +66,7 @@
         <span>✅ <strong>실시간 수익 라우팅 가동 중</strong></span>
         <span>쿠팡 ID: <code id="status-coupang-id" class="text-amber-400 font-bold">AF7865143</code></span>
         <span>링크프라이스 ID: <code id="status-lp-id" class="text-emerald-400 font-bold">A100708867</code></span>
-        <span>CPA ID: <code id="status-cpa-id" class="text-sky-400 font-bold">01080142370</code></span>
+        <span>CPA ID: <code id="status-cpa-id" class="text-sky-400 font-bold">010-****-2370 (비공개)</code></span>
       </div>
       <div>
         <span>누적 제휴 클릭: <strong id="status-click-count" class="text-amber-300">0</strong>회</span>
@@ -169,8 +169,8 @@
             </div>
           </div>
 
-          <!-- 수익화 트랙 4: 카카오 애드핏 배너 영역 -->
-          <div class="bg-slate-100 border border-dashed border-slate-300 rounded-xl p-3 text-center text-xs text-slate-500">
+          <!-- 수익화 트랙 4: 카카오 애드핏 배너 영역 (DAN 코드 실제 입력 전까지 기본 비노출 처리) -->
+          <div id="adfit-banner-container" class="hidden bg-slate-100 border border-dashed border-slate-300 rounded-xl p-3 text-center text-xs text-slate-500">
             <span>📢 <strong>카카오 애드핏(Kakao AdFit) 배너 슬롯</strong> (단위 ID: <code id="adfit-unit-label" class="text-blue-600">DAN-SAMPLE-TOP</code>) — 애드센스 없이도 즉시 노출 수익 발생</span>
           </div>
 
@@ -297,12 +297,12 @@
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">3. 내 리더스CPA / 텐핑 회원 ID (고단가 상담 캠페인 자동 트래킹)</label>
-            <input id="cfg-cpa-id" type="text" value="01080142370" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
+            <label class="block text-xs font-bold text-slate-700 mb-1">3. 내 리더스CPA / 텐핑 회원 식별코드 (개인정보 비공개 마스킹 적용됨)</label>
+            <input id="cfg-cpa-id" type="password" value="tp_member_2370" placeholder="비공개 보호됨 (010-****-2370)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">4. 카카오 애드핏(Kakao AdFit) 상단 배너 광고 단위 ID</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">4. 카카오 애드핏(Kakao AdFit) 상단 배너 광고 단위 ID (추후 입력 시 자동 노출)</label>
             <input id="cfg-adfit-id" type="text" value="DAN-SAMPLE-TOP" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
           </div>
 

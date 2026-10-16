@@ -9,7 +9,7 @@ const DEFAULT_MONETIZATION_CONFIG = {
   siteUrl: "https://truthofmarket.com",
   coupangAfId: "AF7865143",
   linkPriceId: "A100708867",
-  cpaMemberId: "01080142370",
+  cpaMemberId: "tp_member_2370",
   adfitUnitId: "DAN-SAMPLE-TOP",
   adfitBottomUnitId: "DAN-SAMPLE-BOTTOM",
   telegramBotToken: "YOUR_TELEGRAM_BOT_TOKEN",
@@ -168,7 +168,7 @@ function buildLinkPriceDeepLink(merchantId, targetUrl, lpId = null) {
  * Formula: https://leaderscpa.com/merchant/{campaignKey}?member={cpaMemberId}&benefit={encodedBenefit}
  */
 function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
-  const effectiveMemberId = memberId || currentConfig.cpaMemberId || "01080142370";
+  const effectiveMemberId = memberId || currentConfig.cpaMemberId || "tp_member_2370";
   const encodedValue = encodeURIComponent(dynamicValue || "");
   return `https://leaderscpa.com/merchant/${campaignKey}?member=${effectiveMemberId}&benefit=${encodedValue}`;
 }
@@ -179,7 +179,7 @@ function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
  */
 function getCpaCardDetails(calcId, calculatedResult, config = null) {
   const cfg = config || currentConfig;
-  const memberId = cfg.cpaMemberId || "01080142370";
+  const memberId = cfg.cpaMemberId || "tp_member_2370";
 
   const map = {
     electric: {
@@ -339,7 +339,13 @@ function loadConfigFromStorage() {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+        if (parsed.coupangAfId === "AF1234567") parsed.coupangAfId = "AF7865143";
+        if (parsed.linkPriceId === "A100123456") parsed.linkPriceId = "A100708867";
+        if (parsed.cpaMemberId && /^010\d{7,8}$/.test(parsed.cpaMemberId)) {
+          parsed.cpaMemberId = "tp_member_" + parsed.cpaMemberId.slice(-4);
+        }
         currentConfig = { ...currentConfig, ...parsed };
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(currentConfig, null, 2));
       }
     } catch (e) {
       console.warn("Failed to read config from localStorage:", e);
