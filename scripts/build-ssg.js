@@ -648,6 +648,22 @@ function renderInteractiveCalculatorCard(preset, res) {
   const cpaPayoutLabel = cpaCampaign ? cpaCampaign.payoutLabel : (res.cpaPayout || '35,000원');
   const cpaTargetUrl = `https://leaderscpa.com/merchant/${res.cpaKey}?member=${config.cpaMemberId}`;
 
+  // Coupang (AF7865143) + LinkPrice (A100708867) Product Recommendations
+  const productsHtml = (res.products || []).map(p => {
+    const href = p.type === 'coupang'
+      ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
+      : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
+    const badgeText = p.type === 'coupang' ? '🛒 쿠팡 로켓 최저가' : `🔗 공식 제휴 (${p.merchant})`;
+    return `
+      <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
+        <div class="text-[10px] font-bold text-amber-300 mb-0.5">${badgeText}</div>
+        <div class="text-xs font-bold text-white leading-snug">${p.title}</div>
+        <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
+      </a>
+    `;
+  }).join('');
+
   return `
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8">
       <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
@@ -695,6 +711,14 @@ function renderInteractiveCalculatorCard(preset, res) {
               </div>
               <div class="text-sm font-extrabold mt-0.5 text-slate-950">${res.cpaTitle}</div>
             </a>
+          </div>
+
+          <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
+          <div class="pt-3 border-t border-slate-800">
+            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 특가 좌표</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${productsHtml}
+            </div>
           </div>
         </div>
       </div>
