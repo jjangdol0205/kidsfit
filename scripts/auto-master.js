@@ -58,19 +58,52 @@ function runStep(stepNumber, totalSteps, label, scriptRelPath, extraArgs = []) {
     );
 
     // 4. Master Acceptance Criteria (AC 1 ~ AC 4)
-    runStep(4, 5, '최종 인수 기준(AC 1~4) 전수 검증', 'scripts/verify-acceptance.js');
+    runStep(4, 6, '최종 인수 기준(AC 1~4) 전수 검증', 'scripts/verify-acceptance.js');
+
+    // 5. Git Auto-Sync & Deploy to GitHub (truthofmarket.com) when in --live mode
+    let deployStatus = 'LOCAL_READY';
+    if (isLive) {
+      console.log('\n[AUTO-MASTER 5/6] GitHub (jjangdol0205/truth_of_market → truthofmarket.com) 자동 푸시 배포 ...');
+      try {
+        spawnSync('git', ['add', '-A'], { cwd: PROJECT_ROOT, encoding: 'utf8' });
+        const statusRes = spawnSync('git', ['status', '--porcelain'], { cwd: PROJECT_ROOT, encoding: 'utf8' });
+        if (statusRes.stdout && statusRes.stdout.trim().length > 0) {
+          const nowIso = new Date().toISOString().split('T')[0];
+          spawnSync('git', ['commit', '-m', `chore(auto-grow): daily SEO & sniper update (${nowIso})`], {
+            cwd: PROJECT_ROOT,
+            encoding: 'utf8'
+          });
+          const pushRes = spawnSync('git', ['push', 'origin', 'main'], {
+            cwd: PROJECT_ROOT,
+            encoding: 'utf8',
+            timeout: 30000
+          });
+          if (pushRes.status === 0) {
+            deployStatus = 'GITHUB_PUSHED (truthofmarket.com 자동 배포 완료)';
+            console.log('  ✓ GitHub (origin/main) 자동 푸시 및 truthofmarket.com 배포 트리거 완료');
+          } else {
+            deployStatus = 'GIT_PUSH_SKIPPED';
+          }
+        } else {
+          deployStatus = 'UP_TO_DATE (변경사항 없음)';
+          console.log('  ✓ GitHub 저장소가 이미 최신 상태입니다.');
+        }
+      } catch (gitErr) {
+        console.warn('  ⚠️ Git 자동 푸시 건너뜀:', gitErr.message);
+      }
+    }
 
     const durationMs = Date.now() - startTime;
 
-    // 5. Final Telegram Notification
-    console.log('\n[AUTO-MASTER 5/5] 텔레그램 최종 완료 보고 발송 ...');
+    // 6. Final Telegram Notification
+    console.log('\n[AUTO-MASTER 6/6] 텔레그램 최종 완료 보고 발송 ...');
     const tgRes = await telegramNotifier.sendTelegramReport(
       {
         ssgPagesBuilt: 36,
         sitemapUrls: 37,
         viralBundlesCount: 36,
         sniperTargetsCount: 6,
-        indexNowStatus: isLive ? 'LIVE_SUBMITTED (37 URLs)' : 'VERIFIED_READY (37 URLs)',
+        indexNowStatus: isLive ? `LIVE_SUBMITTED (${deployStatus})` : 'VERIFIED_READY (37 URLs)',
         testStatus: '80/80 테스트 & AC 1~4 전원 통과 (0 에러)',
         durationMs
       },
