@@ -8,7 +8,7 @@
 const DEFAULT_MONETIZATION_CONFIG = {
   siteUrl: "https://truthofmarket.com",
   coupangAfId: "AF7865143",
-  linkPriceId: "A100123456",
+  linkPriceId: "A100708867",
   cpaMemberId: "01080142370",
   adfitUnitId: "DAN-SAMPLE-TOP",
   adfitBottomUnitId: "DAN-SAMPLE-BOTTOM",
@@ -158,7 +158,7 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
  * Formula: https://click.linkprice.com/click.php?m={merchantId}&a={lpId}&l=9999&u={encodedTargetUrl}
  */
 function buildLinkPriceDeepLink(merchantId, targetUrl, lpId = null) {
-  const effectiveLpId = lpId || currentConfig.linkPriceId || "A100123456";
+  const effectiveLpId = lpId || currentConfig.linkPriceId || "A100708867";
   const encodedUrl = encodeURIComponent(targetUrl || "");
   return `https://click.linkprice.com/click.php?m=${merchantId}&a=${effectiveLpId}&l=9999&u=${encodedUrl}`;
 }

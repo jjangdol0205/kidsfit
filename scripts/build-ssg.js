@@ -27,7 +27,7 @@ const CONFIG_PATH = path.join(PROJECT_ROOT, 'monetization.config.json');
 let config = {
   siteUrl: 'https://truthofmarket.com',
   coupangAfId: 'AF7865143',
-  linkPriceId: 'A100123456',
+  linkPriceId: 'A100708867',
   cpaMemberId: '01080142370',
   adfitUnitId: 'DAN-SAMPLE-TOP',
   ftcNotice: '이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)'
