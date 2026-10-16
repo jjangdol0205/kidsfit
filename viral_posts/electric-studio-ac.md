@@ -68,7 +68,7 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
 🔗 https://truthofmarket.com/preset/electric-studio-ac
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 1등급 로켓설치 최저가 확인하기**:  
-🔗 https://www.coupang.com/np/categories/227812?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user
+🔗 https://www.coupang.com/np/categories/227820?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 하이마트 1등급 공식 기획전 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0

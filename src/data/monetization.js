@@ -149,20 +149,23 @@ function updateConfig(newConfig = {}) {
 function resolveCoupangCategoryId(keyword = "", calcId = "portal") {
   const kw = String(keyword || "");
   if (/플러그|멀티탭|전력측정/.test(kw)) return "510084"; // 멀티탭/연장선/절전플러그
-  if (/에어컨|제습기|1등급|인버터/.test(kw)) return "227812"; // 계절가전(에어컨·제습기)
+  if (/에어컨|제습기|1등급|인버터/.test(kw)) return "227820"; // 에어컨(스탠드·벽걸이·멀티·창문형)
+  if (/닭가슴살/.test(kw)) return "502492"; // 냉장/냉동/간편식(로켓프레시)
   if (/현미밥|곤약밥|즉석밥/.test(kw)) return "503674"; // 즉석밥/누룽지(로켓프레시)
-  if (/닭가슴살|다이어트|식단/.test(kw)) return "502492"; // 냉장/냉동/간편식(로켓프레시)
-  if (/영양제|유산균|관절|간식/.test(kw)) return "503730"; // 반려동물 간식/영양제
-  if (/사료|로얄캐닌|강아지|고양이|반려/.test(kw)) return "503727"; // 반려동물 사료/용품
-  if (/침대|매트리스|프레임|가구/.test(kw)) return "184559"; // 침실가구(침대·매트리스)
-  if (/냉장고|세탁기|자취|원룸/.test(kw)) return "403245"; // 냉장고(로켓설치)
-  if (/거치대|맥세이프|무선충전/.test(kw)) return "497774"; // 차량용 무선충전 거치대
+  if (/다이어트|식단/.test(kw)) return "502492"; // 냉장/냉동/간편식(로켓프레시)
+  if (/사료|로얄캐닌/.test(kw)) return "503727"; // 반려동물 사료/용품
+  if (/영양제|유산균|관절|간식/.test(kw)) return "503730"; // 반려동물 간식/영양식
+  if (/강아지|고양이|반려/.test(kw)) return "503727"; // 반려동물 사료/용품
+  if (/독립스프링|침대프레임/.test(kw)) return "184559"; // 침실가구(침대·매트리스)
+  if (/냉장고|세탁기/.test(kw)) return "403245"; // 냉장고(로켓설치)
+  if (/침대|매트리스|프레임|가구|자취|원룸/.test(kw)) return "184559"; // 침실가구(침대·매트리스)
   if (/블랙박스|아이나비|파인뷰/.test(kw)) return "401214"; // 차량용 블랙박스
-  if (/정리함|셋톱박스|거치/.test(kw)) return "184817"; // 선반/정리대/정리함
+  if (/거치대|맥세이프|무선충전/.test(kw)) return "497774"; // 차량용 무선충전 거치대
+  if (/정리함|셋톱박스/.test(kw)) return "184817"; // 선반/정리대/정리함
   if (/공유기|와이파이|랜선|AX3000/.test(kw)) return "497226"; // 공유기/네트워크
 
   const calcMap = {
-    electric: "227812",
+    electric: "227820",
     diet: "502492",
     pet: "503727",
     room: "403245",
