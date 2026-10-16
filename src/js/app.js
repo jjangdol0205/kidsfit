@@ -232,7 +232,7 @@
             ? monetizationModule.buildLinkPriceDeepLink(p.merchant, p.url)
             : p.url;
         }
-        const tag = p.type === 'coupang' ? '쿠팡 로켓배송 (CPS 3%)' : `링크프라이스 제휴 (${p.merchant})`;
+        const tag = p.type === 'coupang' ? '🚀 쿠팡 로켓배송 특가' : '🏷️ 공식 쇼핑몰 기획전';
         const tagColor = p.type === 'coupang' ? 'bg-rose-50 text-rose-700' : 'bg-indigo-50 text-indigo-700';
 
         return `
@@ -748,6 +748,16 @@
     }
   };
 
+  function enableAdminMode(openWizard = true) {
+    document.getElementById('admin-status-bar')?.classList.remove('hidden');
+    document.getElementById('tab-btn-seo')?.classList.remove('hidden');
+    document.getElementById('tab-btn-wizard')?.classList.remove('hidden');
+    if (openWizard && typeof window.switchMainTab === 'function') {
+      window.switchMainTab('wizard');
+    }
+  }
+  window.enableAdminMode = enableAdminMode;
+
   /**
    * Bootstrapping on DOM Ready
    */
@@ -761,6 +771,23 @@
 
     selectCalc('electric');
     runProfitSimulator();
+
+    // Unlock owner-only admin mode if ?admin=2370 or ?admin=1 is present in URL
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const adminParam = params.get('admin');
+      if (adminParam === '2370' || adminParam === '1' || adminParam === 'true') {
+        enableAdminMode(true);
+      }
+    } catch (e) {}
+
+    // Secret keyboard shortcut for owner: Ctrl + Shift + M
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+        e.preventDefault();
+        enableAdminMode(true);
+      }
+    });
   });
 
 })();

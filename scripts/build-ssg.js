@@ -652,7 +652,7 @@ function renderInteractiveCalculatorCard(preset, res) {
     const href = p.type === 'coupang'
       ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
       : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
-    const badgeText = p.type === 'coupang' ? '🛒 쿠팡 로켓 최저가' : `🔗 공식 제휴 (${p.merchant})`;
+    const badgeText = p.type === 'coupang' ? '🚀 쿠팡 로켓 최저가' : '🏷️ 공식몰 특별 기획전';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
@@ -700,13 +700,13 @@ function renderInteractiveCalculatorCard(preset, res) {
             ${metricsHtml}
           </div>
 
-          <!-- 네이티브 CPA 카드 -->
+          <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
             <a href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
-                <span>⚡ 공식 제휴 특별 혜택</span>
-                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">승인 지원</span>
+                <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
               <div class="text-sm font-extrabold mt-0.5 text-slate-950">${res.cpaTitle}</div>
             </a>

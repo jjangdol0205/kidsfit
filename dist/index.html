@@ -55,21 +55,21 @@
         <button onclick="switchMainTab('calculators')" id="tab-btn-calculators" class="px-3 py-1.5 rounded-lg text-sm font-semibold bg-blue-600 text-white shadow-sm transition">
           🧮 6대 손익 계산기
         </button>
-        <button onclick="switchMainTab('seo')" id="tab-btn-seo" class="px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+        <button onclick="switchMainTab('seo')" id="tab-btn-seo" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
           🚀 노출·홍보 키트
         </button>
-        <button onclick="switchMainTab('wizard')" id="tab-btn-wizard" class="px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+        <button onclick="switchMainTab('wizard')" id="tab-btn-wizard" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
           ⚙️ 10분 수익화 마법사
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- 현재 적용된 실시간 제휴 ID 상태 표시줄 -->
-  <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+  <!-- 현재 적용된 실시간 제휴 ID 상태 표시줄 (관리자 전용: 일반 방문자에게는 숨김) -->
+  <div id="admin-status-bar" class="hidden bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex flex-wrap items-center gap-4">
-        <span>✅ <strong>실시간 수익 라우팅 가동 중</strong></span>
+        <span>🔒 <strong>관리자 전용 모드</strong></span>
         <span>쿠팡 ID: <code id="status-coupang-id" class="text-amber-400 font-bold">AF7865143</code></span>
         <span>링크프라이스 ID: <code id="status-lp-id" class="text-emerald-400 font-bold">A100708867</code></span>
         <span>CPA ID: <code id="status-cpa-id" class="text-sky-400 font-bold">010-****-2370 (비공개)</code></span>
@@ -147,14 +147,14 @@
             <p id="result-summary-text" class="text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed"></p>
           </div>
 
-          <!-- 수익화 트랙 1: 고단가 CPA 네이티브 액션 카드 (건당 2.5만~7.5만 원) -->
+          <!-- 맞춤 혜택 액션 카드 -->
           <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-5 text-white shadow-md pulse-cta">
             <div class="flex items-center justify-between mb-1.5">
-              <span id="cpa-badge" class="bg-amber-400 text-slate-900 text-xs font-extrabold px-2 py-0.5 rounded">고단가 맞춤 혜택</span>
-              <span id="cpa-payout-tag" class="text-xs text-blue-100 font-semibold">승인 시 예상 수익: 건당 35,000원</span>
+              <span id="cpa-badge" class="bg-amber-400 text-slate-900 text-xs font-extrabold px-2 py-0.5 rounded">맞춤 추천 혜택</span>
+              <span id="cpa-payout-tag" class="text-xs text-blue-100 font-semibold">⚡ 실시간 최저가 & 지원금 혜택</span>
             </div>
             <h4 id="cpa-title" class="text-lg font-extrabold mb-1">맞춤 무료 견적 조회</h4>
-            <p id="cpa-desc" class="text-xs text-blue-100 mb-3">계산된 절감 금액이 반영된 맞춤형 CPA 행동 유도 카드입니다.</p>
+            <p id="cpa-desc" class="text-xs text-blue-100 mb-3">내 계산 조건에 맞춘 최적 혜택과 할인 정보를 확인하세요.</p>
             <a id="cpa-action-link" href="#" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordAffiliateClick('cpa', this.href)"
                class="block w-full text-center bg-white text-blue-700 hover:bg-blue-50 font-extrabold py-3 px-4 rounded-xl text-sm transition shadow-sm">
@@ -162,11 +162,11 @@
             </a>
           </div>
 
-          <!-- 수익화 트랙 2: 쿠팡 파트너스 + 링크프라이스 맞춤 상품 자동 매칭 -->
+          <!-- 맞춤 상품 비교 리스트 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
             <div class="flex items-center justify-between mb-3">
-              <h4 class="font-bold text-slate-800 text-sm">🛒 내 계산 결과에 딱 맞는 최저가 구매 & 제휴몰 비교</h4>
-              <span class="text-xs text-emerald-600 font-semibold">내 제휴 ID 자동 삽입됨</span>
+              <h4 class="font-bold text-slate-800 text-sm">🛒 내 계산 결과에 딱 맞는 최저가 구매 & 공식몰 특가 비교</h4>
+              <span class="text-xs text-emerald-600 font-semibold">실시간 특가 연동</span>
             </div>
             <div id="product-recommendations" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
 
