@@ -375,7 +375,7 @@
         if (p.type === 'coupang') {
           href = monetizationModule.buildCoupangUrl
             ? monetizationModule.buildCoupangUrl(p.kw, currentCalc)
-            : `https://www.coupang.com/np/search?q=${encodeURIComponent(p.kw)}`;
+            : `https://www.coupang.com/np/categories/178255?lptag=AF7865143`;
         } else {
           href = monetizationModule.buildLinkPriceDeepLink
             ? monetizationModule.buildLinkPriceDeepLink(p.merchant, p.url)
@@ -618,10 +618,10 @@
     const sampleCpa = document.getElementById('sample-synthesized-cpa');
 
     if (sampleCoupang && monetizationModule.buildCoupangUrl) {
-      sampleCoupang.textContent = "🚀 쿠팡 파트너스: " + monetizationModule.buildCoupangUrl("에너지 1등급 가전", "electric", config);
+      sampleCoupang.textContent = "🚀 쿠팡 파트너스: " + monetizationModule.buildCoupangUrl("에너지 1등급 가전", "electric", config.coupangAfId);
     }
     if (sampleLp && monetizationModule.buildLinkPriceDeepLink) {
-      sampleLp.textContent = "🏷️ 링크프라이스: " + monetizationModule.buildLinkPriceDeepLink("himart", "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%801%EB%93%B1%EA%B8%89", config);
+      sampleLp.textContent = "🏷️ 링크프라이스: " + monetizationModule.buildLinkPriceDeepLink("himart", "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0", config.linkPriceId);
     }
     if (sampleCpa && monetizationModule.buildLiveFallbackCpaUrl) {
       sampleCpa.textContent = "🔥 맞춤 혜택/텐핑: " + monetizationModule.buildLiveFallbackCpaUrl(currentCalc || "electric", config);

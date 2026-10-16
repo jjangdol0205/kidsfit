@@ -189,10 +189,10 @@
       : null;
     const coupangUrl = (cpaDetails && cpaDetails.coupangSubUrl)
       || (bundle && bundle.coupangUrl)
-      || (mm.buildCoupangUrl ? mm.buildCoupangUrl(query, preset.calc, cfg) : `https://www.coupang.com/np/search?q=${encodeURIComponent(query)}&lptag=AF7865143`);
+      || (mm.buildCoupangUrl ? mm.buildCoupangUrl(query, preset.calc, cfg.coupangAfId) : `https://www.coupang.com/np/categories/178255?lptag=AF7865143`);
     const linkPriceUrl = (cpaDetails && cpaDetails.linkPriceSubUrl)
       || (bundle && bundle.linkPriceUrl)
-      || (mm.buildLinkPriceDeepLink ? mm.buildLinkPriceDeepLink('himart', 'https://www.e-himart.co.kr/', cfg) : '#');
+      || (mm.buildLinkPriceDeepLink ? mm.buildLinkPriceDeepLink('himart', 'https://www.e-himart.co.kr/', cfg.linkPriceId) : '#');
     const cpaActionUrl = (cpaDetails && cpaDetails.liveActionUrl)
       || (bundle && bundle.cpaActionUrl)
       || linkPriceUrl;

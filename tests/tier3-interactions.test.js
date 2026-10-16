@@ -44,7 +44,7 @@ suite.test('Interaction 3.3: Coupang Partners Deep Link Syntax & SubID Format', 
   const keyword = "에너지 1등급 인버터 에어컨";
   const url = buildCoupangUrl(keyword, "electric", "AF9999999");
 
-  assert(url.startsWith("https://link.coupang.com/re/AFFSRP?"), 'Must point to official Coupang Partners redirect gateway');
+  assert(/^https:\/\/www\.coupang\.com\/np\/categories\/\d+\?/.test(url), 'Must point to verified Coupang category exhibition URL');
   assert(url.includes(encodeURIComponent(keyword)), 'Keyword must be properly URI encoded');
   assert(url.includes("lptag=AF9999999"), 'Must include specified lptag');
   assert(url.includes("subid=mf_electric_AF9999999"), 'Must match standard subid format mf_{calcId}_{afId}');

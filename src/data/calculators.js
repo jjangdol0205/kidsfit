@@ -144,7 +144,7 @@ function calculateElectric(inputs = {}) {
       { title: "쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송", kw: "에너지소비효율 1등급 인버터 에어컨 제습기", type: "coupang", badge: "🚀 내일 도착·로켓설치", ctaText: `월 ${monthlySaving.toLocaleString()}원 아끼는 1등급 특가 확인 →` },
       { title: "실시간 대기전력 차단 스마트 플러그 전력측정기", kw: "스마트 플러그 전력측정기", type: "coupang", badge: "⚡ 누진세 방어 필수템", ctaText: "대기전력 0W 차단기 최저가 보기 →" },
       { title: "롯데하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", merchantLabel: "롯데하이마트", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0", type: "linkprice", badge: "💳 카드 즉시할인+환급", ctaText: "하이마트 1등급 가전 혜택 비교 →" },
-      { title: "지마켓 고효율 인버터 에어컨·제습기·서큘레이터 베스트", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0", type: "linkprice", badge: "🔥 냉방효율 2배 상승", ctaText: "지마켓 절전가전 특가 모음 →" }
+      { title: "지마켓 고효율 인버터 에어컨·제습기·서큘레이터 베스트", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8", type: "linkprice", badge: "🔥 냉방효율 2배 상승", ctaText: "지마켓 절전가전 특가 모음 →" }
     ]
   };
 }
@@ -236,7 +236,7 @@ function calculateDiet(inputs = {}) {
     products: [
       { title: `냉동 닭가슴살 100g 대용량 (${chickenPacks}팩 맞춤 묶음)`, kw: "냉동 닭가슴살 100g 대용량 패키지", type: "coupang", badge: "❄️ 로켓프레시 새벽도착", ctaText: `닭가슴살 ${chickenPacks}팩 최저가 묶음 보기 →` },
       { title: `즉석 현미밥·곤약밥 (${brownRiceBowls}개입 로켓프레시)`, kw: "즉석 현미밥 대용량 박스", type: "coupang", badge: "📦 대용량 박스 할인가", ctaText: `현미밥 ${brownRiceBowls}개입 박스 특가 확인 →` },
-      { title: "아이허브(iHerb) WPI 분리유청 프로틴·다이어트 보충제 특가", merchant: "iherb", merchantLabel: "아이허브", url: "https://kr.iherb.com/search?kw=%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20WPI", type: "linkprice", badge: `💪 ${proteinTubs}통 글로벌 직구특가`, ctaText: `일일 단백질 ${dailyProteinG}g 아이허브 할인 →` },
+      { title: "롯데ON WPI 분리유청 프로틴·다이어트 보충제 특가", merchant: "lotteon", merchantLabel: "롯데ON", url: "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20WPI", type: "linkprice", badge: `💪 ${proteinTubs}통 공식몰 특가`, ctaText: `일일 단백질 ${dailyProteinG}g 프로틴 할인 →` },
       { title: "지마켓 브랜드 닭가슴살·도시락·현미밥 대용량 기획전", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%98%84%EB%AF%B8%EB%B0%A5", type: "linkprice", badge: "🏷️ 스마일배송 묶음할인", ctaText: "지마켓 식단 대용량 최저가 비교 →" }
     ]
   };
@@ -441,8 +441,8 @@ function calculateRoom(inputs = {}) {
     products: [
       { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang", badge: "🚛 원하는 날짜 로켓설치", ctaText: `예산 ${top1}만원 맞춤 냉장고 특가 →` },
       { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang", badge: "🛏️ 호텔식 숙면 베스트", ctaText: `예산 ${top3}만원 침대·매트리스 보기 →` },
-      { title: "현대Hmall 자취·신혼 침대·매트리스·가구 공간별 기획전", merchant: "hmall", merchantLabel: "현대Hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EA%B0%80%EA%B5%AC", type: "linkprice", badge: "🏷️ 쿠폰+카드 청구할인", ctaText: `${roomSize}평 맞춤 가구 공식몰 특가 비교 →` },
-      { title: "롯데ON 원룸·신혼 냉장고·세탁기·전자레인지 풀세팅 특가", merchant: "lotteon", merchantLabel: "롯데ON", url: "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EC%9B%90%EB%A3%B8%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%84%B8%ED%83%81%EA%B8%B0%20%EC%B9%A8%EB%8C%80", type: "linkprice", badge: "⚡ 입주 가전 묶음할인", ctaText: "롯데ON 입주가전 최저가 비교 →" }
+      { title: "현대Hmall 자취·신혼 침대·매트리스·가구 공간별 기획전", merchant: "hmall", merchantLabel: "현대Hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4", type: "linkprice", badge: "🏷️ 쿠폰+카드 청구할인", ctaText: `${roomSize}평 맞춤 가구 공식몰 특가 비교 →` },
+      { title: "롯데ON 원룸·신혼 냉장고·세탁기·전자레인지 풀세팅 특가", merchant: "lotteon", merchantLabel: "롯데ON", url: "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EC%9B%90%EB%A3%B8%20%EB%83%89%EC%9E%A5%EA%B3%A0", type: "linkprice", badge: "⚡ 입주 가전 묶음할인", ctaText: "롯데ON 입주가전 최저가 비교 →" }
     ]
   };
 }

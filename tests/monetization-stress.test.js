@@ -22,7 +22,7 @@ suite.test('Stress 1.1: Coupang Keyword URL Encoding with Korean Characters and 
   const keyword = "에너지 소비효율 1등급 인버터 벽걸이 에어컨 6평형";
   const url = buildCoupangUrl(keyword, "electric", "AF1234567");
 
-  assert(url.startsWith("https://link.coupang.com/re/AFFSRP?"), "Must target Coupang Partners AFFSRP gateway");
+  assert(/^https:\/\/www\.coupang\.com\/np\/categories\/\d+\?/.test(url), "Must target verified Coupang category exhibition URL");
   const parsed = new URL(url);
 
   assert.strictEqual(parsed.searchParams.get("channel"), "user");

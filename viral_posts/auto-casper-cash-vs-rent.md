@@ -70,7 +70,7 @@ A. 네! 장기렌트 차량이라도 경차 규격(배기량 1,000cc 미만)을 
 🔗 https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 
 🚀 **[쿠팡 파트너스] 🚀 쿠팡 블랙박스·차량용품 로켓배송 확인하기**:  
-🔗 https://link.coupang.com/re/AFFSRP?lptag=AF7865143&pageKey=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&subid=mf_auto_AF7865143&q=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&channel=user
+🔗 https://www.coupang.com/np/categories/497774?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&q=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 지마켓 블랙박스 무료장착전 바로가기**:  
 🔗 https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D2%25EC%25B1%2584%25EB%2584%2590%2520QHD%2520%25EB%25B8%2594%25EB%259E%2599%25EB%25B0%2595%25EC%258A%25A4%2520%25EB%25AC%25B4%25EB%25A3%258C%25EC%259E%25A5%25EC%25B0%25A9
