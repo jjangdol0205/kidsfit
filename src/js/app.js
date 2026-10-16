@@ -377,48 +377,27 @@
     const tgChatIdInp = document.getElementById('cfg-tg-chat-id');
     const tgAutoNotifyInp = document.getElementById('cfg-tg-auto-notify');
 
-    if (coupangInp) coupangInp.value = config.coupangAfId || "AF7865143";
-    if (lpInp) lpInp.value = config.linkPriceId || "A100708867";
+    if (coupangInp) coupangInp.value = (config.coupangAfId && config.coupangAfId !== "AF7865143") ? config.coupangAfId : "";
+    if (lpInp) lpInp.value = (config.linkPriceId && config.linkPriceId !== "A100708867") ? config.linkPriceId : "";
     if (cpaInp) {
-      // If user's localStorage still had raw phone number, sanitize to anonymized code
-      const rawCpa = config.cpaMemberId || "tp_member_2370";
+      const rawCpa = (config.cpaMemberId && config.cpaMemberId !== "tp_member_2370") ? config.cpaMemberId : "";
       cpaInp.value = /^010\d{7,8}$/.test(rawCpa) ? "tp_member_" + rawCpa.slice(-4) : rawCpa;
     }
-    if (adfitInp) adfitInp.value = config.adfitUnitId || "DAN-SAMPLE-TOP";
+    if (adfitInp) adfitInp.value = (config.adfitUnitId && config.adfitUnitId !== "DAN-SAMPLE-TOP") ? config.adfitUnitId : "";
     if (siteUrlInp) siteUrlInp.value = config.siteUrl || "https://truthofmarket.com";
-    if (tgTokenInp) tgTokenInp.value = config.telegramBotToken || "YOUR_TELEGRAM_BOT_TOKEN";
-    if (tgChatIdInp) tgChatIdInp.value = config.telegramChatId || "YOUR_CHAT_ID";
+    if (tgTokenInp) tgTokenInp.value = (config.telegramBotToken && config.telegramBotToken !== "YOUR_TELEGRAM_BOT_TOKEN") ? config.telegramBotToken : "";
+    if (tgChatIdInp) tgChatIdInp.value = (config.telegramChatId && config.telegramChatId !== "YOUR_CHAT_ID") ? config.telegramChatId : "";
     if (tgAutoNotifyInp) tgAutoNotifyInp.checked = config.telegramAutoNotify !== false;
 
     updateStatusBar(config);
     updateSampleLinksPreview(config);
   }
 
-  function maskCpaDisplay(rawId) {
-    const val = String(rawId || "tp_member_2370").trim();
-    if (/^010\d{7,8}$/.test(val)) {
-      return `010-****-${val.slice(-4)} (비공개)`;
-    }
-    if (val.startsWith("tp_member_")) {
-      return `010-****-${val.slice(-4)} (비공개)`;
-    }
-    if (val.length > 4) {
-      return `${val.slice(0, 2)}****${val.slice(-2)} (비공개)`;
-    }
-    return "연동됨 (비공개)";
-  }
-
   function updateStatusBar(config) {
-    const statusCoupang = document.getElementById('status-coupang-id');
-    const statusLp = document.getElementById('status-lp-id');
-    const statusCpa = document.getElementById('status-cpa-id');
     const statusClicks = document.getElementById('status-click-count');
     const adfitLabel = document.getElementById('adfit-unit-label');
     const adfitContainer = document.getElementById('adfit-banner-container');
 
-    if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
-    if (statusLp) statusLp.textContent = config.linkPriceId || "A100708867";
-    if (statusCpa) statusCpa.textContent = maskCpaDisplay(config.cpaMemberId);
     if (statusClicks) statusClicks.textContent = config.clickCount || 0;
     const adUnit = config.adfitUnitId || "DAN-SAMPLE-TOP";
     if (adfitLabel) adfitLabel.textContent = adUnit;
