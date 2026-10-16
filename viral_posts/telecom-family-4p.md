@@ -69,7 +69,7 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 👉 **[무료] 내 조건으로 3초 만에 손익분기점 진단하기**:  
 🔗 https://truthofmarket.com/preset/telecom-family-4p
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 와이파이6 공유기 로켓배송 확인하기**:  
+🚀 **[쿠팡 파트너스] 🚀 쿠팡 와이파이6 로켓배송 확인하기**:  
 🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=ipTIME&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&channel=user
 
 🏷️ **[공식몰 기획전] 🏷️ 하이마트 공유기·자급제 기획전 바로가기**:  

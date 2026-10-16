@@ -124,7 +124,7 @@
         const cls = isActive
           ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
           : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:text-blue-700 font-semibold';
-        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-[11px] px-2.5 py-1 rounded-lg border transition ${cls}">${shortLabel}</button>`;
+        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
       }).join('');
     }
 
@@ -132,7 +132,7 @@
       relatedGrid.innerHTML = presets.map(p => `
         <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border border-slate-200 hover:border-blue-400 rounded-xl p-2.5 transition">
           <span class="text-xs font-semibold text-slate-700 group-hover:text-blue-700 truncate pr-2">${p.title}</span>
-          <span class="text-[11px] font-bold text-blue-600 shrink-0">리포트 →</span>
+          <span class="text-[11px] font-bold text-blue-600 shrink-0 whitespace-nowrap">리포트 →</span>
         </a>
       `).join('');
     }
@@ -164,14 +164,16 @@
 
     const titleEl = document.getElementById('calc-form-title');
     if (titleEl) titleEl.textContent = spec.title;
+    const subtitleEl = document.getElementById('calc-form-subtitle');
+    if (subtitleEl) subtitleEl.textContent = spec.subtitle || '';
 
     // Update calculator tab styles
     document.querySelectorAll('.calc-nav-btn').forEach(btn => {
-      btn.className = "calc-nav-btn p-3 rounded-xl border text-left transition bg-white border-slate-200 hover:border-blue-400";
+      btn.className = "calc-nav-btn p-3.5 rounded-2xl border text-left transition bg-white border-slate-200 hover:border-blue-400";
     });
     const activeBtn = document.getElementById(`calc-nav-${calcKey}`);
     if (activeBtn) {
-      activeBtn.className = "calc-nav-btn p-3 rounded-xl border text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
+      activeBtn.className = "calc-nav-btn p-3.5 rounded-2xl border text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
     }
 
     renderScenarioChips(calcKey);
@@ -183,11 +185,11 @@
         const val = customInputs && customInputs[inp.id] !== undefined ? customInputs[inp.id] : inp.value;
         if (inp.type === "checkbox") {
           return `
-            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <label for="inp-${inp.id}" class="text-xs font-bold text-slate-700 cursor-pointer">${inp.label}</label>
+            <div class="flex items-center justify-between gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <label for="inp-${inp.id}" class="text-xs font-bold text-slate-700 cursor-pointer truncate">${inp.label}</label>
               <input id="inp-${inp.id}" type="checkbox" ${val ? 'checked' : ''}
                 onchange="recalculateCurrent()"
-                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer" />
+                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer shrink-0" />
             </div>
           `;
         }
@@ -197,7 +199,7 @@
           `).join('');
           return `
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">${inp.label}</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1 truncate">${inp.label}</label>
               <select id="inp-${inp.id}" onchange="recalculateCurrent()"
                 class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:border-blue-600 focus:outline-none bg-white">
                 ${optionsHtml}
@@ -207,13 +209,13 @@
         }
         return `
           <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="block text-xs font-bold text-slate-700">${inp.label}</label>
-              <span id="label-val-${inp.id}" class="text-xs text-blue-600 font-semibold"></span>
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <label class="block text-xs font-bold text-slate-700 truncate">${inp.label}</label>
+              <span id="label-val-${inp.id}" class="text-xs text-blue-600 font-bold shrink-0 whitespace-nowrap tabular-nums"></span>
             </div>
             <input id="inp-${inp.id}" type="number" value="${val}" min="${inp.min !== undefined ? inp.min : ''}" max="${inp.max !== undefined ? inp.max : ''}" step="${inp.step || '1'}"
               oninput="recalculateCurrent()"
-              class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:border-blue-600 focus:outline-none" />
+              class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:border-blue-600 focus:outline-none tabular-nums" />
           </div>
         `;
       }).join('');
@@ -264,11 +266,11 @@
     if (badgeEl) {
       badgeEl.textContent = res.badge;
       if (res.badge && (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || res.badge.includes('권장') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0))) {
-        badgeEl.className = "inline-block bg-rose-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-1";
+        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
       } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-        badgeEl.className = "inline-block bg-emerald-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-1";
+        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
       } else {
-        badgeEl.className = "inline-block bg-blue-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-1";
+        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
       }
     }
     if (headlineEl) headlineEl.textContent = res.headline;
@@ -281,9 +283,9 @@
         const isNeg = String(m.val).startsWith('-');
         const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
         return `
-          <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3">
-            <div class="text-[11px] text-slate-400">${m.label}</div>
-            <div class="text-base font-extrabold ${valColor} mt-0.5">${m.val}</div>
+          <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 min-w-0">
+            <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
+            <div class="text-sm sm:text-base font-extrabold ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
           </div>
         `;
       }).join('');
@@ -293,24 +295,24 @@
     if (lossBarEl && res.lossComparison) {
       const lc = res.lossComparison;
       lossBarEl.innerHTML = `
-        <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-          <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+        <div class="flex items-center justify-between gap-2 text-xs">
+          <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
         </div>
         <div class="space-y-2 text-xs">
           <div>
-            <div class="flex justify-between text-slate-400 mb-1">
-              <span>❌ ${lc.lossLabel}</span>
-              <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+            <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+              <span class="truncate">❌ ${lc.lossLabel}</span>
+              <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
             </div>
             <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
               <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
             </div>
           </div>
           <div>
-            <div class="flex justify-between text-white mb-1">
-              <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
-              <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+            <div class="flex items-center justify-between gap-2 text-white mb-1">
+              <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+              <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
             </div>
             <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
               <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
@@ -340,8 +342,8 @@
       if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.liveTitle || cpaDetails.title;
       if (cpaPayoutTagEl) {
         cpaPayoutTagEl.textContent = cpaDetails.isCustomTenpingUrl
-          ? `🔥 텐핑(Tenping) 캠페인 실시간 연동됨`
-          : `⚡ 쿠팡 파트너스(${config.coupangAfId || 'AF7865143'}) · 링크프라이스(${config.linkPriceId || 'A100708867'}) 연동`;
+          ? `🔥 텐핑(Tenping) 캠페인 실시간 연동`
+          : `⚡ 공식 제휴 최저가 실시간 연동`;
       }
       if (cpaDescEl) cpaDescEl.textContent = cpaDetails.liveDesc || cpaDetails.desc;
       if (cpaActionLinkEl) {
@@ -350,7 +352,7 @@
       }
       if (cpaCoupangSubEl && cpaDetails.coupangSubUrl) {
         cpaCoupangSubEl.href = cpaDetails.coupangSubUrl;
-        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 파트너스 로켓특가'} ↗`;
+        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 로켓특가'} ↗`;
       }
       if (cpaLpSubEl && cpaDetails.linkPriceSubUrl) {
         cpaLpSubEl.href = cpaDetails.linkPriceSubUrl;
@@ -358,7 +360,7 @@
       }
     } else {
       if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 무료 견적 조회";
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 실시간 최저가 혜택 & 지원금 조회`;
+      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 공식 제휴 최저가 실시간 연동`;
       if (cpaActionLinkEl) {
         const cpaUrl = monetizationModule.buildLiveFallbackCpaUrl
           ? monetizationModule.buildLiveFallbackCpaUrl(currentCalc, config)
@@ -383,27 +385,27 @@
         }
         const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
         const platformTag = p.type === 'coupang'
-          ? '🚀 쿠팡 파트너스 로켓배송'
+          ? '🚀 쿠팡 로켓배송'
           : `🏷️ 링크프라이스 · ${merchantName}`;
         const platformColor = p.type === 'coupang'
           ? 'bg-rose-50 text-rose-700 border-rose-200'
           : 'bg-indigo-50 text-indigo-700 border-indigo-200';
-        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 오늘 출발·내일 도착' : '💳 공식몰 정품 할인');
+        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
         const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('${p.type}', this.href)"
-             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-xl p-3.5 transition-all bg-white hover:bg-blue-50/30 shadow-sm hover:shadow-md">
-            <div>
-              <div class="flex items-center justify-between gap-1 mb-1.5">
-                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border ${platformColor}">${platformTag}</span>
-                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">${subBadge}</span>
+             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-xl p-3.5 transition-all bg-white hover:bg-blue-50/30 shadow-sm hover:shadow-md min-w-0">
+            <div class="min-w-0">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="text-xs font-extrabold text-slate-800 group-hover:text-blue-700 leading-snug">${p.title}</div>
+              <div class="text-xs font-extrabold text-slate-800 group-hover:text-blue-700 leading-snug whitespace-nowrap truncate">${p.title}</div>
             </div>
             <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-extrabold text-blue-600 group-hover:text-blue-800">
-              <span>${ctaLabel}</span>
+              <span class="whitespace-nowrap truncate">${ctaLabel}</span>
             </div>
           </a>
         `;

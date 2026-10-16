@@ -506,24 +506,24 @@ function renderLossBarHtml(res) {
   const lc = res && res.lossComparison;
   if (!lc) return '';
   return `
-    <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-      <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+    <div class="flex items-center justify-between gap-2 text-xs">
+      <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
     </div>
     <div class="space-y-2 text-xs">
       <div>
-        <div class="flex justify-between text-slate-400 mb-1">
-          <span>❌ ${lc.lossLabel}</span>
-          <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+        <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+          <span class="truncate">❌ ${lc.lossLabel}</span>
+          <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
         </div>
         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
           <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
         </div>
       </div>
       <div>
-        <div class="flex justify-between text-white mb-1">
-          <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
-          <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+        <div class="flex items-center justify-between gap-2 text-white mb-1">
+          <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+          <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
         </div>
         <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
           <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
@@ -532,6 +532,45 @@ function renderLossBarHtml(res) {
     </div>
   `;
 }
+
+const SCENARIO_CHIP_LABELS = {
+  'electric-studio-ac': '원룸 에어컨 10시간',
+  'electric-living-2in1': '30평 거실 2in1 12시간',
+  'electric-window-ac': '창문형 에어컨 8시간',
+  'electric-winter-heater': '겨울 온풍기 2000W',
+  'electric-dehumidifier-24h': '장마철 제습기 24시간',
+  'electric-dryer-daily': '의류건조기 매일 1회',
+  'diet-male-80kg-cut': '남성 80kg 8주 감량',
+  'diet-female-58kg-tone': '여성 58kg 4주 바디프로필',
+  'diet-male-65kg-bulk': '남성 65kg 12주 벌크업',
+  'diet-office-75kg-12w': '직장인 75kg 12주 탈출',
+  'diet-bride-54kg-6w': '예비신부 54kg 6주 관리',
+  'diet-keto-90kg-8w': '고도비만 90kg 8주 감량',
+  'pet-dog-5kg-adult': '5kg 말티즈·푸들 성견',
+  'pet-dog-3kg-senior': '3kg 포메 노령견 (7세+)',
+  'pet-dog-15kg-active': '15kg 중형견 활동견',
+  'pet-cat-4kg-indoor': '4.5kg 실내 성묘 (중성화)',
+  'pet-cat-6kg-diet': '6kg 과체중 뚱냥이 감량',
+  'pet-puppy-2kg-growth': '2kg 성장기 아기 강아지',
+  'room-100man-oneroom': '예산 100만 6평 첫자취',
+  'room-300man-officetel': '예산 300만 9평 오피스텔',
+  'room-500man-two-room': '예산 500만 15평 투룸',
+  'room-1000man-newlywed': '예산 1,000만 24평 신혼',
+  'room-50man-minimal': '예산 50만 반지하·고시원',
+  'room-200man-white-studio': '예산 200만 8평 화이트톤',
+  'auto-avante-2500': '아반떼 2,500만 사회초년생',
+  'auto-sorrento-4500-biz': '쏘렌토 4,500만 개인사업자',
+  'auto-tucson-hybrid': '투싼 하이브리드 3,800만',
+  'auto-genesis-g80': '제네시스 G80 7,000만',
+  'auto-casper-cash-vs-rent': '캐스퍼 1,800만 초보',
+  'auto-ev-ioniq': '아이오닉 전기차 5,500만',
+  'telecom-penalty-15': '위약금 15만 vs 사은품 47만',
+  'telecom-penalty-30': '위약금 30만 (잔여 1년)',
+  'telecom-3yr-expired': '3년 약정 만기 (위약금 0원)',
+  'telecom-single-oneroom': '자취방 인터넷 단독',
+  'telecom-family-4p': '온가족 4인 통합 변경',
+  'telecom-mvno-switch': '5G → 알뜰폰 유심 전환'
+};
 
 /**
  * Generate Pre-loaded Interactive Calculator UI HTML matching the preset inputs
@@ -543,10 +582,11 @@ function renderInteractiveCalculatorCard(preset, res) {
   const siblingPresets = PRESETS.filter(p => p.calc === calc);
   const quickChipsHtml = siblingPresets.map(p => {
     const isCurrent = p.id === preset.id;
+    const shortLabel = SCENARIO_CHIP_LABELS[p.id] || p.title;
     const cls = isCurrent
       ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
-      : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold';
-    return `<a href="../${p.id}/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition ${cls}">${p.title}</a>`;
+      : 'bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold';
+    return `<a href="../${p.id}/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap ${cls}">${shortLabel}</a>`;
   }).join('');
 
   // Build inputs form HTML pre-filled with preset values (100% parity with main portal)
@@ -556,23 +596,23 @@ function renderInteractiveCalculatorCard(preset, res) {
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">가전 소비전력 (W)</label>
-          <input id="inp-wattage" type="number" value="${inputs.wattage}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-wattage" type="number" value="${inputs.wattage}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">하루 가동 시간 (시간)</label>
-          <input id="inp-hours" type="number" value="${inputs.hours}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-hours" type="number" value="${inputs.hours}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">평소 월 전기 사용량 (kWh)</label>
-          <input id="inp-baseKwh" type="number" value="${inputs.baseKwh}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-baseKwh" type="number" value="${inputs.baseKwh}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">교체할 1등급 가전 가격 (원)</label>
-          <input id="inp-newPrice" type="number" value="${inputs.newPrice || 550000}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-newPrice" type="number" value="${inputs.newPrice || 550000}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
-        <div class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200">
-          <label for="inp-isSummer" class="text-xs font-bold text-slate-700 cursor-pointer">하계(7~8월) 누진 완화 적용</label>
-          <input id="inp-isSummer" type="checkbox" ${inputs.isSummer ? 'checked' : ''} onchange="recalculatePreset()" class="w-4 h-4 text-blue-600 rounded cursor-pointer" />
+        <div class="flex items-center justify-between gap-2 p-2.5 bg-white rounded-lg border border-slate-200">
+          <label for="inp-isSummer" class="text-xs font-bold text-slate-700 cursor-pointer truncate">하계(7~8월) 누진 완화 적용</label>
+          <input id="inp-isSummer" type="checkbox" ${inputs.isSummer ? 'checked' : ''} onchange="recalculatePreset()" class="w-4 h-4 text-blue-600 rounded cursor-pointer shrink-0" />
         </div>
       </div>
     `;
@@ -589,22 +629,22 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">체중 (kg)</label>
-            <input id="inp-weight" type="number" value="${inputs.weight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-weight" type="number" value="${inputs.weight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">신장 (cm)</label>
-            <input id="inp-height" type="number" value="${inputs.height}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-height" type="number" value="${inputs.height}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">목표 기간 (주)</label>
-            <input id="inp-weeks" type="number" value="${inputs.weeks}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-weeks" type="number" value="${inputs.weeks}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">일일 칼로리 조절 (감량 -500 / 증량 +350)</label>
-          <input id="inp-deficit" type="number" value="${inputs.deficit !== undefined ? inputs.deficit : -500}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          <label class="block text-xs font-bold text-slate-700 mb-1 truncate">일일 칼로리 조절 (감량 -500 / 증량 +300)</label>
+          <input id="inp-deficit" type="number" value="${inputs.deficit !== undefined ? inputs.deficit : -500}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
         </div>
       </div>
     `;
@@ -614,21 +654,21 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">반려동물 체중 (kg)</label>
-            <input id="inp-petWeight" type="number" step="0.1" value="${inputs.petWeight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-petWeight" type="number" step="0.1" value="${inputs.petWeight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">생애주기 계수</label>
-            <input id="inp-factor" type="number" step="0.1" value="${inputs.factor !== undefined ? inputs.factor : 1.6}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-factor" type="number" step="0.1" value="${inputs.factor !== undefined ? inputs.factor : 1.6}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">사료 포대 무게 (kg)</label>
-            <input id="inp-bagKg" type="number" step="0.5" value="${inputs.bagKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-bagKg" type="number" step="0.5" value="${inputs.bagKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">사료 칼로리 (kcal/kg)</label>
-            <input id="inp-kcalPerKg" type="number" value="${inputs.kcalPerKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-kcalPerKg" type="number" value="${inputs.kcalPerKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
       </div>
@@ -639,11 +679,11 @@ function renderInteractiveCalculatorCard(preset, res) {
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">총 가용 예산 (만 원)</label>
-          <input id="inp-budgetMan" type="number" value="${inputs.budgetMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-budgetMan" type="number" value="${inputs.budgetMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">주거 평수 (평)</label>
-          <input id="inp-roomSize" type="number" value="${inputs.roomSize}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-roomSize" type="number" value="${inputs.roomSize}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">인테리어 스타일 / 우선순위</label>
@@ -661,7 +701,7 @@ function renderInteractiveCalculatorCard(preset, res) {
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">차량 가격 (만 원)</label>
-          <input id="inp-carPriceMan" type="number" value="${inputs.carPriceMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-carPriceMan" type="number" value="${inputs.carPriceMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
@@ -674,17 +714,17 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">종합소득세율 (%)</label>
-            <input id="inp-taxRate" type="number" value="${inputs.taxRate}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-taxRate" type="number" value="${inputs.taxRate}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">선납금 비율 (%)</label>
-            <input id="inp-downPaymentRate" type="number" value="${inputs.downPaymentRate !== undefined ? inputs.downPaymentRate : 20}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-downPaymentRate" type="number" value="${inputs.downPaymentRate !== undefined ? inputs.downPaymentRate : 20}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">할부 금리 (%)</label>
-            <input id="inp-interestRate" type="number" step="0.1" value="${inputs.interestRate !== undefined ? inputs.interestRate : 5.5}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-interestRate" type="number" step="0.1" value="${inputs.interestRate !== undefined ? inputs.interestRate : 5.5}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div>
@@ -703,21 +743,21 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">예상 위약금 (만 원)</label>
-            <input id="inp-penaltyMan" type="number" value="${inputs.penaltyMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-penaltyMan" type="number" value="${inputs.penaltyMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현금 사은품 (만 원)</label>
-            <input id="inp-cashGiftMan" type="number" value="${inputs.cashGiftMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-cashGiftMan" type="number" value="${inputs.cashGiftMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현재 월 요금 (원)</label>
-            <input id="inp-oldFee" type="number" value="${inputs.oldFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-oldFee" type="number" value="${inputs.oldFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">신규 월 요금 (원)</label>
-            <input id="inp-newFee" type="number" value="${inputs.newFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-newFee" type="number" value="${inputs.newFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
       </div>
@@ -729,9 +769,9 @@ function renderInteractiveCalculatorCard(preset, res) {
     const isNeg = String(m.val).startsWith('-');
     const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
     return `
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">${m.label}</div>
-        <div class="font-extrabold text-base ${valColor} mt-0.5">${m.val}</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
+        <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
       </div>
     `;
   }).join('');
@@ -747,31 +787,31 @@ function renderInteractiveCalculatorCard(preset, res) {
       : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
     const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
     const badgeText = p.type === 'coupang'
-      ? '🚀 쿠팡 파트너스 로켓배송'
+      ? '🚀 쿠팡 로켓배송'
       : `🏷️ 링크프라이스 · ${merchantName}`;
-    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
+    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
     const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">${badgeText}</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">${subBadge}</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">${p.title}</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">${ctaLabel}</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">${p.title}</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">${ctaLabel}</div>
       </a>
     `;
   }).join('');
 
   return `
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8 space-y-5">
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
-        <div>
-          <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">실시간 인터랙티브 시뮬레이터</span>
-          <h3 class="text-lg font-bold text-slate-800 mt-1">${title}</h3>
+      <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
+        <div class="min-w-0 flex-1">
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full whitespace-nowrap">실시간 인터랙티브 시뮬레이터</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5 break-keep">${title}</h3>
         </div>
-        <span class="text-xs text-slate-400">수치 변경 시 즉시 재계산</span>
+        <span class="text-xs text-slate-400 shrink-0 whitespace-nowrap hidden sm:inline">수치 변경 시 즉시 재계산</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
@@ -787,23 +827,23 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="lg:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
           <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">⚙️ 시뮬레이션 조건 입력</h4>
           ${inputsFormHtml}
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm whitespace-nowrap">
             🔄 조건 변경 후 실시간 재계산
           </button>
         </div>
 
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <div class="flex items-center justify-between gap-2">
+            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               ${res.badge}
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 내 영수증 1초 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug break-keep">
             ${res.headline}
           </div>
 
@@ -817,7 +857,7 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
 
           <!-- 전문가 요약 코멘트 -->
-          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed">
+          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3.5 leading-relaxed break-keep">
             ${res.summary}
           </p>
 
@@ -825,19 +865,19 @@ function renderInteractiveCalculatorCard(preset, res) {
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
-              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
-                <span id="res-cpa-badge">${cpaCardInfo.liveBadge || '⚡ 맞춤 최저가 & 공식 기획전 혜택'}</span>
-                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 특가</span>
+              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
+                <span id="res-cpa-badge" class="whitespace-nowrap truncate">${cpaCardInfo.liveBadge || '⚡ 맞춤 최저가 & 공식 기획전 혜택'}</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px] shrink-0 whitespace-nowrap">실시간 특가</span>
               </div>
-              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950 whitespace-nowrap truncate">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="${cpaCardInfo.coupangSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.coupangSubLabel} ↗
               </a>
               <a id="res-cpa-lp-sub" href="${cpaCardInfo.linkPriceSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.linkPriceSubLabel} ↗
               </a>
             </div>
@@ -845,7 +885,7 @@ function renderInteractiveCalculatorCard(preset, res) {
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800">
-            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교 (쿠팡 파트너스 · 링크프라이스)</div>
+            <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               ${productsHtml}
             </div>
@@ -1260,11 +1300,11 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (badge && res.badge) {
         badge.textContent = res.badge;
         if (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0)) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 whitespace-nowrap";
         } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap";
         } else {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap";
         }
       }
       if (headline && res.headline) headline.textContent = res.headline;
@@ -1275,9 +1315,9 @@ ${JSON.stringify(schemaJson, null, 2)}
           const isNeg = String(m.val).startsWith('-');
           const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
           return \`
-            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <div class="text-[11px] text-slate-400">\${m.label}</div>
-              <div class="font-extrabold text-base \${valColor} mt-0.5">\${m.val}</div>
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+              <div class="text-[11px] text-slate-400 truncate">\${m.label}</div>
+              <div class="font-extrabold text-sm sm:text-base \${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">\${m.val}</div>
             </div>
           \`;
         }).join('');
@@ -1286,24 +1326,24 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (lossBar && res.lossComparison) {
         const lc = res.lossComparison;
         lossBar.innerHTML = \`
-          <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">\${lc.savingBadge}</span>
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">\${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
-              <div class="flex justify-between text-slate-400 mb-1">
-                <span>❌ \${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through">\${lc.lossValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+                <span class="truncate">❌ \${lc.lossLabel}</span>
+                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">\${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
               </div>
             </div>
             <div>
-              <div class="flex justify-between text-white mb-1">
-                <span class="font-semibold text-emerald-300">✅ \${lc.optLabel}</span>
-                <span class="font-extrabold text-emerald-400">\${lc.optValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-white mb-1">
+                <span class="font-semibold text-emerald-300 truncate">✅ \${lc.optLabel}</span>
+                <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">\${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
                 <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: \${lc.optPercent}%"></div>
@@ -1332,19 +1372,19 @@ ${JSON.stringify(schemaJson, null, 2)}
             : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
-            ? '🚀 쿠팡 파트너스 로켓배송'
+            ? '🚀 쿠팡 로켓배송'
             : \`🏷️ 링크프라이스 · \${merchantName}\`;
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
+          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
-               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-              <div class="flex items-center justify-between gap-1 mb-1">
-                <span class="text-[10px] font-bold text-amber-300">\${badgeText}</span>
-                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">\${subBadge}</span>
+               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+              <div class="flex items-center justify-between gap-1.5 mb-1">
+                <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
+                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
               </div>
-              <div class="text-xs font-bold text-white leading-snug">\${p.title}</div>
-              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">\${ctaLabel}</div>
+              <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">\${p.title}</div>
+              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">\${ctaLabel}</div>
             </a>
           \`;
         }).join('');

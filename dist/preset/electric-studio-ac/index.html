@@ -181,19 +181,19 @@
     <section id="interactive-calculator-section">
       
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8 space-y-5">
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
-        <div>
-          <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">실시간 인터랙티브 시뮬레이터</span>
-          <h3 class="text-lg font-bold text-slate-800 mt-1">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산</h3>
+      <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
+        <div class="min-w-0 flex-1">
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full whitespace-nowrap">실시간 인터랙티브 시뮬레이터</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5 break-keep">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산</h3>
         </div>
-        <span class="text-xs text-slate-400">수치 변경 시 즉시 재계산</span>
+        <span class="text-xs text-slate-400 shrink-0 whitespace-nowrap hidden sm:inline">수치 변경 시 즉시 재계산</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
       <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 space-y-1.5">
         <div class="text-[11px] font-extrabold text-slate-600">⚡ 같은 카테고리 인기 조건 1초 비교</div>
         <div class="flex flex-wrap gap-1.5">
-          <a href="../electric-studio-ac/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산</a><a href="../electric-stand-ac/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산</a><a href="../electric-dehumidifier/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익</a><a href="../electric-dryer/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">전기 의류건조기 주 4회 사용 시 한 달 전기세</a><a href="../electric-winter-heater/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단</a><a href="../electric-inverter-roi/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간</a>
+          <a href="../electric-studio-ac/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm">원룸 에어컨 10시간</a><a href="../electric-stand-ac/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산</a><a href="../electric-dehumidifier/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익</a><a href="../electric-dryer/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">전기 의류건조기 주 4회 사용 시 한 달 전기세</a><a href="../electric-winter-heater/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">겨울 온풍기 2000W</a><a href="../electric-inverter-roi/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간</a>
         </div>
       </div>
 
@@ -205,61 +205,61 @@
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">가전 소비전력 (W)</label>
-          <input id="inp-wattage" type="number" value="650" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-wattage" type="number" value="650" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">하루 가동 시간 (시간)</label>
-          <input id="inp-hours" type="number" value="10" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-hours" type="number" value="10" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">평소 월 전기 사용량 (kWh)</label>
-          <input id="inp-baseKwh" type="number" value="150" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-baseKwh" type="number" value="150" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">교체할 1등급 가전 가격 (원)</label>
-          <input id="inp-newPrice" type="number" value="550000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-newPrice" type="number" value="550000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums focus:ring-2 focus:ring-blue-500" />
         </div>
-        <div class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200">
-          <label for="inp-isSummer" class="text-xs font-bold text-slate-700 cursor-pointer">하계(7~8월) 누진 완화 적용</label>
-          <input id="inp-isSummer" type="checkbox" checked onchange="recalculatePreset()" class="w-4 h-4 text-blue-600 rounded cursor-pointer" />
+        <div class="flex items-center justify-between gap-2 p-2.5 bg-white rounded-lg border border-slate-200">
+          <label for="inp-isSummer" class="text-xs font-bold text-slate-700 cursor-pointer truncate">하계(7~8월) 누진 완화 적용</label>
+          <input id="inp-isSummer" type="checkbox" checked onchange="recalculatePreset()" class="w-4 h-4 text-blue-600 rounded cursor-pointer shrink-0" />
         </div>
       </div>
     
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm whitespace-nowrap">
             🔄 조건 변경 후 실시간 재계산
           </button>
         </div>
 
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <div class="flex items-center justify-between gap-2">
+            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               ⚡ 누진세 2단계 진입
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 내 영수증 1초 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug break-keep">
             이번 달 추가 전기세 +35,335원 (총 59,223원)
           </div>
 
           <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
             
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">월 추가 전력량</div>
-        <div class="font-extrabold text-base text-amber-300 mt-0.5">+195 kWh</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">월 추가 전력량</div>
+        <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">+195 kWh</div>
       </div>
     
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">1등급 교체 시 월 절감</div>
-        <div class="font-extrabold text-base text-rose-400 mt-0.5">-21,927원</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">1등급 교체 월 절감</div>
+        <div class="font-extrabold text-sm sm:text-base text-rose-400 mt-0.5 whitespace-nowrap truncate tabular-nums">-21,927원</div>
       </div>
     
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">기기값 본전 회수</div>
-        <div class="font-extrabold text-base text-amber-300 mt-0.5">25.1개월</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">기기값 본전 회수</div>
+        <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">25.1개월</div>
       </div>
     
           </div>
@@ -267,24 +267,24 @@
           <!-- 손실회피 시각 비교 게이지 바 -->
           <div id="res-loss-bar" class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
             
-    <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-      <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">매달 21,927원 절약 (연 263,124원 세이브)</span>
+    <div class="flex items-center justify-between gap-2 text-xs">
+      <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">월 21,927원 · 연 263,124원 절약</span>
     </div>
     <div class="space-y-2 text-xs">
       <div>
-        <div class="flex justify-between text-slate-400 mb-1">
-          <span>❌ 구형 가전 방치 시 월 전기세</span>
-          <span class="font-bold text-rose-400 line-through">59,223원</span>
+        <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+          <span class="truncate">❌ 구형 가전 방치 시 월 전기세</span>
+          <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">59,223원</span>
         </div>
         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
           <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
         </div>
       </div>
       <div>
-        <div class="flex justify-between text-white mb-1">
-          <span class="font-semibold text-emerald-300">✅ 1등급 인버터 교체 시 월 전기세</span>
-          <span class="font-extrabold text-emerald-400">37,296원</span>
+        <div class="flex items-center justify-between gap-2 text-white mb-1">
+          <span class="font-semibold text-emerald-300 truncate">✅ 1등급 인버터 교체 시 월 전기세</span>
+          <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">37,296원</span>
         </div>
         <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
           <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: 63%"></div>
@@ -295,7 +295,7 @@
           </div>
 
           <!-- 전문가 요약 코멘트 -->
-          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed">
+          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3.5 leading-relaxed break-keep">
             현재 구형 가전(650W)을 하루 10시간 틀면 총 345kWh로 전기요금이 급증합니다. 에너지 1등급 인버터 모델로 교체 시 매달 21,927원을 아껴 약 25.1개월 만에 기기값을 100% 회수합니다!
           </p>
 
@@ -303,19 +303,19 @@
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0" target="_blank" rel="noopener noreferrer sponsored"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
-              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
-                <span id="res-cpa-badge">🏷️ 링크프라이스 · 롯데하이마트 공식 제휴</span>
-                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 특가</span>
+              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
+                <span id="res-cpa-badge" class="whitespace-nowrap truncate">🏷️ 하이마트 · 쿠팡 공식 제휴</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px] shrink-0 whitespace-nowrap">실시간 특가</span>
               </div>
-              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">에너지 1등급 인버터 에어컨·제습기·절전가전 최저가 기획전 (월 21,927원 절감)</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950 whitespace-nowrap truncate">에너지 1등급 인버터 가전 최저가 기획전 (월 21,927원 절감)</div>
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=LG%EC%A0%84%EC%9E%90&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
-                🚀 쿠팡 1등급 로켓설치 최저가 ↗
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
+                🚀 쿠팡 1등급 로켓설치 특가 ↗
               </a>
               <a id="res-cpa-lp-sub" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 🏷️ 하이마트 1등급 공식 기획전 ↗
               </a>
             </div>
@@ -323,47 +323,47 @@
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800">
-            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교 (쿠팡 파트너스 · 링크프라이스)</div>
+            <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=LG%EC%A0%84%EC%9E%90&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🚀 쿠팡 파트너스 로켓배송</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">🚀 내일 도착·로켓설치</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🚀 내일 도착 · 로켓설치</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">월 21,927원 아끼는 1등급 특가 확인 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">LG전자 1등급 인버터 에어컨·제습기 특가</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">월 21,927원 절감 1등급 특가 →</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=%ED%8B%B0%ED%94%BC%EB%A7%81%ED%81%AC&q=%EC%8A%A4%EB%A7%88%ED%8A%B8%20%ED%94%8C%EB%9F%AC%EA%B7%B8%20%EC%A0%84%EB%A0%A5%EC%B8%A1%EC%A0%95%EA%B8%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🚀 쿠팡 파트너스 로켓배송</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">⚡ 누진세 방어 필수템</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">⚡ 누진세 방어 필수템</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">실시간 대기전력 차단 스마트 플러그 전력측정기</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">대기전력 0W 차단기 최저가 보기 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">티피링크 스마트 플러그 실시간 전력측정기</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">대기전력 0W 차단기 최저가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🏷️ 링크프라이스 · 롯데하이마트</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">💳 카드 즉시할인+환급</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 롯데하이마트</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">💳 카드 할인 · 환급</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">롯데하이마트 으뜸효율 1등급 가전 특별 기획전</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">하이마트 1등급 가전 혜택 비교 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">롯데하이마트 으뜸효율 1등급 가전 기획전</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">하이마트 1등급 가전 혜택 비교 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0%2520%25EC%2597%2590%25EC%2596%25B4%25EC%25BB%25A8" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🏷️ 링크프라이스 · 지마켓</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">🔥 냉방효율 2배 상승</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 지마켓</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 냉방효율 2배 상승</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">지마켓 고효율 인버터 에어컨·제습기·서큘레이터 베스트</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">지마켓 절전가전 특가 모음 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">지마켓 고효율 인버터 에어컨·제습기 베스트</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">지마켓 절전가전 특가 모음 →</div>
       </a>
     
             </div>
@@ -745,9 +745,9 @@
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">매달 21,927원 절약 (연 263,124원 세이브)</span>
+          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">월 21,927원 · 연 263,124원 절약</span>
         </div>
-        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">에너지 1등급 인버터 에어컨·제습기·절전가전 최저가 기획전 (월 21,927원 절감)</div>
+        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">에너지 1등급 인버터 가전 최저가 기획전 (월 21,927원 절감)</div>
       </div>
       <a id="sticky-cta-btn" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0" target="_blank" rel="noopener noreferrer sponsored"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
@@ -845,11 +845,11 @@
       if (badge && res.badge) {
         badge.textContent = res.badge;
         if (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0)) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 whitespace-nowrap";
         } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap";
         } else {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap";
         }
       }
       if (headline && res.headline) headline.textContent = res.headline;
@@ -860,9 +860,9 @@
           const isNeg = String(m.val).startsWith('-');
           const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
           return `
-            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <div class="text-[11px] text-slate-400">${m.label}</div>
-              <div class="font-extrabold text-base ${valColor} mt-0.5">${m.val}</div>
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+              <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
+              <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
             </div>
           `;
         }).join('');
@@ -871,24 +871,24 @@
       if (lossBar && res.lossComparison) {
         const lc = res.lossComparison;
         lossBar.innerHTML = `
-          <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
-              <div class="flex justify-between text-slate-400 mb-1">
-                <span>❌ ${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+                <span class="truncate">❌ ${lc.lossLabel}</span>
+                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
               </div>
             </div>
             <div>
-              <div class="flex justify-between text-white mb-1">
-                <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
-                <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-white mb-1">
+                <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+                <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
                 <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
@@ -917,19 +917,19 @@
             : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
-            ? '🚀 쿠팡 파트너스 로켓배송'
+            ? '🚀 쿠팡 로켓배송'
             : `🏷️ 링크프라이스 · ${merchantName}`;
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
+          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           return `
             <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-              <div class="flex items-center justify-between gap-1 mb-1">
-                <span class="text-[10px] font-bold text-amber-300">${badgeText}</span>
-                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">${subBadge}</span>
+               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+              <div class="flex items-center justify-between gap-1.5 mb-1">
+                <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="text-xs font-bold text-white leading-snug">${p.title}</div>
-              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">${ctaLabel}</div>
+              <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">${p.title}</div>
+              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">${ctaLabel}</div>
             </a>
           `;
         }).join('');

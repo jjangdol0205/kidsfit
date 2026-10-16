@@ -3,31 +3,70 @@
 :root {
   --primary-blue: #2563eb;
   --primary-dark: #0f172a;
+  --toss-bg: #f8fafc;
+  --toss-card-border: #e2e8f0;
 }
 
-body {
+html, body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 한국어 어절 단위 줄바꿈 보장 (단어 중간 쪼개짐 원천 차단) */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+/* 헤드라인·타이틀 밸런스 및 타이트한 자간 (토스·뱅크샐러드·핀다 스타일) */
+h1, h2, h3, h4, .headline-balanced {
+  word-break: keep-all;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+}
+
+/* 금융 숫자·영수증 수치 고정폭 정렬 (실시간 입력 시 흔들림 방지) */
+input[type="number"],
+#result-headline,
+#result-metrics-grid,
+#result-loss-bar,
+#res-headline,
+#res-metrics-grid,
+#res-loss-bar,
+table td,
+table th,
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 배지·버튼·칩 내부 줄바꿈 방지 유틸리티 */
+.badge-pill,
+#result-badge,
+#res-badge,
+#cpa-badge,
+#btn-share-receipt {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* High-intent CTA pulse animation */
 .pulse-cta {
-  animation: pulseBorder 2s infinite;
+  animation: pulseBorder 2.2s infinite;
 }
 
 @keyframes pulseBorder {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.45);
+    box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.35), 0 0 0 0 rgba(37, 99, 235, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+    box-shadow: 0 4px 24px -2px rgba(37, 99, 235, 0.45), 0 0 0 6px rgba(37, 99, 235, 0);
   }
 }
 
-/* Receipt card thermal printer simulation */
+/* Receipt card thermal printer simulation (Toss/Banksalad Dark Card) */
 .receipt-paper {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
   position: relative;
 }
 
@@ -39,8 +78,8 @@ body {
   right: 0;
   height: 4px;
   background: repeating-linear-gradient(90deg, #38bdf8 0, #38bdf8 10px, transparent 10px, transparent 20px);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 /* Number input spinners */

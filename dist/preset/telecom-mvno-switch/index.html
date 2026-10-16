@@ -181,19 +181,19 @@
     <section id="interactive-calculator-section">
       
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8 space-y-5">
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
-        <div>
-          <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">실시간 인터랙티브 시뮬레이터</span>
-          <h3 class="text-lg font-bold text-slate-800 mt-1">5G 고가 요금제 → 알뜰폰 유심 요금제 전환 시 24개월 절감액</h3>
+      <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
+        <div class="min-w-0 flex-1">
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full whitespace-nowrap">실시간 인터랙티브 시뮬레이터</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5 break-keep">5G 고가 요금제 → 알뜰폰 유심 요금제 전환 시 24개월 절감액</h3>
         </div>
-        <span class="text-xs text-slate-400">수치 변경 시 즉시 재계산</span>
+        <span class="text-xs text-slate-400 shrink-0 whitespace-nowrap hidden sm:inline">수치 변경 시 즉시 재계산</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
       <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 space-y-1.5">
         <div class="text-[11px] font-extrabold text-slate-600">⚡ 같은 카테고리 인기 조건 1초 비교</div>
         <div class="flex flex-wrap gap-1.5">
-          <a href="../telecom-penalty-15/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익</a><a href="../telecom-penalty-30/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">약정 1년 남은 통신 위약금 30만 원 vs 사은품 47만 원 손익</a><a href="../telecom-3yr-expired/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">인터넷 3년 약정 만기(위약금 0원) 신규 이동 시 47만 원 혜택</a><a href="../telecom-single-oneroom/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">자취방 인터넷 단독 위약금 8만 원 vs 지원금 25만 원 비교</a><a href="../telecom-family-4p/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">온가족 4인 인터넷+TV 통합 변경 시 최대 사은품 손익 계산</a><a href="../telecom-mvno-switch/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm">5G 고가 요금제 → 알뜰폰 유심 요금제 전환 시 24개월 절감액</a>
+          <a href="../telecom-penalty-15/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">위약금 15만 vs 사은품 47만</a><a href="../telecom-penalty-30/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">위약금 30만 (잔여 1년)</a><a href="../telecom-3yr-expired/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">3년 약정 만기 (위약금 0원)</a><a href="../telecom-single-oneroom/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">자취방 인터넷 단독</a><a href="../telecom-family-4p/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold">온가족 4인 통합 변경</a><a href="../telecom-mvno-switch/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm">5G → 알뜰폰 유심 전환</a>
         </div>
       </div>
 
@@ -206,60 +206,60 @@
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">예상 위약금 (만 원)</label>
-            <input id="inp-penaltyMan" type="number" value="10" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-penaltyMan" type="number" value="10" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현금 사은품 (만 원)</label>
-            <input id="inp-cashGiftMan" type="number" value="45" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-cashGiftMan" type="number" value="45" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현재 월 요금 (원)</label>
-            <input id="inp-oldFee" type="number" value="62000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-oldFee" type="number" value="62000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">신규 월 요금 (원)</label>
-            <input id="inp-newFee" type="number" value="42000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-newFee" type="number" value="42000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold tabular-nums" />
           </div>
         </div>
       </div>
     
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm whitespace-nowrap">
             🔄 조건 변경 후 실시간 재계산
           </button>
         </div>
 
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <div class="flex items-center justify-between gap-2">
+            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               💰 지금 바로 갈아타기 무조건 이득!
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 내 영수증 1초 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug break-keep">
             위약금 10만 원 내고도 총 +107만 원 순수익!
           </div>
 
           <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
             
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">사은품 - 위약금 차액</div>
-        <div class="font-extrabold text-base text-amber-300 mt-0.5">+35만 원</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">사은품 - 위약금 차액</div>
+        <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">+35만 원</div>
       </div>
     
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">3년 요금 절감액</div>
-        <div class="font-extrabold text-base text-amber-300 mt-0.5">+72만 원</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">3년 요금 절감액</div>
+        <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">+72만 원</div>
       </div>
     
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-        <div class="text-[11px] text-slate-400">총 순이익 합계</div>
-        <div class="font-extrabold text-base text-amber-300 mt-0.5">+1,070,000원</div>
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+        <div class="text-[11px] text-slate-400 truncate">총 순이익 합계</div>
+        <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">+1,070,000원</div>
       </div>
     
           </div>
@@ -267,24 +267,24 @@
           <!-- 손실회피 시각 비교 게이지 바 -->
           <div id="res-loss-bar" class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
             
-    <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-      <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">갈아타는 즉시 총 +1,070,000원 순수익 달성!</span>
+    <div class="flex items-center justify-between gap-2 text-xs">
+      <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">갈아타는 즉시 총 +1,070,000원 순수익!</span>
     </div>
     <div class="space-y-2 text-xs">
       <div>
-        <div class="flex justify-between text-slate-400 mb-1">
-          <span>❌ 기존 통신사 유지 시 (3년 요금·사은품 0원)</span>
-          <span class="font-bold text-rose-400 line-through">2,232,000원</span>
+        <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+          <span class="truncate">❌ 기존 통신사 유지 시 (3년 요금·사은품 0원)</span>
+          <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">2,232,000원</span>
         </div>
         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
           <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
         </div>
       </div>
       <div>
-        <div class="flex justify-between text-white mb-1">
-          <span class="font-semibold text-emerald-300">✅ 신규 이동 시 (사은품 45만-위약금 10만 반영)</span>
-          <span class="font-extrabold text-emerald-400">1,162,000원</span>
+        <div class="flex items-center justify-between gap-2 text-white mb-1">
+          <span class="font-semibold text-emerald-300 truncate">✅ 신규 이동 시 (사은품 45만 - 위약금 10만)</span>
+          <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">1,162,000원</span>
         </div>
         <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
           <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: 52%"></div>
@@ -295,7 +295,7 @@
           </div>
 
           <!-- 전문가 요약 코멘트 -->
-          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed">
+          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3.5 leading-relaxed break-keep">
             현재 위약금 10만 원을 물더라도 신규 현금 사은품 45만 원을 즉시 수령하면 당장 +35만 원이 남고, 매달 요금까지 20,000원씩 절감되어 3년간 총 1,070,000원 이득입니다.
           </p>
 
@@ -303,19 +303,19 @@
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0" target="_blank" rel="noopener noreferrer sponsored"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
-              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
-                <span id="res-cpa-badge">🏷️ 링크프라이스 · 롯데하이마트 공식 제휴</span>
-                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 특가</span>
+              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
+                <span id="res-cpa-badge" class="whitespace-nowrap truncate">🏷️ 하이마트 · 쿠팡 공식 제휴</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px] shrink-0 whitespace-nowrap">실시간 특가</span>
               </div>
-              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">통신사 공유기 임대료 평생 0원! 하이마트 기가 와이파이6 공유기·자급제 특별 기획전</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950 whitespace-nowrap truncate">공유기 임대료 평생 0원! 하이마트 기가 와이파이6·자급제 기획전</div>
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=ipTIME&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
-                🚀 쿠팡 와이파이6 공유기 로켓배송 ↗
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
+                🚀 쿠팡 와이파이6 로켓배송 ↗
               </a>
               <a id="res-cpa-lp-sub" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0" target="_blank" rel="noopener noreferrer sponsored"
-                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 🏷️ 하이마트 공유기·자급제 기획전 ↗
               </a>
             </div>
@@ -323,47 +323,47 @@
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800">
-            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교 (쿠팡 파트너스 · 링크프라이스)</div>
+            <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=ipTIME&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🚀 쿠팡 파트너스 로켓배송</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">📡 통신사 임대료 0원</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">📡 통신사 임대료 0원</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">기가 와이파이6 공유기 로켓배송 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">ipTIME 기가 와이파이6 공유기 AX3000</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">기가 와이파이6 공유기 로켓배송 →</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=%EC%BD%94%EB%A9%A7&q=%EC%85%8B%ED%86%B1%EB%B0%95%EC%8A%A4%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EC%A0%95%EB%A6%AC%ED%95%A8&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🚀 쿠팡 파트너스 로켓배송</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">🧹 선정리 3분 해결</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🧹 선정리 3분 해결</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">무타공 셋톱박스 거치대 최저가 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">코멧 TV 뒷면 셋톱박스·공유기 무타공 정리함</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">무타공 셋톱박스 거치대 최저가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🏷️ 링크프라이스 · 롯데하이마트</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">💳 하이마트 즉시할인</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 롯데하이마트</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">💳 하이마트 즉시할인</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">롯데하이마트 기가 와이파이6 공유기·자급제 특별 기획전</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">하이마트 통신·공유기 특가전 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">롯데하이마트 기가 와이파이6 공유기 기획전</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">하이마트 통신·공유기 특가전 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0%2520%25EC%259E%2590%25EA%25B8%2589%25EC%25A0%259C" target="_blank" rel="noopener noreferrer sponsored"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="flex items-center justify-between gap-1 mb-1">
-          <span class="text-[10px] font-bold text-amber-300">🏷️ 링크프라이스 · 지마켓</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">🔥 통신비 반값 절약</span>
+         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+        <div class="flex items-center justify-between gap-1.5 mb-1">
+          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 지마켓</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 통신비 반값 절약</span>
         </div>
-        <div class="text-xs font-bold text-white leading-snug">지마켓 알뜰폰 무약정 유심·기가 와이파이 증폭기 모음</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">지마켓 통신기기 최저가 비교 →</div>
+        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">지마켓 알뜰폰 무약정 유심·공유기 특가</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">지마켓 통신기기 최저가 비교 →</div>
       </a>
     
             </div>
@@ -757,9 +757,9 @@
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">갈아타는 즉시 총 +1,070,000원 순수익 달성!</span>
+          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">갈아타는 즉시 총 +1,070,000원 순수익!</span>
         </div>
-        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">통신사 공유기 임대료 평생 0원! 하이마트 기가 와이파이6 공유기·자급제 특별 기획전</div>
+        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">공유기 임대료 평생 0원! 하이마트 기가 와이파이6·자급제 기획전</div>
       </div>
       <a id="sticky-cta-btn" href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0" target="_blank" rel="noopener noreferrer sponsored"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
@@ -857,11 +857,11 @@
       if (badge && res.badge) {
         badge.textContent = res.badge;
         if (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0)) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 whitespace-nowrap";
         } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap";
         } else {
-          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap";
         }
       }
       if (headline && res.headline) headline.textContent = res.headline;
@@ -872,9 +872,9 @@
           const isNeg = String(m.val).startsWith('-');
           const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
           return `
-            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <div class="text-[11px] text-slate-400">${m.label}</div>
-              <div class="font-extrabold text-base ${valColor} mt-0.5">${m.val}</div>
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+              <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
+              <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
             </div>
           `;
         }).join('');
@@ -883,24 +883,24 @@
       if (lossBar && res.lossComparison) {
         const lc = res.lossComparison;
         lossBar.innerHTML = `
-          <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
-              <div class="flex justify-between text-slate-400 mb-1">
-                <span>❌ ${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+                <span class="truncate">❌ ${lc.lossLabel}</span>
+                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
               </div>
             </div>
             <div>
-              <div class="flex justify-between text-white mb-1">
-                <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
-                <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+              <div class="flex items-center justify-between gap-2 text-white mb-1">
+                <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+                <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
                 <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
@@ -929,19 +929,19 @@
             : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
-            ? '🚀 쿠팡 파트너스 로켓배송'
+            ? '🚀 쿠팡 로켓배송'
             : `🏷️ 링크프라이스 · ${merchantName}`;
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
+          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           return `
             <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-              <div class="flex items-center justify-between gap-1 mb-1">
-                <span class="text-[10px] font-bold text-amber-300">${badgeText}</span>
-                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">${subBadge}</span>
+               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
+              <div class="flex items-center justify-between gap-1.5 mb-1">
+                <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="text-xs font-bold text-white leading-snug">${p.title}</div>
-              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">${ctaLabel}</div>
+              <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">${p.title}</div>
+              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">${ctaLabel}</div>
             </a>
           `;
         }).join('');
