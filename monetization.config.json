@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MoneyFitMonetizationConfig",
+  "siteUrl": "https://truthofmarket.com",
+  "coupangAfId": "AF1234567",
+  "linkPriceId": "A100123456",
+  "cpaMemberId": "tenping_myid",
+  "adfitUnitId": "DAN-SAMPLE-TOP",
+  "adfitBottomUnitId": "DAN-SAMPLE-BOTTOM",
+  "telegramBotToken": "YOUR_TELEGRAM_BOT_TOKEN",
+  "telegramChatId": "YOUR_CHAT_ID",
+  "telegramAutoNotify": true,
+  "clickCount": 0,
+  "ftcNotice": "이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)",
+  "campaigns": {
+    "electric_grade1_rental": {
+      "cpaKey": "electric_grade1_rental",
+      "name": "에너지 1등급 가전 렌탈 & 정부 환급금 조회",
+      "payout": 35000,
+      "payoutLabel": "35,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/electric_grade1_rental"
+    },
+    "diet_custom_consulting": {
+      "cpaKey": "diet_custom_consulting",
+      "name": "1:1 맞춤 체질 다이어트 무료 진단",
+      "payout": 45000,
+      "payoutLabel": "45,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/diet_custom_consulting"
+    },
+    "pet_insurance_compare": {
+      "cpaKey": "pet_insurance_compare",
+      "name": "다이렉트 펫보험 90% 보장 최저가 비교견적",
+      "payout": 35000,
+      "payoutLabel": "35,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/pet_insurance_compare"
+    },
+    "room_moving_quote": {
+      "cpaKey": "room_moving_quote",
+      "name": "원룸·포장이사 3초 최저가 비교견적 + 입주청소 특가",
+      "payout": 30000,
+      "payoutLabel": "30,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/room_moving_quote"
+    },
+    "auto_longterm_rent": {
+      "cpaKey": "auto_longterm_rent",
+      "name": "국내 21개 렌트·리스사 무서류 1분 최저가 견적",
+      "payout": 60000,
+      "payoutLabel": "60,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/auto_longterm_rent"
+    },
+    "telecom_internet_switch": {
+      "cpaKey": "telecom_internet_switch",
+      "name": "인터넷+TV 위약금 전액 지원 + 현금 47만 원 당일 입금",
+      "payout": 55000,
+      "payoutLabel": "55,000원",
+      "targetUrl": "https://leaderscpa.com/merchant/telecom_internet_switch"
+    }
+  },
+  "merchants": {
+    "himart": {
+      "name": "롯데하이마트",
+      "merchantId": "himart",
+      "defaultUrl": "https://www.e-himart.co.kr/",
+      "commission": "1.5%~3.5%"
+    },
+    "gmarket": {
+      "name": "지마켓",
+      "merchantId": "gmarket",
+      "defaultUrl": "https://www.gmarket.co.kr/",
+      "commission": "1.0%~3.0%"
+    },
+    "11st": {
+      "name": "11번가",
+      "merchantId": "11st",
+      "defaultUrl": "https://www.11st.co.kr/",
+      "commission": "1.0%~3.0%"
+    },
+    "hanssem": {
+      "name": "한샘몰",
+      "merchantId": "hanssem",
+      "defaultUrl": "https://mall.hanssem.com/",
+      "commission": "2.5%~4.0%"
+    },
+    "ssg": {
+      "name": "SSG닷컴",
+      "merchantId": "ssg",
+      "defaultUrl": "https://www.ssg.com/",
+      "commission": "1.5%~3.5%"
+    },
+    "ktshop": {
+      "name": "KT샵",
+      "merchantId": "ktshop",
+      "defaultUrl": "https://shop.kt.com/",
+      "commission": "건당 15,000원~40,000원"
+    },
+    "ohou": {
+      "name": "오늘의집",
+      "merchantId": "ohou",
+      "defaultUrl": "https://ohou.se/",
+      "commission": "2.0%~4.0%"
+    }
+  }
+}

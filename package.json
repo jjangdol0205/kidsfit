@@ -1,0 +1,30 @@
+{
+  "name": "moneyfit-portal",
+  "version": "1.0.0",
+  "description": "MoneyFit — 6 Life Financial Calculators & Multi-Monetization Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/run-all.js",
+    "lint": "node scripts/lint.js",
+    "build": "node scripts/build-ssg.js",
+    "verify": "node scripts/verify-acceptance.js",
+    "marketing:sniper": "node scripts/marketing-sniper.js",
+    "night-grow": "node scripts/night-growth.js",
+    "telegram:notify": "node scripts/telegram-notify.js",
+    "telegram:discover": "node scripts/telegram-notify.js --discover",
+    "auto:all": "node scripts/auto-master.js"
+  },
+  "keywords": [
+    "moneyfit",
+    "calculator",
+    "tco",
+    "tdee",
+    "electricity-rate",
+    "telecom",
+    "affiliate",
+    "monetization"
+  ],
+  "author": "MoneyFit Team",
+  "license": "MIT"
+}

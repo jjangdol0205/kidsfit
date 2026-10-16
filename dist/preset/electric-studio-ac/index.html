@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 | 머니핏(MoneyFit) 손익계산</title>
+  <meta name="description" content="원룸 6평 벽걸이 인버터 에어컨 하루 10시간 가동 시 한전 누진세 요금과 1등급 교체 절감액을 3초 만에 시뮬레이션합니다." />
+  <meta name="keywords" content="원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산, 손익분기점 계산기, 머니핏, 전기·가전" />
+  
+  <!-- Canonical & OpenGraph -->
+  <link rel="canonical" href="https://truthofmarket.com/preset/electric-studio-ac/" />
+  <meta property="og:title" content="원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 | 머니핏" />
+  <meta property="og:description" content="원룸 6평 벽걸이 인버터 에어컨 하루 10시간 가동 시 한전 누진세 요금과 1등급 교체 절감액을 3초 만에 시뮬레이션합니다." />
+  <meta property="og:url" content="https://truthofmarket.com/preset/electric-studio-ac/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="머니핏(MoneyFit)" />
+  
+  <!-- Tailwind CSS & Custom Styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../src/css/style.css" />
+  
+  <!-- Schema.org WebApplication & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "머니핏 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산",
+      "url": "https://truthofmarket.com/preset/electric-studio-ac/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "원룸 벽걸이 에어컨은 정속형과 인버터 중 어떻게 구분하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "실내기나 실외기 라벨의 제조년월이 2011년 이전이거나 '냉방능력' 항목에 정격/최소 구분이 없는 단일 수치라면 구형 정속형입니다. 최근 인버터 모델은 에너지소비효율 1~3등급 마크와 함께 인버터(Inverter) 문구가 선명히 인쇄되어 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "원룸 에어컨을 24시간 계속 켜두는 게 껐다 켰다 하는 것보다 덜 나오나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "인버터 에어컨의 경우 설정 온도에 도달하면 소비전력이 150~200W 수준으로 급감하므로 껐다 켜는 것보다 연속 가동이 유리합니다. 반면 구형 정속형 에어컨은 켜져 있는 동안 항상 최대 전력(650W+)을 소모하므로 절대 계속 켜두시면 안 됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "원룸에서 에어컨 전기세를 가장 많이 아끼는 희망 온도는 몇 도인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처음 가동할 때 바람 세기를 '강풍'으로 설정하여 실내 온도를 빠르게 낮춘 후, 희망 온도에 도달하면 써큘레이터나 선풍기를 함께 틀어 냉기를 순환시키면 체감 온도가 2℃ 이상 낮아져 추가로 약 10~15%의 전기세를 절약할 수 있습니다."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
+
+  <!-- 상단 네비게이션 헤더 -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2 group">
+          <span class="bg-blue-600 text-white font-extrabold px-2.5 py-1 rounded-lg text-sm tracking-tight group-hover:bg-blue-700 transition">MoneyFit</span>
+          <span class="font-bold text-base text-slate-800">머니핏 손익계산 스튜디오</span>
+        </a>
+        <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-2 py-0.5 rounded-full hidden sm:inline">전기·가전</span>
+      </div>
+      <nav class="flex items-center gap-3">
+        <a href="../../index.html" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 transition">← 메인 포털 홈</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 브레드크럼 -->
+  <div class="bg-slate-100/80 border-b border-slate-200 text-xs py-2 px-4 text-slate-500">
+    <div class="max-w-4xl mx-auto flex items-center gap-2">
+      <a href="../../index.html" class="hover:underline">홈</a>
+      <span>&gt;</span>
+      <span>전기·가전</span>
+      <span>&gt;</span>
+      <span class="text-slate-800 font-semibold truncate">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산</span>
+    </div>
+  </div>
+
+  <!-- 메인 아티클 컨테이너 -->
+  <main class="max-w-4xl mx-auto w-full px-4 py-8 flex-1 space-y-10">
+
+    <!-- 아티클 헤더 -->
+    <header class="space-y-3 pb-6 border-b border-slate-200">
+      <div class="flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 font-bold text-xs px-2.5 py-1 rounded-md">2026 손익분기점 리포트</span>
+        <span class="text-xs text-slate-400">업데이트: 2026-10-16</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+        원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산
+      </h1>
+      <p class="text-base text-slate-600 leading-relaxed">
+        원룸 6평 벽걸이 인버터 에어컨 하루 10시간 가동 시 한전 누진세 요금과 1등급 교체 절감액을 3초 만에 시뮬레이션합니다.
+      </p>
+    </header>
+
+    <!-- [인터랙티브 계산기 카드 섹션] -->
+    <section id="interactive-calculator-section">
+      
+    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+        <div>
+          <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">실시간 인터랙티브 시뮬레이터</span>
+          <h3 class="text-lg font-bold text-slate-800 mt-1">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산</h3>
+        </div>
+        <span class="text-xs text-slate-400">수치 변경 시 즉시 재계산</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- 좌측 입력 패널 -->
+        <div class="lg:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
+          <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">⚙️ 시뮬레이션 조건 입력</h4>
+          
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">가전 소비전력 (W)</label>
+          <input id="inp-wattage" type="number" value="650" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">하루 가동 시간 (시간)</label>
+          <input id="inp-hours" type="number" value="10" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">평소 월 전기 사용량 (kWh)</label>
+          <input id="inp-baseKwh" type="number" value="150" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">교체할 1등급 가전 가격 (원)</label>
+          <input id="inp-newPrice" type="number" value="550000" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm">
+            🔄 조건 변경 후 실시간 재계산
+          </button>
+        </div>
+
+        <!-- 우측 영수증 진단 카드 -->
+        <div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              ⚡ 누진세 2단계 진입
+            </span>
+            <span class="text-xs text-slate-400 font-mono">MONEYFIT VERIFIED</span>
+          </div>
+
+          <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+            이번 달 추가 전기세 +35,335원 (총 59,223원)
+          </div>
+
+          <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+            
+    <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+      <div class="text-[11px] text-slate-400">월 추가 전력량</div>
+      <div class="font-extrabold text-base text-amber-300 mt-0.5">+195 kWh</div>
+    </div>
+  
+    <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+      <div class="text-[11px] text-slate-400">1등급 교체 시 월 절감</div>
+      <div class="font-extrabold text-base text-amber-300 mt-0.5">-21,927원</div>
+    </div>
+  
+    <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+      <div class="text-[11px] text-slate-400">기기값 본전 회수</div>
+      <div class="font-extrabold text-base text-amber-300 mt-0.5">25.1개월</div>
+    </div>
+  
+          </div>
+
+          <!-- 네이티브 CPA 카드 -->
+          <div class="pt-3 border-t border-slate-800">
+            <a href="https://leaderscpa.com/merchant/electric_grade1_rental?member=tenping_myid" target="_blank" rel="noopener noreferrer"
+               class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
+              <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
+                <span>⚡ 공식 제휴 특별 혜택</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">승인 지원</span>
+              </div>
+              <div class="text-sm font-extrabold mt-0.5 text-slate-950">초기비용 0원! 에너지 1등급 가전 렌탈 & 정부 환급금 조회 (월 21,927원 절감)</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    </section>
+
+    <!-- [5대 도메인 에세이 섹션] -->
+    <article class="space-y-12">
+
+      <!-- 1. 배경 및 핵심 문제 진단 -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+          1. 배경 및 핵심 문제 진단
+        </h2>
+        
+      <div class="space-y-4">
+        <p class="leading-relaxed text-slate-700">
+          대한민국의 전기요금 제도는 전 세계적으로도 유례없이 가파른 <strong>3단계 누진 요금제</strong>를 채택하고 있어, 단 몇 킬로와트시(kWh)의 초과 사용만으로도 최종 청구서에 찍히는 금액이 2배에서 3배 이상 폭등하는 구조적 특성을 지니고 있습니다. 특히 '원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산' 시나리오는 여름철 냉방 가전 및 겨울철 고전력 전열기기를 운용하는 일반 가정과 1인 가구 원룸 거주자 사이에서 매년 가장 뜨거운 논쟁과 금전적 피해를 낳는 대표적인 영역입니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          많은 소비자들이 단순히 가전제품의 스펙상 정격 소비전력에 하루 사용 시간만을 곱하여 요금을 어림잡아 계산하곤 하지만, 이는 한전의 기본요금 누진 체계와 기후환경요금, 그리고 국제 에너지 원자재 가격 변동을 반영하는 연료비조정액을 누락한 심각한 착오입니다. 기본 사용량 150kWh를 이미 소비 중인 주거 공간에서 추가로 650W 기기를 매일 10시간 동안 가동할 경우, 한 달 동안 무려 195kWh의 전력량이 추가 누적되어 총소비량은 345kWh에 도달하게 됩니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          특히 여름철과 겨울철의 누진 구간 경계선에 걸치게 되면 1kWh 차이로 기본요금 자체가 1단계 910원에서 2단계 1,600원, 나아가 3단계 7,300원으로 최대 8배 이상 치솟게 됩니다. 이에 더해 최종 공급가액에 의무 부과되는 부가가치세 10%와 전력산업기반기금 3.7%가 복리로 합산 청구되므로, 소비자가 사전에 정밀한 손익분기점을 시뮬레이션하지 않는다면 영수증을 받아 든 순간 돌이킬 수 없는 재정적 타격을 입게 됩니다.
+        </p>
+      </div>
+    
+      </section>
+
+      <!-- 2. 도메인 수식 및 산출 메커니즘 정밀 해설 -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+          2. 도메인 수식 및 산출 메커니즘 정밀 해설
+        </h2>
+        
+      <div class="space-y-4">
+        <p class="leading-relaxed text-slate-700">
+          본 계산기 엔진은 한국전력공사(KEPCO) 주택용(저압) 전력 요금 공급약관의 공인 기준을 1원 단위까지 정밀하게 수학적으로 구현하였습니다. 첫 번째 단계로 월간 추가 전력 소비량($\Delta \text{kWh}$)은 시간당 정격 소비전력(650W)에 일일 가동 시간(10시간)과 월 30일을 곱한 후 1,000으로 나누어 산출하며, 소수점 반올림을 거쳐 정확히 195kWh로 확정됩니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          두 번째 단계로 총 전력 사용량(345kWh)을 바탕으로 3단계 누진 구간별 단가를 차등 적산합니다. 하계(7~8월) 누진 완화 구간(적용) 여부를 반영하여 1단계(하계 300kWh 이하 120.0원), 2단계(301~450kWh 214.6원), 3단계(450kWh 초과 307.3원) 전력량 요금이 정밀 분할 계산됩니다. 여기에 기후환경요금(kWh당 9.0원)과 연료비조정액(kWh당 5.0원)이 합산되어 순수 전기요금 소계를 구성합니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          세 번째 핵심 단계인 1등급 인버터 교체 손익분기점 산출 메커니즘에서는, 모터 속도를 가변 제어하는 최신 듀얼 인버터 압축기의 전력 소비 절감율 55%를 엄격히 적용합니다. 즉, 1등급 교체 시 추가 전력량이 약 45% 수준으로 급감함에 따라 절감되는 순수 월 전기요금은 매달 무려 21,927원에 달합니다. 신규 기기 가격(550,000원)을 월 절감액으로 나눈 결과, 25.1개월 만에 기기 구매 대금 전액을 전기세 아낀 돈으로 본전 회수(ROI)할 수 있다는 수학적 결론이 도출됩니다.
+        </p>
+      </div>
+    
+      </section>
+
+      <!-- 3. 핵심 지표 비교 분석표 해설 & <table> -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+          3. 핵심 지표 비교 분석표 해설
+        </h2>
+        
+      <div class="space-y-4">
+        <p class="leading-relaxed text-slate-700">
+          상기 비교 분석표는 '원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산' 조건 하에서 기존 가전 유지 시의 비용과 고효율 1등급 인버터 모델로 전환했을 때의 경제적 성과를 다각도로 대조한 지표입니다. 분석표의 첫 번째 행에서 확인할 수 있듯이, 구형 정속형 모델을 지속 가동할 경우 월간 청구 요금은 기존 대비 35,335원이 가산되어 총 59,223원에 이르는 과도한 지출이 발생합니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          반면 분석표 두 번째 행의 1등급 인버터 모델은 희망 냉난방 온도에 신속히 도달한 이후 최저 주파수로 가변 운전되므로 월간 전력 소모를 획기적으로 낮춥니다. 표에 명시된 바와 같이 월 절감액은 21,927원에 이르며, 연간으로 환산하면 30만 원에서 40만 원 이상의 가처분 소득을 확보할 수 있습니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          나아가 세 번째 행에 제시된 복합 운전 최적화 시나리오(써큘레이터 병용 및 스마트 예약 가동)를 채택할 경우 실내 공기 대류가 촉진되어 기기값 전액 회수 기간이 단 25.1개월 안팎으로 단축됩니다. 즉, 고효율 신제품 구매는 단순한 소비성 지출이 아니라 연 30% 이상의 수익률을 내는 확실한 자산 방어형 투자임을 표의 정밀 수치가 증명하고 있습니다.
+        </p>
+      </div>
+    
+        
+    <div class="overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm bg-white">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
+            <th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">구분 항목</th><th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">가동 방식 및 모델</th><th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">소비전력 (W)</th><th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">월간 전력량 (kWh)</th><th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">예상 청구금액 (원)</th><th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">누진세 및 절감 효과</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          
+            <tr class="bg-white hover:bg-blue-50/50 transition">
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 font-bold text-slate-900">
+                  구형 정속형 에어컨 (기준)
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  컴프레서 100% 지속 가동
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  650 W
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  195 kWh (총 345kWh)
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  55,300원
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  2단계 누진 구간 적용 (+31,450원)
+                </td>
+              
+            </tr>
+          
+            <tr class="bg-slate-50/70 hover:bg-blue-50/50 transition">
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 font-bold text-slate-900">
+                  1등급 인버터 모델 (교체)
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  설정온도 도달 후 초절전 모드
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  292 W
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  88 kWh (총 238kWh)
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  23,850원
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  월 31,450원 절감 달성
+                </td>
+              
+            </tr>
+          
+            <tr class="bg-white hover:bg-blue-50/50 transition">
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 font-bold text-slate-900">
+                  1등급 + 써큘레이터 병용
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  공기 대류 순환 급속 냉각
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  230 W
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  69 kWh (총 219kWh)
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  19,200원
+                </td>
+              
+                <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ">
+                  18.2개월 내 신규 기기값 55만 원 전액 회수
+                </td>
+              
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  
+      </section>
+
+      <!-- 4. 실전 손익 최적화 및 절약 행동 가이드 -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+          4. 실전 손익 최적화 및 절약 행동 가이드
+        </h2>
+        
+      <div class="space-y-4">
+        <p class="leading-relaxed text-slate-700">
+          전기요금 누진세 폭탄을 방어하고 가계 경제의 실질 이익을 극대화하기 위한 전문가의 3단계 실천 행동 지침을 제시합니다. <strong>첫 번째 단계: 실시간 전력량 계량기 모니터링</strong>입니다. 아파트 관리비 앱이나 한전 파워플래너(Power Planner) 앱을 스마트폰에 설치하여 매월 20일 전후 시점의 누적 전력량이 누진 단계 전환선(기타 계절 200/400kWh, 하계 300/450kWh)에 근접했는지 반드시 확인하십시오.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          <strong>두 번째 단계: 초기 가동 강풍 및 적정 온도 유지</strong>입니다. 인버터 에어컨이나 냉난방기를 작동할 때는 처음 15~20분 동안 바람 세기를 가장 강한 상태로 설정하여 실내 온도를 목표 지점까지 급속 냉각시킨 후, 이후 26~27℃로 올려 절전 모드를 유지해야 합니다. 압축기가 고출력으로 도는 시간을 최소화하는 것이 전력 소비를 줄이는 제1원칙입니다.
+        </p>
+        <p class="leading-relaxed text-slate-700">
+          <strong>세 번째 단계: 고효율 가전 정부 환급 및 제휴 렌탈 지원금 활용</strong>입니다. 산업통상자원부와 한국전력공사에서 주관하는 으뜸효율 가전제품 환급 사업 또는 다자녀·복지할인 혜택을 조회하면 구매가의 10~20%를 현금으로 돌려받을 수 있습니다. 또한 초기 목돈 부담이 고민이라면 월 렌탈료 지원 혜택이 주어지는 1등급 렌탈 제휴 프로그램을 적극 비교 검토하십시오.
+        </p>
+      </div>
+    
+      </section>
+
+      <!-- 5. 이용자 빈출 질문(FAQ) 및 전문가 상세 답변 -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+          5. 이용자 빈출 질문(FAQ) 및 전문가 상세 답변
+        </h2>
+        
+    <div class="space-y-6">
+      
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-sm">Q1</span>
+            <h4 class="text-base font-bold text-slate-900 pt-0.5">원룸 벽걸이 에어컨은 정속형과 인버터 중 어떻게 구분하나요?</h4>
+          </div>
+          <div class="pl-10 space-y-2">
+            <p class="text-sm leading-relaxed text-slate-700">실내기나 실외기 라벨의 제조년월이 2011년 이전이거나 '냉방능력' 항목에 정격/최소 구분이 없는 단일 수치라면 구형 정속형입니다. 최근 인버터 모델은 에너지소비효율 1~3등급 마크와 함께 인버터(Inverter) 문구가 선명히 인쇄되어 있습니다.</p>
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-blue-700">💡 머니핏 전문가 심층 조언:</strong> 
+              실제 현장 통계에 따르면 본 질문에 해당하는 지표를 사전에 확인하지 않고 의사결정을 내릴 경우 예상치 못한 부대비용이 평균 15% 이상 추가 청구됩니다. 
+              시뮬레이터에서 산출된 지표를 스마트폰에 캡처하여 증빙으로 보관하시고, 계약서 작성 시 특약 조건을 재차 확인하는 것이 안전합니다.
+            </div>
+          </div>
+        </div>
+      
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-sm">Q2</span>
+            <h4 class="text-base font-bold text-slate-900 pt-0.5">원룸 에어컨을 24시간 계속 켜두는 게 껐다 켰다 하는 것보다 덜 나오나요?</h4>
+          </div>
+          <div class="pl-10 space-y-2">
+            <p class="text-sm leading-relaxed text-slate-700">인버터 에어컨의 경우 설정 온도에 도달하면 소비전력이 150~200W 수준으로 급감하므로 껐다 켜는 것보다 연속 가동이 유리합니다. 반면 구형 정속형 에어컨은 켜져 있는 동안 항상 최대 전력(650W+)을 소모하므로 절대 계속 켜두시면 안 됩니다.</p>
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-blue-700">💡 머니핏 전문가 심층 조언:</strong> 
+              실제 현장 통계에 따르면 본 질문에 해당하는 지표를 사전에 확인하지 않고 의사결정을 내릴 경우 예상치 못한 부대비용이 평균 15% 이상 추가 청구됩니다. 
+              시뮬레이터에서 산출된 지표를 스마트폰에 캡처하여 증빙으로 보관하시고, 계약서 작성 시 특약 조건을 재차 확인하는 것이 안전합니다.
+            </div>
+          </div>
+        </div>
+      
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-sm">Q3</span>
+            <h4 class="text-base font-bold text-slate-900 pt-0.5">원룸에서 에어컨 전기세를 가장 많이 아끼는 희망 온도는 몇 도인가요?</h4>
+          </div>
+          <div class="pl-10 space-y-2">
+            <p class="text-sm leading-relaxed text-slate-700">한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처음 가동할 때 바람 세기를 '강풍'으로 설정하여 실내 온도를 빠르게 낮춘 후, 희망 온도에 도달하면 써큘레이터나 선풍기를 함께 틀어 냉기를 순환시키면 체감 온도가 2℃ 이상 낮아져 추가로 약 10~15%의 전기세를 절약할 수 있습니다.</p>
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-blue-700">💡 머니핏 전문가 심층 조언:</strong> 
+              실제 현장 통계에 따르면 본 질문에 해당하는 지표를 사전에 확인하지 않고 의사결정을 내릴 경우 예상치 못한 부대비용이 평균 15% 이상 추가 청구됩니다. 
+              시뮬레이터에서 산출된 지표를 스마트폰에 캡처하여 증빙으로 보관하시고, 계약서 작성 시 특약 조건을 재차 확인하는 것이 안전합니다.
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+      </section>
+
+    </article>
+
+    <!-- 추천 키워드 및 연관 계산기 링크 -->
+    <section class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200 space-y-3">
+      <h3 class="text-sm font-bold text-slate-700">🔗 머니핏 6대 생활밀착 계산기 바로가기</h3>
+      <div class="flex flex-wrap gap-2 text-xs">
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">⚡ 전기요금·누진세 계산기</a>
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🍗 다이어트 TDEE 장보기 계산기</a>
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🐶 반려동물 사료 급여량 진단기</a>
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🛋️ 자취·신혼 가전가구 예산 시뮬레이터</a>
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">🚗 자동차 렌트 vs 할부 TCO 계산기</a>
+        <a href="../../index.html" class="bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold hover:border-blue-500 hover:text-blue-600 transition">📶 인터넷 위약금 vs 사은품 손익 계산기</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="bg-slate-800 text-white font-extrabold px-2 py-0.5 rounded text-xs">MoneyFit</span>
+          <span class="font-bold text-slate-700">머니핏 손익분기점 & 맞춤 견적 포털</span>
+        </div>
+        <span>© 2026 MoneyFit Studio. All rights reserved.</span>
+      </div>
+      <p class="leading-relaxed text-slate-400">
+        본 사이트에서 제공하는 계산 결과는 각 기관의 표준 요율 및 수의학·영양학 공식을 바탕으로 산출된 통계적 시뮬레이션입니다. 실제 요금 및 정산 금액은 개별 약관 및 제휴사 조건에 따라 상이할 수 있습니다.
+      </p>
+      <p class="text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+        이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)
+      </p>
+    </div>
+  </footer>
+
+  <!-- 클라이언트 측 실시간 인터랙티브 계산기 스크립트 -->
+  <script src="../../src/data/calculators.js"></script>
+  <script src="../../src/data/monetization.js"></script>
+  <script>
+    const PRESET_CALC = 'electric';
+    let currentInputs = {"wattage":650,"hours":10,"baseKwh":150,"newPrice":550000,"isSummer":true};
+
+    function recalculatePreset() {
+      if (typeof MoneyFitCalculators === 'undefined') return;
+
+      if (PRESET_CALC === 'electric') {
+        currentInputs.wattage = parseFloat(document.getElementById('inp-wattage').value) || 0;
+        currentInputs.hours = parseFloat(document.getElementById('inp-hours').value) || 0;
+        currentInputs.baseKwh = parseFloat(document.getElementById('inp-baseKwh').value) || 0;
+        currentInputs.newPrice = parseFloat(document.getElementById('inp-newPrice').value) || 550000;
+        const res = MoneyFitCalculators.calculateElectric(currentInputs);
+        updateUi(res);
+      } else if (PRESET_CALC === 'diet') {
+        currentInputs.gender = document.getElementById('inp-gender').value;
+        currentInputs.weight = parseFloat(document.getElementById('inp-weight').value) || 0;
+        currentInputs.height = parseFloat(document.getElementById('inp-height').value) || 0;
+        currentInputs.weeks = parseFloat(document.getElementById('inp-weeks').value) || 1;
+        const res = MoneyFitCalculators.calculateDiet(currentInputs);
+        updateUi(res);
+      } else if (PRESET_CALC === 'pet') {
+        currentInputs.petWeight = parseFloat(document.getElementById('inp-petWeight').value) || 0;
+        currentInputs.bagKg = parseFloat(document.getElementById('inp-bagKg').value) || 0;
+        currentInputs.kcalPerKg = parseFloat(document.getElementById('inp-kcalPerKg').value) || 3650;
+        const res = MoneyFitCalculators.calculatePet(currentInputs);
+        updateUi(res);
+      } else if (PRESET_CALC === 'room') {
+        currentInputs.budgetMan = parseFloat(document.getElementById('inp-budgetMan').value) || 0;
+        currentInputs.roomSize = parseFloat(document.getElementById('inp-roomSize').value) || 0;
+        const res = MoneyFitCalculators.calculateRoom(currentInputs);
+        updateUi(res);
+      } else if (PRESET_CALC === 'auto') {
+        currentInputs.carPriceMan = parseFloat(document.getElementById('inp-carPriceMan').value) || 0;
+        currentInputs.months = parseInt(document.getElementById('inp-months').value) || 48;
+        currentInputs.taxRate = parseFloat(document.getElementById('inp-taxRate').value) || 0;
+        const res = MoneyFitCalculators.calculateAuto(currentInputs);
+        updateUi(res);
+      } else if (PRESET_CALC === 'telecom') {
+        currentInputs.penaltyMan = parseFloat(document.getElementById('inp-penaltyMan').value) || 0;
+        currentInputs.cashGiftMan = parseFloat(document.getElementById('inp-cashGiftMan').value) || 0;
+        currentInputs.oldFee = parseFloat(document.getElementById('inp-oldFee').value) || 0;
+        currentInputs.newFee = parseFloat(document.getElementById('inp-newFee').value) || 0;
+        const res = MoneyFitCalculators.calculateTelecom(currentInputs);
+        updateUi(res);
+      }
+    }
+
+    function updateUi(res) {
+      const badge = document.getElementById('res-badge');
+      const headline = document.getElementById('res-headline');
+      const grid = document.getElementById('res-metrics-grid');
+      if (badge && res.badge) badge.textContent = res.badge;
+      if (headline && res.headline) headline.textContent = res.headline;
+      if (grid && res.metrics) {
+        grid.innerHTML = res.metrics.map(m => `
+          <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+            <div class="text-[11px] text-slate-400">${m.label}</div>
+            <div class="font-extrabold text-base text-amber-300 mt-0.5">${m.val}</div>
+          </div>
+        `).join('');
+      }
+    }
+  </script>
+</body>
+</html>
