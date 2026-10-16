@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합
 > 프리셋 ID: `diet-quick-3kg` | 카테고리: `식단·다이어트` | 타겟 URL: [https://truthofmarket.com/preset/diet-quick-3kg](https://truthofmarket.com/preset/diet-quick-3kg)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8& sort=recency)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&sort=recency)
 
 ---
 
@@ -62,13 +62,19 @@ A. 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합
 
 ---
 
-### 5. 3초 맞춤 무료 계산기 안내
+### 5. 3초 맞춤 무료 계산기 & 실시간 최저가 혜택 바로가기
 내 집 평수, 내 몸무게, 내 차량 견적, 내 남은 위약금을 직접 입력하여 3초 만에 1원 단위 충격 영수증을 확인해 보세요. 회원가입 없이 즉시 확인 가능합니다.
 
 👉 **[무료] 내 조건으로 3초 만에 손익분기점 진단하기**:  
 🔗 https://truthofmarket.com/preset/diet-quick-3kg
 
-*(※ 본 포스팅은 공익적 정보 제공을 목적으로 작성되었으며, 제휴마케팅 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.)*
+🚀 **[쿠팡 파트너스] 🚀 쿠팡 닭가슴살 로켓프레시 확인하기**:  
+🔗 https://link.coupang.com/re/AFFSRP?lptag=AF7865143&pageKey=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&subid=mf_diet_AF7865143&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user
+
+🏷️ **[공식몰 기획전] 🏷️ 아이허브 WPI 프로틴 특가 바로가기**:  
+🔗 https://click.linkprice.com/click.php?m=iherb&a=A100708867&l=9999&tu=https%3A%2F%2Fkr.iherb.com%2Fsearch%3Fkw%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI
+
+*(※ 이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 이용자 추가 부담금 없음)*
 
 #식단다이어트 #한달 #3kg #감량 #칼로리 #적자 #식단 #머니핏 #손익분기점계산기 #생활비절약꿀팁 #2026최신가이드
 ```
@@ -90,9 +96,9 @@ A. 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합
 
 많은 분들이 잘못된 정보로 인해 매달 불필요한 고정비를 낭비하고 계십니다. 질문자님의 구체적인 상황(시간, 예산, 차종, 위약금 등)을 정확히 대입하여 오차 없이 비교해 보시는 것을 권장합니다.
 
-로그인이나 개인정보 입력 없이 3초 만에 1원 단위 상세 영수증과 손익분기 도달 개월을 확인하실 수 있는 무료 시뮬레이터 좌표를 남겨드립니다.
+로그인이나 개인정보 입력 없이 3초 만에 1원 단위 상세 영수증과 손익분기 도달 개월, 그리고 실시간 최저가 기획전을 확인하실 수 있는 무료 시뮬레이터 좌표를 남겨드립니다.
 
-👉 질문자님 맞춤 손익분기점 3초 계산기:
+👉 질문자님 맞춤 손익분기점 3초 계산기 & 최저가 비교:
 https://truthofmarket.com/preset/diet-quick-3kg
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
@@ -104,7 +110,7 @@ https://truthofmarket.com/preset/diet-quick-3kg
 ```text
 저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
 막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [하루 1,209kcal (탄 110g·단 116g·지 34g) · 닭가슴살 총 92팩 필요! (일일 탄/단/지 권장 탄 110g · 단 116g · 지 34g / 4주 닭가슴살(100g) 총 92팩)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
-광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 쿠팡이랑 공식몰 최저가 비교까지 한 번에 나와서 편해요! 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요 ㅎㅎ
 👉 https://truthofmarket.com/preset/diet-quick-3kg
 ```
 
@@ -114,5 +120,5 @@ https://truthofmarket.com/preset/diet-quick-3kg
 ```text
 🚨 아직도 '한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합' 모르고 돈 날리는 분 계신가요? 💸
 방금 계산기 돌려봤는데 [하루 1,209kcal (탄 110g·단 116g·지 34g) · 닭가슴살 총 92팩 필요! / 일일 탄/단/지 권장: 탄 110g · 단 116g · 지 34g] 나옵니다 ㄷㄷ
-결제·장보기 전에 내 조건 넣고 3초 만에 손익분기점 꼭 확인해보세요 👉 https://truthofmarket.com/preset/diet-quick-3kg
+결제·장보기 전에 내 조건 넣고 3초 만에 손익분기점 & 로켓배송 최저가 꼭 확인해보세요 👉 https://truthofmarket.com/preset/diet-quick-3kg
 ```

@@ -5,6 +5,14 @@
   "coupangAfId": "AF7865143",
   "linkPriceId": "A100708867",
   "cpaMemberId": "tp_member_2370",
+  "cpaUrls": {
+    "electric": "",
+    "diet": "",
+    "pet": "",
+    "room": "",
+    "auto": "",
+    "telecom": ""
+  },
   "adfitUnitId": "DAN-SAMPLE-TOP",
   "adfitBottomUnitId": "DAN-SAMPLE-BOTTOM",
   "telegramBotToken": "YOUR_TELEGRAM_BOT_TOKEN",
@@ -70,6 +78,30 @@
       "merchantId": "gmarket",
       "defaultUrl": "https://www.gmarket.co.kr/",
       "commission": "1.0%~3.0%"
+    },
+    "auction": {
+      "name": "옥션",
+      "merchantId": "auction",
+      "defaultUrl": "https://www.auction.co.kr/",
+      "commission": "1.0%~3.0%"
+    },
+    "lotteon": {
+      "name": "롯데ON",
+      "merchantId": "lotteon",
+      "defaultUrl": "https://www.lotteon.com/",
+      "commission": "1.5%~3.5%"
+    },
+    "hmall": {
+      "name": "현대Hmall",
+      "merchantId": "hmall",
+      "defaultUrl": "https://www.hmall.com/",
+      "commission": "1.5%~4.0%"
+    },
+    "iherb": {
+      "name": "아이허브",
+      "merchantId": "iherb",
+      "defaultUrl": "https://kr.iherb.com/",
+      "commission": "5.0%~10.0%"
     },
     "11st": {
       "name": "11번가",

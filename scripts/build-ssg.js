@@ -745,8 +745,11 @@ function renderInteractiveCalculatorCard(preset, res) {
     const href = p.type === 'coupang'
       ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
       : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
-    const badgeText = p.type === 'coupang' ? '🚀 쿠팡 로켓 최저가' : '🏷️ 공식몰 특별 기획전';
-    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 카드 즉시할인');
+    const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
+    const badgeText = p.type === 'coupang'
+      ? '🚀 쿠팡 파트너스 로켓배송'
+      : `🏷️ 링크프라이스 · ${merchantName}`;
+    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
     const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
@@ -818,21 +821,31 @@ function renderInteractiveCalculatorCard(preset, res) {
             ${res.summary}
           </p>
 
-          <!-- 맞춤 혜택 카드 -->
-          <div class="pt-3 border-t border-slate-800">
+          <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
+          <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
-                <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
-                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
+                <span id="res-cpa-badge">${cpaCardInfo.liveBadge || '⚡ 맞춤 최저가 & 공식 기획전 혜택'}</span>
+                <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 특가</span>
               </div>
-              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${cpaCardInfo.title || res.cpaTitle}</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
             </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <a id="res-cpa-coupang-sub" href="${cpaCardInfo.coupangSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                ${cpaCardInfo.coupangSubLabel} ↗
+              </a>
+              <a id="res-cpa-lp-sub" href="${cpaCardInfo.linkPriceSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                ${cpaCardInfo.linkPriceSubLabel} ↗
+              </a>
+            </div>
           </div>
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800">
-            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 특가 좌표</div>
+            <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교 (쿠팡 파트너스 · 링크프라이스)</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               ${productsHtml}
             </div>
@@ -1149,7 +1162,7 @@ ${JSON.stringify(schemaJson, null, 2)}
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
           <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">${lc.savingBadge || res.badge}</span>
         </div>
-        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">${cpaCardInfo.title || res.cpaTitle}</div>
+        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
       </div>
       <a id="sticky-cta-btn" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
@@ -1237,8 +1250,11 @@ ${JSON.stringify(schemaJson, null, 2)}
       const grid = document.getElementById('res-metrics-grid');
       const lossBar = document.getElementById('res-loss-bar');
       const summary = document.getElementById('res-summary');
+      const cpaBadge = document.getElementById('res-cpa-badge');
       const cpaTitle = document.getElementById('res-cpa-title');
       const cpaLink = document.getElementById('res-cpa-link');
+      const cpaCoupangSub = document.getElementById('res-cpa-coupang-sub');
+      const cpaLpSub = document.getElementById('res-cpa-lp-sub');
       const productsGrid = document.getElementById('res-products-grid');
 
       if (badge && res.badge) {
@@ -1300,8 +1316,11 @@ ${JSON.stringify(schemaJson, null, 2)}
       let d = null;
       if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
         d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
-        if (cpaTitle) cpaTitle.textContent = d.title || res.cpaTitle;
+        if (cpaBadge && d.liveBadge) cpaBadge.textContent = d.liveBadge;
+        if (cpaTitle) cpaTitle.textContent = d.liveTitle || d.title || res.cpaTitle;
         if (cpaLink && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+        if (cpaCoupangSub && d.coupangSubUrl) cpaCoupangSub.href = d.coupangSubUrl;
+        if (cpaLpSub && d.linkPriceSubUrl) cpaLpSub.href = d.linkPriceSubUrl;
       } else if (cpaTitle && res.cpaTitle) {
         cpaTitle.textContent = res.cpaTitle;
       }
@@ -1311,8 +1330,11 @@ ${JSON.stringify(schemaJson, null, 2)}
           const href = p.type === 'coupang'
             ? MoneyFitMonetization.buildCoupangUrl(p.kw, PRESET_CALC)
             : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
-          const badgeText = p.type === 'coupang' ? '🚀 쿠팡 로켓 최저가' : '🏷️ 공식몰 특별 기획전';
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 카드 즉시할인');
+          const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
+          const badgeText = p.type === 'coupang'
+            ? '🚀 쿠팡 파트너스 로켓배송'
+            : \`🏷️ 링크프라이스 · \${merchantName}\`;
+          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 공식몰 정품 할인');
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
@@ -1334,7 +1356,7 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (stickySub && stickyMain && stickyBtn) {
         const lc = res.lossComparison || {};
         stickySub.textContent = lc.savingBadge || res.badge;
-        stickyMain.textContent = (d && d.title) ? d.title : (res.cpaTitle || res.headline);
+        stickyMain.textContent = (d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline);
         if (d && (d.liveActionUrl || d.actionUrl)) stickyBtn.href = d.liveActionUrl || d.actionUrl;
       }
     }

@@ -20,6 +20,7 @@ const OUTPUT_DATA_JS = path.join(PROJECT_ROOT, 'src', 'data', 'viral-content.js'
 
 const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
+const monetization = require('../src/data/monetization.js');
 
 // Default config fallback
 let siteUrl = 'https://truthofmarket.com';
@@ -113,6 +114,11 @@ function formatMarkdownTable(headers, rows) {
  */
 function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const res = calculatePresetResult(preset);
+  const cpaDetails = monetization.getCpaCardDetails(preset.calc, res);
+  const coupangUrl = cpaDetails.coupangSubUrl;
+  const linkPriceUrl = cpaDetails.linkPriceSubUrl;
+  const cpaActionUrl = cpaDetails.liveActionUrl;
+
   const targetUrl = `${currentSiteUrl}/preset/${preset.id}`;
   const query = QUERY_MAP[preset.id] || preset.title.split(' ').slice(0, 4).join(' ');
   const subQueries = [
@@ -126,7 +132,7 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const dcSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:dcinside.com ${query}`)}&tbs=qdr:m`;
   const blindSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:teamblind.com ${query}`)}&tbs=qdr:m`;
   const threadsSearchUrl = `https://www.threads.net/search?q=${encodedQ}&serp_type=default`;
-  const daumCafeSearchUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}& sort=recency`;
+  const daumCafeSearchUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}&sort=recency`;
 
   // 1. Blog Post
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
@@ -175,13 +181,19 @@ ${faqList}
 
 ---
 
-### 5. 3초 맞춤 무료 계산기 안내
+### 5. 3초 맞춤 무료 계산기 & 실시간 최저가 혜택 바로가기
 내 집 평수, 내 몸무게, 내 차량 견적, 내 남은 위약금을 직접 입력하여 3초 만에 1원 단위 충격 영수증을 확인해 보세요. 회원가입 없이 즉시 확인 가능합니다.
 
 👉 **[무료] 내 조건으로 3초 만에 손익분기점 진단하기**:  
 🔗 ${targetUrl}
 
-*(※ 본 포스팅은 공익적 정보 제공을 목적으로 작성되었으며, 제휴마케팅 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.)*
+🚀 **[쿠팡 파트너스] ${cpaDetails.coupangSubLabel} 확인하기**:  
+🔗 ${coupangUrl}
+
+🏷️ **[공식몰 기획전] ${cpaDetails.linkPriceSubLabel} 바로가기**:  
+🔗 ${linkPriceUrl}
+
+*(※ 이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 이용자 추가 부담금 없음)*
 
 #${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏 #손익분기점계산기 #생활비절약꿀팁 #2026최신가이드`;
 
@@ -197,9 +209,9 @@ ${res.summary}
 
 많은 분들이 잘못된 정보로 인해 매달 불필요한 고정비를 낭비하고 계십니다. 질문자님의 구체적인 상황(시간, 예산, 차종, 위약금 등)을 정확히 대입하여 오차 없이 비교해 보시는 것을 권장합니다.
 
-로그인이나 개인정보 입력 없이 3초 만에 1원 단위 상세 영수증과 손익분기 도달 개월을 확인하실 수 있는 무료 시뮬레이터 좌표를 남겨드립니다.
+로그인이나 개인정보 입력 없이 3초 만에 1원 단위 상세 영수증과 손익분기 도달 개월, 그리고 실시간 최저가 기획전을 확인하실 수 있는 무료 시뮬레이터 좌표를 남겨드립니다.
 
-👉 질문자님 맞춤 손익분기점 3초 계산기:
+👉 질문자님 맞춤 손익분기점 3초 계산기 & 최저가 비교:
 ${targetUrl}
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.`;
@@ -209,23 +221,27 @@ ${targetUrl}
   const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
   const cafeCommentPost = `저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
 막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [${res.headline} (${firstMetric} / ${secondMetric})] 이렇게 딱 숫자로 비교돼서 나오더라고요.
-광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 쿠팡이랑 공식몰 최저가 비교까지 한 번에 나와서 편해요! 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요 ㅎㅎ
 👉 ${targetUrl}`;
 
   // 4. Threads / Blind 3-Line FOMO Copy
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
   const threadsPost = `🚨 아직도 '${preset.title}' 모르고 돈 날리는 분 계신가요? 💸
 방금 계산기 돌려봤는데 [${res.headline} / ${keyMetric}] 나옵니다 ㄷㄷ
-결제·장보기 전에 내 조건 넣고 3초 만에 손익분기점 꼭 확인해보세요 👉 ${targetUrl}`;
+결제·장보기 전에 내 조건 넣고 3초 만에 손익분기점 & 로켓배송 최저가 꼭 확인해보세요 👉 ${targetUrl}`;
 
   return {
     id: preset.id,
     slug: preset.id,
+    calc: preset.calc,
     category: preset.category,
     title: preset.title,
     query,
     subQueries,
     targetUrl,
+    coupangUrl,
+    linkPriceUrl,
+    cpaActionUrl,
     kinSearchUrl,
     cafeSearchUrl,
     dcSearchUrl,
@@ -296,11 +312,15 @@ ${bundle.threadsPost}
     viralPostsMap[preset.id] = {
       id: bundle.id,
       slug: bundle.id,
+      calc: bundle.calc,
       category: bundle.category,
       title: bundle.title,
       query: bundle.query,
       subQueries: bundle.subQueries,
       targetUrl: bundle.targetUrl,
+      coupangUrl: bundle.coupangUrl,
+      linkPriceUrl: bundle.linkPriceUrl,
+      cpaActionUrl: bundle.cpaActionUrl,
       kinSearchUrl: bundle.kinSearchUrl,
       cafeSearchUrl: bundle.cafeSearchUrl,
       dcSearchUrl: bundle.dcSearchUrl,

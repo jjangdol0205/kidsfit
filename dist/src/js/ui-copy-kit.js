@@ -159,7 +159,12 @@
     const bundle = viralData[preset.id];
     const cfg = getConfig();
     const currentSiteUrl = cfg.siteUrl || 'https://truthofmarket.com';
-    const presetUrl = `${currentSiteUrl}/preset/${preset.id}`;
+    const presetUrl = `${currentSiteUrl}/preset/${preset.id}/`;
+
+    const previewLinkEl = document.getElementById('sniper-preset-preview-link');
+    if (previewLinkEl) {
+      previewLinkEl.href = `/preset/${preset.id}/`;
+    }
 
     // Target query for Naver / Community real-time search
     const query = (bundle && bundle.query) || preset.title.split(' ').slice(0, 4).join(' ');
@@ -177,6 +182,61 @@
       }).join('');
     }
 
+    // Build 3-channel live affiliate links (Coupang Partners + LinkPrice + Tenping/CPA)
+    const mm = window.MoneyFitMonetization || {};
+    const cpaDetails = mm.getCpaCardDetails
+      ? mm.getCpaCardDetails(preset.calc, {}, cfg)
+      : null;
+    const coupangUrl = (cpaDetails && cpaDetails.coupangSubUrl)
+      || (bundle && bundle.coupangUrl)
+      || (mm.buildCoupangUrl ? mm.buildCoupangUrl(query, preset.calc, cfg) : `https://www.coupang.com/np/search?q=${encodeURIComponent(query)}&lptag=AF7865143`);
+    const linkPriceUrl = (cpaDetails && cpaDetails.linkPriceSubUrl)
+      || (bundle && bundle.linkPriceUrl)
+      || (mm.buildLinkPriceDeepLink ? mm.buildLinkPriceDeepLink('himart', 'https://www.e-himart.co.kr/', cfg) : '#');
+    const cpaActionUrl = (cpaDetails && cpaDetails.liveActionUrl)
+      || (bundle && bundle.cpaActionUrl)
+      || linkPriceUrl;
+
+    // Render 3-channel affiliate link bar in #view-seo
+    const affGridEl = document.getElementById('seo-affiliate-links-grid');
+    if (affGridEl) {
+      const safeCoupang = coupangUrl.replace(/'/g, "\\'");
+      const safeLp = linkPriceUrl.replace(/'/g, "\\'");
+      const safeCpa = cpaActionUrl.replace(/'/g, "\\'");
+      affGridEl.innerHTML = `
+        <div class="bg-white border border-rose-200 rounded-xl p-2.5 flex flex-col justify-between gap-1.5">
+          <div>
+            <span class="inline-block text-[10px] font-extrabold bg-rose-50 text-rose-700 px-1.5 py-0.5 rounded border border-rose-200 mb-1">🚀 쿠팡 파트너스 (${cfg.coupangAfId || 'AF7865143'})</span>
+            <div class="text-[11px] font-bold text-slate-800 truncate">${(cpaDetails && cpaDetails.coupangSubLabel) || '쿠팡 로켓배송 최저가'}</div>
+          </div>
+          <div class="flex items-center gap-1.5 pt-1">
+            <button type="button" onclick="MoneyFitCopyKit.copyDirectUrl('${safeCoupang}', this, '쿠팡 파트너스 링크')" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded-lg text-[11px] transition">링크 복사</button>
+            <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-1 px-2 rounded-lg text-[11px] transition">열기 ↗</a>
+          </div>
+        </div>
+        <div class="bg-white border border-indigo-200 rounded-xl p-2.5 flex flex-col justify-between gap-1.5">
+          <div>
+            <span class="inline-block text-[10px] font-extrabold bg-indigo-50 text-indigo-700 px-1.5 py-0.5 rounded border border-indigo-200 mb-1">🏷️ 링크프라이스 (${cfg.linkPriceId || 'A100708867'})</span>
+            <div class="text-[11px] font-bold text-slate-800 truncate">${(cpaDetails && cpaDetails.linkPriceSubLabel) || '공식몰 특가 기획전'}</div>
+          </div>
+          <div class="flex items-center gap-1.5 pt-1">
+            <button type="button" onclick="MoneyFitCopyKit.copyDirectUrl('${safeLp}', this, '링크프라이스 딥링크')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded-lg text-[11px] transition">링크 복사</button>
+            <a href="${linkPriceUrl}" target="_blank" rel="noopener noreferrer sponsored" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-1 px-2 rounded-lg text-[11px] transition">열기 ↗</a>
+          </div>
+        </div>
+        <div class="bg-white border border-amber-300 rounded-xl p-2.5 flex flex-col justify-between gap-1.5">
+          <div>
+            <span class="inline-block text-[10px] font-extrabold bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded border border-amber-300 mb-1">${cpaDetails && cpaDetails.isCustomTenpingUrl ? '🔥 텐핑(iryan.kr) 연동됨' : '⚡ 맞춤 혜택/기획전 직링크'}</span>
+            <div class="text-[11px] font-bold text-slate-800 truncate">${(cpaDetails && cpaDetails.liveTitle) || '맞춤 혜택 바로가기'}</div>
+          </div>
+          <div class="flex items-center gap-1.5 pt-1">
+            <button type="button" onclick="MoneyFitCopyKit.copyDirectUrl('${safeCpa}', this, '맞춤 혜택/텐핑 링크')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-1 px-2 rounded-lg text-[11px] transition">링크 복사</button>
+            <a href="${cpaActionUrl}" target="_blank" rel="noopener noreferrer sponsored" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-1 px-2 rounded-lg text-[11px] transition">열기 ↗</a>
+          </div>
+        </div>
+      `;
+    }
+
     // Fetch copy content (prefer pre-compiled bundle, fallback to dynamic generation)
     let blogPost = bundle ? bundle.blogPost : '';
     let threadsPost = bundle ? bundle.threadsPost : '';
@@ -184,17 +244,23 @@
     let cafeCommentPost = bundle ? (bundle.cafeCommentPost || '') : '';
 
     if (!blogPost && window.selectSeoPreset) {
-      // fallback
       window.selectSeoPreset(index);
       return;
     }
 
-    // Dynamic replacement of base siteUrl if changed via wizard
+    // Dynamic replacement of base siteUrl and affiliate IDs if changed via wizard
     if (currentSiteUrl && !blogPost.includes(currentSiteUrl)) {
       blogPost = blogPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
       threadsPost = threadsPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
       jisikinPost = jisikinPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
       cafeCommentPost = cafeCommentPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
+    }
+    if (cfg.coupangAfId && cfg.coupangAfId !== 'AF7865143') {
+      blogPost = blogPost.replace(/lptag=AF7865143/g, `lptag=${encodeURIComponent(cfg.coupangAfId)}`);
+    }
+    if (cfg.linkPriceId && cfg.linkPriceId !== 'A100708867') {
+      blogPost = blogPost.replace(/a=A100708867/g, `a=${encodeURIComponent(cfg.linkPriceId)}`)
+                         .replace(/a_id=A100708867/g, `a_id=${encodeURIComponent(cfg.linkPriceId)}`);
     }
 
     // Populate DOM
@@ -227,6 +293,39 @@
       };
       indexNowEl.textContent = JSON.stringify(indexNowPayload, null, 2);
     }
+  }
+
+  /**
+   * 1-Click Direct URL Copy with visual feedback
+   */
+  function copyDirectUrl(urlText, btnElement, copyLabel = '제휴 링크') {
+    if (!urlText) return;
+    const originalHtml = btnElement ? btnElement.innerHTML : null;
+    const originalClass = btnElement ? btnElement.className : null;
+
+    function applySuccess() {
+      if (btnElement) {
+        btnElement.innerHTML = '✓ 복사됨';
+        btnElement.classList.add('bg-emerald-700', 'text-white');
+        setTimeout(() => {
+          if (btnElement) {
+            btnElement.innerHTML = originalHtml;
+            btnElement.className = originalClass;
+          }
+        }, 1800);
+      }
+      showToast(`[${copyLabel}] 클립보드에 복사되었습니다!`);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(urlText).then(applySuccess).catch(() => fallbackCopyText(urlText, applySuccess));
+    } else {
+      fallbackCopyText(urlText, applySuccess);
+    }
+  }
+
+  function refreshActive() {
+    selectPreset(activePresetIndex || 0);
   }
 
   /**
@@ -320,9 +419,11 @@
     init,
     renderPresetNav,
     selectPreset,
+    refreshActive,
     filterCategory,
     updateLiveQuery,
     copyWithFeedback,
+    copyDirectUrl,
     showToast
   };
 

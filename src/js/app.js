@@ -320,38 +320,54 @@
       `;
     }
 
-    // 2. High-Ticket CPA Native Card
+    // 2. High-Ticket CPA / Official Exhibition Native Card (100% copy-to-landing-page match)
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     const cpaDetails = monetizationModule.getCpaCardDetails
       ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
       : null;
 
+    const cpaBadgeEl = document.getElementById('cpa-badge');
     const cpaTitleEl = document.getElementById('cpa-title');
     const cpaPayoutTagEl = document.getElementById('cpa-payout-tag');
     const cpaActionLinkEl = document.getElementById('cpa-action-link');
     const cpaDescEl = document.getElementById('cpa-desc');
+    const cpaCoupangSubEl = document.getElementById('cpa-coupang-sublink');
+    const cpaLpSubEl = document.getElementById('cpa-lp-sublink');
 
     if (cpaDetails) {
-      if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.title;
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 맞춤 최저가 혜택 & 지원금 조회`;
-      if (cpaDescEl) cpaDescEl.textContent = cpaDetails.desc;
+      if (cpaBadgeEl) cpaBadgeEl.textContent = cpaDetails.liveBadge || "맞춤 추천 혜택";
+      if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.liveTitle || cpaDetails.title;
+      if (cpaPayoutTagEl) {
+        cpaPayoutTagEl.textContent = cpaDetails.isCustomTenpingUrl
+          ? `🔥 텐핑(Tenping) 캠페인 실시간 연동됨`
+          : `⚡ 쿠팡 파트너스(${config.coupangAfId || 'AF7865143'}) · 링크프라이스(${config.linkPriceId || 'A100708867'}) 연동`;
+      }
+      if (cpaDescEl) cpaDescEl.textContent = cpaDetails.liveDesc || cpaDetails.desc;
       if (cpaActionLinkEl) {
         cpaActionLinkEl.href = cpaDetails.liveActionUrl || cpaDetails.actionUrl;
-        cpaActionLinkEl.textContent = cpaDetails.cta;
+        cpaActionLinkEl.textContent = cpaDetails.liveCta || cpaDetails.cta;
+      }
+      if (cpaCoupangSubEl && cpaDetails.coupangSubUrl) {
+        cpaCoupangSubEl.href = cpaDetails.coupangSubUrl;
+        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 파트너스 로켓특가'} ↗`;
+      }
+      if (cpaLpSubEl && cpaDetails.linkPriceSubUrl) {
+        cpaLpSubEl.href = cpaDetails.linkPriceSubUrl;
+        cpaLpSubEl.textContent = `${cpaDetails.linkPriceSubLabel || '🏷️ 링크프라이스 공식몰 기획전'} ↗`;
       }
     } else {
       if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 무료 견적 조회";
       if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 실시간 최저가 혜택 & 지원금 조회`;
       if (cpaActionLinkEl) {
-        const cpaUrl = monetizationModule.buildCpaUrl
-          ? monetizationModule.buildCpaUrl(res.cpaKey || "cpa", res.cpaBenefit || "")
+        const cpaUrl = monetizationModule.buildLiveFallbackCpaUrl
+          ? monetizationModule.buildLiveFallbackCpaUrl(currentCalc, config)
           : "#";
         cpaActionLinkEl.href = cpaUrl;
       }
     }
 
-    // 3. Products Recommendations (Coupang + LinkPrice) with High-CTR Badges & Microcopy
+    // 3. Products Recommendations (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
@@ -365,11 +381,14 @@
             ? monetizationModule.buildLinkPriceDeepLink(p.merchant, p.url)
             : p.url;
         }
-        const platformTag = p.type === 'coupang' ? '🚀 쿠팡 로켓배송' : '🏷️ 공식몰 기획전';
+        const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
+        const platformTag = p.type === 'coupang'
+          ? '🚀 쿠팡 파트너스 로켓배송'
+          : `🏷️ 링크프라이스 · ${merchantName}`;
         const platformColor = p.type === 'coupang'
           ? 'bg-rose-50 text-rose-700 border-rose-200'
           : 'bg-indigo-50 text-indigo-700 border-indigo-200';
-        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 오늘 출발·내일 도착' : '💳 카드 즉시할인');
+        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 오늘 출발·내일 도착' : '💳 공식몰 정품 할인');
         const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
 
         return `
@@ -398,18 +417,20 @@
     if (stickySubEl && stickyMainEl && stickyBtnEl) {
       const lc = res.lossComparison || {};
       stickySubEl.textContent = lc.savingBadge || res.badge || "실시간 손익 계산 완료";
-      stickyMainEl.textContent = cpaDetails ? cpaDetails.title : res.headline;
+      stickyMainEl.textContent = cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline;
       stickyBtnEl.href = cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#";
 
       const shortBtnMap = {
-        electric: `월 ${(res.monthlySaving || 10000).toLocaleString()}원 절약 →`,
-        diet: `닭가슴살 ${res.chickenPacks || 0}팩 특가 →`,
-        pet: `펫보험·사료 최저가 →`,
-        room: `${res.roomSize || 7}평 최저가 견적 →`,
-        auto: `${res.diffMan || 0}만원 아끼기 →`,
-        telecom: `현금 ${res.cashGiftMan || 47}만원 받기 →`
+        electric: `1등급 가전 특가 →`,
+        diet: `닭가슴살·보충제 특가 →`,
+        pet: `사료·건강식 최저가 →`,
+        room: `${res.roomSize || 7}평 가전·가구 특가 →`,
+        auto: `차량용품·블랙박스 특가 →`,
+        telecom: `유심·와이파이7 특가 →`
       };
-      stickyBtnEl.textContent = shortBtnMap[currentCalc] || "혜택 즉시 조회 →";
+      stickyBtnEl.textContent = (cpaDetails && cpaDetails.isCustomTenpingUrl)
+        ? "텐핑 혜택 즉시 신청 →"
+        : (shortBtnMap[currentCalc] || "맞춤 특가 확인 →");
     }
   };
 
@@ -542,12 +563,18 @@
     const tgChatIdInp = document.getElementById('cfg-tg-chat-id');
     const tgAutoNotifyInp = document.getElementById('cfg-tg-auto-notify');
 
-    if (coupangInp) coupangInp.value = (config.coupangAfId && config.coupangAfId !== "AF7865143") ? config.coupangAfId : "";
-    if (lpInp) lpInp.value = (config.linkPriceId && config.linkPriceId !== "A100708867") ? config.linkPriceId : "";
+    if (coupangInp) coupangInp.value = config.coupangAfId || "AF7865143";
+    if (lpInp) lpInp.value = config.linkPriceId || "A100708867";
     if (cpaInp) {
-      const rawCpa = (config.cpaMemberId && config.cpaMemberId !== "tp_member_2370") ? config.cpaMemberId : "";
+      const rawCpa = config.cpaMemberId || "tp_member_2370";
       cpaInp.value = /^010\d{7,8}$/.test(rawCpa) ? "tp_member_" + rawCpa.slice(-4) : rawCpa;
     }
+    const cpaUrls = config.cpaUrls || {};
+    ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].forEach(cat => {
+      const urlInp = document.getElementById(`cfg-cpa-url-${cat}`);
+      if (urlInp) urlInp.value = cpaUrls[cat] || "";
+    });
+
     if (adfitInp) adfitInp.value = (config.adfitUnitId && config.adfitUnitId !== "DAN-SAMPLE-TOP") ? config.adfitUnitId : "";
     if (siteUrlInp) siteUrlInp.value = config.siteUrl || "https://truthofmarket.com";
     if (tgTokenInp) tgTokenInp.value = (config.telegramBotToken && config.telegramBotToken !== "YOUR_TELEGRAM_BOT_TOKEN") ? config.telegramBotToken : "";
@@ -559,10 +586,22 @@
   }
 
   function updateStatusBar(config) {
+    const statusCoupang = document.getElementById('status-coupang-id');
+    const statusLp = document.getElementById('status-lp-id');
+    const statusCpa = document.getElementById('status-cpa-id');
     const statusClicks = document.getElementById('status-click-count');
     const adfitLabel = document.getElementById('adfit-unit-label');
     const adfitContainer = document.getElementById('adfit-banner-container');
 
+    if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
+    if (statusLp) statusLp.textContent = config.linkPriceId || "A100708867";
+    if (statusCpa) {
+      const cpaUrls = config.cpaUrls || {};
+      const customCount = Object.values(cpaUrls).filter(v => v && String(v).trim().startsWith('http')).length;
+      statusCpa.textContent = customCount > 0
+        ? `010-****-2370 (텐핑 직링크 ${customCount}개)`
+        : `010-****-2370 (자동 기획전 연동)`;
+    }
     if (statusClicks) statusClicks.textContent = config.clickCount || 0;
     const adUnit = config.adfitUnitId || "DAN-SAMPLE-TOP";
     if (adfitLabel) adfitLabel.textContent = adUnit;
@@ -576,12 +615,16 @@
     const monetizationModule = getMonetizationModule();
     const sampleCoupang = document.getElementById('sample-synthesized-coupang');
     const sampleLp = document.getElementById('sample-synthesized-lp');
+    const sampleCpa = document.getElementById('sample-synthesized-cpa');
 
     if (sampleCoupang && monetizationModule.buildCoupangUrl) {
-      sampleCoupang.textContent = "쿠팡: " + monetizationModule.buildCoupangUrl("에너지 1등급 가전", "electric");
+      sampleCoupang.textContent = "🚀 쿠팡 파트너스: " + monetizationModule.buildCoupangUrl("에너지 1등급 가전", "electric", config);
     }
     if (sampleLp && monetizationModule.buildLinkPriceDeepLink) {
-      sampleLp.textContent = "링크프라이스: " + monetizationModule.buildLinkPriceDeepLink("himart", "https://www.e-himart.co.kr/");
+      sampleLp.textContent = "🏷️ 링크프라이스: " + monetizationModule.buildLinkPriceDeepLink("himart", "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%801%EB%93%B1%EA%B8%89", config);
+    }
+    if (sampleCpa && monetizationModule.buildLiveFallbackCpaUrl) {
+      sampleCpa.textContent = "🔥 맞춤 혜택/텐핑: " + monetizationModule.buildLiveFallbackCpaUrl(currentCalc || "electric", config);
     }
   }
 
@@ -594,6 +637,10 @@
     const linkPriceId = (document.getElementById('cfg-lp-id')?.value || "").trim() || "A100708867";
     const rawCpaInput = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "tp_member_2370";
     const cpaMemberId = /^010\d{7,8}$/.test(rawCpaInput) ? "tp_member_" + rawCpaInput.slice(-4) : rawCpaInput;
+    const cpaUrls = {};
+    ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].forEach(cat => {
+      cpaUrls[cat] = (document.getElementById(`cfg-cpa-url-${cat}`)?.value || "").trim();
+    });
     const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim() || "DAN-SAMPLE-TOP";
     const siteUrl = (document.getElementById('cfg-site-url')?.value || "").trim() || "https://truthofmarket.com";
     const telegramBotToken = (document.getElementById('cfg-tg-token')?.value || "").trim() || "YOUR_TELEGRAM_BOT_TOKEN";
@@ -604,6 +651,7 @@
       coupangAfId,
       linkPriceId,
       cpaMemberId,
+      cpaUrls,
       adfitUnitId,
       siteUrl,
       telegramBotToken,
@@ -621,6 +669,9 @@
     updateStatusBar(updated);
     updateSampleLinksPreview(updated);
     recalculateCurrent();
+    if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.refreshActive) {
+      window.MoneyFitCopyKit.refreshActive();
+    }
 
     const alertBox = document.getElementById('config-saved-alert');
     if (alertBox) {

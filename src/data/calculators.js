@@ -143,8 +143,8 @@ function calculateElectric(inputs = {}) {
     products: [
       { title: "쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송", kw: "에너지소비효율 1등급 인버터 에어컨 제습기", type: "coupang", badge: "🚀 내일 도착·로켓설치", ctaText: `월 ${monthlySaving.toLocaleString()}원 아끼는 1등급 특가 확인 →` },
       { title: "실시간 대기전력 차단 스마트 플러그 전력측정기", kw: "스마트 플러그 전력측정기", type: "coupang", badge: "⚡ 누진세 방어 필수템", ctaText: "대기전력 0W 차단기 최저가 보기 →" },
-      { title: "하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=에너지 1등급 가전", type: "linkprice", badge: "💳 카드 즉시할인+환급", ctaText: "1등급 가전 최대 20% 혜택 비교 →" },
-      { title: "지마켓 고효율 서큘레이터·절전 가전 베스트", merchant: "gmarket", url: "https://www.gmarket.co.kr/n/search?keyword=고효율 서큘레이터 절전가전", type: "linkprice", badge: "🔥 냉방효율 2배 상승", ctaText: "절전형 서큘레이터 특가 모음 →" }
+      { title: "롯데하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", merchantLabel: "롯데하이마트", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0", type: "linkprice", badge: "💳 카드 즉시할인+환급", ctaText: "하이마트 1등급 가전 혜택 비교 →" },
+      { title: "지마켓 고효율 인버터 에어컨·제습기·서큘레이터 베스트", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0", type: "linkprice", badge: "🔥 냉방효율 2배 상승", ctaText: "지마켓 절전가전 특가 모음 →" }
     ]
   };
 }
@@ -236,8 +236,8 @@ function calculateDiet(inputs = {}) {
     products: [
       { title: `냉동 닭가슴살 100g 대용량 (${chickenPacks}팩 맞춤 묶음)`, kw: "냉동 닭가슴살 100g 대용량 패키지", type: "coupang", badge: "❄️ 로켓프레시 새벽도착", ctaText: `닭가슴살 ${chickenPacks}팩 최저가 묶음 보기 →` },
       { title: `즉석 현미밥·곤약밥 (${brownRiceBowls}개입 로켓프레시)`, kw: "즉석 현미밥 대용량 박스", type: "coupang", badge: "📦 대용량 박스 할인가", ctaText: `현미밥 ${brownRiceBowls}개입 박스 특가 확인 →` },
-      { title: "WPI 분리유청 단백질 보충제 대용량 특가", kw: "WPI 분리유청단백질 프로틴", type: "coupang", badge: `💪 ${proteinTubs}통 맞춤 구성`, ctaText: `일일 단백질 ${dailyProteinG}g 보충 프로틴 특가 →` },
-      { title: "그램(g) 정밀 계량 디지털 주방저울", kw: "디지털 주방저울", type: "coupang", badge: "🏆 식단 성공률 200%", ctaText: "1g 단위 정밀 주방저울 로켓배송 →" }
+      { title: "아이허브(iHerb) WPI 분리유청 프로틴·다이어트 보충제 특가", merchant: "iherb", merchantLabel: "아이허브", url: "https://kr.iherb.com/search?kw=%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20WPI", type: "linkprice", badge: `💪 ${proteinTubs}통 글로벌 직구특가`, ctaText: `일일 단백질 ${dailyProteinG}g 아이허브 할인 →` },
+      { title: "지마켓 브랜드 닭가슴살·도시락·현미밥 대용량 기획전", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%98%84%EB%AF%B8%EB%B0%A5", type: "linkprice", badge: "🏷️ 스마일배송 묶음할인", ctaText: "지마켓 식단 대용량 최저가 비교 →" }
     ]
   };
 }
@@ -306,8 +306,8 @@ function calculatePet(inputs = {}) {
     products: [
       { title: `${petWeight}kg 맞춤 별점 4.8+ 가수분해 알러지 사료`, kw: "강아지 가수분해 사료 로얄캐닌", type: "coupang", badge: `🐾 ${daysPerBag}일분 정기배송 할인`, ctaText: `${bagKg}kg 사료 로켓배송 최저가 확인 →` },
       { title: "반려동물 슬개골·관절·유산균 영양제 베스트", kw: "강아지 관절 영양제 유산균", type: "coupang", badge: "🏥 수술비 180만원 예방", ctaText: "수의사 추천 관절·유산균 특가 →" },
-      { title: "1g 단위 정밀 계량 펫 사료 전자저울 스쿱", kw: "강아지 사료 전자저울 스쿱", type: "coupang", badge: `⚖️ 1회 ${halfGrams}g 정량배식`, ctaText: "디지털 사료 계량스쿱 할인가 보기 →" },
-      { title: "대용량 고흡수 배변패드 / 고양이 벤토나이트 모래", kw: "강아지 배변패드 대용량", type: "coupang", badge: "📦 쟁여두는 반값 생필품", ctaText: "대용량 패드·모래 창고대방출 →" }
+      { title: "지마켓 프리미엄 가수분해 사료·관절영양제 공식 기획전", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C", type: "linkprice", badge: "💳 쿠폰+스마일클럽 특가", ctaText: "지마켓 펫 사료·영양제 최저가 →" },
+      { title: "롯데ON 대용량 사료·배변패드·고양이 모래 창고대방출", merchant: "lotteon", merchantLabel: "롯데ON", url: "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%82%AC%EB%A3%8C%20%EB%B0%B0%EB%B3%80%ED%8C%A8%EB%93%9C", type: "linkprice", badge: "📦 쟁여두는 반값 생필품", ctaText: "롯데ON 반려동물 생필품 특가 →" }
     ]
   };
 }
@@ -441,8 +441,8 @@ function calculateRoom(inputs = {}) {
     products: [
       { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang", badge: "🚛 원하는 날짜 로켓설치", ctaText: `예산 ${top1}만원 맞춤 냉장고 특가 →` },
       { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang", badge: "🛏️ 호텔식 숙면 베스트", ctaText: `예산 ${top3}만원 침대·매트리스 보기 →` },
-      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=원룸 자취 침대 가구", type: "linkprice", badge: "🏷️ 쿠폰+카드 청구할인", ctaText: `${roomSize}평 맞춤 가구 공식몰 특가 비교 →` },
-      { title: "필수 소형가전 3종 (전자레인지·전기밥솥·무선청소기)", kw: "자취 전자레인지 무선청소기", type: "coupang", badge: "⚡ 입주 당일 필수템", ctaText: "자취 생존 가전 3종 최저가 확인 →" }
+      { title: "현대Hmall 자취·신혼 침대·매트리스·가구 공간별 기획전", merchant: "hmall", merchantLabel: "현대Hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EA%B0%80%EA%B5%AC", type: "linkprice", badge: "🏷️ 쿠폰+카드 청구할인", ctaText: `${roomSize}평 맞춤 가구 공식몰 특가 비교 →` },
+      { title: "롯데ON 원룸·신혼 냉장고·세탁기·전자레인지 풀세팅 특가", merchant: "lotteon", merchantLabel: "롯데ON", url: "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EC%9B%90%EB%A3%B8%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%84%B8%ED%83%81%EA%B8%B0%20%EC%B9%A8%EB%8C%80", type: "linkprice", badge: "⚡ 입주 가전 묶음할인", ctaText: "롯데ON 입주가전 최저가 비교 →" }
     ]
   };
 }
@@ -553,10 +553,10 @@ function calculateAuto(inputs = {}) {
     cpaKey: "auto_longterm_rent",
     cpaBenefit: `${diffMan}만원`,
     products: [
-      { title: "신차 출고 필수! 2채널 QHD 아이나비/파인뷰 블랙박스", kw: "2채널 QHD 블랙박스", type: "coupang", badge: "🎥 무료출장장착 지원", ctaText: "QHD 블랙박스 반값 특가 확인 →" },
+      { title: "신차 출고 필수! 2채널 QHD 아이나비/파인뷰 블랙박스", kw: "2채널 QHD 블랙박스", type: "coupang", badge: "🎥 로켓배송 빠른출고", ctaText: "쿠팡 QHD 블랙박스 특가 확인 →" },
       { title: "차량용 맥세이프 고속 무선충전 거치대 베스트", kw: "차량용 맥세이프 고속충전 거치대", type: "coupang", badge: "🚀 오늘 주문 내일 도착", ctaText: "15W 초고속 충전거치대 인기순위 →" },
-      { title: "실내 오염 방지 친환경 확장형 코일 카매트", kw: "차량용 코일매트", type: "coupang", badge: "✨ 신차 컨디션 100% 유지", ctaText: "차종별 맞춤 코일매트 할인가 →" },
-      { title: "초보운전·신차 관리 세차용품 올인원 버킷 세트", kw: "세차용품 세트", type: "coupang", badge: "🧽 외장관리 풀세트", ctaText: "프리미엄 세차용품 올인원 특가 →" }
+      { title: "지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 무료출장장착", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%AC%B4%EB%A3%8C%EC%9E%A5%EC%B0%A9", type: "linkprice", badge: "🛠️ 전국 무료출장장착", ctaText: "지마켓 블랙박스 무료장착 특가 →" },
+      { title: "옥션 차종별 맞춤 확장형 코일매트·신차 세차용품 풀세트", merchant: "auction", merchantLabel: "옥션", url: "http://browse.auction.co.kr/search?keyword=%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%EC%84%B8%EC%B0%A8%EC%9A%A9%ED%92%88", type: "linkprice", badge: "✨ 신차 컨디션 100% 유지", ctaText: "옥션 코일매트·세차용품 할인가 →" }
     ]
   };
 }
@@ -662,8 +662,8 @@ function calculateTelecom(inputs = {}) {
     products: [
       { title: "방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000", kw: "와이파이6 공유기 AX3000", type: "coupang", badge: "📡 통신사 임대료 0원", ctaText: "기가 와이파이6 공유기 로켓배송 →" },
       { title: "거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함", kw: "셋톱박스 공유기 정리함", type: "coupang", badge: "🧹 선정리 3분 해결", ctaText: "무타공 셋톱박스 거치대 최저가 →" },
-      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=기가 와이파이 공유기", type: "linkprice", badge: "💳 자급제+유심 꿀조합", ctaText: "하이마트 통신기기 즉시할인전 →" },
-      { title: "초고속 CAT.8 기가 랜선 케이블 로켓배송", kw: "CAT8 기가 랜선", type: "coupang", badge: "⚡ 인터넷 속도 100% 구현", ctaText: "초고속 기가 랜선 로켓배송 보기 →" }
+      { title: "롯데하이마트 기가 와이파이6 공유기·자급제 특별 기획전", merchant: "himart", merchantLabel: "롯데하이마트", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=%EA%B8%B0%EA%B0%80%20%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0", type: "linkprice", badge: "💳 하이마트 즉시할인", ctaText: "하이마트 통신·공유기 특가전 →" },
+      { title: "지마켓 알뜰폰 무약정 유심·기가 와이파이 증폭기 모음", merchant: "gmarket", merchantLabel: "지마켓", url: "https://www.gmarket.co.kr/n/search?keyword=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EC%9E%90%EA%B8%89%EC%A0%9C", type: "linkprice", badge: "🔥 통신비 반값 절약", ctaText: "지마켓 통신기기 최저가 비교 →" }
     ]
   };
 }
