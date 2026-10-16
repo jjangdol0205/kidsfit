@@ -130,7 +130,8 @@ function updateConfig(newConfig = {}) {
 
 /**
  * Pipeline 1: Coupang Partners Deep Link Generator
- * Formula: https://www.coupang.com/np/search?q={encoded}&channel=user&lptag={afId}&subid=mf_{calcId}_{afId}
+ * Uses official Coupang Partners redirect gateway (link.coupang.com/re/AFFSRP)
+ * which sets the 24-hour trac_lptag affiliate cookie before landing on Coupang search.
  */
 function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
   let afId = currentConfig.coupangAfId || "AF7865143";
@@ -150,27 +151,60 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
 
   const encoded = encodeURIComponent(keyword || "");
   const subId = `mf_${calcId}_${afId}`;
-  return `https://www.coupang.com/np/search?q=${encoded}&channel=user&lptag=${afId}&subid=${subId}`;
+  return `https://link.coupang.com/re/AFFSRP?lptag=${afId}&pageKey=${encoded}&subid=${subId}&q=${encoded}&channel=user`;
 }
 
 /**
  * Pipeline 2: LinkPrice Deep Link Generator
- * Formula: https://click.linkprice.com/click.php?m={merchantId}&a={lpId}&l=9999&u={encodedTargetUrl}
+ * Uses official LinkPrice tu= (Target URL) parameter so click.linkprice.com/click.php
+ * sets the LPUID tracking cookie and redirects cleanly to the merchant.
  */
 function buildLinkPriceDeepLink(merchantId, targetUrl, lpId = null) {
   const effectiveLpId = lpId || currentConfig.linkPriceId || "A100708867";
   const encodedUrl = encodeURIComponent(targetUrl || "");
-  return `https://click.linkprice.com/click.php?m=${merchantId}&a=${effectiveLpId}&l=9999&u=${encodedUrl}`;
+  return `https://click.linkprice.com/click.php?m=${merchantId}&a=${effectiveLpId}&l=9999&tu=${encodedUrl}`;
 }
 
 /**
  * Pipeline 3: High-Ticket CPA Campaign URL Generator
- * Formula: https://leaderscpa.com/merchant/{campaignKey}?member={cpaMemberId}&benefit={encodedBenefit}
+ * Supports direct Tenping short links (https://iryan.kr/...) or standard CPA tracking URLs
  */
 function buildCpaUrl(campaignKey, dynamicValue = "", memberId = null) {
   const effectiveMemberId = memberId || currentConfig.cpaMemberId || "tp_member_2370";
   const encodedValue = encodeURIComponent(dynamicValue || "");
+  if (/^https?:\/\/(iryan\.kr|tenping\.kr)\//i.test(effectiveMemberId)) {
+    return effectiveMemberId;
+  }
   return `https://leaderscpa.com/merchant/${campaignKey}?member=${effectiveMemberId}&benefit=${encodedValue}`;
+}
+
+/**
+ * Resolve live revenue-generating URL for CTA cards when no external CPA short link is set
+ */
+function buildLiveFallbackCpaUrl(calcId, config = null) {
+  const cfg = config || currentConfig;
+  const memberId = (cfg && cfg.cpaMemberId) || "tp_member_2370";
+  if (/^https?:\/\//i.test(memberId)) {
+    return memberId;
+  }
+  const afId = (cfg && cfg.coupangAfId) || "AF7865143";
+  const lpId = (cfg && cfg.linkPriceId) || "A100708867";
+  switch (calcId) {
+    case "electric":
+      return buildCoupangUrl("에너지소비효율 1등급 인버터 에어컨 제습기", "electric", afId);
+    case "diet":
+      return buildCoupangUrl("다이어트 닭가슴살 대용량 패키지 단백질 보충제", "diet", afId);
+    case "pet":
+      return buildCoupangUrl("강아지 고양이 가수분해 사료 관절 영양제", "pet", afId);
+    case "room":
+      return buildLinkPriceDeepLink("hmall", "https://www.hmall.com/", lpId);
+    case "auto":
+      return buildCoupangUrl("자동차 신차 필수용품 2채널 블랙박스 코일매트", "auto", afId);
+    case "telecom":
+      return buildLinkPriceDeepLink("himart", "http://www.e-himart.co.kr/", lpId);
+    default:
+      return buildCoupangUrl("에너지소비효율 1등급 가전", "portal", afId);
+  }
 }
 
 /**
@@ -240,10 +274,12 @@ function getCpaCardDetails(calcId, calculatedResult, config = null) {
 
   const details = map[calcId] || map.electric;
   const actionUrl = buildCpaUrl(details.campaignKey, details.benefit, memberId);
+  const liveActionUrl = buildLiveFallbackCpaUrl(calcId, cfg);
 
   return {
     ...details,
-    actionUrl
+    actionUrl,
+    liveActionUrl
   };
 }
 

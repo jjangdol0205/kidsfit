@@ -44,7 +44,7 @@ suite.test('Interaction 3.3: Coupang Partners Deep Link Syntax & SubID Format', 
   const keyword = "에너지 1등급 인버터 에어컨";
   const url = buildCoupangUrl(keyword, "electric", "AF9999999");
 
-  assert(url.includes("https://www.coupang.com/np/search?q="), 'Must point to Coupang search');
+  assert(url.startsWith("https://link.coupang.com/re/AFFSRP?"), 'Must point to official Coupang Partners redirect gateway');
   assert(url.includes(encodeURIComponent(keyword)), 'Keyword must be properly URI encoded');
   assert(url.includes("lptag=AF9999999"), 'Must include specified lptag');
   assert(url.includes("subid=mf_electric_AF9999999"), 'Must match standard subid format mf_{calcId}_{afId}');
@@ -66,12 +66,12 @@ suite.test('Interaction 3.5: LinkPrice Deep Link Synthesis Syntax & URI Encoding
   const lpId = "A100999888";
 
   const deepLink = buildLinkPriceDeepLink(merchantId, destUrl, lpId);
-  const expectedPrefix = `https://click.linkprice.com/click.php?m=${merchantId}&a=${lpId}&l=9999&u=`;
+  const expectedPrefix = `https://click.linkprice.com/click.php?m=${merchantId}&a=${lpId}&l=9999&tu=`;
 
   assert(deepLink.startsWith(expectedPrefix), `Link must start with standard LinkPrice gateway prefix`);
   assert(deepLink.includes(encodeURIComponent(destUrl)), 'Destination URL must be strictly URI encoded');
-  // Check that raw query symbols are not nakedly exposed in u parameter
-  assert(!deepLink.includes("&query="), 'Raw query parameters should be escaped in u=');
+  // Check that raw query symbols are not nakedly exposed in tu parameter
+  assert(!deepLink.includes("&query="), 'Raw query parameters should be escaped in tu=');
 });
 
 suite.test('Interaction 3.6: High-Ticket CPA Campaign URL & Member ID Injection', async () => {

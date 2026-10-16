@@ -398,7 +398,7 @@ function calculateRoom(inputs = {}) {
     products: [
       { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang" },
       { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang" },
-      { title: "한샘몰 자취·신혼 가구 공간별 베스트 기획전", merchant: "hanssem", url: "https://mall.hanssem.com/", type: "linkprice" },
+      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/", type: "linkprice" },
       { title: "필수 소형가전 3종 (전자레인지·전기밥솥·무선청소기)", kw: "자취 전자레인지 무선청소기", type: "coupang" }
     ]
   };
@@ -596,7 +596,7 @@ function calculateTelecom(inputs = {}) {
     products: [
       { title: "방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000", kw: "와이파이6 공유기 AX3000", type: "coupang" },
       { title: "거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함", kw: "셋톱박스 공유기 정리함", type: "coupang" },
-      { title: "KT샵 공식 온라인 가입 혜택 & 사은품 기획전", merchant: "ktshop", url: "https://shop.kt.com/", type: "linkprice" },
+      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "http://www.e-himart.co.kr/", type: "linkprice" },
       { title: "초고속 CAT.8 기가 랜선 케이블 로켓배송", kw: "CAT8 기가 랜선", type: "coupang" }
     ]
   };

@@ -643,10 +643,9 @@ function renderInteractiveCalculatorCard(preset, res) {
     </div>
   `).join('');
 
-  // Target CPA card
-  const cpaCampaign = config.campaigns ? config.campaigns[res.cpaKey] : null;
-  const cpaPayoutLabel = cpaCampaign ? cpaCampaign.payoutLabel : (res.cpaPayout || '35,000원');
-  const cpaTargetUrl = `https://leaderscpa.com/merchant/${res.cpaKey}?member=${config.cpaMemberId}`;
+  // Target CPA card (uses Tenping iryan.kr if configured, or live Coupang/LinkPrice revenue URL)
+  const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
+  const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
 
   // Coupang (AF7865143) + LinkPrice (A100708867) Product Recommendations
   const productsHtml = (res.products || []).map(p => {

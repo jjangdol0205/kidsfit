@@ -201,10 +201,10 @@
 
     if (cpaDetails) {
       if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.title;
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `승인 시 예상 수익: 건당 ${cpaDetails.payout}`;
+      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 맞춤 최저가 혜택 & 지원금 조회`;
       if (cpaDescEl) cpaDescEl.textContent = cpaDetails.desc;
       if (cpaActionLinkEl) {
-        cpaActionLinkEl.href = cpaDetails.actionUrl;
+        cpaActionLinkEl.href = cpaDetails.liveActionUrl || cpaDetails.actionUrl;
         cpaActionLinkEl.textContent = cpaDetails.cta;
       }
     } else {

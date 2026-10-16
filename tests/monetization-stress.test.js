@@ -22,12 +22,13 @@ suite.test('Stress 1.1: Coupang Keyword URL Encoding with Korean Characters and 
   const keyword = "에너지 소비효율 1등급 인버터 벽걸이 에어컨 6평형";
   const url = buildCoupangUrl(keyword, "electric", "AF1234567");
 
-  assert(url.startsWith("https://www.coupang.com/np/search?"), "Must target Coupang search");
+  assert(url.startsWith("https://link.coupang.com/re/AFFSRP?"), "Must target Coupang Partners AFFSRP gateway");
   const parsed = new URL(url);
 
   assert.strictEqual(parsed.searchParams.get("channel"), "user");
   assert.strictEqual(parsed.searchParams.get("lptag"), "AF1234567");
   assert.strictEqual(parsed.searchParams.get("subid"), "mf_electric_AF1234567");
+  assert.strictEqual(parsed.searchParams.get("pageKey"), keyword, "Parsed pageKey param must decode back to exact Korean keyword");
   assert.strictEqual(parsed.searchParams.get("q"), keyword, "Parsed query param must decode back to exact Korean keyword");
   // Ensure no raw Hangul exists in the raw query string (must be percent-encoded)
   const rawQuery = url.split("?")[1];
@@ -110,15 +111,15 @@ suite.test('Stress 1.5: Coupang Parameter Signature Permutations (afId vs calcId
   assert.strictEqual(p5.searchParams.get("subid"), "mf_telecom_AF8888888");
 });
 
-suite.test('Stress 1.6: LinkPrice Deep Link Syntax Invariant m, a, l=9999, u Parameter Order', async () => {
+suite.test('Stress 1.6: LinkPrice Deep Link Syntax Invariant m, a, l=9999, tu Parameter Order', async () => {
   const { buildLinkPriceDeepLink } = await getMonetization();
   const merchant = "himart";
   const target = "https://www.e-himart.co.kr/app/display/special?query=에어컨";
   const lpId = "A100999888";
 
   const deepLink = buildLinkPriceDeepLink(merchant, target, lpId);
-  // Strict regex for exact URL structure: https://click.linkprice.com/click.php?m={m}&a={a}&l=9999&u={encoded_url}
-  const strictRegex = /^https:\/\/click\.linkprice\.com\/click\.php\?m=([^&]+)&a=([^&]+)&l=9999&u=(.+)$/;
+  // Strict regex for exact URL structure: https://click.linkprice.com/click.php?m={m}&a={a}&l=9999&tu={encoded_url}
+  const strictRegex = /^https:\/\/click\.linkprice\.com\/click\.php\?m=([^&]+)&a=([^&]+)&l=9999&tu=(.+)$/;
   const match = deepLink.match(strictRegex);
 
   assert(match !== null, `Deep link must strictly match LinkPrice syntax: ${deepLink}`);
@@ -133,9 +134,9 @@ suite.test('Stress 1.7: LinkPrice Destination URL with Complex Query String, Anc
   const deepLink = buildLinkPriceDeepLink("hanssem", destUrl, "A100123456");
 
   const parsed = new URL(deepLink);
-  // The outer URL (click.php) must strictly have ONLY m, a, l, u query params
+  // The outer URL (click.php) must strictly have ONLY m, a, l, tu query params
   const paramKeys = Array.from(parsed.searchParams.keys());
-  assert.deepStrictEqual(paramKeys.sort(), ["a", "l", "m", "u"].sort(), "click.php must only contain a, l, m, u parameters");
+  assert.deepStrictEqual(paramKeys.sort(), ["a", "l", "m", "tu"].sort(), "click.php must only contain a, l, m, tu parameters");
 
   // Inner parameters must not bleed into outer URL
   assert.strictEqual(parsed.searchParams.get("q"), null);
@@ -143,8 +144,8 @@ suite.test('Stress 1.7: LinkPrice Destination URL with Complex Query String, Anc
   assert.strictEqual(parsed.searchParams.get("minPrice"), null);
   assert.strictEqual(parsed.hash, "", "Destination hash must be percent-encoded, not become click.php hash");
 
-  // Decoding u must restore verbatim destination URL
-  assert.strictEqual(parsed.searchParams.get("u"), destUrl);
+  // Decoding tu must restore verbatim destination URL
+  assert.strictEqual(parsed.searchParams.get("tu"), destUrl);
 });
 
 suite.test('Stress 1.8: LinkPrice All 7 Supported Merchant IDs Deep Link Generation', async () => {
@@ -165,7 +166,7 @@ suite.test('Stress 1.8: LinkPrice All 7 Supported Merchant IDs Deep Link Generat
     assert.strictEqual(parsed.searchParams.get("m"), merchant.merchantId);
     assert.strictEqual(parsed.searchParams.get("a"), cfg.linkPriceId);
     assert.strictEqual(parsed.searchParams.get("l"), "9999");
-    assert.strictEqual(parsed.searchParams.get("u"), merchant.defaultUrl);
+    assert.strictEqual(parsed.searchParams.get("tu"), merchant.defaultUrl);
   }
 });
 
@@ -176,17 +177,17 @@ suite.test('Stress 1.9: LinkPrice Destination with Pre-Encoded Percent Sequences
   const deepLink = buildLinkPriceDeepLink("gmarket", destUrl);
 
   const parsed = new URL(deepLink);
-  assert.strictEqual(parsed.searchParams.get("u"), destUrl, "Pre-encoded destination must be recoverable verbatim");
+  assert.strictEqual(parsed.searchParams.get("tu"), destUrl, "Pre-encoded destination must be recoverable verbatim");
 });
 
 suite.test('Stress 1.10: LinkPrice Empty and Missing Destination Handling', async () => {
   const { buildLinkPriceDeepLink } = await getMonetization();
 
   const emptyLink = buildLinkPriceDeepLink("ssg", "");
-  assert.strictEqual(new URL(emptyLink).searchParams.get("u"), "");
+  assert.strictEqual(new URL(emptyLink).searchParams.get("tu"), "");
 
   const nullLink = buildLinkPriceDeepLink("ssg", null);
-  assert.strictEqual(new URL(nullLink).searchParams.get("u"), "");
+  assert.strictEqual(new URL(nullLink).searchParams.get("tu"), "");
 });
 
 // ============================================================================
