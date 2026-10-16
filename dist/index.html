@@ -74,7 +74,8 @@
         <span>링크프라이스 ID: <code id="status-lp-id" class="text-emerald-400 font-bold">A100708867</code></span>
         <span>CPA ID: <code id="status-cpa-id" class="text-sky-400 font-bold">010-****-2370 (비공개)</code></span>
       </div>
-      <div>
+      <div class="flex flex-wrap items-center gap-4">
+        <span>👥 오늘 방문자: <strong id="status-today-uv" class="text-emerald-400">1</strong>명 (조회 <strong id="status-today-pv" class="text-sky-400">1</strong>회 / 로봇수집 <strong id="status-today-bots" class="text-purple-400">0</strong>회)</span>
         <span>누적 제휴 클릭: <strong id="status-click-count" class="text-amber-300">0</strong>회</span>
       </div>
     </div>
@@ -517,5 +518,22 @@
   <script src="src/data/viral-content.js"></script>
   <script src="src/js/ui-copy-kit.js"></script>
   <script src="src/js/app.js"></script>
+  <script>
+    (function() {
+      fetch('/api/stats')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data && data.today) {
+            var uvEl = document.getElementById('status-today-uv');
+            var pvEl = document.getElementById('status-today-pv');
+            var botEl = document.getElementById('status-today-bots');
+            if (uvEl) uvEl.textContent = String(data.today.uniqueVisitors || 1);
+            if (pvEl) pvEl.textContent = String(data.today.pageViews || 1);
+            if (botEl) botEl.textContent = String(data.today.botCrawls || 0);
+          }
+        })
+        .catch(function() {});
+    })();
+  </script>
 </body>
 </html>

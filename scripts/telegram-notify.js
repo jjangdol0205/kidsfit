@@ -93,16 +93,19 @@ function getTelegramConfig() {
 }
 
 /**
- * Save discovered chatId or token back into monetization.config.json
+ * Save discovered chatId or token into local .env (kept out of public Git)
  */
 function saveTelegramConfig(updates = {}) {
-  if (!fs.existsSync(CONFIG_PATH)) return;
   try {
-    const current = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
-    const merged = { ...current, ...updates };
-    fs.writeFileSync(CONFIG_PATH, JSON.stringify(merged, null, 2) + '\n', 'utf8');
+    const dotEnv = loadDotEnv();
+    if (updates.telegramBotToken) dotEnv.TELEGRAM_BOT_TOKEN = updates.telegramBotToken;
+    if (updates.telegramChatId) dotEnv.TELEGRAM_CHAT_ID = updates.telegramChatId;
+    if (updates.antigravityConversationId) dotEnv.ANTIGRAVITY_CONVERSATION_ID = updates.antigravityConversationId;
+
+    const lines = Object.entries(dotEnv).map(([k, v]) => `${k}=${v}`);
+    fs.writeFileSync(ENV_PATH, lines.join('\n') + '\n', 'utf8');
   } catch (e) {
-    console.warn('  [Telegram] Could not update monetization.config.json:', e.message);
+    console.warn('  [Telegram] Could not update .env:', e.message);
   }
 }
 
@@ -370,6 +373,7 @@ if (require.main === module) {
     const isDiscover = args.includes('--discover');
     const tokenArgIdx = args.indexOf('--token');
     const chatArgIdx = args.indexOf('--chat-id');
+    const msgArgIdx = args.indexOf('--message');
 
     if (tokenArgIdx !== -1 && args[tokenArgIdx + 1]) {
       saveTelegramConfig({ telegramBotToken: args[tokenArgIdx + 1].trim() });
@@ -395,6 +399,14 @@ if (require.main === module) {
       process.exit(0);
     }
 
+    if (msgArgIdx !== -1 && args[msgArgIdx + 1]) {
+      const rawMsg = args.slice(msgArgIdx + 1).join(' ');
+      const customHtml = `🤖 <b>[Antigravity AI 작업 완료 보고]</b>\n━━━━━━━━━━━━━━━━━━\n${escapeHtml(rawMsg)}\n━━━━━━━━━━━━━━━━━━\n🌐 <a href="${cfg.siteUrl}">${cfg.siteUrl}</a>`;
+      const res = await sendTelegramReport({}, { dryRun: isDryRun, customHtml });
+      console.log(`[Telegram Custom Message] Status: ${res.mode} (sent=${res.sent})`);
+      process.exit(0);
+    }
+
     const res = await sendTelegramReport({}, { dryRun: isDryRun });
     console.log(`[Telegram Notifier] Status: ${res.mode} (sent=${res.sent})`);
     process.exit(0);
@@ -407,6 +419,8 @@ if (require.main === module) {
 module.exports = {
   getTelegramConfig,
   saveTelegramConfig,
+  telegramApiRequest,
+  escapeHtml,
   discoverChatId,
   buildCompletionMessageHtml,
   sendTelegramReport,
