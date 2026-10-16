@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량
 > 프리셋 ID: `diet-male-bulkup` | 카테고리: `식단·다이어트` | 타겟 URL: [https://truthofmarket.com/preset/diet-male-bulkup](https://truthofmarket.com/preset/diet-male-bulkup)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&sort=date) | [카페 최신순](https://search.naver.com/search.naver?where=article&query=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&st=date)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EB%A7%88%EB%A5%B8%EC%B2%B4%ED%98%95%2065kg%20%EB%B2%8C%ED%81%AC%EC%97%85%20%EC%8B%9D%EB%8B%A8%20%ED%94%84%EB%A1%9C%ED%8B%B4& sort=recency)
 
 ---
 
@@ -96,6 +96,16 @@ A. 3끼 정규 식사(각 650kcal) 외에 운동 전후와 취침 2시간 전에
 https://truthofmarket.com/preset/diet-male-bulkup
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
+```
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+```text
+저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [하루 2,867kcal (탄 407g·단 130g·지 80g) · 닭가슴살 총 103팩 필요! (일일 탄/단/지 권장 탄 407g · 단 130g · 지 80g / 4주 닭가슴살(100g) 총 103팩)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 https://truthofmarket.com/preset/diet-male-bulkup
 ```
 
 ---

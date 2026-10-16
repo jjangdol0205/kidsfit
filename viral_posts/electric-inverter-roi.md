@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간
 > 프리셋 ID: `electric-inverter-roi` | 카테고리: `전기·가전` | 타겟 URL: [https://truthofmarket.com/preset/electric-inverter-roi](https://truthofmarket.com/preset/electric-inverter-roi)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&sort=date) | [카페 최신순](https://search.naver.com/search.naver?where=article&query=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&st=date)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EA%B5%AC%ED%98%95%20%EC%A0%95%EC%86%8D%ED%98%95%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EA%B5%90%EC%B2%B4& sort=recency)
 
 ---
 
@@ -95,6 +95,16 @@ A. 산업통상자원부와 한전에서 시행하는 '으뜸효율 가전제품
 https://truthofmarket.com/preset/electric-inverter-roi
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
+```
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+```text
+저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [이번 달 추가 전기세 +127,977원 (총 159,483원) (월 추가 전력량 +432 kWh / 1등급 교체 시 월 절감 -87,524원)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 https://truthofmarket.com/preset/electric-inverter-roi
 ```
 
 ---

@@ -46,12 +46,21 @@ function calcKepcoBill(kwh, isSummer = false) {
 }
 
 /**
+ * Safe numeric parser that preserves 0 while preventing NaN on empty strings
+ */
+function toNum(val, fallback) {
+  if (val === undefined || val === null || val === '') return fallback;
+  const n = Number(val);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+/**
  * Calc 1: 전기요금·누진세 폭탄 & 1등급 인버터 교체 손익분기점 계산기
  */
 function calculateElectric(inputs = {}) {
-  const wattage = inputs.wattage !== undefined ? Number(inputs.wattage) : 1800;
-  const hours = inputs.hours !== undefined ? Number(inputs.hours) : 10;
-  const baseKwh = inputs.baseKwh !== undefined ? Number(inputs.baseKwh) : 250;
+  const wattage = toNum(inputs.wattage, 1800);
+  const hours = toNum(inputs.hours, 10);
+  const baseKwh = toNum(inputs.baseKwh, 250);
   const newPrice = Number(inputs.newPrice) || 850000;
   const isSummer = Boolean(inputs.isSummer);
 
@@ -116,16 +125,26 @@ function calculateElectric(inputs = {}) {
       { label: "1등급 교체 시 월 절감", val: isZeroUsage || addedKwh === 0 ? "0원" : `-${monthlySaving.toLocaleString()}원` },
       { label: "기기값 본전 회수", val: paybackMonths > 0 ? `${paybackMonths}개월` : "미가동" }
     ],
+    lossComparison: {
+      lossLabel: "구형 가전 방치 시 월 전기세",
+      lossValueText: `${afterBill.toLocaleString()}원`,
+      optLabel: "1등급 인버터 교체 시 월 전기세",
+      optValueText: `${inverterBill.toLocaleString()}원`,
+      savingBadge: isZeroUsage || addedKwh === 0
+        ? "가전 미가동 상태"
+        : `매달 ${monthlySaving.toLocaleString()}원 절약 (연 ${(monthlySaving * 12).toLocaleString()}원 세이브)`,
+      optPercent: afterBill > 0 ? Math.max(18, Math.min(92, Math.round((inverterBill / afterBill) * 100))) : 50
+    },
     summary,
     cpaTitle: `초기비용 0원! 에너지 1등급 가전 렌탈 & 정부 환급금 조회 (월 ${monthlySaving.toLocaleString()}원 절감)`,
     cpaPayout: "35,000원",
     cpaKey: "electric_grade1_rental",
     cpaBenefit: `${monthlySaving}`,
     products: [
-      { title: "쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송", kw: "에너지소비효율 1등급 인버터 에어컨 제습기", type: "coupang" },
-      { title: "실시간 대기전력 차단 스마트 플러그 전력측정기", kw: "스마트 플러그 전력측정기", type: "coupang" },
-      { title: "하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=에너지 1등급 가전", type: "linkprice" },
-      { title: "지마켓 고효율 서큘레이터·절전 가전 베스트", merchant: "gmarket", url: "https://www.gmarket.co.kr/n/search?keyword=고효율 서큘레이터 절전가전", type: "linkprice" }
+      { title: "쿠팡 1등급 듀얼인버터 에어컨/제습기 로켓배송", kw: "에너지소비효율 1등급 인버터 에어컨 제습기", type: "coupang", badge: "🚀 내일 도착·로켓설치", ctaText: `월 ${monthlySaving.toLocaleString()}원 아끼는 1등급 특가 확인 →` },
+      { title: "실시간 대기전력 차단 스마트 플러그 전력측정기", kw: "스마트 플러그 전력측정기", type: "coupang", badge: "⚡ 누진세 방어 필수템", ctaText: "대기전력 0W 차단기 최저가 보기 →" },
+      { title: "하이마트 으뜸효율 1등급 가전 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=에너지 1등급 가전", type: "linkprice", badge: "💳 카드 즉시할인+환급", ctaText: "1등급 가전 최대 20% 혜택 비교 →" },
+      { title: "지마켓 고효율 서큘레이터·절전 가전 베스트", merchant: "gmarket", url: "https://www.gmarket.co.kr/n/search?keyword=고효율 서큘레이터 절전가전", type: "linkprice", badge: "🔥 냉방효율 2배 상승", ctaText: "절전형 서큘레이터 특가 모음 →" }
     ]
   };
 }
@@ -140,7 +159,7 @@ function calculateDiet(inputs = {}) {
   const age = Number(inputs.age) || 30;
   const activityFactor = Number(inputs.activityFactor) || 1.55;
   const weeks = Number(inputs.weeks) || 4;
-  const deficit = inputs.deficit !== undefined ? Number(inputs.deficit) : -500;
+  const deficit = toNum(inputs.deficit, -500);
 
   // Mifflin-St Jeor 기초대사량(BMR)
   const bmrRaw = gender === "female"
@@ -201,16 +220,24 @@ function calculateDiet(inputs = {}) {
       { label: `${weeks}주 닭가슴살(100g)`, val: `총 ${chickenPacks}팩` },
       { label: `${weeks}주 즉석 현미밥`, val: `총 ${brownRiceBowls}개` }
     ],
+    lossComparison: {
+      lossLabel: `편의점·배달 단품 구매 시 (${weeks}주)`,
+      lossValueText: `약 ${(chickenPacks * 2900 + brownRiceBowls * 2200).toLocaleString()}원`,
+      optLabel: `대용량 묶음 장보기 특가 (${weeks}주)`,
+      optValueText: `약 ${(chickenPacks * 1250 + brownRiceBowls * 1050).toLocaleString()}원`,
+      savingBadge: `${weeks}주 식단비 약 ${(chickenPacks * 1650 + brownRiceBowls * 1150).toLocaleString()}원 즉시 절약 (-54%)`,
+      optPercent: 46
+    },
     summary,
     cpaTitle: `혼자 빼기 힘들다면? ${weeks}주 책임 감량 1:1 체질 맞춤 다이어트 무료 진단`,
     cpaPayout: "45,000원",
     cpaKey: "diet_custom_consulting",
     cpaBenefit: `${chickenPacks}팩`,
     products: [
-      { title: `냉동 닭가슴살 100g 대용량 (${chickenPacks}팩 맞춤 묶음)`, kw: "냉동 닭가슴살 100g 대용량 패키지", type: "coupang" },
-      { title: `즉석 현미밥·곤약밥 (${brownRiceBowls}개입 로켓프레시)`, kw: "즉석 현미밥 대용량 박스", type: "coupang" },
-      { title: "WPI 분리유청 단백질 보충제 대용량 특가", kw: "WPI 분리유청단백질 프로틴", type: "coupang" },
-      { title: "그램(g) 정밀 계량 디지털 주방저울", kw: "디지털 주방저울", type: "coupang" }
+      { title: `냉동 닭가슴살 100g 대용량 (${chickenPacks}팩 맞춤 묶음)`, kw: "냉동 닭가슴살 100g 대용량 패키지", type: "coupang", badge: "❄️ 로켓프레시 새벽도착", ctaText: `닭가슴살 ${chickenPacks}팩 최저가 묶음 보기 →` },
+      { title: `즉석 현미밥·곤약밥 (${brownRiceBowls}개입 로켓프레시)`, kw: "즉석 현미밥 대용량 박스", type: "coupang", badge: "📦 대용량 박스 할인가", ctaText: `현미밥 ${brownRiceBowls}개입 박스 특가 확인 →` },
+      { title: "WPI 분리유청 단백질 보충제 대용량 특가", kw: "WPI 분리유청단백질 프로틴", type: "coupang", badge: `💪 ${proteinTubs}통 맞춤 구성`, ctaText: `일일 단백질 ${dailyProteinG}g 보충 프로틴 특가 →` },
+      { title: "그램(g) 정밀 계량 디지털 주방저울", kw: "디지털 주방저울", type: "coupang", badge: "🏆 식단 성공률 200%", ctaText: "1g 단위 정밀 주방저울 로켓배송 →" }
     ]
   };
 }
@@ -219,9 +246,9 @@ function calculateDiet(inputs = {}) {
  * Calc 3: 반려동물(강아지·고양이) 맞춤 칼로리·사료 급여량 & 소진일 진단기
  */
 function calculatePet(inputs = {}) {
-  const petWeight = inputs.petWeight !== undefined ? Number(inputs.petWeight) : 5.0;
+  const petWeight = toNum(inputs.petWeight, 5.0);
   const safeWeight = Math.max(0.5, petWeight);
-  const factor = inputs.factor !== undefined ? Number(inputs.factor) : 1.6;
+  const factor = toNum(inputs.factor, 1.6);
   const kcalPerKg = Number(inputs.kcalPerKg) || 3650;
   const bagKg = Number(inputs.bagKg) || 2.0;
 
@@ -263,16 +290,24 @@ function calculatePet(inputs = {}) {
       { label: "하루 급여량(g)", val: `${dailyGrams}g (회당 ${halfGrams}g)` },
       { label: `${bagKg}kg 1포대 소진일`, val: `약 ${daysPerBag}일` }
     ],
+    lossComparison: {
+      lossLabel: "눈대중 자율배식·비만 방치 시 수술비",
+      lossValueText: "평균 180만 원+",
+      optLabel: `${dailyGrams}g 정량 급여 + 펫보험·특가 케어`,
+      optValueText: `월 약 ${Math.max(25000, Math.round((dailyGrams * 30 / 1000) * 14000)).toLocaleString()}원`,
+      savingBadge: "슬개골·대사질환 병원비 및 사료 낭비 85% 방어",
+      optPercent: 22
+    },
     summary,
     cpaTitle: `슬개골·피부병 병원비 평균 180만 원! ${petWeight}kg 우리 아이 펫보험 90% 보장 최저가 비교`,
     cpaPayout: "35,000원",
     cpaKey: "pet_insurance_compare",
     cpaBenefit: `${dailyGrams}g`,
     products: [
-      { title: `${petWeight}kg 맞춤 별점 4.8+ 가수분해 알러지 사료`, kw: "강아지 가수분해 사료 로얄캐닌", type: "coupang" },
-      { title: "반려동물 슬개골·관절·유산균 영양제 베스트", kw: "강아지 관절 영양제 유산균", type: "coupang" },
-      { title: "1g 단위 정밀 계량 펫 사료 전자저울 스쿱", kw: "강아지 사료 전자저울 스쿱", type: "coupang" },
-      { title: "대용량 고흡수 배변패드 / 고양이 벤토나이트 모래", kw: "강아지 배변패드 대용량", type: "coupang" }
+      { title: `${petWeight}kg 맞춤 별점 4.8+ 가수분해 알러지 사료`, kw: "강아지 가수분해 사료 로얄캐닌", type: "coupang", badge: `🐾 ${daysPerBag}일분 정기배송 할인`, ctaText: `${bagKg}kg 사료 로켓배송 최저가 확인 →` },
+      { title: "반려동물 슬개골·관절·유산균 영양제 베스트", kw: "강아지 관절 영양제 유산균", type: "coupang", badge: "🏥 수술비 180만원 예방", ctaText: "수의사 추천 관절·유산균 특가 →" },
+      { title: "1g 단위 정밀 계량 펫 사료 전자저울 스쿱", kw: "강아지 사료 전자저울 스쿱", type: "coupang", badge: `⚖️ 1회 ${halfGrams}g 정량배식`, ctaText: "디지털 사료 계량스쿱 할인가 보기 →" },
+      { title: "대용량 고흡수 배변패드 / 고양이 벤토나이트 모래", kw: "강아지 배변패드 대용량", type: "coupang", badge: "📦 쟁여두는 반값 생필품", ctaText: "대용량 패드·모래 창고대방출 →" }
     ]
   };
 }
@@ -285,8 +320,8 @@ function calculateRoom(inputs = {}) {
   let budgetWon;
   let budgetMan;
 
-  if (inputs.budget !== undefined) {
-    const raw = Number(inputs.budget);
+  if (inputs.budget !== undefined && inputs.budget !== null && inputs.budget !== '') {
+    const raw = toNum(inputs.budget, 150);
     if (raw >= 100000) {
       budgetWon = Math.floor(raw);
       budgetMan = Math.round(budgetWon / 10000);
@@ -294,15 +329,15 @@ function calculateRoom(inputs = {}) {
       budgetMan = Math.floor(raw);
       budgetWon = budgetMan * 10000;
     }
-  } else if (inputs.budgetMan !== undefined) {
-    budgetMan = Number(inputs.budgetMan);
+  } else if (inputs.budgetMan !== undefined && inputs.budgetMan !== null && inputs.budgetMan !== '') {
+    budgetMan = toNum(inputs.budgetMan, 150);
     budgetWon = Math.floor(budgetMan * 10000);
   } else {
     budgetMan = 150;
     budgetWon = 1500000;
   }
 
-  const roomSize = inputs.roomSize !== undefined ? Number(inputs.roomSize) : 7;
+  const roomSize = toNum(inputs.roomSize, 7);
   const priority = inputs.priority || "가성비";
 
   // 우선순위 스타일별 황금 가중치 배분 (각각 합산 100%)
@@ -390,16 +425,24 @@ function calculateRoom(inputs = {}) {
       { label: "세탁기 적정 예산", val: `${top2}만 원` },
       { label: "침대·매트리스 예산", val: `${top3}만 원` }
     ],
+    lossComparison: {
+      lossLabel: "오프라인 백화점·매장 정가 구매 시",
+      lossValueText: `${Math.round((budgetWon + savingWon) / 10000).toLocaleString()}만 원`,
+      optLabel: "온라인 로켓설치·특가 황금배분 BOM",
+      optValueText: `${budgetMan.toLocaleString()}만 원`,
+      savingBadge: `유통 마진 약 ${Math.round(savingWon / 10000).toLocaleString()}만 원 즉시 절약 (-22%)`,
+      optPercent: 78
+    },
     summary,
     cpaTitle: `${roomSize}평 맞춤 원룸·포장이사 3초 최저가 비교견적 + 입주청소 특가`,
     cpaPayout: "30,000원",
     cpaKey: "room_moving_quote",
     cpaBenefit: `${budgetMan}만원`,
     products: [
-      { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang" },
-      { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang" },
-      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=원룸 자취 침대 가구", type: "linkprice" },
-      { title: "필수 소형가전 3종 (전자레인지·전기밥솥·무선청소기)", kw: "자취 전자레인지 무선청소기", type: "coupang" }
+      { title: `${top1}만 원대 무소음 가성비 냉장고 로켓설치`, kw: "원룸 자취방 냉장고 로켓설치", type: "coupang", badge: "🚛 원하는 날짜 로켓설치", ctaText: `예산 ${top1}만원 맞춤 냉장고 특가 →` },
+      { title: `${top3}만 원대 독립스프링 롤팩 매트리스·침대`, kw: "독립스프링 매트리스 침대프레임", type: "coupang", badge: "🛏️ 호텔식 숙면 베스트", ctaText: `예산 ${top3}만원 침대·매트리스 보기 →` },
+      { title: "현대Hmall 자취·신혼 가구 공간별 베스트 기획전", merchant: "hmall", url: "https://www.hmall.com/md/pde/search?searchTerm=원룸 자취 침대 가구", type: "linkprice", badge: "🏷️ 쿠폰+카드 청구할인", ctaText: `${roomSize}평 맞춤 가구 공식몰 특가 비교 →` },
+      { title: "필수 소형가전 3종 (전자레인지·전기밥솥·무선청소기)", kw: "자취 전자레인지 무선청소기", type: "coupang", badge: "⚡ 입주 당일 필수템", ctaText: "자취 생존 가전 3종 최저가 확인 →" }
     ]
   };
 }
@@ -408,17 +451,17 @@ function calculateRoom(inputs = {}) {
  * Calc 5: 자동차 구매방식(장기렌트 vs 리스 vs 할부 vs 현금) TCO 손익 계산기
  */
 function calculateAuto(inputs = {}) {
-  const carPriceMan = inputs.carPriceMan !== undefined ? Number(inputs.carPriceMan) : 3500;
+  const carPriceMan = toNum(inputs.carPriceMan, 3500);
   const months = Number(inputs.months) || 48;
-  const taxRate = inputs.taxRate !== undefined ? Number(inputs.taxRate) : 24;
+  const taxRate = toNum(inputs.taxRate, 24);
 
   // 선납금 비율 (%, 기본 20%)
-  const rawDown = inputs.downPaymentRate !== undefined ? Number(inputs.downPaymentRate) : 20;
+  const rawDown = toNum(inputs.downPaymentRate, 20);
   const downPaymentRate = rawDown > 1 ? rawDown / 100 : rawDown;
   const financedRate = Math.max(0, 1 - downPaymentRate);
 
   // 할부 연 금리 (%, 기본 5.5%)
-  const interestRate = inputs.interestRate !== undefined ? Number(inputs.interestRate) : 5.5;
+  const interestRate = toNum(inputs.interestRate, 5.5);
 
   // 운전자 연령 / 경력 계수 (기본 1.0)
   let driverAgeFactor = 1.0;
@@ -427,12 +470,12 @@ function calculateAuto(inputs = {}) {
   } else if (inputs.driverAge === "over35" || (typeof inputs.driverAge === "number" && inputs.driverAge >= 35)) {
     driverAgeFactor = 0.90;
   } else if (inputs.driverAgeFactor !== undefined) {
-    driverAgeFactor = Number(inputs.driverAgeFactor);
+    driverAgeFactor = toNum(inputs.driverAgeFactor, 1.0);
   }
 
   // 중고차 만기 잔존가치 비율 (36개월 50%, 48개월 45%, 60개월 40% 기준)
   const residualRate = inputs.residualRate !== undefined
-    ? Number(inputs.residualRate)
+    ? toNum(inputs.residualRate, 0.45)
     : (months <= 36 ? 0.50 : (months <= 48 ? 0.45 : 0.40));
 
   const price = carPriceMan * 10000;
@@ -464,6 +507,9 @@ function calculateAuto(inputs = {}) {
   const headline = `[${winner}] 선택 시 총 ${diffMan.toLocaleString()}만 원 더 이득!`;
   const summary = `차량가 ${carPriceMan.toLocaleString()}만 원 기준 취등록세(${Math.round(acqTax / 10000)}만 원), ${months}개월 보험료·자동차세, ${Math.round(residualRate * 100)}% 중고차 잔존가치(약 ${Math.round(residualValue / 10000)}만 원) 회수 및 사업자 절세 효과를 종합 분석하면 [${winner}] 방식이 총 ${diffMan.toLocaleString()}만 원 유리합니다.`;
 
+  const maxTco = Math.max(installmentTco, rentTco);
+  const minTco = Math.min(installmentTco, rentTco);
+
   return {
     calcId: "auto",
     carPriceMan,
@@ -493,16 +539,24 @@ function calculateAuto(inputs = {}) {
       { label: "절세+보험료 절감액", val: `${Math.round((taxSaving + insuranceTotal * 0.35) / 10000)}만 원` },
       { label: "최종 손익 차이", val: `${diffMan}만 원 절약` }
     ],
+    lossComparison: {
+      lossLabel: `${winner === "신차 장기렌트" ? "일반 신차 할부" : "신차 장기렌트"} 선택 시 총지출`,
+      lossValueText: `${Math.round(maxTco / 10000).toLocaleString()}만 원`,
+      optLabel: `[${winner}] 최적 승자 플랜 총지출`,
+      optValueText: `${Math.round(minTco / 10000).toLocaleString()}만 원`,
+      savingBadge: `${months}개월간 총 ${diffMan.toLocaleString()}만 원 확정 세이브`,
+      optPercent: maxTco > 0 ? Math.max(25, Math.min(90, Math.round((minTco / maxTco) * 100))) : 75
+    },
     summary,
     cpaTitle: `할부보다 ${diffMan}만 원 아끼는 국내 21개 렌트·리스사 무서류 1분 최저가 견적`,
     cpaPayout: "60,000원",
     cpaKey: "auto_longterm_rent",
     cpaBenefit: `${diffMan}만원`,
     products: [
-      { title: "신차 출고 필수! 2채널 QHD 아이나비/파인뷰 블랙박스", kw: "2채널 QHD 블랙박스", type: "coupang" },
-      { title: "차량용 맥세이프 고속 무선충전 거치대 베스트", kw: "차량용 맥세이프 고속충전 거치대", type: "coupang" },
-      { title: "실내 오염 방지 친환경 확장형 코일 카매트", kw: "차량용 코일매트", type: "coupang" },
-      { title: "초보운전·신차 관리 세차용품 올인원 버킷 세트", kw: "세차용품 세트", type: "coupang" }
+      { title: "신차 출고 필수! 2채널 QHD 아이나비/파인뷰 블랙박스", kw: "2채널 QHD 블랙박스", type: "coupang", badge: "🎥 무료출장장착 지원", ctaText: "QHD 블랙박스 반값 특가 확인 →" },
+      { title: "차량용 맥세이프 고속 무선충전 거치대 베스트", kw: "차량용 맥세이프 고속충전 거치대", type: "coupang", badge: "🚀 오늘 주문 내일 도착", ctaText: "15W 초고속 충전거치대 인기순위 →" },
+      { title: "실내 오염 방지 친환경 확장형 코일 카매트", kw: "차량용 코일매트", type: "coupang", badge: "✨ 신차 컨디션 100% 유지", ctaText: "차종별 맞춤 코일매트 할인가 →" },
+      { title: "초보운전·신차 관리 세차용품 올인원 버킷 세트", kw: "세차용품 세트", type: "coupang", badge: "🧽 외장관리 풀세트", ctaText: "프리미엄 세차용품 올인원 특가 →" }
     ]
   };
 }
@@ -511,10 +565,10 @@ function calculateAuto(inputs = {}) {
  * Calc 6: 인터넷·TV 약정 위약금 vs 현금 사은품(최대 47만 원) 갈아타기 손익 계산기
  */
 function calculateTelecom(inputs = {}) {
-  const penaltyMan = inputs.penaltyMan !== undefined ? Number(inputs.penaltyMan) : 15;
+  const penaltyMan = toNum(inputs.penaltyMan, 15);
   const oldFee = Number(inputs.oldFee) || 46000;
   const newFee = Number(inputs.newFee) || 38500;
-  const cashGiftMan = inputs.cashGiftMan !== undefined ? Number(inputs.cashGiftMan) : 47;
+  const cashGiftMan = toNum(inputs.cashGiftMan, 47);
 
   const immediateNetWon = (cashGiftMan - penaltyMan) * 10000;
   const immediateDiffMan = cashGiftMan - penaltyMan;
@@ -586,6 +640,18 @@ function calculateTelecom(inputs = {}) {
       { label: monthlyDiff >= 0 ? "3년 요금 절감액" : "3년 요금 추가부담", val: formatSignedManWon(threeYearFeeSaveMan) },
       { label: totalNetBenefit >= 0 ? "총 순이익 합계" : "총 예상 손실액", val: formatSignedWon(totalNetBenefit) }
     ],
+    lossComparison: {
+      lossLabel: "기존 통신사 유지 시 (3년 요금·사은품 0원)",
+      lossValueText: `${(oldFee * 36).toLocaleString()}원`,
+      optLabel: `신규 이동 시 (사은품 ${cashGiftMan}만-위약금 ${penaltyMan}만 반영)`,
+      optValueText: `${Math.max(0, newFee * 36 - immediateNetWon).toLocaleString()}원`,
+      savingBadge: totalNetBenefit >= 0
+        ? `갈아타는 즉시 총 +${totalNetBenefit.toLocaleString()}원 순수익 달성!`
+        : `약정 만기 후 이동 시 +${(cashGiftMan * 10000).toLocaleString()}원 혜택`,
+      optPercent: oldFee > 0
+        ? Math.max(20, Math.min(92, Math.round((Math.max(0, newFee * 36 - immediateNetWon) / (oldFee * 36)) * 100)))
+        : 60
+    },
     summary,
     cpaTitle: totalNetBenefit >= 0
       ? `위약금 ${penaltyMan}만 원 완벽 방어 + 현금 사은품 ${cashGiftMan}만 원 당일 입금 무료 상담`
@@ -594,10 +660,10 @@ function calculateTelecom(inputs = {}) {
     cpaKey: "telecom_internet_switch",
     cpaBenefit: `${Math.abs(totalNetBenefit)}`,
     products: [
-      { title: "방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000", kw: "와이파이6 공유기 AX3000", type: "coupang" },
-      { title: "거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함", kw: "셋톱박스 공유기 정리함", type: "coupang" },
-      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=기가 와이파이 공유기", type: "linkprice" },
-      { title: "초고속 CAT.8 기가 랜선 케이블 로켓배송", kw: "CAT8 기가 랜선", type: "coupang" }
+      { title: "방마다 빵빵한 속도! 기가 와이파이6 공유기 AX3000", kw: "와이파이6 공유기 AX3000", type: "coupang", badge: "📡 통신사 임대료 0원", ctaText: "기가 와이파이6 공유기 로켓배송 →" },
+      { title: "거실 TV 뒤 지저분한 셋톱박스·공유기 무타공 정리함", kw: "셋톱박스 공유기 정리함", type: "coupang", badge: "🧹 선정리 3분 해결", ctaText: "무타공 셋톱박스 거치대 최저가 →" },
+      { title: "하이마트 통신·자급제·기가 공유기 특별 기획전", merchant: "himart", url: "https://www.e-himart.co.kr/app/search/totalSearch?query=기가 와이파이 공유기", type: "linkprice", badge: "💳 자급제+유심 꿀조합", ctaText: "하이마트 통신기기 즉시할인전 →" },
+      { title: "초고속 CAT.8 기가 랜선 케이블 로켓배송", kw: "CAT8 기가 랜선", type: "coupang", badge: "⚡ 인터넷 속도 100% 구현", ctaText: "초고속 기가 랜선 로켓배송 보기 →" }
     ]
   };
 }

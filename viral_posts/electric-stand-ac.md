@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산
 > 프리셋 ID: `electric-stand-ac` | 카테고리: `전기·가전` | 타겟 URL: [https://truthofmarket.com/preset/electric-stand-ac](https://truthofmarket.com/preset/electric-stand-ac)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&sort=date) | [카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&st=date)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84& sort=recency)
 
 ---
 
@@ -95,6 +95,16 @@ A. 한국전력에서 주관하는 '소상공인 및 고효율 가전제품 구�
 https://truthofmarket.com/preset/electric-stand-ac
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
+```
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+```text
+저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [이번 달 추가 전기세 +281,057원 (총 331,183원) (월 추가 전력량 +792 kWh / 1등급 교체 시 월 절감 -159,279원)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 https://truthofmarket.com/preset/electric-stand-ac
 ```
 
 ---

@@ -115,8 +115,18 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const res = calculatePresetResult(preset);
   const targetUrl = `${currentSiteUrl}/preset/${preset.id}`;
   const query = QUERY_MAP[preset.id] || preset.title.split(' ').slice(0, 4).join(' ');
-  const kinSearchUrl = `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(query)}&sort=date`;
-  const cafeSearchUrl = `https://search.naver.com/search.naver?where=article&query=${encodeURIComponent(query)}&st=date`;
+  const subQueries = [
+    query,
+    `${preset.category} ${preset.id.split('-')[1] || ''} 추천 후기`.trim(),
+    `${query} 비교 디시`
+  ];
+  const encodedQ = encodeURIComponent(query);
+  const kinSearchUrl = `https://kin.naver.com/search/list.naver?query=${encodedQ}&sort=date`;
+  const cafeSearchUrl = `https://search.naver.com/search.naver?where=article&query=${encodedQ}&st=date`;
+  const dcSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:dcinside.com ${query}`)}&tbs=qdr:m`;
+  const blindSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:teamblind.com ${query}`)}&tbs=qdr:m`;
+  const threadsSearchUrl = `https://www.threads.net/search?q=${encodedQ}&serp_type=default`;
+  const daumCafeSearchUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}& sort=recency`;
 
   // 1. Blog Post
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
@@ -194,7 +204,15 @@ ${targetUrl}
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.`;
 
-  // 3. Threads / Blind 3-Line FOMO Copy
+  // 3. Natural Cafe / Club Member Experience Comment (맘카페·자취카페·차량동호회 내돈내산 경험담 톤)
+  const firstMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label} ${res.metrics[0].val}` : res.headline;
+  const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
+  const cafeCommentPost = `저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [${res.headline} (${firstMetric} / ${secondMetric})] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 ${targetUrl}`;
+
+  // 4. Threads / Blind 3-Line FOMO Copy
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
   const threadsPost = `🚨 아직도 '${preset.title}' 모르고 돈 날리는 분 계신가요? 💸
 방금 계산기 돌려봤는데 [${res.headline} / ${keyMetric}] 나옵니다 ㄷㄷ
@@ -206,12 +224,18 @@ ${targetUrl}
     category: preset.category,
     title: preset.title,
     query,
+    subQueries,
     targetUrl,
     kinSearchUrl,
     cafeSearchUrl,
+    dcSearchUrl,
+    blindSearchUrl,
+    threadsSearchUrl,
+    daumCafeSearchUrl,
     res,
     blogPost,
     jisikinPost,
+    cafeCommentPost,
     threadsPost
   };
 }
@@ -235,7 +259,7 @@ function generateAllViralPosts(currentSiteUrl = siteUrl) {
     // Markdown file content
     const mdContent = `# 🎯 [머니핏 바이럴 홍보 키트] ${bundle.title}
 > 프리셋 ID: \`${bundle.id}\` | 카테고리: \`${bundle.category}\` | 타겟 URL: [${bundle.targetUrl}](${bundle.targetUrl})
-> 실시간 질문 스나이핑: [지식iN 최신순](${bundle.kinSearchUrl}) | [카페 최신순](${bundle.cafeSearchUrl})
+> 실시간 질문 스나이핑: [지식iN 최신순](${bundle.kinSearchUrl}) | [네이버 카페 최신순](${bundle.cafeSearchUrl}) | [디시인사이드](${bundle.dcSearchUrl}) | [블라인드](${bundle.blindSearchUrl}) | [스레드](${bundle.threadsSearchUrl}) | [다음 카페](${bundle.daumCafeSearchUrl})
 
 ---
 
@@ -249,6 +273,13 @@ ${bundle.blogPost}
 ## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
 \`\`\`text
 ${bundle.jisikinPost}
+\`\`\`
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+\`\`\`text
+${bundle.cafeCommentPost}
 \`\`\`
 
 ---
@@ -268,13 +299,19 @@ ${bundle.threadsPost}
       category: bundle.category,
       title: bundle.title,
       query: bundle.query,
+      subQueries: bundle.subQueries,
       targetUrl: bundle.targetUrl,
       kinSearchUrl: bundle.kinSearchUrl,
       cafeSearchUrl: bundle.cafeSearchUrl,
+      dcSearchUrl: bundle.dcSearchUrl,
+      blindSearchUrl: bundle.blindSearchUrl,
+      threadsSearchUrl: bundle.threadsSearchUrl,
+      daumCafeSearchUrl: bundle.daumCafeSearchUrl,
       headline: bundle.res.headline,
       badge: bundle.res.badge,
       blogPost: bundle.blogPost,
       jisikinPost: bundle.jisikinPost,
+      cafeCommentPost: bundle.cafeCommentPost,
       threadsPost: bundle.threadsPost
     };
 
@@ -328,7 +365,7 @@ ${bundle.threadsPost}
 
   fs.writeFileSync(OUTPUT_DATA_JS, jsContent, 'utf8');
   console.log(`\n  ✓ Generated pre-compiled data store: src/data/viral-content.js (${viralPostsList.length} presets)`);
-  console.log(`🎉 36 Viral Post Bundles (108 copy items) created successfully!`);
+  console.log(`🎉 36 Viral Post Bundles (144 copy items) created successfully!`);
 
   return { viralPostsMap, viralPostsList };
 }

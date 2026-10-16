@@ -54,12 +54,110 @@
   // Helper references to modules
   const getCalcModule = () => window.MoneyFitCalculators || {};
   const getMonetizationModule = () => window.MoneyFitMonetization || {};
+  const getPresetsList = () => (window.MoneyFitPresets && window.MoneyFitPresets.PRESETS) || SEO_PRESETS;
+
+  let activeScenarioId = 'electric-studio-ac';
+  let activeScenarioExtraInputs = {};
+
+  // Short human-friendly chip labels for the 36 presets
+  const SCENARIO_CHIP_LABELS = {
+    'electric-studio-ac': '원룸 벽걸이 10시간',
+    'electric-stand-ac': '30평 스탠드 12시간',
+    'electric-dehumidifier': '제습기 24시간 풀가동',
+    'electric-dryer': '의류건조기 주 4회',
+    'electric-winter-heater': '겨울 온풍기 8시간',
+    'electric-inverter-roi': '구형 vs 1등급 교체',
+    'diet-male-fatloss': '남자 80kg 4주 컷팅',
+    'diet-female-lean': '여자 55kg 2주 슬림',
+    'diet-male-bulkup': '남자 65kg 벌크업',
+    'diet-office-worker': '사무직 직장인 식단',
+    'diet-student-budget': '대학생 1주 가성비',
+    'diet-quick-3kg': '한달 단기 -3kg 감량',
+    'pet-maltese-5kg': '5kg 말티즈 성견',
+    'pet-pomeranian-puppy': '1.5kg 포메 퍼피',
+    'pet-golden-retriever': '30kg 골든리트리버',
+    'pet-korean-shorthair': '4.5kg 코숏 고양이',
+    'pet-senior-cat': '10살 노령묘 케어',
+    'pet-monthly-budget': '소형견 4kg 첫입양',
+    'room-oneroom-100': '원룸 100만원 가성비',
+    'room-officetel-300': '오피스텔 300만 화이트',
+    'room-officetel-500': '투룸 500만 프리미엄',
+    'room-newlywed-1000': '신혼 1,000만 풀세팅',
+    'room-minimalist-50': '단기 50만원 생존템',
+    'room-appliances-only': '원룸 150만 가전집중',
+    'auto-avante-3000': '아반떼 3,000만 (20대)',
+    'auto-grandeur-5000': '그랜저 5,000만 (사업자)',
+    'auto-tucson-hybrid': '투싼 하이브리드 3,800만',
+    'auto-genesis-g80': '제네시스 G80 7,000만',
+    'auto-casper-cash-vs-rent': '캐스퍼 1,800만 초보',
+    'auto-ev-ioniq': '아이오닉 전기차 5,500만',
+    'telecom-penalty-15': '위약금 15만 vs 사은품 47만',
+    'telecom-penalty-30': '위약금 30만 (잔여 1년)',
+    'telecom-3yr-expired': '3년 약정 만기 (위약금 0원)',
+    'telecom-single-oneroom': '자취방 인터넷 단독',
+    'telecom-family-4p': '온가족 4인 통합 변경',
+    'telecom-mvno-switch': '5G → 알뜰폰 유심 전환'
+  };
+
+  /**
+   * Render 1-Click Scenario Chips & Contextual Deep-Dive Report Links
+   */
+  function renderScenarioChips(calcKey) {
+    const chipsContainer = document.getElementById('calc-scenario-chips');
+    const reportLink = document.getElementById('active-preset-report-link');
+    const relatedGrid = document.getElementById('related-category-reports-grid');
+    const presets = getPresetsList().filter(p => p.calc === calcKey);
+
+    if (!presets.length) return;
+    if (!presets.some(p => p.id === activeScenarioId)) {
+      activeScenarioId = presets[0].id;
+    }
+
+    if (reportLink) {
+      reportLink.href = `/preset/${activeScenarioId}/`;
+    }
+
+    if (chipsContainer) {
+      chipsContainer.innerHTML = presets.map(p => {
+        const isActive = p.id === activeScenarioId;
+        const shortLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 14);
+        const cls = isActive
+          ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
+          : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:text-blue-700 font-semibold';
+        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-[11px] px-2.5 py-1 rounded-lg border transition ${cls}">${shortLabel}</button>`;
+      }).join('');
+    }
+
+    if (relatedGrid) {
+      relatedGrid.innerHTML = presets.map(p => `
+        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border border-slate-200 hover:border-blue-400 rounded-xl p-2.5 transition">
+          <span class="text-xs font-semibold text-slate-700 group-hover:text-blue-700 truncate pr-2">${p.title}</span>
+          <span class="text-[11px] font-bold text-blue-600 shrink-0">리포트 →</span>
+        </a>
+      `).join('');
+    }
+  }
+
+  /**
+   * Apply a 1-Click Scenario Preset
+   */
+  window.applyScenarioPreset = function (presetId) {
+    const presets = getPresetsList();
+    const target = presets.find(p => p.id === presetId);
+    if (!target) return;
+    activeScenarioId = target.id;
+    activeScenarioExtraInputs = Object.assign({}, target.inputs);
+    window.selectCalc(target.calc, target.inputs);
+  };
 
   /**
    * Switch Active Calculator
    */
   window.selectCalc = function (calcKey, customInputs = null) {
     currentCalc = calcKey;
+    if (!customInputs) {
+      activeScenarioExtraInputs = {};
+    }
     const calcModule = getCalcModule();
     const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[calcKey] : null;
     if (!spec) return;
@@ -73,8 +171,10 @@
     });
     const activeBtn = document.getElementById(`calc-nav-${calcKey}`);
     if (activeBtn) {
-      activeBtn.className = "calc-nav-btn p-3 rounded-xl border text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold";
+      activeBtn.className = "calc-nav-btn p-3 rounded-xl border text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
     }
+
+    renderScenarioChips(calcKey);
 
     // Render input form controls
     const container = document.getElementById('calc-inputs-container');
@@ -130,7 +230,7 @@
     const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[currentCalc] : null;
     if (!spec) return;
 
-    const values = {};
+    const values = Object.assign({}, activeScenarioExtraInputs);
     spec.inputs.forEach(inp => {
       const el = document.getElementById(`inp-${inp.id}`);
       if (el) {
@@ -139,13 +239,14 @@
         } else if (inp.type === "select") {
           values[inp.id] = el.value;
         } else {
-          values[inp.id] = parseFloat(el.value);
+          const parsed = parseFloat(el.value);
+          values[inp.id] = Number.isFinite(parsed) ? parsed : inp.value;
           const valLabel = document.getElementById(`label-val-${inp.id}`);
-          if (valLabel && !isNaN(values[inp.id])) {
+          if (valLabel && Number.isFinite(values[inp.id])) {
             valLabel.textContent = values[inp.id].toLocaleString();
           }
         }
-      } else {
+      } else if (values[inp.id] === undefined) {
         values[inp.id] = inp.value;
       }
     });
@@ -158,6 +259,7 @@
     const headlineEl = document.getElementById('result-headline');
     const summaryEl = document.getElementById('result-summary-text');
     const metricsGrid = document.getElementById('result-metrics-grid');
+    const lossBarEl = document.getElementById('result-loss-bar');
 
     if (badgeEl) {
       badgeEl.textContent = res.badge;
@@ -187,6 +289,37 @@
       }).join('');
     }
 
+    // 1.5 Visual Loss-Aversion Comparison Bar
+    if (lossBarEl && res.lossComparison) {
+      const lc = res.lossComparison;
+      lossBarEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
+          <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
+          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div>
+            <div class="flex justify-between text-slate-400 mb-1">
+              <span>❌ ${lc.lossLabel}</span>
+              <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-white mb-1">
+              <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
+              <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     // 2. High-Ticket CPA Native Card
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
@@ -209,7 +342,7 @@
       }
     } else {
       if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 무료 견적 조회";
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `승인 시 예상 수익: 건당 ${res.cpaPayout || "45,000원"}`;
+      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 실시간 최저가 혜택 & 지원금 조회`;
       if (cpaActionLinkEl) {
         const cpaUrl = monetizationModule.buildCpaUrl
           ? monetizationModule.buildCpaUrl(res.cpaKey || "cpa", res.cpaBenefit || "")
@@ -218,7 +351,7 @@
       }
     }
 
-    // 3. Products Recommendations (Coupang + LinkPrice)
+    // 3. Products Recommendations (Coupang + LinkPrice) with High-CTR Badges & Microcopy
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
@@ -232,19 +365,51 @@
             ? monetizationModule.buildLinkPriceDeepLink(p.merchant, p.url)
             : p.url;
         }
-        const tag = p.type === 'coupang' ? '🚀 쿠팡 로켓배송 특가' : '🏷️ 공식 쇼핑몰 기획전';
-        const tagColor = p.type === 'coupang' ? 'bg-rose-50 text-rose-700' : 'bg-indigo-50 text-indigo-700';
+        const platformTag = p.type === 'coupang' ? '🚀 쿠팡 로켓배송' : '🏷️ 공식몰 기획전';
+        const platformColor = p.type === 'coupang'
+          ? 'bg-rose-50 text-rose-700 border-rose-200'
+          : 'bg-indigo-50 text-indigo-700 border-indigo-200';
+        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 오늘 출발·내일 도착' : '💳 카드 즉시할인');
+        const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('${p.type}', this.href)"
-             class="block border border-slate-200 hover:border-blue-500 rounded-xl p-3.5 transition bg-slate-50/60 hover:bg-blue-50/40">
-            <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded ${tagColor} mb-1">${tag}</span>
-            <div class="text-xs font-bold text-slate-800">${p.title}</div>
-            <div class="text-[11px] text-blue-600 font-semibold mt-1">최저가 확인 및 혜택 보기 →</div>
+             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-xl p-3.5 transition-all bg-white hover:bg-blue-50/30 shadow-sm hover:shadow-md">
+            <div>
+              <div class="flex items-center justify-between gap-1 mb-1.5">
+                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border ${platformColor}">${platformTag}</span>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">${subBadge}</span>
+              </div>
+              <div class="text-xs font-extrabold text-slate-800 group-hover:text-blue-700 leading-snug">${p.title}</div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-extrabold text-blue-600 group-hover:text-blue-800">
+              <span>${ctaLabel}</span>
+            </div>
           </a>
         `;
       }).join('');
+    }
+
+    // 4. Update Mobile Sticky Bottom Floating CTA Bar
+    const stickySubEl = document.getElementById('sticky-cta-sub');
+    const stickyMainEl = document.getElementById('sticky-cta-main');
+    const stickyBtnEl = document.getElementById('sticky-cta-btn');
+    if (stickySubEl && stickyMainEl && stickyBtnEl) {
+      const lc = res.lossComparison || {};
+      stickySubEl.textContent = lc.savingBadge || res.badge || "실시간 손익 계산 완료";
+      stickyMainEl.textContent = cpaDetails ? cpaDetails.title : res.headline;
+      stickyBtnEl.href = cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#";
+
+      const shortBtnMap = {
+        electric: `월 ${(res.monthlySaving || 10000).toLocaleString()}원 절약 →`,
+        diet: `닭가슴살 ${res.chickenPacks || 0}팩 특가 →`,
+        pet: `펫보험·사료 최저가 →`,
+        room: `${res.roomSize || 7}평 최저가 견적 →`,
+        auto: `${res.diffMan || 0}만원 아끼기 →`,
+        telecom: `현금 ${res.cashGiftMan || 47}만원 받기 →`
+      };
+      stickyBtnEl.textContent = shortBtnMap[currentCalc] || "혜택 즉시 조회 →";
     }
   };
 
@@ -702,29 +867,83 @@
     }
   };
 
-  function fallbackCopy(text) {
+  function fallbackCopy(text, silent = false) {
     const ta = document.createElement("textarea");
     ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
     document.body.appendChild(ta);
     ta.select();
     try {
       document.execCommand('copy');
-      alert("클립보드에 복사되었습니다!");
-    } catch (e) {
-      alert("클립보드 복사에 실패했습니다.");
-    }
+      if (!silent) {
+        if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
+          window.MoneyFitCopyKit.showToast("클립보드에 복사되었습니다!");
+        }
+      }
+    } catch (e) {}
     document.body.removeChild(ta);
   }
 
-  window.copyShareUrl = function () {
-    const url = window.location.href;
+  /**
+   * 1-Second Receipt Summary + Deep-Link Copy for KakaoTalk / Group Chats
+   */
+  window.copyReceiptShareText = function (btnEl) {
+    const titleEl = document.getElementById('calc-form-title');
+    const badgeEl = document.getElementById('result-badge');
+    const headlineEl = document.getElementById('result-headline');
+    const summaryEl = document.getElementById('result-summary-text');
+    const metricsEls = document.querySelectorAll('#result-metrics-grid > div');
+
+    const metricLines = [];
+    metricsEls.forEach(div => {
+      const label = div.querySelector('div:first-child')?.textContent?.trim() || '';
+      const val = div.querySelector('div:last-child')?.textContent?.trim() || '';
+      if (label && val) metricLines.push(`• ${label}: ${val}`);
+    });
+
+    const baseUrl = window.location.origin + window.location.pathname;
+    const shareUrl = `${baseUrl}?calc=${encodeURIComponent(currentCalc)}&preset=${encodeURIComponent(activeScenarioId)}`;
+
+    const receiptText =
+      `🧾 [머니핏 실시간 손익 영수증]\n` +
+      `📌 ${titleEl ? titleEl.textContent.trim() : '손익분기점 진단'}\n` +
+      `${badgeEl ? badgeEl.textContent.trim() : ''} ${headlineEl ? headlineEl.textContent.trim() : ''}\n` +
+      `──────────────────\n` +
+      `${metricLines.join('\n')}\n` +
+      `──────────────────\n` +
+      `💡 ${summaryEl ? summaryEl.textContent.trim() : ''}\n\n` +
+      `👉 내 조건 넣고 3초 만에 계산하기: ${shareUrl}`;
+
+    const showCopiedFeedback = () => {
+      if (btnEl) {
+        const origHtml = btnEl.getAttribute('data-orig-html') || btnEl.innerHTML;
+        btnEl.setAttribute('data-orig-html', origHtml);
+        btnEl.innerHTML = '✅ 카톡·클립보드 복사 완료!';
+        btnEl.classList.add('bg-emerald-400', 'text-slate-950');
+        setTimeout(() => {
+          btnEl.innerHTML = origHtml;
+          btnEl.classList.remove('bg-emerald-400');
+        }, 2200);
+      }
+      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
+        window.MoneyFitCopyKit.showToast("내 손익 영수증이 복사되었습니다! 카카오톡·단톡방에 붙여넣으세요.");
+      }
+    };
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => {
-        alert("계산 결과 공유 링크가 복사되었습니다!");
-      }).catch(() => fallbackCopy(url));
+      navigator.clipboard.writeText(receiptText).then(showCopiedFeedback).catch(() => {
+        fallbackCopy(receiptText, true);
+        showCopiedFeedback();
+      });
     } else {
-      fallbackCopy(url);
+      fallbackCopy(receiptText, true);
+      showCopiedFeedback();
     }
+  };
+
+  window.copyShareUrl = function () {
+    window.copyReceiptShareText(document.getElementById('btn-share-receipt'));
   };
 
   function enableAdminMode(openWizard = true) {
@@ -748,7 +967,26 @@
     const cfg = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     updateStatusBar(cfg);
 
-    selectCalc('electric');
+    let initialCalc = 'electric';
+    let initialPreset = null;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const calcParam = params.get('calc');
+      const presetParam = params.get('preset');
+      if (presetParam) {
+        const found = getPresetsList().find(p => p.id === presetParam);
+        if (found) initialPreset = found;
+      }
+      if (calcParam && ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(calcParam)) {
+        initialCalc = calcParam;
+      }
+    } catch (e) {}
+
+    if (initialPreset) {
+      window.applyScenarioPreset(initialPreset.id);
+    } else {
+      selectCalc(initialCalc);
+    }
     runProfitSimulator();
 
     // Unlock owner-only admin mode if ?admin=2370 or ?admin=1 is present in URL

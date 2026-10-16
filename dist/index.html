@@ -17,26 +17,62 @@
   <meta property="og:description" content="전기요금, 다이어트 장보기, 반려동물 사료, 가전가구 예산, 자동차 TCO, 통신 위약금 실시간 충격 진단" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://truthofmarket.com/" />
+  <meta property="og:site_name" content="머니핏(MoneyFit)" />
   <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="머니핏(MoneyFit) — 생활·금융 손익분기점 & 맞춤 견적 포털" />
+  <meta name="twitter:description" content="전기요금, 다이어트 장보기, 반려동물 사료, 가전가구 예산, 자동차 TCO, 통신 위약금 실시간 충격 진단" />
   
   <!-- Tailwind CSS & Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="src/css/style.css" />
   
-  <!-- Structured Data (Schema.org WebApplication) -->
+  <!-- Structured Data (Schema.org WebApplication + WebSite + BreadcrumbList + ItemList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "머니핏(MoneyFit) 손익분기점 & 맞춤 견적 포털",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "url": "https://truthofmarket.com/",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "KRW"
-    }
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "머니핏(MoneyFit) 손익분기점 & 맞춤 견적 포털",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "url": "https://truthofmarket.com/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "머니핏(MoneyFit)",
+        "url": "https://truthofmarket.com/"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "머니핏 홈",
+            "item": "https://truthofmarket.com/"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "머니핏 6대 생활·금융 손익분기점 계산기",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "전기요금·누진세 폭탄 & 1등급 교체 본전 계산기", "url": "https://truthofmarket.com/?calc=electric" },
+          { "@type": "ListItem", "position": 2, "name": "다이어트·벌크업 탄단지(TDEE) & 장보기 수량 계산기", "url": "https://truthofmarket.com/?calc=diet" },
+          { "@type": "ListItem", "position": 3, "name": "반려동물 맞춤 칼로리·사료 급여량(g) & 소진일 진단기", "url": "https://truthofmarket.com/?calc=pet" },
+          { "@type": "ListItem", "position": 4, "name": "자취·이사·신혼 예산별 가전/가구 풀세팅 최적 견적기", "url": "https://truthofmarket.com/?calc=room" },
+          { "@type": "ListItem", "position": 5, "name": "자동차 구매(장기렌트 vs 리스 vs 할부) 총비용 손익 계산기", "url": "https://truthofmarket.com/?calc=auto" },
+          { "@type": "ListItem", "position": 6, "name": "인터넷·TV 약정 위약금 vs 현금 사은품(47만원) 갈아타기 계산기", "url": "https://truthofmarket.com/?calc=telecom" }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -65,8 +101,8 @@
     </div>
   </header>
 
-  <!-- 상단 상태 표시줄 (쿠팡/링크프라이스/CPA ID 완전 제거 완료) -->
-  <div id="admin-status-bar" class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+  <!-- 상단 상태 표시줄 (일반 방문자에게는 비노출, ?admin=2370 에서만 활성화) -->
+  <div id="admin-status-bar" class="hidden bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex flex-wrap items-center gap-4">
         <span>✅ <strong>2026 대한민국 표준 손익·요율 엔진 실시간 가동 중</strong></span>
@@ -114,12 +150,22 @@
       <!-- 12칼럼 반응형 레이아웃: 좌측 5칼럼 입력 폼 / 우측 7칼럼 영수증 & 수익화 리포트 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- 좌측: 입력 폼 (5칼럼) -->
+        <!-- 좌측: 입력 폼 + 1초 시나리오 칩 (5칼럼) -->
         <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <h2 id="calc-form-title" class="text-lg font-bold text-slate-800">⚡ 전기요금·누진세 & 가전 교체 계산</h2>
             <span class="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full font-medium">실시간 계산</span>
           </div>
+
+          <!-- [UX Upgrade] 인기 실전 시나리오 1초 자동입력 칩 바 -->
+          <div id="calc-scenario-bar" class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold text-slate-700">⚡ 인기 실전 시나리오 1초 자동입력</span>
+              <a id="active-preset-report-link" href="/preset/electric-studio-ac/" class="text-[11px] font-bold text-blue-600 hover:underline">3,000자 상세 리포트 →</a>
+            </div>
+            <div id="calc-scenario-chips" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
           <div id="calc-inputs-container" class="space-y-4"></div>
         </div>
 
@@ -128,18 +174,22 @@
           
           <!-- 영수증 형태 충격 진단 결과 카드 -->
           <div id="receipt-card" class="receipt-paper text-white rounded-2xl p-6 shadow-lg border border-slate-700">
-            <div class="flex items-center justify-between border-b border-slate-700 pb-3 mb-4">
+            <div class="flex flex-wrap items-start justify-between gap-2 border-b border-slate-700 pb-3 mb-4">
               <div>
                 <span id="result-badge" class="inline-block bg-rose-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
                   🚨 누진세 주의보
                 </span>
                 <h3 id="result-headline" class="text-xl font-extrabold tracking-tight">계산 결과 로딩 중...</h3>
               </div>
-              <button onclick="copyShareUrl()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg font-semibold flex items-center gap-1 border border-slate-600 transition">
-                📤 결과 복사
+              <button id="btn-share-receipt" onclick="copyReceiptShareText(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs px-3 py-2 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm transition shrink-0">
+                💬 내 영수증 1초 카톡 공유
               </button>
             </div>
             <div id="result-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4"></div>
+
+            <!-- [CRO Upgrade 1] 손실회피(Loss-Aversion) 시각 비교 게이지 바 -->
+            <div id="result-loss-bar" class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-3.5 mb-4 space-y-2.5"></div>
+
             <p id="result-summary-text" class="text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed"></p>
           </div>
 
@@ -172,6 +222,15 @@
             </div>
           </div>
 
+          <!-- [SEO/UX Upgrade] 현재 카테고리 정밀 분석 리포트 6선 바로가기 -->
+          <div id="related-category-reports-box" class="bg-slate-100/90 rounded-2xl border border-slate-200 p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h4 id="related-category-reports-title" class="font-extrabold text-slate-800 text-xs sm:text-sm">📌 이 카테고리의 3,000자 손익 비교 리포트 (6선)</h4>
+              <span class="text-[11px] text-blue-600 font-semibold">비교표·FAQ 수록</span>
+            </div>
+            <div id="related-category-reports-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+          </div>
+
           <!-- 수익화 트랙 4: 카카오 애드핏 배너 영역 (DAN 코드 실제 입력 전까지 기본 비노출 처리) -->
           <div id="adfit-banner-container" class="hidden bg-slate-100 border border-dashed border-slate-300 rounded-xl p-3 text-center text-xs text-slate-500">
             <span>📢 <strong>카카오 애드핏(Kakao AdFit) 배너 슬롯</strong> (단위 ID: <code id="adfit-unit-label" class="text-blue-600">DAN-SAMPLE-TOP</code>) — 애드센스 없이도 즉시 노출 수익 발생</span>
@@ -181,18 +240,22 @@
       </div>
     </section>
 
-    <!-- ==================== [탭 2] 36대 SEO 프리셋 & 바이럴 홍보 키트 ==================== -->
+    <!-- ==================== [탭 2] 36대 SEO 프리셋 & 실시간 커뮤니티 스나이퍼 타겟터 ==================== -->
     <section id="view-seo" class="hidden space-y-6">
       <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <h2 class="text-xl font-extrabold text-slate-800 mb-2">🚀 36대 프로그래매틱 SEO 키워드 & 바이럴 홍보 원고 자동 생성기</h2>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="text-xl font-extrabold text-slate-800">🎯 실시간 지식iN·커뮤니티 스나이퍼 타겟터 & 144편 원고 자동 생성기</h2>
+          <span class="text-xs bg-rose-100 text-rose-700 font-extrabold px-2.5 py-1 rounded-full border border-rose-200">⚡ 관리자 전용 무기</span>
+        </div>
         <p class="text-sm text-slate-600 mb-4">
-          아래 36개 키워드 중 하나를 선택하면 해당 계산 수식이 반영된 <strong>(1) 네이버 블로그/티스토리 1,500자+ 전문 원고</strong>, <strong>(2) 스레드/단톡방 3줄 요약글</strong>, <strong>(3) 네이버 지식iN 맞춤 답변</strong>, <strong>(4) IndexNow 색인 페이로드</strong>가 즉시 생성됩니다.
+          좌측 36개 프리셋(또는 <strong>오늘의 핀셋 타겟 TOP 6</strong>)을 클릭하면 <strong>6대 커뮤니티 실시간 최신 질문(지식iN sort=date, 카페 st=date 등)</strong>을 새 탭으로 즉시 열고, <strong>(A) 지식iN 채택률 90% 답변</strong>, <strong>(B) 카페 내돈내산 댓글</strong>, <strong>(C) 스레드·블라인드 3줄 FOMO 썰</strong>, <strong>(D) 블로그 1,500자+ 비교표 가이드</strong>를 1초 만에 복사할 수 있습니다.
         </p>
 
         <!-- 카테고리 필터 칩 바 -->
         <div class="flex flex-wrap items-center gap-1.5 mb-4 pb-3 border-b border-slate-100">
           <span class="text-xs font-bold text-slate-500 mr-1">분류:</span>
           <button onclick="MoneyFitCopyKit.filterCategory('all')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-white hover:bg-slate-700 transition">전체 (36개)</button>
+          <button onclick="MoneyFitCopyKit.filterCategory('pinpoint')" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-rose-600 text-white hover:bg-rose-500 shadow-sm transition">🔥 오늘의 핀셋 TOP 6</button>
           <button onclick="MoneyFitCopyKit.filterCategory('electric')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200 transition">⚡ 전기·가전 (6)</button>
           <button onclick="MoneyFitCopyKit.filterCategory('diet')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200 transition">🍗 다이어트 (6)</button>
           <button onclick="MoneyFitCopyKit.filterCategory('pet')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 transition">🐶 반려동물 (6)</button>
@@ -203,58 +266,96 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <!-- 좌측: 프리셋 리스트 (5칼럼) -->
-          <div class="lg:col-span-5 space-y-2 max-h-[620px] overflow-y-auto pr-2" id="seo-preset-list"></div>
+          <div class="lg:col-span-5 space-y-2 max-h-[760px] overflow-y-auto pr-2" id="seo-preset-list"></div>
 
           <!-- 우측: 원고 뷰어 & 실시간 스나이핑 & 1초 복사 버튼 (7칼럼) -->
           <div class="lg:col-span-7 space-y-4">
             
-            <!-- 실시간 네이버 최신글 스나이핑 바로가기 바 -->
-            <div id="sniper-live-bar" class="bg-amber-50 border border-amber-300 rounded-xl p-3.5 shadow-sm space-y-2">
-              <div class="flex items-center justify-between">
+            <!-- 실시간 지식iN·커뮤니티 스나이퍼 타겟터 바 -->
+            <div id="sniper-live-bar" class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 rounded-2xl p-4 shadow-sm space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
                 <span class="text-xs font-extrabold text-amber-900 flex items-center gap-1.5">
+                  <span class="bg-amber-900 text-amber-100 text-[10px] font-extrabold px-2 py-0.5 rounded">LIVE SNIPER</span>
                   <span>🎯 결제직전 타겟 실시간 질문 스나이핑</span>
                   <span id="sniper-target-kw" class="bg-amber-200 text-amber-950 px-2 py-0.5 rounded font-mono text-[11px]"></span>
                 </span>
-                <span class="text-[10px] text-amber-700 font-semibold">첫날부터 즉시 유입</span>
+                <a id="sniper-preset-preview-link" href="/preset/electric-studio-ac/" target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline font-bold">
+                  🔗 연결 랜딩페이지 열기 ↗
+                </a>
               </div>
-              <div class="flex flex-wrap items-center gap-2 pt-0.5">
+
+              <!-- 실시간 검색어 커스텀 편집 & 추천 세부 검색어 칩 -->
+              <div class="flex flex-wrap items-center gap-2">
+                <input id="sniper-custom-query" type="text" placeholder="실시간 타겟 검색어 직접 수정 가능..."
+                       oninput="MoneyFitCopyKit.updateLiveQuery && MoneyFitCopyKit.updateLiveQuery(this.value)"
+                       class="flex-1 min-w-[200px] bg-white border border-amber-300 rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-800 focus:border-amber-600 focus:outline-none" />
+                <div id="sniper-subqueries-chips" class="flex flex-wrap items-center gap-1"></div>
+              </div>
+
+              <!-- 6대 커뮤니티 실시간 최신글 1클릭 타겟팅 버튼 그리드 -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-0.5">
                 <a id="btn-live-kin" href="#" target="_blank" rel="noopener noreferrer"
-                   class="flex-1 text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm">
-                  🔍 네이버 지식iN 최신 질문 (sort=date) ↗
+                   class="text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  🎯 지식iN 최신질문 (sort=date) ↗
                 </a>
                 <a id="btn-live-cafe" href="#" target="_blank" rel="noopener noreferrer"
-                   class="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm">
-                  🔍 네이버 카페 최신글 (st=date) ↗
+                   class="text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  ☕ 네이버 카페 최신글 (st=date) ↗
+                </a>
+                <a id="btn-live-dc" href="#" target="_blank" rel="noopener noreferrer"
+                   class="text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  🔍 디시인사이드 주간 최신글 ↗
+                </a>
+                <a id="btn-live-blind" href="#" target="_blank" rel="noopener noreferrer"
+                   class="text-center bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  🏢 직장인 블라인드 검색 ↗
+                </a>
+                <a id="btn-live-threads" href="#" target="_blank" rel="noopener noreferrer"
+                   class="text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  🧵 스레드(Threads) 검색 ↗
+                </a>
+                <a id="btn-live-daum" href="#" target="_blank" rel="noopener noreferrer"
+                   class="text-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs transition shadow-sm">
+                  🏠 다음 카페 최신글 검색 ↗
                 </a>
               </div>
             </div>
 
-            <!-- 블로그 포스팅 원고 -->
+            <!-- (A) 지식iN 전문가 답변 & (B) 카페 내돈내산 댓글 2열 그리드 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-white border-2 border-amber-200 rounded-xl p-4 shadow-sm">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-extrabold text-amber-800">💡 (A) 지식iN 채택률 90% 전문가 답변</span>
+                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-jisikin-post', this, '지식iN 답변')" class="bg-amber-500 hover:bg-amber-400 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm">1초 복사</button>
+                </div>
+                <pre id="generated-jisikin-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-40 overflow-y-auto p-2 bg-amber-50/40 rounded-lg"></pre>
+              </div>
+
+              <div class="bg-white border-2 border-purple-200 rounded-xl p-4 shadow-sm">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-extrabold text-purple-800">💬 (B) 카페·동호회 '내돈내산/경험담' 댓글</span>
+                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-cafe-comment-post', this, '카페 경험담 댓글')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm">1초 복사</button>
+                </div>
+                <pre id="generated-cafe-comment-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-40 overflow-y-auto p-2 bg-purple-50/40 rounded-lg"></pre>
+              </div>
+            </div>
+
+            <!-- (C) 스레드 / 블라인드 / 단톡방 3줄 FOMO 요약 -->
+            <div class="bg-white border-2 border-blue-200 rounded-xl p-4 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-extrabold text-blue-800">🧵 (C) 스레드(Threads) · 블라인드 · 단톡방 3줄 FOMO 요약</span>
+                <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-threads-post', this, '스레드 3줄 요약')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm">1초 복사</button>
+              </div>
+              <pre id="generated-threads-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-32 overflow-y-auto p-2 bg-blue-50/40 rounded-lg"></pre>
+            </div>
+
+            <!-- (D) 블로그 포스팅 원고 -->
             <div class="bg-slate-900 text-white rounded-xl p-4 shadow-sm border border-slate-800">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-emerald-400">📝 네이버 블로그 & 티스토리 정보성 포스팅 (1,500자+ 전문)</span>
+                <span class="text-xs font-bold text-emerald-400">📝 (D) 네이버 블로그 & 티스토리 정보성 포스팅 (1,500자+ 비교표 포함 전문)</span>
                 <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-blog-post', this, '블로그 포스팅')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1.5 rounded-lg font-bold transition shadow-sm">1초 복사</button>
               </div>
               <pre id="generated-blog-post" class="text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed max-h-48 overflow-y-auto p-2 bg-slate-800/80 rounded-lg"></pre>
-            </div>
-
-            <!-- 스레드 & 지식iN 2열 그리드 -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold text-blue-700">🧵 스레드 / 단톡방 3줄 요약</span>
-                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-threads-post', this, '스레드 요약')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm">복사</button>
-                </div>
-                <pre id="generated-threads-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto p-2 bg-slate-50 rounded-lg"></pre>
-              </div>
-
-              <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold text-amber-700">💡 네이버 지식iN 전문가 답변</span>
-                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-jisikin-post', this, '지식iN 답변')" class="bg-amber-500 hover:bg-amber-400 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm">복사</button>
-                </div>
-                <pre id="generated-jisikin-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto p-2 bg-slate-50 rounded-lg"></pre>
-              </div>
             </div>
 
             <!-- IndexNow 색인 페이로드 -->
@@ -487,7 +588,7 @@
   </main>
 
   <!-- 하단 푸터 -->
-  <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-xs text-slate-500">
+  <footer class="bg-white border-t border-slate-200 mt-12 py-8 pb-24 lg:pb-8 text-xs text-slate-500">
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2">
@@ -506,6 +607,24 @@
       </p>
     </div>
   </footer>
+
+  <!-- [CRO Upgrade 3] 모바일 전용 하단 고정 1-Tap 수익 전환 바 -->
+  <div id="mobile-sticky-cta-bar" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-700 px-4 py-2.5 shadow-2xl">
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+      <div class="min-w-0 flex-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">실시간 계산 반영 완료</span>
+        </div>
+        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">맞춤 최저가 & 지원금 혜택 조회</div>
+      </div>
+      <a id="sticky-cta-btn" href="#" target="_blank" rel="noopener noreferrer sponsored"
+         onclick="recordAffiliateClick('sticky_mobile', this.href)"
+         class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
+        혜택 즉시 확인 →
+      </a>
+    </div>
+  </div>
 
   <!-- 스크립트 모듈 로드 순서: 계산기 SSOT -> 프리셋 SSOT -> 수익화 SSOT -> 바이럴 원고 -> UI 홍보 키트 -> 앱 로직 -->
   <script src="src/data/calculators.js"></script>

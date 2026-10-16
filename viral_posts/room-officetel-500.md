@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적
 > 프리셋 ID: `room-officetel-500` | 카테고리: `자취·인테리어` | 타겟 URL: [https://truthofmarket.com/preset/room-officetel-500](https://truthofmarket.com/preset/room-officetel-500)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&sort=date) | [카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&st=date)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81& sort=recency)
 
 ---
 
@@ -97,6 +97,16 @@ A. 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존
 https://truthofmarket.com/preset/room-officetel-500
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
+```
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+```text
+저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [총 500만 원 풀세팅 견적서 (가전 400만 + 가구 100만) (냉장고 적정 예산 120만 원 / 세탁기 적정 예산 110만 원)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 https://truthofmarket.com/preset/room-officetel-500
 ```
 
 ---

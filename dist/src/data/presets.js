@@ -438,7 +438,7 @@
       calc: "pet",
       category: "반려동물",
       title: "5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수",
-      metaDescription: "5kg 중성화 말티즈의 RER/DER 기준 하루 권장 사료량(85g)과 2kg 사료 1포대 소진 일수(23일)를 정밀 진단합니다.",
+      metaDescription: "5kg 중성화 말티즈의 RER/DER 기준 하루 권장 사료량(103g)과 2kg 사료 1포대 소진 일수(19일)를 정밀 진단합니다.",
       inputs: { petWeight: 5.0, factor: 1.6, kcalPerKg: 3650, bagKg: 2.0 },
       tableHeaders: ["사료 급여 및 비용 항목", "1일 필요 기준치", "1회 급여량 (1일 2회)", "2.0kg 1포대 기준", "월간 예상 지출"],
       tableRows: [

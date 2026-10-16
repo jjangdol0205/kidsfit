@@ -11,6 +11,15 @@
   let currentCategory = 'all';
   let activePresetIndex = 0;
 
+  const HIGH_INTENT_SLUGS = [
+    'electric-studio-ac',
+    'diet-male-fatloss',
+    'pet-maltese-5kg',
+    'room-oneroom-100',
+    'auto-avante-3000',
+    'telecom-penalty-15'
+  ];
+
   /**
    * Safe access to pre-compiled viral posts & SSOT presets
    */
@@ -25,7 +34,7 @@
   function getConfig() {
     const mm = window.MoneyFitMonetization;
     if (mm && mm.getConfig) return mm.getConfig();
-    return { siteUrl: 'https://moneyfit-portal.vercel.app' };
+    return { siteUrl: 'https://truthofmarket.com' };
   }
 
   /**
@@ -34,6 +43,40 @@
   function filterCategory(cat) {
     currentCategory = cat;
     renderPresetNav();
+  }
+
+  /**
+   * Update 6-channel live search links dynamically from query string
+   */
+  function updateLiveQuery(rawQuery) {
+    const query = (rawQuery || '').trim();
+    if (!query) return;
+
+    const encodedQ = encodeURIComponent(query);
+    const kinUrl = `https://kin.naver.com/search/list.naver?query=${encodedQ}&sort=date`;
+    const cafeUrl = `https://search.naver.com/search.naver?where=article&query=${encodedQ}&st=date`;
+    const dcUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:dcinside.com ${query}`)}&tbs=qdr:m`;
+    const blindUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:teamblind.com ${query}`)}&tbs=qdr:m`;
+    const threadsUrl = `https://www.threads.net/search?q=${encodedQ}&serp_type=default`;
+    const daumUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}&sort=recency`;
+
+    const kwLabel = document.getElementById('sniper-target-kw');
+    const customInput = document.getElementById('sniper-custom-query');
+    const kinBtn = document.getElementById('btn-live-kin');
+    const cafeBtn = document.getElementById('btn-live-cafe');
+    const dcBtn = document.getElementById('btn-live-dc');
+    const blindBtn = document.getElementById('btn-live-blind');
+    const threadsBtn = document.getElementById('btn-live-threads');
+    const daumBtn = document.getElementById('btn-live-daum');
+
+    if (kwLabel) kwLabel.textContent = `"${query}"`;
+    if (customInput && customInput.value !== query) customInput.value = query;
+    if (kinBtn) kinBtn.href = kinUrl;
+    if (cafeBtn) cafeBtn.href = cafeUrl;
+    if (dcBtn) dcBtn.href = dcUrl;
+    if (blindBtn) blindBtn.href = blindUrl;
+    if (threadsBtn) threadsBtn.href = threadsUrl;
+    if (daumBtn) daumBtn.href = daumUrl;
   }
 
   /**
@@ -48,6 +91,7 @@
 
     const filtered = presets.map((p, originalIdx) => ({ p, originalIdx })).filter(item => {
       if (currentCategory === 'all') return true;
+      if (currentCategory === 'pinpoint') return HIGH_INTENT_SLUGS.includes(item.p.id);
       return item.p.calc === currentCategory || item.p.category.includes(currentCategory);
     });
 
@@ -58,6 +102,7 @@
 
     listEl.innerHTML = filtered.map(({ p, originalIdx }) => {
       const isSelected = originalIdx === activePresetIndex;
+      const isPinpoint = HIGH_INTENT_SLUGS.includes(p.id);
       const v = viralData[p.id] || {};
       const badgeColor = {
         electric: 'bg-amber-100 text-amber-800 border-amber-300',
@@ -77,8 +122,9 @@
                 id="preset-nav-btn-${originalIdx}"
                 class="w-full text-left p-3 rounded-xl border transition flex items-start justify-between gap-2 ${activeClass}">
           <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-1.5 mb-1">
+            <div class="flex items-center gap-1.5 mb-1 flex-wrap">
               <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded border ${badgeColor}">#${originalIdx + 1} ${p.category}</span>
+              ${isPinpoint ? '<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-rose-600 text-white">🔥 핀셋TOP</span>' : ''}
               <span class="text-[10px] text-slate-400 font-mono truncate">${p.id}</span>
             </div>
             <div class="text-xs font-bold text-slate-800 leading-snug line-clamp-2">${p.title}</div>
@@ -112,27 +158,30 @@
     const viralData = getViralData();
     const bundle = viralData[preset.id];
     const cfg = getConfig();
-    const currentSiteUrl = cfg.siteUrl || 'https://moneyfit-portal.vercel.app';
+    const currentSiteUrl = cfg.siteUrl || 'https://truthofmarket.com';
     const presetUrl = `${currentSiteUrl}/preset/${preset.id}`;
 
-    // Target query for Naver real-time search
+    // Target query for Naver / Community real-time search
     const query = (bundle && bundle.query) || preset.title.split(' ').slice(0, 4).join(' ');
-    const kinUrl = `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(query)}&sort=date`;
-    const cafeUrl = `https://search.naver.com/search.naver?where=article&query=${encodeURIComponent(query)}&st=date`;
+    updateLiveQuery(query);
 
-    // Update live search buttons
-    const kwLabel = document.getElementById('sniper-target-kw');
-    const kinBtn = document.getElementById('btn-live-kin');
-    const cafeBtn = document.getElementById('btn-live-cafe');
-
-    if (kwLabel) kwLabel.textContent = `"${query}"`;
-    if (kinBtn) kinBtn.href = kinUrl;
-    if (cafeBtn) cafeBtn.href = cafeUrl;
+    // Render subquery quick chips
+    const subChipsEl = document.getElementById('sniper-subqueries-chips');
+    if (subChipsEl) {
+      const subQueries = (bundle && Array.isArray(bundle.subQueries) && bundle.subQueries.length > 0)
+        ? bundle.subQueries
+        : [query, `${preset.category} 추천 후기`, `${query} 디시`];
+      subChipsEl.innerHTML = subQueries.map(sq => {
+        const safeSq = sq.replace(/'/g, "\\'");
+        return `<button type="button" onclick="MoneyFitCopyKit.updateLiveQuery('${safeSq}')" class="text-[11px] bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white px-2.5 py-1 rounded-full border border-slate-700 transition font-bold">🔎 ${sq}</button>`;
+      }).join('');
+    }
 
     // Fetch copy content (prefer pre-compiled bundle, fallback to dynamic generation)
     let blogPost = bundle ? bundle.blogPost : '';
     let threadsPost = bundle ? bundle.threadsPost : '';
     let jisikinPost = bundle ? bundle.jisikinPost : '';
+    let cafeCommentPost = bundle ? (bundle.cafeCommentPost || '') : '';
 
     if (!blogPost && window.selectSeoPreset) {
       // fallback
@@ -145,20 +194,23 @@
       blogPost = blogPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
       threadsPost = threadsPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
       jisikinPost = jisikinPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
+      cafeCommentPost = cafeCommentPost.replace(/https:\/\/[a-zA-Z0-9.-]+\/preset\//g, `${currentSiteUrl}/preset/`);
     }
 
     // Populate DOM
     const blogEl = document.getElementById('generated-blog-post');
     const threadsEl = document.getElementById('generated-threads-post');
     const jisikinEl = document.getElementById('generated-jisikin-post');
+    const cafeCommentEl = document.getElementById('generated-cafe-comment-post');
     const indexNowEl = document.getElementById('generated-indexnow-json');
 
     if (blogEl) blogEl.textContent = blogPost;
     if (threadsEl) threadsEl.textContent = threadsPost;
     if (jisikinEl) jisikinEl.textContent = jisikinPost;
+    if (cafeCommentEl) cafeCommentEl.textContent = cafeCommentPost;
 
     if (indexNowEl) {
-      let host = 'moneyfit-portal.vercel.app';
+      let host = 'truthofmarket.com';
       try {
         host = new URL(currentSiteUrl).host;
       } catch (e) {
@@ -269,6 +321,7 @@
     renderPresetNav,
     selectPreset,
     filterCategory,
+    updateLiveQuery,
     copyWithFeedback,
     showToast
   };

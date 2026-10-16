@@ -1,6 +1,6 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합
 > 프리셋 ID: `diet-quick-3kg` | 카테고리: `식단·다이어트` | 타겟 URL: [https://truthofmarket.com/preset/diet-quick-3kg](https://truthofmarket.com/preset/diet-quick-3kg)
-> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&sort=date) | [카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&st=date)
+> 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%95%9C%EB%8B%AC%203kg%20%EA%B0%90%EB%9F%89%20%EC%B9%BC%EB%A1%9C%EB%A6%AC%20%EC%A0%81%EC%9E%90%20%EC%8B%9D%EB%8B%A8& sort=recency)
 
 ---
 
@@ -96,6 +96,16 @@ A. 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합
 https://truthofmarket.com/preset/diet-quick-3kg
 
 도움이 되셨다면 채택 부탁드립니다! 오늘도 현명한 하루 보내세요.
+```
+
+---
+
+## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
+```text
+저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요! 😊
+막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 [하루 1,209kcal (탄 110g·단 116g·지 34g) · 닭가슴살 총 92팩 필요! (일일 탄/단/지 권장 탄 110g · 단 116g · 지 34g / 4주 닭가슴살(100g) 총 92팩)] 이렇게 딱 숫자로 비교돼서 나오더라고요.
+광고나 개인정보 입력 아예 없는 무료 손익분기점 시뮬레이터인데 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요! 진짜 속 시원하게 정리됩니다 ㅎㅎ
+👉 https://truthofmarket.com/preset/diet-quick-3kg
 ```
 
 ---

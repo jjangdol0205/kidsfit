@@ -473,10 +473,11 @@ function generateDomainEssay(preset, res) {
  * Generate Comparative Table HTML
  */
 function renderTableHtml(preset) {
-  const { tableHeaders, tableRows } = preset;
+  const { tableHeaders, tableRows, title } = preset;
   return `
-    <div class="overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm bg-white">
+    <div id="comparison-table-section" class="overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm bg-white">
       <table class="w-full border-collapse text-left text-sm">
+        <caption class="sr-only">${title} 핵심 시나리오별 손익 비교표</caption>
         <thead>
           <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
             ${tableHeaders.map(h => `<th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">${h}</th>`).join('')}
@@ -499,31 +500,79 @@ function renderTableHtml(preset) {
 }
 
 /**
+ * Render Visual Loss-Aversion Comparison Bar HTML
+ */
+function renderLossBarHtml(res) {
+  const lc = res && res.lossComparison;
+  if (!lc) return '';
+  return `
+    <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
+      <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
+      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">${lc.savingBadge}</span>
+    </div>
+    <div class="space-y-2 text-xs">
+      <div>
+        <div class="flex justify-between text-slate-400 mb-1">
+          <span>❌ ${lc.lossLabel}</span>
+          <span class="font-bold text-rose-400 line-through">${lc.lossValueText}</span>
+        </div>
+        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+          <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between text-white mb-1">
+          <span class="font-semibold text-emerald-300">✅ ${lc.optLabel}</span>
+          <span class="font-extrabold text-emerald-400">${lc.optValueText}</span>
+        </div>
+        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+          <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
  * Generate Pre-loaded Interactive Calculator UI HTML matching the preset inputs
  */
 function renderInteractiveCalculatorCard(preset, res) {
   const { calc, inputs, title } = preset;
 
-  // Build inputs form HTML pre-filled with preset values
+  // Quick scenario chips for the same category
+  const siblingPresets = PRESETS.filter(p => p.calc === calc);
+  const quickChipsHtml = siblingPresets.map(p => {
+    const isCurrent = p.id === preset.id;
+    const cls = isCurrent
+      ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
+      : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold';
+    return `<a href="../${p.id}/index.html" class="text-[11px] px-2.5 py-1 rounded-lg border transition ${cls}">${p.title}</a>`;
+  }).join('');
+
+  // Build inputs form HTML pre-filled with preset values (100% parity with main portal)
   let inputsFormHtml = '';
   if (calc === 'electric') {
     inputsFormHtml = `
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">가전 소비전력 (W)</label>
-          <input id="inp-wattage" type="number" value="${inputs.wattage}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-wattage" type="number" value="${inputs.wattage}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">하루 가동 시간 (시간)</label>
-          <input id="inp-hours" type="number" value="${inputs.hours}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-hours" type="number" value="${inputs.hours}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">평소 월 전기 사용량 (kWh)</label>
-          <input id="inp-baseKwh" type="number" value="${inputs.baseKwh}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-baseKwh" type="number" value="${inputs.baseKwh}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">교체할 1등급 가전 가격 (원)</label>
-          <input id="inp-newPrice" type="number" value="${inputs.newPrice || 550000}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-blue-500" />
+          <input id="inp-newPrice" type="number" value="${inputs.newPrice || 550000}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200">
+          <label for="inp-isSummer" class="text-xs font-bold text-slate-700 cursor-pointer">하계(7~8월) 누진 완화 적용</label>
+          <input id="inp-isSummer" type="checkbox" ${inputs.isSummer ? 'checked' : ''} onchange="recalculatePreset()" class="w-4 h-4 text-blue-600 rounded cursor-pointer" />
         </div>
       </div>
     `;
@@ -533,69 +582,91 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">성별</label>
-            <select id="inp-gender" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold">
+            <select id="inp-gender" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold">
               <option value="male" ${inputs.gender === 'male' ? 'selected' : ''}>남성</option>
               <option value="female" ${inputs.gender === 'female' ? 'selected' : ''}>여성</option>
             </select>
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">체중 (kg)</label>
-            <input id="inp-weight" type="number" value="${inputs.weight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-weight" type="number" value="${inputs.weight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">신장 (cm)</label>
-            <input id="inp-height" type="number" value="${inputs.height}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-height" type="number" value="${inputs.height}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">목표 기간 (주)</label>
-            <input id="inp-weeks" type="number" value="${inputs.weeks}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-weeks" type="number" value="${inputs.weeks}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">일일 칼로리 조절 (감량 -500 / 증량 +350)</label>
+          <input id="inp-deficit" type="number" value="${inputs.deficit !== undefined ? inputs.deficit : -500}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
         </div>
       </div>
     `;
   } else if (calc === 'pet') {
     inputsFormHtml = `
       <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">반려동물 체중 (kg)</label>
-          <input id="inp-petWeight" type="number" step="0.1" value="${inputs.petWeight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">반려동물 체중 (kg)</label>
+            <input id="inp-petWeight" type="number" step="0.1" value="${inputs.petWeight}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">생애주기 계수</label>
+            <input id="inp-factor" type="number" step="0.1" value="${inputs.factor !== undefined ? inputs.factor : 1.6}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
         </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">사료 포대 무게 (kg)</label>
-          <input id="inp-bagKg" type="number" step="0.5" value="${inputs.bagKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">사료 1kg당 칼로리 (kcal/kg)</label>
-          <input id="inp-kcalPerKg" type="number" value="${inputs.kcalPerKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">사료 포대 무게 (kg)</label>
+            <input id="inp-bagKg" type="number" step="0.5" value="${inputs.bagKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">사료 칼로리 (kcal/kg)</label>
+            <input id="inp-kcalPerKg" type="number" value="${inputs.kcalPerKg}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
         </div>
       </div>
     `;
   } else if (calc === 'room') {
+    const prio = inputs.priority || '가성비';
     inputsFormHtml = `
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">총 가용 예산 (만 원)</label>
-          <input id="inp-budgetMan" type="number" value="${inputs.budgetMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-budgetMan" type="number" value="${inputs.budgetMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">주거 평수 (평)</label>
-          <input id="inp-roomSize" type="number" value="${inputs.roomSize}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-roomSize" type="number" value="${inputs.roomSize}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">인테리어 스타일 / 우선순위</label>
+          <select id="inp-priority" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold">
+            <option value="가성비" ${prio === '가성비' ? 'selected' : ''}>가성비 균형형 (기본)</option>
+            <option value="가전 집중" ${prio === '가전 집중' ? 'selected' : ''}>가전 집중형 (냉장고·세탁기 고스펙)</option>
+            <option value="화이트 감성" ${prio === '화이트 감성' ? 'selected' : ''}>화이트 감성형 (침대·인테리어 중심)</option>
+          </select>
         </div>
       </div>
     `;
   } else if (calc === 'auto') {
+    const dAge = inputs.driverAge || 'over26';
     inputsFormHtml = `
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">차량 가격 (만 원)</label>
-          <input id="inp-carPriceMan" type="number" value="${inputs.carPriceMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+          <input id="inp-carPriceMan" type="number" value="${inputs.carPriceMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">계약 기간 (개월)</label>
-            <select id="inp-months" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold">
+            <select id="inp-months" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold">
               <option value="36" ${inputs.months === 36 ? 'selected' : ''}>36개월</option>
               <option value="48" ${inputs.months === 48 ? 'selected' : ''}>48개월</option>
               <option value="60" ${inputs.months === 60 ? 'selected' : ''}>60개월</option>
@@ -603,8 +674,26 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">종합소득세율 (%)</label>
-            <input id="inp-taxRate" type="number" value="${inputs.taxRate}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-taxRate" type="number" value="${inputs.taxRate}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">선납금 비율 (%)</label>
+            <input id="inp-downPaymentRate" type="number" value="${inputs.downPaymentRate !== undefined ? inputs.downPaymentRate : 20}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">할부 금리 (%)</label>
+            <input id="inp-interestRate" type="number" step="0.1" value="${inputs.interestRate !== undefined ? inputs.interestRate : 5.5}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">운전자 연령 / 보험료 구간</label>
+          <select id="inp-driverAge" onchange="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold">
+            <option value="over26" ${dAge === 'over26' ? 'selected' : ''}>만 26세 이상 (표준)</option>
+            <option value="under26" ${dAge === 'under26' ? 'selected' : ''}>만 21~25세 (할증 +35%)</option>
+            <option value="over35" ${dAge === 'over35' ? 'selected' : ''}>만 35세 이상 (할인 -10%)</option>
+          </select>
         </div>
       </div>
     `;
@@ -614,21 +703,21 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">예상 위약금 (만 원)</label>
-            <input id="inp-penaltyMan" type="number" value="${inputs.penaltyMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-penaltyMan" type="number" value="${inputs.penaltyMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현금 사은품 (만 원)</label>
-            <input id="inp-cashGiftMan" type="number" value="${inputs.cashGiftMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-cashGiftMan" type="number" value="${inputs.cashGiftMan}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">현재 월 요금 (원)</label>
-            <input id="inp-oldFee" type="number" value="${inputs.oldFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-oldFee" type="number" value="${inputs.oldFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">신규 월 요금 (원)</label>
-            <input id="inp-newFee" type="number" value="${inputs.newFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold" />
+            <input id="inp-newFee" type="number" value="${inputs.newFee}" oninput="recalculatePreset()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold" />
           </div>
         </div>
       </div>
@@ -636,12 +725,16 @@ function renderInteractiveCalculatorCard(preset, res) {
   }
 
   // Pre-rendered metrics cards
-  const metricsHtml = (res.metrics || []).map(m => `
-    <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-      <div class="text-[11px] text-slate-400">${m.label}</div>
-      <div class="font-extrabold text-base text-amber-300 mt-0.5">${m.val}</div>
-    </div>
-  `).join('');
+  const metricsHtml = (res.metrics || []).map(m => {
+    const isNeg = String(m.val).startsWith('-');
+    const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
+    return `
+      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+        <div class="text-[11px] text-slate-400">${m.label}</div>
+        <div class="font-extrabold text-base ${valColor} mt-0.5">${m.val}</div>
+      </div>
+    `;
+  }).join('');
 
   // Target CPA card (uses Tenping iryan.kr if configured, or live Coupang/LinkPrice revenue URL)
   const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
@@ -653,24 +746,37 @@ function renderInteractiveCalculatorCard(preset, res) {
       ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
       : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
     const badgeText = p.type === 'coupang' ? '🚀 쿠팡 로켓 최저가' : '🏷️ 공식몰 특별 기획전';
+    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 카드 즉시할인');
+    const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
-        <div class="text-[10px] font-bold text-amber-300 mb-0.5">${badgeText}</div>
+        <div class="flex items-center justify-between gap-1 mb-1">
+          <span class="text-[10px] font-bold text-amber-300">${badgeText}</span>
+          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">${subBadge}</span>
+        </div>
         <div class="text-xs font-bold text-white leading-snug">${p.title}</div>
-        <div class="text-[11px] text-sky-300 font-semibold mt-1">최저가 재고 및 할인 확인 →</div>
+        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">${ctaLabel}</div>
       </a>
     `;
   }).join('');
 
   return `
-    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8">
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md my-8 space-y-5">
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
         <div>
           <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">실시간 인터랙티브 시뮬레이터</span>
           <h3 class="text-lg font-bold text-slate-800 mt-1">${title}</h3>
         </div>
         <span class="text-xs text-slate-400">수치 변경 시 즉시 재계산</span>
+      </div>
+
+      <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
+      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 space-y-1.5">
+        <div class="text-[11px] font-extrabold text-slate-600">⚡ 같은 카테고리 인기 조건 1초 비교</div>
+        <div class="flex flex-wrap gap-1.5">
+          ${quickChipsHtml}
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -685,37 +791,49 @@ function renderInteractiveCalculatorCard(preset, res) {
 
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex items-center justify-between">
+          <div class="flex flex-wrap items-center justify-between gap-2">
             <span id="res-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
               ${res.badge}
             </span>
-            <span class="text-xs text-slate-400 font-mono">MONEYFIT VERIFIED</span>
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold px-3 py-1.5 rounded-xl transition shadow-sm">
+              💬 내 영수증 1초 카톡 공유
+            </button>
           </div>
 
           <div id="res-headline" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
             ${res.headline}
           </div>
 
-          <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+          <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
             ${metricsHtml}
           </div>
 
+          <!-- 손실회피 시각 비교 게이지 바 -->
+          <div id="res-loss-bar" class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            ${renderLossBarHtml(res)}
+          </div>
+
+          <!-- 전문가 요약 코멘트 -->
+          <p id="res-summary" class="text-xs sm:text-sm text-slate-300 bg-slate-800/90 border border-slate-700 rounded-xl p-3 leading-relaxed">
+            ${res.summary}
+          </p>
+
           <!-- 맞춤 혜택 카드 -->
           <div class="pt-3 border-t border-slate-800">
-            <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer"
+            <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1">
                 <span>⚡ 맞춤 최저가 & 지원금 특별 혜택</span>
                 <span class="bg-black/20 text-slate-900 px-1.5 py-0.5 rounded text-[10px]">실시간 조회</span>
               </div>
-              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${res.cpaTitle}</div>
+              <div id="res-cpa-title" class="text-sm font-extrabold mt-0.5 text-slate-950">${cpaCardInfo.title || res.cpaTitle}</div>
             </a>
           </div>
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800">
             <div class="text-xs font-bold text-slate-300 mb-2">🛍️ 계산 결과 맞춤 최저가 & 특가 좌표</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               ${productsHtml}
             </div>
           </div>
@@ -735,22 +853,77 @@ function renderPresetPageHtml(preset) {
   const calculatorCardHtml = renderInteractiveCalculatorCard(preset, res);
 
   const canonicalUrl = `${CANONICAL_BASE}/preset/${preset.id}/`;
+  const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
+  const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
+  const lc = res.lossComparison || {};
 
-  // Schema.org WebApplication + FAQPage JSON-LD
+  // Schema.org BreadcrumbList + WebApplication + HowTo + FAQPage JSON-LD
   const schemaJson = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "머니핏 홈",
+            "item": `${CANONICAL_BASE}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": preset.category,
+            "item": `${CANONICAL_BASE}/?calc=${preset.calc}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": preset.title,
+            "item": canonicalUrl
+          }
+        ]
+      },
       {
         "@type": "WebApplication",
         "name": `머니핏 ${preset.title}`,
         "url": canonicalUrl,
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All",
+        "description": preset.metaDescription,
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "KRW"
         }
+      },
+      {
+        "@type": "HowTo",
+        "name": `${preset.title} 3초 손익분기점 계산 방법`,
+        "description": preset.metaDescription,
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "1단계: 시뮬레이션 조건 확인 및 내 수치 입력",
+            "text": `${preset.category} 시뮬레이터 좌측 입력창에서 기본 세팅된 수치를 확인하거나 내 조건으로 변경합니다.`,
+            "url": `${canonicalUrl}#interactive-calculator-section`
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "2단계: 실시간 영수증 및 손실 대비 절약 게이지 확인",
+            "text": `우측 영수증 카드에서 '${res.headline}' 진단 결과와 절약 금액을 확인합니다.`,
+            "url": `${canonicalUrl}#res-headline`
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "3단계: 비교 분석표 대조 및 최저가·지원금 혜택 조회",
+            "text": "하단 비교표와 FAQ를 참고하여 최적의 구매·갈아타기 혜택을 조회합니다.",
+            "url": `${canonicalUrl}#comparison-table-section`
+          }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -773,6 +946,21 @@ function renderPresetPageHtml(preset) {
     ? `<meta name="google-site-verification" content="${config.googleSiteVerification}" />`
     : '';
 
+  // Same-category related presets (5 sibling presets with computed headlines)
+  const relatedSameCatHtml = PRESETS.filter(p => p.calc === preset.calc && p.id !== preset.id).map(p => {
+    const r = calculatePresetResult(p);
+    return `
+      <a href="../${p.id}/index.html" class="group block bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-md transition">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-50 text-blue-700">${p.category} 인기 비교</span>
+          <span class="text-[11px] font-bold text-blue-600 group-hover:translate-x-0.5 transition">계산 결과 보기 →</span>
+        </div>
+        <div class="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-blue-700">${p.title}</div>
+        <div class="text-xs text-amber-700 font-bold mt-1 truncate">💡 ${r.headline}</div>
+      </a>
+    `;
+  }).join('\n        ');
+
   const allPresetsLinksHtml = PRESETS.map(
     p =>
       `<a href="../${p.id}/index.html" class="bg-white px-2.5 py-1.5 rounded-lg border ${
@@ -785,9 +973,9 @@ function renderPresetPageHtml(preset) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${preset.title} | 머니핏(MoneyFit) 손익계산</title>
+  <title>${preset.title} | 머니핏(MoneyFit) 손익계산기</title>
   <meta name="description" content="${preset.metaDescription}" />
-  <meta name="keywords" content="${preset.title}, 손익분기점 계산기, 머니핏, ${preset.category}" />
+  <meta name="keywords" content="${preset.title}, 손익분기점 계산기, 머니핏, ${preset.category}, 2026 최신 비교" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   ${naverVerifyMeta}
   ${googleVerifyMeta}
@@ -801,12 +989,17 @@ function renderPresetPageHtml(preset) {
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="머니핏(MoneyFit)" />
   <meta property="og:locale" content="ko_KR" />
+  <meta property="article:published_time" content="${TODAY}" />
+  <meta property="article:modified_time" content="${TODAY}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${preset.title} | 머니핏" />
+  <meta name="twitter:description" content="${preset.metaDescription}" />
   
   <!-- Tailwind CSS & Custom Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../../src/css/style.css" />
   
-  <!-- Schema.org WebApplication & FAQPage JSON-LD -->
+  <!-- Schema.org BreadcrumbList + WebApplication + HowTo + FAQPage JSON-LD -->
   <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
   </script>
@@ -817,14 +1010,14 @@ ${JSON.stringify(schemaJson, null, 2)}
   <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <a href="../../index.html" class="flex items-center gap-2 group">
+        <a href="../../index.html?calc=${preset.calc}" class="flex items-center gap-2 group">
           <span class="bg-blue-600 text-white font-extrabold px-2.5 py-1 rounded-lg text-sm tracking-tight group-hover:bg-blue-700 transition">MoneyFit</span>
           <span class="font-bold text-base text-slate-800">머니핏 손익계산 스튜디오</span>
         </a>
         <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-2 py-0.5 rounded-full hidden sm:inline">${preset.category}</span>
       </div>
       <nav class="flex items-center gap-3">
-        <a href="../../index.html" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 transition">← 메인 포털 홈</a>
+        <a href="../../index.html?calc=${preset.calc}" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 transition">← 메인 포털 계산기</a>
       </nav>
     </div>
   </header>
@@ -834,7 +1027,7 @@ ${JSON.stringify(schemaJson, null, 2)}
     <div class="max-w-4xl mx-auto flex items-center gap-2">
       <a href="../../index.html" class="hover:underline">홈</a>
       <span>&gt;</span>
-      <span>${preset.category}</span>
+      <a href="../../index.html?calc=${preset.calc}" class="hover:underline font-medium">${preset.category}</a>
       <span>&gt;</span>
       <span class="text-slate-800 font-semibold truncate">${preset.title}</span>
     </div>
@@ -908,6 +1101,17 @@ ${JSON.stringify(schemaJson, null, 2)}
 
     </article>
 
+    <!-- 동일 카테고리 연관 시뮬레이션 5선 (주제 클러스터 내부 링크) -->
+    <section class="bg-blue-50/60 p-6 rounded-2xl border border-blue-200/80 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm sm:text-base font-extrabold text-slate-900">📊 함께 비교하면 돈 아끼는 '${preset.category}' 연관 시뮬레이션 (5선)</h3>
+        <a href="../../index.html?calc=${preset.calc}" class="text-xs font-bold text-blue-600 hover:underline">전체 계산기 열기 →</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        ${relatedSameCatHtml}
+      </div>
+    </section>
+
     <!-- 추천 키워드 및 36대 전체 내부 링크 허브 (크롤러 100% 발견용) -->
     <section class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200 space-y-4">
       <h3 class="text-sm font-bold text-slate-800">🔗 머니핏 36대 생활·금융 손익분기점 시뮬레이터 전체 보기</h3>
@@ -919,7 +1123,7 @@ ${JSON.stringify(schemaJson, null, 2)}
   </main>
 
   <!-- 하단 푸터 -->
-  <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-xs text-slate-500">
+  <footer class="bg-white border-t border-slate-200 mt-12 py-8 pb-24 lg:pb-8 text-xs text-slate-500">
     <div class="max-w-4xl mx-auto px-4 space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2">
@@ -937,52 +1141,91 @@ ${JSON.stringify(schemaJson, null, 2)}
     </div>
   </footer>
 
+  <!-- 모바일 전용 하단 고정 1-Tap 수익 전환 바 -->
+  <div id="mobile-sticky-cta-bar" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-700 px-4 py-2.5 shadow-2xl">
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+      <div class="min-w-0 flex-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span id="sticky-cta-sub" class="text-[11px] font-bold text-amber-300 truncate">${lc.savingBadge || res.badge}</span>
+        </div>
+        <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">${cpaCardInfo.title || res.cpaTitle}</div>
+      </div>
+      <a id="sticky-cta-btn" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
+         class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
+        혜택 즉시 확인 →
+      </a>
+    </div>
+  </div>
+
   <!-- 클라이언트 측 실시간 인터랙티브 계산기 스크립트 -->
   <script src="../../src/data/calculators.js"></script>
   <script src="../../src/data/monetization.js"></script>
   <script>
     const PRESET_CALC = '${preset.calc}';
+    const PRESET_TITLE = ${JSON.stringify(preset.title)};
     let currentInputs = ${JSON.stringify(preset.inputs)};
+
+    if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.loadConfigFromStorage) {
+      MoneyFitMonetization.loadConfigFromStorage();
+    }
+
+    function readNumInput(id, fallback) {
+      const el = document.getElementById(id);
+      if (!el) return fallback;
+      const v = parseFloat(el.value);
+      return Number.isFinite(v) ? v : fallback;
+    }
 
     function recalculatePreset() {
       if (typeof MoneyFitCalculators === 'undefined') return;
 
       if (PRESET_CALC === 'electric') {
-        currentInputs.wattage = parseFloat(document.getElementById('inp-wattage').value) || 0;
-        currentInputs.hours = parseFloat(document.getElementById('inp-hours').value) || 0;
-        currentInputs.baseKwh = parseFloat(document.getElementById('inp-baseKwh').value) || 0;
-        currentInputs.newPrice = parseFloat(document.getElementById('inp-newPrice').value) || 550000;
+        currentInputs.wattage = readNumInput('inp-wattage', 0);
+        currentInputs.hours = readNumInput('inp-hours', 0);
+        currentInputs.baseKwh = readNumInput('inp-baseKwh', 0);
+        currentInputs.newPrice = readNumInput('inp-newPrice', 550000);
+        const summerEl = document.getElementById('inp-isSummer');
+        if (summerEl) currentInputs.isSummer = summerEl.checked;
         const res = MoneyFitCalculators.calculateElectric(currentInputs);
         updateUi(res);
       } else if (PRESET_CALC === 'diet') {
         currentInputs.gender = document.getElementById('inp-gender').value;
-        currentInputs.weight = parseFloat(document.getElementById('inp-weight').value) || 0;
-        currentInputs.height = parseFloat(document.getElementById('inp-height').value) || 0;
-        currentInputs.weeks = parseFloat(document.getElementById('inp-weeks').value) || 1;
+        currentInputs.weight = readNumInput('inp-weight', 70);
+        currentInputs.height = readNumInput('inp-height', 170);
+        currentInputs.weeks = readNumInput('inp-weeks', 4);
+        currentInputs.deficit = readNumInput('inp-deficit', -500);
         const res = MoneyFitCalculators.calculateDiet(currentInputs);
         updateUi(res);
       } else if (PRESET_CALC === 'pet') {
-        currentInputs.petWeight = parseFloat(document.getElementById('inp-petWeight').value) || 0;
-        currentInputs.bagKg = parseFloat(document.getElementById('inp-bagKg').value) || 0;
-        currentInputs.kcalPerKg = parseFloat(document.getElementById('inp-kcalPerKg').value) || 3650;
+        currentInputs.petWeight = readNumInput('inp-petWeight', 5.0);
+        currentInputs.factor = readNumInput('inp-factor', 1.6);
+        currentInputs.bagKg = readNumInput('inp-bagKg', 2.0);
+        currentInputs.kcalPerKg = readNumInput('inp-kcalPerKg', 3650);
         const res = MoneyFitCalculators.calculatePet(currentInputs);
         updateUi(res);
       } else if (PRESET_CALC === 'room') {
-        currentInputs.budgetMan = parseFloat(document.getElementById('inp-budgetMan').value) || 0;
-        currentInputs.roomSize = parseFloat(document.getElementById('inp-roomSize').value) || 0;
+        currentInputs.budgetMan = readNumInput('inp-budgetMan', 100);
+        currentInputs.roomSize = readNumInput('inp-roomSize', 7);
+        const prioEl = document.getElementById('inp-priority');
+        if (prioEl) currentInputs.priority = prioEl.value;
         const res = MoneyFitCalculators.calculateRoom(currentInputs);
         updateUi(res);
       } else if (PRESET_CALC === 'auto') {
-        currentInputs.carPriceMan = parseFloat(document.getElementById('inp-carPriceMan').value) || 0;
-        currentInputs.months = parseInt(document.getElementById('inp-months').value) || 48;
-        currentInputs.taxRate = parseFloat(document.getElementById('inp-taxRate').value) || 0;
+        currentInputs.carPriceMan = readNumInput('inp-carPriceMan', 3000);
+        currentInputs.months = parseInt(document.getElementById('inp-months').value, 10) || 48;
+        currentInputs.taxRate = readNumInput('inp-taxRate', 0);
+        currentInputs.downPaymentRate = readNumInput('inp-downPaymentRate', 20);
+        currentInputs.interestRate = readNumInput('inp-interestRate', 5.5);
+        const ageEl = document.getElementById('inp-driverAge');
+        if (ageEl) currentInputs.driverAge = ageEl.value;
         const res = MoneyFitCalculators.calculateAuto(currentInputs);
         updateUi(res);
       } else if (PRESET_CALC === 'telecom') {
-        currentInputs.penaltyMan = parseFloat(document.getElementById('inp-penaltyMan').value) || 0;
-        currentInputs.cashGiftMan = parseFloat(document.getElementById('inp-cashGiftMan').value) || 0;
-        currentInputs.oldFee = parseFloat(document.getElementById('inp-oldFee').value) || 0;
-        currentInputs.newFee = parseFloat(document.getElementById('inp-newFee').value) || 0;
+        currentInputs.penaltyMan = readNumInput('inp-penaltyMan', 0);
+        currentInputs.cashGiftMan = readNumInput('inp-cashGiftMan', 47);
+        currentInputs.oldFee = readNumInput('inp-oldFee', 45000);
+        currentInputs.newFee = readNumInput('inp-newFee', 38500);
         const res = MoneyFitCalculators.calculateTelecom(currentInputs);
         updateUi(res);
       }
@@ -992,22 +1235,142 @@ ${JSON.stringify(schemaJson, null, 2)}
       const badge = document.getElementById('res-badge');
       const headline = document.getElementById('res-headline');
       const grid = document.getElementById('res-metrics-grid');
+      const lossBar = document.getElementById('res-loss-bar');
+      const summary = document.getElementById('res-summary');
       const cpaTitle = document.getElementById('res-cpa-title');
       const cpaLink = document.getElementById('res-cpa-link');
-      if (badge && res.badge) badge.textContent = res.badge;
-      if (headline && res.headline) headline.textContent = res.headline;
-      if (cpaTitle && res.cpaTitle) cpaTitle.textContent = res.cpaTitle;
-      if (cpaLink && typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
-        const d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
-        if (d && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      const productsGrid = document.getElementById('res-products-grid');
+
+      if (badge && res.badge) {
+        badge.textContent = res.badge;
+        if (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0)) {
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
+        } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        } else {
+          badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+        }
       }
+      if (headline && res.headline) headline.textContent = res.headline;
+      if (summary && res.summary) summary.textContent = res.summary;
+
       if (grid && res.metrics) {
-        grid.innerHTML = res.metrics.map(m => \`
-          <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-            <div class="text-[11px] text-slate-400">\${m.label}</div>
-            <div class="font-extrabold text-base text-amber-300 mt-0.5">\${m.val}</div>
+        grid.innerHTML = res.metrics.map(m => {
+          const isNeg = String(m.val).startsWith('-');
+          const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
+          return \`
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <div class="text-[11px] text-slate-400">\${m.label}</div>
+              <div class="font-extrabold text-base \${valColor} mt-0.5">\${m.val}</div>
+            </div>
+          \`;
+        }).join('');
+      }
+
+      if (lossBar && res.lossComparison) {
+        const lc = res.lossComparison;
+        lossBar.innerHTML = \`
+          <div class="flex flex-wrap items-center justify-between gap-1 text-xs">
+            <span class="font-bold text-rose-300 flex items-center gap-1">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full text-[11px] font-extrabold">\${lc.savingBadge}</span>
           </div>
-        \`).join('');
+          <div class="space-y-2 text-xs">
+            <div>
+              <div class="flex justify-between text-slate-400 mb-1">
+                <span>❌ \${lc.lossLabel}</span>
+                <span class="font-bold text-rose-400 line-through">\${lc.lossValueText}</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-white mb-1">
+                <span class="font-semibold text-emerald-300">✅ \${lc.optLabel}</span>
+                <span class="font-extrabold text-emerald-400">\${lc.optValueText}</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: \${lc.optPercent}%"></div>
+              </div>
+            </div>
+          </div>
+        \`;
+      }
+
+      let d = null;
+      if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getCpaCardDetails) {
+        d = MoneyFitMonetization.getCpaCardDetails(PRESET_CALC, res);
+        if (cpaTitle) cpaTitle.textContent = d.title || res.cpaTitle;
+        if (cpaLink && (d.liveActionUrl || d.actionUrl)) cpaLink.href = d.liveActionUrl || d.actionUrl;
+      } else if (cpaTitle && res.cpaTitle) {
+        cpaTitle.textContent = res.cpaTitle;
+      }
+
+      if (productsGrid && res.products && typeof MoneyFitMonetization !== 'undefined') {
+        productsGrid.innerHTML = res.products.map(p => {
+          const href = p.type === 'coupang'
+            ? MoneyFitMonetization.buildCoupangUrl(p.kw, PRESET_CALC)
+            : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
+          const badgeText = p.type === 'coupang' ? '🚀 쿠팡 로켓 최저가' : '🏷️ 공식몰 특별 기획전';
+          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 내일 도착 보장' : '💳 카드 즉시할인');
+          const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
+          return \`
+            <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
+               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left">
+              <div class="flex items-center justify-between gap-1 mb-1">
+                <span class="text-[10px] font-bold text-amber-300">\${badgeText}</span>
+                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded">\${subBadge}</span>
+              </div>
+              <div class="text-xs font-bold text-white leading-snug">\${p.title}</div>
+              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5">\${ctaLabel}</div>
+            </a>
+          \`;
+        }).join('');
+      }
+
+      const stickySub = document.getElementById('sticky-cta-sub');
+      const stickyMain = document.getElementById('sticky-cta-main');
+      const stickyBtn = document.getElementById('sticky-cta-btn');
+      if (stickySub && stickyMain && stickyBtn) {
+        const lc = res.lossComparison || {};
+        stickySub.textContent = lc.savingBadge || res.badge;
+        stickyMain.textContent = (d && d.title) ? d.title : (res.cpaTitle || res.headline);
+        if (d && (d.liveActionUrl || d.actionUrl)) stickyBtn.href = d.liveActionUrl || d.actionUrl;
+      }
+    }
+
+    function copyPresetReceipt(btnEl) {
+      const badge = document.getElementById('res-badge')?.textContent?.trim() || '';
+      const headline = document.getElementById('res-headline')?.textContent?.trim() || '';
+      const summary = document.getElementById('res-summary')?.textContent?.trim() || '';
+      const metricsEls = document.querySelectorAll('#res-metrics-grid > div');
+      const lines = [];
+      metricsEls.forEach(div => {
+        const l = div.querySelector('div:first-child')?.textContent?.trim() || '';
+        const v = div.querySelector('div:last-child')?.textContent?.trim() || '';
+        if (l && v) lines.push('• ' + l + ': ' + v);
+      });
+      const text =
+        '🧾 [머니핏 실시간 손익 영수증]\\n' +
+        '📌 ' + PRESET_TITLE + '\\n' +
+        badge + ' ' + headline + '\\n' +
+        '──────────────────\\n' +
+        lines.join('\\n') + '\\n' +
+        '──────────────────\\n' +
+        '💡 ' + summary + '\\n\\n' +
+        '👉 내 조건 넣고 3초 만에 계산하기: ' + window.location.href;
+
+      const done = () => {
+        if (!btnEl) return;
+        const orig = btnEl.getAttribute('data-orig') || btnEl.innerHTML;
+        btnEl.setAttribute('data-orig', orig);
+        btnEl.innerHTML = '✅ 카톡·클립보드 복사 완료!';
+        setTimeout(() => { btnEl.innerHTML = orig; }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        done();
       }
     }
   </script>
