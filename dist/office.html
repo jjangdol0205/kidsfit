@@ -143,14 +143,14 @@
         <div onclick="selectDepartment('dept-webtoon-sns')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-amber-500/30 rounded-2xl p-3.5 transition space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-extrabold text-amber-300">🎨 제3본부: 웹툰·SNS</span>
-            <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">100% 완비</span>
+            <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">v2 리뉴얼 완료</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">36편(180 PNG) 고유 대사 & @moneyfit2026</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">38px/76px 초특대 1말풍선 36편(180 PNG)</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div class="bg-amber-400 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>렛서판다🐼 · 앵무새🦜</span>
+            <span>해달🎨 · 렛서판다🐼 · 앵무새🦜</span>
             <span class="text-amber-300 font-bold">36/36 렌더링</span>
           </div>
         </div>
@@ -200,7 +200,7 @@
             <span class="text-emerald-400 font-mono text-xs">ACTIVE</span>
           </div>
           <p id="inspector-speech" class="text-xs sm:text-sm font-bold text-slate-100 leading-relaxed">
-            "대표님! 기존 3개 대화창에서 따로 돌던 홈페이지 수정, 네이버 백로그, 웹툰 백로그를 모두 이 사옥으로 통합 완료했습니다!"
+            "대표님! 수석 웹툰 디자이너(해달 아트디렉터🎨)를 신규 채용하여 36편 전량 38px/76px 초특대 타이포 & 1컷 1말풍선 벤치마크 인스타툰으로 전면 리뉴얼했습니다!"
           </p>
         </div>
 
@@ -209,15 +209,15 @@
           <div class="text-xs font-extrabold text-slate-300">📊 담당 부서 실시간 성과 & 품질 지표</div>
           <div id="inspector-metrics" class="grid grid-cols-2 gap-2 text-xs">
             <div class="bg-slate-800/70 border border-slate-700/70 rounded-xl p-2.5">
-              <div class="text-slate-400">웹툰 36편 고유화</div>
-              <div class="text-sm font-extrabold text-emerald-300 mt-0.5">36/36 (100%)</div>
+              <div class="text-slate-400">웹툰 글자 크기</div>
+              <div class="text-sm font-extrabold text-emerald-300 mt-0.5">38px / 76px (2배↑)</div>
             </div>
             <div class="bg-slate-800/70 border border-slate-700/70 rounded-xl p-2.5">
-              <div class="text-slate-400">네이버 원고 무결성</div>
-              <div class="text-sm font-extrabold text-sky-300 mt-0.5">144/144 (오류 0건)</div>
+              <div class="text-slate-400">말풍선 글자수 압축</div>
+              <div class="text-sm font-extrabold text-sky-300 mt-0.5">-68% (컷당 14~20자)</div>
             </div>
             <div class="bg-slate-800/70 border border-slate-700/70 rounded-xl p-2.5">
-              <div class="text-slate-400">문서 간 중복 유사도</div>
+              <div class="text-slate-400">네이버 중복 유사도</div>
               <div class="text-sm font-extrabold text-amber-300 mt-0.5">6.6% (안전)</div>
             </div>
             <div class="bg-slate-800/70 border border-slate-700/70 rounded-xl p-2.5">
@@ -229,7 +229,7 @@
 
         <!-- 전 직원 빠른 선택 버튼 그리드 -->
         <div class="space-y-1.5 pt-1">
-          <div class="text-xs font-extrabold text-slate-400">👥 사옥 근무 중인 AI 직원 클릭해서 호출하기 (9명)</div>
+          <div class="text-xs font-extrabold text-slate-400">👥 사옥 근무 중인 AI 직원 클릭해서 호출하기 (10명)</div>
           <div id="employee-roster-btns" class="grid grid-cols-3 gap-1.5"></div>
         </div>
       </div>
@@ -297,7 +297,7 @@
       { id: 'hq-manager', title: '👑 총괄 매니저실 (컨트롤타워)', sub: '10월 100만 목표 · 06시 보고', x: 310, y: 18, w: 300, h: 145, color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.10)' },
       { id: 'dept-homepage-cro', title: '💻 제1본부: 홈페이지·CRO 개발실', sub: '4-Layer 브릿지 · EXP-0/A/B/C', x: 18, y: 18, w: 274, h: 245, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.10)' },
       { id: 'dept-naver-seo', title: '🟢 제2본부: 네이버·SEO 백로그실', sub: '144 원고 · 지식iN · IndexNow', x: 628, y: 18, w: 274, h: 245, color: '#10b981', bg: 'rgba(16, 185, 129, 0.10)' },
-      { id: 'dept-webtoon-sns', title: '🎨 제3본부: AI 웹툰·SNS 스튜디오', sub: '36편(180 PNG) · @moneyfit2026', x: 18, y: 295, w: 425, h: 245, color: '#ec4899', bg: 'rgba(236, 72, 153, 0.10)' },
+      { id: 'dept-webtoon-sns', title: '🎨 제3본부: AI 웹툰·SNS 스튜디오', sub: '38px/76px 큰글씨 36편(180 PNG) · @moneyfit2026', x: 18, y: 295, w: 425, h: 245, color: '#ec4899', bg: 'rgba(236, 72, 153, 0.10)' },
       { id: 'dept-antispam-qa', title: '🛡️ 품질·스팸 감찰실 & 서버관제센터', sub: '중복 6.6% · undefined 0건 · 보안', x: 475, y: 295, w: 427, h: 245, color: '#a855f7', bg: 'rgba(168, 85, 247, 0.10)' }
     ];
 
@@ -319,12 +319,12 @@
         state: 'PATROLLING',
         tasks: [
           '3대 대화창(홈페이지·네이버·웹툰) 통합 관제 중!',
-          '10월 순수익 100만 원(+100% MoM) KPI 점검 중',
+          '수석 웹툰 디자이너(해달🎨) 채용 & 38px 초특대 리뉴얼 완료!',
           '오전 06:00 텔레그램 일일 보고 데몬 정상 대기',
           '웹툰 본부·네이버 본부 스팸·중복 0건 보고 수신!'
         ],
         metrics: [
-          ['통합 관리 부서', '4개 본부 (9명)'],
+          ['통합 관리 부서', '4개 본부 (10명)'],
           ['10월 수익 목표', '1,000,000원'],
           ['스팸·중복 감찰', '🟢 CLEAN (0건)'],
           ['06시 정기보고', '매일 자동 발송']
@@ -466,6 +466,33 @@
         ]
       },
       {
+        id: 'seaotter-designer',
+        emoji: '🎨',
+        name: '해달 아트디렉터',
+        role: '수석 웹툰 디자이너 (신규 채용)',
+        deptId: 'dept-webtoon-sns',
+        deptLabel: '제3본부: 웹툰·SNS',
+        color: '#f59e0b',
+        homeX: 98,
+        homeY: 405,
+        x: 98,
+        y: 405,
+        targetX: 98,
+        targetY: 405,
+        state: 'DESIGNING',
+        tasks: [
+          '키크니·칰타툰·모찌툰 벤치마크 초특대 38px/76px 타이포 적용!',
+          '말풍선 글자수 -68% 압축 (컷당 딱 2줄, 14~20자 이내)',
+          '컷당 1말풍선 원칙 + 5px 먹선 테두리 + 형광 하이라이트 적용'
+        ],
+        metrics: [
+          ['글자 크기 업그레이드', '38px(합본) / 76px(단독)'],
+          ['대사 압축률', '-68% (컷당 14~20자)'],
+          ['컷당 말풍선 수', '딱 1개 (여백 70% 확보)'],
+          ['벤치마크 디자인', '키크니·칰타·토스툰 규격']
+        ]
+      },
+      {
         id: 'panda-toon',
         emoji: '🐼',
         name: '렛서판다 작가',
@@ -473,22 +500,22 @@
         deptId: 'dept-webtoon-sns',
         deptLabel: '제3본부: 웹툰·SNS',
         color: '#f472b6',
-        homeX: 130,
-        homeY: 410,
-        x: 130,
-        y: 410,
-        targetX: 130,
-        targetY: 410,
+        homeX: 222,
+        homeY: 435,
+        x: 222,
+        y: 435,
+        targetX: 222,
+        targetY: 435,
         state: 'WORKING',
         tasks: [
-          '36개 에피소드 1:1 맞춤 콘티 & 말풍선 180장 PNG 렌더링 완료!',
-          '#05 겨울 온풍기·#09 벌크업·#17 노령묘 맞춤 대사 검증',
-          '#36 알뜰폰 유심 전환 4컷 웹툰 레이아웃 교정 완료'
+          '해달 디자이너와 협업해 36편(180 PNG) v2 전면 재제작 완료!',
+          '2·4컷 보조 말풍선 제거로 동물 캐릭터 표정 100% 노출',
+          '36개 프리셋별 초단문 2줄 임팩트 대사(SHORT_4CUT) 적용'
         ],
         metrics: [
-          ['렌더링 완료', '36/36편 (총 180장 PNG)'],
+          ['리뉴얼 렌더링', '36/36편 (총 180장 PNG)'],
           ['말풍선 고유성', '36/36 (중복 0건)'],
-          ['캐릭터 조합', '골든리트리버×여우세무사'],
+          ['캐릭터 시인성', '얼굴 가림 0% (무크롭)'],
           ['원화 캐릭터 시트', '7/7종 (100%)']
         ]
       },
@@ -500,21 +527,21 @@
         deptId: 'dept-webtoon-sns',
         deptLabel: '제3본부: 웹툰·SNS',
         color: '#fb7185',
-        homeX: 310,
-        homeY: 430,
-        x: 310,
-        y: 430,
-        targetX: 310,
-        targetY: 430,
+        homeX: 345,
+        homeY: 410,
+        x: 345,
+        y: 410,
+        targetX: 345,
+        targetY: 410,
         state: 'WORKING',
         tasks: [
-          '@moneyfit2026 오늘의 업로드 큐(#07·#13·#25) 대기 중',
+          '@moneyfit2026 쓰레드·인스타 캡션도 4~6줄 초단문으로 압축!',
           '본문 노링크(섀도우밴 방지) + 첫 대댓글 링크 분리 적용',
           '36개 에피소드 전용 한글 해시태그 100% 고유화 완료'
         ],
         metrics: [
           ['공식 계정', '@moneyfit2026'],
-          ['업로드 대기열', '35편 즉시 게시 가능'],
+          ['캡션 길이 압축', '4~6줄 핵심 요약형'],
           ['본문 링크 노출', '0건 (첫 대댓글 분리)'],
           ['일일 권장 업로드', '일 2~3편 (오전/점심/저녁)']
         ]
@@ -634,7 +661,7 @@
       if (typeof switchActionKitChannel === 'function') {
         if (id === 'hedgehog-blog') switchActionKitChannel('blog');
         else if (id === 'meerkat-kin') switchActionKitChannel('jisikin');
-        else if (id === 'panda-toon' || id === 'parrot-sns') switchActionKitChannel('webtoon');
+        else if (id === 'seaotter-designer' || id === 'panda-toon' || id === 'parrot-sns') switchActionKitChannel('webtoon');
       }
     }
 

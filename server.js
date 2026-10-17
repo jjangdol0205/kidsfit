@@ -797,8 +797,8 @@ function buildOfficeStatePayload() {
         name: '제3본부: AI 웹툰·SNS 스튜디오',
         status: 'WORKING',
         progress: Math.round((webtoon.renderedCount / Math.max(1, webtoon.totalEpisodes)) * 100),
-        lead: '렛서판다 작가 🐼 & 앵무새 피디 🦜',
-        currentTask: `4컷 웹툰 ${webtoon.renderedCount}/36편(180장 PNG) 렌더링 100% 완료 | @moneyfit2026 대기열 ${webtoon.pendingPublishCount}편 송출 대기`
+        lead: '해달 아트디렉터 🎨 · 렛서판다 작가 🐼 · 앵무새 피디 🦜',
+        currentTask: `벤치마크 인스타툰 v2 (38px/76px 초특대 1말풍선 · 대사 -68% 압축) ${webtoon.renderedCount}/36편(180장 PNG) 렌더링 완료 | @moneyfit2026 대기열 ${webtoon.pendingPublishCount}편`
       },
       {
         id: 'dept-antispam-qa',

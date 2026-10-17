@@ -93,7 +93,8 @@
         goodLabel: customStory.goodLabel,
         goodVal: customStory.goodVal,
         diffVal: customStory.diffVal,
-        hashtags: customStory.hashtags
+        hashtags: customStory.hashtags,
+        shortCartoon: customStory.shortCartoon
       };
 
       const threadsMain = [
@@ -814,14 +815,15 @@
    * Draw Speech Bubble with Triangle Tail pointing down toward the character
    */
   function drawSpeechBubble(ctx, x, y, w, h, r, tailX, tailDir = 1) {
-    const tailW = 20;
-    const tailH = 15;
+    const tailW = 22;
+    const tailH = 16;
     const tx = Math.max(x + r + tailW, Math.min(x + w - r - tailW, tailX));
 
     ctx.save();
-    ctx.shadowColor = 'rgba(15, 23, 42, 0.08)';
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetY = 3;
+    ctx.shadowColor = 'rgba(15, 23, 42, 0.18)';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 6;
 
     ctx.beginPath();
     ctx.moveTo(x + r, y);
@@ -838,50 +840,40 @@
     ctx.quadraticCurveTo(x, y, x + r, y);
     ctx.closePath();
 
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.97)';
+    ctx.fillStyle = '#ffffff';
     ctx.fill();
     ctx.shadowColor = 'transparent';
-    ctx.lineWidth = 3.2;
-    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 4.8;
+    ctx.strokeStyle = '#0f172a';
     ctx.stroke();
     ctx.restore();
   }
 
-  /**
-   * Draw Compact Perforated Thermal Receipt Speech Memo inside Panel 3 Top Empty Space
-   */
-  function drawPerforatedReceiptCard(ctx, x, y, w, h, tailX = x + w * 0.62) {
-    const zigCount = 20;
-    const zigW = w / zigCount;
-    const zigH = 6;
-    const tailW = 18;
-    const tailH = 14;
-    const tx = Math.max(x + 40, Math.min(x + w - 40, tailX));
+  function drawCutBadge(ctx, num, bx, by) {
+    const labels = ['1컷 · 착각', '2컷 · 팩폭', '3컷 · 충격', '4컷 · 해결'];
+    const colors = ['#f59e0b', '#ef4444', '#e11d48', '#10b981'];
+    const label = labels[num - 1] || `${num}컷`;
+    const bg = colors[num - 1] || '#0f172a';
 
     ctx.save();
-    ctx.shadowColor = 'rgba(15, 23, 42, 0.1)';
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetY = 3;
+    ctx.font = '900 16.5px "Pretendard", "Malgun Gothic", sans-serif';
+    const tw = ctx.measureText(label).width;
+    const pw = tw + 24;
+    const ph = 28;
+    const px = bx + 16;
+    const py = by - 13;
 
-    ctx.beginPath();
-    ctx.moveTo(x, y + zigH);
-    for (let i = 0; i < zigCount; i++) {
-      ctx.lineTo(x + (i + 0.5) * zigW, y);
-      ctx.lineTo(x + (i + 1) * zigW, y + zigH);
-    }
-    ctx.lineTo(x + w, y + h - zigH);
-    ctx.lineTo(tx + tailW * 0.5, y + h - zigH);
-    ctx.lineTo(tx + 4, y + h + tailH);
-    ctx.lineTo(tx - tailW * 0.5, y + h - zigH);
-    ctx.lineTo(x, y + h - zigH);
-    ctx.closePath();
-
-    ctx.fillStyle = '#fffef7';
+    drawRoundedRect(ctx, px, py, pw, ph, 14);
+    ctx.fillStyle = bg;
     ctx.fill();
-    ctx.shadowColor = 'transparent';
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 3.5;
+    ctx.strokeStyle = '#0f172a';
     ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, px + pw / 2, py + ph / 2 + 1);
     ctx.restore();
   }
 
@@ -905,9 +897,6 @@
     return null;
   }
 
-  /**
-   * Helper: Draw 100% uncropped quadrant (panelIdx 0..3) of the 2x2 AI Animal Instatoon sheet
-   */
   function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 10) {
     const halfW = img.naturalWidth / 2;
     const halfH = img.naturalHeight / 2;
@@ -927,88 +916,24 @@
     ctx.restore();
   }
 
-  function getConversationalScript(calcKey) {
-    const scripts = {
-      electric: {
-        episodeTitle: '자취생 쿼카의 여름 일기 — "에어컨 아껴 틀었는데요..?"',
-        p1Lines: ['더울 때만 틀고 **2시간마다 껐다 켰다** 했지롱~', '이번 달 전기세 **무조건 만 원대** 각이다 ㅎㅎ'],
-        p2FoxLines: ['야!! 에어컨을 그렇게 **껐다 켰다** 하면', '실외기 폭주해서 **누진세 3배 폭탄** 맞아!!'],
-        p2React: '에..?! 진짜로?!',
-        p3CryLines: [
-          '으아앙!! 아껴 틀었다가 **6만 원 폭탄** 맞았어..',
-          '그냥 켜두면 **3만 원대**였잖아!!',
-          '모르고 매달 생돈 날리고 있었네 ㅠㅠ'
-        ],
-        p4FoxLines: ['울지 마~ **머니핏**에 우리 방 에어컨 넣으면', '**3초 만에** 한 달 전기세 다 알려줘!'],
-        p4React: '헐 대박!! 당장 해볼래!!'
-      },
-      diet: {
-        episodeTitle: '헬린이 시바의 식단 일기 — "닭가슴살 100팩 샀는데요..?"',
-        p1Lines: ['오늘부터 다이어트!! **닭가슴살 100팩**이랑', '고구마 한 박스 샀으니 **무조건 빠지겠지?!**'],
-        p2FoxLines: ['야!! 내 대사량도 안 재보고 막 사면', '**식비만 날리고** 냉동실에 다 쌓여!!'],
-        p2React: '헉.. 내 돈..!!',
-        p3CryLines: [
-          '으아앙!! 정량대로 사면 **21만 원**인데',
-          '감으로 막 샀다가 **49만 원**이나 썼잖아..',
-          '살도 안 빠지고 식비만 날렸어 ㅠㅠ'
-        ],
-        p4FoxLines: ['지금이라도 **머니핏**에 몸무게만 넣어봐!', '하루 닭가슴살 **몇 팩 먹을지** 3초 만에 나와!'],
-        p4React: '오오!! 당장 해봐야지!!'
-      },
-      pet: {
-        episodeTitle: '초보집사 냥이의 육아 일기 — "종이컵으로 사료 줬는데요..?"',
-        p1Lines: ['사료 봉투에 적힌 대로 **종이컵 가득** 줬는데..', '우리 애기 왜 자꾸 **포동포동 굴러다니지?!**'],
-        p2FoxLines: ['중성화한 애한테 종이컵 눈대중으로 주면', '비만 와서 **슬개골 병원비 수백만 원** 깨져!!'],
-        p2React: '헉.. 어떡해?!',
-        p3CryLines: [
-          '으아앙!! 몸무게 재보니 **하루 정량**만 줘야 했어!',
-          '모르고 더 줬다가 **병원비 폭탄** 맞을 뻔..',
-          '미안해 내 새끼야 ㅠㅠ'
-        ],
-        p4FoxLines: ['**머니핏**에 우리 애기 몸무게만 적어봐!', '하루에 **사료 몇 g** 줄지 3초 만에 나와!'],
-        p4React: '당장 그램(g) 재서 줄게!!'
-      },
-      room: {
-        episodeTitle: '자취러 곰돌이의 이사 일기 — "인스타 감성 방 꾸미기..?"',
-        p1Lines: ['첫 자취방이니까 가전·가구는 **무조건 감성템!!**', '어라.. 근데 왜 벌써 **통장 잔고가 0원**이지?!'],
-        p2FoxLines: ['예산 안 짜고 큰 가구부터 지르면 어떡해!!', '그럼 **냉장고랑 세탁기**는 안 살 거야?!'],
-        p2React: '망했다..!!',
-        p3CryLines: [
-          '으아앙!! 단품으로 사면 **122만 원**인데',
-          '비율 맞춰 사면 **100만 원**에 끝나는 거였어..',
-          '이사 첫날부터 파산할 뻔했네 ㅠㅠ'
-        ],
-        p4FoxLines: ['**머니핏**에 내 가용 예산만 적어봐!', '예산 안 넘게 **풀세팅 견적표** 3초 만에 짜줘!'],
-        p4React: '우와!! 이대로만 사야지!!'
-      },
-      auto: {
-        episodeTitle: '김대리 댕댕이의 신차 일기 — "월 납입금만 보면 되잖아..?"',
-        p1Lines: ['영맨님이 **월 40만 원대**면 신차 뽑는다는데?!', '생각보다 싸네~ 그냥 **할부로 계약**할까봐!'],
-        p2FoxLines: ['월 납입금만 보면 어떡해!! **취등록세 7%**랑', '**보험료·세금**까지 다 합쳐서 봐야지!!'],
-        p2React: '세금도 있었어?!',
-        p3CryLines: [
-          '으아앙!! 4년 총비용 합쳐보니 할부로 사면',
-          '장기렌트보다 **1,000만 원**이나 더 내는 거였어!',
-          '모르고 사인했으면 카푸어 될 뻔 ㅠㅠ'
-        ],
-        p4FoxLines: ['사인하기 전에 **머니핏**에 차 값만 넣어봐!', '**할부·렌트·리스** 중 뭐가 싼지 3초 만에 나와!'],
-        p4React: '덕분에 큰돈 아꼈다!!'
-      },
-      telecom: {
-        episodeTitle: '라쿤 대리의 호구탈출 일기 — "인터넷 그냥 써도 되잖아..?"',
-        p1Lines: ['우리 집 인터넷 **3년 약정 끝난 지** 한참인데', '귀찮아서 그냥 쓰는 중~ **바꾼다고 뭐 주겠어?**'],
-        p2FoxLines: ['헐 바보야?! 약정 끝난 인터넷 갈아타면', '**현금 최대 47만 원**에 월 요금도 깎아주는데!!'],
-        p2React: '47만 원이나?!',
-        p3CryLines: [
-          '으아앙!! 귀찮다고 그냥 버티는 바람에',
-          '당장 받을 **현금 47만 원**에 할인까지 놓쳤네..',
-          '나만 통신사 호구였어 ㅠㅠ'
-        ],
-        p4FoxLines: ['지금이라도 **머니핏**에 현재 요금만 넣어봐!', '갈아타면 **내 통장에 얼마 남는지** 3초에 나와!'],
-        p4React: '오늘 바로 갈아탄다!!'
-      }
+  function getConversationalScript(calcKey, meta) {
+    const sc = (meta && meta.shortCartoon) || null;
+    if (sc) {
+      return {
+        episodeTitle: sc.epTitle || '공감 4컷툰',
+        p1Lines: sc.p1,
+        p2Lines: sc.p2,
+        p3Lines: sc.p3,
+        p4Lines: sc.p4
+      };
+    }
+    return {
+      episodeTitle: '원룸 에어컨 껐다 켰다의 참사 ⚡',
+      p1Lines: ['에어컨 아낀다고', '**2시간마다 껐다 켰지~**'],
+      p2Lines: ['구형은 껐다 켜면', '**누진세 폭탄** 맞아!!'],
+      p3Lines: ['으앙 **월 8만8천원**?!', '인버터는 **3만원대**인데!'],
+      p4Lines: ['내 방 에어컨 전기세', '**머니핏 3초 계산** 끝!']
     };
-    return scripts[calcKey] || scripts.electric;
   }
 
   function drawCenteredBubbleText(
@@ -1018,10 +943,10 @@
     startY,
     lineHeight,
     fontSize,
-    color = '#1e293b',
+    color = '#0f172a',
     maxWidth = 0,
     accentColor = '#dc2626',
-    highlightBg = '#fef08a'
+    highlightBg = '#fde047'
   ) {
     ctx.save();
     ctx.textAlign = 'left';
@@ -1031,7 +956,7 @@
     if (maxWidth > 0) {
       lines.forEach(rawLine => {
         const plainLine = String(rawLine || '').split('**').join('');
-        while (fSize > 13 && ctx.measureText(plainLine).width > maxWidth) {
+        while (fSize > 26 && ctx.measureText(plainLine).width > maxWidth) {
           fSize -= 0.5;
           ctx.font = '900 ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
         }
@@ -1052,7 +977,7 @@
         if (isHighlight && highlightBg) {
           ctx.save();
           ctx.fillStyle = highlightBg;
-          drawRoundedRect(ctx, curX - 3, baseY - fSize * 0.82, segW + 6, fSize * 0.98, 6);
+          drawRoundedRect(ctx, curX - 5, baseY - fSize * 0.84, segW + 10, fSize * 1.02, 8);
           ctx.fill();
           ctx.restore();
         }
@@ -1065,7 +990,7 @@
   }
 
   /**
-   * Draw a single authentic Conversational Instatoon panel at (px, py, pw, ph)
+   * Draw a single authentic Giant-Typography Instatoon panel at (px, py, pw, ph)
    */
   function drawSinglePanel(ctx, panelIdx, px, py, pw, ph, preset, story) {
     const { meta } = story;
@@ -1080,7 +1005,7 @@
 
     const W = 502;
     const H = 474;
-    const panelRadius = 12;
+    const panelRadius = 14;
     const bgColors = ['#fef9ee', '#e0f2fe', '#dcfce7', '#fef08a'];
 
     // 1. Panel Base Background + Full Uncropped Animal Illustration
@@ -1094,60 +1019,33 @@
       const mood = panelIdx === 1 ? 'smart' : panelIdx === 3 ? 'happy' : 'shock';
       const sp = panelIdx === 1 ? 'fox' : meta.species || 'quokka';
       if (panelIdx === 0) {
-        drawComicFocusLines(ctx, W * 0.5, H * 0.66, W, H, 'rgba(244, 63, 94, 0.12)');
+        drawComicFocusLines(ctx, W * 0.5, H * 0.68, W, H, 'rgba(244, 63, 94, 0.12)');
       }
-      drawAnimalCharacter(ctx, W * 0.5, H * 0.66, sp, mood, '#fecdd3', 1.15);
+      drawAnimalCharacter(ctx, W * 0.5, H * 0.68, sp, mood, '#fecdd3', 1.18);
     }
 
-    // 2. Large, Bold, Realistic Korean Instatoon Speech Bubbles with Yellow Marker Highlights
-    if (panelIdx === 0) {
-      const bx = 10;
-      const by = 10;
-      const bw = W - 20;
-      const bh = 108;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 36, W * 0.42, -1);
-      drawCenteredBubbleText(ctx, conv.p1Lines, bx + bw / 2, by + 45, 35, 23.5, '#0f172a', bw - 28, '#d97706', '#fef08a');
-    } else if (panelIdx === 1) {
-      const bx1 = 10;
-      const by1 = 10;
-      const bw1 = 434;
-      const bh1 = 94;
-      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 32, W * 0.28, -1);
-      drawCenteredBubbleText(ctx, conv.p2FoxLines, bx1 + bw1 / 2, by1 + 41, 32, 22.5, '#0f172a', bw1 - 26, '#dc2626', '#fee2e2');
+    // 2. SINGLE Giant-Typography Speech Bubble (38px in grid / 76px in slide)
+    const num = panelIdx + 1;
+    const bx = 12;
+    const by = 18;
+    const bw = W - 24;
+    const bh = 124;
+    const tailRatio = num === 1 ? 0.42 : num === 2 ? 0.34 : num === 3 ? 0.64 : 0.38;
+    const tailDir = num === 3 ? 1 : -1;
 
-      const bx2 = 288;
-      const by2 = 98;
-      const bw2 = 204;
-      const bh2 = 54;
-      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 27, W * 0.80, 1);
-      drawCenteredBubbleText(ctx, [conv.p2React], bx2 + bw2 / 2, by2 + 35, 24, 21.5, '#dc2626', bw2 - 22, '#dc2626', null);
-    } else if (panelIdx === 2) {
-      const bx = 10;
-      const by = 10;
-      const bw = W - 20;
-      const bh = 132;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 36, W * 0.65, 1);
-      drawCenteredBubbleText(ctx, conv.p3CryLines, bx + bw / 2, by + 41, 33, 22.5, '#0f172a', bw - 28, '#e11d48', '#ffe4e6');
-    } else {
-      const bx1 = 10;
-      const by1 = 10;
-      const bw1 = 434;
-      const bh1 = 94;
-      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 32, W * 0.30, -1);
-      drawCenteredBubbleText(ctx, conv.p4FoxLines, bx1 + bw1 / 2, by1 + 41, 32, 22.5, '#0f172a', bw1 - 26, '#047857', '#fef08a');
+    drawSpeechBubble(ctx, bx, by, bw, bh, 32, W * tailRatio, tailDir);
+    drawCutBadge(ctx, num, bx, by);
 
-      const bx2 = 260;
-      const by2 = 98;
-      const bw2 = 232;
-      const bh2 = 54;
-      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 27, W * 0.78, 1);
-      drawCenteredBubbleText(ctx, [conv.p4React], bx2 + bw2 / 2, by2 + 35, 24, 21, '#047857', bw2 - 22, '#047857', null);
-    }
+    const linesByNum = [conv.p1Lines, conv.p2Lines, conv.p3Lines, conv.p4Lines][panelIdx] || conv.p1Lines;
+    const accentByNum = ['#b45309', '#dc2626', '#be123c', '#047857'][panelIdx];
+    const bgByNum = ['#fde047', '#fecdd3', '#ffe4e6', '#bbf7d0'][panelIdx];
 
-    // 3. Crisp Authentic Comic Panel Outline (#1e293b, 4.5px)
+    drawCenteredBubbleText(ctx, linesByNum, bx + bw / 2, by + 56, 46, 38, '#0f172a', bw - 26, accentByNum, bgByNum);
+
+    // 3. Crisp Authentic Comic Panel Outline (#0f172a, 5px)
     drawRoundedRect(ctx, 0, 0, W, H, panelRadius);
-    ctx.lineWidth = 4.5;
-    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#0f172a';
     ctx.stroke();
 
     ctx.restore();
@@ -1168,36 +1066,47 @@
     ctx.fillStyle = '#faf7f2';
     ctx.fillRect(0, 0, 1080, 1080);
 
-    // Natural Instatoon Episode Title (Bold 27px)
+    // Top Pill Badge + Giant 31px Title
+    ctx.save();
+    drawRoundedRect(ctx, 28, 13, 128, 36, 18);
     ctx.fillStyle = '#0f172a';
-    ctx.font = '900 27px "Pretendard", "Malgun Gothic", sans-serif';
-    ctx.fillText('🐾 ' + conv.episodeTitle, 28, 44);
+    ctx.fill();
+    ctx.fillStyle = '#fde047';
+    ctx.font = '900 18px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('공감 4컷툰', 92, 32);
+    ctx.restore();
+
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '900 31px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText(conv.episodeTitle, 168, 42);
 
     ctx.save();
     ctx.textAlign = 'right';
-    ctx.fillStyle = '#64748b';
-    ctx.font = 'bold 19px sans-serif';
-    ctx.fillText('@moneyfit2026', 1052, 43);
+    ctx.fillStyle = '#475569';
+    ctx.font = '900 20px sans-serif';
+    ctx.fillText('@moneyfit2026', 1052, 41);
     ctx.restore();
 
     // 4 Panels in 2x2 Grid (each 502x474)
     const positions = [
-      { x: 28, y: 62 },
-      { x: 550, y: 62 },
-      { x: 28, y: 552 },
-      { x: 550, y: 552 }
+      { x: 28, y: 60 },
+      { x: 550, y: 60 },
+      { x: 28, y: 550 },
+      { x: 550, y: 550 }
     ];
 
     for (let i = 0; i < 4; i++) {
       drawSinglePanel(ctx, i, positions[i].x, positions[i].y, 502, 474, preset, story);
     }
 
-    // Subtle, natural artist signature line at the bottom of the cream paper
+    // Bold bottom callout bar
     ctx.save();
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#334155';
-    ctx.font = '900 19px "Pretendard", "Malgun Gothic", sans-serif';
-    ctx.fillText('🎨 머니핏 공감툰  ·  우리 집 3초 무료 계산기는 프로필 링크 또는 검색창에 「머니핏」 검색!', 540, 1059);
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '900 22px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('🔎 프로필 링크 또는 검색창에 「머니핏」 검색 → 3초 무료 계산기!', 540, 1058);
     ctx.restore();
   }
 
