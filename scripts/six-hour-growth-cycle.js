@@ -256,7 +256,20 @@ async function runSixHourGrowthCycle(options = {}) {
 
   const ctrPercent = totalUv > 0 ? Number(((totalClicks / totalUv) * 100).toFixed(2)) : 0;
 
-  // Estimate 24h Cookie Activations & Purchase Conversion Metrics
+  // Actual Confirmed Sales Ledger (strictly separated from reference estimates!)
+  const CONFIRMED_SALES_FILE = path.join(LOGS_DIR, 'confirmed_sales.json');
+  let confirmedLedger = { totals: { confirmedOrders: 0, confirmedGmvKrw: 0, confirmedCommissionKrw: 0 }, coupang: { apiConnected: false } };
+  if (fs.existsSync(CONFIRMED_SALES_FILE)) {
+    try {
+      confirmedLedger = JSON.parse(fs.readFileSync(CONFIRMED_SALES_FILE, 'utf8'));
+    } catch (e) {}
+  }
+  const confirmedOrders = Number(confirmedLedger.totals?.confirmedOrders || 0);
+  const confirmedGmvKrw = Number(confirmedLedger.totals?.confirmedGmvKrw || 0);
+  const confirmedCommissionKrw = Number(confirmedLedger.totals?.confirmedCommissionKrw || 0);
+  const isApiConnected = Boolean(confirmedLedger.coupang?.apiConnected || process.env.COUPANG_ACCESS_KEY);
+
+  // Reference Estimate Only (labeled explicitly as statistical estimate, never actual revenue)
   const cookieBoosterClicks =
     clicksByChannel.coupang +
     (clicksBySlot.atf_instant_impulse || 0) +
@@ -390,12 +403,17 @@ async function runSixHourGrowthCycle(options = {}) {
         status: totalClicks >= 5 ? '🟢 클릭 전환 가동' : '🟠 1만 원대 로켓배송 즉결템 전면 배치 가동'
       },
       purchases: {
+        isApiConnected,
+        confirmedOrders,
+        confirmedGmvKrw,
+        confirmedCommissionKrw,
         cookieBoosterClicks,
         estPurchases,
         estCommissionKrw,
         octoberGoalKrw: 1000000,
-        achievementPct: Number(((estCommissionKrw / 1000000) * 100).toFixed(2)),
-        status: estPurchases >= 1 ? '🟢 첫 구매 돌파 가시권' : '🚨 D-3 첫 구매 돌파 비상체제 (4,400~9,900원 즉결템 집중)'
+        achievementPct: Number(((confirmedCommissionKrw / 1000000) * 100).toFixed(2)),
+        estAchievementPct: Number(((estCommissionKrw / 1000000) * 100).toFixed(2)),
+        status: confirmedOrders >= 1 ? '🟢 실제 첫 구매 확정 돌파!' : '🚨 실구매 확정 0건 (오후 4시 쿠팡 파트너스 대시보드 정산 확인 필요)'
       }
     },
     reinforceDirections: [
@@ -472,7 +490,7 @@ async function runSixHourGrowthCycle(options = {}) {
 > **분석 시각**: ${checkedAtKst} (6시간 주기 자동 실행: \`00:00 / 06:00 / 12:00 / 18:00 KST\`)
 > **사전 절차**: 🗣️ **전직원 상호 피드백 타운홀 회의 (제${staffCouncil.sessionCount}차) 선(先) 진행 및 4대 합의안 반영 완료** ([전직원_상호피드백_회의록.md](file:///d:/사업아이템/moneyfit-portal/전직원_상호피드백_회의록.md))
 > **총괄 지휘**: 아기 호랑이 이사 🐯 & 핵심 리더진 (**🦊 여우 실장 · 🐆 치타 팀장 · 📱 팬더 팀장 · 🦌 사슴 디렉터 · 🦩 홍학 에디터 · 🐝 꿀벌 과장**)
-> **대표님 핵심 성과 기준**: **① 홈페이지 유입(UV/PV) ➔ ② 쿠팡파트너스·제휴 클릭(CTR) ➔ ③ 실제 구매 전환(CVR)**
+> **대표님 핵심 원칙**: **실측 확정치(UV·실클릭·확정매출)와 참고용 통계 추정치를 엄격히 분리하여 보고합니다.**
 
 ---
 
@@ -489,13 +507,14 @@ ${staffCouncil.feedbackRounds
 
 ---
 
-## 1. 3대 핵심 성과 지표 (KPI 1 · 2 · 3) 정밀 진단
+## 1. 3대 핵심 성과 지표 (KPI 1 · 2 · 3) — ✅ 실측 확정치 vs 📐 참고 추정치 분리 진단
 
-| 성과 단계 | 핵심 지표 | 현재 수치 | 목표 기준 | 상태 및 진단 |
-| :--- | :--- | :--- | :--- | :--- |
-| **① 홈페이지 유입 (Inflow)** | 오늘 순방문자(UV) / 누적 UV | **오늘 ${todayUv}명 (PV ${todayPv}회)** / 누적 ${totalUv}명 (PV ${totalPv}회) | 일 300 UV+ | ${pivotState.kpis.inflow.status} (검색봇 크롤링 누적 ${todayBots}회) |
-| **② 쿠팡·제휴 클릭 (Clicks)** | 총 제휴 클릭수 / 전체 CTR | **총 ${totalClicks}회 (CTR ${ctrPercent}%)** — 쿠팡 ${clicksByChannel.coupang} · 링크프라이스 ${clicksByChannel.linkprice} · CPA ${clicksByChannel.cpa} | CTR 18.0%+ | ${pivotState.kpis.clicks.status} |
-| **③ 실제 구매 전환 (Purchases)** | 24시간 쿠키 활성화 / 예상 구매 | **쿠키 부스터 ${cookieBoosterClicks}회** / 예상 실구매 **${estPurchases}건** (예상 수익 ${estCommissionKrw.toLocaleString('ko-KR')}원) | 3일 내 첫 구매 · 10월 100만 원 | ${pivotState.kpis.purchases.status} |
+| 구분 | 성과 단계 | 핵심 지표 | 현재 수치 | 상태 및 확인 방법 |
+| :---: | :--- | :--- | :--- | :--- |
+| **✅ 100% 실측 확정** | **① 홈페이지 유입 (Inflow)** | 오늘 순방문자(UV) / 누적 UV | **오늘 ${todayUv}명 (PV ${todayPv}회)** / 누적 ${totalUv}명 (PV ${totalPv}회) | ${pivotState.kpis.inflow.status} (검색봇 크롤링 누적 ${todayBots}회) |
+| **✅ 100% 실측 확정** | **② 쿠팡·제휴 클릭 (Clicks)** | 총 제휴 실클릭수 / 실측 CTR | **총 ${totalClicks}회 (실측 CTR ${ctrPercent}%)** — 쿠팡 ${clicksByChannel.coupang} · 링크프라이스 ${clicksByChannel.linkprice} · CPA ${clicksByChannel.cpa} | ${pivotState.kpis.clicks.status} |
+| **✅ 100% 실측 확정** | **③ 확정 실구매 (Actual Sales)** | 서버·대시보드 확인 확정 주문 | **확정 ${confirmedOrders}건 (확정 수익 ${confirmedCommissionKrw.toLocaleString('ko-KR')}원)** | ${isApiConnected ? '🟢 쿠팡 Open API 실시간 연동 중' : '⚠️ API 미연동 — 실제 결제 여부는 [쿠팡 리포트(오후 4시 정산)](https://partners.coupang.com/) 및 [링크프라이스](https://ac.linkprice.com/)에서 직접 확인'} |
+| **📐 참고용 통계 추정** | *(참고) 클릭 전환 기대치* | *클릭수 × 평균 전환율(5~8%) 단순 추정* | *(참고 추정치) 기대 주문 약 ${estPurchases}건 / 추정 ${estCommissionKrw.toLocaleString('ko-KR')}원* | *⚠️ 실제 결제 확정치가 아닌 통계적 기대치입니다.* |
 
 ---
 
@@ -550,10 +569,13 @@ ${dynamicPriorityPresets
           `  • 📱팬더➔🐝꿀벌: 스마트폰 버튼 잘림 없도록 12~16자 초단문 가격표 압축 완료`,
           `  • 🐝꿀벌➔📱팬더: 모바일 하단바에 '🚀내일도착·무료반품' 안심배지 탑재 완료`,
           ``,
-          `<b>1️⃣ 3대 핵심 성과 (유입 ➔ 클릭 ➔ 실구매)</b>`,
-          `• <b>홈페이지 유입</b>: 오늘 UV <b>${todayUv}명</b> (PV ${todayPv}회) / 누적 UV ${totalUv}명 (봇 크롤링 ${todayBots}회)`,
-          `• <b>쿠팡·제휴 클릭</b>: 누적 <b>${totalClicks}회</b> (CTR <b>${ctrPercent}%</b> | 쿠팡 ${clicksByChannel.coupang}·링크프라이스 ${clicksByChannel.linkprice}·CPA ${clicksByChannel.cpa})`,
-          `• <b>실구매 전환</b>: 24h 쿠키활성 <b>${cookieBoosterClicks}회</b> | 예상 구매 <b>${estPurchases}건</b> (${estCommissionKrw.toLocaleString('ko-KR')}원)`,
+          `<b>✅ 1️⃣ [100% 실측 확정 데이터]</b>`,
+          `• <b>① 홈페이지 실유입</b>: 오늘 UV <b>${todayUv}명</b> (PV ${todayPv}회) / 누적 UV <b>${totalUv}명</b> (PV ${totalPv}회 · 봇 ${todayBots}회)`,
+          `• <b>② 제휴 버튼 실클릭</b>: 누적 <b>${totalClicks}회</b> (실측 CTR <b>${ctrPercent}%</b> | 쿠팡 ${clicksByChannel.coupang}회 · 링크프라이스 ${clicksByChannel.linkprice}회 · CPA ${clicksByChannel.cpa}회)`,
+          `• <b>③ 확정 실구매(실매출)</b>: <b>확정 ${confirmedOrders}건 (${confirmedCommissionKrw.toLocaleString('ko-KR')}원)</b> ${isApiConnected ? '(Open API 연동)' : '(※ API 미연동 — 실제 결제는 오후 4시 쿠팡 리포트 확인)'}`,
+          ``,
+          `<b>📐 [참고용 클릭 전환 추정치 (실매출 아님)]</b>`,
+          `• 클릭(${totalClicks}회) 기반 통계 기대치: 약 ${estPurchases}건 (추정 ${estCommissionKrw.toLocaleString('ko-KR')}원)`,
           ``,
           `<b>2️⃣ [강화 방향 🔥]</b>`,
           `• 1순위 집중: <b>${reinforcedCalculators[0].name}</b> & <b>${reinforcedCalculators[1].name}</b>`,
@@ -561,7 +583,7 @@ ${dynamicPriorityPresets
           `<b>3️⃣ [수정 방향 🛠️ (자동 피봇 완료)]</b>`,
           `• 4,400~9,900원 로켓배송 즉결템 12~16자 모바일 버튼 자동 교체 완료`,
           `• 다음 6시간 최우선 타격 큐: <code>${dynamicPriorityPresets.slice(0, 3).join(', ')}</code>`,
-          `👉 <a href="https://truthofmarket.com/office">가상 사옥(/office) 전직원 피드백 회의실 열기</a>`
+          `👉 <a href="https://partners.coupang.com/#affiliate/ws/reports">[쿠팡 실제 매출 대시보드]</a> | <a href="https://ac.linkprice.com/">[링크프라이스 실적조회]</a> | <a href="https://truthofmarket.com/office">[가상 사옥 열기]</a>`
         ].join('\n');
         telegramResult = await dailyReporter.sendTelegramMessage(botToken, chatId, tgMsg);
       }
@@ -587,9 +609,9 @@ if (require.main === module) {
     console.log('===============================================================');
     console.log(`  ✓ Staff Council      : Session #${res.staffCouncil.sessionCount} (5 cross-team critiques resolved)`);
     console.log(`  ✓ Checked At         : ${res.pivotState.checkedAtKst}`);
-    console.log(`  ✓ KPI 1 (Inflow)     : Today UV ${res.pivotState.kpis.inflow.todayUv} (PV ${res.pivotState.kpis.inflow.todayPv}) | Total UV ${res.pivotState.kpis.inflow.totalUv}`);
-    console.log(`  ✓ KPI 2 (Clicks)     : Total ${res.pivotState.kpis.clicks.totalClicks} clicks (CTR ${res.pivotState.kpis.clicks.ctrPercent}%)`);
-    console.log(`  ✓ KPI 3 (Purchases)  : Est. ${res.pivotState.kpis.purchases.estPurchases} orders (${res.pivotState.kpis.purchases.estCommissionKrw.toLocaleString('ko-KR')} KRW)`);
+    console.log(`  ✓ KPI 1 (Actual UV)  : Today UV ${res.pivotState.kpis.inflow.todayUv} (PV ${res.pivotState.kpis.inflow.todayPv}) | Total UV ${res.pivotState.kpis.inflow.totalUv}`);
+    console.log(`  ✓ KPI 2 (Actual Clk) : Total ${res.pivotState.kpis.clicks.totalClicks} clicks (Actual CTR ${res.pivotState.kpis.clicks.ctrPercent}%)`);
+    console.log(`  ✓ KPI 3 (Confirmed)  : Confirmed ${res.pivotState.kpis.purchases.confirmedOrders} orders (${res.pivotState.kpis.purchases.confirmedCommissionKrw} KRW) | [Ref Est: ${res.pivotState.kpis.purchases.estPurchases} orders]`);
     console.log(`  ✓ Reinforced (#1/#2) : ${res.pivotState.reinforceDirections[0].target}`);
     console.log(`  ✓ Auto-Modified CTAs : 6/6 calculators updated in src/data/growth-pivot-state.js`);
     console.log(`  ✓ Report Saved       : ${res.reportPath}`);

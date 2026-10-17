@@ -17,6 +17,8 @@
     "report:daily": "node scripts/daily-revenue-report.js",
     "manager:audit": "node scripts/manager-audit.js",
     "webtoon:top6": "node scripts/sns-auto-publisher.js --top6",
+    "webtoon:all36": "node scripts/sns-auto-publisher.js --all36",
+    "sns:daily3": "node scripts/daily-sns-scheduler.js",
     "seo:autopilot": "node scripts/seo-autopilot.js",
     "auto:all": "node scripts/auto-master.js"
   },

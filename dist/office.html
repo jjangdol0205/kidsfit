@@ -366,17 +366,22 @@
 
         <div class="grid grid-cols-3 gap-1.5 text-center">
           <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
-            <div class="text-[10px] text-slate-400 font-bold">① 홈페이지 유입</div>
+            <div class="text-[10px] text-slate-400 font-bold">① [실측] 홈페이지 유입</div>
             <div id="pivot-kpi-inflow" class="text-xs font-black text-emerald-400 mt-0.5">UV 1 · PV 1</div>
           </div>
           <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
-            <div class="text-[10px] text-slate-400 font-bold">② 쿠팡·제휴 클릭</div>
+            <div class="text-[10px] text-slate-400 font-bold">② [실측] 제휴 버튼클릭</div>
             <div id="pivot-kpi-clicks" class="text-xs font-black text-amber-300 mt-0.5">0회 (0%)</div>
           </div>
           <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
-            <div class="text-[10px] text-slate-400 font-bold">③ 24h 쿠키·실구매</div>
-            <div id="pivot-kpi-purchases" class="text-xs font-black text-pink-400 mt-0.5">즉결템 가동</div>
+            <div class="text-[10px] text-slate-400 font-bold">③ 확정 실구매 (추정분리)</div>
+            <div id="pivot-kpi-purchases" class="text-xs font-black text-pink-400 mt-0.5">확정 0건</div>
           </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+          <a href="https://partners.coupang.com/#affiliate/ws/reports" target="_blank" rel="noopener noreferrer" class="bg-slate-950 hover:bg-amber-950/50 border border-amber-500/40 text-amber-300 font-extrabold py-1.5 px-2 rounded-lg text-center truncate transition">🟡 쿠팡 실제 매출 확인(16시) ↗</a>
+          <a href="https://ac.linkprice.com/" target="_blank" rel="noopener noreferrer" class="bg-slate-950 hover:bg-sky-950/50 border border-sky-500/40 text-sky-300 font-extrabold py-1.5 px-2 rounded-lg text-center truncate transition">🔵 링크프라이스 실매출 조회 ↗</a>
         </div>
 
         <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
@@ -1637,7 +1642,9 @@
           badgeEl.textContent = `제${gp.cycleCount}차 피봇 완료 (${(gp.checkedAtKst || '').slice(11, 16) || '실시간'})`;
         }
         if (purEl && gp.kpis && gp.kpis.purchases) {
-          purEl.textContent = `쿠키 ${gp.kpis.purchases.cookieBoosterClicks || 0}회 · 즉결가동`;
+          const confOrd = gp.kpis.purchases.confirmedOrders || 0;
+          const estOrd = gp.kpis.purchases.estPurchases || 0;
+          purEl.textContent = `확정 ${confOrd}건 (추정 ${estOrd}건)`;
         }
         if (reinfEl && Array.isArray(gp.reinforceDirections) && gp.reinforceDirections[0]) {
           reinfEl.textContent = `${gp.reinforceDirections[0].target} — ${gp.reinforceDirections[0].action}`;
