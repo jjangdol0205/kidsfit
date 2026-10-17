@@ -30,6 +30,8 @@ let config = {
   linkPriceId: 'A100708867',
   cpaMemberId: 'tp_member_2370',
   adfitUnitId: 'DAN-SAMPLE-TOP',
+  naverSiteVerification: 'cebead3ca31f58965e886cde5801a335e06f2abc',
+  googleSiteVerification: 'fCnpUEn0SeIV04aGsg-QkP9i_0osqrNgK0q6yyKyCL4',
   ftcNotice: '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다.'
 };
 
@@ -1095,6 +1097,106 @@ function renderInteractiveCalculatorCard(preset, res) {
 }
 
 /**
+ * Build Domain-Specific Exact-Match Search Keywords & 3-Line Featured Snippet / SmartBlock Summary
+ */
+function buildSeoSnippetAndKeywords(preset, res) {
+  const { calc, inputs, title, category } = preset;
+  const lc = res.lossComparison || {};
+  const metricSummary = (res.metrics || []).map(m => `${m.label}: ${m.val}`).join(' · ');
+
+  let domainKeywords = [];
+  let formulaLine = '';
+  let inputSpecLine = '';
+
+  if (calc === 'electric') {
+    domainKeywords = [
+      '전기요금 계산기', '에어컨 전기세 계산기', '한전 누진세 계산기', '1등급 가전 환급 계산기',
+      '1등급 인버터 본전 회수기간', '제습기 전기요금', '건조기 전기세', '온풍기 난방비 계산',
+      '소비전력 kWh 요금 변환', '주택용 전기요금 누진세 3단계 기준'
+    ];
+    formulaLine = '한전 주택용 3단계 누진 요율(200kWh·400kWh 구간, 하계 7~8월 완화) + 부가가치세(10%) + 전력기반기금(3.7%) 합산 공식';
+    inputSpecLine = `소비전력 ${inputs.wattage}W · 하루 ${inputs.hours}시간 가동 · 기본 사용량 ${inputs.baseKwh}kWh · 1등급 교체비 ${(inputs.newPrice || 550000).toLocaleString('ko-KR')}원`;
+  } else if (calc === 'diet') {
+    domainKeywords = [
+      '다이어트 기초대사량 계산기', 'TDEE 계산기', '닭가슴살 단백질 계산기', '탄단지 비율 계산기',
+      '체지방 감량 칼로리 계산', '벌크업 식단 계산기', '린매스업 단백질 섭취량', '하루 닭가슴살 몇팩',
+      '다이어트 장보기 수량 계산', '기초대사량 BMR 계산법'
+    ];
+    formulaLine = 'Mifflin-St Jeor 기초대사량(BMR) 공식 × 활동계수(TDEE) ± 목표 칼로리 조절 및 체중 1kg당 단백질 1.8~2.0g 환산 공식';
+    inputSpecLine = `${inputs.gender === 'female' ? '여성' : '남성'} · 체중 ${inputs.weight}kg · 신장 ${inputs.height}cm · 기간 ${inputs.weeks}주 · 목표 칼로리 ${inputs.deficit > 0 ? '+' + inputs.deficit : inputs.deficit}kcal`;
+  } else if (calc === 'pet') {
+    domainKeywords = [
+      '강아지 사료량 계산기', '고양이 사료 급여량 계산기', '반려동물 칼로리 계산기', '강아지 하루 사료량 그램',
+      '고양이 하루 사료량 종이컵', '퍼피 사료 급여량', '중성화 강아지 사료량', '사료 1포대 소진일 계산',
+      'RER DER 수의학 급여 공식', '강아지 한달 사료값 계산'
+    ];
+    formulaLine = '수의영양학 휴식기 에너지 요구량 RER = 70 × (체중 kg)^0.75 × 생애주기 활동계수(DER) ÷ 사료 칼로리(kcal/kg) 공식';
+    inputSpecLine = `반려동물 체중 ${inputs.petWeight}kg · 활동계수 ${inputs.factor} · 사료 포대 ${inputs.bagKg}kg · 사료 열량 ${inputs.kcalPerKg}kcal/kg`;
+  } else if (calc === 'room') {
+    domainKeywords = [
+      '자취방 가전 예산 견적', '원룸 풀세팅 비용 계산기', '신혼가전 1000만원 견적표', '오피스텔 가전 가구 배치 예산',
+      '원룸 100만원 가전 리스트', '자취 필수 가전 체크리스트', '가전 가구 예산 배분 비율', '첫자취 초기비용 계산기'
+    ];
+    formulaLine = '가용 총예산 100% 상한 제약(Strict Budget Cap) 기반 필수 생활가전(60~65%) : 수면·수납 가구(35~40%) 최적 BOM 배분 알고리즘';
+    inputSpecLine = `총 가용 예산 ${inputs.budgetMan}만 원 · 공간 면적 ${inputs.roomSize}평 · 우선순위 스타일 [${inputs.priority || '가성비'}]`;
+  } else if (calc === 'auto') {
+    domainKeywords = [
+      '장기렌트 할부 비교 계산기', '자동차 유지비 TCO 계산기', '개인사업자 장기렌트 비용처리 절세', '법인 리스 렌트 손익 비교',
+      '신차 할부 이자 계산기', '취등록세 7% 계산기', '초보운전 보험료 장기렌트 비교', '자동차 4년 총소유비용 계산'
+    ];
+    formulaLine = '할부(취등록세 7% + 원리금균등이자 + 자동차세 + 보험료 - 중고 잔존가치) vs 장기렌트(월 납입금 통합 - 연 1,500만 한도 절세액) TCO 비교 공식';
+    inputSpecLine = `차량가 ${inputs.carPriceMan}만 원 · 계약 ${inputs.months}개월 · 소득세율 ${inputs.taxRate}% · 선납금 ${inputs.downPaymentRate}% · 할부금리 ${inputs.interestRate}%`;
+  } else if (calc === 'telecom') {
+    domainKeywords = [
+      '인터넷 약정 위약금 계산기', '인터넷 변경 현금 사은품 47만원', '인터넷 TV 결합 갈아타기 손익', '통신사 이동 할인반환금 계산',
+      '인터넷 3년 약정 만기 재약정 비교', '알뜰폰 유심 요금제 절약 계산기', '자취방 인터넷 단독 최저가', '온가족 결합 할인 계산'
+    ];
+    formulaLine = '신규 이동 순이익(Surplus) = 법정 최대 현금 사은품(최대 47만 원) + 36개월 월 요금 절감 누적액 - 기존 통신사 해지 위약금 공식';
+    inputSpecLine = `잔여 위약금 ${inputs.penaltyMan}만 원 · 신규 현금 사은품 ${inputs.cashGiftMan}만 원 · 기존 월요금 ${inputs.oldFee.toLocaleString('ko-KR')}원 → 신규 ${inputs.newFee.toLocaleString('ko-KR')}원`;
+  }
+
+  const allKeywords = [
+    title,
+    ...domainKeywords,
+    category,
+    '손익분기점 계산기',
+    '머니핏',
+    'MoneyFit',
+    '2026 최신 공인 수식'
+  ];
+
+  const tagChipsHtml = domainKeywords.slice(0, 8).map(kw =>
+    `<a href="../../index.html?calc=${calc}" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-700 border border-slate-200/80 transition whitespace-nowrap">#${kw.replace(/\s+/g, '')}</a>`
+  ).join('\n          ');
+
+  const snippetBoxHtml = `
+      <!-- [Google Featured Snippet & Naver SmartBlock Direct Answer Box] 검색엔진 최상단 요약 스니펫 전용 시맨틱 블록 -->
+      <div id="seo-featured-snippet-box" class="mt-3 bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-1.5">
+          <h2 class="text-xs sm:text-sm font-bold text-slate-900">📌 ${title} — 3초 핵심 결론 &amp; 공인 산출 기준</h2>
+          <span class="text-[11px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">구글·네이버 공식 요약</span>
+        </div>
+        <p class="leading-relaxed break-keep">
+          <strong>핵심 진단 요약:</strong> <strong>${title}</strong> 조건을 공인 수식으로 시뮬레이션한 결과, <strong>${res.headline}</strong>으로 산출되며 최적 대안 실행 시 <strong>${lc.savingBadge || res.badge}</strong> 효과를 기대할 수 있습니다. (${res.summary})
+        </p>
+        <ul class="list-disc pl-4 space-y-1 text-xs text-slate-600">
+          <li><strong>적용 공인 수식:</strong> ${formulaLine}</li>
+          <li><strong>시뮬레이션 입력 기준:</strong> ${inputSpecLine}</li>
+          <li><strong>3대 핵심 산출 지표:</strong> ${metricSummary}</li>
+        </ul>
+        <div id="seo-search-keywords-tags" class="flex flex-wrap gap-1.5 pt-1">
+          ${tagChipsHtml}
+        </div>
+      </div>`;
+
+  return {
+    metaKeywords: allKeywords.join(', '),
+    snippetBoxHtml,
+    formulaLine
+  };
+}
+
+/**
  * Render Full Static HTML Document for a Single Preset
  */
 function renderPresetPageHtml(preset) {
@@ -1102,13 +1204,15 @@ function renderPresetPageHtml(preset) {
   const essay = generateDomainEssay(preset, res);
   const tableHtml = renderTableHtml(preset, res);
   const calculatorCardHtml = renderInteractiveCalculatorCard(preset, res);
+  const seoInfo = buildSeoSnippetAndKeywords(preset, res);
 
   const canonicalUrl = `${CANONICAL_BASE}/preset/${preset.id}/`;
+  const ogImageUrl = `${CANONICAL_BASE}/sns/${preset.id}-grid.png`;
   const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
   const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
   const lc = res.lossComparison || {};
 
-  // Schema.org BreadcrumbList + WebApplication + HowTo + FAQPage JSON-LD
+  // Schema.org BreadcrumbList + WebApplication + TechArticle + Dataset + HowTo + FAQPage JSON-LD
   const schemaJson = {
     "@context": "https://schema.org",
     "@graph": [
@@ -1139,6 +1243,7 @@ function renderPresetPageHtml(preset) {
         "@type": "WebApplication",
         "name": `머니핏 ${preset.title}`,
         "url": canonicalUrl,
+        "image": ogImageUrl,
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All",
         "description": preset.metaDescription,
@@ -1146,6 +1251,45 @@ function renderPresetPageHtml(preset) {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "KRW"
+        }
+      },
+      {
+        "@type": "TechArticle",
+        "headline": `${preset.title} (${res.headline})`,
+        "description": preset.metaDescription,
+        "image": [ogImageUrl],
+        "datePublished": TODAY,
+        "dateModified": TODAY,
+        "inLanguage": "ko-KR",
+        "author": {
+          "@type": "Organization",
+          "name": "머니핏(MoneyFit) 리서치 스튜디오",
+          "url": `${CANONICAL_BASE}/`
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "머니핏(MoneyFit)",
+          "url": `${CANONICAL_BASE}/`,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${CANONICAL_BASE}/sns/electric-studio-ac-grid.png`
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        }
+      },
+      {
+        "@type": "Dataset",
+        "name": `${preset.title} 손익분기점 비교 분석 데이터셋`,
+        "description": `${preset.metaDescription} (${seoInfo.formulaLine})`,
+        "url": `${canonicalUrl}#comparison-table-section`,
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {
+          "@type": "Organization",
+          "name": "머니핏(MoneyFit)",
+          "url": `${CANONICAL_BASE}/`
         }
       },
       {
@@ -1224,33 +1368,41 @@ function renderPresetPageHtml(preset) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${preset.title} | 머니핏(MoneyFit) 손익계산기</title>
+  <title>${preset.title} (${res.headline}) | 머니핏(MoneyFit) 3초 손익계산기·비교표</title>
   <meta name="description" content="${preset.metaDescription}" />
-  <meta name="keywords" content="${preset.title}, 손익분기점 계산기, 머니핏, ${preset.category}, 2026 최신 비교" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="keywords" content="${seoInfo.metaKeywords}" />
+  <meta name="author" content="머니핏(MoneyFit) 리서치 스튜디오" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="Yeti" content="index, follow" />
+  <meta name="Googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
   ${naverVerifyMeta}
   ${googleVerifyMeta}
   
   <!-- Canonical, RSS & OpenGraph -->
   <link rel="canonical" href="${canonicalUrl}" />
   <link rel="alternate" type="application/rss+xml" title="머니핏(MoneyFit) 전체 손익계산 리포트 RSS" href="${CANONICAL_BASE}/rss.xml" />
-  <meta property="og:title" content="${preset.title} | 머니핏" />
+  <meta property="og:title" content="${preset.title} (${res.headline}) | 머니핏" />
   <meta property="og:description" content="${preset.metaDescription}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="머니핏(MoneyFit)" />
   <meta property="og:locale" content="ko_KR" />
+  <meta property="og:image" content="${ogImageUrl}" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:image:alt" content="${preset.title} 4컷 웹툰 및 손익분기점 영수증" />
   <meta property="article:published_time" content="${TODAY}" />
   <meta property="article:modified_time" content="${TODAY}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${preset.title} | 머니핏" />
+  <meta name="twitter:title" content="${preset.title} (${res.headline}) | 머니핏" />
   <meta name="twitter:description" content="${preset.metaDescription}" />
+  <meta name="twitter:image" content="${ogImageUrl}" />
   
   <!-- Tailwind CSS & Custom Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../../src/css/style.css?v=2.5" />
+  <link rel="stylesheet" href="../../src/css/style.css?v=2.6" />
   
-  <!-- Schema.org BreadcrumbList + WebApplication + HowTo + FAQPage JSON-LD -->
+  <!-- Schema.org BreadcrumbList + WebApplication + TechArticle + Dataset + HowTo + FAQPage JSON-LD -->
   <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
   </script>
@@ -1319,6 +1471,8 @@ ${JSON.stringify(schemaJson, null, 2)}
           </a>
         </div>
       </div>
+
+      ${seoInfo.snippetBoxHtml}
     </header>
 
     <!-- [인터랙티브 계산기 카드 섹션] -->
@@ -1895,10 +2049,40 @@ ${urls.map(u => `  <url>
 }
 
 /**
- * Generate dist/robots.txt
+ * Generate dist/robots.txt (Explicitly welcoming Naver Yeti, Googlebot, Daumoa, Bingbot & AI Search Bots)
  */
 function generateRobotsTxt() {
-  return `User-agent: *
+  return `User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: *
 Allow: /
 
 Sitemap: ${CANONICAL_BASE}/sitemap.xml
