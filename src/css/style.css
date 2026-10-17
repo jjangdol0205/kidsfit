@@ -303,3 +303,245 @@ input[type=range] {
   display: none !important;
 }
 
+/* 가로 스크롤바 숨김 유틸리티 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   [SMARTPHONE MOBILE-FIRST DIET OVERHAUL (@media max-width: 767px)]
+   "1화면 1초점 (One-Screen One-Focus)" — 스마트폰 글자량·박스 수 70% 압축
+   PC(>= 768px) 화면과 모든 DOM ID/테스트 무결성은 100% 그대로 유지
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* 1. 상단 헤더 & 메인 여백 슬림화 */
+  header > div {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+  main {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  #view-calculators {
+    gap: 0.75rem !important;
+  }
+  #view-calculators > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  /* 2. 6대 카테고리 탭: 3열 2줄(3x2) 초간결 알약 버튼 (부제 숨김!) */
+  .calc-nav-btn {
+    padding: 0.65rem 0.35rem !important;
+    border-radius: 0.875rem !important;
+    text-align: center !important;
+  }
+  .calc-nav-btn > div:first-child {
+    font-size: 0.95rem !important; /* 15.2px 모바일 3열 최적 크기 */
+    font-weight: 900 !important;
+    letter-spacing: -0.04em !important;
+  }
+  /* 모바일에서는 카테고리 2번째 줄 부제("1등급 본전" 등)를 숨겨 12줄 -> 6단어로 압축 */
+  .calc-nav-btn > div:last-child {
+    display: none !important;
+  }
+
+  /* 3. 상단 인기 급상승 중복 배너 숨김 (아래 시나리오 칩과 100% 중복 방지) */
+  #seasonal-surge-banner {
+    display: none !important;
+  }
+
+  /* 4. 시나리오 1초 자동입력 칩: 3줄 줄바꿈 금지 -> 깔끔한 1줄 가로 스와이프! */
+  #calc-scenario-bar {
+    padding: 0.6rem 0.75rem !important;
+  }
+  #calc-scenario-chips,
+  .preset-quick-chips-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 0.4rem !important;
+    padding-bottom: 0.15rem !important;
+    scrollbar-width: none !important;
+  }
+  #calc-scenario-chips::-webkit-scrollbar,
+  .preset-quick-chips-row::-webkit-scrollbar {
+    display: none !important;
+  }
+  #calc-scenario-chips button,
+  .preset-quick-chips-row a {
+    font-size: 0.825rem !important;
+    padding: 0.4rem 0.7rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 5. 입력 폼: 모바일 2열 컴팩트 그리드 (세로 스크롤 길이 50% 단축) */
+  #calc-form-title,
+  #interactive-calculator-section h3 {
+    font-size: 1.2rem !important;
+  }
+  #calc-form-subtitle {
+    display: none !important;
+  }
+  #calc-inputs-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+  #calc-inputs-container > * + * {
+    margin-top: 0 !important;
+  }
+  /* 체크박스나 긴 선택창은 모바일에서 2칸 전체 사용 */
+  #calc-inputs-container > div.mobile-col-span-2 {
+    grid-column: span 2 / span 2 !important;
+  }
+  #calc-inputs-container label,
+  #interactive-calculator-section label {
+    font-size: 0.875rem !important; /* 14px 선명한 라벨 */
+    margin-bottom: 0.25rem !important;
+  }
+  #calc-inputs-container input[type="number"],
+  #calc-inputs-container select,
+  #interactive-calculator-section input[type="number"],
+  #interactive-calculator-section select {
+    font-size: 1.05rem !important; /* 16.8px (iOS 자동 줌 방지 및 가독성 확보) */
+    height: 2.85rem !important; /* 45.6px 컴팩트 터치 영역 */
+    padding: 0.4rem 0.65rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  /* 6. 좌측 입력폼 하단 중복 브릿지 박스(#input-instant-cta-box) 모바일 숨김
+        (모바일에서는 바로 아래 #receipt-card가 이어지므로 중복 노출 완벽 차단!) */
+  #input-instant-cta-box {
+    display: none !important;
+  }
+
+  /* 7. 영수증 결과 카드(#receipt-card): 9개 박스 -> 핵심 3요소만 남기고 싹 다이어트! */
+  #receipt-card {
+    padding: 1.15rem !important;
+    border-radius: 1.25rem !important;
+  }
+  #result-headline,
+  #res-headline {
+    font-size: 1.35rem !important; /* 21.6px 모바일 한눈에 들어오는 굵은 결론 */
+    line-height: 1.3 !important;
+  }
+
+  /* 영수증 메트릭 카드: 세로 3줄 쌓임 -> 가로 3열(또는 2열) 한눈 요약 알약으로 압축! */
+  #result-metrics-grid,
+  #res-metrics-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.45rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  #result-metrics-grid.mobile-metrics-4,
+  #res-metrics-grid.mobile-metrics-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  #result-metrics-grid > a,
+  #res-metrics-grid > a {
+    padding: 0.65rem 0.5rem !important;
+    border-radius: 0.85rem !important;
+    text-align: center !important;
+  }
+  #result-metrics-grid > a > div:nth-child(1),
+  #res-metrics-grid > a > div:nth-child(1) {
+    font-size: 0.75rem !important; /* 12px 라벨 */
+    color: #cbd5e1 !important;
+  }
+  #result-metrics-grid > a > div:nth-child(2),
+  #res-metrics-grid > a > div:nth-child(2) {
+    font-size: 1.05rem !important; /* 16.8px 굵은 숫자 */
+    margin-top: 0.15rem !important;
+  }
+  /* 메트릭 카드 하단 3번째 줄 부가 링크("1단계 처방 ↗")는 모바일에서 숨겨 숫자만 깔끔하게 강조 */
+  #result-metrics-grid > a > div:nth-child(3),
+  #res-metrics-grid > a > div:nth-child(3) {
+    display: none !important;
+  }
+
+  /* 모바일 영수증 내 부가·중복 박스(손실 게이지, 긴 요약문, 체감가 중복배너, 하단 카톡박스) 과감히 숨김 */
+  #result-loss-bar,
+  #res-loss-bar,
+  #result-summary-text,
+  #res-summary,
+  #receipt-zero-feel-banner,
+  #res-zero-feel-banner,
+  #receipt-kakao-memo-bridge,
+  #res-kakao-memo-bridge {
+    display: none !important;
+  }
+
+  /* 영수증 처방 장바구니: 모바일에서는 1순위 핵심 처방 딱 1개만 노출 (2·3순위 중복 카드 숨김) */
+  #receipt-action-items > div:nth-child(n+2),
+  #res-action-items > div:nth-child(n+2) {
+    display: none !important;
+  }
+  #receipt-action-items-box {
+    margin-top: 0.75rem !important;
+    padding-top: 0.75rem !important;
+  }
+
+  /* 8. CPA 혜택 카드: 모바일에서 설명문·서브링크 2개 숨기고 메인 버튼 1개만 깔끔하게 노출 */
+  #cpa-desc,
+  #cpa-sub-links,
+  #res-cpa-coupang-sub,
+  #res-cpa-lp-sub {
+    display: none !important;
+  }
+
+  /* 9. 맞춤 상품 추천 4선: 모바일 2x2 컴팩트 그리드 + 부가 설명/중복 배지 숨김 */
+  #product-recommendations,
+  #res-products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.6rem !important;
+  }
+  #product-recommendations > a,
+  #res-products-grid > a {
+    padding: 0.75rem !important;
+    border-radius: 1rem !important;
+  }
+  /* 상품 카드 내 보조 배지, 매칭 태그 박스, 긴 추천 사유 문단(p) 모바일 숨김 -> [플랫폼배지 + 상품명 + 버튼]만 노출! */
+  #product-recommendations > a > div:first-child > div:first-child > span:last-child,
+  #res-products-grid > a > div:first-child > div:first-child > span:last-child,
+  #product-recommendations > a > div:first-child > div:nth-child(2),
+  #res-products-grid > a > div:first-child > div:nth-child(2),
+  #product-recommendations > a p,
+  #res-products-grid > a p {
+    display: none !important;
+  }
+  #product-recommendations > a .text-base,
+  #res-products-grid > a .text-base {
+    font-size: 0.95rem !important;
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 2.45rem !important;
+  }
+  #product-recommendations a div.w-full.text-center,
+  #res-products-grid a div.w-full.text-center {
+    font-size: 0.875rem !important;
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.55rem !important;
+    border-radius: 0.65rem !important;
+  }
+
+  /* 10. 모바일 하단 과밀 링크 박스(연관 리포트 6선 & 36개 크롤러 디렉토리) 숨김 (DOM은 100% 유지) */
+  #related-category-reports-box,
+  section[aria-label="36대 세부 손익계산 리포트 전체 목록"] {
+    display: none !important;
+  }
+}
+
+

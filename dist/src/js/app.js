@@ -198,14 +198,16 @@
 
     renderScenarioChips(calcKey);
 
-    // Render input form controls (Big-Font 16px labels & 54px high-contrast inputs)
+    // Render input form controls (Big-Font 16px labels & 54px high-contrast inputs, Mobile 2-Column Compact Grid)
     const container = document.getElementById('calc-inputs-container');
     if (container) {
+      const nonCheckCount = spec.inputs.filter(i => i.type !== 'checkbox').length;
+      let nonCheckIdx = 0;
       container.innerHTML = spec.inputs.map(inp => {
         const val = customInputs && customInputs[inp.id] !== undefined ? customInputs[inp.id] : inp.value;
         if (inp.type === "checkbox") {
           return `
-            <div class="flex items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl border-2 border-slate-200">
+            <div class="mobile-col-span-2 flex items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl border-2 border-slate-200">
               <label for="inp-${inp.id}" class="text-base font-extrabold text-slate-900 cursor-pointer truncate">${inp.label}</label>
               <input id="inp-${inp.id}" type="checkbox" ${val ? 'checked' : ''}
                 onchange="recalculateCurrent()"
@@ -213,12 +215,16 @@
             </div>
           `;
         }
+        nonCheckIdx++;
+        const isLastOddItem = (nonCheckCount % 2 === 1) && (nonCheckIdx === nonCheckCount);
+        const spanCls = isLastOddItem ? 'mobile-col-span-2' : '';
+
         if (inp.type === "select") {
           const optionsHtml = (inp.options || []).map(opt => `
             <option value="${opt.value}" ${val === opt.value ? 'selected' : ''}>${opt.label}</option>
           `).join('');
           return `
-            <div>
+            <div class="${spanCls}">
               <label class="block text-base font-extrabold text-slate-900 mb-1.5 truncate">${inp.label}</label>
               <select id="inp-${inp.id}" onchange="recalculateCurrent()"
                 class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none bg-white text-slate-900">
@@ -228,10 +234,10 @@
           `;
         }
         return `
-          <div>
+          <div class="${spanCls}">
             <div class="flex items-center justify-between gap-2 mb-1.5">
               <label class="block text-base font-extrabold text-slate-900 truncate">${inp.label}</label>
-              <span id="label-val-${inp.id}" class="text-base text-blue-600 font-black shrink-0 whitespace-nowrap tabular-nums"></span>
+              <span id="label-val-${inp.id}" class="hidden sm:inline text-base text-blue-600 font-black shrink-0 whitespace-nowrap tabular-nums"></span>
             </div>
             <input id="inp-${inp.id}" type="number" value="${val}" min="${inp.min !== undefined ? inp.min : ''}" max="${inp.max !== undefined ? inp.max : ''}" step="${inp.step || '1'}"
               oninput="recalculateCurrent()"
@@ -276,6 +282,12 @@
     const res = spec.calculate(values);
     if (!res) return;
     lastCalcResult = res;
+
+    // Update Mobile Live 1-Line Result Bar right below inputs
+    const mobileLiveTextEl = document.getElementById('mobile-live-result-text');
+    if (mobileLiveTextEl) {
+      mobileLiveTextEl.textContent = res.headline || '실시간 계산 완료';
+    }
 
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
@@ -380,9 +392,11 @@
     if (headlineEl) headlineEl.textContent = res.headline;
     if (summaryEl) summaryEl.textContent = res.summary;
 
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (Big-Font 22~28px numbers!)
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (Big-Font 22~28px numbers, Mobile 3-col / 2x2 pills!)
     if (metricsGrid && res.metrics) {
-      const colClass = res.metrics.length >= 4 ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4" : "grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4";
+      const colClass = res.metrics.length >= 4
+        ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 mobile-metrics-4"
+        : "grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-4";
       metricsGrid.className = colClass;
       metricsGrid.innerHTML = res.metrics.map((m, idx) => {
         const isNeg = String(m.val).startsWith('-');
