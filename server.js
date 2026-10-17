@@ -226,10 +226,14 @@ function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
     return;
   }
 
-  // Classify search engine bots vs human visitors
-  const isBot = /bot|crawl|spider|slurp|yeti|daum|bingpreview|mediapartners|facebookexternalhit|gptbot|perplexity|claudebot|bytespider|indexnow/i.test(
-    ua
-  );
+  // Classify search engine bots, feed fetches (.xml/.txt), and automated scripts vs real human browsers
+  const isFeedOrTxt = /\.(xml|txt)$/i.test(cleanPath);
+  const isAutomatedUa =
+    !ua ||
+    /bot|crawl|spider|slurp|yeti|daum|bingpreview|mediapartners|facebookexternalhit|gptbot|perplexity|claudebot|bytespider|indexnow|headless|puppeteer|playwright|curl|wget|python|node|axios|undici|go-http-client|render|uptime|health|lighthouse/i.test(
+      ua
+    );
+  const isBot = isFeedOrTxt || isAutomatedUa;
 
   if (isBot) {
     bucket.botCrawls += 1;

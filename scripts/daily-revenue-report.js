@@ -187,6 +187,37 @@ async function resolveVisitorAndClickStats(injectedStats = null) {
     clicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 }
   };
 
+  // Persist live remote snapshot into logs/visitor_stats.json so subsequent git deployments never reset Render counters to 1
+  if (remoteStats && remoteStats.today && !injectedStats) {
+    try {
+      if (!fs.existsSync(LOGS_DIR)) fs.mkdirSync(LOGS_DIR, { recursive: true });
+      const existingRaw = fs.existsSync(STATS_FILE) ? JSON.parse(fs.readFileSync(STATS_FILE, 'utf8')) : {};
+      const mergedDays = Object.assign({}, existingRaw.days || {}, history);
+      mergedDays[dateStr] = Object.assign({}, mergedDays[dateStr] || {}, {
+        uniqueVisitors: Math.max(today.uniqueVisitors || 0, mergedDays[dateStr]?.uniqueVisitors || 0),
+        pageViews: Math.max(today.pageViews || 0, mergedDays[dateStr]?.pageViews || 0),
+        botCrawls: Math.max(today.botCrawls || 0, mergedDays[dateStr]?.botCrawls || 0),
+        affiliateClicks: Math.max(today.affiliateClicks || 0, mergedDays[dateStr]?.affiliateClicks || 0),
+        clicksByChannel: today.clicksByChannel || mergedDays[dateStr]?.clicksByChannel || { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+        clicksBySlot: today.clicksBySlot || mergedDays[dateStr]?.clicksBySlot,
+        clicksByCalc: today.clicksByCalc || mergedDays[dateStr]?.clicksByCalc,
+        botsByEngine: today.botsByEngine || mergedDays[dateStr]?.botsByEngine || { naver: 0, google: 0, bing: 0, ai: 0, other: 0 },
+        pages: existingRaw.days?.[dateStr]?.pages || {}
+      });
+      const syncedStore = {
+        startedAt: remoteStats.startedAt || existingRaw.startedAt || new Date().toISOString(),
+        totalPageViews: Math.max(total.pageViews || 0, existingRaw.totalPageViews || 0),
+        totalUniqueVisitors: Math.max(total.uniqueVisitors || 0, existingRaw.totalUniqueVisitors || 0),
+        totalBotCrawls: Math.max(total.botCrawls || 0, existingRaw.totalBotCrawls || 0),
+        totalAffiliateClicks: Math.max(total.affiliateClicks || 0, existingRaw.totalAffiliateClicks || 0),
+        totalClicksByChannel: total.clicksByChannel || existingRaw.totalClicksByChannel || { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+        lastDailyReportDate: remoteStats.lastDailyReportDate || existingRaw.lastDailyReportDate || '',
+        days: mergedDays
+      };
+      fs.writeFileSync(STATS_FILE, JSON.stringify(syncedStore, null, 2) + '\n', 'utf8');
+    } catch (e) {}
+  }
+
   return {
     dateStr,
     yesterdayStr,
