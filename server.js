@@ -67,6 +67,27 @@ function getKstDateString() {
   return getKstDateInfo().dateStr;
 }
 
+const DEFAULT_SLOTS = () => ({
+  input_bridge: 0,
+  metric_card: 0,
+  receipt_cart: 0,
+  cpa_card: 0,
+  deal_card: 0,
+  preset_table: 0,
+  sticky_mobile: 0,
+  other: 0
+});
+
+const DEFAULT_CALCS = () => ({
+  electric: 0,
+  diet: 0,
+  pet: 0,
+  room: 0,
+  auto: 0,
+  telecom: 0,
+  other: 0
+});
+
 let analyticsStore = {
   startedAt: new Date().toISOString(),
   totalPageViews: 0,
@@ -74,6 +95,8 @@ let analyticsStore = {
   totalBotCrawls: 0,
   totalAffiliateClicks: 0,
   totalClicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+  totalClicksBySlot: DEFAULT_SLOTS(),
+  totalClicksByCalc: DEFAULT_CALCS(),
   lastDailyReportDate: '',
   days: {}
 };
@@ -89,6 +112,8 @@ try {
           { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
           loaded.totalClicksByChannel || {}
         ),
+        totalClicksBySlot: Object.assign(DEFAULT_SLOTS(), loaded.totalClicksBySlot || {}),
+        totalClicksByCalc: Object.assign(DEFAULT_CALCS(), loaded.totalClicksByCalc || {}),
         days: loaded.days || {}
       };
     }
@@ -116,7 +141,8 @@ function ensureDayBucket(dateStr) {
       botCrawls: 0,
       affiliateClicks: 0,
       clicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
-      clicksByCalc: {},
+      clicksBySlot: DEFAULT_SLOTS(),
+      clicksByCalc: DEFAULT_CALCS(),
       botsByEngine: { naver: 0, google: 0, bing: 0, ai: 0, other: 0 },
       pages: {}
     };
@@ -125,8 +151,11 @@ function ensureDayBucket(dateStr) {
   if (!analyticsStore.days[dateStr].clicksByChannel) {
     analyticsStore.days[dateStr].clicksByChannel = { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 };
   }
+  if (!analyticsStore.days[dateStr].clicksBySlot) {
+    analyticsStore.days[dateStr].clicksBySlot = DEFAULT_SLOTS();
+  }
   if (!analyticsStore.days[dateStr].clicksByCalc) {
-    analyticsStore.days[dateStr].clicksByCalc = {};
+    analyticsStore.days[dateStr].clicksByCalc = DEFAULT_CALCS();
   }
   if (!dailyUvSets[dateStr]) {
     dailyUvSets[dateStr] = new Set();
@@ -170,10 +199,28 @@ function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
     bucket.clicksByChannel[normChannel] = (bucket.clicksByChannel[normChannel] || 0) + 1;
     analyticsStore.totalClicksByChannel[normChannel] = (analyticsStore.totalClicksByChannel[normChannel] || 0) + 1;
 
+    const rawSlot = String(extra.slot || (normChannel === 'sticky_mobile' ? 'sticky_mobile' : 'deal_card'))
+      .toLowerCase()
+      .replace(/[^a-z0-9_]/g, '');
+    const normSlot = [
+      'input_bridge',
+      'metric_card',
+      'receipt_cart',
+      'cpa_card',
+      'deal_card',
+      'preset_table',
+      'sticky_mobile'
+    ].includes(rawSlot)
+      ? rawSlot
+      : 'other';
+
+    bucket.clicksBySlot[normSlot] = (bucket.clicksBySlot[normSlot] || 0) + 1;
+    analyticsStore.totalClicksBySlot[normSlot] = (analyticsStore.totalClicksBySlot[normSlot] || 0) + 1;
+
     const rawCalc = String(extra.calc || '').toLowerCase().replace(/[^a-z0-9_]/g, '');
-    if (['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(rawCalc)) {
-      bucket.clicksByCalc[rawCalc] = (bucket.clicksByCalc[rawCalc] || 0) + 1;
-    }
+    const normCalc = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(rawCalc) ? rawCalc : 'other';
+    bucket.clicksByCalc[normCalc] = (bucket.clicksByCalc[normCalc] || 0) + 1;
+    analyticsStore.totalClicksByCalc[normCalc] = (analyticsStore.totalClicksByCalc[normCalc] || 0) + 1;
 
     saveAnalyticsToDisk();
     return;
@@ -235,16 +282,45 @@ function getStatsPayload() {
       pageViews: b.pageViews,
       botCrawls: b.botCrawls,
       affiliateClicks: b.affiliateClicks,
-      clicksByChannel: b.clicksByChannel || { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 }
+      clicksByChannel: b.clicksByChannel || { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+      clicksBySlot: b.clicksBySlot || DEFAULT_SLOTS()
     };
   });
+
+  const todayCtr = today.uniqueVisitors > 0 ? Number(((today.affiliateClicks / today.uniqueVisitors) * 100).toFixed(2)) : 0;
+  const totalCtr = analyticsStore.totalUniqueVisitors > 0
+    ? Number(((analyticsStore.totalAffiliateClicks / analyticsStore.totalUniqueVisitors) * 100).toFixed(2))
+    : 0;
+
+  const findTopKey = (obj) => {
+    let bestKey = 'receipt_cart';
+    let bestVal = -1;
+    Object.entries(obj || {}).forEach(([k, v]) => {
+      if (v > bestVal) {
+        bestVal = v;
+        bestKey = k;
+      }
+    });
+    return bestVal > 0 ? `${bestKey}(${bestVal})` : '집계중';
+  };
+
+  const totalCpClicks = analyticsStore.totalClicksByChannel.coupang || 0;
+  const totalLpClicks = analyticsStore.totalClicksByChannel.linkprice || 0;
+  const totalCpaClicks = analyticsStore.totalClicksByChannel.cpa || 0;
+  const estNetKrw = Math.round(totalCpClicks * 45000 * 0.045 * 0.03 + totalLpClicks * 120000 * 0.035 * 0.04 + totalCpaClicks * 1500);
+  const octoberGoalKrw = 1000000;
 
   const totalsObj = {
     uniqueVisitors: analyticsStore.totalUniqueVisitors,
     pageViews: analyticsStore.totalPageViews,
     botCrawls: analyticsStore.totalBotCrawls,
     affiliateClicks: analyticsStore.totalAffiliateClicks,
-    clicksByChannel: analyticsStore.totalClicksByChannel
+    ctrPercent: totalCtr,
+    clicksByChannel: analyticsStore.totalClicksByChannel,
+    clicksBySlot: analyticsStore.totalClicksBySlot,
+    clicksByCalc: analyticsStore.totalClicksByCalc,
+    topSlot: findTopKey(analyticsStore.totalClicksBySlot),
+    topCalc: findTopKey(analyticsStore.totalClicksByCalc)
   };
 
   return {
@@ -258,13 +334,28 @@ function getStatsPayload() {
       pageViews: today.pageViews,
       botCrawls: today.botCrawls,
       affiliateClicks: today.affiliateClicks,
+      ctrPercent: todayCtr,
       clicksByChannel: today.clicksByChannel,
+      clicksBySlot: today.clicksBySlot,
       clicksByCalc: today.clicksByCalc,
       botsByEngine: today.botsByEngine,
       topPages
     },
     total: totalsObj,
     totals: totalsObj,
+    revenueGoal: {
+      octoberGoalKrw,
+      monthlyGrowthTarget: '+100% MoM',
+      roadmap: {
+        oct2026: 1000000,
+        nov2026: 2000000,
+        dec2026: 4000000,
+        jan2027: 8000000
+      },
+      estCommissionKrw: estNetKrw,
+      goalAchievementPercent: Number(((estNetKrw / octoberGoalKrw) * 100).toFixed(2)),
+      remainingKrw: Math.max(0, octoberGoalKrw - estNetKrw)
+    },
     recentHistory
   };
 }
@@ -443,14 +534,15 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 3. Client-side Analytics & Affiliate Click Beacon (/api/track?type=pageview|click&channel=coupang|linkprice|cpa&calc=...&p=/path)
+  // 3. Client-side Analytics & Affiliate Click Beacon (/api/track?type=pageview|click&channel=coupang|linkprice|cpa&calc=...&slot=...&p=/path)
   if (cleanUrlPath === '/api/track') {
     const params = new URLSearchParams(rawQuery || '');
     const evType = params.get('type') || 'pageview';
     const targetPage = params.get('p') || '/';
     const channel = params.get('channel') || '';
     const calc = params.get('calc') || '';
-    recordVisit(req, targetPage, evType, { channel, calc });
+    const slot = params.get('slot') || '';
+    recordVisit(req, targetPage, evType, { channel, calc, slot });
     res.writeHead(200, {
       ...SECURITY_HEADERS,
       'Content-Type': 'application/json; charset=utf-8',

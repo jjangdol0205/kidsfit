@@ -381,18 +381,30 @@ async function buildDailyRevenueData(injectedStats = null) {
 function formatDailyRevenueHtml(report) {
   const esc = telegramNotify.escapeHtml;
   const b = report.backlog;
+  const totalUv = Math.max(1, report.visitors.totalUv || 1);
+  const totalCtr = Number(((report.clicks.totalClicks / totalUv) * 100).toFixed(2));
+  const octGoalKrw = 1000000;
+  const goalPct = Number(((report.summary.cumulativeTotalNet / octGoalKrw) * 100).toFixed(2));
+  const remainingKrw = Math.max(0, octGoalKrw - report.summary.cumulativeTotalNet);
+
   const backlogLines = b
     ? [
         ``,
-        `📋 <b>5. 총괄 매니저 백로그 점검 &amp; 실적 견인 액션</b>`,
-        `• 🎨 <b>웹툰 백로그</b>: 고해상도 PNG <code>${b.webtoonRendered}/36편</code> 준비 | <code>@moneyfit2026</code> 게시 <code>${b.webtoonPublished}/36편</code> (대기 <b><code>${b.webtoonPending}편</code></b>)`,
+        `🎯 <b>5. 10월 목표 100만 원 (+100% MoM) &amp; CTR 실험 현황</b>`,
+        `• <b>10월 목표 금액</b>: <code>1,000,000원</code> (달성률 <code>${goalPct}%</code> / 잔여 <code>${remainingKrw.toLocaleString()}원</code>)`,
+        `• <b>월별 성장 로드맵</b>: <code>10월 100만 → 11월 200만 → 12월 400만 (+100% MoM)</code>`,
+        `• <b>실시간 제휴 CTR</b>: <b><code>${totalCtr}%</code></b> (누적 클릭 <code>${report.clicks.totalClicks}회</code> / 일 목표 <code>108클릭</code>)`,
+        `• <b>가동 중 CRO 실험</b>: <code>EXP-0(광고경계심 제거)</code> · <code>EXP-A(실체감가 0원)</code> · <code>EXP-B(비교표 직결버튼)</code> · <code>EXP-C(7슬롯 CTR 추적)</code>`,
+        ``,
+        `📋 <b>6. 총괄 매니저 웹툰·네이버 백로그 상시 점검</b>`,
+        `• 🎨 <b>웹툰 백로그</b>: 고해상도 PNG <b><code>${b.webtoonRendered}/36편(100%)</code></b> 완비 | <code>@moneyfit2026</code> 게시 <code>${b.webtoonPublished}/36편</code> (대기 <b><code>${b.webtoonPending}편</code></b>)`,
         `• 🟢 <b>네이버 백로그</b>: 총 <code>${b.naverTotalDone}/${b.naverTotalTarget}건</code> 완료 | 블로그 대기 <b><code>${b.blogPending}건</code></b> · 지식iN 대기 <b><code>${b.jisikinPending}건</code></b> · 카페 대기 <b><code>${b.cafePending}건</code></b>`,
-        `• 🎯 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 웹툰 업로드 + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행`
+        `• 🚀 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 업로드 + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행`
       ]
     : [];
 
   return [
-    `🌅 <b>[머니핏(MoneyFit) 오전 06:00 총괄 매니저 일일 실적·수익·백로그 보고]</b>`,
+    `🌅 <b>[머니핏(MoneyFit) 오전 06:00 총괄 매니저 일일 실적·CTR·백로그 보고]</b>`,
     `🕒 <b>보고 기준</b>: <code>${esc(report.dateStr)} ${esc(report.timeStr)} KST</code>`,
     `🌐 <b>운영 도메인</b>: <a href="https://truthofmarket.com">https://truthofmarket.com</a>`,
     `━━━━━━━━━━━━━━━━━━━━━━`,

@@ -255,7 +255,7 @@
           <div id="res-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
             
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'metric_card')"
          class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
         <div class="text-[11px] text-slate-400 truncate">일일 탄·단·지(g)</div>
         <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">242 / 140 / 56g</div>
@@ -263,7 +263,7 @@
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%EA%B3%B0%EA%B3%B0&q=%EC%A6%89%EC%84%9D%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EA%B3%A4%EC%95%BD%EB%B0%A5%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EB%B0%95%EC%8A%A4&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'metric_card')"
          class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
         <div class="text-[11px] text-slate-400 truncate">1주 닭가슴살(100g)</div>
         <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">총 28팩</div>
@@ -271,7 +271,7 @@
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=WPI%20%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20%ED%94%84%EB%A1%9C%ED%8B%B4%20%ED%8C%8C%EC%9A%B0%EB%8D%94&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'metric_card')"
          class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
         <div class="text-[11px] text-slate-400 truncate">1주 즉석 현미밥</div>
         <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-0.5 whitespace-nowrap truncate tabular-nums">총 14개</div>
@@ -321,6 +321,9 @@
               <div class="text-xs sm:text-sm font-extrabold text-amber-300 whitespace-nowrap truncate">🧾 내 계산 수치 1:1 직결 처방 장바구니</div>
               <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold shrink-0 whitespace-nowrap">수량·예산 자동 매칭</span>
             </div>
+            <div id="res-zero-feel-banner" class="bg-gradient-to-r from-amber-400 to-orange-400 text-slate-950 text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-xl shadow-sm break-keep">
+              편의점·배달 절약액 차감 시 내 실체감가: 0원 (오히려 1주 식비 +62,300원 세이브!)
+            </div>
             <div id="res-action-items" class="space-y-2">
               
       <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
@@ -333,12 +336,12 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('coupang', this.href)"
+             onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🚀 닭가슴살 28팩 로켓프레시 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EB%2583%2589%25EB%258F%2599%2520%25EB%258B%25AD%25EA%25B0%2580%25EC%258A%25B4%25EC%2582%25B4%2520100g%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('linkprice', this.href)"
+             onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
              class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🏷️ 지마켓 묶음특가 ↗
           </a>
@@ -355,12 +358,12 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%EA%B3%B0%EA%B3%B0&q=%EC%A6%89%EC%84%9D%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EA%B3%A4%EC%95%BD%EB%B0%A5%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EB%B0%95%EC%8A%A4&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('coupang', this.href)"
+             onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🚀 현미밥 14개 박스 최저가 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EC%25A6%2589%25EC%2584%259D%2520%25ED%2598%2584%25EB%25AF%25B8%25EB%25B0%25A5%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589%2520%25EB%25B0%2595%25EC%258A%25A4" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('linkprice', this.href)"
+             onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
              class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🏷️ 지마켓 박스할인 ↗
           </a>
@@ -377,12 +380,12 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=WPI%20%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20%ED%94%84%EB%A1%9C%ED%8B%B4%20%ED%8C%8C%EC%9A%B0%EB%8D%94&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('coupang', this.href)"
+             onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🚀 WPI 프로틴 1통 로켓배송 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('linkprice', this.href)"
+             onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
              class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             🏷️ 롯데ON 공식몰 특가 ↗
           </a>
@@ -395,7 +398,7 @@
           <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('cpa', this.href)"
+               onclick="recordPresetClick('cpa', this.href, 'cpa_card')"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
                 <span id="res-cpa-badge" class="whitespace-nowrap truncate">🚀 쿠팡 로켓프레시 · 롯데ON 제휴</span>
@@ -405,12 +408,12 @@
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordPresetClick('coupang', this.href)"
+                 onclick="recordPresetClick('coupang', this.href, 'cpa_card')"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 🚀 쿠팡 닭가슴살 로켓프레시 ↗
               </a>
               <a id="res-cpa-lp-sub" href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordPresetClick('linkprice', this.href)"
+                 onclick="recordPresetClick('linkprice', this.href, 'cpa_card')"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 🏷️ 롯데ON WPI 프로틴 특가 ↗
               </a>
@@ -423,12 +426,12 @@
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'deal_card')"
          class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-1.5">
             <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">❄️ 로켓프레시 새벽도착</span>
+            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 배달·편의점 절약액 차감 시 체감가 0원!</span>
           </div>
           <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">🍗 내 계산 연동: 1주 총 28팩 (일일 단백질 140g)</div>
           <div class="text-xs font-extrabold text-white leading-snug break-keep">🍗 하림·곰곰 냉동 닭가슴살 100g (28팩 맞춤 구성)</div>
@@ -438,12 +441,12 @@
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%EA%B3%B0%EA%B3%B0&q=%EC%A6%89%EC%84%9D%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EB%B0%95%EC%8A%A4&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'deal_card')"
          class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-1.5">
             <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">📦 대용량 박스 할인가</span>
+            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 배달·편의점 절약액 차감 시 체감가 0원!</span>
           </div>
           <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">🍚 내 계산 연동: 1주 총 14개 (일일 탄수 242g)</div>
           <div class="text-xs font-extrabold text-white leading-snug break-keep">🍚 곰곰·오뚜기 즉석 현미밥·곤약밥 (14개입 대용량 박스)</div>
@@ -453,12 +456,12 @@
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('linkprice', this.href)"
+         onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
          class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-1.5">
             <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 롯데ON</span>
-            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">💪 1통 공식몰 특가</span>
+            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 배달·편의점 절약액 차감 시 체감가 0원!</span>
           </div>
           <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">💪 내 계산 연동: 1주 1통 (하루 1스쿱 30g)</div>
           <div class="text-xs font-extrabold text-white leading-snug break-keep">💪 롯데ON WPI 분리유청 프로틴 보충제 (1통 공식특가)</div>
@@ -468,12 +471,12 @@
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EB%2583%2589%25EB%258F%2599%2520%25EB%258B%25AD%25EA%25B0%2580%25EC%258A%25B4%25EC%2582%25B4%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589%2520%25ED%2598%2584%25EB%25AF%25B8%25EB%25B0%25A5" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('linkprice', this.href)"
+         onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
          class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-1.5">
             <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 링크프라이스 · 지마켓</span>
-            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🏷️ 스마일배송 묶음할인</span>
+            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🔥 배달·편의점 절약액 차감 시 체감가 0원!</span>
           </div>
           <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">💰 내 계산 연동: 편의점 대비 62,300원 절약</div>
           <div class="text-xs font-extrabold text-white leading-snug break-keep">🥗 지마켓 닭가슴살 28팩 + 현미밥 14개 올인원 기획전</div>
@@ -562,7 +565,7 @@
     <div id="comparison-table-section" class="overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm bg-white">
       <div class="bg-slate-900 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
         <span class="text-xs font-extrabold text-amber-300">📊 시나리오별 손익 비교표 & 실시간 최저가 직결</span>
-        <span class="text-[11px] font-bold text-emerald-300">⚡ 클릭 시 해당 조건 최저가·지원금 즉시 조회</span>
+        <span class="text-[11px] font-bold text-emerald-300">🔥 배달·편의점 절약액 차감 시 체감가 0원!</span>
       </div>
       <table class="w-full border-collapse text-left text-sm">
         <caption class="sr-only">자취생·대학생 1주 가성비 헬스 식단 장보기 표 핵심 시나리오별 손익 비교표</caption>
@@ -597,7 +600,7 @@
                 </td>
               
               <td class="py-3 px-3 text-center whitespace-nowrap">
-                <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EC%9E%90%EC%B7%A8%EC%83%9D%C2%B7%EB%8C%80%ED%95%99%EC%83%9D%201%EC%A3%BC%20%EA%B0%80%EC%84%B1%EB%B9%84%20%ED%97%AC%EC%8A%A4%20%EC%8B%9D%EB%8B%A8%20%EC%9E%A5%EB%B3%B4%EA%B8%B0%20%ED%91%9C&channel=user" target="_blank" rel="noopener noreferrer sponsored"
+                <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'preset_table')"
                    class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
                   🚀 최저가 확인 ↗
@@ -628,7 +631,7 @@
                 </td>
               
               <td class="py-3 px-3 text-center whitespace-nowrap">
-                <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+                <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EC%25A6%2589%25EC%2584%259D%2520%25ED%2598%2584%25EB%25AF%25B8%25EB%25B0%25A5%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589%2520%25EB%25B0%2595%25EC%258A%25A4" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'preset_table')"
                    class="inline-block bg-rose-600 hover:bg-rose-500 text-white shadow-sm font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
                   🏷️ 제휴 특가 ↗
@@ -659,7 +662,7 @@
                 </td>
               
               <td class="py-3 px-3 text-center whitespace-nowrap">
-                <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EC%9E%90%EC%B7%A8%EC%83%9D%C2%B7%EB%8C%80%ED%95%99%EC%83%9D%201%EC%A3%BC%20%EA%B0%80%EC%84%B1%EB%B9%84%20%ED%97%AC%EC%8A%A4%20%EC%8B%9D%EB%8B%A8%20%EC%9E%A5%EB%B3%B4%EA%B8%B0%20%ED%91%9C&channel=user" target="_blank" rel="noopener noreferrer sponsored"
+                <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=WPI%20%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20%ED%94%84%EB%A1%9C%ED%8B%B4%20%ED%8C%8C%EC%9A%B0%EB%8D%94&channel=user" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'preset_table')"
                    class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
                   🚀 최저가 확인 ↗
@@ -690,7 +693,7 @@
                 </td>
               
               <td class="py-3 px-3 text-center whitespace-nowrap">
-                <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+                <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EB%2583%2589%25EB%258F%2599%2520%25EB%258B%25AD%25EA%25B0%2580%25EC%258A%25B4%25EC%2582%25B4%2520100g%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'preset_table')"
                    class="inline-block bg-rose-600 hover:bg-rose-500 text-white shadow-sm font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
                   🏷️ 제휴 특가 ↗
@@ -702,18 +705,18 @@
       </table>
       <div class="bg-amber-50/90 border-t border-amber-200 px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
         <div class="text-xs font-extrabold text-amber-950 break-keep">
-          💡 계산된 최적 시나리오 기준 최저가·사은품 혜택을 바로 확인하세요.
+          편의점·배달 절약액 차감 시 내 실체감가: 0원 (오히려 1주 식비 +62,300원 세이브!)
         </div>
         <div class="flex items-center gap-2 shrink-0">
-          <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EC%9E%90%EC%B7%A8%EC%83%9D%C2%B7%EB%8C%80%ED%95%99%EC%83%9D%201%EC%A3%BC%20%EA%B0%80%EC%84%B1%EB%B9%84%20%ED%97%AC%EC%8A%A4%20%EC%8B%9D%EB%8B%A8%20%EC%9E%A5%EB%B3%B4%EA%B8%B0%20%ED%91%9C&channel=user" target="_blank" rel="noopener noreferrer sponsored"
+          <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'preset_table')"
              class="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-lg transition shadow-sm whitespace-nowrap">
-            🚀 쿠팡 로켓 최저가 ↗
+            🚀 닭가슴살 28팩 로켓프레시 ↗
           </a>
-          <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2F" target="_blank" rel="noopener noreferrer sponsored"
+          <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EB%2583%2589%25EB%258F%2599%2520%25EB%258B%25AD%25EA%25B0%2580%25EC%258A%25B4%25EC%2582%25B4%2520100g%2520%25EB%258C%2580%25EC%259A%25A9%25EB%259F%2589" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'preset_table')"
              class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-lg transition shadow-sm whitespace-nowrap">
-            🏷️ 공식몰 제휴 특가 ↗
+            🏷️ 지마켓 박스할인 ↗
           </a>
         </div>
       </div>
@@ -937,7 +940,7 @@
         <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">1주 식단 묶음! 닭가슴살 28팩 · 현미밥 14개 특가</div>
       </div>
       <a id="sticky-cta-btn" href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('sticky_mobile', this.href)"
+         onclick="recordPresetClick('sticky_mobile', this.href, 'sticky_mobile')"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
         혜택 즉시 확인 →
       </a>
@@ -956,17 +959,20 @@
       MoneyFitMonetization.loadConfigFromStorage();
     }
 
-    function recordPresetClick(channel, url) {
+    function recordPresetClick(channel, url, slot) {
       try {
+        const safeSlot = String(slot || 'deal_card').replace(/[^a-zA-Z0-9_-]/g, '');
         if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getConfig && MoneyFitMonetization.saveConfigToStorage) {
           const cfg = MoneyFitMonetization.getConfig();
           cfg.clickCount = (cfg.clickCount || 0) + 1;
-          MoneyFitMonetization.saveConfigToStorage({ clickCount: cfg.clickCount });
+          const clicksBySlot = Object.assign({}, cfg.clicksBySlot || {});
+          clicksBySlot[safeSlot] = (clicksBySlot[safeSlot] || 0) + 1;
+          MoneyFitMonetization.saveConfigToStorage({ clickCount: cfg.clickCount, clicksBySlot: clicksBySlot });
         }
         const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
         const pagePath = (window.location && window.location.pathname) ? window.location.pathname : '/';
         if (typeof fetch === 'function') {
-          fetch('/api/track?type=click&channel=' + encodeURIComponent(safeChannel) + '&calc=' + encodeURIComponent(PRESET_CALC) + '&p=' + encodeURIComponent(pagePath), {
+          fetch('/api/track?type=click&channel=' + encodeURIComponent(safeChannel) + '&calc=' + encodeURIComponent(PRESET_CALC) + '&slot=' + encodeURIComponent(safeSlot) + '&p=' + encodeURIComponent(pagePath), {
             method: 'GET',
             keepalive: true
           }).catch(function () {});
@@ -1041,6 +1047,7 @@
       const grid = document.getElementById('res-metrics-grid');
       const lossBar = document.getElementById('res-loss-bar');
       const summary = document.getElementById('res-summary');
+      const zeroFeelBanner = document.getElementById('res-zero-feel-banner');
       const actionItemsEl = document.getElementById('res-action-items');
       const cpaBadge = document.getElementById('res-cpa-badge');
       const cpaTitle = document.getElementById('res-cpa-title');
@@ -1048,6 +1055,11 @@
       const cpaCoupangSub = document.getElementById('res-cpa-coupang-sub');
       const cpaLpSub = document.getElementById('res-cpa-lp-sub');
       const productsGrid = document.getElementById('res-products-grid');
+
+      const zf = res.zeroFeelFraming || null;
+      if (zeroFeelBanner && zf && zf.callout) {
+        zeroFeelBanner.textContent = zf.callout;
+      }
 
       const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
       const buildCp = (kw) => (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.buildCoupangUrl)
@@ -1079,7 +1091,7 @@
           const stepHint = matchedAction ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '맞춤 특가'} ↗` : '🛒 최저가 보기 ↗';
           return `
             <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('coupang', this.href)"
+               onclick="recordPresetClick('coupang', this.href, 'metric_card')"
                class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
               <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
               <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
@@ -1104,12 +1116,12 @@
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordPresetClick('coupang', this.href)"
+                   onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
                    class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                   ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
                 </a>
                 <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordPresetClick('linkprice', this.href)"
+                   onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
                    class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                   ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
                 </a>
@@ -1170,7 +1182,7 @@
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
             : `🏷️ 링크프라이스 · ${merchantName}`;
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
+          const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
           const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
@@ -1178,7 +1190,7 @@
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return `
             <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('${p.type}', this.href)"
+               onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
                class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
@@ -1201,7 +1213,7 @@
       if (stickySub && stickyMain && stickyBtn) {
         const lc = res.lossComparison || {};
         const primaryAction = actionItems[0] || null;
-        stickySub.textContent = primaryAction ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}` : (lc.savingBadge || res.badge);
+        stickySub.textContent = (zf && zf.badge) ? `${zf.badge} · ${primaryAction ? primaryAction.calcVal : ''}` : (primaryAction ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}` : (lc.savingBadge || res.badge));
         stickyMain.textContent = primaryAction ? primaryAction.label : ((d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline));
         stickyBtn.href = primaryAction ? buildCp(primaryAction.coupangKw) : ((d && (d.liveActionUrl || d.actionUrl)) ? (d.liveActionUrl || d.actionUrl) : '#');
       }

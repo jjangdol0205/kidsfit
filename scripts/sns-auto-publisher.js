@@ -20,7 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { spawnSync } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const { PRESETS } = require('../src/data/presets.js');
 const { CALCULATORS } = require('../src/data/calculators.js');
 const telegramNotifier = require('./telegram-notify.js');
@@ -845,11 +845,14 @@ window.addEventListener('load', renderAll);
 </html>`;
 }
 
+const os = require('os');
+
 /**
  * Render HTML to PNG via Headless Chrome (Synchronous)
  */
 function renderPngWithChrome(chromePath, htmlContent, outputPngPath) {
   const tempHtmlPath = outputPngPath.replace(/\.png$/i, '.temp.html');
+  const tempProfileDir = path.join(os.tmpdir(), 'mf-chr-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8));
   fs.writeFileSync(tempHtmlPath, htmlContent, 'utf8');
   const fileUrl = 'file:///' + tempHtmlPath.replace(/\\/g, '/');
 
@@ -859,20 +862,80 @@ function renderPngWithChrome(chromePath, htmlContent, outputPngPath) {
       '--headless=new',
       '--disable-gpu',
       '--hide-scrollbars',
+      '--no-first-run',
+      '--no-default-browser-check',
+      `--user-data-dir=${tempProfileDir}`,
       '--window-size=1080,1080',
       `--screenshot=${outputPngPath}`,
       fileUrl
     ],
-    { encoding: 'utf8', timeout: 20000 }
+    { encoding: 'utf8', timeout: 25000 }
   );
 
   try {
     if (fs.existsSync(tempHtmlPath)) fs.unlinkSync(tempHtmlPath);
+    if (fs.existsSync(tempProfileDir)) fs.rmSync(tempProfileDir, { recursive: true, force: true });
   } catch (e) {
     // ignore
   }
 
   return res.status === 0 && fs.existsSync(outputPngPath);
+}
+
+/**
+ * Render HTML to PNG via Headless Chrome (Async Parallel with Isolated User-Data-Dir)
+ */
+function renderPngWithChromeAsync(chromePath, htmlContent, outputPngPath) {
+  return new Promise(resolve => {
+    const tempHtmlPath = outputPngPath.replace(/\.png$/i, '.temp.html');
+    const tempProfileDir = path.join(os.tmpdir(), 'mf-chr-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9));
+    fs.writeFileSync(tempHtmlPath, htmlContent, 'utf8');
+    const fileUrl = 'file:///' + tempHtmlPath.replace(/\\/g, '/');
+
+    const child = spawn(
+      chromePath,
+      [
+        '--headless=new',
+        '--disable-gpu',
+        '--hide-scrollbars',
+        '--no-first-run',
+        '--no-default-browser-check',
+        `--user-data-dir=${tempProfileDir}`,
+        '--window-size=1080,1080',
+        `--screenshot=${outputPngPath}`,
+        fileUrl
+      ],
+      { stdio: 'ignore' }
+    );
+
+    const cleanup = () => {
+      try {
+        if (fs.existsSync(tempHtmlPath)) fs.unlinkSync(tempHtmlPath);
+      } catch (e) {}
+      try {
+        if (fs.existsSync(tempProfileDir)) fs.rmSync(tempProfileDir, { recursive: true, force: true });
+      } catch (e) {}
+    };
+
+    const timer = setTimeout(() => {
+      try {
+        child.kill();
+      } catch (e) {}
+      cleanup();
+      resolve(fs.existsSync(outputPngPath));
+    }, 25000);
+
+    child.on('close', code => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(code === 0 && fs.existsSync(outputPngPath));
+    });
+    child.on('error', () => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(false);
+    });
+  });
 }
 
 /**
@@ -969,21 +1032,34 @@ async function generateWebtoonPack(options = {}) {
   const chromePath = findChromeExecutable();
   const slidePaths = [1, 2, 3, 4].map(i => path.join(outDir, `slide-${i}.png`));
 
-  const allPngsExist =
-    fs.existsSync(gridPngPath) &&
-    fs.existsSync(publicGridPngPath) &&
-    slidePaths.every(sp => fs.existsSync(sp));
-
-  if (chromePath && !(options.skipExisting && allPngsExist)) {
-    const gridHtml = buildRenderHtml(bundle, 'grid', 1);
-    renderPngWithChrome(chromePath, gridHtml, gridPngPath);
-    if (fs.existsSync(gridPngPath)) {
-      fs.copyFileSync(gridPngPath, publicGridPngPath);
+  if (chromePath) {
+    const tasks = [];
+    if (!(options.skipExisting && fs.existsSync(gridPngPath))) {
+      tasks.push(
+        renderPngWithChromeAsync(chromePath, buildRenderHtml(bundle, 'grid', 1), gridPngPath).then(ok => {
+          if (!ok && !fs.existsSync(gridPngPath)) {
+            renderPngWithChrome(chromePath, buildRenderHtml(bundle, 'grid', 1), gridPngPath);
+          }
+        })
+      );
     }
     for (let i = 1; i <= 4; i++) {
       const sPath = slidePaths[i - 1];
-      const sHtml = buildRenderHtml(bundle, 'slide', i);
-      renderPngWithChrome(chromePath, sHtml, sPath);
+      if (!(options.skipExisting && fs.existsSync(sPath))) {
+        tasks.push(
+          renderPngWithChromeAsync(chromePath, buildRenderHtml(bundle, 'slide', i), sPath).then(ok => {
+            if (!ok && !fs.existsSync(sPath)) {
+              renderPngWithChrome(chromePath, buildRenderHtml(bundle, 'slide', i), sPath);
+            }
+          })
+        );
+      }
+    }
+    if (tasks.length > 0) {
+      await Promise.all(tasks);
+    }
+    if (fs.existsSync(gridPngPath)) {
+      fs.copyFileSync(gridPngPath, publicGridPngPath);
     }
   } else if (fs.existsSync(gridPngPath) && !fs.existsSync(publicGridPngPath)) {
     fs.copyFileSync(gridPngPath, publicGridPngPath);
