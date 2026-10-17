@@ -21,6 +21,7 @@ const OUTPUT_DATA_JS = path.join(PROJECT_ROOT, 'src', 'data', 'viral-content.js'
 const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
 const monetization = require('../src/data/monetization.js');
+const webtoonStories = require('../src/data/webtoon-stories.js');
 
 // Default config fallback
 let siteUrl = 'https://truthofmarket.com';
@@ -76,6 +77,57 @@ const QUERY_MAP = {
   'telecom-mvno-switch': '알뜰폰 유심 요금제 5G 전환 절감액'
 };
 
+const CATEGORY_STRATEGY_MAP = {
+  electric: {
+    introContext: '매달 고지서에 찍히는 전기요금 누진세 구간과 가전 소비전력(W) 효율 차이',
+    authoritySource: '한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식',
+    step1: '우리 집 월 기본 사용량(kWh)과 추가 가전의 실제 소비전력(W)·가동시간을 정확히 대입해 누진 구간 점프 여부를 먼저 확인하세요.',
+    step2: '누진 3단계(400kWh 초과) 구간으로 넘어가는 시간을 줄이거나, 정속형·저효율 기기를 인버터 1등급으로 전환해 고정 누수를 차단하세요.',
+    step3: '한전 고효율 가전 구매비용 환급사업과 로켓설치·카드 즉시할인 혜택을 결합해 기기 교체 손익분기점(BEP)을 앞당기세요.',
+    inputHint: '소비전력(W)·가동시간·기본 사용량'
+  },
+  diet: {
+    introContext: '내 기초대사량(BMR)·활동대사량(TDEE)에 맞춘 일일 칼로리 설계와 식단 장보기 예산',
+    authoritySource: '미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준',
+    step1: '체중·키·나이·활동량을 기반으로 내 정확한 일일 활동대사량(TDEE)과 목표 칼로리(감량 적자 또는 벌크업 흑자)를 먼저 산출하세요.',
+    step2: '배달음식·외식·단품 편의점 결제로 새나가는 식비를 줄이고, 일일 목표 단백질(g)에 맞춘 대용량 묶음 식단으로 100g당 단가를 낮추세요.',
+    step3: '닭가슴살·복합탄수화물·프로틴 파우더를 한 달 필요량(kg) 기준으로 장바구니에 담아 식비와 체성분을 동시에 잡으세요.',
+    inputHint: '성별·체중·키·활동량·목표주수'
+  },
+  pet: {
+    introContext: '반려동물 생애주기별 일일 적정 에너지 요구량(DER)과 월간 사료·케어 고정비',
+    authoritySource: '미국국립연구위원회(NRC)·유럽반려동물산업연맹(FEDIAF) 수의영양학 칼로리 공식',
+    step1: '아이의 현재 체중(kg), 중성화·연령 가중치, 사료 대사량(kcal/kg)을 대입해 하루 적정 급여량(g)을 1g 단위로 먼저 확인하세요.',
+    step2: '종이컵 눈대중 급여로 인한 과체중·관절 부담이나 소포장 반복 구매로 새나가는 kg당 사료 단가 손실을 막으세요.',
+    step3: '한 포대 소진 일수(일)에 맞춘 중·대포장 정기배송과 전자저울·맞춤 영양제를 활용해 병원비와 사료비를 함께 아끼세요.',
+    inputHint: '반려동물 체중·생애주기·사료 칼로리'
+  },
+  room: {
+    introContext: '첫 독립·이사·신혼 입주 시 평수와 총예산 한도 내에서 실패 없는 가전·가구 물량산출(BOM)',
+    authoritySource: '표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘',
+    step1: '입주할 방의 실평수와 가용 총예산(만 원)을 먼저 입력해 예산 초과(Overrun) 없는 품목별 상한선을 확정하세요.',
+    step2: '단품 충동구매로 예산을 다 써버리거나 방 크기에 맞지 않는 오버스펙 가구를 사서 동선이 막히는 시행착오를 피하세요.',
+    step3: '필수 코어 가전(냉장고·세탁기·전자레인지)과 수면 가구(매트리스·침대)를 우선 배정하고 남는 예비비로 수납·조명을 채우세요.',
+    inputHint: '총예산(만 원)·방 평수'
+  },
+  auto: {
+    introContext: '신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교',
+    authoritySource: '여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식',
+    step1: '차량가(만 원), 이용 기간(개월), 본인의 종합소득세율 구간(%)을 입력해 취득세·보험료·세금 감면액이 반영된 실질 TCO를 비교하세요.',
+    step2: '직장인(세율 0%)이 영업사원 말만 듣고 비싼 렌트를 타거나, 고소득 사업자(24~35%)가 할부로 사서 수천만 원 절세 혜택을 놓치는 실수를 막으세요.',
+    step3: '구매 방식 판정 결과에 따라 다이렉트 오토 캐시백 또는 무보증 즉시출고 특판 견적을 최소 2~3곳 이상 비교해 월 납입금을 낮추세요.',
+    inputHint: '차량가·이용기간·소득세율 구간'
+  },
+  telecom: {
+    introContext: '인터넷·TV·휴대폰 약정 기간 중 남은 위약금과 신규 가입 현금 사은품(지원금)·월 요금 절감액의 손익분기점',
+    authoritySource: '방송통신위원회 경품 고시 가이드라인 및 통신 3사·알뜰폰 요금 차액 손익분기점 수식',
+    step1: '현재 납부 중인 월 요금, 해지 시 예상 위약금(만 원), 신규 가입 시 받을 사은품과 새 요금을 넣어 당일 순이익과 손익분기점(개월)을 확인하세요.',
+    step2: '약정이 끝났는데도 아무 혜택 없이 요금을 그대로 내거나, 위약금이 무서워 매달 더 큰 요금 차액을 손해 보는 현상을 멈추세요.',
+    step3: '위약금보다 사은품+요금 절감액이 더 큰 구간이라면 당일 현금 지원 성지 또는 알뜰폰 무약정 유심으로 즉시 갈아타 고정비를 줄이세요.',
+    inputHint: '남은 위약금·기존 요금·신규 요금·사은품'
+  }
+};
+
 /**
  * Execute calculator for a preset
  */
@@ -123,7 +175,7 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const query = QUERY_MAP[preset.id] || preset.title.split(' ').slice(0, 4).join(' ');
   const subQueries = [
     query,
-    `${preset.category} ${preset.id.split('-')[1] || ''} 추천 후기`.trim(),
+    `${preset.category} ${query.split(' ').slice(0, 2).join(' ')} 후기`.trim(),
     `${query} 비교 디시`
   ];
   const encodedQ = encodeURIComponent(query);
@@ -134,45 +186,47 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const threadsSearchUrl = `https://www.threads.net/search?q=${encodedQ}&serp_type=default`;
   const daumCafeSearchUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}&sort=recency`;
 
-  // 1. Blog Post
+  const story = (webtoonStories.PRESET_WEBTOON_MAP && webtoonStories.PRESET_WEBTOON_MAP[preset.id]) || {};
+  const strat = CATEGORY_STRATEGY_MAP[preset.calc] || CATEGORY_STRATEGY_MAP.electric;
+  const uniqueHashtags = story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`;
+
+  // 1. Blog Post (Preset-Unique Opening, Domain-Specific Strategy, Zero Cross-Category Boilerplate)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
   const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
   const faqList = (preset.faq || []).map((f, i) => `**Q${i + 1}. ${f.question || f.q}**\nA. ${f.answer || f.a}`).join('\n\n');
 
-  const blogPost = `[제목] ${preset.title} — 2026 손익분기점 총정리 & 실전 비교
+  const blogPost = `[제목] ${preset.title} — 2026 실제 수식 비교 & 손익분기점 정리
 
-안녕하세요! 매달 빠져나가는 생활 고정비와 금융 지출 때문에 고민 많으셨죠?
-오늘은 많은 분들이 검색하고 궁금해하시는 **「${preset.title}」**에 대해, 주관적인 느낌이 아닌 한국전력·보건복지부·수의영양학·여신금융협회 등 공인 수식을 기반으로 1원 단위까지 정밀 분석해 드립니다.
+${story.hookLine || `요즘 ${preset.title} 관련해서 실제 비용과 손익분기점을 궁금해하시는 분들이 정말 많습니다.`}
+오늘은 **「${preset.title}」** 조건에서 ${strat.introContext}가 실제로 어떻게 계산되는지, ${strat.authoritySource}을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
-우리가 일상에서 무심코 결정하는 가전 가동 시간, 다이어트 식단 장보기, 사료 구매량, 신차 구매 방식, 통신사 약정 등은 1년으로 환산하면 수십만 원에서 수백만 원의 실질적인 현금 손익 차이를 만듭니다.
+${story.factLine || preset.description}
 
 ---
 
-### 1. 머니핏 정밀 계산 결과 브리핑
+### 1. 머니핏 정밀 시뮬레이션 결과 (${preset.category})
 - **진단 상태**: ${res.badge}
 - **핵심 판정**: ${res.headline}
 
 #### 📊 핵심 산출 지표 요약
 ${metricsList}
 
-> **전문가 종합 소견**:  
+> **전문가 분석 코멘트**:  
 > ${res.summary}
 
 ---
 
-### 2. 가동 및 선택 방식별 상세 비교표
-아래 표는 실제 조건에 따른 단계별 비용 및 절감 효과를 체계적으로 정리한 데이터입니다.
+### 2. 조건별 상세 비교 데이터 (${preset.title})
+아래 표는 **${query}** 조건에서 선택지별 비용과 기대 효과를 비교한 실측 데이터입니다.
 
 ${tableMd}
 
-위 비교표에서 보실 수 있듯이, 초기에 올바른 선택(에너지소비효율 1등급 교체, 정확한 필요량 사전 산출, 무보증 특판 비교, 사은품 당일 지급 갈아타기 등)을 실행할 경우 누적 손익분기점 도달 기간을 획기적으로 앞당길 수 있습니다.
-
 ---
 
-### 3. 실전 손해 방지 및 절약 치트키
-1. **정확한 본인 수치 대입 필수**: 사람마다 거주 평수, 체중, 계약 잔여 기간이 다르므로 반드시 실제 데이터를 넣고 시뮬레이션해야 오차를 막을 수 있습니다.
-2. **불필요한 과다 지출 차단**: 누진세 최고구간 진입, 사료 과다 급여로 인한 비만/질병, 약정 만기 방치로 통신사에 기부하는 행위를 즉시 멈추세요.
-3. **인증된 공식 혜택 및 제휴 특판 활용**: 정부 고효율 가전 환급, 대용량 장바구니 묶음 할인, 법인/개인 특판 차량 재고, 인터넷 당일 법정 최대 사은품(최대 47만 원)을 적극 챙기시기 바랍니다.
+### 3. ${preset.category} 손해 막는 3단계 체크리스트
+1. **내 조건 수치 대입 (${strat.inputHint})**: ${strat.step1}
+2. **고정비 누수 포인트 차단**: ${strat.step2}
+3. **맞춤 특가 및 혜택 활용**: ${strat.step3}
 
 ---
 
@@ -181,10 +235,10 @@ ${faqList}
 
 ---
 
-### 5. 3초 맞춤 무료 계산기 & 실시간 최저가 혜택 바로가기
-내 집 평수, 내 몸무게, 내 차량 견적, 내 남은 위약금을 직접 입력하여 3초 만에 1원 단위 충격 영수증을 확인해 보세요. 회원가입 없이 즉시 확인 가능합니다.
+### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+${story.ctaLine || `내 조건(${strat.inputHint})을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.`} 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
 
-👉 **[무료] 내 조건으로 3초 만에 손익분기점 진단하기**:  
+👉 **[무료] ${preset.title} 3초 시뮬레이터 바로가기**:  
 🔗 ${targetUrl}
 
 🚀 **[쿠팡 파트너스] ${cpaDetails.coupangSubLabel} 확인하기**:  
@@ -195,41 +249,37 @@ ${faqList}
 
 *(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
-#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏 #손익분기점계산기 #생활비절약꿀팁 #2026최신가이드`;
+${uniqueHashtags}`;
 
-  // 2. Jisik-iN / Cafe Natural Human Answer (Anti-AI / Anti-Spam Conversational Tone)
+  // 2. Jisik-iN / Cafe Natural Human Answer (Preset-specific, zero boilerplate)
   const plainMetrics = res.metrics.map(m => `- ${m.label}: ${m.val}`).join('\n');
-  const jisikinPost = `안녕하세요, 질문 글 보고 지나가다 도움 될까 해서 답변 남겨봅니다.
-저도 얼마 전에 ${preset.category} 관련해서 똑같은 고민을 하다가 실제 공식 수식대로 직접 계산해 보고 기준을 잡았는데요.
+  const jisikinPost = `안녕하세요! ${query} 관련해서 고민 중이시군요.
+저도 얼마 전에 ${story.panel1Speech ? story.panel1Speech.replace(/"/g, '') : `${preset.title} 조건이 헷갈려서`} 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
-질문자님과 비슷한 조건(${preset.title})으로 계산기를 돌려보면 핵심 결론이 '${res.headline} (${res.badge})' 수준으로 나옵니다.
+질문자님과 비슷한 조건(${preset.title})으로 시뮬레이션을 돌려보면 핵심 결과는 **'${res.headline} (${res.badge})'**로 산출됩니다.
 
-세부 항목별로 정리해 보면 대략 아래와 같습니다.
+[핵심 계산 수치 요약]
 ${plainMetrics}
 
-${res.summary}
+${story.factLine || res.summary}
 
-사람마다 세부 조건(평수, 사용 시간, 체중, 약정 기간 등)이 조금씩 다르다 보니 감으로 결정하면 생각보다 손해 보는 금액이 꽤 크더라고요.
-회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 계산표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 넣어서 비교해 보세요.
+사람마다 세부 조건(${strat.inputHint})이 조금씩 다르다 보니 눈대중으로 결정하면 생각보다 손해 보는 금액이 꽤 크더라고요.
+회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
-참고했던 무료 계산기 주소:
-${targetUrl}
+참고한 무료 계산기: ${targetUrl}
+작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!`;
 
-작게나마 결정하시는 데 도움이 되었으면 좋겠습니다. 좋은 하루 보내세요!`;
-
-  // 3. Natural Cafe / Club Member Experience Comment (맘카페·자취카페·차량동호회 내돈내산 경험담 톤)
+  // 3. Natural Cafe / Club Member Experience Comment
   const firstMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label} ${res.metrics[0].val}` : res.headline;
   const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
-  const cafeCommentPost = `저도 얼마 전에 똑같은 고민 하다가 직접 계산기 돌려보고 결정했어요 ㅎㅎ
-막연히 감으로 고르면 손해 보는 줄 몰랐는데, 제 조건 넣어서 돌려보니까 ${res.headline} (${firstMetric}, ${secondMetric}) 이렇게 딱 숫자로 비교돼서 나오더라고요.
-개인정보 입력 같은 거 아예 없는 무료 손익분기점 시뮬레이터인데 쿠팡이랑 공식몰 최저가 비교까지 한 번에 나와서 편해요! 결정하시기 전에 본인 조건 넣어서 한 번 찍어보세요 :)
+  const cafeCommentPost = `${story.hookLine || `저도 얼마 전에 ${query} 때문에 똑같은 고민 했었어요 ㅎㅎ`}
+막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(${strat.inputHint}) 넣어서 돌려보니까 [${res.headline} / ${firstMetric}, ${secondMetric}] 이렇게 숫자로 딱 정리돼서 나오더라고요!
+로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
 ${targetUrl}`;
 
-  // 4. Threads / Blind 3-Line FOMO Copy
+  // 4. Threads / Blind 3-Line Copy (Clean, non-spammy, preset-accurate)
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
-  const threadsPost = `'${preset.title}' 모르고 그냥 결정했다가 돈 날리는 분들 생각보다 많네요 ㅠㅠ
-방금 실제 수식 계산기 돌려봤는데 [${res.headline} / ${keyMetric}] 나옵니다.
-결제·장보기 전에 내 조건 넣고 3초 만에 손익분기점 & 로켓배송 최저가 꼭 확인해보세요: ${targetUrl}`;
+  const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n${story.ctaLine || `내 조건(${strat.inputHint}) 3초 무료 시뮬레이션`}: ${targetUrl}`;
 
   return {
     id: preset.id,

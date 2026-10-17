@@ -100,6 +100,9 @@
         <button onclick="switchMainTab('wizard')" id="tab-btn-wizard" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">
           ⚙️ 수익화 설정
         </button>
+        <a href="/office" id="tab-btn-office" class="hidden px-3 py-1.5 rounded-lg text-sm font-extrabold bg-amber-500 text-slate-950 hover:bg-amber-400 transition whitespace-nowrap">
+          🏢 AI 가상 사옥
+        </a>
       </nav>
     </div>
   </header>
@@ -108,7 +111,7 @@
   <div id="admin-status-bar" class="hidden bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex flex-wrap items-center gap-3">
-        <span>👑 <strong>총괄 매니저 모드</strong> | 쿠팡: <code id="status-coupang-id" class="text-amber-300">AF7865143</code> | 링크프라이스: <code id="status-lp-id" class="text-emerald-300">A100708867</code> | CPA: <code id="status-cpa-id" class="text-sky-300">자동연동</code></span>
+        <span>👑 <strong>총괄 매니저 모드</strong> | <a href="/office" class="text-amber-300 underline font-extrabold hover:text-amber-200">🏢 AI 가상 사옥(게임뷰) 열기 ↗</a> | 쿠팡: <code id="status-coupang-id" class="text-amber-300">AF7865143</code> | 링크프라이스: <code id="status-lp-id" class="text-emerald-300">A100708867</code> | CPA: <code id="status-cpa-id" class="text-sky-300">자동연동</code></span>
       </div>
       <div class="flex flex-wrap items-center gap-4">
         <span>👥 오늘 방문자: <strong id="status-today-uv" class="text-emerald-400">1</strong>명 (조회 <strong id="status-today-pv" class="text-sky-400">1</strong>회 / 봇 <strong id="status-today-bots" class="text-purple-400">0</strong>회) | 🎯 클릭: <strong id="status-click-count" class="text-amber-400">0</strong>회 (CTR <strong id="status-ctr-percent" class="text-emerald-300">0%</strong> · 1위슬롯 <strong id="status-top-slot" class="text-rose-300">receipt_cart</strong>)</span>
@@ -773,13 +776,14 @@
     </div>
   </div>
 
-  <!-- 스크립트 모듈 로드 순서: 계산기 SSOT -> 프리셋 SSOT -> 수익화 SSOT -> 바이럴 원고 -> UI 홍보 키트 -> 앱 로직 -->
-  <script src="src/data/calculators.js?v=2.3"></script>
-  <script src="src/data/presets.js?v=2.3"></script>
-  <script src="src/data/monetization.js?v=2.3"></script>
-  <script src="src/data/viral-content.js?v=2.3"></script>
-  <script src="src/js/ui-copy-kit.js?v=2.3"></script>
-  <script src="src/js/app.js?v=2.3"></script>
+  <!-- 스크립트 모듈 로드 순서: 계산기 SSOT -> 프리셋 SSOT -> 수익화 SSOT -> 바이럴 원고 -> 웹툰 스토리 SSOT -> UI 홍보 키트 -> 앱 로직 -->
+  <script src="src/data/calculators.js?v=2.4"></script>
+  <script src="src/data/presets.js?v=2.4"></script>
+  <script src="src/data/monetization.js?v=2.4"></script>
+  <script src="src/data/viral-content.js?v=2.4"></script>
+  <script src="src/data/webtoon-stories.js?v=2.4"></script>
+  <script src="src/js/ui-copy-kit.js?v=2.4"></script>
+  <script src="src/js/app.js?v=2.4"></script>
   <script>
     (function() {
       fetch('/api/stats')

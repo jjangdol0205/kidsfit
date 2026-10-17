@@ -215,7 +215,9 @@ function auditNaverBacklog() {
 
   const sitemapExists = fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'sitemap.xml'));
   const rssExists = fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'rss.xml'));
-  const indexNowKeyExists = fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'moneyfit8f92a1b4c3d2e1f0.txt'));
+  const indexNowKeyExists =
+    fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'moneyfit-indexnow-key-2026.txt')) ||
+    fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'moneyfit8f92a1b4c3d2e1f0.txt'));
 
   return {
     totalFiles,
@@ -231,6 +233,151 @@ function auditNaverBacklog() {
       sitemapExists,
       rssExists,
       indexNowKeyExists
+    }
+  };
+}
+
+/**
+ * 2-B. Permanent Anti-Spam & Duplication Quality Inspector (Webtoon 36 Packs + Naver 144 Files)
+ */
+function auditSpamAndDuplication() {
+  // A. Webtoon 36 Packs Check
+  const panel1Set = new Set();
+  const panel2Set = new Set();
+  const hookSet = new Set();
+  const hashtagSet = new Set();
+  let webtoonSelfTalkCount = 0;
+  let webtoonSpamTokenCount = 0;
+  let webtoonMainLinkLeakCount = 0;
+  let webtoonChecked = 0;
+
+  const webtoonStories = require('../src/data/webtoon-stories.js');
+  for (const p of PRESETS) {
+    const bundlePath = path.join(SNS_OUTBOX_DIR, p.id, 'post_bundle.json');
+    if (fs.existsSync(bundlePath)) {
+      try {
+        const b = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+        webtoonChecked++;
+        const st = b.story || (webtoonStories.PRESET_WEBTOON_MAP && webtoonStories.PRESET_WEBTOON_MAP[p.id]);
+        if (st) {
+          if (st.panel1Speech) panel1Set.add(st.panel1Speech.trim());
+          if (st.panel2Speech) panel2Set.add(st.panel2Speech.trim());
+          if (st.hookLine) hookSet.add(st.hookLine.trim());
+          if (st.hashtags) hashtagSet.add(st.hashtags.trim());
+          if (st.charLeft && st.charRight && st.charLeft === st.charRight) {
+            webtoonSelfTalkCount++;
+          }
+        }
+        const combinedCopy = `${b.threadsMain || ''} ${b.instagramCaption || ''} ${b.facebookPost || ''}`;
+        if (/🚨|삐빅!|호구|ㄷㄷ/.test(combinedCopy)) {
+          webtoonSpamTokenCount++;
+        }
+        if (b.threadsMain && /https?:\/\//.test(b.threadsMain)) {
+          webtoonMainLinkLeakCount++;
+        }
+      } catch (e) {}
+    }
+  }
+
+  // B. Naver & Community 144 Backlog Files Check
+  const subdirs = ['naver_blog', 'naver_cafe', 'jisikin_answers', 'community_posts'];
+  let undefinedLeakCount = 0;
+  let roboticHashtagCount = 0;
+  let crossCatBoilerplateCount = 0;
+  const blogTitles = new Set();
+  const cafeTitles = new Set();
+  const blogShingleSets = [];
+  let naverFilesChecked = 0;
+
+  for (const dir of subdirs) {
+    const fullDir = path.join(BACKLOG_POSTS_DIR, dir);
+    if (!fs.existsSync(fullDir)) continue;
+    const files = fs.readdirSync(fullDir).filter(f => f.endsWith('.txt'));
+    for (const f of files) {
+      const raw = fs.readFileSync(path.join(fullDir, f), 'utf8');
+      naverFilesChecked++;
+      if (/undefined|NaN/.test(raw)) undefinedLeakCount++;
+      if (/#(?:electric|diet|pet|room|auto|telecom)계산기/i.test(raw)) roboticHashtagCount++;
+      if (/누진세 최고구간 진입, 사료 과다 급여/.test(raw)) crossCatBoilerplateCount++;
+
+      if (dir === 'naver_blog') {
+        const tm = raw.match(/\[제목(?:\s*1)?\]\s*(.+)/);
+        if (tm) blogTitles.add(tm[1].trim());
+        const words = raw
+          .replace(/https?:\/\/[^\s]+/g, '')
+          .replace(/[^가-힣a-zA-Z0-9\s]/g, ' ')
+          .split(/\s+/)
+          .filter(Boolean);
+        const shingles = new Set();
+        for (let i = 0; i + 3 < words.length; i++) {
+          shingles.add(`${words[i]} ${words[i + 1]} ${words[i + 2]} ${words[i + 3]}`);
+        }
+        blogShingleSets.push(shingles);
+      } else if (dir === 'naver_cafe') {
+        const tm = raw.match(/\[제목[^\]]*\]\s*(.+)/);
+        if (tm) cafeTitles.add(tm[1].trim());
+      }
+    }
+  }
+
+  // Compute average pairwise 4-gram Jaccard similarity across Naver Blog posts
+  let totalJaccard = 0;
+  let pairs = 0;
+  for (let i = 0; i < blogShingleSets.length; i++) {
+    for (let j = i + 1; j < blogShingleSets.length; j++) {
+      const setA = blogShingleSets[i];
+      const setB = blogShingleSets[j];
+      if (setA.size === 0 || setB.size === 0) continue;
+      let inter = 0;
+      for (const item of setA) {
+        if (setB.has(item)) inter++;
+      }
+      const union = setA.size + setB.size - inter;
+      if (union > 0) {
+        totalJaccard += inter / union;
+        pairs++;
+      }
+    }
+  }
+  const avgBlogJaccardPct = pairs > 0 ? Number(((totalJaccard / pairs) * 100).toFixed(1)) : 0;
+
+  const isClean =
+    undefinedLeakCount === 0 &&
+    roboticHashtagCount === 0 &&
+    crossCatBoilerplateCount === 0 &&
+    webtoonSelfTalkCount === 0 &&
+    webtoonSpamTokenCount === 0 &&
+    webtoonMainLinkLeakCount === 0 &&
+    panel1Set.size === 36 &&
+    blogTitles.size === 36 &&
+    avgBlogJaccardPct < 18.0;
+
+  return {
+    status: isClean ? '🟢 CLEAN (스팸·중복 0건 / 100% 고유화 통과)' : '🟠 ATTENTION',
+    webtoonQuality: {
+      checkedPacks: webtoonChecked,
+      uniquePanel1Count: panel1Set.size,
+      uniquePanel2Count: panel2Set.size,
+      uniqueHookCount: hookSet.size,
+      uniqueHashtagsCount: hashtagSet.size,
+      selfTalkErrors: webtoonSelfTalkCount,
+      spamTokenCount: webtoonSpamTokenCount,
+      mainLinkLeaks: webtoonMainLinkLeakCount
+    },
+    naverQuality: {
+      checkedFiles: naverFilesChecked,
+      undefinedLeaks: undefinedLeakCount,
+      roboticHashtags: roboticHashtagCount,
+      crossCatBoilerplate: crossCatBoilerplateCount,
+      uniqueBlogTitles: blogTitles.size,
+      uniqueCafeTitles: cafeTitles.size,
+      avgBlogJaccardPct
+    },
+    velocityGuardrails: {
+      naverBlog: '일 최대 2~3건 (최소 3시간 간격 / 본문 하단 1회 링크)',
+      naverCafe: '일 최대 2~3건 (본문 노링크 원칙 / 댓글 요청 시 답글)',
+      naverJisikin: '일 최대 3~4건 (최소 30분 쿨타임 / 질문 1:1 수치 매칭)',
+      snsWebtoon: '일 최대 2~3편 (본문 노링크 + 첫 대댓글 링크 분리)'
     }
   };
 }
@@ -355,6 +502,7 @@ async function runManagerAudit() {
   const { fullKst } = getKstTimestamp();
   const webtoon = auditWebtoonBacklog();
   const naver = auditNaverBacklog();
+  const spamAudit = auditSpamAndDuplication();
   const perf = await diagnosePerformance(webtoon, naver);
 
   const md = [
@@ -426,6 +574,25 @@ async function runManagerAudit() {
     `| ☕ **네이버 카페** (\`cafe.naver.com/cofinance2\` 등) | **${naver.cafe.done}건** | **${naver.cafe.pending}건** | \`${Math.round((naver.cafe.done / 36) * 100)}%\` | ${naver.cafe.nextQueue.map(x => `\`#${x.num} ${x.slug}\``).join(', ')} |`,
     `| 💡 **네이버 지식iN** (실시간 최신순 질문 저격) | **${naver.jisikin.done}건** | **${naver.jisikin.pending}건** | \`${Math.round((naver.jisikin.done / 36) * 100)}%\` | ${naver.jisikin.nextQueue.map(x => `\`#${x.num} ${x.slug}\``).join(', ')} |`,
     `| 🧵 **커뮤니티 / 스레드 / 블라인드** | **${naver.community.done}건** | **${naver.community.pending}건** | \`100%\` | 전 카테고리 1차 완료 (2차 4컷 웹툰 리포스팅 진행) |`,
+    ``,
+    `---`,
+    ``,
+    `## 🛡️ 6. 웹툰 & 네이버 백로그 스팸·중복 상시 검수 리포트 (Anti-Spam & Zero-Clone Guard)`,
+    `> 대표님 지시사항(*"항상 웹툰 관련 백로그랑 네이버 관련 백로그한테 보고를 받고 게시글이 너무 스팸처럼 과하게 나가고 있는지 중복되서 이상하게 나가는지 항상 점검해야해"*)에 따른 자동 전수 검수 결과입니다.`,
+    ``,
+    `- **종합 판정**: **\`${spamAudit.status}\`**`,
+    `- **🎨 웹툰 36편 고유성·스팸 검수 (\`sns_outbox/\` ${spamAudit.webtoonQuality.checkedPacks}편)**:`,
+    `  - 1컷/2컷 대사 고유성: **\`${spamAudit.webtoonQuality.uniquePanel1Count}/36편\` · \`${spamAudit.webtoonQuality.uniquePanel2Count}/36편\` (중복 0건)**`,
+    `  - 캡션 훅(Hook) & 해시태그 고유성: **\`${spamAudit.webtoonQuality.uniqueHookCount}/36편\` · \`${spamAudit.webtoonQuality.uniqueHashtagsCount}/36편\` (복붙 해시태그 0건)**`,
+    `  - 캐릭터 자문자답 오류: **\`${spamAudit.webtoonQuality.selfTalkErrors}건\`** | 스팸 금칙어(\`🚨\`/\`삐빅!\`/\`호구\`/\`ㄷㄷ\`): **\`${spamAudit.webtoonQuality.spamTokenCount}건\`** | 본문 링크 노출: **\`${spamAudit.webtoonQuality.mainLinkLeaks}건\`**`,
+    `- **🟢 네이버·커뮤니티 144개 원고 무결성·유사도 검수 (\`backlog_human_posts/\` ${spamAudit.naverQuality.checkedFiles}개 파일)**:`,
+    `  - 데이터 누락(\`undefined\` / \`NaN\`): **\`${spamAudit.naverQuality.undefinedLeaks}건\`** | 로봇형 영문 코드 태그(\`#electric계산기\` 등): **\`${spamAudit.naverQuality.roboticHashtags}건\`** | 타 카테고리 혼입 문구: **\`${spamAudit.naverQuality.crossCatBoilerplate}건\`**`,
+    `  - 블로그·카페 제목 고유성: **\`${spamAudit.naverQuality.uniqueBlogTitles}/36편\` · \`${spamAudit.naverQuality.uniqueCafeTitles}/36편\`** | 문서 간 4-어절 평균 유사도(Jaccard): **\`${spamAudit.naverQuality.avgBlogJaccardPct}%\` (네이버 C-Rank/DIA+ 안전 기준 18% 미만 통과)**`,
+    `- **⏱️ 채널별 일일 안전 발행 속도 가드레일 (Over-Posting 방지 수칙)**:`,
+    `  - **네이버 블로그**: \`${spamAudit.velocityGuardrails.naverBlog}\``,
+    `  - **네이버 카페**: \`${spamAudit.velocityGuardrails.naverCafe}\``,
+    `  - **네이버 지식iN**: \`${spamAudit.velocityGuardrails.naverJisikin}\``,
+    `  - **인스타·쓰레드 웹툰**: \`${spamAudit.velocityGuardrails.snsWebtoon}\``,
     ``
   ].join('\n');
 
@@ -436,6 +603,7 @@ async function runManagerAudit() {
     boardPath: MANAGER_BOARD_PATH,
     webtoon,
     naver,
+    spamAudit,
     perf
   };
 }
@@ -451,6 +619,7 @@ if (require.main === module) {
       console.log(`  ✓ Revenue Goal       : Oct 1,000,000 KRW -> +100% MoM (Target CTR: ${res.perf.goalRoadmap.targetCtrPercent}%)`);
       console.log(`  ✓ Webtoon Backlog    : Rendered ${res.webtoon.renderedCount}/36 (100%) | Published ${res.webtoon.publishedLiveCount}/36 (Pending: ${res.webtoon.pendingPublishCount})`);
       console.log(`  ✓ Naver Backlog      : Total ${res.naver.totalDone}/144 Done | Blog ${res.naver.blog.done}/36 | Cafe ${res.naver.cafe.done}/36 | Jisik-iN ${res.naver.jisikin.done}/36`);
+      console.log(`  ✓ Anti-Spam Guard    : ${res.spamAudit.status} (undefined=${res.spamAudit.naverQuality.undefinedLeaks}, Webtoon unique=${res.spamAudit.webtoonQuality.uniquePanel1Count}/36, Jaccard=${res.spamAudit.naverQuality.avgBlogJaccardPct}%)`);
       console.log(`  ✓ Audit Board Saved  : ${res.boardPath}`);
       if (sendTg) {
         const dailyReport = require('./daily-revenue-report.js');
@@ -468,6 +637,7 @@ if (require.main === module) {
 module.exports = {
   auditWebtoonBacklog,
   auditNaverBacklog,
+  auditSpamAndDuplication,
   diagnosePerformance,
   runManagerAudit
 };

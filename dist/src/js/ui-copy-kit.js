@@ -73,191 +73,275 @@
     const m1 = m[1] ? `${m[1].label}: ${m[1].val}` : '';
     const m2 = m[2] ? `${m[2].label}: ${m[2].val}` : '';
 
+    const wsMod = (typeof window !== 'undefined' && window.MoneyFitWebtoonStories) || null;
+    if (wsMod && typeof wsMod.resolveDynamicReceiptValues === 'function') {
+      const customStory = wsMod.resolveDynamicReceiptValues(preset, calcRes);
+      const meta = {
+        species: customStory.species,
+        charName: customStory.charName,
+        expertName: customStory.expertName,
+        tag: customStory.badge,
+        sfxShock: customStory.sfxShock,
+        panel1Title: `1컷 · ${customStory.badge}`,
+        panel1Bubble: `"${customStory.panel1Speech}"`,
+        panel1Sub: customStory.panel1Sub,
+        panel2Title: `2컷 · ${customStory.expertName}의 핵심 진단`,
+        panel2Bubble: `"${customStory.panel2Speech}"`,
+        panel2Sub: customStory.panel2Sub,
+        badLabel: customStory.badLabel,
+        badVal: customStory.badVal,
+        goodLabel: customStory.goodLabel,
+        goodVal: customStory.goodVal,
+        diffVal: customStory.diffVal,
+        hashtags: customStory.hashtags
+      };
+
+      const threadsMain = [
+        `[${customStory.badge}] ${customStory.hookLine}`,
+        ``,
+        customStory.factLine,
+        ``,
+        `🧾 [${customStory.receiptTitle}]`,
+        `• 비교 기준 (${meta.badLabel}): ${meta.badVal}`,
+        `• 맞춤 설계 (${meta.goodLabel}): ${meta.goodVal}`,
+        `• 핵심 차액 (${customStory.diffLabel}): ${meta.diffVal}`,
+        ``,
+        customStory.closingLine,
+        `👇 무료 시뮬레이터 주소는 바로 아래 첫 번째 댓글에 남겨두었습니다.`
+      ].join('\n');
+
+      const threadsReply = [
+        `🔗 「${preset.title}」 3초 무료 계산기 (회원가입·앱 설치 없음)`,
+        `${presetUrl}`,
+        ``,
+        customStory.closingLine
+      ].join('\n');
+
+      const instaCaption = [
+        `[${customStory.badge}] "${preset.title}" (${meta.charName} × ${meta.expertName} 4컷 정리)`,
+        ``,
+        customStory.hookLine,
+        customStory.factLine,
+        ``,
+        `🧾 3번째 슬라이드 [${customStory.receiptTitle}] 핵심 요약`,
+        `• ${meta.badLabel}: ${meta.badVal}`,
+        `• ${meta.goodLabel}: ${meta.goodVal}`,
+        `• ${customStory.diffLabel}: ${meta.diffVal}`,
+        `• 핵심 판정: ${calcRes.headline}${m0 ? ` (${m0} / ${m1})` : ''}`,
+        ``,
+        customStory.closingLine,
+        `📌 필요할 때 바로 꺼내 보시려면 [저장] 해두시고, 같은 고민 중인 지인에게 공유해 보세요!`,
+        `👉 프로필 링크 또는 검색창에 [ truthofmarket ]을 검색하면 무료 시뮬레이터로 연결됩니다.`,
+        ``,
+        meta.hashtags
+      ].join('\n');
+
+      const fbPost = [
+        `[${customStory.badge}] ${preset.title} — 실제 공식으로 비교해 본 손익 영수증`,
+        ``,
+        customStory.hookLine,
+        customStory.factLine,
+        ``,
+        `📊 [${customStory.receiptTitle}]`,
+        `• ${meta.badLabel}: ${meta.badVal}`,
+        `• ${meta.goodLabel}: ${meta.goodVal}`,
+        `• ${customStory.diffLabel}: ${meta.diffVal}`,
+        `• 한줄 결론: ${calcRes.headline}${m2 ? ` (${m2})` : ''}`,
+        ``,
+        customStory.closingLine,
+        `직접 내 숫자를 넣어 비교해 볼 수 있는 무료 계산기 주소는 첫 번째 댓글에 남겨두었습니다.`
+      ].join('\n');
+
+      return {
+        meta,
+        calcRes,
+        presetUrl,
+        threadsMain,
+        threadsReply,
+        instaCaption,
+        fbPost
+      };
+    }
+
+    const weeks = calcRes.weeks || (preset.inputs && preset.inputs.weeks) || 4;
+    const packs = calcRes.chickenPacks || 100;
+    const bowls = calcRes.brownRiceBowls || 56;
+    const dietBadCost = packs * 2900 + bowls * 2200;
+    const dietGoodCost = packs * 1250 + bowls * 1050;
+
     const sceneByCalc = {
       electric: {
         species: 'quokka',
         charName: '자취생 쿼카찌',
-        expertName: '안경 여우 세무사',
-        tag: '전기세 폭탄 실화 인스타툰',
+        expertName: '안경 여우 에너지박사',
+        tag: '전기요금 누진세 진단',
         sfxShock: '콰아앙⚡',
         panel1Title: '1컷 · 관리비 고지서 개봉 직후',
-        panel1Bubble: `"잠깐만... 에어컨 아낀다고 껐다 켰는데 이번 달 전기세가 왜 이래?!"`,
-        panel1Sub: '여름·겨울마다 반복되는 누진세 폭탄의 공포 (쿼카찌 오열😭)',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 정속형을 껐다 켜면 실외기 기동전력 폭발로 누진 3단계(3배) 밟습니다!"`,
-        panel2Sub: '구형 가전 vs 1등급 인버터 본전 회수기간 계산 필수',
-        badLabel: '호구 평균 지출 (정속형 무방비)',
+        panel1Bubble: `"${preset.title} 조건으로 틀었더니 이번 달 전기세가 왜 이래?!"`,
+        panel1Sub: '한전 3단계 누진세 구간 진입 주의',
+        panel2Title: '2컷 · 에너지박사의 핵심 진단',
+        panel2Bubble: `"기본 전력량과 합산된 누진 구간을 확인하고 1등급 인버터 회수기간을 비교해야 합니다!"`,
+        panel2Sub: '구형 가전 vs 1등급 인버터 본전 회수기간 계산',
+        badLabel: '구형/기준 조건 월 지출',
         badVal: calcRes.afterBill ? `${calcRes.afterBill.toLocaleString()}원/월` : '88,420원/월',
-        goodLabel: '상위 1% 절약 지출 (인버터 정속)',
+        goodLabel: '1등급 인버터 절전 지출',
         goodVal:
           calcRes.afterBill && calcRes.monthlySaving
             ? `${Math.max(0, calcRes.afterBill - calcRes.monthlySaving).toLocaleString()}원/월`
             : '31,200원/월',
         diffVal: calcRes.monthlySaving ? `-${calcRes.monthlySaving.toLocaleString()}원/월 절약` : '-57,220원/월 절약',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        hashtags: '#전기요금계산기 #누진세계산 #인버터에어컨 #자취방관리비 #에너지효율1등급'
       },
       diet: {
         species: 'shiba',
         charName: '헬스 시바견 득근이',
         expertName: '안경 여우 영양박사',
-        tag: '다이어트 식단 팩트 인스타툰',
+        tag: '식단 TDEE & 장보기 진단',
         sfxShock: '두둥탁!!',
-        panel1Title: '1컷 · 무작정 대량결제한 다이어터',
-        panel1Bubble: `"닭가슴살 100팩 사고 굶었는데 왜 살은 안 빠지고 식비만 터지지?!"`,
-        panel1Sub: '내 기초대사량(BMR)도 모르고 식단 짜면 100% 요요 참사',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 체중별 TDEE 탄·단·지(g) 정량부터 맞춰야 돈도 아끼고 살도 빠집니다!"`,
-        panel2Sub: '닭가슴살 팩 수·현미밥 개수까지 정확히 계산해야 돈 안 버림',
-        badLabel: '호구 평균 지출 (충동 대량구매+치팅)',
-        badVal: '348,000원/4주',
-        goodLabel: '상위 1% 절약 지출 (TDEE 정량 장보기)',
-        goodVal: '142,000원/4주',
-        diffVal: '-206,000원 절약',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        panel1Title: '1컷 · 식단 장보기 고민',
+        panel1Bubble: `"${preset.title}, 감으로 사 먹었더니 식비만 나가고 목표 달성이 안 돼!"`,
+        panel1Sub: '기초대사량(BMR)과 활동대사량(TDEE) 정량 설계 필수',
+        panel2Title: '2컷 · 영양박사의 핵심 진단',
+        panel2Bubble: `"체중별 TDEE 탄·단·지(g) 정량에 맞춰 닭가슴살 ${packs}팩과 현미밥 ${bowls}개를 준비하세요!"`,
+        panel2Sub: `${weeks}주 맞춤 장보기 수량 산출`,
+        badLabel: `편의점·소매 ${weeks}주 지출`,
+        badVal: `${dietBadCost.toLocaleString()}원/${weeks}주`,
+        goodLabel: `TDEE 정량 묶음(${packs}팩)`,
+        goodVal: `${dietGoodCost.toLocaleString()}원/${weeks}주`,
+        diffVal: `-${Math.max(0, dietBadCost - dietGoodCost).toLocaleString()}원 절약`,
+        hashtags: '#다이어트식단계산기 #TDEE계산기 #닭가슴살장보기 #탄단지비율 #헬스식단표'
       },
       pet: {
         species: 'cat',
         charName: '집사 치즈냥 박사',
         expertName: '안경 여우 수의영양사',
-        tag: '멍냥이 집사 필수 인스타툰',
-        sfxShock: '콰아앙⚡',
-        panel1Title: '1컷 · 종이컵 눈대중 급여의 최후',
-        panel1Bubble: `"사료 봉투 뒤에 적힌 대로 줬는데 우리 댕냥이 왜 비만에 병원비 폭탄이지?!"`,
-        panel1Sub: '종이컵 눈대중 급여가 소형견·고양이 비만·관절 병원비 원인 1위',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 중성화 여부·활동량 계수(DER)에 따라 하루 급여량(g)이 완전히 달라요!"`,
-        panel2Sub: '사료 1포대 소진 일수 & 병원비 예비비까지 3초 진단',
-        badLabel: '호구 평균 지출 (과급여 비만+무보험)',
-        badVal: '385,000원/월',
-        goodLabel: '상위 1% 절약 지출 (DER 정량+특약)',
-        goodVal: '129,000원/월',
-        diffVal: '-256,000원/월 방어',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        tag: '수의영양학 사료량 진단',
+        sfxShock: '헉..!!',
+        panel1Title: '1컷 · 눈대중 사료 급여 고민',
+        panel1Bubble: `"${preset.title}, 하루에 정확히 몇 g씩 줘야 건강하게 오래 살까?"`,
+        panel1Sub: '개체별 대사체중(RER)과 활동 계수(DER) 반영 필수',
+        panel2Title: '2컷 · 수의영양사의 핵심 진단',
+        panel2Bubble: `"하루 권장량은 ${calcRes.dailyGrams || 85}g(1끼 ${calcRes.halfGrams || 42}g)이며 1포대는 ${calcRes.daysPerBag || 22}일 만에 소진됩니다!"`,
+        panel2Sub: '사료 1포대 소진 일수 & 의료비 예비비 3초 진단',
+        badLabel: '눈대중 과급여 + 무보험 위험',
+        badVal: `일 ${Math.round((calcRes.dailyGrams || 85) * 1.35)}g 과급여`,
+        goodLabel: 'DER 정량 배식',
+        goodVal: `일 ${calcRes.dailyGrams || 85}g (${calcRes.daysPerBag || 22}일 소진)`,
+        diffVal: `1끼 ${calcRes.halfGrams || 42}g 정량 · 병원비 방어`,
+        hashtags: '#강아지사료급여량 #고양이사료량계산 #반려동물양육비 #슬개골예방 #펫보험비교'
       },
       room: {
         species: 'bear',
         charName: '독립 아기곰 포근이',
         expertName: '안경 여우 견적박사',
-        tag: '자취·신혼 풀세팅 인스타툰',
+        tag: '자취·신혼 풀세팅 예산 배분',
         sfxShock: '두둥탁!!',
-        panel1Title: '1컷 · 이사 가전·가구 장바구니 멘붕',
-        panel1Bubble: `"인스타 감성 침대·냉장고·세탁기 담다 보니 벌써 예산 2배 초과라고?!"`,
-        panel1Sub: '계획 없이 예쁜 것부터 사면 필수 가전 못 사는 참사 발생',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 예산별 가전:가구 황금 배분표(BOM)대로 사야 단 1원도 안 넘깁니다!"`,
+        panel1Title: '1컷 · 가전·가구 장바구니 고민',
+        panel1Bubble: `"${preset.title}, 예산 초과 없이 필수 품목을 다 채울 수 있을까?"`,
+        panel1Sub: '품목별 황금 배분 비율(BOM) 준수 필수',
+        panel2Title: '2컷 · 견적박사의 핵심 진단',
+        panel2Bubble: `"예산별 가전·가구 황금 배분표(BOM)대로 구성하면 단 1원도 넘기지 않고 세팅됩니다!"`,
         panel2Sub: '원룸 50만 원부터 신혼 1,000만 원까지 예산 초과 0원 공식',
-        badLabel: '호구 평균 지출 (감성 단품 충동결제)',
+        badLabel: '오프라인/무계획 단품 구매',
         badVal:
           calcRes.totalCost && calcRes.savingWon
             ? `${(calcRes.totalCost + calcRes.savingWon).toLocaleString()}원`
             : '2,840,000원',
-        goodLabel: '상위 1% 절약 지출 (황금비율 BOM)',
+        goodLabel: '황금비율 BOM 최적 세팅',
         goodVal: calcRes.totalCost ? `${calcRes.totalCost.toLocaleString()}원` : '1,480,000원',
         diffVal: calcRes.savingWon ? `-${calcRes.savingWon.toLocaleString()}원 절약` : '-1,360,000원 절약',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        hashtags: '#원룸가전견적 #자취방풀세팅 #신혼가전예산 #인테리어견적 #자취필수템'
       },
       auto: {
         species: 'fox',
-        charName: '안경 여우 세무사',
+        charName: '골든 리트리버 대리',
         expertName: '안경 여우 세무사',
-        tag: '신차 구매 호구 탈출 인스타툰',
+        tag: '신차 할부 vs 렌트·리스 TCO',
         sfxShock: '콰아앙⚡',
-        panel1Title: '1컷 · 카마스터 월 납입금의 함정',
-        panel1Bubble: `"월 납입금만 보고 계약했는데... 취등록세 7%·보험료·세금 폭탄이 왜 또 나와?!"`,
-        panel1Sub: '차량가만 보고 사면 5년 유지비에서 수백만 원 손해',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 취등록세 7% + 보험료 + 사업자 절세까지 합친 5년 총비용(TCO)을 봐야죠!"`,
-        panel2Sub: '장기렌트 vs 리스 vs 할부 vs 현금 5년 총비용 1:1 영수증',
-        badLabel: '호구 평균 지출 (취등록세 간과 할부)',
+        panel1Title: '1컷 · 월 납입금 착시 주의',
+        panel1Bubble: `"${preset.title}, 월 납입금만 보지 말고 세금이랑 보험료까지 합치면 뭐가 유리해?"`,
+        panel1Sub: '취등록세·보험료·자동차세·절세액을 합산한 총비용 비교',
+        panel2Title: '2컷 · 여우 세무사의 핵심 진단',
+        panel2Bubble: `"취등록세와 보험료, 사업자 절세 효과까지 합산한 총소유비용(TCO)으로 비교해야 정확합니다!"`,
+        panel2Sub: '장기렌트 vs 리스 vs 할부 vs 현금 총비용 1:1 영수증',
+        badLabel: '취등록세·보험 별도 신차 할부',
         badVal: calcRes.installmentTco ? `${calcRes.installmentTco.toLocaleString()}원` : '54,820,000원',
-        goodLabel: '상위 1% 절약 지출 (세율 맞춤 최적안)',
+        goodLabel: '세율·보험 맞춤 최적 플랜',
         goodVal: calcRes.rentTco ? `${calcRes.rentTco.toLocaleString()}원` : '46,150,000원',
         diffVal: calcRes.diffMan ? `-${calcRes.diffMan.toLocaleString()}만 원 절약` : '-8,670,000원 절약',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        hashtags: '#신차장기렌트비교 #자동차할부계산기 #사업자차량절세 #취등록세계산 #자동차TCO'
       },
       telecom: {
         species: 'raccoon',
-        charName: '호구탈출 라쿤대리',
+        charName: '알뜰 라쿤 대리',
         expertName: '안경 여우 통신박사',
-        tag: '인터넷 약정 호구 탈출 인스타툰',
+        tag: '인터넷 약정 위약금 vs 사은품',
         sfxShock: '두둥탁!!',
-        panel1Title: '1컷 · 3년 약정 끝나고 그냥 쓰는 중',
-        panel1Bubble: `"귀찮아서 기존 인터넷 그냥 썼는데... 나만 현금 47만 원 못 받았다고?!"`,
-        panel1Sub: '약정 만기 후 방치하거나 위약금 무서워 참으면 매달 손해',
-        panel2Title: '2컷 · 안경 여우의 팩트폭격',
-        panel2Bubble: `"삐빅! 위약금 물어주고 갈아타도 당일 현금 사은품 47만 + 요금할인이 훨씬 이득!"`,
-        panel2Sub: '내 잔여 위약금 vs 현금 사은품 47만 원 순수익 3초 계산',
-        badLabel: '호구 평균 지출 (기존 약정 방치)',
-        badVal: '+70,000원 혜택',
-        goodLabel: '상위 1% 절약 지출 (47만 사은품 환승)',
+        panel1Title: '1컷 · 통신 약정 유지 vs 이동 고민',
+        panel1Bubble: `"${preset.title}, 위약금 내고 갈아타는 거랑 그냥 쓰는 것 중 뭐가 이득이지?"`,
+        panel1Sub: '잔여 위약금 vs 당일 현금 지원금 및 요금 인하액 대조',
+        panel2Title: '2컷 · 통신박사의 핵심 진단',
+        panel2Bubble: `"현금 지원금에서 위약금을 차감하고도 당일 흑자 + 3년 요금 절감까지 합치면 갈아타기가 유리합니다!"`,
+        panel2Sub: '내 잔여 위약금 vs 현금 사은품 순수익 3초 계산',
+        badLabel: '기존 통신사 그대로 유지 시',
+        badVal: '0원 (기존 요금 계속 납부)',
+        goodLabel: '사은품 대납 + 신규 결합 환승',
         goodVal: calcRes.totalNetBenefit ? `+${calcRes.totalNetBenefit.toLocaleString()}원 순익` : '+518,000원 순익',
         diffVal: calcRes.immediateNetWon ? `당일 현금 +${calcRes.immediateNetWon.toLocaleString()}원` : '+448,000원 이득',
-        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
+        hashtags: '#인터넷갈아타기 #통신사위약금계산 #인터넷사은품비교 #알뜰폰결합 #통신비절약'
       }
     };
 
     const meta = sceneByCalc[preset.calc] || sceneByCalc.electric;
 
-    // 1. Threads Main Post (100% Free of raw https:// URLs -> 0 Spam Penalty + Curiosity Gap Hook)
     const threadsMain = [
-      `🚨 [4컷 동물 인스타툰] "${preset.title}" 모르면 나만 상위 1% 호구 잡힙니다 😭`,
+      `🐾 [4컷 공감툰] ${meta.panel1Bubble}`,
       ``,
-      `솔직히 귀찮아서 감으로 넘겼다가 매달 생돈 날리는 분들 진짜 많습니다.`,
-      `방금 2026년 표준 수식으로 뽑아본 충격 실물 영수증 비교 결과:`,
-      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
-      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
-      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
+      `솔직히 다들 이렇게 생각하고 그냥 쓰지 않나요..? 😭`,
+      `막상 내 조건 넣어서 계산해보면 생각보다 차이가 엄청 크더라고요!`,
+      `• 그냥 모르고 쓸 때 (${meta.badLabel}): ${meta.badVal}`,
+      `• 제대로 맞췄을 때 (${meta.goodLabel}): ${meta.goodVal}`,
+      `• 아낄 수 있는 돈: ${meta.diffVal}`,
       ``,
-      `❓ 내 조건 넣으면 상위 몇 % 호구일까?`,
-      `📌 3번째 컷 [절취선 실물 영수증] 먼저 저장해두시고,`,
-      `👇 3초 만에 내 영수증 뽑아보는 무료 시뮬레이터는 바로 아래 [첫 번째 대댓글] 또는 검색창에 [ truthofmarket ]을 검색해보세요!`
+      `👇 내 조건 넣으면 3초 만에 얼마 차이 나는지 알려주는 무료 계산기는 첫 번째 댓글 링크에 남겨둘게요!`
     ].join('\n');
 
-    // 2. Threads & Facebook 1st Self-Reply Comment (Contains the Direct Link)
     const threadsReply = [
-      `🔗 [회원가입/설치 0개] 3초 만에 내 숫자 넣고 실물 손익 영수증 뽑아보기 👇`,
+      `🔗 「${preset.title}」 3초 무료 계산기 (회원가입·설치 없음)`,
       `${presetUrl}`,
       ``,
-      `(숫자만 바꾸면 실시간으로 내가 아낄 수 있는 금액이 1원 단위로 출력됩니다!)`
+      `내 숫자만 넣으면 실시간으로 얼마 아낄 수 있는지 바로 나와요!`
     ].join('\n');
 
-    // 3. Instagram Feed / Carousel Caption (100% Free of raw https:// URLs + Exactly 4 Ultra-Targeted Hashtags)
     const instaCaption = [
-      `❓ 내 조건 넣으면 상위 몇 % 호구일까? [나중에 돈 아끼려면 먼저 '저장📌'부터!]`,
-      `"${preset.title}" — ${meta.charName} × ${meta.expertName} 4컷 팩트체크 💥`,
+      `🐾 ${meta.panel1Bubble}`,
+      `(${meta.charName} × ${meta.expertName}의 4컷 일상 공감툰 💬)`,
       ``,
-      `솔직히 귀찮아서 대충 넘겼다가 매달 생돈 날리는 분들이 너무 많아서 4컷 동물 인스타툰 + 절취선 실물 영수증으로 정리했습니다.`,
+      `솔직히 저만 이렇게 생각하고 있었던 거 아니죠..? 😭`,
+      `여우 친구한테 팩폭 맞고 계산해봤더니 이만큼이나 차이 나네요!`,
       ``,
-      `🧾 [3번째 슬라이드 절취선 영수증 요약]`,
-      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
-      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
-      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
-      `• 💡 핵심 요약: ${calcRes.headline}${m0 ? ` (${m0} / ${m1})` : ''}`,
+      `💡 [한눈에 보는 현실 비교]`,
+      `• 모르고 그냥 쓸 때 (${meta.badLabel}): ${meta.badVal}`,
+      `• 똑똑하게 바꿀 때 (${meta.goodLabel}): ${meta.goodVal}`,
+      `• 아끼는 생돈: ${meta.diffVal}`,
       ``,
-      `✈️ 지금 이거 몰라서 생돈 날리고 있는 자취생·직장인 친구에게 바로 [DM 공유] 해주세요!`,
+      `📌 까먹기 전에 [저장] 해두시고 주변 친구·가족한테도 슬쩍 공유해 주세요!`,
+      `👉 우리 집 3초 무료 계산기는 @moneyfit2026 프로필 링크 또는 검색창에 「머니핏」 검색!`,
       ``,
-      `⚡ 내 숫자 넣고 3초 만에 무료 영수증 뽑아보고 싶다면?`,
-      `👉 프로필 하단 링크 클릭 또는 네이버·구글에 [ truthofmarket ] 검색!`,
-      ``,
-      meta.hashtags
+      `#인스타툰 #생활비절약 #자취꿀팁 #머니핏`
     ].join('\n');
 
-    // 4. Facebook Storytelling Post (100% Free of raw https:// URLs in main body)
     const fbPost = [
-      `[공감 4컷 인스타툰] "${preset.title}" 모르면 나만 생돈 날리는 이유.jpg`,
+      `🐾 [4컷 공감툰] ${meta.panel1Bubble}`,
       ``,
-      `처음엔 설마 이 정도 차이 나겠어? 하고 직접 시뮬레이터 돌려봤다가 3번째 컷 실물 영수증 보고 소름 돋았습니다...`,
-      ``,
-      `🧾 [실제 계산된 절취선 손익 영수증]`,
-      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
-      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
-      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
-      `• 📌 한줄 결론: ${calcRes.headline}${m2 ? ` (${m2})` : ''}`,
+      `💡 핵심만 비교해보면 이만큼이나 차이 납니다:`,
+      `• ${meta.badLabel}: ${meta.badVal}`,
+      `• ${meta.goodLabel}: ${meta.goodVal}`,
+      `• 차이: ${meta.diffVal}`,
       ``,
       `${calcRes.summary}`,
       ``,
-      `❓ 내 조건 넣으면 상위 몇 % 호구일까?`,
-      `주변에 지금 이거 고민 중인 친구 @태그 해주시거나 저장해두시고, 무료 3초 계산기는 바로 아래 [첫 번째 댓글] 또는 검색창에 [ truthofmarket ]을 검색해보세요! 👇`
+      `내 조건 넣으면 3초 만에 계산해주는 무료 계산기 주소는 첫 번째 댓글에 남겨두었습니다!`
     ].join('\n');
 
     return {
@@ -843,26 +927,125 @@
     ctx.restore();
   }
 
+  function getConversationalScript(calcKey, meta) {
+    const scripts = {
+      electric: {
+        episodeTitle: '자취생 쿼카의 여름 일기 — "에어컨 아껴 틀었는데요..?"',
+        p1Lines: ['더울 때만 잠깐 틀고 2시간마다 껐다 켰다 했지롱~', '이번 달 전기세는 무조건 만 원대 각이다 ㅎㅎ'],
+        p2FoxLines: ['야!! 구형 에어컨을 그렇게 껐다 켰다 하면', '실외기 전기 먹고 누진세 3배 폭탄 맞아!!'],
+        p2React: '에..?! 진짜로?!',
+        p3CryLines: [
+          '으아앙!! 고지서 보니까 그렇게 틀면 ' + (meta.badVal || '59,220원') + '인데',
+          '인버터로 켜두면 ' + (meta.goodVal || '37,290원') + '이잖아..',
+          '모르고 매달 2만 원 넘게 날리고 있었어 ㅠㅠ'
+        ],
+        p4FoxLines: ['울지 마~ 머니핏에 우리 방 에어컨 넣으면', '3초 만에 한 달 전기세 얼마인지 다 알려줘!'],
+        p4React: '헐 대박!! 당장 해볼래!!'
+      },
+      diet: {
+        episodeTitle: '헬린이 시바의 식단 일기 — "닭가슴살 100팩 샀는데요..?"',
+        p1Lines: ['오늘부터 다이어트 1일!! 일단 닭가슴살 100팩이랑', '고구마 한 박스 질렀으니까 무조건 살 빠지겠지?!'],
+        p2FoxLines: ['너 하루 소비칼로리도 안 재보고 그렇게 사면', '식비만 날리고 냉동실에 다 쌓여!!'],
+        p2React: '헉.. 내 돈..!!',
+        p3CryLines: [
+          '으아앙!! 내 체중에 맞춰 사면 ' + (meta.goodVal || '21만 원') + '이면 되는데',
+          '감으로 막 샀다가 ' + (meta.badVal || '49만 원') + '이나 썼네..',
+          '살도 안 빠지고 돈만 날렸어 ㅠㅠ'
+        ],
+        p4FoxLines: ['지금이라도 머니핏에 몸무게만 넣어봐!', '하루 닭가슴살 몇 팩 먹어야 하는지 3초 만에 나와!'],
+        p4React: '와!! 오늘부터 진짜 득근한다!!'
+      },
+      pet: {
+        episodeTitle: '초보집사 냥이의 육아 일기 — "종이컵으로 사료 줬는데요..?"',
+        p1Lines: ['사료 봉투 뒤에 적힌 대로 종이컵 가득 부어줬는데..', '우리 애기 왜 자꾸 포동포동 굴러다니지..? ㅎㅎ'],
+        p2FoxLines: ['중성화한 애한테 종이컵 눈대중으로 주면', '비만 와서 나중에 슬개골 병원비 수백만 원 깨져!!'],
+        p2React: '헉.. 어떡해?!',
+        p3CryLines: [
+          '으아앙!! 몸무게로 계산해보니까 하루 정량만 줘야 했어..',
+          '모르고 더 줬다가 비만·슬개골 병원비 폭탄 맞을 뻔했잖아..',
+          '미안해 내 새끼야 ㅠㅠ'
+        ],
+        p4FoxLines: ['머니핏에 우리 애기 몸무게만 적어봐!', '하루에 사료 몇 g 줘야 하는지 3초 만에 알려줘!'],
+        p4React: '당장 그램(g) 재서 줄게!!'
+      },
+      room: {
+        episodeTitle: '자취러 곰돌이의 이사 일기 — "인스타 감성 방 꾸미기..?"',
+        p1Lines: ['첫 자취방이니까 침대랑 워시타워는 무조건 감성템으로!!', '어라.. 근데 왜 벌써 통장 잔고가 바닥이지..?'],
+        p2FoxLines: ['예산 비율 안 짜고 큰 가구부터 지르면 어떡해!!', '그럼 냉장고랑 전자레인지는 안 살 거야?!'],
+        p2React: '망했다..!!',
+        p3CryLines: [
+          '으아앙!! 감성템 단품으로 담으니까 ' + (meta.badVal || '122만 원') + '인데',
+          '예산 맞춰 세팅하면 ' + (meta.goodVal || '100만 원') + '이면 끝나는 거였잖아..',
+          '이사 첫날부터 파산할 뻔했어 ㅠㅠ'
+        ],
+        p4FoxLines: ['머니핏에 내 총예산만 적어봐!', '예산 절대 안 넘게 가전·가구 리스트를 3초 만에 짜줘!'],
+        p4React: '우와!! 이대로만 사야지!!'
+      },
+      auto: {
+        episodeTitle: '김대리 댕댕이의 신차 일기 — "월 납입금만 보면 되잖아..?"',
+        p1Lines: ['영맨님이 한 달에 40만 원대면 신차 뽑는다는데?!', '생각보다 싸네~ 그냥 바로 계약서 사인할까봐!'],
+        p2FoxLines: ['월 납입금만 보면 어떡해!! 취등록세 7%랑', '5년 치 보험료·자동차세까지 다 합쳐서 봐야지!!'],
+        p2React: '세금도 있었어?!',
+        p3CryLines: [
+          '으아앙!! 4~5년 총비용 다 합쳐보니까 그냥 할부로 사면',
+          '맞춤 플랜보다 수백만 원이나 더 내는 거였어..',
+          '모르고 사인했으면 카푸어 될 뻔 ㅠㅠ'
+        ],
+        p4FoxLines: ['계약하기 전에 머니핏에 차 값만 넣어봐!', '할부·렌트·리스 중에 뭐가 제일 싼지 3초 만에 나와!'],
+        p4React: '덕분에 큰돈 아꼈다!!'
+      },
+      telecom: {
+        episodeTitle: '라쿤 대리의 호구탈출 일기 — "인터넷 그냥 써도 되잖아..?"',
+        p1Lines: ['우리 집 인터넷 3년 약정 끝난 지 한참 됐는데', '귀찮아서 그냥 쓰는 중~ 바꾼다고 뭐 얼마나 주겠어?'],
+        p2FoxLines: ['헐.. 너 바보야?! 약정 끝난 거 갈아타면', '현금 사은품 최대 47만 원에 월 요금까지 깎아주는데!!'],
+        p2React: '47만 원이나?!',
+        p3CryLines: [
+          '으아앙!! 귀찮다고 그냥 버티는 바람에',
+          '당장 받을 수 있는 현금 ' + (meta.goodVal || '47만 원') + ' 혜택을 놓치고 있었네..',
+          '나만 통신사 호구였어 ㅠㅠ'
+        ],
+        p4FoxLines: ['지금이라도 머니핏에 현재 요금만 넣어봐!', '갈아타면 내 통장에 얼마 남는지 3초 만에 계산돼!'],
+        p4React: '오늘 바로 갈아탄다!!'
+      }
+    };
+    return scripts[calcKey] || scripts.electric;
+  }
+
+  function drawCenteredBubbleText(ctx, lines, cx, startY, lineHeight, fontSize, color = '#1e293b', maxWidth = 0) {
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = color;
+    lines.forEach((ln, idx) => {
+      let fSize = fontSize;
+      ctx.font = 'bold ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+      if (maxWidth > 0) {
+        while (fSize > 10 && ctx.measureText(ln).width > maxWidth) {
+          fSize -= 0.5;
+          ctx.font = 'bold ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+        }
+      }
+      ctx.fillText(ln, cx, startY + idx * lineHeight);
+    });
+    ctx.restore();
+  }
+
   /**
-   * Draw a single authentic Instatoon panel at (px, py, pw, ph)
-   * - ZERO mechanical '1컷 · ...' header pills or bottom dark caption bars
-   * - Speech bubbles & compact receipt memo sit strictly in the top 34%~37% empty wall space
+   * Draw a single authentic Conversational Instatoon panel at (px, py, pw, ph)
    */
   function drawSinglePanel(ctx, panelIdx, px, py, pw, ph, preset, story) {
     const { meta } = story;
     const scaleX = pw / 502;
-    const scaleY = ph / 472;
+    const scaleY = ph / 474;
     const artImg = getCategoryInstatoonImage(preset.calc);
-    const cleanSpeech1 = String(meta.panel1Bubble || '').replace(/^"+|"+$/g, '');
-    const cleanSpeech2 = String(meta.panel2Bubble || '').replace(/^"+|"+$/g, '');
+    const conv = getConversationalScript(preset.calc, meta);
 
     ctx.save();
     ctx.translate(px, py);
     ctx.scale(scaleX, scaleY);
 
     const W = 502;
-    const H = 472;
-    const panelRadius = 10;
+    const H = 474;
+    const panelRadius = 12;
     const bgColors = ['#fef9ee', '#e0f2fe', '#dcfce7', '#fef08a'];
 
     // 1. Panel Base Background + Full Uncropped Animal Illustration
@@ -881,170 +1064,49 @@
       drawAnimalCharacter(ctx, W * 0.5, H * 0.66, sp, mood, '#fecdd3', 1.15);
     }
 
-    // 2. Top Speech Bubble / Compact Receipt (Strictly in top empty wall space — ZERO character overlap!)
+    // 2. 100% Natural Conversational Tiki-Taka Speech Bubbles
     if (panelIdx === 0) {
-      const bx = 16;
-      const by = 14;
-      const bw = W - 32;
-      const bh = 104;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.42, -1);
-
-      // Cute speaker chip
-      drawRoundedRect(ctx, bx + 14, by + 10, 165, 24, 12);
-      ctx.fillStyle = '#ffe4e6';
-      ctx.fill();
-      ctx.fillStyle = '#be123c';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText(`① 🐾 ${meta.charName}`, bx + 24, by + 27);
-
-      // Tilted Comic SFX sticker on top-right of bubble
-      ctx.save();
-      ctx.translate(bx + bw - 54, by + 22);
-      ctx.rotate(0.05);
-      drawRoundedRect(ctx, -42, -12, 84, 24, 8);
-      ctx.fillStyle = '#fde047';
-      ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#1e293b';
-      ctx.stroke();
-      ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 12.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.sfxShock || '콰아앙⚡', -32, 4);
-      ctx.restore();
-
-      ctx.fillStyle = '#1e293b';
-      ctx.font = 'bold 16px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, `"${cleanSpeech1}"`, bx + 16, by + 56, bw - 32, 23, 2);
+      const bx = 22;
+      const by = 18;
+      const bw = W - 44;
+      const bh = 86;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 38, W * 0.42, -1);
+      drawCenteredBubbleText(ctx, conv.p1Lines, bx + bw / 2, by + 37, 26, 16, '#1e293b', bw - 46);
     } else if (panelIdx === 1) {
-      const bx = 16;
-      const by = 14;
-      const bw = W - 32;
-      const bh = 104;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.30, -1);
+      const bx1 = 14;
+      const by1 = 14;
+      const bw1 = 338;
+      const bh1 = 82;
+      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 34, W * 0.30, -1);
+      drawCenteredBubbleText(ctx, conv.p2FoxLines, bx1 + bw1 / 2, by1 + 35, 24, 15, '#1e293b', bw1 - 42);
 
-      // Speaker chip
-      drawRoundedRect(ctx, bx + 14, by + 10, 185, 24, 12);
-      ctx.fillStyle = '#dbeafe';
-      ctx.fill();
-      ctx.fillStyle = '#1d4ed8';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText(`② 🦊 ${meta.expertName}`, bx + 24, by + 27);
-
-      // Fact-check badge
-      drawRoundedRect(ctx, bx + bw - 116, by + 10, 102, 24, 12);
-      ctx.fillStyle = '#dc2626';
-      ctx.fill();
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px "Malgun Gothic", sans-serif';
-      ctx.fillText('🚨 팩트폭격✨', bx + bw - 104, by + 26);
-
-      ctx.fillStyle = '#1e293b';
-      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, `"${cleanSpeech2}"`, bx + 16, by + 56, bw - 32, 23, 2);
+      const bx2 = 356;
+      const by2 = 52;
+      const bw2 = 132;
+      const bh2 = 54;
+      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 26, W * 0.78, 1);
+      drawCenteredBubbleText(ctx, [conv.p2React], bx2 + bw2 / 2, by2 + 33, 22, 15, '#dc2626', bw2 - 28);
     } else if (panelIdx === 2) {
-      const rx = 14;
-      const ry = 12;
-      const rw = W - 28;
-      const rh = 164;
-      drawPerforatedReceiptCard(ctx, rx, ry, rw, rh, W * 0.62);
+      const bx = 18;
+      const by = 18;
+      const bw = W - 36;
+      const bh = 112;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 38, W * 0.65, 1);
+      drawCenteredBubbleText(ctx, conv.p3CryLines, bx + bw / 2, by + 35, 26, 15.5, '#1e293b', bw - 46);
+    } else {
+      const bx1 = 14;
+      const by1 = 14;
+      const bw1 = 332;
+      const bh1 = 80;
+      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 34, W * 0.32, -1);
+      drawCenteredBubbleText(ctx, conv.p4FoxLines, bx1 + bw1 / 2, by1 + 34, 24, 14.8, '#1e293b', bw1 - 42);
 
-      ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
-      ctx.fillText('③ 🧾 머니핏 3초 실물 비교 영수증', rx + 16, ry + 26);
-
-      // Red Diagonal Stamp (🚨 호구주의보)
-      ctx.save();
-      ctx.translate(rx + rw - 64, ry + 21);
-      ctx.rotate(-0.06);
-      drawRoundedRect(ctx, -48, -11, 96, 22, 6);
-      ctx.fillStyle = '#fee2e2';
-      ctx.fill();
-      ctx.lineWidth = 1.8;
-      ctx.strokeStyle = '#dc2626';
-      ctx.stroke();
-      ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 11.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('🚨 호구주의보', -39, 4);
-      ctx.restore();
-
-      // Row 1: ❌ 호구 평균 지출 (Left label, Right value)
-      const r1Y = ry + 36;
-      const rowH = 35;
-      drawRoundedRect(ctx, rx + 14, r1Y, rw - 28, rowH, 8);
-      ctx.fillStyle = '#ffe4e6';
-      ctx.fill();
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = '#fda4af';
-      ctx.stroke();
-
-      ctx.fillStyle = '#9f1239';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText(`❌ ${meta.badLabel || '호구 평균 지출'}`, rx + 24, r1Y + 23);
-      ctx.save();
-      ctx.textAlign = 'right';
-      ctx.fillStyle = '#e11d48';
-      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.badVal, rx + rw - 24, r1Y + 23);
-      ctx.restore();
-
-      // Row 2: ✅ 상위 1% 절약 지출 (Left label, Right value)
-      const r2Y = r1Y + rowH + 5;
-      drawRoundedRect(ctx, rx + 14, r2Y, rw - 28, rowH, 8);
-      ctx.fillStyle = '#d1fae5';
-      ctx.fill();
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = '#6ee7b7';
-      ctx.stroke();
-
-      ctx.fillStyle = '#065f46';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText(`✅ ${meta.goodLabel || '상위 1% 절약 지출'}`, rx + 24, r2Y + 23);
-      ctx.save();
-      ctx.textAlign = 'right';
-      ctx.fillStyle = '#059669';
-      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.goodVal, rx + rw - 24, r2Y + 23);
-      ctx.restore();
-
-      // Row 3: 😭 모르면 날리는 생돈 (Dark highlight bar)
-      const r3Y = r2Y + rowH + 5;
-      drawRoundedRect(ctx, rx + 14, r3Y, rw - 28, rowH + 2, 8);
-      ctx.fillStyle = '#0f172a';
-      ctx.fill();
-
-      ctx.fillStyle = '#fde047';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText('😭 모르면 날리는 생돈', rx + 24, r3Y + 24);
-      ctx.save();
-      ctx.textAlign = 'right';
-      ctx.fillStyle = '#34d399';
-      ctx.font = 'bold 16.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.diffVal, rx + rw - 24, r3Y + 24);
-      ctx.restore();
-    } else if (panelIdx === 3) {
-      const bx = 16;
-      const by = 14;
-      const bw = W - 32;
-      const bh = 104;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.50, 1);
-
-      drawRoundedRect(ctx, bx + 14, by + 10, bw - 28, 26, 10);
-      ctx.fillStyle = '#fef08a';
-      ctx.fill();
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = '#eab308';
-      ctx.stroke();
-      ctx.fillStyle = '#713f12';
-      ctx.font = 'bold 13.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('④ ❓ 내 조건 넣으면 상위 몇 % 호구일까?', bx + 24, by + 28);
-
-      ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, '"내 숫자 넣고 3초 만에 무료 영수증 뽑기 완료!"', bx + 16, by + 60, bw - 32, 22, 1);
-
-      ctx.fillStyle = '#059669';
-      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('✨ 검색창에 [ truthofmarket ] 검색하면 3초 무료 계산!', bx + 16, by + 86);
+      const bx2 = 308;
+      const by2 = 86;
+      const bw2 = 180;
+      const bh2 = 50;
+      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 25, W * 0.76, 1);
+      drawCenteredBubbleText(ctx, [conv.p4React], bx2 + bw2 / 2, by2 + 31, 20, 14.5, '#047857', bw2 - 28);
     }
 
     // 3. Crisp Authentic Comic Panel Outline (#1e293b, 4.5px)
@@ -1063,6 +1125,7 @@
     const canvas = document.getElementById('webtoon-canvas');
     if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext('2d');
+    const conv = getConversationalScript(preset.calc, story.meta);
 
     ctx.clearRect(0, 0, 1080, 1080);
 
@@ -1070,40 +1133,37 @@
     ctx.fillStyle = '#faf7f2';
     ctx.fillRect(0, 0, 1080, 1080);
 
-    // Clean Webtoon Episode Header (No dark dashboard box)
-    drawRoundedRect(ctx, 28, 16, 178, 36, 18);
-    ctx.fillStyle = '#10b981';
-    ctx.fill();
-    ctx.lineWidth = 2.5;
-    ctx.strokeStyle = '#1e293b';
-    ctx.stroke();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 16px "Malgun Gothic", sans-serif';
-    ctx.fillText('🐾 머니핏 인스타툰', 44, 40);
-
+    // Natural Instatoon Episode Title
     ctx.fillStyle = '#1e293b';
-    ctx.font = 'bold 26px "Malgun Gothic", sans-serif';
-    drawWrappedText(ctx, `${preset.keyword || preset.title} 편`, 220, 43, 830, 32, 1);
+    ctx.font = 'bold 25px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('🐾 ' + conv.episodeTitle, 32, 44);
 
-    // 4 Panels in 2x2 Grid (each 502x472)
+    ctx.save();
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#64748b';
+    ctx.font = 'bold 18px sans-serif';
+    ctx.fillText('@moneyfit2026', 1048, 43);
+    ctx.restore();
+
+    // 4 Panels in 2x2 Grid (each 502x474)
     const positions = [
-      { x: 28, y: 66 },
-      { x: 550, y: 66 },
-      { x: 28, y: 554 },
-      { x: 550, y: 554 }
+      { x: 28, y: 62 },
+      { x: 550, y: 62 },
+      { x: 28, y: 552 },
+      { x: 550, y: 552 }
     ];
 
     for (let i = 0; i < 4; i++) {
-      drawSinglePanel(ctx, i, positions[i].x, positions[i].y, 502, 472, preset, story);
+      drawSinglePanel(ctx, i, positions[i].x, positions[i].y, 502, 474, preset, story);
     }
 
-    // Manuscript Bottom Footer Pill
-    drawRoundedRect(ctx, 28, 1036, 1024, 34, 17);
-    ctx.fillStyle = '#1e293b';
-    ctx.fill();
-    ctx.fillStyle = '#fde047';
-    ctx.font = 'bold 16.5px "Malgun Gothic", sans-serif';
-    ctx.fillText('📌 저장해두고 비교해보세요!   |   🔎 무료 3초 계산기는 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 64, 1059);
+    // Subtle, natural artist signature line at the bottom of the cream paper
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#475569';
+    ctx.font = 'bold 17px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('🎨 머니핏 공감툰  ·  우리 집 3초 무료 계산기는 프로필 링크 또는 검색창에 「머니핏」 검색!', 540, 1058);
+    ctx.restore();
   }
 
   /**
@@ -1147,9 +1207,12 @@
         ctx.fillStyle = '#faf7f2';
         ctx.fillRect(0, 0, 1080, 1080);
         drawSinglePanel(ctx, i, 36, 28, 1008, 992, preset, story);
-        ctx.fillStyle = '#1e293b';
-        ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-        ctx.fillText('📌 저장해두고 비교해보세요!  |  🔎 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 72, 1056);
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 19px sans-serif';
+        ctx.fillText('🎨 머니핏 공감툰  ·  무료 계산기는 프로필 링크 또는 검색창에 「머니핏」 검색!', 540, 1056);
+        ctx.restore();
         const a = document.createElement('a');
         a.href = offCanvas.toDataURL('image/png');
         a.download = `moneyfit-insta-${preset.id}-slide${i + 1}.png`;

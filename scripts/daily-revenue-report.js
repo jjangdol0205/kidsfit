@@ -296,6 +296,7 @@ async function buildDailyRevenueData(injectedStats = null) {
     const managerAudit = require('./manager-audit.js');
     const webtoon = managerAudit.auditWebtoonBacklog();
     const naver = managerAudit.auditNaverBacklog();
+    const spamAudit = managerAudit.auditSpamAndDuplication ? managerAudit.auditSpamAndDuplication() : null;
     backlogSummary = {
       webtoonRendered: webtoon.renderedCount,
       webtoonPublished: webtoon.publishedLiveCount,
@@ -306,7 +307,8 @@ async function buildDailyRevenueData(injectedStats = null) {
       blogPending: naver.blog.pending,
       jisikinPending: naver.jisikin.pending,
       cafePending: naver.cafe.pending,
-      nextBlogSlug: (naver.blog.nextQueue[0] && naver.blog.nextQueue[0].slug) || 'diet-male-fatloss'
+      nextBlogSlug: (naver.blog.nextQueue[0] && naver.blog.nextQueue[0].slug) || 'diet-male-fatloss',
+      spamAudit
     };
   } catch (e) {
     backlogSummary = null;
@@ -387,6 +389,13 @@ function formatDailyRevenueHtml(report) {
   const goalPct = Number(((report.summary.cumulativeTotalNet / octGoalKrw) * 100).toFixed(2));
   const remainingKrw = Math.max(0, octGoalKrw - report.summary.cumulativeTotalNet);
 
+  const sa = b && b.spamAudit ? b.spamAudit : null;
+  const spamLines = sa
+    ? [
+        `• 🛡️ <b>스팸·중복 상시 검수</b>: <b><code>${esc(sa.status)}</code></b> (웹툰 고유대사 <code>${sa.webtoonQuality.uniquePanel1Count}/36</code> · 네이버 <code>undefined ${sa.naverQuality.undefinedLeaks}건</code> · 유사도 <code>${sa.naverQuality.avgBlogJaccardPct}%</code>)`
+      ]
+    : [];
+
   const backlogLines = b
     ? [
         ``,
@@ -396,10 +405,11 @@ function formatDailyRevenueHtml(report) {
         `• <b>실시간 제휴 CTR</b>: <b><code>${totalCtr}%</code></b> (누적 클릭 <code>${report.clicks.totalClicks}회</code> / 일 목표 <code>108클릭</code>)`,
         `• <b>가동 중 CRO 실험</b>: <code>EXP-0(광고경계심 제거)</code> · <code>EXP-A(실체감가 0원)</code> · <code>EXP-B(비교표 직결버튼)</code> · <code>EXP-C(7슬롯 CTR 추적)</code>`,
         ``,
-        `📋 <b>6. 총괄 매니저 웹툰·네이버 백로그 상시 점검</b>`,
+        `📋 <b>6. 총괄 매니저 웹툰·네이버 백로그 &amp; 스팸·중복 상시 점검</b>`,
         `• 🎨 <b>웹툰 백로그</b>: 고해상도 PNG <b><code>${b.webtoonRendered}/36편(100%)</code></b> 완비 | <code>@moneyfit2026</code> 게시 <code>${b.webtoonPublished}/36편</code> (대기 <b><code>${b.webtoonPending}편</code></b>)`,
         `• 🟢 <b>네이버 백로그</b>: 총 <code>${b.naverTotalDone}/${b.naverTotalTarget}건</code> 완료 | 블로그 대기 <b><code>${b.blogPending}건</code></b> · 지식iN 대기 <b><code>${b.jisikinPending}건</code></b> · 카페 대기 <b><code>${b.cafePending}건</code></b>`,
-        `• 🚀 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 업로드 + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행`
+        ...spamLines,
+        `• 🚀 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 업로드(일 2~3편) + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행(일 2~3건)`
       ]
     : [];
 

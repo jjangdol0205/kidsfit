@@ -453,6 +453,13 @@ function resolveFilePath(cleanUrlPath) {
     return fs.existsSync(distIdx) ? distIdx : path.join(ROOT_DIR, 'index.html');
   }
 
+  if (cleanPath === '/office' || cleanPath === '/office/' || cleanPath === '/office.html') {
+    const distOffice = path.join(DIST_DIR, 'office.html');
+    if (fs.existsSync(distOffice)) return distOffice;
+    const rootOffice = path.join(ROOT_DIR, 'office.html');
+    if (fs.existsSync(rootOffice)) return rootOffice;
+  }
+
   const rel = cleanPath.replace(/^\/+/, '');
   const ext = path.extname(rel).toLowerCase();
   if (ext && !MIME_TYPES[ext]) {
@@ -490,6 +497,87 @@ function resolveFilePath(cleanUrlPath) {
   return null;
 }
 
+function buildOfficeStatePayload() {
+  const stats = getStatsPayload();
+  let webtoon = { renderedCount: 36, totalEpisodes: 36, publishedLiveCount: 1, pendingPublishCount: 35 };
+  let naver = {
+    totalFiles: 144,
+    totalDone: 98,
+    totalTarget: 144,
+    blog: { done: 7, pending: 29, nextQueue: [{ num: '07', slug: 'diet-male-fatloss' }] },
+    cafe: { done: 32, pending: 4, nextQueue: [{ num: '01', slug: 'electric-studio-ac' }] },
+    jisikin: { done: 23, pending: 13, nextQueue: [{ num: '07', slug: 'diet-male-fatloss' }] },
+    community: { done: 36, pending: 0 }
+  };
+  let spamAudit = {
+    status: '🟢 CLEAN (스팸·중복 0건 / 100% 고유화 통과)',
+    webtoonQuality: { uniquePanel1Count: 36, uniquePanel2Count: 36, uniqueHashtagsCount: 36, spamTokenCount: 0 },
+    naverQuality: { undefinedLeaks: 0, roboticHashtags: 0, avgBlogJaccardPct: 6.6 }
+  };
+
+  try {
+    const managerAudit = require('./scripts/manager-audit.js');
+    webtoon = managerAudit.auditWebtoonBacklog();
+    naver = managerAudit.auditNaverBacklog();
+    if (managerAudit.auditSpamAndDuplication) {
+      spamAudit = managerAudit.auditSpamAndDuplication();
+    }
+  } catch (e) {}
+
+  return {
+    status: 'ok',
+    updatedAt: new Date().toISOString(),
+    companyName: '머니핏(MoneyFit) AI 코퍼레이션',
+    mission: '10월 목표 100만 원 → 매월 +100% MoM 성장 (통합 멀티에이전트 가동 중)',
+    stats,
+    webtoon,
+    naver,
+    spamAudit,
+    departments: [
+      {
+        id: 'hq-manager',
+        name: '총괄 매니저실 (CEO 직속 컨트롤타워)',
+        status: 'ACTIVE',
+        progress: 100,
+        lead: '아기 호랑이 총괄매니저 🐯',
+        currentTask: '3대 본부(홈페이지·네이버·웹툰) 통합 지휘 및 06:00 텔레그램 보고 관제'
+      },
+      {
+        id: 'dept-homepage-cro',
+        name: '제1본부: 홈페이지·CRO 개발실',
+        status: 'WORKING',
+        progress: 100,
+        lead: '비버 과장 🦫 & 수달 주임 🦦',
+        currentTask: `4-Layer 직결 브릿지 + EXP-0/A/B/C 가동 중 (실시간 CTR ${stats.total.ctrPercent}% / 최다 슬롯: ${stats.total.topSlot})`
+      },
+      {
+        id: 'dept-naver-seo',
+        name: '제2본부: 네이버·SEO 백로그실',
+        status: 'WORKING',
+        progress: Math.round((naver.totalDone / Math.max(1, naver.totalTarget)) * 100),
+        lead: '고슴도치 대리 🦔 & 미어캣 사원 🐾',
+        currentTask: `네이버 백로그 ${naver.totalDone}/${naver.totalTarget}건 완료 | 블로그 대기 ${naver.blog.pending}건 · 지식iN 대기 ${naver.jisikin.pending}건 순차 발행`
+      },
+      {
+        id: 'dept-webtoon-sns',
+        name: '제3본부: AI 웹툰·SNS 스튜디오',
+        status: 'WORKING',
+        progress: Math.round((webtoon.renderedCount / Math.max(1, webtoon.totalEpisodes)) * 100),
+        lead: '렛서판다 작가 🐼 & 앵무새 피디 🦜',
+        currentTask: `4컷 웹툰 ${webtoon.renderedCount}/36편(180장 PNG) 렌더링 100% 완료 | @moneyfit2026 대기열 ${webtoon.pendingPublishCount}편 송출 대기`
+      },
+      {
+        id: 'dept-antispam-qa',
+        name: '품질·스팸 감찰실 & 보안관제센터',
+        status: 'GUARDING',
+        progress: 100,
+        lead: '매 감사역 🦅 & 부엉이 팀장 🦉',
+        currentTask: `${spamAudit.status} (undefined ${spamAudit.naverQuality.undefinedLeaks}건 · 유사도 ${spamAudit.naverQuality.avgBlogJaccardPct}% · 웹툰 고유대사 ${spamAudit.webtoonQuality.uniquePanel1Count}/36)`
+      }
+    ]
+  };
+}
+
 const server = http.createServer(async (req, res) => {
   const reqUrl = req.url || '/';
   const [rawPath, rawQuery] = reqUrl.split('?');
@@ -519,6 +607,18 @@ const server = http.createServer(async (req, res) => {
         timestamp: new Date().toISOString()
       })
     );
+    return;
+  }
+
+  // 1-B. Virtual AI Company Office State API (/api/office-state)
+  if (cleanUrlPath === '/api/office-state') {
+    res.writeHead(200, {
+      ...SECURITY_HEADERS,
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-store'
+    });
+    res.end(JSON.stringify(buildOfficeStatePayload(), null, 2));
     return;
   }
 

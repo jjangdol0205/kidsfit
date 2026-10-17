@@ -609,38 +609,45 @@
     const siteUrl = config.siteUrl || "https://truthofmarket.com";
     const presetUrl = `${siteUrl}/preset/${preset.id}`;
 
-    // 1. Naver Blog / Tistory Post (1500+ Korean characters preview)
-    const blogPost = `[제목] ${preset.title} (2026 최신 손익분기점 총정리)\n\n` +
-      `안녕하세요! 매달 고정비 지출과 생활 예산 때문에 고민하시는 분들을 위해 오늘은 '${preset.title}' 주제를 심층 분석해 드립니다.\n` +
-      `단순히 대략적인 감으로 지출을 관리하면 1년에 수십만 원에서 수백만 원까지 불필요한 금전적 손실이 발생할 수 있습니다.\n\n` +
-      `■ 핵심 수치 진단 결과: ${res.headline}\n` +
-      `- ${res.metrics.map(m => `${m.label}: ${m.val}`).join('\n- ')}\n\n` +
-      `■ 상세 분석 및 전문가 코멘트\n${res.summary}\n\n` +
-      `■ 손해를 막는 3대 실천 전략\n` +
-      `1. 내 상황에 정확히 맞는 수치를 입력해 오차 없는 손익분기점을 먼저 확인하세요.\n` +
-      `2. 불필요하게 낭비되는 누진 구간, 약정 위약금, 과다 사료비 지출을 즉시 차단하세요.\n` +
-      `3. 검증된 고효율 환급 기기 또는 제휴 프로모션을 통해 초기비용 부담을 최소화하세요.\n\n` +
-      `👉 내 조건(평수/체중/약정기간)을 직접 넣어서 3초 만에 계산해 보시려면 아래 무료 계산기에서 바로 확인해 보세요!\n` +
-      `🔗 무료 맞춤 계산기 바로가기: ${presetUrl}\n\n` +
-      `#${preset.title.split(' ').slice(0, 4).join(' #')} #손익분기점계산기 #생활꿀팁 #머니핏`;
+    const precompiled = (window.VIRAL_POSTS && window.VIRAL_POSTS[preset.id]) || null;
+    const storyMap = (window.MoneyFitWebtoonStories && window.MoneyFitWebtoonStories.PRESET_WEBTOON_MAP) || {};
+    const story = storyMap[preset.id] || {};
 
-    // 2. Threads / Group Chat 3-Line Summary
-    const threadsPost = `🚨 아직도 '${preset.title}' 모르고 돈 날리는 분 계신가요?\n` +
-      `방금 계산기 돌려봤는데 ${res.headline} 나옵니다 ㄷㄷ\n` +
-      `내 조건 넣고 3초 만에 손익분기점 확인하기 👉 ${presetUrl}`;
+    // 1. Naver Blog / Tistory Post (1500+ Korean characters preview)
+    const blogPost = precompiled && precompiled.blogPost
+      ? precompiled.blogPost
+      : `[제목] ${preset.title} — 2026 실제 수식 비교 & 손익분기점 정리\n\n` +
+        `${story.hookLine || `요즘 '${preset.title}' 조건에서 실제 비용이 얼마나 차이 나는지 궁금해하시는 분들이 많습니다.`}\n` +
+        `${story.factLine || `대략적인 눈대중 대신 공인 수식에 내 수치를 대입해 보면 1년 기준 수십만 원 이상의 고정비 차이를 확인할 수 있습니다.`}\n\n` +
+        `■ 핵심 수치 진단 결과: ${res.headline} (${res.badge})\n` +
+        `- ${res.metrics.map(m => `${m.label}: ${m.val}`).join('\n- ')}\n\n` +
+        `■ 상세 분석 및 전문가 코멘트\n${res.summary}\n\n` +
+        `👉 ${story.ctaLine || `내 조건을 직접 넣어서 3초 만에 계산해 보시려면 아래 무료 계산기에서 바로 확인해 보세요!`}\n` +
+        `🔗 무료 맞춤 계산기 바로가기: ${presetUrl}\n\n` +
+        `${story.hashtags || `#${preset.title.split(' ').slice(0, 4).join(' #')} #머니핏`}`;
+
+    // 2. Threads / Group Chat 3-Line Summary (Clean, non-spammy, preset-accurate)
+    const threadsPost = precompiled && precompiled.threadsPost
+      ? precompiled.threadsPost
+      : `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n` +
+        `${story.factLine || `실제 수식으로 계산해 보니 [${res.headline}] 차이가 발생합니다.`}\n` +
+        `${story.ctaLine || `내 조건 넣고 3초 무료 시뮬레이션 확인하기`}: ${presetUrl}`;
 
     // 3. Naver Jisik-iN Tailored Reply
-    const jisikinPost = `질문자님 조건('${preset.title}')으로 실제 수식을 돌려본 결과입니다.\n\n` +
-      `결론부터 말씀드리면 [${res.headline}] 입니다.\n` +
-      `${res.summary}\n\n` +
-      `더 정확한 본인 수치(시간/금액)별 비교표는 아래 무료 시뮬레이터에서 로그인 없이 바로 계산해 보실 수 있습니다.\n` +
-      `출처 및 계산기: ${presetUrl}`;
+    const jisikinPost = precompiled && precompiled.jisikinPost
+      ? precompiled.jisikinPost
+      : `질문자님과 비슷한 조건('${preset.title}')으로 실제 수식을 대입해 본 결과입니다.\n\n` +
+        `핵심 결론은 [${res.headline} (${res.badge})] 수준으로 산출됩니다.\n` +
+        `${story.factLine || res.summary}\n\n` +
+        `세부 조건별 비교표는 아래 무료 시뮬레이터에서 회원가입 없이 바로 계산해 보실 수 있습니다.\n` +
+        `참고한 무료 계산기: ${presetUrl}`;
 
     // 4. IndexNow API Payload
+    const indexNowKey = "moneyfit-indexnow-key-2026";
     const indexNowPayload = {
       host: new URL(siteUrl).host,
-      key: "moneyfit8f92a1b4c3d2e1f0",
-      keyLocation: `${siteUrl}/moneyfit8f92a1b4c3d2e1f0.txt`,
+      key: indexNowKey,
+      keyLocation: `${siteUrl}/${indexNowKey}.txt`,
       urlList: SEO_PRESETS.slice(0, 6).map(item => `${siteUrl}/preset/${item.id}`)
     };
 
@@ -1270,6 +1277,7 @@
     document.getElementById('admin-status-bar')?.classList.remove('hidden');
     document.getElementById('tab-btn-seo')?.classList.remove('hidden');
     document.getElementById('tab-btn-wizard')?.classList.remove('hidden');
+    document.getElementById('tab-btn-office')?.classList.remove('hidden');
     if (openWizard && typeof window.switchMainTab === 'function') {
       window.switchMainTab('wizard');
     }

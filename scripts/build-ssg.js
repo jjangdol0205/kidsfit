@@ -1789,6 +1789,12 @@ function build() {
   copyFileSafe(indexHtmlSrc, indexHtmlDest);
   console.log('  ✓ dist/index.html');
 
+  const officeHtmlSrc = path.join(PROJECT_ROOT, 'office.html');
+  if (fs.existsSync(officeHtmlSrc)) {
+    copyFileSafe(officeHtmlSrc, path.join(DIST_DIR, 'office.html'));
+    console.log('  ✓ dist/office.html (AI Virtual Company HQ)');
+  }
+
   // Security: Ensure monetization.config.json and indexnow-submit.js are NOT exposed in public dist/
   const legacyConfigDest = path.join(DIST_DIR, 'monetization.config.json');
   if (fs.existsSync(legacyConfigDest)) {
