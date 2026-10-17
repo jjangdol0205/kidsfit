@@ -291,6 +291,47 @@
         </div>
       </div>
 
+      <!-- 🔄 6시간 주기 성과분석 & 자동 강화·수정(Auto-Pivot) 라이브 보드 -->
+      <div id="six-hour-pivot-board" class="bg-gradient-to-br from-amber-950/50 via-slate-900 to-slate-900 border border-amber-500/40 rounded-2xl p-4 space-y-2.5 shadow-xl">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-sm">🦊</span>
+            <h3 class="text-xs font-black text-amber-300 tracking-tight">6시간 주기 성과분석 & 자동 강화·수정 보드</h3>
+          </div>
+          <span id="pivot-cycle-badge" class="text-[10px] bg-amber-500/20 text-amber-200 border border-amber-500/40 px-2 py-0.5 rounded-full font-extrabold">00·06·12·18시 자동가동</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-1.5 text-center">
+          <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
+            <div class="text-[10px] text-slate-400 font-bold">① 홈페이지 유입</div>
+            <div id="pivot-kpi-inflow" class="text-xs font-black text-emerald-400 mt-0.5">UV 1 · PV 1</div>
+          </div>
+          <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
+            <div class="text-[10px] text-slate-400 font-bold">② 쿠팡·제휴 클릭</div>
+            <div id="pivot-kpi-clicks" class="text-xs font-black text-amber-300 mt-0.5">0회 (0%)</div>
+          </div>
+          <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
+            <div class="text-[10px] text-slate-400 font-bold">③ 24h 쿠키·실구매</div>
+            <div id="pivot-kpi-purchases" class="text-xs font-black text-pink-400 mt-0.5">즉결템 가동</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
+          <div class="flex items-start gap-1.5">
+            <span class="text-emerald-400 font-black shrink-0">🔥 강화:</span>
+            <span id="pivot-reinforce-text" class="text-slate-200 font-semibold leading-snug">🍗 다이어트·식단 & 🐶 사료량 (당일 로켓프레시 결제율 1·2위 스포트라이트 고정)</span>
+          </div>
+          <div class="flex items-start gap-1.5">
+            <span class="text-amber-400 font-black shrink-0">🛠️ 수정:</span>
+            <span id="pivot-modify-text" class="text-slate-300 leading-snug">클릭 미발생 구간 초고가 가전 대신 4,400~9,900원 로켓배송 즉결템(24시간 쿠키 부스터) 전면 우선 전환 완료</span>
+          </div>
+        </div>
+
+        <button type="button" onclick="runSixHourCycleFromOffice(this)" class="w-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 font-extrabold py-2 px-3 rounded-xl text-[11px] transition flex items-center justify-center gap-1.5">
+          <span>🔄</span><span>지금 즉시 6시간 성과분석 & 자동피봇(강화/수정) 실행</span>
+        </button>
+      </div>
+
       <!-- 실시간 전사 업무 스트림 로그 -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2.5">
@@ -308,11 +349,11 @@
 
   <script>
     const ROOMS = [
-      { id: 'hq-manager', title: '👑 총괄 매니저실 (컨트롤타워)', sub: '10월 100만 목표 · 06시 보고', x: 310, y: 18, w: 300, h: 145, color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.10)' },
-      { id: 'dept-homepage-cro', title: '💻 제1본부: 홈페이지·CRO 개발실', sub: '4-Layer 브릿지 · EXP-0/A/B/C', x: 18, y: 18, w: 274, h: 245, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.10)' },
-      { id: 'dept-naver-seo', title: '🟢 제2본부: 네이버·SEO 백로그실', sub: '144 원고 · 지식iN · IndexNow', x: 628, y: 18, w: 274, h: 245, color: '#10b981', bg: 'rgba(16, 185, 129, 0.10)' },
-      { id: 'dept-webtoon-sns', title: '🎨 제3본부: AI 웹툰·SNS 스튜디오', sub: '38px/76px 큰글씨 36편(180 PNG) · @moneyfit2026', x: 18, y: 295, w: 425, h: 245, color: '#ec4899', bg: 'rgba(236, 72, 153, 0.10)' },
-      { id: 'dept-antispam-qa', title: '🛡️ 품질·스팸 감찰실 & 서버관제센터', sub: '중복 6.6% · undefined 0건 · 보안', x: 475, y: 295, w: 427, h: 245, color: '#a855f7', bg: 'rgba(168, 85, 247, 0.10)' }
+      { id: 'hq-manager', title: '👑 총괄 매니저실 & 6시간 피봇실', sub: '호랑이🐯 · 여우🦊 · 6시간 주기 강화/수정', x: 310, y: 18, w: 300, h: 145, color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.10)' },
+      { id: 'dept-homepage-cro', title: '💻 제1본부: 홈페이지·쿠팡전환실', sub: '비버🦫 · 꿀벌🐝 · 1만원대 쿠키부스터', x: 18, y: 18, w: 274, h: 245, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.10)' },
+      { id: 'dept-naver-seo', title: '🟢 제2본부: 네이버·실시간유입실', sub: '치타🐆 · 고슴도치🦔 · 미채택 스나이퍼', x: 628, y: 18, w: 274, h: 245, color: '#10b981', bg: 'rgba(16, 185, 129, 0.10)' },
+      { id: 'dept-webtoon-sns', title: '🎨 제3본부: AI 웹툰·SNS 스튜디오', sub: '해달🎨 · 렛서판다🐼 · 38px/76px 큰글씨', x: 18, y: 295, w: 425, h: 245, color: '#ec4899', bg: 'rgba(236, 72, 153, 0.10)' },
+      { id: 'dept-antispam-qa', title: '🛡️ 품질·스팸 감찰실 & 서버관제센터', sub: '매🦅 · 부엉이🦉 · 스팸0건 · 보안관제', x: 475, y: 295, w: 427, h: 245, color: '#a855f7', bg: 'rgba(168, 85, 247, 0.10)' }
     ];
 
     const EMPLOYEES = [
@@ -324,24 +365,24 @@
         deptId: 'hq-manager',
         deptLabel: '총괄 매니저실',
         color: '#f59e0b',
-        homeX: 460,
+        homeX: 425,
         homeY: 95,
-        x: 460,
+        x: 425,
         y: 95,
-        targetX: 460,
+        targetX: 425,
         targetY: 95,
         state: 'PATROLLING',
         tasks: [
-          '3대 대화창(홈페이지·네이버·웹툰) 통합 관제 중!',
-          '수석 웹툰 디자이너(해달🎨) 채용 & 38px 초특대 리뉴얼 완료!',
-          '오전 06:00 텔레그램 일일 보고 데몬 정상 대기',
-          '웹툰 본부·네이버 본부 스팸·중복 0건 보고 수신!'
+          '신규 핵심 인재 3명(여우🦊·치타🐆·꿀벌🐝) 즉각 채용 및 배치 완료!',
+          '6시간 주기(00·06·12·18시) 3대 성과(유입·클릭·실구매) 강화/수정 가동!',
+          '3일 내 첫 구매 돌파: 1만 원대 로켓배송 즉결템 & 24시간 쿠키 부스터 지휘',
+          '오전 06:00 일일 보고 & 6시간 주기 자동피봇 텔레그램 브리핑 관제'
         ],
         metrics: [
-          ['통합 관리 부서', '4개 본부 (10명)'],
-          ['10월 수익 목표', '1,000,000원'],
-          ['스팸·중복 감찰', '🟢 CLEAN (0건)'],
-          ['06시 정기보고', '매일 자동 발송']
+          ['전사 정예 인원', '4개 본부 (총 15명)'],
+          ['성과 분석 주기', '6시간마다 자동 피봇'],
+          ['3대 핵심 KPI', '유입 · 클릭 · 실구매'],
+          ['10월 수익 목표', '1,000,000원']
         ]
       },
       {
@@ -585,6 +626,87 @@
           ['로봇 코드 태그', '0건 (#electric계산기 제거)'],
           ['공정위·면책공고', '전 페이지 100% 명시'],
           ['보안 방화벽', '403 Whitelist 가동']
+        ]
+      },
+      {
+        id: 'fox-director',
+        emoji: '🦊',
+        name: '여우 실장 (신규채용)',
+        role: '6시간 주기 성과분석·자동피봇 총괄',
+        deptId: 'hq-manager',
+        deptLabel: '총괄 매니저실',
+        color: '#fbbf24',
+        homeX: 520,
+        homeY: 98,
+        x: 520,
+        y: 98,
+        targetX: 520,
+        targetY: 98,
+        state: 'WORKING',
+        tasks: [
+          '6시간 주기(00·06·12·18시) 유입·쿠팡클릭·실구매 3단계 퍼널 분석!',
+          '성과 상위(🍗식단·🐶사료)는 메인 스포트라이트 & 큐 1순위 집중 강화!',
+          '클릭 저조 구간은 4,400~9,900원 로켓배송 즉결템으로 자동 수정(피봇)!'
+        ],
+        metrics: [
+          ['분석·피봇 주기', '6시간마다 자동 실행'],
+          ['핵심 감사 지표', '유입 ➔ 클릭 ➔ 실구매'],
+          ['강화 1순위', '🍗 닭가슴살 · 🐶 사료량'],
+          ['자동 수정(Pivot)', '6/6 계산기 CTA 최적화']
+        ]
+      },
+      {
+        id: 'cheetah-lead',
+        emoji: '🐆',
+        name: '치타 팀장 (신규채용)',
+        role: '홈페이지 실시간 유입 스나이퍼',
+        deptId: 'dept-naver-seo',
+        deptLabel: '제2본부: 네이버·실시간유입',
+        color: '#2dd4bf',
+        homeX: 765,
+        homeY: 95,
+        x: 765,
+        y: 95,
+        targetX: 765,
+        targetY: 95,
+        state: 'WORKING',
+        tasks: [
+          'KPI 1(홈페이지 유입) 전담! 지식iN 실시간 미채택 질문 6대 직행 덱 가동!',
+          '유입 상위 프리셋 인접 키워드를 /office 원클릭 실행 덱 최상단 배치!',
+          '36개 프리셋 내부 교차링크 및 검색봇(Yeti/Googlebot) 인덱싱 가속'
+        ],
+        metrics: [
+          ['전담 핵심 성과', 'KPI 1: 홈페이지 실유입'],
+          ['미채택 스나이퍼', '6대 구매키워드 직행'],
+          ['색인 프리셋', '36/36 페이지 완비'],
+          ['유입 피봇 주기', '6시간마다 큐 재정렬']
+        ]
+      },
+      {
+        id: 'bee-specialist',
+        emoji: '🐝',
+        name: '꿀벌 과장 (신규채용)',
+        role: '쿠팡 클릭 & 실구매 전환 스페셜리스트',
+        deptId: 'dept-homepage-cro',
+        deptLabel: '제1본부: 홈페이지·쿠팡전환',
+        color: '#f59e0b',
+        homeX: 155,
+        homeY: 165,
+        x: 155,
+        y: 165,
+        targetX: 155,
+        targetY: 165,
+        state: 'WORKING',
+        tasks: [
+          'KPI 2(쿠팡 클릭) & KPI 3(실구매 전환) 전담! 24시간 장바구니 쿠키 부스터 가동!',
+          '36개 전 프리셋 최상단 0.5초 결론·원클릭 특가 바(#atf-instant-checkout-bar) 감시',
+          '클릭 미발생 시 1만 원대 로켓배송 즉결템 CTA 문구 6시간 주기 자동 교체'
+        ],
+        metrics: [
+          ['전담 핵심 성과', 'KPI 2·3: 쿠팡클릭·실구매'],
+          ['즉결템 라인업', '4,400원~1만 원대 6종'],
+          ['쿠키 수익 효과', '24시간 장바구니 전체 3%'],
+          ['최상단 특가바', '36/36 페이지 적용']
         ]
       }
     ];
@@ -1177,10 +1299,68 @@
         const sEl = document.getElementById('hud-spam-stat');
         if (sEl) sEl.textContent = `undefined ${data.spamAudit.naverQuality.undefinedLeaks}건 · 유사도 ${data.spamAudit.naverQuality.avgBlogJaccardPct}%`;
       }
+      if (data.stats) {
+        const uv = (data.stats.today && data.stats.today.uniqueVisitors) || 1;
+        const pv = (data.stats.today && data.stats.today.pageViews) || 1;
+        const totClk = (data.stats.total && data.stats.total.affiliateClicks) || 0;
+        const totCtr = (data.stats.total && data.stats.total.ctrPercent) || 0;
+        const infEl = document.getElementById('pivot-kpi-inflow');
+        const clkEl = document.getElementById('pivot-kpi-clicks');
+        if (infEl) infEl.textContent = `UV ${uv} · PV ${pv}`;
+        if (clkEl) clkEl.textContent = `${totClk}회 (${totCtr}%)`;
+      }
+      if (data.growthPivot) {
+        const gp = data.growthPivot;
+        const badgeEl = document.getElementById('pivot-cycle-badge');
+        const purEl = document.getElementById('pivot-kpi-purchases');
+        const reinfEl = document.getElementById('pivot-reinforce-text');
+        const modEl = document.getElementById('pivot-modify-text');
+        if (badgeEl && gp.cycleCount) {
+          badgeEl.textContent = `제${gp.cycleCount}차 피봇 완료 (${(gp.checkedAtKst || '').slice(11, 16) || '실시간'})`;
+        }
+        if (purEl && gp.kpis && gp.kpis.purchases) {
+          purEl.textContent = `쿠키 ${gp.kpis.purchases.cookieBoosterClicks || 0}회 · 즉결가동`;
+        }
+        if (reinfEl && Array.isArray(gp.reinforceDirections) && gp.reinforceDirections[0]) {
+          reinfEl.textContent = `${gp.reinforceDirections[0].target} — ${gp.reinforceDirections[0].action}`;
+        }
+        if (modEl && Array.isArray(gp.modifyDirections) && gp.modifyDirections[0]) {
+          modEl.textContent = `6개 계산기 1만 원대 로켓배송 즉결템 전면 전환 (예: "${gp.modifyDirections[0].newCtaCopy}")`;
+        }
+      }
       if (data.todayActionKit) {
         liveActionKit = data.todayActionKit;
         renderActionKitDeck();
       }
+    }
+
+    function runSixHourCycleFromOffice(btnEl) {
+      const origHtml = btnEl ? btnEl.innerHTML : '';
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '⏳ 🦊여우·🐆치타·🐝꿀벌 6시간 성과분석 및 강화/수정 피봇 실행 중...';
+      }
+      fetch('/api/growth-cycle?run=1')
+        .then(r => r.json())
+        .then(res => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = '✅ 6시간 주기 성과분석 & 강화/수정 피봇 반영 완료!';
+            setTimeout(() => { btnEl.innerHTML = origHtml; }, 2500);
+          }
+          const foxEmp = EMPLOYEES.find(e => e.id === 'fox-director') || EMPLOYEES[0];
+          pushActivityLog(
+            foxEmp,
+            `🔄 [제${(res && res.pivotState && res.pivotState.cycleCount) || 1}차 6시간 주기 피봇] 유입·쿠팡클릭·실구매 분석 완료! 성과 상위 방향 강화 & 저조 구간 1만 원대 즉결템 CTA 자동 수정 완료!`
+          );
+          fetchLiveOfficeState();
+        })
+        .catch(() => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = origHtml;
+          }
+        });
     }
 
     function fetchLiveOfficeState() {
@@ -1193,10 +1373,10 @@
     // Initialize
     selectEmployeeById('tiger-gm');
     renderActionKitDeck();
-    pushActivityLog(EMPLOYEES[0], '🐯 머니핏 AI 코퍼레이션 사옥 가동 시작! (홈페이지·네이버·웹툰 3개 대화창 완전 통합)');
-    pushActivityLog(EMPLOYEES[6], '🐼 36개 전 에피소드(180장 PNG) 1:1 고유 대사 렌더링 100% 완료!');
-    pushActivityLog(EMPLOYEES[3], '🦔 네이버 144개 휴먼 백로그 v3.0 교정 완료 (undefined 0건, 유사도 4.3%)');
-    pushActivityLog(EMPLOYEES[8], '🛡️ 스팸·중복 감찰 완료: 금칙어 0건, 로봇 해시태그 0건 (CLEAN)');
+    pushActivityLog(EMPLOYEES[0], '🐯 신규 핵심 인재 3명(🦊여우 실장 · 🐆치타 팀장 · 🐝꿀벌 과장) 즉각 채용 및 배치 완료! (전사 15인 체제)');
+    pushActivityLog(EMPLOYEES[9], '🦊 6시간 주기(00·06·12·18시) 3대 성과(홈페이지 유입·쿠팡클릭·실구매) 분석 및 자동 강화/수정 엔진 가동!');
+    pushActivityLog(EMPLOYEES[10], '🐆 지식iN 실시간 미채택 질문 6대 직행 스나이퍼 덱 가동 및 유입 최우선 큐 정렬 완료!');
+    pushActivityLog(EMPLOYEES[11], '🐝 36개 전 페이지 최상단 0.5초 특가바 + 1만 원대 로켓배송 즉결템(24시간 쿠키 부스터) 전면 배치 완료!');
     fetchLiveOfficeState();
     setInterval(fetchLiveOfficeState, 15000);
 

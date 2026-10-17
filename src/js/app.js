@@ -338,19 +338,34 @@
       receiptZeroFeelEl.textContent = zf.callout;
     }
 
-    // [D-3 First Purchase Booster] 1만 원대 로켓배송 즉결템 (24시간 쿠키 적립 부스터)
+    // [D-3 First Purchase Booster + 6-Hour Auto-Pivot Engine] 1만 원대 로켓배송 즉결템 (24시간 쿠키 적립 부스터)
     if (res.impulseItem) {
       const imp = res.impulseItem;
+      const pivotCustom =
+        typeof window !== 'undefined' &&
+        window.MONEYFIT_GROWTH_PIVOT &&
+        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations &&
+        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[calcId]
+          ? window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[calcId]
+          : null;
       const impBadgeEl = document.getElementById('impulse-badge');
       const impTitleEl = document.getElementById('impulse-title');
       const impSubEl = document.getElementById('impulse-sub');
       const impBtnEl = document.getElementById('impulse-coupang-btn');
-      if (impBadgeEl && imp.badge) impBadgeEl.textContent = imp.badge;
+      if (impBadgeEl && imp.badge) {
+        impBadgeEl.textContent =
+          pivotCustom && pivotCustom.decision === 'REINFORCE'
+            ? `🔥 [6시간 성과 1순위 강화] ${imp.badge}`
+            : imp.badge;
+      }
       if (impTitleEl && imp.title) impTitleEl.textContent = imp.title;
       if (impSubEl && imp.sub) impSubEl.textContent = imp.sub;
       if (impBtnEl) {
         impBtnEl.href = buildCoupangHref(imp.coupangKw);
-        impBtnEl.textContent = imp.btnLabel || '🛒 1만원대 로켓배송 필수템 최저가 ↗';
+        impBtnEl.textContent =
+          (pivotCustom && pivotCustom.activeImpulseCta) ||
+          imp.btnLabel ||
+          '🛒 1만원대 로켓배송 필수템 최저가 ↗';
       }
     }
 

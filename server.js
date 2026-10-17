@@ -68,6 +68,9 @@ function getKstDateString() {
 }
 
 const DEFAULT_SLOTS = () => ({
+  atf_instant_primary: 0,
+  atf_instant_impulse: 0,
+  impulse_booster: 0,
   input_bridge: 0,
   metric_card: 0,
   receipt_cart: 0,
@@ -98,6 +101,7 @@ let analyticsStore = {
   totalClicksBySlot: DEFAULT_SLOTS(),
   totalClicksByCalc: DEFAULT_CALCS(),
   lastDailyReportDate: '',
+  lastSixHourCycleKey: '',
   days: {}
 };
 
@@ -203,6 +207,9 @@ function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
       .toLowerCase()
       .replace(/[^a-z0-9_]/g, '');
     const normSlot = [
+      'atf_instant_primary',
+      'atf_instant_impulse',
+      'impulse_booster',
       'input_bridge',
       'metric_card',
       'receipt_cart',
@@ -365,9 +372,11 @@ function getStatsPayload() {
 }
 
 // ---------------------------------------------------------------
-// 06:00 AM KST Automated Daily Telegram Briefing Scheduler
+// ---------------------------------------------------------------
+// 06:00 AM KST Daily Report + Every 6-Hour (00, 06, 12, 18 KST) Auto-Pivot Scheduler
 // ---------------------------------------------------------------
 let lastManualReportTimestamp = 0;
+let lastManualCycleTimestamp = 0;
 
 async function triggerDailyReport(forceSend = false) {
   try {
@@ -385,17 +394,37 @@ async function triggerDailyReport(forceSend = false) {
   }
 }
 
+async function triggerSixHourCycle(sendTelegram = false) {
+  try {
+    const growthCycle = require('./scripts/six-hour-growth-cycle.js');
+    const res = await growthCycle.runSixHourGrowthCycle({ sendTelegram });
+    return res;
+  } catch (err) {
+    console.warn('[Server] 6-Hour growth cycle error:', err.message);
+    return { ok: false, error: err.message };
+  }
+}
+
 function checkAndSendDailyKstReport() {
   const { dateStr, hour } = getKstDateInfo();
-  // Automatically send at 06:00 AM KST once per day
+  // 1. Automatically send daily report at 06:00 AM KST once per day
   if (hour === 6 && analyticsStore.lastDailyReportDate !== dateStr) {
     analyticsStore.lastDailyReportDate = dateStr;
     saveAnalyticsToDisk();
     triggerDailyReport(true).catch(() => {});
   }
+  // 2. Automatically run 6-Hour Performance Analysis & Auto-Pivot at 00:00, 06:00, 12:00, 18:00 KST
+  if (hour % 6 === 0) {
+    const cycleKey = `${dateStr}-H${String(hour).padStart(2, '0')}`;
+    if (analyticsStore.lastSixHourCycleKey !== cycleKey) {
+      analyticsStore.lastSixHourCycleKey = cycleKey;
+      saveAnalyticsToDisk();
+      triggerSixHourCycle(true).catch(() => {});
+    }
+  }
 }
 
-// Check every 60 seconds for 06:00 AM KST trigger
+// Check every 60 seconds for 06:00 AM KST daily report & 6-Hour Auto-Pivot cycle
 setInterval(checkAndSendDailyKstReport, 60000).unref();
 
 // ---------------------------------------------------------------
@@ -502,7 +531,7 @@ function resolveFilePath(cleanUrlPath) {
 }
 
 function buildTodayActionKit(webtoon, naver) {
-  const priorityWebtoonOrder = [
+  let priorityWebtoonOrder = [
     'diet-male-fatloss',
     'pet-maltese-5kg',
     'room-oneroom-100',
@@ -516,6 +545,16 @@ function buildTodayActionKit(webtoon, naver) {
     'diet-female-lean',
     'telecom-mvno-switch'
   ];
+
+  try {
+    const pivotFile = path.join(ROOT_DIR, 'logs', 'growth_pivot_state.json');
+    if (fs.existsSync(pivotFile)) {
+      const pv = JSON.parse(fs.readFileSync(pivotFile, 'utf8'));
+      if (Array.isArray(pv.dynamicPriorityPresets) && pv.dynamicPriorityPresets.length > 0) {
+        priorityWebtoonOrder = pv.dynamicPriorityPresets;
+      }
+    }
+  } catch (e) {}
 
   let publishedSet = new Set(['electric-studio-ac']);
   try {
@@ -745,6 +784,7 @@ function buildOfficeStatePayload() {
     webtoonQuality: { uniquePanel1Count: 36, uniquePanel2Count: 36, uniqueHashtagsCount: 36, spamTokenCount: 0 },
     naverQuality: { undefinedLeaks: 0, roboticHashtags: 0, avgBlogJaccardPct: 4.3 }
   };
+  let growthPivot = null;
 
   try {
     const managerAudit = require('./scripts/manager-audit.js');
@@ -755,42 +795,50 @@ function buildOfficeStatePayload() {
     }
   } catch (e) {}
 
+  try {
+    const pivotFile = path.join(ROOT_DIR, 'logs', 'growth_pivot_state.json');
+    if (fs.existsSync(pivotFile)) {
+      growthPivot = JSON.parse(fs.readFileSync(pivotFile, 'utf8'));
+    }
+  } catch (e) {}
+
   const todayActionKit = buildTodayActionKit(webtoon, naver);
 
   return {
     status: 'ok',
     updatedAt: new Date().toISOString(),
-    companyName: '머니핏(MoneyFit) AI 코퍼레이션',
-    mission: '10월 목표 100만 원 → 매월 +100% MoM 성장 (통합 멀티에이전트 가동 중)',
+    companyName: '머니핏(MoneyFit) AI 코퍼레이션 (전사 15인 정예 체제)',
+    mission: '3일 내 첫 구매 돌파 & 10월 100만 원 → 6시간 주기 성과분석·자동피봇(강화/수정) 가동 중',
     stats,
     webtoon,
     naver,
     spamAudit,
+    growthPivot,
     todayActionKit,
     departments: [
       {
         id: 'hq-manager',
-        name: '총괄 매니저실 (CEO 직속 컨트롤타워)',
+        name: '총괄 매니저실 & 6시간 주기 피봇 전략실',
         status: 'ACTIVE',
         progress: 100,
-        lead: '아기 호랑이 총괄매니저 🐯',
-        currentTask: '3대 본부(홈페이지·네이버·웹툰) 통합 지휘 및 06:00 텔레그램 보고 관제'
+        lead: '아기 호랑이 이사 🐯 & 여우 실장 🦊',
+        currentTask: '6시간 주기(00·06·12·18시) 3대 성과(유입·쿠팡클릭·실구매) 분석 및 강화/수정 자동피봇 지휘'
       },
       {
         id: 'dept-homepage-cro',
-        name: '제1본부: 홈페이지·CRO 개발실',
+        name: '제1본부: 홈페이지·CRO & 쿠팡전환실',
         status: 'WORKING',
         progress: 100,
-        lead: '비버 과장 🦫 & 수달 주임 🦦',
-        currentTask: `4-Layer 직결 브릿지 + 카톡1초보관함 + 시즌급상승배너 가동 (실시간 CTR ${stats.total.ctrPercent}% / 최다 슬롯: ${stats.total.topSlot})`
+        lead: '비버 과장 🦫 · 꿀벌 과장 🐝 · 수달 주임 🦦',
+        currentTask: `최상단 0.5초 특가바 + 1만 원대 즉결템(24시간 쿠키 부스터) 가동 (CTR ${stats.total.ctrPercent}% / 최다 슬롯: ${stats.total.topSlot})`
       },
       {
         id: 'dept-naver-seo',
-        name: '제2본부: 네이버·SEO 백로그실',
+        name: '제2본부: 네이버·SEO & 실시간 유입실',
         status: 'WORKING',
         progress: Math.round((naver.totalDone / Math.max(1, naver.totalTarget)) * 100),
-        lead: '고슴도치 대리 🦔 & 미어캣 사원 🐾',
-        currentTask: `네이버 백로그 ${naver.totalDone}/${naver.totalTarget}건 완료 | 블로그 대기 ${naver.blog.pending}건 · 지식iN 대기 ${naver.jisikin.pending}건 순차 발행`
+        lead: '치타 팀장 🐆 · 고슴도치 대리 🦔 · 미어캣 사원 🐾',
+        currentTask: `지식iN 미채택 실시간 스나이핑 + 네이버 백로그 ${naver.totalDone}/${naver.totalTarget}건 완료 (블로그 대기 ${naver.blog.pending}건 · 지식iN 대기 ${naver.jisikin.pending}건)`
       },
       {
         id: 'dept-webtoon-sns',
@@ -798,14 +846,14 @@ function buildOfficeStatePayload() {
         status: 'WORKING',
         progress: Math.round((webtoon.renderedCount / Math.max(1, webtoon.totalEpisodes)) * 100),
         lead: '해달 아트디렉터 🎨 · 렛서판다 작가 🐼 · 앵무새 피디 🦜',
-        currentTask: `벤치마크 인스타툰 v2 (38px/76px 초특대 1말풍선 · 대사 -68% 압축) ${webtoon.renderedCount}/36편(180장 PNG) 렌더링 완료 | @moneyfit2026 대기열 ${webtoon.pendingPublishCount}편`
+        currentTask: `벤치마크 인스타툰 v2 (38px/76px 초특대 1말풍선) ${webtoon.renderedCount}/36편(180장 PNG) 완료 | @moneyfit2026 대기열 ${webtoon.pendingPublishCount}편`
       },
       {
         id: 'dept-antispam-qa',
-        name: '품질·스팸 감찰실 & 보안관제센터',
+        name: '품질·스팸 감찰실 & 서버관제센터',
         status: 'GUARDING',
         progress: 100,
-        lead: '매 감사역 🦅 & 부엉이 팀장 🦉',
+        lead: '매 감사역 🦅 · 부엉이 팀장 🦉 · 펭귄 주임 🐧',
         currentTask: `${spamAudit.status} (undefined ${spamAudit.naverQuality.undefinedLeaks}건 · 유사도 ${spamAudit.naverQuality.avgBlogJaccardPct}% · 웹툰 고유대사 ${spamAudit.webtoonQuality.uniquePanel1Count}/36)`
       }
     ]
@@ -838,6 +886,7 @@ const server = http.createServer(async (req, res) => {
         status: 'ok',
         service: 'MoneyFit Portal (truthofmarket.com)',
         dailyBriefingSchedule: '06:00 KST',
+        sixHourGrowthCycleSchedule: '00:00, 06:00, 12:00, 18:00 KST',
         timestamp: new Date().toISOString()
       })
     );
@@ -869,6 +918,41 @@ const server = http.createServer(async (req, res) => {
       'Cache-Control': 'no-store'
     });
     res.end(JSON.stringify(result, null, 2));
+    return;
+  }
+
+  // 1-D. 6-Hour Performance Analysis & Auto-Pivot API (/api/growth-cycle or /api/growth-cycle?run=1&telegram=1)
+  if (cleanUrlPath === '/api/growth-cycle') {
+    const params = new URLSearchParams(rawQuery || '');
+    const wantRun = params.get('run') === '1' || params.get('run') === 'true';
+    const wantTelegram = params.get('telegram') === '1' || params.get('telegram') === 'true';
+    const nowMs = Date.now();
+    if (wantRun && nowMs - lastManualCycleTimestamp > 5000) {
+      lastManualCycleTimestamp = nowMs;
+      const result = await triggerSixHourCycle(wantTelegram);
+      res.writeHead(200, {
+        ...SECURITY_HEADERS,
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-store'
+      });
+      res.end(JSON.stringify(result, null, 2));
+      return;
+    }
+    let currentPivot = null;
+    try {
+      const pivotFile = path.join(ROOT_DIR, 'logs', 'growth_pivot_state.json');
+      if (fs.existsSync(pivotFile)) {
+        currentPivot = JSON.parse(fs.readFileSync(pivotFile, 'utf8'));
+      }
+    } catch (e) {}
+    res.writeHead(200, {
+      ...SECURITY_HEADERS,
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-store'
+    });
+    res.end(JSON.stringify({ ok: true, pivotState: currentPivot }, null, 2));
     return;
   }
 
