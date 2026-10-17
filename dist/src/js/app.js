@@ -59,44 +59,44 @@
   let activeScenarioId = 'electric-studio-ac';
   let activeScenarioExtraInputs = {};
 
-  // Short human-friendly chip labels for the 36 presets
+  // Short human-friendly chip labels for the 36 presets (Ultra-short 2~3 words)
   const SCENARIO_CHIP_LABELS = {
-    'electric-studio-ac': '원룸 벽걸이 10시간',
-    'electric-stand-ac': '30평 스탠드 12시간',
-    'electric-dehumidifier': '제습기 24시간 풀가동',
-    'electric-dryer': '의류건조기 주 4회',
-    'electric-winter-heater': '겨울 온풍기 8시간',
-    'electric-inverter-roi': '구형 vs 1등급 교체',
-    'diet-male-fatloss': '남자 80kg 4주 컷팅',
-    'diet-female-lean': '여자 55kg 2주 슬림',
-    'diet-male-bulkup': '남자 65kg 벌크업',
-    'diet-office-worker': '사무직 직장인 식단',
-    'diet-student-budget': '대학생 1주 가성비',
-    'diet-quick-3kg': '한달 단기 -3kg 감량',
-    'pet-maltese-5kg': '5kg 말티즈 성견',
+    'electric-studio-ac': '원룸 에어컨',
+    'electric-stand-ac': '30평 에어컨',
+    'electric-dehumidifier': '제습기 24시간',
+    'electric-dryer': '건조기 주 4회',
+    'electric-winter-heater': '겨울 온풍기',
+    'electric-inverter-roi': '1등급 교체',
+    'diet-male-fatloss': '남자 80kg 감량',
+    'diet-female-lean': '여자 55kg 슬림',
+    'diet-male-bulkup': '남자 65kg 증량',
+    'diet-office-worker': '직장인 도시락',
+    'diet-student-budget': '자취생 1주 식단',
+    'diet-quick-3kg': '한달 -3kg 단기',
+    'pet-maltese-5kg': '5kg 말티즈',
     'pet-pomeranian-puppy': '1.5kg 포메 퍼피',
-    'pet-golden-retriever': '30kg 골든리트리버',
-    'pet-korean-shorthair': '4.5kg 코숏 고양이',
-    'pet-senior-cat': '10살 노령묘 케어',
-    'pet-monthly-budget': '소형견 4kg 첫입양',
-    'room-oneroom-100': '원룸 100만원 가성비',
-    'room-officetel-300': '오피스텔 300만 화이트',
-    'room-officetel-500': '투룸 500만 프리미엄',
-    'room-newlywed-1000': '신혼 1,000만 풀세팅',
-    'room-minimalist-50': '단기 50만원 생존템',
-    'room-appliances-only': '원룸 150만 가전집중',
-    'auto-avante-3000': '아반떼 3,000만 (20대)',
-    'auto-grandeur-5000': '그랜저 5,000만 (사업자)',
-    'auto-tucson-hybrid': '투싼 하이브리드 3,800만',
-    'auto-genesis-g80': '제네시스 G80 7,000만',
-    'auto-casper-cash-vs-rent': '캐스퍼 1,800만 초보',
-    'auto-ev-ioniq': '아이오닉 전기차 5,500만',
-    'telecom-penalty-15': '위약금 15만 vs 사은품 47만',
-    'telecom-penalty-30': '위약금 30만 (잔여 1년)',
-    'telecom-3yr-expired': '3년 약정 만기 (위약금 0원)',
-    'telecom-single-oneroom': '자취방 인터넷 단독',
-    'telecom-family-4p': '온가족 4인 통합 변경',
-    'telecom-mvno-switch': '5G → 알뜰폰 유심 전환'
+    'pet-golden-retriever': '30kg 리트리버',
+    'pet-korean-shorthair': '4.5kg 고양이',
+    'pet-senior-cat': '10살 노령묘',
+    'pet-monthly-budget': '4kg 첫입양',
+    'room-oneroom-100': '원룸 100만원',
+    'room-officetel-300': '오피스텔 300만',
+    'room-officetel-500': '투룸 500만원',
+    'room-newlywed-1000': '신혼 1,000만',
+    'room-minimalist-50': '단기 50만원',
+    'room-appliances-only': '원룸 150만원',
+    'auto-avante-3000': '아반떼 3,000만',
+    'auto-grandeur-5000': '그랜저 5,000만',
+    'auto-tucson-hybrid': '투싼 3,800만',
+    'auto-genesis-g80': 'G80 7,000만',
+    'auto-casper-cash-vs-rent': '캐스퍼 1,800만',
+    'auto-ev-ioniq': '아이오닉 5,500만',
+    'telecom-penalty-15': '위약금 15만원',
+    'telecom-penalty-30': '위약금 30만원',
+    'telecom-3yr-expired': '3년 만기 (0원)',
+    'telecom-single-oneroom': '자취방 인터넷',
+    'telecom-family-4p': '4인 가족 결합',
+    'telecom-mvno-switch': '알뜰폰 전환'
   };
 
   let lastCalcResult = null;
@@ -133,24 +133,25 @@
       chipsContainer.innerHTML = presets.map(p => {
         const isActive = p.id === activeScenarioId;
         const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
-        const baseLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 14);
-        const shortLabel = isSurge ? `🔥급상승 ${baseLabel}` : baseLabel;
+        const baseLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 12);
+        const shortLabel = isSurge ? `🔥 ${baseLabel}` : baseLabel;
         const cls = isActive
-          ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
+          ? 'bg-blue-600 text-white border-blue-600 font-black shadow-sm'
           : isSurge
             ? 'bg-amber-50/90 text-rose-800 border-amber-300 hover:border-rose-400 hover:text-rose-700 font-extrabold shadow-xs'
-            : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:text-blue-700 font-semibold';
-        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
+            : 'bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold';
+        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
       }).join('');
     }
 
     if (relatedGrid) {
       relatedGrid.innerHTML = presets.map(p => {
         const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
+        const shortTitle = SCENARIO_CHIP_LABELS[p.id] ? `${SCENARIO_CHIP_LABELS[p.id]} — ${p.title}` : p.title;
         return `
-        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border ${isSurge ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200'} hover:border-blue-400 rounded-xl p-2.5 transition">
-          <span class="text-xs font-semibold text-slate-700 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${p.title}</span>
-          <span class="text-[11px] font-bold text-blue-600 shrink-0 whitespace-nowrap">리포트 →</span>
+        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border ${isSurge ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200'} hover:border-blue-400 rounded-xl p-3.5 transition">
+          <span class="text-sm font-extrabold text-slate-800 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${shortTitle}</span>
+          <span class="text-xs font-black text-blue-600 shrink-0 whitespace-nowrap">보기 →</span>
         </a>
       `;
       }).join('');
@@ -186,29 +187,29 @@
     const subtitleEl = document.getElementById('calc-form-subtitle');
     if (subtitleEl) subtitleEl.textContent = spec.subtitle || '';
 
-    // Update calculator tab styles
+    // Update calculator tab styles (Big-Font Toss Style)
     document.querySelectorAll('.calc-nav-btn').forEach(btn => {
-      btn.className = "calc-nav-btn p-3.5 rounded-2xl border text-left transition bg-white border-slate-200 hover:border-blue-400";
+      btn.className = "calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400";
     });
     const activeBtn = document.getElementById(`calc-nav-${calcKey}`);
     if (activeBtn) {
-      activeBtn.className = "calc-nav-btn p-3.5 rounded-2xl border text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
+      activeBtn.className = "calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
     }
 
     renderScenarioChips(calcKey);
 
-    // Render input form controls
+    // Render input form controls (Big-Font 16px labels & 54px high-contrast inputs)
     const container = document.getElementById('calc-inputs-container');
     if (container) {
       container.innerHTML = spec.inputs.map(inp => {
         const val = customInputs && customInputs[inp.id] !== undefined ? customInputs[inp.id] : inp.value;
         if (inp.type === "checkbox") {
           return `
-            <div class="flex items-center justify-between gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <label for="inp-${inp.id}" class="text-xs font-bold text-slate-700 cursor-pointer truncate">${inp.label}</label>
+            <div class="flex items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl border-2 border-slate-200">
+              <label for="inp-${inp.id}" class="text-base font-extrabold text-slate-900 cursor-pointer truncate">${inp.label}</label>
               <input id="inp-${inp.id}" type="checkbox" ${val ? 'checked' : ''}
                 onchange="recalculateCurrent()"
-                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer shrink-0" />
+                class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer shrink-0" />
             </div>
           `;
         }
@@ -218,9 +219,9 @@
           `).join('');
           return `
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1 truncate">${inp.label}</label>
+              <label class="block text-base font-extrabold text-slate-900 mb-1.5 truncate">${inp.label}</label>
               <select id="inp-${inp.id}" onchange="recalculateCurrent()"
-                class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:border-blue-600 focus:outline-none bg-white">
+                class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none bg-white text-slate-900">
                 ${optionsHtml}
               </select>
             </div>
@@ -228,13 +229,13 @@
         }
         return `
           <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <label class="block text-xs font-bold text-slate-700 truncate">${inp.label}</label>
-              <span id="label-val-${inp.id}" class="text-xs text-blue-600 font-bold shrink-0 whitespace-nowrap tabular-nums"></span>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <label class="block text-base font-extrabold text-slate-900 truncate">${inp.label}</label>
+              <span id="label-val-${inp.id}" class="text-base text-blue-600 font-black shrink-0 whitespace-nowrap tabular-nums"></span>
             </div>
             <input id="inp-${inp.id}" type="number" value="${val}" min="${inp.min !== undefined ? inp.min : ''}" max="${inp.max !== undefined ? inp.max : ''}" step="${inp.step || '1'}"
               oninput="recalculateCurrent()"
-              class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:border-blue-600 focus:outline-none tabular-nums" />
+              class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none tabular-nums text-slate-900" />
           </div>
         `;
       }).join('');
@@ -304,7 +305,7 @@
 
     if (primaryAction) {
       if (instantBadgeEl) {
-        instantBadgeEl.textContent = zf && zf.badge ? zf.badge : `${primaryAction.icon || '⚡'} 내 입력값 1:1 직결 처방`;
+        instantBadgeEl.textContent = zf && zf.badge ? zf.badge : `${primaryAction.icon || '⚡'} 맞춤 처방`;
       }
       if (instantHeadlineEl) {
         instantHeadlineEl.textContent = primaryAction.label;
@@ -317,11 +318,11 @@
       }
       if (instantCoupangBtn) {
         instantCoupangBtn.href = buildCoupangHref(primaryAction.coupangKw);
-        instantCoupangBtn.textContent = primaryAction.coupangBtn || '🚀 맞춤 로켓배송 최저가 ↗';
+        instantCoupangBtn.textContent = primaryAction.coupangBtn || '🚀 쿠팡 최저가 ↗';
       }
       if (instantLpBtn) {
         instantLpBtn.href = buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl);
-        instantLpBtn.textContent = primaryAction.lpBtn || '🏷️ 공식몰 제휴 특가 ↗';
+        instantLpBtn.textContent = primaryAction.lpBtn || '🏷️ 공식몰 특가 ↗';
       }
     }
 
@@ -345,8 +346,8 @@
         typeof window !== 'undefined' &&
         window.MONEYFIT_GROWTH_PIVOT &&
         window.MONEYFIT_GROWTH_PIVOT.calcCustomizations &&
-        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[calcId]
-          ? window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[calcId]
+        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[currentCalc]
+          ? window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[currentCalc]
           : null;
       const impBadgeEl = document.getElementById('impulse-badge');
       const impTitleEl = document.getElementById('impulse-title');
@@ -355,51 +356,48 @@
       if (impBadgeEl && imp.badge) {
         impBadgeEl.textContent =
           pivotCustom && pivotCustom.decision === 'REINFORCE'
-            ? `🔥 [6시간 성과 1순위 강화] ${imp.badge}`
+            ? `🔥 [인기 1위] ${imp.badge}`
             : imp.badge;
       }
       if (impTitleEl && imp.title) impTitleEl.textContent = imp.title;
       if (impSubEl && imp.sub) impSubEl.textContent = imp.sub;
       if (impBtnEl) {
         impBtnEl.href = buildCoupangHref(imp.coupangKw);
-        impBtnEl.textContent =
-          (pivotCustom && pivotCustom.activeImpulseCta) ||
-          imp.btnLabel ||
-          '🛒 1만원대 로켓배송 필수템 최저가 ↗';
+        impBtnEl.textContent = imp.btnLabel || '🛒 1만원대 필수템 로켓배송 ↗';
       }
     }
 
     if (badgeEl) {
       badgeEl.textContent = res.badge;
       if (res.badge && (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || res.badge.includes('권장') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0))) {
-        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
       } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
       } else {
-        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
       }
     }
     if (headlineEl) headlineEl.textContent = res.headline;
     if (summaryEl) summaryEl.textContent = res.summary;
 
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (Each metric links directly to its matching product)
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (Big-Font 22~28px numbers!)
     if (metricsGrid && res.metrics) {
-      const colClass = res.metrics.length >= 4 ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4" : "grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4";
+      const colClass = res.metrics.length >= 4 ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4" : "grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4";
       metricsGrid.className = colClass;
       metricsGrid.innerHTML = res.metrics.map((m, idx) => {
         const isNeg = String(m.val).startsWith('-');
         const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
         const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
         const metricHref = matchedAction ? buildCoupangHref(matchedAction.coupangKw) : '#product-recommendations';
-        const stepHint = matchedAction ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '맞춤 특가'} ↗` : '🛒 최저가 보기 ↗';
+        const stepHint = matchedAction ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '특가'} ↗` : '🛒 특가 보기 ↗';
 
         return `
           <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('coupang', this.href, 'metric_card')"
-             class="group block bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-amber-400/80 rounded-xl p-3 min-w-0 transition shadow-sm">
-            <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
-            <div class="text-sm sm:text-base font-extrabold ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-            <div class="mt-1.5 pt-1 border-t border-slate-700/70 flex items-center justify-between text-[10px] font-bold text-emerald-300 group-hover:text-amber-300">
+             class="group block bg-slate-800/90 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-3.5 min-w-0 transition shadow-sm">
+            <div class="text-sm font-bold text-slate-300 truncate">${m.label}</div>
+            <div class="text-xl sm:text-2xl font-black ${valColor} mt-1 whitespace-nowrap truncate tabular-nums">${m.val}</div>
+            <div class="mt-2 pt-1.5 border-t border-slate-700/70 flex items-center justify-between text-xs font-extrabold text-emerald-300 group-hover:text-amber-300">
               <span class="truncate">${stepHint}</span>
             </div>
           </a>
@@ -407,30 +405,30 @@
       }).join('');
     }
 
-    // 1.5 Visual Loss-Aversion Comparison Bar
+    // 1.5 Visual Loss-Aversion Comparison Bar (Big-Font & Short Words)
     if (lossBarEl && res.lossComparison) {
       const lc = res.lossComparison;
       lossBarEl.innerHTML = `
-        <div class="flex items-center justify-between gap-2 text-xs">
-          <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
-          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
+        <div class="flex items-center justify-between gap-2 text-sm">
+          <span class="font-extrabold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 vs 절약 비교</span>
+          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full text-xs sm:text-sm font-black shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
         </div>
-        <div class="space-y-2 text-xs">
+        <div class="space-y-2.5 text-sm">
           <div>
-            <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
-              <span class="truncate">❌ ${lc.lossLabel}</span>
-              <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
+            <div class="flex items-center justify-between gap-2 text-slate-300 mb-1">
+              <span class="font-bold truncate">❌ ${lc.lossLabel}</span>
+              <span class="text-base font-black text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
             </div>
-            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
               <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
             </div>
           </div>
           <div>
             <div class="flex items-center justify-between gap-2 text-white mb-1">
-              <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
-              <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
+              <span class="font-extrabold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+              <span class="text-lg font-black text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
             </div>
-            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+            <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
               <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
             </div>
           </div>
@@ -438,32 +436,32 @@
       `;
     }
 
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Big-Font & Short Words)
     if (receiptActionItemsEl && actionItems.length > 0) {
       receiptActionItemsEl.innerHTML = actionItems.map(item => {
         const cpHref = buildCoupangHref(item.coupangKw);
         const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
         return `
-          <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+          <div class="bg-slate-900/95 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
-                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">${item.label}</span>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
+                  <span class="text-base sm:text-lg font-black text-white truncate">${item.label}</span>
                 </div>
-                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 ${item.calcVal}</div>
+                <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
-                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+                ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
               </a>
               <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+                ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
               </a>
             </div>
           </div>
@@ -471,7 +469,7 @@
       }).join('');
     }
 
-    // 2. High-Ticket CPA / Official Exhibition Native Card (100% copy-to-landing-page match)
+    // 2. High-Ticket CPA / Official Exhibition Native Card
     const cpaDetails = monetizationModule.getCpaCardDetails
       ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
       : null;
@@ -485,12 +483,12 @@
     const cpaLpSubEl = document.getElementById('cpa-lp-sublink');
 
     if (cpaDetails) {
-      if (cpaBadgeEl) cpaBadgeEl.textContent = cpaDetails.liveBadge || "맞춤 추천 혜택";
+      if (cpaBadgeEl) cpaBadgeEl.textContent = cpaDetails.liveBadge || "맞춤 혜택";
       if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.liveTitle || cpaDetails.title;
       if (cpaPayoutTagEl) {
         cpaPayoutTagEl.textContent = cpaDetails.isCustomTenpingUrl
-          ? `🔥 텐핑(Tenping) 캠페인 실시간 연동`
-          : `⚡ 공식 제휴 최저가 실시간 연동`;
+          ? `🔥 CPA 연동`
+          : `⚡ 공식 제휴`;
       }
       if (cpaDescEl) cpaDescEl.textContent = cpaDetails.liveDesc || cpaDetails.desc;
       if (cpaActionLinkEl) {
@@ -499,15 +497,15 @@
       }
       if (cpaCoupangSubEl && cpaDetails.coupangSubUrl) {
         cpaCoupangSubEl.href = cpaDetails.coupangSubUrl;
-        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 로켓특가'} ↗`;
+        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 특가'} ↗`;
       }
       if (cpaLpSubEl && cpaDetails.linkPriceSubUrl) {
         cpaLpSubEl.href = cpaDetails.linkPriceSubUrl;
-        cpaLpSubEl.textContent = `${cpaDetails.linkPriceSubLabel || '🏷️ 링크프라이스 공식몰 기획전'} ↗`;
+        cpaLpSubEl.textContent = `${cpaDetails.linkPriceSubLabel || '🏷️ 공식몰 특가'} ↗`;
       }
     } else {
-      if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 무료 견적 조회";
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 공식 제휴 최저가 실시간 연동`;
+      if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 최저가 조회";
+      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 공식 제휴`;
       if (cpaActionLinkEl) {
         const cpaUrl = monetizationModule.buildLiveFallbackCpaUrl
           ? monetizationModule.buildLiveFallbackCpaUrl(currentCalc, config)
@@ -516,7 +514,7 @@
       }
     }
 
-    // 3. [CRO Layer 3 + Experiment A] Enriched Shopping Deal Cards (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
+    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Big-Font & Short Words)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
@@ -526,36 +524,36 @@
         const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
         const platformTag = p.type === 'coupang'
           ? '🚀 쿠팡 로켓배송'
-          : `🏷️ 링크프라이스 · ${merchantName}`;
+          : `🏷️ ${merchantName}`;
         const platformColor = p.type === 'coupang'
           ? 'bg-rose-50 text-rose-700 border-rose-200'
           : 'bg-indigo-50 text-indigo-700 border-indigo-200';
         const btnBg = p.type === 'coupang'
           ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
           : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
-        const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
-        const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
-        const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
-        const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인');
+        const ctaLabel = p.ctaText || '최저가 보기 →';
+        const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
+        const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
         const iconPrefix = p.icon ? `${p.icon} ` : '';
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card')"
-             class="group flex flex-col justify-between border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 transition-all bg-white hover:bg-blue-50/20 shadow-sm hover:shadow-md min-w-0">
+             class="group flex flex-col justify-between border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 sm:p-5 transition-all bg-white hover:bg-blue-50/20 shadow-sm hover:shadow-md min-w-0">
             <div class="min-w-0 space-y-2">
-              <div class="flex items-center justify-between gap-1.5">
-                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
-                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+              <div class="flex items-center justify-between gap-2">
+                <span class="inline-block text-xs font-extrabold px-2.5 py-0.5 rounded-lg border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
+                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="bg-amber-50 border border-amber-200/90 text-amber-950 text-[11px] font-extrabold px-2.5 py-1 rounded-lg truncate">
+              <div class="bg-amber-50 border border-amber-200/90 text-amber-950 text-xs sm:text-sm font-black px-3 py-1 rounded-xl truncate">
                 ${matchTag}
               </div>
-              <div class="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${iconPrefix}${p.title}</div>
-              <p class="text-[11px] text-slate-600 leading-relaxed break-keep">${matchReason}</p>
+              <div class="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${iconPrefix}${p.title}</div>
+              <p class="text-xs sm:text-sm text-slate-600 font-medium leading-snug break-keep">${matchReason}</p>
             </div>
-            <div class="mt-3 pt-2.5 border-t border-slate-100">
-              <div class="w-full text-center font-extrabold py-2.5 px-3 rounded-xl text-xs transition shadow-sm whitespace-nowrap truncate ${btnBg}">
+            <div class="mt-3.5 pt-3 border-t border-slate-100">
+              <div class="w-full text-center font-black py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate ${btnBg}">
                 ${ctaLabel}
               </div>
             </div>
@@ -569,10 +567,9 @@
     const stickyMainEl = document.getElementById('sticky-cta-main');
     const stickyBtnEl = document.getElementById('sticky-cta-btn');
     if (stickySubEl && stickyMainEl && stickyBtnEl) {
-      const lc = res.lossComparison || {};
-      stickySubEl.textContent = (zf && zf.badge)
-        ? `${zf.badge} · ${primaryAction ? primaryAction.calcVal : ''}`
-        : (primaryAction ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}` : (lc.savingBadge || res.badge || "실시간 손익 계산 완료"));
+      stickySubEl.textContent = primaryAction
+        ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}`
+        : (res.badge || "실시간 계산 완료");
       stickyMainEl.textContent = primaryAction
         ? primaryAction.label
         : (cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline);
@@ -581,8 +578,8 @@
         : (cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#");
 
       stickyBtnEl.textContent = primaryAction
-        ? (primaryAction.coupangBtn || "맞춤 최저가 ↗")
-        : "맞춤 특가 확인 →";
+        ? (primaryAction.coupangBtn || "최저가 보기 ↗")
+        : "특가 보기 →";
     }
 
     highlightWinningSlot();
