@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 전기 의류건조기 주 4회 사용 시 한 달 전기세
-> 프리셋 ID: `electric-dryer` | 카테고리: `전기·가전` | 타겟 URL: [https://truthofmarket.com/preset/electric-dryer](https://truthofmarket.com/preset/electric-dryer)
+> 프리셋 ID: `electric-dryer` | 카테고리: `전기·가전` | 웹툰: `EP.04 의류건조기 전기세 폭탄 소문의 진실 👕` | 타겟 URL: [https://truthofmarket.com/preset/electric-dryer](https://truthofmarket.com/preset/electric-dryer)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/electric-dryer-grid.png](https://truthofmarket.com/sns/electric-dryer-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/electric-dryer/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%A0%84%EA%B8%B0%EC%84%B8%20%ED%95%9C%EB%8B%AC&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 전기 의류건조기 주 4회 사용 시 한 달 전기세 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「전기 의류건조기 주 4회 사용 시 한 달 전기세」** 조건에서 매달 고지서에 찍히는 전기요금 누진세 구간과 가전 소비전력(W) 효율 차이가 실제로 어떻게 계산되는지, 한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 과거 열풍식 건조기는 전기를 많이 먹었지만, 최신 1등급 듀얼인버터 히트펌프 방식은 1회 가동 비용이 커피 반 잔 값도 안 됩니다.
+
+![전기 의류건조기 주 4회 사용 시 한 달 전기세 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/electric-dryer-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.04 의류건조기 전기세 폭탄 소문의 진실 👕 (자취생 쿼카찌 × 안경 여우 에너지박사)**  
+> ❌ 구형 열풍식 건조기 가동 시: 74,917원/월 vs ✅ 1등급 히트펌프 에코 가동 시: 62,961원/월 (-11,956원/월 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/electric-dryer/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -78,14 +84,38 @@ A. 세탁기 탈수 단계에서 탈수 세기를 '강'으로 설정하여 수�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.04 의류건조기 전기세 폭탄 소문의 진실 👕 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">전기 의류건조기 주 4회 사용 시 한 달 전기세 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/electric-dryer/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/electric-dryer-grid.png" alt="전기 의류건조기 주 4회 사용 시 한 달 전기세 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 구형 열풍식 건조기 가동 시: <strong>74,917원/월</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 1등급 히트펌프 에코 가동 시: <strong>62,961원/월</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -11,956원/월 절약</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/electric-dryer/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/electric-dryer/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 의류건조기 전기세 한달 관련해서 고민 중이시군요.
 저도 얼마 전에 빨래 널기 힘들어서 의류건조기 주 4회 돌리려는데, 건조기 쓰면 전기세 폭탄 맞는다는 소문 진짜야? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(전기 의류건조기 주 4회 사용 시 한 달 전기세)으로 시뮬레이션을 돌려보면 핵심 결과는 **'추가 전기세 +21,833원 (총 74,917원) (⚡ 누진세 2단계 진입)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.04 의류건조기 전기세 폭탄 소문의 진실 👕]
+- ❌ 구형 열풍식 건조기 가동 시: 74,917원/월 vs ✅ 1등급 히트펌프 에코 가동 시: 62,961원/월 (-11,956원/월 절약)
 - 추가 전력: +84 kWh
 - 월 절감액: -11,956원
 - 본전 회수: 79.5개월

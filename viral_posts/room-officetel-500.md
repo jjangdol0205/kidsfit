@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적
-> 프리셋 ID: `room-officetel-500` | 카테고리: `자취·인테리어` | 타겟 URL: [https://truthofmarket.com/preset/room-officetel-500](https://truthofmarket.com/preset/room-officetel-500)
+> 프리셋 ID: `room-officetel-500` | 카테고리: `자취·인테리어` | 웹툰: `EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖` | 타겟 URL: [https://truthofmarket.com/preset/room-officetel-500](https://truthofmarket.com/preset/room-officetel-500)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/room-officetel-500-grid.png](https://truthofmarket.com/sns/room-officetel-500-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/room-officetel-500/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%88%AC%EB%A3%B8%20500%EB%A7%8C%EC%9B%90%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC%20%EA%B2%AC%EC%A0%81&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적」** 조건에서 첫 독립·이사·신혼 입주 시 평수와 총예산 한도 내에서 실패 없는 가전·가구 물량산출(BOM)가 실제로 어떻게 계산되는지, 표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 물걸레 자동세척 로봇청소기와 건조 겸용 세탁기, 전동 모션베드까지 포함해도 24:22:20:16:18 비율을 지키면 500만 원 안에서 완벽히 해결됩니다.
+
+![1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/room-officetel-500-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)**  
+> ❌ 백화점·대리점 개별 구매 견적: 6,100,000원 vs ✅ 500만원 프리미엄 5대 풀세팅: 5,000,000원 (-1,100,000원 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/room-officetel-500/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -80,14 +86,38 @@ A. 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/room-officetel-500/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/room-officetel-500-grid.png" alt="1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 백화점·대리점 개별 구매 견적: <strong>6,100,000원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 500만원 프리미엄 5대 풀세팅: <strong>5,000,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -1,100,000원 절약</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/room-officetel-500/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/room-officetel-500/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 투룸 500만원 가전가구 견적 관련해서 고민 중이시군요.
 저도 얼마 전에 15평 1.5룸·투룸으로 넓혀 가는데 퇴근하고 청소할 체력이 없어! 500만 원 안에 로봇청소기랑 모션베드까지 넣을 수 있어? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적)으로 시뮬레이션을 돌려보면 핵심 결과는 **'총 500만 원 풀세팅 (가전 400만 + 가구 100만) (🏠 15평 [가성비] 초과 0원 배분)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖]
+- ❌ 백화점·대리점 개별 구매 견적: 6,100,000원 vs ✅ 500만원 프리미엄 5대 풀세팅: 5,000,000원 (-1,100,000원 절약)
 - 냉장고 예산: 120만 원
 - 세탁기 예산: 110만 원
 - 침대 예산: 100만 원

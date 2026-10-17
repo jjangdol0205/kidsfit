@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익
-> 프리셋 ID: `auto-grandeur-5000` | 카테고리: `자동차·TCO` | 타겟 URL: [https://truthofmarket.com/preset/auto-grandeur-5000](https://truthofmarket.com/preset/auto-grandeur-5000)
+> 프리셋 ID: `auto-grandeur-5000` | 카테고리: `자동차·TCO` | 웹툰: `EP.26 개인사업자 그랜저 현금 구매 시 날리는 세금 1440만원 💼` | 타겟 URL: [https://truthofmarket.com/preset/auto-grandeur-5000](https://truthofmarket.com/preset/auto-grandeur-5000)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/auto-grandeur-5000-grid.png](https://truthofmarket.com/sns/auto-grandeur-5000-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/auto-grandeur-5000/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EA%B7%B8%EB%9E%9C%EC%A0%80%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EB%A6%AC%EC%8A%A4%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%A0%88%EC%84%B8&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 실제로 어떻게 계산되는지, 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 업무용 승용차 연간 1,500만 원 비용처리 한도를 48개월 동안 꽉 채우면 세금 감면액만 1,440만 원에 달해 초기 취등록세(350만 원) 면제까지 합쳐 압도적인 차이가 납니다.
+
+![개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/auto-grandeur-5000-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.26 개인사업자 그랜저 현금 구매 시 날리는 세금 1440만원 💼 (골든 리트리버 대리 × 안경 여우 세무사)**  
+> ❌ 취등록세 350만 부담 일반 할부: 63,700,000원 vs ✅ 4년 1,440만 절세 반영 장기렌트: 36,370,000원 (-2,733만 원 차이) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.26 개인사업자 그랜저 현금 구매 시 날리는 세금 1440만원 💼 (골든 리트리버 대리 × 안경 여우 세무사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/auto-grandeur-5000-grid.png" alt="개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 취등록세 350만 부담 일반 할부: <strong>63,700,000원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 4년 1,440만 절세 반영 장기렌트: <strong>36,370,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -2,733만 원 차이</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/auto-grandeur-5000/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 그랜저 장기렌트 리스 사업자 절세 관련해서 고민 중이시군요.
 저도 얼마 전에 개인사업자 대표인데 5,000만 원 신형 그랜저 뽑을 때 현금이나 할부로 사면 내 재산이니까 제일 이득 아닌가? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익)으로 시뮬레이션을 돌려보면 핵심 결과는 **'[신차 장기렌트] 총 2,733만 원 이득! (🏆 48개월 총비용 승자 판정)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.26 개인사업자 그랜저 현금 구매 시 날리는 세금 1440만원 💼]
+- ❌ 취등록세 350만 부담 일반 할부: 63,700,000원 vs ✅ 4년 1,440만 절세 반영 장기렌트: 36,370,000원 (-2,733만 원 차이)
 - 취등록세(7%): 350만 원
 - 절세·보험 절감: 1643만 원
 - 총 절약액: 2,733만 원

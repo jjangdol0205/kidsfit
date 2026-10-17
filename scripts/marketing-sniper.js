@@ -30,7 +30,7 @@ if (fs.existsSync(CONFIG_PATH)) {
 }
 
 const { PRESETS } = require('../src/data/presets.js');
-const { QUERY_MAP } = require('./generate-viral-content.js');
+const { QUERY_MAP, buildCopyBundle } = require('./generate-viral-content.js');
 
 const HIGH_INTENT_TARGETS = [
   {
@@ -217,6 +217,9 @@ function generateSniperKit(currentSiteUrl = siteUrl) {
     const threadsLiveUrl = `https://www.threads.net/search?q=${encodedQ}&serp_type=default`;
     const daumCafeLiveUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}&sort=recency`;
     const targetUrl = `${currentSiteUrl}/preset/${item.calcSlug}`;
+    const presetObj = PRESETS.find(p => p.id === item.calcSlug) || PRESETS[0];
+    const bundle = buildCopyBundle(presetObj, currentSiteUrl);
+    const rs = bundle.resolvedStory || {};
 
     lines.push(`## 🔥 타겟 #${idx + 1}. ${item.category}`);
     lines.push(`- **공략 타이틀 (모델 1:1 비교)**: **${item.versus_title}**`);
@@ -250,6 +253,19 @@ function generateSniperKit(currentSiteUrl = siteUrl) {
     lines.push(targetUrl);
     lines.push(`\`\`\``);
     lines.push(``);
+    lines.push(`### 5) 🎨 [네이버 × 동물 웹툰 패키지] 이미지 경로 & 3컷 스포일러 티저 기법`);
+    lines.push(`- **에피소드 타이틀**: **${bundle.epTitle}** (${rs.charName || '머니핏 프렌즈'} × ${rs.expertName || '안경 여우 박사'})`);
+    lines.push(`- **4컷 합본 이미지 (블로그·카페 대표짤)**: \`sns_outbox/${item.calcSlug}/webtoon-grid.png\``);
+    lines.push(`- **지식iN 1장 첨부용 3컷 영수증**: \`sns_outbox/${item.calcSlug}/slide-3.png\``);
+    lines.push(`- **웹툰 이미지 직링크 URL**: [https://truthofmarket.com/sns/${item.calcSlug}-grid.png](${currentSiteUrl}/sns/${item.calcSlug}-grid.png)`);
+    lines.push(`- **3컷 스포일러 & 4컷 호기심 브릿지 문구**:`);
+    lines.push(`  > ❌ ${rs.badLabel || '기존 선택'}: **${rs.badVal || ''}** vs ✅ ${rs.goodLabel || '최적화 선택'}: **${rs.goodVal || ''}** (**${rs.diffVal || ''}**) ➔ 내 조건 넣은 4컷 최종 영수증은 ${targetUrl}/?src=naver_blog 에서 3초 계산!`);
+    lines.push(``);
+    lines.push(`### 6) 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML`);
+    lines.push(`\`\`\`html`);
+    lines.push(bundle.naverSmartEditorHtml);
+    lines.push(`\`\`\``);
+    lines.push(``);
     lines.push(`---`);
     lines.push(``);
   }
@@ -258,8 +274,8 @@ function generateSniperKit(currentSiteUrl = siteUrl) {
   lines.push(`# PART 2. 전 프리셋 36종 마스터 스나이퍼 디렉토리 (All-36-Preset Master Kit)`);
   lines.push(`> 어떤 질문이 올라와도 아래 36개 세부 시나리오 중 1개를 골라 즉시 맞춤 계산 링크와 실시간 검색창을 열 수 있습니다.`);
   lines.push(``);
-  lines.push(`| # | 카테고리 | 프리셋 슬러그 | 타겟 검색어 | 지식iN 최신순 | 카페 최신순 | 디시/블라인드 | 프리셋 URL |`);
-  lines.push(`|---|---|---|---|---|---|---|---|`);
+  lines.push(`| # | 카테고리 | 프리셋 슬러그 | 타겟 검색어 | 웹툰 영수증 짤 | 지식iN 최신순 | 카페 최신순 | 디시/블라인드 | 프리셋 URL |`);
+  lines.push(`|---|---|---|---|---|---|---|---|---|`);
 
   PRESETS.forEach((p, i) => {
     const q = QUERY_MAP[p.id] || p.title.split(' ').slice(0, 4).join(' ');
@@ -269,7 +285,7 @@ function generateSniperKit(currentSiteUrl = siteUrl) {
     const dcUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:dcinside.com ${q}`)}&tbs=qdr:m`;
     const blindUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:teamblind.com ${q}`)}&tbs=qdr:m`;
     const pUrl = `${currentSiteUrl}/preset/${p.id}`;
-    lines.push(`| ${i + 1} | ${p.category} | \`${p.id}\` | ${q} | [지식iN 열기](${kinUrl}) | [카페 열기](${cafeUrl}) | [디시](${dcUrl}) / [블라인드](${blindUrl}) | [바로가기](${pUrl}) |`);
+    lines.push(`| ${i + 1} | ${p.category} | \`${p.id}\` | ${q} | [4컷짤](${currentSiteUrl}/sns/${p.id}-grid.png) | [지식iN 열기](${kinUrl}) | [카페 열기](${cafeUrl}) | [디시](${dcUrl}) / [블라인드](${blindUrl}) | [바로가기](${pUrl}) |`);
   });
 
   lines.push(``);

@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교
-> 프리셋 ID: `auto-tucson-hybrid` | 카테고리: `자동차·TCO` | 타겟 URL: [https://truthofmarket.com/preset/auto-tucson-hybrid](https://truthofmarket.com/preset/auto-tucson-hybrid)
+> 프리셋 ID: `auto-tucson-hybrid` | 카테고리: `자동차·TCO` | 웹툰: `EP.27 패밀리카 투싼 하이브리드 5.5% 할부 vs 특판 대결 🚙` | 타겟 URL: [https://truthofmarket.com/preset/auto-tucson-hybrid](https://truthofmarket.com/preset/auto-tucson-hybrid)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/auto-tucson-hybrid-grid.png](https://truthofmarket.com/sns/auto-tucson-hybrid-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/auto-tucson-hybrid/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%ED%88%AC%EC%8B%BC%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%ED%95%A0%EB%B6%80%20%EA%B2%AC%EC%A0%81&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 실제로 어떻게 계산되는지, 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 할부 원리금에 숨어 있는 취등록세(약 266만 원), 4년 치 자동차세와 보험료 인상분까지 한 장의 영수증에 올려놓고 비교해야 딜러 수수료 거품을 피할 수 있습니다.
+
+![3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/auto-tucson-hybrid-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.27 패밀리카 투싼 하이브리드 5.5% 할부 vs 특판 대결 🚙 (골든 리트리버 대리 × 안경 여우 세무사)**  
+> ❌ 고금리 할부 + 취등록세·보험 별도: 49,804,000원 vs ✅ 특판 할인 반영 최적 구매 플랜: 32,650,000원 (-1,715만 원 차이) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/auto-tucson-hybrid/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -80,14 +86,38 @@ A. 네, 대형 렌트사들은 인기 차종을 사전 대량 선발주(특판 �
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.27 패밀리카 투싼 하이브리드 5.5% 할부 vs 특판 대결 🚙 (골든 리트리버 대리 × 안경 여우 세무사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/auto-tucson-hybrid/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/auto-tucson-hybrid-grid.png" alt="3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 고금리 할부 + 취등록세·보험 별도: <strong>49,804,000원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 특판 할인 반영 최적 구매 플랜: <strong>32,650,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -1,715만 원 차이</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/auto-tucson-hybrid/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/auto-tucson-hybrid/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 투싼 하이브리드 장기렌트 할부 견적 관련해서 고민 중이시군요.
 저도 얼마 전에 패밀리카로 3,800만 원 투싼 하이브리드 계약하려는데, 하이브리드는 대기 기간도 길고 할부 금리도 5.5%라 부담되네.. 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교)으로 시뮬레이션을 돌려보면 핵심 결과는 **'[신차 장기렌트] 총 1,715만 원 이득! (🏆 48개월 총비용 승자 판정)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.27 패밀리카 투싼 하이브리드 5.5% 할부 vs 특판 대결 🚙]
+- ❌ 고금리 할부 + 취등록세·보험 별도: 49,804,000원 vs ✅ 특판 할인 반영 최적 구매 플랜: 32,650,000원 (-1,715만 원 차이)
 - 취등록세(7%): 266만 원
 - 절세·보험 절감: 887만 원
 - 총 절약액: 1,715만 원

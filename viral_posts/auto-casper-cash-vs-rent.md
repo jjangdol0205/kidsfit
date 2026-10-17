@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트
-> 프리셋 ID: `auto-casper-cash-vs-rent` | 카테고리: `자동차·TCO` | 타겟 URL: [https://truthofmarket.com/preset/auto-casper-cash-vs-rent](https://truthofmarket.com/preset/auto-casper-cash-vs-rent)
+> 프리셋 ID: `auto-casper-cash-vs-rent` | 카테고리: `자동차·TCO` | 웹툰: `EP.29 취등록세 0원 경차 캐스퍼, 초보운전 보험료의 역습 🐣` | 타겟 URL: [https://truthofmarket.com/preset/auto-casper-cash-vs-rent](https://truthofmarket.com/preset/auto-casper-cash-vs-rent)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/auto-casper-cash-vs-rent-grid.png](https://truthofmarket.com/sns/auto-casper-cash-vs-rent-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/auto-casper-cash-vs-rent/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EC%B4%88%EB%B3%B4%EC%9A%B4%EC%A0%84%20%EB%B3%B4%ED%97%98%EB%A3%8C%20%ED%95%A0%EB%B6%80%20%EB%A0%8C%ED%8A%B8&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 실제로 어떻게 계산되는지, 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 본인 명의 첫차 보험료가 연 150~160만 원(3년 480만 원)에 달하고 사고 시 할증 위험까지 크지만, 장기렌트는 렌트사 단체보험이 기본 포함되어 초기·유지 부담을 방어합니다.
+
+![1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/auto-casper-cash-vs-rent-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.29 취등록세 0원 경차 캐스퍼, 초보운전 보험료의 역습 🐣 (골든 리트리버 대리 × 안경 여우 세무사)**  
+> ❌ 초보보험 3년 480만 별도 할부: 26,320,500원 vs ✅ 단체보험 포함 36개월 최적 플랜: 20,737,125원 (-558만 원 차이) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/auto-casper-cash-vs-rent/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 네! 장기렌트 차량이라도 경차 규격(배기량 1,000cc 미만)을 
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.29 취등록세 0원 경차 캐스퍼, 초보운전 보험료의 역습 🐣 (골든 리트리버 대리 × 안경 여우 세무사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/auto-casper-cash-vs-rent-grid.png" alt="1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 초보보험 3년 480만 별도 할부: <strong>26,320,500원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 단체보험 포함 36개월 최적 플랜: <strong>20,737,125원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -558만 원 차이</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/auto-casper-cash-vs-rent/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 캐스퍼 초보운전 보험료 할부 렌트 관련해서 고민 중이시군요.
 저도 얼마 전에 1,800만 원 캐스퍼는 경차라서 취등록세도 0원 면제라는데, 초보운전자라도 무조건 할부나 현금으로 사는 게 정답이지? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트)으로 시뮬레이션을 돌려보면 핵심 결과는 **'[신차 장기렌트] 총 558만 원 이득! (🏆 36개월 총비용 승자 판정)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.29 취등록세 0원 경차 캐스퍼, 초보운전 보험료의 역습 🐣]
+- ❌ 초보보험 3년 480만 별도 할부: 26,320,500원 vs ✅ 단체보험 포함 36개월 최적 플랜: 20,737,125원 (-558만 원 차이)
 - 취등록세(7%): 126만 원
 - 절세·보험 절감: 206만 원
 - 총 절약액: 558만 원

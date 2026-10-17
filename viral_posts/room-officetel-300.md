@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분
-> 프리셋 ID: `room-officetel-300` | 카테고리: `자취·인테리어` | 타겟 URL: [https://truthofmarket.com/preset/room-officetel-300](https://truthofmarket.com/preset/room-officetel-300)
+> 프리셋 ID: `room-officetel-300` | 카테고리: `자취·인테리어` | 웹툰: `EP.20 10평 오피스텔 300만원 화이트 쇼룸 세팅기 ✨` | 타겟 URL: [https://truthofmarket.com/preset/room-officetel-300](https://truthofmarket.com/preset/room-officetel-300)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/room-officetel-300-grid.png](https://truthofmarket.com/sns/room-officetel-300-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/room-officetel-300/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94%20300%EB%A7%8C%EC%9B%90%20%ED%99%94%EC%9D%B4%ED%8A%B8%20%EA%B0%80%EC%A0%84%EA%B0%80%EA%B5%AC&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분」** 조건에서 첫 독립·이사·신혼 입주 시 평수와 총예산 한도 내에서 실패 없는 가전·가구 물량산출(BOM)가 실제로 어떻게 계산되는지, 표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 수납장이 내장된 호텔식 퀸 침대 프레임(60만)과 비스포크 슬림 냉장고(72만), 4K 베젤리스 TV(48만)로 구성하면 좁은 공간도 1.5배 넓어 보입니다.
+
+![신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/room-officetel-300-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.20 10평 오피스텔 300만원 화이트 쇼룸 세팅기 ✨ (독립 아기곰 포근이 × 안경 여우 견적박사)**  
+> ❌ 오프라인 매장 감성 단품 합산가: 3,660,000원 vs ✅ 300만원 화이트 감성 BOM 세팅: 3,000,000원 (-660,000원 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/room-officetel-300/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -80,14 +86,38 @@ A. 10평 기준 원룸/오피스텔 포장이사는 약 25만~35만 원, 전문 
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.20 10평 오피스텔 300만원 화이트 쇼룸 세팅기 ✨ (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/room-officetel-300/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/room-officetel-300-grid.png" alt="신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 오프라인 매장 감성 단품 합산가: <strong>3,660,000원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 300만원 화이트 감성 BOM 세팅: <strong>3,000,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -660,000원 절약</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/room-officetel-300/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/room-officetel-300/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 오피스텔 300만원 화이트 가전가구 관련해서 고민 중이시군요.
 저도 얼마 전에 10평 오피스텔 첫 입주라 300만 원으로 화이트 감성 쇼룸처럼 꾸미고 싶은데, 가전 기능까지 다 챙길 수 있을까? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분)으로 시뮬레이션을 돌려보면 핵심 결과는 **'총 300만 원 풀세팅 (가전 210만 + 가구 90만) (🏠 10평 [화이트 감성] 초과 0원 배분)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.20 10평 오피스텔 300만원 화이트 쇼룸 세팅기 ✨]
+- ❌ 오프라인 매장 감성 단품 합산가: 3,660,000원 vs ✅ 300만원 화이트 감성 BOM 세팅: 3,000,000원 (-660,000원 절약)
 - 냉장고 예산: 54만 원
 - 세탁기 예산: 54만 원
 - 침대 예산: 90만 원

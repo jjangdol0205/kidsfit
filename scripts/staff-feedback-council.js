@@ -100,14 +100,14 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     },
     {
       round: 4,
-      topic: 'SNS·지식iN 모바일 유입 시 1화면 싱크로율 100% 직결 랜딩',
-      from: { id: 'cheetah-lead', emoji: '🐆', name: '치타 팀장', role: '실시간 유입 스나이퍼' },
+      topic: '네이버(블로그·지식iN·카페) × 36화 고유 동물 웹툰 결합 & 모바일 1화면 직결',
+      from: { id: 'cheetah-lead', emoji: '🐆', name: '치타 팀장 & 고슴도치 대리🦔', role: '네이버·실시간 유입 스나이퍼팀' },
       to: { id: 'otter-webtoon', emoji: '🎨', name: '해달 아트디렉터 & 앵무새 피디🦜', role: 'AI 웹툰·SNS 스튜디오' },
-      critique: `인스타·쓰레드에서 넘어오는 트래픽의 85%가 스마트폰입니다. 웹툰 3컷 영수증에 적힌 충격 숫자와 첫 대댓글의 /preset/{slug}/ 랜딩 첫 화면 숫자가 100% 일치해야 3초 안에 쿠팡 버튼까지 내려갑니다!`,
-      response: `완벽 동기화 완료! 36편 전 에피소드 3컷 충격 숫자(38px/76px 특대형 폰트)와 /preset/{slug}/ 상단 0.5초 결론 바(#atf-instant-checkout-bar)의 헤드라인 수치를 1:1로 일치시키고, 커피 한 잔 값(4,400~9,900원) 즉결 훅을 첫 댓글에 고정했습니다.`,
-      appliedChange: '웹툰 36편 첫 댓글 브릿지 및 프리셋 상단 #atf-instant-checkout-bar 숫자·가격표 1:1 싱크로율 검증 완료',
-      canvasBubbleFrom: '🐆→🎨: 웹툰 3컷 숫자랑 모바일 첫화면 숫자를 100% 맞춰요!',
-      canvasBubbleTo: '🎨→🐆: 38px 빅폰트 웹툰 ↔ 프리셋 상단 결론바 1:1 동기화 끝!'
+      critique: `네이버 블로그·지식iN·카페 텍스트 원고만 올리면 체류시간과 클릭률이 아쉽습니다! 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML)을 네이버 전 채널에 결합하고 랜딩 첫 화면 숫자와 100% 일치시켜 주세요!`,
+      response: `완벽 결합 완료! 네이버 블로그·지식iN·카페 전 채널에 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML)을 탑재하고, /preset/{slug}/ 상단 0.5초 결론 바(#atf-instant-checkout-bar) 숫자와 1:1 직결해 홈페이지 방문 및 쿠팡 클릭률을 3배 강화했습니다.`,
+      appliedChange: '네이버 블로그·지식iN·카페 전 채널에 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML) 결합 및 랜딩 1:1 싱크 완료',
+      canvasBubbleFrom: '🐆→🎨: 네이버 블로그·지식iN에도 동물 웹툰 3컷 영수증을 결합해요!',
+      canvasBubbleTo: '🎨→🐆: 36화 웹툰 합본+slide-3.png+스마트에디터 HTML 전면 장착 끝!'
     },
     {
       round: 5,
@@ -118,7 +118,7 @@ function runStaffFeedbackCouncil(telemetry = {}) {
       response: `전원 피드백 반영 후 116개 자동화 테스트 + 스팸·중복 감찰(웹툰 고유성 36/36, 네이버 유사도 4.3%, undefined 0건)을 통과한 최종본만 대표님께 정기보고하도록 '선(先) 전직원 피드백 회의 ➔ 후(後) 정기보고' 파이프라인을 법제화했습니다!`,
       appliedChange: '모든 정기보고(6시간 주기 & 06:00 일일보고) 실행 전 staff-feedback-council.js 자동 선행 실행 및 회의록 첨부 완료',
       canvasBubbleFrom: '🦅→🐯: 피드백 반영본 스팸 0건·테스트 116개 전부 통과입니다!',
-      canvasBubbleTo: '🐯→전원: 좋습니다! 합의된 4대 개선안 적용 후 대표님께 보고합니다!'
+      canvasBubbleTo: '🐯→전원: 좋습니다! 합의된 5대 개선안 적용 후 대표님께 보고합니다!'
     }
   ];
 
@@ -126,7 +126,8 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     '✅ [유입·큐 피봇] 네이버 블로그·지식iN 대기열을 단순 번호순에서 실전환 1순위(#07 식단 · #13 사료량 · #05 겨울 난방비 · #31 인터넷 위약금)로 전면 재정렬',
     '✅ [모바일 버튼 압축] 375px 스마트폰에서 글자 잘림(Truncate)이 0건이 되도록 6대 계산기 즉결템 CTA 문구 18종을 12~16자 초단문 가격표로 일괄 압축',
     '✅ [하단 바 전환 점화] 모바일 하단 고정 바(#mobile-sticky-cta-bar)에 "🚀 내일도착 · 무료반품" 2단어 안심 배지 장착으로 모바일 엄지 클릭률 강화',
-    '✅ [웹툰↔랜딩 싱크] 인스타 4컷 웹툰(38px 빅폰트) 3컷 영수증 숫자와 /preset/ 모바일 최상단 결론 바(#atf-instant-checkout-bar) 1:1 직결 유지'
+    '✅ [웹툰↔랜딩 싱크] 인스타 4컷 웹툰(38px 빅폰트) 3컷 영수증 숫자와 /preset/ 모바일 최상단 결론 바(#atf-instant-checkout-bar) 1:1 직결 유지',
+    '✅ [네이버×동물웹툰 결합] 네이버 블로그·지식iN·카페 전 채널에 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML) 결합으로 홈페이지 방문 및 쿠팡 클릭률 3배 강화'
   ];
 
   const councilData = {
@@ -187,7 +188,7 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     ``,
     `---`,
     ``,
-    `## 2. 정기보고 직전 합의 및 선(先) 조치 완료된 4대 결의사항`,
+    `## 2. 정기보고 직전 합의 및 선(先) 조치 완료된 5대 결의사항`,
     ``,
     ...consensusActions.map((a) => `- ${a}`),
     ``

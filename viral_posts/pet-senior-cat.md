@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기
-> 프리셋 ID: `pet-senior-cat` | 카테고리: `반려동물` | 타겟 URL: [https://truthofmarket.com/preset/pet-senior-cat](https://truthofmarket.com/preset/pet-senior-cat)
+> 프리셋 ID: `pet-senior-cat` | 카테고리: `반려동물` | 웹툰: `EP.17 10살 노령묘 신장 병원비 200만원 막는 사료 공식 🐈` | 타겟 URL: [https://truthofmarket.com/preset/pet-senior-cat](https://truthofmarket.com/preset/pet-senior-cat)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/pet-senior-cat-grid.png](https://truthofmarket.com/sns/pet-senior-cat-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/pet-senior-cat/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EB%85%B8%EB%A0%B9%EB%AC%98%20%EC%82%AC%EB%A3%8C%EB%9F%89%20%EC%8B%A0%EC%9E%A5%20%EC%BC%80%EC%96%B4%20%EB%B3%91%EC%9B%90%EB%B9%84&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기」** 조건에서 반려동물 생애주기별 일일 적정 에너지 요구량(DER)과 월간 사료·케어 고정비가 실제로 어떻게 계산되는지, 미국국립연구위원회(NRC)·유럽반려동물산업연맹(FEDIAF) 수의영양학 칼로리 공식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 노령묘(3.8kg 기준 일 210kcal)는 인 함량 0.5% 이하의 고소화성 시니어 사료를 하루 58g 정량으로 나누어 급여하고 일일 음수량을 챙기는 것이 핵심입니다.
+
+![10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/pet-senior-cat-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.17 10살 노령묘 신장 병원비 200만원 막는 사료 공식 🐈 (집사 치즈냥 박사 × 안경 여우 수의영양사)**  
+> ❌ 일반 고단백 사료 방치 (신부전 위험): 일 78g 과급여 (질환 위험) vs ✅ 시니어 일 58g 소량 4회 (1.5kg=25일): 일 58g (1.5kg=25일) (1끼 29g 정량 · 의료비 방어) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/pet-senior-cat/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 10세 이상 노령묘는 6개월마다 혈액검사(SDMA 신장 수치 포�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.17 10살 노령묘 신장 병원비 200만원 막는 사료 공식 🐈 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/pet-senior-cat/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/pet-senior-cat-grid.png" alt="10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 일반 고단백 사료 방치 (신부전 위험): <strong>일 78g 과급여 (질환 위험)</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 시니어 일 58g 소량 4회 (1.5kg=25일): <strong>일 58g (1.5kg=25일)</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 1끼 29g 정량 · 의료비 방어</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/pet-senior-cat/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/pet-senior-cat/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 노령묘 사료량 신장 케어 병원비 관련해서 고민 중이시군요.
 저도 얼마 전에 우리 고양이가 벌써 10살이 넘었는데 치아가 약해졌는지 건사료를 남기네.. 젊을 때 먹던 사료 그대로 줘도 될까? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기)으로 시뮬레이션을 돌려보면 핵심 결과는 **'하루 58g (종이컵 0.7컵) · 25일 소진! (🐾 수의영양학 정량 계산)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.17 10살 노령묘 신장 병원비 200만원 막는 사료 공식 🐈]
+- ❌ 일반 고단백 사료 방치 (신부전 위험): 일 78g 과급여 (질환 위험) vs ✅ 시니어 일 58g 소량 4회 (1.5kg=25일): 일 58g (1.5kg=25일) (1끼 29g 정량 · 의료비 방어)
 - 하루 칼로리: 210 kcal
 - 하루 급여량(1끼): 58g (29g)
 - 1.5kg 소진일: 25일

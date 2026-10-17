@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산
-> 프리셋 ID: `electric-stand-ac` | 카테고리: `전기·가전` | 타겟 URL: [https://truthofmarket.com/preset/electric-stand-ac](https://truthofmarket.com/preset/electric-stand-ac)
+> 프리셋 ID: `electric-stand-ac` | 카테고리: `전기·가전` | 웹툰: `EP.02 30평 거실 에어컨 34만원 고지서 역추적 ⚡` | 타겟 URL: [https://truthofmarket.com/preset/electric-stand-ac](https://truthofmarket.com/preset/electric-stand-ac)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/electric-stand-ac-grid.png](https://truthofmarket.com/sns/electric-stand-ac-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/electric-stand-ac/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%8A%A4%ED%83%A0%EB%93%9C%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%88%84%EC%A7%84%EC%84%B8%203%EB%8B%A8%EA%B3%84&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산」** 조건에서 매달 고지서에 찍히는 전기요금 누진세 구간과 가전 소비전력(W) 효율 차이가 실제로 어떻게 계산되는지, 한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 하계 누진 3단계 경계선(450kWh)을 넘는 순간 기본요금이 7,300원으로 뛰고 kWh당 단가도 307.3원으로 급등하기 때문입니다.
+
+![30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/electric-stand-ac-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.02 30평 거실 에어컨 34만원 고지서 역추적 ⚡ (자취생 쿼카찌 × 안경 여우 에너지박사)**  
+> ❌ 구형 스탠드 12시간 풀가동: 331,183원/월 vs ✅ 1등급 듀얼인버터 절전운전: 171,904원/월 (-159,279원/월 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/electric-stand-ac/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -78,14 +84,38 @@ A. 한국전력에서 주관하는 '소상공인 및 고효율 가전제품 구�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.02 30평 거실 에어컨 34만원 고지서 역추적 ⚡ (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/electric-stand-ac/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/electric-stand-ac-grid.png" alt="30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 구형 스탠드 12시간 풀가동: <strong>331,183원/월</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 1등급 듀얼인버터 절전운전: <strong>171,904원/월</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -159,279원/월 절약</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/electric-stand-ac/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/electric-stand-ac/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 스탠드 에어컨 누진세 3단계 관련해서 고민 중이시군요.
 저도 얼마 전에 폭염이라 30평 거실 2in1 스탠드 에어컨 하루 12시간 풀가동했더니 한 달 전기세가 40만 원이 넘는다고?! 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산)으로 시뮬레이션을 돌려보면 핵심 결과는 **'추가 전기세 +281,057원 (총 331,183원) (🚨 누진세 3단계 폭탄 경보!)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.02 30평 거실 에어컨 34만원 고지서 역추적 ⚡]
+- ❌ 구형 스탠드 12시간 풀가동: 331,183원/월 vs ✅ 1등급 듀얼인버터 절전운전: 171,904원/월 (-159,279원/월 절약)
 - 추가 전력: +792 kWh
 - 월 절감액: -159,279원
 - 본전 회수: 11.6개월

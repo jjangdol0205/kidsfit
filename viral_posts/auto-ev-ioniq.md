@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산
-> 프리셋 ID: `auto-ev-ioniq` | 카테고리: `자동차·TCO` | 타겟 URL: [https://truthofmarket.com/preset/auto-ev-ioniq](https://truthofmarket.com/preset/auto-ev-ioniq)
+> 프리셋 ID: `auto-ev-ioniq` | 카테고리: `자동차·TCO` | 웹툰: `EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋` | 타겟 URL: [https://truthofmarket.com/preset/auto-ev-ioniq](https://truthofmarket.com/preset/auto-ev-ioniq)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/auto-ev-ioniq-grid.png](https://truthofmarket.com/sns/auto-ev-ioniq-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/auto-ev-ioniq/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%89%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EB%B3%B4%EC%A1%B0%EA%B8%88%20%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 실제로 어떻게 계산되는지, 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 장기렌트 역시 보조금 800만 원이 차량 원금에서 선차감되어 월 대여료가 산출되며, 사업자 절세(24%)와 48개월 만기 반납을 결합하면 약 460만 원 이상 유리합니다.
+
+![5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/auto-ev-ioniq-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋 (골든 리트리버 대리 × 안경 여우 세무사)**  
+> ❌ 배터리 감가 본인다부담 신차 할부: 69,490,000원 vs ✅ 보조금 선차감+반납형 48개월 렌트: 41,070,000원 (-2,842만 원 차이) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/auto-ev-ioniq/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 전기차 충전 요금은 차량 명의와 무관하게 한전 및 환경부
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋 (골든 리트리버 대리 × 안경 여우 세무사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/auto-ev-ioniq/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/auto-ev-ioniq-grid.png" alt="5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 배터리 감가 본인다부담 신차 할부: <strong>69,490,000원</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 보조금 선차감+반납형 48개월 렌트: <strong>41,070,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -2,842만 원 차이</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/auto-ev-ioniq/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/auto-ev-ioniq/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 아이오닉 전기차 보조금 장기렌트 관련해서 고민 중이시군요.
 저도 얼마 전에 5,500만 원 아이오닉 전기차 사려는데 보조금 800만 원 받더라도 4년 뒤에 배터리 수명 떨어져서 중고차 값 폭락하면 어쩌지? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산)으로 시뮬레이션을 돌려보면 핵심 결과는 **'[신차 장기렌트] 총 2,842만 원 이득! (🏆 48개월 총비용 승자 판정)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋]
+- ❌ 배터리 감가 본인다부담 신차 할부: 69,490,000원 vs ✅ 보조금 선차감+반납형 48개월 렌트: 41,070,000원 (-2,842만 원 차이)
 - 취등록세(7%): 385만 원
 - 절세·보험 절감: 1643만 원
 - 총 절약액: 2,842만 원

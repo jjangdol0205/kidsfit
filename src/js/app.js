@@ -649,7 +649,125 @@
         : "특가 보기 →";
     }
 
+    // 5. Sync Home Top Animal Webtoon × 3-Sec Receipt Factcheck Mini-Viewer (#home-webtoon-factcheck-bar)
+    const defaultSlugByCalc = {
+      electric: 'electric-studio-ac',
+      diet: 'diet-male-fatloss',
+      pet: 'pet-maltese-5kg',
+      room: 'room-oneroom-100',
+      auto: 'auto-avante-3000',
+      telecom: 'telecom-penalty-15'
+    };
+    const presetsForCalc = getPresetsList().filter(p => p.calc === currentCalc);
+    const activePresetObj = presetsForCalc.find(p => p.id === activeScenarioId) || presetsForCalc[0] || null;
+    const activeSlug = activePresetObj ? activePresetObj.id : (defaultSlugByCalc[currentCalc] || 'electric-studio-ac');
+    const webtoonImgSrc = `/sns/${activeSlug}-grid.png`;
+
+    const wsMod = window.MoneyFitWebtoonStories || null;
+    const storyData = (wsMod && typeof wsMod.resolveDynamicReceiptValues === 'function')
+      ? wsMod.resolveDynamicReceiptValues(
+          Object.assign({}, activePresetObj || { id: activeSlug, calc: currentCalc, title: spec.title }, { inputs: values }),
+          res
+        )
+      : null;
+
+    const sc = (storyData && storyData.shortCartoon) || null;
+    const epTitleText = (sc && sc.epTitle) || (activePresetObj ? `🐾 ${activePresetObj.title} 4컷 팩트체크` : `🐾 ${spec.title} 4컷 팩트체크`);
+    const epBadgeText = (storyData && storyData.badge) || res.badge || '🐾 4컷 팩트체크';
+    const diffPillText = (storyData && storyData.diffVal) || (res.lossComparison && res.lossComparison.savingBadge) || res.headline || '3초 계산 완료';
+
+    const mainCoupangUrl = primaryAction
+      ? buildCoupangHref(primaryAction.coupangKw)
+      : (cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : buildCoupangHref(spec.title));
+    const impulseCoupangUrl = res.impulseItem
+      ? buildCoupangHref(res.impulseItem.coupangKw)
+      : mainCoupangUrl;
+
+    const thumbEl = document.getElementById('home-webtoon-thumb');
+    const fullImgEl = document.getElementById('home-webtoon-full-img');
+    const epBadgeEl = document.getElementById('home-webtoon-ep-badge');
+    const diffPillEl = document.getElementById('home-webtoon-diff-pill');
+    const wtTitleEl = document.getElementById('home-webtoon-title');
+    const wtCoupangBtn = document.getElementById('home-webtoon-coupang-btn');
+    const wtImgLink = document.getElementById('home-webtoon-img-link');
+    const wtDrawerMainBtn = document.getElementById('home-webtoon-drawer-main-btn');
+    const wtDrawerImpulseBtn = document.getElementById('home-webtoon-drawer-impulse-btn');
+    const wtDialogueEl = document.getElementById('home-webtoon-dialogue');
+
+    if (thumbEl) {
+      thumbEl.src = webtoonImgSrc;
+      thumbEl.alt = `${epTitleText} 썸네일`;
+    }
+    if (fullImgEl) {
+      fullImgEl.src = webtoonImgSrc;
+      fullImgEl.alt = `${epTitleText} 1080x1080 4컷 동물 웹툰`;
+    }
+    if (epBadgeEl) epBadgeEl.textContent = epBadgeText;
+    if (diffPillEl) diffPillEl.textContent = diffPillText;
+    if (wtTitleEl) wtTitleEl.textContent = epTitleText;
+    if (wtCoupangBtn) wtCoupangBtn.href = mainCoupangUrl;
+    if (wtImgLink) wtImgLink.href = mainCoupangUrl;
+    if (wtDrawerMainBtn) {
+      wtDrawerMainBtn.href = mainCoupangUrl;
+      wtDrawerMainBtn.textContent = primaryAction
+        ? `🛒 3컷 영수증 처방 (${primaryAction.label}) 최저가 ↗`
+        : '🛒 3컷 영수증 호구 탈출 특가템 바로 보기 ↗';
+    }
+    if (wtDrawerImpulseBtn) {
+      wtDrawerImpulseBtn.href = impulseCoupangUrl;
+      wtDrawerImpulseBtn.textContent = res.impulseItem && res.impulseItem.badge
+        ? `⚡ ${res.impulseItem.badge} 로켓배송 보러가기 ↗`
+        : '⚡ 9,900원대 즉결템 로켓배송 보러가기 ↗';
+    }
+    if (wtDialogueEl) {
+      const cleanLine = (arr) => Array.isArray(arr) ? arr.join(' ').replace(/\*\*/g, '') : '';
+      const p1Txt = sc ? cleanLine(sc.p1) : (storyData ? storyData.panel1Speech : '');
+      const p2Txt = sc ? cleanLine(sc.p2) : (storyData ? storyData.panel2Speech : '');
+      const p3Txt = sc ? cleanLine(sc.p3) : res.headline;
+      const p4Txt = sc ? cleanLine(sc.p4) : (storyData ? storyData.ctaTitle : '');
+      const badLbl = (storyData && storyData.badLabel) || (res.lossComparison && res.lossComparison.lossLabel) || '기존 지출';
+      const badVal = (storyData && storyData.badVal) || (res.lossComparison && res.lossComparison.lossValueText) || '';
+      const goodLbl = (storyData && storyData.goodLabel) || (res.lossComparison && res.lossComparison.optLabel) || '최적 설계';
+      const goodVal = (storyData && storyData.goodVal) || (res.lossComparison && res.lossComparison.optValueText) || '';
+
+      wtDialogueEl.innerHTML = `
+        <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
+          <span class="font-black text-amber-300 text-xs sm:text-sm">🧾 3컷 영수증 핵심 비교 (${storyData ? storyData.receiptTitle : epBadgeText})</span>
+          <a href="/preset/${activeSlug}/" class="text-[11px] font-bold text-sky-300 hover:underline shrink-0">전용 리포트 ↗</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 py-1">
+          <div class="bg-rose-950/60 border border-rose-500/40 rounded-xl p-2.5">
+            <div class="text-[11px] text-rose-300 font-semibold">❌ ${badLbl}</div>
+            <div class="text-sm font-black text-white mt-0.5 tabular-nums">${badVal}</div>
+          </div>
+          <div class="bg-emerald-950/60 border border-emerald-500/40 rounded-xl p-2.5">
+            <div class="text-[11px] text-emerald-300 font-semibold">✅ ${goodLbl}</div>
+            <div class="text-sm font-black text-amber-300 mt-0.5 tabular-nums">${goodVal}</div>
+          </div>
+        </div>
+        <div class="space-y-1 text-xs text-slate-300 pt-1">
+          ${p1Txt ? `<div><strong class="text-amber-300">1컷:</strong> "${p1Txt}"</div>` : ''}
+          ${p2Txt ? `<div><strong class="text-sky-300">2컷:</strong> "${p2Txt}"</div>` : ''}
+          ${p3Txt ? `<div><strong class="text-rose-300">3컷:</strong> "${p3Txt}"</div>` : ''}
+          ${p4Txt ? `<div><strong class="text-emerald-300">4컷:</strong> "${p4Txt}"</div>` : ''}
+        </div>
+      `;
+    }
+
     highlightWinningSlot();
+  };
+
+  /**
+   * Toggle Home Top Animal Webtoon × Receipt Drawer
+   */
+  window.toggleHomeWebtoonViewer = function () {
+    const drawer = document.getElementById('home-webtoon-drawer');
+    const btn = document.getElementById('home-webtoon-toggle-btn');
+    if (!drawer) return;
+    const isHidden = drawer.classList.toggle('hidden');
+    if (btn) {
+      btn.textContent = isHidden ? '🎨 4컷 만화 보기 ▾' : '🎨 4컷 만화 접기 ▴';
+    }
   };
 
   /**

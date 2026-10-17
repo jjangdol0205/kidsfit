@@ -3514,6 +3514,107 @@
     selectPreset(activePresetIndex || 0);
   }
 
+  function buildNaverRichHtmlPackage(customPlainText) {
+    const presets = getPresets();
+    const preset = presets[activePresetIndex] || presets[0];
+    if (!preset) return null;
+
+    const cfg = getConfig();
+    const cleanSiteUrl = String(cfg.siteUrl || 'https://truthofmarket.com').replace(/\/+$/, '');
+    const presetUrl = `${cleanSiteUrl}/preset/${preset.id}/`;
+    const webtoonImgUrl = `${cleanSiteUrl}/sns/${preset.id}-grid.png`;
+    const calcRes = evaluatePresetResult(preset);
+    const story = buildWebtoonStoryAndCopy(preset, calcRes, cleanSiteUrl);
+    const m = story.meta || {};
+    const sc = m.shortCartoon || {};
+    const epTitle = sc.epTitle || `🐾 ${preset.title} 4컷 팩트체크`;
+    const receiptTitle = `${preset.title} 3초 비교 영수증`;
+
+    const mm = window.MoneyFitMonetization;
+    const actionItems = Array.isArray(calcRes.actionItems) ? calcRes.actionItems : [];
+    const coupangHref = (mm && mm.buildCoupangUrl && actionItems[0])
+      ? mm.buildCoupangUrl(actionItems[0].coupangKw, preset.calc)
+      : presetUrl;
+
+    const rawText = customPlainText || (document.getElementById('generated-blog-post')?.textContent || story.fbPost || '');
+    const bodyParagraphsHtml = String(rawText)
+      .split('\n')
+      .map(line => line.trim())
+      .map(line => line ? `<p style="margin:6px 0;font-size:15px;color:#334155;line-height:1.75;">${line.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>` : '<br/>')
+      .join('');
+
+    const htmlContent =
+      `<div style="max-width:680px;margin:0 auto;font-family:'Malgun Gothic','Pretendard',sans-serif;color:#1e293b;line-height:1.75;">` +
+        `<h2 style="font-size:21px;font-weight:800;color:#0f172a;margin-bottom:12px;">${epTitle} (${preset.title})</h2>` +
+        `<div style="text-align:center;margin:16px 0;">` +
+          `<a href="${presetUrl}" target="_blank" rel="noopener noreferrer">` +
+            `<img src="${webtoonImgUrl}" alt="${epTitle} - ${preset.title} 4컷 웹툰 및 3컷 영수증" width="680" style="max-width:100%;height:auto;border-radius:16px;border:2px solid #0f172a;" />` +
+          `</a>` +
+        `</div>` +
+        `<div style="background:#0f172a;color:#ffffff;padding:18px;border-radius:16px;margin:18px 0;">` +
+          `<div style="font-size:15px;font-weight:800;color:#fde047;margin-bottom:10px;">🧾 [${receiptTitle}] 핵심 비교 요약</div>` +
+          `<p style="margin:5px 0;font-size:14px;color:#fda4af;">❌ <b>${m.badLabel || '기존 방식'}:</b> ${m.badVal || ''}</p>` +
+          `<p style="margin:5px 0;font-size:14px;color:#6ee7b7;">✅ <b>${m.goodLabel || '최적 설계'}:</b> ${m.goodVal || ''}</p>` +
+          `<p style="margin:8px 0 0 0;font-size:15px;font-weight:800;color:#fde047;">🔥 핵심 절감 차액: ${m.diffVal || ''} (${calcRes.headline || ''})</p>` +
+        `</div>` +
+        `<div style="margin:16px 0;">${bodyParagraphsHtml}</div>` +
+        `<div style="background:#f8fafc;border:2px solid #cbd5e1;padding:16px;border-radius:14px;margin:18px 0;">` +
+          `<p style="margin:0 0 8px 0;font-size:15px;font-weight:800;color:#0f172a;">👉 내 조건 넣고 3초 만에 무료 계산하기:</p>` +
+          `<p style="margin:0 0 10px 0;"><a href="${presetUrl}" target="_blank" rel="noopener noreferrer" style="font-size:15px;font-weight:800;color:#2563eb;text-decoration:underline;">${presetUrl}</a></p>` +
+          `<p style="margin:0;font-size:14px;font-weight:700;"><a href="${coupangHref}" target="_blank" rel="noopener noreferrer sponsored" style="color:#e11d48;text-decoration:underline;">🛒 웹툰 3컷 영수증 맞춤 특가템 로켓배송 최저가 확인 ↗</a></p>` +
+        `</div>` +
+        `<p style="font-size:12px;color:#64748b;margin-top:12px;">${m.hashtags || ''}</p>` +
+      `</div>`;
+
+    const plainText =
+      `${rawText}\n\n` +
+      `🖼️ 4컷 웹툰 이미지: ${webtoonImgUrl}\n` +
+      `🧾 [3컷 비교 영수증] ❌ ${m.badLabel}: ${m.badVal} vs ✅ ${m.goodLabel}: ${m.goodVal} (${m.diffVal})\n` +
+      `👉 3초 무료 계산기 바로가기: ${presetUrl}`;
+
+    return { htmlContent, plainText, presetUrl, webtoonImgUrl };
+  }
+
+  function copyNaverRichWebtoonHtml(btnElement) {
+    const pkg = buildNaverRichHtmlPackage();
+    if (!pkg) return;
+
+    const originalHtml = btnElement ? btnElement.innerHTML : null;
+    const originalClass = btnElement ? btnElement.className : null;
+
+    function onDone() {
+      if (btnElement) {
+        btnElement.innerHTML = '✅ 네이버 웹툰+영수증 리치복사 완료!';
+        setTimeout(() => {
+          if (btnElement) {
+            btnElement.innerHTML = originalHtml;
+            btnElement.className = originalClass;
+          }
+        }, 2400);
+      }
+      showToast('🟢 네이버 스마트에디터용 [4컷 웹툰 이미지 + 3컷 영수증 + 본문 + 계산기 링크]가 리치 복사(HTML)되었습니다!');
+    }
+
+    if (navigator.clipboard && typeof window !== 'undefined' && window.ClipboardItem) {
+      try {
+        const item = new ClipboardItem({
+          'text/html': new Blob([pkg.htmlContent], { type: 'text/html' }),
+          'text/plain': new Blob([pkg.plainText], { type: 'text/plain' })
+        });
+        navigator.clipboard.write([item]).then(onDone).catch(() => {
+          fallbackCopyText(pkg.plainText, onDone);
+        });
+        return;
+      } catch (e) {}
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pkg.plainText).then(onDone).catch(() => fallbackCopyText(pkg.plainText, onDone));
+    } else {
+      fallbackCopyText(pkg.plainText, onDone);
+    }
+  }
+
   function copyWithFeedback(elementId, btnElement, copyLabel = '원고') {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -3534,6 +3635,27 @@
         }, 2000);
       }
       showToast(`[${copyLabel}] 복사 완료! 바로 붙여넣으세요.`);
+    }
+
+    if (
+      (elementId === 'generated-blog-post' || elementId === 'generated-cafe-comment-post') &&
+      navigator.clipboard &&
+      typeof window !== 'undefined' &&
+      window.ClipboardItem
+    ) {
+      try {
+        const richPkg = buildNaverRichHtmlPackage(text);
+        if (richPkg) {
+          const item = new ClipboardItem({
+            'text/html': new Blob([richPkg.htmlContent], { type: 'text/html' }),
+            'text/plain': new Blob([text], { type: 'text/plain' })
+          });
+          navigator.clipboard.write([item]).then(applySuccessFeedback).catch(() => {
+            navigator.clipboard.writeText(text).then(applySuccessFeedback).catch(() => fallbackCopyText(text, applySuccessFeedback));
+          });
+          return;
+        }
+      } catch (e) {}
     }
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3605,6 +3727,8 @@
     refreshActive,
     filterCategory,
     buildWebtoonStoryAndCopy,
+    buildNaverRichHtmlPackage,
+    copyNaverRichWebtoonHtml,
     drawAnimalCharacter,
     downloadWebtoonGridPng,
     downloadWebtoonSlidesPng,

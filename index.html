@@ -265,6 +265,67 @@
         </div>
       </div>
 
+      <!-- [CRO Booster] 메인 홈페이지 상단 동물 웹툰 × 3초 영수증 팩트체크 미니뷰어 -->
+      <div id="home-webtoon-factcheck-bar" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-3.5 sm:p-4 border-2 border-amber-400/70 shadow-md space-y-3">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0 flex-1">
+            <img id="home-webtoon-thumb" src="/sns/electric-studio-ac-grid.png" alt="머니핏 4컷 동물 웹툰 썸네일" width="60" height="60"
+                 onclick="toggleHomeWebtoonViewer()"
+                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 border-amber-400 cursor-pointer shrink-0 bg-white shadow" />
+            <div class="min-w-0 flex-1 space-y-1">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span id="home-webtoon-ep-badge" class="bg-amber-400 text-slate-950 text-[11px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap">🐾 4컷 팩트체크</span>
+                <span id="home-webtoon-diff-pill" class="bg-rose-600 text-white text-[11px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap">-57,220원/월 절약</span>
+              </div>
+              <div id="home-webtoon-title" class="text-sm sm:text-base font-extrabold text-white truncate">EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡</div>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button type="button" id="home-webtoon-toggle-btn" onclick="toggleHomeWebtoonViewer()"
+                    class="flex-1 sm:flex-initial bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-400/50 font-extrabold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition whitespace-nowrap">
+              🎨 4컷 만화 보기 ▾
+            </button>
+            <a id="home-webtoon-coupang-btn" href="https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%201%EB%93%B1%EA%B8%89&lptag=AF7865143"
+               target="_blank" rel="noopener noreferrer sponsored"
+               onclick="recordAffiliateClick('coupang', this.href, 'webtoon_home_bar')"
+               class="flex-1 sm:flex-initial text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm px-3.5 py-2.5 rounded-xl shadow transition whitespace-nowrap truncate">
+              🛒 웹툰 속 절약 비결 쿠팡 로켓배송 최저가 확인 ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- 접이식 4컷 동물 웹툰 & 3컷 영수증 드로어 (기본 hidden) -->
+        <div id="home-webtoon-drawer" class="hidden pt-3 border-t border-slate-700/80">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+            <div class="lg:col-span-5">
+              <a id="home-webtoon-img-link" href="https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%201%EB%93%B1%EA%B8%89&lptag=AF7865143"
+                 target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordAffiliateClick('coupang', this.href, 'webtoon_home_drawer')"
+                 class="block rounded-2xl overflow-hidden border-2 border-amber-400 shadow-lg bg-white">
+                <img id="home-webtoon-full-img" src="/sns/electric-studio-ac-grid.png" alt="머니핏 1080x1080 4컷 동물 웹툰 및 3컷 영수증" width="540" height="540" loading="lazy" class="w-full h-auto object-cover" />
+              </a>
+            </div>
+            <div class="lg:col-span-7 space-y-3">
+              <div id="home-webtoon-dialogue" class="bg-slate-950/90 border border-slate-800 rounded-2xl p-3.5 sm:p-4 space-y-2 text-xs sm:text-sm text-slate-200 leading-relaxed"></div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <a id="home-webtoon-drawer-main-btn" href="https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%201%EB%93%B1%EA%B8%89&lptag=AF7865143"
+                   target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow whitespace-nowrap truncate">
+                  🛒 3컷 영수증 호구 탈출 특가템 바로 보기 ↗
+                </a>
+                <a id="home-webtoon-drawer-impulse-btn" href="https://www.coupang.com/np/search?q=%EB%8B%A8%EC%97%B4%20%EB%B9%A1%EB%B9%A1%EC%9D%B4%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%94%8C%EB%9F%AC%EA%B7%B8&lptag=AF7865143"
+                   target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordAffiliateClick('coupang', this.href, 'impulse_booster')"
+                   class="block text-center bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow whitespace-nowrap truncate">
+                  ⚡ 9,900원대 즉결템 로켓배송 보러가기 ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 12칼럼 반응형 레이아웃: 좌측 5칼럼 입력 폼 / 우측 7칼럼 영수증 & 수익화 리포트 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         
@@ -586,6 +647,10 @@
                   <span>🟢 네이버 블로그 · 지식iN · 카페 실전 원고 & 실시간 질문 저격</span>
                 </span>
                 <div class="flex flex-wrap items-center gap-1.5">
+                  <button type="button" onclick="MoneyFitCopyKit.copyNaverRichWebtoonHtml(this)"
+                          class="text-[11px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black px-3 py-1 rounded-lg shadow-sm transition">
+                    🟢 네이버 에디터용 웹툰+본문 리치복사(HTML)
+                  </button>
                   <a id="sniper-jisikin-link" href="https://kin.naver.com/search/list.naver?sort=date&query=%EC%9B%90%EB%A3%B8+%EC%97%90%EC%96%B4%EC%BB%A8+%EC%A0%84%EA%B8%B0%EC%84%B8" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-2.5 py-1 rounded-lg transition">
                     🎯 지식iN 최신질문 ↗
                   </a>

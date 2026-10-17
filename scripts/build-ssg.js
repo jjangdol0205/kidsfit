@@ -21,6 +21,7 @@ const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
 const monetization = require('../src/data/monetization.js');
+const webtoonStories = require('../src/data/webtoon-stories.js');
 
 // Load monetization config
 const CONFIG_PATH = path.join(PROJECT_ROOT, 'monetization.config.json');
@@ -1212,7 +1213,15 @@ function renderPresetPageHtml(preset) {
   const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
   const lc = res.lossComparison || {};
 
-  // Schema.org BreadcrumbList + WebApplication + TechArticle + Dataset + HowTo + FAQPage JSON-LD
+  const story = webtoonStories.resolveDynamicReceiptValues(preset, res);
+  const epTitle = (story.shortCartoon && story.shortCartoon.epTitle) || ('🐾 ' + preset.title + ' 4컷 팩트체크');
+  const p3Bubble = (story.shortCartoon && story.shortCartoon.p3) ? story.shortCartoon.p3.join(' ').replace(/\*\*/g, '') : res.headline;
+  const primaryCoupangUrl = res.actionItems && res.actionItems[0]
+    ? monetization.buildCoupangUrl(res.actionItems[0].coupangKw, preset.calc, config.coupangAfId)
+    : cpaTargetUrl;
+  const impulseCoupangUrl = monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId);
+
+  // Schema.org BreadcrumbList + WebApplication + TechArticle + ImageObject + Dataset + HowTo + FAQPage JSON-LD
   const schemaJson = {
     "@context": "https://schema.org",
     "@graph": [
@@ -1279,6 +1288,16 @@ function renderPresetPageHtml(preset) {
           "@type": "WebPage",
           "@id": canonicalUrl
         }
+      },
+      {
+        "@type": "ImageObject",
+        "name": `${epTitle} (${preset.title})`,
+        "caption": `${preset.title} — ${story.badLabel}(${story.badVal}) vs ${story.goodLabel}(${story.goodVal}), ${story.diffVal}`,
+        "url": ogImageUrl,
+        "contentUrl": ogImageUrl,
+        "width": 1080,
+        "height": 1080,
+        "representativeOfPage": true
       },
       {
         "@type": "Dataset",
@@ -1402,7 +1421,7 @@ function renderPresetPageHtml(preset) {
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../../src/css/style.css?v=2.6" />
   
-  <!-- Schema.org BreadcrumbList + WebApplication + TechArticle + Dataset + HowTo + FAQPage JSON-LD -->
+  <!-- Schema.org BreadcrumbList + WebApplication + TechArticle + ImageObject + Dataset + HowTo + FAQPage JSON-LD -->
   <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
   </script>
@@ -1459,18 +1478,83 @@ ${JSON.stringify(schemaJson, null, 2)}
           <span class="text-xs sm:text-sm font-black text-emerald-300 bg-emerald-500/20 border border-emerald-500/40 px-3 py-1 rounded-full shrink-0">${lc.savingBadge || res.badge}</span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <a id="atf-main-btn" href="${res.actionItems && res.actionItems[0] ? monetization.buildCoupangUrl(res.actionItems[0].coupangKw, preset.calc, config.coupangAfId) : cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
+          <a id="atf-main-btn" href="${primaryCoupangUrl}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'atf_hero_main')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3.5 px-4 rounded-2xl text-sm sm:text-base transition shadow whitespace-nowrap truncate">
             ${res.actionItems && res.actionItems[0] ? res.actionItems[0].coupangBtn : '🚀 쿠팡 최저가 확인 ↗'}
           </a>
-          <a id="atf-impulse-btn" href="${monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId)}" target="_blank" rel="noopener noreferrer sponsored"
+          <a id="atf-impulse-btn" href="${impulseCoupangUrl}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'impulse_booster')"
              class="block text-center bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-3.5 px-4 rounded-2xl text-sm sm:text-base transition shadow whitespace-nowrap truncate">
             ${res.impulseItem ? res.impulseItem.btnLabel : '🛒 1만원대 필수템 로켓배송 ↗'}
           </a>
         </div>
       </div>
+
+      <!-- [CRO Booster] 상단 4컷 동물 웹툰 × 3컷 영수증 직결 브릿지 -->
+      <section id="atf-webtoon-receipt-bridge" aria-label="${epTitle} 4컷 웹툰 및 3컷 영수증" class="mt-4 bg-gradient-to-br from-amber-50/90 via-white to-rose-50/70 rounded-3xl p-4 sm:p-5 border-2 border-amber-300 shadow-md">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-center">
+          <figure class="lg:col-span-5 relative group m-0">
+            <a href="${primaryCoupangUrl}" target="_blank" rel="noopener noreferrer sponsored"
+               onclick="recordPresetClick('coupang', this.href, 'webtoon_atf_image')"
+               class="block rounded-2xl overflow-hidden border-2 border-slate-900 shadow-lg bg-white">
+              <img src="../../sns/${preset.id}-grid.png"
+                   alt="${epTitle} - ${preset.title} 동물 4컷 웹툰 및 3컷 비교 영수증"
+                   width="540" height="540" loading="eager"
+                   class="w-full h-auto object-cover group-hover:scale-[1.01] transition duration-300" />
+            </a>
+            <figcaption class="mt-1.5 text-[11px] font-bold text-slate-600 text-center">
+              🐾 웹툰 이미지를 터치하면 3컷 영수증 맞춤 최저가로 바로 이동합니다 ↗
+            </figcaption>
+          </figure>
+
+          <div class="lg:col-span-7 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="bg-slate-900 text-amber-300 text-xs font-black px-3 py-1 rounded-full">${story.badge}</span>
+              <span class="bg-rose-600 text-white text-xs font-black px-3 py-1 rounded-full">${story.diffVal}</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-black text-slate-900 leading-snug break-keep">${epTitle}</h2>
+
+            <!-- 3컷 비교 영수증 요약 박스 -->
+            <div class="bg-slate-900 text-white rounded-2xl p-3.5 sm:p-4 border border-slate-800 space-y-2">
+              <div class="text-xs font-extrabold text-amber-300">🧾 웹툰 3컷 비교 영수증 요약 (${story.receiptTitle})</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                <div class="bg-rose-950/70 border border-rose-500/40 rounded-xl p-2.5">
+                  <div class="text-rose-300 font-semibold">❌ ${story.badLabel}</div>
+                  <div class="text-white font-black text-sm sm:text-base mt-0.5 tabular-nums">${story.badVal}</div>
+                </div>
+                <div class="bg-emerald-950/70 border border-emerald-500/40 rounded-xl p-2.5">
+                  <div class="text-emerald-300 font-semibold">✅ ${story.goodLabel}</div>
+                  <div class="text-amber-300 font-black text-sm sm:text-base mt-0.5 tabular-nums">${story.goodVal}</div>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm font-bold text-slate-200 bg-slate-800/90 rounded-xl px-3 py-2 break-keep">
+                💬 "${p3Bubble}"
+              </p>
+            </div>
+
+            <!-- 3대 즉결 액션 버튼 -->
+            <div class="space-y-2">
+              <a id="atf-webtoon-main-cta" href="${primaryCoupangUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
+                 class="block w-full text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black py-3.5 px-4 rounded-2xl text-sm sm:text-base transition shadow-md whitespace-nowrap truncate">
+                🛒 웹툰 3컷 영수증에 나온 호구 탈출 특가템 바로 보기 ↗
+              </a>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a id="atf-webtoon-impulse-cta" href="${impulseCoupangUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordPresetClick('coupang', this.href, 'impulse_booster')"
+                   class="block text-center bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
+                  ⚡ ${res.impulseItem ? res.impulseItem.badge : '9,900원대 즉결템'} 보러가기 ↗
+                </a>
+                <button type="button" onclick="copyPresetNaverWebtoonHtml(this)"
+                        class="w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
+                  🟢 네이버 블로그·카페 웹툰+영수증 복사
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       ${seoInfo.snippetBoxHtml}
     </header>
@@ -1609,8 +1693,27 @@ ${JSON.stringify(schemaJson, null, 2)}
   <script src="../../src/data/calculators.js"></script>
   <script src="../../src/data/monetization.js"></script>
   <script>
+    const PRESET_ID = '${preset.id}';
     const PRESET_CALC = '${preset.calc}';
     const PRESET_TITLE = ${JSON.stringify(preset.title)};
+    const PRESET_OG_IMG = ${JSON.stringify(ogImageUrl)};
+    const PRESET_CANONICAL_URL = ${JSON.stringify(canonicalUrl)};
+    const PRESET_STORY = ${JSON.stringify({
+      epTitle,
+      badge: story.badge,
+      receiptTitle: story.receiptTitle,
+      badLabel: story.badLabel,
+      badVal: story.badVal,
+      goodLabel: story.goodLabel,
+      goodVal: story.goodVal,
+      diffLabel: story.diffLabel,
+      diffVal: story.diffVal,
+      hookLine: story.hookLine,
+      factLine: story.factLine,
+      closingLine: story.closingLine,
+      hashtags: story.hashtags,
+      p3Bubble
+    })};
     let currentInputs = ${JSON.stringify(preset.inputs)};
 
     if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.loadConfigFromStorage) {
@@ -1727,14 +1830,22 @@ ${JSON.stringify(schemaJson, null, 2)}
         ? MoneyFitMonetization.buildLinkPriceDeepLink(merchant, url)
         : (url || '#');
 
-      // Update Above-the-Fold strip & Impulse Booster dynamically
+      // Update Above-the-Fold strip, Webtoon Receipt Bridge & Impulse Booster dynamically
       const atfHeadline = document.getElementById('atf-headline');
       const atfMainBtn = document.getElementById('atf-main-btn');
       const atfImpulseBtn = document.getElementById('atf-impulse-btn');
+      const atfWebtoonMainCta = document.getElementById('atf-webtoon-main-cta');
+      const atfWebtoonImpulseCta = document.getElementById('atf-webtoon-impulse-cta');
       if (atfHeadline && res.headline) atfHeadline.textContent = res.headline;
-      if (atfMainBtn && actionItems[0]) {
-        atfMainBtn.href = buildCp(actionItems[0].coupangKw);
-        atfMainBtn.textContent = actionItems[0].coupangBtn || '🚀 맞춤 최저가 즉시 확인 ↗';
+      if (actionItems[0]) {
+        const mainCpUrl = buildCp(actionItems[0].coupangKw);
+        if (atfMainBtn) {
+          atfMainBtn.href = mainCpUrl;
+          atfMainBtn.textContent = actionItems[0].coupangBtn || '🚀 맞춤 최저가 즉시 확인 ↗';
+        }
+        if (atfWebtoonMainCta) {
+          atfWebtoonMainCta.href = mainCpUrl;
+        }
       }
       if (res.impulseItem) {
         const imp = res.impulseItem;
@@ -1742,6 +1853,10 @@ ${JSON.stringify(schemaJson, null, 2)}
         if (atfImpulseBtn) {
           atfImpulseBtn.href = impUrl;
           atfImpulseBtn.textContent = imp.btnLabel || '🛒 1만원대 가성비 필수템 로켓배송 ↗';
+        }
+        if (atfWebtoonImpulseCta) {
+          atfWebtoonImpulseCta.href = impUrl;
+          atfWebtoonImpulseCta.textContent = '⚡ ' + (imp.badge || '9,900원대 즉결템') + ' 보러가기 ↗';
         }
         const rImpBadge = document.getElementById('res-impulse-badge');
         const rImpTitle = document.getElementById('res-impulse-title');
@@ -1903,6 +2018,74 @@ ${JSON.stringify(schemaJson, null, 2)}
         stickySub.textContent = (zf && zf.badge) ? \`\${zf.badge} · \${primaryAction ? primaryAction.calcVal : ''}\` : (primaryAction ? \`\${primaryAction.icon || '⚡'} \${primaryAction.calcVal}\` : (lc.savingBadge || res.badge));
         stickyMain.textContent = primaryAction ? primaryAction.label : ((d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline));
         stickyBtn.href = primaryAction ? buildCp(primaryAction.coupangKw) : ((d && (d.liveActionUrl || d.actionUrl)) ? (d.liveActionUrl || d.actionUrl) : '#');
+      }
+    }
+
+    function copyPresetNaverWebtoonHtml(btnEl) {
+      const headline = document.getElementById('res-headline')?.textContent?.trim() || PRESET_TITLE;
+      const summary = document.getElementById('res-summary')?.textContent?.trim() || '';
+      const pageUrl = PRESET_CANONICAL_URL || window.location.href;
+      const mainCtaHref = document.getElementById('atf-webtoon-main-cta')?.href || pageUrl;
+
+      const htmlContent =
+        '<div style="max-width:680px;margin:0 auto;font-family:\\\'Malgun Gothic\\\',sans-serif;color:#1e293b;line-height:1.7;">' +
+          '<h2 style="font-size:20px;font-weight:800;color:#0f172a;margin-bottom:8px;">' + PRESET_STORY.epTitle + '</h2>' +
+          '<p style="font-size:15px;color:#334155;margin-bottom:14px;">' + PRESET_STORY.hookLine + '<br/>' + PRESET_STORY.factLine + '</p>' +
+          '<div style="text-align:center;margin:16px 0;">' +
+            '<a href="' + pageUrl + '" target="_blank" rel="noopener noreferrer">' +
+              '<img src="' + PRESET_OG_IMG + '" alt="' + PRESET_TITLE + ' 4컷 웹툰 영수증" width="640" style="max-width:100%;height:auto;border-radius:16px;border:2px solid #0f172a;" />' +
+            '</a>' +
+          '</div>' +
+          '<div style="background:#0f172a;color:#ffffff;padding:18px;border-radius:16px;margin:16px 0;">' +
+            '<div style="font-size:14px;font-weight:800;color:#fde047;margin-bottom:10px;">🧾 [' + PRESET_STORY.receiptTitle + '] 3초 팩트체크 요약</div>' +
+            '<p style="margin:4px 0;font-size:14px;color:#fda4af;">❌ <b>' + PRESET_STORY.badLabel + ':</b> ' + PRESET_STORY.badVal + '</p>' +
+            '<p style="margin:4px 0;font-size:14px;color:#6ee7b7;">✅ <b>' + PRESET_STORY.goodLabel + ':</b> ' + PRESET_STORY.goodVal + '</p>' +
+            '<p style="margin:8px 0 0 0;font-size:15px;font-weight:800;color:#fde047;">🔥 핵심 절감 차액: ' + PRESET_STORY.diffVal + ' (' + headline + ')</p>' +
+          '</div>' +
+          '<p style="font-size:14px;color:#475569;margin:12px 0;">💡 ' + summary + '</p>' +
+          '<p style="font-size:15px;font-weight:800;margin:16px 0;">👉 내 조건 넣고 3초 무료 계산기 실행하기: <a href="' + pageUrl + '" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;">' + pageUrl + '</a></p>' +
+          '<p style="font-size:14px;font-weight:700;margin:10px 0;">🛒 웹툰 속 맞춤 최저가 혜택 확인: <a href="' + mainCtaHref + '" target="_blank" rel="noopener noreferrer sponsored" style="color:#e11d48;text-decoration:underline;">쿠팡 로켓배송 특가 바로가기 ↗</a></p>' +
+          '<p style="font-size:12px;color:#64748b;margin-top:12px;">' + PRESET_STORY.hashtags + '</p>' +
+        '</div>';
+
+      const plainText =
+        '[' + PRESET_STORY.badge + '] ' + PRESET_STORY.epTitle + '\\n\\n' +
+        PRESET_STORY.hookLine + '\\n' +
+        PRESET_STORY.factLine + '\\n\\n' +
+        '🧾 [' + PRESET_STORY.receiptTitle + ']\\n' +
+        '• ❌ ' + PRESET_STORY.badLabel + ': ' + PRESET_STORY.badVal + '\\n' +
+        '• ✅ ' + PRESET_STORY.goodLabel + ': ' + PRESET_STORY.goodVal + '\\n' +
+        '• 🔥 핵심 차액: ' + PRESET_STORY.diffVal + ' (' + headline + ')\\n\\n' +
+        '🖼️ 4컷 웹툰 이미지: ' + PRESET_OG_IMG + '\\n' +
+        '👉 3초 무료 계산기 바로가기: ' + pageUrl + '\\n\\n' +
+        PRESET_STORY.hashtags;
+
+      recordPresetClick('naver_blog_copy', pageUrl, 'webtoon_atf_image');
+
+      const done = () => {
+        if (!btnEl) return;
+        const orig = btnEl.getAttribute('data-orig') || btnEl.innerHTML;
+        btnEl.setAttribute('data-orig', orig);
+        btnEl.innerHTML = '✅ 웹툰+영수증 HTML 복사 완료! 블로그·카페에 Ctrl+V 하세요';
+        setTimeout(() => { btnEl.innerHTML = orig; }, 2600);
+      };
+
+      if (navigator.clipboard && window.ClipboardItem) {
+        try {
+          const item = new ClipboardItem({
+            'text/html': new Blob([htmlContent], { type: 'text/html' }),
+            'text/plain': new Blob([plainText], { type: 'text/plain' })
+          });
+          navigator.clipboard.write([item]).then(done).catch(() => {
+            navigator.clipboard.writeText(plainText).then(done).catch(done);
+          });
+          return;
+        } catch (e) {}
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainText).then(done).catch(done);
+      } else {
+        done();
       }
     }
 
@@ -2118,6 +2301,7 @@ function generateRssXml() {
       <guid isPermaLink="true">${link}</guid>
       <category>${escapeXml(p.category)}</category>
       <description>${escapeXml(fullDesc)}</description>
+      <enclosure url="${CANONICAL_BASE}/sns/${p.id}-grid.png" type="image/png" length="850000" />
       <pubDate>${itemDate}</pubDate>
     </item>`;
   }).join('\n');

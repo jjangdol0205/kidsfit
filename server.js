@@ -546,6 +546,7 @@ function buildTodayActionKit(webtoon, naver) {
     'telecom-mvno-switch'
   ];
 
+  let calcCustomizations = {};
   try {
     const pivotFile = path.join(ROOT_DIR, 'logs', 'growth_pivot_state.json');
     if (fs.existsSync(pivotFile)) {
@@ -553,10 +554,76 @@ function buildTodayActionKit(webtoon, naver) {
       if (Array.isArray(pv.dynamicPriorityPresets) && pv.dynamicPriorityPresets.length > 0) {
         priorityWebtoonOrder = pv.dynamicPriorityPresets;
       }
+      if (pv.calcCustomizations && typeof pv.calcCustomizations === 'object') {
+        calcCustomizations = pv.calcCustomizations;
+      }
     }
   } catch (e) {}
 
-  let publishedSet = new Set(['electric-studio-ac']);
+  function getActiveImpulseCtaForSlug(slug) {
+    const calcId = String(slug || '').split('-')[0] || 'diet';
+    return (calcCustomizations[calcId] && calcCustomizations[calcId].activeImpulseCta) || '🛒 9,900원 특가 확인 ↗';
+  }
+
+  function buildNaverWebtoonOverlay(slug, activeImpulseCta) {
+    const safeSlug = slug || 'diet-male-fatloss';
+    const ctaText = activeImpulseCta || getActiveImpulseCtaForSlug(safeSlug);
+    const gridImageUrl = `/sns/${safeSlug}-grid.png`;
+    const publicGridUrl = `https://truthofmarket.com/sns/${safeSlug}-grid.png`;
+    const slide3Url = `sns_outbox/${safeSlug}/slide-3.png`;
+    const targetUrl = `https://truthofmarket.com/preset/${safeSlug}/?src=naver_editor`;
+
+    let bundle = {};
+    try {
+      const bundlePath = path.join(ROOT_DIR, 'sns_outbox', safeSlug, 'post_bundle.json');
+      if (fs.existsSync(bundlePath)) {
+        bundle = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+      }
+    } catch (e) {}
+
+    const st = bundle.story || {};
+    const epTitle = (st.shortCartoon && st.shortCartoon.epTitle) || bundle.keyword || safeSlug;
+    const charName = st.charName || '머니핏 프렌즈';
+    const expertName = st.expertName || '안경 여우 박사';
+    const badLabel = st.badLabel || '기존 선택';
+    const badVal = st.badVal || '';
+    const goodLabel = st.goodLabel || '최적화 선택';
+    const goodVal = st.goodVal || '';
+    const diffVal = st.diffVal || '';
+    const spoilerTeaserText = `🎨 [${epTitle}] ❌ ${badLabel}: ${badVal} vs ✅ ${goodLabel}: ${goodVal} (${diffVal}) ➔ 내 조건 넣은 4컷 최종 영수증은 ${targetUrl} 에서 3초 계산!`;
+    const clipboardHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 ${epTitle} (${charName} × ${expertName})</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${bundle.keyword || safeSlug} — 3컷 스포일러 영수증 비교</div>
+  <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="${publicGridUrl}" alt="${epTitle} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ ${badLabel}: <strong>${badVal}</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: ${diffVal}</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;margin:4px;">👉 내 조건 4컷 영수증 3초 무료 계산 ↗</a>
+    <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#f59e0b;color:#0f172a;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;margin:4px;">${ctaText}</a>
+  </div>
+</div>`;
+
+    return {
+      epTitle,
+      gridImageUrl,
+      slide3Url,
+      badLabel,
+      badVal,
+      goodLabel,
+      goodVal,
+      diffVal,
+      activeImpulseCta: ctaText,
+      spoilerTeaserText,
+      clipboardHtml
+    };
+  }
+
+  let publishedSet = new Set(['electric-studio-ac', 'diet-female-lean', 'auto-grandeur-5000']);
   try {
     const trackerPath = path.join(ROOT_DIR, 'logs', 'sns_publish_tracker.json');
     if (fs.existsSync(trackerPath)) {
@@ -582,7 +649,8 @@ function buildTodayActionKit(webtoon, naver) {
     instagramCaption: '',
     facebookPost: '',
     threadsUrl: 'https://www.threads.net/@moneyfit2026',
-    instagramUrl: 'https://www.instagram.com/moneyfit2026/'
+    instagramUrl: 'https://www.instagram.com/moneyfit2026/',
+    webtoonOverlay: buildNaverWebtoonOverlay(nextWebtoonSlug, getActiveImpulseCtaForSlug(nextWebtoonSlug))
   };
 
   try {
@@ -591,25 +659,27 @@ function buildTodayActionKit(webtoon, naver) {
       const b = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
       webtoonKit = {
         slug: b.slug || nextWebtoonSlug,
-        title: b.title || nextWebtoonSlug,
+        title: b.title || b.keyword || nextWebtoonSlug,
         gridImageUrl: `/sns/${b.slug || nextWebtoonSlug}-grid.png`,
         threadsMain: b.threadsMain || '',
         threadsReply: b.threadsReply || '',
         instagramCaption: b.instagramCaption || '',
         facebookPost: b.facebookPost || '',
         threadsUrl: 'https://www.threads.net/@moneyfit2026',
-        instagramUrl: 'https://www.instagram.com/moneyfit2026/'
+        instagramUrl: 'https://www.instagram.com/moneyfit2026/',
+        webtoonOverlay: buildNaverWebtoonOverlay(b.slug || nextWebtoonSlug, getActiveImpulseCtaForSlug(b.slug || nextWebtoonSlug))
       };
     }
   } catch (e) {}
 
   // Naver Blog next item
-  const nextBlogSlug = (naver && naver.blog && Array.isArray(naver.blog.nextQueue) && naver.blog.nextQueue[0]?.slug) || 'electric-dehumidifier';
+  const nextBlogSlug = (naver && naver.blog && Array.isArray(naver.blog.nextQueue) && naver.blog.nextQueue[0]?.slug) || 'diet-male-fatloss';
   let blogKit = {
     slug: nextBlogSlug,
     title: `[머니핏 실측 리포트] ${nextBlogSlug}`,
     body: '',
-    writeUrl: 'https://blog.naver.com/GoBlogWrite.naver'
+    writeUrl: 'https://blog.naver.com/GoBlogWrite.naver',
+    webtoonOverlay: buildNaverWebtoonOverlay(nextBlogSlug, getActiveImpulseCtaForSlug(nextBlogSlug))
   };
   try {
     const blogFile = path.join(ROOT_DIR, 'backlog_human_posts', 'naver_blog', `${nextBlogSlug}.txt`);
@@ -629,7 +699,8 @@ function buildTodayActionKit(webtoon, naver) {
     answerA: '',
     answerB: '',
     fullText: '',
-    searchUrl: `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(nextJisikSlug.replace(/-/g, ' '))}&section=qna&sort=date`
+    searchUrl: `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(nextJisikSlug.replace(/-/g, ' '))}&section=qna&sort=date`,
+    webtoonOverlay: buildNaverWebtoonOverlay(nextJisikSlug, getActiveImpulseCtaForSlug(nextJisikSlug))
   };
   try {
     const jisikFile = path.join(ROOT_DIR, 'backlog_human_posts', 'jisikin_answers', `${nextJisikSlug}.txt`);
@@ -658,7 +729,8 @@ function buildTodayActionKit(webtoon, naver) {
     slug: nextCafeSlug,
     title: `[네이버 카페 정보글] ${nextCafeSlug}`,
     body: '',
-    cafeUrl: 'https://section.cafe.naver.com/'
+    cafeUrl: 'https://section.cafe.naver.com/',
+    webtoonOverlay: buildNaverWebtoonOverlay(nextCafeSlug, getActiveImpulseCtaForSlug(nextCafeSlug))
   };
   try {
     const cafeFile = path.join(ROOT_DIR, 'backlog_human_posts', 'naver_cafe', `${nextCafeSlug}.txt`);
@@ -690,9 +762,9 @@ function completeOfficeTask(channel, slug) {
     let tracker = {
       account: '@moneyfit2026',
       updatedAt: new Date().toISOString(),
-      dailySafeLimitPerChannel: 2,
+      dailySafeLimitPerChannel: 3,
       minIntervalHours: 4,
-      publishedSlugs: ['electric-studio-ac'],
+      publishedSlugs: ['electric-studio-ac', 'diet-female-lean', 'auto-grandeur-5000'],
       history: []
     };
     if (fs.existsSync(trackerPath)) {
@@ -769,7 +841,7 @@ function completeOfficeTask(channel, slug) {
 
 function buildOfficeStatePayload() {
   const stats = getStatsPayload();
-  let webtoon = { renderedCount: 36, totalEpisodes: 36, publishedLiveCount: 1, pendingPublishCount: 35 };
+  let webtoon = { renderedCount: 36, totalEpisodes: 36, publishedLiveCount: 3, pendingPublishCount: 33 };
   let naver = {
     totalFiles: 144,
     totalDone: 98,

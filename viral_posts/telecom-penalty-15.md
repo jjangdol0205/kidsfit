@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익
-> 프리셋 ID: `telecom-penalty-15` | 카테고리: `통신·약정` | 타겟 URL: [https://truthofmarket.com/preset/telecom-penalty-15](https://truthofmarket.com/preset/telecom-penalty-15)
+> 프리셋 ID: `telecom-penalty-15` | 카테고리: `통신·약정` | 웹툰: `EP.31 인터넷 위약금 15만원 무서워서 참고 쓰던 라쿤 💸` | 타겟 URL: [https://truthofmarket.com/preset/telecom-penalty-15](https://truthofmarket.com/preset/telecom-penalty-15)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/telecom-penalty-15-grid.png](https://truthofmarket.com/sns/telecom-penalty-15-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/telecom-penalty-15/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%9C%84%EC%95%BD%EA%B8%88%2015%EB%A7%8C%EC%9B%90%20%EC%82%AC%EC%9D%80%ED%92%88%2047%EB%A7%8C%EC%9B%90&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익」** 조건에서 인터넷·TV·휴대폰 약정 기간 중 남은 위약금과 신규 가입 현금 사은품(지원금)·월 요금 절감액의 손익분기점가 실제로 어떻게 계산되는지, 방송통신위원회 경품 고시 가이드라인 및 통신 3사·알뜰폰 요금 차액 손익분기점 수식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 신규 가입 현금 사은품(47만 원)으로 위약금 15만 원을 전액 갚고도 당일 +32만 원 현금이 남으며, 월 요금 인하(월 5,500원×36개월)까지 합치면 총 +51.8만 원 흑자입니다.
+
+![인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/telecom-penalty-15-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.31 인터넷 위약금 15만원 무서워서 참고 쓰던 라쿤 💸 (알뜰 라쿤 대리 × 안경 여우 통신박사)**  
+> ❌ 위약금 무서워 기존 요금 유지: 0원 (기존 요금 그대로 납부) vs ✅ 47만 사은품 대납 환승 (3년 누적): +518,000원 순이익 (당일 현금 +320,000원) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/telecom-penalty-15/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -80,14 +86,38 @@ A. 절대 미리 해지하시면 안 됩니다! 신규 인터넷 개통이 완�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.31 인터넷 위약금 15만원 무서워서 참고 쓰던 라쿤 💸 (알뜰 라쿤 대리 × 안경 여우 통신박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/telecom-penalty-15/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/telecom-penalty-15-grid.png" alt="인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 위약금 무서워 기존 요금 유지: <strong>0원 (기존 요금 그대로 납부)</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 47만 사은품 대납 환승 (3년 누적): <strong>+518,000원 순이익</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 당일 현금 +320,000원</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/telecom-penalty-15/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/telecom-penalty-15/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 인터넷 위약금 15만원 사은품 47만원 관련해서 고민 중이시군요.
 저도 얼마 전에 지금 쓰는 인터넷+TV가 아직 약정이 남아서 해지 위약금이 15만 원이나 나오는데, 약정 끝날 때까지 무조건 참아야겠지? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익)으로 시뮬레이션을 돌려보면 핵심 결과는 **'위약금 15만 원 내고도 총 +52만 원 이득! (💰 지금 바로 갈아타기 무조건 이득!)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.31 인터넷 위약금 15만원 무서워서 참고 쓰던 라쿤 💸]
+- ❌ 위약금 무서워 기존 요금 유지: 0원 (기존 요금 그대로 납부) vs ✅ 47만 사은품 대납 환승 (3년 누적): +518,000원 순이익 (당일 현금 +320,000원)
 - 사은품-위약금: +32만 원
 - 3년 요금절감: +20만 원
 - 총 순이익: +518,000원

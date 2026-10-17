@@ -360,6 +360,73 @@ async function runSixHourGrowthCycle(options = {}) {
     });
   });
 
+  // Build Naver x Animal Webtoon Packages for Top 6 Priority Presets
+  const naverWebtoonPackages = dynamicPriorityPresets.slice(0, 6).map((slug, idx) => {
+    const calcId = String(slug.split('-')[0] || 'diet');
+    const calcEval = calcEvaluations.find((c) => c.id === calcId) || calcEvaluations[0];
+    const activeImpulseCta = calcEval ? calcEval.activeImpulseCta : '🛒 9,900원 특가 확인 ↗';
+    const bundlePath = path.join(ROOT_DIR, 'sns_outbox', slug, 'post_bundle.json');
+    let bundle = {};
+    if (fs.existsSync(bundlePath)) {
+      try {
+        bundle = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+      } catch (e) {}
+    }
+    const st = bundle.story || {};
+    const epTitle = (st.shortCartoon && st.shortCartoon.epTitle) || bundle.keyword || slug;
+    const charName = st.charName || '머니핏 프렌즈';
+    const expertName = st.expertName || '안경 여우 박사';
+    const badLabel = st.badLabel || '기존 선택';
+    const badVal = st.badVal || '';
+    const goodLabel = st.goodLabel || '최적화 선택';
+    const goodVal = st.goodVal || '';
+    const diffVal = st.diffVal || '';
+    const gridImageUrl = `/sns/${slug}-grid.png`;
+    const publicGridUrl = `https://truthofmarket.com/sns/${slug}-grid.png`;
+    const outboxGridPath = `sns_outbox/${slug}/webtoon-grid.png`;
+    const slide3Path = `sns_outbox/${slug}/slide-3.png`;
+    const targetUrl = `https://truthofmarket.com/preset/${slug}/?src=naver_webtoon_pivot`;
+    const spoilerTeaserText = `❌ ${badLabel}: ${badVal} vs ✅ ${goodLabel}: ${goodVal} (${diffVal}) ➔ 내 조건 넣은 4컷 최종 영수증은 ${targetUrl} 에서 3초 계산!`;
+    const clipboardHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 ${epTitle} (${charName} × ${expertName})</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${bundle.keyword || slug} — 3컷 스포일러 영수증 비교</div>
+  <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="${publicGridUrl}" alt="${epTitle} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ ${badLabel}: <strong>${badVal}</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: ${diffVal}</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;margin:4px;">👉 내 조건 4컷 영수증 3초 무료 계산 ↗</a>
+    <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#f59e0b;color:#0f172a;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;margin:4px;">${activeImpulseCta}</a>
+  </div>
+</div>`;
+
+    return {
+      rank: idx + 1,
+      slug,
+      calcId,
+      epTitle,
+      charName,
+      expertName,
+      gridImageUrl,
+      publicGridUrl,
+      outboxGridPath,
+      slide3Path,
+      targetUrl,
+      badLabel,
+      badVal,
+      goodLabel,
+      goodVal,
+      diffVal,
+      activeImpulseCta,
+      spoilerTeaserText,
+      clipboardHtml
+    };
+  });
+
   // Evaluate UI Slots
   const slotEntries = Object.entries(clicksBySlot).sort((a, b) => b[1] - a[1]);
   const topSlotEntry = slotEntries[0] || ['atf_instant_impulse', 0];
@@ -436,6 +503,7 @@ async function runSixHourGrowthCycle(options = {}) {
       newCtaCopy: c.activeImpulseCta
     })),
     dynamicPriorityPresets,
+    naverWebtoonPackages,
     staffFeedbackSession: {
       sessionCount: staffCouncil.sessionCount,
       heldAtKst: staffCouncil.heldAtKst,
@@ -488,7 +556,7 @@ async function runSixHourGrowthCycle(options = {}) {
   const mdReport = `# 📊 6시간 주기 전사 성과분석 및 자동 강화·수정(Auto-Pivot) 리포트 (제${cycleCount}차)
 
 > **분석 시각**: ${checkedAtKst} (6시간 주기 자동 실행: \`00:00 / 06:00 / 12:00 / 18:00 KST\`)
-> **사전 절차**: 🗣️ **전직원 상호 피드백 타운홀 회의 (제${staffCouncil.sessionCount}차) 선(先) 진행 및 4대 합의안 반영 완료** ([전직원_상호피드백_회의록.md](file:///d:/사업아이템/moneyfit-portal/전직원_상호피드백_회의록.md))
+> **사전 절차**: 🗣️ **전직원 상호 피드백 타운홀 회의 (제${staffCouncil.sessionCount}차) 선(先) 진행 및 5대 합의안 반영 완료** ([전직원_상호피드백_회의록.md](file:///d:/사업아이템/moneyfit-portal/전직원_상호피드백_회의록.md))
 > **총괄 지휘**: 아기 호랑이 이사 🐯 & 핵심 리더진 (**🦊 여우 실장 · 🐆 치타 팀장 · 📱 팬더 팀장 · 🦌 사슴 디렉터 · 🦩 홍학 에디터 · 🐝 꿀벌 과장**)
 > **대표님 핵심 원칙**: **실측 확정치(UV·실클릭·확정매출)와 참고용 통계 추정치를 엄격히 분리하여 보고합니다.**
 
@@ -548,6 +616,29 @@ ${dynamicPriorityPresets
   .slice(0, 6)
   .map((slug, idx) => `${idx + 1}. **\`${slug}\`** ➔ [랜딩페이지 바로가기](https://truthofmarket.com/preset/${slug}/)`)
   .join('\n')}
+
+---
+
+## 5. 🎨🟢 [이번 6시간 주기 즉시 투입] 네이버 블로그·지식iN·카페 × 동물 웹툰 패키지 (3컷 스포일러 & 클립보드 HTML)
+
+| 순위 | 프리셋 슬러그 | 웹툰 에피소드 | 3컷 스포일러 영수증 비교 | 합본 / 3컷 슬라이드 경로 | 적용 즉결템 CTA |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+${naverWebtoonPackages
+  .map(
+    (pkg) =>
+      `| **${pkg.rank}순위** | \`${pkg.slug}\` | **${pkg.epTitle}** | ❌ ${pkg.badLabel}: **${pkg.badVal}** vs ✅ ${pkg.goodLabel}: **${pkg.goodVal}** (${pkg.diffVal}) | [4컷합본](${pkg.publicGridUrl}) · \`${pkg.slide3Path}\` | \`${pkg.activeImpulseCta}\` |`
+  )
+  .join('\n')}
+
+### 📋 1~3순위 스마트에디터 ONE 즉시 복붙용 웹툰 카드 HTML
+
+${naverWebtoonPackages
+  .slice(0, 3)
+  .map(
+    (pkg) =>
+      `#### 🏆 ${pkg.rank}순위: \`${pkg.slug}\` (${pkg.epTitle})\n\`\`\`html\n${pkg.clipboardHtml}\n\`\`\``
+  )
+  .join('\n\n')}
 `;
 
   fs.writeFileSync(REPORT_MD_FILE, mdReport, 'utf8');

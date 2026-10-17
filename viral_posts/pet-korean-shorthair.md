@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량
-> 프리셋 ID: `pet-korean-shorthair` | 카테고리: `반려동물` | 타겟 URL: [https://truthofmarket.com/preset/pet-korean-shorthair](https://truthofmarket.com/preset/pet-korean-shorthair)
+> 프리셋 ID: `pet-korean-shorthair` | 카테고리: `반려동물` | 웹툰: `EP.16 4.5kg 냥이 자율배식 믿다가 뚱냥이 될 뻔 🐱` | 타겟 URL: [https://truthofmarket.com/preset/pet-korean-shorthair](https://truthofmarket.com/preset/pet-korean-shorthair)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/pet-korean-shorthair-grid.png](https://truthofmarket.com/sns/pet-korean-shorthair-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/pet-korean-shorthair/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%BD%94%EC%88%8F%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B1%B4%EC%82%AC%EB%A3%8C%20%EC%8A%B5%EC%8B%9D%20%EA%B8%89%EC%97%AC%EB%9F%89&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량」** 조건에서 반려동물 생애주기별 일일 적정 에너지 요구량(DER)과 월간 사료·케어 고정비가 실제로 어떻게 계산되는지, 미국국립연구위원회(NRC)·유럽반려동물산업연맹(FEDIAF) 수의영양학 칼로리 공식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 중성화 후에는 기초대사량이 25% 이상 감소해 하루 260kcal(건사료 68g)만 넘어도 쉽게 비만과 당뇨, 하부요로계 질환으로 이어집니다.
+
+![4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/pet-korean-shorthair-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.16 4.5kg 냥이 자율배식 믿다가 뚱냥이 될 뻔 🐱 (집사 치즈냥 박사 × 안경 여우 수의영양사)**  
+> ❌ 무제한 자율배식 (비만·요로결석 위험): 일 92g 과급여 (질환 위험) vs ✅ 일 68g 제한배식 (2kg 포대=29일): 일 68g (2kg=29일) (1끼 34g 정량 · 의료비 방어) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/pet-korean-shorthair/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 사료 속 불포화지방산이 공기 중 산소와 접촉하면 산패되�
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.16 4.5kg 냥이 자율배식 믿다가 뚱냥이 될 뻔 🐱 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/pet-korean-shorthair/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/pet-korean-shorthair-grid.png" alt="4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 무제한 자율배식 (비만·요로결석 위험): <strong>일 92g 과급여 (질환 위험)</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 일 68g 제한배식 (2kg 포대=29일): <strong>일 68g (2kg=29일)</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 1끼 34g 정량 · 의료비 방어</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/pet-korean-shorthair/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/pet-korean-shorthair/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 코숏 고양이 건사료 습식 급여량 관련해서 고민 중이시군요.
 저도 얼마 전에 우리 4.5kg 치즈냥이 중성화 수술하고 나서 밥그릇 비울 때마다 채워줬더니 어느새 배가 땅에 닿을랑 말랑 해! 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량)으로 시뮬레이션을 돌려보면 핵심 결과는 **'하루 68g (종이컵 0.8컵) · 29일 소진! (🐾 수의영양학 정량 계산)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.16 4.5kg 냥이 자율배식 믿다가 뚱냥이 될 뻔 🐱]
+- ❌ 무제한 자율배식 (비만·요로결석 위험): 일 92g 과급여 (질환 위험) vs ✅ 일 68g 제한배식 (2kg 포대=29일): 일 68g (2kg=29일) (1끼 34g 정량 · 의료비 방어)
 - 하루 칼로리: 260 kcal
 - 하루 급여량(1끼): 68g (34g)
 - 2kg 소진일: 29일

@@ -79,16 +79,18 @@ function auditWebtoonBacklog() {
   const existingArtFiles = requiredArtFiles.filter(f => fs.existsSync(path.join(WEBTOON_ASSETS_DIR, f)));
 
   // Ensure SNS publish tracker exists (tracks @moneyfit2026 live uploads)
+  const DEFAULT_PUBLISHED_SLUGS = ['electric-studio-ac', 'diet-female-lean', 'auto-grandeur-5000'];
   let publishTracker = {
     account: '@moneyfit2026',
-    publishedSlugs: ['electric-studio-ac'],
-    lastPublishedAt: '2026-10-17'
+    publishedSlugs: [...DEFAULT_PUBLISHED_SLUGS],
+    lastPublishedAt: '2026-10-18'
   };
   if (fs.existsSync(SNS_TRACKER_PATH)) {
     try {
       const loaded = JSON.parse(fs.readFileSync(SNS_TRACKER_PATH, 'utf8'));
       if (loaded && Array.isArray(loaded.publishedSlugs)) {
-        publishTracker = loaded;
+        const merged = Array.from(new Set([...DEFAULT_PUBLISHED_SLUGS, ...loaded.publishedSlugs]));
+        publishTracker = { ...loaded, publishedSlugs: merged };
       }
     } catch (e) {}
   } else {

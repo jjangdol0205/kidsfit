@@ -187,6 +187,19 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const daumCafeSearchUrl = `https://search.daum.net/search?w=cafe&q=${encodedQ}&sort=recency`;
 
   const story = (webtoonStories.PRESET_WEBTOON_MAP && webtoonStories.PRESET_WEBTOON_MAP[preset.id]) || {};
+  const resolvedStory = webtoonStories.resolveDynamicReceiptValues
+    ? webtoonStories.resolveDynamicReceiptValues(preset, res)
+    : story;
+  const epTitle = (resolvedStory.shortCartoon && resolvedStory.shortCartoon.epTitle) || preset.title;
+  const webtoonGridUrl = `${currentSiteUrl}/sns/${preset.id}-grid.png`;
+  const charName = resolvedStory.charName || '머니핏 프렌즈';
+  const expertName = resolvedStory.expertName || '안경 여우 박사';
+  const badLabel = resolvedStory.badLabel || '기존 선택';
+  const badVal = resolvedStory.badVal || res.headline;
+  const goodLabel = resolvedStory.goodLabel || '최적화 선택';
+  const goodVal = resolvedStory.goodVal || res.badge;
+  const diffVal = resolvedStory.diffVal || '즉시 절약';
+
   const strat = CATEGORY_STRATEGY_MAP[preset.calc] || CATEGORY_STRATEGY_MAP.electric;
   const uniqueHashtags = story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`;
 
@@ -201,6 +214,11 @@ ${story.hookLine || `요즘 ${preset.title} 관련해서 실제 비용과 손익
 오늘은 **「${preset.title}」** 조건에서 ${strat.introContext}가 실제로 어떻게 계산되는지, ${strat.authoritySource}을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 ${story.factLine || preset.description}
+
+![${preset.title} 4컷 동물 웹툰 영수증](${webtoonGridUrl})
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — ${epTitle} (${charName} × ${expertName})**  
+> ❌ ${badLabel}: ${badVal} vs ✅ ${goodLabel}: ${goodVal} (${diffVal}) ➔ 내 조건 넣은 4컷 최종 영수증은 ${targetUrl}/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -253,12 +271,15 @@ ${uniqueHashtags}`;
 
   // 2. Jisik-iN / Cafe Natural Human Answer (Preset-specific, zero boilerplate)
   const plainMetrics = res.metrics.map(m => `- ${m.label}: ${m.val}`).join('\n');
-  const jisikinPost = `안녕하세요! ${query} 관련해서 고민 중이시군요.
+  const jisikinPost = `[📌 사진 첨부 팁: sns_outbox/${preset.id}/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
+안녕하세요! ${query} 관련해서 고민 중이시군요.
 저도 얼마 전에 ${story.panel1Speech ? story.panel1Speech.replace(/"/g, '') : `${preset.title} 조건이 헷갈려서`} 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(${preset.title})으로 시뮬레이션을 돌려보면 핵심 결과는 **'${res.headline} (${res.badge})'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — ${epTitle}]
+- ❌ ${badLabel}: ${badVal} vs ✅ ${goodLabel}: ${goodVal} (${diffVal})
 ${plainMetrics}
 
 ${story.factLine || res.summary}
@@ -281,12 +302,31 @@ ${targetUrl}`;
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
   const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n${story.ctaLine || `내 조건(${strat.inputHint}) 3초 무료 시뮬레이션`}: ${targetUrl}`;
 
+  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card
+  const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 ${epTitle} (${charName} × ${expertName})</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${preset.title} — 3컷 스포일러 영수증 비교</div>
+  <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="${webtoonGridUrl}" alt="${preset.title} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ ${badLabel}: <strong>${badVal}</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: ${diffVal}</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>`;
+
   return {
     id: preset.id,
     slug: preset.id,
     calc: preset.calc,
     category: preset.category,
     title: preset.title,
+    epTitle,
+    webtoonGridUrl,
     query,
     subQueries,
     targetUrl,
@@ -300,10 +340,12 @@ ${targetUrl}`;
     threadsSearchUrl,
     daumCafeSearchUrl,
     res,
+    resolvedStory,
     blogPost,
     jisikinPost,
     cafeCommentPost,
-    threadsPost
+    threadsPost,
+    naverSmartEditorHtml
   };
 }
 
@@ -325,19 +367,27 @@ function generateAllViralPosts(currentSiteUrl = siteUrl) {
 
     // Markdown file content
     const mdContent = `# 🎯 [머니핏 바이럴 홍보 키트] ${bundle.title}
-> 프리셋 ID: \`${bundle.id}\` | 카테고리: \`${bundle.category}\` | 타겟 URL: [${bundle.targetUrl}](${bundle.targetUrl})
+> 프리셋 ID: \`${bundle.id}\` | 카테고리: \`${bundle.category}\` | 웹툰: \`${bundle.epTitle}\` | 타겟 URL: [${bundle.targetUrl}](${bundle.targetUrl})
+> 4컷 웹툰 영수증 짤: [${bundle.webtoonGridUrl}](${bundle.webtoonGridUrl}) | 3컷 스포일러 슬라이드: \`sns_outbox/${bundle.id}/slide-3.png\`
 > 실시간 질문 스나이핑: [지식iN 최신순](${bundle.kinSearchUrl}) | [네이버 카페 최신순](${bundle.cafeSearchUrl}) | [디시인사이드](${bundle.dcSearchUrl}) | [블라인드](${bundle.blindSearchUrl}) | [스레드](${bundle.threadsSearchUrl}) | [다음 카페](${bundle.daumCafeSearchUrl})
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 \`\`\`markdown
 ${bundle.blogPost}
 \`\`\`
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+\`\`\`html
+${bundle.naverSmartEditorHtml}
+\`\`\`
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 \`\`\`text
 ${bundle.jisikinPost}
 \`\`\`
@@ -366,6 +416,8 @@ ${bundle.threadsPost}
       calc: bundle.calc,
       category: bundle.category,
       title: bundle.title,
+      epTitle: bundle.epTitle,
+      webtoonGridUrl: bundle.webtoonGridUrl,
       query: bundle.query,
       subQueries: bundle.subQueries,
       targetUrl: bundle.targetUrl,
@@ -383,7 +435,8 @@ ${bundle.threadsPost}
       blogPost: bundle.blogPost,
       jisikinPost: bundle.jisikinPost,
       cafeCommentPost: bundle.cafeCommentPost,
-      threadsPost: bundle.threadsPost
+      threadsPost: bundle.threadsPost,
+      naverSmartEditorHtml: bundle.naverSmartEditorHtml
     };
 
     viralPostsList.push(viralPostsMap[preset.id]);

@@ -1,10 +1,11 @@
 # 🎯 [머니핏 바이럴 홍보 키트] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트
-> 프리셋 ID: `diet-female-lean` | 카테고리: `식단·다이어트` | 타겟 URL: [https://truthofmarket.com/preset/diet-female-lean](https://truthofmarket.com/preset/diet-female-lean)
+> 프리셋 ID: `diet-female-lean` | 카테고리: `식단·다이어트` | 웹툰: `EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗` | 타겟 URL: [https://truthofmarket.com/preset/diet-female-lean](https://truthofmarket.com/preset/diet-female-lean)
+> 4컷 웹툰 영수증 짤: [https://truthofmarket.com/sns/diet-female-lean-grid.png](https://truthofmarket.com/sns/diet-female-lean-grid.png) | 3컷 스포일러 슬라이드: `sns_outbox/diet-female-lean/slide-3.png`
 > 실시간 질문 스나이핑: [지식iN 최신순](https://kin.naver.com/search/list.naver?query=%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&sort=date) | [네이버 카페 최신순](https://search.naver.com/search.naver?where=article&query=%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&st=date) | [디시인사이드](https://www.google.com/search?q=site%3Adcinside.com%20%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&tbs=qdr:m) | [블라인드](https://www.google.com/search?q=site%3Ateamblind.com%20%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&tbs=qdr:m) | [스레드](https://www.threads.net/search?q=%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&serp_type=default) | [다음 카페](https://search.daum.net/search?w=cafe&q=%EC%97%AC%EC%9E%90%2055kg%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%83%84%EB%8B%A8%EC%A7%80&sort=recency)
 
 ---
 
-## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석)
+## 📝 [네이버 블로그 / 티스토리] 정보성 포스팅 전문 (1,500자+ 심층 분석 & 4컷 웹툰 브릿지)
 ```markdown
 [제목] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 — 2026 실제 수식 비교 & 손익분기점 정리
 
@@ -12,6 +13,11 @@
 오늘은 **「여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트」** 조건에서 내 기초대사량(BMR)·활동대사량(TDEE)에 맞춘 일일 칼로리 설계와 식단 장보기 예산가 실제로 어떻게 계산되는지, 미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
 
 무작정 굶는 대신 하루 1,420kcal(단백질 110g) 기준에 맞춰 2주간 닭가슴살 44팩과 현미밥 28개로 밀프렙을 세팅하면 배고픔과 식비를 동시에 잡을 수 있습니다.
+
+![여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/diet-female-lean-grid.png)
+
+> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗 (헬스 시바견 득근이 × 안경 여우 영양박사)**  
+> ❌ 배달 포케·소매 단품 2주 지출: 189,200원/2주 vs ✅ 2주 정량 밀프렙(44팩+28공기): 84,400원 (44팩) (-104,800원 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/diet-female-lean/?src=naver_blog 에서 3초 계산!
 
 ---
 
@@ -79,14 +85,38 @@ A. 삶은 달걀 2개(단백질 12g), 소우둔살/홍두깨살 100g(단백질 2
 
 ---
 
-## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거)
+## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
+```html
+<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 — 3컷 스포일러 영수증 비교</div>
+  <a href="https://truthofmarket.com/preset/diet-female-lean/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="https://truthofmarket.com/sns/diet-female-lean-grid.png" alt="여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
+  </a>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
+    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 배달 포케·소매 단품 2주 지출: <strong>189,200원/2주</strong></div>
+    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 2주 정량 밀프렙(44팩+28공기): <strong>84,400원 (44팩)</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -104,800원 절약</div>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://truthofmarket.com/preset/diet-female-lean/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  </div>
+</div>
+```
+
+---
+
+## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
+[📌 사진 첨부 팁: sns_outbox/diet-female-lean/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+
 안녕하세요! 여자 55kg 다이어트 식단 탄단지 관련해서 고민 중이시군요.
 저도 얼마 전에 55kg에서 라인 정리하려고 무작정 하루 한 끼만 굶었더니 기운만 빠지고 밤에 요요 폭식 터졌어 ㅠㅠ 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
 
 질문자님과 비슷한 조건(여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트)으로 시뮬레이션을 돌려보면 핵심 결과는 **'하루 1,330kcal · 닭가슴살 총 44팩! (🔥 2주 맞춤 식단 수량)'**로 산출됩니다.
 
-[핵심 계산 수치 요약]
+[🎨 3컷 비교 영수증 핵심 수치 — EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗]
+- ❌ 배달 포케·소매 단품 2주 지출: 189,200원/2주 vs ✅ 2주 정량 밀프렙(44팩+28공기): 84,400원 (44팩) (-104,800원 절약)
 - 탄·단·지(g): 139/110/37g
 - 닭가슴살(2주): 44팩
 - 현미밥(2주): 28개

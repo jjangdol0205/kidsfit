@@ -325,7 +325,7 @@
           <div id="kit-webtoon-preview-wrap" class="flex items-center gap-2.5 bg-slate-900 border border-slate-800 rounded-lg p-2">
             <img id="kit-webtoon-thumb" src="/sns/diet-male-fatloss-grid.png" alt="오늘치 4컷 웹툰" class="w-14 h-14 object-cover rounded border border-slate-700 shrink-0 bg-slate-800" />
             <div class="min-w-0 flex-1 space-y-1">
-              <div class="text-[11px] text-slate-300 font-semibold truncate">4컷 합본 고해상도 PNG (1080×1080)</div>
+              <div id="kit-webtoon-caption" class="text-[11px] text-slate-300 font-semibold truncate">4컷 합본 고해상도 PNG (1080×1080)</div>
               <a id="kit-webtoon-download" href="/sns/diet-male-fatloss-grid.png" download="moneyfit-webtoon-grid.png" class="inline-block bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-extrabold px-2.5 py-1 rounded-lg transition">🖼️ 웹툰 이미지 다운로드</a>
             </div>
           </div>
@@ -1428,23 +1428,59 @@
         threadsUrl: 'https://www.threads.net/@moneyfit2026'
       },
       blog: {
-        slug: 'electric-dehumidifier',
-        title: '여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실측 리포트',
-        body: '[제목] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실측 리포트\n\n제습기 320W 하루 24시간 가동 시 한전 3단계 누진세 구간 진입 여부와 인버터 1등급 교체 회수기간을 정리했습니다.\n👉 무료 계산기: https://truthofmarket.com/preset/electric-dehumidifier/',
-        writeUrl: 'https://blog.naver.com/GoBlogWrite.naver'
+        slug: 'diet-male-fatloss',
+        title: '남자 80kg 4주 체지방 컷팅 식단표 & 닭가슴살 127팩 장보기 손익 실측 리포트',
+        body: '[제목] 남자 80kg 4주 체지방 컷팅 식단표 & 닭가슴살 127팩 장보기 손익 실측 리포트\n\n80kg 남성 활동대사량(TDEE) 기준 하루 단백질 160g 및 4주 닭가슴살 127팩 대용량 묶음 구매 시 절감액을 정리했습니다.\n👉 무료 계산기: https://truthofmarket.com/preset/diet-male-fatloss/',
+        writeUrl: 'https://blog.naver.com/GoBlogWrite.naver',
+        webtoonOverlay: {
+          epTitle: 'EP.07 편의점 닭가슴살 낱개로 사다 35만원 깨진 썰 🥩',
+          gridImageUrl: '/sns/diet-male-fatloss-grid.png',
+          slide3Url: 'sns_outbox/diet-male-fatloss/slide-3.png',
+          badLabel: '편의점 낱개·배달 샐러드 4주',
+          badVal: '491,500원/4주',
+          goodLabel: 'TDEE 정량 대용량 묶음(127팩)',
+          goodVal: '217,550원 (127팩)',
+          diffVal: '-273,950원 절약',
+          spoilerTeaserText: '🎨 [EP.07 편의점 닭가슴살 낱개로 사다 35만원 깨진 썰 🥩] ❌ 편의점 낱개·배달 샐러드 4주: 491,500원/4주 vs ✅ TDEE 정량 대용량 묶음(127팩): 217,550원 (127팩) (-273,950원 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/diet-male-fatloss/?src=naver_editor 에서 3초 계산!',
+          clipboardHtml: '<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:Pretendard,sans-serif;color:#0f172a;"><div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.07 편의점 닭가슴살 낱개로 사다 35만원 깨진 썰 🥩</div><img src="https://truthofmarket.com/sns/diet-male-fatloss-grid.png" alt="4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;display:block;margin:0 auto 12px;" /><div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:12px;"><div>❌ 편의점 낱개·배달 샐러드 4주: <strong>491,500원/4주</strong></div><div>✅ TDEE 정량 대용량 묶음(127팩): <strong>217,550원 (127팩) (-273,950원 절약)</strong></div></div><div style="text-align:center;"><a href="https://truthofmarket.com/preset/diet-male-fatloss/?src=naver_editor" target="_blank" style="display:inline-block;padding:10px 18px;background:#10b981;color:#fff;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 4컷 영수증 3초 무료 계산 ↗</a></div></div>'
+        }
       },
       jisikin: {
         slug: 'electric-dehumidifier',
         title: '[지식iN 맞춤 답변] 제습기 24시간 전기세 & 에어컨 제습모드 비교',
         answerA: '질문자님 조건(320W 제습기 24시간 가동)으로 한전 누진세 3단계 수식에 대입해 보면 월 추가 전기요금이 약 58,970원 발생합니다. 네이버에 [머니핏 전기요금 계산기] 검색하셔서 우리 집 기본 사용량만 넣고 3초 만에 확인해 보세요!',
         answerB: '질문자님 조건으로 한전 누진세 계산기에 대입해 본 결과입니다. 아래 무료 계산기에서 직접 시간과 소비전력을 조절해 보실 수 있습니다.\n👉 https://truthofmarket.com/preset/electric-dehumidifier/',
-        searchUrl: 'https://kin.naver.com/search/list.naver?query=%EC%A0%9C%EC%8A%B5%EA%B8%B0+%EC%A0%84%EA%B8%B0%EC%84%B8+24%EC%8B%9C%EA%B0%84&section=qna&sort=date'
+        searchUrl: 'https://kin.naver.com/search/list.naver?query=%EC%A0%9C%EC%8A%B5%EA%B8%B0+%EC%A0%84%EA%B8%B0%EC%84%B8+24%EC%8B%9C%EA%B0%84&section=qna&sort=date',
+        webtoonOverlay: {
+          epTitle: 'EP.03 장마철 제습기 24시간 틀어놨더니 누진세 폭탄?! 💧',
+          gridImageUrl: '/sns/electric-dehumidifier-grid.png',
+          slide3Url: 'sns_outbox/electric-dehumidifier/slide-3.png',
+          badLabel: '구형 3등급 24시간 연속가동',
+          badVal: '92,430원/월',
+          goodLabel: '1등급 인버터 자동습도 유지',
+          goodVal: '46,890원/월',
+          diffVal: '-45,540원/월 절약',
+          spoilerTeaserText: '🎨 [EP.03 장마철 제습기 24시간 틀어놨더니 누진세 폭탄?! 💧] ❌ 구형 3등급 24시간 연속가동: 92,430원/월 vs ✅ 1등급 인버터 자동습도 유지: 46,890원/월 (-45,540원/월 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/electric-dehumidifier/?src=naver_editor 에서 3초 계산!',
+          clipboardHtml: '<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:Pretendard,sans-serif;color:#0f172a;"><div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.03 장마철 제습기 24시간 틀어놨더니 누진세 폭탄?! 💧</div><img src="https://truthofmarket.com/sns/electric-dehumidifier-grid.png" alt="4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;display:block;margin:0 auto 12px;" /><div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:12px;"><div>❌ 구형 3등급 24시간 연속가동: <strong>92,430원/월</strong></div><div>✅ 1등급 인버터 자동습도 유지: <strong>46,890원/월 (-45,540원/월 절약)</strong></div></div><div style="text-align:center;"><a href="https://truthofmarket.com/preset/electric-dehumidifier/?src=naver_editor" target="_blank" style="display:inline-block;padding:10px 18px;background:#10b981;color:#fff;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 4컷 영수증 3초 무료 계산 ↗</a></div></div>'
+        }
       },
       cafe: {
         slug: 'electric-studio-ac',
         title: '원룸 벽걸이 에어컨 하루 10시간 틀었을 때 한 달 전기세 실측 공유',
         body: '원룸에서 벽걸이 에어컨 하루 10시간 틀면 누진세 폭탄 맞는지 직접 한전 수식으로 계산해 봤습니다.\n👉 https://truthofmarket.com/preset/electric-studio-ac/',
-        cafeUrl: 'https://section.cafe.naver.com/'
+        cafeUrl: 'https://section.cafe.naver.com/',
+        webtoonOverlay: {
+          epTitle: 'EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡',
+          gridImageUrl: '/sns/electric-studio-ac-grid.png',
+          slide3Url: 'sns_outbox/electric-studio-ac/slide-3.png',
+          badLabel: '구형 정속형 10시간 가동',
+          badVal: '59,223원/월',
+          goodLabel: '1등급 인버터 정속 유지',
+          goodVal: '37,296원/월',
+          diffVal: '-21,927원/월 절약',
+          spoilerTeaserText: '🎨 [EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡] ❌ 구형 정속형 10시간 가동: 59,223원/월 vs ✅ 1등급 인버터 정속 유지: 37,296원/월 (-21,927원/월 절약) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/electric-studio-ac/?src=naver_editor 에서 3초 계산!',
+          clipboardHtml: '<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:Pretendard,sans-serif;color:#0f172a;"><div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡</div><img src="https://truthofmarket.com/sns/electric-studio-ac-grid.png" alt="4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;display:block;margin:0 auto 12px;" /><div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:12px;"><div>❌ 구형 정속형 10시간 가동: <strong>59,223원/월</strong></div><div>✅ 1등급 인버터 정속 유지: <strong>37,296원/월 (-21,927원/월 절약)</strong></div></div><div style="text-align:center;"><a href="https://truthofmarket.com/preset/electric-studio-ac/?src=naver_editor" target="_blank" style="display:inline-block;padding:10px 18px;background:#10b981;color:#fff;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 4컷 영수증 3초 무료 계산 ↗</a></div></div>'
+        }
       }
     };
 
@@ -1468,6 +1504,7 @@
       const linkEl = document.getElementById('kit-open-platform-link');
       const wrapEl = document.getElementById('kit-webtoon-preview-wrap');
       const thumbEl = document.getElementById('kit-webtoon-thumb');
+      const capEl = document.getElementById('kit-webtoon-caption');
       const dlEl = document.getElementById('kit-webtoon-download');
       const taEl = document.getElementById('kit-preview-textarea');
       const btnsEl = document.getElementById('kit-copy-buttons');
@@ -1478,11 +1515,15 @@
       if (slugEl) slugEl.textContent = `#${data.slug}`;
       if (titleEl) titleEl.textContent = data.title || data.slug;
 
+      const overlay = data.webtoonOverlay;
+      const previewImgUrl = (overlay && overlay.gridImageUrl) || data.gridImageUrl || `/sns/${data.slug}-grid.png`;
+
       if (activeKitChannel === 'webtoon') {
         if (wrapEl) wrapEl.classList.remove('hidden');
-        if (thumbEl) thumbEl.src = data.gridImageUrl || `/sns/${data.slug}-grid.png`;
+        if (thumbEl) thumbEl.src = previewImgUrl;
+        if (capEl) capEl.textContent = (overlay && overlay.epTitle) || '4컷 합본 고해상도 PNG (1080×1080)';
         if (dlEl) {
-          dlEl.href = data.gridImageUrl || `/sns/${data.slug}-grid.png`;
+          dlEl.href = previewImgUrl;
           dlEl.download = `${data.slug}-grid.png`;
         }
         if (linkEl) {
@@ -1497,7 +1538,18 @@
           `;
         }
       } else if (activeKitChannel === 'blog') {
-        if (wrapEl) wrapEl.classList.add('hidden');
+        if (wrapEl) {
+          if (overlay) wrapEl.classList.remove('hidden');
+          else wrapEl.classList.add('hidden');
+        }
+        if (overlay) {
+          if (thumbEl) thumbEl.src = previewImgUrl;
+          if (capEl) capEl.textContent = `🎨 ${overlay.epTitle} (${overlay.diffVal || '3컷 영수증 결합'})`;
+          if (dlEl) {
+            dlEl.href = previewImgUrl;
+            dlEl.download = `${data.slug}-grid.png`;
+          }
+        }
         if (linkEl) {
           linkEl.href = data.writeUrl || 'https://blog.naver.com/GoBlogWrite.naver';
           linkEl.textContent = '🚀 블로그 글쓰기 열기 ↗';
@@ -1507,10 +1559,22 @@
           btnsEl.innerHTML = `
             <button type="button" onclick="copyActionKitField('primary', this)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 블로그 본문 전체 복사</button>
             <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 블로그 제목만 복사</button>
+            <button type="button" onclick="copyActionKitRichHtml(this)" class="col-span-2 bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-300 hover:to-green-400 text-slate-950 font-black py-2 px-2.5 rounded-lg text-[11px] transition truncate shadow">🟢 네이버 에디터용 웹툰+HTML 리치복사</button>
           `;
         }
       } else if (activeKitChannel === 'jisikin') {
-        if (wrapEl) wrapEl.classList.add('hidden');
+        if (wrapEl) {
+          if (overlay) wrapEl.classList.remove('hidden');
+          else wrapEl.classList.add('hidden');
+        }
+        if (overlay) {
+          if (thumbEl) thumbEl.src = previewImgUrl;
+          if (capEl) capEl.textContent = `🎨 ${overlay.epTitle} (첨부팁: ${overlay.slide3Url || 'slide-3.png'})`;
+          if (dlEl) {
+            dlEl.href = previewImgUrl;
+            dlEl.download = `${data.slug}-grid.png`;
+          }
+        }
         if (linkEl) {
           linkEl.href = data.searchUrl || 'https://kin.naver.com/';
           linkEl.textContent = '🚀 지식iN 최신질문 열기 ↗';
@@ -1520,10 +1584,22 @@
           btnsEl.innerHTML = `
             <button type="button" onclick="copyActionKitField('primary', this)" class="bg-teal-600 hover:bg-teal-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 안전답변(버전A) 복사</button>
             <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 직링크답변(버전B) 복사</button>
+            <button type="button" onclick="copyActionKitRichHtml(this)" class="col-span-2 bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-300 hover:to-green-400 text-slate-950 font-black py-2 px-2.5 rounded-lg text-[11px] transition truncate shadow">🟢 네이버 에디터용 웹툰+HTML 리치복사</button>
           `;
         }
       } else if (activeKitChannel === 'cafe') {
-        if (wrapEl) wrapEl.classList.add('hidden');
+        if (wrapEl) {
+          if (overlay) wrapEl.classList.remove('hidden');
+          else wrapEl.classList.add('hidden');
+        }
+        if (overlay) {
+          if (thumbEl) thumbEl.src = previewImgUrl;
+          if (capEl) capEl.textContent = `🎨 ${overlay.epTitle} (${overlay.diffVal || '3컷 영수증 결합'})`;
+          if (dlEl) {
+            dlEl.href = previewImgUrl;
+            dlEl.download = `${data.slug}-grid.png`;
+          }
+        }
         if (linkEl) {
           linkEl.href = data.cafeUrl || 'https://section.cafe.naver.com/';
           linkEl.textContent = '🚀 네이버 카페 열기 ↗';
@@ -1533,6 +1609,7 @@
           btnsEl.innerHTML = `
             <button type="button" onclick="copyActionKitField('primary', this)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 카페 본문 전체 복사</button>
             <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 카페 제목만 복사</button>
+            <button type="button" onclick="copyActionKitRichHtml(this)" class="col-span-2 bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-300 hover:to-green-400 text-slate-950 font-black py-2 px-2.5 rounded-lg text-[11px] transition truncate shadow">🟢 네이버 에디터용 웹툰+HTML 리치복사</button>
           `;
         }
       }
@@ -1565,6 +1642,54 @@
         navigator.clipboard.writeText(textToCopy).then(showCopied).catch(showCopied);
       } else {
         showCopied();
+      }
+    }
+
+    function copyActionKitRichHtml(btnEl) {
+      const data = liveActionKit[activeKitChannel] || liveActionKit.blog;
+      const overlay = (data && data.webtoonOverlay) || {};
+      const bodyRaw =
+        activeKitChannel === 'jisikin'
+          ? (data.answerA || data.fullText || '')
+          : (data.body || data.title || '');
+
+      const plainText = `${overlay.spoilerTeaserText ? overlay.spoilerTeaserText + '\n\n' : ''}${bodyRaw}`;
+      const escapedBodyHtml = String(bodyRaw || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\n/g, '<br/>');
+      const richHtml = `${overlay.clipboardHtml || ''}<div style="font-family:'Pretendard','Malgun Gothic',sans-serif;font-size:15px;line-height:1.75;color:#1e293b;margin-top:16px;">${escapedBodyHtml}</div>`;
+
+      const showRichCopied = () => {
+        if (btnEl) {
+          const orig = btnEl.getAttribute('data-orig') || btnEl.innerHTML;
+          btnEl.setAttribute('data-orig', orig);
+          btnEl.innerHTML = '✅ 웹툰+HTML 리치복사 완료!';
+          setTimeout(() => { btnEl.innerHTML = orig; }, 2200);
+        }
+        pushActivityLog(
+          selectedEmp || EMPLOYEES[0],
+          `🟢 [${activeKitChannel.toUpperCase()}] #${data.slug} 동물 웹툰 카드 + 본문이 네이버 스마트에디터용 리치 HTML(ClipboardItem)로 동시 복사되었습니다!`
+        );
+      };
+
+      if (navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== 'undefined') {
+        const item = new ClipboardItem({
+          'text/html': new Blob([richHtml], { type: 'text/html' }),
+          'text/plain': new Blob([plainText], { type: 'text/plain' })
+        });
+        navigator.clipboard.write([item]).then(showRichCopied).catch(() => {
+          if (navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(plainText).then(showRichCopied).catch(showRichCopied);
+          } else {
+            showRichCopied();
+          }
+        });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainText).then(showRichCopied).catch(showRichCopied);
+      } else {
+        showRichCopied();
       }
     }
 
