@@ -1,0 +1,57 @@
+{
+  "startedAt": "2026-10-17T05:48:25.667Z",
+  "totalPageViews": 56,
+  "totalUniqueVisitors": 50,
+  "totalBotCrawls": 554,
+  "totalAffiliateClicks": 2,
+  "totalClicksByChannel": {
+    "coupang": 1,
+    "linkprice": 0,
+    "cpa": 1,
+    "sticky_mobile": 0
+  },
+  "lastDailyReportDate": "",
+  "days": {
+    "2026-10-17": {
+      "uniqueVisitors": 50,
+      "pageViews": 56,
+      "botCrawls": 554,
+      "affiliateClicks": 2,
+      "clicksByChannel": {
+        "coupang": 1,
+        "linkprice": 0,
+        "cpa": 1,
+        "sticky_mobile": 0
+      },
+      "clicksBySlot": {
+        "input_bridge": 0,
+        "metric_card": 0,
+        "receipt_cart": 1,
+        "cpa_card": 1,
+        "deal_card": 0,
+        "preset_table": 0,
+        "sticky_mobile": 0,
+        "other": 0
+      },
+      "clicksByCalc": {
+        "electric": 0,
+        "diet": 2,
+        "pet": 0,
+        "room": 0,
+        "auto": 0,
+        "telecom": 0,
+        "other": 0
+      },
+      "botsByEngine": {
+        "naver": 8,
+        "google": 0,
+        "bing": 1,
+        "ai": 0,
+        "other": 545
+      },
+      "pages": {
+        "/": 1
+      }
+    }
+  }
+}
