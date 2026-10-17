@@ -273,22 +273,27 @@
     const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
     const primaryAction = actionItems[0] || null;
 
-    // 0. [CRO Layer 1] Left-column Input Instant Prescription Bridge
+    // 0. [CRO Layer 1 + Experiment A] Left-column Input Instant Prescription Bridge + Zero-Feel Framing
     const instantBadgeEl = document.getElementById('input-instant-badge');
     const instantHeadlineEl = document.getElementById('input-instant-headline');
     const instantSubEl = document.getElementById('input-instant-sub');
+    const instantZeroFeelEl = document.getElementById('input-zero-feel-callout');
     const instantCoupangBtn = document.getElementById('input-instant-coupang-btn');
     const instantLpBtn = document.getElementById('input-instant-lp-btn');
+    const zf = res.zeroFeelFraming || null;
 
     if (primaryAction) {
       if (instantBadgeEl) {
-        instantBadgeEl.textContent = `${primaryAction.icon || '⚡'} 내 입력값 1:1 직결 처방`;
+        instantBadgeEl.textContent = zf && zf.badge ? zf.badge : `${primaryAction.icon || '⚡'} 내 입력값 1:1 직결 처방`;
       }
       if (instantHeadlineEl) {
         instantHeadlineEl.textContent = primaryAction.label;
       }
       if (instantSubEl) {
         instantSubEl.textContent = `✔ ${primaryAction.calcVal}`;
+      }
+      if (instantZeroFeelEl && zf && zf.callout) {
+        instantZeroFeelEl.textContent = zf.callout;
       }
       if (instantCoupangBtn) {
         instantCoupangBtn.href = buildCoupangHref(primaryAction.coupangKw);
@@ -306,7 +311,12 @@
     const summaryEl = document.getElementById('result-summary-text');
     const metricsGrid = document.getElementById('result-metrics-grid');
     const lossBarEl = document.getElementById('result-loss-bar');
+    const receiptZeroFeelEl = document.getElementById('receipt-zero-feel-banner');
     const receiptActionItemsEl = document.getElementById('receipt-action-items');
+
+    if (receiptZeroFeelEl && zf && zf.callout) {
+      receiptZeroFeelEl.textContent = zf.callout;
+    }
 
     if (badgeEl) {
       badgeEl.textContent = res.badge;
@@ -334,7 +344,7 @@
 
         return `
           <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('coupang', this.href)"
+             onclick="recordAffiliateClick('coupang', this.href, 'metric_card')"
              class="group block bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-amber-400/80 rounded-xl p-3 min-w-0 transition shadow-sm">
             <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
             <div class="text-sm sm:text-base font-extrabold ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
@@ -395,12 +405,12 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
               <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href)"
+                 onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
                  class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                 ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
               </a>
               <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('linkprice', this.href)"
+                 onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
                  class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                 ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
               </a>
@@ -455,7 +465,7 @@
       }
     }
 
-    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
+    // 3. [CRO Layer 3 + Experiment A] Enriched Shopping Deal Cards (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
@@ -472,7 +482,7 @@
         const btnBg = p.type === 'coupang'
           ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
           : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
-        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
+        const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
         const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
         const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
         const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
@@ -480,7 +490,7 @@
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('${p.type}', this.href)"
+             onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card')"
              class="group flex flex-col justify-between border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 transition-all bg-white hover:bg-blue-50/20 shadow-sm hover:shadow-md min-w-0">
             <div class="min-w-0 space-y-2">
               <div class="flex items-center justify-between gap-1.5">
@@ -509,9 +519,9 @@
     const stickyBtnEl = document.getElementById('sticky-cta-btn');
     if (stickySubEl && stickyMainEl && stickyBtnEl) {
       const lc = res.lossComparison || {};
-      stickySubEl.textContent = primaryAction
-        ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}`
-        : (lc.savingBadge || res.badge || "실시간 손익 계산 완료");
+      stickySubEl.textContent = (zf && zf.badge)
+        ? `${zf.badge} · ${primaryAction ? primaryAction.calcVal : ''}`
+        : (primaryAction ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}` : (lc.savingBadge || res.badge || "실시간 손익 계산 완료"));
       stickyMainEl.textContent = primaryAction
         ? primaryAction.label
         : (cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline);
@@ -523,6 +533,8 @@
         ? (primaryAction.coupangBtn || "맞춤 최저가 ↗")
         : "맞춤 특가 확인 →";
     }
+
+    highlightWinningSlot();
   };
 
   /**
@@ -1050,25 +1062,69 @@
   };
 
   /**
-   * Affiliate Link Click Tracker + Server Analytics + Real-Time Telegram Conversion Signal
+   * Highlight Top-Performing UI Slot Based on Real Click Data (Experiment C)
    */
-  window.recordAffiliateClick = function (channel, url) {
+  function highlightWinningSlot() {
+    const monetizationModule = getMonetizationModule();
+    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
+    const slotCounts = config.clicksBySlot || {};
+    let topSlot = null;
+    let maxClicks = 0;
+    Object.keys(slotCounts).forEach(k => {
+      if ((slotCounts[k] || 0) > maxClicks) {
+        maxClicks = slotCounts[k];
+        topSlot = k;
+      }
+    });
+    const topSlotEl = document.getElementById('status-top-slot');
+    if (topSlotEl && topSlot) {
+      topSlotEl.textContent = `${topSlot} (${maxClicks}회)`;
+    }
+    const slotDomMap = {
+      input_bridge: 'input-instant-bridge',
+      receipt_cart: 'receipt-action-cart',
+      cpa_card: 'cpa-action-link',
+      deal_card: 'product-recommendations',
+      sticky_mobile: 'sticky-cta-btn'
+    };
+    Object.keys(slotDomMap).forEach(k => {
+      const el = document.getElementById(slotDomMap[k]);
+      if (el) {
+        el.classList.toggle('ring-2', k === topSlot && maxClicks >= 2);
+        el.classList.toggle('ring-amber-400', k === topSlot && maxClicks >= 2);
+      }
+    });
+  }
+
+  /**
+   * Affiliate Link Click Tracker + Slot-Level CTR Analytics + Real-Time Telegram Conversion Signal
+   */
+  window.recordAffiliateClick = function (channel, url, slot = 'deal_card') {
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     config.clickCount = (config.clickCount || 0) + 1;
+    const safeSlot = String(slot || 'deal_card').replace(/[^a-zA-Z0-9_-]/g, '');
+    const clicksBySlot = Object.assign({}, config.clicksBySlot || {});
+    clicksBySlot[safeSlot] = (clicksBySlot[safeSlot] || 0) + 1;
+    config.clicksBySlot = clicksBySlot;
+
     if (monetizationModule.saveConfigToStorage) {
-      monetizationModule.saveConfigToStorage({ clickCount: config.clickCount });
+      monetizationModule.saveConfigToStorage({
+        clickCount: config.clickCount,
+        clicksBySlot: config.clicksBySlot
+      });
     }
     const statusClicks = document.getElementById('status-click-count');
     if (statusClicks) statusClicks.textContent = config.clickCount;
+    highlightWinningSlot();
 
-    // 1. Report affiliate click to backend server (/api/track) so 06:00 AM KST daily report has exact channel click counts
+    // 1. Report affiliate click + slot to backend server (/api/track) so 06:00 AM KST daily report & Manager Board have exact slot/channel CTR
     try {
       const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
       const safeCalc = String(currentCalc || 'electric').replace(/[^a-zA-Z0-9_-]/g, '');
       const pagePath = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
       if (typeof fetch === 'function') {
-        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&p=${encodeURIComponent(pagePath)}`, {
+        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&slot=${encodeURIComponent(safeSlot)}&p=${encodeURIComponent(pagePath)}`, {
           method: 'GET',
           keepalive: true
         }).catch(() => {});
@@ -1091,6 +1147,7 @@
         `🔔 <b>[머니핏 실시간 수익 전환 신호]</b>\n` +
         `• <b>계산기 카테고리</b>: <code>${currentCalc}</code>\n` +
         `• <b>클릭 채널</b>: <code>${channel}</code>\n` +
+        `• <b>전환 UI 슬롯</b>: <code>${safeSlot}</code>\n` +
         `• <b>누적 클릭수</b>: <code>${config.clickCount}회</code>\n` +
         `• <b>이동 링크</b>: ${url}`;
       fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -1218,6 +1275,23 @@
     }
   }
   window.enableAdminMode = enableAdminMode;
+
+  let logoTapCount = 0;
+  let logoTapTimer = null;
+  window.handleLogoSecretTap = function () {
+    logoTapCount++;
+    if (logoTapTimer) clearTimeout(logoTapTimer);
+    logoTapTimer = setTimeout(() => {
+      logoTapCount = 0;
+    }, 3000);
+    if (logoTapCount >= 5) {
+      logoTapCount = 0;
+      enableAdminMode(false);
+      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
+        window.MoneyFitCopyKit.showToast("🔓 총괄 매니저 관리자 모드(웹툰·수익화 마법사·실시간 CTR 바)가 활성화되었습니다!");
+      }
+    }
+  };
 
   /**
    * Bootstrapping on DOM Ready

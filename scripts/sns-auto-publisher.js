@@ -52,17 +52,22 @@ function normalizePreset(raw) {
 /**
  * Load AI Animal Instatoon 2x2 sheet as Base64 Data URI for instant Headless Chrome rendering
  */
+const ART_DATA_URI_CACHE = {};
 function getCategoryArtDataUri(calcKey) {
   const key = calcKey || 'electric';
+  if (ART_DATA_URI_CACHE[key] !== undefined) return ART_DATA_URI_CACHE[key];
   const imgPath = path.join(PROJECT_ROOT, 'src', 'assets', 'webtoon', `${key}.jpg`);
   if (fs.existsSync(imgPath)) {
     try {
       const b64 = fs.readFileSync(imgPath).toString('base64');
-      return `data:image/jpeg;base64,${b64}`;
+      ART_DATA_URI_CACHE[key] = `data:image/jpeg;base64,${b64}`;
+      return ART_DATA_URI_CACHE[key];
     } catch (e) {
+      ART_DATA_URI_CACHE[key] = '';
       return '';
     }
   }
+  ART_DATA_URI_CACHE[key] = '';
   return '';
 }
 
@@ -122,12 +127,18 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
       panel2Speech: '삐빅! 기초대사량(BMR)과 활동대사량(TDEE) 계산 안 하고 사면 식비만 날리고 요요 옵니다!',
       panel2Sub: 'Mifflin-St Jeor 수식 기반 정밀 탄단지 진단',
       receiptTitle: '4주 식단 장보기 영수증 비교',
-      badLabel: '호구 평균 지출 (충동구매+치팅)',
-      badVal: '348,000원/4주',
-      goodLabel: '상위 1% 절약 지출 (TDEE 정량)',
-      goodVal: '142,000원/4주',
+      badLabel: '호구 평균 지출 (편의점·배달 소매)',
+      badVal: calcRes && calcRes.chickenPacks
+        ? `${(calcRes.chickenPacks * 2900 + calcRes.brownRiceBowls * 2200).toLocaleString()}원/${calcRes.weeks}주`
+        : '348,000원/4주',
+      goodLabel: '상위 1% 절약 지출 (TDEE 묶음정량)',
+      goodVal: calcRes && calcRes.chickenPacks
+        ? `${(calcRes.chickenPacks * 1250 + calcRes.brownRiceBowls * 1050).toLocaleString()}원 (${calcRes.chickenPacks}팩)`
+        : '142,000원/4주',
       diffLabel: '모르면 매달 날리는 생돈',
-      diffVal: '-206,000원 절약',
+      diffVal: calcRes && calcRes.chickenPacks
+        ? `-${(calcRes.chickenPacks * 1650 + calcRes.brownRiceBowls * 1150).toLocaleString()}원 절약`
+        : '-206,000원 절약',
       ctaTitle: '내 체중·목표 넣으면 닭가슴살 팩 수 3초 계산!',
       hookLine: '다이어트 시작한다고 무작정 닭가슴살 50팩, 100팩 묶음부터 결제하지 마세요 🙅‍♀️',
       factLine: '내 TDEE(일일 총소모칼로리) 계산 없이 굶거나 대충 먹으면 식비만 20만 원 넘게 날립니다.'
@@ -145,11 +156,17 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
       panel2Sub: 'RER = 70 × 체중^0.75 수의영양학 정밀 공식',
       receiptTitle: '반려동물 월 양육·의료비 영수증',
       badLabel: '호구 평균 지출 (과급여+무보험)',
-      badVal: '385,000원/월',
-      goodLabel: '상위 1% 절약 지출 (정량+특약)',
-      goodVal: '129,000원/월',
+      badVal: calcRes && calcRes.dailyGrams
+        ? `일 ${Math.round(calcRes.dailyGrams * 1.35)}g 과식 + 수술비 180만`
+        : '385,000원/월',
+      goodLabel: '상위 1% 절약 지출 (DER 정량배식)',
+      goodVal: calcRes && calcRes.dailyGrams
+        ? `일 ${calcRes.dailyGrams}g (${calcRes.bagKg}kg=${calcRes.daysPerBag}일)`
+        : '129,000원/월',
       diffLabel: '모르면 매달 날리는 생돈',
-      diffVal: '-256,000원 / 월',
+      diffVal: calcRes && calcRes.dailyGrams
+        ? `1끼 ${calcRes.halfGrams}g · 병원비 -85% 방어`
+        : '-256,000원 / 월',
       ctaTitle: '아이 몸무게(kg)만 넣으면 하루 사료 g수 3초 계산!',
       hookLine: '강아지·고양이 사료 급여량 아직도 사료 봉투 뒷면 표만 보고 종이컵으로 대충 주시나요? 🐶🐱',
       factLine: '중성화 여부랑 활동량 계수(DER) 안 맞추면 비만 → 슬개골·신장 병원비 수백만 원 깨집니다.'
@@ -319,7 +336,7 @@ function buildRenderHtml(bundle, mode = 'grid', slideNum = 1) {
     width: 1080px;
     height: 1080px;
     overflow: hidden;
-    background: #0f172a;
+    background: #faf7f2;
     font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
   }
   canvas {
@@ -349,7 +366,41 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 4) {
+function drawSpeechBubble(ctx, x, y, w, h, r, tailX, tailDir = 1, s = 1) {
+  const tailW = 20 * s;
+  const tailH = 15 * s;
+  const tx = Math.max(x + r + tailW, Math.min(x + w - r - tailW, tailX));
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(15, 23, 42, 0.08)';
+  ctx.shadowBlur = 8 * s;
+  ctx.shadowOffsetY = 3 * s;
+
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(tx + tailW * 0.55, y + h);
+  ctx.lineTo(tx + tailDir * (4 * s), y + h + tailH);
+  ctx.lineTo(tx - tailW * 0.55, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.97)';
+  ctx.fill();
+  ctx.shadowColor = 'transparent';
+  ctx.lineWidth = 3.2 * s;
+  ctx.strokeStyle = '#1e293b';
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
   const chars = String(text || '').split('');
   let line = '';
   let currentY = y;
@@ -357,13 +408,18 @@ function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 4) {
   for (let i = 0; i < chars.length; i++) {
     const testLine = line + chars[i];
     if (ctx.measureText(testLine).width > maxWidth && line.length > 0) {
+      if (lineCount >= maxLines - 1) {
+        let trimmed = line;
+        while (trimmed.length > 0 && ctx.measureText(trimmed + '…').width > maxWidth) {
+          trimmed = trimmed.slice(0, -1);
+        }
+        ctx.fillText(trimmed + '…', x, currentY);
+        return;
+      }
       ctx.fillText(line, x, currentY);
       line = chars[i];
       currentY += lineHeight;
       lineCount++;
-      if (lineCount >= maxLines - 1) {
-        // continue accumulating last line
-      }
     } else {
       line = testLine;
     }
@@ -371,23 +427,6 @@ function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 4) {
   if (line && lineCount < maxLines) {
     ctx.fillText(line, x, currentY);
   }
-}
-
-function drawComicFocusLines(ctx, cx, cy, x, y, w, h, color) {
-  ctx.save();
-  roundRect(ctx, x + 4, y + 52, w - 8, h - 56, 20);
-  ctx.clip();
-  ctx.strokeStyle = color || 'rgba(244, 63, 94, 0.14)';
-  const rays = 28;
-  for (let i = 0; i < rays; i++) {
-    const angle = (i / rays) * Math.PI * 2;
-    ctx.lineWidth = i % 2 === 0 ? 3.5 : 1.5;
-    ctx.beginPath();
-    ctx.moveTo(cx + Math.cos(angle) * 58, cy + Math.sin(angle) * 58);
-    ctx.lineTo(cx + Math.cos(angle) * 460, cy + Math.sin(angle) * 460);
-    ctx.stroke();
-  }
-  ctx.restore();
 }
 
 function drawSparkleStar(ctx, sx, sy, size, fill) {
@@ -408,10 +447,6 @@ function drawSparkleStar(ctx, sx, sy, size, fill) {
   ctx.restore();
 }
 
-/**
- * Draw 6 Anthropomorphized Animal Instatoon Characters
- * ('quokka', 'shiba', 'cat', 'bear', 'fox', 'raccoon')
- */
 function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1) {
   ctx.save();
   ctx.translate(cx, cy);
@@ -424,16 +459,15 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
   ctx.fill();
 
   const palettes = {
-    quokka: { fur: '#d97706', subFur: '#fbbf24', innerEar: '#fda4af', muzzle: '#fffbeb', nose: '#1e293b', prop: '⚡26°C' },
-    shiba: { fur: '#f59e0b', subFur: '#fef3c7', innerEar: '#fef3c7', muzzle: '#ffffff', nose: '#1e293b', prop: '💪득근' },
-    cat: { fur: '#fb923c', subFur: '#ffedd5', innerEar: '#fda4af', muzzle: '#fff7ed', nose: '#fb7185', prop: '🐾사료g' },
-    bear: { fur: '#fde68a', subFur: '#fef3c7', innerEar: '#d97706', muzzle: '#ffffff', nose: '#451a03', prop: '🏠BOM' },
-    fox: { fur: '#ea580c', subFur: '#ffffff', innerEar: '#fed7aa', muzzle: '#ffffff', nose: '#1e293b', prop: '📊팩트' },
-    raccoon: { fur: '#94a3b8', subFur: '#e2e8f0', innerEar: '#cbd5e1', muzzle: '#f8fafc', nose: '#0f172a', prop: '✉️+47만' }
+    quokka: { fur: '#d97706', subFur: '#fbbf24', innerEar: '#fda4af', muzzle: '#fffbeb', nose: '#1e293b' },
+    shiba: { fur: '#f59e0b', subFur: '#fef3c7', innerEar: '#fef3c7', muzzle: '#ffffff', nose: '#1e293b' },
+    cat: { fur: '#fb923c', subFur: '#ffedd5', innerEar: '#fda4af', muzzle: '#fff7ed', nose: '#fb7185' },
+    bear: { fur: '#fde68a', subFur: '#fef3c7', innerEar: '#d97706', muzzle: '#ffffff', nose: '#451a03' },
+    fox: { fur: '#ea580c', subFur: '#ffffff', innerEar: '#fed7aa', muzzle: '#ffffff', nose: '#1e293b' },
+    raccoon: { fur: '#94a3b8', subFur: '#e2e8f0', innerEar: '#cbd5e1', muzzle: '#f8fafc', nose: '#0f172a' }
   };
   const pal = palettes[species] || palettes.quokka;
 
-  // Torso hoodie
   ctx.fillStyle = mood === 'shock' ? '#f43f5e' : mood === 'smart' ? '#2563eb' : '#10b981';
   ctx.strokeStyle = outline;
   ctx.lineWidth = 4;
@@ -441,63 +475,30 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
   ctx.fill();
   ctx.stroke();
 
-  // Ears
-  if (species === 'shiba' || species === 'cat' || species === 'fox') {
-    const earH = species === 'fox' ? -62 : -55;
-    const earW = species === 'fox' ? 44 : 38;
+  [-34, 34].forEach(ex => {
     ctx.fillStyle = pal.fur;
     ctx.beginPath();
-    ctx.moveTo(-earW, -16);
-    ctx.lineTo(-earW + 6, earH);
-    ctx.lineTo(-10, -36);
-    ctx.closePath();
+    ctx.arc(ex, -34, 16, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-
+    ctx.fillStyle = pal.innerEar;
     ctx.beginPath();
-    ctx.moveTo(earW, -16);
-    ctx.lineTo(earW - 6, earH);
-    ctx.lineTo(10, -36);
-    ctx.closePath();
+    ctx.arc(ex, -34, 8.5, 0, Math.PI * 2);
     ctx.fill();
-    ctx.stroke();
-  } else {
-    [-34, 34].forEach(ex => {
-      ctx.fillStyle = pal.fur;
-      ctx.beginPath();
-      ctx.arc(ex, -34, 16, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = pal.innerEar;
-      ctx.beginPath();
-      ctx.arc(ex, -34, 8.5, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  }
+  });
 
-  // Head
   ctx.fillStyle = pal.fur;
   ctx.beginPath();
   ctx.ellipse(0, -5, 46, 40, 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
 
-  if (species === 'raccoon') {
-    ctx.fillStyle = '#334155';
-    ctx.beginPath();
-    ctx.ellipse(-17, -9, 14, 11, -0.2, 0, Math.PI * 2);
-    ctx.ellipse(17, -9, 14, 11, 0.2, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // Rosy cheeks
   ctx.fillStyle = '#fda4af';
   ctx.beginPath();
   ctx.ellipse(-28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
   ctx.ellipse(28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Snout & nose
   ctx.fillStyle = pal.muzzle;
   ctx.lineWidth = 3;
   ctx.beginPath();
@@ -510,7 +511,6 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
   ctx.fill();
 
   if (mood === 'shock') {
-    // Waterfall tears (#38bdf8)
     ctx.fillStyle = '#38bdf8';
     roundRect(ctx, -23, -6, 11, 42, 5);
     ctx.fill();
@@ -522,16 +522,6 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
     ctx.arc(17, -10, 9.5, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-    ctx.fillStyle = outline;
-    ctx.beginPath();
-    ctx.arc(-17, -10, 3.2, 0, Math.PI * 2);
-    ctx.arc(17, -10, 3.2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#ef4444';
-    ctx.beginPath();
-    ctx.ellipse(0, 14, 9.5, 11, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
   } else if (mood === 'smart') {
     ctx.fillStyle = 'rgba(224, 242, 254, 0.92)';
     ctx.lineWidth = 3.8;
@@ -541,19 +531,7 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
     roundRect(ctx, 6, -21, 27, 19, 5);
     ctx.fill();
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-6, -12);
-    ctx.lineTo(6, -12);
-    ctx.stroke();
-    drawSparkleStar(ctx, 34, -22, 10, '#fde047');
   } else {
-    ctx.lineWidth = 3.8;
-    ctx.beginPath();
-    ctx.arc(-17, -10, 8, Math.PI * 1.15, Math.PI * 1.85);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(17, -10, 8, Math.PI * 1.15, Math.PI * 1.85);
-    ctx.stroke();
     drawSparkleStar(ctx, -48, -26, 9, '#fde047');
     drawSparkleStar(ctx, 48, -24, 10, '#fde047');
   }
@@ -561,17 +539,21 @@ function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1)
   ctx.restore();
 }
 
-function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 16) {
+/**
+ * Draw 100% uncropped quadrant of the 2x2 AI Animal Instatoon sheet
+ */
+function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 10) {
   if (!img || !img.complete || !img.naturalWidth) return false;
   const halfW = img.naturalWidth / 2;
   const halfH = img.naturalHeight / 2;
   const col = panelIdx % 2;
   const row = Math.floor(panelIdx / 2);
-  const pad = Math.round(halfW * 0.025);
-  const sx = col * halfW + pad;
-  const sy = row * halfH + pad;
-  const sw = halfW - pad * 2;
-  const sh = Math.min(halfH - pad * 2, Math.round(sw * (dh / dw)));
+  const outerPad = Math.round(halfW * 0.038);
+  const innerPad = Math.round(halfW * 0.028);
+  const sx = col === 0 ? outerPad : halfW + innerPad;
+  const sy = row === 0 ? outerPad : halfH + innerPad;
+  const sw = halfW - outerPad - innerPad;
+  const sh = halfH - outerPad - innerPad;
 
   ctx.save();
   roundRect(ctx, dx, dy, dw, dh, radius);
@@ -582,14 +564,21 @@ function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 16) 
 }
 
 /**
- * Draw Perforated Real Thermal Receipt (톱니 절취선 실물 영수증 그래픽)
+ * Draw Compact Perforated Thermal Receipt Speech Memo in Top Empty Space of Panel 3
  */
-function drawPerforatedReceipt(ctx, x, y, w, h, s = 1) {
-  const zigCount = 18;
+function drawPerforatedReceipt(ctx, x, y, w, h, tailX, s = 1) {
+  const zigCount = 20;
   const zigW = w / zigCount;
-  const zigH = 8 * s;
+  const zigH = 6 * s;
+  const tailW = 18 * s;
+  const tailH = 14 * s;
+  const tx = Math.max(x + 40 * s, Math.min(x + w - 40 * s, tailX));
 
   ctx.save();
+  ctx.shadowColor = 'rgba(15, 23, 42, 0.1)';
+  ctx.shadowBlur = 8 * s;
+  ctx.shadowOffsetY = 3 * s;
+
   ctx.beginPath();
   ctx.moveTo(x, y + zigH);
   for (let i = 0; i < zigCount; i++) {
@@ -597,322 +586,267 @@ function drawPerforatedReceipt(ctx, x, y, w, h, s = 1) {
     ctx.lineTo(x + (i + 1) * zigW, y + zigH);
   }
   ctx.lineTo(x + w, y + h - zigH);
-  for (let i = zigCount; i > 0; i--) {
-    ctx.lineTo(x + (i - 0.5) * zigW, y + h);
-    ctx.lineTo(x + (i - 1) * zigW, y + h - zigH);
-  }
+  ctx.lineTo(tx + tailW * 0.5, y + h - zigH);
+  ctx.lineTo(tx + 4 * s, y + h + tailH);
+  ctx.lineTo(tx - tailW * 0.5, y + h - zigH);
+  ctx.lineTo(x, y + h - zigH);
   ctx.closePath();
+
   ctx.fillStyle = '#fffef7';
   ctx.fill();
-  ctx.lineWidth = 2.5 * s;
-  ctx.strokeStyle = '#334155';
+  ctx.shadowColor = 'transparent';
+  ctx.lineWidth = 3 * s;
+  ctx.strokeStyle = '#1e293b';
   ctx.stroke();
   ctx.restore();
 }
 
 function drawPanel(ctx, num, x, y, w, h, isFullSlide) {
-  const s = isFullSlide ? 1.98 : 1;
-  const panelIdx = num - 1;
+  const s = isFullSlide ? w / 502 : 1;
+  const panelRadius = Math.round(10 * s);
+  const bgFallbacks = ['#fef9ee', '#e0f2fe', '#dcfce7', '#fef08a'];
 
+  // 1. Panel Base Background + Full Uncropped Animal Illustration
+  ctx.fillStyle = bgFallbacks[num - 1] || '#faf7f2';
+  roundRect(ctx, x, y, w, h, panelRadius);
+  ctx.fill();
+
+  const drewArt = drawInstatoonQuadrant(ctx, artImg, num - 1, x, y, w, h, panelRadius);
+  if (!drewArt) {
+    const mood = num === 2 ? 'smart' : num === 4 ? 'happy' : 'shock';
+    const sp = num === 2 ? 'fox' : story.species || 'quokka';
+    drawAnimalCharacter(ctx, x + w * 0.5, y + h * 0.66, sp, mood, '#fecdd3', s * 1.15);
+  }
+
+  // 2. Top Speech Bubble / Compact Receipt (Strictly in top 34%~37% empty wall space — ZERO character overlap!)
   if (num === 1) {
-    ctx.fillStyle = '#fff1f2';
-    roundRect(ctx, x, y, w, h, 24);
+    const bx = x + 16 * s;
+    const by = y + 14 * s;
+    const bw = w - 32 * s;
+    const bh = 104 * s;
+    drawSpeechBubble(ctx, bx, by, bw, bh, 18 * s, x + w * 0.42, -1, s);
+
+    // Cute speaker chip
+    ctx.fillStyle = '#ffe4e6';
+    roundRect(ctx, bx + 14 * s, by + 10 * s, 165 * s, 24 * s, 12 * s);
     ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#f43f5e';
-    ctx.stroke();
-
-    const drewArt = drawInstatoonQuadrant(ctx, artImg, 0, x + 8 * s, y + 52 * s, w - 16 * s, h - 60 * s, 18);
-    if (!drewArt) {
-      drawComicFocusLines(ctx, x + w / 2, y + 230 * s, x, y, w, h, 'rgba(244, 63, 94, 0.14)');
-      drawAnimalCharacter(ctx, x + w / 2, y + 235 * s, story.species || 'quokka', 'shock', '#fecdd3', s);
-    }
-
-    // Header pill
-    ctx.fillStyle = '#f43f5e';
-    roundRect(ctx, x + 14 * s, y + 10 * s, w - 28 * s, 36 * s, 10 * s);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(17 * s) + 'px sans-serif';
-    ctx.fillText('1컷 · ' + story.charName + '의 흔한 착각', x + 26 * s, y + 34 * s);
-
-    // Speech bubble at top
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
-    roundRect(ctx, x + 14 * s, y + 52 * s, w - 28 * s, 78 * s, 14 * s);
-    ctx.fill();
-    ctx.strokeStyle = '#0f172a';
-    ctx.lineWidth = 2.5 * s;
-    ctx.stroke();
-
     ctx.fillStyle = '#be123c';
-    ctx.font = 'bold ' + Math.round(16.5 * s) + 'px sans-serif';
-    drawWrappedText(ctx, '"' + story.panel1Speech + '"', x + 26 * s, y + 79 * s, w - 140 * s, 22 * s, 2);
+    ctx.font = 'bold ' + Math.round(13 * s) + 'px sans-serif';
+    ctx.fillText('① 🐾 ' + story.charName, bx + 24 * s, by + 27 * s);
 
-    // Comic SFX Badge (콰아앙⚡ / 두둥탁!!)
+    // Tilted Comic SFX sticker on top-right of bubble
     ctx.save();
-    ctx.translate(x + w - 64 * s, y + 82 * s);
-    ctx.rotate(0.06);
-    roundRect(ctx, -44 * s, -15 * s, 88 * s, 30 * s, 8 * s);
+    ctx.translate(bx + bw - 54 * s, by + 22 * s);
+    ctx.rotate(0.05);
+    roundRect(ctx, -42 * s, -12 * s, 84 * s, 24 * s, 8 * s);
     ctx.fillStyle = '#fde047';
     ctx.fill();
     ctx.lineWidth = 2 * s;
-    ctx.strokeStyle = '#0f172a';
-    ctx.stroke();
-    ctx.fillStyle = '#dc2626';
-    ctx.font = 'bold ' + Math.round(14 * s) + 'px sans-serif';
-    ctx.fillText(story.sfxShock || '콰아앙⚡', -34 * s, 5 * s);
-    ctx.restore();
-
-    // Bottom caption bar
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
-    roundRect(ctx, x + 14 * s, y + h - 50 * s, w - 28 * s, 40 * s, 10 * s);
-    ctx.fill();
-    ctx.fillStyle = '#fde047';
-    ctx.font = 'bold ' + Math.round(15 * s) + 'px sans-serif';
-    ctx.fillText('🐾 ' + story.charName + ' — ' + story.panel1Sub, x + 24 * s, y + h - 24 * s);
-  } else if (num === 2) {
-    ctx.fillStyle = '#eff6ff';
-    roundRect(ctx, x, y, w, h, 24);
-    ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#3b82f6';
-    ctx.stroke();
-
-    const drewArt = drawInstatoonQuadrant(ctx, artImg, 1, x + 8 * s, y + 52 * s, w - 16 * s, h - 60 * s, 18);
-    if (!drewArt) {
-      drawAnimalCharacter(ctx, x + w / 2, y + 235 * s, 'fox', 'smart', '#bfdbfe', s);
-    }
-
-    ctx.fillStyle = '#2563eb';
-    roundRect(ctx, x + 14 * s, y + 10 * s, w - 28 * s, 36 * s, 10 * s);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(17 * s) + 'px sans-serif';
-    ctx.fillText('2컷 · ' + story.expertName + '의 팩트폭격 (안경 번쩍✨)', x + 26 * s, y + 34 * s);
-
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
-    roundRect(ctx, x + 14 * s, y + 52 * s, w - 28 * s, 78 * s, 14 * s);
-    ctx.fill();
-    ctx.strokeStyle = '#1e3a8a';
-    ctx.lineWidth = 2.5 * s;
-    ctx.stroke();
-
-    ctx.fillStyle = '#1d4ed8';
-    ctx.font = 'bold ' + Math.round(16 * s) + 'px sans-serif';
-    drawWrappedText(ctx, '"' + story.panel2Speech + '"', x + 26 * s, y + 78 * s, w - 150 * s, 22 * s, 2);
-
-    // 삐빅-! 팩트폭격 badge
-    ctx.fillStyle = '#dc2626';
-    roundRect(ctx, x + w - 130 * s, y + 60 * s, 108 * s, 26 * s, 7 * s);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(12 * s) + 'px sans-serif';
-    ctx.fillText('🚨 삐빅-! 팩트폭격', x + w - 122 * s, y + 78 * s);
-
-    // Bottom caption bar
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
-    roundRect(ctx, x + 14 * s, y + h - 50 * s, w - 28 * s, 40 * s, 10 * s);
-    ctx.fill();
-    ctx.fillStyle = '#93c5fd';
-    ctx.font = 'bold ' + Math.round(15 * s) + 'px sans-serif';
-    ctx.fillText('🦊 ' + story.panel2Sub, x + 24 * s, y + h - 24 * s);
-  } else if (num === 3) {
-    ctx.fillStyle = '#0f172a';
-    roundRect(ctx, x, y, w, h, 24);
-    ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#f59e0b';
-    ctx.stroke();
-
-    ctx.fillStyle = '#f59e0b';
-    roundRect(ctx, x + 14 * s, y + 10 * s, w - 28 * s, 36 * s, 10 * s);
-    ctx.fill();
-    ctx.fillStyle = '#0f172a';
-    ctx.font = 'bold ' + Math.round(17 * s) + 'px sans-serif';
-    ctx.fillText('3컷 · 절취선 실물 영수증 비교 (📌저장필수)', x + 26 * s, y + 34 * s);
-
-    // Draw crying animal quadrant at top of Panel 3 if available
-    const hasArt = drawInstatoonQuadrant(ctx, artImg, 2, x + 12 * s, y + 50 * s, w - 24 * s, 130 * s, 14);
-    const recY = hasArt ? y + 148 * s : y + 56 * s;
-    const recH = hasArt ? h - 158 * s : h - 68 * s;
-
-    drawPerforatedReceipt(ctx, x + 14 * s, recY, w - 28 * s, recH, s);
-
-    ctx.fillStyle = '#0f172a';
-    ctx.font = 'bold ' + Math.round(16 * s) + 'px sans-serif';
-    ctx.fillText('🧾 ' + story.receiptTitle, x + 28 * s, recY + 26 * s);
-
-    // Red Diagonal Stamp (🚨 호구주의보)
-    ctx.save();
-    ctx.translate(x + w - 82 * s, recY + 23 * s);
-    ctx.rotate(-0.1);
-    roundRect(ctx, -52 * s, -12 * s, 104 * s, 24 * s, 6 * s);
-    ctx.fillStyle = '#fee2e2';
-    ctx.fill();
-    ctx.lineWidth = 2 * s;
-    ctx.strokeStyle = '#dc2626';
+    ctx.strokeStyle = '#1e293b';
     ctx.stroke();
     ctx.fillStyle = '#dc2626';
     ctx.font = 'bold ' + Math.round(12.5 * s) + 'px sans-serif';
-    ctx.fillText('🚨 호구주의보', -42 * s, 4 * s);
+    ctx.fillText(story.sfxShock || '콰아앙⚡', -32 * s, 4 * s);
     ctx.restore();
 
-    ctx.fillStyle = '#64748b';
-    ctx.font = 'bold ' + Math.round(12 * s) + 'px monospace';
-    ctx.fillText('--------------------------------------------', x + 26 * s, recY + 42 * s);
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold ' + Math.round(16 * s) + 'px sans-serif';
+    drawWrappedText(ctx, '"' + story.panel1Speech + '"', bx + 16 * s, by + 56 * s, bw - 32 * s, 23 * s, 2);
+  } else if (num === 2) {
+    const bx = x + 16 * s;
+    const by = y + 14 * s;
+    const bw = w - 32 * s;
+    const bh = 104 * s;
+    drawSpeechBubble(ctx, bx, by, bw, bh, 18 * s, x + w * 0.30, -1, s);
 
-    // ❌ 호구 평균 지출
-    const rH = hasArt ? 48 * s : 68 * s;
-    const r1Y = recY + 48 * s;
-    ctx.fillStyle = '#ffe4e6';
-    roundRect(ctx, x + 26 * s, r1Y, w - 52 * s, rH, 10 * s);
+    // Speaker chip
+    ctx.fillStyle = '#dbeafe';
+    roundRect(ctx, bx + 14 * s, by + 10 * s, 185 * s, 24 * s, 12 * s);
     ctx.fill();
-    ctx.strokeStyle = '#f43f5e';
-    ctx.lineWidth = 1.8 * s;
-    ctx.stroke();
-    ctx.fillStyle = '#9f1239';
-    ctx.font = 'bold ' + Math.round(13.5 * s) + 'px sans-serif';
-    ctx.fillText('❌ ' + story.badLabel, x + 38 * s, r1Y + 19 * s);
-    ctx.fillStyle = '#e11d48';
-    ctx.font = 'bold ' + Math.round(18 * s) + 'px sans-serif';
-    ctx.fillText(story.badVal, x + 38 * s, r1Y + (hasArt ? 40 * s : 50 * s));
-
-    // ✅ 상위 1% 절약 지출
-    const r2Y = r1Y + rH + 6 * s;
-    ctx.fillStyle = '#d1fae5';
-    roundRect(ctx, x + 26 * s, r2Y, w - 52 * s, rH, 10 * s);
-    ctx.fill();
-    ctx.strokeStyle = '#10b981';
-    ctx.lineWidth = 1.8 * s;
-    ctx.stroke();
-    ctx.fillStyle = '#065f46';
-    ctx.font = 'bold ' + Math.round(13.5 * s) + 'px sans-serif';
-    ctx.fillText('✅ ' + story.goodLabel, x + 38 * s, r2Y + 19 * s);
-    ctx.fillStyle = '#059669';
-    ctx.font = 'bold ' + Math.round(18 * s) + 'px sans-serif';
-    ctx.fillText(story.goodVal, x + 38 * s, r2Y + (hasArt ? 40 * s : 50 * s));
-
-    // Bottom Bold Yellow-Emerald Box: 🔥 모르면 매달/매년 날리는 생돈
-    const bY = r2Y + rH + 8 * s;
-    const bH = hasArt ? 54 * s : 74 * s;
-    ctx.fillStyle = '#0f172a';
-    roundRect(ctx, x + 26 * s, bY, w - 52 * s, bH, 10 * s);
-    ctx.fill();
-    ctx.strokeStyle = '#fbbf24';
-    ctx.lineWidth = 2.2 * s;
-    ctx.stroke();
-
-    ctx.fillStyle = '#fde047';
+    ctx.fillStyle = '#1d4ed8';
     ctx.font = 'bold ' + Math.round(13 * s) + 'px sans-serif';
-    ctx.fillText('🔥 ' + story.diffLabel + ':', x + 38 * s, bY + 20 * s);
-    ctx.fillStyle = '#34d399';
-    ctx.font = 'bold ' + Math.round(21 * s) + 'px sans-serif';
-    ctx.fillText(story.diffVal, x + 38 * s, bY + (hasArt ? 44 * s : 54 * s));
-  } else {
-    // Panel 4: High-CTR Curiosity-Gap Hook (클릭율 5배 상승 호기심 갭 CTA)
-    ctx.fillStyle = '#ecfdf5';
-    roundRect(ctx, x, y, w, h, 24);
-    ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#10b981';
-    ctx.stroke();
+    ctx.fillText('② 🦊 ' + story.expertName, bx + 24 * s, by + 27 * s);
 
-    const drewArt = drawInstatoonQuadrant(ctx, artImg, 3, x + 8 * s, y + 52 * s, w - 16 * s, h - 60 * s, 18);
-    if (!drewArt) {
-      drawAnimalCharacter(ctx, x + w / 2, y + 215 * s, story.species || 'quokka', 'happy', '#a7f3d0', s);
-    }
-
-    ctx.fillStyle = '#10b981';
-    roundRect(ctx, x + 14 * s, y + 10 * s, w - 28 * s, 36 * s, 10 * s);
+    // Fact-check badge
+    ctx.fillStyle = '#dc2626';
+    roundRect(ctx, bx + bw - 116 * s, by + 10 * s, 102 * s, 24 * s, 12 * s);
     ctx.fill();
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(17 * s) + 'px sans-serif';
-    ctx.fillText('4컷 · 3초 호구 탈출 자가진단 🚀', x + 26 * s, y + 34 * s);
+    ctx.font = 'bold ' + Math.round(12 * s) + 'px sans-serif';
+    ctx.fillText('🚨 팩트폭격✨', bx + bw - 104 * s, by + 26 * s);
 
-    // Top Question Badge: ❓ 내 조건 넣으면 상위 몇 % 호구일까?
-    ctx.fillStyle = '#fef08a';
-    roundRect(ctx, x + 14 * s, y + 52 * s, w - 28 * s, 38 * s, 10 * s);
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold ' + Math.round(15.5 * s) + 'px sans-serif';
+    drawWrappedText(ctx, '"' + story.panel2Speech + '"', bx + 16 * s, by + 56 * s, bw - 32 * s, 23 * s, 2);
+  } else if (num === 3) {
+    const rx = x + 14 * s;
+    const ry = y + 12 * s;
+    const rw = w - 28 * s;
+    const rh = 164 * s;
+    drawPerforatedReceipt(ctx, rx, ry, rw, rh, x + w * 0.62, s);
+
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold ' + Math.round(15 * s) + 'px sans-serif';
+    ctx.fillText('③ 🧾 ' + story.receiptTitle, rx + 16 * s, ry + 26 * s);
+
+    // Red Stamp
+    ctx.save();
+    ctx.translate(rx + rw - 64 * s, ry + 21 * s);
+    ctx.rotate(-0.06);
+    roundRect(ctx, -48 * s, -11 * s, 96 * s, 22 * s, 6 * s);
+    ctx.fillStyle = '#fee2e2';
     ctx.fill();
-    ctx.lineWidth = 2.5 * s;
-    ctx.strokeStyle = '#ca8a04';
+    ctx.lineWidth = 1.8 * s;
+    ctx.strokeStyle = '#dc2626';
+    ctx.stroke();
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold ' + Math.round(11.5 * s) + 'px sans-serif';
+    ctx.fillText('🚨 호구주의보', -39 * s, 4 * s);
+    ctx.restore();
+
+    // Row 1: Bad expenditure (Left label, Right value)
+    const r1Y = ry + 36 * s;
+    const rowH = 35 * s;
+    ctx.fillStyle = '#ffe4e6';
+    roundRect(ctx, rx + 14 * s, r1Y, rw - 28 * s, rowH, 8 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#fda4af';
+    ctx.lineWidth = 1.5 * s;
+    ctx.stroke();
+    ctx.fillStyle = '#9f1239';
+    ctx.font = 'bold ' + Math.round(13 * s) + 'px sans-serif';
+    ctx.fillText('❌ ' + story.badLabel, rx + 24 * s, r1Y + 23 * s);
+    ctx.save();
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#e11d48';
+    ctx.font = 'bold ' + Math.round(15.5 * s) + 'px sans-serif';
+    ctx.fillText(story.badVal, rx + rw - 24 * s, r1Y + 23 * s);
+    ctx.restore();
+
+    // Row 2: Good expenditure (Left label, Right value)
+    const r2Y = r1Y + rowH + 5 * s;
+    ctx.fillStyle = '#d1fae5';
+    roundRect(ctx, rx + 14 * s, r2Y, rw - 28 * s, rowH, 8 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#6ee7b7';
+    ctx.lineWidth = 1.5 * s;
+    ctx.stroke();
+    ctx.fillStyle = '#065f46';
+    ctx.font = 'bold ' + Math.round(13 * s) + 'px sans-serif';
+    ctx.fillText('✅ ' + story.goodLabel, rx + 24 * s, r2Y + 23 * s);
+    ctx.save();
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#059669';
+    ctx.font = 'bold ' + Math.round(15.5 * s) + 'px sans-serif';
+    ctx.fillText(story.goodVal, rx + rw - 24 * s, r2Y + 23 * s);
+    ctx.restore();
+
+    // Row 3: Money lost if unaware (Dark highlight bar)
+    const r3Y = r2Y + rowH + 5 * s;
+    ctx.fillStyle = '#0f172a';
+    roundRect(ctx, rx + 14 * s, r3Y, rw - 28 * s, rowH + 2 * s, 8 * s);
+    ctx.fill();
+    ctx.fillStyle = '#fde047';
+    ctx.font = 'bold ' + Math.round(13 * s) + 'px sans-serif';
+    ctx.fillText('😭 ' + story.diffLabel, rx + 24 * s, r3Y + 24 * s);
+    ctx.save();
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#34d399';
+    ctx.font = 'bold ' + Math.round(16.5 * s) + 'px sans-serif';
+    ctx.fillText(story.diffVal, rx + rw - 24 * s, r3Y + 24 * s);
+    ctx.restore();
+  } else {
+    const bx = x + 16 * s;
+    const by = y + 14 * s;
+    const bw = w - 32 * s;
+    const bh = 104 * s;
+    drawSpeechBubble(ctx, bx, by, bw, bh, 18 * s, x + w * 0.50, 1, s);
+
+    ctx.fillStyle = '#fef08a';
+    roundRect(ctx, bx + 14 * s, by + 10 * s, bw - 28 * s, 26 * s, 10 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#eab308';
+    ctx.lineWidth = 1.5 * s;
     ctx.stroke();
     ctx.fillStyle = '#713f12';
-    ctx.font = 'bold ' + Math.round(17 * s) + 'px sans-serif';
-    ctx.fillText('❓ 내 조건 넣으면 상위 몇 % 호구일까?', x + 32 * s, y + 77 * s);
+    ctx.font = 'bold ' + Math.round(13.5 * s) + 'px sans-serif';
+    ctx.fillText('④ ❓ 내 조건 넣으면 상위 몇 % 호구일까?', bx + 24 * s, by + 28 * s);
 
-    // Bottom Interactive UI Mockup + Anti-Spam Search CTA
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
-    roundRect(ctx, x + 14 * s, y + h - 122 * s, w - 28 * s, 112 * s, 14 * s);
-    ctx.fill();
-    ctx.lineWidth = 2.5 * s;
-    ctx.strokeStyle = '#10b981';
-    ctx.stroke();
-
-    // Interactive Mockup Box
-    ctx.fillStyle = '#1e293b';
-    roundRect(ctx, x + 26 * s, y + h - 112 * s, w - 52 * s, 42 * s, 9 * s);
-    ctx.fill();
-    ctx.lineWidth = 2 * s;
-    ctx.strokeStyle = '#38bdf8';
-    ctx.stroke();
-    ctx.fillStyle = '#f8fafc';
-    ctx.font = 'bold ' + Math.round(16.5 * s) + 'px sans-serif';
-    ctx.fillText('[ ⚡ 내 숫자 넣고 3초 만에 영수증 뽑기 👉 ]', x + 38 * s, y + h - 85 * s);
-
-    // Bottom Yellow CTA Button
-    ctx.fillStyle = '#fbbf24';
-    roundRect(ctx, x + 26 * s, y + h - 62 * s, w - 52 * s, 44 * s, 10 * s);
-    ctx.fill();
     ctx.fillStyle = '#0f172a';
-    ctx.font = 'bold ' + Math.round(16.5 * s) + 'px sans-serif';
-    ctx.fillText('👉 프로필 링크 클릭 또는 [ truthofmarket ] 검색!', x + 36 * s, y + h - 34 * s);
+    ctx.font = 'bold ' + Math.round(15.5 * s) + 'px sans-serif';
+    drawWrappedText(ctx, '"' + story.ctaTitle + '"', bx + 16 * s, by + 60 * s, bw - 32 * s, 22 * s, 1);
+
+    ctx.fillStyle = '#059669';
+    ctx.font = 'bold ' + Math.round(14.5 * s) + 'px sans-serif';
+    ctx.fillText('✨ 검색창에 [ truthofmarket ] 검색하면 3초 무료 계산!', bx + 16 * s, by + 86 * s);
+  }
+
+  // 3. Crisp Authentic Comic Panel Outline (#1e293b, 4.5px)
+  ctx.save();
+  roundRect(ctx, x, y, w, h, panelRadius);
+  ctx.lineWidth = 4.5 * s;
+  ctx.strokeStyle = '#1e293b';
+  ctx.stroke();
+  ctx.restore();
+}
+
+function renderAll() {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  if (mode === 'grid') {
+    // Warm Cream Ivory Manuscript Paper Background
+    ctx.fillStyle = '#faf7f2';
+    ctx.fillRect(0, 0, 1080, 1080);
+
+    // Clean Webtoon Episode Header (No dark dashboard box)
+    ctx.fillStyle = '#10b981';
+    roundRect(ctx, 28, 16, 178, 36, 18);
+    ctx.fill();
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#1e293b';
+    ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('🐾 머니핏 인스타툰', 44, 40);
+
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold 26px sans-serif';
+    drawWrappedText(ctx, preset.keyword + ' 편', 220, 43, 830, 32, 1);
+
+    const pW = 502;
+    const pH = 472;
+    drawPanel(ctx, 1, 28, 66, pW, pH, false);
+    drawPanel(ctx, 2, 550, 66, pW, pH, false);
+    drawPanel(ctx, 3, 28, 554, pW, pH, false);
+    drawPanel(ctx, 4, 550, 554, pW, pH, false);
+
+    // Manuscript Bottom Footer Pill
+    ctx.fillStyle = '#1e293b';
+    roundRect(ctx, 28, 1036, 1024, 34, 17);
+    ctx.fill();
+    ctx.fillStyle = '#fde047';
+    ctx.font = 'bold 16.5px sans-serif';
+    ctx.fillText('📌 저장해두고 비교해보세요!   |   🔎 무료 3초 계산기는 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 64, 1059);
+  } else {
+    ctx.fillStyle = '#faf7f2';
+    ctx.fillRect(0, 0, 1080, 1080);
+    drawPanel(ctx, slideNum, 36, 28, 1008, 992, true);
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold 20px sans-serif';
+    ctx.fillText('📌 저장해두고 비교해보세요!  |  🔎 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 72, 1056);
   }
 }
-
-const canvas = document.getElementById('c');
-const ctx = canvas.getContext('2d');
-
-if (mode === 'grid') {
-  ctx.fillStyle = '#0f172a';
-  ctx.fillRect(0, 0, 1080, 1080);
-
-  ctx.fillStyle = '#1e293b';
-  roundRect(ctx, 32, 20, 1016, 112, 22);
-  ctx.fill();
-
-  ctx.fillStyle = story.accent;
-  roundRect(ctx, 56, 38, 330, 34, 10);
-  ctx.fill();
-  ctx.fillStyle = '#0f172a';
-  ctx.font = 'bold 18px sans-serif';
-  ctx.fillText(story.badge, 70, 61);
-
-  ctx.fillStyle = '#f8fafc';
-  ctx.font = 'bold 30px sans-serif';
-  drawWrappedText(ctx, '🐾 ' + preset.keyword + ' — 호구 탈출 4컷 동물툰', 56, 108, 960, 36, 1);
-
-  const pW = 496;
-  const pH = 420;
-  drawPanel(ctx, 1, 32, 146, pW, pH, false);
-  drawPanel(ctx, 2, 552, 146, pW, pH, false);
-  drawPanel(ctx, 3, 32, 580, pW, pH, false);
-  drawPanel(ctx, 4, 552, 580, pW, pH, false);
-
-  ctx.fillStyle = '#fde047';
-  ctx.font = 'bold 20px sans-serif';
-  ctx.fillText('📌 저장해두고 결제 직전에 꺼내보세요  |  🔎 프로필 링크 또는 [ truthofmarket ] 검색!', 36, 1046);
-} else {
-  ctx.fillStyle = '#0f172a';
-  ctx.fillRect(0, 0, 1080, 1080);
-  drawPanel(ctx, slideNum, 48, 48, 984, 984, true);
-}
+renderAll();
+if (artImg) artImg.onload = renderAll;
+window.addEventListener('load', renderAll);
 </script>
 </body>
 </html>`;
 }
 
 /**
- * Render HTML to PNG via Headless Chrome
+ * Render HTML to PNG via Headless Chrome (Synchronous)
  */
 function renderPngWithChrome(chromePath, htmlContent, outputPngPath) {
   const tempHtmlPath = outputPngPath.replace(/\.png$/i, '.temp.html');
@@ -1033,21 +967,26 @@ async function generateWebtoonPack(options = {}) {
   const publicGridPngPath = path.join(publicSnsDir, `${preset.slug}-grid.png`);
 
   const chromePath = findChromeExecutable();
-  const slidePaths = [];
+  const slidePaths = [1, 2, 3, 4].map(i => path.join(outDir, `slide-${i}.png`));
 
-  if (chromePath) {
+  const allPngsExist =
+    fs.existsSync(gridPngPath) &&
+    fs.existsSync(publicGridPngPath) &&
+    slidePaths.every(sp => fs.existsSync(sp));
+
+  if (chromePath && !(options.skipExisting && allPngsExist)) {
     const gridHtml = buildRenderHtml(bundle, 'grid', 1);
     renderPngWithChrome(chromePath, gridHtml, gridPngPath);
     if (fs.existsSync(gridPngPath)) {
       fs.copyFileSync(gridPngPath, publicGridPngPath);
     }
-
     for (let i = 1; i <= 4; i++) {
-      const sPath = path.join(outDir, `slide-${i}.png`);
+      const sPath = slidePaths[i - 1];
       const sHtml = buildRenderHtml(bundle, 'slide', i);
       renderPngWithChrome(chromePath, sHtml, sPath);
-      slidePaths.push(sPath);
     }
+  } else if (fs.existsSync(gridPngPath) && !fs.existsSync(publicGridPngPath)) {
+    fs.copyFileSync(gridPngPath, publicGridPngPath);
   }
 
   // Write copy files
@@ -1251,6 +1190,7 @@ if (require.main === module) {
   const genBrand = args.includes('--brand');
   const genTop6 = args.includes('--top6');
   const genAll36 = args.includes('--all36');
+  const skipExisting = args.includes('--skip-existing');
 
   (async () => {
     if (genBrand) {
@@ -1258,9 +1198,12 @@ if (require.main === module) {
       console.log(`✓ Generated Official Brand Profile Avatar & Cover in ${path.dirname(b.avatarPath)}`);
     }
     if (genAll36) {
-      for (const p of PRESETS) {
-        const r = await generateWebtoonPack({ slug: p.id, sendTelegram: false });
-        console.log(`✓ Generated Webtoon Pack [${r.keyword}] (${r.slug})`);
+      for (let i = 0; i < PRESETS.length; i += 2) {
+        const batch = PRESETS.slice(i, i + 2);
+        const results = await Promise.all(
+          batch.map(p => generateWebtoonPack({ slug: p.id, sendTelegram: false, skipExisting }))
+        );
+        results.forEach(r => console.log(`✓ Generated Webtoon Pack [${r.keyword}] (${r.slug})`));
       }
     } else if (genTop6) {
       const topSlugs = [
@@ -1273,11 +1216,11 @@ if (require.main === module) {
         'telecom-penalty-15'
       ];
       for (const s of topSlugs) {
-        const r = await generateWebtoonPack({ slug: s, sendTelegram: false });
+        const r = await generateWebtoonPack({ slug: s, sendTelegram: false, skipExisting });
         console.log(`✓ Generated Top Webtoon Pack: [${r.keyword}] (${r.slug})`);
       }
     } else {
-      const res = await generateWebtoonPack({ slug, sendTelegram });
+      const res = await generateWebtoonPack({ slug, sendTelegram, skipExisting });
       console.log(`✓ Generated 4-Cut Webtoon PNG & SNS pack for [${res.keyword}] (${res.slug})`);
       console.log(`  - Grid PNG : ${res.gridPngPath}`);
       console.log(`  - Slides   : ${res.slidePaths.length} files in ${res.outDir}`);

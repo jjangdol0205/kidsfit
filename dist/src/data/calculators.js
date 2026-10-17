@@ -176,6 +176,13 @@ function calculateElectric(inputs = {}) {
         : `월 ${monthlySaving.toLocaleString()}원 · 연 ${(monthlySaving * 12).toLocaleString()}원 절약`,
       optPercent: afterBill > 0 ? Math.max(18, Math.min(92, Math.round((inverterBill / afterBill) * 100))) : 50
     },
+    zeroFeelFraming: {
+      badge: "🔥 절약액 차감 시 내 실체감가 0원!",
+      callout: isZeroUsage || addedKwh === 0
+        ? "대기전력 차단으로 매달 새는 기본 전기세 즉시 방어!"
+        : `절약액 차감 시 내 실체감가: 0원 (${paybackMonths}개월 본전 회수 후 매년 +${(monthlySaving * 12).toLocaleString()}원 순흑자!)`,
+      ctaHighlight: `실체감가 0원 (${paybackMonths}개월 본전) 최저가 확인 ↗`
+    },
     actionItems: [
       {
         icon: targetApplianceIcon,
@@ -346,6 +353,11 @@ function calculateDiet(inputs = {}) {
       optValueText: `약 ${(chickenPacks * 1250 + brownRiceBowls * 1050).toLocaleString()}원`,
       savingBadge: `${weeks}주 식단비 약 ${dietSavingWon.toLocaleString()}원 절약 (-54%)`,
       optPercent: 46
+    },
+    zeroFeelFraming: {
+      badge: "🔥 배달·편의점 절약액 차감 시 체감가 0원!",
+      callout: `편의점·배달 절약액 차감 시 내 실체감가: 0원 (오히려 ${weeks}주 식비 +${dietSavingWon.toLocaleString()}원 세이브!)`,
+      ctaHighlight: `식비 +${dietSavingWon.toLocaleString()}원 아끼는 대용량 특가 ↗`
     },
     actionItems: [
       {
@@ -518,6 +530,11 @@ function calculatePet(inputs = {}) {
       optValueText: `월 약 ${Math.max(25000, Math.round((dailyGrams * 30 / 1000) * 14000)).toLocaleString()}원`,
       savingBadge: "슬개골·대사질환 병원비 및 사료 낭비 85% 방어",
       optPercent: 22
+    },
+    zeroFeelFraming: {
+      badge: "🔥 병원비 180만 원 방어 시 사료 체감가 0원!",
+      callout: `슬개골·비만 수술비(180만 원) 예방 시 실체감가: 0원 (하루 ${dailyGrams}g 정량 · ${daysPerBag}일분 맞춤 특가!)`,
+      ctaHighlight: `병원비 180만 원 아끼는 맞춤 사료·계량템 ↗`
     },
     actionItems: [
       {
@@ -754,6 +771,11 @@ function calculateRoom(inputs = {}) {
       savingBadge: `유통 마진 약 ${Math.round(savingWon / 10000).toLocaleString()}만 원 절약 (-22%)`,
       optPercent: 78
     },
+    zeroFeelFraming: {
+      badge: `🔥 유통마진 -${Math.round(savingWon / 10000)}만 원 세이브로 소형가전 체감 0원!`,
+      callout: `오프라인 대비 아낀 ${Math.round(savingWon / 10000)}만 원 차감 시 소형가전 3종 실체감가: 0원! (예산 초과 0원 보장)`,
+      ctaHighlight: `마진 -${Math.round(savingWon / 10000)}만 원 아끼는 로켓설치 특가 ↗`
+    },
     actionItems: [
       {
         icon: "🧊",
@@ -985,6 +1007,11 @@ function calculateAuto(inputs = {}) {
       savingBadge: `${months}개월간 총 ${diffMan.toLocaleString()}만 원 세이브`,
       optPercent: maxTco > 0 ? Math.max(25, Math.min(90, Math.round((minTco / maxTco) * 100))) : 75
     },
+    zeroFeelFraming: {
+      badge: `🔥 [${winner}] 선택 시 용품·보험 체감가 0원!`,
+      callout: `취등록세·세금 절약액 차감 시 내 실체감가: 0원 (오히려 ${months}개월간 총 +${diffMan.toLocaleString()}만 원 이득!)`,
+      ctaHighlight: `+${diffMan.toLocaleString()}만 원 아끼는 신차 필수템·견적 ↗`
+    },
     actionItems: [
       {
         icon: "🎥",
@@ -1164,6 +1191,13 @@ function calculateTelecom(inputs = {}) {
       optPercent: oldFee > 0
         ? Math.max(20, Math.min(92, Math.round((Math.max(0, newFee * 36 - immediateNetWon) / (oldFee * 36)) * 100)))
         : 60
+    },
+    zeroFeelFraming: {
+      badge: "🔥 사은품으로 위약금 상쇄 시 내 체감가 0원!",
+      callout: totalNetBenefit >= 0
+        ? `위약금 ${penaltyMan}만 원 차감 시 내 실체감가: 0원 (오히려 총 +${totalNetBenefit.toLocaleString()}원 현금 흑자!)`
+        : "통신사 공유기 임대료(15.8만 원) 면제 시 장비 실체감가: 0원!",
+      ctaHighlight: `체감가 0원 · 최대 +${cashGiftMan}만 원 혜택 확인 ↗`
     },
     actionItems: [
       {

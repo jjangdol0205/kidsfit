@@ -727,34 +727,76 @@
   }
 
   /**
-   * Draw Perforated Real Thermal Receipt Card (톱니 절취선 실물 영수증 그래픽) inside Panel 3
+   * Draw Speech Bubble with Triangle Tail pointing down toward the character
    */
-  function drawPerforatedReceiptCard(ctx, x, y, w, h) {
-    const zigCount = 18;
-    const zigW = w / zigCount;
-    const zigH = 9;
+  function drawSpeechBubble(ctx, x, y, w, h, r, tailX, tailDir = 1) {
+    const tailW = 20;
+    const tailH = 15;
+    const tx = Math.max(x + r + tailW, Math.min(x + w - r - tailW, tailX));
 
     ctx.save();
+    ctx.shadowColor = 'rgba(15, 23, 42, 0.08)';
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(tx + tailW * 0.55, y + h);
+    ctx.lineTo(tx + tailDir * 4, y + h + tailH);
+    ctx.lineTo(tx - tailW * 0.55, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.97)';
+    ctx.fill();
+    ctx.shadowColor = 'transparent';
+    ctx.lineWidth = 3.2;
+    ctx.strokeStyle = '#1e293b';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  /**
+   * Draw Compact Perforated Thermal Receipt Speech Memo inside Panel 3 Top Empty Space
+   */
+  function drawPerforatedReceiptCard(ctx, x, y, w, h, tailX = x + w * 0.62) {
+    const zigCount = 20;
+    const zigW = w / zigCount;
+    const zigH = 6;
+    const tailW = 18;
+    const tailH = 14;
+    const tx = Math.max(x + 40, Math.min(x + w - 40, tailX));
+
+    ctx.save();
+    ctx.shadowColor = 'rgba(15, 23, 42, 0.1)';
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 3;
+
     ctx.beginPath();
     ctx.moveTo(x, y + zigH);
-    // Top serrated zig-zag edge
     for (let i = 0; i < zigCount; i++) {
       ctx.lineTo(x + (i + 0.5) * zigW, y);
       ctx.lineTo(x + (i + 1) * zigW, y + zigH);
     }
-    // Right edge
     ctx.lineTo(x + w, y + h - zigH);
-    // Bottom serrated zig-zag edge
-    for (let i = zigCount; i > 0; i--) {
-      ctx.lineTo(x + (i - 0.5) * zigW, y + h);
-      ctx.lineTo(x + (i - 1) * zigW, y + h - zigH);
-    }
+    ctx.lineTo(tx + tailW * 0.5, y + h - zigH);
+    ctx.lineTo(tx + 4, y + h + tailH);
+    ctx.lineTo(tx - tailW * 0.5, y + h - zigH);
+    ctx.lineTo(x, y + h - zigH);
     ctx.closePath();
 
     ctx.fillStyle = '#fffef7';
     ctx.fill();
+    ctx.shadowColor = 'transparent';
     ctx.lineWidth = 3;
-    ctx.strokeStyle = '#334155';
+    ctx.strokeStyle = '#1e293b';
     ctx.stroke();
     ctx.restore();
   }
@@ -780,289 +822,236 @@
   }
 
   /**
-   * Helper: Draw 1 quadrant (panelIdx 0..3) of the 2x2 AI Animal Instatoon sheet (aspect-ratio-preserving cover)
+   * Helper: Draw 100% uncropped quadrant (panelIdx 0..3) of the 2x2 AI Animal Instatoon sheet
    */
-  function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh) {
+  function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 10) {
     const halfW = img.naturalWidth / 2;
     const halfH = img.naturalHeight / 2;
     const col = panelIdx % 2;
     const row = Math.floor(panelIdx / 2);
-    const pad = Math.round(halfW * 0.025);
-    const sx = col * halfW + pad;
-    const sy = row * halfH + pad;
-    const sw = halfW - pad * 2;
-    const sh = Math.min(halfH - pad * 2, Math.round(sw * (dh / dw)));
+    const outerPad = Math.round(halfW * 0.038);
+    const innerPad = Math.round(halfW * 0.028);
+    const sx = col === 0 ? outerPad : halfW + innerPad;
+    const sy = row === 0 ? outerPad : halfH + innerPad;
+    const sw = halfW - outerPad - innerPad;
+    const sh = halfH - outerPad - innerPad;
 
     ctx.save();
-    drawRoundedRect(ctx, dx, dy, dw, dh, 18);
+    drawRoundedRect(ctx, dx, dy, dw, dh, radius);
     ctx.clip();
     ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
     ctx.restore();
   }
 
   /**
-   * Draw a single panel at (px, py, pw, ph)
+   * Draw a single authentic Instatoon panel at (px, py, pw, ph)
+   * - ZERO mechanical '1컷 · ...' header pills or bottom dark caption bars
+   * - Speech bubbles & compact receipt memo sit strictly in the top 34%~37% empty wall space
    */
   function drawSinglePanel(ctx, panelIdx, px, py, pw, ph, preset, story) {
-    const { meta, calcRes } = story;
-    const scale = pw / 500;
+    const { meta } = story;
+    const scaleX = pw / 502;
+    const scaleY = ph / 472;
     const artImg = getCategoryInstatoonImage(preset.calc);
+    const cleanSpeech1 = String(meta.panel1Bubble || '').replace(/^"+|"+$/g, '');
+    const cleanSpeech2 = String(meta.panel2Bubble || '').replace(/^"+|"+$/g, '');
 
     ctx.save();
     ctx.translate(px, py);
-    ctx.scale(scale, scale);
+    ctx.scale(scaleX, scaleY);
 
-    // Panel background
-    const bgColors = ['#fff1f2', '#eff6ff', '#0f172a', '#ecfdf5'];
-    const borderColors = ['#f43f5e', '#3b82f6', '#f59e0b', '#10b981'];
-    drawRoundedRect(ctx, 0, 0, 500, 500, 24);
-    ctx.fillStyle = bgColors[panelIdx];
+    const W = 502;
+    const H = 472;
+    const panelRadius = 10;
+    const bgColors = ['#fef9ee', '#e0f2fe', '#dcfce7', '#fef08a'];
+
+    // 1. Panel Base Background + Full Uncropped Animal Illustration
+    drawRoundedRect(ctx, 0, 0, W, H, panelRadius);
+    ctx.fillStyle = bgColors[panelIdx] || '#faf7f2';
     ctx.fill();
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = borderColors[panelIdx];
-    ctx.stroke();
 
-    // Top Panel Header Pill
-    const headers = [
-      meta.panel1Title,
-      meta.panel2Title,
-      '3컷 · 절취선 실물 영수증 비교 (📌저장필수)',
-      '4컷 · 3초 호구 탈출 자가진단'
-    ];
-    drawRoundedRect(ctx, 16, 14, 468, 40, 12);
-    ctx.fillStyle = borderColors[panelIdx];
-    ctx.fill();
-    ctx.fillStyle = panelIdx === 2 ? '#0f172a' : '#ffffff';
-    ctx.font = 'bold 18.5px "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
-    ctx.fillText(headers[panelIdx], 30, 41);
-
-    if (panelIdx === 0) {
-      if (artImg) {
-        // Draw AI Animal Instatoon Quadrant 1 (Quokka / Shiba / Cat / Bear / Fox / Raccoon)
-        drawInstatoonQuadrant(ctx, artImg, 0, 12, 60, 476, 428);
-      } else {
-        drawComicFocusLines(ctx, 108, 220, 500, 500, 'rgba(244, 63, 94, 0.14)');
-        drawAnimalCharacter(ctx, 105, 225, meta.species || 'quokka', 'shock', '#fecdd3', 0.96);
+    if (artImg) {
+      drawInstatoonQuadrant(ctx, artImg, panelIdx, 0, 0, W, H, panelRadius);
+    } else {
+      const mood = panelIdx === 1 ? 'smart' : panelIdx === 3 ? 'happy' : 'shock';
+      const sp = panelIdx === 1 ? 'fox' : meta.species || 'quokka';
+      if (panelIdx === 0) {
+        drawComicFocusLines(ctx, W * 0.5, H * 0.66, W, H, 'rgba(244, 63, 94, 0.12)');
       }
+      drawAnimalCharacter(ctx, W * 0.5, H * 0.66, sp, mood, '#fecdd3', 1.15);
+    }
 
-      // Top Korean Speech Bubble Overlay
-      drawRoundedRect(ctx, 18, 62, 464, 86, 16);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+    // 2. Top Speech Bubble / Compact Receipt (Strictly in top empty wall space — ZERO character overlap!)
+    if (panelIdx === 0) {
+      const bx = 16;
+      const by = 14;
+      const bw = W - 32;
+      const bh = 104;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.42, -1);
+
+      // Cute speaker chip
+      drawRoundedRect(ctx, bx + 14, by + 10, 165, 24, 12);
+      ctx.fillStyle = '#ffe4e6';
       ctx.fill();
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#0f172a';
-      ctx.stroke();
-
       ctx.fillStyle = '#be123c';
-      ctx.font = 'bold 18px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, meta.panel1Bubble, 32, 92, 340, 24, 2);
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText(`① 🐾 ${meta.charName}`, bx + 24, by + 27);
 
-      // Comic SFX Badge (콰아앙⚡ / 두둥탁!!) in top-right corner
+      // Tilted Comic SFX sticker on top-right of bubble
       ctx.save();
-      ctx.translate(424, 94);
-      ctx.rotate(0.06);
-      drawRoundedRect(ctx, -48, -16, 96, 32, 10);
+      ctx.translate(bx + bw - 54, by + 22);
+      ctx.rotate(0.05);
+      drawRoundedRect(ctx, -42, -12, 84, 24, 8);
       ctx.fillStyle = '#fde047';
       ctx.fill();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#1e293b';
       ctx.stroke();
       ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.sfxShock || '콰아앙⚡', -36, 5);
+      ctx.font = 'bold 12.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.sfxShock || '콰아앙⚡', -32, 4);
       ctx.restore();
 
-      // Episode Title Box at Bottom
-      drawRoundedRect(ctx, 18, 392, 464, 94, 14);
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
-      ctx.fill();
-      ctx.fillStyle = '#fbbf24';
-      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(`🐾 주인공: ${meta.charName} (${preset.category})`, 32, 416);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 19px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, preset.title, 32, 444, 436, 24, 1);
-
-      ctx.fillStyle = '#fda4af';
-      ctx.font = 'bold 14px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, `⚠️ ${meta.panel1Sub}`, 32, 472, 436, 20, 1);
+      ctx.fillStyle = '#1e293b';
+      ctx.font = 'bold 16px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, `"${cleanSpeech1}"`, bx + 16, by + 56, bw - 32, 23, 2);
     } else if (panelIdx === 1) {
-      if (artImg) {
-        // Draw AI Animal Instatoon Quadrant 2 (Smart Glasses Fox Fact-Checking!)
-        drawInstatoonQuadrant(ctx, artImg, 1, 12, 60, 476, 428);
-      } else {
-        drawAnimalCharacter(ctx, 105, 225, 'fox', 'smart', '#bfdbfe', 0.96);
-      }
+      const bx = 16;
+      const by = 14;
+      const bw = W - 32;
+      const bh = 104;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.30, -1);
 
-      // Top Speech Bubble
-      drawRoundedRect(ctx, 18, 62, 464, 86, 16);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      // Speaker chip
+      drawRoundedRect(ctx, bx + 14, by + 10, 185, 24, 12);
+      ctx.fillStyle = '#dbeafe';
       ctx.fill();
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#0f172a';
-      ctx.stroke();
-
       ctx.fillStyle = '#1d4ed8';
-      ctx.font = 'bold 17.5px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, meta.panel2Bubble, 32, 92, 315, 24, 2);
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText(`② 🦊 ${meta.expertName}`, bx + 24, by + 27);
 
-      // '삐빅-! 팩트폭격' Badge in top-right
-      drawRoundedRect(ctx, 350, 72, 122, 28, 8);
+      // Fact-check badge
+      drawRoundedRect(ctx, bx + bw - 116, by + 10, 102, 24, 12);
       ctx.fillStyle = '#dc2626';
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
-      ctx.fillText('🚨 삐빅-! 팩트폭격', 358, 91);
+      ctx.font = 'bold 12px "Malgun Gothic", sans-serif';
+      ctx.fillText('🚨 팩트폭격✨', bx + bw - 104, by + 26);
 
-      // Fact Point Box at Bottom
-      drawRoundedRect(ctx, 18, 392, 464, 94, 14);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
-      ctx.fill();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = '#3b82f6';
-      ctx.stroke();
-
-      ctx.fillStyle = '#1e3a8a';
+      ctx.fillStyle = '#1e293b';
       ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(`🦊 ${meta.expertName}의 팩트체크 (안경 번쩍✨)`, 32, 418);
-
-      ctx.fillStyle = '#334155';
-      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, calcRes.summary || meta.panel2Sub, 32, 444, 436, 21, 2);
+      drawWrappedText(ctx, `"${cleanSpeech2}"`, bx + 16, by + 56, bw - 32, 23, 2);
     } else if (panelIdx === 2) {
-      if (artImg) {
-        // Draw Crying Animal Quadrant 3 at top of Panel 3, then Perforated Receipt below
-        drawInstatoonQuadrant(ctx, artImg, 2, 12, 60, 476, 175);
-      }
+      const rx = 14;
+      const ry = 12;
+      const rw = W - 28;
+      const rh = 164;
+      drawPerforatedReceiptCard(ctx, rx, ry, rw, rh, W * 0.62);
 
-      // Panel 3: Perforated Real Thermal Receipt (절취선 실물 영수증 그래픽)
-      const recY = artImg ? 186 : 70;
-      const recH = artImg ? 302 : 408;
-      drawPerforatedReceiptCard(ctx, 20, recY, 460, recH);
-
-      // Receipt Header
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
-      ctx.fillText('🧾 [머니핏 2026 실물 비교 영수증]', 36, recY + 30);
+      ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
+      ctx.fillText('③ 🧾 머니핏 3초 실물 비교 영수증', rx + 16, ry + 26);
 
       // Red Diagonal Stamp (🚨 호구주의보)
       ctx.save();
-      ctx.translate(402, recY + 26);
-      ctx.rotate(-0.12);
-      drawRoundedRect(ctx, -58, -14, 116, 28, 7);
-      ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-      ctx.fillStyle = 'rgba(254, 226, 226, 0.95)';
+      ctx.translate(rx + rw - 64, ry + 21);
+      ctx.rotate(-0.06);
+      drawRoundedRect(ctx, -48, -11, 96, 22, 6);
+      ctx.fillStyle = '#fee2e2';
       ctx.fill();
+      ctx.lineWidth = 1.8;
+      ctx.strokeStyle = '#dc2626';
+      ctx.stroke();
       ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 13.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('🚨 호구주의보', -46, 5);
+      ctx.font = 'bold 11.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('🚨 호구주의보', -39, 4);
       ctx.restore();
 
-      // Dashed Receipt Divider Line
-      ctx.fillStyle = '#64748b';
-      ctx.font = 'bold 14px monospace';
-      ctx.fillText('------------------------------------------', 34, recY + 48);
-
-      // Row 1: ❌ 호구 평균 지출 (Red highlight box)
-      const rowH = artImg ? 54 : 74;
-      const r1Y = recY + 56;
-      drawRoundedRect(ctx, 34, r1Y, 432, rowH, 10);
+      // Row 1: ❌ 호구 평균 지출 (Left label, Right value)
+      const r1Y = ry + 36;
+      const rowH = 35;
+      drawRoundedRect(ctx, rx + 14, r1Y, rw - 28, rowH, 8);
       ctx.fillStyle = '#ffe4e6';
       ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#f43f5e';
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#fda4af';
       ctx.stroke();
 
       ctx.fillStyle = '#9f1239';
-      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(`❌ ${meta.badLabel || '호구 평균 지출'}`, 48, r1Y + 22);
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText(`❌ ${meta.badLabel || '호구 평균 지출'}`, rx + 24, r1Y + 23);
+      ctx.save();
+      ctx.textAlign = 'right';
       ctx.fillStyle = '#e11d48';
-      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.badVal, 48, r1Y + (artImg ? 45 : 56));
+      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.badVal, rx + rw - 24, r1Y + 23);
+      ctx.restore();
 
-      // Row 2: ✅ 상위 1% 절약 지출 (Emerald highlight box)
-      const r2Y = r1Y + rowH + 8;
-      drawRoundedRect(ctx, 34, r2Y, 432, rowH, 10);
+      // Row 2: ✅ 상위 1% 절약 지출 (Left label, Right value)
+      const r2Y = r1Y + rowH + 5;
+      drawRoundedRect(ctx, rx + 14, r2Y, rw - 28, rowH, 8);
       ctx.fillStyle = '#d1fae5';
       ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#6ee7b7';
       ctx.stroke();
 
       ctx.fillStyle = '#065f46';
-      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
-      ctx.fillText(`✅ ${meta.goodLabel || '상위 1% 절약 지출'}`, 48, r2Y + 22);
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText(`✅ ${meta.goodLabel || '상위 1% 절약 지출'}`, rx + 24, r2Y + 23);
+      ctx.save();
+      ctx.textAlign = 'right';
       ctx.fillStyle = '#059669';
-      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.goodVal, 48, r2Y + (artImg ? 45 : 56));
+      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.goodVal, rx + rw - 24, r2Y + 23);
+      ctx.restore();
 
-      // Bottom Bold Yellow-Emerald Box: 🔥 모르면 매달/매년 날리는 생돈: {diffVal}
-      const boxY = r2Y + rowH + 10;
-      const boxH = artImg ? 68 : 88;
-      drawRoundedRect(ctx, 34, boxY, 432, boxH, 12);
+      // Row 3: 😭 모르면 날리는 생돈 (Dark highlight bar)
+      const r3Y = r2Y + rowH + 5;
+      drawRoundedRect(ctx, rx + 14, r3Y, rw - 28, rowH + 2, 8);
       ctx.fillStyle = '#0f172a';
       ctx.fill();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = '#fbbf24';
-      ctx.stroke();
 
       ctx.fillStyle = '#fde047';
-      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('🔥 모르면 매달/매년 날리는 생돈:', 48, boxY + 24);
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText('😭 모르면 날리는 생돈', rx + 24, r3Y + 24);
+      ctx.save();
+      ctx.textAlign = 'right';
       ctx.fillStyle = '#34d399';
-      ctx.font = 'bold 23px "Malgun Gothic", sans-serif';
-      ctx.fillText(meta.diffVal, 48, boxY + (artImg ? 54 : 64));
+      ctx.font = 'bold 16.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.diffVal, rx + rw - 24, r3Y + 24);
+      ctx.restore();
     } else if (panelIdx === 3) {
-      // Panel 4: High-CTR Curiosity-Gap Hook (클릭율 5배 상승 호기심 갭 CTA)
-      if (artImg) {
-        drawInstatoonQuadrant(ctx, artImg, 3, 12, 60, 476, 428);
-      } else {
-        drawAnimalCharacter(ctx, 102, 200, meta.species || 'quokka', 'happy', '#a7f3d0', 0.9);
-      }
+      const bx = 16;
+      const by = 14;
+      const bw = W - 32;
+      const bh = 104;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 18, W * 0.50, 1);
 
-      // 1) Top Question Badge
-      drawRoundedRect(ctx, 18, 62, 464, 42, 12);
+      drawRoundedRect(ctx, bx + 14, by + 10, bw - 28, 26, 10);
       ctx.fillStyle = '#fef08a';
       ctx.fill();
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#ca8a04';
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#eab308';
       ctx.stroke();
       ctx.fillStyle = '#713f12';
-      ctx.font = 'bold 19px "Malgun Gothic", sans-serif';
-      ctx.fillText('❓ 내 조건 넣으면 상위 몇 % 호구일까?', 42, 90);
-
-      // 2) Interactive-looking UI Mockup Box + Anti-Spam Search CTA at Bottom
-      drawRoundedRect(ctx, 18, 340, 464, 146, 16);
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
-      ctx.fill();
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#10b981';
-      ctx.stroke();
-
-      // Interactive UI Mockup Box inside Panel 4
-      drawRoundedRect(ctx, 32, 352, 436, 50, 10);
-      ctx.fillStyle = '#1e293b';
-      ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#38bdf8';
-      ctx.stroke();
-
-      ctx.fillStyle = '#f8fafc';
-      ctx.font = 'bold 18.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('[ ⚡ 내 숫자 넣고 3초 만에 영수증 뽑기 👉 ]', 44, 384);
-
-      // Bottom Anti-Spam High-CTR CTA Button
-      drawRoundedRect(ctx, 32, 412, 436, 60, 12);
-      ctx.fillStyle = '#fbbf24';
-      ctx.fill();
+      ctx.font = 'bold 13.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('④ ❓ 내 조건 넣으면 상위 몇 % 호구일까?', bx + 24, by + 28);
 
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 18.5px "Malgun Gothic", sans-serif';
-      ctx.fillText('👉 프로필 링크 클릭 또는 [ truthofmarket ] 검색!', 42, 449);
+      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, '"내 숫자 넣고 3초 만에 무료 영수증 뽑기 완료!"', bx + 16, by + 60, bw - 32, 22, 1);
+
+      ctx.fillStyle = '#059669';
+      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('✨ 검색창에 [ truthofmarket ] 검색하면 3초 무료 계산!', bx + 16, by + 86);
     }
+
+    // 3. Crisp Authentic Comic Panel Outline (#1e293b, 4.5px)
+    drawRoundedRect(ctx, 0, 0, W, H, panelRadius);
+    ctx.lineWidth = 4.5;
+    ctx.strokeStyle = '#1e293b';
+    ctx.stroke();
 
     ctx.restore();
   }
@@ -1077,26 +1066,44 @@
 
     ctx.clearRect(0, 0, 1080, 1080);
 
-    // Background
-    ctx.fillStyle = '#0f172a';
+    // Warm Cream Ivory Manuscript Paper Background
+    ctx.fillStyle = '#faf7f2';
     ctx.fillRect(0, 0, 1080, 1080);
 
-    // Top Title Banner (0..76)
-    ctx.fillStyle = '#fbbf24';
-    ctx.font = 'bold 28px "Malgun Gothic", sans-serif';
-    ctx.fillText(`🐾 [머니핏 동물 인스타툰] ${preset.title.slice(0, 26)}`, 32, 50);
+    // Clean Webtoon Episode Header (No dark dashboard box)
+    drawRoundedRect(ctx, 28, 16, 178, 36, 18);
+    ctx.fillStyle = '#10b981';
+    ctx.fill();
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#1e293b';
+    ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px "Malgun Gothic", sans-serif';
+    ctx.fillText('🐾 머니핏 인스타툰', 44, 40);
 
-    // 4 Panels in 2x2 Grid (each 496x480)
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold 26px "Malgun Gothic", sans-serif';
+    drawWrappedText(ctx, `${preset.keyword || preset.title} 편`, 220, 43, 830, 32, 1);
+
+    // 4 Panels in 2x2 Grid (each 502x472)
     const positions = [
-      { x: 28, y: 72 },
-      { x: 556, y: 72 },
-      { x: 28, y: 568 },
-      { x: 556, y: 568 }
+      { x: 28, y: 66 },
+      { x: 550, y: 66 },
+      { x: 28, y: 554 },
+      { x: 550, y: 554 }
     ];
 
     for (let i = 0; i < 4; i++) {
-      drawSinglePanel(ctx, i, positions[i].x, positions[i].y, 496, 480, preset, story);
+      drawSinglePanel(ctx, i, positions[i].x, positions[i].y, 502, 472, preset, story);
     }
+
+    // Manuscript Bottom Footer Pill
+    drawRoundedRect(ctx, 28, 1036, 1024, 34, 17);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.fillStyle = '#fde047';
+    ctx.font = 'bold 16.5px "Malgun Gothic", sans-serif';
+    ctx.fillText('📌 저장해두고 비교해보세요!   |   🔎 무료 3초 계산기는 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 64, 1059);
   }
 
   /**
@@ -1137,9 +1144,12 @@
 
     for (let i = 0; i < 4; i++) {
       setTimeout(() => {
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = '#faf7f2';
         ctx.fillRect(0, 0, 1080, 1080);
-        drawSinglePanel(ctx, i, 40, 40, 1000, 1000, preset, story);
+        drawSinglePanel(ctx, i, 36, 28, 1008, 992, preset, story);
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
+        ctx.fillText('📌 저장해두고 비교해보세요!  |  🔎 프로필 링크 또는 검색창에 [ truthofmarket ] 검색!', 72, 1056);
         const a = document.createElement('a');
         a.href = offCanvas.toDataURL('image/png');
         a.download = `moneyfit-insta-${preset.id}-slide${i + 1}.png`;

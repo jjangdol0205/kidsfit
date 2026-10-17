@@ -470,31 +470,81 @@ function generateDomainEssay(preset, res) {
 }
 
 /**
- * Generate Comparative Table HTML
+ * Generate Comparative Table HTML with Danawa/Enuri-style Direct Purchase Column (Experiment B)
  */
-function renderTableHtml(preset) {
+function renderTableHtml(preset, res) {
   const { tableHeaders, tableRows, title } = preset;
+  const actionItems = (res && Array.isArray(res.actionItems)) ? res.actionItems : [];
+  const primaryAction = actionItems[0] || {};
+  const secondaryAction = actionItems[1] || primaryAction;
+  const zf = (res && res.zeroFeelFraming) ? res.zeroFeelFraming : null;
+
+  const cpUrlPrimary = monetization.buildCoupangUrl(primaryAction.coupangKw || preset.title, preset.calc, config.coupangAfId);
+  const lpUrlPrimary = monetization.buildLinkPriceDeepLink(primaryAction.lpMerchant || 'himart', primaryAction.lpUrl || 'https://www.e-himart.co.kr/', config.linkPriceId);
+
   return `
     <div id="comparison-table-section" class="overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm bg-white">
+      <div class="bg-slate-900 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
+        <span class="text-xs font-extrabold text-amber-300">📊 시나리오별 손익 비교표 & 실시간 최저가 직결</span>
+        <span class="text-[11px] font-bold text-emerald-300">${zf && zf.badge ? zf.badge : '⚡ 클릭 시 해당 조건 최저가·지원금 즉시 조회'}</span>
+      </div>
       <table class="w-full border-collapse text-left text-sm">
         <caption class="sr-only">${title} 핵심 시나리오별 손익 비교표</caption>
         <thead>
           <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
             ${tableHeaders.map(h => `<th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm">${h}</th>`).join('')}
+            <th class="py-3 px-4 whitespace-nowrap text-xs sm:text-sm text-center text-blue-700 bg-blue-50/60">실시간 최저가 · 혜택</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-100">
-          ${tableRows.map((row, rIdx) => `
+          ${tableRows.map((row, rIdx) => {
+            const matchedAct = actionItems.length > 0 ? actionItems[rIdx % actionItems.length] : primaryAction;
+            const rowCpUrl = monetization.buildCoupangUrl(matchedAct.coupangKw || preset.title, preset.calc, config.coupangAfId);
+            const rowLpUrl = monetization.buildLinkPriceDeepLink(matchedAct.lpMerchant || 'himart', matchedAct.lpUrl || 'https://www.e-himart.co.kr/', config.linkPriceId);
+            const isHighlightRow = rIdx === tableRows.length - 1 || rIdx === 1;
+            const btnHref = (rIdx % 2 === 0) ? rowCpUrl : rowLpUrl;
+            const btnChannel = (rIdx % 2 === 0) ? 'coupang' : 'linkprice';
+            const btnLabel = (rIdx % 2 === 0) ? '🚀 최저가 확인 ↗' : '🏷️ 제휴 특가 ↗';
+            const btnCls = isHighlightRow
+              ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-sm'
+              : 'bg-blue-600 hover:bg-blue-500 text-white';
+
+            return `
             <tr class="${rIdx % 2 === 1 ? 'bg-slate-50/70' : 'bg-white'} hover:bg-blue-50/50 transition">
               ${row.map((cell, cIdx) => `
                 <td class="py-3.5 px-4 text-xs sm:text-sm text-slate-700 ${cIdx === 0 ? 'font-bold text-slate-900' : ''}">
                   ${cell}
                 </td>
               `).join('')}
+              <td class="py-3 px-3 text-center whitespace-nowrap">
+                <a href="${btnHref}" target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordPresetClick('${btnChannel}', this.href, 'preset_table')"
+                   class="inline-block ${btnCls} font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
+                  ${btnLabel}
+                </a>
+              </td>
             </tr>
-          `).join('')}
+            `;
+          }).join('')}
         </tbody>
       </table>
+      <div class="bg-amber-50/90 border-t border-amber-200 px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
+        <div class="text-xs font-extrabold text-amber-950 break-keep">
+          ${zf && zf.callout ? zf.callout : `💡 ${primaryAction.calcVal || '계산된 최적 시나리오 기준 최저가·사은품 혜택을 바로 확인하세요.'}`}
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="${cpUrlPrimary}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('coupang', this.href, 'preset_table')"
+             class="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-lg transition shadow-sm whitespace-nowrap">
+            ${primaryAction.coupangBtn || '🚀 쿠팡 로켓 최저가 ↗'}
+          </a>
+          <a href="${lpUrlPrimary}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('linkprice', this.href, 'preset_table')"
+             class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-lg transition shadow-sm whitespace-nowrap">
+            ${secondaryAction.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+          </a>
+        </div>
+      </div>
     </div>
   `;
 }
@@ -765,6 +815,7 @@ function renderInteractiveCalculatorCard(preset, res) {
   }
 
   const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+  const zf = res.zeroFeelFraming || null;
 
   // Pre-rendered metrics cards (Clickable 1:1 bridge to matching actionItem)
   const metricsHtml = (res.metrics || []).map((m, idx) => {
@@ -780,7 +831,7 @@ function renderInteractiveCalculatorCard(preset, res) {
 
     return `
       <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('coupang', this.href)"
+         onclick="recordPresetClick('coupang', this.href, 'metric_card')"
          class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
         <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
         <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
@@ -804,12 +855,12 @@ function renderInteractiveCalculatorCard(preset, res) {
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
           <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('coupang', this.href)"
+             onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
           </a>
           <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordPresetClick('linkprice', this.href)"
+             onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
              class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
             ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
           </a>
@@ -831,7 +882,7 @@ function renderInteractiveCalculatorCard(preset, res) {
     const badgeText = p.type === 'coupang'
       ? '🚀 쿠팡 로켓배송'
       : `🏷️ 링크프라이스 · ${merchantName}`;
-    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
+    const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
     const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
     const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
     const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
@@ -839,7 +890,7 @@ function renderInteractiveCalculatorCard(preset, res) {
     const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('${p.type}', this.href)"
+         onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
          class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-1.5">
@@ -918,6 +969,9 @@ function renderInteractiveCalculatorCard(preset, res) {
               <div class="text-xs sm:text-sm font-extrabold text-amber-300 whitespace-nowrap truncate">🧾 내 계산 수치 1:1 직결 처방 장바구니</div>
               <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold shrink-0 whitespace-nowrap">수량·예산 자동 매칭</span>
             </div>
+            <div id="res-zero-feel-banner" class="bg-gradient-to-r from-amber-400 to-orange-400 text-slate-950 text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-xl shadow-sm break-keep">
+              ${zf && zf.callout ? zf.callout : '🔥 절약액 차감 시 내 실체감가: 0원 (오히려 순흑자!)'}
+            </div>
             <div id="res-action-items" class="space-y-2">
               ${actionItemsHtml}
             </div>
@@ -926,7 +980,7 @@ function renderInteractiveCalculatorCard(preset, res) {
           <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('cpa', this.href)"
+               onclick="recordPresetClick('cpa', this.href, 'cpa_card')"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
                 <span id="res-cpa-badge" class="whitespace-nowrap truncate">${cpaCardInfo.liveBadge || '⚡ 맞춤 최저가 & 공식 기획전 혜택'}</span>
@@ -936,12 +990,12 @@ function renderInteractiveCalculatorCard(preset, res) {
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="${cpaCardInfo.coupangSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordPresetClick('coupang', this.href)"
+                 onclick="recordPresetClick('coupang', this.href, 'cpa_card')"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.coupangSubLabel} ↗
               </a>
               <a id="res-cpa-lp-sub" href="${cpaCardInfo.linkPriceSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordPresetClick('linkprice', this.href)"
+                 onclick="recordPresetClick('linkprice', this.href, 'cpa_card')"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.linkPriceSubLabel} ↗
               </a>
@@ -974,7 +1028,7 @@ function renderInteractiveCalculatorCard(preset, res) {
 function renderPresetPageHtml(preset) {
   const res = calculatePresetResult(preset);
   const essay = generateDomainEssay(preset, res);
-  const tableHtml = renderTableHtml(preset);
+  const tableHtml = renderTableHtml(preset, res);
   const calculatorCardHtml = renderInteractiveCalculatorCard(preset, res);
 
   const canonicalUrl = `${CANONICAL_BASE}/preset/${preset.id}/`;
@@ -1279,7 +1333,7 @@ ${JSON.stringify(schemaJson, null, 2)}
         <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
       </div>
       <a id="sticky-cta-btn" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordPresetClick('sticky_mobile', this.href)"
+         onclick="recordPresetClick('sticky_mobile', this.href, 'sticky_mobile')"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
         혜택 즉시 확인 →
       </a>
@@ -1298,17 +1352,20 @@ ${JSON.stringify(schemaJson, null, 2)}
       MoneyFitMonetization.loadConfigFromStorage();
     }
 
-    function recordPresetClick(channel, url) {
+    function recordPresetClick(channel, url, slot) {
       try {
+        const safeSlot = String(slot || 'deal_card').replace(/[^a-zA-Z0-9_-]/g, '');
         if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getConfig && MoneyFitMonetization.saveConfigToStorage) {
           const cfg = MoneyFitMonetization.getConfig();
           cfg.clickCount = (cfg.clickCount || 0) + 1;
-          MoneyFitMonetization.saveConfigToStorage({ clickCount: cfg.clickCount });
+          const clicksBySlot = Object.assign({}, cfg.clicksBySlot || {});
+          clicksBySlot[safeSlot] = (clicksBySlot[safeSlot] || 0) + 1;
+          MoneyFitMonetization.saveConfigToStorage({ clickCount: cfg.clickCount, clicksBySlot: clicksBySlot });
         }
         const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
         const pagePath = (window.location && window.location.pathname) ? window.location.pathname : '/';
         if (typeof fetch === 'function') {
-          fetch('/api/track?type=click&channel=' + encodeURIComponent(safeChannel) + '&calc=' + encodeURIComponent(PRESET_CALC) + '&p=' + encodeURIComponent(pagePath), {
+          fetch('/api/track?type=click&channel=' + encodeURIComponent(safeChannel) + '&calc=' + encodeURIComponent(PRESET_CALC) + '&slot=' + encodeURIComponent(safeSlot) + '&p=' + encodeURIComponent(pagePath), {
             method: 'GET',
             keepalive: true
           }).catch(function () {});
@@ -1383,6 +1440,7 @@ ${JSON.stringify(schemaJson, null, 2)}
       const grid = document.getElementById('res-metrics-grid');
       const lossBar = document.getElementById('res-loss-bar');
       const summary = document.getElementById('res-summary');
+      const zeroFeelBanner = document.getElementById('res-zero-feel-banner');
       const actionItemsEl = document.getElementById('res-action-items');
       const cpaBadge = document.getElementById('res-cpa-badge');
       const cpaTitle = document.getElementById('res-cpa-title');
@@ -1390,6 +1448,11 @@ ${JSON.stringify(schemaJson, null, 2)}
       const cpaCoupangSub = document.getElementById('res-cpa-coupang-sub');
       const cpaLpSub = document.getElementById('res-cpa-lp-sub');
       const productsGrid = document.getElementById('res-products-grid');
+
+      const zf = res.zeroFeelFraming || null;
+      if (zeroFeelBanner && zf && zf.callout) {
+        zeroFeelBanner.textContent = zf.callout;
+      }
 
       const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
       const buildCp = (kw) => (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.buildCoupangUrl)
@@ -1421,7 +1484,7 @@ ${JSON.stringify(schemaJson, null, 2)}
           const stepHint = matchedAction ? \`\${matchedAction.icon || '🛒'} \${matchedAction.stepTag || '맞춤 특가'} ↗\` : '🛒 최저가 보기 ↗';
           return \`
             <a href="\${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('coupang', this.href)"
+               onclick="recordPresetClick('coupang', this.href, 'metric_card')"
                class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
               <div class="text-[11px] text-slate-400 truncate">\${m.label}</div>
               <div class="font-extrabold text-sm sm:text-base \${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">\${m.val}</div>
@@ -1446,12 +1509,12 @@ ${JSON.stringify(schemaJson, null, 2)}
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 <a href="\${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordPresetClick('coupang', this.href)"
+                   onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
                    class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                   \${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
                 </a>
                 <a href="\${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordPresetClick('linkprice', this.href)"
+                   onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
                    class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
                   \${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
                 </a>
@@ -1512,7 +1575,7 @@ ${JSON.stringify(schemaJson, null, 2)}
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
             : \`🏷️ 링크프라이스 · \${merchantName}\`;
-          const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
+          const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
           const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
@@ -1520,7 +1583,7 @@ ${JSON.stringify(schemaJson, null, 2)}
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordPresetClick('\${p.type}', this.href)"
+               onclick="recordPresetClick('\${p.type}', this.href, 'deal_card')"
                class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
@@ -1543,7 +1606,7 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (stickySub && stickyMain && stickyBtn) {
         const lc = res.lossComparison || {};
         const primaryAction = actionItems[0] || null;
-        stickySub.textContent = primaryAction ? \`\${primaryAction.icon || '⚡'} \${primaryAction.calcVal}\` : (lc.savingBadge || res.badge);
+        stickySub.textContent = (zf && zf.badge) ? \`\${zf.badge} · \${primaryAction ? primaryAction.calcVal : ''}\` : (primaryAction ? \`\${primaryAction.icon || '⚡'} \${primaryAction.calcVal}\` : (lc.savingBadge || res.badge));
         stickyMain.textContent = primaryAction ? primaryAction.label : ((d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline));
         stickyBtn.href = primaryAction ? buildCp(primaryAction.coupangKw) : ((d && (d.liveActionUrl || d.actionUrl)) ? (d.liveActionUrl || d.actionUrl) : '#');
       }
