@@ -1081,15 +1081,15 @@
       ctx.save();
       ctx.translate(tx, ty);
       ctx.rotate(tiltRad);
-      ctx.font = '400 ' + (31 * s).toFixed(1) + 'px "Nanum Pen Script", "Gaegu", cursive';
+      ctx.font = '400 ' + (29.5 * s).toFixed(1) + 'px "Nanum Pen Script", "Gaegu", cursive';
       ctx.textAlign = align;
       ctx.textBaseline = 'middle';
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
 
       linesArr.forEach((ln, idx) => {
-        const ly = idx * 28 * s;
-        ctx.lineWidth = 6.8 * s;
+        const ly = idx * 25 * s;
+        ctx.lineWidth = 6.5 * s;
         ctx.strokeStyle = '#ffffff';
         ctx.strokeText(ln, 0, ly);
         ctx.fillStyle = '#111111';
@@ -1099,40 +1099,43 @@
     };
 
     if (leftLines && leftLines.length) {
-      drawHaloHandwriting(leftLines, x + 76 * s, y + 402 * s, -0.06, 'center');
+      drawHaloHandwriting(leftLines, x + 76 * s, y + 216 * s, -0.06, 'center');
+      const lStartY = y + (216 + leftLines.length * 23 + 4) * s;
       ctx.save();
       ctx.strokeStyle = '#111111';
-      ctx.lineWidth = 3.5 * s;
+      ctx.lineWidth = 3.2 * s;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.beginPath();
-      ctx.moveTo(x + 56 * s, y + 372 * s);
-      ctx.quadraticCurveTo(x + 48 * s, y + 308 * s, x + 132 * s, y + 308 * s);
+      ctx.moveTo(x + 62 * s, lStartY);
+      ctx.quadraticCurveTo(x + 68 * s, y + 286 * s, x + 132 * s, y + 292 * s);
       ctx.stroke();
+
       ctx.beginPath();
-      ctx.moveTo(x + 112 * s, y + 297 * s);
-      ctx.lineTo(x + 134 * s, y + 308 * s);
-      ctx.lineTo(x + 114 * s, y + 321 * s);
+      ctx.moveTo(x + 116 * s, y + 282 * s);
+      ctx.lineTo(x + 134 * s, y + 292 * s);
+      ctx.lineTo(x + 117 * s, y + 303 * s);
       ctx.stroke();
       ctx.restore();
     }
 
     if (rightLines && rightLines.length) {
-      drawHaloHandwriting(rightLines, x + 424 * s, y + 234 * s, 0.05, 'center');
-      const arrowStartY = y + (234 + rightLines.length * 26 + 6) * s;
+      drawHaloHandwriting(rightLines, x + 422 * s, y + 212 * s, 0.05, 'center');
+      const rStartY = y + (212 + rightLines.length * 23 + 4) * s;
       ctx.save();
       ctx.strokeStyle = '#111111';
-      ctx.lineWidth = 3.5 * s;
+      ctx.lineWidth = 3.2 * s;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.beginPath();
-      ctx.moveTo(x + 444 * s, arrowStartY);
-      ctx.quadraticCurveTo(x + 458 * s, y + 344 * s, x + 372 * s, y + 350 * s);
+      ctx.moveTo(x + 436 * s, rStartY);
+      ctx.quadraticCurveTo(x + 432 * s, y + 288 * s, x + 372 * s, y + 294 * s);
       ctx.stroke();
+
       ctx.beginPath();
-      ctx.moveTo(x + 392 * s, y + 337 * s);
-      ctx.lineTo(x + 370 * s, y + 350 * s);
-      ctx.lineTo(x + 391 * s, y + 361 * s);
+      ctx.moveTo(x + 388 * s, y + 283 * s);
+      ctx.lineTo(x + 370 * s, y + 294 * s);
+      ctx.lineTo(x + 387 * s, y + 305 * s);
       ctx.stroke();
       ctx.restore();
     }
@@ -1140,94 +1143,155 @@
     ctx.restore();
   }
 
-  function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
+  function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
+    const {
+      role = 'mochi',
+      calcKey = 'electric',
+      pose = 'normal',
+      flipX = false
+    } = opts;
+
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.scale(s, s);
+    ctx.scale(flipX ? -s : s, s);
 
     const ink = '#111111';
     ctx.strokeStyle = ink;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
-    const hairMap = {
-      electric: '#f9a89a',
-      diet: '#fbbf24',
-      pet: '#fdba74',
-      room: '#fda4af',
-      auto: '#93c5fd',
-      telecom: '#6ee7b7'
-    };
-    const hairColor = cutNum === 2 ? '#a5b4fc' : (hairMap[calcKey] || '#f9a89a');
+    const hairColor = role === 'senior' ? '#a5b4fc' : '#f9a89a';
 
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
-    ctx.beginPath();
-    ctx.ellipse(0, 128, 36, 7, 0, 0, Math.PI * 2);
-    ctx.fill();
+    if (pose !== 'cry_desk') {
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
+      ctx.beginPath();
+      ctx.ellipse(0, 126, 36, 7, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
     ctx.lineWidth = 3.2;
     ctx.fillStyle = hairColor;
 
-    if (cutNum !== 2) {
+    if (role === 'mochi') {
       ctx.beginPath();
-      ctx.arc(36, -54, 24, 0, Math.PI * 2);
+      ctx.arc(36, -54, 23, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
+
+      ctx.fillStyle = '#fde047';
+      ctx.beginPath();
+      ctx.ellipse(23, -42, 8, 4, -0.6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = hairColor;
     }
 
     ctx.beginPath();
-    ctx.ellipse(0, -10, 62, 52, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -10, 61, 51, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+
+    const outfitColors = {
+      electric: '#bae6fd',
+      diet: '#fef08a',
+      pet: '#a7f3d0',
+      room: '#fde68a',
+      auto: '#cbd5e1',
+      telecom: '#ddd6fe'
+    };
+    const shirtColor = role === 'senior' ? '#e0e7ff' : (outfitColors[calcKey] || '#ffffff');
 
     ctx.fillStyle = '#ffffff';
     ctx.lineWidth = 3.2;
 
-    if (cutNum === 1) {
+    if (pose === 'pointer') {
       ctx.beginPath();
-      ctx.moveTo(-23, 38);
-      ctx.quadraticCurveTo(-35, 66, -33, 88);
-      ctx.quadraticCurveTo(-45, 92, -41, 102);
-      ctx.quadraticCurveTo(-31, 107, -24, 96);
+      ctx.moveTo(-22, 38);
+      ctx.quadraticCurveTo(-34, 66, -30, 92);
+      ctx.quadraticCurveTo(-36, 98, -22, 96);
       ctx.fill();
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(23, 38);
-      ctx.quadraticCurveTo(35, 66, 33, 88);
-      ctx.quadraticCurveTo(45, 92, 41, 102);
-      ctx.quadraticCurveTo(31, 107, 24, 96);
+      ctx.moveTo(20, 40);
+      ctx.quadraticCurveTo(46, 34, 58, 18);
+      ctx.quadraticCurveTo(65, 16, 62, 26);
+      ctx.quadraticCurveTo(48, 46, 22, 56);
       ctx.fill();
       ctx.stroke();
-    } else if (cutNum === 2) {
+
+      ctx.save();
+      ctx.strokeStyle = '#b45309';
+      ctx.lineWidth = 4.5;
       ctx.beginPath();
-      ctx.moveTo(-23, 38);
-      ctx.quadraticCurveTo(-34, 68, -31, 94);
-      ctx.quadraticCurveTo(-39, 100, -23, 100);
+      ctx.moveTo(58, 20);
+      ctx.lineTo(106, -12);
+      ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.arc(106, -12, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    } else if (pose === 'cheer_phone') {
+      ctx.beginPath();
+      ctx.moveTo(-20, 42);
+      ctx.quadraticCurveTo(-48, 22, -46, -2);
+      ctx.quadraticCurveTo(-36, -8, -30, 8);
+      ctx.quadraticCurveTo(-28, 26, -18, 46);
       ctx.fill();
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(21, 42);
-      ctx.quadraticCurveTo(46, 30, 54, 8);
-      ctx.quadraticCurveTo(62, 4, 60, 16);
-      ctx.quadraticCurveTo(50, 42, 23, 58);
+      ctx.moveTo(20, 42);
+      ctx.quadraticCurveTo(46, 22, 44, -2);
+      ctx.quadraticCurveTo(34, -8, 28, 8);
+      ctx.quadraticCurveTo(26, 26, 18, 46);
       ctx.fill();
       ctx.stroke();
-    } else if (cutNum === 4) {
+
+      ctx.save();
+      ctx.translate(-48, -16);
+      ctx.rotate(-0.15);
+      drawRoundedRect(ctx, -16, -24, 32, 48, 6);
+      ctx.fillStyle = '#111111';
+      ctx.fill();
+      drawRoundedRect(ctx, -13, -19, 26, 38, 4);
+      ctx.fillStyle = '#34d399';
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 11px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('3초계산', 0, -2);
+      ctx.fillText('OK!', 0, 11);
+      ctx.restore();
+    } else if (pose === 'shock_side') {
       ctx.beginPath();
-      ctx.moveTo(-21, 42);
-      ctx.quadraticCurveTo(-46, 18, -44, -6);
-      ctx.quadraticCurveTo(-34, -12, -28, 6);
-      ctx.quadraticCurveTo(-26, 24, -17, 46);
+      ctx.moveTo(-20, 40);
+      ctx.quadraticCurveTo(-40, 26, -38, 10);
+      ctx.quadraticCurveTo(-28, 8, -26, 24);
       ctx.fill();
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(21, 42);
-      ctx.quadraticCurveTo(46, 18, 44, -6);
-      ctx.quadraticCurveTo(34, -12, 28, 6);
-      ctx.quadraticCurveTo(26, 24, 17, 46);
+      ctx.moveTo(20, 40);
+      ctx.quadraticCurveTo(40, 26, 38, 10);
+      ctx.quadraticCurveTo(28, 8, 26, 24);
+      ctx.fill();
+      ctx.stroke();
+    } else if (pose !== 'cry_desk') {
+      ctx.beginPath();
+      ctx.moveTo(-22, 38);
+      ctx.quadraticCurveTo(-34, 64, -31, 88);
+      ctx.quadraticCurveTo(-40, 94, -34, 101);
+      ctx.quadraticCurveTo(-25, 104, -20, 92);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(21, 38);
+      ctx.quadraticCurveTo(45, 44, 56, 32);
+      ctx.quadraticCurveTo(64, 30, 62, 41);
+      ctx.quadraticCurveTo(48, 56, 22, 54);
       ctx.fill();
       ctx.stroke();
     }
@@ -1235,18 +1299,150 @@
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
     ctx.moveTo(-21, 34);
-    ctx.quadraticCurveTo(-25, 76, -23, 114);
-    ctx.lineTo(-18, 128);
-    ctx.quadraticCurveTo(-14, 130, -11, 112);
-    ctx.quadraticCurveTo(0, 110, 11, 112);
-    ctx.quadraticCurveTo(14, 130, 18, 128);
-    ctx.lineTo(23, 114);
-    ctx.quadraticCurveTo(25, 76, 21, 34);
+    ctx.quadraticCurveTo(-25, 74, -23, 112);
+    ctx.lineTo(-18, 126);
+    ctx.quadraticCurveTo(-14, 128, -11, 110);
+    ctx.quadraticCurveTo(0, 108, 11, 110);
+    ctx.quadraticCurveTo(14, 128, 18, 126);
+    ctx.lineTo(23, 112);
+    ctx.quadraticCurveTo(25, 74, 21, 34);
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
 
+    ctx.save();
+    ctx.fillStyle = shirtColor;
+    ctx.beginPath();
+    ctx.moveTo(-21, 35);
+    ctx.quadraticCurveTo(-24, 62, -23, 86);
+    ctx.lineTo(23, 86);
+    ctx.quadraticCurveTo(24, 62, 21, 35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    if (calcKey === 'auto' && role === 'mochi') {
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(-18, 38);
+      ctx.lineTo(19, 82);
+      ctx.stroke();
+    } else if (calcKey === 'pet' && role === 'mochi') {
+      ctx.fillStyle = '#059669';
+      ctx.beginPath();
+      ctx.arc(0, 64, 4.5, 0, Math.PI * 2);
+      ctx.arc(-5, 56, 2.2, 0, Math.PI * 2);
+      ctx.arc(0, 54, 2.2, 0, Math.PI * 2);
+      ctx.arc(5, 56, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (calcKey === 'electric' && role === 'mochi') {
+      ctx.strokeStyle = '#0284c7';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-21, 56);
+      ctx.lineTo(21, 56);
+      ctx.moveTo(-22, 70);
+      ctx.lineTo(22, 70);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    if (pose === 'remote') {
+      ctx.save();
+      ctx.translate(60, 24);
+      ctx.rotate(-0.25);
+      drawRoundedRect(ctx, -9, -16, 18, 32, 4);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(-5, -11, 10, 8);
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.arc(0, 4, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    } else if (pose === 'dumbbell') {
+      ctx.save();
+      ctx.translate(60, 28);
+      ctx.rotate(-0.3);
+      ctx.fillStyle = '#fb7185';
+      drawRoundedRect(ctx, -16, -5, 32, 10, 3);
+      ctx.fill();
+      ctx.stroke();
+      drawRoundedRect(ctx, -20, -12, 9, 24, 3);
+      ctx.fill();
+      ctx.stroke();
+      drawRoundedRect(ctx, 11, -12, 9, 24, 3);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    } else if (pose === 'chicken') {
+      ctx.save();
+      ctx.translate(62, 24);
+      ctx.rotate(-0.2);
+      ctx.fillStyle = '#d97706';
+      ctx.beginPath();
+      ctx.ellipse(0, -6, 13, 9, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fef3c7';
+      drawRoundedRect(ctx, -3, 2, 6, 14, 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    } else if (pose === 'cup') {
+      ctx.save();
+      ctx.translate(62, 26);
+      ctx.rotate(0.65);
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(-10, -12);
+      ctx.lineTo(10, -12);
+      ctx.lineTo(7, 12);
+      ctx.lineTo(-7, 12);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = '#92400e';
+      [[74, 42], [78, 54], [72, 64]].forEach(([kx, ky]) => {
+        ctx.beginPath();
+        ctx.arc(kx, ky, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    } else if (pose === 'tape') {
+      ctx.save();
+      ctx.translate(60, 28);
+      ctx.fillStyle = '#facc15';
+      ctx.beginPath();
+      ctx.arc(0, 0, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fef08a';
+      ctx.fillRect(8, -3, 18, 6);
+      ctx.strokeRect(8, -3, 18, 6);
+      ctx.restore();
+    } else if (pose === 'wheel') {
+      ctx.save();
+      ctx.translate(54, 34);
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 5.5;
+      ctx.beginPath();
+      ctx.arc(0, 0, 18, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-16, 0);
+      ctx.lineTo(16, 0);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, 16);
+      ctx.stroke();
+      ctx.restore();
+    }
+
     ctx.fillStyle = '#ffffff';
+    ctx.lineWidth = 3.2;
     ctx.beginPath();
     ctx.moveTo(-54, 8);
     ctx.bezierCurveTo(-56, 32, -28, 42, -2, 42);
@@ -1274,6 +1470,15 @@
     ctx.lineTo(53, 3);
     ctx.stroke();
 
+    if (calcKey === 'diet' && role === 'mochi') {
+      ctx.save();
+      ctx.fillStyle = '#fb7185';
+      drawRoundedRect(ctx, -48, -22, 92, 9, 4);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
     ctx.fillStyle = '#f9a89a';
     ctx.beginPath();
     ctx.ellipse(-32, 14, 9.5, 4.6, 0, 0, Math.PI * 2);
@@ -1283,46 +1488,7 @@
     ctx.strokeStyle = ink;
     ctx.fillStyle = ink;
 
-    if (cutNum === 1) {
-      ctx.lineWidth = 3.0;
-      ctx.beginPath();
-      ctx.moveTo(-36, -12);
-      ctx.quadraticCurveTo(-26, -16, -16, -12);
-      ctx.moveTo(6, -12);
-      ctx.quadraticCurveTo(16, -16, 26, -12);
-      ctx.stroke();
-
-      [-25, 15].forEach(ex => {
-        ctx.lineWidth = 3.0;
-        ctx.beginPath();
-        ctx.moveTo(ex - 9, -2);
-        ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
-        ctx.stroke();
-        ctx.lineWidth = 2.4;
-        [-5, 0, 5].forEach(dx => {
-          ctx.beginPath();
-          ctx.moveTo(ex + dx, -4);
-          ctx.lineTo(ex + dx * 1.25, -8.5);
-          ctx.stroke();
-        });
-        ctx.fillStyle = '#ffffff';
-        ctx.lineWidth = 2.8;
-        ctx.beginPath();
-        ctx.ellipse(ex, 3, 2.8, 4.2, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-      });
-
-      ctx.fillStyle = '#ffffff';
-      ctx.lineWidth = 2.8;
-      ctx.beginPath();
-      ctx.moveTo(-8, 12);
-      ctx.lineTo(2, 12);
-      ctx.bezierCurveTo(3, 21, -9, 21, -8, 12);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-    } else if (cutNum === 2) {
+    if (role === 'senior' || pose === 'pointer') {
       ctx.lineWidth = 3.0;
       ctx.beginPath();
       ctx.moveTo(-36, -15);
@@ -1362,7 +1528,7 @@
       ctx.ellipse(-4, 17, 6.5, 4.8, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
-    } else if (cutNum === 3) {
+    } else if (pose === 'cry_desk' || pose === 'shock_side') {
       ctx.lineWidth = 3.0;
       ctx.beginPath();
       ctx.moveTo(-36, -9);
@@ -1371,11 +1537,13 @@
       ctx.quadraticCurveTo(16, -16, 26, -9);
       ctx.stroke();
 
-      ctx.fillStyle = '#38bdf8';
-      drawRoundedRect(ctx, -30, 4, 9.5, 34, 4.5);
-      ctx.fill();
-      drawRoundedRect(ctx, 11, 4, 9.5, 34, 4.5);
-      ctx.fill();
+      if (pose === 'cry_desk') {
+        ctx.fillStyle = '#38bdf8';
+        drawRoundedRect(ctx, -30, 4, 9.5, 34, 4.5);
+        ctx.fill();
+        drawRoundedRect(ctx, 11, 4, 9.5, 34, 4.5);
+        ctx.fill();
+      }
 
       ctx.lineWidth = 3.2;
       ctx.beginPath();
@@ -1393,16 +1561,18 @@
       ctx.fill();
       ctx.stroke();
 
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.ellipse(-43, 26, 10.5, 14.5, -0.3, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.ellipse(35, 26, 10.5, 14.5, 0.3, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-    } else {
+      if (pose === 'cry_desk') {
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.ellipse(-43, 26, 10.5, 14.5, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.ellipse(35, 26, 10.5, 14.5, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (pose === 'cheer_phone') {
       ctx.lineWidth = 3.2;
       ctx.beginPath();
       ctx.arc(-25, 2, 8.5, Math.PI * 1.15, Math.PI * 1.85);
@@ -1419,9 +1589,588 @@
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
+    } else {
+      ctx.lineWidth = 3.0;
+      ctx.beginPath();
+      ctx.moveTo(-36, -12);
+      ctx.quadraticCurveTo(-26, -16, -16, -12);
+      ctx.moveTo(6, -12);
+      ctx.quadraticCurveTo(16, -16, 26, -12);
+      ctx.stroke();
+
+      [-25, 15].forEach(ex => {
+        ctx.lineWidth = 3.0;
+        ctx.beginPath();
+        ctx.moveTo(ex - 9, -2);
+        ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
+        ctx.stroke();
+        ctx.lineWidth = 2.4;
+        [-5, 0, 5].forEach(dx => {
+          ctx.beginPath();
+          ctx.moveTo(ex + dx, -4);
+          ctx.lineTo(ex + dx * 1.25, -8.5);
+          ctx.stroke();
+        });
+        ctx.fillStyle = '#ffffff';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        ctx.ellipse(ex, 3, 2.8, 4.2, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      });
+
+      ctx.fillStyle = '#ffffff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.moveTo(-8, 12);
+      ctx.lineTo(2, 12);
+      ctx.bezierCurveTo(3, 21, -9, 21, -8, 12);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
     }
 
     ctx.restore();
+  }
+
+  function drawSituationObject(ctx, ox, oy, s, calcKey, slug, cutNum) {
+    ctx.save();
+    ctx.translate(ox, oy);
+    ctx.scale(s, s);
+    ctx.strokeStyle = '#111111';
+    ctx.lineWidth = 3.0;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    const slugStr = String(slug || '');
+
+    if (cutNum === 1) {
+      if (calcKey === 'electric') {
+        if (slugStr.includes('dryer')) {
+          drawRoundedRect(ctx, -50, -54, 100, 112, 10);
+          ctx.fillStyle = '#f8fafc';
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(0, 8, 28, 0, Math.PI * 2);
+          ctx.fillStyle = '#bae6fd';
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#fda4af';
+          ctx.beginPath();
+          ctx.arc(-6, 12, 12, 0, Math.PI);
+          ctx.fill();
+          ctx.fillStyle = '#111111';
+          ctx.font = '700 18px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('열풍 건조기', 0, -32);
+        } else if (slugStr.includes('dehumidifier')) {
+          drawRoundedRect(ctx, -44, -48, 88, 106, 12);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.stroke();
+          drawRoundedRect(ctx, -30, 6, 60, 38, 6);
+          ctx.fillStyle = '#7dd3fc';
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#111111';
+          ctx.font = '700 18px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('24h 제습기💧', 0, -22);
+        } else if (slugStr.includes('heater')) {
+          drawRoundedRect(ctx, -48, -44, 96, 98, 12);
+          ctx.fillStyle = '#fee2e2';
+          ctx.fill();
+          ctx.stroke();
+          ctx.strokeStyle = '#ef4444';
+          ctx.lineWidth = 4.5;
+          [-12, 2, 16].forEach(ry => {
+            ctx.beginPath();
+            ctx.moveTo(-26, ry);
+            ctx.lineTo(26, ry);
+            ctx.stroke();
+          });
+          ctx.fillStyle = '#dc2626';
+          ctx.font = '700 18px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('전기온풍기🔥', 0, -26);
+        } else {
+          drawRoundedRect(ctx, -62, -68, 124, 46, 10);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-50, -32);
+          ctx.lineTo(50, -32);
+          ctx.stroke();
+          ctx.strokeStyle = '#0284c7';
+          ctx.lineWidth = 3.2;
+          [-28, 0, 28].forEach(wx => {
+            ctx.beginPath();
+            ctx.moveTo(wx, -14);
+            ctx.quadraticCurveTo(wx - 10, 6, wx, 24);
+            ctx.quadraticCurveTo(wx + 10, 42, wx - 4, 58);
+            ctx.stroke();
+          });
+          ctx.fillStyle = '#111111';
+          ctx.font = '700 19px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('구형 에어컨❄️', 0, -44);
+        }
+      } else if (calcKey === 'diet') {
+        if (slugStr.includes('bulkup')) {
+          drawRoundedRect(ctx, -56, -12, 112, 68, 8);
+          ctx.fillStyle = '#fef08a';
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#dc2626';
+          ctx.font = '700 21px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('야식 치킨🍗', 0, 26);
+        } else {
+          drawRoundedRect(ctx, -58, -46, 116, 104, 10);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.stroke();
+          drawRoundedRect(ctx, -48, -38, 96, 28, 6);
+          ctx.fillStyle = '#ef4444';
+          ctx.fill();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '700 18px "Gaegu", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('편의점 단품', 0, -20);
+          ctx.fillStyle = '#111111';
+          ctx.font = '700 21px "Gaegu", sans-serif';
+          ctx.fillText('1팩 2,900원', 0, 12);
+          ctx.fillStyle = '#64748b';
+          ctx.font = '700 17px "Gaegu", sans-serif';
+          ctx.fillText('(식비 폭탄💦)', 0, 38);
+        }
+      } else if (calcKey === 'pet') {
+        const isCat = slugStr.includes('cat') || slugStr.includes('shorthair');
+        ctx.fillStyle = isCat ? '#fed7aa' : '#ffffff';
+        ctx.beginPath();
+        ctx.ellipse(10, -2, 30, 25, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        if (isCat) {
+          ctx.beginPath();
+          ctx.moveTo(-14, -18);
+          ctx.lineTo(-22, -40);
+          ctx.lineTo(-2, -24);
+          ctx.moveTo(34, -18);
+          ctx.lineTo(42, -40);
+          ctx.lineTo(22, -24);
+          ctx.fill();
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.ellipse(-18, -2, 9, 18, 0.3, 0, Math.PI * 2);
+          ctx.ellipse(38, -2, 9, 18, -0.3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+        }
+        ctx.fillStyle = '#111111';
+        ctx.beginPath();
+        ctx.arc(0, -4, 3.2, 0, Math.PI * 2);
+        ctx.arc(20, -4, 3.2, 0, Math.PI * 2);
+        ctx.arc(10, 4, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#92400e';
+        ctx.beginPath();
+        ctx.arc(-22, 42, 22, Math.PI, 0);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fb7185';
+        ctx.beginPath();
+        ctx.moveTo(-46, 40);
+        ctx.lineTo(2, 40);
+        ctx.lineTo(-4, 58);
+        ctx.lineTo(-40, 58);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      } else if (calcKey === 'room') {
+        drawRoundedRect(ctx, -52, -2, 104, 62, 6);
+        ctx.fillStyle = '#fcd34d';
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -42, -52, 84, 50, 6);
+        ctx.fillStyle = '#fde68a';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('이사박스📦', 0, -22);
+        ctx.fillText('가전·가구?', 0, 32);
+      } else if (calcKey === 'auto') {
+        drawRoundedRect(ctx, -44, -42, 88, 38, 12);
+        ctx.fillStyle = '#e0f2fe';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('신차 할부🚗', 0, -19);
+
+        drawRoundedRect(ctx, -58, -8, 116, 46, 14);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(-38, 15, 9, 0, Math.PI * 2);
+        ctx.arc(38, 15, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -20, 8, 40, 16, 4);
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        drawRoundedRect(ctx, -54, -38, 108, 86, 10);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -54, -38, 108, 26, 8);
+        ctx.fillStyle = '#a78bfa';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('약정 달력📅', 0, -20);
+        ctx.font = '700 20px "Gaegu", sans-serif';
+        ctx.fillText('위약금 무서워', 0, 12);
+        ctx.fillText('그냥 쓰자..', 0, 34);
+      }
+    } else if (cutNum === 2) {
+      drawRoundedRect(ctx, -68, -56, 136, 114, 10);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.stroke();
+
+      drawRoundedRect(ctx, -60, -50, 120, 26, 6);
+      ctx.fillStyle = '#fee2e2';
+      ctx.fill();
+
+      ctx.fillStyle = '#dc2626';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+
+      if (calcKey === 'electric') {
+        ctx.fillText('누진세 3단계📈', 0, -33);
+        ctx.fillStyle = '#fca5a5';
+        ctx.fillRect(-42, 22, 22, 24);
+        ctx.strokeRect(-42, 22, 22, 24);
+        ctx.fillStyle = '#f87171';
+        ctx.fillRect(-11, 2, 22, 44);
+        ctx.strokeRect(-11, 2, 22, 44);
+        ctx.fillStyle = '#dc2626';
+        ctx.fillRect(20, -22, 22, 68);
+        ctx.strokeRect(20, -22, 22, 68);
+      } else if (calcKey === 'diet') {
+        ctx.fillText('식비 단가 비교📊', 0, -33);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('❌ 낱개 2,900원', 0, 0);
+        ctx.fillStyle = '#047857';
+        ctx.fillText('⭕ 벌크 1,100원', 0, 28);
+      } else if (calcKey === 'pet') {
+        ctx.fillText('수의학 정량표⚖️', 0, -33);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('❌ 눈대중 과급여', 0, 0);
+        ctx.fillStyle = '#047857';
+        ctx.fillText('⭕ 1g 저울 급여', 0, 28);
+      } else if (calcKey === 'room') {
+        ctx.fillText('황금배분 공식📐', 0, -33);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('❌ 단품 초과구매', 0, 0);
+        ctx.fillStyle = '#047857';
+        ctx.fillText('⭕ 예산 맞춤배분', 0, 28);
+      } else if (calcKey === 'auto') {
+        ctx.fillText('4년 총비용 비교🚗', 0, -33);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('❌ 할부+세금폭탄', 0, 0);
+        ctx.fillStyle = '#047857';
+        ctx.fillText('⭕ 특판·절세완승', 0, 28);
+      } else {
+        ctx.fillText('환승 순익 공식💵', 0, -33);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('사은품 47만원', 0, 0);
+        ctx.fillStyle = '#047857';
+        ctx.fillText('위약금 빼도 이득!', 0, 28);
+      }
+    } else if (cutNum === 3) {
+      if (calcKey === 'electric') {
+        drawRoundedRect(ctx, -64, -44, 128, 88, 8);
+        ctx.fillStyle = '#fff1f2';
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -56, -36, 112, 26, 5);
+        ctx.fillStyle = '#ef4444';
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('⚡ 전기요금 고지서', 0, -18);
+        ctx.fillStyle = '#be123c';
+        ctx.font = '700 20px "Gaegu", sans-serif';
+        ctx.fillText('누진 3단계 폭탄!', 0, 18);
+      } else if (calcKey === 'diet') {
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.moveTo(-48, -56);
+        ctx.lineTo(48, -56);
+        ctx.lineTo(42, 48);
+        ctx.lineTo(-42, 48);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#be123c';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🧾 편의점 영수증', 0, -28);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('낱개 구매 파산💸', 0, 2);
+        ctx.fillText('텅장 주의보..', 0, 26);
+      } else if (calcKey === 'pet') {
+        drawRoundedRect(ctx, -62, -46, 124, 92, 10);
+        ctx.fillStyle = '#fff1f2';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#be123c';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🏥 동물병원 차트', 0, -18);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('과급여 비만·관절', 0, 8);
+        ctx.fillText('수술비 주의보💦', 0, 30);
+      } else if (calcKey === 'room') {
+        drawRoundedRect(ctx, -60, -34, 120, 68, 8);
+        ctx.fillStyle = '#fee2e2';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.beginPath();
+        ctx.arc(-32, 44, 9, 0, Math.PI * 2);
+        ctx.arc(32, 44, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#be123c';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🛒 장바구니 초과!', 0, -8);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.fillText('단품 거품 폭탄🚨', 0, 18);
+      } else if (calcKey === 'auto') {
+        ctx.fillStyle = '#334155';
+        ctx.beginPath();
+        ctx.arc(0, 8, 44, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(28, -32, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fde047';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('세금+보험💣', 0, 4);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 17px "Gaegu", sans-serif';
+        ctx.fillText('할부이자 폭탄!', 0, 26);
+      } else {
+        drawRoundedRect(ctx, -56, -24, 112, 56, 8);
+        ctx.fillStyle = '#dcfce7';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.ellipse(-62, -16, 16, 9, -0.4, 0, Math.PI * 2);
+        ctx.ellipse(62, -16, 16, 9, 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#be123c';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('💸 날아간 47만원', 0, 0);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 17px "Gaegu", sans-serif';
+        ctx.fillText('가만히 있으면 0원', 0, 22);
+      }
+    } else if (cutNum === 4) {
+      if (calcKey === 'electric') {
+        ctx.fillStyle = '#fbcfe8';
+        ctx.beginPath();
+        ctx.ellipse(0, 12, 58, 30, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(0, -24, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('전기세 세이브🐷', 0, 17);
+      } else if (calcKey === 'diet') {
+        drawRoundedRect(ctx, -58, 10, 116, 34, 8);
+        ctx.fillStyle = '#bbf7d0';
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -52, -24, 104, 34, 8);
+        ctx.fillStyle = '#fef08a';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('득근 밀프렙💪', 0, -2);
+        ctx.fillText('식비 반값 성공!', 0, 31);
+      } else if (calcKey === 'pet') {
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(0, 0, 28, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fb7185';
+        ctx.font = '700 20px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🐶❤️🐱', 0, 6);
+        drawRoundedRect(ctx, -58, 28, 116, 28, 8);
+        ctx.fillStyle = '#a7f3d0';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 17.5px "Gaegu", sans-serif';
+        ctx.fillText('1g 정량배식 OK', 0, 46);
+      } else if (calcKey === 'room') {
+        ctx.fillStyle = '#fef08a';
+        ctx.beginPath();
+        ctx.moveTo(-26, 6);
+        ctx.lineTo(26, 6);
+        ctx.lineTo(16, -32);
+        ctx.lineTo(-16, -32);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        drawRoundedRect(ctx, -56, 16, 112, 34, 8);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('워너비 내방✨', 0, 38);
+      } else if (calcKey === 'auto') {
+        drawRoundedRect(ctx, -58, -10, 116, 48, 12);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.ellipse(-14, -16, 14, 8, -0.3, 0, Math.PI * 2);
+        ctx.ellipse(14, -16, 14, 8, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('최저가 출고🎀', 0, 19);
+      } else {
+        drawRoundedRect(ctx, -58, -18, 116, 64, 8);
+        ctx.fillStyle = '#fde047';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('당일 현금입금💵', 0, 6);
+        ctx.fillStyle = '#dc2626';
+        ctx.fillText('+47만원 완료!', 0, 30);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1, slug = '') {
+    const pS = s / 1.06;
+    const px = cx - 251 * pS;
+    const py = cy - 328 * pS;
+
+    if (cutNum === 1) {
+      const poseByCat = {
+        electric: 'remote',
+        diet: String(slug).includes('bulkup') ? 'chicken' : 'dumbbell',
+        pet: 'cup',
+        room: 'tape',
+        auto: 'wheel',
+        telecom: 'remote'
+      };
+      drawMochiFigure(ctx, px + 184 * pS, py + 336 * pS, pS * 1.02, {
+        role: 'mochi',
+        calcKey,
+        pose: poseByCat[calcKey] || 'remote'
+      });
+      drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 1);
+    } else if (cutNum === 2) {
+      drawMochiFigure(ctx, px + 90 * pS, py + 368 * pS, pS * 0.72, {
+        role: 'mochi',
+        calcKey,
+        pose: 'shock_side'
+      });
+      drawMochiFigure(ctx, px + 228 * pS, py + 338 * pS, pS * 0.94, {
+        role: 'senior',
+        calcKey,
+        pose: 'pointer'
+      });
+      drawSituationObject(ctx, px + 404 * pS, py + 366 * pS, pS * 0.92, calcKey, slug, 2);
+    } else if (cutNum === 3) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(71, 85, 105, 0.28)';
+      ctx.lineWidth = 2.5 * pS;
+      for (let gx = 24; gx < 480; gx += 18) {
+        ctx.beginPath();
+        ctx.moveTo(px + gx * pS, py + 200 * pS);
+        ctx.lineTo(px + gx * pS, py + (235 + (gx % 3) * 12) * pS);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      drawMochiFigure(ctx, px + 188 * pS, py + 334 * pS, pS * 1.02, {
+        role: 'mochi',
+        calcKey,
+        pose: 'cry_desk'
+      });
+      drawSituationObject(ctx, px + 378 * pS, py + 376 * pS, pS * 0.96, calcKey, slug, 3);
+    } else {
+      ctx.save();
+      ctx.fillStyle = '#facc15';
+      [[92, 275], [320, 272], [448, 295]].forEach(([sx, sy]) => {
+        ctx.beginPath();
+        ctx.arc(px + sx * pS, py + sy * pS, 5.5 * pS, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
+
+      drawMochiFigure(ctx, px + 190 * pS, py + 336 * pS, pS * 1.02, {
+        role: 'mochi',
+        calcKey,
+        pose: 'cheer_phone'
+      });
+      drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 4);
+    }
   }
 
   function getConversationalScript(calcKey, meta) {
@@ -1562,7 +2311,7 @@
     const hlByNum = ['#fef08a', '#fecdd3', '#fde047', '#bbf7d0'][panelIdx];
     drawOvalSpeechBubbleWithContrast(ctx, linesByNum, W * 0.48, 138, 200, 62, 1, accentByNum, hlByNum);
 
-    drawHumanInstatoonCharacter(ctx, W * 0.5, 328, preset.calc, num, 1.06);
+    drawHumanInstatoonCharacter(ctx, W * 0.5, 328, preset.calc, num, 1.06, preset.id || preset.slug || '');
 
     const pairNotes = (conv.notes && conv.notes[panelIdx]) || [['의욕MAX'], ['자취 1년차']];
     drawHandwrittenSideNotes(ctx, pairNotes[0], pairNotes[1], 0, 0, W, H, 1);

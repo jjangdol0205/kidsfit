@@ -429,25 +429,26 @@ function drawOvalSpeechBubbleWithContrast(ctx, lines, cx, cy, rx, ry, s = 1, acc
 }
 
 /**
- * 3. Hand-Drawn Curved Arrows (↗, ↙) + Handwritten Pen Annotations ("의욕MAX", "대학교 졸업반" style)
+ * 3. Hand-Drawn Curved Arrows (↘, ↙) + Handwritten Pen Annotations ("절약왕MAX", "자취 1년차" style)
+ *    Positioned cleanly in the upper-mid wall space (y = 212..268) so the lower stage (y = 275..468)
+ *    has full room for situation-specific furniture, pets, appliances, and multi-character action!
  */
 function drawHandwrittenSideNotes(ctx, leftLines, rightLines, x, y, w, h, s = 1) {
   ctx.save();
 
-  // Helper to draw handwritten text with crisp white halo outline + black ink
   const drawHaloHandwriting = (linesArr, tx, ty, tiltRad, align = 'center') => {
     ctx.save();
     ctx.translate(tx, ty);
     ctx.rotate(tiltRad);
-    ctx.font = '400 ' + (31 * s).toFixed(1) + 'px "Nanum Pen Script", "Gaegu", cursive';
+    ctx.font = '400 ' + (29.5 * s).toFixed(1) + 'px "Nanum Pen Script", "Gaegu", cursive';
     ctx.textAlign = align;
     ctx.textBaseline = 'middle';
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
 
     linesArr.forEach((ln, idx) => {
-      const ly = idx * 28 * s;
-      ctx.lineWidth = 6.8 * s;
+      const ly = idx * 25 * s;
+      ctx.lineWidth = 6.5 * s;
       ctx.strokeStyle = '#ffffff';
       ctx.strokeText(ln, 0, ly);
       ctx.fillStyle = '#111111';
@@ -456,51 +457,46 @@ function drawHandwrittenSideNotes(ctx, leftLines, rightLines, x, y, w, h, s = 1)
     ctx.restore();
   };
 
-  // Left-bottom handwritten note ("의욕MAX" position) + Curved Arrow ↗
+  // Left-upper-mid handwritten note + Curved Arrow ↘ pointing to protagonist
   if (leftLines && leftLines.length) {
-    drawHaloHandwriting(leftLines, x + 76 * s, y + 402 * s, -0.06, 'center');
-
-    // Hand-drawn curved black arrow ↗ pointing from left note up to character
+    drawHaloHandwriting(leftLines, x + 76 * s, y + 216 * s, -0.06, 'center');
+    const lStartY = y + (216 + leftLines.length * 23 + 4) * s;
     ctx.save();
     ctx.strokeStyle = '#111111';
-    ctx.lineWidth = 3.5 * s;
+    ctx.lineWidth = 3.2 * s;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.beginPath();
-    ctx.moveTo(x + 56 * s, y + 372 * s);
-    ctx.quadraticCurveTo(x + 48 * s, y + 308 * s, x + 132 * s, y + 308 * s);
+    ctx.moveTo(x + 62 * s, lStartY);
+    ctx.quadraticCurveTo(x + 68 * s, y + 286 * s, x + 132 * s, y + 292 * s);
     ctx.stroke();
 
-    // Open arrowhead '>'
     ctx.beginPath();
-    ctx.moveTo(x + 112 * s, y + 297 * s);
-    ctx.lineTo(x + 134 * s, y + 308 * s);
-    ctx.lineTo(x + 114 * s, y + 321 * s);
+    ctx.moveTo(x + 116 * s, y + 282 * s);
+    ctx.lineTo(x + 134 * s, y + 292 * s);
+    ctx.lineTo(x + 117 * s, y + 303 * s);
     ctx.stroke();
     ctx.restore();
   }
 
-  // Right-middle handwritten note ("대학교 졸업반" position) + Curved Arrow ↙
+  // Right-upper-mid handwritten note + Curved Arrow ↙ pointing to situation prop / senior
   if (rightLines && rightLines.length) {
-    drawHaloHandwriting(rightLines, x + 424 * s, y + 234 * s, 0.05, 'center');
-
-    // Hand-drawn curved black arrow ↙ pointing from right note down-left to character
-    const arrowStartY = y + (234 + rightLines.length * 26 + 6) * s;
+    drawHaloHandwriting(rightLines, x + 422 * s, y + 212 * s, 0.05, 'center');
+    const rStartY = y + (212 + rightLines.length * 23 + 4) * s;
     ctx.save();
     ctx.strokeStyle = '#111111';
-    ctx.lineWidth = 3.5 * s;
+    ctx.lineWidth = 3.2 * s;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.beginPath();
-    ctx.moveTo(x + 444 * s, arrowStartY);
-    ctx.quadraticCurveTo(x + 458 * s, y + 344 * s, x + 372 * s, y + 350 * s);
+    ctx.moveTo(x + 436 * s, rStartY);
+    ctx.quadraticCurveTo(x + 432 * s, y + 288 * s, x + 372 * s, y + 294 * s);
     ctx.stroke();
 
-    // Open arrowhead '<'
     ctx.beginPath();
-    ctx.moveTo(x + 392 * s, y + 337 * s);
-    ctx.lineTo(x + 370 * s, y + 350 * s);
-    ctx.lineTo(x + 391 * s, y + 361 * s);
+    ctx.moveTo(x + 388 * s, y + 283 * s);
+    ctx.lineTo(x + 370 * s, y + 294 * s);
+    ctx.lineTo(x + 387 * s, y + 305 * s);
     ctx.stroke();
     ctx.restore();
   }
@@ -509,148 +505,735 @@ function drawHandwrittenSideNotes(ctx, leftLines, rightLines, x, y, w, h, s = 1)
 }
 
 /**
- * 4. Authentic Human-Drawn 2D Mochi Character (사람이 아이패드로 직접 그린 찹쌀떡 인스타툰 캐릭터)
- *    Exact match to the user's reference image: white chubby mochi body, pastel hair bun,
- *    big round ear overlapping hair cleanly, soft curved bangs, 3 upper eyelashes, and expressive poses!
+ * Preset-Adaptive Character & Scene Configuration SSOT
+ * Keeps the iconic Hand-Drawn Mochi character identity 100%,
+ * while providing customized hairstyles, outfits, props, and mentors for every single preset!
  */
-function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
+function getCharacterConfigForPreset(slug, calcKey) {
+  const s = String(slug || '').toLowerCase();
+  const def = {
+    hero: {
+      hairStyle: 'bun',
+      hairColor: '#f9a89a',
+      headwear: 'none',
+      headwearColor: '#fde047',
+      outfit: 'home_tee',
+      shirtColor: '#bae6fd',
+      pose1: 'remote',
+      gender: 'female'
+    },
+    mentor: {
+      type: 'senior_pro',
+      hairColor: '#a5b4fc',
+      shirtColor: '#e0e7ff',
+      glasses: true
+    }
+  };
+
+  if (calcKey === 'auto') {
+    if (s.includes('casper')) {
+      return {
+        hero: { hairStyle: 'twin_buns', hairColor: '#f9a89a', headwear: 'none', headwearColor: '#fde047', outfit: 'hoodie', shirtColor: '#fef08a', pose1: 'wheel', gender: 'female' },
+        mentor: { type: 'tax_pro', hairColor: '#64748b', shirtColor: '#e2e8f0', glasses: true }
+      };
+    } else if (s.includes('tucson') || s.includes('ioniq')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#1e293b', headwear: 'none', headwearColor: '#38bdf8', outfit: 'office_shirt', shirtColor: '#e2e8f0', pose1: 'wheel', gender: 'male' },
+        mentor: { type: 'auto_master', hairColor: '#334155', shirtColor: '#0284c7', glasses: true }
+      };
+    } else if (s.includes('grandeur') || s.includes('genesis')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#0f172a', headwear: 'none', headwearColor: '#94a3b8', outfit: 'office_shirt', shirtColor: '#cbd5e1', pose1: 'car_key', gender: 'male' },
+        mentor: { type: 'tax_pro', hairColor: '#1e293b', shirtColor: '#334155', glasses: true }
+      };
+    } else {
+      // auto-avante-3000 (20대 사회초년생 첫차)
+      return {
+        hero: { hairStyle: 'short', hairColor: '#334155', headwear: 'cap', headwearColor: '#3b82f6', outfit: 'hoodie', shirtColor: '#93c5fd', pose1: 'car_key', gender: 'male' },
+        mentor: { type: 'tax_pro', hairColor: '#1e3a8a', shirtColor: '#e0e7ff', glasses: true }
+      };
+    }
+  }
+
+  if (calcKey === 'diet') {
+    if (s.includes('female') || s.includes('quick-3kg')) {
+      return {
+        hero: { hairStyle: s.includes('quick-3kg') ? 'twin_buns' : 'ponytail', hairColor: '#fb7185', headwear: 'sweatband', headwearColor: '#fda4af', outfit: 'gym_tank', shirtColor: '#fda4af', pose1: 'salad', gender: 'female' },
+        mentor: { type: 'gym_coach', hairColor: '#1e293b', shirtColor: '#f43f5e', glasses: false }
+      };
+    } else if (s.includes('bulkup') || s.includes('student')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#475569', headwear: 'none', headwearColor: '#10b981', outfit: 'gym_tank', shirtColor: '#a7f3d0', pose1: 'chicken', gender: 'male' },
+        mentor: { type: 'gym_coach', hairColor: '#1e293b', shirtColor: '#10b981', glasses: false }
+      };
+    } else if (s.includes('office')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#1e293b', headwear: 'none', headwearColor: '#3b82f6', outfit: 'office_shirt', shirtColor: '#e0f2fe', pose1: 'salad', gender: 'male' },
+        mentor: { type: 'senior_pro', hairColor: '#3b82f6', shirtColor: '#dbeafe', glasses: true }
+      };
+    } else {
+      // diet-male-fatloss (80kg 헬린이 체지방 컷팅)
+      return {
+        hero: { hairStyle: 'short', hairColor: '#1e293b', headwear: 'sweatband', headwearColor: '#ef4444', outfit: 'gym_tank', shirtColor: '#fef08a', pose1: 'dumbbell', gender: 'male' },
+        mentor: { type: 'gym_coach', hairColor: '#0f172a', shirtColor: '#ef4444', glasses: false }
+      };
+    }
+  }
+
+  if (calcKey === 'pet') {
+    if (s.includes('cat') || s.includes('shorthair')) {
+      return {
+        hero: { hairStyle: 'bob', hairColor: '#ea580c', headwear: 'cat_ears', headwearColor: '#fed7aa', outfit: 'home_tee', shirtColor: '#fed7aa', pose1: 'chicken', gender: 'female' },
+        mentor: { type: 'vet_doc', hairColor: '#475569', shirtColor: '#ffffff', glasses: true }
+      };
+    } else if (s.includes('pomeranian')) {
+      return {
+        hero: { hairStyle: 'twin_buns', hairColor: '#f9a89a', headwear: 'ribbon', headwearColor: '#fb7185', outfit: 'home_tee', shirtColor: '#fbcfe8', pose1: 'cup', gender: 'female' },
+        mentor: { type: 'vet_doc', hairColor: '#334155', shirtColor: '#ffffff', glasses: true }
+      };
+    } else if (s.includes('golden')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#b45309', headwear: 'cap', headwearColor: '#f59e0b', outfit: 'hoodie', shirtColor: '#fde047', pose1: 'cup', gender: 'male' },
+        mentor: { type: 'senior_pro', hairColor: '#78350f', shirtColor: '#fef3c7', glasses: false }
+      };
+    } else {
+      // pet-maltese-5kg
+      return {
+        hero: { hairStyle: 'bun', hairColor: '#fdba74', headwear: 'dog_ears', headwearColor: '#fed7aa', outfit: 'apron', shirtColor: '#fed7aa', pose1: 'cup', gender: 'female' },
+        mentor: { type: 'vet_doc', hairColor: '#475569', shirtColor: '#ffffff', glasses: true }
+      };
+    }
+  }
+
+  if (calcKey === 'electric') {
+    if (s.includes('winter') || s.includes('heater')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#1e293b', headwear: 'beanie', headwearColor: '#ef4444', outfit: 'winter_coat', shirtColor: '#ef4444', pose1: 'remote', gender: 'male' },
+        mentor: { type: 'senior_pro', hairColor: '#a5b4fc', shirtColor: '#fee2e2', glasses: true }
+      };
+    } else if (s.includes('dryer')) {
+      return {
+        hero: { hairStyle: 'twin_buns', hairColor: '#f472b6', headwear: 'ribbon', headwearColor: '#fbcfe8', outfit: 'apron', shirtColor: '#fce7f3', pose1: 'tape', gender: 'female' },
+        mentor: { type: 'senior_pro', hairColor: '#a5b4fc', shirtColor: '#e0e7ff', glasses: true }
+      };
+    } else if (s.includes('dehumidifier')) {
+      return {
+        hero: { hairStyle: 'sprout', hairColor: '#0284c7', headwear: 'none', headwearColor: '#7dd3fc', outfit: 'home_tee', shirtColor: '#7dd3fc', pose1: 'remote', gender: 'female' },
+        mentor: { type: 'senior_pro', hairColor: '#a5b4fc', shirtColor: '#e0e7fe', glasses: true }
+      };
+    } else {
+      // electric-studio-ac / stand-ac / inverter-roi
+      return {
+        hero: { hairStyle: 'bun', hairColor: '#f9a89a', headwear: 'none', headwearColor: '#fde047', outfit: 'home_tee', shirtColor: '#bae6fd', pose1: 'remote', gender: 'female' },
+        mentor: { type: 'senior_pro', hairColor: '#a5b4fc', shirtColor: '#e0e7ff', glasses: true }
+      };
+    }
+  }
+
+  if (calcKey === 'room') {
+    if (s.includes('newlywed')) {
+      return {
+        hero: { hairStyle: 'twin_buns', hairColor: '#fda4af', headwear: 'ribbon', headwearColor: '#fb7185', outfit: 'home_tee', shirtColor: '#ffe4e6', pose1: 'tape', gender: 'female' },
+        mentor: { type: 'interior_pro', hairColor: '#334155', shirtColor: '#fce7f3', glasses: true }
+      };
+    } else if (s.includes('minimalist')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#475569', headwear: 'none', headwearColor: '#64748b', outfit: 'home_tee', shirtColor: '#f1f5f9', pose1: 'tape', gender: 'male' },
+        mentor: { type: 'senior_pro', hairColor: '#64748b', shirtColor: '#e2e8f0', glasses: true }
+      };
+    } else {
+      // room-oneroom-100 / officetel-300 / 500
+      return {
+        hero: { hairStyle: 'short', hairColor: '#78350f', headwear: 'beret', headwearColor: '#d97706', outfit: 'apron', shirtColor: '#fde68a', pose1: 'tape', gender: 'unisex' },
+        mentor: { type: 'interior_pro', hairColor: '#334155', shirtColor: '#e0e7ff', glasses: true }
+      };
+    }
+  }
+
+  if (calcKey === 'telecom') {
+    if (s.includes('penalty')) {
+      return {
+        hero: { hairStyle: 'bob', hairColor: '#0d9488', headwear: 'none', headwearColor: '#14b8a6', outfit: 'home_tee', shirtColor: '#ccfbf1', pose1: 'remote', gender: 'female' },
+        mentor: { type: 'telecom_pro', hairColor: '#1e293b', shirtColor: '#99f6e4', glasses: true }
+      };
+    } else if (s.includes('family')) {
+      return {
+        hero: { hairStyle: 'short', hairColor: '#1e293b', headwear: 'none', headwearColor: '#10b981', outfit: 'home_tee', shirtColor: '#ecfdf5', pose1: 'remote', gender: 'male' },
+        mentor: { type: 'telecom_pro', hairColor: '#047857', shirtColor: '#a7f3d0', glasses: true }
+      };
+    } else {
+      // telecom-mvno-switch / 3yr-expired / single-oneroom
+      return {
+        hero: { hairStyle: 'short', hairColor: '#0f766e', headwear: 'none', headwearColor: '#14b8a6', outfit: 'hoodie', shirtColor: '#99f6e4', pose1: 'remote', gender: 'unisex' },
+        mentor: { type: 'telecom_pro', hairColor: '#1e293b', shirtColor: '#a7f3d0', glasses: true }
+      };
+    }
+  }
+
+  return def;
+}
+
+/**
+ * Helper: Draw our signature consistent Mochi character (or Senior expert) at (cx, cy)
+ * Keeps the lovable hand-drawn white mochi body 100%, while dynamically varying
+ * hairstyles, headwear, outfits, accessories, and cut poses to fit the exact episode!
+ */
+function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
+  const {
+    role = 'hero',
+    calcKey = 'electric',
+    slug = '',
+    pose = 'normal',
+    flipX = false
+  } = opts;
+
   ctx.save();
   ctx.translate(cx, cy);
-  ctx.scale(s, s);
+  ctx.scale(flipX ? -s : s, s);
 
   const ink = '#111111';
   ctx.strokeStyle = ink;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
-  const hairMap = {
-    electric: '#f9a89a', // Coral-pink bun (identical to reference image!)
-    diet: '#fbbf24',     // Warm apricot-yellow
-    pet: '#fdba74',      // Soft peach-orange
-    room: '#fda4af',     // Rose-pink
-    auto: '#93c5fd',     // Soft sky-blue
-    telecom: '#6ee7b7'   // Mint-emerald
-  };
-  const hairColor = cutNum === 2 ? '#a5b4fc' : (hairMap[calcKey] || '#f9a89a');
+  const isMentor = role === 'mentor' || role === 'senior';
+  const charCfg = getCharacterConfigForPreset(slug, calcKey);
+  const cfg = isMentor ? charCfg.mentor : charCfg.hero;
 
-  // Subtle floor shadow under feet
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
-  ctx.beginPath();
-  ctx.ellipse(0, 128, 36, 7, 0, 0, Math.PI * 2);
-  ctx.fill();
+  const hairStyle = isMentor
+    ? ((cfg.type === 'gym_coach' || cfg.type === 'auto_master') ? 'short' : 'bob')
+    : (cfg.hairStyle || 'bun');
+  const hairColor = cfg.hairColor || (isMentor ? '#a5b4fc' : '#f9a89a');
+  const headwear = isMentor ? 'none' : (cfg.headwear || 'none');
+  const headwearColor = cfg.headwearColor || '#fde047';
+  const outfit = isMentor
+    ? ((cfg.type === 'vet_doc') ? 'doctor_coat' : (cfg.type === 'gym_coach') ? 'gym_tank' : (cfg.type === 'tax_pro') ? 'office_shirt' : (cfg.type === 'interior_pro') ? 'apron' : 'office_shirt')
+    : (cfg.outfit || 'home_tee');
+  const shirtColor = cfg.shirtColor || (isMentor ? '#e0e7ff' : '#bae6fd');
+  const gender = isMentor ? ((cfg.type === 'gym_coach') ? 'male' : 'unisex') : (cfg.gender || 'female');
 
-  // --- A. Back Hair Bun & Full Hair Silhouette (Behind Face & Ear) ---
+  // Subtle floor shadow
+  if (pose !== 'cry_desk') {
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
+    ctx.beginPath();
+    ctx.ellipse(0, 126, 36, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // --- 1. Back Hair Bun / Style & Outer Hair Silhouette ---
   ctx.lineWidth = 3.2;
   ctx.fillStyle = hairColor;
 
-  if (cutNum !== 2) {
-    // Cute top-right round hair bun (exact match to reference image!)
+  if (hairStyle === 'bun') {
+    // Signature top-right round bun + hair tie
     ctx.beginPath();
-    ctx.arc(36, -54, 24, 0, Math.PI * 2);
+    ctx.arc(36, -54, 23, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = headwearColor;
+    ctx.beginPath();
+    ctx.ellipse(23, -42, 8, 4, -0.6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = hairColor;
+  } else if (hairStyle === 'twin_buns') {
+    // Cute double buns (Left & Right)
+    ctx.beginPath();
+    ctx.arc(-35, -52, 20, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(35, -52, 20, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = headwearColor;
+    ctx.beginPath();
+    ctx.ellipse(-23, -40, 7, 4, 0.6, 0, Math.PI * 2);
+    ctx.ellipse(23, -40, 7, 4, -0.6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = hairColor;
+  } else if (hairStyle === 'sprout') {
+    // Cute top sprout / ponytail
+    ctx.beginPath();
+    ctx.arc(0, -56, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath();
+    ctx.ellipse(8, -68, 6, 12, 0.4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = hairColor;
+  } else if (hairStyle === 'ponytail') {
+    // High perky ponytail
+    ctx.beginPath();
+    ctx.ellipse(40, -48, 22, 15, 0.35, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
   }
 
-  // Outer hair silhouette wrapping smoothly around head and tucking behind right ear/neck
+  // Smooth hair dome behind face & ear
   ctx.beginPath();
-  ctx.ellipse(0, -10, 62, 52, 0, 0, Math.PI * 2);
+  ctx.ellipse(0, -10, 61, 51, 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
 
-  // --- B. White Chubby Mochi Body + Stubby Legs (하얀 찹쌀떡 몸통) ---
-  ctx.fillStyle = '#ffffff';
-  ctx.lineWidth = 3.2;
-
-  if (cutNum === 1) {
-    // Left arm & round mitten hand resting adorably by side
+  // Headwear: Dog / Cat ears / Beanie / Beret / Cap behind face
+  if (headwear === 'dog_ears') {
+    ctx.fillStyle = headwearColor;
     ctx.beginPath();
-    ctx.moveTo(-23, 38);
-    ctx.quadraticCurveTo(-35, 66, -33, 88);
-    ctx.quadraticCurveTo(-45, 92, -41, 102);
-    ctx.quadraticCurveTo(-31, 107, -24, 96);
+    ctx.ellipse(-30, -54, 10, 22, -0.25, 0, Math.PI * 2);
+    ctx.ellipse(30, -54, 10, 22, 0.25, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-
-    // Right arm & round mitten hand
+  } else if (headwear === 'cat_ears') {
+    ctx.fillStyle = headwearColor;
     ctx.beginPath();
-    ctx.moveTo(23, 38);
-    ctx.quadraticCurveTo(35, 66, 33, 88);
-    ctx.quadraticCurveTo(45, 92, 41, 102);
-    ctx.quadraticCurveTo(31, 107, 24, 96);
+    ctx.moveTo(-38, -32);
+    ctx.lineTo(-30, -62);
+    ctx.lineTo(-12, -42);
+    ctx.closePath();
     ctx.fill();
     ctx.stroke();
-  } else if (cutNum === 2) {
-    // Left arm down, Right arm raised pointing a fact-check finger!
     ctx.beginPath();
-    ctx.moveTo(-23, 38);
-    ctx.quadraticCurveTo(-34, 68, -31, 94);
-    ctx.quadraticCurveTo(-39, 100, -23, 100);
+    ctx.moveTo(38, -32);
+    ctx.lineTo(30, -62);
+    ctx.lineTo(12, -42);
+    ctx.closePath();
     ctx.fill();
     ctx.stroke();
-
+    // Inner pink ears
+    ctx.fillStyle = '#fecdd3';
     ctx.beginPath();
-    ctx.moveTo(21, 42);
-    ctx.quadraticCurveTo(46, 30, 54, 8);
-    ctx.quadraticCurveTo(62, 4, 60, 16);
-    ctx.quadraticCurveTo(50, 42, 23, 58);
+    ctx.moveTo(-33, -36);
+    ctx.lineTo(-28, -55);
+    ctx.lineTo(-17, -43);
+    ctx.closePath();
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(33, -36);
+    ctx.lineTo(28, -55);
+    ctx.lineTo(17, -43);
+    ctx.closePath();
+    ctx.fill();
+  } else if (headwear === 'beanie') {
+    roundRect(ctx, -42, -66, 84, 38, 14);
+    ctx.fillStyle = headwearColor;
     ctx.fill();
     ctx.stroke();
-  } else if (cutNum === 4) {
-    // Both arms cheering high in the air ("만세!" pose)
+    ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.moveTo(-21, 42);
-    ctx.quadraticCurveTo(-46, 18, -44, -6);
-    ctx.quadraticCurveTo(-34, -12, -28, 6);
-    ctx.quadraticCurveTo(-26, 24, -17, 46);
+    ctx.arc(0, -74, 14, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-
+    roundRect(ctx, -44, -36, 88, 14, 4);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.stroke();
+  } else if (headwear === 'beret') {
+    ctx.fillStyle = headwearColor;
     ctx.beginPath();
-    ctx.moveTo(21, 42);
-    ctx.quadraticCurveTo(46, 18, 44, -6);
-    ctx.quadraticCurveTo(34, -12, 28, 6);
-    ctx.quadraticCurveTo(26, 24, 17, 46);
+    ctx.ellipse(8, -48, 38, 18, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(12, -66);
+    ctx.lineTo(12, -72);
+    ctx.stroke();
+  } else if (headwear === 'cap') {
+    roundRect(ctx, -38, -56, 76, 32, 16);
+    ctx.fillStyle = headwearColor;
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(12, -26);
+    ctx.quadraticCurveTo(46, -30, 56, -20);
+    ctx.quadraticCurveTo(36, -18, 12, -22);
+    ctx.fillStyle = headwearColor;
     ctx.fill();
     ctx.stroke();
   }
 
-  // Central Mochi Torso + Legs
+  // Left & Right Arms based on pose
+  ctx.fillStyle = '#ffffff';
+  ctx.lineWidth = 3.2;
+
+  if (pose === 'pointer') {
+    // Left arm resting, right arm holding wooden pointer stick toward right board
+    ctx.beginPath();
+    ctx.moveTo(-22, 38);
+    ctx.quadraticCurveTo(-34, 66, -30, 92);
+    ctx.quadraticCurveTo(-36, 98, -22, 96);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(20, 40);
+    ctx.quadraticCurveTo(46, 34, 58, 18);
+    ctx.quadraticCurveTo(65, 16, 62, 26);
+    ctx.quadraticCurveTo(48, 46, 22, 56);
+    ctx.fill();
+    ctx.stroke();
+
+    // Pointer stick
+    ctx.save();
+    ctx.strokeStyle = '#b45309';
+    ctx.lineWidth = 4.5;
+    ctx.beginPath();
+    ctx.moveTo(58, 20);
+    ctx.lineTo(106, -12);
+    ctx.stroke();
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(106, -12, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  } else if (pose === 'cheer_phone') {
+    // Left arm holding glowing Smartphone high, right arm cheering up!
+    ctx.beginPath();
+    ctx.moveTo(-20, 42);
+    ctx.quadraticCurveTo(-48, 22, -46, -2);
+    ctx.quadraticCurveTo(-36, -8, -30, 8);
+    ctx.quadraticCurveTo(-28, 26, -18, 46);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(20, 42);
+    ctx.quadraticCurveTo(46, 22, 44, -2);
+    ctx.quadraticCurveTo(34, -8, 28, 8);
+    ctx.quadraticCurveTo(26, 26, 18, 46);
+    ctx.fill();
+    ctx.stroke();
+
+    // Hand-drawn Smartphone in left hand
+    ctx.save();
+    ctx.translate(-48, -16);
+    ctx.rotate(-0.15);
+    roundRect(ctx, -16, -24, 32, 48, 6);
+    ctx.fillStyle = '#111111';
+    ctx.fill();
+    roundRect(ctx, -13, -19, 26, 38, 4);
+    ctx.fillStyle = '#34d399';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 11px "Gaegu", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('3초계산', 0, -2);
+    ctx.fillText('OK!', 0, 11);
+    ctx.restore();
+  } else if (pose === 'shock_side') {
+    // Both hands raised in surprise
+    ctx.beginPath();
+    ctx.moveTo(-20, 40);
+    ctx.quadraticCurveTo(-40, 26, -38, 10);
+    ctx.quadraticCurveTo(-28, 8, -26, 24);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(20, 40);
+    ctx.quadraticCurveTo(40, 26, 38, 10);
+    ctx.quadraticCurveTo(28, 8, 26, 24);
+    ctx.fill();
+    ctx.stroke();
+  } else if (pose !== 'cry_desk') {
+    // Cut 1 situation action arm: left arm down, right arm extended holding situation prop!
+    ctx.beginPath();
+    ctx.moveTo(-22, 38);
+    ctx.quadraticCurveTo(-34, 64, -31, 88);
+    ctx.quadraticCurveTo(-40, 94, -34, 101);
+    ctx.quadraticCurveTo(-25, 104, -20, 92);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(21, 38);
+    ctx.quadraticCurveTo(45, 44, 56, 32);
+    ctx.quadraticCurveTo(64, 30, 62, 41);
+    ctx.quadraticCurveTo(48, 56, 22, 54);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  // Central Torso + Legs
   ctx.fillStyle = '#ffffff';
   ctx.beginPath();
   ctx.moveTo(-21, 34);
-  ctx.quadraticCurveTo(-25, 76, -23, 114);
-  ctx.lineTo(-18, 128);
-  ctx.quadraticCurveTo(-14, 130, -11, 112);
-  ctx.quadraticCurveTo(0, 110, 11, 112);
-  ctx.quadraticCurveTo(14, 130, 18, 128);
-  ctx.lineTo(23, 114);
-  ctx.quadraticCurveTo(25, 76, 21, 34);
+  ctx.quadraticCurveTo(-25, 74, -23, 112);
+  ctx.lineTo(-18, 126);
+  ctx.quadraticCurveTo(-14, 128, -11, 110);
+  ctx.quadraticCurveTo(0, 108, 11, 110);
+  ctx.quadraticCurveTo(14, 128, 18, 126);
+  ctx.lineTo(23, 112);
+  ctx.quadraticCurveTo(25, 74, 21, 34);
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
 
-  // --- C. Squishy Wide White Mochi Face + Soft Front Bangs + Overlapping Side Ear ---
+  // Situation Outfit Overlay on Upper Torso (y = 35..88)
+  ctx.save();
+  ctx.fillStyle = shirtColor;
+
+  if (outfit === 'gym_tank') {
+    // Sporty tank top with deep scoop neckline
+    ctx.beginPath();
+    ctx.moveTo(-21, 44);
+    ctx.quadraticCurveTo(-24, 64, -23, 86);
+    ctx.lineTo(23, 86);
+    ctx.quadraticCurveTo(24, 64, 21, 44);
+    ctx.quadraticCurveTo(0, 56, -21, 44);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Whistle if gym coach
+    if (cfg.type === 'gym_coach') {
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(-10, 42);
+      ctx.quadraticCurveTo(0, 64, 0, 68);
+      ctx.quadraticCurveTo(0, 64, 10, 42);
+      ctx.stroke();
+      ctx.fillStyle = '#94a3b8';
+      roundRect(ctx, -5, 68, 10, 8, 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  } else if (outfit === 'doctor_coat') {
+    // Doctor white coat with blue scrub
+    ctx.fillStyle = '#38bdf8';
+    ctx.beginPath();
+    ctx.moveTo(-14, 36);
+    ctx.lineTo(14, 36);
+    ctx.lineTo(14, 86);
+    ctx.lineTo(-14, 86);
+    ctx.closePath();
+    ctx.fill();
+    // White coat flaps
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(-21, 35);
+    ctx.lineTo(-8, 35);
+    ctx.lineTo(-12, 86);
+    ctx.lineTo(-23, 86);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(21, 35);
+    ctx.lineTo(8, 35);
+    ctx.lineTo(12, 86);
+    ctx.lineTo(23, 86);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // Stethoscope
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    ctx.moveTo(-16, 38);
+    ctx.quadraticCurveTo(-12, 68, 0, 72);
+    ctx.quadraticCurveTo(12, 68, 16, 38);
+    ctx.stroke();
+    ctx.fillStyle = '#94a3b8';
+    ctx.beginPath();
+    ctx.arc(0, 72, 5.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  } else if (outfit === 'office_shirt') {
+    // Collared office shirt with tie
+    ctx.beginPath();
+    ctx.moveTo(-21, 35);
+    ctx.quadraticCurveTo(-24, 62, -23, 86);
+    ctx.lineTo(23, 86);
+    ctx.quadraticCurveTo(24, 62, 21, 35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // Necktie
+    ctx.fillStyle = '#1e3a8a';
+    ctx.beginPath();
+    ctx.moveTo(-4, 38);
+    ctx.lineTo(4, 38);
+    ctx.lineTo(6, 74);
+    ctx.lineTo(0, 82);
+    ctx.lineTo(-6, 74);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  } else if (outfit === 'apron') {
+    // Bib apron with pocket
+    ctx.beginPath();
+    ctx.moveTo(-16, 40);
+    ctx.lineTo(16, 40);
+    ctx.lineTo(20, 86);
+    ctx.lineTo(-20, 86);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    roundRect(ctx, -10, 62, 20, 16, 3);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.stroke();
+  } else if (outfit === 'winter_coat') {
+    // Thick winter coat with scarf
+    ctx.beginPath();
+    ctx.moveTo(-21, 35);
+    ctx.quadraticCurveTo(-24, 62, -23, 86);
+    ctx.lineTo(23, 86);
+    ctx.quadraticCurveTo(24, 62, 21, 35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // Warm scarf
+    roundRect(ctx, -22, 34, 44, 16, 6);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.stroke();
+  } else {
+    // Default home_tee or hoodie
+    ctx.beginPath();
+    ctx.moveTo(-21, 35);
+    ctx.quadraticCurveTo(-24, 62, -23, 86);
+    ctx.lineTo(23, 86);
+    ctx.quadraticCurveTo(24, 62, 21, 35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    if (outfit === 'home_tee') {
+      ctx.strokeStyle = '#0284c7';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-21, 56);
+      ctx.lineTo(21, 56);
+      ctx.moveTo(-22, 70);
+      ctx.lineTo(22, 70);
+      ctx.stroke();
+    }
+  }
+  ctx.restore();
+
+  // Handheld small prop in Mochi's right hand (at x=58, y=32) for Cut 1
+  if (pose === 'remote') {
+    ctx.save();
+    ctx.translate(60, 24);
+    ctx.rotate(-0.25);
+    roundRect(ctx, -9, -16, 18, 32, 4);
+    ctx.fillStyle = '#f8fafc';
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#38bdf8';
+    ctx.fillRect(-5, -11, 10, 8);
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(0, 4, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  } else if (pose === 'dumbbell') {
+    ctx.save();
+    ctx.translate(60, 28);
+    ctx.rotate(-0.3);
+    ctx.fillStyle = '#fb7185';
+    roundRect(ctx, -16, -5, 32, 10, 3);
+    ctx.fill();
+    ctx.stroke();
+    roundRect(ctx, -20, -12, 9, 24, 3);
+    ctx.fill();
+    ctx.stroke();
+    roundRect(ctx, 11, -12, 9, 24, 3);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  } else if (pose === 'chicken') {
+    ctx.save();
+    ctx.translate(62, 24);
+    ctx.rotate(-0.2);
+    ctx.fillStyle = '#d97706';
+    ctx.beginPath();
+    ctx.ellipse(0, -6, 13, 9, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#fef3c7';
+    roundRect(ctx, -3, 2, 6, 14, 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  } else if (pose === 'cup') {
+    // Paper cup pouring kibble pellets
+    ctx.save();
+    ctx.translate(62, 26);
+    ctx.rotate(0.65);
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(-10, -12);
+    ctx.lineTo(10, -12);
+    ctx.lineTo(7, 12);
+    ctx.lineTo(-7, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+    // Falling brown kibble dots
+    ctx.fillStyle = '#92400e';
+    [[74, 42], [78, 54], [72, 64]].forEach(([kx, ky]) => {
+      ctx.beginPath();
+      ctx.arc(kx, ky, 3.2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  } else if (pose === 'tape') {
+    // Yellow tape measure
+    ctx.save();
+    ctx.translate(60, 28);
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.arc(0, 0, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#fef08a';
+    ctx.fillRect(8, -3, 18, 6);
+    ctx.strokeRect(8, -3, 18, 6);
+    ctx.restore();
+  } else if (pose === 'wheel') {
+    // Steering wheel
+    ctx.save();
+    ctx.translate(54, 34);
+    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 5.5;
+    ctx.beginPath();
+    ctx.arc(0, 0, 18, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-16, 0);
+    ctx.lineTo(16, 0);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, 16);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // --- 3. Squishy White Mochi Face + Seamless Side Ear + Bangs ---
   ctx.fillStyle = '#ffffff';
+  ctx.lineWidth = 3.2;
   ctx.beginPath();
   ctx.moveTo(-54, 8);
-  // Left cheek & jaw curve
   ctx.bezierCurveTo(-56, 32, -28, 42, -2, 42);
-  // Right jaw up to ear base
   ctx.bezierCurveTo(24, 42, 46, 34, 48, 14);
-  // Right ear C-curve (drawn seamlessly as part of the white face/ear silhouette!)
   ctx.bezierCurveTo(64, 14, 64, -12, 46, -10);
-  // Right forehead hairline sweeping up to center bang part
   ctx.quadraticCurveTo(26, -16, 8, -32);
-  // Center-left soft curved bang lock (exact match to reference image!)
   ctx.quadraticCurveTo(8, -14, -6, -8);
   ctx.quadraticCurveTo(-16, -14, -16, -30);
-  // Left forehead hairline sweeping down to left temple
   ctx.quadraticCurveTo(-36, -20, -54, 8);
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
 
-  // Subtle hair strand lines at the bang parts (just like the reference image!)
+  // Hair part lines
   ctx.beginPath();
   ctx.moveTo(-16, -30);
   ctx.quadraticCurveTo(-15, -36, -12, -40);
@@ -660,69 +1243,36 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
   ctx.quadraticCurveTo(36, -21, 39, -26);
   ctx.stroke();
 
-  // Tiny inner ear line '-' inside the right ear
+  // Inner ear mark
   ctx.beginPath();
   ctx.moveTo(47, 2);
   ctx.lineTo(53, 3);
   ctx.stroke();
 
-  // --- D. Soft Pink Oval Cheek Blushes ---
+  // Sporty headband on Mochi when in 'diet' category
+  if (calcKey === 'diet' && role === 'mochi') {
+    ctx.save();
+    ctx.fillStyle = '#fb7185';
+    ctx.beginPath();
+    ctx.roundRect(-48, -22, 92, 9, 4);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // --- 4. Soft Pink Cheek Blushes ---
   ctx.fillStyle = '#f9a89a';
   ctx.beginPath();
   ctx.ellipse(-32, 14, 9.5, 4.6, 0, 0, Math.PI * 2);
   ctx.ellipse(18, 14, 9.5, 4.6, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- E. Expressive Hand-Drawn Eyes, Eyebrows, Eyelashes & Mouth ---
+  // --- 5. Facial Expression ---
   ctx.strokeStyle = ink;
   ctx.fillStyle = ink;
 
-  if (cutNum === 1) {
-    // 1. Innocent / Motivated Smile (exact match to reference image!)
-    ctx.lineWidth = 3.0;
-    ctx.beginPath();
-    ctx.moveTo(-36, -12);
-    ctx.quadraticCurveTo(-26, -16, -16, -12);
-    ctx.moveTo(6, -12);
-    ctx.quadraticCurveTo(16, -16, 26, -12);
-    ctx.stroke();
-
-    // Gentle upper eyelid + 3 short eyelashes + cute hollow oval pupil (exact reference look!)
-    [-25, 15].forEach(ex => {
-      ctx.lineWidth = 3.0;
-      ctx.beginPath();
-      ctx.moveTo(ex - 9, -2);
-      ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
-      ctx.stroke();
-      // 3 tiny eyelashes
-      ctx.lineWidth = 2.4;
-      [-5, 0, 5].forEach(dx => {
-        ctx.beginPath();
-        ctx.moveTo(ex + dx, -4);
-        ctx.lineTo(ex + dx * 1.25, -8.5);
-        ctx.stroke();
-      });
-      // Cute hollow oval pupil (black outline + white center)
-      ctx.fillStyle = '#ffffff';
-      ctx.lineWidth = 2.8;
-      ctx.beginPath();
-      ctx.ellipse(ex, 3, 2.8, 4.2, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-    });
-
-    // Cute small 'D' smile mouth
-    ctx.fillStyle = '#ffffff';
-    ctx.lineWidth = 2.8;
-    ctx.beginPath();
-    ctx.moveTo(-8, 12);
-    ctx.lineTo(2, 12);
-    ctx.bezierCurveTo(3, 21, -9, 21, -8, 12);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-  } else if (cutNum === 2) {
-    // 2. Smart Senior with Round Glasses & Fact-Check Expression
+  if (role === 'senior' || pose === 'pointer') {
+    // Round Glasses Senior
     ctx.lineWidth = 3.0;
     ctx.beginPath();
     ctx.moveTo(-36, -15);
@@ -731,7 +1281,6 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.lineTo(26, -15);
     ctx.stroke();
 
-    // Round black-rimmed glasses
     ctx.fillStyle = 'rgba(224, 242, 254, 0.55)';
     ctx.lineWidth = 3.2;
     ctx.beginPath();
@@ -747,7 +1296,6 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.lineTo(2, 1);
     ctx.stroke();
 
-    // Pupils
     ctx.fillStyle = '#ffffff';
     ctx.lineWidth = 2.8;
     ctx.beginPath();
@@ -759,14 +1307,13 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.fill();
     ctx.stroke();
 
-    // Confident talking mouth
     ctx.fillStyle = '#fb7185';
     ctx.beginPath();
     ctx.ellipse(-4, 17, 6.5, 4.8, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-  } else if (cutNum === 3) {
-    // 3. Shocked / Crying Waterfall Tears + Hands on Cheeks
+  } else if (pose === 'cry_desk' || pose === 'shock_side') {
+    // Crying / Shocked Expression
     ctx.lineWidth = 3.0;
     ctx.beginPath();
     ctx.moveTo(-36, -9);
@@ -775,14 +1322,14 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.quadraticCurveTo(16, -16, 26, -9);
     ctx.stroke();
 
-    // Sky-blue comic tear streams
-    ctx.fillStyle = '#38bdf8';
-    roundRect(ctx, -30, 4, 9.5, 34, 4.5);
-    ctx.fill();
-    roundRect(ctx, 11, 4, 9.5, 34, 4.5);
-    ctx.fill();
+    if (pose === 'cry_desk') {
+      ctx.fillStyle = '#38bdf8';
+      roundRect(ctx, -30, 4, 9.5, 34, 4.5);
+      ctx.fill();
+      roundRect(ctx, 11, 4, 9.5, 34, 4.5);
+      ctx.fill();
+    }
 
-    // Crying '> <' eyes
     ctx.lineWidth = 3.2;
     ctx.beginPath();
     ctx.moveTo(-32, -2);
@@ -793,25 +1340,25 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.lineTo(22, 8);
     ctx.stroke();
 
-    // Shocked open mouth
     ctx.fillStyle = '#fb7185';
     ctx.beginPath();
     ctx.ellipse(-4, 18, 8.5, 7, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
-    // Both hands clutching cheeks in shock
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.ellipse(-43, 26, 10.5, 14.5, -0.3, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.ellipse(35, 26, 10.5, 14.5, 0.3, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-  } else {
-    // 4. Happy Eureka Cheer ('^ ^' eyes + big smile)
+    if (pose === 'cry_desk') {
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(-43, 26, 10.5, 14.5, -0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.ellipse(35, 26, 10.5, 14.5, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  } else if (pose === 'cheer_phone') {
+    // Happy '^ ^' eyes + wide smile
     ctx.lineWidth = 3.2;
     ctx.beginPath();
     ctx.arc(-25, 2, 8.5, Math.PI * 1.15, Math.PI * 1.85);
@@ -828,9 +1375,611 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+  } else {
+    // Signature Innocent Mochi Eyes (3 upper eyelashes + hollow oval pupil)
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    ctx.moveTo(-36, -12);
+    ctx.quadraticCurveTo(-26, -16, -16, -12);
+    ctx.moveTo(6, -12);
+    ctx.quadraticCurveTo(16, -16, 26, -12);
+    ctx.stroke();
+
+    [-25, 15].forEach(ex => {
+      ctx.lineWidth = 3.0;
+      ctx.beginPath();
+      ctx.moveTo(ex - 9, -2);
+      ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
+      ctx.stroke();
+      ctx.lineWidth = 2.4;
+      [-5, 0, 5].forEach(dx => {
+        ctx.beginPath();
+        ctx.moveTo(ex + dx, -4);
+        ctx.lineTo(ex + dx * 1.25, -8.5);
+        ctx.stroke();
+      });
+      ctx.fillStyle = '#ffffff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.ellipse(ex, 3, 2.8, 4.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    });
+
+    ctx.fillStyle = '#ffffff';
+    ctx.lineWidth = 2.8;
+    ctx.beginPath();
+    ctx.moveTo(-8, 12);
+    ctx.lineTo(2, 12);
+    ctx.bezierCurveTo(3, 21, -9, 21, -8, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
   }
 
   ctx.restore();
+}
+
+/**
+ * Helper: Draw Situation-Specific Props, Appliances, Pets, Cars, Whiteboards & Crisis/Resolution Scenes
+ */
+function drawSituationObject(ctx, ox, oy, s, calcKey, slug, cutNum) {
+  ctx.save();
+  ctx.translate(ox, oy);
+  ctx.scale(s, s);
+  ctx.strokeStyle = '#111111';
+  ctx.lineWidth = 3.0;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  const slugStr = String(slug || '');
+
+  if (cutNum === 1) {
+    // --- CUT 1: Everyday / Naive Action Object ---
+    if (calcKey === 'electric') {
+      if (slugStr.includes('dryer')) {
+        roundRect(ctx, -50, -54, 100, 112, 10);
+        ctx.fillStyle = '#f8fafc';
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 8, 28, 0, Math.PI * 2);
+        ctx.fillStyle = '#bae6fd';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fda4af';
+        ctx.beginPath();
+        ctx.arc(-6, 12, 12, 0, Math.PI);
+        ctx.fill();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('열풍 건조기', 0, -32);
+      } else if (slugStr.includes('dehumidifier')) {
+        roundRect(ctx, -44, -48, 88, 106, 12);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        roundRect(ctx, -30, 6, 60, 38, 6);
+        ctx.fillStyle = '#7dd3fc';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('24h 제습기💧', 0, -22);
+      } else if (slugStr.includes('heater')) {
+        roundRect(ctx, -48, -44, 96, 98, 12);
+        ctx.fillStyle = '#fee2e2';
+        ctx.fill();
+        ctx.stroke();
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 4.5;
+        [-12, 2, 16].forEach(ry => {
+          ctx.beginPath();
+          ctx.moveTo(-26, ry);
+          ctx.lineTo(26, ry);
+          ctx.stroke();
+        });
+        ctx.fillStyle = '#dc2626';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('전기온풍기🔥', 0, -26);
+      } else {
+        roundRect(ctx, -62, -68, 124, 46, 10);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(-50, -32);
+        ctx.lineTo(50, -32);
+        ctx.stroke();
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 3.2;
+        [-28, 0, 28].forEach(wx => {
+          ctx.beginPath();
+          ctx.moveTo(wx, -14);
+          ctx.quadraticCurveTo(wx - 10, 6, wx, 24);
+          ctx.quadraticCurveTo(wx + 10, 42, wx - 4, 58);
+          ctx.stroke();
+        });
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 19px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('구형 에어컨❄️', 0, -44);
+      }
+    } else if (calcKey === 'diet') {
+      if (slugStr.includes('bulkup')) {
+        roundRect(ctx, -56, -12, 112, 68, 8);
+        ctx.fillStyle = '#fef08a';
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#dc2626';
+        ctx.font = '700 21px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('야식 치킨🍗', 0, 26);
+      } else {
+        roundRect(ctx, -58, -46, 116, 104, 10);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.stroke();
+        roundRect(ctx, -48, -38, 96, 28, 6);
+        ctx.fillStyle = '#ef4444';
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 18px "Gaegu", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('편의점 단품', 0, -20);
+        ctx.fillStyle = '#111111';
+        ctx.font = '700 21px "Gaegu", sans-serif';
+        ctx.fillText('1팩 2,900원', 0, 12);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '700 17px "Gaegu", sans-serif';
+        ctx.fillText('(식비 폭탄💦)', 0, 38);
+      }
+    } else if (calcKey === 'pet') {
+      const isCat = slugStr.includes('cat') || slugStr.includes('shorthair');
+      ctx.fillStyle = isCat ? '#fed7aa' : '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(10, -2, 30, 25, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      if (isCat) {
+        ctx.beginPath();
+        ctx.moveTo(-14, -18);
+        ctx.lineTo(-22, -40);
+        ctx.lineTo(-2, -24);
+        ctx.moveTo(34, -18);
+        ctx.lineTo(42, -40);
+        ctx.lineTo(22, -24);
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        ctx.beginPath();
+        ctx.ellipse(-18, -2, 9, 18, 0.3, 0, Math.PI * 2);
+        ctx.ellipse(38, -2, 9, 18, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(0, -4, 3.2, 0, Math.PI * 2);
+      ctx.arc(20, -4, 3.2, 0, Math.PI * 2);
+      ctx.arc(10, 4, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#92400e';
+      ctx.beginPath();
+      ctx.arc(-22, 42, 22, Math.PI, 0);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fb7185';
+      ctx.beginPath();
+      ctx.moveTo(-46, 40);
+      ctx.lineTo(2, 40);
+      ctx.lineTo(-4, 58);
+      ctx.lineTo(-40, 58);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    } else if (calcKey === 'room') {
+      roundRect(ctx, -52, -2, 104, 62, 6);
+      ctx.fillStyle = '#fcd34d';
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -42, -52, 84, 50, 6);
+      ctx.fillStyle = '#fde68a';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('이사박스📦', 0, -22);
+      ctx.fillText('가전·가구?', 0, 32);
+    } else if (calcKey === 'auto') {
+      // Cute Hand-Drawn New Car Front (text in upper windshield so headlights never overlap!)
+      roundRect(ctx, -44, -42, 88, 38, 12);
+      ctx.fillStyle = '#e0f2fe';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('신차 할부🚗', 0, -19);
+
+      roundRect(ctx, -58, -8, 116, 46, 14);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fde047';
+      ctx.beginPath();
+      ctx.arc(-38, 15, 9, 0, Math.PI * 2);
+      ctx.arc(38, 15, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -20, 8, 40, 16, 4);
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      roundRect(ctx, -54, -38, 108, 86, 10);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -54, -38, 108, 26, 8);
+      ctx.fillStyle = '#a78bfa';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('약정 달력📅', 0, -20);
+      ctx.font = '700 20px "Gaegu", sans-serif';
+      ctx.fillText('위약금 무서워', 0, 12);
+      ctx.fillText('그냥 쓰자..', 0, 34);
+    }
+  } else if (cutNum === 2) {
+    // --- CUT 2: Wider Situation Whiteboard / Fact-Check Diagram on Right ---
+    roundRect(ctx, -68, -56, 136, 114, 10);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.stroke();
+
+    roundRect(ctx, -60, -50, 120, 26, 6);
+    ctx.fillStyle = '#fee2e2';
+    ctx.fill();
+
+    ctx.fillStyle = '#dc2626';
+    ctx.font = '700 18px "Gaegu", sans-serif';
+    ctx.textAlign = 'center';
+
+    if (calcKey === 'electric') {
+      ctx.fillText('누진세 3단계📈', 0, -33);
+      ctx.fillStyle = '#fca5a5';
+      ctx.fillRect(-42, 22, 22, 24);
+      ctx.strokeRect(-42, 22, 22, 24);
+      ctx.fillStyle = '#f87171';
+      ctx.fillRect(-11, 2, 22, 44);
+      ctx.strokeRect(-11, 2, 22, 44);
+      ctx.fillStyle = '#dc2626';
+      ctx.fillRect(20, -22, 22, 68);
+      ctx.strokeRect(20, -22, 22, 68);
+    } else if (calcKey === 'diet') {
+      ctx.fillText('식비 단가 비교📊', 0, -33);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('❌ 낱개 2,900원', 0, 0);
+      ctx.fillStyle = '#047857';
+      ctx.fillText('⭕ 벌크 1,100원', 0, 28);
+    } else if (calcKey === 'pet') {
+      ctx.fillText('수의학 정량표⚖️', 0, -33);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('❌ 눈대중 과급여', 0, 0);
+      ctx.fillStyle = '#047857';
+      ctx.fillText('⭕ 1g 저울 급여', 0, 28);
+    } else if (calcKey === 'room') {
+      ctx.fillText('황금배분 공식📐', 0, -33);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('❌ 단품 초과구매', 0, 0);
+      ctx.fillStyle = '#047857';
+      ctx.fillText('⭕ 예산 맞춤배분', 0, 28);
+    } else if (calcKey === 'auto') {
+      ctx.fillText('4년 총비용 비교🚗', 0, -33);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('❌ 할부+세금폭탄', 0, 0);
+      ctx.fillStyle = '#047857';
+      ctx.fillText('⭕ 특판·절세완승', 0, 28);
+    } else {
+      ctx.fillText('환승 순익 공식💵', 0, -33);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('사은품 47만원', 0, 0);
+      ctx.fillStyle = '#047857';
+      ctx.fillText('위약금 빼도 이득!', 0, 28);
+    }
+  } else if (cutNum === 3) {
+    // --- CUT 3: Distinct Situation Crisis Object on Right ---
+    if (calcKey === 'electric') {
+      // Red Electricity Bill Envelope + Lightning
+      roundRect(ctx, -64, -44, 128, 88, 8);
+      ctx.fillStyle = '#fff1f2';
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -56, -36, 112, 26, 5);
+      ctx.fillStyle = '#ef4444';
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('⚡ 전기요금 고지서', 0, -18);
+      ctx.fillStyle = '#be123c';
+      ctx.font = '700 20px "Gaegu", sans-serif';
+      ctx.fillText('누진 3단계 폭탄!', 0, 18);
+    } else if (calcKey === 'diet') {
+      // Long Convenience Store Receipt + Empty Wallet with Flying Moth
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(-48, -56);
+      ctx.lineTo(48, -56);
+      ctx.lineTo(42, 48);
+      ctx.lineTo(-42, 48);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#be123c';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🧾 편의점 영수증', 0, -28);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('낱개 구매 파산💸', 0, 2);
+      ctx.fillText('텅장 주의보..', 0, 26);
+    } else if (calcKey === 'pet') {
+      // Animal Hospital Vet Chart + Chubby Pet on Scale
+      roundRect(ctx, -62, -46, 124, 92, 10);
+      ctx.fillStyle = '#fff1f2';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#be123c';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🏥 동물병원 차트', 0, -18);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('과급여 비만·관절', 0, 8);
+      ctx.fillText('수술비 주의보💦', 0, 30);
+    } else if (calcKey === 'room') {
+      // Overflowing Red Shopping Cart
+      roundRect(ctx, -60, -34, 120, 68, 8);
+      ctx.fillStyle = '#fee2e2';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(-32, 44, 9, 0, Math.PI * 2);
+      ctx.arc(32, 44, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#be123c';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🛒 장바구니 초과!', 0, -8);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.fillText('단품 거품 폭탄🚨', 0, 18);
+    } else if (calcKey === 'auto') {
+      // Giant Black 100t Tax + Insurance Iron Weight Bomb
+      ctx.fillStyle = '#334155';
+      ctx.beginPath();
+      ctx.arc(0, 8, 44, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.arc(28, -32, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#fde047';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('세금+보험💣', 0, 4);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 17px "Gaegu", sans-serif';
+      ctx.fillText('할부이자 폭탄!', 0, 26);
+    } else {
+      // Winged Cash Bills Flying Away
+      roundRect(ctx, -56, -24, 112, 56, 8);
+      ctx.fillStyle = '#dcfce7';
+      ctx.fill();
+      ctx.stroke();
+      // White wings
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(-62, -16, 16, 9, -0.4, 0, Math.PI * 2);
+      ctx.ellipse(62, -16, 16, 9, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#be123c';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('💸 날아간 47만원', 0, 0);
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 17px "Gaegu", sans-serif';
+      ctx.fillText('가만히 있으면 0원', 0, 22);
+    }
+  } else if (cutNum === 4) {
+    // --- CUT 4: Wide, Clean Happy Resolution Object on Right ---
+    if (calcKey === 'electric') {
+      ctx.fillStyle = '#fbcfe8';
+      ctx.beginPath();
+      ctx.ellipse(0, 12, 58, 30, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fde047';
+      ctx.beginPath();
+      ctx.arc(0, -24, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('전기세 세이브🐷', 0, 17);
+    } else if (calcKey === 'diet') {
+      roundRect(ctx, -58, 10, 116, 34, 8);
+      ctx.fillStyle = '#bbf7d0';
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -52, -24, 104, 34, 8);
+      ctx.fillStyle = '#fef08a';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('득근 밀프렙💪', 0, -2);
+      ctx.fillText('식비 반값 성공!', 0, 31);
+    } else if (calcKey === 'pet') {
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(0, 0, 28, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fb7185';
+      ctx.font = '700 20px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🐶❤️🐱', 0, 6);
+      roundRect(ctx, -58, 28, 116, 28, 8);
+      ctx.fillStyle = '#a7f3d0';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 17.5px "Gaegu", sans-serif';
+      ctx.fillText('1g 정량배식 OK', 0, 46);
+    } else if (calcKey === 'room') {
+      ctx.fillStyle = '#fef08a';
+      ctx.beginPath();
+      ctx.moveTo(-26, 6);
+      ctx.lineTo(26, 6);
+      ctx.lineTo(16, -32);
+      ctx.lineTo(-16, -32);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      roundRect(ctx, -56, 16, 112, 34, 8);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('워너비 내방✨', 0, 38);
+    } else if (calcKey === 'auto') {
+      roundRect(ctx, -58, -10, 116, 48, 12);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.ellipse(-14, -16, 14, 8, -0.3, 0, Math.PI * 2);
+      ctx.ellipse(14, -16, 14, 8, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 18px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('최저가 출고🎀', 0, 19);
+    } else {
+      roundRect(ctx, -58, -18, 116, 64, 8);
+      ctx.fillStyle = '#fde047';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.font = '700 19px "Gaegu", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('당일 현금입금💵', 0, 6);
+      ctx.fillStyle = '#dc2626';
+      ctx.fillText('+47만원 완료!', 0, 30);
+    }
+  }
+
+  ctx.restore();
+}
+
+/**
+ * 4. Master Hand-Drawn Scene Composer (Consistent Mochi Protagonist + Situation-Adaptive Drawings!)
+ */
+function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1, slug = '') {
+  const pS = s / 1.06;
+  const px = cx - 251 * pS;
+  const py = cy - 328 * pS;
+
+  if (cutNum === 1) {
+    // Cut 1: Mochi on left-center interacting with Situation Object on right-center!
+    const poseByCat = {
+      electric: 'remote',
+      diet: String(slug).includes('bulkup') ? 'chicken' : 'dumbbell',
+      pet: 'cup',
+      room: 'tape',
+      auto: 'wheel',
+      telecom: 'remote'
+    };
+    drawMochiFigure(ctx, px + 184 * pS, py + 336 * pS, pS * 1.02, {
+      role: 'mochi',
+      calcKey,
+      pose: poseByCat[calcKey] || 'remote'
+    });
+    drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 1);
+  } else if (cutNum === 2) {
+    // Cut 2: Two-Character Coaching Scene! Surprised Mochi (left) + Glasses Senior (center) + Wider Whiteboard (right)
+    drawMochiFigure(ctx, px + 90 * pS, py + 368 * pS, pS * 0.72, {
+      role: 'mochi',
+      calcKey,
+      pose: 'shock_side'
+    });
+    drawMochiFigure(ctx, px + 228 * pS, py + 338 * pS, pS * 0.94, {
+      role: 'senior',
+      calcKey,
+      pose: 'pointer'
+    });
+    drawSituationObject(ctx, px + 404 * pS, py + 366 * pS, pS * 0.92, calcKey, slug, 2);
+  } else if (cutNum === 3) {
+    // Cut 3: Dramatic Crisis Scene! Gloom lines + Mochi crying + Category-Specific Crisis Object on Right
+    ctx.save();
+    ctx.strokeStyle = 'rgba(71, 85, 105, 0.28)';
+    ctx.lineWidth = 2.5 * pS;
+    for (let gx = 24; gx < 480; gx += 18) {
+      ctx.beginPath();
+      ctx.moveTo(px + gx * pS, py + 200 * pS);
+      ctx.lineTo(px + gx * pS, py + (235 + (gx % 3) * 12) * pS);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    drawMochiFigure(ctx, px + 188 * pS, py + 334 * pS, pS * 1.02, {
+      role: 'mochi',
+      calcKey,
+      pose: 'cry_desk'
+    });
+    drawSituationObject(ctx, px + 378 * pS, py + 376 * pS, pS * 0.96, calcKey, slug, 3);
+  } else {
+    // Cut 4: Sunny Resolution Scene! Sparkles + Cheering Mochi with Smartphone + Happy Situation Prop
+    ctx.save();
+    ctx.fillStyle = '#facc15';
+    [[92, 275], [320, 272], [448, 295]].forEach(([sx, sy]) => {
+      ctx.beginPath();
+      ctx.arc(px + sx * pS, py + sy * pS, 5.5 * pS, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.restore();
+
+    drawMochiFigure(ctx, px + 190 * pS, py + 336 * pS, pS * 1.02, {
+      role: 'mochi',
+      calcKey,
+      pose: 'cheer_phone'
+    });
+    drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 4);
+  }
 }
 
 /**
@@ -973,8 +2122,8 @@ function drawPanel(ctx, num, x, y, w, h, isFullSlide) {
     hlByNum
   );
 
-  // 4. Center Hand-Drawn 2D Mochi Character (사람이 직접 그린 하얀 찹쌀떡 캐릭터)
-  drawHumanInstatoonCharacter(ctx, x + w * 0.5, y + 328 * s, preset.calcKey, num, s * 1.06);
+  // 4. Center Hand-Drawn 2D Mochi Character & Situation Scene (캐릭터는 동일, 그림은 상황별 직접 드로잉)
+  drawHumanInstatoonCharacter(ctx, x + w * 0.5, y + 328 * s, preset.calcKey, num, s * 1.06, preset.slug || preset.id || '');
 
   // 5. Left & Right Handwritten Side Annotations + Curved Arrows (↗, ↙)
   const pairNotes = (conv.notes && conv.notes[num - 1]) || [['의욕MAX'], ['자취 1년차']];
