@@ -936,8 +936,8 @@ function getConversationalScript(calcKey, storyObj) {
 
   return {
     episodeTitle: sc.epTitle || preset.title,
-    narrations: catMeta.narrations,
-    notes: catMeta.notes,
+    narrations: sc.narrations || catMeta.narrations,
+    notes: sc.notes || catMeta.notes,
     p1Lines: sc.p1,
     p2Lines: sc.p2,
     p3Lines: sc.p3,
