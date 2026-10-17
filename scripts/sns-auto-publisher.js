@@ -773,6 +773,27 @@ function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
     ctx.ellipse(40, -48, 22, 15, 0.35, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+  } else if (hairStyle === 'bob') {
+    // Cute rounded bob volume on sides
+    ctx.beginPath();
+    ctx.ellipse(-38, -6, 20, 32, 0.2, 0, Math.PI * 2);
+    ctx.ellipse(38, -6, 20, 32, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  } else if (hairStyle === 'short') {
+    // Neat boyish cropped hair silhouette on top
+    ctx.beginPath();
+    ctx.arc(-18, -54, 13, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(6, -58, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(28, -52, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
   }
 
   // Smooth hair dome behind face & ear
@@ -1215,6 +1236,39 @@ function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
     ctx.lineTo(0, 16);
     ctx.stroke();
     ctx.restore();
+  } else if (pose === 'salad') {
+    // Fresh green salad bowl with fork
+    ctx.save();
+    ctx.translate(56, 30);
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath();
+    ctx.arc(0, 4, 16, 0, Math.PI);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(-4, -2, 5, 0, Math.PI * 2);
+    ctx.arc(4, -1, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  } else if (pose === 'car_key') {
+    // Modern car smart key
+    ctx.save();
+    ctx.translate(60, 26);
+    roundRect(ctx, -8, -14, 16, 28, 4);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#38bdf8';
+    ctx.beginPath();
+    ctx.arc(0, -6, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#94a3b8';
+    ctx.beginPath();
+    ctx.arc(0, 16, 6, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
   }
 
   // --- 3. Squishy White Mochi Face + Seamless Side Ear + Bangs ---
@@ -1249,12 +1303,45 @@ function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
   ctx.lineTo(53, 3);
   ctx.stroke();
 
-  // Sporty headband on Mochi when in 'diet' category
-  if (calcKey === 'diet' && role === 'mochi') {
+  // Dynamic Headband / Sweatband / Ribbon
+  if (headwear === 'sweatband') {
     ctx.save();
-    ctx.fillStyle = '#fb7185';
+    ctx.fillStyle = headwearColor;
+    roundRect(ctx, -48, -22, 92, 10, 4);
+    ctx.fill();
+    ctx.lineWidth = 3.0;
+    ctx.strokeStyle = ink;
+    ctx.stroke();
+    // Sporty white stripe
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2.2;
     ctx.beginPath();
-    ctx.roundRect(-48, -22, 92, 9, 4);
+    ctx.moveTo(-44, -17);
+    ctx.lineTo(40, -17);
+    ctx.stroke();
+    ctx.restore();
+  } else if (headwear === 'ribbon') {
+    // Cute Ribbon Bow
+    ctx.save();
+    ctx.translate(28, -44);
+    ctx.fillStyle = headwearColor;
+    ctx.lineWidth = 2.8;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-14, -10);
+    ctx.lineTo(-14, 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(14, -10);
+    ctx.lineTo(14, 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 0, 5, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     ctx.restore();
@@ -1271,47 +1358,80 @@ function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
   ctx.strokeStyle = ink;
   ctx.fillStyle = ink;
 
-  if (role === 'senior' || pose === 'pointer') {
-    // Round Glasses Senior
-    ctx.lineWidth = 3.0;
-    ctx.beginPath();
-    ctx.moveTo(-36, -15);
-    ctx.lineTo(-16, -11);
-    ctx.moveTo(6, -11);
-    ctx.lineTo(26, -15);
-    ctx.stroke();
+  if (isMentor || pose === 'pointer') {
+    if (cfg.glasses !== false) {
+      // Intellectual Glasses Mentor (tax_pro, vet_doc, senior_pro, interior_pro, telecom_pro)
+      ctx.lineWidth = 3.0;
+      ctx.beginPath();
+      ctx.moveTo(-36, -15);
+      ctx.lineTo(-16, -11);
+      ctx.moveTo(6, -11);
+      ctx.lineTo(26, -15);
+      ctx.stroke();
 
-    ctx.fillStyle = 'rgba(224, 242, 254, 0.55)';
-    ctx.lineWidth = 3.2;
-    ctx.beginPath();
-    ctx.arc(-24, 1, 12.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(15, 1, 12.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-11, 1);
-    ctx.lineTo(2, 1);
-    ctx.stroke();
+      ctx.fillStyle = 'rgba(224, 242, 254, 0.55)';
+      ctx.lineWidth = 3.2;
+      ctx.beginPath();
+      ctx.arc(-24, 1, 12.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(15, 1, 12.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-11, 1);
+      ctx.lineTo(2, 1);
+      ctx.stroke();
 
-    ctx.fillStyle = '#ffffff';
-    ctx.lineWidth = 2.8;
-    ctx.beginPath();
-    ctx.ellipse(-24, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.ellipse(15, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.ellipse(-24, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.ellipse(15, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
 
-    ctx.fillStyle = '#fb7185';
-    ctx.beginPath();
-    ctx.ellipse(-4, 17, 6.5, 4.8, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
+      ctx.fillStyle = '#fb7185';
+      ctx.beginPath();
+      ctx.ellipse(-4, 17, 6.5, 4.8, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      // Energetic Athletic Gym Coach without glasses
+      ctx.lineWidth = 3.6;
+      ctx.beginPath();
+      ctx.moveTo(-36, -14);
+      ctx.lineTo(-14, -8);
+      ctx.moveTo(26, -14);
+      ctx.lineTo(4, -8);
+      ctx.stroke();
+
+      ctx.fillStyle = ink;
+      ctx.beginPath();
+      ctx.arc(-23, 1, 4.5, 0, Math.PI * 2);
+      ctx.arc(14, 1, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(-24, -1, 1.6, 0, Math.PI * 2);
+      ctx.arc(13, -1, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Confident wide coach grin
+      ctx.fillStyle = '#ef4444';
+      ctx.lineWidth = 3.0;
+      ctx.beginPath();
+      ctx.moveTo(-12, 12);
+      ctx.lineTo(6, 12);
+      ctx.bezierCurveTo(7, 26, -13, 26, -12, 12);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
   } else if (pose === 'cry_desk' || pose === 'shock_side') {
     // Crying / Shocked Expression
     ctx.lineWidth = 3.0;
@@ -1391,13 +1511,18 @@ function drawMochiFigure(ctx, cx, cy, s, opts = {}) {
       ctx.moveTo(ex - 9, -2);
       ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
       ctx.stroke();
-      ctx.lineWidth = 2.4;
-      [-5, 0, 5].forEach(dx => {
-        ctx.beginPath();
-        ctx.moveTo(ex + dx, -4);
-        ctx.lineTo(ex + dx * 1.25, -8.5);
-        ctx.stroke();
-      });
+
+      // Draw 3 cute flutter eyelashes only if female
+      if (gender === 'female') {
+        ctx.lineWidth = 2.4;
+        [-5, 0, 5].forEach(dx => {
+          ctx.beginPath();
+          ctx.moveTo(ex + dx, -4);
+          ctx.lineTo(ex + dx * 1.25, -8.5);
+          ctx.stroke();
+        });
+      }
+
       ctx.fillStyle = '#ffffff';
       ctx.lineWidth = 2.8;
       ctx.beginPath();
@@ -1914,37 +2039,42 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1, slug =
   const px = cx - 251 * pS;
   const py = cy - 328 * pS;
 
+  const charCfg = getCharacterConfigForPreset(slug, calcKey);
+
   if (cutNum === 1) {
-    // Cut 1: Mochi on left-center interacting with Situation Object on right-center!
+    // Cut 1: Protagonist Mochi on left interacting with Situation Prop on right
     const poseByCat = {
       electric: 'remote',
-      diet: String(slug).includes('bulkup') ? 'chicken' : 'dumbbell',
+      diet: 'dumbbell',
       pet: 'cup',
       room: 'tape',
-      auto: 'wheel',
+      auto: 'car_key',
       telecom: 'remote'
     };
     drawMochiFigure(ctx, px + 184 * pS, py + 336 * pS, pS * 1.02, {
-      role: 'mochi',
+      role: 'hero',
       calcKey,
-      pose: poseByCat[calcKey] || 'remote'
+      slug,
+      pose: (charCfg.hero && charCfg.hero.pose1) || poseByCat[calcKey] || 'remote'
     });
     drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 1);
   } else if (cutNum === 2) {
-    // Cut 2: Two-Character Coaching Scene! Surprised Mochi (left) + Glasses Senior (center) + Wider Whiteboard (right)
+    // Cut 2: Coaching Scene! Surprised Hero Mochi (left) + Pro Mentor (center) + Whiteboard (right)
     drawMochiFigure(ctx, px + 90 * pS, py + 368 * pS, pS * 0.72, {
-      role: 'mochi',
+      role: 'hero',
       calcKey,
+      slug,
       pose: 'shock_side'
     });
     drawMochiFigure(ctx, px + 228 * pS, py + 338 * pS, pS * 0.94, {
-      role: 'senior',
+      role: 'mentor',
       calcKey,
+      slug,
       pose: 'pointer'
     });
     drawSituationObject(ctx, px + 404 * pS, py + 366 * pS, pS * 0.92, calcKey, slug, 2);
   } else if (cutNum === 3) {
-    // Cut 3: Dramatic Crisis Scene! Gloom lines + Mochi crying + Category-Specific Crisis Object on Right
+    // Cut 3: Crisis Scene! Gloom lines + Hero crying + Category-Specific Crisis Object on Right
     ctx.save();
     ctx.strokeStyle = 'rgba(71, 85, 105, 0.28)';
     ctx.lineWidth = 2.5 * pS;
@@ -1957,13 +2087,14 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1, slug =
     ctx.restore();
 
     drawMochiFigure(ctx, px + 188 * pS, py + 334 * pS, pS * 1.02, {
-      role: 'mochi',
+      role: 'hero',
       calcKey,
+      slug,
       pose: 'cry_desk'
     });
     drawSituationObject(ctx, px + 378 * pS, py + 376 * pS, pS * 0.96, calcKey, slug, 3);
   } else {
-    // Cut 4: Sunny Resolution Scene! Sparkles + Cheering Mochi with Smartphone + Happy Situation Prop
+    // Cut 4: Resolution Scene! Sparkles + Cheering Hero Mochi with Smartphone + Happy Situation Prop
     ctx.save();
     ctx.fillStyle = '#facc15';
     [[92, 275], [320, 272], [448, 295]].forEach(([sx, sy]) => {
@@ -1974,8 +2105,9 @@ function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1, slug =
     ctx.restore();
 
     drawMochiFigure(ctx, px + 190 * pS, py + 336 * pS, pS * 1.02, {
-      role: 'mochi',
+      role: 'hero',
       calcKey,
+      slug,
       pose: 'cheer_phone'
     });
     drawSituationObject(ctx, px + 382 * pS, py + 372 * pS, pS * 0.96, calcKey, slug, 4);
