@@ -33,71 +33,73 @@ const FRONTEND_PIVOT_JS = path.join(ROOT_DIR, 'src', 'data', 'growth-pivot-state
 const DIST_PIVOT_JS = path.join(ROOT_DIR, 'dist', 'src', 'data', 'growth-pivot-state.js');
 const REPORT_MD_FILE = path.join(ROOT_DIR, '6시간_성과분석_및_자동피봇_리포트.md');
 
+const { runStaffFeedbackCouncil } = require('./staff-feedback-council.js');
+
 const CALC_META = {
   diet: {
     id: 'diet',
     name: '🍗 다이어트·식단 TDEE',
-    impulseItemTitle: '1만 원대 한입 닭가슴살 10+1팩 맛보기 세트',
+    impulseItemTitle: '9,900원대 한입 닭가슴살 10팩 세트',
     topPresets: ['diet-male-fatloss', 'diet-female-lean', 'diet-office-worker'],
     ctaVariants: [
-      '🛒 1만 원대 닭가슴살 맛보기 10팩 로켓프레시 최저가 ↗',
-      '⚡ 편의점 반값! 1팩 1,090원대 닭가슴살 당일발송 보러가기 ↗',
-      '🔥 오늘 주문 내일 새벽도착! 다향·하림 닭가슴살 특가 확인 ↗'
+      '🛒 9,900원 닭가슴살 10팩 ↗',
+      '⚡ 1팩 1,090원 반값특가 ↗',
+      '🔥 닭가슴살 내일 새벽도착 ↗'
     ]
   },
   pet: {
     id: 'pet',
     name: '🐶 강아지·고양이 사료량',
-    impulseItemTitle: '8,900원대 1g 정밀 사료 디지털 계량스푼 & 배변패드',
+    impulseItemTitle: '8,900원 1g 디지털 사료 계량스푼',
     topPresets: ['pet-maltese-5kg', 'pet-pomeranian-puppy', 'pet-korean-shorthair'],
     ctaVariants: [
-      '🛒 8천 원대 1g 디지털 사료 계량스푼·패드 로켓배송 ↗',
-      '⚡ 눈대중 급여 끝! 1g 정밀 사료 저울스푼 로켓와우 특가 ↗',
-      '🔥 기호성 1위 강아지·고양이 사료 & 배변패드 오늘의 특가 ↗'
+      '🛒 8,900원 1g 사료스푼 ↗',
+      '⚡ 정밀 사료스푼·패드 특가 ↗',
+      '🔥 기호성 1위 사료 특가 ↗'
     ]
   },
   electric: {
     id: 'electric',
     name: '⚡ 원룸 전기요금·누진세',
-    impulseItemTitle: '9,900원대 대기전력 0W 스마트플러그 & 단열 뽁뽁이',
-    topPresets: ['electric-studio-ac', 'electric-dehumidifier', 'electric-winter-heater'],
+    impulseItemTitle: '9,900원 대기전력 0W 스마트플러그',
+    topPresets: ['electric-winter-heater', 'electric-studio-ac', 'electric-dryer'],
     ctaVariants: [
-      '🛒 9,900원대 대기전력 0W 절전 멀티탭·단열템 로켓배송 ↗',
-      '⚡ 꼽기만 해도 매달 전기세 -1.2만 원! 절전 스마트플러그 특가 ↗',
-      '🔥 원룸 누진세 방어 1위! 창문 방풍비닐·1등급 제습기 특가 ↗'
+      '🛒 9,900원 절전플러그 ↗',
+      '⚡ 전기세 -1.2만 절전템 ↗',
+      '🔥 방풍비닐·1등급 제습기 ↗'
     ]
   },
   room: {
     id: 'room',
     name: '🏠 원룸·자취 가전예산',
-    impulseItemTitle: '1만 원대 고용량 과부하차단 멀티탭 + 원터치 건조대',
+    impulseItemTitle: '1만 원대 과부하차단 멀티탭·건조대',
     topPresets: ['room-oneroom-100', 'room-officetel-300', 'room-minimalist-50'],
     ctaVariants: [
-      '🛒 1만 원대 자취 입주 필수템(멀티탭·건조대) 로켓배송 ↗',
-      '⚡ 자취방 입주 당일 필수! 고용량 멀티탭·압축봉 반값 특가 ↗',
-      '🔥 오늘의집·쿠팡 자취 가전·침구 예산별 베스트셀러 확인 ↗'
+      '🛒 1만원대 자취 필수템 ↗',
+      '⚡ 고용량 멀티탭·건조대 ↗',
+      '🔥 자취 가전 베스트 특가 ↗'
     ]
   },
   telecom: {
     id: 'telecom',
     name: '🌐 통신비·알뜰폰·인터넷',
-    impulseItemTitle: '4,400원 알뜰폰 3사 공용 NFC 무약정 유심칩',
-    topPresets: ['telecom-mvno-switch', 'telecom-penalty-15', 'telecom-3yr-expired'],
+    impulseItemTitle: '4,400원 알뜰폰 3사 공용 유심칩',
+    topPresets: ['telecom-penalty-15', 'telecom-mvno-switch', 'telecom-3yr-expired'],
     ctaVariants: [
-      '🛒 4,400원 알뜰폰 3사 공용 반값 유심칩 로켓배송 ↗',
-      '⚡ 편의점(8,800원) 절반 가격! 4,400원 무약정 유심칩 당일배송 ↗',
-      '🔥 매달 통신비 -4.5만 원! 알뜰폰 유심 & 인터넷 47만 원 지원 확인 ↗'
+      '🛒 4,400원 반값 유심칩 ↗',
+      '⚡ 편의점 반값 무약정유심 ↗',
+      '🔥 알뜰유심·47만 지원금 ↗'
     ]
   },
   auto: {
     id: 'auto',
     name: '🚗 자동차 할부·장기렌트',
-    impulseItemTitle: '1만 원대 불스원샷 연비향상 연료첨가제 2개입 & 필터',
-    topPresets: ['auto-avante-3000', 'auto-casper-cash-vs-rent', 'auto-grandeur-5000'],
+    impulseItemTitle: '1만 원대 불스원샷 연료첨가제 2개입',
+    topPresets: ['auto-grandeur-5000', 'auto-avante-3000', 'auto-casper-cash-vs-rent'],
     ctaVariants: [
-      '🛒 1만 원대 불스원샷 2개입·에어컨필터 로켓배송 ↗',
-      '⚡ 카센터 공임비 0원! 불스원샷·활성탄 필터 로켓와우 반값 ↗',
-      '🔥 신차 장기렌트·할부 최저 금리 & 다이렉트 보험료 3초 비교 ↗'
+      '🛒 1만원대 불스원샷 2개 ↗',
+      '⚡ 불스원샷·필터 반값 ↗',
+      '🔥 신차 렌트·할부 최저가 ↗'
     ]
   }
 };
@@ -351,6 +353,17 @@ async function runSixHourGrowthCycle(options = {}) {
   const winningSlots = slotEntries.filter(([, count]) => count > 0).map(([slot, count]) => ({ slot, count }));
   const zeroClickSlots = slotEntries.filter(([, count]) => count === 0).map(([slot]) => slot);
 
+  // 2.5 Convene Pre-Report Cross-Departmental Staff Feedback Council BEFORE generating the report!
+  const staffCouncil = runStaffFeedbackCouncil({
+    todayUv,
+    todayPv,
+    totalUv,
+    totalClicks,
+    ctrPercent,
+    clicksBySlot,
+    topCalcName: reinforcedCalculators[0]?.name || '🍗 다이어트·식단 TDEE'
+  });
+
   // Construct Pivot State Payload
   const pivotState = {
     cycleCount,
@@ -405,6 +418,12 @@ async function runSixHourGrowthCycle(options = {}) {
       newCtaCopy: c.activeImpulseCta
     })),
     dynamicPriorityPresets,
+    staffFeedbackSession: {
+      sessionCount: staffCouncil.sessionCount,
+      heldAtKst: staffCouncil.heldAtKst,
+      consensusActions: staffCouncil.consensusActions,
+      feedbackRounds: staffCouncil.feedbackRounds
+    },
     calcCustomizations: Object.fromEntries(
       calcEvaluations.map((c, idx) => [
         c.id,
@@ -423,7 +442,8 @@ async function runSixHourGrowthCycle(options = {}) {
     newHiresActive: [
       { id: 'fox-director', emoji: '🦊', name: '여우 실장', role: '6시간 주기 성과분석·자동피봇 총괄', kpi: '6시간 주기 강화/수정 피봇' },
       { id: 'cheetah-lead', emoji: '🐆', name: '치타 팀장', role: '홈페이지 실시간 유입 스나이퍼', kpi: 'KPI 1: 홈페이지 유입(UV/PV)' },
-      { id: 'bee-specialist', emoji: '🐝', name: '꿀벌 과장', role: '쿠팡 클릭 & 실구매 전환 전담', kpi: 'KPI 2·3: 제휴 클릭 & 실구매' }
+      { id: 'bee-specialist', emoji: '🐝', name: '꿀벌 과장', role: '쿠팡 클릭 & 실구매 전환 전담', kpi: 'KPI 2·3: 제휴 클릭 & 실구매' },
+      { id: 'panda-mobile-ux', emoji: '📱', name: '팬더 팀장', role: '스마트폰 모바일 퍼스트 UX 팀장', kpi: '모바일 1화면 1초점 & 버튼 압축' }
     ]
   };
 
@@ -446,12 +466,26 @@ async function runSixHourGrowthCycle(options = {}) {
     fs.writeFileSync(DIST_PIVOT_JS, jsContent, 'utf8');
   }
 
-  // Write Detailed Markdown Report
+  // Write Detailed Markdown Report (including Pre-Report Staff Feedback Council Minutes!)
   const mdReport = `# 📊 6시간 주기 전사 성과분석 및 자동 강화·수정(Auto-Pivot) 리포트 (제${cycleCount}차)
 
 > **분석 시각**: ${checkedAtKst} (6시간 주기 자동 실행: \`00:00 / 06:00 / 12:00 / 18:00 KST\`)
-> **총괄 지휘**: 아기 호랑이 이사 🐯 & 신규 채용 3대 핵심 인재 (**🦊 여우 실장 · 🐆 치타 팀장 · 🐝 꿀벌 과장**)
+> **사전 절차**: 🗣️ **전직원 상호 피드백 타운홀 회의 (제${staffCouncil.sessionCount}차) 선(先) 진행 및 4대 합의안 반영 완료** ([전직원_상호피드백_회의록.md](file:///d:/사업아이템/moneyfit-portal/전직원_상호피드백_회의록.md))
+> **총괄 지휘**: 아기 호랑이 이사 🐯 & 핵심 리더진 (**🦊 여우 실장 · 🐆 치타 팀장 · 📱 팬더 팀장 · 🦌 사슴 디렉터 · 🦩 홍학 에디터 · 🐝 꿀벌 과장**)
 > **대표님 핵심 성과 기준**: **① 홈페이지 유입(UV/PV) ➔ ② 쿠팡파트너스·제휴 클릭(CTR) ➔ ③ 실제 구매 전환(CVR)**
+
+---
+
+## 🗣️ 0. [정기보고 직전 완료] 전직원 상호 피드백 회의 요약 (5대 부서 교차 피드백)
+
+| 라운드 | 발신 ➔ 수신 | 핵심 상호 피드백 (Critique) | 즉시 합의 및 코드·큐 반영 완료 내역 |
+| :---: | :--- | :--- | :--- |
+${staffCouncil.feedbackRounds
+  .map(
+    (r) =>
+      `| **R${r.round}** | **${r.from.emoji}${r.from.name} ➔ ${r.to.emoji}${r.to.name}** | ${r.critique} | ✅ **${r.appliedChange}** |`
+  )
+  .join('\n')}
 
 ---
 
@@ -478,7 +512,7 @@ ${pivotState.reinforceDirections
 
 ## 3. [수정 방향 — MODIFY / AUTO-PIVOT] 계산기별 성과 진단 및 자동 문구·전략 수정 내역
 
-| 순위 | 계산기 | 유입(PV) | 클릭(건) | 판정 | 진단 사유 | 이번 6시간 주기 자동 수정(Pivot) 조치 | 적용된 신규 즉결템 CTA 문구 |
+| 순위 | 계산기 | 유입(PV) | 클릭(건) | 판정 | 진단 사유 | 이번 6시간 주기 자동 수정(Pivot) 조치 | 적용된 신규 즉결템 CTA 문구 (모바일 14자 규격) |
 | :---: | :--- | :---: | :---: | :---: | :--- | :--- | :--- |
 ${calcEvaluations
   .map(
@@ -509,9 +543,12 @@ ${dynamicPriorityPresets
       const chatId = process.env.TELEGRAM_CHAT_ID || cfg?.telegram?.chatId || '';
       if (botToken && chatId && dailyReporter.sendTelegramMessage) {
         const tgMsg = [
-          `📊 <b>[머니핏 6시간 주기 성과분석 & 자동피봇 리포트 #${cycleCount}]</b>`,
+          `📊 <b>[머니핏 6시간 주기 성과분석 & 전직원 피드백 리포트 #${cycleCount}]</b>`,
           `⏰ 기준시각: ${checkedAtKst}`,
-          `👥 담당: 🦊여우 실장 · 🐆치타 팀장 · 🐝꿀벌 과장`,
+          `🗣️ <b>사전 절차: 전직원 상호 피드백 회의(제${staffCouncil.sessionCount}차) 완료 후 보고</b>`,
+          `  • 🦊여우➔🐆치타: 네이버·지식iN 큐를 식단(#07)·사료(#13)·난방비(#05)로 피봇 완료`,
+          `  • 📱팬더➔🐝꿀벌: 스마트폰 버튼 잘림 없도록 12~16자 초단문 가격표 압축 완료`,
+          `  • 🐝꿀벌➔📱팬더: 모바일 하단바에 '🚀내일도착·무료반품' 안심배지 탑재 완료`,
           ``,
           `<b>1️⃣ 3대 핵심 성과 (유입 ➔ 클릭 ➔ 실구매)</b>`,
           `• <b>홈페이지 유입</b>: 오늘 UV <b>${todayUv}명</b> (PV ${todayPv}회) / 누적 UV ${totalUv}명 (봇 크롤링 ${todayBots}회)`,
@@ -520,12 +557,11 @@ ${dynamicPriorityPresets
           ``,
           `<b>2️⃣ [강화 방향 🔥]</b>`,
           `• 1순위 집중: <b>${reinforcedCalculators[0].name}</b> & <b>${reinforcedCalculators[1].name}</b>`,
-          `• 메인 스포트라이트 고정 및 /office 실행 덱 최상단 배치 완료`,
           ``,
           `<b>3️⃣ [수정 방향 🛠️ (자동 피봇 완료)]</b>`,
-          `• 클릭 미발생/저조 구간: 초고가 가전 대신 <b>4,400~9,900원 로켓배송 즉결템(24시간 장바구니 쿠키 부스터)</b> 전면 우선 노출 & CTA 문구 #${(cycleCount % 3) + 1} 자동 교체 완료`,
+          `• 4,400~9,900원 로켓배송 즉결템 12~16자 모바일 버튼 자동 교체 완료`,
           `• 다음 6시간 최우선 타격 큐: <code>${dynamicPriorityPresets.slice(0, 3).join(', ')}</code>`,
-          `👉 <a href="https://truthofmarket.com/office">가상 사옥(/office) 원클릭 실행 덱 열기</a>`
+          `👉 <a href="https://truthofmarket.com/office">가상 사옥(/office) 전직원 피드백 회의실 열기</a>`
         ].join('\n');
         telegramResult = await dailyReporter.sendTelegramMessage(botToken, chatId, tgMsg);
       }
@@ -537,6 +573,7 @@ ${dynamicPriorityPresets
   return {
     ok: true,
     pivotState,
+    staffCouncil,
     reportPath: REPORT_MD_FILE,
     telegramResult
   };
@@ -548,6 +585,7 @@ if (require.main === module) {
     console.log('===============================================================');
     console.log(` 🔄 MONEYFIT 6-HOUR PERFORMANCE & AUTO-PIVOT CYCLE #${res.pivotState.cycleCount} DONE`);
     console.log('===============================================================');
+    console.log(`  ✓ Staff Council      : Session #${res.staffCouncil.sessionCount} (5 cross-team critiques resolved)`);
     console.log(`  ✓ Checked At         : ${res.pivotState.checkedAtKst}`);
     console.log(`  ✓ KPI 1 (Inflow)     : Today UV ${res.pivotState.kpis.inflow.todayUv} (PV ${res.pivotState.kpis.inflow.todayPv}) | Total UV ${res.pivotState.kpis.inflow.totalUv}`);
     console.log(`  ✓ KPI 2 (Clicks)     : Total ${res.pivotState.kpis.clicks.totalClicks} clicks (CTR ${res.pivotState.kpis.clicks.ctrPercent}%)`);

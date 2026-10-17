@@ -785,6 +785,7 @@ function buildOfficeStatePayload() {
     naverQuality: { undefinedLeaks: 0, roboticHashtags: 0, avgBlogJaccardPct: 4.3 }
   };
   let growthPivot = null;
+  let staffFeedbackCouncil = null;
 
   try {
     const managerAudit = require('./scripts/manager-audit.js');
@@ -802,18 +803,26 @@ function buildOfficeStatePayload() {
     }
   } catch (e) {}
 
+  try {
+    const feedbackFile = path.join(ROOT_DIR, 'logs', 'staff_feedback_minutes.json');
+    if (fs.existsSync(feedbackFile)) {
+      staffFeedbackCouncil = JSON.parse(fs.readFileSync(feedbackFile, 'utf8'));
+    }
+  } catch (e) {}
+
   const todayActionKit = buildTodayActionKit(webtoon, naver);
 
   return {
     status: 'ok',
     updatedAt: new Date().toISOString(),
-    companyName: '머니핏(MoneyFit) AI 코퍼레이션 (전사 15인 정예 체제)',
-    mission: '3일 내 첫 구매 돌파 & 10월 100만 원 → 6시간 주기 성과분석·자동피봇(강화/수정) 가동 중',
+    companyName: '머니핏(MoneyFit) AI 코퍼레이션 (전사 16인 정예 체제)',
+    mission: '3일 내 첫 구매 돌파 & 10월 100만 원 → 정기보고 전 전직원 상호 피드백 타운홀 & 6시간 자동피봇 가동 중',
     stats,
     webtoon,
     naver,
     spamAudit,
     growthPivot,
+    staffFeedbackCouncil,
     todayActionKit,
     departments: [
       {
@@ -953,6 +962,34 @@ const server = http.createServer(async (req, res) => {
       'Cache-Control': 'no-store'
     });
     res.end(JSON.stringify({ ok: true, pivotState: currentPivot }, null, 2));
+    return;
+  }
+
+  // 1-E. Pre-Report Cross-Departmental Peer Feedback Council API (/api/staff-feedback or /api/staff-feedback?run=1)
+  if (cleanUrlPath === '/api/staff-feedback') {
+    const params = new URLSearchParams(rawQuery || '');
+    const wantRun = params.get('run') === '1' || params.get('run') === 'true';
+    let minutes = null;
+    if (wantRun) {
+      try {
+        const council = require('./scripts/staff-feedback-council.js');
+        minutes = council.runStaffFeedbackCouncil({ triggerType: '사옥 관제실 즉시 타운홀 소집' });
+      } catch (e) {}
+    } else {
+      try {
+        const feedbackFile = path.join(ROOT_DIR, 'logs', 'staff_feedback_minutes.json');
+        if (fs.existsSync(feedbackFile)) {
+          minutes = JSON.parse(fs.readFileSync(feedbackFile, 'utf8'));
+        }
+      } catch (e) {}
+    }
+    res.writeHead(200, {
+      ...SECURITY_HEADERS,
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-store'
+    });
+    res.end(JSON.stringify({ ok: true, staffFeedbackCouncil: minutes }, null, 2));
     return;
   }
 

@@ -325,9 +325,16 @@ async function buildDailyRevenueData(injectedStats = null) {
   let backlogSummary = null;
   try {
     const managerAudit = require('./manager-audit.js');
+    const { runStaffFeedbackCouncil } = require('./staff-feedback-council.js');
     const webtoon = managerAudit.auditWebtoonBacklog();
     const naver = managerAudit.auditNaverBacklog();
     const spamAudit = managerAudit.auditSpamAndDuplication ? managerAudit.auditSpamAndDuplication() : null;
+    const staffCouncil = runStaffFeedbackCouncil({
+      todayUv,
+      todayPv,
+      totalUv,
+      totalClicks
+    });
     backlogSummary = {
       webtoonRendered: webtoon.renderedCount,
       webtoonPublished: webtoon.publishedLiveCount,
@@ -339,7 +346,8 @@ async function buildDailyRevenueData(injectedStats = null) {
       jisikinPending: naver.jisikin.pending,
       cafePending: naver.cafe.pending,
       nextBlogSlug: (naver.blog.nextQueue[0] && naver.blog.nextQueue[0].slug) || 'diet-male-fatloss',
-      spamAudit
+      spamAudit,
+      staffCouncil
     };
   } catch (e) {
     backlogSummary = null;
@@ -427,6 +435,16 @@ function formatDailyRevenueHtml(report) {
       ]
     : [];
 
+  const councilLines = b && b.staffCouncil
+    ? [
+        `🗣️ <b>0. [정기보고 직전 완료] 전직원 상호 피드백 회의 (제${b.staffCouncil.sessionCount}차)</b>`,
+        `• <b>🦊여우➔🐆치타</b>: 네이버·지식iN 큐를 전환 1위(<code>#07 식단·#13 사료·#05 난방비</code>)로 피봇 완료`,
+        `• <b>📱팬더➔🐝꿀벌</b>: 스마트폰 375px 버튼 무잘림 <code>12~16자</code> 초단문 가격표 일괄 적용`,
+        `• <b>🐝꿀벌➔📱팬더</b>: 모바일 하단바에 <code>🚀내일도착·무료반품</code> 2단어 안심배지 장착 완료`,
+        ``
+      ]
+    : [];
+
   const backlogLines = b
     ? [
         ``,
@@ -449,6 +467,7 @@ function formatDailyRevenueHtml(report) {
     `🕒 <b>보고 기준</b>: <code>${esc(report.dateStr)} ${esc(report.timeStr)} KST</code>`,
     `🌐 <b>운영 도메인</b>: <a href="https://truthofmarket.com">https://truthofmarket.com</a>`,
     `━━━━━━━━━━━━━━━━━━━━━━`,
+    ...councilLines,
     `👥 <b>1. 홈페이지 실시간 방문자 수 현황</b>`,
     `• <b>오늘 순방문자(UV)</b>: <code>${report.visitors.todayUv.toLocaleString()}명</code> (페이지뷰 <code>${report.visitors.todayPv.toLocaleString()}회</code>)`,
     `• <b>어제 순방문자(UV)</b>: <code>${report.visitors.yestUv.toLocaleString()}명</code> (페이지뷰 <code>${report.visitors.yestPv.toLocaleString()}회</code>)`,

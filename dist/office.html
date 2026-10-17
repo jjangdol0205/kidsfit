@@ -79,14 +79,17 @@
       <!-- 게임 컨트롤 툴바 -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="flex flex-wrap items-center gap-2">
+          <button id="btn-feedback-huddle" onclick="triggerCompanyEvent('feedback')" class="bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-slate-950 font-black text-xs px-3.5 py-2 rounded-xl transition shadow-lg flex items-center gap-1.5">
+            <span>🗣️</span><span>정기보고 전 전직원 상호 피드백 회의 소집</span>
+          </button>
           <button onclick="triggerCompanyEvent('rally')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            📢 전 부서 총괄매니저실 소집 (전체 보고)
+            📢 총괄매니저실 전체 보고
           </button>
           <button onclick="triggerCompanyEvent('audit')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            🛡️ 스팸·중복 즉시 감찰 출동
+            🛡️ 스팸·중복 감찰 출동
           </button>
           <button onclick="triggerCompanyEvent('sprint')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            🔥 CTR·백로그 초고속 스프린트
+            🔥 CTR·백로그 스프린트
           </button>
         </div>
         <div class="flex items-center gap-2">
@@ -103,7 +106,7 @@
       <div class="relative bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden pixel-border">
         <canvas id="office-canvas" width="920" height="560" class="w-full h-auto block"></canvas>
         <div class="bg-slate-950/90 border-t border-slate-800 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-          <span>💡 <strong>조작 팁:</strong> 사옥 안을 돌아다니는 <strong>동물 직원 캐릭터</strong>나 <strong>부서 방</strong>을 클릭하면 우측에 실시간 수행 업무와 산출물이 표시됩니다.</span>
+          <span>💡 <strong>조작 팁:</strong> 상단 <strong>[🗣️ 정기보고 전 전직원 상호 피드백 회의 소집]</strong>을 누르면 전 직원이 중앙 라운지 원탁에 모여 부서 간 크로스 피드백을 주고받습니다!</span>
           <span id="canvas-live-clock" class="text-emerald-400 font-mono font-bold">LIVE SYNC</span>
         </div>
       </div>
@@ -115,12 +118,12 @@
             <span class="text-xs font-extrabold text-blue-300">💻 제1본부: 홈페이지·CRO</span>
             <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full font-bold">가동중</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">4-Layer 구매 브릿지 & EXP-0/A/B/C</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">모바일 1스크린 다이어트 & 쿠팡 전환</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div class="bg-blue-500 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>수달🦦 · 비버🦫</span>
+            <span>팬더📱 · 사슴🦌 · 꿀벌🐝</span>
             <span class="text-blue-300 font-bold">116 테스트 PASS</span>
           </div>
         </div>
@@ -130,12 +133,12 @@
             <span class="text-xs font-extrabold text-emerald-300">🟢 제2본부: 네이버·SEO</span>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">발행중</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">144개 원고(유사도 6.6%) & IndexNow</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">144개 원고(유사도 4.3%) & 계절·전환큐</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div id="bar-naver-prog" class="bg-emerald-500 h-full rounded-full" style="width: 68%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>고슴도치🦔 · 미어캣🐾</span>
+            <span>치타🐆 · 고슴도치🦔 · 미어캣🐾</span>
             <span id="txt-naver-prog" class="text-emerald-300 font-bold">98/144 완료</span>
           </div>
         </div>
@@ -167,6 +170,66 @@
           <div class="text-xs text-slate-400 flex justify-between">
             <span>매 감사역🦅 · 부엉이🦉</span>
             <span class="text-purple-300 font-bold">undefined 0건</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🗣️ [신규] 정기보고 전 전직원 상호 피드백 타운홀 회의록 & 자동교정 보드 -->
+      <div id="staff-feedback-council-board" class="bg-gradient-to-br from-rose-950/40 via-slate-900 to-amber-950/30 border border-rose-500/40 rounded-2xl p-4 space-y-3 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="bg-rose-500 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full">🗣️ 타운홀 크로스 피드백</span>
+            <h3 class="text-sm font-black text-white">정기보고 전 전직원 상호 피드백 회의록 (5대 부서 크로스 검증 & 선조치 완료)</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="feedback-council-badge" class="text-[11px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full">
+              ✅ 5건 선조치 후 보고 승인
+            </span>
+            <button type="button" onclick="runStaffFeedbackFromOffice(this)" class="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-[11px] px-3 py-1 rounded-xl transition shadow">
+              🔔 피드백 회의 재소집 & 즉시교정
+            </button>
+          </div>
+        </div>
+
+        <div id="feedback-rounds-grid" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+          <!-- Round 1 -->
+          <div onclick="highlightFeedbackRound(0)" class="cursor-pointer bg-slate-950/90 hover:bg-slate-900 border border-slate-800 hover:border-amber-400/50 rounded-xl p-3 space-y-1.5 transition">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-extrabold text-amber-300">R1. 🦊여우 실장 ➔ 🐆치타 팀장·🦔고슴도치</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">✅ 즉시 반영</span>
+            </div>
+            <p class="text-slate-300 text-[11px] leading-snug"><strong class="text-rose-300">[지적]</strong> 네이버 대기열이 단순 번호순(#02·#03 여름 에어컨·제습기)이라 10월 말 계절성·전환율과 역행함!</p>
+            <p class="text-emerald-300 text-[11px] font-semibold leading-snug">👉 <strong>[합의·선조치]</strong> 6시간 전환 1~4위(#07 식단 ➔ #13 사료 ➔ #05 겨울 난방기 ➔ #31 위약금) 순으로 발행 큐 전면 재정렬!</p>
+          </div>
+
+          <!-- Round 2 -->
+          <div onclick="highlightFeedbackRound(1)" class="cursor-pointer bg-slate-950/90 hover:bg-slate-900 border border-slate-800 hover:border-sky-400/50 rounded-xl p-3 space-y-1.5 transition">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-extrabold text-sky-300">R2. 📱팬더 팀장 ➔ 🐝꿀벌 과장·🦩홍학</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">✅ 즉시 반영</span>
+            </div>
+            <p class="text-slate-300 text-[11px] leading-snug"><strong class="text-rose-300">[지적]</strong> 375px 스마트폰 버튼에서 18자 이상 긴 쿠팡 CTA 문구는 말줄임표(...)로 잘려 클릭률이 급락함!</p>
+            <p class="text-emerald-300 text-[11px] font-semibold leading-snug">👉 <strong>[합의·선조치]</strong> 18종 전 변형 카피 12~16자 초단문 가격 직결형(예: <code class="text-amber-300">🛒 9,900원 닭가슴살 10팩 ↗</code>) 압축 완료!</p>
+          </div>
+
+          <!-- Round 3 -->
+          <div onclick="highlightFeedbackRound(2)" class="cursor-pointer bg-slate-950/90 hover:bg-slate-900 border border-slate-800 hover:border-pink-400/50 rounded-xl p-3 space-y-1.5 transition">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-extrabold text-pink-300">R3. 🐝꿀벌 과장 ➔ 📱팬더 팀장 (역피드백)</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">✅ 즉시 반영</span>
+            </div>
+            <p class="text-slate-300 text-[11px] leading-snug"><strong class="text-rose-300">[지적]</strong> 모바일 하단 고정바(sticky_mobile) 클릭이 0회! 단순 '최저가 확인'만으로는 결제 망설임을 못 깸!</p>
+            <p class="text-emerald-300 text-[11px] font-semibold leading-snug">👉 <strong>[합의·선조치]</strong> 하단 고정바 우측 상단에 <code class="text-amber-300">🚀 내일도착·무료반품</code> 2단어 안심 마이크로 배지 즉시 장착!</p>
+          </div>
+
+          <!-- Round 4 -->
+          <div onclick="highlightFeedbackRound(3)" class="cursor-pointer bg-slate-950/90 hover:bg-slate-900 border border-slate-800 hover:border-purple-400/50 rounded-xl p-3 space-y-1.5 transition">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-extrabold text-purple-300">R4. 🐆치타 팀장 ➔ 🎨해달 디자이너·🦅매 감사역</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">✅ 즉시 반영</span>
+            </div>
+            <p class="text-slate-300 text-[11px] leading-snug"><strong class="text-rose-300">[지적]</strong> 인스타툰 3컷 충격 영수증 금액과 랜딩 최상단 0.5초 바의 금액이 1:1로 일치해야 이탈이 없음!</p>
+            <p class="text-emerald-300 text-[11px] font-semibold leading-snug">👉 <strong>[합의·선조치]</strong> 36편 웹툰 3컷 숫자 ↔ 프리셋 0.5초 바 100% 동기화 & 유사도 4.3% 감찰 완료 후 정기보고 상정!</p>
           </div>
         </div>
       </div>
@@ -893,8 +956,101 @@
       if (btn) btn.textContent = gameSpeed === 2 ? '⏩ 속도: 2x 배속' : '⏩ 속도: 1x 정상';
     }
 
+    let isFeedbackHuddleActive = false;
+    let activeFeedbackRoundIdx = 0;
+
+    const FEEDBACK_ROUNDS = [
+      {
+        fromId: 'fox-director',
+        toId: 'cheetah-sniper',
+        shortBubble: '💬 여우🦊➔치타🐆: 네이버 대기열 전환율·계절순 재정렬!',
+        logText: '🗣️ [R1 상호피드백] 🦊여우 실장 ➔ 🐆치타 팀장: "네이버 큐를 여름 에어컨 번호순 대신 #07 식단·#13 사료·#05 겨울난방기 순으로 즉시 재정렬하세요!" (즉시 반영 완료)'
+      },
+      {
+        fromId: 'panda-mobile',
+        toId: 'bee-cvr',
+        shortBubble: '💬 팬더📱➔꿀벌🐝: 375px 모바일 버튼 12~16자 압축!',
+        logText: '🗣️ [R2 상호피드백] 📱팬더 팀장 ➔ 🐝꿀벌 과장: "375px 스마트폰에서 18자 넘는 버튼은 잘립니다! 18종 전 카피 12~16자 초단문으로 줄이세요!" (즉시 반영 완료)'
+      },
+      {
+        fromId: 'bee-cvr',
+        toId: 'panda-mobile',
+        shortBubble: '💬 꿀벌🐝➔팬더📱: 하단 고정바 [🚀내일도착·무료반품] 배지!',
+        logText: '🗣️ [R3 상호피드백] 🐝꿀벌 과장 ➔ 📱팬더 팀장: "모바일 하단 고정바 클릭률을 높이려면 [🚀 내일도착·무료반품] 2단어 안심 배지를 붙여주세요!" (즉시 반영 완료)'
+      },
+      {
+        fromId: 'cheetah-sniper',
+        toId: 'otter-art',
+        shortBubble: '💬 치타🐆➔해달🎨: 인스타툰 3컷 금액 = 0.5초 바 1:1 일치!',
+        logText: '🗣️ [R4 상호피드백] 🐆치타 팀장 ➔ 🎨해달 아트디렉터: "인스타툰 3컷 영수증 금액과 랜딩 최상단 0.5초 바 숫자를 1:1 일치시켜 이탈을 막읍시다!" (즉시 반영 완료)'
+      },
+      {
+        fromId: 'falcon-qa',
+        toId: 'tiger-gm',
+        shortBubble: '💬 매🦅➔호랑이🐯: 144원고·36웹툰 중복 0건(4.3%) 승인!',
+        logText: '🗣️ [R5 최종승인] 🦅매 감사역 ➔ 🐯호랑이 이사: "전 부서 피드백 반영 후 undefined 0건, 유사도 4.3% 검증 완료! 대표님 정기보고 상정 승인합니다!"'
+      }
+    ];
+
+    function arrangeFeedbackHuddleCircle() {
+      const centerX = 460;
+      const centerY = 228;
+      const rx = 148;
+      const ry = 68;
+      EMPLOYEES.forEach((emp, i) => {
+        const angle = (i / EMPLOYEES.length) * Math.PI * 2 - Math.PI / 2;
+        emp.targetX = Math.round(centerX + Math.cos(angle) * rx);
+        emp.targetY = Math.round(centerY + Math.sin(angle) * ry);
+        emp.state = 'FEEDBACK';
+      });
+    }
+
+    function highlightFeedbackRound(idx) {
+      isFeedbackHuddleActive = true;
+      activeFeedbackRoundIdx = idx % FEEDBACK_ROUNDS.length;
+      arrangeFeedbackHuddleCircle();
+      const r = FEEDBACK_ROUNDS[activeFeedbackRoundIdx];
+      const speaker = EMPLOYEES.find(e => e.id === r.fromId) || EMPLOYEES[0];
+      selectEmployeeById(speaker.id);
+      pushActivityLog(speaker, r.logText);
+      const btn = document.getElementById('btn-feedback-huddle');
+      if (btn) {
+        btn.innerHTML = '<span>🗣️</span><span>타운홀 피드백 회의 진행중 (클릭 시 해산)</span>';
+      }
+    }
+
     function triggerCompanyEvent(type) {
-      if (type === 'rally') {
+      if (type === 'feedback') {
+        isFeedbackHuddleActive = !isFeedbackHuddleActive;
+        const btn = document.getElementById('btn-feedback-huddle');
+        if (isFeedbackHuddleActive) {
+          activeFeedbackRoundIdx = 0;
+          arrangeFeedbackHuddleCircle();
+          if (btn) {
+            btn.innerHTML = '<span>🗣️</span><span>타운홀 피드백 회의 진행중 (클릭 시 해산)</span>';
+          }
+          FEEDBACK_ROUNDS.forEach((r, idx) => {
+            setTimeout(() => {
+              if (!isFeedbackHuddleActive) return;
+              activeFeedbackRoundIdx = idx;
+              const sp = EMPLOYEES.find(e => e.id === r.fromId) || EMPLOYEES[0];
+              pushActivityLog(sp, r.logText);
+              particles.push({ x: sp.x, y: sp.y - 26, text: '🗣️ 크로스 피드백!', color: '#f43f5e', life: 55 });
+            }, idx * 1400);
+          });
+        } else {
+          if (btn) {
+            btn.innerHTML = '<span>🗣️</span><span>정기보고 전 전직원 상호 피드백 회의 소집</span>';
+          }
+          EMPLOYEES.forEach(emp => {
+            emp.targetX = emp.homeX;
+            emp.targetY = emp.homeY;
+            emp.state = 'WORKING';
+          });
+          pushActivityLog(EMPLOYEES[0], '✅ 전직원 상호 피드백 회의 완료! 합의된 5대 교정안을 각 본부 현장에 즉시 적용합니다.');
+        }
+      } else if (type === 'rally') {
+        isFeedbackHuddleActive = false;
         EMPLOYEES.forEach((emp, i) => {
           if (emp.id !== 'tiger-gm') {
             emp.targetX = 350 + (i % 4) * 55;
@@ -910,7 +1066,7 @@
           qa.targetY = 150;
           qa.state = 'AUDITING';
           selectEmployeeById(qa.id);
-          pushActivityLog(qa, '🛡️ 네이버 144개 원고 & 웹툰 36편 스팸·중복 긴급 감찰 완료: undefined 0건, 유사도 6.6% (CLEAN)!');
+          pushActivityLog(qa, '🛡️ 네이버 144개 원고 & 웹툰 36편 스팸·중복 긴급 감찰 완료: undefined 0건, 유사도 4.3% (CLEAN)!');
         }
       } else if (type === 'sprint') {
         EMPLOYEES.forEach(emp => {
@@ -970,15 +1126,19 @@
     function updateSimulation() {
       tickCount += gameSpeed;
 
+      if (isFeedbackHuddleActive && tickCount % 160 === 0) {
+        activeFeedbackRoundIdx = (activeFeedbackRoundIdx + 1) % FEEDBACK_ROUNDS.length;
+      }
+
       // Periodically assign random movement (walking to GM room or within department)
       EMPLOYEES.forEach((emp, idx) => {
         const dx = emp.targetX - emp.x;
         const dy = emp.targetY - emp.y;
         const dist = Math.hypot(dx, dy);
         if (dist > 2) {
-          emp.x += (dx / dist) * 1.6 * gameSpeed;
-          emp.y += (dy / dist) * 1.6 * gameSpeed;
-        } else {
+          emp.x += (dx / dist) * (isFeedbackHuddleActive ? 2.4 : 1.6) * gameSpeed;
+          emp.y += (dy / dist) * (isFeedbackHuddleActive ? 2.4 : 1.6) * gameSpeed;
+        } else if (!isFeedbackHuddleActive) {
           if (emp.state === 'REPORTING' && Math.random() < 0.02 * gameSpeed) {
             emp.targetX = emp.homeX;
             emp.targetY = emp.homeY;
@@ -1058,12 +1218,24 @@
         ctx.stroke();
       }
 
-      // Central Corridor Carpet
-      drawRoundedRect(310, 175, 300, 105, 14, 'rgba(30, 41, 59, 0.75)', 'rgba(71, 85, 105, 0.5)', 1.5);
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = 'bold 12px Pretendard, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('☕ 중앙 라운지 & 3대 본부 실시간 브리핑 홀', 460, 232);
+      // Central Corridor Carpet / Townhall Round Table
+      if (isFeedbackHuddleActive) {
+        drawRoundedRect(295, 168, 330, 118, 22, 'rgba(136, 19, 55, 0.45)', '#f43f5e', 2.5);
+        ctx.fillStyle = '#fda4af';
+        ctx.font = 'bold 13px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🗣️ 정기보고 전 전직원 상호 피드백 원탁 회의 (LIVE)', 460, 218);
+        const activeRound = FEEDBACK_ROUNDS[activeFeedbackRoundIdx] || FEEDBACK_ROUNDS[0];
+        ctx.fillStyle = '#fef08a';
+        ctx.font = 'bold 12px Pretendard, sans-serif';
+        ctx.fillText(activeRound.shortBubble, 460, 242);
+      } else {
+        drawRoundedRect(310, 175, 300, 105, 14, 'rgba(30, 41, 59, 0.75)', 'rgba(71, 85, 105, 0.5)', 1.5);
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 12px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('☕ 중앙 라운지 & 전직원 상호 피드백 타운홀', 460, 232);
+      }
 
       // 2. Draw Department Rooms & Workstations
       ROOMS.forEach(r => {
@@ -1085,6 +1257,24 @@
         // Laptop glow
         drawRoundedRect(emp.homeX - 10, emp.homeY + 12, 20, 12, 3, '#38bdf8', null);
       });
+
+      // 3-B. Draw Active Cross-Department Feedback Line when Huddle is active
+      if (isFeedbackHuddleActive) {
+        const activeRound = FEEDBACK_ROUNDS[activeFeedbackRoundIdx] || FEEDBACK_ROUNDS[0];
+        const fromEmp = EMPLOYEES.find(e => e.id === activeRound.fromId);
+        const toEmp = EMPLOYEES.find(e => e.id === activeRound.toId);
+        if (fromEmp && toEmp) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([6, 4]);
+          ctx.moveTo(fromEmp.x, fromEmp.y);
+          ctx.lineTo(toEmp.x, toEmp.y);
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
 
       // 4. Draw Employees & Speech Bubbles
       EMPLOYEES.forEach(emp => {
@@ -1127,17 +1317,29 @@
         ctx.font = 'bold 11px Pretendard, sans-serif';
         ctx.fillText(emp.name.split(' ')[0], emp.x, emp.y + 31);
 
-        // Speech Bubble (shows current task snippet)
-        const taskIdx = Math.floor((tickCount + emp.homeX) / 110) % emp.tasks.length;
-        const shortTask = emp.tasks[taskIdx].slice(0, 21) + (emp.tasks[taskIdx].length > 21 ? '…' : '');
-        const bw = Math.max(138, shortTask.length * 7.2);
-        const bx = Math.min(Math.max(12, emp.x - bw / 2), canvas.width - bw - 12);
-        const by = emp.y + bounce - 48;
+        // Speech Bubble (shows current task snippet or active peer feedback)
+        const activeRound = FEEDBACK_ROUNDS[activeFeedbackRoundIdx] || FEEDBACK_ROUNDS[0];
+        if (isFeedbackHuddleActive && emp.id === activeRound.fromId) {
+          const fbText = activeRound.shortBubble;
+          const bw = Math.max(220, fbText.length * 7.6);
+          const bx = Math.min(Math.max(12, emp.x - bw / 2), canvas.width - bw - 12);
+          const by = emp.y + bounce - 52;
+          drawRoundedRect(bx, by, bw, 24, 8, '#fef08a', '#f43f5e', 2);
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 11px Pretendard, sans-serif';
+          ctx.fillText(fbText, bx + bw / 2, by + 12);
+        } else if (!isFeedbackHuddleActive) {
+          const taskIdx = Math.floor((tickCount + emp.homeX) / 110) % emp.tasks.length;
+          const shortTask = emp.tasks[taskIdx].slice(0, 21) + (emp.tasks[taskIdx].length > 21 ? '…' : '');
+          const bw = Math.max(138, shortTask.length * 7.2);
+          const bx = Math.min(Math.max(12, emp.x - bw / 2), canvas.width - bw - 12);
+          const by = emp.y + bounce - 48;
 
-        drawRoundedRect(bx, by, bw, 22, 8, 'rgba(255, 255, 255, 0.95)', emp.color, 1.5);
-        ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 11px Pretendard, sans-serif';
-        ctx.fillText(shortTask, bx + bw / 2, by + 11);
+          drawRoundedRect(bx, by, bw, 22, 8, 'rgba(255, 255, 255, 0.95)', emp.color, 1.5);
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 11px Pretendard, sans-serif';
+          ctx.fillText(shortTask, bx + bw / 2, by + 11);
+        }
       });
 
       // 5. Draw Floating Particles
@@ -1409,10 +1611,49 @@
           modEl.textContent = `6개 계산기 1만 원대 로켓배송 즉결템 전면 전환 (예: "${gp.modifyDirections[0].newCtaCopy}")`;
         }
       }
+      if (data.staffFeedbackCouncil) {
+        const sc = data.staffFeedbackCouncil;
+        const fbBadge = document.getElementById('feedback-council-badge');
+        if (fbBadge && sc.sessionCount) {
+          fbBadge.textContent = `✅ 제${sc.sessionCount}차 타운홀 · 5건 선조치 승인 (${(sc.heldAtKst || '').slice(11, 16) || '실시간'})`;
+        }
+      }
       if (data.todayActionKit) {
         liveActionKit = data.todayActionKit;
         renderActionKitDeck();
       }
+    }
+
+    function runStaffFeedbackFromOffice(btnEl) {
+      const origHtml = btnEl ? btnEl.innerHTML : '';
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '⏳ 전직원 상호 피드백 회의 & 선조치 중...';
+      }
+      if (!isFeedbackHuddleActive) {
+        triggerCompanyEvent('feedback');
+      }
+      fetch('/api/staff-feedback?run=1')
+        .then(r => r.json())
+        .then(res => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = '✅ 5대 부서 상호 피드백 & 자동교정 완료!';
+            setTimeout(() => { btnEl.innerHTML = origHtml; }, 2500);
+          }
+          const sess = (res && res.staffFeedbackCouncil && res.staffFeedbackCouncil.sessionCount) || 1;
+          pushActivityLog(
+            EMPLOYEES[0],
+            `🗣️ [제${sess}차 정기보고 전 상호 피드백 회의] 여우🦊·치타🐆·팬더📱·꿀벌🐝·해달🎨·매🦅 5대 크로스 피드백 및 현장 자동교정 완료!`
+          );
+          fetchLiveOfficeState();
+        })
+        .catch(() => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = origHtml;
+          }
+        });
     }
 
     function runSixHourCycleFromOffice(btnEl) {
@@ -1454,10 +1695,10 @@
     // Initialize
     selectEmployeeById('tiger-gm');
     renderActionKitDeck();
-    pushActivityLog(EMPLOYEES[0], '🐯 신규 핵심 인재 3명(🦊여우 실장 · 🐆치타 팀장 · 🐝꿀벌 과장) 즉각 채용 및 배치 완료! (전사 15인 체제)');
-    pushActivityLog(EMPLOYEES[9], '🦊 6시간 주기(00·06·12·18시) 3대 성과(홈페이지 유입·쿠팡클릭·실구매) 분석 및 자동 강화/수정 엔진 가동!');
-    pushActivityLog(EMPLOYEES[10], '🐆 지식iN 실시간 미채택 질문 6대 직행 스나이퍼 덱 가동 및 유입 최우선 큐 정렬 완료!');
-    pushActivityLog(EMPLOYEES[11], '🐝 36개 전 페이지 최상단 0.5초 특가바 + 1만 원대 로켓배송 즉결템(24시간 쿠키 부스터) 전면 배치 완료!');
+    pushActivityLog(EMPLOYEES[0], '🐯 정기보고 전 [🗣️ 전직원 상호 피드백 타운홀 회의] 프로세스 신설 완료! (전사 16인 정예 체제)');
+    pushActivityLog(EMPLOYEES[9], '🦊 [R1 피드백] 여우 실장 ➔ 치타 팀장: 네이버 큐를 #07 식단·#13 사료·#05 겨울난방기 순으로 재정렬 완료!');
+    pushActivityLog(EMPLOYEES[13], '📱 [R2 피드백] 팬더 팀장 ➔ 꿀벌 과장: 375px 모바일 버튼 18종 전량 12~16자 초단문 압축 완료!');
+    pushActivityLog(EMPLOYEES[11], '🐝 [R3 역피드백] 꿀벌 과장 ➔ 팬더 팀장: 모바일 하단 고정바 [🚀 내일도착·무료반품] 안심 배지 장착 완료!');
     fetchLiveOfficeState();
     setInterval(fetchLiveOfficeState, 15000);
 

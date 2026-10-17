@@ -206,6 +206,39 @@ function auditNaverBacklog() {
     communityDone = 36;
   }
 
+  // [Round 1 Peer Feedback Fix: 🦊여우 실장 -> 🐆치타 팀장]
+  // Sort pending queues by 6-hour conversion & seasonal priority instead of raw numeric order (#02 summer AC)
+  const PRIORITY_ORDER = [
+    'diet-male-fatloss',
+    'pet-maltese-5kg',
+    'electric-winter-heater',
+    'telecom-penalty-15',
+    'auto-grandeur-5000',
+    'room-oneroom-100',
+    'diet-female-lean',
+    'pet-pomeranian-puppy',
+    'electric-dryer',
+    'telecom-mvno-switch',
+    'diet-office-worker',
+    'pet-korean-shorthair',
+    'auto-avante-3000',
+    'telecom-3yr-expired',
+    'room-officetel-300'
+  ];
+  const sortByConversionPriority = (arr) =>
+    arr.slice().sort((a, b) => {
+      const idxA = PRIORITY_ORDER.indexOf(a.slug);
+      const idxB = PRIORITY_ORDER.indexOf(b.slug);
+      const rankA = idxA === -1 ? 999 : idxA;
+      const rankB = idxB === -1 ? 999 : idxB;
+      if (rankA !== rankB) return rankA - rankB;
+      return Number(a.num) - Number(b.num);
+    });
+
+  const sortedPendingBlog = sortByConversionPriority(pendingBlogPresets);
+  const sortedPendingCafe = sortByConversionPriority(pendingCafePresets);
+  const sortedPendingJisikin = sortByConversionPriority(pendingJisikinPresets);
+
   const seoReportPath = path.join(PROJECT_ROOT, '구글_네이버_자동노출_리포트.md');
   let seoMode = 'UNKNOWN';
   if (fs.existsSync(seoReportPath)) {
@@ -222,9 +255,9 @@ function auditNaverBacklog() {
   return {
     totalFiles,
     fileCounts,
-    blog: { done: blogDone, total: 36, pending: 36 - blogDone, nextQueue: pendingBlogPresets.slice(0, 5) },
-    cafe: { done: cafeDone, total: 36, pending: 36 - cafeDone, nextQueue: pendingCafePresets.slice(0, 5) },
-    jisikin: { done: jisikinDone, total: 36, pending: 36 - jisikinDone, nextQueue: pendingJisikinPresets.slice(0, 5) },
+    blog: { done: blogDone, total: 36, pending: 36 - blogDone, nextQueue: sortedPendingBlog.slice(0, 5) },
+    cafe: { done: cafeDone, total: 36, pending: 36 - cafeDone, nextQueue: sortedPendingCafe.slice(0, 5) },
+    jisikin: { done: jisikinDone, total: 36, pending: 36 - jisikinDone, nextQueue: sortedPendingJisikin.slice(0, 5) },
     community: { done: communityDone, total: 36, pending: Math.max(0, 36 - communityDone) },
     totalDone: blogDone + cafeDone + jisikinDone + communityDone,
     totalTarget: 144,
@@ -504,12 +537,30 @@ async function runManagerAudit() {
   const naver = auditNaverBacklog();
   const spamAudit = auditSpamAndDuplication();
   const perf = await diagnosePerformance(webtoon, naver);
+  const { runStaffFeedbackCouncil } = require('./staff-feedback-council.js');
+  const staffCouncil = runStaffFeedbackCouncil({
+    todayUv: perf.liveStats.todayUv,
+    totalUv: perf.liveStats.totalUv,
+    totalClicks: perf.liveStats.totalClicks,
+    ctrPercent: perf.liveStats.ctrPercent
+  });
 
   const md = [
     `# 📋 [머니핏 총괄 매니저] CTR 극대화 실험 · 10월 100만 원(+100% MoM) 로드맵 · 웹툰/네이버 백로그 보드`,
     `> **최근 점검 일시**: \`${fullKst}\`  `,
+    `> **사전 절차**: 🗣️ **정기보고 전 전직원 상호 피드백 타운홀 회의 (제${staffCouncil.sessionCount}차) 완료 후 보고** ([전직원_상호피드백_회의록.md](file:///d:/사업아이템/moneyfit-portal/전직원_상호피드백_회의록.md))  `,
     `> **담당**: 머니핏 총괄 매니저 (\`매니저\`) | **보고 대상**: \`대표님\`  `,
     `> **핵심 미션**: 유입 → 클릭 → 구매 전환(CTR·CVR) 극대화 | **10월 목표 \`1,000,000원\` → 이후 매월 \`+100%\` 복리 성장**`,
+    ``,
+    `---`,
+    ``,
+    `## 🗣️ 0. [정기보고 전 필수 절차] 전직원 상호 피드백 회의 요약 (5대 부서 교차 피드백)`,
+    `| 라운드 | 발신 ➔ 수신 | 날카로운 상호 지적 (Critique) | 즉시 합의 및 코드·큐 선(先) 반영 내역 |`,
+    `| :---: | :--- | :--- | :--- |`,
+    ...staffCouncil.feedbackRounds.map(
+      r =>
+        `| **R${r.round}** | **${r.from.emoji}${r.from.name} ➔ ${r.to.emoji}${r.to.name}** | ${r.critique} | ✅ **${r.appliedChange}** |`
+    ),
     ``,
     `---`,
     ``,

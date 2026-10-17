@@ -2732,117 +2732,463 @@
     }
   }
 
+  const CATEGORY_ART_IMAGES = {};
+  function getCategoryArtImage(calcKey) {
+    const key = calcKey || 'electric';
+    if (CATEGORY_ART_IMAGES[key]) return CATEGORY_ART_IMAGES[key];
+    if (typeof Image !== 'undefined') {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        refreshActive();
+      };
+      img.src = `/src/assets/webtoon/${key}.jpg`;
+      CATEGORY_ART_IMAGES[key] = img;
+      return img;
+    }
+    return null;
+  }
+
+  function getQuadrantWallColor(calcKey, quadIdx) {
+    if (quadIdx === 0) return '#fcf6e4';
+    if (quadIdx === 1) return '#d5eaf8';
+    if (quadIdx === 3) return '#fef1a8';
+    const q2Colors = {
+      electric: '#cfead9',
+      diet: '#eadcf8',
+      pet: '#fce8dc',
+      room: '#f9ebe0',
+      auto: '#f4f5ef',
+      telecom: '#fcf9f2'
+    };
+    return q2Colors[calcKey] || '#fcf6e4';
+  }
+
+  function drawAnimalSceneQuadrant(ctx, img, calcKey, quadIdx, flipX, zoom, x, y, w, h, r, s = 1) {
+    ctx.save();
+    drawRoundedRect(ctx, x, y, w, h, r);
+    ctx.clip();
+
+    const wallColor = getQuadrantWallColor(calcKey, quadIdx);
+    ctx.fillStyle = wallColor;
+    ctx.fillRect(x, y, w, h);
+
+    if (img && img.complete && img.naturalWidth > 0) {
+      const W = img.naturalWidth;
+      const H = img.naturalHeight;
+      const halfW = Math.floor(W / 2);
+      const halfH = Math.floor(H / 2);
+      const col = quadIdx % 2;
+      const row = Math.floor(quadIdx / 2);
+
+      const padOuter = Math.round(W * 0.012);
+      const padInner = Math.round(W * 0.012);
+
+      const baseSx = col === 0 ? padOuter : halfW + padInner;
+      const baseSy = row === 0 ? padOuter : halfH + padInner;
+      const baseSw = halfW - padOuter - padInner;
+      const baseSh = halfH - padOuter - padInner;
+
+      const z = Math.max(1.0, Math.min(1.12, Number(zoom) || 1.0));
+      const sw = baseSw / z;
+      const sh = baseSh / z;
+      const sx = baseSx + (baseSw - sw) * 0.5;
+      const sy = baseSy + (baseSh - sh) * 0.88;
+
+      const topShift = Math.round(38 * s);
+      const destY = y + topShift;
+      const destH = h - topShift;
+
+      ctx.save();
+      if (flipX) {
+        ctx.translate(x + w, destY);
+        ctx.scale(-1, 1);
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, destH);
+      } else {
+        ctx.drawImage(img, sx, sy, sw, sh, x, destY, w, destH);
+      }
+      ctx.restore();
+
+      const blendGrad = ctx.createLinearGradient(x, destY - 2 * s, x, destY + 34 * s);
+      blendGrad.addColorStop(0, wallColor);
+      blendGrad.addColorStop(0.35, wallColor);
+      blendGrad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = blendGrad;
+      ctx.fillRect(x, destY - 4 * s, w, 40 * s);
+    }
+
+    ctx.restore();
+  }
+
+  function drawAnimalTopNarration(ctx, cutNum, text, x, y, w, s = 1) {
+    const boxH = 34 * s;
+    const boxY = y + 8 * s;
+    ctx.save();
+
+    let fontSize = 17.5 * s;
+    ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    while (fontSize > 13 * s && ctx.measureText(text).width > w - 82 * s) {
+      fontSize -= 0.5 * s;
+      ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    }
+    const textW = ctx.measureText(text).width;
+    const badgeW = 42 * s;
+    const boxW = Math.min(w - 18 * s, Math.max(w * 0.82, textW + badgeW + 32 * s));
+    const boxX = x + (w - boxW) / 2;
+
+    ctx.shadowColor = 'rgba(41, 37, 36, 0.16)';
+    ctx.shadowBlur = 5 * s;
+    ctx.shadowOffsetY = 2 * s;
+
+    drawRoundedRect(ctx, boxX, boxY, boxW, boxH, 10 * s);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.96)';
+    ctx.fill();
+
+    ctx.shadowColor = 'transparent';
+    ctx.lineWidth = 2.6 * s;
+    ctx.strokeStyle = '#292524';
+    ctx.stroke();
+
+    const pillColors = ['#f59e0b', '#0284c7', '#e11d48', '#10b981'];
+    drawRoundedRect(ctx, boxX + 5 * s, boxY + 5 * s, badgeW, boxH - 10 * s, 7 * s);
+    ctx.fillStyle = pillColors[(cutNum - 1) % 4];
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 ' + (13.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(cutNum + '컷', boxX + 5 * s + badgeW / 2, boxY + boxH / 2 + 0.5 * s);
+
+    ctx.fillStyle = '#1c1917';
+    ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const textCenterX = boxX + badgeW + 6 * s + (boxW - badgeW - 10 * s) / 2;
+    ctx.fillText(text, textCenterX, boxY + boxH / 2 + 0.5 * s);
+    ctx.restore();
+  }
+
+  function drawMainSpeechBubbleWithTail(ctx, lines, x, y, w, s = 1, speakerSide = 'left', accentColor = '#dc2626', highlightColor = '#fef08a') {
+    ctx.save();
+
+    const bx = x + 16 * s;
+    const by = y + 48 * s;
+    const bw = w - 32 * s;
+    const bh = 96 * s;
+    const br = 26 * s;
+
+    const tailX = speakerSide === 'right' ? x + w * 0.72 : x + w * 0.28;
+    const tailDir = speakerSide === 'right' ? 1 : -1;
+    const tailW = 18 * s;
+    const tailH = 14 * s;
+
+    ctx.shadowColor = 'rgba(41, 37, 36, 0.16)';
+    ctx.shadowBlur = 7 * s;
+    ctx.shadowOffsetY = 3 * s;
+
+    ctx.beginPath();
+    ctx.moveTo(bx + br, by);
+    ctx.lineTo(bx + bw - br, by);
+    ctx.quadraticCurveTo(bx + bw, by, bx + bw, by + br);
+    ctx.lineTo(bx + bw, by + bh - br);
+    ctx.quadraticCurveTo(bx + bw, by + bh, bx + bw - br, by + bh);
+    ctx.lineTo(tailX + tailW * 0.55, by + bh);
+    ctx.lineTo(tailX + tailDir * 5 * s, by + bh + tailH);
+    ctx.lineTo(tailX - tailW * 0.55, by + bh);
+    ctx.lineTo(bx + br, by + bh);
+    ctx.quadraticCurveTo(bx, by + bh, bx, by + bh - br);
+    ctx.lineTo(bx, by + br);
+    ctx.quadraticCurveTo(bx, by, bx + br, by);
+    ctx.closePath();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+
+    ctx.shadowColor = 'transparent';
+    ctx.lineWidth = 3.4 * s;
+    ctx.strokeStyle = '#292524';
+    ctx.stroke();
+
+    const maxAllowedW = bw - 28 * s;
+    let baseSize = (lines.length === 1 ? 40 : 32.5) * s;
+    const emphRatio = 1.32;
+
+    const measureRichLine = (rawLine, bSize) => {
+      const segs = String(rawLine || '').split('**');
+      let total = 0;
+      segs.forEach((seg, idx) => {
+        if (!seg) return;
+        const isEmph = idx % 2 === 1;
+        const sz = isEmph ? bSize * emphRatio : bSize;
+        ctx.font = '700 ' + sz.toFixed(1) + 'px "Gaegu", "Jua", "Malgun Gothic", sans-serif';
+        total += ctx.measureText(seg).width;
+      });
+      return total;
+    };
+
+    lines.forEach(rawLine => {
+      while (baseSize > 21 * s && measureRichLine(rawLine, baseSize) > maxAllowedW) {
+        baseSize -= 0.5 * s;
+      }
+    });
+
+    const cx = bx + bw / 2;
+    const cy = by + bh / 2;
+    const lineSpacing = baseSize * 1.22;
+    const totalBlockH = (lines.length - 1) * lineSpacing;
+    const firstLineY = cy - totalBlockH / 2 + baseSize * 0.34;
+
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+
+    lines.forEach((rawLine, lineIdx) => {
+      const segs = String(rawLine || '').split('**');
+      const lineW = measureRichLine(rawLine, baseSize);
+      let curX = cx - lineW / 2;
+      const baseY = firstLineY + lineIdx * lineSpacing;
+
+      segs.forEach((seg, segIdx) => {
+        if (!seg) return;
+        const isEmph = segIdx % 2 === 1;
+        const sz = isEmph ? baseSize * emphRatio : baseSize;
+        ctx.font = '700 ' + sz.toFixed(1) + 'px "Gaegu", "Jua", "Malgun Gothic", sans-serif';
+        const segW = ctx.measureText(seg).width;
+
+        if (isEmph) {
+          ctx.save();
+          ctx.fillStyle = highlightColor;
+          drawRoundedRect(ctx, curX - 3 * s, baseY - sz * 0.54, segW + 6 * s, sz * 0.60, 6 * s);
+          ctx.fill();
+          ctx.restore();
+
+          const bounceY = baseY - 1.5 * s;
+          ctx.lineWidth = 2.2 * s;
+          ctx.strokeStyle = accentColor;
+          ctx.lineJoin = 'round';
+          ctx.strokeText(seg, curX, bounceY);
+          ctx.fillStyle = accentColor;
+          ctx.fillText(seg, curX, bounceY);
+        } else {
+          ctx.lineWidth = 1.1 * s;
+          ctx.strokeStyle = '#1c1917';
+          ctx.lineJoin = 'round';
+          ctx.strokeText(seg, curX, baseY);
+          ctx.fillStyle = '#1c1917';
+          ctx.fillText(seg, curX, baseY);
+        }
+        curX += segW;
+      });
+    });
+
+    ctx.restore();
+  }
+
+  function drawReplySpeechBubble(ctx, replyText, x, y, w, s = 1, mainSpeakerSide = 'left', quadIdx = 0) {
+    if (!replyText) return;
+    ctx.save();
+
+    let fontSize = 23.5 * s;
+    ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Gaegu", "Jua", sans-serif';
+    while (fontSize > 17 * s && ctx.measureText(replyText).width > w - 70 * s) {
+      fontSize -= 0.5 * s;
+      ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Gaegu", "Jua", sans-serif';
+    }
+
+    const textW = ctx.measureText(replyText).width;
+    const bw = Math.min(w - 36 * s, Math.max(180 * s, textW + 32 * s));
+    const bh = 36 * s;
+    const by = y + 154 * s;
+    const replySide = mainSpeakerSide === 'left' ? 'right' : 'left';
+    const bx = replySide === 'right'
+      ? Math.max(x + 18 * s, x + w - bw - 18 * s)
+      : x + 18 * s;
+    const br = 18 * s;
+
+    const tailX = replySide === 'right' ? bx + bw * 0.68 : bx + bw * 0.32;
+    const tailW = 12 * s;
+    const tailH = 9 * s;
+
+    const bgByQuad = ['#fffbeb', '#fef9c3', '#fff1f2', '#ecfdf5'];
+    const fillCol = bgByQuad[quadIdx % 4] || '#fef9c3';
+
+    ctx.shadowColor = 'rgba(41, 37, 36, 0.12)';
+    ctx.shadowBlur = 4 * s;
+    ctx.shadowOffsetY = 2 * s;
+
+    ctx.beginPath();
+    ctx.moveTo(bx + br, by);
+    ctx.lineTo(bx + bw - br, by);
+    ctx.quadraticCurveTo(bx + bw, by, bx + bw, by + br);
+    ctx.lineTo(bx + bw, by + bh - br);
+    ctx.quadraticCurveTo(bx + bw, by + bh, bx + bw - br, by + bh);
+    ctx.lineTo(tailX + tailW * 0.5, by + bh);
+    ctx.lineTo(tailX, by + bh + tailH);
+    ctx.lineTo(tailX - tailW * 0.5, by + bh);
+    ctx.lineTo(bx + br, by + bh);
+    ctx.quadraticCurveTo(bx, by + bh, bx, by + bh - br);
+    ctx.lineTo(bx, by + br);
+    ctx.quadraticCurveTo(bx, by, bx + br, by);
+    ctx.closePath();
+
+    ctx.fillStyle = fillCol;
+    ctx.fill();
+
+    ctx.shadowColor = 'transparent';
+    ctx.lineWidth = 2.6 * s;
+    ctx.strokeStyle = '#292524';
+    ctx.stroke();
+
+    ctx.fillStyle = '#292524';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 0.7 * s;
+    ctx.strokeText(replyText, bx + bw / 2, by + bh / 2 + 1 * s);
+    ctx.fillText(replyText, bx + bw / 2, by + bh / 2 + 1 * s);
+
+    ctx.restore();
+  }
+
+  function drawCrisisReceiptMemo(ctx, calcKey, metaObj, flipX, x, y, w, h, s = 1) {
+    if (!metaObj) return;
+    ctx.save();
+
+    if (calcKey === 'pet') {
+      const rx = x + 20 * s;
+      const ry = y + 153 * s;
+      const rw = w - 40 * s;
+      const rh = 54 * s;
+
+      ctx.shadowColor = 'rgba(41, 37, 36, 0.16)';
+      ctx.shadowBlur = 5 * s;
+      ctx.shadowOffsetY = 2 * s;
+
+      drawRoundedRect(ctx, rx, ry, rw, rh, 12 * s);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+
+      ctx.shadowColor = 'transparent';
+      ctx.lineWidth = 2.8 * s;
+      ctx.strokeStyle = '#be123c';
+      ctx.stroke();
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = '800 ' + (15.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+      ctx.fillStyle = '#be123c';
+      ctx.fillText('❌ ' + metaObj.badVal + '   ➔   ✅ ' + metaObj.goodVal, rx + rw / 2, ry + 18 * s);
+
+      ctx.font = '900 ' + (16.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+      ctx.fillStyle = '#047857';
+      ctx.fillText('💡 핵심 진단: ' + metaObj.diffVal, rx + rw / 2, ry + 39 * s);
+      ctx.restore();
+      return;
+    }
+
+    const cardW = 218 * s;
+    const cardH = 152 * s;
+    const cardX = flipX ? x + w - cardW - 14 * s : x + 14 * s;
+    const cardY = y + 214 * s;
+    const tilt = flipX ? 0.025 : -0.025;
+
+    ctx.translate(cardX + cardW / 2, cardY + cardH / 2);
+    ctx.rotate(tilt);
+    ctx.translate(-cardW / 2, -cardH / 2);
+
+    ctx.shadowColor = 'rgba(41, 37, 36, 0.20)';
+    ctx.shadowBlur = 8 * s;
+    ctx.shadowOffsetY = 4 * s;
+
+    drawRoundedRect(ctx, 0, 0, cardW, cardH, 10 * s);
+    ctx.fillStyle = '#fffef9';
+    ctx.fill();
+
+    ctx.shadowColor = 'transparent';
+    ctx.lineWidth = 3.0 * s;
+    ctx.strokeStyle = '#292524';
+    ctx.stroke();
+
+    drawRoundedRect(ctx, 6 * s, 6 * s, cardW - 12 * s, 28 * s, 6 * s);
+    ctx.fillStyle = '#292524';
+    ctx.fill();
+    ctx.fillStyle = '#fde047';
+    ctx.font = '900 ' + (14.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🧾 3초 비교 영수증', cardW / 2, 20 * s);
+
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#dc2626';
+    ctx.font = '800 ' + (14 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('❌ 그냥 쓸 때', 12 * s, 48 * s);
+    ctx.font = '900 ' + (15.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText(String(metaObj.badVal || ''), 12 * s, 67 * s);
+
+    ctx.fillStyle = '#047857';
+    ctx.font = '800 ' + (14 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('✅ 바꿨을 때', 12 * s, 90 * s);
+    ctx.font = '900 ' + (15.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText(String(metaObj.goodVal || ''), 12 * s, 109 * s);
+
+    drawRoundedRect(ctx, 8 * s, 120 * s, cardW - 16 * s, 25 * s, 6 * s);
+    ctx.fillStyle = '#fef08a';
+    ctx.fill();
+    ctx.lineWidth = 1.8 * s;
+    ctx.strokeStyle = '#292524';
+    ctx.stroke();
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#be123c';
+    ctx.font = '900 ' + (14 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText('🔥 ' + String(metaObj.diffVal || ''), cardW / 2, 133 * s);
+
+    ctx.restore();
+  }
+
   function getConversationalScript(calcKey, meta) {
     const sc = (meta && meta.shortCartoon) || {
-      epTitle: '원룸 에어컨 껐다 켰다의 참사 ⚡',
+      epTitle: 'EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡',
+      patternIdx: 0,
+      quadOrder: [0, 1, 2, 3],
+      flipMask: [false, false, false, false],
+      zoomMask: [1.0, 1.0, 1.0, 1.0],
+      speakerSide: ['left', 'left', 'right', 'right'],
+      narrations: [
+        '자취 1년차 쿼카찌만의 눈물겨운 에어컨 절약법',
+        '방에 놀러 온 민트후드 여우 선배가 리모컨을 뺏었다',
+        '한 달 뒤 우편함에 꽂힌 원룸 전기요금 고지서',
+        '내 방 에어컨이 정속형인지 인버터인지 헷갈릴 땐?'
+      ],
       p1: ['에어컨 아낀다고', '**2시간마다 껐다 켰지~**'],
-      p2: ['구형은 껐다 켜면', '**누진세 폭탄** 맞아!!'],
+      p2: ['구형 정속형 껐다 켜면', '**기동전력 폭탄** 맞아!!'],
       p3: ['으앙 **월 8만8천원**?!', '인버터는 **3만원대**인데!'],
-      p4: ['내 방 에어컨 전기세', '**머니핏 3초 계산** 끝!']
+      p4: ['소비전력 W수 넣으니까', '**3초 만에 요금 비교** 끝!'],
+      replies: [
+        '시원해지면 끄고 더우면 다시 ON! 뿌듯✨',
+        '에엥?! 아끼려고 끈 건데 더 나온다고요?! 😱',
+        '아낀 줄 알았는데 매달 치킨 3마리 증발 😭',
+        '프로필 링크에서 내 방 전기세 미리 찍어봐요 ⚡'
+      ]
     };
-
-    const metaByCat = {
-      electric: {
-        narrations: [
-          '원룸에 에어컨 아껴 트는 자취생이 들어왔다',
-          '지나가던 자취 만렙 선배가 등짝을 때렸다',
-          '실제 고지서를 비교해보니 매달 새는 돈이...',
-          '머니핏 3초 무료 계산기로 호구 탈출 성공!'
-        ],
-        notes: [
-          [['절약왕MAX'], ['자취 1년차', '껐다켰다 반복']],
-          [['팩트폭격⚡'], ['자취 5년차', '누진세 박사']],
-          [['멘붕MAX😭'], ['모르면 매달', '생돈 증발💸']],
-          [['해결완료✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      },
-      diet: {
-        narrations: [
-          '다이어트 결심하고 매일 편의점에 출근했다',
-          '지나가던 헬스 고인물 선배가 경악했다',
-          '4주 식비 영수증을 비교해보니 충격이었다',
-          '머니핏 3초 무료 계산기로 식비 반값 성공!'
-        ],
-        notes: [
-          [['의욕MAX'], ['헬린이 1일차', '편의점 단품']],
-          [['팩트폭격⚡'], ['3대 500', '벌크 장보기']],
-          [['식비파산😭'], ['낱개 구매의', '무서운 최후']],
-          [['득근성공✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      },
-      pet: {
-        narrations: [
-          '귀여운 반려동물 밥그릇에 사료를 부어주었다',
-          '동물병원 수의사 선생님이 한숨을 쉬었다',
-          '과급여 병원비와 1g 정량표를 비교해보니...',
-          '머니핏 3초 무료 계산기로 정량 급여 성공!'
-        ],
-        notes: [
-          [['사랑MAX'], ['초보 집사', '종이컵 눈대중']],
-          [['팩트폭격⚡'], ['수의영양학', '1g 정량원칙']],
-          [['병원비위기😭'], ['조금 더 준 게', '비만 직행💦']],
-          [['건강지킴✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      },
-      room: {
-        narrations: [
-          '설레는 첫 독립 가전·가구를 고르러 갔다',
-          '인테리어 만렙 선배가 장바구니를 말렸다',
-          '단품 구매와 황금배분 견적을 비교해보니...',
-          '머니핏 3초 무료 계산기로 예산 내 졸업!'
-        ],
-        notes: [
-          [['설렘MAX'], ['독립 1일차', '무계획 장보기']],
-          [['팩트폭격⚡'], ['프로 자취러', '황금비율 배분']],
-          [['예산초과😭'], ['따로 사니까', '수십만원 손해']],
-          [['세팅완료✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      },
-      auto: {
-        narrations: [
-          '드디어 인생 첫 신차 견적서를 뽑아보았다',
-          '세무사 선배가 계산기를 두드리며 말렸다',
-          '4년 실제 총비용(TCO)을 비교해보니...',
-          '머니핏 3초 무료 계산기로 최저가 출고!'
-        ],
-        notes: [
-          [['설렘MAX'], ['계약 1초전', '취등록세 모름']],
-          [['팩트폭격⚡'], ['세무사 선배', '세금+보험 비교']],
-          [['호구될뻔😭'], ['할부 이자에', '보험료 폭탄']],
-          [['최저가출고✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      },
-      telecom: {
-        narrations: [
-          '인터넷 약정과 위약금이 무서워 참고 썼다',
-          '통신비 재테크 고수가 당장 바꾸라고 했다',
-          '위약금 차감 후 당일 현금 순익을 따져보니...',
-          '머니핏 3초 무료 계산기로 현금 47만원 수령!'
-        ],
-        notes: [
-          [['인내심MAX'], ['약정 노예', '혜택 0원 방치']],
-          [['팩트폭격⚡'], ['성지 고수', '당일 현금지원']],
-          [['손해막심😭'], ['가만히 참으면', '나만 손해💸']],
-          [['현금입금✨'], ['프로필 링크', '3초 무료계산']]
-        ]
-      }
-    };
-
-    const catMeta = metaByCat[calcKey] || metaByCat.electric;
 
     return {
-      episodeTitle: sc.epTitle || '공감 인스타툰',
-      narrations: sc.narrations || catMeta.narrations,
-      notes: sc.notes || catMeta.notes,
+      episodeTitle: sc.epTitle || '머니핏 동물툰',
+      patternIdx: sc.patternIdx || 0,
+      quadOrder: sc.quadOrder || [0, 1, 2, 3],
+      flipMask: sc.flipMask || [false, false, false, false],
+      zoomMask: sc.zoomMask || [1.0, 1.0, 1.0, 1.0],
+      speakerSide: sc.speakerSide || ['left', 'left', 'right', 'right'],
+      narrations: sc.narrations || [],
       p1Lines: sc.p1,
       p2Lines: sc.p2,
       p3Lines: sc.p3,
-      p4Lines: sc.p4
+      p4Lines: sc.p4,
+      replies: sc.replies || []
     };
   }
 
   /**
-   * Draw a single authentic Human-Drawn Instatoon panel at (px, py, pw, ph)
+   * Draw a single @moneyfit2026 Animal Instatoon panel at (px, py, pw, ph)
    */
   function drawSinglePanel(ctx, panelIdx, px, py, pw, ph, preset, story, isFullSlide = false) {
     ensureInstatoonFontsLoaded();
@@ -2852,6 +3198,12 @@
     const conv = getConversationalScript(preset.calc, meta);
     const num = panelIdx + 1;
 
+    const quadIdx = (conv.quadOrder && conv.quadOrder[panelIdx] !== undefined) ? conv.quadOrder[panelIdx] : panelIdx;
+    const flipX = Boolean(conv.flipMask && conv.flipMask[panelIdx]);
+    const zoom = (conv.zoomMask && conv.zoomMask[panelIdx]) || 1.0;
+    const speakerSide = (conv.speakerSide && conv.speakerSide[panelIdx]) || (flipX ? 'right' : 'left');
+    const artImg = getCategoryArtImage(preset.calc);
+
     ctx.save();
     ctx.translate(px, py);
     ctx.scale(scaleX, scaleY);
@@ -2860,25 +3212,30 @@
     const H = 474;
     const panelRadius = isFullSlide ? 0 : 12;
 
-    drawBlurredRoomBackground(ctx, 0, 0, W, H, num, panelRadius);
+    drawAnimalSceneQuadrant(ctx, artImg, preset.calc, quadIdx, flipX, zoom, 0, 0, W, H, panelRadius, 1);
 
     const narrationText = (conv.narrations && conv.narrations[panelIdx]) || conv.episodeTitle;
-    drawTopNarrationBox(ctx, narrationText, 0, 0, W, 1);
+    drawAnimalTopNarration(ctx, num, narrationText, 0, 0, W, 1);
 
     const linesByNum = [conv.p1Lines, conv.p2Lines, conv.p3Lines, conv.p4Lines][panelIdx] || conv.p1Lines;
-    const accentByNum = ['#111111', '#dc2626', '#be123c', '#047857'][panelIdx];
-    const hlByNum = ['#fef08a', '#fecdd3', '#fde047', '#bbf7d0'][panelIdx];
-    drawOvalSpeechBubbleWithContrast(ctx, linesByNum, W * 0.48, 138, 200, 62, 1, accentByNum, hlByNum);
+    const accentByQuad = ['#1d4ed8', '#dc2626', '#be123c', '#047857'][quadIdx % 4];
+    const hlByQuad = ['#fef08a', '#fecdd3', '#fde047', '#bbf7d0'][quadIdx % 4];
+    drawMainSpeechBubbleWithTail(ctx, linesByNum, 0, 0, W, 1, speakerSide, accentByQuad, hlByQuad);
 
-    drawHumanInstatoonCharacter(ctx, W * 0.5, 328, preset.calc, num, 1.06, preset.id || preset.slug || '');
-
-    const pairNotes = (conv.notes && conv.notes[panelIdx]) || [['의욕MAX'], ['자취 1년차']];
-    drawHandwrittenSideNotes(ctx, pairNotes[0], pairNotes[1], 0, 0, W, H, 1);
+    const replyText = (conv.replies && conv.replies[panelIdx]) || '';
+    if (quadIdx === 2 && preset.calc === 'pet') {
+      drawCrisisReceiptMemo(ctx, preset.calc, meta, flipX, 0, 0, W, H, 1);
+    } else {
+      drawReplySpeechBubble(ctx, replyText, 0, 0, W, 1, speakerSide, quadIdx);
+      if (quadIdx === 2) {
+        drawCrisisReceiptMemo(ctx, preset.calc, meta, flipX, 0, 0, W, H, 1);
+      }
+    }
 
     if (!isFullSlide) {
       drawRoundedRect(ctx, 0, 0, W, H, panelRadius);
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#111111';
+      ctx.lineWidth = 4.2;
+      ctx.strokeStyle = '#292524';
       ctx.stroke();
     }
 
@@ -2897,27 +3254,27 @@
 
     ctx.clearRect(0, 0, 1080, 1080);
 
-    ctx.fillStyle = '#f5f3ef';
+    ctx.fillStyle = '#faf6f0';
     ctx.fillRect(0, 0, 1080, 1080);
 
     ctx.save();
-    drawRoundedRect(ctx, 28, 13, 128, 36, 18);
-    ctx.fillStyle = '#111111';
+    drawRoundedRect(ctx, 28, 13, 136, 36, 18);
+    ctx.fillStyle = '#292524';
     ctx.fill();
     ctx.fillStyle = '#fde047';
     ctx.font = '800 18px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('공감 인스타툰', 92, 32);
+    ctx.fillText('🐾 머니핏 동물툰', 96, 32);
     ctx.restore();
 
-    ctx.fillStyle = '#111111';
-    ctx.font = '900 30px "Pretendard", "Malgun Gothic", sans-serif';
-    ctx.fillText(conv.episodeTitle, 168, 42);
+    ctx.fillStyle = '#1c1917';
+    ctx.font = '900 29px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillText(conv.episodeTitle, 176, 42);
 
     ctx.save();
     ctx.textAlign = 'right';
-    ctx.fillStyle = '#475569';
+    ctx.fillStyle = '#57534e';
     ctx.font = '800 20px sans-serif';
     ctx.fillText('@moneyfit2026', 1052, 41);
     ctx.restore();
@@ -2935,7 +3292,7 @@
 
     ctx.save();
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#111111';
+    ctx.fillStyle = '#292524';
     ctx.font = '900 22px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.fillText('🔎 프로필 링크 또는 검색창에 「머니핏」 검색 → 3초 무료 계산기!', 540, 1058);
     ctx.restore();
