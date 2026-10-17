@@ -311,24 +311,25 @@ async function handleIncomingCommand(rawText, options = {}) {
     return reply(doneMsg, true);
   }
 
-  // 4. /webtoon (인스타그램·페이스북·쓰레드 4컷 웹툰 × 충격 영수증 홍보팩)
+  // 4. /webtoon (인스타그램·페이스북·쓰레드 4컷 웹툰 × 충격 영수증 홍보팩 + 사진 즉시 전송)
   if (text === '/webtoon' || text === '웹툰' || text === '인스타' || text === '쓰레드' || text === '페북') {
+    const snsPublisher = require('./sns-auto-publisher.js');
+    const pack = await snsPublisher.generateWebtoonPack({ sendTelegram: !dryRun });
     const wtMsg = [
-      `🎨 <b>[인스타 · 페북 · 쓰레드 4컷 웹툰 × 충격 영수증 스튜디오]</b>`,
+      `🎨 <b>[${telegramNotifier.escapeHtml(pack.keyword)} — 4컷 웹툰 × 실물 영수증 패키지]</b>`,
       `━━━━━━━━━━━━━━━━━━`,
-      `단순 4컷 만화보다 <b>저장률·공유율·링크 클릭률이 3~5배 높은</b> <b>「1~2컷 웹툰 훅 + 3컷 실물 비교 영수증 + 4컷 계산기 CTA」</b> 하이브리드 스튜디오가 사이트 상단 <b>[🎨 웹툰·SNS 스튜디오]</b> 탭에 탑재되었습니다!`,
+      `위 <b>1080×1080 고해상도 4컷 웹툰 이미지</b>를 저장하신 뒤 아래 원고를 복사해 그대로 붙여넣으세요!`,
       ``,
-      `🖼️ <b>1클릭 이미지 다운로드 지원:</b>`,
-      `• <b>2×2 한 장짜리 4컷 웹툰 PNG (1080×1080)</b> — 쓰레드·페이스북 본문 첨부용`,
-      `• <b>인스타 4장 슬라이드 개별 PNG (1컷~4컷)</b> — 인스타그램 캐러셀 업로드용`,
+      `🔥 <b>1. 쓰레드(Threads) & 페이스북 본문 (링크 없음 — 알고리즘 노출 우대)</b>`,
+      `<pre>${telegramNotifier.escapeHtml(pack.bundle.threadsMain)}</pre>`,
       ``,
-      `🔥 <b>오늘의 추천 쓰레드 본문 (링크 없음 — 알고리즘 노출 우대용)</b>`,
-      `<pre>여름에 원룸 벽걸이 에어컨 전기세 아낀다고 껐다 켰다 반복하시는 분들 진짜 큰일 납니다 😭\n\n한전 주택용 누진세 3단계 구간 넘어가면 요금이 갑자기 3배로 뛰는 거 알고 계셨나요?\n\n방금 4컷 웹툰 영수증(3컷)으로 비교해봤는데,\n구형 정속형(88,420원) vs 1등급 인버터(31,200원) 한 달에 57,220원 차이 납니다...\n\n우리 집 에어컨 소비전력(W) 넣으면 누진세 몇 단계인지 3초 만에 찍히네요.\n계산기 주소는 첫 번째 대댓글에 남겨둘게요 👇</pre>`,
+      `💬 <b>2. 첫 번째 대댓글 (내 글에 답글로 달기 — 외부링크 페널티 우회)</b>`,
+      `<pre>${telegramNotifier.escapeHtml(pack.bundle.threadsReply)}</pre>`,
       ``,
-      `💬 <b>첫 번째 대댓글 (내 글에 답글로 달기)</b>`,
-      `<pre>👇 3초 무료 계산기 (회원가입 없음)\n${cfg.siteUrl}/preset/electric-studio-ac</pre>`,
+      `📸 <b>3. 인스타그램 캡션 (저장·DM 공유 유도)</b>`,
+      `<pre>${telegramNotifier.escapeHtml(pack.bundle.instagramCaption)}</pre>`,
       `━━━━━━━━━━━━━━━━━━`,
-      `👉 <a href="${cfg.siteUrl}">실서버 스튜디오 열어서 4컷 웹툰 PNG 다운받기</a>`
+      `👉 <a href="${cfg.siteUrl}">실서버 스튜디오에서 36개 전 주제 웹툰 뽑기</a>`
     ].join('\n');
     return reply(wtMsg, true);
   }

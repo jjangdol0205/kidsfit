@@ -24,7 +24,7 @@ const DEFAULT_MONETIZATION_CONFIG = {
   telegramChatId: "YOUR_CHAT_ID",
   telegramAutoNotify: true,
   clickCount: 0,
-  ftcNotice: "이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)",
+  ftcNotice: "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다.",
   campaigns: {
     electric_grade1_rental: {
       cpaKey: "electric_grade1_rental",
@@ -184,6 +184,11 @@ function resolveCoupangBrandKey(keyword = "", calcId = "portal") {
  * with lptag & subid so real Chrome browsers receive the 24-hour trac_lptag=AF7865143 cookie
  * AND land directly on verified Coupang Brand Shop product listings without '/np/search' errors.
  */
+function sanitizeSafeId(rawId, fallback) {
+  const cleaned = String(rawId || "").replace(/[^a-zA-Z0-9_-]/g, "");
+  return cleaned.length >= 4 ? cleaned : fallback;
+}
+
 function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
   let afId = currentConfig.coupangAfId || "AF7865143";
   let calcId = "portal";
@@ -200,11 +205,13 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
     }
   }
 
+  const cleanAfId = sanitizeSafeId(afId, "AF7865143");
+  const cleanCalcId = String(calcId || "portal").replace(/[^a-zA-Z0-9_-]/g, "") || "portal";
   const safeKw = keyword !== undefined && keyword !== null ? String(keyword) : "";
   const encoded = encodeURIComponent(safeKw);
-  const subId = `mf_${calcId}_${afId}`;
-  const brandKey = encodeURIComponent(resolveCoupangBrandKey(safeKw, calcId));
-  return `https://link.coupang.com/re/AFFBRAND?lptag=${afId}&subid=${subId}&pageKey=${brandKey}&q=${encoded}&channel=user`;
+  const subId = `mf_${cleanCalcId}_${cleanAfId}`;
+  const brandKey = encodeURIComponent(resolveCoupangBrandKey(safeKw, cleanCalcId));
+  return `https://link.coupang.com/re/AFFBRAND?lptag=${cleanAfId}&subid=${subId}&pageKey=${brandKey}&q=${encoded}&channel=user`;
 }
 
 /**
@@ -213,9 +220,10 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
  * sets the LPUID tracking cookie and redirects cleanly to the merchant.
  */
 function buildLinkPriceDeepLink(merchantId, targetUrl, lpId = null) {
-  const effectiveLpId = lpId || currentConfig.linkPriceId || "A100708867";
+  const effectiveLpId = sanitizeSafeId(lpId || currentConfig.linkPriceId || "A100708867", "A100708867");
+  const cleanMerchant = String(merchantId || "himart").replace(/[^a-zA-Z0-9_-]/g, "") || "himart";
   const encodedUrl = encodeURIComponent(targetUrl || "");
-  return `https://click.linkprice.com/click.php?m=${merchantId}&a=${effectiveLpId}&l=9999&tu=${encodedUrl}`;
+  return `https://click.linkprice.com/click.php?m=${cleanMerchant}&a=${effectiveLpId}&l=9999&tu=${encodedUrl}`;
 }
 
 /**
