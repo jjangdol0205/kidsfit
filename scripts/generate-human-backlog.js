@@ -253,9 +253,42 @@ function formatTableRowsVaried(tableRows, presetIdx) {
   }).join('\n');
 }
 
+function getNextCategoryPreset(preset, idx) {
+  const sameCat = PRESETS.filter((p) => p.calcId === preset.calcId && p.id !== preset.id);
+  return sameCat.length > 0 ? sameCat[idx % sameCat.length] : PRESETS[(idx + 1) % PRESETS.length];
+}
+
+const BLOG_NEIGHBOR_BOXES = [
+  (p, nextP) => `📌 **[다음 글 예고 & 서로이웃 환영]**\n다음 포스팅에서는 많은 분들이 이어서 궁금해하시는 **「${nextP.title}」** 실제 손익분기점 비교 데이터를 다룰 예정입니다! 제 블로그 **'서로이웃 추가'**와 **'공감(❤️)'**을 눌러두시면 매주 새는 고정비를 아껴주는 현실 계산표를 가장 먼저 받아보실 수 있어요. 본인 조건이 헷갈리시면 언제든 **댓글**로 수치 남겨주세요, 직접 계산해 드립니다!`,
+  (p, nextP) => `🤝 **[이웃 추가하고 생활비 계산표 받아보세요]**\n조만간 후속편으로 **「${nextP.title}」** 1원 단위 비교 분석 글도 업로드할 계획이에요. 오른쪽 위 **서로이웃 신청** 환영하며, 글이 도움 되셨다면 하단 **공감 하트(❤️)** 한 번씩 부탁드립니다! 댓글로 궁금한 조건 적어주시면 빠르게 답글 드릴게요 :)`,
+  (p, nextP) => `💡 **[연재 구독 & 댓글 맞춤 시뮬레이션 안내]**\n이번 ${p.title} 정리에 이어 다음에는 **「${nextP.title}」** 실전 시뮬레이션 편이 이어집니다. **서로이웃** 맺어두시고 새 글 알림으로 편하게 확인해 보세요! 혼자 계산하기 애매한 조건은 **댓글**로 남겨주시면 3초 계산기로 직접 대조해 드립니다.`,
+  (p, nextP) => `🔔 **[서로이웃 소통 & 다음 비교 편 예고]**\n다음 시간에는 **「${nextP.title}」** 주제로 실제 유지비 차이를 낱낱이 파헤쳐 보겠습니다. 알뜰한 재테크·살림 정보를 나누실 분들은 **서로이웃 추가** 편하게 걸어주세요! 공감(❤️)과 댓글 질문은 언제나 큰 힘이 됩니다.`,
+  (p, nextP) => `✨ **[블로그 구독 & 1:1 댓글 계산소]**\n이어지는 다음 포스팅 주제는 **「${nextP.title}」**입니다! 놓치지 않고 보시려면 **이웃 추가(서로이웃 환영)** 해두시고, 오늘 글이 유익했다면 **공감 버튼** 꾸욱 눌러주세요. 본인만의 수치로 계산 결과가 궁금하신 분은 댓글 남겨주시면 바로 봐드릴게요!`,
+  (p, nextP) => `📬 **[다음 연재 알림 & 서로이웃 맺기]**\n곧 올라올 다음 글에서는 **「${nextP.title}」** 현실 비용을 비교해 드릴 예정이에요. 매주 업데이트되는 생활 밀착형 손익 리포트를 구독하시려면 **서로이웃 추가**와 **공감(❤️)** 잊지 마시고, 추가 질문은 편하게 댓글로 남겨주세요!`
+];
+
+const CAFE_COMMENT_GUIDES = {
+  electric: '현재 쓰시는 가전 소비전력(W)이나 하루 가동 시간, 평수',
+  diet: '현재 체중·목표 감량 kg과 평소 식비 예산',
+  pet: '강아지·고양이 몸무게(kg), 연령대, 급여 중인 사료 종류',
+  room: '입주 예정인 방 평수, 거주 기간, 총 가전 예산',
+  auto: '고민 중인 차량 가격, 선수금 비율, 연간 주행거리',
+  telecom: '현재 통신사 잔여 약정 개월 수와 월 휴대폰·인터넷 요금'
+};
+
+const CAFE_SUBSCRIBER_HOOKS = [
+  (p, nextP, guide) => `💬 **[댓글로 조건 남겨주시면 대신 계산해 드려요!]**\n혹시 직접 입력하기 번거로우신 회원님들은 댓글로 **[${guide}]**를 적어주시면, 제가 계산기에 대신 넣어서 1원 단위 손익 결과를 대댓글로 바로 달아드릴게요! 다음에는 **「${nextP.title}」** 비교 글도 올릴 예정이니 제 닉네임 눌러서 **'작성글 구독(알림)'** 해두시면 바로 보실 수 있습니다 :)`,
+  (p, nextP, guide) => `🙋‍♂️ **[회원님들 조건은 어떠신가요? 댓글 질문 환영]**\n댓글에 본인 **[${guide}]** 남겨주시면 제가 시뮬레이터 돌려서 어느 쪽이 얼마나 이득인지 대댓글로 짚어드릴게요! 조만간 **「${nextP.title}」** 후속편도 카페에 공유할 테니 제 프로필 **작성글 보기/구독** 해두시면 놓치지 않으실 거예요!`,
+  (p, nextP, guide) => `📌 **[무료 대리 계산 & 다음 시리즈 예고]**\n바쁘신 분들은 댓글로 **[${guide}]**만 편하게 남겨주세요. 확인하는 대로 3초 영수증 결과 뽑아서 답글 드립니다! 이어서 **「${nextP.title}」** 데이터도 정리 중이니 제 아이디 **구독**해 두시고 알뜰 정보 함께 나눠요!`,
+  (p, nextP, guide) => `💡 **[댓글 맞춤 견적 & 작성자 구독 안내]**\n내 조건에서는 본전이 몇 개월인지 궁금하시면 댓글에 **[${guide}]** 적어주세요! 제가 직접 계산해서 대댓글 남겨드리겠습니다. 다음 글 주제는 **「${nextP.title}」**이니 제 닉네임 클릭 후 **구독/즐겨찾기** 해두시면 편하게 보실 수 있어요.`,
+  (p, nextP, guide) => `🤝 **[함께 비교해 봐요! 댓글 계산소 오픈]**\n혼자 따져보기 헷갈리는 회원님들은 댓글로 **[${guide}]** 알려주시면 제가 바로 시뮬레이션 결과를 공유해 드릴게요. 다음 편으로 준비 중인 **「${nextP.title}」** 글도 기대해 주시고, 제 닉네임 **작성글 구독**도 꾸욱 눌러주세요!`,
+  (p, nextP, guide) => `🔥 **[댓글 달아주시면 1원 단위 비교 결과 봐드려요]**\n댓글로 **[${guide}]** 남겨주시는 분들께는 직접 계산기 돌려서 맞춤형 손익분기점을 대댓글로 알려드리고 있어요! 곧 업로드할 **「${nextP.title}」** 비교표도 받아보시려면 작성자 **구독 알림** 설정해 두세요 :)`
+];
+
 function buildHumanBlogPost(preset, res, idx) {
   const targetUrl = `${siteUrl}/preset/${preset.id}`;
   const st = PRESET_WEBTOON_MAP[preset.id] || {};
+  const nextPreset = getNextCategoryPreset(preset, idx);
   const titleLine = BLOG_TITLE_PATTERNS[idx % BLOG_TITLE_PATTERNS.length](preset);
   const opening = BLOG_OPENINGS[idx % BLOG_OPENINGS.length](preset, st);
   const metricsProse = formatMetricsProse(res.metrics);
@@ -265,6 +298,7 @@ function buildHumanBlogPost(preset, res, idx) {
   const bridge3 = BLOG_BRIDGES_3[idx % BLOG_BRIDGES_3.length];
   const tableSummary = formatTableRowsVaried(preset.tableRows, idx);
   const closing = BLOG_CLOSINGS[idx % BLOG_CLOSINGS.length](targetUrl, st);
+  const neighborBox = BLOG_NEIGHBOR_BOXES[idx % BLOG_NEIGHBOR_BOXES.length](preset, nextPreset);
 
   const faqParagraphs = (preset.faq || []).map((f, fIdx) => {
     const q = f.question || f.q;
@@ -275,7 +309,7 @@ function buildHumanBlogPost(preset, res, idx) {
   }).join('\n\n');
 
   const customTags = st.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #손익분기점계산기 #생활비절약`;
-  const tags = `${customTags} #머니핏 #고정비다이어트`;
+  const tags = `${customTags} #머니핏 #고정비다이어트 #서로이웃환영`;
 
   return `${titleLine}
 
@@ -294,6 +328,8 @@ ${tableSummary}
 ${faqParagraphs}
 
 ${closing}
+
+${neighborBox}
 
 ${tags}`;
 }
@@ -317,6 +353,7 @@ const CAFE_OUTROS = [
 function buildHumanCafePost(preset, res, idx) {
   const targetUrl = `${siteUrl}/preset/${preset.id}`;
   const st = PRESET_WEBTOON_MAP[preset.id] || {};
+  const nextPreset = getNextCategoryPreset(preset, idx);
   const metricsProse = formatMetricsProse(res.metrics);
   const domainNarrative = buildDomainInputNarrative(preset, res);
   const firstFaq = (preset.faq && preset.faq[0]) ? preset.faq[0] : null;
@@ -325,6 +362,8 @@ function buildHumanCafePost(preset, res, idx) {
 
   const intro = CAFE_INTROS[idx % CAFE_INTROS.length](preset, st);
   const outro = CAFE_OUTROS[idx % CAFE_OUTROS.length](targetUrl, st);
+  const guide = CAFE_COMMENT_GUIDES[preset.calcId] || '본인 조건 수치';
+  const subHook = CAFE_SUBSCRIBER_HOOKS[idx % CAFE_SUBSCRIBER_HOOKS.length](preset, nextPreset, guide);
 
   return `[네이버 카페 게시글 원고 — 전체공개 + 검색·네이버 서비스 공개 필수]
 [제목 옵션 A] ${preset.title} 직접 시뮬레이션 해보고 정리한 현실 비교 후기 공유해요
@@ -338,7 +377,9 @@ ${domainNarrative}
 
 ${chosenFaq ? `참고로 저도 처음에 "${chosenFaq.question || chosenFaq.q}" 부분이 제일 헷갈렸는데, 확인해 보니 ${chosenFaq.answer || chosenFaq.a}` : ''}
 
-${outro}`;
+${outro}
+
+${subHook}`;
 }
 
 function buildHumanCommunityPost(preset, res, idx) {

@@ -100,25 +100,35 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
   const plainP1 = (sc.p1 || []).join(' ').replace(/\*\*/g, '');
   const plainP3 = (sc.p3 || []).join(' ').replace(/\*\*/g, '');
 
-  // 1. Threads Main Post (Ultra-short 5-line Instatoon punch)
+  // Find next preset in the same category (or overall) for the Next-Episode Cliffhanger Hook
+  const sameCatPresets = PRESETS.filter(p => (p.calc || p.calcKey) === preset.calcKey);
+  const catIdx = sameCatPresets.findIndex(p => (p.id || p.slug) === preset.slug);
+  const nextPreset = sameCatPresets.length > 1 && catIdx >= 0
+    ? sameCatPresets[(catIdx + 1) % sameCatPresets.length]
+    : PRESETS[(PRESETS.findIndex(p => (p.id || p.slug) === preset.slug) + 1) % PRESETS.length] || preset;
+
+  // 1. Threads Main Post (Ultra-short 5-line Instatoon punch + A vs B Debate Question for 10x Replies & Follows)
   const threadsMain = [
     `🐾 [${sc.epTitle}]`,
     `💬 "${plainP1}" → "${plainP3}"`,
     '',
-    `❌ 모르고 쓸 때 (${t.badLabel}): ${t.badVal}`,
-    `✅ 맞췄을 때 (${t.goodLabel}): ${t.goodVal}`,
-    `🔥 아끼는 생돈: ${t.diffVal}`,
+    `❌ ${t.badLabel}: ${t.badVal}`,
+    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
     '',
-    `👇 내 조건 3초 무료 계산기는 첫 댓글에 남겨둘게요!`
+    `⚖️ 쓰친님들의 현실 선택은?`,
+    `🅰️ 귀찮아도 기존대로(${t.badLabel}) vs 🅱️ 바꾸고 ${t.diffVal} 아끼기(${t.goodLabel})`,
+    `👇 내 조건 3초 무료 계산기 & 다음 화 예고는 첫 댓글에!`
   ].join('\n');
 
-  // 2. Threads & Facebook 1st Self-Reply Comment (Contains the Direct Link)
+  // 2. Threads & Facebook 1st Self-Reply Comment (Direct Link + Next-Episode Cliffhanger Follow Hook)
   const threadsReply = [
-    `🔗 「${preset.title}」 3초 무료 계산기`,
-    targetUrl
+    `🔗 「${preset.title}」 3초 무료 계산기 바로가기`,
+    targetUrl,
+    '',
+    `➕ @moneyfit2026 팔로우해두시면 내일 올라오는 「${nextPreset.title}」 본전 영수증 만화도 놓치지 않아요 🔥`
   ].join('\n');
 
-  // 3. Instagram Caption (Short, scannable Instatoon caption)
+  // 3. Instagram Caption (Save 📌 + Comment Vote 💬 + Follow @moneyfit2026 ➕ 3-Step Follower Magnet)
   const instagramCaption = [
     `🐾 ${sc.epTitle} (@moneyfit2026)`,
     `💬 "${plainP1}" → "${plainP3}"`,
@@ -128,17 +138,20 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
     `• ${t.goodLabel}: ${t.goodVal}`,
     `• 절약 효과: ${t.diffVal}`,
     '',
-    `📌 까먹기 전에 [저장] 해두시고 친구에게도 공유해 보세요!`,
-    `👉 3초 무료 계산기는 프로필 링크 또는 검색창에 「머니핏」 검색!`,
+    `💬 [댓글 투표] 우리 집은 1번(${t.badLabel}) vs 2번(${t.goodLabel})? 댓글에 번호나 '계산기' 남겨주세요!`,
+    `📌 [저장 필수] 까먹기 전에 저장해두고 고지서·견적서 나올 때 바로 비교해보세요!`,
+    `➕ [팔로우 혜택] @moneyfit2026 팔로우하면 매주 새는 고정비 30만 원 막아주는 '4컷 영수증 만화'가 피드로 배달됩니다!`,
+    `👉 3초 무료 계산기는 @moneyfit2026 프로필 링크 클릭!`,
     '',
     t.hashtags || `#인스타툰 #생활비절약 #자취꿀팁 #머니핏`
   ].join('\n');
 
-  // 4. Facebook Post (Concise 4-cut summary)
+  // 4. Facebook Post (Concise 4-cut summary + Friend Tag & Page Follow Hook)
   const facebookPost = [
     `🐾 [4컷 공감툰] ${sc.epTitle}`,
     `• ${t.badLabel}: ${t.badVal} → ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
-    `내 조건 넣으면 3초 만에 계산해주는 무료 계산기 주소는 첫 댓글에 있습니다!`
+    `💡 지금 이거 고민 중인 친구 @태그 해주고 페이지 [팔로우] 해두시면 매주 생활비 아끼는 3초 영수증 만화를 받아보실 수 있어요!`,
+    `👇 내 조건 3초 무료 계산기 주소는 첫 댓글에 있습니다!`
   ].join('\n');
 
   return {
@@ -2861,7 +2874,7 @@ async function generateWebtoonPack(options = {}) {
   const chromePath = findChromeExecutable();
   const slidePaths = [1, 2, 3, 4].map(i => path.join(outDir, `slide-${i}.png`));
 
-  if (chromePath) {
+  if (!options.copyOnly && chromePath) {
     if (!(options.skipExisting && fs.existsSync(gridPngPath))) {
       try {
         if (fs.existsSync(gridPngPath)) fs.unlinkSync(gridPngPath);
@@ -2957,13 +2970,17 @@ function generateBrandAssets() {
 
   const bioText = [
     `[프로필 이름]`,
-    `머니핏(MoneyFit) | 3초 생활·금융 손익계산기`,
+    `머니핏(MoneyFit) | 3초 생활·금융 본전 영수증툰 (@moneyfit2026)`,
     ``,
-    `[소개글 (Bio) — 인스타 · 쓰레드 · 페북 공통]`,
-    `🧾 감으로 돈 쓰다 호구 잡히기 전에 3초 영수증 팩트체크!`,
-    `⚡ 한전 에어컨 누진세 · 🥗 다이어트 식단 · 🐾 사료 급여량`,
-    `🛋️ 자취 예산 · 🚗 신차 장기렌트 TCO · 🌐 인터넷 위약금 비교`,
-    `👇 회원가입 없는 100% 무료 손익 계산기 바로가기`,
+    `[소개글 (Bio) — 인스타 · 쓰레드 · 페북 팔로워 전환 3줄 공식]`,
+    `🧾 팔로우만 해도 매달 숨은 고정비 30만 원 아끼는 4컷 영수증 툰`,
+    `⚡전기세 · 🚗신차할부/렌트 · 🌐인터넷 성지 · 🥗식단 · 🐾사료 · 🛋️자취예산`,
+    `👇 회원가입 0원! 내 조건 3초 본전 계산기 바로가기`,
+    ``,
+    `[프로필 상단 고정 게시물 3종 (Pinned 3 Posts — 팔로우 전환율 극대화)]`,
+    `📌 고정 1번 (전국민 생활비 충격): electric-studio-ac (원룸 에어컨 구형 vs 인버터 전기세 폭탄 비교툰)`,
+    `📌 고정 2번 (고가 지출 손익 분기): auto-avante-3000 (사회초년생 첫차 할부 vs 장기렌트 총비용 영수증)`,
+    `📌 고정 3번 (즉시 현금 방어): telecom-penalty-15 (인터넷 약정 위약금 vs 현금 사은품 47만 원 손익 계산)`,
     ``,
     `[웹사이트 링크]`,
     `https://truthofmarket.com`
@@ -3098,6 +3115,7 @@ if (require.main === module) {
   const genTop6 = args.includes('--top6');
   const genAll36 = args.includes('--all36');
   const skipExisting = args.includes('--skip-existing');
+  const copyOnly = args.includes('--copy-only');
 
   (async () => {
     if (genBrand) {
@@ -3108,7 +3126,7 @@ if (require.main === module) {
       for (let i = 0; i < PRESETS.length; i += 2) {
         const batch = PRESETS.slice(i, i + 2);
         const results = await Promise.all(
-          batch.map(p => generateWebtoonPack({ slug: p.id, sendTelegram: false, skipExisting }))
+          batch.map(p => generateWebtoonPack({ slug: p.id, sendTelegram: false, skipExisting, copyOnly }))
         );
         results.forEach(r => console.log(`✓ Generated Webtoon Pack [${r.keyword}] (${r.slug})`));
       }
@@ -3123,11 +3141,11 @@ if (require.main === module) {
         'telecom-penalty-15'
       ];
       for (const s of topSlugs) {
-        const r = await generateWebtoonPack({ slug: s, sendTelegram: false, skipExisting });
+        const r = await generateWebtoonPack({ slug: s, sendTelegram: false, skipExisting, copyOnly });
         console.log(`✓ Generated Top Webtoon Pack: [${r.keyword}] (${r.slug})`);
       }
     } else {
-      const res = await generateWebtoonPack({ slug, sendTelegram, skipExisting });
+      const res = await generateWebtoonPack({ slug, sendTelegram, skipExisting, copyOnly });
       console.log(`✓ Generated 4-Cut Webtoon PNG & SNS pack for [${res.keyword}] (${res.slug})`);
       console.log(`  - Grid PNG : ${res.gridPngPath}`);
       console.log(`  - Slides   : ${res.slidePaths.length} files in ${res.outDir}`);
