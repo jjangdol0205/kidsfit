@@ -256,12 +256,57 @@
     const res = spec.calculate(values);
     if (!res) return;
 
+    const monetizationModule = getMonetizationModule();
+    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
+
+    const buildCoupangHref = (kw) => {
+      return monetizationModule.buildCoupangUrl
+        ? monetizationModule.buildCoupangUrl(kw, currentCalc)
+        : `https://www.coupang.com/np/search?q=${encodeURIComponent(kw || '')}&lptag=AF7865143`;
+    };
+    const buildLpHref = (merchant, url) => {
+      return monetizationModule.buildLinkPriceDeepLink
+        ? monetizationModule.buildLinkPriceDeepLink(merchant, url)
+        : (url || '#');
+    };
+
+    const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+    const primaryAction = actionItems[0] || null;
+
+    // 0. [CRO Layer 1] Left-column Input Instant Prescription Bridge
+    const instantBadgeEl = document.getElementById('input-instant-badge');
+    const instantHeadlineEl = document.getElementById('input-instant-headline');
+    const instantSubEl = document.getElementById('input-instant-sub');
+    const instantCoupangBtn = document.getElementById('input-instant-coupang-btn');
+    const instantLpBtn = document.getElementById('input-instant-lp-btn');
+
+    if (primaryAction) {
+      if (instantBadgeEl) {
+        instantBadgeEl.textContent = `${primaryAction.icon || '⚡'} 내 입력값 1:1 직결 처방`;
+      }
+      if (instantHeadlineEl) {
+        instantHeadlineEl.textContent = primaryAction.label;
+      }
+      if (instantSubEl) {
+        instantSubEl.textContent = `✔ ${primaryAction.calcVal}`;
+      }
+      if (instantCoupangBtn) {
+        instantCoupangBtn.href = buildCoupangHref(primaryAction.coupangKw);
+        instantCoupangBtn.textContent = primaryAction.coupangBtn || '🚀 맞춤 로켓배송 최저가 ↗';
+      }
+      if (instantLpBtn) {
+        instantLpBtn.href = buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl);
+        instantLpBtn.textContent = primaryAction.lpBtn || '🏷️ 공식몰 제휴 특가 ↗';
+      }
+    }
+
     // 1. Receipt shock diagnosis card
     const badgeEl = document.getElementById('result-badge');
     const headlineEl = document.getElementById('result-headline');
     const summaryEl = document.getElementById('result-summary-text');
     const metricsGrid = document.getElementById('result-metrics-grid');
     const lossBarEl = document.getElementById('result-loss-bar');
+    const receiptActionItemsEl = document.getElementById('receipt-action-items');
 
     if (badgeEl) {
       badgeEl.textContent = res.badge;
@@ -276,17 +321,27 @@
     if (headlineEl) headlineEl.textContent = res.headline;
     if (summaryEl) summaryEl.textContent = res.summary;
 
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (Each metric links directly to its matching product)
     if (metricsGrid && res.metrics) {
       const colClass = res.metrics.length >= 4 ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4" : "grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4";
       metricsGrid.className = colClass;
-      metricsGrid.innerHTML = res.metrics.map(m => {
+      metricsGrid.innerHTML = res.metrics.map((m, idx) => {
         const isNeg = String(m.val).startsWith('-');
         const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
+        const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+        const metricHref = matchedAction ? buildCoupangHref(matchedAction.coupangKw) : '#product-recommendations';
+        const stepHint = matchedAction ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '맞춤 특가'} ↗` : '🛒 최저가 보기 ↗';
+
         return `
-          <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 min-w-0">
+          <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordAffiliateClick('coupang', this.href)"
+             class="group block bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-amber-400/80 rounded-xl p-3 min-w-0 transition shadow-sm">
             <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
             <div class="text-sm sm:text-base font-extrabold ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-          </div>
+            <div class="mt-1.5 pt-1 border-t border-slate-700/70 flex items-center justify-between text-[10px] font-bold text-emerald-300 group-hover:text-amber-300">
+              <span class="truncate">${stepHint}</span>
+            </div>
+          </a>
         `;
       }).join('');
     }
@@ -322,9 +377,40 @@
       `;
     }
 
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart
+    if (receiptActionItemsEl && actionItems.length > 0) {
+      receiptActionItemsEl.innerHTML = actionItems.map(item => {
+        const cpHref = buildCoupangHref(item.coupangKw);
+        const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
+        return `
+          <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-1.5 mb-0.5">
+                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
+                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">${item.label}</span>
+                </div>
+                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 ${item.calcVal}</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordAffiliateClick('coupang', this.href)"
+                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+                ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+              </a>
+              <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordAffiliateClick('linkprice', this.href)"
+                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+                ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     // 2. High-Ticket CPA / Official Exhibition Native Card (100% copy-to-landing-page match)
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     const cpaDetails = monetizationModule.getCpaCardDetails
       ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
       : null;
@@ -369,20 +455,13 @@
       }
     }
 
-    // 3. Products Recommendations (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
+    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (2 Coupang Partners + 2 LinkPrice Official Mall Deep Links)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
-        let href = "#";
-        if (p.type === 'coupang') {
-          href = monetizationModule.buildCoupangUrl
-            ? monetizationModule.buildCoupangUrl(p.kw, currentCalc)
-            : `https://www.coupang.com/np/categories/178255?lptag=AF7865143`;
-        } else {
-          href = monetizationModule.buildLinkPriceDeepLink
-            ? monetizationModule.buildLinkPriceDeepLink(p.merchant, p.url)
-            : p.url;
-        }
+        const href = p.type === 'coupang'
+          ? buildCoupangHref(p.kw)
+          : buildLpHref(p.merchant, p.url);
         const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
         const platformTag = p.type === 'coupang'
           ? '🚀 쿠팡 로켓배송'
@@ -390,22 +469,34 @@
         const platformColor = p.type === 'coupang'
           ? 'bg-rose-50 text-rose-700 border-rose-200'
           : 'bg-indigo-50 text-indigo-700 border-indigo-200';
+        const btnBg = p.type === 'coupang'
+          ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
+          : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
         const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
         const ctaLabel = p.ctaText || '최저가 확인 및 혜택 보기 →';
+        const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
+        const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+        const iconPrefix = p.icon ? `${p.icon} ` : '';
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('${p.type}', this.href)"
-             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-xl p-3.5 transition-all bg-white hover:bg-blue-50/30 shadow-sm hover:shadow-md min-w-0">
-            <div class="min-w-0">
-              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+             class="group flex flex-col justify-between border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 transition-all bg-white hover:bg-blue-50/20 shadow-sm hover:shadow-md min-w-0">
+            <div class="min-w-0 space-y-2">
+              <div class="flex items-center justify-between gap-1.5">
                 <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
-                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="text-xs font-extrabold text-slate-800 group-hover:text-blue-700 leading-snug whitespace-nowrap truncate">${p.title}</div>
+              <div class="bg-amber-50 border border-amber-200/90 text-amber-950 text-[11px] font-extrabold px-2.5 py-1 rounded-lg truncate">
+                ${matchTag}
+              </div>
+              <div class="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${iconPrefix}${p.title}</div>
+              <p class="text-[11px] text-slate-600 leading-relaxed break-keep">${matchReason}</p>
             </div>
-            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-extrabold text-blue-600 group-hover:text-blue-800">
-              <span class="whitespace-nowrap truncate">${ctaLabel}</span>
+            <div class="mt-3 pt-2.5 border-t border-slate-100">
+              <div class="w-full text-center font-extrabold py-2.5 px-3 rounded-xl text-xs transition shadow-sm whitespace-nowrap truncate ${btnBg}">
+                ${ctaLabel}
+              </div>
             </div>
           </a>
         `;
@@ -418,21 +509,19 @@
     const stickyBtnEl = document.getElementById('sticky-cta-btn');
     if (stickySubEl && stickyMainEl && stickyBtnEl) {
       const lc = res.lossComparison || {};
-      stickySubEl.textContent = lc.savingBadge || res.badge || "실시간 손익 계산 완료";
-      stickyMainEl.textContent = cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline;
-      stickyBtnEl.href = cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#";
+      stickySubEl.textContent = primaryAction
+        ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}`
+        : (lc.savingBadge || res.badge || "실시간 손익 계산 완료");
+      stickyMainEl.textContent = primaryAction
+        ? primaryAction.label
+        : (cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline);
+      stickyBtnEl.href = primaryAction
+        ? buildCoupangHref(primaryAction.coupangKw)
+        : (cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#");
 
-      const shortBtnMap = {
-        electric: `1등급 가전 특가 →`,
-        diet: `닭가슴살·보충제 특가 →`,
-        pet: `사료·건강식 최저가 →`,
-        room: `${res.roomSize || 7}평 가전·가구 특가 →`,
-        auto: `차량용품·블랙박스 특가 →`,
-        telecom: `유심·와이파이7 특가 →`
-      };
-      stickyBtnEl.textContent = (cpaDetails && cpaDetails.isCustomTenpingUrl)
-        ? "텐핑 혜택 즉시 신청 →"
-        : (shortBtnMap[currentCalc] || "맞춤 특가 확인 →");
+      stickyBtnEl.textContent = primaryAction
+        ? (primaryAction.coupangBtn || "맞춤 최저가 ↗")
+        : "맞춤 특가 확인 →";
     }
   };
 
@@ -1066,12 +1155,13 @@
     const badgeEl = document.getElementById('result-badge');
     const headlineEl = document.getElementById('result-headline');
     const summaryEl = document.getElementById('result-summary-text');
-    const metricsEls = document.querySelectorAll('#result-metrics-grid > div');
+    const metricsEls = document.querySelectorAll('#result-metrics-grid > a, #result-metrics-grid > div');
 
     const metricLines = [];
-    metricsEls.forEach(div => {
-      const label = div.querySelector('div:first-child')?.textContent?.trim() || '';
-      const val = div.querySelector('div:last-child')?.textContent?.trim() || '';
+    metricsEls.forEach(item => {
+      const divs = item.querySelectorAll('div');
+      const label = divs[0]?.textContent?.trim() || '';
+      const val = divs[1]?.textContent?.trim() || '';
       if (label && val) metricLines.push(`• ${label}: ${val}`);
     });
 

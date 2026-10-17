@@ -764,14 +764,56 @@ function renderInteractiveCalculatorCard(preset, res) {
     `;
   }
 
-  // Pre-rendered metrics cards
-  const metricsHtml = (res.metrics || []).map(m => {
+  const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+
+  // Pre-rendered metrics cards (Clickable 1:1 bridge to matching actionItem)
+  const metricsHtml = (res.metrics || []).map((m, idx) => {
     const isNeg = String(m.val).startsWith('-');
     const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
+    const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+    const metricHref = matchedAction
+      ? monetization.buildCoupangUrl(matchedAction.coupangKw, preset.calc, config.coupangAfId)
+      : '#res-products-grid';
+    const stepHint = matchedAction
+      ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '맞춤 특가'} ↗`
+      : '🛒 최저가 보기 ↗';
+
     return `
-      <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+      <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
+         onclick="recordPresetClick('coupang', this.href)"
+         class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
         <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
         <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
+        <div class="mt-1.5 pt-1 border-t border-slate-700/70 text-[10px] font-bold text-emerald-300 group-hover:text-amber-300 truncate">${stepHint}</div>
+      </a>
+    `;
+  }).join('');
+
+  // Pre-rendered 1:1 Action Items Prescription Shopping Cart
+  const actionItemsHtml = actionItems.map(item => {
+    const cpHref = monetization.buildCoupangUrl(item.coupangKw, preset.calc, config.coupangAfId);
+    const lpHref = monetization.buildLinkPriceDeepLink(item.lpMerchant, item.lpUrl, config.linkPriceId);
+    return `
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 mb-0.5">
+            <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
+            <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">${item.label}</span>
+          </div>
+          <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 ${item.calcVal}</div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+          <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('coupang', this.href)"
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+            ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+          </a>
+          <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('linkprice', this.href)"
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+            ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+          </a>
+        </div>
       </div>
     `;
   }).join('');
@@ -780,7 +822,7 @@ function renderInteractiveCalculatorCard(preset, res) {
   const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
   const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
 
-  // Coupang (AF7865143) + LinkPrice (A100708867) Product Recommendations
+  // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations
   const productsHtml = (res.products || []).map(p => {
     const href = p.type === 'coupang'
       ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
@@ -791,16 +833,24 @@ function renderInteractiveCalculatorCard(preset, res) {
       : `🏷️ 링크프라이스 · ${merchantName}`;
     const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
     const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
+    const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
+    const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+    const iconPrefix = p.icon ? `${p.icon} ` : '';
+    const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('${p.type}', this.href)"
-         class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
-        <div class="flex items-center justify-between gap-1.5 mb-1">
-          <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
-          <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
+        <div class="space-y-1.5 min-w-0">
+          <div class="flex items-center justify-between gap-1.5">
+            <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+            <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+          </div>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">${matchTag}</div>
+          <div class="text-xs font-extrabold text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
+          <p class="text-[11px] text-slate-300 leading-snug break-keep">${matchReason}</p>
         </div>
-        <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">${p.title}</div>
-        <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">${ctaLabel}</div>
+        <div class="w-full text-center ${btnBg} text-white text-[11px] font-extrabold py-2 px-2.5 rounded-lg transition whitespace-nowrap truncate">${ctaLabel}</div>
       </a>
     `;
   }).join('');
@@ -862,6 +912,17 @@ function renderInteractiveCalculatorCard(preset, res) {
             ${res.summary}
           </p>
 
+          <!-- 영수증 내부 1:1 계산 수치 직결 처방 장바구니 -->
+          <div class="pt-3 border-t border-slate-800 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <div class="text-xs sm:text-sm font-extrabold text-amber-300 whitespace-nowrap truncate">🧾 내 계산 수치 1:1 직결 처방 장바구니</div>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold shrink-0 whitespace-nowrap">수량·예산 자동 매칭</span>
+            </div>
+            <div id="res-action-items" class="space-y-2">
+              ${actionItemsHtml}
+            </div>
+          </div>
+
           <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
@@ -889,7 +950,7 @@ function renderInteractiveCalculatorCard(preset, res) {
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
           <div class="pt-3 border-t border-slate-800 space-y-3">
-            <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교</div>
+            <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 연동 베스트 특가 딜 (쿠팡 로켓 × 공식몰)</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               ${productsHtml}
             </div>
@@ -1322,12 +1383,21 @@ ${JSON.stringify(schemaJson, null, 2)}
       const grid = document.getElementById('res-metrics-grid');
       const lossBar = document.getElementById('res-loss-bar');
       const summary = document.getElementById('res-summary');
+      const actionItemsEl = document.getElementById('res-action-items');
       const cpaBadge = document.getElementById('res-cpa-badge');
       const cpaTitle = document.getElementById('res-cpa-title');
       const cpaLink = document.getElementById('res-cpa-link');
       const cpaCoupangSub = document.getElementById('res-cpa-coupang-sub');
       const cpaLpSub = document.getElementById('res-cpa-lp-sub');
       const productsGrid = document.getElementById('res-products-grid');
+
+      const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+      const buildCp = (kw) => (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.buildCoupangUrl)
+        ? MoneyFitMonetization.buildCoupangUrl(kw, PRESET_CALC)
+        : '#';
+      const buildLp = (merchant, url) => (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.buildLinkPriceDeepLink)
+        ? MoneyFitMonetization.buildLinkPriceDeepLink(merchant, url)
+        : (url || '#');
 
       if (badge && res.badge) {
         badge.textContent = res.badge;
@@ -1343,13 +1413,49 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (summary && res.summary) summary.textContent = res.summary;
 
       if (grid && res.metrics) {
-        grid.innerHTML = res.metrics.map(m => {
+        grid.innerHTML = res.metrics.map((m, idx) => {
           const isNeg = String(m.val).startsWith('-');
           const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
+          const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+          const metricHref = matchedAction ? buildCp(matchedAction.coupangKw) : '#res-products-grid';
+          const stepHint = matchedAction ? \`\${matchedAction.icon || '🛒'} \${matchedAction.stepTag || '맞춤 특가'} ↗\` : '🛒 최저가 보기 ↗';
           return \`
-            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 min-w-0">
+            <a href="\${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
+               onclick="recordPresetClick('coupang', this.href)"
+               class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
               <div class="text-[11px] text-slate-400 truncate">\${m.label}</div>
               <div class="font-extrabold text-sm sm:text-base \${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">\${m.val}</div>
+              <div class="mt-1.5 pt-1 border-t border-slate-700/70 text-[10px] font-bold text-emerald-300 group-hover:text-amber-300 truncate">\${stepHint}</div>
+            </a>
+          \`;
+        }).join('');
+      }
+
+      if (actionItemsEl && actionItems.length > 0) {
+        actionItemsEl.innerHTML = actionItems.map(item => {
+          const cpHref = buildCp(item.coupangKw);
+          const lpHref = buildLp(item.lpMerchant, item.lpUrl);
+          return \`
+            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5 mb-0.5">
+                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${item.icon || '⚡'} \${item.stepTag || '맞춤 처방'}</span>
+                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">\${item.label}</span>
+                </div>
+                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 \${item.calcVal}</div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                <a href="\${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordPresetClick('coupang', this.href)"
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+                  \${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+                </a>
+                <a href="\${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordPresetClick('linkprice', this.href)"
+                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
+                  \${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+                </a>
+              </div>
             </div>
           \`;
         }).join('');
@@ -1400,24 +1506,32 @@ ${JSON.stringify(schemaJson, null, 2)}
       if (productsGrid && res.products && typeof MoneyFitMonetization !== 'undefined') {
         productsGrid.innerHTML = res.products.map(p => {
           const href = p.type === 'coupang'
-            ? MoneyFitMonetization.buildCoupangUrl(p.kw, PRESET_CALC)
-            : MoneyFitMonetization.buildLinkPriceDeepLink(p.merchant, p.url);
+            ? buildCp(p.kw)
+            : buildLp(p.merchant, p.url);
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
             : \`🏷️ 링크프라이스 · \${merchantName}\`;
           const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인');
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
+          const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
+          const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+          const iconPrefix = p.icon ? \`\${p.icon} \` : '';
+          const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('\${p.type}', this.href)"
-               class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
-              <div class="flex items-center justify-between gap-1.5 mb-1">
-                <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
-                <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
+               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
+              <div class="space-y-1.5 min-w-0">
+                <div class="flex items-center justify-between gap-1.5">
+                  <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
+                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
+                </div>
+                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">\${matchTag}</div>
+                <div class="text-xs font-extrabold text-white leading-snug break-keep">\${iconPrefix}\${p.title}</div>
+                <p class="text-[11px] text-slate-300 leading-snug break-keep">\${matchReason}</p>
               </div>
-              <div class="text-xs font-bold text-white leading-snug whitespace-nowrap truncate">\${p.title}</div>
-              <div class="text-[11px] text-sky-300 font-extrabold mt-1.5 whitespace-nowrap truncate">\${ctaLabel}</div>
+              <div class="w-full text-center \${btnBg} text-white text-[11px] font-extrabold py-2 px-2.5 rounded-lg transition whitespace-nowrap truncate">\${ctaLabel}</div>
             </a>
           \`;
         }).join('');
@@ -1428,9 +1542,10 @@ ${JSON.stringify(schemaJson, null, 2)}
       const stickyBtn = document.getElementById('sticky-cta-btn');
       if (stickySub && stickyMain && stickyBtn) {
         const lc = res.lossComparison || {};
-        stickySub.textContent = lc.savingBadge || res.badge;
-        stickyMain.textContent = (d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline);
-        if (d && (d.liveActionUrl || d.actionUrl)) stickyBtn.href = d.liveActionUrl || d.actionUrl;
+        const primaryAction = actionItems[0] || null;
+        stickySub.textContent = primaryAction ? \`\${primaryAction.icon || '⚡'} \${primaryAction.calcVal}\` : (lc.savingBadge || res.badge);
+        stickyMain.textContent = primaryAction ? primaryAction.label : ((d && (d.liveTitle || d.title)) ? (d.liveTitle || d.title) : (res.cpaTitle || res.headline));
+        stickyBtn.href = primaryAction ? buildCp(primaryAction.coupangKw) : ((d && (d.liveActionUrl || d.actionUrl)) ? (d.liveActionUrl || d.actionUrl) : '#');
       }
     }
 
@@ -1438,11 +1553,12 @@ ${JSON.stringify(schemaJson, null, 2)}
       const badge = document.getElementById('res-badge')?.textContent?.trim() || '';
       const headline = document.getElementById('res-headline')?.textContent?.trim() || '';
       const summary = document.getElementById('res-summary')?.textContent?.trim() || '';
-      const metricsEls = document.querySelectorAll('#res-metrics-grid > div');
+      const metricsEls = document.querySelectorAll('#res-metrics-grid > a, #res-metrics-grid > div');
       const lines = [];
-      metricsEls.forEach(div => {
-        const l = div.querySelector('div:first-child')?.textContent?.trim() || '';
-        const v = div.querySelector('div:last-child')?.textContent?.trim() || '';
+      metricsEls.forEach(item => {
+        const divs = item.querySelectorAll('div');
+        const l = divs[0]?.textContent?.trim() || '';
+        const v = divs[1]?.textContent?.trim() || '';
         if (l && v) lines.push('• ' + l + ': ' + v);
       });
       const text =
