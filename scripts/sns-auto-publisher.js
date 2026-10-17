@@ -54,10 +54,13 @@ function normalizePreset(raw) {
  * Load AI Animal Instatoon 2x2 sheet as Base64 Data URI for instant Headless Chrome rendering
  */
 const ART_DATA_URI_CACHE = {};
-function getCategoryArtDataUri(calcKey) {
-  const key = calcKey || 'electric';
+function getCategoryArtDataUri(calcKey, slug) {
+  const key = slug || calcKey || 'electric';
   if (ART_DATA_URI_CACHE[key] !== undefined) return ART_DATA_URI_CACHE[key];
-  const imgPath = path.join(PROJECT_ROOT, 'src', 'assets', 'webtoon', `${key}.jpg`);
+  const epImgPath = slug ? path.join(PROJECT_ROOT, 'src', 'assets', 'webtoon', 'episodes', `${slug}.jpg`) : '';
+  const imgPath = (epImgPath && fs.existsSync(epImgPath))
+    ? epImgPath
+    : path.join(PROJECT_ROOT, 'src', 'assets', 'webtoon', `${calcKey || 'electric'}.jpg`);
   if (fs.existsSync(imgPath)) {
     try {
       const b64 = fs.readFileSync(imgPath).toString('base64');
@@ -171,7 +174,7 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
 function buildRenderHtml(bundle, mode = 'grid', slideNum = 1) {
   const { preset, story } = bundle;
   const fontsDirUrl = 'file:///' + path.join(PROJECT_ROOT, 'src', 'assets', 'fonts').replace(/\\/g, '/');
-  const artDataUri = getCategoryArtDataUri(preset.calcKey);
+  const artDataUri = getCategoryArtDataUri(preset.calcKey, preset.slug);
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -2175,7 +2178,7 @@ function drawAnimalSceneQuadrant(ctx, img, calcKey, quadIdx, flipX, zoom, x, y, 
     const sx = baseSx + (baseSw - sw) * 0.5;
     const sy = baseSy + (baseSh - sh) * 0.88;
 
-    const topShift = Math.round(38 * s);
+    const topShift = Math.round(46 * s);
     const destY = y + topShift;
     const destH = h - topShift;
 
@@ -2201,11 +2204,11 @@ function drawAnimalSceneQuadrant(ctx, img, calcKey, quadIdx, flipX, zoom, x, y, 
 }
 
 function drawAnimalTopNarration(ctx, cutNum, text, x, y, w, s = 1) {
-  const boxH = 34 * s;
-  const boxY = y + 8 * s;
+  const boxH = 30 * s;
+  const boxY = y + 6 * s;
   ctx.save();
 
-  let fontSize = 17.5 * s;
+  let fontSize = 17.0 * s;
   ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
   while (fontSize > 13 * s && ctx.measureText(text).width > w - 82 * s) {
     fontSize -= 0.5 * s;
@@ -2220,7 +2223,7 @@ function drawAnimalTopNarration(ctx, cutNum, text, x, y, w, s = 1) {
   ctx.shadowBlur = 5 * s;
   ctx.shadowOffsetY = 2 * s;
 
-  roundRect(ctx, boxX, boxY, boxW, boxH, 10 * s);
+  roundRect(ctx, boxX, boxY, boxW, boxH, 9 * s);
   ctx.fillStyle = 'rgba(255, 255, 255, 0.96)';
   ctx.fill();
 
@@ -2230,15 +2233,15 @@ function drawAnimalTopNarration(ctx, cutNum, text, x, y, w, s = 1) {
   ctx.stroke();
 
   const pillColors = ['#f59e0b', '#0284c7', '#e11d48', '#10b981'];
-  roundRect(ctx, boxX + 5 * s, boxY + 5 * s, badgeW, boxH - 10 * s, 7 * s);
+  roundRect(ctx, boxX + 4 * s, boxY + 4 * s, badgeW, boxH - 8 * s, 6 * s);
   ctx.fillStyle = pillColors[(cutNum - 1) % 4];
   ctx.fill();
 
   ctx.fillStyle = '#ffffff';
-  ctx.font = '900 ' + (13.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+  ctx.font = '900 ' + (13.0 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(cutNum + '컷', boxX + 5 * s + badgeW / 2, boxY + boxH / 2 + 0.5 * s);
+  ctx.fillText(cutNum + '컷', boxX + 4 * s + badgeW / 2, boxY + boxH / 2 + 0.5 * s);
 
   ctx.fillStyle = '#1c1917';
   ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
@@ -2253,15 +2256,15 @@ function drawMainSpeechBubbleWithTail(ctx, lines, x, y, w, s = 1, speakerSide = 
   ctx.save();
 
   const bx = x + 16 * s;
-  const by = y + 48 * s;
+  const by = y + 40 * s;
   const bw = w - 32 * s;
-  const bh = 96 * s;
-  const br = 26 * s;
+  const bh = 86 * s;
+  const br = 24 * s;
 
   const tailX = speakerSide === 'right' ? x + w * 0.72 : x + w * 0.28;
   const tailDir = speakerSide === 'right' ? 1 : -1;
-  const tailW = 18 * s;
-  const tailH = 14 * s;
+  const tailW = 16 * s;
+  const tailH = 11 * s;
 
   ctx.shadowColor = 'rgba(41, 37, 36, 0.16)';
   ctx.shadowBlur = 7 * s;
@@ -2291,7 +2294,7 @@ function drawMainSpeechBubbleWithTail(ctx, lines, x, y, w, s = 1, speakerSide = 
   ctx.stroke();
 
   const maxAllowedW = bw - 28 * s;
-  let baseSize = (lines.length === 1 ? 40 : 32.5) * s;
+  let baseSize = (lines.length === 1 ? 38 : 31.5) * s;
   const emphRatio = 1.32;
 
   const measureRichLine = (rawLine, bSize) => {
@@ -2315,7 +2318,7 @@ function drawMainSpeechBubbleWithTail(ctx, lines, x, y, w, s = 1, speakerSide = 
 
   const cx = bx + bw / 2;
   const cy = by + bh / 2;
-  const lineSpacing = baseSize * 1.22;
+  const lineSpacing = baseSize * 1.18;
   const totalBlockH = (lines.length - 1) * lineSpacing;
   const firstLineY = cy - totalBlockH / 2 + baseSize * 0.34;
 
@@ -2368,26 +2371,26 @@ function drawReplySpeechBubble(ctx, replyText, x, y, w, s = 1, mainSpeakerSide =
   if (!replyText) return;
   ctx.save();
 
-  let fontSize = 23.5 * s;
+  let fontSize = 22.5 * s;
   ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Gaegu", "Jua", sans-serif';
-  while (fontSize > 17 * s && ctx.measureText(replyText).width > w - 70 * s) {
+  while (fontSize > 16.5 * s && ctx.measureText(replyText).width > w - 68 * s) {
     fontSize -= 0.5 * s;
     ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Gaegu", "Jua", sans-serif';
   }
 
   const textW = ctx.measureText(replyText).width;
-  const bw = Math.min(w - 36 * s, Math.max(180 * s, textW + 32 * s));
-  const bh = 36 * s;
-  const by = y + 154 * s;
+  const bw = Math.min(w - 36 * s, Math.max(180 * s, textW + 30 * s));
+  const bh = 32 * s;
+  const by = y + 135 * s;
   const replySide = mainSpeakerSide === 'left' ? 'right' : 'left';
   const bx = replySide === 'right'
     ? Math.max(x + 18 * s, x + w - bw - 18 * s)
     : x + 18 * s;
-  const br = 18 * s;
+  const br = 16 * s;
 
   const tailX = replySide === 'right' ? bx + bw * 0.68 : bx + bw * 0.32;
-  const tailW = 12 * s;
-  const tailH = 9 * s;
+  const tailW = 11 * s;
+  const tailH = 7 * s;
 
   const bgByQuad = ['#fffbeb', '#fef9c3', '#fff1f2', '#ecfdf5'];
   const fillCol = bgByQuad[quadIdx % 4] || '#fef9c3';
@@ -2429,21 +2432,41 @@ function drawReplySpeechBubble(ctx, replyText, x, y, w, s = 1, mainSpeakerSide =
   ctx.restore();
 }
 
-function drawCrisisReceiptMemo(ctx, calcKey, storyObj, flipX, x, y, w, h, s = 1) {
+const ORIG_BASE_SLUGS = [
+  'electric-studio-ac',
+  'diet-male-fatloss',
+  'pet-maltese-5kg',
+  'room-oneroom-100',
+  'auto-avante-3000',
+  'telecom-penalty-15'
+];
+
+const TOP_STRIP_RECEIPT_SLUGS = [
+  'pet-maltese-5kg',
+  'pet-pomeranian-puppy',
+  'electric-stand-ac',
+  'electric-dryer',
+  'room-minimalist-50',
+  'room-appliances-only',
+  'room-newlywed-1000',
+  'telecom-family-4p'
+];
+
+function drawCrisisReceiptMemo(ctx, calcKey, slug, storyObj, flipX, x, y, w, h, s = 1) {
   if (!storyObj) return;
   ctx.save();
 
-  if (calcKey === 'pet') {
+  if (calcKey === 'pet' || TOP_STRIP_RECEIPT_SLUGS.includes(slug)) {
     const rx = x + 20 * s;
-    const ry = y + 153 * s;
+    const ry = y + 135 * s;
     const rw = w - 40 * s;
-    const rh = 54 * s;
+    const rh = 48 * s;
 
     ctx.shadowColor = 'rgba(41, 37, 36, 0.16)';
     ctx.shadowBlur = 5 * s;
     ctx.shadowOffsetY = 2 * s;
 
-    roundRect(ctx, rx, ry, rw, rh, 12 * s);
+    roundRect(ctx, rx, ry, rw, rh, 11 * s);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
 
@@ -2454,22 +2477,25 @@ function drawCrisisReceiptMemo(ctx, calcKey, storyObj, flipX, x, y, w, h, s = 1)
 
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = '800 ' + (15.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.font = '800 ' + (15.0 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.fillStyle = '#be123c';
-    ctx.fillText('❌ ' + storyObj.badVal + '   ➔   ✅ ' + storyObj.goodVal, rx + rw / 2, ry + 18 * s);
+    ctx.fillText('❌ ' + storyObj.badVal + '   ➔   ✅ ' + storyObj.goodVal, rx + rw / 2, ry + 16 * s);
 
-    ctx.font = '900 ' + (16.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.font = '900 ' + (16.0 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.fillStyle = '#047857';
-    ctx.fillText('💡 핵심 진단: ' + storyObj.diffVal, rx + rw / 2, ry + 39 * s);
+    ctx.fillText('💰 ' + storyObj.diffVal, rx + rw / 2, ry + 34 * s);
     ctx.restore();
     return;
   }
 
+  const isOrigBase = ORIG_BASE_SLUGS.includes(slug);
+  const placeOnRight = isOrigBase ? Boolean(flipX) : true;
+
   const cardW = 218 * s;
   const cardH = 152 * s;
-  const cardX = flipX ? x + w - cardW - 14 * s : x + 14 * s;
+  const cardX = placeOnRight ? x + w - cardW - 14 * s : x + 14 * s;
   const cardY = y + 214 * s;
-  const tilt = flipX ? 0.025 : -0.025;
+  const tilt = placeOnRight ? 0.025 : -0.025;
 
   ctx.translate(cardX + cardW / 2, cardY + cardH / 2);
   ctx.rotate(tilt);
@@ -2572,9 +2598,11 @@ function drawPanel(ctx, num, x, y, w, h, isFullSlide) {
   const panelRadius = isFullSlide ? 0 : Math.round(12 * s);
   const conv = getConversationalScript(preset.calcKey, story);
   const panelIdx = num - 1;
+  const slug = preset.slug || preset.id || '';
 
   const quadIdx = (conv.quadOrder && conv.quadOrder[panelIdx] !== undefined) ? conv.quadOrder[panelIdx] : panelIdx;
-  const flipX = Boolean(conv.flipMask && conv.flipMask[panelIdx]);
+  const isOrigBase = ORIG_BASE_SLUGS.includes(slug);
+  const flipX = isOrigBase ? Boolean(conv.flipMask && conv.flipMask[panelIdx]) : false;
   const zoom = (conv.zoomMask && conv.zoomMask[panelIdx]) || 1.0;
   const speakerSide = (conv.speakerSide && conv.speakerSide[panelIdx]) || (flipX ? 'right' : 'left');
 
@@ -2595,12 +2623,13 @@ function drawPanel(ctx, num, x, y, w, h, isFullSlide) {
 
   // 4. Secondary Conversational Ping-Pong Reply Bubble OR Crisis Receipt Strip
   const replyText = (conv.replies && conv.replies[panelIdx]) || '';
-  if (quadIdx === 2 && preset.calcKey === 'pet') {
-    drawCrisisReceiptMemo(ctx, preset.calcKey, story, flipX, x, y, w, h, s);
+  const useTopStripReceipt = quadIdx === 2 && (preset.calcKey === 'pet' || TOP_STRIP_RECEIPT_SLUGS.includes(slug));
+  if (useTopStripReceipt) {
+    drawCrisisReceiptMemo(ctx, preset.calcKey, slug, story, flipX, x, y, w, h, s);
   } else {
     drawReplySpeechBubble(ctx, replyText, x, y, w, s, speakerSide, quadIdx);
     if (quadIdx === 2) {
-      drawCrisisReceiptMemo(ctx, preset.calcKey, story, flipX, x, y, w, h, s);
+      drawCrisisReceiptMemo(ctx, preset.calcKey, slug, story, flipX, x, y, w, h, s);
     }
   }
 
