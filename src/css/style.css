@@ -145,47 +145,48 @@ input[type=range] {
   line-height: 1.45 !important;
 }
 
-/* 2. 6대 카테고리 네비게이션 탭 (오늘의집·토스 스타일 빅 탭) */
+/* 2. 6대 카테고리 네비게이션 탭 (강약 대비: 타이틀 Bold 800 vs 부제 Regular 400) */
 .calc-nav-btn {
-  padding: 1rem 1.125rem !important;
+  padding: 0.95rem 1.05rem !important;
   border-width: 2px !important;
   border-radius: 1.125rem !important;
 }
 .calc-nav-btn > div:first-child {
-  font-size: 1.15rem !important; /* 18.4px 굵은 타이틀 */
-  font-weight: 900 !important;
+  font-size: 1.1rem !important; /* 17.6px 선명한 타이틀 */
+  font-weight: 800 !important;
   letter-spacing: -0.03em !important;
 }
 .calc-nav-btn > div:last-child {
-  font-size: 0.875rem !important; /* 14px 선명한 부제 */
-  margin-top: 0.25rem !important;
-  font-weight: 600 !important;
+  font-size: 0.84rem !important; /* 13.4px 차분한 부제 */
+  margin-top: 0.2rem !important;
+  font-weight: 400 !important;
+  opacity: 0.85;
 }
 
-/* 3. 좌측 입력 폼: 라벨·입력창·셀렉트 박스 대형화 (토스 54px 입력창 규격) */
+/* 3. 좌측 입력 폼: 라벨은 차분하게(500), 입력 숫자는 선명하게(800) 강약 대비 */
 #calc-form-title,
 #interactive-calculator-section h3 {
-  font-size: 1.4rem !important; /* 22.4px */
-  font-weight: 900 !important;
+  font-size: 1.35rem !important; /* 21.6px */
+  font-weight: 800 !important;
   line-height: 1.3 !important;
 }
 
 #calc-inputs-container label,
 #interactive-calculator-section label {
-  font-size: 1.025rem !important; /* 16.4px (+37%) */
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  margin-bottom: 0.375rem !important;
+  font-size: 0.95rem !important; /* 15.2px */
+  font-weight: 500 !important; /* 볼드 과잉 해소: 라벨은 차분한 미디엄 웨이트 */
+  color: #475569 !important;
+  margin-bottom: 0.35rem !important;
 }
 
 #calc-inputs-container input[type="number"],
 #calc-inputs-container select,
 #interactive-calculator-section input[type="number"],
 #interactive-calculator-section select {
-  font-size: 1.2rem !important; /* 19.2px (+37%) */
-  font-weight: 800 !important;
-  height: 3.4rem !important; /* 54.4px 큼직한 터치 영역 */
-  padding: 0.625rem 1rem !important;
+  font-size: 1.15rem !important; /* 18.4px */
+  font-weight: 800 !important; /* 사용자가 입력하는 핵심 숫자만 강하게 강조 */
+  height: 3.25rem !important; /* 52px 터치 영역 */
+  padding: 0.55rem 0.95rem !important;
   border-width: 2px !important;
   border-radius: 0.875rem !important;
   color: #0f172a !important;
@@ -200,49 +201,54 @@ input[type=range] {
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
 }
 
-/* 시나리오 1초 자동입력 칩 크기 확대 */
+/* 시나리오 1초 자동입력 칩: 비선택 칩은 가볍게(500), 선택된 칩만 강조 */
 #calc-scenario-chips button,
 #interactive-calculator-section a[href*="index.html"] {
-  font-size: 0.9rem !important; /* 14.4px */
-  padding: 0.45rem 0.85rem !important;
+  font-size: 0.875rem !important; /* 14px */
+  padding: 0.42rem 0.8rem !important;
   border-radius: 0.65rem !important;
-  font-weight: 800 !important;
 }
 
-/* 4. 우측 영수증 결과 카드: 핵심 결론 & 메트릭 숫자 초대형화 (토스·뱅크샐러드 규격) */
+/* 4. 우측 영수증 결과 카드: 핵심 금액만 초강조(900) & 부가 텍스트는 가볍게(400) */
 #result-headline,
 #res-headline {
-  font-size: clamp(1.5rem, 2.6vw, 1.9rem) !important; /* 24px ~ 30.4px */
-  font-weight: 900 !important;
-  line-height: 1.28 !important;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem) !important; /* 21.6px ~ 28px (줄바꿈·잘림 없는 최적 크기) */
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
   letter-spacing: -0.03em !important;
 }
 
-/* 영수증 핵심 숫자 카드 (메트릭 그리드) */
+/* 영수증 핵심 숫자 카드 (메트릭 그리드 — -108,499원 등 긴 숫자가 절대 ...으로 잘리지 않도록 설계) */
 #result-metrics-grid > a,
 #res-metrics-grid > a {
-  padding: 1rem 1.125rem !important;
+  padding: 0.85rem 0.75rem !important;
   border-radius: 1rem !important;
 }
 #result-metrics-grid > a > div:nth-child(1),
 #res-metrics-grid > a > div:nth-child(1) {
-  font-size: 0.95rem !important; /* 메트릭 라벨 15.2px */
-  font-weight: 700 !important;
-  color: #cbd5e1 !important;
+  font-size: 0.82rem !important; /* 메트릭 라벨 13.1px */
+  font-weight: 400 !important; /* 라벨 볼드 제거 -> 아래 숫자가 확 살아남! */
+  color: #94a3b8 !important;
 }
 #result-metrics-grid > a > div:nth-child(2),
 #res-metrics-grid > a > div:nth-child(2) {
-  font-size: clamp(1.4rem, 2.3vw, 1.8rem) !important; /* 22.4px ~ 28.8px (+65%) */
-  font-weight: 900 !important;
-  line-height: 1.2 !important;
-  margin-top: 0.25rem !important;
+  font-size: clamp(1.12rem, 1.55vw, 1.38rem) !important; /* 18px ~ 22px (-108,499원 9글자도 1줄에 완벽 표시!) */
+  font-weight: 900 !important; /* 오직 핵심 결과 숫자에만 최고 강도(900) 부여 */
+  line-height: 1.25 !important;
+  letter-spacing: -0.04em !important;
+  margin-top: 0.2rem !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 #result-metrics-grid > a > div:nth-child(3),
 #res-metrics-grid > a > div:nth-child(3) {
-  font-size: 0.85rem !important; /* 하단 직결 링크 13.6px */
+  font-size: 0.76rem !important; /* 하단 직결 링크 12.2px */
+  font-weight: 500 !important; /* 보조 링크 볼드 완화 */
+  opacity: 0.9;
 }
 
-/* 5. 주요 구매·혜택 CTA 버튼 대형화 (최소 50~54px 높이, 16.5~18px 폰트) */
+/* 5. 주요 구매·혜택 CTA 버튼 (명확한 행동 유도 700~800) */
 #input-instant-coupang-btn,
 #input-instant-lp-btn,
 #impulse-coupang-btn,
@@ -255,47 +261,44 @@ input[type=range] {
 #res-action-items a,
 #product-recommendations a div.w-full.text-center,
 #res-products-grid a div.w-full.text-center {
-  font-size: 1.05rem !important; /* 16.8px */
-  padding-top: 0.85rem !important;
-  padding-bottom: 0.85rem !important;
-  border-radius: 0.875rem !important;
-  font-weight: 900 !important;
+  font-size: 0.975rem !important; /* 15.6px (말줄임표 잘림 방지) */
+  padding-top: 0.78rem !important;
+  padding-bottom: 0.78rem !important;
+  border-radius: 0.85rem !important;
+  font-weight: 800 !important;
 }
 
-/* 6. TMI 장문 텍스트 및 중복 박스 시각적 다이어트 (DOM은 100% 유지하되 1줄 압축/숨김) */
+/* 6. 부연 설명 텍스트: 말줄임표(...) 강제 절단(-webkit-line-clamp: 1) 완전 해제 및 가벼운 서체(400) 적용 */
 #input-instant-sub,
 #impulse-sub,
 #res-impulse-sub,
 #cpa-desc {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 1 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  font-size: 0.925rem !important;
+  display: block !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
 }
 
 #result-summary-text,
 #res-summary {
-  font-size: 1rem !important; /* 16px */
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
+  font-size: 0.925rem !important; /* 14.8px */
+  font-weight: 400 !important; /* 요약 설명문 볼드 제거로 피로도 해소 */
+  line-height: 1.5 !important;
   padding: 0.85rem 1rem !important;
 }
 
-#product-recommendations a .text-xs.sm\:text-sm,
-#res-products-grid a .text-xs.font-extrabold {
-  font-size: 1.125rem !important; /* 18px 상품명 */
-  line-height: 1.35 !important;
-}
 #product-recommendations a p,
 #res-products-grid a p {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 1 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  font-size: 0.925rem !important;
+  display: block !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  font-size: 0.85rem !important; /* 13.6px */
+  font-weight: 400 !important; /* 추천 사유는 차분한 일반체(400)로 상품명·절감액과 강약 대비 */
+  line-height: 1.45 !important;
 }
 
 /* 카톡 보관함의 장문 부연 설명 문단 숨김 (버튼만 깔끔하게 노출) */

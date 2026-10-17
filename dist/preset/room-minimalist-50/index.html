@@ -203,15 +203,15 @@
     <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-md my-6 space-y-5">
       <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
         <div class="min-w-0 flex-1">
-          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-black px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-1.5 break-keep">단기 거주 50만 원 미니멀 자취 필수 생존템 견적</h3>
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1.5 break-keep">단기 거주 50만 원 미니멀 자취 필수 생존템 견적</h3>
         </div>
-        <span class="text-sm font-bold text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
+        <span class="text-sm font-medium text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
       <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
-        <div class="text-sm font-black text-slate-800">⚡ 인기 조건 1클릭 비교</div>
+        <div class="text-sm font-bold text-slate-700">⚡ 인기 조건 1클릭 비교</div>
         <div class="preset-quick-chips-row flex flex-wrap gap-2">
           <a href="../room-oneroom-100/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">원룸 100만원 가성비</a><a href="../room-officetel-300/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">오피스텔 300만 화이트</a><a href="../room-officetel-500/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">투룸 500만 프리미엄</a><a href="../room-newlywed-1000/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">신혼 1,000만 풀세팅</a><a href="../room-minimalist-50/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-blue-600 text-white border-blue-600 font-black shadow-sm">단기 50만원 생존템</a><a href="../room-appliances-only/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">원룸 150만 가전집중</a>
         </div>
@@ -220,7 +220,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <!-- 좌측 입력 패널 -->
         <div class="lg:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
-          <h4 class="text-base font-black text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
+          <h4 class="text-base font-bold text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
           
       <div class="space-y-3.5">
         <div>
@@ -241,7 +241,7 @@
         </div>
       </div>
     
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-black py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
             🔄 다시 계산하기
           </button>
         </div>
@@ -249,42 +249,42 @@
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4 sm:space-y-5">
           <div class="flex items-center justify-between gap-2">
-            <span id="res-badge" class="px-3 py-1 rounded-full text-sm font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
+            <span id="res-badge" class="px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               🏠 5평 [가성비] 초과 0원 배분
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-black px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-extrabold px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-2xl sm:text-3xl font-black text-white leading-tight break-keep">
-            총 50만 원 풀세팅 (가전 40만 + 가구 10만)
+          <div id="res-headline" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight break-keep">
+            <span class="font-normal text-slate-100">총 <strong class="font-black text-amber-300 underline decoration-amber-400/50 decoration-2 underline-offset-4">50만 원</strong> 풀세팅</span><span class="font-normal text-slate-400 text-[0.76em] tracking-normal"> (가전 40만 + 가구 10만)</span>
           </div>
 
           <div id="res-metrics-grid" class="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 pt-1 ">
             
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%AC%B4%EC%86%8C%EC%9D%8C%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">냉장고 예산</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">12만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">🧊 예산 24% ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">냉장고 예산</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">12만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">🧊 예산 24% ↗</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%84%B8%ED%83%81%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">세탁기 예산</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">11만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">🧺 예산 22% ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">세탁기 예산</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">11만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">🧺 예산 22% ↗</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4&q=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%8F%85%EB%A6%BD%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">침대 예산</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">10만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">🛏️ 예산 20% ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">침대 예산</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">10만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">🛏️ 예산 20% ↗</div>
       </a>
     
           </div>
@@ -349,111 +349,111 @@
             </div>
             <div id="res-action-items" class="space-y-2.5">
               
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🧊 예산 24%</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">12만 원대 무소음 냉장고</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🧊 예산 24%</span>
+            <span class="text-base font-bold text-white break-keep">12만 원대 무소음 냉장고</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 예산 12만 원 이내 무료 로켓설치</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 예산 12만 원 이내 무료 로켓설치</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%AC%B4%EC%86%8C%EC%9D%8C%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 12만 원대 냉장고 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EC%259B%2590%25EB%25A3%25B8%2520%25EC%259E%2590%25EC%25B7%25A8%25EB%25B0%25A9%2520%25EB%25AC%25B4%25EC%2586%258C%25EC%259D%258C%2520%25EB%2583%2589%25EC%259E%25A5%25EA%25B3%25A0%2520%25EB%25A1%259C%25EC%25BC%2593%25EC%2584%25A4%25EC%25B9%2598" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 롯데ON 특가 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🧺 예산 22%</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">11만 원대 세탁기</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🧺 예산 22%</span>
+            <span class="text-base font-bold text-white break-keep">11만 원대 세탁기</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 예산 11만 원 이내 무료설치</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 예산 11만 원 이내 무료설치</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%84%B8%ED%83%81%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 11만 원대 세탁기 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%259B%2590%25EB%25A3%25B8%2520%25EC%2584%25B8%25ED%2583%2581%25EA%25B8%25B0%2520%25EB%25A1%259C%25EC%25BC%2593%25EC%2584%25A4%25EC%25B9%2598" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 하이마트 특가 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🛏️ 예산 20%</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">10만 원대 매트리스+침대프레임</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🛏️ 예산 20%</span>
+            <span class="text-base font-bold text-white break-keep">10만 원대 매트리스+침대프레임</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 예산 10만 원 이내 5평 맞춤</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 예산 10만 원 이내 5평 맞춤</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4&q=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%8F%85%EB%A6%BD%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 10만 원대 침대 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2Fmd%2Fpde%2Fsearch%3FsearchTerm%3D%25EC%25A7%2580%25EB%2588%2584%25EC%258A%25A4%2520%25EB%258F%2585%25EB%25A6%25BD%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EB%25A7%25A4%25ED%258A%25B8%25EB%25A6%25AC%25EC%258A%25A4%2520%25EC%25B9%25A8%25EB%258C%2580%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 현대Hmall 특가 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">📺 예산 16%</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">8만 원대 4K 스마트TV</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">📺 예산 16%</span>
+            <span class="text-base font-bold text-white break-keep">8만 원대 4K 스마트TV</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 예산 8만 원 이내 넷플릭스 직결</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 예산 8만 원 이내 넷플릭스 직결</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=4K%20%EC%8A%A4%EB%A7%88%ED%8A%B8TV%20%EC%82%BC%ED%83%A0%EB%B0%94%EC%9D%B4%EB%AF%B8%20%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EB%AA%A8%EB%8B%88%ED%84%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 8만 원대 TV ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D4K%2520%25EC%258A%25A4%25EB%25A7%2588%25ED%258A%25B8TV%2520%25EC%259D%25B4%25EB%258F%2599%25EC%258B%259D%2520%25ED%258B%25B0%25EB%25B9%2584" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 지마켓 특가 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🍳 예산 18%</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">9만 원대 전자레인지+밥솥+청소기</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🍳 예산 18%</span>
+            <span class="text-base font-bold text-white break-keep">9만 원대 전자레인지+밥솥+청소기</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 잔여 9만 원으로 소형가전 완비</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 잔여 9만 원으로 소형가전 완비</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4&q=%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EC%A0%84%EC%9E%90%EB%A0%88%EC%9D%B8%EC%A7%80%20%EC%A0%84%EA%B8%B0%EB%B0%A5%EC%86%A5%20%EB%AC%B4%EC%84%A0%EC%B2%AD%EC%86%8C%EA%B8%B0%20%EC%84%B8%ED%8A%B8&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 9만 원대 소형가전 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=auction&a=A100708867&l=9999&tu=http%3A%2F%2Fbrowse.auction.co.kr%2Fsearch%3Fkeyword%3D%25EC%25A0%2584%25EC%259E%2590%25EB%25A0%2588%25EC%259D%25B8%25EC%25A7%2580%2520%25EB%25AC%25B4%25EC%2584%25A0%25EC%25B2%25AD%25EC%2586%258C%25EA%25B8%25B0" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 옥션 특가 ↗
           </a>
         </div>
@@ -514,62 +514,62 @@
               
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%AC%B4%EC%86%8C%EC%9D%8C%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🚛 로켓설치</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🚛 로켓설치</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🧊 냉장고 예산 12만 원 (24%)</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🧊 12만 원대 무소음 냉장고 로켓설치</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">5평 맞춤 12만 원대 무소음 냉장고</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🧊 냉장고 예산 <strong class="font-black text-amber-300">12만 원</strong> <span class="font-normal text-amber-200/75 text-[11px]">(<strong class="font-black text-amber-300">24%</strong>)</span></span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🧊 12만 원대 무소음 냉장고 로켓설치</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">5평 맞춤 12만 원대 무소음 냉장고</p>
         </div>
-        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">12만원대 냉장고 특가 →</div>
+        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">12만원대 냉장고 특가 →</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4&q=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%8F%85%EB%A6%BD%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🛏️ 숙면 베스트</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🛏️ 숙면 베스트</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🛏️ 침대 예산 10만 원 (20%)</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🛏️ 10만 원대 매트리스+침대프레임</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">[가성비] 맞춤 프레임+매트리스 세트</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🛏️ 침대 예산 <strong class="font-black text-amber-300">10만 원</strong> <span class="font-normal text-amber-200/75 text-[11px]">(<strong class="font-black text-amber-300">20%</strong>)</span></span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🛏️ 10만 원대 매트리스+침대프레임</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">[가성비] 맞춤 프레임+매트리스 세트</p>
         </div>
-        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">10만원대 침대 특가 →</div>
+        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">10만원대 침대 특가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2Fmd%2Fpde%2Fsearch%3FsearchTerm%3D%25EC%25A7%2580%25EB%2588%2584%25EC%258A%25A4%2520%25EB%258F%2585%25EB%25A6%25BD%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EB%25A7%25A4%25ED%258A%25B8%25EB%25A6%25AC%25EC%258A%25A4%2520%25EC%25B9%25A8%25EB%258C%2580%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 현대Hmall</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🏷️ 카드할인</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🏷️ 현대Hmall</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🏷️ 카드할인</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🛋️ 유통마진 -11만 원 절약</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🛋️ 현대Hmall 5평 침대·가구전</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">백화점 대비 -11만 원 아끼는 온라인 특가</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🛋️ 유통마진 <strong class="font-black text-amber-300">-11만 원</strong> 절약</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🛋️ 현대Hmall 5평 침대·가구전</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">백화점 대비 -11만 원 아끼는 온라인 특가</p>
         </div>
-        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">5평 가구 특가 →</div>
+        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">5평 가구 특가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EC%259B%2590%25EB%25A3%25B8%2520%25EC%2584%25B8%25ED%2583%2581%25EA%25B8%25B0%2520%25EB%25A1%259C%25EC%25BC%2593%25EC%2584%25A4%25EC%25B9%2598" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 롯데ON</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">⚡ 묶음할인</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🏷️ 롯데ON</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">⚡ 묶음할인</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🧺 세탁기 11만 + TV 8만 + 소형 9만</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🧺 롯데ON 세탁기(11만)·TV(8만) 특가</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">나머지 가전 예산(28만 원) 한 번에 해결</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🧺 세탁기 11만 + TV 8만 + 소형 9만</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🧺 롯데ON 세탁기<span class="font-normal text-slate-400 text-sm">(11만)</span>·TV<span class="font-normal text-slate-400 text-sm">(8만)</span> 특가</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">나머지 가전 예산(28만 원) 한 번에 해결</p>
         </div>
-        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">롯데ON 가전 특가 →</div>
+        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">롯데ON 가전 특가 →</div>
       </a>
     
             </div>
@@ -1289,10 +1289,10 @@
           return `
             <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-               class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
-              <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
-              <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-              <div class="mt-1.5 pt-1 border-t border-slate-700/70 text-[10px] font-bold text-emerald-300 group-hover:text-amber-300 truncate">${stepHint}</div>
+               class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
+              <div class="text-xs font-normal text-slate-400 truncate">${m.label}</div>
+              <div class="font-black text-lg sm:text-xl ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
+              <div class="mt-1.5 pt-1 border-t border-slate-700/60 text-[11px] font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">${stepHint}</div>
             </a>
           `;
         }).join('');
@@ -1303,24 +1303,24 @@
           const cpHref = buildCp(item.coupangKw);
           const lpHref = buildLp(item.lpMerchant, item.lpUrl);
           return `
-            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3.5 transition space-y-2">
               <div class="min-w-0">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
-                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">${item.label}</span>
+                <div class="flex flex-wrap items-center gap-1.5 mb-0.5">
+                  <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
+                  <span class="text-sm sm:text-base font-bold text-white break-keep">${item.label}</span>
                 </div>
-                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 ${item.calcVal}</div>
+                <div class="text-xs sm:text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
                 </a>
                 <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
                 </a>
               </div>
             </div>
@@ -1332,14 +1332,14 @@
         const lc = res.lossComparison;
         lossBar.innerHTML = `
           <div class="flex items-center justify-between gap-2 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="font-medium text-slate-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
             <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
               <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
-                <span class="truncate">❌ ${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
+                <span class="font-normal truncate">❌ ${lc.lossLabel}</span>
+                <span class="font-semibold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
@@ -1347,7 +1347,7 @@
             </div>
             <div>
               <div class="flex items-center justify-between gap-2 text-white mb-1">
-                <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+                <span class="font-medium text-emerald-300 truncate">✅ ${lc.optLabel}</span>
                 <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
@@ -1378,27 +1378,27 @@
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
-            : `🏷️ 링크프라이스 · ${merchantName}`;
+            : `🏷️ ${merchantName}`;
           const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
-          const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
-          const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
-          const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+          const ctaLabel = p.ctaText || '최저가 보기 →';
+          const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
+          const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
           const iconPrefix = p.icon ? `${p.icon} ` : '';
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return `
             <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
-               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
+               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
-                  <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+                  <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+                  <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
                 </div>
-                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">${matchTag}</div>
-                <div class="text-xs font-extrabold text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
-                <p class="text-[11px] text-slate-300 leading-snug break-keep">${matchReason}</p>
+                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-semibold px-2.5 py-1 rounded-lg leading-snug break-keep">${matchTag}</div>
+                <div class="text-base font-bold text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
+                <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">${matchReason}</p>
               </div>
-              <div class="w-full text-center ${btnBg} text-white text-[11px] font-extrabold py-2 px-2.5 rounded-lg transition whitespace-nowrap truncate">${ctaLabel}</div>
+              <div class="w-full text-center ${btnBg} text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">${ctaLabel}</div>
             </a>
           `;
         }).join('');

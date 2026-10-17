@@ -203,15 +203,15 @@
     <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-md my-6 space-y-5">
       <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
         <div class="min-w-0 flex-1">
-          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-black px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-1.5 break-keep">3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교</h3>
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1.5 break-keep">3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교</h3>
         </div>
-        <span class="text-sm font-bold text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
+        <span class="text-sm font-medium text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
       <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
-        <div class="text-sm font-black text-slate-800">⚡ 인기 조건 1클릭 비교</div>
+        <div class="text-sm font-bold text-slate-700">⚡ 인기 조건 1클릭 비교</div>
         <div class="preset-quick-chips-row flex flex-wrap gap-2">
           <a href="../auto-avante-3000/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">아반떼 3,000만 (20대)</a><a href="../auto-grandeur-5000/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">그랜저 5,000만 (사업자)</a><a href="../auto-tucson-hybrid/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-blue-600 text-white border-blue-600 font-black shadow-sm">투싼 하이브리드 3,800만</a><a href="../auto-genesis-g80/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">제네시스 G80 7,000만</a><a href="../auto-casper-cash-vs-rent/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">캐스퍼 1,800만 초보</a><a href="../auto-ev-ioniq/index.html" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold">아이오닉 전기차 5,500만</a>
         </div>
@@ -220,7 +220,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <!-- 좌측 입력 패널 -->
         <div class="lg:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
-          <h4 class="text-base font-black text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
+          <h4 class="text-base font-bold text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
           
       <div class="space-y-3.5">
         <div>
@@ -261,7 +261,7 @@
         </div>
       </div>
     
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-black py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
             🔄 다시 계산하기
           </button>
         </div>
@@ -269,42 +269,42 @@
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4 sm:space-y-5">
           <div class="flex items-center justify-between gap-2">
-            <span id="res-badge" class="px-3 py-1 rounded-full text-sm font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
+            <span id="res-badge" class="px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               🏆 48개월 총비용 승자 판정
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-black px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-extrabold px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-2xl sm:text-3xl font-black text-white leading-tight break-keep">
-            [신차 장기렌트] 총 1,715만 원 이득!
+          <div id="res-headline" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight break-keep">
+            <span class="font-normal text-slate-100">[신차 장기렌트] 총 <strong class="font-black text-amber-300 underline decoration-amber-400/50 decoration-2 underline-offset-4">1,715만 원</strong> 이득!</span>
           </div>
 
           <div id="res-metrics-grid" class="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 pt-1 ">
             
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84%20%ED%8C%8C%EC%9D%B8%EB%B7%B0%202%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%AC%B4%EB%A3%8C%EC%B6%9C%EC%9E%A5%EC%9E%A5%EC%B0%A9&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">취등록세(7%)</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">266만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">🎥 보험료 할인 ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">취등록세(7%)</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">266만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">🎥 보험료 할인 ↗</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=%EC%8F%98%EB%A0%8C%ED%86%A0%20%EC%8B%BC%ED%83%80%ED%8E%98%20%EA%B7%B8%EB%9E%9C%EC%A0%80%206D%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%EC%8B%A0%EC%B0%A8%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">절세·보험 절감</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">887만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">🛡️ 잔존가치 방어 ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">절세·보험 절감</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">887만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">🛡️ 잔존가치 방어 ↗</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=LG%EC%A0%84%EC%9E%90&q=%EC%8B%A0%EC%A7%80%EB%AA%A8%EB%A3%A8%20%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B3%A0%EC%86%8D%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80%20%ED%99%9C%EC%84%B1%ED%83%84%20%EC%97%90%EC%96%B4%EC%BB%A8%ED%95%84%ED%84%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">총 절약액</div>
-        <div class="font-black text-xl sm:text-2xl text-amber-300 mt-1 whitespace-nowrap truncate tabular-nums">1,715만 원</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">⚡ 신차 필수템 ↗</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">총 절약액</div>
+        <div class="font-black text-lg sm:text-xl text-amber-300 mt-1 whitespace-nowrap tabular-nums tracking-tight">1,715만 원</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">⚡ 신차 필수템 ↗</div>
       </a>
     
           </div>
@@ -369,67 +369,67 @@
             </div>
             <div id="res-action-items" class="space-y-2.5">
               
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🎥 보험료 할인</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">아이나비·파인뷰 2채널 QHD 블랙박스</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🎥 보험료 할인</span>
+            <span class="text-base font-bold text-white break-keep">아이나비·파인뷰 2채널 QHD 블랙박스</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 보험료 5% 특약할인 즉시 적용</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 보험료 5% 특약할인 즉시 적용</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84%20%ED%8C%8C%EC%9D%B8%EB%B7%B0%202%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%AC%B4%EB%A3%8C%EC%B6%9C%EC%9E%A5%EC%9E%A5%EC%B0%A9&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 QHD 블랙박스 특가 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D2%25EC%25B1%2584%25EB%2584%2590%2520QHD%2520%25EB%25B8%2594%25EB%259E%2599%25EB%25B0%2595%25EC%258A%25A4%2520%25EB%25AC%25B4%25EB%25A3%258C%25EC%259E%25A5%25EC%25B0%25A9" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 지마켓 무료장착 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🛡️ 잔존가치 방어</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">[쏘렌토·싼타페·그랜저급] 6D 코일매트</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🛡️ 잔존가치 방어</span>
+            <span class="text-base font-bold text-white break-keep">[쏘렌토·싼타페·그랜저급] 6D 코일매트</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 중고차 잔존가치 1710만 원 감가 방어</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 중고차 잔존가치 1710만 원 감가 방어</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=%EC%8F%98%EB%A0%8C%ED%86%A0%20%EC%8B%BC%ED%83%80%ED%8E%98%20%EA%B7%B8%EB%9E%9C%EC%A0%80%206D%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%EC%8B%A0%EC%B0%A8%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 차종별 코일매트 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=auction&a=A100708867&l=9999&tu=http%3A%2F%2Fbrowse.auction.co.kr%2Fsearch%3Fkeyword%3D%25EC%258F%2598%25EB%25A0%258C%25ED%2586%25A0%2520%25EC%258B%25BC%25ED%2583%2580%25ED%258E%2598%2520%25EA%25B7%25B8%25EB%259E%259C%25EC%25A0%2580%25206D%2520%25EC%25BD%2594%25EC%259D%25BC%25EB%25A7%25A4%25ED%258A%25B8%2520%25EC%258B%25A0%25EC%25B0%25A8%25ED%258C%25A8%25ED%2582%25A4%25EC%25A7%2580" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 옥션 특가 ↗
           </a>
         </div>
       </div>
     
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">⚡ 신차 필수템</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">15W 맥세이프 거치대 & 필터</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">⚡ 신차 필수템</span>
+            <span class="text-base font-bold text-white break-keep">15W 맥세이프 거치대 & 필터</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ 아낀 1715만 원으로 신차 풀세팅</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ 아낀 1715만 원으로 신차 풀세팅</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=LG%EC%A0%84%EC%9E%90&q=%EC%8B%A0%EC%A7%80%EB%AA%A8%EB%A3%A8%20%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B3%A0%EC%86%8D%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80%20%ED%99%9C%EC%84%B1%ED%83%84%20%EC%97%90%EC%96%B4%EC%BB%A8%ED%95%84%ED%84%B0&channel=user" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🚀 맥세이프 거치대 ↗
           </a>
           <a href="https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EC%25B0%25A8%25EB%259F%2589%25EC%259A%25A9%2520%25EB%25A7%25A5%25EC%2584%25B8%25EC%259D%25B4%25ED%2594%2584%2520%25EA%25B1%25B0%25EC%25B9%2598%25EB%258C%2580" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             🏷️ 롯데ON 특가 ↗
           </a>
         </div>
@@ -490,62 +490,62 @@
               
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🎥 보험료 5% 할인</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🎥 보험료 5% 할인</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🎥 취등록세 266만 원 · 보험 절감</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🎥 아이나비 2채널 QHD 블랙박스</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">장착 사진 1장으로 48개월 보험료 즉시 할인</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🎥 취등록세 <strong class="font-black text-amber-300">266만 원</strong> · 보험 절감</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🎥 아이나비 2채널 QHD 블랙박스</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">장착 사진 1장으로 48개월 보험료 즉시 할인</p>
         </div>
-        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">QHD 블랙박스 최저가 →</div>
+        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">QHD 블랙박스 최저가 →</div>
       </a>
     
       <a href="https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%8B%A0%EC%A7%80%EB%AA%A8%EB%A3%A8&q=%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B3%A0%EC%86%8D%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&channel=user" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🚀 로켓배송</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🚀 쿠팡 로켓배송</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🚀 로켓배송</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🏆 [신차 장기렌트] 1715만 원 절약분</div>
-          <div class="text-base font-black text-white leading-snug break-keep">⚡ 신지모루 15W 맥세이프 충전 거치대</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">쏘렌토·싼타페·그랜저급 송풍구 완벽 밀착 1위 거치대</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🏆 [신차 장기렌트] <strong class="font-black text-amber-300">1715만 원</strong> 절약분</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">⚡ 신지모루 15W 맥세이프 충전 거치대</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">쏘렌토·싼타페·그랜저급 송풍구 완벽 밀착 1위 거치대</p>
         </div>
-        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">15W 맥세이프 거치대 특가 →</div>
+        <div class="w-full text-center bg-rose-600 hover:bg-rose-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">15W 맥세이프 거치대 특가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D2%25EC%25B1%2584%25EB%2584%2590%2520QHD%2520%25EB%25B8%2594%25EB%259E%2599%25EB%25B0%2595%25EC%258A%25A4%2520%25EB%25AC%25B4%25EB%25A3%258C%25EC%259E%25A5%25EC%25B0%25A9" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 지마켓</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🛠️ 무료출장</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🏷️ 지마켓</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">🛠️ 무료출장</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">💰 절세·보험 -887만 원 절감</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🛠️ 지마켓 QHD 블랙박스 무료출장장착</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">집·회사 방문 공임비 0원 무료 장착</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">💰 절세·보험 <strong class="font-black text-amber-300">-887만 원</strong> 절감</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🛠️ 지마켓 QHD 블랙박스 무료출장장착</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">집·회사 방문 공임비 0원 무료 장착</p>
         </div>
-        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">지마켓 무료장착 특가 →</div>
+        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">지마켓 무료장착 특가 →</div>
       </a>
     
       <a href="https://click.linkprice.com/click.php?m=auction&a=A100708867&l=9999&tu=http%3A%2F%2Fbrowse.auction.co.kr%2Fsearch%3Fkeyword%3D%25EC%258F%2598%25EB%25A0%258C%25ED%2586%25A0%2520%25EC%258B%25BC%25ED%2583%2580%25ED%258E%2598%2520%25EA%25B7%25B8%25EB%259E%259C%25EC%25A0%2580%25206D%2520%25EC%25BD%2594%25EC%259D%25BC%25EB%25A7%25A4%25ED%258A%25B8%2520%25EC%258B%25A0%25EC%25B0%25A8%25ED%258C%25A8%25ED%2582%25A4%25EC%25A7%2580" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('linkprice', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🏷️ 옥션</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✨ 감가 방어</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">🏷️ 옥션</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✨ 감가 방어</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">🛡️ 잔존가치 1710만 원 보존</div>
-          <div class="text-base font-black text-white leading-snug break-keep">🛡️ 옥션 쏘렌토·싼타페·그랜저급 6D 코일매트</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">만기 반납·매각 시 오염 감가 0원 방어</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep"><span class="font-normal text-amber-100">🛡️ 잔존가치 <strong class="font-black text-amber-300">1710만 원</strong> 보존</span></div>
+          <div class="text-base font-bold text-white leading-snug break-keep">🛡️ 옥션 쏘렌토·싼타페·그랜저급 6D 코일매트</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">만기 반납·매각 시 오염 감가 0원 방어</p>
         </div>
-        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">옥션 차종별 매트 특가 →</div>
+        <div class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">옥션 차종별 매트 특가 →</div>
       </a>
     
             </div>
@@ -1234,10 +1234,10 @@
           return `
             <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-               class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
-              <div class="text-[11px] text-slate-400 truncate">${m.label}</div>
-              <div class="font-extrabold text-sm sm:text-base ${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-              <div class="mt-1.5 pt-1 border-t border-slate-700/70 text-[10px] font-bold text-emerald-300 group-hover:text-amber-300 truncate">${stepHint}</div>
+               class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
+              <div class="text-xs font-normal text-slate-400 truncate">${m.label}</div>
+              <div class="font-black text-lg sm:text-xl ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
+              <div class="mt-1.5 pt-1 border-t border-slate-700/60 text-[11px] font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">${stepHint}</div>
             </a>
           `;
         }).join('');
@@ -1248,24 +1248,24 @@
           const cpHref = buildCp(item.coupangKw);
           const lpHref = buildLp(item.lpMerchant, item.lpUrl);
           return `
-            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3.5 transition space-y-2">
               <div class="min-w-0">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
-                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">${item.label}</span>
+                <div class="flex flex-wrap items-center gap-1.5 mb-0.5">
+                  <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '맞춤 처방'}</span>
+                  <span class="text-sm sm:text-base font-bold text-white break-keep">${item.label}</span>
                 </div>
-                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 ${item.calcVal}</div>
+                <div class="text-xs sm:text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  ${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
                 </a>
                 <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  ${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
                 </a>
               </div>
             </div>
@@ -1277,14 +1277,14 @@
         const lc = res.lossComparison;
         lossBar.innerHTML = `
           <div class="flex items-center justify-between gap-2 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="font-medium text-slate-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
             <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
               <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
-                <span class="truncate">❌ ${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
+                <span class="font-normal truncate">❌ ${lc.lossLabel}</span>
+                <span class="font-semibold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
@@ -1292,7 +1292,7 @@
             </div>
             <div>
               <div class="flex items-center justify-between gap-2 text-white mb-1">
-                <span class="font-semibold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+                <span class="font-medium text-emerald-300 truncate">✅ ${lc.optLabel}</span>
                 <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
@@ -1323,27 +1323,27 @@
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
-            : `🏷️ 링크프라이스 · ${merchantName}`;
+            : `🏷️ ${merchantName}`;
           const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
-          const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
-          const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
-          const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+          const ctaLabel = p.ctaText || '최저가 보기 →';
+          const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
+          const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
           const iconPrefix = p.icon ? `${p.icon} ` : '';
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return `
             <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
-               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
+               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
-                  <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+                  <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+                  <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
                 </div>
-                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">${matchTag}</div>
-                <div class="text-xs font-extrabold text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
-                <p class="text-[11px] text-slate-300 leading-snug break-keep">${matchReason}</p>
+                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-semibold px-2.5 py-1 rounded-lg leading-snug break-keep">${matchTag}</div>
+                <div class="text-base font-bold text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
+                <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">${matchReason}</p>
               </div>
-              <div class="w-full text-center ${btnBg} text-white text-[11px] font-extrabold py-2 px-2.5 rounded-lg transition whitespace-nowrap truncate">${ctaLabel}</div>
+              <div class="w-full text-center ${btnBg} text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">${ctaLabel}</div>
             </a>
           `;
         }).join('');

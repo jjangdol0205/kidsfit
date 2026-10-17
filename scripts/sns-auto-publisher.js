@@ -2613,19 +2613,26 @@ function renderAll() {
 
     // Top Episode Pill + Handwritten/Bold Title
     ctx.save();
-    roundRect(ctx, 28, 13, 136, 36, 18);
+    roundRect(ctx, 28, 13, 150, 36, 18);
     ctx.fillStyle = '#292524';
     ctx.fill();
     ctx.fillStyle = '#fde047';
-    ctx.font = '800 18px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.font = '800 16.5px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('🐾 머니핏 동물툰', 96, 32);
+    ctx.fillText('🐾 머니핏 동물툰', 103, 31);
     ctx.restore();
 
+    ctx.save();
     ctx.fillStyle = '#1c1917';
-    ctx.font = '900 29px "Pretendard", "Malgun Gothic", sans-serif';
-    ctx.fillText(conv.episodeTitle, 176, 42);
+    let titleFs = 27;
+    ctx.font = '900 ' + titleFs + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    while (titleFs > 20 && ctx.measureText(conv.episodeTitle).width > 700) {
+      titleFs -= 1;
+      ctx.font = '900 ' + titleFs + 'px "Pretendard", "Malgun Gothic", sans-serif';
+    }
+    ctx.fillText(conv.episodeTitle, 190, 41, 700);
+    ctx.restore();
 
     ctx.save();
     ctx.textAlign = 'right';

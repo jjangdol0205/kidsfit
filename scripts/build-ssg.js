@@ -817,7 +817,45 @@ function renderInteractiveCalculatorCard(preset, res) {
   const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
   const zf = res.zeroFeelFraming || null;
 
-  // Pre-rendered metrics cards (Big-Font 22~28px numbers!)
+  const formatHeadlineRichSsg = (rawText) => {
+    if (!rawText) return '';
+    let mainPart = String(rawText);
+    let parenPart = '';
+    const parenMatch = mainPart.match(/(\s*\([^)]+\))\s*$/);
+    if (parenMatch) {
+      parenPart = `<span class="font-normal text-slate-400 text-[0.76em] tracking-normal">${parenMatch[1]}</span>`;
+      mainPart = mainPart.slice(0, mainPart.length - parenMatch[0].length);
+    }
+    const highlightedMain = mainPart.replace(
+      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kcal|kWh|팩|개|통|g|일|개월|%))/g,
+      '<strong class="font-black text-amber-300 underline decoration-amber-400/50 decoration-2 underline-offset-4">$1</strong>'
+    );
+    return `<span class="font-normal text-slate-100">${highlightedMain}</span>${parenPart}`;
+  };
+
+  const formatMatchTagRichSsg = (rawText) => {
+    if (!rawText) return '';
+    let text = String(rawText);
+    text = text.replace(
+      /(\([^)]+\))/g,
+      '<span class="font-normal text-amber-200/75 text-[11px]">$1</span>'
+    );
+    text = text.replace(
+      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kWh|kcal|팩|개|통|g|일분|일|%))/g,
+      '<strong class="font-black text-amber-300">$1</strong>'
+    );
+    return `<span class="font-normal text-amber-100">${text}</span>`;
+  };
+
+  const formatTitleRichSsg = (rawText) => {
+    if (!rawText) return '';
+    return String(rawText).replace(
+      /(\s*\([^)]+\))/g,
+      '<span class="font-normal text-slate-400 text-sm">$1</span>'
+    );
+  };
+
+  // Pre-rendered metrics cards (Zero Truncation + Light Label vs Bold Value Contrast!)
   const metricsHtml = (res.metrics || []).map((m, idx) => {
     const isNeg = String(m.val).startsWith('-');
     const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
@@ -832,36 +870,36 @@ function renderInteractiveCalculatorCard(preset, res) {
     return `
       <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-         class="group block bg-slate-800/90 hover:bg-slate-800 p-4 rounded-2xl border-2 border-slate-700 hover:border-amber-400 min-w-0 transition">
-        <div class="text-sm font-bold text-slate-300 truncate">${m.label}</div>
-        <div class="font-black text-xl sm:text-2xl ${valColor} mt-1 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/70 text-xs font-extrabold text-emerald-300 group-hover:text-amber-300 truncate">${stepHint}</div>
+         class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
+        <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
+        <div class="font-black text-lg sm:text-xl ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">${stepHint}</div>
       </a>
     `;
   }).join('');
 
-  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (Big-Font)
+  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (Contrast Hierarchy)
   const actionItemsHtml = actionItems.map(item => {
     const cpHref = monetization.buildCoupangUrl(item.coupangKw, preset.calc, config.coupangAfId);
     const lpHref = monetization.buildLinkPriceDeepLink(item.lpMerchant, item.lpUrl, config.linkPriceId);
     return `
-      <div class="bg-slate-950/90 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+      <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
-            <span class="text-base sm:text-lg font-black text-white truncate">${item.label}</span>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
+            <span class="text-base font-bold text-white break-keep">${item.label}</span>
           </div>
-          <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ ${item.calcVal}</div>
+          <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
           </a>
           <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
             ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
           </a>
         </div>
@@ -873,7 +911,7 @@ function renderInteractiveCalculatorCard(preset, res) {
   const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
   const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
 
-  // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations (Big-Font)
+  // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations (Zero Truncation + Visual Contrast)
   const productsHtml = (res.products || []).map(p => {
     const href = p.type === 'coupang'
       ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
@@ -891,17 +929,17 @@ function renderInteractiveCalculatorCard(preset, res) {
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
-         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
+         class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-extrabold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
-            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+            <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
+            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
           </div>
-          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-black px-2.5 py-1 rounded-lg truncate">${matchTag}</div>
-          <div class="text-base font-black text-white leading-snug break-keep">${iconPrefix}${p.title}</div>
-          <p class="text-xs text-slate-300 leading-snug break-keep">${matchReason}</p>
+          <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep">${formatMatchTagRichSsg(matchTag)}</div>
+          <div class="text-base font-bold text-white leading-snug break-keep">${formatTitleRichSsg(iconPrefix + p.title)}</div>
+          <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">${matchReason}</p>
         </div>
-        <div class="w-full text-center ${btnBg} text-white text-sm font-black py-3 px-3 rounded-xl transition whitespace-nowrap truncate">${ctaLabel}</div>
+        <div class="w-full text-center ${btnBg} text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">${ctaLabel}</div>
       </a>
     `;
   }).join('');
@@ -910,15 +948,15 @@ function renderInteractiveCalculatorCard(preset, res) {
     <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-md my-6 space-y-5">
       <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
         <div class="min-w-0 flex-1">
-          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-black px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-1.5 break-keep">${title}</h3>
+          <span class="inline-block text-xs bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full whitespace-nowrap">⚡ 3초 계산기</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1.5 break-keep">${title}</h3>
         </div>
-        <span class="text-sm font-bold text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
+        <span class="text-sm font-medium text-blue-600 shrink-0 whitespace-nowrap hidden sm:inline">자동 계산됨</span>
       </div>
 
       <!-- 동일 카테고리 인기 시나리오 1클릭 전환 바 -->
       <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
-        <div class="text-sm font-black text-slate-800">⚡ 인기 조건 1클릭 비교</div>
+        <div class="text-sm font-bold text-slate-700">⚡ 인기 조건 1클릭 비교</div>
         <div class="preset-quick-chips-row flex flex-wrap gap-2">
           ${quickChipsHtml}
         </div>
@@ -927,9 +965,9 @@ function renderInteractiveCalculatorCard(preset, res) {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <!-- 좌측 입력 패널 -->
         <div class="lg:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
-          <h4 class="text-base font-black text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
+          <h4 class="text-base font-bold text-slate-800 mb-3">⚙️ 내 숫자 입력</h4>
           ${inputsFormHtml}
-          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-black py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
+          <button onclick="recalculatePreset()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 px-4 rounded-2xl text-base transition shadow-sm whitespace-nowrap">
             🔄 다시 계산하기
           </button>
         </div>
@@ -937,16 +975,16 @@ function renderInteractiveCalculatorCard(preset, res) {
         <!-- 우측 영수증 진단 카드 -->
         <div class="lg:col-span-7 bg-slate-900 text-white p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4 sm:space-y-5">
           <div class="flex items-center justify-between gap-2">
-            <span id="res-badge" class="px-3 py-1 rounded-full text-sm font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
+            <span id="res-badge" class="px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
               ${res.badge}
             </span>
-            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-black px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
+            <button onclick="copyPresetReceipt(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-extrabold px-3.5 py-2 rounded-xl transition shadow-sm shrink-0 whitespace-nowrap">
               💬 카톡 공유
             </button>
           </div>
 
-          <div id="res-headline" class="text-2xl sm:text-3xl font-black text-white leading-tight break-keep">
-            ${res.headline}
+          <div id="res-headline" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight break-keep">
+            ${formatHeadlineRichSsg(res.headline)}
           </div>
 
           <div id="res-metrics-grid" class="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 pt-1 ${(res.metrics || []).length >= 4 ? 'mobile-metrics-4' : ''}">
@@ -1587,10 +1625,10 @@ ${JSON.stringify(schemaJson, null, 2)}
           return \`
             <a href="\${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('coupang', this.href, 'metric_card')"
-               class="group block bg-slate-800/80 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
-              <div class="text-[11px] text-slate-400 truncate">\${m.label}</div>
-              <div class="font-extrabold text-sm sm:text-base \${valColor} mt-0.5 whitespace-nowrap truncate tabular-nums">\${m.val}</div>
-              <div class="mt-1.5 pt-1 border-t border-slate-700/70 text-[10px] font-bold text-emerald-300 group-hover:text-amber-300 truncate">\${stepHint}</div>
+               class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400/80 min-w-0 transition">
+              <div class="text-xs font-normal text-slate-400 truncate">\${m.label}</div>
+              <div class="font-black text-lg sm:text-xl \${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">\${m.val}</div>
+              <div class="mt-1.5 pt-1 border-t border-slate-700/60 text-[11px] font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">\${stepHint}</div>
             </a>
           \`;
         }).join('');
@@ -1601,24 +1639,24 @@ ${JSON.stringify(schemaJson, null, 2)}
           const cpHref = buildCp(item.coupangKw);
           const lpHref = buildLp(item.lpMerchant, item.lpUrl);
           return \`
-            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3 transition space-y-2">
+            <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3.5 transition space-y-2">
               <div class="min-w-0">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <span class="text-[10px] font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${item.icon || '⚡'} \${item.stepTag || '맞춤 처방'}</span>
-                  <span class="text-xs sm:text-[13px] font-extrabold text-white truncate">\${item.label}</span>
+                <div class="flex flex-wrap items-center gap-1.5 mb-0.5">
+                  <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">\${item.icon || '⚡'} \${item.stepTag || '맞춤 처방'}</span>
+                  <span class="text-sm sm:text-base font-bold text-white break-keep">\${item.label}</span>
                 </div>
-                <div class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">👉 \${item.calcVal}</div>
+                <div class="text-xs sm:text-sm text-emerald-300 font-normal leading-snug break-keep">✔ \${item.calcVal}</div>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 <a href="\${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  \${item.coupangBtn || '🚀 쿠팡 로켓배송 최저가 ↗'}
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  \${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
                 </a>
                 <a href="\${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] sm:text-xs transition shadow-sm whitespace-nowrap truncate">
-                  \${item.lpBtn || '🏷️ 공식몰 제휴 특가 ↗'}
+                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                  \${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
                 </a>
               </div>
             </div>
@@ -1630,14 +1668,14 @@ ${JSON.stringify(schemaJson, null, 2)}
         const lc = res.lossComparison;
         lossBar.innerHTML = \`
           <div class="flex items-center justify-between gap-2 text-xs">
-            <span class="font-bold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
+            <span class="font-medium text-slate-300 flex items-center gap-1 truncate">⚠️ 손실 대비 절약 비교 게이지</span>
             <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shrink-0 whitespace-nowrap tabular-nums">\${lc.savingBadge}</span>
           </div>
           <div class="space-y-2 text-xs">
             <div>
               <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
-                <span class="truncate">❌ \${lc.lossLabel}</span>
-                <span class="font-bold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">\${lc.lossValueText}</span>
+                <span class="font-normal truncate">❌ \${lc.lossLabel}</span>
+                <span class="font-semibold text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">\${lc.lossValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
@@ -1645,7 +1683,7 @@ ${JSON.stringify(schemaJson, null, 2)}
             </div>
             <div>
               <div class="flex items-center justify-between gap-2 text-white mb-1">
-                <span class="font-semibold text-emerald-300 truncate">✅ \${lc.optLabel}</span>
+                <span class="font-medium text-emerald-300 truncate">✅ \${lc.optLabel}</span>
                 <span class="font-extrabold text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">\${lc.optValueText}</span>
               </div>
               <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
@@ -1676,27 +1714,27 @@ ${JSON.stringify(schemaJson, null, 2)}
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
             ? '🚀 쿠팡 로켓배송'
-            : \`🏷️ 링크프라이스 · \${merchantName}\`;
+            : \`🏷️ \${merchantName}\`;
           const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
-          const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
-          const matchTag = p.calcMatchTag || '⚡ 내 계산 수치 1:1 매칭 상품';
-          const matchReason = p.matchReason || '계산된 조건에서 비용을 가장 빠르게 아껴주는 추천 베스트셀러입니다.';
+          const ctaLabel = p.ctaText || '최저가 보기 →';
+          const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
+          const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
           const iconPrefix = p.icon ? \`\${p.icon} \` : '';
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('\${p.type}', this.href, 'deal_card')"
-               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3.5 transition text-left min-w-0 space-y-2">
+               class="flex flex-col justify-between bg-slate-800/95 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-4 transition text-left min-w-0 space-y-2.5">
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
-                  <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
+                  <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
+                  <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
                 </div>
-                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-[10px] font-extrabold px-2 py-0.5 rounded truncate">\${matchTag}</div>
-                <div class="text-xs font-extrabold text-white leading-snug break-keep">\${iconPrefix}\${p.title}</div>
-                <p class="text-[11px] text-slate-300 leading-snug break-keep">\${matchReason}</p>
+                <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-semibold px-2.5 py-1 rounded-lg leading-snug break-keep">\${matchTag}</div>
+                <div class="text-base font-bold text-white leading-snug break-keep">\${iconPrefix}\${p.title}</div>
+                <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">\${matchReason}</p>
               </div>
-              <div class="w-full text-center \${btnBg} text-white text-[11px] font-extrabold py-2 px-2.5 rounded-lg transition whitespace-nowrap truncate">\${ctaLabel}</div>
+              <div class="w-full text-center \${btnBg} text-white text-sm font-extrabold py-3 px-3 rounded-xl transition whitespace-nowrap">\${ctaLabel}</div>
             </a>
           \`;
         }).join('');

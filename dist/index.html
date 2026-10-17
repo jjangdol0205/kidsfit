@@ -128,48 +128,48 @@
       <!-- 계산기 선택 네비게이션 그리드 (스마트폰 3x2 알약 / 데스크탑 6열 큰 글씨 탭) -->
       <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
         <button onclick="selectCalc('electric')" id="calc-nav-electric" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">⚡ 전기세</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">1등급 본전</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">⚡ 전기세</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">1등급 본전</div>
         </button>
         <button onclick="selectCalc('diet')" id="calc-nav-diet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">🍗 식단</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">닭가슴살 수량</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🍗 식단</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">닭가슴살 수량</div>
         </button>
         <button onclick="selectCalc('pet')" id="calc-nav-pet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">🐶 사료량</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">급여량·소진일</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🐶 사료량</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">급여량·소진일</div>
         </button>
         <button onclick="selectCalc('room')" id="calc-nav-room" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">🛋️ 가전·가구</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">예산별 견적</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🛋️ 가전·가구</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">예산별 견적</div>
         </button>
         <button onclick="selectCalc('auto')" id="calc-nav-auto" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">🚗 신차 비교</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">렌트 vs 할부</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🚗 신차 비교</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">렌트 vs 할부</div>
         </button>
         <button onclick="selectCalc('telecom')" id="calc-nav-telecom" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-black tracking-tight whitespace-nowrap truncate">🌐 인터넷</div>
-          <div class="text-xs sm:text-sm text-slate-600 font-semibold mt-0.5 whitespace-nowrap truncate">위약금 vs 47만</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🌐 인터넷</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">위약금 vs 47만</div>
         </button>
       </div>
 
       <!-- 인기 계산 1초 자동 스위칭 배너 (짧고 굵은 키워드) -->
       <div id="seasonal-surge-banner" class="bg-gradient-to-r from-amber-50 via-orange-50/80 to-rose-50 border border-amber-200/90 rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-2.5 shadow-sm">
         <div class="flex items-center gap-2 shrink-0">
-          <span class="bg-rose-600 text-white text-xs sm:text-sm font-black px-2.5 py-1 rounded-full whitespace-nowrap animate-pulse">🔥 인기 급상승</span>
-          <span class="text-sm sm:text-base font-black text-slate-900 whitespace-nowrap">인기 계산 TOP 4</span>
+          <span class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-1 rounded-full whitespace-nowrap animate-pulse">🔥 인기 급상승</span>
+          <span class="text-sm sm:text-base font-bold text-slate-800 whitespace-nowrap">인기 계산 TOP 4</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <button type="button" onclick="applyScenarioPreset('electric-winter-heater')" class="text-xs sm:text-sm font-black bg-white hover:bg-rose-600 text-slate-900 hover:text-white border-2 border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+          <button type="button" onclick="applyScenarioPreset('electric-winter-heater')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-rose-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             ⚡ 온풍기 난방비
           </button>
-          <button type="button" onclick="applyScenarioPreset('auto-grandeur-5000')" class="text-xs sm:text-sm font-black bg-white hover:bg-blue-600 text-slate-900 hover:text-white border-2 border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+          <button type="button" onclick="applyScenarioPreset('auto-grandeur-5000')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-blue-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             🚗 그랜저 절세
           </button>
-          <button type="button" onclick="applyScenarioPreset('telecom-penalty-15')" class="text-xs sm:text-sm font-black bg-white hover:bg-indigo-600 text-slate-900 hover:text-white border-2 border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+          <button type="button" onclick="applyScenarioPreset('telecom-penalty-15')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-indigo-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             🌐 인터넷 47만
           </button>
-          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-xs sm:text-sm font-black bg-white hover:bg-emerald-600 text-slate-900 hover:text-white border-2 border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-emerald-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             🍗 80kg 식단
           </button>
         </div>
@@ -182,17 +182,17 @@
         <div class="lg:col-span-5 bg-white rounded-2xl border-2 border-slate-200 p-4 sm:p-6 shadow-sm space-y-3.5 sm:space-y-5">
           <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-3 sm:pb-4">
             <div class="min-w-0 flex-1">
-              <h2 id="calc-form-title" class="text-lg sm:text-xl font-black text-slate-900 tracking-tight whitespace-nowrap truncate">⚡ 전기세 &amp; 1등급 본전</h2>
-              <p id="calc-form-subtitle" class="text-sm text-slate-500 mt-1 whitespace-nowrap truncate">월 추가 요금·기기값 회수일</p>
+              <h2 id="calc-form-title" class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight whitespace-nowrap truncate">⚡ 전기세 &amp; 1등급 본전</h2>
+              <p id="calc-form-subtitle" class="text-sm text-slate-500 font-normal mt-1 whitespace-nowrap truncate">월 추가 요금·기기값 회수일</p>
             </div>
-            <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-blue-50 text-blue-700 border border-blue-200/60 px-3 py-1 rounded-full font-extrabold">3초 계산</span>
+            <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-blue-50 text-blue-700 border border-blue-200/60 px-3 py-1 rounded-full font-semibold">3초 계산</span>
           </div>
 
           <!-- [UX Upgrade] 인기 실전 시나리오 1초 자동입력 칩 바 -->
           <div id="calc-scenario-bar" class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 sm:p-3.5 space-y-2">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-sm font-black text-slate-800 truncate">⚡ 조건 자동입력</span>
-              <a id="active-preset-report-link" href="/preset/electric-studio-ac/" class="shrink-0 whitespace-nowrap text-xs sm:text-sm font-extrabold text-blue-600 hover:underline">상세 리포트 →</a>
+              <span class="text-sm font-semibold text-slate-700 truncate">⚡ 조건 자동입력</span>
+              <a id="active-preset-report-link" href="/preset/electric-studio-ac/" class="shrink-0 whitespace-nowrap text-xs sm:text-sm font-semibold text-blue-600 hover:underline">상세 리포트 →</a>
             </div>
             <div id="calc-scenario-chips" class="flex flex-wrap gap-2"></div>
           </div>
@@ -202,21 +202,21 @@
           <!-- [Mobile UX Upgrade] 스마트폰 전용 실시간 1줄 결과 요약 바 (스크롤 없이 즉시 결과 확인) -->
           <a href="#receipt-card" id="mobile-live-result-bar" class="md:hidden flex items-center justify-between gap-2 bg-slate-900 text-white px-3.5 py-3 rounded-xl border border-slate-700 shadow-sm">
             <div class="min-w-0 flex items-center gap-2">
-              <span class="bg-amber-400 text-slate-950 text-xs font-black px-2 py-0.5 rounded-md shrink-0">결과</span>
-              <span id="mobile-live-result-text" class="text-sm font-black text-amber-300 truncate">실시간 계산 완료</span>
+              <span class="bg-amber-400 text-slate-950 text-xs font-bold px-2 py-0.5 rounded-md shrink-0">결과</span>
+              <span id="mobile-live-result-text" class="text-sm font-extrabold text-amber-300 truncate">실시간 계산 완료</span>
             </div>
-            <span class="text-xs font-extrabold text-sky-300 shrink-0 whitespace-nowrap">영수증 ↓</span>
+            <span class="text-xs font-medium text-sky-300 shrink-0 whitespace-nowrap">영수증 ↓</span>
           </a>
 
           <!-- [CRO Layer 1] 입력폼 직결 실시간 1초 처방 & 즉시 구매 브릿지 -->
           <div id="input-instant-cta-box" class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-4 sm:p-5 border border-slate-700 shadow-md space-y-3">
             <div class="flex items-center justify-between gap-2">
-              <span id="input-instant-badge" class="text-xs sm:text-sm font-black bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full whitespace-nowrap">⚡ 맞춤 처방</span>
-              <a href="#receipt-card" class="text-xs sm:text-sm font-extrabold text-amber-300 hover:underline whitespace-nowrap">영수증 ↓</a>
+              <span id="input-instant-badge" class="text-xs sm:text-sm font-bold bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full whitespace-nowrap">⚡ 맞춤 처방</span>
+              <a href="#receipt-card" class="text-xs sm:text-sm font-medium text-amber-300 hover:underline whitespace-nowrap">영수증 ↓</a>
             </div>
-            <div id="input-instant-headline" class="text-base sm:text-lg font-black text-white leading-snug break-keep">맞춤 최저가 계산 중...</div>
-            <div id="input-instant-sub" class="text-sm text-emerald-300 font-bold leading-normal break-keep"></div>
-            <div id="input-zero-feel-callout" class="bg-amber-400/15 border border-amber-400/40 text-amber-200 text-sm font-black px-3 py-2 rounded-xl leading-snug break-keep">
+            <div id="input-instant-headline" class="text-base sm:text-lg font-bold text-white leading-snug break-keep">맞춤 최저가 계산 중...</div>
+            <div id="input-instant-sub" class="text-sm text-emerald-200 font-normal leading-normal break-keep"></div>
+            <div id="input-zero-feel-callout" class="bg-amber-400/15 border border-amber-400/40 text-amber-200 text-sm font-medium px-3 py-2 rounded-xl leading-snug break-keep">
               🔥 절약 시 체감가 0원!
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
@@ -227,7 +227,7 @@
               </a>
               <a id="input-instant-lp-btn" href="#" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('linkprice', this.href, 'input_bridge')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3.5 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-3.5 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
                 🏷️ 공식몰 특가 ↗
               </a>
             </div>
@@ -241,43 +241,43 @@
           <div id="receipt-card" class="receipt-paper text-white rounded-2xl p-6 sm:p-7 shadow-lg border border-slate-700">
             <div class="border-b border-slate-700/80 pb-4 mb-5 space-y-2.5">
               <div class="flex items-center justify-between gap-2">
-                <span id="result-badge" class="inline-flex items-center bg-rose-500 text-white text-sm font-extrabold px-3 py-1 rounded-full whitespace-nowrap">
+                <span id="result-badge" class="inline-flex items-center bg-rose-500 text-white text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap">
                   🚨 누진세 주의보
                 </span>
-                <button id="btn-share-receipt" onclick="copyReceiptShareText(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm px-3.5 py-1.5 rounded-xl font-black inline-flex items-center gap-1.5 shadow-sm transition shrink-0 whitespace-nowrap">
+                <button id="btn-share-receipt" onclick="copyReceiptShareText(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm px-3.5 py-1.5 rounded-xl font-bold inline-flex items-center gap-1.5 shadow-sm transition shrink-0 whitespace-nowrap">
                   💬 카톡 공유
                 </button>
               </div>
-              <h3 id="result-headline" class="text-xl sm:text-2xl font-black tracking-tight text-white leading-snug break-keep">계산 결과 로딩 중...</h3>
+              <h3 id="result-headline" class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug break-keep">계산 결과 로딩 중...</h3>
             </div>
             <div id="result-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mb-5"></div>
 
             <!-- [CRO Upgrade 1] 손실회피(Loss-Aversion) 시각 비교 게이지 바 -->
             <div id="result-loss-bar" class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 mb-4 space-y-3"></div>
 
-            <p id="result-summary-text" class="text-base text-slate-200 bg-slate-800/90 border border-slate-700 rounded-xl p-4 leading-relaxed break-keep"></p>
+            <p id="result-summary-text" class="text-base text-slate-200 font-normal bg-slate-800/90 border border-slate-700 rounded-xl p-4 leading-relaxed break-keep"></p>
 
             <!-- [CRO Layer 2] 영수증 내부 1:1 계산 수치 직결 처방 장바구니 -->
             <div id="receipt-action-items-box" class="mt-5 pt-5 border-t border-slate-700/90 space-y-3.5">
               <div class="flex items-center justify-between gap-2">
-                <h4 class="text-base sm:text-lg font-black text-amber-300 flex items-center gap-1.5 whitespace-nowrap truncate">
+                <h4 class="text-base sm:text-lg font-bold text-amber-300 flex items-center gap-1.5 whitespace-nowrap truncate">
                   🧾 맞춤 처방 장바구니
                 </h4>
-                <span class="text-xs sm:text-sm bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full font-extrabold shrink-0 whitespace-nowrap">
+                <span class="text-xs sm:text-sm bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full font-medium shrink-0 whitespace-nowrap">
                   자동 매칭
                 </span>
               </div>
-              <div id="receipt-zero-feel-banner" class="bg-gradient-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 border border-amber-400/50 text-amber-200 text-sm sm:text-base font-black px-3.5 py-2.5 rounded-xl leading-snug break-keep">
+              <div id="receipt-zero-feel-banner" class="bg-gradient-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 border border-amber-400/50 text-amber-100 text-sm sm:text-base font-medium px-3.5 py-2.5 rounded-xl leading-snug break-keep">
                 🔥 절약 시 체감가 0원!
               </div>
               <!-- [D-3 First Purchase Booster] 부담 없이 오늘 바로 사는 1만 원대 로켓배송 실구매 1위 소모품·필수템 -->
               <div id="impulse-buy-booster" class="bg-gradient-to-r from-rose-950/90 via-slate-900 to-amber-950/80 border-2 border-rose-500/70 rounded-2xl p-4 space-y-2.5 shadow-md">
                 <div class="flex items-center justify-between gap-2">
-                  <span id="impulse-badge" class="bg-rose-600 text-white text-xs sm:text-sm font-black px-2.5 py-0.5 rounded-full shrink-0 whitespace-nowrap">⚡ 9,900원대 1위</span>
-                  <span class="text-xs sm:text-sm font-black text-amber-300 shrink-0 whitespace-nowrap">🔥 내일 도착</span>
+                  <span id="impulse-badge" class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full shrink-0 whitespace-nowrap">⚡ 9,900원대 1위</span>
+                  <span class="text-xs sm:text-sm font-medium text-amber-300 shrink-0 whitespace-nowrap">🔥 내일 도착</span>
                 </div>
-                <div id="impulse-title" class="text-base sm:text-lg font-black text-white leading-snug break-keep">방풍비닐 &amp; 절전 스마트플러그</div>
-                <div id="impulse-sub" class="text-sm text-emerald-300 font-bold leading-snug break-keep">1만 원으로 매달 새는 전기세 즉시 차단!</div>
+                <div id="impulse-title" class="text-base sm:text-lg font-bold text-white leading-snug break-keep">방풍비닐 &amp; 절전 스마트플러그</div>
+                <div id="impulse-sub" class="text-sm text-emerald-200 font-normal leading-snug break-keep">1만 원으로 매달 새는 전기세 즉시 차단!</div>
                 <a id="impulse-coupang-btn" href="#" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordAffiliateClick('coupang', this.href, 'impulse_booster')"
                    class="block w-full text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black py-3 px-4 rounded-xl text-sm sm:text-base transition shadow whitespace-nowrap truncate">
@@ -289,19 +289,19 @@
               <!-- [Improvement 2] 내 계산 견적서 + 최저가 구매링크 카톡·메모장 1초 보관함 브릿지 -->
               <div id="receipt-kakao-memo-bridge" class="mt-3 bg-slate-900/95 border border-amber-400/40 rounded-xl p-3.5 space-y-2.5">
                 <div class="flex items-center justify-between gap-2">
-                  <span class="text-sm sm:text-base font-black text-amber-300 truncate">💛 견적+최저가 1초 보관함</span>
-                  <span class="text-xs font-bold text-slate-400 shrink-0 whitespace-nowrap">가족 상의용</span>
+                  <span class="text-sm sm:text-base font-bold text-amber-300 truncate">💛 견적+최저가 1초 보관함</span>
+                  <span class="text-xs font-normal text-slate-400 shrink-0 whitespace-nowrap">가족 상의용</span>
                 </div>
-                <p class="text-xs text-slate-300 leading-snug break-keep">
+                <p class="text-xs text-slate-300 font-normal leading-snug break-keep">
                   계산 결과와 최저가 링크를 카톡·메모장에 저장하세요.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <button type="button" id="btn-kakao-memo-save" onclick="copyKakaoMemoBridge(this)"
-                    class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm py-3 px-3.5 rounded-xl transition shadow-sm whitespace-nowrap truncate">
+                    class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm py-3 px-3.5 rounded-xl transition shadow-sm whitespace-nowrap truncate">
                     💬 견적+링크 복사
                   </button>
                   <button type="button" id="btn-native-share-sheet" onclick="shareKakaoOrNative(this)"
-                    class="w-full bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-400/30 font-black text-sm py-3 px-3.5 rounded-xl transition whitespace-nowrap truncate">
+                    class="w-full bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-400/30 font-semibold text-sm py-3 px-3.5 rounded-xl transition whitespace-nowrap truncate">
                     📲 카톡·문자 공유
                   </button>
                 </div>
@@ -312,11 +312,11 @@
           <!-- 맞춤 혜택 액션 카드 (쿠팡 파트너스 + 링크프라이스 + 텐핑/CPA 100% 매칭) -->
           <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-5 sm:p-6 text-white shadow-md pulse-cta">
             <div class="flex items-center justify-between gap-2 mb-2">
-              <span id="cpa-badge" class="bg-amber-400 text-slate-900 text-xs sm:text-sm font-black px-3 py-0.5 rounded-lg shrink-0 whitespace-nowrap">맞춤 혜택</span>
-              <span id="cpa-payout-tag" class="text-xs sm:text-sm text-blue-100 font-bold whitespace-nowrap truncate">⚡ 공식 제휴 특가</span>
+              <span id="cpa-badge" class="bg-amber-400 text-slate-900 text-xs sm:text-sm font-bold px-3 py-0.5 rounded-lg shrink-0 whitespace-nowrap">맞춤 혜택</span>
+              <span id="cpa-payout-tag" class="text-xs sm:text-sm text-blue-100 font-normal whitespace-nowrap truncate">⚡ 공식 제휴 특가</span>
             </div>
-            <h4 id="cpa-title" class="text-lg sm:text-xl font-black mb-1.5 tracking-tight whitespace-nowrap truncate">맞춤 무료 견적</h4>
-            <p id="cpa-desc" class="text-sm text-blue-100 mb-3.5 leading-relaxed break-keep">내 조건 최적 할인·지원금 확인</p>
+            <h4 id="cpa-title" class="text-lg sm:text-xl font-bold mb-1.5 tracking-tight whitespace-nowrap truncate">맞춤 무료 견적</h4>
+            <p id="cpa-desc" class="text-sm text-blue-100 font-normal mb-3.5 leading-relaxed break-keep">내 조건 최적 할인·지원금 확인</p>
             <a id="cpa-action-link" href="#" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordAffiliateClick('cpa', this.href, 'cpa_card')"
                class="block w-full text-center bg-white text-blue-700 hover:bg-blue-50 font-black py-3.5 px-4 rounded-xl text-base sm:text-lg transition shadow-sm whitespace-nowrap truncate">
@@ -325,12 +325,12 @@
             <div id="cpa-sub-links" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3">
               <a id="cpa-coupang-sublink" href="#" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('coupang', this.href, 'cpa_card')"
-                 class="block text-center bg-blue-800/80 hover:bg-blue-900 text-amber-300 border border-blue-400/40 font-extrabold py-2.5 px-3 rounded-xl text-sm transition whitespace-nowrap truncate">
+                 class="block text-center bg-blue-800/80 hover:bg-blue-900 text-amber-300 border border-blue-400/40 font-semibold py-2.5 px-3 rounded-xl text-sm transition whitespace-nowrap truncate">
                 🚀 쿠팡 특가 ↗
               </a>
               <a id="cpa-lp-sublink" href="#" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('linkprice', this.href, 'cpa_card')"
-                 class="block text-center bg-indigo-800/80 hover:bg-indigo-900 text-emerald-300 border border-indigo-400/40 font-extrabold py-2.5 px-3 rounded-xl text-sm transition whitespace-nowrap truncate">
+                 class="block text-center bg-indigo-800/80 hover:bg-indigo-900 text-emerald-300 border border-indigo-400/40 font-semibold py-2.5 px-3 rounded-xl text-sm transition whitespace-nowrap truncate">
                 🏷️ 공식몰 기획전 ↗
               </a>
             </div>
@@ -340,10 +340,10 @@
           <div class="bg-white rounded-2xl border-2 border-slate-200 p-5 sm:p-6 shadow-sm">
             <div class="flex items-center justify-between gap-2 mb-4">
               <div>
-                <h4 class="font-black text-slate-900 text-base sm:text-lg whitespace-nowrap truncate">🛒 내 계산 맞춤 특가</h4>
-                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">산출 수량·예산 1:1 매칭 베스트셀러</p>
+                <h4 class="font-bold text-slate-900 text-base sm:text-lg whitespace-nowrap truncate">🛒 내 계산 맞춤 특가</h4>
+                <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">산출 수량·예산 1:1 매칭 베스트셀러</p>
               </div>
-              <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full font-extrabold">최저가 연동</span>
+              <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full font-semibold">최저가 연동</span>
             </div>
             <div id="product-recommendations" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 

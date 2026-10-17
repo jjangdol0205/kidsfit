@@ -138,8 +138,8 @@
         const cls = isActive
           ? 'bg-blue-600 text-white border-blue-600 font-black shadow-sm'
           : isSurge
-            ? 'bg-amber-50/90 text-rose-800 border-amber-300 hover:border-rose-400 hover:text-rose-700 font-extrabold shadow-xs'
-            : 'bg-white text-slate-800 border-slate-300 hover:border-blue-500 hover:text-blue-700 font-bold';
+            ? 'bg-amber-50/80 text-rose-700 border-amber-300 hover:border-rose-400 font-semibold shadow-xs'
+            : 'bg-white text-slate-600 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-normal';
         return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
       }).join('');
     }
@@ -150,8 +150,8 @@
         const shortTitle = SCENARIO_CHIP_LABELS[p.id] ? `${SCENARIO_CHIP_LABELS[p.id]} — ${p.title}` : p.title;
         return `
         <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border ${isSurge ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200'} hover:border-blue-400 rounded-xl p-3.5 transition">
-          <span class="text-sm font-extrabold text-slate-800 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${shortTitle}</span>
-          <span class="text-xs font-black text-blue-600 shrink-0 whitespace-nowrap">보기 →</span>
+          <span class="text-sm font-medium text-slate-700 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${shortTitle}</span>
+          <span class="text-xs font-bold text-blue-600 shrink-0 whitespace-nowrap">보기 →</span>
         </a>
       `;
       }).join('');
@@ -198,7 +198,7 @@
 
     renderScenarioChips(calcKey);
 
-    // Render input form controls (Big-Font 16px labels & 54px high-contrast inputs, Mobile 2-Column Compact Grid)
+    // Render input form controls (Calm 500 labels vs Bold 800 numeric inputs)
     const container = document.getElementById('calc-inputs-container');
     if (container) {
       const nonCheckCount = spec.inputs.filter(i => i.type !== 'checkbox').length;
@@ -208,7 +208,7 @@
         if (inp.type === "checkbox") {
           return `
             <div class="mobile-col-span-2 flex items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl border-2 border-slate-200">
-              <label for="inp-${inp.id}" class="text-base font-extrabold text-slate-900 cursor-pointer truncate">${inp.label}</label>
+              <label for="inp-${inp.id}" class="text-sm sm:text-base font-medium text-slate-700 cursor-pointer truncate">${inp.label}</label>
               <input id="inp-${inp.id}" type="checkbox" ${val ? 'checked' : ''}
                 onchange="recalculateCurrent()"
                 class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer shrink-0" />
@@ -225,7 +225,7 @@
           `).join('');
           return `
             <div class="${spanCls}">
-              <label class="block text-base font-extrabold text-slate-900 mb-1.5 truncate">${inp.label}</label>
+              <label class="block text-sm sm:text-base font-medium text-slate-600 mb-1.5 truncate">${inp.label}</label>
               <select id="inp-${inp.id}" onchange="recalculateCurrent()"
                 class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none bg-white text-slate-900">
                 ${optionsHtml}
@@ -236,8 +236,8 @@
         return `
           <div class="${spanCls}">
             <div class="flex items-center justify-between gap-2 mb-1.5">
-              <label class="block text-base font-extrabold text-slate-900 truncate">${inp.label}</label>
-              <span id="label-val-${inp.id}" class="hidden sm:inline text-base text-blue-600 font-black shrink-0 whitespace-nowrap tabular-nums"></span>
+              <label class="block text-sm sm:text-base font-medium text-slate-600 truncate">${inp.label}</label>
+              <span id="label-val-${inp.id}" class="hidden sm:inline text-sm text-blue-600 font-bold shrink-0 whitespace-nowrap tabular-nums"></span>
             </div>
             <input id="inp-${inp.id}" type="number" value="${val}" min="${inp.min !== undefined ? inp.min : ''}" max="${inp.max !== undefined ? inp.max : ''}" step="${inp.step || '1'}"
               oninput="recalculateCurrent()"
@@ -249,6 +249,59 @@
 
     recalculateCurrent();
   };
+
+  /**
+   * Visual Marketing Contrast Formatters (강·중·약 위계 부여 & textContent 100% 보존)
+   */
+  function formatHeadlineContrastHtml(rawText) {
+    if (!rawText) return '';
+    // 1. Separate parenthetical suffix e.g. "(총 233,229원)" or "(종이컵 1.6컵)"
+    let mainPart = String(rawText);
+    let parenPart = '';
+    const parenMatch = mainPart.match(/(\s*\([^)]+\))\s*$/);
+    if (parenMatch) {
+      parenPart = `<span class="font-normal text-slate-400 text-[0.76em] tracking-normal">${parenMatch[1]}</span>`;
+      mainPart = mainPart.slice(0, mainPart.length - parenMatch[0].length);
+    }
+    // 2. Highlight core numbers/money (+187,942원, 56팩, 150만 원, +62만 원) in ExtraBlack Amber while keeping surrounding text Medium
+    const highlightedMain = mainPart.replace(
+      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kcal|kWh|팩|개|통|g|일|개월|%))/g,
+      '<strong class="font-black text-amber-300 underline decoration-amber-400/50 decoration-2 underline-offset-4">$1</strong>'
+    );
+    return `<span class="font-normal text-slate-100">${highlightedMain}</span>${parenPart}`;
+  }
+
+  function formatMatchTagContrastHtml(rawText) {
+    if (!rawText) return '';
+    let text = String(rawText);
+    // Make parenthetical e.g. "(7.8개월 본전)" lighter and slightly smaller without ever truncating
+    text = text.replace(
+      /(\([^)]+\))/g,
+      '<span class="font-normal text-amber-900/75 text-xs">$1</span>'
+    );
+    // Highlight only the core savings/quantity figure in ExtraBlack Rose/Amber
+    text = text.replace(
+      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kWh|kcal|팩|개|통|g|일분|일|%))/g,
+      '<strong class="font-black text-rose-600">$1</strong>'
+    );
+    return `<span class="font-medium text-amber-950">${text}</span>`;
+  }
+
+  function formatProductTitleContrastHtml(rawText) {
+    if (!rawText) return '';
+    return String(rawText).replace(
+      /(\s*\([^)]+\))/g,
+      '<span class="font-normal text-slate-500 text-sm">$1</span>'
+    );
+  }
+
+  function formatReasonContrastHtml(rawText) {
+    if (!rawText) return '';
+    return String(rawText).replace(
+      /([+-]?\d[\d,.]*\s*(?:만\s*원대|만\s*원|원|%|개월|일|팩|컵)(?:\s*(?:단축|절약|할인|차단|예방|보존|최저가))?)/g,
+      '<span class="font-semibold text-slate-800">$1</span>'
+    );
+  }
 
   /**
    * Recalculate and update UI
@@ -382,20 +435,20 @@
     if (badgeEl) {
       badgeEl.textContent = res.badge;
       if (res.badge && (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || res.badge.includes('권장') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0))) {
-        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
       } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
       } else {
-        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-sm font-black px-3 py-1 rounded-full whitespace-nowrap";
+        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
       }
     }
-    if (headlineEl) headlineEl.textContent = res.headline;
+    if (headlineEl) headlineEl.innerHTML = formatHeadlineContrastHtml(res.headline);
     if (summaryEl) summaryEl.textContent = res.summary;
 
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (Big-Font 22~28px numbers, Mobile 3-col / 2x2 pills!)
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (Zero Truncation + Light Label vs Bold Value Contrast!)
     if (metricsGrid && res.metrics) {
       const colClass = res.metrics.length >= 4
-        ? "grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 mobile-metrics-4"
+        ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-4 mobile-metrics-4"
         : "grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-4";
       metricsGrid.className = colClass;
       metricsGrid.innerHTML = res.metrics.map((m, idx) => {
@@ -408,10 +461,10 @@
         return `
           <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('coupang', this.href, 'metric_card')"
-             class="group block bg-slate-800/90 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-400 rounded-2xl p-3.5 min-w-0 transition shadow-sm">
-            <div class="text-sm font-bold text-slate-300 truncate">${m.label}</div>
-            <div class="text-xl sm:text-2xl font-black ${valColor} mt-1 whitespace-nowrap truncate tabular-nums">${m.val}</div>
-            <div class="mt-2 pt-1.5 border-t border-slate-700/70 flex items-center justify-between text-xs font-extrabold text-emerald-300 group-hover:text-amber-300">
+             class="group block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-3 min-w-0 transition shadow-sm">
+            <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
+            <div class="text-lg sm:text-xl font-black ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
+            <div class="mt-2 pt-1.5 border-t border-slate-700/60 flex items-center justify-between text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300">
               <span class="truncate">${stepHint}</span>
             </div>
           </a>
@@ -419,30 +472,30 @@
       }).join('');
     }
 
-    // 1.5 Visual Loss-Aversion Comparison Bar (Big-Font & Short Words)
+    // 1.5 Visual Loss-Aversion Comparison Bar (Contrast: normal labels vs bold numbers)
     if (lossBarEl && res.lossComparison) {
       const lc = res.lossComparison;
       lossBarEl.innerHTML = `
         <div class="flex items-center justify-between gap-2 text-sm">
-          <span class="font-extrabold text-rose-300 flex items-center gap-1 truncate">⚠️ 손실 vs 절약 비교</span>
-          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full text-xs sm:text-sm font-black shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
+          <span class="font-medium text-slate-300 flex items-center gap-1 truncate">⚠️ 손실 vs 절약 비교</span>
+          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3 py-0.5 rounded-full text-xs sm:text-sm font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
         </div>
         <div class="space-y-2.5 text-sm">
           <div>
-            <div class="flex items-center justify-between gap-2 text-slate-300 mb-1">
-              <span class="font-bold truncate">❌ ${lc.lossLabel}</span>
-              <span class="text-base font-black text-rose-400 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
+            <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
+              <span class="font-normal truncate">❌ ${lc.lossLabel}</span>
+              <span class="text-sm sm:text-base font-semibold text-rose-400/90 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
             </div>
-            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-              <div class="bg-rose-500/80 h-full rounded-full" style="width: 100%"></div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="bg-rose-500/75 h-full rounded-full" style="width: 100%"></div>
             </div>
           </div>
           <div>
             <div class="flex items-center justify-between gap-2 text-white mb-1">
-              <span class="font-extrabold text-emerald-300 truncate">✅ ${lc.optLabel}</span>
-              <span class="text-lg font-black text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
+              <span class="font-medium text-emerald-300 truncate">✅ ${lc.optLabel}</span>
+              <span class="text-base sm:text-lg font-black text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
             </div>
-            <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
               <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
             </div>
           </div>
@@ -450,31 +503,31 @@
       `;
     }
 
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Big-Font & Short Words)
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Contrast Hierarchy)
     if (receiptActionItemsEl && actionItems.length > 0) {
       receiptActionItemsEl.innerHTML = actionItems.map(item => {
         const cpHref = buildCoupangHref(item.coupangKw);
         const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
         return `
-          <div class="bg-slate-900/95 border-2 border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
+          <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
-                  <span class="text-base sm:text-lg font-black text-white truncate">${item.label}</span>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
+                  <span class="text-base font-bold text-white break-keep">${item.label}</span>
                 </div>
-                <div class="text-sm text-emerald-300 font-bold leading-snug break-keep">✔ ${item.calcVal}</div>
+                <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
-                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
                 ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
               </a>
               <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
+                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
                 ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
               </a>
             </div>
@@ -528,7 +581,7 @@
       }
     }
 
-    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Big-Font & Short Words)
+    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Zero Truncation + Strong Visual Contrast!)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       productsContainer.innerHTML = res.products.map(p => {
@@ -540,8 +593,8 @@
           ? '🚀 쿠팡 로켓배송'
           : `🏷️ ${merchantName}`;
         const platformColor = p.type === 'coupang'
-          ? 'bg-rose-50 text-rose-700 border-rose-200'
-          : 'bg-indigo-50 text-indigo-700 border-indigo-200';
+          ? 'bg-rose-50 text-rose-600 border-rose-200/80'
+          : 'bg-indigo-50 text-indigo-600 border-indigo-200/80';
         const btnBg = p.type === 'coupang'
           ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
           : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
@@ -554,20 +607,20 @@
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card')"
-             class="group flex flex-col justify-between border-2 border-slate-200 hover:border-blue-600 rounded-2xl p-4 sm:p-5 transition-all bg-white hover:bg-blue-50/20 shadow-sm hover:shadow-md min-w-0">
+             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-2xl p-4 sm:p-5 transition-all bg-white hover:bg-blue-50/15 shadow-sm hover:shadow-md min-w-0">
             <div class="min-w-0 space-y-2">
               <div class="flex items-center justify-between gap-2">
-                <span class="inline-block text-xs font-extrabold px-2.5 py-0.5 rounded-lg border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
+                <span class="inline-block text-xs font-medium px-2.5 py-0.5 rounded-lg border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
+                <span class="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
-              <div class="bg-amber-50 border border-amber-200/90 text-amber-950 text-xs sm:text-sm font-black px-3 py-1 rounded-xl truncate">
-                ${matchTag}
+              <div class="bg-amber-50/90 border border-amber-200/80 text-amber-950 text-xs sm:text-[13px] px-3 py-1.5 rounded-xl leading-snug break-keep">
+                ${formatMatchTagContrastHtml(matchTag)}
               </div>
-              <div class="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${iconPrefix}${p.title}</div>
-              <p class="text-xs sm:text-sm text-slate-600 font-medium leading-snug break-keep">${matchReason}</p>
+              <div class="text-base sm:text-[17px] font-bold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${formatProductTitleContrastHtml(iconPrefix + p.title)}</div>
+              <p class="text-xs sm:text-[13.5px] text-slate-500 font-normal leading-relaxed break-keep">${formatReasonContrastHtml(matchReason)}</p>
             </div>
             <div class="mt-3.5 pt-3 border-t border-slate-100">
-              <div class="w-full text-center font-black py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate ${btnBg}">
+              <div class="w-full text-center font-extrabold py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap ${btnBg}">
                 ${ctaLabel}
               </div>
             </div>
