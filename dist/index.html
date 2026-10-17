@@ -231,9 +231,14 @@
             </div>
             <div id="product-recommendations" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
 
-            <!-- 공정위 필수 대가성 문구 -->
-            <div role="note" aria-label="대가성 제휴 안내" id="ftc-disclosure-box" class="mt-4 bg-slate-100 text-slate-600 border border-slate-200 rounded-lg p-2.5 text-xs">
-              ℹ️ <span id="ftc-disclosure-text">이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)</span>
+            <!-- 공정위 필수 대가성 문구 (쿠팡 파트너스 · 링크프라이스 · 텐핑 통합 고지) -->
+            <div role="note" aria-label="대가성 제휴 안내" id="ftc-disclosure-box" class="mt-4 bg-slate-100 text-slate-700 border border-slate-200 rounded-lg p-2.5 text-xs leading-relaxed break-keep">
+              ℹ️ <span id="ftc-disclosure-text">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다.</span>
+            </div>
+
+            <!-- 금전적·법적 면책 공고문 (계산기 카드 직하단) -->
+            <div role="note" aria-label="금전적 법적 면책 공고문" id="legal-disclaimer-box" class="mt-2 bg-slate-50 text-slate-500 border border-slate-200/80 rounded-lg p-2.5 text-[11px] leading-relaxed break-keep">
+              ⚖️ <strong class="text-slate-700">[금전적·법적 면책 공고문]</strong> 본 계산기의 모든 산출 결과(전기요금 누진세·환급금, 자동차 장기렌트·리스·할부 총비용(TCO) 및 사업자 세액공제·절세액, 인터넷·TV 위약금 및 현금 사은품 혜택, 식단 TDEE·장보기 수량, 반려동물 사료 급여량, 자취·신혼 예산 BOM)는 공인 수식과 통계에 기반한 <strong>참고용 시뮬레이션</strong>입니다. 실제 청구 요금·금리·세무 공제·사은품 및 상품 조건은 <strong>계약 체결 시점의 해당 공급사·금융사·통신사·과세당국의 공식 약관</strong>에 따라 달라질 수 있으며, 머니핏(MoneyFit)은 이용자의 의사결정 및 계약 결과에 대해 어떠한 법적·금전적 책임도 지지 않습니다.
             </div>
           </div>
 
@@ -459,14 +464,17 @@
             <input id="cfg-site-url" type="text" value="https://truthofmarket.com" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
           </div>
 
-          <!-- 텔레그램 무인 자동 보고 & 실시간 수익 알림 설정 -->
+          <!-- 텔레그램 무인 자동 보고 & 매일 오전 6시 매출·수익 정기 브리핑 설정 -->
           <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-3.5 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-extrabold text-sky-900">📲 6. 텔레그램(Telegram) 무인 작업 완료 보고 & 실시간 클릭 알림</span>
-              <label class="flex items-center gap-1.5 text-[11px] font-bold text-sky-800 cursor-pointer">
-                <input id="cfg-tg-auto-notify" type="checkbox" checked class="w-3.5 h-3.5 text-sky-600 rounded" />
-                실시간 클릭 알림 켜기
-              </label>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-extrabold text-sky-900">📲 6. 텔레그램(Telegram) 매일 06:00 방문자·매출·수익 정기 보고</span>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded-full whitespace-nowrap">⏰ 매일 06:00 KST 자동발송</span>
+                <label class="flex items-center gap-1 text-[11px] font-bold text-sky-800 cursor-pointer whitespace-nowrap">
+                  <input id="cfg-tg-auto-notify" type="checkbox" checked class="w-3.5 h-3.5 text-sky-600 rounded" />
+                  실시간 클릭 알림
+                </label>
+              </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
@@ -478,9 +486,12 @@
                 <input id="cfg-tg-chat-id" type="text" placeholder="자동 감지됨" value="YOUR_CHAT_ID" class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs focus:border-sky-600 focus:outline-none bg-white" />
               </div>
             </div>
-            <div class="flex items-center justify-between gap-2">
-              <button type="button" onclick="testTelegramFromBrowser()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm">
-                🤖 채팅방 ID 자동 감지 & 내 휴대폰으로 테스트 보고서 즉시 발송
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button type="button" onclick="testTelegramFromBrowser()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm whitespace-nowrap truncate">
+                🤖 채팅방 감지 & 연동 테스트 발송
+              </button>
+              <button type="button" onclick="sendDailyRevenueReportFromBrowser()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm whitespace-nowrap truncate">
+                🌅 오전 6시 방문자·매출·수익 보고서 즉시 발송
               </button>
             </div>
             <div id="tg-test-status" class="hidden text-[11px] font-semibold text-sky-900 bg-white/80 rounded-lg p-2 border border-sky-200"></div>
@@ -644,11 +655,11 @@
           <span>© 2026 MoneyFit Studio. All rights reserved.</span>
         </div>
       </div>
-      <p class="leading-relaxed text-slate-400">
-        본 사이트에서 제공하는 계산 결과(전기요금 누진세, TDEE, 사료 급여량, 예산 BOM, TCO, 통신 위약금)는 각 기관의 표준 요율 및 통계적 기준을 바탕으로 산출된 참고용 추정치입니다. 실제 청구 금액 및 정산 조건은 통신사·한전·렌트사 약관에 따라 차이가 발생할 수 있습니다.
+      <p id="footer-legal-disclaimer" class="leading-relaxed text-slate-400 break-keep">
+        ⚖️ <strong>[금전적·세무적·법적 면책 공고문]</strong> 본 사이트(머니핏, MoneyFit)에서 제공하는 모든 계산 결과(전기요금 누진세 및 1등급 가전 교체 본전·환급액, 자동차 장기렌트·리스·할부 총소유비용(TCO) 및 개인·법인사업자 비용처리 절세액, 인터넷·TV 약정 위약금 및 현금 사은품 손익분기점, 다이어트 TDEE·탄단지 및 장보기 수량, 반려동물 RER·DER 칼로리 및 사료 급여량, 자취·신혼 가전·가구 예산 배분 BOM 등)는 관계 기관의 표준 요율표 및 통계적 산식을 바탕으로 산출된 <strong>참고용 시뮬레이션 추정치</strong>이며, 특정 금융·보험·통신·세무 상품의 확정 견적서나 가입 권유가 아닙니다. 실제 청구 금액, 대출·리스·렌트 금리, 세무상 비용 인정 한도, 사은품 지급액 및 상품 가격은 <strong>이용자의 실제 계약 체결 시점 및 각 공급사(한국전력공사, 여신전문금융사·렌트사, 통신사, 이커머스 판매자 등)의 공식 약관·신용심사·프로모션 정책</strong>에 따라 차이가 발생할 수 있습니다. 최종 계약 및 구매 전 반드시 해당 공급사의 공식 약관을 직접 확인하시기 바라며, 머니핏(MoneyFit)은 본 서비스의 산출 결과에 의존하여 행해진 이용자의 어떠한 의사결정이나 금전적·법적 손익에 대해서도 일체의 책임을 부담하지 않습니다.
       </p>
-      <p class="text-slate-400">
-        이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)
+      <p id="footer-ftc-disclosure" class="text-slate-500 bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed break-keep">
+        ℹ️ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다.
       </p>
     </div>
   </footer>
@@ -672,12 +683,12 @@
   </div>
 
   <!-- 스크립트 모듈 로드 순서: 계산기 SSOT -> 프리셋 SSOT -> 수익화 SSOT -> 바이럴 원고 -> UI 홍보 키트 -> 앱 로직 -->
-  <script src="src/data/calculators.js?v=2.1"></script>
-  <script src="src/data/presets.js?v=2.1"></script>
-  <script src="src/data/monetization.js?v=2.1"></script>
-  <script src="src/data/viral-content.js?v=2.1"></script>
-  <script src="src/js/ui-copy-kit.js?v=2.1"></script>
-  <script src="src/js/app.js?v=2.1"></script>
+  <script src="src/data/calculators.js?v=2.2"></script>
+  <script src="src/data/presets.js?v=2.2"></script>
+  <script src="src/data/monetization.js?v=2.2"></script>
+  <script src="src/data/viral-content.js?v=2.2"></script>
+  <script src="src/js/ui-copy-kit.js?v=2.2"></script>
+  <script src="src/js/app.js?v=2.2"></script>
   <script>
     (function() {
       fetch('/api/stats')
@@ -687,9 +698,13 @@
             var uvEl = document.getElementById('status-today-uv');
             var pvEl = document.getElementById('status-today-pv');
             var botEl = document.getElementById('status-today-bots');
+            var clkEl = document.getElementById('status-click-count');
             if (uvEl) uvEl.textContent = String(data.today.uniqueVisitors || 1);
             if (pvEl) pvEl.textContent = String(data.today.pageViews || 1);
             if (botEl) botEl.textContent = String(data.today.botCrawls || 0);
+            if (clkEl && data.today.affiliateClicks !== undefined) {
+              clkEl.textContent = String(data.today.affiliateClicks || 0);
+            }
           }
         })
         .catch(function() {});

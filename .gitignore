@@ -1,3 +1,4 @@
 node_modules/
 .env
-logs/telegram_bridge_state.json
+.env.*
+logs/*.json

@@ -454,7 +454,8 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
  * Pipeline 5: Kakao AdFit Responsive Banner Markup Generator
  */
 function renderAdfitSlot(unitId = null, position = "top") {
-  const effectiveId = unitId || (position === "bottom" ? currentConfig.adfitBottomUnitId : currentConfig.adfitUnitId);
+  const rawId = unitId || (position === "bottom" ? currentConfig.adfitBottomUnitId : currentConfig.adfitUnitId);
+  const effectiveId = String(rawId || "DAN-SAMPLE-TOP").replace(/[^a-zA-Z0-9_-]/g, "") || "DAN-SAMPLE-TOP";
   const sizeClass = position === "bottom" ? "w-[300px] h-[250px]" : "w-full max-w-[728px] h-[90px]";
 
   return `

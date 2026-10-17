@@ -110,9 +110,9 @@ function saveTelegramConfig(updates = {}) {
 }
 
 /**
- * Promise wrapper around Node https request for Telegram API
+ * Promise wrapper around Node https request for Telegram API (with 3x automatic retry on transient 5xx/network errors)
  */
-function telegramApiRequest(botToken, method, payload = null) {
+function telegramApiRequestSingle(botToken, method, payload = null) {
   return new Promise((resolve, reject) => {
     const bodyStr = payload ? JSON.stringify(payload) : '';
     const options = {
@@ -140,10 +140,14 @@ function telegramApiRequest(botToken, method, payload = null) {
           if (res.statusCode >= 200 && res.statusCode < 300 && parsed.ok) {
             resolve(parsed.result);
           } else {
-            reject(new Error(parsed.description || `HTTP ${res.statusCode}`));
+            const err = new Error(parsed.description || `HTTP ${res.statusCode}`);
+            err.statusCode = res.statusCode;
+            reject(err);
           }
         } catch (err) {
-          reject(new Error(`Invalid JSON response from Telegram: ${err.message}`));
+          const wrap = new Error(`Invalid JSON response from Telegram (HTTP ${res.statusCode}): ${err.message}`);
+          wrap.statusCode = res.statusCode;
+          reject(wrap);
         }
       });
     });
@@ -159,6 +163,23 @@ function telegramApiRequest(botToken, method, payload = null) {
     }
     req.end();
   });
+}
+
+async function telegramApiRequest(botToken, method, payload = null, maxRetries = 3) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await telegramApiRequestSingle(botToken, method, payload);
+    } catch (err) {
+      lastErr = err;
+      const isPermanent4xx = err.statusCode && err.statusCode >= 400 && err.statusCode < 500 && err.statusCode !== 429;
+      if (isPermanent4xx || attempt === maxRetries) {
+        throw err;
+      }
+      await new Promise(r => setTimeout(r, attempt * 1500));
+    }
+  }
+  throw lastErr;
 }
 
 /**

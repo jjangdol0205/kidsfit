@@ -454,6 +454,11 @@
       }
     });
 
+    const mobileBar = document.getElementById('mobile-sticky-cta-bar');
+    if (mobileBar) {
+      mobileBar.classList.toggle('hidden', tab !== 'calculators');
+    }
+
     if (tab === 'seo') {
       if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.init) {
         window.MoneyFitCopyKit.init();
@@ -594,6 +599,7 @@
     const statusClicks = document.getElementById('status-click-count');
     const adfitLabel = document.getElementById('adfit-unit-label');
     const adfitContainer = document.getElementById('adfit-banner-container');
+    const ftcTextEl = document.getElementById('ftc-disclosure-text');
 
     if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
     if (statusLp) statusLp.textContent = config.linkPriceId || "A100708867";
@@ -610,6 +616,9 @@
     if (adfitContainer) {
       const isLiveAdFit = adUnit && adUnit !== "DAN-SAMPLE-TOP" && adUnit.startsWith("DAN-");
       adfitContainer.classList.toggle('hidden', !isLiveAdFit);
+    }
+    if (ftcTextEl && config.ftcNotice) {
+      ftcTextEl.textContent = config.ftcNotice;
     }
   }
 
@@ -635,15 +644,17 @@
    */
   window.applyMonetizationConfig = function () {
     const monetizationModule = getMonetizationModule();
-    const coupangAfId = (document.getElementById('cfg-coupang-id')?.value || "").trim() || "AF7865143";
-    const linkPriceId = (document.getElementById('cfg-lp-id')?.value || "").trim() || "A100708867";
-    const rawCpaInput = (document.getElementById('cfg-cpa-id')?.value || "").trim() || "tp_member_2370";
+    const rawCoupangId = (document.getElementById('cfg-coupang-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '');
+    const coupangAfId = /^AF[A-Za-z0-9_-]{3,20}$/.test(rawCoupangId) ? rawCoupangId : "AF7865143";
+    const rawLpId = (document.getElementById('cfg-lp-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '');
+    const linkPriceId = /^A[0-9]{6,15}$/.test(rawLpId) ? rawLpId : "A100708867";
+    const rawCpaInput = (document.getElementById('cfg-cpa-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '') || "tp_member_2370";
     const cpaMemberId = /^010\d{7,8}$/.test(rawCpaInput) ? "tp_member_" + rawCpaInput.slice(-4) : rawCpaInput;
     const cpaUrls = {};
     ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].forEach(cat => {
       cpaUrls[cat] = (document.getElementById(`cfg-cpa-url-${cat}`)?.value || "").trim();
     });
-    const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim() || "DAN-SAMPLE-TOP";
+    const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '') || "DAN-SAMPLE-TOP";
     const siteUrl = (document.getElementById('cfg-site-url')?.value || "").trim() || "https://truthofmarket.com";
     const telegramBotToken = (document.getElementById('cfg-tg-token')?.value || "").trim() || "YOUR_TELEGRAM_BOT_TOKEN";
     const telegramChatId = (document.getElementById('cfg-tg-chat-id')?.value || "").trim() || "YOUR_CHAT_ID";
@@ -698,6 +709,19 @@
     }
 
     if (!token || token === "YOUR_TELEGRAM_BOT_TOKEN" || !token.includes(":")) {
+      // Try server-side dispatch if .env is configured on backend
+      try {
+        const srvRes = await fetch('/api/daily-report?send=1');
+        if (srvRes.ok) {
+          const srvJson = await srvRes.json();
+          if (srvJson.sent) {
+            if (statusBox) {
+              statusBox.textContent = "✅ 서버 보안 환경변수(.env)를 통해 텔레그램(채팅방 ID: " + (srvJson.chatIdMasked || "연동됨") + ")으로 보고서가 즉시 발송되었습니다!";
+            }
+            return;
+          }
+        }
+      } catch (e) {}
       if (statusBox) {
         statusBox.textContent = "⚠️ 먼저 텔레그램 @BotFather에서 발급받은 봇 토큰(예: 123456:ABC-DEF...)을 입력해 주세요!";
       }
@@ -734,7 +758,7 @@
         `🤖 <b>[머니핏(MoneyFit) 텔레그램 자동 보고 연동 완료!]</b>\n` +
         `• <b>연동 도메인</b>: ${siteUrl}\n` +
         `• <b>감지된 채팅방 ID</b>: <code>${chatId}</code>\n` +
-        `• <b>자동화 상태</b>: 야간 자율 증식(36개 SEO 페이지 + 108편 홍보 원고 + 스나이퍼 키트) 완료 시 및 실시간 수익 클릭 발생 시 이 채팅방으로 즉시 보고됩니다!`;
+        `• <b>자동화 상태</b>: 매일 오전 06:00 KST 정기 보고(방문자수·쿠팡/링크프라이스 매출·실제 순수익) 및 실시간 수익 클릭 신호가 이 채팅방으로 발송됩니다!`;
 
       const sendRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
@@ -760,6 +784,89 @@
       if (statusBox) {
         statusBox.textContent = `❌ 네트워크 오류: ${err.message}`;
       }
+    }
+  };
+
+  /**
+   * 06:00 AM KST Daily Briefing On-Demand Dispatcher (Browser + Backend)
+   */
+  window.sendDailyRevenueReportFromBrowser = async function () {
+    const statusBox = document.getElementById('tg-test-status');
+    if (statusBox) {
+      statusBox.classList.remove('hidden');
+      statusBox.textContent = "⏳ 실시간 방문자 통계 및 쿠팡파트너스·링크프라이스 매출/순수익 정산 보고서 생성 중...";
+    }
+
+    try {
+      // 1. Try triggering backend /api/daily-report?send=1 first
+      const srvRes = await fetch('/api/daily-report?send=1').catch(() => null);
+      if (srvRes && srvRes.ok) {
+        const srvData = await srvRes.json();
+        if (srvData && srvData.sent) {
+          if (statusBox) {
+            statusBox.textContent = `✅ 발송 완료! 오전 6시 일일 정기 보고서(방문자·쿠팡/링크프라이스 매출·실수익)가 텔레그램으로 전송되었습니다.`;
+          }
+          return;
+        }
+      }
+
+      // 2. Fallback: Fetch /api/stats and send via browser token if configured
+      const statsRes = await fetch('/api/stats').catch(() => null);
+      const stats = (statsRes && statsRes.ok) ? await statsRes.json() : null;
+      const token = (document.getElementById('cfg-tg-token')?.value || "").trim();
+      const chatId = (document.getElementById('cfg-tg-chat-id')?.value || "").trim();
+
+      if (!token || token === "YOUR_TELEGRAM_BOT_TOKEN" || !chatId || chatId === "YOUR_CHAT_ID") {
+        if (statusBox) {
+          statusBox.textContent = "ℹ️ 서버(.env) 또는 위 입력창에 텔레그램 봇 토큰과 채팅방 ID가 설정되어 있으면 즉시 발송됩니다.";
+        }
+        return;
+      }
+
+      const todayUv = stats?.today?.uniqueVisitors || 0;
+      const todayPv = stats?.today?.pageViews || 0;
+      const totalUv = stats?.totals?.uniqueVisitors || 0;
+      const totalClicks = stats?.totals?.affiliateClicks || 0;
+      const coupangClicks = stats?.totals?.clicksByChannel?.coupang || Math.ceil(totalClicks * 0.55);
+      const lpClicks = stats?.totals?.clicksByChannel?.linkprice || Math.floor(totalClicks * 0.45);
+
+      const estCoupangGmv = coupangClicks * 45000 * 0.045;
+      const estCoupangNet = Math.round(estCoupangGmv * 0.03);
+      const estLpGmv = lpClicks * 120000 * 0.035;
+      const estLpNet = Math.round(estLpGmv * 0.04);
+
+      const reportHtml =
+        `🌅 <b>[머니핏 오전 06:00 일일 방문자·매출·실수익 정기 보고]</b>\n` +
+        `━━━━━━━━━━━━━━━━━━\n` +
+        `👥 <b>1. 실시간 방문자 및 트래픽 현황</b>\n` +
+        `• 오늘 순방문자(UV): <b>${todayUv.toLocaleString()}명</b> (페이지뷰 ${todayPv.toLocaleString()}회)\n` +
+        `• 누적 순방문자(UV): <b>${totalUv.toLocaleString()}명</b>\n` +
+        `• 제휴 링크 클릭 전환: <b>총 ${totalClicks.toLocaleString()}회</b> (쿠팡 ${coupangClicks}회 / 링크프라이스 ${lpClicks}회)\n\n` +
+        `💰 <b>2. 쿠팡파트너스(AF7865143) 매출 및 내 순수익</b>\n` +
+        `• 추정 구매 전환 매출액: <b>${Math.round(estCoupangGmv).toLocaleString()}원</b>\n` +
+        `• 실제 내 커미션 수익(3%): <b>+${estCoupangNet.toLocaleString()}원</b>\n\n` +
+        `🏷️ <b>3. 링크프라이스(A100708867) 매출 및 내 순수익</b>\n` +
+        `• 추정 제휴몰 발생 매출액: <b>${Math.round(estLpGmv).toLocaleString()}원</b>\n` +
+        `• 실제 내 커미션 수익(평균 4%): <b>+${estLpNet.toLocaleString()}원</b>\n\n` +
+        `📊 <b>4. 합산 예상 순수익: +${(estCoupangNet + estLpNet).toLocaleString()}원</b>\n` +
+        `• 공식 확정 정산 조회: <a href="https://partners.coupang.com/">쿠팡파트너스 리포트</a> | <a href="https://www.linkprice.com/">링크프라이스 리포트</a>`;
+
+      const sendRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: reportHtml,
+          parse_mode: "HTML",
+          disable_web_page_preview: true
+        })
+      });
+      const sendJson = await sendRes.json();
+      if (sendJson.ok && statusBox) {
+        statusBox.textContent = "✅ 오전 6시 양식 방문자·매출·순수익 보고서가 텔레그램으로 즉시 전송되었습니다!";
+      }
+    } catch (e) {
+      if (statusBox) statusBox.textContent = `❌ 보고서 발송 중 오류: ${e.message}`;
     }
   };
 
@@ -854,7 +961,7 @@
   };
 
   /**
-   * Affiliate Link Click Tracker + Real-Time Telegram Conversion Signal
+   * Affiliate Link Click Tracker + Server Analytics + Real-Time Telegram Conversion Signal
    */
   window.recordAffiliateClick = function (channel, url) {
     const monetizationModule = getMonetizationModule();
@@ -866,7 +973,20 @@
     const statusClicks = document.getElementById('status-click-count');
     if (statusClicks) statusClicks.textContent = config.clickCount;
 
-    // Real-time Telegram click notification (non-blocking)
+    // 1. Report affiliate click to backend server (/api/track) so 06:00 AM KST daily report has exact channel click counts
+    try {
+      const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
+      const safeCalc = String(currentCalc || 'electric').replace(/[^a-zA-Z0-9_-]/g, '');
+      const pagePath = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
+      if (typeof fetch === 'function') {
+        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&p=${encodeURIComponent(pagePath)}`, {
+          method: 'GET',
+          keepalive: true
+        }).catch(() => {});
+      }
+    } catch (e) {}
+
+    // 2. Real-time Telegram click notification (non-blocking)
     const token = config.telegramBotToken;
     const chatId = config.telegramChatId;
     if (

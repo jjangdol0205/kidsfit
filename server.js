@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 /**
- * MoneyFit Production Web Server (Zero-Dependency Native HTTP Server + Real-Time Visitor Analytics)
+ * MoneyFit Production Web Server (Zero-Dependency Native HTTP Server + Real-Time Visitor Analytics + 06:00 KST Daily Telegram Briefing)
  *
  * Designed for Render.com (`truthofmarket.com` / `truth-of-market.onrender.com`),
  * Railway, Fly.io, or local hosting (`npm start` / `node server.js`).
  *
  * Features:
  * - Serves pre-rendered `dist/` static files and `/preset/:slug` clean URLs
- * - Serves `/sitemap.xml`, `/rss.xml`, `/llms.txt`, `/robots.txt`, and IndexNow verification `.txt` files
- * - Built-in KST Daily Visitor & Search Bot Analytics Engine (`/api/stats` & `/api/track`)
+ * - Hardened security: blocks `.env`, `server.js`, `logs/*`, `scripts/*`, `tests/*`, `package.json`, `monetization.config.json` with 403 Forbidden
+ * - Applies HTTP Security Headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-XSS-Protection`)
+ * - Built-in KST Daily Visitor, Search Bot, & Affiliate Channel Click Analytics Engine (`/api/stats` & `/api/track`)
+ * - Built-in 06:00 AM KST Automated Telegram Daily Briefing (Visitors + Coupang/LinkPrice Sales & Net Revenue)
  * - Provides `/health` and `/api/status` endpoints for uptime monitors
  */
 
@@ -23,6 +25,20 @@ const LOGS_DIR = path.join(ROOT_DIR, 'logs');
 const STATS_FILE = path.join(LOGS_DIR, 'visitor_stats.json');
 const PORT = Number(process.env.PORT) || 3000;
 
+// DoS & Memory/Disk Protection Caps
+const MAX_DAYS = 30;
+const MAX_PAGES_PER_DAY = 200;
+const MAX_UV_HASHES_PER_DAY = 10000;
+
+// Standard HTTP Security Headers
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'X-XSS-Protection': '1; mode=block'
+};
+
 // Ensure dist/ is built before serving
 if (!fs.existsSync(path.join(DIST_DIR, 'index.html'))) {
   try {
@@ -36,11 +52,19 @@ if (!fs.existsSync(path.join(DIST_DIR, 'index.html'))) {
 }
 
 // ---------------------------------------------------------------
-// Real-Time KST Daily Visitor & Search Engine Bot Analytics Store
+// Real-Time KST Daily Visitor & Affiliate Channel Analytics Store
 // ---------------------------------------------------------------
-function getKstDateString() {
+function getKstDateInfo() {
   const kstMs = Date.now() + 9 * 60 * 60 * 1000;
-  return new Date(kstMs).toISOString().split('T')[0];
+  const kstDate = new Date(kstMs);
+  const dateStr = kstDate.toISOString().split('T')[0];
+  const hour = kstDate.getUTCHours();
+  const minute = kstDate.getUTCMinutes();
+  return { dateStr, hour, minute };
+}
+
+function getKstDateString() {
+  return getKstDateInfo().dateStr;
 }
 
 let analyticsStore = {
@@ -49,6 +73,8 @@ let analyticsStore = {
   totalUniqueVisitors: 0,
   totalBotCrawls: 0,
   totalAffiliateClicks: 0,
+  totalClicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+  lastDailyReportDate: '',
   days: {}
 };
 
@@ -56,7 +82,15 @@ try {
   if (fs.existsSync(STATS_FILE)) {
     const loaded = JSON.parse(fs.readFileSync(STATS_FILE, 'utf8'));
     if (loaded && typeof loaded === 'object') {
-      analyticsStore = { ...analyticsStore, ...loaded, days: loaded.days || {} };
+      analyticsStore = {
+        ...analyticsStore,
+        ...loaded,
+        totalClicksByChannel: Object.assign(
+          { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+          loaded.totalClicksByChannel || {}
+        ),
+        days: loaded.days || {}
+      };
     }
   }
 } catch (e) {
@@ -65,6 +99,15 @@ try {
 
 const dailyUvSets = {}; // dateStr -> Set of visitor hashes
 
+function pruneOldAnalyticsDays() {
+  const dayKeys = Object.keys(analyticsStore.days).sort();
+  while (dayKeys.length > MAX_DAYS) {
+    const oldest = dayKeys.shift();
+    delete analyticsStore.days[oldest];
+    delete dailyUvSets[oldest];
+  }
+}
+
 function ensureDayBucket(dateStr) {
   if (!analyticsStore.days[dateStr]) {
     analyticsStore.days[dateStr] = {
@@ -72,9 +115,18 @@ function ensureDayBucket(dateStr) {
       pageViews: 0,
       botCrawls: 0,
       affiliateClicks: 0,
+      clicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
+      clicksByCalc: {},
       botsByEngine: { naver: 0, google: 0, bing: 0, ai: 0, other: 0 },
       pages: {}
     };
+    pruneOldAnalyticsDays();
+  }
+  if (!analyticsStore.days[dateStr].clicksByChannel) {
+    analyticsStore.days[dateStr].clicksByChannel = { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 };
+  }
+  if (!analyticsStore.days[dateStr].clicksByCalc) {
+    analyticsStore.days[dateStr].clicksByCalc = {};
   }
   if (!dailyUvSets[dateStr]) {
     dailyUvSets[dateStr] = new Set();
@@ -91,7 +143,13 @@ function saveAnalyticsToDisk() {
   }
 }
 
-function recordVisit(req, cleanPath, eventType = 'pageview') {
+function sanitizeTrackPath(p) {
+  const s = String(p || '/').split('?')[0].trim().slice(0, 140);
+  if (!s.startsWith('/')) return '/';
+  return s === '/index.html' ? '/' : s;
+}
+
+function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
   const dateStr = getKstDateString();
   const bucket = ensureDayBucket(dateStr);
 
@@ -103,6 +161,20 @@ function recordVisit(req, cleanPath, eventType = 'pageview') {
   if (eventType === 'click') {
     bucket.affiliateClicks += 1;
     analyticsStore.totalAffiliateClicks += 1;
+
+    const rawChannel = String(extra.channel || 'coupang').toLowerCase().replace(/[^a-z0-9_]/g, '');
+    const normChannel = ['coupang', 'linkprice', 'cpa', 'sticky_mobile'].includes(rawChannel)
+      ? rawChannel
+      : 'coupang';
+
+    bucket.clicksByChannel[normChannel] = (bucket.clicksByChannel[normChannel] || 0) + 1;
+    analyticsStore.totalClicksByChannel[normChannel] = (analyticsStore.totalClicksByChannel[normChannel] || 0) + 1;
+
+    const rawCalc = String(extra.calc || '').toLowerCase().replace(/[^a-z0-9_]/g, '');
+    if (['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(rawCalc)) {
+      bucket.clicksByCalc[rawCalc] = (bucket.clicksByCalc[rawCalc] || 0) + 1;
+    }
+
     saveAnalyticsToDisk();
     return;
   }
@@ -123,10 +195,12 @@ function recordVisit(req, cleanPath, eventType = 'pageview') {
     return;
   }
 
-  // Human visitor tracking
+  // Human visitor tracking (bounded UV hash set per day)
   const visitorHash = crypto.createHash('sha1').update(`${forwarded}|${ua}`).digest('hex').slice(0, 12);
   if (!dailyUvSets[dateStr].has(visitorHash)) {
-    dailyUvSets[dateStr].add(visitorHash);
+    if (dailyUvSets[dateStr].size < MAX_UV_HASHES_PER_DAY) {
+      dailyUvSets[dateStr].add(visitorHash);
+    }
     bucket.uniqueVisitors += 1;
     analyticsStore.totalUniqueVisitors += 1;
   }
@@ -134,8 +208,13 @@ function recordVisit(req, cleanPath, eventType = 'pageview') {
   bucket.pageViews += 1;
   analyticsStore.totalPageViews += 1;
 
-  const normPage = cleanPath === '/index.html' ? '/' : cleanPath;
-  bucket.pages[normPage] = (bucket.pages[normPage] || 0) + 1;
+  const normPage = sanitizeTrackPath(cleanPath);
+  const pageKeys = Object.keys(bucket.pages);
+  if (bucket.pages[normPage] !== undefined || pageKeys.length < MAX_PAGES_PER_DAY) {
+    bucket.pages[normPage] = (bucket.pages[normPage] || 0) + 1;
+  } else {
+    bucket.pages['/_other'] = (bucket.pages['/_other'] || 0) + 1;
+  }
 }
 
 function getStatsPayload() {
@@ -155,33 +234,78 @@ function getStatsPayload() {
       uniqueVisitors: b.uniqueVisitors,
       pageViews: b.pageViews,
       botCrawls: b.botCrawls,
-      affiliateClicks: b.affiliateClicks
+      affiliateClicks: b.affiliateClicks,
+      clicksByChannel: b.clicksByChannel || { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 }
     };
   });
+
+  const totalsObj = {
+    uniqueVisitors: analyticsStore.totalUniqueVisitors,
+    pageViews: analyticsStore.totalPageViews,
+    botCrawls: analyticsStore.totalBotCrawls,
+    affiliateClicks: analyticsStore.totalAffiliateClicks,
+    clicksByChannel: analyticsStore.totalClicksByChannel
+  };
 
   return {
     status: 'ok',
     domain: 'https://truthofmarket.com',
     dateKst: todayStr,
     startedAt: analyticsStore.startedAt,
+    lastDailyReportDate: analyticsStore.lastDailyReportDate || null,
     today: {
       uniqueVisitors: today.uniqueVisitors,
       pageViews: today.pageViews,
       botCrawls: today.botCrawls,
       affiliateClicks: today.affiliateClicks,
+      clicksByChannel: today.clicksByChannel,
+      clicksByCalc: today.clicksByCalc,
       botsByEngine: today.botsByEngine,
       topPages
     },
-    total: {
-      uniqueVisitors: analyticsStore.totalUniqueVisitors,
-      pageViews: analyticsStore.totalPageViews,
-      botCrawls: analyticsStore.totalBotCrawls,
-      affiliateClicks: analyticsStore.totalAffiliateClicks
-    },
+    total: totalsObj,
+    totals: totalsObj,
     recentHistory
   };
 }
 
+// ---------------------------------------------------------------
+// 06:00 AM KST Automated Daily Telegram Briefing Scheduler
+// ---------------------------------------------------------------
+let lastManualReportTimestamp = 0;
+
+async function triggerDailyReport(forceSend = false) {
+  try {
+    const dailyReporter = require('./scripts/daily-revenue-report.js');
+    const statsPayload = getStatsPayload();
+    const res = await dailyReporter.sendDailyMorningBriefing(statsPayload, { dryRun: !forceSend });
+    if (forceSend && res.sent) {
+      analyticsStore.lastDailyReportDate = getKstDateString();
+      saveAnalyticsToDisk();
+    }
+    return res;
+  } catch (err) {
+    console.warn('[Server] Daily report dispatch error:', err.message);
+    return { ok: false, sent: false, error: err.message };
+  }
+}
+
+function checkAndSendDailyKstReport() {
+  const { dateStr, hour } = getKstDateInfo();
+  // Automatically send at 06:00 AM KST once per day
+  if (hour === 6 && analyticsStore.lastDailyReportDate !== dateStr) {
+    analyticsStore.lastDailyReportDate = dateStr;
+    saveAnalyticsToDisk();
+    triggerDailyReport(true).catch(() => {});
+  }
+}
+
+// Check every 60 seconds for 06:00 AM KST trigger
+setInterval(checkAndSendDailyKstReport, 60000).unref();
+
+// ---------------------------------------------------------------
+// Security Path Validation & Static File Resolution
+// ---------------------------------------------------------------
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -197,58 +321,109 @@ const MIME_TYPES = {
   '.webp': 'image/webp'
 };
 
-function resolveFilePath(urlPath) {
-  const cleanPath = decodeURIComponent(urlPath.split('?')[0]).replace(/\\/g, '/');
+function safeDecodeURI(raw) {
+  try {
+    return decodeURIComponent(raw || '/');
+  } catch (e) {
+    return null;
+  }
+}
+
+function isForbiddenRequestPath(cleanUrlPath) {
+  const rel = String(cleanUrlPath || '/').replace(/\\/g, '/').replace(/^\/+/, '');
+  const lower = rel.toLowerCase();
+  if (!lower) return false;
+  if (lower.includes('..') || lower.includes('\0')) return true;
+
+  const segments = lower.split('/');
+  if (segments.some(seg => seg.startsWith('.'))) return true; // blocks .env, .git, .gitignore
+
+  const forbiddenPrefixes = ['logs/', 'scripts/', 'tests/', 'node_modules/', 'viral-content/'];
+  if (forbiddenPrefixes.some(p => lower === p.slice(0, -1) || lower.startsWith(p))) return true;
+
+  const forbiddenExact = new Set([
+    'server.js',
+    'package.json',
+    'package-lock.json',
+    'monetization.config.json',
+    'render.yaml'
+  ]);
+  if (forbiddenExact.has(lower)) return true;
+  if (lower.endsWith('.md') || lower.endsWith('.Bat') || lower.endsWith('.bat') || lower.endsWith('.ps1')) return true;
+
+  return false;
+}
+
+function resolveFilePath(cleanUrlPath) {
+  const cleanPath = String(cleanUrlPath || '/').replace(/\\/g, '/');
 
   if (cleanPath === '/' || cleanPath === '/index.html') {
     const distIdx = path.join(DIST_DIR, 'index.html');
     return fs.existsSync(distIdx) ? distIdx : path.join(ROOT_DIR, 'index.html');
   }
 
-  // Try exact match in dist/ then ROOT_DIR
-  const candidateDist = path.normalize(path.join(DIST_DIR, cleanPath));
-  if (candidateDist.startsWith(DIST_DIR) && fs.existsSync(candidateDist)) {
+  const rel = cleanPath.replace(/^\/+/, '');
+  const ext = path.extname(rel).toLowerCase();
+  if (ext && !MIME_TYPES[ext]) {
+    return null;
+  }
+
+  // 1. Check inside dist/
+  const candidateDist = path.resolve(DIST_DIR, rel);
+  if (candidateDist.startsWith(DIST_DIR + path.sep) && fs.existsSync(candidateDist)) {
     const stat = fs.statSync(candidateDist);
     if (stat.isDirectory()) {
       const idx = path.join(candidateDist, 'index.html');
       if (fs.existsSync(idx)) return idx;
-    } else {
+    } else if (stat.isFile()) {
       return candidateDist;
     }
   }
 
-  // Try /preset/{slug}.html or /preset/{slug}/index.html
-  const htmlDist = path.normalize(path.join(DIST_DIR, `${cleanPath}.html`));
-  if (htmlDist.startsWith(DIST_DIR) && fs.existsSync(htmlDist)) {
+  // 2. Clean URL support for /preset/{slug} -> dist/preset/{slug}/index.html
+  const htmlDist = path.resolve(DIST_DIR, `${rel}.html`);
+  if (htmlDist.startsWith(DIST_DIR + path.sep) && fs.existsSync(htmlDist)) {
     return htmlDist;
   }
 
-  const candidateRoot = path.normalize(path.join(ROOT_DIR, cleanPath));
-  if (candidateRoot.startsWith(ROOT_DIR) && fs.existsSync(candidateRoot)) {
-    const stat = fs.statSync(candidateRoot);
-    if (stat.isDirectory()) {
-      const idx = path.join(candidateRoot, 'index.html');
-      if (fs.existsSync(idx)) return idx;
-    } else {
-      return candidateRoot;
+  // 3. Strictly allow only /src/* public frontend assets from ROOT_DIR if not in dist/
+  if (rel.startsWith('src/')) {
+    const candidateSrc = path.resolve(ROOT_DIR, rel);
+    const srcRoot = path.join(ROOT_DIR, 'src') + path.sep;
+    if (candidateSrc.startsWith(srcRoot) && fs.existsSync(candidateSrc) && fs.statSync(candidateSrc).isFile()) {
+      return candidateSrc;
     }
   }
 
   return null;
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const reqUrl = req.url || '/';
   const [rawPath, rawQuery] = reqUrl.split('?');
-  const cleanUrlPath = decodeURIComponent(rawPath || '/');
+  const cleanUrlPath = safeDecodeURI(rawPath || '/');
+
+  if (!cleanUrlPath) {
+    res.writeHead(400, { ...SECURITY_HEADERS, 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('400 Bad Request');
+    return;
+  }
+
+  // 0. Block sensitive server files, configs, logs, and dot-files with 403 Forbidden
+  if (isForbiddenRequestPath(cleanUrlPath)) {
+    res.writeHead(403, { ...SECURITY_HEADERS, 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('403 Forbidden');
+    return;
+  }
 
   // 1. Health check endpoint for Render.com / uptime monitoring
   if (cleanUrlPath === '/health' || cleanUrlPath === '/api/status') {
-    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.writeHead(200, { ...SECURITY_HEADERS, 'Content-Type': 'application/json; charset=utf-8' });
     res.end(
       JSON.stringify({
         status: 'ok',
         service: 'MoneyFit Portal (truthofmarket.com)',
+        dailyBriefingSchedule: '06:00 KST',
         timestamp: new Date().toISOString()
       })
     );
@@ -258,6 +433,7 @@ const server = http.createServer((req, res) => {
   // 2. Real-time Visitor & Bot Analytics API
   if (cleanUrlPath === '/api/stats') {
     res.writeHead(200, {
+      ...SECURITY_HEADERS,
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-store'
@@ -266,13 +442,16 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 3. Client-side Analytics Beacon (/api/track?type=pageview|click&p=/path)
+  // 3. Client-side Analytics & Affiliate Click Beacon (/api/track?type=pageview|click&channel=coupang|linkprice|cpa&calc=...&p=/path)
   if (cleanUrlPath === '/api/track') {
     const params = new URLSearchParams(rawQuery || '');
     const evType = params.get('type') || 'pageview';
     const targetPage = params.get('p') || '/';
-    recordVisit(req, targetPage, evType);
+    const channel = params.get('channel') || '';
+    const calc = params.get('calc') || '';
+    recordVisit(req, targetPage, evType, { channel, calc });
     res.writeHead(200, {
+      ...SECURITY_HEADERS,
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-store'
@@ -281,33 +460,59 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 4. Automatic zero-upload ownership verification for Naver SearchAdvisor & Google Search Console
+  // 4. 06:00 AM KST Daily Revenue Briefing API (/api/daily-report or /api/daily-report?send=1)
+  if (cleanUrlPath === '/api/daily-report') {
+    const params = new URLSearchParams(rawQuery || '');
+    const wantSend = params.get('send') === '1' || params.get('send') === 'true';
+    const nowMs = Date.now();
+    const canSend = wantSend && (nowMs - lastManualReportTimestamp > 15000);
+    if (canSend) {
+      lastManualReportTimestamp = nowMs;
+    }
+    const result = await triggerDailyReport(canSend);
+    res.writeHead(200, {
+      ...SECURITY_HEADERS,
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store'
+    });
+    res.end(JSON.stringify(result, null, 2));
+    return;
+  }
+
+  // 5. Automatic zero-upload ownership verification for Naver SearchAdvisor & Google Search Console
   const naverMatch = cleanUrlPath.match(/^\/(naver[a-zA-Z0-9_-]+\.html)$/);
   if (naverMatch) {
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.writeHead(200, { ...SECURITY_HEADERS, 'Content-Type': 'text/html; charset=utf-8' });
     res.end(`naver-site-verification: ${naverMatch[1]}`);
     return;
   }
   const googleMatch = cleanUrlPath.match(/^\/(google[a-zA-Z0-9_-]+\.html)$/);
   if (googleMatch) {
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.writeHead(200, { ...SECURITY_HEADERS, 'Content-Type': 'text/html; charset=utf-8' });
     res.end(`google-site-verification: ${googleMatch[1]}`);
     return;
   }
 
-  const filePath = resolveFilePath(reqUrl);
+  const filePath = resolveFilePath(cleanUrlPath);
   if (!filePath) {
-    // Fallback to main SPA index.html
+    // Only fall back to SPA index.html for extensionless routes; return 404 for missing static files
+    const reqExt = path.extname(cleanUrlPath);
+    if (reqExt && reqExt !== '.html') {
+      res.writeHead(404, { ...SECURITY_HEADERS, 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('404 Not Found');
+      return;
+    }
+
     const fallback = fs.existsSync(path.join(DIST_DIR, 'index.html'))
       ? path.join(DIST_DIR, 'index.html')
       : path.join(ROOT_DIR, 'index.html');
     if (fs.existsSync(fallback)) {
       recordVisit(req, cleanUrlPath, 'pageview');
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.writeHead(200, { ...SECURITY_HEADERS, 'Content-Type': 'text/html; charset=utf-8' });
       fs.createReadStream(fallback).pipe(res);
       return;
     }
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.writeHead(404, { ...SECURITY_HEADERS, 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('404 Not Found');
     return;
   }
@@ -321,6 +526,7 @@ const server = http.createServer((req, res) => {
   }
 
   res.writeHead(200, {
+    ...SECURITY_HEADERS,
     'Content-Type': contentType,
     'Cache-Control': ext === '.html' ? 'public, max-age=60' : 'public, max-age=86400'
   });

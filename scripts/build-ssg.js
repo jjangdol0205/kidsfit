@@ -30,7 +30,7 @@ let config = {
   linkPriceId: 'A100708867',
   cpaMemberId: 'tp_member_2370',
   adfitUnitId: 'DAN-SAMPLE-TOP',
-  ftcNotice: '이 포스팅은 쿠팡 파트너스 및 제휴마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (이용자 추가 부담금 없음)'
+  ftcNotice: '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다.'
 };
 
 if (fs.existsSync(CONFIG_PATH)) {
@@ -534,32 +534,32 @@ function renderLossBarHtml(res) {
 }
 
 const SCENARIO_CHIP_LABELS = {
-  'electric-studio-ac': '원룸 에어컨 10시간',
-  'electric-living-2in1': '30평 거실 2in1 12시간',
-  'electric-window-ac': '창문형 에어컨 8시간',
-  'electric-winter-heater': '겨울 온풍기 2000W',
-  'electric-dehumidifier-24h': '장마철 제습기 24시간',
-  'electric-dryer-daily': '의류건조기 매일 1회',
-  'diet-male-80kg-cut': '남성 80kg 8주 감량',
-  'diet-female-58kg-tone': '여성 58kg 4주 바디프로필',
-  'diet-male-65kg-bulk': '남성 65kg 12주 벌크업',
-  'diet-office-75kg-12w': '직장인 75kg 12주 탈출',
-  'diet-bride-54kg-6w': '예비신부 54kg 6주 관리',
-  'diet-keto-90kg-8w': '고도비만 90kg 8주 감량',
-  'pet-dog-5kg-adult': '5kg 말티즈·푸들 성견',
-  'pet-dog-3kg-senior': '3kg 포메 노령견 (7세+)',
-  'pet-dog-15kg-active': '15kg 중형견 활동견',
-  'pet-cat-4kg-indoor': '4.5kg 실내 성묘 (중성화)',
-  'pet-cat-6kg-diet': '6kg 과체중 뚱냥이 감량',
-  'pet-puppy-2kg-growth': '2kg 성장기 아기 강아지',
-  'room-100man-oneroom': '예산 100만 6평 첫자취',
-  'room-300man-officetel': '예산 300만 9평 오피스텔',
-  'room-500man-two-room': '예산 500만 15평 투룸',
-  'room-1000man-newlywed': '예산 1,000만 24평 신혼',
-  'room-50man-minimal': '예산 50만 반지하·고시원',
-  'room-200man-white-studio': '예산 200만 8평 화이트톤',
-  'auto-avante-2500': '아반떼 2,500만 사회초년생',
-  'auto-sorrento-4500-biz': '쏘렌토 4,500만 개인사업자',
+  'electric-studio-ac': '원룸 벽걸이 10시간',
+  'electric-stand-ac': '30평 스탠드 12시간',
+  'electric-dehumidifier': '제습기 24시간 풀가동',
+  'electric-dryer': '의류건조기 주 4회',
+  'electric-winter-heater': '겨울 온풍기 8시간',
+  'electric-inverter-roi': '구형 vs 1등급 교체',
+  'diet-male-fatloss': '남자 80kg 4주 컷팅',
+  'diet-female-lean': '여자 55kg 2주 슬림',
+  'diet-male-bulkup': '남자 65kg 벌크업',
+  'diet-office-worker': '사무직 직장인 식단',
+  'diet-student-budget': '대학생 1주 가성비',
+  'diet-quick-3kg': '한달 단기 -3kg 감량',
+  'pet-maltese-5kg': '5kg 말티즈 성견',
+  'pet-pomeranian-puppy': '1.5kg 포메 퍼피',
+  'pet-golden-retriever': '30kg 골든리트리버',
+  'pet-korean-shorthair': '4.5kg 코숏 고양이',
+  'pet-senior-cat': '10살 노령묘 케어',
+  'pet-monthly-budget': '소형견 4kg 첫입양',
+  'room-oneroom-100': '원룸 100만원 가성비',
+  'room-officetel-300': '오피스텔 300만 화이트',
+  'room-officetel-500': '투룸 500만 프리미엄',
+  'room-newlywed-1000': '신혼 1,000만 풀세팅',
+  'room-minimalist-50': '단기 50만원 생존템',
+  'room-appliances-only': '원룸 150만 가전집중',
+  'auto-avante-3000': '아반떼 3,000만 (20대)',
+  'auto-grandeur-5000': '그랜저 5,000만 (사업자)',
   'auto-tucson-hybrid': '투싼 하이브리드 3,800만',
   'auto-genesis-g80': '제네시스 G80 7,000만',
   'auto-casper-cash-vs-rent': '캐스퍼 1,800만 초보',
@@ -793,6 +793,7 @@ function renderInteractiveCalculatorCard(preset, res) {
     const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
+         onclick="recordPresetClick('${p.type}', this.href)"
          class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
         <div class="flex items-center justify-between gap-1.5 mb-1">
           <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
@@ -864,6 +865,7 @@ function renderInteractiveCalculatorCard(preset, res) {
           <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
           <div class="pt-3 border-t border-slate-800 space-y-2">
             <a id="res-cpa-link" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
+               onclick="recordPresetClick('cpa', this.href)"
                class="block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold p-3.5 rounded-xl transition text-center shadow-lg group">
               <div class="text-xs text-slate-900/80 flex items-center justify-center gap-1.5">
                 <span id="res-cpa-badge" class="whitespace-nowrap truncate">${cpaCardInfo.liveBadge || '⚡ 맞춤 최저가 & 공식 기획전 혜택'}</span>
@@ -873,10 +875,12 @@ function renderInteractiveCalculatorCard(preset, res) {
             </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a id="res-cpa-coupang-sub" href="${cpaCardInfo.coupangSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordPresetClick('coupang', this.href)"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.coupangSubLabel} ↗
               </a>
               <a id="res-cpa-lp-sub" href="${cpaCardInfo.linkPriceSubUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordPresetClick('linkprice', this.href)"
                  class="block text-center bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-bold py-2 px-3 rounded-xl text-xs transition whitespace-nowrap truncate">
                 ${cpaCardInfo.linkPriceSubLabel} ↗
               </a>
@@ -884,10 +888,17 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
 
           <!-- 쿠팡 파트너스 & 링크프라이스 맞춤 최저가 상품 추천 그리드 -->
-          <div class="pt-3 border-t border-slate-800">
+          <div class="pt-3 border-t border-slate-800 space-y-3">
             <div class="text-xs font-bold text-slate-300 mb-2 whitespace-nowrap truncate">🛍️ 계산 결과 맞춤 최저가 & 공식몰 특가 비교</div>
             <div id="res-products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               ${productsHtml}
+            </div>
+            <!-- 공정위 제휴마케팅 표시광고 고지 & 금전적·법적 면책 공고문 -->
+            <div id="ftc-disclosure-box" class="bg-slate-950/90 border border-amber-500/30 rounded-xl p-3 text-[11px] text-amber-200/90 leading-relaxed break-keep">
+              📢 <strong>[공정위 표시·광고 고지]</strong> <span id="ftc-disclosure-text">${config.ftcNotice}</span>
+            </div>
+            <div id="legal-disclaimer-box" class="bg-slate-950/70 border border-slate-800 rounded-xl p-3 text-[11px] text-slate-400 leading-relaxed break-keep">
+              ⚖️ <strong class="text-slate-300">[금전적·법적 면책 공고문]</strong> 본 계산기의 시뮬레이션 결과(요금·절감액·세액공제·사은품·급여량 등)는 공인 표준 수식에 기반한 <strong class="text-slate-300">참고용 추정치</strong>이며 법적·재무적 효력이 없습니다. 실제 청구 금액·할인율·사은품 및 계약 조건은 가입·결제 시점의 각 공급사·금융사·통신사·쇼핑몰의 공식 약관에 따라 달라질 수 있으므로, 최종 의사결정 전 반드시 해당 기관의 공식 약관을 직접 확인하시기 바랍니다. 머니핏은 이용자의 개별 거래나 결정으로 인한 금전적 손익에 대해 어떠한 법적 책임도 지지 않습니다.
             </div>
           </div>
         </div>
@@ -1185,11 +1196,13 @@ ${JSON.stringify(schemaJson, null, 2)}
         </div>
         <span>© 2026 MoneyFit Studio. All rights reserved.</span>
       </div>
-      <p class="leading-relaxed text-slate-400">
-        본 사이트에서 제공하는 계산 결과는 각 기관의 표준 요율 및 수의학·영양학 공식을 바탕으로 산출된 통계적 시뮬레이션입니다. 실제 요금 및 정산 금액은 개별 약관 및 제휴사 조건에 따라 상이할 수 있습니다.
-      </p>
-      <p class="text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
-        ${config.ftcNotice}
+      <div id="footer-legal-disclaimer" class="leading-relaxed text-slate-500 bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1.5 break-keep">
+        <div class="font-extrabold text-slate-700">⚖️ [금전적·법적 면책 공고문 (Financial & Legal Disclaimer)]</div>
+        <p>1. 본 포털(머니핏)에서 제공하는 모든 계산 결과(전기요금·누진세, 다이어트 식단량, 반려동물 사료 급여량, 자취·신혼 가전 BOM 예산, 자동차 할부·리스·장기렌트 TCO 및 절세액, 인터넷·통신 위약금 및 사은품 손익 등)는 관련 기관의 표준 수식과 통계 모델에 기반한 <strong>단순 참고용 시뮬레이션 추정치</strong>이며 어떠한 법적·재무적·세무적 효력이나 보증을 갖지 않습니다.</p>
+        <p>2. 실제 청구 요금, 금융 금리, 세액 공제 한도, 현금 사은품 및 상품 가격은 이용자의 신용도, 가입 시점, 제휴사(공급사·금융사·통신사·쇼핑몰)의 공식 약관 및 정책 변경에 따라 상이할 수 있습니다. 최종 계약이나 구매 전 반드시 해당 공식 기관 및 판매처의 약관을 직접 확인하시기 바라며, 머니핏은 이용자의 의사결정으로 인해 발생하는 일체의 직·간접적 금전 손실에 대해 법적 책임을 지지 않습니다.</p>
+      </div>
+      <p id="footer-ftc-disclosure" class="text-slate-600 bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 font-medium leading-relaxed break-keep">
+        📢 <strong>[공정거래위원회 추천·보증 표시·광고 고지]</strong> ${config.ftcNotice}
       </p>
     </div>
   </footer>
@@ -1205,6 +1218,7 @@ ${JSON.stringify(schemaJson, null, 2)}
         <div id="sticky-cta-main" class="text-xs font-extrabold text-white truncate">${cpaCardInfo.liveTitle || cpaCardInfo.title || res.cpaTitle}</div>
       </div>
       <a id="sticky-cta-btn" href="${cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
+         onclick="recordPresetClick('sticky_mobile', this.href)"
          class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition">
         혜택 즉시 확인 →
       </a>
@@ -1221,6 +1235,24 @@ ${JSON.stringify(schemaJson, null, 2)}
 
     if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.loadConfigFromStorage) {
       MoneyFitMonetization.loadConfigFromStorage();
+    }
+
+    function recordPresetClick(channel, url) {
+      try {
+        if (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.getConfig && MoneyFitMonetization.saveConfigToStorage) {
+          const cfg = MoneyFitMonetization.getConfig();
+          cfg.clickCount = (cfg.clickCount || 0) + 1;
+          MoneyFitMonetization.saveConfigToStorage({ clickCount: cfg.clickCount });
+        }
+        const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
+        const pagePath = (window.location && window.location.pathname) ? window.location.pathname : '/';
+        if (typeof fetch === 'function') {
+          fetch('/api/track?type=click&channel=' + encodeURIComponent(safeChannel) + '&calc=' + encodeURIComponent(PRESET_CALC) + '&p=' + encodeURIComponent(pagePath), {
+            method: 'GET',
+            keepalive: true
+          }).catch(function () {});
+        }
+      } catch (e) {}
     }
 
     function readNumInput(id, fallback) {
@@ -1378,6 +1410,7 @@ ${JSON.stringify(schemaJson, null, 2)}
           const ctaLabel = p.ctaText || '최저가 재고 및 할인 확인 →';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
+               onclick="recordPresetClick('\${p.type}', this.href)"
                class="block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-xl p-3 transition text-left min-w-0">
               <div class="flex items-center justify-between gap-1.5 mb-1">
                 <span class="text-[10px] font-bold text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
@@ -1577,24 +1610,20 @@ function build() {
   copyFileSafe(indexHtmlSrc, indexHtmlDest);
   console.log('  ✓ dist/index.html');
 
-  const configSrc = path.join(PROJECT_ROOT, 'monetization.config.json');
-  const configDest = path.join(DIST_DIR, 'monetization.config.json');
-  if (fs.existsSync(configSrc)) {
-    copyFileSafe(configSrc, configDest);
-    console.log('  ✓ dist/monetization.config.json');
+  // Security: Ensure monetization.config.json and indexnow-submit.js are NOT exposed in public dist/
+  const legacyConfigDest = path.join(DIST_DIR, 'monetization.config.json');
+  if (fs.existsSync(legacyConfigDest)) {
+    try { fs.unlinkSync(legacyConfigDest); } catch (e) {}
+  }
+  const legacyIndexNowDest = path.join(DIST_DIR, 'indexnow-submit.js');
+  if (fs.existsSync(legacyIndexNowDest)) {
+    try { fs.unlinkSync(legacyIndexNowDest); } catch (e) {}
   }
 
   const srcDir = path.join(PROJECT_ROOT, 'src');
   const srcDestDir = path.join(DIST_DIR, 'src');
   copyDirRecursive(srcDir, srcDestDir);
   console.log('  ✓ dist/src/ (CSS, JS, Data)');
-
-  const indexNowScriptSrc = path.join(PROJECT_ROOT, 'scripts', 'indexnow-submit.js');
-  const indexNowScriptDest = path.join(DIST_DIR, 'indexnow-submit.js');
-  if (fs.existsSync(indexNowScriptSrc)) {
-    copyFileSafe(indexNowScriptSrc, indexNowScriptDest);
-    console.log('  ✓ dist/indexnow-submit.js');
-  }
 
   // 3. Pre-render 36 Static Landing Pages
   console.log('\n[2/4] Pre-rendering 36 Programmatic SEO Landing Pages ...');
