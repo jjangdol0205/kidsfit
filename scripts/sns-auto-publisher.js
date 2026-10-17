@@ -157,19 +157,43 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
  */
 function buildRenderHtml(bundle, mode = 'grid', slideNum = 1) {
   const { preset, story } = bundle;
-  const artDataUri = getCategoryArtDataUri(preset.calcKey);
+  const fontsDirUrl = 'file:///' + path.join(PROJECT_ROOT, 'src', 'assets', 'fonts').replace(/\\/g, '/');
 
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <style>
+  @font-face {
+    font-family: 'Gaegu';
+    font-style: normal;
+    font-weight: 400;
+    src: url('${fontsDirUrl}/Gaegu-400.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Gaegu';
+    font-style: normal;
+    font-weight: 700;
+    src: url('${fontsDirUrl}/Gaegu-700.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Jua';
+    font-style: normal;
+    font-weight: 400;
+    src: url('${fontsDirUrl}/Jua-400.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Nanum Pen Script';
+    font-style: normal;
+    font-weight: 400;
+    src: url('${fontsDirUrl}/NanumPenScript-400.ttf') format('truetype');
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     width: 1080px;
     height: 1080px;
     overflow: hidden;
-    background: #faf7f2;
+    background: #f5f3ef;
     font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
   }
   canvas {
@@ -180,14 +204,18 @@ function buildRenderHtml(bundle, mode = 'grid', slideNum = 1) {
 </style>
 </head>
 <body>
-${artDataUri ? `<img id="art-sheet" src="${artDataUri}" style="display:none" />` : ''}
+<div style="position:absolute;opacity:0;pointer-events:none;font-size:12px;">
+  <span style="font-family:'Gaegu';font-weight:400">가나다라마바사</span>
+  <span style="font-family:'Gaegu';font-weight:700">가나다라마바사</span>
+  <span style="font-family:'Jua';font-weight:400">가나다라마바사</span>
+  <span style="font-family:'Nanum Pen Script';font-weight:400">가나다라마바사</span>
+</div>
 <canvas id="c" width="1080" height="1080"></canvas>
 <script>
 const preset = ${JSON.stringify(preset)};
 const story = ${JSON.stringify(story)};
 const mode = ${JSON.stringify(mode)};
 const slideNum = ${Number(slideNum)};
-const artImg = document.getElementById('art-sheet');
 
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
@@ -199,326 +227,768 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-function drawSpeechBubble(ctx, x, y, w, h, r, tailX, tailDir = 1, s = 1) {
-  const tailW = 22 * s;
-  const tailH = 16 * s;
-  const tx = Math.max(x + r + tailW, Math.min(x + w - r - tailW, tailX));
-
+/**
+ * Draw softly blurred realistic indoor room/office background (exact Korean Instatoon photo-blur aesthetic)
+ */
+function drawBlurredRoomBackground(ctx, x, y, w, h, cutNum, r) {
   ctx.save();
-  ctx.shadowColor = 'rgba(15, 23, 42, 0.18)';
-  ctx.shadowBlur = 0;
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 6 * s;
+  roundRect(ctx, x, y, w, h, r);
+  ctx.clip();
 
+  // Base warm indoor wall gradient
+  const wallGrad = ctx.createLinearGradient(x, y, x, y + h);
+  if (cutNum === 3) {
+    wallGrad.addColorStop(0, '#9ca3af');
+    wallGrad.addColorStop(0.55, '#cbd5e1');
+    wallGrad.addColorStop(1, '#64748b');
+  } else {
+    wallGrad.addColorStop(0, '#a8a29e');
+    wallGrad.addColorStop(0.5, '#d6d3d1');
+    wallGrad.addColorStop(1, '#78716c');
+  }
+  ctx.fillStyle = wallGrad;
+  ctx.fillRect(x, y, w, h);
+
+  // Softly blurred architectural indoor elements (window light, indoor plant, desk, bokeh)
+  ctx.save();
+  ctx.filter = 'blur(' + Math.max(12, Math.round(w * 0.035)) + 'px)';
+
+  // Daylight window panes on upper-left & center-right
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.68)';
+  ctx.fillRect(x + w * 0.04, y + h * 0.14, w * 0.28, h * 0.42);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.52)';
+  ctx.fillRect(x + w * 0.58, y + h * 0.08, w * 0.34, h * 0.36);
+
+  // Warm indoor ceiling glow
+  ctx.fillStyle = 'rgba(254, 249, 195, 0.45)';
   ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(tx + tailW * 0.55, y + h);
-  ctx.lineTo(tx + tailDir * (4 * s), y + h + tailH);
-  ctx.lineTo(tx - tailW * 0.55, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-
-  ctx.fillStyle = '#ffffff';
+  ctx.ellipse(x + w * 0.5, y + h * 0.12, w * 0.35, h * 0.12, 0, 0, Math.PI * 2);
   ctx.fill();
-  ctx.shadowColor = 'transparent';
-  ctx.lineWidth = 4.8 * s;
-  ctx.strokeStyle = '#0f172a';
-  ctx.stroke();
+
+  // Muted dark furniture/monitor silhouette on left-mid
+  ctx.fillStyle = 'rgba(30, 27, 24, 0.48)';
+  ctx.fillRect(x - w * 0.02, y + h * 0.52, w * 0.32, h * 0.18);
+
+  // Lush indoor green plant bokeh on right-mid (just like the reference image!)
+  ctx.fillStyle = cutNum === 3 ? 'rgba(30, 64, 175, 0.38)' : 'rgba(54, 83, 20, 0.62)';
+  ctx.beginPath();
+  ctx.ellipse(x + w * 0.72, y + h * 0.62, w * 0.22, h * 0.09, -0.1, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Soft white planter / desk surface below plant
+  ctx.fillStyle = 'rgba(245, 245, 244, 0.55)';
+  ctx.fillRect(x + w * 0.56, y + h * 0.68, w * 0.38, h * 0.22);
+
+  ctx.restore();
+
+  // Gentle vignette for crisp foreground contrast
+  const vig = ctx.createRadialGradient(x + w * 0.5, y + h * 0.55, w * 0.25, x + w * 0.5, y + h * 0.55, w * 0.75);
+  vig.addColorStop(0, 'rgba(255,255,255,0.08)');
+  vig.addColorStop(1, 'rgba(15,23,42,0.16)');
+  ctx.fillStyle = vig;
+  ctx.fillRect(x, y, w, h);
+
   ctx.restore();
 }
 
-function drawCutBadge(ctx, num, bx, by, s = 1) {
-  const labels = ['1컷 · 착각', '2컷 · 팩폭', '3컷 · 충격', '4컷 · 해결'];
-  const colors = ['#f59e0b', '#ef4444', '#e11d48', '#10b981'];
-  const label = labels[num - 1] || (num + '컷');
-  const bg = colors[num - 1] || '#0f172a';
-
+/**
+ * 1. Top Rectangular Narration Box (exact match to "[ 회사에 의욕이 넘치는 인턴이 새로 들어왔다 ]")
+ */
+function drawTopNarrationBox(ctx, text, x, y, w, s = 1) {
+  const boxH = 44 * s;
+  const boxY = y + 14 * s;
   ctx.save();
-  ctx.font = '900 ' + (16.5 * s).toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
-  const tw = ctx.measureText(label).width;
-  const pw = tw + 24 * s;
-  const ph = 28 * s;
-  const px = bx + 16 * s;
-  const py = by - 13 * s;
 
-  roundRect(ctx, px, py, pw, ph, 14 * s);
-  ctx.fillStyle = bg;
-  ctx.fill();
-  ctx.lineWidth = 3.5 * s;
-  ctx.strokeStyle = '#0f172a';
-  ctx.stroke();
+  let fontSize = 19.5 * s;
+  ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+  while (fontSize > 14 * s && ctx.measureText(text).width > w - 54 * s) {
+    fontSize -= 0.5 * s;
+    ctx.font = '800 ' + fontSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+  }
+  const textW = ctx.measureText(text).width;
+  const boxW = Math.min(w - 24 * s, Math.max(w * 0.76, textW + 42 * s));
+  const boxX = x + (w - boxW) / 2;
+
+  // Drop shadow + crisp white rectangle + black border
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.28)';
+  ctx.shadowBlur = 7 * s;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 3 * s;
 
   ctx.fillStyle = '#ffffff';
+  ctx.fillRect(boxX, boxY, boxW, boxH);
+
+  ctx.shadowColor = 'transparent';
+  ctx.lineWidth = 2.6 * s;
+  ctx.strokeStyle = '#111111';
+  ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+  ctx.fillStyle = '#111111';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(label, px + pw / 2, py + ph / 2 + 1 * s);
+  ctx.fillText(text, boxX + boxW / 2, boxY + boxH / 2 + 1 * s);
   ctx.restore();
 }
 
-function drawSparkleStar(ctx, sx, sy, size, fill) {
+/**
+ * 2. Large Smooth Oval Speech Bubble + Dynamic Word-Size & Stroke-Weight Contrast ("글자 강약")
+ */
+function drawOvalSpeechBubbleWithContrast(ctx, lines, cx, cy, rx, ry, s = 1, accentColor = '#111111', highlightColor = '#fef08a') {
   ctx.save();
-  ctx.translate(sx, sy);
-  ctx.fillStyle = fill || '#fde047';
-  ctx.strokeStyle = '#1e293b';
-  ctx.lineWidth = 1.8;
+
+  // Smooth white oval bubble with subtle shadow and crisp black pen outline
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.14)';
+  ctx.shadowBlur = 8 * s;
+  ctx.shadowOffsetY = 3 * s;
+
   ctx.beginPath();
-  ctx.moveTo(0, -size);
-  ctx.quadraticCurveTo(size * 0.18, -size * 0.18, size, 0);
-  ctx.quadraticCurveTo(size * 0.18, size * 0.18, 0, size);
-  ctx.quadraticCurveTo(-size * 0.18, size * 0.18, -size, 0);
-  ctx.quadraticCurveTo(-size * 0.18, -size * 0.18, 0, -size);
-  ctx.closePath();
+  ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#ffffff';
   ctx.fill();
+
+  ctx.shadowColor = 'transparent';
+  ctx.lineWidth = 2.5 * s;
+  ctx.strokeStyle = '#111111';
   ctx.stroke();
-  ctx.restore();
-}
 
-function drawAnimalCharacter(ctx, cx, cy, species, mood, accentColor, scale = 1) {
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.scale(scale, scale);
+  // Compute dynamic font size so normal text and 1.32x emphasized **text** fit comfortably inside the oval
+  const maxAllowedW = rx * 1.74;
+  let baseSize = (lines.length === 1 ? 42 : 33.5) * s;
+  const emphRatio = 1.34;
 
-  const outline = '#1e293b';
-  ctx.fillStyle = accentColor || '#fecdd3';
-  ctx.beginPath();
-  ctx.arc(0, -2, 62, 0, Math.PI * 2);
-  ctx.fill();
-
-  const palettes = {
-    quokka: { fur: '#d97706', subFur: '#fbbf24', innerEar: '#fda4af', muzzle: '#fffbeb', nose: '#1e293b' },
-    shiba: { fur: '#f59e0b', subFur: '#fef3c7', innerEar: '#fef3c7', muzzle: '#ffffff', nose: '#1e293b' },
-    cat: { fur: '#fb923c', subFur: '#ffedd5', innerEar: '#fda4af', muzzle: '#fff7ed', nose: '#fb7185' },
-    bear: { fur: '#fde68a', subFur: '#fef3c7', innerEar: '#d97706', muzzle: '#ffffff', nose: '#451a03' },
-    fox: { fur: '#ea580c', subFur: '#ffffff', innerEar: '#fed7aa', muzzle: '#ffffff', nose: '#1e293b' },
-    raccoon: { fur: '#94a3b8', subFur: '#e2e8f0', innerEar: '#cbd5e1', muzzle: '#f8fafc', nose: '#0f172a' }
+  const measureRichLine = (rawLine, bSize) => {
+    const segs = String(rawLine || '').split('**');
+    let total = 0;
+    segs.forEach((seg, idx) => {
+      if (!seg) return;
+      const isEmph = idx % 2 === 1;
+      const sz = isEmph ? bSize * emphRatio : bSize;
+      ctx.font = '700 ' + sz.toFixed(1) + 'px "Gaegu", "Jua", "Malgun Gothic", sans-serif';
+      total += ctx.measureText(seg).width;
+    });
+    return total;
   };
-  const pal = palettes[species] || palettes.quokka;
 
-  ctx.fillStyle = mood === 'shock' ? '#f43f5e' : mood === 'smart' ? '#2563eb' : '#10b981';
-  ctx.strokeStyle = outline;
-  ctx.lineWidth = 4;
-  roundRect(ctx, -46, 26, 92, 48, 22);
-  ctx.fill();
-  ctx.stroke();
-
-  [-34, 34].forEach(ex => {
-    ctx.fillStyle = pal.fur;
-    ctx.beginPath();
-    ctx.arc(ex, -34, 16, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = pal.innerEar;
-    ctx.beginPath();
-    ctx.arc(ex, -34, 8.5, 0, Math.PI * 2);
-    ctx.fill();
+  lines.forEach(rawLine => {
+    while (baseSize > 22 * s && measureRichLine(rawLine, baseSize) > maxAllowedW) {
+      baseSize -= 0.5 * s;
+    }
   });
 
-  ctx.fillStyle = pal.fur;
-  ctx.beginPath();
-  ctx.ellipse(0, -5, 46, 40, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
+  const lineSpacing = baseSize * 1.25;
+  const totalBlockH = (lines.length - 1) * lineSpacing;
+  const firstLineY = cy - totalBlockH / 2 + baseSize * 0.34;
 
-  ctx.fillStyle = '#fda4af';
-  ctx.beginPath();
-  ctx.ellipse(-28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
-  ctx.ellipse(28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.fillStyle = pal.muzzle;
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.ellipse(0, 8, 16, 12, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-  ctx.fillStyle = pal.nose;
-  ctx.beginPath();
-  ctx.ellipse(0, 2, 5.5, 4, 0, 0, Math.PI * 2);
-  ctx.fill();
-
-  if (mood === 'shock') {
-    ctx.fillStyle = '#38bdf8';
-    roundRect(ctx, -23, -6, 11, 42, 5);
-    ctx.fill();
-    roundRect(ctx, 12, -6, 11, 42, 5);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(-17, -10, 9.5, 0, Math.PI * 2);
-    ctx.arc(17, -10, 9.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-  } else if (mood === 'smart') {
-    ctx.fillStyle = 'rgba(224, 242, 254, 0.92)';
-    ctx.lineWidth = 3.8;
-    roundRect(ctx, -33, -21, 27, 19, 5);
-    ctx.fill();
-    ctx.stroke();
-    roundRect(ctx, 6, -21, 27, 19, 5);
-    ctx.fill();
-    ctx.stroke();
-  } else {
-    drawSparkleStar(ctx, -48, -26, 9, '#fde047');
-    drawSparkleStar(ctx, 48, -24, 10, '#fde047');
-  }
-
-  ctx.restore();
-}
-
-function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh, radius = 10) {
-  if (!img || !img.complete || !img.naturalWidth) return false;
-  const halfW = img.naturalWidth / 2;
-  const halfH = img.naturalHeight / 2;
-  const col = panelIdx % 2;
-  const row = Math.floor(panelIdx / 2);
-  const outerPad = Math.round(halfW * 0.038);
-  const innerPad = Math.round(halfW * 0.028);
-  const sx = col === 0 ? outerPad : halfW + innerPad;
-  const sy = row === 0 ? outerPad : halfH + innerPad;
-  const sw = halfW - outerPad - innerPad;
-  const sh = halfH - outerPad - innerPad;
-
-  ctx.save();
-  roundRect(ctx, dx, dy, dw, dh, radius);
-  ctx.clip();
-  ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
-  ctx.restore();
-  return true;
-}
-
-function getConversationalScript(calcKey, storyObj) {
-  const sc = (storyObj && storyObj.shortCartoon) || null;
-  if (sc) {
-    return {
-      episodeTitle: sc.epTitle || preset.title,
-      p1Lines: sc.p1,
-      p2Lines: sc.p2,
-      p3Lines: sc.p3,
-      p4Lines: sc.p4
-    };
-  }
-  return {
-    episodeTitle: '원룸 에어컨 껐다 켰다의 참사 ⚡',
-    p1Lines: ['에어컨 아낀다고', '**2시간마다 껐다 켰지~**'],
-    p2Lines: ['구형은 껐다 켜면', '**누진세 폭탄** 맞아!!'],
-    p3Lines: ['으앙 **월 8만8천원**?!', '인버터는 **3만원대**인데!'],
-    p4Lines: ['내 방 에어컨 전기세', '**머니핏 3초 계산** 끝!']
-  };
-}
-
-function drawCenteredBubbleText(
-  ctx,
-  lines,
-  cx,
-  startY,
-  lineHeight,
-  fontSize,
-  color = '#0f172a',
-  maxWidth = 0,
-  accentColor = '#dc2626',
-  highlightBg = '#fde047'
-) {
-  ctx.save();
   ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
 
-  let fSize = fontSize;
-  ctx.font = '900 ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
-  if (maxWidth > 0) {
-    lines.forEach(rawLine => {
-      const plainLine = String(rawLine || '').split('**').join('');
-      while (fSize > 26 && ctx.measureText(plainLine).width > maxWidth) {
-        fSize -= 0.5;
-        ctx.font = '900 ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
-      }
-    });
-  }
+  lines.forEach((rawLine, lineIdx) => {
+    const segs = String(rawLine || '').split('**');
+    const lineW = measureRichLine(rawLine, baseSize);
+    let curX = cx - lineW / 2;
+    const baseY = firstLineY + lineIdx * lineSpacing;
 
-  lines.forEach((rawLine, idx) => {
-    const segments = String(rawLine || '').split('**');
-    const plainLine = segments.join('');
-    const totalW = ctx.measureText(plainLine).width;
-    let curX = cx - totalW / 2;
-    const baseY = startY + idx * lineHeight;
+    segs.forEach((seg, segIdx) => {
+      if (!seg) return;
+      const isEmph = segIdx % 2 === 1;
+      const sz = isEmph ? baseSize * emphRatio : baseSize;
+      ctx.font = '700 ' + sz.toFixed(1) + 'px "Gaegu", "Jua", "Malgun Gothic", sans-serif';
+      const segW = ctx.measureText(seg).width;
 
-    segments.forEach((text, segIdx) => {
-      if (!text) return;
-      const isHighlight = segIdx % 2 === 1;
-      const segW = ctx.measureText(text).width;
-      if (isHighlight && highlightBg) {
+      if (isEmph) {
+        // Soft hand-drawn highlighter marker under the emphasized phrase
         ctx.save();
-        ctx.fillStyle = highlightBg;
-        roundRect(ctx, curX - 5, baseY - fSize * 0.84, segW + 10, fSize * 1.02, 8);
+        ctx.fillStyle = highlightColor;
+        roundRect(ctx, curX - 3 * s, baseY - sz * 0.52, segW + 6 * s, sz * 0.58, 6 * s);
         ctx.fill();
         ctx.restore();
+
+        // Extra-bold hand-drawn stroke + fill for strong visual emphasis (글자 강약!)
+        const bounceY = baseY - 2 * s;
+        ctx.lineWidth = 2.4 * s;
+        ctx.strokeStyle = accentColor;
+        ctx.lineJoin = 'round';
+        ctx.strokeText(seg, curX, bounceY);
+        ctx.fillStyle = accentColor;
+        ctx.fillText(seg, curX, bounceY);
+      } else {
+        // Normal speech text with organic pen thickness
+        ctx.lineWidth = 1.0 * s;
+        ctx.strokeStyle = '#111111';
+        ctx.lineJoin = 'round';
+        ctx.strokeText(seg, curX, baseY);
+        ctx.fillStyle = '#111111';
+        ctx.fillText(seg, curX, baseY);
       }
-      ctx.fillStyle = isHighlight ? accentColor : color;
-      ctx.fillText(text, curX, baseY);
+
       curX += segW;
     });
   });
+
   ctx.restore();
+}
+
+/**
+ * 3. Hand-Drawn Curved Arrows (↗, ↙) + Handwritten Pen Annotations ("의욕MAX", "대학교 졸업반" style)
+ */
+function drawHandwrittenSideNotes(ctx, leftLines, rightLines, x, y, w, h, s = 1) {
+  ctx.save();
+
+  // Helper to draw handwritten text with crisp white halo outline + black ink
+  const drawHaloHandwriting = (linesArr, tx, ty, tiltRad, align = 'center') => {
+    ctx.save();
+    ctx.translate(tx, ty);
+    ctx.rotate(tiltRad);
+    ctx.font = '400 ' + (31 * s).toFixed(1) + 'px "Nanum Pen Script", "Gaegu", cursive';
+    ctx.textAlign = align;
+    ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
+    linesArr.forEach((ln, idx) => {
+      const ly = idx * 28 * s;
+      ctx.lineWidth = 6.8 * s;
+      ctx.strokeStyle = '#ffffff';
+      ctx.strokeText(ln, 0, ly);
+      ctx.fillStyle = '#111111';
+      ctx.fillText(ln, 0, ly);
+    });
+    ctx.restore();
+  };
+
+  // Left-bottom handwritten note ("의욕MAX" position) + Curved Arrow ↗
+  if (leftLines && leftLines.length) {
+    drawHaloHandwriting(leftLines, x + 76 * s, y + 402 * s, -0.06, 'center');
+
+    // Hand-drawn curved black arrow ↗ pointing from left note up to character
+    ctx.save();
+    ctx.strokeStyle = '#111111';
+    ctx.lineWidth = 3.5 * s;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(x + 56 * s, y + 372 * s);
+    ctx.quadraticCurveTo(x + 48 * s, y + 308 * s, x + 132 * s, y + 308 * s);
+    ctx.stroke();
+
+    // Open arrowhead '>'
+    ctx.beginPath();
+    ctx.moveTo(x + 112 * s, y + 297 * s);
+    ctx.lineTo(x + 134 * s, y + 308 * s);
+    ctx.lineTo(x + 114 * s, y + 321 * s);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Right-middle handwritten note ("대학교 졸업반" position) + Curved Arrow ↙
+  if (rightLines && rightLines.length) {
+    drawHaloHandwriting(rightLines, x + 424 * s, y + 234 * s, 0.05, 'center');
+
+    // Hand-drawn curved black arrow ↙ pointing from right note down-left to character
+    const arrowStartY = y + (234 + rightLines.length * 26 + 6) * s;
+    ctx.save();
+    ctx.strokeStyle = '#111111';
+    ctx.lineWidth = 3.5 * s;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(x + 444 * s, arrowStartY);
+    ctx.quadraticCurveTo(x + 458 * s, y + 344 * s, x + 372 * s, y + 350 * s);
+    ctx.stroke();
+
+    // Open arrowhead '<'
+    ctx.beginPath();
+    ctx.moveTo(x + 392 * s, y + 337 * s);
+    ctx.lineTo(x + 370 * s, y + 350 * s);
+    ctx.lineTo(x + 391 * s, y + 361 * s);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * 4. Authentic Human-Drawn 2D Mochi Character (사람이 아이패드로 직접 그린 찹쌀떡 인스타툰 캐릭터)
+ *    Exact match to the user's reference image: white chubby mochi body, pastel hair bun,
+ *    big round ear overlapping hair cleanly, soft curved bangs, 3 upper eyelashes, and expressive poses!
+ */
+function drawHumanInstatoonCharacter(ctx, cx, cy, calcKey, cutNum, s = 1) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(s, s);
+
+  const ink = '#111111';
+  ctx.strokeStyle = ink;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  const hairMap = {
+    electric: '#f9a89a', // Coral-pink bun (identical to reference image!)
+    diet: '#fbbf24',     // Warm apricot-yellow
+    pet: '#fdba74',      // Soft peach-orange
+    room: '#fda4af',     // Rose-pink
+    auto: '#93c5fd',     // Soft sky-blue
+    telecom: '#6ee7b7'   // Mint-emerald
+  };
+  const hairColor = cutNum === 2 ? '#a5b4fc' : (hairMap[calcKey] || '#f9a89a');
+
+  // Subtle floor shadow under feet
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
+  ctx.beginPath();
+  ctx.ellipse(0, 128, 36, 7, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // --- A. Back Hair Bun & Full Hair Silhouette (Behind Face & Ear) ---
+  ctx.lineWidth = 3.2;
+  ctx.fillStyle = hairColor;
+
+  if (cutNum !== 2) {
+    // Cute top-right round hair bun (exact match to reference image!)
+    ctx.beginPath();
+    ctx.arc(36, -54, 24, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  // Outer hair silhouette wrapping smoothly around head and tucking behind right ear/neck
+  ctx.beginPath();
+  ctx.ellipse(0, -10, 62, 52, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // --- B. White Chubby Mochi Body + Stubby Legs (하얀 찹쌀떡 몸통) ---
+  ctx.fillStyle = '#ffffff';
+  ctx.lineWidth = 3.2;
+
+  if (cutNum === 1) {
+    // Left arm & round mitten hand resting adorably by side
+    ctx.beginPath();
+    ctx.moveTo(-23, 38);
+    ctx.quadraticCurveTo(-35, 66, -33, 88);
+    ctx.quadraticCurveTo(-45, 92, -41, 102);
+    ctx.quadraticCurveTo(-31, 107, -24, 96);
+    ctx.fill();
+    ctx.stroke();
+
+    // Right arm & round mitten hand
+    ctx.beginPath();
+    ctx.moveTo(23, 38);
+    ctx.quadraticCurveTo(35, 66, 33, 88);
+    ctx.quadraticCurveTo(45, 92, 41, 102);
+    ctx.quadraticCurveTo(31, 107, 24, 96);
+    ctx.fill();
+    ctx.stroke();
+  } else if (cutNum === 2) {
+    // Left arm down, Right arm raised pointing a fact-check finger!
+    ctx.beginPath();
+    ctx.moveTo(-23, 38);
+    ctx.quadraticCurveTo(-34, 68, -31, 94);
+    ctx.quadraticCurveTo(-39, 100, -23, 100);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(21, 42);
+    ctx.quadraticCurveTo(46, 30, 54, 8);
+    ctx.quadraticCurveTo(62, 4, 60, 16);
+    ctx.quadraticCurveTo(50, 42, 23, 58);
+    ctx.fill();
+    ctx.stroke();
+  } else if (cutNum === 4) {
+    // Both arms cheering high in the air ("만세!" pose)
+    ctx.beginPath();
+    ctx.moveTo(-21, 42);
+    ctx.quadraticCurveTo(-46, 18, -44, -6);
+    ctx.quadraticCurveTo(-34, -12, -28, 6);
+    ctx.quadraticCurveTo(-26, 24, -17, 46);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(21, 42);
+    ctx.quadraticCurveTo(46, 18, 44, -6);
+    ctx.quadraticCurveTo(34, -12, 28, 6);
+    ctx.quadraticCurveTo(26, 24, 17, 46);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  // Central Mochi Torso + Legs
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.moveTo(-21, 34);
+  ctx.quadraticCurveTo(-25, 76, -23, 114);
+  ctx.lineTo(-18, 128);
+  ctx.quadraticCurveTo(-14, 130, -11, 112);
+  ctx.quadraticCurveTo(0, 110, 11, 112);
+  ctx.quadraticCurveTo(14, 130, 18, 128);
+  ctx.lineTo(23, 114);
+  ctx.quadraticCurveTo(25, 76, 21, 34);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // --- C. Squishy Wide White Mochi Face + Soft Front Bangs + Overlapping Side Ear ---
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.moveTo(-54, 8);
+  // Left cheek & jaw curve
+  ctx.bezierCurveTo(-56, 32, -28, 42, -2, 42);
+  // Right jaw up to ear base
+  ctx.bezierCurveTo(24, 42, 46, 34, 48, 14);
+  // Right ear C-curve (drawn seamlessly as part of the white face/ear silhouette!)
+  ctx.bezierCurveTo(64, 14, 64, -12, 46, -10);
+  // Right forehead hairline sweeping up to center bang part
+  ctx.quadraticCurveTo(26, -16, 8, -32);
+  // Center-left soft curved bang lock (exact match to reference image!)
+  ctx.quadraticCurveTo(8, -14, -6, -8);
+  ctx.quadraticCurveTo(-16, -14, -16, -30);
+  // Left forehead hairline sweeping down to left temple
+  ctx.quadraticCurveTo(-36, -20, -54, 8);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Subtle hair strand lines at the bang parts (just like the reference image!)
+  ctx.beginPath();
+  ctx.moveTo(-16, -30);
+  ctx.quadraticCurveTo(-15, -36, -12, -40);
+  ctx.moveTo(8, -32);
+  ctx.quadraticCurveTo(10, -37, 13, -40);
+  ctx.moveTo(32, -16);
+  ctx.quadraticCurveTo(36, -21, 39, -26);
+  ctx.stroke();
+
+  // Tiny inner ear line '-' inside the right ear
+  ctx.beginPath();
+  ctx.moveTo(47, 2);
+  ctx.lineTo(53, 3);
+  ctx.stroke();
+
+  // --- D. Soft Pink Oval Cheek Blushes ---
+  ctx.fillStyle = '#f9a89a';
+  ctx.beginPath();
+  ctx.ellipse(-32, 14, 9.5, 4.6, 0, 0, Math.PI * 2);
+  ctx.ellipse(18, 14, 9.5, 4.6, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // --- E. Expressive Hand-Drawn Eyes, Eyebrows, Eyelashes & Mouth ---
+  ctx.strokeStyle = ink;
+  ctx.fillStyle = ink;
+
+  if (cutNum === 1) {
+    // 1. Innocent / Motivated Smile (exact match to reference image!)
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    ctx.moveTo(-36, -12);
+    ctx.quadraticCurveTo(-26, -16, -16, -12);
+    ctx.moveTo(6, -12);
+    ctx.quadraticCurveTo(16, -16, 26, -12);
+    ctx.stroke();
+
+    // Gentle upper eyelid + 3 short eyelashes + cute hollow oval pupil (exact reference look!)
+    [-25, 15].forEach(ex => {
+      ctx.lineWidth = 3.0;
+      ctx.beginPath();
+      ctx.moveTo(ex - 9, -2);
+      ctx.quadraticCurveTo(ex, -6, ex + 9, -2);
+      ctx.stroke();
+      // 3 tiny eyelashes
+      ctx.lineWidth = 2.4;
+      [-5, 0, 5].forEach(dx => {
+        ctx.beginPath();
+        ctx.moveTo(ex + dx, -4);
+        ctx.lineTo(ex + dx * 1.25, -8.5);
+        ctx.stroke();
+      });
+      // Cute hollow oval pupil (black outline + white center)
+      ctx.fillStyle = '#ffffff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.ellipse(ex, 3, 2.8, 4.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    });
+
+    // Cute small 'D' smile mouth
+    ctx.fillStyle = '#ffffff';
+    ctx.lineWidth = 2.8;
+    ctx.beginPath();
+    ctx.moveTo(-8, 12);
+    ctx.lineTo(2, 12);
+    ctx.bezierCurveTo(3, 21, -9, 21, -8, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  } else if (cutNum === 2) {
+    // 2. Smart Senior with Round Glasses & Fact-Check Expression
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    ctx.moveTo(-36, -15);
+    ctx.lineTo(-16, -11);
+    ctx.moveTo(6, -11);
+    ctx.lineTo(26, -15);
+    ctx.stroke();
+
+    // Round black-rimmed glasses
+    ctx.fillStyle = 'rgba(224, 242, 254, 0.55)';
+    ctx.lineWidth = 3.2;
+    ctx.beginPath();
+    ctx.arc(-24, 1, 12.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(15, 1, 12.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-11, 1);
+    ctx.lineTo(2, 1);
+    ctx.stroke();
+
+    // Pupils
+    ctx.fillStyle = '#ffffff';
+    ctx.lineWidth = 2.8;
+    ctx.beginPath();
+    ctx.ellipse(-24, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(15, 1, 2.8, 4.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Confident talking mouth
+    ctx.fillStyle = '#fb7185';
+    ctx.beginPath();
+    ctx.ellipse(-4, 17, 6.5, 4.8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  } else if (cutNum === 3) {
+    // 3. Shocked / Crying Waterfall Tears + Hands on Cheeks
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    ctx.moveTo(-36, -9);
+    ctx.quadraticCurveTo(-26, -16, -16, -13);
+    ctx.moveTo(6, -13);
+    ctx.quadraticCurveTo(16, -16, 26, -9);
+    ctx.stroke();
+
+    // Sky-blue comic tear streams
+    ctx.fillStyle = '#38bdf8';
+    roundRect(ctx, -30, 4, 9.5, 34, 4.5);
+    ctx.fill();
+    roundRect(ctx, 11, 4, 9.5, 34, 4.5);
+    ctx.fill();
+
+    // Crying '> <' eyes
+    ctx.lineWidth = 3.2;
+    ctx.beginPath();
+    ctx.moveTo(-32, -2);
+    ctx.lineTo(-20, 3);
+    ctx.lineTo(-32, 8);
+    ctx.moveTo(22, -2);
+    ctx.lineTo(10, 3);
+    ctx.lineTo(22, 8);
+    ctx.stroke();
+
+    // Shocked open mouth
+    ctx.fillStyle = '#fb7185';
+    ctx.beginPath();
+    ctx.ellipse(-4, 18, 8.5, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Both hands clutching cheeks in shock
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.ellipse(-43, 26, 10.5, 14.5, -0.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(35, 26, 10.5, 14.5, 0.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  } else {
+    // 4. Happy Eureka Cheer ('^ ^' eyes + big smile)
+    ctx.lineWidth = 3.2;
+    ctx.beginPath();
+    ctx.arc(-25, 2, 8.5, Math.PI * 1.15, Math.PI * 1.85);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(15, 2, 8.5, Math.PI * 1.15, Math.PI * 1.85);
+    ctx.stroke();
+
+    ctx.fillStyle = '#fb7185';
+    ctx.beginPath();
+    ctx.moveTo(-11, 12);
+    ctx.lineTo(5, 12);
+    ctx.bezierCurveTo(6, 24, -12, 24, -11, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * Build 4-cut human-drawn Instatoon script (Top Narration + Oval Bubble with **Contrast** + Curved Arrow Notes)
+ */
+function getConversationalScript(calcKey, storyObj) {
+  const sc = (storyObj && storyObj.shortCartoon) || {
+    epTitle: preset.title,
+    p1: ['에어컨 아낀다고', '**2시간마다 껐다 켰지~**'],
+    p2: ['구형은 껐다 켜면', '**누진세 폭탄** 맞아!!'],
+    p3: ['으앙 **월 8만8천원**?!', '인버터는 **3만원대**인데!'],
+    p4: ['내 방 에어컨 전기세', '**머니핏 3초 계산** 끝!']
+  };
+
+  const metaByCat = {
+    electric: {
+      narrations: [
+        '원룸에 에어컨 아껴 트는 자취생이 들어왔다',
+        '지나가던 자취 만렙 선배가 등짝을 때렸다',
+        '실제 고지서를 비교해보니 매달 새는 돈이...',
+        '머니핏 3초 무료 계산기로 호구 탈출 성공!'
+      ],
+      notes: [
+        [['절약왕MAX'], ['자취 1년차', '껐다켰다 반복']],
+        [['팩트폭격⚡'], ['자취 5년차', '누진세 박사']],
+        [['멘붕MAX😭'], ['모르면 매달', '생돈 증발💸']],
+        [['해결완료✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    },
+    diet: {
+      narrations: [
+        '다이어트 결심하고 매일 편의점에 출근했다',
+        '지나가던 헬스 고인물 선배가 경악했다',
+        '4주 식비 영수증을 비교해보니 충격이었다',
+        '머니핏 3초 무료 계산기로 식비 반값 성공!'
+      ],
+      notes: [
+        [['의욕MAX'], ['헬린이 1일차', '편의점 단품']],
+        [['팩트폭격⚡'], ['3대 500', '벌크 장보기']],
+        [['식비파산😭'], ['낱개 구매의', '무서운 최후']],
+        [['득근성공✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    },
+    pet: {
+      narrations: [
+        '귀여운 반려동물 밥그릇에 사료를 부어주었다',
+        '동물병원 수의사 선생님이 한숨을 쉬었다',
+        '과급여 병원비와 1g 정량표를 비교해보니...',
+        '머니핏 3초 무료 계산기로 정량 급여 성공!'
+      ],
+      notes: [
+        [['사랑MAX'], ['초보 집사', '종이컵 눈대중']],
+        [['팩트폭격⚡'], ['수의영양학', '1g 정량원칙']],
+        [['병원비위기😭'], ['조금 더 준 게', '비만 직행💦']],
+        [['건강지킴✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    },
+    room: {
+      narrations: [
+        '설레는 첫 독립 가전·가구를 고르러 갔다',
+        '인테리어 만렙 선배가 장바구니를 말렸다',
+        '단품 구매와 황금배분 견적을 비교해보니...',
+        '머니핏 3초 무료 계산기로 예산 내 졸업!'
+      ],
+      notes: [
+        [['설렘MAX'], ['독립 1일차', '무계획 장보기']],
+        [['팩트폭격⚡'], ['프로 자취러', '황금비율 배분']],
+        [['예산초과😭'], ['따로 사니까', '수십만원 손해']],
+        [['세팅완료✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    },
+    auto: {
+      narrations: [
+        '드디어 인생 첫 신차 견적서를 뽑아보았다',
+        '세무사 선배가 계산기를 두드리며 말렸다',
+        '4년 실제 총비용(TCO)을 비교해보니...',
+        '머니핏 3초 무료 계산기로 최저가 출고!'
+      ],
+      notes: [
+        [['설렘MAX'], ['계약 1초전', '취등록세 모름']],
+        [['팩트폭격⚡'], ['세무사 선배', '세금+보험 비교']],
+        [['호구될뻔😭'], ['할부 이자에', '보험료 폭탄']],
+        [['최저가출고✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    },
+    telecom: {
+      narrations: [
+        '인터넷 약정과 위약금이 무서워 참고 썼다',
+        '통신비 재테크 고수가 당장 바꾸라고 했다',
+        '위약금 차감 후 당일 현금 순익을 따져보니...',
+        '머니핏 3초 무료 계산기로 현금 47만원 수령!'
+      ],
+      notes: [
+        [['인내심MAX'], ['약정 노예', '혜택 0원 방치']],
+        [['팩트폭격⚡'], ['성지 고수', '당일 현금지원']],
+        [['손해막심😭'], ['가만히 참으면', '나만 손해💸']],
+        [['현금입금✨'], ['프로필 링크', '3초 무료계산']]
+      ]
+    }
+  };
+
+  const catMeta = metaByCat[calcKey] || metaByCat.electric;
+
+  return {
+    episodeTitle: sc.epTitle || preset.title,
+    narrations: catMeta.narrations,
+    notes: catMeta.notes,
+    p1Lines: sc.p1,
+    p2Lines: sc.p2,
+    p3Lines: sc.p3,
+    p4Lines: sc.p4
+  };
 }
 
 function drawPanel(ctx, num, x, y, w, h, isFullSlide) {
   const s = isFullSlide ? w / 502 : 1;
-  const panelRadius = Math.round(14 * s);
-  const bgFallbacks = ['#fef9ee', '#e0f2fe', '#dcfce7', '#fef08a'];
+  const panelRadius = Math.round(12 * s);
   const conv = getConversationalScript(preset.calcKey, story);
 
-  // 1. Panel Base Background + Full Uncropped Animal Illustration
-  ctx.fillStyle = bgFallbacks[num - 1] || '#faf7f2';
-  roundRect(ctx, x, y, w, h, panelRadius);
-  ctx.fill();
+  // 1. Softly Blurred Realistic Indoor Background (Reference Image Aesthetic)
+  drawBlurredRoomBackground(ctx, x, y, w, h, num, panelRadius);
 
-  const drewArt = drawInstatoonQuadrant(ctx, artImg, num - 1, x, y, w, h, panelRadius);
-  if (!drewArt) {
-    const mood = num === 2 ? 'smart' : num === 4 ? 'happy' : 'shock';
-    const sp = num === 2 ? 'fox' : story.species || 'quokka';
-    drawAnimalCharacter(ctx, x + w * 0.5, y + h * 0.68, sp, mood, '#fecdd3', s * 1.18);
-  }
+  // 2. Top Rectangular Narration Box ("[ 회사에 의욕이 넘치는 인턴이 새로 들어왔다 ]" style)
+  const narrationText = (conv.narrations && conv.narrations[num - 1]) || conv.episodeTitle;
+  drawTopNarrationBox(ctx, narrationText, x, y, w, s);
 
-  // 2. SINGLE Giant-Typography Speech Bubble per panel (Benchmark Instatoon Style: 38px in grid / 76px in slide!)
-  const bx = x + 12 * s;
-  const by = y + 18 * s;
-  const bw = w - 24 * s;
-  const bh = 124 * s;
-  const tailRatio = num === 1 ? 0.42 : num === 2 ? 0.34 : num === 3 ? 0.64 : 0.38;
-  const tailDir = num === 3 ? 1 : -1;
-
-  drawSpeechBubble(ctx, bx, by, bw, bh, 32 * s, x + w * tailRatio, tailDir, s);
-  drawCutBadge(ctx, num, bx, by, s);
-
+  // 3. Giant Smooth Oval Speech Bubble with Dynamic Word-Size Contrast ("글자 강약!")
   const linesByNum = [conv.p1Lines, conv.p2Lines, conv.p3Lines, conv.p4Lines][num - 1] || conv.p1Lines;
-  const accentByNum = ['#b45309', '#dc2626', '#be123c', '#047857'][num - 1];
-  const bgByNum = ['#fde047', '#fecdd3', '#ffe4e6', '#bbf7d0'][num - 1];
-
-  drawCenteredBubbleText(
+  const accentByNum = ['#111111', '#dc2626', '#be123c', '#047857'][num - 1];
+  const hlByNum = ['#fef08a', '#fecdd3', '#fde047', '#bbf7d0'][num - 1];
+  drawOvalSpeechBubbleWithContrast(
     ctx,
     linesByNum,
-    bx + bw / 2,
-    by + 56 * s,
-    46 * s,
-    38 * s,
-    '#0f172a',
-    bw - 26 * s,
+    x + w * 0.48,
+    y + 138 * s,
+    200 * s,
+    62 * s,
+    s,
     accentByNum,
-    bgByNum
+    hlByNum
   );
 
-  // 3. Crisp Authentic Comic Panel Outline (#0f172a, 5px)
-  ctx.save();
-  roundRect(ctx, x, y, w, h, panelRadius);
-  ctx.lineWidth = 5 * s;
-  ctx.strokeStyle = '#0f172a';
-  ctx.stroke();
-  ctx.restore();
+  // 4. Center Hand-Drawn 2D Mochi Character (사람이 직접 그린 하얀 찹쌀떡 캐릭터)
+  drawHumanInstatoonCharacter(ctx, x + w * 0.5, y + 328 * s, preset.calcKey, num, s * 1.06);
+
+  // 5. Left & Right Handwritten Side Annotations + Curved Arrows (↗, ↙)
+  const pairNotes = (conv.notes && conv.notes[num - 1]) || [['의욕MAX'], ['자취 1년차']];
+  drawHandwrittenSideNotes(ctx, pairNotes[0], pairNotes[1], x, y, w, h, s);
+
+  // 6. Clean Comic Panel Frame (only in 2x2 grid mode)
+  if (!isFullSlide) {
+    ctx.save();
+    roundRect(ctx, x, y, w, h, panelRadius);
+    ctx.lineWidth = 4 * s;
+    ctx.strokeStyle = '#111111';
+    ctx.stroke();
+    ctx.restore();
+  }
 }
 
 function renderAll() {
@@ -527,29 +997,29 @@ function renderAll() {
   const conv = getConversationalScript(preset.calcKey, story);
 
   if (mode === 'grid') {
-    ctx.fillStyle = '#faf7f2';
+    ctx.fillStyle = '#f5f3ef';
     ctx.fillRect(0, 0, 1080, 1080);
 
-    // Top Episode Pill + Giant 32px Title
+    // Top Episode Pill + Handwritten/Bold Title
     ctx.save();
     roundRect(ctx, 28, 13, 128, 36, 18);
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#111111';
     ctx.fill();
     ctx.fillStyle = '#fde047';
-    ctx.font = '900 18px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.font = '800 18px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('공감 4컷툰', 92, 32);
+    ctx.fillText('공감 인스타툰', 92, 32);
     ctx.restore();
 
-    ctx.fillStyle = '#0f172a';
-    ctx.font = '900 31px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillStyle = '#111111';
+    ctx.font = '900 30px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.fillText(conv.episodeTitle, 168, 42);
 
     ctx.save();
     ctx.textAlign = 'right';
     ctx.fillStyle = '#475569';
-    ctx.font = '900 20px sans-serif';
+    ctx.font = '800 20px sans-serif';
     ctx.fillText('@moneyfit2026', 1052, 41);
     ctx.restore();
 
@@ -560,28 +1030,27 @@ function renderAll() {
     drawPanel(ctx, 3, 28, 550, pW, pH, false);
     drawPanel(ctx, 4, 550, 550, pW, pH, false);
 
-    // Bold, clean bottom callout bar
+    // Bottom Callout Bar
     ctx.save();
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#111111';
     ctx.font = '900 22px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.fillText('🔎 프로필 링크 또는 검색창에 「머니핏」 검색 → 3초 무료 계산기!', 540, 1058);
     ctx.restore();
   } else {
-    ctx.fillStyle = '#faf7f2';
-    ctx.fillRect(0, 0, 1080, 1080);
-    drawPanel(ctx, slideNum, 36, 28, 1008, 992, true);
-    ctx.save();
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#0f172a';
-    ctx.font = '900 24px "Pretendard", "Malgun Gothic", sans-serif';
-    ctx.fillText('🔎 프로필 링크 또는 검색창에 「머니핏」 검색 → 3초 무료 계산기!', 540, 1056);
-    ctx.restore();
+    drawPanel(ctx, slideNum, 0, 0, 1080, 1080, true);
   }
 }
-renderAll();
-if (artImg) artImg.onload = renderAll;
-window.addEventListener('load', renderAll);
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(renderAll);
+}
+window.addEventListener('load', () => {
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(renderAll);
+  } else {
+    renderAll();
+  }
+});
 </script>
 </body>
 </html>`;
