@@ -386,6 +386,26 @@
       </div>
     
             </div>
+            <!-- [개선안 2] 카톡 '나에게 보내기' & 메모장 1초 보관함 브릿지 (구매 이관율 극대화) -->
+            <div id="res-kakao-memo-bridge" class="bg-gradient-to-r from-yellow-400/15 via-amber-400/10 to-emerald-400/15 border border-yellow-400/40 rounded-xl p-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="text-[11px] font-extrabold text-yellow-300 flex items-center gap-1 whitespace-nowrap truncate">
+                  <span>💬 지금 결제하기 바쁘신가요?</span>
+                  <span class="bg-yellow-400 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded">이탈 방지 1초 보관</span>
+                </div>
+                <div class="text-[10px] text-slate-300 truncate mt-0.5">내 계산 견적서 + 쿠팡·공식몰 최저가 구매링크를 카톡 「나에게 보내기」·메모장에 통째로 저장하세요!</div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="copyPresetKakaoMemo(this)"
+                        class="flex-1 sm:flex-initial bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-black text-[11px] px-3 py-2 rounded-lg transition shadow-sm whitespace-nowrap flex items-center justify-center gap-1">
+                  <span>💬</span><span>견적+구매링크 카톡·메모 1초 저장</span>
+                </button>
+                <button type="button" onclick="sharePresetNative(this)"
+                        class="bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-600 font-bold text-[11px] px-2.5 py-2 rounded-lg transition whitespace-nowrap">
+                  📲 공유
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- 맞춤 혜택 카드 (100% 랜딩페이지 매칭 + 쿠팡/링크프라이스 서브버튼) -->
@@ -1245,6 +1265,81 @@
         navigator.clipboard.writeText(text).then(done).catch(done);
       } else {
         done();
+      }
+    }
+
+    function buildPresetKakaoPackage() {
+      const badge = document.getElementById('res-badge')?.textContent?.trim() || '';
+      const headline = document.getElementById('res-headline')?.textContent?.trim() || '';
+      const zf = document.getElementById('res-zero-feel-banner')?.textContent?.trim() || '';
+      const metricsEls = document.querySelectorAll('#res-metrics-grid > a, #res-metrics-grid > div');
+      const lines = [];
+      metricsEls.forEach(item => {
+        const divs = item.querySelectorAll('div');
+        const l = divs[0]?.textContent?.trim() || '';
+        const v = divs[1]?.textContent?.trim() || '';
+        if (l && v) lines.push('• ' + l + ': ' + v);
+      });
+
+      const actionLinks = [];
+      const itemCards = document.querySelectorAll('#res-action-items > div');
+      itemCards.forEach((card, idx) => {
+        const titleTxt = card.querySelector('.text-white')?.textContent?.trim() || ('맞춤 품목 ' + (idx + 1));
+        const links = card.querySelectorAll('a');
+        const cpHref = links[0]?.href || '';
+        const lpHref = links[1]?.href || '';
+        actionLinks.push(
+          '[' + (idx + 1) + '] 🛒 ' + titleTxt + '\n' +
+          (cpHref ? '  🚀 쿠팡 로켓배송 최저가: ' + cpHref + '\n' : '') +
+          (lpHref ? '  🏷️ 공식몰 제휴 특가: ' + lpHref : '')
+        );
+      });
+
+      const text =
+        '💬 [머니핏 내 계산 견적서 + 최저가 장바구니 보관함]\n' +
+        '📌 ' + PRESET_TITLE + '\n' +
+        badge + ' ' + headline + '\n' +
+        (zf ? '🔥 ' + zf + '\n' : '') +
+        '──────────────────\n' +
+        lines.join('\n') + '\n' +
+        '──────────────────\n' +
+        '🛒 [집에서 바로 결제하는 1:1 맞춤 최저가 링크]\n' +
+        actionLinks.join('\n\n') + '\n' +
+        '──────────────────\n' +
+        '👉 내 계산기 다시 열기: ' + window.location.href + '\n' +
+        '※ 이 포스팅은 쿠팡 파트너스 및 링크프라이스 제휴 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.';
+
+      return {
+        title: '[머니핏 견적서] ' + PRESET_TITLE,
+        text: text,
+        url: window.location.href
+      };
+    }
+
+    function copyPresetKakaoMemo(btnEl) {
+      const pkg = buildPresetKakaoPackage();
+      recordPresetClick('coupang', pkg.url, 'receipt_cart');
+      const done = () => {
+        if (!btnEl) return;
+        const orig = btnEl.getAttribute('data-orig') || btnEl.innerHTML;
+        btnEl.setAttribute('data-orig', orig);
+        btnEl.innerHTML = '<span>✅</span><span>견적+구매링크 복사 완료! 카톡에 붙여넣으세요</span>';
+        setTimeout(() => { btnEl.innerHTML = orig; }, 2600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pkg.text).then(done).catch(done);
+      } else {
+        done();
+      }
+    }
+
+    function sharePresetNative(btnEl) {
+      const pkg = buildPresetKakaoPackage();
+      recordPresetClick('coupang', pkg.url, 'receipt_cart');
+      if (navigator.share) {
+        navigator.share({ title: pkg.title, text: pkg.text, url: pkg.url }).catch(() => copyPresetKakaoMemo(btnEl));
+      } else {
+        copyPresetKakaoMemo(btnEl);
       }
     }
   </script>

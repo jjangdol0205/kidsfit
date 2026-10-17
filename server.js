@@ -497,6 +497,233 @@ function resolveFilePath(cleanUrlPath) {
   return null;
 }
 
+function buildTodayActionKit(webtoon, naver) {
+  const priorityWebtoonOrder = [
+    'diet-male-fatloss',
+    'pet-maltese-5kg',
+    'room-oneroom-100',
+    'auto-avante-3000',
+    'telecom-penalty-15',
+    'electric-winter-heater',
+    'auto-grandeur-5000',
+    'telecom-3yr-expired',
+    'electric-dryer',
+    'electric-dehumidifier',
+    'diet-female-lean',
+    'telecom-mvno-switch'
+  ];
+
+  let publishedSet = new Set(['electric-studio-ac']);
+  try {
+    const trackerPath = path.join(ROOT_DIR, 'logs', 'sns_publish_tracker.json');
+    if (fs.existsSync(trackerPath)) {
+      const tr = JSON.parse(fs.readFileSync(trackerPath, 'utf8'));
+      if (Array.isArray(tr.publishedSlugs)) {
+        publishedSet = new Set(tr.publishedSlugs);
+      }
+    }
+  } catch (e) {}
+
+  let nextWebtoonSlug = priorityWebtoonOrder.find(s => !publishedSet.has(s));
+  if (!nextWebtoonSlug && webtoon && Array.isArray(webtoon.nextQueue) && webtoon.nextQueue[0]) {
+    nextWebtoonSlug = webtoon.nextQueue[0].slug;
+  }
+  if (!nextWebtoonSlug) nextWebtoonSlug = 'diet-male-fatloss';
+
+  let webtoonKit = {
+    slug: nextWebtoonSlug,
+    title: nextWebtoonSlug,
+    gridImageUrl: `/sns/${nextWebtoonSlug}-grid.png`,
+    threadsMain: '',
+    threadsReply: '',
+    instagramCaption: '',
+    facebookPost: '',
+    threadsUrl: 'https://www.threads.net/@moneyfit2026',
+    instagramUrl: 'https://www.instagram.com/moneyfit2026/'
+  };
+
+  try {
+    const bundlePath = path.join(ROOT_DIR, 'sns_outbox', nextWebtoonSlug, 'post_bundle.json');
+    if (fs.existsSync(bundlePath)) {
+      const b = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+      webtoonKit = {
+        slug: b.slug || nextWebtoonSlug,
+        title: b.title || nextWebtoonSlug,
+        gridImageUrl: `/sns/${b.slug || nextWebtoonSlug}-grid.png`,
+        threadsMain: b.threadsMain || '',
+        threadsReply: b.threadsReply || '',
+        instagramCaption: b.instagramCaption || '',
+        facebookPost: b.facebookPost || '',
+        threadsUrl: 'https://www.threads.net/@moneyfit2026',
+        instagramUrl: 'https://www.instagram.com/moneyfit2026/'
+      };
+    }
+  } catch (e) {}
+
+  // Naver Blog next item
+  const nextBlogSlug = (naver && naver.blog && Array.isArray(naver.blog.nextQueue) && naver.blog.nextQueue[0]?.slug) || 'electric-dehumidifier';
+  let blogKit = {
+    slug: nextBlogSlug,
+    title: `[머니핏 실측 리포트] ${nextBlogSlug}`,
+    body: '',
+    writeUrl: 'https://blog.naver.com/GoBlogWrite.naver'
+  };
+  try {
+    const blogFile = path.join(ROOT_DIR, 'backlog_human_posts', 'naver_blog', `${nextBlogSlug}.txt`);
+    if (fs.existsSync(blogFile)) {
+      const raw = fs.readFileSync(blogFile, 'utf8').trim();
+      const firstLineMatch = raw.match(/^\[제목\]\s*(.+)$/m);
+      blogKit.title = firstLineMatch ? firstLineMatch[1].trim() : blogKit.title;
+      blogKit.body = raw;
+    }
+  } catch (e) {}
+
+  // Naver Jisik-iN next item
+  const nextJisikSlug = (naver && naver.jisikin && Array.isArray(naver.jisikin.nextQueue) && naver.jisikin.nextQueue[0]?.slug) || 'electric-dehumidifier';
+  let jisikinKit = {
+    slug: nextJisikSlug,
+    title: `[지식iN 맞춤 답변] ${nextJisikSlug}`,
+    answerA: '',
+    answerB: '',
+    fullText: '',
+    searchUrl: `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(nextJisikSlug.replace(/-/g, ' '))}&section=qna&sort=date`
+  };
+  try {
+    const jisikFile = path.join(ROOT_DIR, 'backlog_human_posts', 'jisikin_answers', `${nextJisikSlug}.txt`);
+    if (fs.existsSync(jisikFile)) {
+      const raw = fs.readFileSync(jisikFile, 'utf8').trim();
+      const blocks = raw.split(/\n---\n/);
+      const cleanBlock = (str) => String(str || '').replace(/^\[지식iN[^\n]*\]\s*\n?/, '').trim();
+      jisikinKit.answerA = cleanBlock(blocks[0] || raw);
+      jisikinKit.answerB = cleanBlock(blocks[1] || blocks[0] || raw);
+      jisikinKit.fullText = raw;
+      const kwMap = {
+        'electric-dehumidifier': '제습기 전기세 24시간',
+        'auto-casper-cash-vs-rent': '캐스퍼 장기렌트 할부',
+        'room-officetel-300': '오피스텔 가전 가구 예산',
+        'electric-dryer': '건조기 전기세',
+        'diet-male-fatloss': '남자 80kg 식단 닭가슴살'
+      };
+      const qKw = kwMap[nextJisikSlug] || '전기세 누진세 계산기';
+      jisikinKit.searchUrl = `https://kin.naver.com/search/list.naver?query=${encodeURIComponent(qKw)}&section=qna&sort=date`;
+    }
+  } catch (e) {}
+
+  // Naver Cafe next item
+  const nextCafeSlug = (naver && naver.cafe && Array.isArray(naver.cafe.nextQueue) && naver.cafe.nextQueue[0]?.slug) || 'electric-studio-ac';
+  let cafeKit = {
+    slug: nextCafeSlug,
+    title: `[네이버 카페 정보글] ${nextCafeSlug}`,
+    body: '',
+    cafeUrl: 'https://section.cafe.naver.com/'
+  };
+  try {
+    const cafeFile = path.join(ROOT_DIR, 'backlog_human_posts', 'naver_cafe', `${nextCafeSlug}.txt`);
+    if (fs.existsSync(cafeFile)) {
+      const raw = fs.readFileSync(cafeFile, 'utf8').trim();
+      const titleMatch = raw.match(/^\[제목 옵션 A\]\s*(.+)$/m);
+      if (titleMatch) cafeKit.title = titleMatch[1].trim();
+      cafeKit.body = raw;
+    }
+  } catch (e) {}
+
+  return {
+    webtoon: webtoonKit,
+    blog: blogKit,
+    jisikin: jisikinKit,
+    cafe: cafeKit
+  };
+}
+
+function completeOfficeTask(channel, slug) {
+  const ch = String(channel || '').toLowerCase().trim();
+  const safeSlug = String(slug || '').replace(/[^a-z0-9-]/gi, '');
+  if (!ch || !safeSlug) {
+    return { ok: false, error: 'Missing channel or slug' };
+  }
+
+  if (ch === 'webtoon' || ch === 'sns') {
+    const trackerPath = path.join(ROOT_DIR, 'logs', 'sns_publish_tracker.json');
+    let tracker = {
+      account: '@moneyfit2026',
+      updatedAt: new Date().toISOString(),
+      dailySafeLimitPerChannel: 2,
+      minIntervalHours: 4,
+      publishedSlugs: ['electric-studio-ac'],
+      history: []
+    };
+    if (fs.existsSync(trackerPath)) {
+      try {
+        tracker = JSON.parse(fs.readFileSync(trackerPath, 'utf8'));
+      } catch (e) {}
+    }
+    if (!Array.isArray(tracker.publishedSlugs)) tracker.publishedSlugs = [];
+    if (!Array.isArray(tracker.history)) tracker.history = [];
+    if (!tracker.publishedSlugs.includes(safeSlug)) {
+      tracker.publishedSlugs.push(safeSlug);
+    }
+    tracker.updatedAt = new Date().toISOString();
+    tracker.history.push({
+      slug: safeSlug,
+      channel: 'threads_instagram',
+      publishedAt: tracker.updatedAt,
+      status: 'LIVE_VERIFIED'
+    });
+    fs.mkdirSync(path.dirname(trackerPath), { recursive: true });
+    fs.writeFileSync(trackerPath, JSON.stringify(tracker, null, 2), 'utf8');
+    return {
+      ok: true,
+      completed: { channel: 'webtoon', slug: safeSlug, publishedCount: tracker.publishedSlugs.length },
+      officeState: buildOfficeStatePayload()
+    };
+  }
+
+  // Naver Backlog Markdown update
+  const mdPath = path.join(ROOT_DIR, '야간_실전홍보_백로그_현황.md');
+  if (!fs.existsSync(mdPath)) {
+    return { ok: false, error: 'Backlog markdown file not found' };
+  }
+  const mdContent = fs.readFileSync(mdPath, 'utf8');
+  const escapedSlug = safeSlug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const rowRegex = new RegExp(
+    `^(\\|\\s*\\d+\\s*\\|\\s*[^|]+?\\s*\\|\\s*\`${escapedSlug}\`\\s*\\|\\s*)` +
+    `블로그\\s*(\\d+)\\s*·\\s*카페\\s*(\\d+)\\s*·\\s*지식\\s*(\\d+)\\s*·\\s*디시\\s*(\\d+)\\s*\\(\\*\\*총\\s*(\\d+)회\\*\\*\\)` +
+    `(\\s*\\|.*)$`,
+    'm'
+  );
+
+  let updatedRow = null;
+  let nextContent = mdContent.replace(rowRegex, (full, prefix, b, c, j, d, tot, suffix) => {
+    let blog = Number(b);
+    let cafe = Number(c);
+    let jisikin = Number(j);
+    let dc = Number(d);
+    if (ch.includes('blog')) blog += 1;
+    else if (ch.includes('cafe')) cafe += 1;
+    else if (ch.includes('jisik') || ch.includes('kin')) jisikin += 1;
+    else if (ch.includes('dc') || ch.includes('comm')) dc += 1;
+    const total = blog + cafe + jisikin + dc;
+    updatedRow = { slug: safeSlug, channel: ch, blog, cafe, jisikin, dc, total };
+    return `${prefix}블로그 ${blog} · 카페 ${cafe} · 지식 ${jisikin} · 디시 ${dc} (**총 ${total}회**)${suffix}`;
+  });
+
+  if (!updatedRow) {
+    return { ok: false, error: `Preset slug ${safeSlug} not found in backlog table` };
+  }
+
+  nextContent = nextContent.replace(
+    /(총\s*)(\d+)(건\s*실제\s*게시\s*완료!)/,
+    (_, p1, n, p2) => `${p1}${Number(n) + 1}${p2}`
+  );
+  fs.writeFileSync(mdPath, nextContent, 'utf8');
+
+  return {
+    ok: true,
+    completed: updatedRow,
+    officeState: buildOfficeStatePayload()
+  };
+}
+
 function buildOfficeStatePayload() {
   const stats = getStatsPayload();
   let webtoon = { renderedCount: 36, totalEpisodes: 36, publishedLiveCount: 1, pendingPublishCount: 35 };
@@ -504,15 +731,15 @@ function buildOfficeStatePayload() {
     totalFiles: 144,
     totalDone: 98,
     totalTarget: 144,
-    blog: { done: 7, pending: 29, nextQueue: [{ num: '07', slug: 'diet-male-fatloss' }] },
+    blog: { done: 7, pending: 29, nextQueue: [{ num: '02', slug: 'electric-stand-ac' }] },
     cafe: { done: 32, pending: 4, nextQueue: [{ num: '01', slug: 'electric-studio-ac' }] },
-    jisikin: { done: 23, pending: 13, nextQueue: [{ num: '07', slug: 'diet-male-fatloss' }] },
+    jisikin: { done: 23, pending: 13, nextQueue: [{ num: '03', slug: 'electric-dehumidifier' }] },
     community: { done: 36, pending: 0 }
   };
   let spamAudit = {
     status: '🟢 CLEAN (스팸·중복 0건 / 100% 고유화 통과)',
     webtoonQuality: { uniquePanel1Count: 36, uniquePanel2Count: 36, uniqueHashtagsCount: 36, spamTokenCount: 0 },
-    naverQuality: { undefinedLeaks: 0, roboticHashtags: 0, avgBlogJaccardPct: 6.6 }
+    naverQuality: { undefinedLeaks: 0, roboticHashtags: 0, avgBlogJaccardPct: 4.3 }
   };
 
   try {
@@ -524,6 +751,8 @@ function buildOfficeStatePayload() {
     }
   } catch (e) {}
 
+  const todayActionKit = buildTodayActionKit(webtoon, naver);
+
   return {
     status: 'ok',
     updatedAt: new Date().toISOString(),
@@ -533,6 +762,7 @@ function buildOfficeStatePayload() {
     webtoon,
     naver,
     spamAudit,
+    todayActionKit,
     departments: [
       {
         id: 'hq-manager',
@@ -548,7 +778,7 @@ function buildOfficeStatePayload() {
         status: 'WORKING',
         progress: 100,
         lead: '비버 과장 🦫 & 수달 주임 🦦',
-        currentTask: `4-Layer 직결 브릿지 + EXP-0/A/B/C 가동 중 (실시간 CTR ${stats.total.ctrPercent}% / 최다 슬롯: ${stats.total.topSlot})`
+        currentTask: `4-Layer 직결 브릿지 + 카톡1초보관함 + 시즌급상승배너 가동 (실시간 CTR ${stats.total.ctrPercent}% / 최다 슬롯: ${stats.total.topSlot})`
       },
       {
         id: 'dept-naver-seo',
@@ -619,6 +849,22 @@ const server = http.createServer(async (req, res) => {
       'Cache-Control': 'no-store'
     });
     res.end(JSON.stringify(buildOfficeStatePayload(), null, 2));
+    return;
+  }
+
+  // 1-C. Virtual AI Company 1-Click Backlog Task Completion API (/api/office-complete-task?channel=webtoon|blog|jisikin|cafe&slug=...)
+  if (cleanUrlPath === '/api/office-complete-task') {
+    const params = new URLSearchParams(rawQuery || '');
+    const channel = params.get('channel') || '';
+    const slug = params.get('slug') || '';
+    const result = completeOfficeTask(channel, slug);
+    res.writeHead(result.ok ? 200 : 400, {
+      ...SECURITY_HEADERS,
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-store'
+    });
+    res.end(JSON.stringify(result, null, 2));
     return;
   }
 

@@ -153,6 +153,28 @@
         </button>
       </div>
 
+      <!-- [Improvement 3] 10월~11월 시즌 급상승 키워드 1초 자동 스위칭 배너 -->
+      <div id="seasonal-surge-banner" class="bg-gradient-to-r from-amber-50 via-orange-50/80 to-rose-50 border border-amber-200/90 rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 shadow-sm">
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="bg-rose-600 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-full whitespace-nowrap animate-pulse">🔥 10~11월 급상승</span>
+          <span class="text-xs font-extrabold text-slate-800 whitespace-nowrap">지금 가장 많이 계산하는 시즌 손익 TOP 4:</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button type="button" onclick="applyScenarioPreset('electric-winter-heater')" class="text-[11px] font-extrabold bg-white hover:bg-rose-600 text-slate-800 hover:text-white border border-amber-300 px-2.5 py-1 rounded-xl transition whitespace-nowrap shadow-sm">
+            ⚡ 겨울 2000W 온풍기 난방비 폭탄
+          </button>
+          <button type="button" onclick="applyScenarioPreset('auto-grandeur-5000')" class="text-[11px] font-extrabold bg-white hover:bg-blue-600 text-slate-800 hover:text-white border border-amber-300 px-2.5 py-1 rounded-xl transition whitespace-nowrap shadow-sm">
+            🚗 연말 사업자 그랜저 1,440만 절세
+          </button>
+          <button type="button" onclick="applyScenarioPreset('telecom-penalty-15')" class="text-[11px] font-extrabold bg-white hover:bg-indigo-600 text-slate-800 hover:text-white border border-amber-300 px-2.5 py-1 rounded-xl transition whitespace-nowrap shadow-sm">
+            🌐 인터넷 위약금 vs 현금 47만 환승
+          </button>
+          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-[11px] font-extrabold bg-white hover:bg-emerald-600 text-slate-800 hover:text-white border border-amber-300 px-2.5 py-1 rounded-xl transition whitespace-nowrap shadow-sm">
+            🍗 80kg 체지방 커팅 127팩 장보기
+          </button>
+        </div>
+      </div>
+
       <!-- 12칼럼 반응형 레이아웃: 좌측 5칼럼 입력 폼 / 우측 7칼럼 영수증 & 수익화 리포트 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
@@ -240,6 +262,27 @@
                 🔥 절약액 차감 시 내 실체감가: 0원!
               </div>
               <div id="receipt-action-items" class="space-y-2"></div>
+
+              <!-- [Improvement 2] 내 계산 견적서 + 최저가 구매링크 카톡·메모장 1초 보관함 브릿지 -->
+              <div id="receipt-kakao-memo-bridge" class="mt-3 bg-slate-900/95 border border-amber-400/40 rounded-xl p-3 space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-extrabold text-amber-300 truncate">💛 내 견적서 + 최저가 구매링크 카톡·메모장 1초 보관함</span>
+                  <span class="text-[10px] font-bold text-slate-400 shrink-0 whitespace-nowrap">퇴근 후·가족 상의용</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-snug break-keep">
+                  지금 바로 결제하기 애매하다면 <strong>내 계산 수치 + 맞춤 최저가 링크</strong>를 카카오톡 '나에게 보내기'나 메모장에 통째로 저장해 두세요!
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <button type="button" id="btn-kakao-memo-save" onclick="copyKakaoMemoBridge(this)"
+                    class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs py-2.5 px-3 rounded-xl transition shadow-sm whitespace-nowrap truncate">
+                    💬 카톡 '나에게 보내기'용 견적+링크 복사
+                  </button>
+                  <button type="button" id="btn-native-share-sheet" onclick="shareKakaoOrNative(this)"
+                    class="w-full bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-400/30 font-extrabold text-xs py-2.5 px-3 rounded-xl transition whitespace-nowrap truncate">
+                    📲 카톡·문자 바로 전송 (공유 시트)
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

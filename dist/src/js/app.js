@@ -99,6 +99,18 @@
     'telecom-mvno-switch': '5G → 알뜰폰 유심 전환'
   };
 
+  let lastCalcResult = null;
+  const SEASONAL_SURGE_PRESET_IDS = new Set([
+    'electric-winter-heater',
+    'electric-dryer',
+    'diet-male-fatloss',
+    'pet-maltese-5kg',
+    'room-oneroom-100',
+    'auto-grandeur-5000',
+    'telecom-penalty-15',
+    'telecom-3yr-expired'
+  ]);
+
   /**
    * Render 1-Click Scenario Chips & Contextual Deep-Dive Report Links
    */
@@ -120,21 +132,28 @@
     if (chipsContainer) {
       chipsContainer.innerHTML = presets.map(p => {
         const isActive = p.id === activeScenarioId;
-        const shortLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 14);
+        const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
+        const baseLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 14);
+        const shortLabel = isSurge ? `🔥급상승 ${baseLabel}` : baseLabel;
         const cls = isActive
           ? 'bg-blue-600 text-white border-blue-600 font-extrabold shadow-sm'
-          : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:text-blue-700 font-semibold';
+          : isSurge
+            ? 'bg-amber-50/90 text-rose-800 border-amber-300 hover:border-rose-400 hover:text-rose-700 font-extrabold shadow-xs'
+            : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:text-blue-700 font-semibold';
         return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-[11px] px-2.5 py-1 rounded-lg border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
       }).join('');
     }
 
     if (relatedGrid) {
-      relatedGrid.innerHTML = presets.map(p => `
-        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border border-slate-200 hover:border-blue-400 rounded-xl p-2.5 transition">
-          <span class="text-xs font-semibold text-slate-700 group-hover:text-blue-700 truncate pr-2">${p.title}</span>
+      relatedGrid.innerHTML = presets.map(p => {
+        const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
+        return `
+        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border ${isSurge ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200'} hover:border-blue-400 rounded-xl p-2.5 transition">
+          <span class="text-xs font-semibold text-slate-700 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${p.title}</span>
           <span class="text-[11px] font-bold text-blue-600 shrink-0 whitespace-nowrap">리포트 →</span>
         </a>
-      `).join('');
+      `;
+      }).join('');
     }
   }
 
@@ -255,6 +274,7 @@
 
     const res = spec.calculate(values);
     if (!res) return;
+    lastCalcResult = res;
 
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
@@ -1271,6 +1291,120 @@
 
   window.copyShareUrl = function () {
     window.copyReceiptShareText(document.getElementById('btn-share-receipt'));
+  };
+
+  /**
+   * [개선안 2] 카톡 '나에게 보내기' & 메모장 1초 보관함 패키지 (견적서 + 쿠팡·링크프라이스 최저가 구매링크 직결)
+   */
+  function buildKakaoMemoPackage() {
+    const titleEl = document.getElementById('calc-form-title');
+    const badgeEl = document.getElementById('result-badge');
+    const headlineEl = document.getElementById('result-headline');
+    const zfEl = document.getElementById('receipt-zero-feel-banner');
+    const metricsEls = document.querySelectorAll('#result-metrics-grid > a, #result-metrics-grid > div');
+
+    const metricLines = [];
+    metricsEls.forEach(item => {
+      const divs = item.querySelectorAll('div');
+      const label = divs[0]?.textContent?.trim() || '';
+      const val = divs[1]?.textContent?.trim() || '';
+      if (label && val) metricLines.push(`• ${label}: ${val}`);
+    });
+
+    const monetizationModule = getMonetizationModule();
+    const buildCoupangHref = (kw) => {
+      return monetizationModule.buildCoupangUrl
+        ? monetizationModule.buildCoupangUrl(kw, currentCalc)
+        : `https://www.coupang.com/np/search?q=${encodeURIComponent(kw || '')}&lptag=AF7865143`;
+    };
+    const buildLpHref = (merchant, url) => {
+      return monetizationModule.buildLinkPriceDeepLink
+        ? monetizationModule.buildLinkPriceDeepLink(merchant, url)
+        : (url || 'https://truthofmarket.com');
+    };
+
+    const actionItems = (lastCalcResult && Array.isArray(lastCalcResult.actionItems)) ? lastCalcResult.actionItems : [];
+    const purchaseLines = actionItems.slice(0, 3).map((item, idx) => {
+      const cpUrl = buildCoupangHref(item.coupangKw);
+      const lpUrl = buildLpHref(item.lpMerchant, item.lpUrl);
+      return (
+        `[${idx + 1}] ${item.icon || '🛒'} ${item.label} (${item.calcVal})\n` +
+        `  🚀 쿠팡 로켓배송 최저가: ${cpUrl}\n` +
+        `  🏷️ 공식몰 제휴 특가: ${lpUrl}`
+      );
+    });
+
+    const baseUrl = window.location.origin + window.location.pathname;
+    const shareUrl = `${baseUrl}?calc=${encodeURIComponent(currentCalc)}&preset=${encodeURIComponent(activeScenarioId)}`;
+
+    const text =
+      `💬 [머니핏 내 계산 견적서 + 최저가 장바구니 보관함]\n` +
+      `📌 ${titleEl ? titleEl.textContent.trim() : '손익분기점 진단'}\n` +
+      `${badgeEl ? badgeEl.textContent.trim() : ''} ${headlineEl ? headlineEl.textContent.trim() : ''}\n` +
+      `${zfEl ? '🔥 ' + zfEl.textContent.trim() + '\n' : ''}` +
+      `──────────────────\n` +
+      `${metricLines.join('\n')}\n` +
+      `──────────────────\n` +
+      `🛒 [집에서 바로 결제하는 1:1 맞춤 최저가 링크]\n` +
+      `${purchaseLines.join('\n\n')}\n` +
+      `──────────────────\n` +
+      `👉 내 계산기 다시 열기: ${shareUrl}\n` +
+      `※ 이 포스팅은 쿠팡 파트너스 및 링크프라이스 제휴 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.`;
+
+    return {
+      title: `[머니핏 견적서] ${headlineEl ? headlineEl.textContent.trim() : '맞춤 손익 영수증'}`,
+      text,
+      url: shareUrl
+    };
+  }
+
+  window.copyKakaoMemoBridge = function (btnEl) {
+    const pkg = buildKakaoMemoPackage();
+    if (typeof window.recordAffiliateClick === 'function') {
+      window.recordAffiliateClick('coupang', pkg.url, 'receipt_cart');
+    }
+
+    const showFeedback = () => {
+      if (btnEl) {
+        const origHtml = btnEl.getAttribute('data-orig-html') || btnEl.innerHTML;
+        btnEl.setAttribute('data-orig-html', origHtml);
+        btnEl.innerHTML = '<span>✅</span><span>견적서+구매링크 복사 완료! 카톡에 붙여넣으세요</span>';
+        setTimeout(() => {
+          btnEl.innerHTML = origHtml;
+        }, 2600);
+      }
+      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
+        window.MoneyFitCopyKit.showToast("💬 내 계산 견적서 + 쿠팡·공식몰 최저가 링크가 복사되었습니다! 카카오톡 '나에게 보내기'나 메모장에 붙여넣으세요.");
+      }
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pkg.text).then(showFeedback).catch(() => {
+        fallbackCopy(pkg.text, true);
+        showFeedback();
+      });
+    } else {
+      fallbackCopy(pkg.text, true);
+      showFeedback();
+    }
+  };
+
+  window.shareKakaoOrNative = function (btnEl) {
+    const pkg = buildKakaoMemoPackage();
+    if (typeof window.recordAffiliateClick === 'function') {
+      window.recordAffiliateClick('coupang', pkg.url, 'receipt_cart');
+    }
+    if (navigator.share) {
+      navigator.share({
+        title: pkg.title,
+        text: pkg.text,
+        url: pkg.url
+      }).catch(() => {
+        window.copyKakaoMemoBridge(btnEl);
+      });
+    } else {
+      window.copyKakaoMemoBridge(btnEl);
+    }
   };
 
   function enableAdminMode(openWizard = true) {

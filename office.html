@@ -234,6 +234,49 @@
         </div>
       </div>
 
+      <!-- [개선안 1] 사옥 내 원클릭 오늘치 발행 키트 복사기 & 게시 완료 체크 실행기 -->
+      <div id="office-action-kit-deck" class="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/60 border border-amber-400/40 rounded-2xl p-4 space-y-3 shadow-lg">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="bg-amber-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full shrink-0">⚡ 1초 실행덱</span>
+            <h3 class="text-xs sm:text-sm font-extrabold text-white truncate">오늘치 발행 키트 원클릭 복사 & 완료 체크</h3>
+          </div>
+          <span id="kit-queue-badge" class="text-[11px] font-bold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 rounded-full shrink-0">실시간 연동</span>
+        </div>
+
+        <!-- 채널 전환 탭 (웹툰 / 블로그 / 지식iN / 카페) -->
+        <div class="grid grid-cols-4 gap-1 bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-[11px] font-bold">
+          <button type="button" id="kit-tab-webtoon" onclick="switchActionKitChannel('webtoon')" class="py-1.5 px-1.5 rounded-lg bg-amber-400 text-slate-950 font-extrabold transition truncate">🦜 웹툰·SNS</button>
+          <button type="button" id="kit-tab-blog" onclick="switchActionKitChannel('blog')" class="py-1.5 px-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition truncate">🦔 블로그</button>
+          <button type="button" id="kit-tab-jisikin" onclick="switchActionKitChannel('jisikin')" class="py-1.5 px-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition truncate">🐾 지식iN</button>
+          <button type="button" id="kit-tab-cafe" onclick="switchActionKitChannel('cafe')" class="py-1.5 px-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition truncate">☕ 카페</button>
+        </div>
+
+        <!-- 현재 선택된 채널의 오늘치 원고 & 원클릭 버튼 영역 -->
+        <div id="kit-body-container" class="bg-slate-950/90 border border-slate-800 rounded-xl p-3 space-y-2.5 text-xs">
+          <div class="flex items-center justify-between gap-2">
+            <span id="kit-item-slug" class="text-[11px] font-mono text-amber-300 font-bold truncate">#diet-male-fatloss</span>
+            <a id="kit-open-platform-link" href="https://www.threads.net/@moneyfit2026" target="_blank" rel="noopener noreferrer" class="text-[11px] font-extrabold text-sky-300 hover:text-sky-200 underline shrink-0">🚀 발행 채널 열기 ↗</a>
+          </div>
+          <div id="kit-item-title" class="text-xs font-extrabold text-white leading-snug">남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량</div>
+          <div id="kit-webtoon-preview-wrap" class="flex items-center gap-2.5 bg-slate-900 border border-slate-800 rounded-lg p-2">
+            <img id="kit-webtoon-thumb" src="/sns/diet-male-fatloss-grid.png" alt="오늘치 4컷 웹툰" class="w-14 h-14 object-cover rounded border border-slate-700 shrink-0 bg-slate-800" />
+            <div class="min-w-0 flex-1 space-y-1">
+              <div class="text-[11px] text-slate-300 font-semibold truncate">4컷 합본 고해상도 PNG (1080×1080)</div>
+              <a id="kit-webtoon-download" href="/sns/diet-male-fatloss-grid.png" download="moneyfit-webtoon-grid.png" class="inline-block bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-extrabold px-2.5 py-1 rounded-lg transition">🖼️ 웹툰 이미지 다운로드</a>
+            </div>
+          </div>
+          <textarea id="kit-preview-textarea" readonly rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-[11px] text-slate-300 font-mono leading-relaxed focus:outline-none">원고 데이터를 불러오는 중입니다...</textarea>
+          <div id="kit-copy-buttons" class="grid grid-cols-2 gap-1.5">
+            <button type="button" onclick="copyActionKitField('primary', this)" class="bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] transition truncate">📋 본문 원클릭 복사</button>
+            <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2.5 rounded-lg text-[11px] transition truncate">📋 첫댓글·서브 복사</button>
+          </div>
+          <button type="button" id="btn-complete-office-task" onclick="completeActiveOfficeTask(this)" class="w-full bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs transition shadow-md flex items-center justify-center gap-1.5">
+            <span>✅</span><span>게시 완료 체크 (백로그 실시간 차감 & 다음 큐 전환)</span>
+          </button>
+        </div>
+      </div>
+
       <!-- 실시간 전사 업무 스트림 로그 -->
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2.5">
@@ -588,6 +631,11 @@
           .join('');
       }
       renderRosterButtons();
+      if (typeof switchActionKitChannel === 'function') {
+        if (id === 'hedgehog-blog') switchActionKitChannel('blog');
+        else if (id === 'meerkat-kin') switchActionKitChannel('jisikin');
+        else if (id === 'panda-toon' || id === 'parrot-sns') switchActionKitChannel('webtoon');
+      }
     }
 
     function selectDepartment(deptId) {
@@ -882,37 +930,231 @@
       }
     });
 
+    let activeKitChannel = 'webtoon';
+    let liveActionKit = {
+      webtoon: {
+        slug: 'diet-male-fatloss',
+        title: '남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량',
+        gridImageUrl: '/sns/diet-male-fatloss-grid.png',
+        threadsMain: '🔥 남자 80kg 4주 커팅: 배달 대신 닭가슴살 56팩 세팅 시 식비 -29.2만 원 절약! (첫 댓글 계산기 직링크)',
+        threadsReply: '👉 내 체중·기간 넣고 닭가슴살 팩수 3초 계산하기: https://truthofmarket.com/preset/diet-male-fatloss/',
+        instagramCaption: '남자 80kg 4주 커팅 식단표 & 닭가슴살 56팩 장보기 견적서! 프로필 링크에서 무료 계산하세요.',
+        threadsUrl: 'https://www.threads.net/@moneyfit2026'
+      },
+      blog: {
+        slug: 'electric-dehumidifier',
+        title: '여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실측 리포트',
+        body: '[제목] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실측 리포트\n\n제습기 320W 하루 24시간 가동 시 한전 3단계 누진세 구간 진입 여부와 인버터 1등급 교체 회수기간을 정리했습니다.\n👉 무료 계산기: https://truthofmarket.com/preset/electric-dehumidifier/',
+        writeUrl: 'https://blog.naver.com/GoBlogWrite.naver'
+      },
+      jisikin: {
+        slug: 'electric-dehumidifier',
+        title: '[지식iN 맞춤 답변] 제습기 24시간 전기세 & 에어컨 제습모드 비교',
+        answerA: '질문자님 조건(320W 제습기 24시간 가동)으로 한전 누진세 3단계 수식에 대입해 보면 월 추가 전기요금이 약 58,970원 발생합니다. 네이버에 [머니핏 전기요금 계산기] 검색하셔서 우리 집 기본 사용량만 넣고 3초 만에 확인해 보세요!',
+        answerB: '질문자님 조건으로 한전 누진세 계산기에 대입해 본 결과입니다. 아래 무료 계산기에서 직접 시간과 소비전력을 조절해 보실 수 있습니다.\n👉 https://truthofmarket.com/preset/electric-dehumidifier/',
+        searchUrl: 'https://kin.naver.com/search/list.naver?query=%EC%A0%9C%EC%8A%B5%EA%B8%B0+%EC%A0%84%EA%B8%B0%EC%84%B8+24%EC%8B%9C%EA%B0%84&section=qna&sort=date'
+      },
+      cafe: {
+        slug: 'electric-studio-ac',
+        title: '원룸 벽걸이 에어컨 하루 10시간 틀었을 때 한 달 전기세 실측 공유',
+        body: '원룸에서 벽걸이 에어컨 하루 10시간 틀면 누진세 폭탄 맞는지 직접 한전 수식으로 계산해 봤습니다.\n👉 https://truthofmarket.com/preset/electric-studio-ac/',
+        cafeUrl: 'https://section.cafe.naver.com/'
+      }
+    };
+
+    function switchActionKitChannel(ch) {
+      activeKitChannel = ch;
+      ['webtoon', 'blog', 'jisikin', 'cafe'].forEach(k => {
+        const btn = document.getElementById(`kit-tab-${k}`);
+        if (!btn) return;
+        if (k === ch) {
+          btn.className = 'py-1.5 px-1.5 rounded-lg bg-amber-400 text-slate-950 font-extrabold transition truncate';
+        } else {
+          btn.className = 'py-1.5 px-1.5 rounded-lg text-slate-300 hover:bg-slate-800 transition truncate';
+        }
+      });
+      renderActionKitDeck();
+    }
+
+    function renderActionKitDeck() {
+      const slugEl = document.getElementById('kit-item-slug');
+      const titleEl = document.getElementById('kit-item-title');
+      const linkEl = document.getElementById('kit-open-platform-link');
+      const wrapEl = document.getElementById('kit-webtoon-preview-wrap');
+      const thumbEl = document.getElementById('kit-webtoon-thumb');
+      const dlEl = document.getElementById('kit-webtoon-download');
+      const taEl = document.getElementById('kit-preview-textarea');
+      const btnsEl = document.getElementById('kit-copy-buttons');
+
+      const data = liveActionKit[activeKitChannel] || liveActionKit.webtoon;
+      if (!data) return;
+
+      if (slugEl) slugEl.textContent = `#${data.slug}`;
+      if (titleEl) titleEl.textContent = data.title || data.slug;
+
+      if (activeKitChannel === 'webtoon') {
+        if (wrapEl) wrapEl.classList.remove('hidden');
+        if (thumbEl) thumbEl.src = data.gridImageUrl || `/sns/${data.slug}-grid.png`;
+        if (dlEl) {
+          dlEl.href = data.gridImageUrl || `/sns/${data.slug}-grid.png`;
+          dlEl.download = `${data.slug}-grid.png`;
+        }
+        if (linkEl) {
+          linkEl.href = data.threadsUrl || 'https://www.threads.net/@moneyfit2026';
+          linkEl.textContent = '🚀 @moneyfit2026 열기 ↗';
+        }
+        if (taEl) taEl.value = `${data.threadsMain || ''}\n\n[첫 댓글 링크]\n${data.threadsReply || ''}`;
+        if (btnsEl) {
+          btnsEl.innerHTML = `
+            <button type="button" onclick="copyActionKitField('primary', this)" class="bg-pink-600 hover:bg-pink-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 쓰레드 본문 복사</button>
+            <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 첫댓글(링크) 복사</button>
+          `;
+        }
+      } else if (activeKitChannel === 'blog') {
+        if (wrapEl) wrapEl.classList.add('hidden');
+        if (linkEl) {
+          linkEl.href = data.writeUrl || 'https://blog.naver.com/GoBlogWrite.naver';
+          linkEl.textContent = '🚀 블로그 글쓰기 열기 ↗';
+        }
+        if (taEl) taEl.value = data.body || data.title;
+        if (btnsEl) {
+          btnsEl.innerHTML = `
+            <button type="button" onclick="copyActionKitField('primary', this)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 블로그 본문 전체 복사</button>
+            <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 블로그 제목만 복사</button>
+          `;
+        }
+      } else if (activeKitChannel === 'jisikin') {
+        if (wrapEl) wrapEl.classList.add('hidden');
+        if (linkEl) {
+          linkEl.href = data.searchUrl || 'https://kin.naver.com/';
+          linkEl.textContent = '🚀 지식iN 최신질문 열기 ↗';
+        }
+        if (taEl) taEl.value = data.answerA || data.fullText || '';
+        if (btnsEl) {
+          btnsEl.innerHTML = `
+            <button type="button" onclick="copyActionKitField('primary', this)" class="bg-teal-600 hover:bg-teal-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 안전답변(버전A) 복사</button>
+            <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 직링크답변(버전B) 복사</button>
+          `;
+        }
+      } else if (activeKitChannel === 'cafe') {
+        if (wrapEl) wrapEl.classList.add('hidden');
+        if (linkEl) {
+          linkEl.href = data.cafeUrl || 'https://section.cafe.naver.com/';
+          linkEl.textContent = '🚀 네이버 카페 열기 ↗';
+        }
+        if (taEl) taEl.value = data.body || data.title;
+        if (btnsEl) {
+          btnsEl.innerHTML = `
+            <button type="button" onclick="copyActionKitField('primary', this)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 카페 본문 전체 복사</button>
+            <button type="button" onclick="copyActionKitField('secondary', this)" class="bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 font-extrabold py-2 px-2 rounded-lg text-[11px] transition truncate">📋 카페 제목만 복사</button>
+          `;
+        }
+      }
+    }
+
+    function copyActionKitField(fieldType, btnEl) {
+      const data = liveActionKit[activeKitChannel] || liveActionKit.webtoon;
+      let textToCopy = '';
+      if (activeKitChannel === 'webtoon') {
+        textToCopy = fieldType === 'primary' ? (data.threadsMain || data.instagramCaption || '') : (data.threadsReply || data.instagramCaption || '');
+      } else if (activeKitChannel === 'blog') {
+        textToCopy = fieldType === 'primary' ? (data.body || '') : (data.title || '');
+      } else if (activeKitChannel === 'jisikin') {
+        textToCopy = fieldType === 'primary' ? (data.answerA || '') : (data.answerB || '');
+      } else if (activeKitChannel === 'cafe') {
+        textToCopy = fieldType === 'primary' ? (data.body || '') : (data.title || '');
+      }
+
+      const showCopied = () => {
+        if (btnEl) {
+          const orig = btnEl.getAttribute('data-orig') || btnEl.innerHTML;
+          btnEl.setAttribute('data-orig', orig);
+          btnEl.innerHTML = '✅ 복사 완료!';
+          setTimeout(() => { btnEl.innerHTML = orig; }, 2000);
+        }
+        pushActivityLog(selectedEmp || EMPLOYEES[0], `📋 [${activeKitChannel.toUpperCase()}] #${data.slug} 원고가 클립보드에 1초 복사되었습니다!`);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(showCopied).catch(showCopied);
+      } else {
+        showCopied();
+      }
+    }
+
+    function completeActiveOfficeTask(btnEl) {
+      const data = liveActionKit[activeKitChannel];
+      if (!data || !data.slug) return;
+      const origHtml = btnEl ? btnEl.innerHTML : '';
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '⏳ 백로그 차감 및 다음 대기열 불러오는 중...';
+      }
+
+      fetch(`/api/office-complete-task?channel=${encodeURIComponent(activeKitChannel)}&slug=${encodeURIComponent(data.slug)}`)
+        .then(r => r.json())
+        .then(res => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = '🎉 게시 완료 처리됨! 다음 대기열 자동 로드 완료';
+            setTimeout(() => { btnEl.innerHTML = origHtml; }, 2200);
+          }
+          pushActivityLog(
+            selectedEmp || EMPLOYEES[0],
+            `✅ 대표님이 [${activeKitChannel.toUpperCase()}] #${data.slug} 게시 완료를 체크하여 백로그가 실시간 차감되고 다음 큐로 전환되었습니다!`
+          );
+          if (res && res.officeState) {
+            applyOfficeStatePayload(res.officeState);
+          } else {
+            fetchLiveOfficeState();
+          }
+        })
+        .catch(() => {
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.innerHTML = origHtml;
+          }
+        });
+    }
+
+    function applyOfficeStatePayload(data) {
+      if (!data || data.status !== 'ok') return;
+      if (data.webtoon) {
+        const wEl = document.getElementById('hud-webtoon-stat');
+        if (wEl) wEl.textContent = `${data.webtoon.renderedCount}/36편 (라이브 ${data.webtoon.publishedLiveCount || 1}편)`;
+      }
+      if (data.naver) {
+        const nEl = document.getElementById('hud-naver-stat');
+        if (nEl) nEl.textContent = `${data.naver.totalDone}/${data.naver.totalTarget}건 (대기 ${data.naver.totalTarget - data.naver.totalDone}건)`;
+        const progPct = Math.round((data.naver.totalDone / Math.max(1, data.naver.totalTarget)) * 100);
+        const barEl = document.getElementById('bar-naver-prog');
+        const txtEl = document.getElementById('txt-naver-prog');
+        if (barEl) barEl.style.width = `${progPct}%`;
+        if (txtEl) txtEl.textContent = `${data.naver.totalDone}/${data.naver.totalTarget} 완료`;
+      }
+      if (data.spamAudit) {
+        const sEl = document.getElementById('hud-spam-stat');
+        if (sEl) sEl.textContent = `undefined ${data.spamAudit.naverQuality.undefinedLeaks}건 · 유사도 ${data.spamAudit.naverQuality.avgBlogJaccardPct}%`;
+      }
+      if (data.todayActionKit) {
+        liveActionKit = data.todayActionKit;
+        renderActionKitDeck();
+      }
+    }
+
     function fetchLiveOfficeState() {
       fetch('/api/office-state')
         .then(r => r.json())
-        .then(data => {
-          if (!data || data.status !== 'ok') return;
-          if (data.webtoon) {
-            const wEl = document.getElementById('hud-webtoon-stat');
-            if (wEl) wEl.textContent = `${data.webtoon.renderedCount}/36편 (${data.webtoon.renderedCount * 5} PNG)`;
-          }
-          if (data.naver) {
-            const nEl = document.getElementById('hud-naver-stat');
-            if (nEl) nEl.textContent = `${data.naver.totalDone}/${data.naver.totalTarget}건 (대기 ${data.naver.totalTarget - data.naver.totalDone}건)`;
-            const progPct = Math.round((data.naver.totalDone / Math.max(1, data.naver.totalTarget)) * 100);
-            const barEl = document.getElementById('bar-naver-prog');
-            const txtEl = document.getElementById('txt-naver-prog');
-            if (barEl) barEl.style.width = `${progPct}%`;
-            if (txtEl) txtEl.textContent = `${data.naver.totalDone}/${data.naver.totalTarget} 완료`;
-          }
-          if (data.spamAudit) {
-            const sEl = document.getElementById('hud-spam-stat');
-            if (sEl) sEl.textContent = `undefined ${data.spamAudit.naverQuality.undefinedLeaks}건 · 유사도 ${data.spamAudit.naverQuality.avgBlogJaccardPct}%`;
-          }
-        })
+        .then(data => applyOfficeStatePayload(data))
         .catch(() => {});
     }
 
     // Initialize
     selectEmployeeById('tiger-gm');
+    renderActionKitDeck();
     pushActivityLog(EMPLOYEES[0], '🐯 머니핏 AI 코퍼레이션 사옥 가동 시작! (홈페이지·네이버·웹툰 3개 대화창 완전 통합)');
     pushActivityLog(EMPLOYEES[6], '🐼 36개 전 에피소드(180장 PNG) 1:1 고유 대사 렌더링 100% 완료!');
-    pushActivityLog(EMPLOYEES[3], '🦔 네이버 144개 휴먼 백로그 v3.0 교정 완료 (undefined 0건, 유사도 6.6%)');
+    pushActivityLog(EMPLOYEES[3], '🦔 네이버 144개 휴먼 백로그 v3.0 교정 완료 (undefined 0건, 유사도 4.3%)');
     pushActivityLog(EMPLOYEES[8], '🛡️ 스팸·중복 감찰 완료: 금칙어 0건, 로봇 해시태그 0건 (CLEAN)');
     fetchLiveOfficeState();
     setInterval(fetchLiveOfficeState, 15000);

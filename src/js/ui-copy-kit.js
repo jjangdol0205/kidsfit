@@ -927,104 +927,134 @@
     ctx.restore();
   }
 
-  function getConversationalScript(calcKey, meta) {
+  function getConversationalScript(calcKey) {
     const scripts = {
       electric: {
         episodeTitle: '자취생 쿼카의 여름 일기 — "에어컨 아껴 틀었는데요..?"',
-        p1Lines: ['더울 때만 잠깐 틀고 2시간마다 껐다 켰다 했지롱~', '이번 달 전기세는 무조건 만 원대 각이다 ㅎㅎ'],
-        p2FoxLines: ['야!! 구형 에어컨을 그렇게 껐다 켰다 하면', '실외기 전기 먹고 누진세 3배 폭탄 맞아!!'],
+        p1Lines: ['더울 때만 잠깐 틀고 **2시간마다 껐다 켰다** 했지롱~', '이번 달 전기세는 **무조건 만 원대** 각이다 ㅎㅎ'],
+        p2FoxLines: ['야!! 에어컨을 그렇게 껐다 켰다 하면', '실외기 풀가동돼서 **누진세 3배 폭탄** 맞아!!'],
         p2React: '에..?! 진짜로?!',
         p3CryLines: [
-          '으아앙!! 고지서 보니까 그렇게 틀면 ' + (meta.badVal || '59,220원') + '인데',
-          '인버터로 켜두면 ' + (meta.goodVal || '37,290원') + '이잖아..',
-          '모르고 매달 2만 원 넘게 날리고 있었어 ㅠㅠ'
+          '으아앙!! 아낀다고 껐다 켰다가 **6만 원 폭탄** 맞았어..',
+          '그냥 켜두면 **3만 원대**였잖아!!',
+          '모르고 매달 생돈 날리고 있었네 ㅠㅠ'
         ],
-        p4FoxLines: ['울지 마~ 머니핏에 우리 방 에어컨 넣으면', '3초 만에 한 달 전기세 얼마인지 다 알려줘!'],
+        p4FoxLines: ['울지 마~ **머니핏**에 우리 방 에어컨 넣으면', '**3초 만에** 한 달 전기세 얼마인지 다 알려줘!'],
         p4React: '헐 대박!! 당장 해볼래!!'
       },
       diet: {
         episodeTitle: '헬린이 시바의 식단 일기 — "닭가슴살 100팩 샀는데요..?"',
-        p1Lines: ['오늘부터 다이어트 1일!! 일단 닭가슴살 100팩이랑', '고구마 한 박스 질렀으니까 무조건 살 빠지겠지?!'],
-        p2FoxLines: ['너 하루 소비칼로리도 안 재보고 그렇게 사면', '식비만 날리고 냉동실에 다 쌓여!!'],
+        p1Lines: ['오늘부터 다이어트 1일!! **닭가슴살 100팩**이랑', '고구마 한 박스 질렀으니까 **무조건 빠지겠지?!**'],
+        p2FoxLines: ['야!! 내 대사량도 안 재보고 그렇게 사면', '**식비만 날리고** 냉동실에 다 쌓여!!'],
         p2React: '헉.. 내 돈..!!',
         p3CryLines: [
-          '으아앙!! 내 체중에 맞춰 사면 ' + (meta.goodVal || '21만 원') + '이면 되는데',
-          '감으로 막 샀다가 ' + (meta.badVal || '49만 원') + '이나 썼네..',
-          '살도 안 빠지고 돈만 날렸어 ㅠㅠ'
+          '으아앙!! 내 몸무게에 맞춰 사면 **21만 원**인데',
+          '감으로 막 샀다가 **49만 원**이나 썼잖아..',
+          '살도 안 빠지고 식비만 날렸어 ㅠㅠ'
         ],
-        p4FoxLines: ['지금이라도 머니핏에 몸무게만 넣어봐!', '하루 닭가슴살 몇 팩 먹어야 하는지 3초 만에 나와!'],
-        p4React: '와!! 오늘부터 진짜 득근한다!!'
+        p4FoxLines: ['지금이라도 **머니핏**에 몸무게만 넣어봐!', '하루 닭가슴살 **몇 팩 먹을지** 3초 만에 나와!'],
+        p4React: '오오!! 당장 해봐야지!!'
       },
       pet: {
         episodeTitle: '초보집사 냥이의 육아 일기 — "종이컵으로 사료 줬는데요..?"',
-        p1Lines: ['사료 봉투 뒤에 적힌 대로 종이컵 가득 부어줬는데..', '우리 애기 왜 자꾸 포동포동 굴러다니지..? ㅎㅎ'],
-        p2FoxLines: ['중성화한 애한테 종이컵 눈대중으로 주면', '비만 와서 나중에 슬개골 병원비 수백만 원 깨져!!'],
+        p1Lines: ['사료 봉투 뒤에 적힌 대로 **종이컵 가득** 줬는데..', '우리 애기 왜 자꾸 **포동포동 굴러다니지..?** ㅎㅎ'],
+        p2FoxLines: ['중성화한 애한테 종이컵 눈대중으로 주면', '비만 와서 **슬개골 수술비 수백만 원** 깨져!!'],
         p2React: '헉.. 어떡해?!',
         p3CryLines: [
-          '으아앙!! 몸무게로 계산해보니까 하루 정량만 줘야 했어..',
-          '모르고 더 줬다가 비만·슬개골 병원비 폭탄 맞을 뻔했잖아..',
+          '으아앙!! 몸무게로 재보니까 **하루 정량**만 줘야 했어..',
+          '모르고 더 줬다가 **병원비 폭탄** 맞을 뻔했잖아..',
           '미안해 내 새끼야 ㅠㅠ'
         ],
-        p4FoxLines: ['머니핏에 우리 애기 몸무게만 적어봐!', '하루에 사료 몇 g 줘야 하는지 3초 만에 알려줘!'],
+        p4FoxLines: ['**머니핏**에 우리 애기 몸무게만 적어봐!', '하루에 **사료 몇 g** 줄지 3초 만에 알려줘!'],
         p4React: '당장 그램(g) 재서 줄게!!'
       },
       room: {
         episodeTitle: '자취러 곰돌이의 이사 일기 — "인스타 감성 방 꾸미기..?"',
-        p1Lines: ['첫 자취방이니까 침대랑 워시타워는 무조건 감성템으로!!', '어라.. 근데 왜 벌써 통장 잔고가 바닥이지..?'],
-        p2FoxLines: ['예산 비율 안 짜고 큰 가구부터 지르면 어떡해!!', '그럼 냉장고랑 전자레인지는 안 살 거야?!'],
+        p1Lines: ['첫 자취방이니까 침대랑 가전은 **무조건 감성템**으로!!', '어라.. 근데 왜 벌써 **통장 잔고가 0원**이지..?'],
+        p2FoxLines: ['예산 안 짜고 비싼 가구부터 지르면 어떡해!!', '그럼 **냉장고랑 세탁기**는 안 살 거야?!'],
         p2React: '망했다..!!',
         p3CryLines: [
-          '으아앙!! 감성템 단품으로 담으니까 ' + (meta.badVal || '122만 원') + '인데',
-          '예산 맞춰 세팅하면 ' + (meta.goodVal || '100만 원') + '이면 끝나는 거였잖아..',
+          '으아앙!! 감성템 단품으로 담으니까 **122만 원**인데',
+          '황금비율로 맞추면 **100만 원**에 끝나는 거였잖아..',
           '이사 첫날부터 파산할 뻔했어 ㅠㅠ'
         ],
-        p4FoxLines: ['머니핏에 내 총예산만 적어봐!', '예산 절대 안 넘게 가전·가구 리스트를 3초 만에 짜줘!'],
+        p4FoxLines: ['**머니핏**에 내 가용 예산만 적어봐!', '예산 안 넘게 **가전·가구 견적표**를 3초 만에 짜줘!'],
         p4React: '우와!! 이대로만 사야지!!'
       },
       auto: {
         episodeTitle: '김대리 댕댕이의 신차 일기 — "월 납입금만 보면 되잖아..?"',
-        p1Lines: ['영맨님이 한 달에 40만 원대면 신차 뽑는다는데?!', '생각보다 싸네~ 그냥 바로 계약서 사인할까봐!'],
-        p2FoxLines: ['월 납입금만 보면 어떡해!! 취등록세 7%랑', '5년 치 보험료·자동차세까지 다 합쳐서 봐야지!!'],
+        p1Lines: ['영맨님이 **월 40만 원대**면 신차 뽑는다는데?!', '생각보다 싸네~ 그냥 **할부로 계약**할까봐!'],
+        p2FoxLines: ['월 납입금만 보면 어떡해!! **취등록세 7%**랑', '**보험료·세금**까지 다 합쳐서 비교해야지!!'],
         p2React: '세금도 있었어?!',
         p3CryLines: [
-          '으아앙!! 4~5년 총비용 다 합쳐보니까 그냥 할부로 사면',
-          '맞춤 플랜보다 수백만 원이나 더 내는 거였어..',
+          '으아앙!! 4년 총비용 합쳐보니까 그냥 할부로 사면',
+          '장기렌트보다 **1,000만 원**이나 더 내는 거였어..',
           '모르고 사인했으면 카푸어 될 뻔 ㅠㅠ'
         ],
-        p4FoxLines: ['계약하기 전에 머니핏에 차 값만 넣어봐!', '할부·렌트·리스 중에 뭐가 제일 싼지 3초 만에 나와!'],
+        p4FoxLines: ['사인하기 전에 **머니핏**에 차 값만 넣어봐!', '**할부·렌트·리스** 중 뭐가 싼지 3초 만에 나와!'],
         p4React: '덕분에 큰돈 아꼈다!!'
       },
       telecom: {
         episodeTitle: '라쿤 대리의 호구탈출 일기 — "인터넷 그냥 써도 되잖아..?"',
-        p1Lines: ['우리 집 인터넷 3년 약정 끝난 지 한참 됐는데', '귀찮아서 그냥 쓰는 중~ 바꾼다고 뭐 얼마나 주겠어?'],
-        p2FoxLines: ['헐.. 너 바보야?! 약정 끝난 거 갈아타면', '현금 사은품 최대 47만 원에 월 요금까지 깎아주는데!!'],
+        p1Lines: ['우리 집 인터넷 **3년 약정 끝난 지** 한참 됐는데', '귀찮아서 그냥 쓰는 중~ **바꾼다고 뭐 주겠어?**'],
+        p2FoxLines: ['헐 바보야?! 약정 끝난 인터넷 갈아타면', '**현금 최대 47만 원**에 월 요금도 깎아주는데!!'],
         p2React: '47만 원이나?!',
         p3CryLines: [
           '으아앙!! 귀찮다고 그냥 버티는 바람에',
-          '당장 받을 수 있는 현금 ' + (meta.goodVal || '47만 원') + ' 혜택을 놓치고 있었네..',
+          '당장 받을 **현금 47만 원**에 요금 할인까지 놓쳤네..',
           '나만 통신사 호구였어 ㅠㅠ'
         ],
-        p4FoxLines: ['지금이라도 머니핏에 현재 요금만 넣어봐!', '갈아타면 내 통장에 얼마 남는지 3초 만에 계산돼!'],
+        p4FoxLines: ['지금이라도 **머니핏**에 현재 요금만 넣어봐!', '갈아타면 **내 통장에 얼마 남는지** 3초 만에 나와!'],
         p4React: '오늘 바로 갈아탄다!!'
       }
     };
     return scripts[calcKey] || scripts.electric;
   }
 
-  function drawCenteredBubbleText(ctx, lines, cx, startY, lineHeight, fontSize, color = '#1e293b', maxWidth = 0) {
+  function drawCenteredBubbleText(
+    ctx,
+    lines,
+    cx,
+    startY,
+    lineHeight,
+    fontSize,
+    color = '#1e293b',
+    maxWidth = 0,
+    accentColor = '#dc2626',
+    highlightBg = '#fef08a'
+  ) {
     ctx.save();
-    ctx.textAlign = 'center';
-    ctx.fillStyle = color;
-    lines.forEach((ln, idx) => {
+    ctx.textAlign = 'left';
+    lines.forEach((rawLine, idx) => {
+      const segments = String(rawLine || '').split('**');
+      const plainLine = segments.join('');
       let fSize = fontSize;
-      ctx.font = 'bold ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+      ctx.font = '900 ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
       if (maxWidth > 0) {
-        while (fSize > 10 && ctx.measureText(ln).width > maxWidth) {
+        while (fSize > 12 && ctx.measureText(plainLine).width > maxWidth) {
           fSize -= 0.5;
-          ctx.font = 'bold ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", sans-serif';
+          ctx.font = '900 ' + fSize.toFixed(1) + 'px "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
         }
       }
-      ctx.fillText(ln, cx, startY + idx * lineHeight);
+      const totalW = ctx.measureText(plainLine).width;
+      let curX = cx - totalW / 2;
+      const baseY = startY + idx * lineHeight;
+
+      segments.forEach((text, segIdx) => {
+        if (!text) return;
+        const isHighlight = segIdx % 2 === 1;
+        const segW = ctx.measureText(text).width;
+        if (isHighlight && highlightBg) {
+          ctx.save();
+          ctx.fillStyle = highlightBg;
+          drawRoundedRect(ctx, curX - 3, baseY - fSize * 0.82, segW + 6, fSize * 0.98, 6);
+          ctx.fill();
+          ctx.restore();
+        }
+        ctx.fillStyle = isHighlight ? accentColor : color;
+        ctx.fillText(text, curX, baseY);
+        curX += segW;
+      });
     });
     ctx.restore();
   }
@@ -1064,49 +1094,49 @@
       drawAnimalCharacter(ctx, W * 0.5, H * 0.66, sp, mood, '#fecdd3', 1.15);
     }
 
-    // 2. 100% Natural Conversational Tiki-Taka Speech Bubbles
+    // 2. Large, Bold, Realistic Korean Instatoon Speech Bubbles with Yellow Marker Highlights
     if (panelIdx === 0) {
-      const bx = 22;
-      const by = 18;
-      const bw = W - 44;
-      const bh = 86;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 38, W * 0.42, -1);
-      drawCenteredBubbleText(ctx, conv.p1Lines, bx + bw / 2, by + 37, 26, 16, '#1e293b', bw - 46);
+      const bx = 12;
+      const by = 12;
+      const bw = W - 24;
+      const bh = 104;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 36, W * 0.42, -1);
+      drawCenteredBubbleText(ctx, conv.p1Lines, bx + bw / 2, by + 44, 34, 22.5, '#0f172a', bw - 34, '#d97706', '#fef08a');
     } else if (panelIdx === 1) {
-      const bx1 = 14;
-      const by1 = 14;
-      const bw1 = 338;
-      const bh1 = 82;
-      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 34, W * 0.30, -1);
-      drawCenteredBubbleText(ctx, conv.p2FoxLines, bx1 + bw1 / 2, by1 + 35, 24, 15, '#1e293b', bw1 - 42);
+      const bx1 = 12;
+      const by1 = 10;
+      const bw1 = 424;
+      const bh1 = 92;
+      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 32, W * 0.28, -1);
+      drawCenteredBubbleText(ctx, conv.p2FoxLines, bx1 + bw1 / 2, by1 + 40, 31, 21.5, '#0f172a', bw1 - 30, '#dc2626', '#fee2e2');
 
-      const bx2 = 356;
-      const by2 = 52;
-      const bw2 = 132;
-      const bh2 = 54;
-      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 26, W * 0.78, 1);
-      drawCenteredBubbleText(ctx, [conv.p2React], bx2 + bw2 / 2, by2 + 33, 22, 15, '#dc2626', bw2 - 28);
+      const bx2 = 292;
+      const by2 = 98;
+      const bw2 = 198;
+      const bh2 = 52;
+      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 26, W * 0.80, 1);
+      drawCenteredBubbleText(ctx, [conv.p2React], bx2 + bw2 / 2, by2 + 34, 24, 20.5, '#dc2626', bw2 - 24, '#dc2626', null);
     } else if (panelIdx === 2) {
-      const bx = 18;
-      const by = 18;
-      const bw = W - 36;
-      const bh = 112;
-      drawSpeechBubble(ctx, bx, by, bw, bh, 38, W * 0.65, 1);
-      drawCenteredBubbleText(ctx, conv.p3CryLines, bx + bw / 2, by + 35, 26, 15.5, '#1e293b', bw - 46);
+      const bx = 12;
+      const by = 12;
+      const bw = W - 24;
+      const bh = 128;
+      drawSpeechBubble(ctx, bx, by, bw, bh, 36, W * 0.65, 1);
+      drawCenteredBubbleText(ctx, conv.p3CryLines, bx + bw / 2, by + 40, 31, 21, '#0f172a', bw - 32, '#e11d48', '#ffe4e6');
     } else {
-      const bx1 = 14;
-      const by1 = 14;
-      const bw1 = 332;
-      const bh1 = 80;
-      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 34, W * 0.32, -1);
-      drawCenteredBubbleText(ctx, conv.p4FoxLines, bx1 + bw1 / 2, by1 + 34, 24, 14.8, '#1e293b', bw1 - 42);
+      const bx1 = 12;
+      const by1 = 10;
+      const bw1 = 428;
+      const bh1 = 92;
+      drawSpeechBubble(ctx, bx1, by1, bw1, bh1, 32, W * 0.30, -1);
+      drawCenteredBubbleText(ctx, conv.p4FoxLines, bx1 + bw1 / 2, by1 + 40, 31, 21.5, '#0f172a', bw1 - 30, '#047857', '#fef08a');
 
-      const bx2 = 308;
-      const by2 = 86;
-      const bw2 = 180;
-      const bh2 = 50;
-      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 25, W * 0.76, 1);
-      drawCenteredBubbleText(ctx, [conv.p4React], bx2 + bw2 / 2, by2 + 31, 20, 14.5, '#047857', bw2 - 28);
+      const bx2 = 264;
+      const by2 = 98;
+      const bw2 = 226;
+      const bh2 = 52;
+      drawSpeechBubble(ctx, bx2, by2, bw2, bh2, 26, W * 0.78, 1);
+      drawCenteredBubbleText(ctx, [conv.p4React], bx2 + bw2 / 2, by2 + 34, 24, 20, '#047857', bw2 - 24, '#047857', null);
     }
 
     // 3. Crisp Authentic Comic Panel Outline (#1e293b, 4.5px)
