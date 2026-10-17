@@ -291,6 +291,27 @@ async function buildDailyRevenueData(injectedStats = null) {
   const cumulativeTotalGmv = coupangTotalGmv + lpTotalGmv;
   const cumulativeTotalNet = coupangTotalNet + lpTotalNet + cpaTotalNet;
 
+  let backlogSummary = null;
+  try {
+    const managerAudit = require('./manager-audit.js');
+    const webtoon = managerAudit.auditWebtoonBacklog();
+    const naver = managerAudit.auditNaverBacklog();
+    backlogSummary = {
+      webtoonRendered: webtoon.renderedCount,
+      webtoonPublished: webtoon.publishedLiveCount,
+      webtoonPending: webtoon.pendingPublishCount,
+      nextWebtoonSlug: (webtoon.readyToPublishQueue[0] && webtoon.readyToPublishQueue[0].slug) || 'diet-male-fatloss',
+      naverTotalDone: naver.totalDone,
+      naverTotalTarget: naver.totalTarget,
+      blogPending: naver.blog.pending,
+      jisikinPending: naver.jisikin.pending,
+      cafePending: naver.cafe.pending,
+      nextBlogSlug: (naver.blog.nextQueue[0] && naver.blog.nextQueue[0].slug) || 'diet-male-fatloss'
+    };
+  } catch (e) {
+    backlogSummary = null;
+  }
+
   return {
     dateStr: stats.dateStr,
     yesterdayStr: stats.yesterdayStr,
@@ -349,7 +370,8 @@ async function buildDailyRevenueData(injectedStats = null) {
       dailyTotalNet,
       cumulativeTotalGmv,
       cumulativeTotalNet
-    }
+    },
+    backlog: backlogSummary
   };
 }
 
@@ -358,8 +380,19 @@ async function buildDailyRevenueData(injectedStats = null) {
  */
 function formatDailyRevenueHtml(report) {
   const esc = telegramNotify.escapeHtml;
+  const b = report.backlog;
+  const backlogLines = b
+    ? [
+        ``,
+        `📋 <b>5. 총괄 매니저 백로그 점검 &amp; 실적 견인 액션</b>`,
+        `• 🎨 <b>웹툰 백로그</b>: 고해상도 PNG <code>${b.webtoonRendered}/36편</code> 준비 | <code>@moneyfit2026</code> 게시 <code>${b.webtoonPublished}/36편</code> (대기 <b><code>${b.webtoonPending}편</code></b>)`,
+        `• 🟢 <b>네이버 백로그</b>: 총 <code>${b.naverTotalDone}/${b.naverTotalTarget}건</code> 완료 | 블로그 대기 <b><code>${b.blogPending}건</code></b> · 지식iN 대기 <b><code>${b.jisikinPending}건</code></b> · 카페 대기 <b><code>${b.cafePending}건</code></b>`,
+        `• 🎯 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 웹툰 업로드 + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행`
+      ]
+    : [];
+
   return [
-    `🌅 <b>[머니핏(MoneyFit) 오전 06:00 일일 방문자·매출·순수익 정기 보고]</b>`,
+    `🌅 <b>[머니핏(MoneyFit) 오전 06:00 총괄 매니저 일일 실적·수익·백로그 보고]</b>`,
     `🕒 <b>보고 기준</b>: <code>${esc(report.dateStr)} ${esc(report.timeStr)} KST</code>`,
     `🌐 <b>운영 도메인</b>: <a href="https://truthofmarket.com">https://truthofmarket.com</a>`,
     `━━━━━━━━━━━━━━━━━━━━━━`,
@@ -384,10 +417,11 @@ function formatDailyRevenueHtml(report) {
     `• <b>CPA 예상 수익</b>: 일일 <code>+${report.cpa.dailyNet.toLocaleString()}원</code> / 누적 <code>+${report.cpa.totalNet.toLocaleString()}원</code>`,
     `• 💰 <b>일일 총 합산 순수익</b>: <b><code>+${report.summary.dailyTotalNet.toLocaleString()}원</code></b> (총 매출 <code>${report.summary.dailyTotalGmv.toLocaleString()}원</code>)`,
     `• 🏆 <b>누적 총 합산 순수익</b>: <b><code>+${report.summary.cumulativeTotalNet.toLocaleString()}원</code></b> (누적 매출 <code>${report.summary.cumulativeTotalGmv.toLocaleString()}원</code>)`,
+    ...backlogLines,
     `━━━━━━━━━━━━━━━━━━━━━━`,
     `🔗 <b>공식 정산 대시보드 1초 확인</b>:`,
     `• <a href="https://partners.coupang.com/#affiliate/ws/reports">[쿠팡파트너스 확정 정산 리포트]</a> | <a href="https://www.linkprice.com/">[링크프라이스 실적 리포트]</a>`,
-    `<i>※ 매일 오전 06:00 KST에 서버에서 자동 집계하여 정기 보고됩니다.</i>`
+    `<i>※ 매일 오전 06:00 KST에 총괄 매니저가 자동 집계하여 정기 보고합니다.</i>`
   ].join('\n');
 }
 

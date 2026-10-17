@@ -63,10 +63,11 @@
   }
 
   /**
-   * Build 4-Cut Webtoon Storyboard Scripts & Meta 3-Channel Copy for any Preset
+   * Build 4-Cut Animal Instatoon Storyboard Scripts & Meta Anti-Spam High-CTR Copy for any Preset
    */
   function buildWebtoonStoryAndCopy(preset, calcRes, siteUrl) {
-    const presetUrl = `${siteUrl}/preset/${preset.id}/`;
+    const cleanSiteUrl = String(siteUrl || 'https://truthofmarket.com').replace(/\/+$/, '');
+    const presetUrl = `${cleanSiteUrl}/preset/${preset.id}/`;
     const m = calcRes.metrics || [];
     const m0 = m[0] ? `${m[0].label}: ${m[0].val}` : '';
     const m1 = m[1] ? `${m[1].label}: ${m[1].val}` : '';
@@ -74,127 +75,189 @@
 
     const sceneByCalc = {
       electric: {
-        tag: '전기세 폭탄 실화 웹툰',
+        species: 'quokka',
+        charName: '자취생 쿼카찌',
+        expertName: '안경 여우 세무사',
+        tag: '전기세 폭탄 실화 인스타툰',
+        sfxShock: '콰아앙⚡',
         panel1Title: '1컷 · 관리비 고지서 개봉 직후',
-        panel1Bubble: `"잠깐만... 하루에 몇 시간 틀었다고 이번 달 전기세가 왜 이래?!"`,
-        panel1Sub: '여름·겨울마다 반복되는 누진세 폭탄의 공포',
-        panel2Title: '2컷 · 팩트폭행 전문가 등장',
-        panel2Bubble: `"한전 누진세 구간 넘기는 순간 요금이 최대 3배로 뜁니다!"`,
+        panel1Bubble: `"잠깐만... 에어컨 아낀다고 껐다 켰는데 이번 달 전기세가 왜 이래?!"`,
+        panel1Sub: '여름·겨울마다 반복되는 누진세 폭탄의 공포 (쿼카찌 오열😭)',
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 정속형을 껐다 켜면 실외기 기동전력 폭발로 누진 3단계(3배) 밟습니다!"`,
         panel2Sub: '구형 가전 vs 1등급 인버터 본전 회수기간 계산 필수',
-        hashtags: '#전기세폭탄 #자취방전기세 #에어컨전기세 #누진세계산기 #자취생꿀팁 #원룸자취 #생활비절약 #에너지1등급 #관리비절약 #머니핏'
+        badLabel: '호구 평균 지출 (정속형 무방비)',
+        badVal: calcRes.afterBill ? `${calcRes.afterBill.toLocaleString()}원/월` : '88,420원/월',
+        goodLabel: '상위 1% 절약 지출 (인버터 정속)',
+        goodVal:
+          calcRes.afterBill && calcRes.monthlySaving
+            ? `${Math.max(0, calcRes.afterBill - calcRes.monthlySaving).toLocaleString()}원/월`
+            : '31,200원/월',
+        diffVal: calcRes.monthlySaving ? `-${calcRes.monthlySaving.toLocaleString()}원/월 절약` : '-57,220원/월 절약',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       },
       diet: {
-        tag: '다이어트 식단 팩트 웹툰',
-        panel1Title: '1컷 · 무작정 굶는 다이어터',
-        panel1Bubble: `"닭가슴살 대충 사고 굶었는데 왜 살은 안 빠지고 요요만 오지?!"`,
-        panel1Sub: '내 기초대사량(BMR)도 모르고 식단 짜면 100% 실패',
-        panel2Title: '2컷 · 트레이너의 팩트폭행',
-        panel2Bubble: `"체중별 TDEE 탄·단·지(g)부터 맞춰야 근손실 없이 빠집니다!"`,
+        species: 'shiba',
+        charName: '헬스 시바견 득근이',
+        expertName: '안경 여우 영양박사',
+        tag: '다이어트 식단 팩트 인스타툰',
+        sfxShock: '두둥탁!!',
+        panel1Title: '1컷 · 무작정 대량결제한 다이어터',
+        panel1Bubble: `"닭가슴살 100팩 사고 굶었는데 왜 살은 안 빠지고 식비만 터지지?!"`,
+        panel1Sub: '내 기초대사량(BMR)도 모르고 식단 짜면 100% 요요 참사',
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 체중별 TDEE 탄·단·지(g) 정량부터 맞춰야 돈도 아끼고 살도 빠집니다!"`,
         panel2Sub: '닭가슴살 팩 수·현미밥 개수까지 정확히 계산해야 돈 안 버림',
-        hashtags: '#다이어트식단 #닭가슴살식단 #TDEE계산기 #탄단지비율 #바디프로필 #직장인다이어트 #벌크업식단 #식단장보기 #헬린이 #머니핏'
+        badLabel: '호구 평균 지출 (충동 대량구매+치팅)',
+        badVal: '348,000원/4주',
+        goodLabel: '상위 1% 절약 지출 (TDEE 정량 장보기)',
+        goodVal: '142,000원/4주',
+        diffVal: '-206,000원 절약',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       },
       pet: {
-        tag: '멍냥이 집사 필수 웹툰',
-        panel1Title: '1컷 · 눈대중 사료 급여의 최후',
-        panel1Bubble: `"사료 봉지 뒤에 적힌 대로 줬는데 우리 강아지·고양이 왜 살찌지?!"`,
-        panel1Sub: '종이컵 눈대중 급여가 소형견·고양이 비만 원인 1위',
-        panel2Title: '2컷 · 수의영양학 팩트체크',
-        panel2Bubble: `"중성화 여부·활동량(DER)에 따라 하루 급여량(g)이 완전히 달라요!"`,
+        species: 'cat',
+        charName: '집사 치즈냥 박사',
+        expertName: '안경 여우 수의영양사',
+        tag: '멍냥이 집사 필수 인스타툰',
+        sfxShock: '콰아앙⚡',
+        panel1Title: '1컷 · 종이컵 눈대중 급여의 최후',
+        panel1Bubble: `"사료 봉투 뒤에 적힌 대로 줬는데 우리 댕냥이 왜 비만에 병원비 폭탄이지?!"`,
+        panel1Sub: '종이컵 눈대중 급여가 소형견·고양이 비만·관절 병원비 원인 1위',
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 중성화 여부·활동량 계수(DER)에 따라 하루 급여량(g)이 완전히 달라요!"`,
         panel2Sub: '사료 1포대 소진 일수 & 병원비 예비비까지 3초 진단',
-        hashtags: '#강아지사료량 #고양이사료량 #말티즈그램 #포메라니안 #코숏 #반려견건강 # 강아지비만 #펫보험비교 #초보집사 #머니핏'
+        badLabel: '호구 평균 지출 (과급여 비만+무보험)',
+        badVal: '385,000원/월',
+        goodLabel: '상위 1% 절약 지출 (DER 정량+특약)',
+        goodVal: '129,000원/월',
+        diffVal: '-256,000원/월 방어',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       },
       room: {
-        tag: '자취·신혼 풀세팅 웹툰',
+        species: 'bear',
+        charName: '독립 아기곰 포근이',
+        expertName: '안경 여우 견적박사',
+        tag: '자취·신혼 풀세팅 인스타툰',
+        sfxShock: '두둥탁!!',
         panel1Title: '1컷 · 이사 가전·가구 장바구니 멘붕',
-        panel1Bubble: `"예산은 딱 정해져 있는데 침대·냉장고·세탁기 담다 보니 예산 2배 초과?!"`,
+        panel1Bubble: `"인스타 감성 침대·냉장고·세탁기 담다 보니 벌써 예산 2배 초과라고?!"`,
         panel1Sub: '계획 없이 예쁜 것부터 사면 필수 가전 못 사는 참사 발생',
-        panel2Title: '2컷 · 인테리어 고수의 황금비율',
-        panel2Bubble: `"예산별 가전:가구 황금 배분표(BOM)대로 사야 단 1원도 안 넘깁니다!"`,
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 예산별 가전:가구 황금 배분표(BOM)대로 사야 단 1원도 안 넘깁니다!"`,
         panel2Sub: '원룸 50만 원부터 신혼 1,000만 원까지 예산 초과 0원 공식',
-        hashtags: '#원룸인테리어 #자취방꾸미기 #첫자취 #신혼가전견적 #오피스텔인테리어 #가전가구풀세팅 #자취필수템 #이사준비 #오늘의집 #머니핏'
+        badLabel: '호구 평균 지출 (감성 단품 충동결제)',
+        badVal:
+          calcRes.totalCost && calcRes.savingWon
+            ? `${(calcRes.totalCost + calcRes.savingWon).toLocaleString()}원`
+            : '2,840,000원',
+        goodLabel: '상위 1% 절약 지출 (황금비율 BOM)',
+        goodVal: calcRes.totalCost ? `${calcRes.totalCost.toLocaleString()}원` : '1,480,000원',
+        diffVal: calcRes.savingWon ? `-${calcRes.savingWon.toLocaleString()}원 절약` : '-1,360,000원 절약',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       },
       auto: {
-        tag: '신차 구매 호구 탈출 웹툰',
-        panel1Title: '1컷 · 카마스터 견적서의 함정',
-        panel1Bubble: `"할부 이자만 보고 계약했는데... 취등록세·보험료·세금 폭탄이 왜 또 나와?!"`,
+        species: 'fox',
+        charName: '안경 여우 세무사',
+        expertName: '안경 여우 세무사',
+        tag: '신차 구매 호구 탈출 인스타툰',
+        sfxShock: '콰아앙⚡',
+        panel1Title: '1컷 · 카마스터 월 납입금의 함정',
+        panel1Bubble: `"월 납입금만 보고 계약했는데... 취등록세 7%·보험료·세금 폭탄이 왜 또 나와?!"`,
         panel1Sub: '차량가만 보고 사면 5년 유지비에서 수백만 원 손해',
-        panel2Title: '2컷 · 금융 전문가의 총비용(TCO) 비교',
-        panel2Bubble: `"취등록세 7% + 보험료 + 사업자 절세까지 합친 '진짜 총지출'을 봐야죠!"`,
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 취등록세 7% + 보험료 + 사업자 절세까지 합친 5년 총비용(TCO)을 봐야죠!"`,
         panel2Sub: '장기렌트 vs 리스 vs 할부 vs 현금 5년 총비용 1:1 영수증',
-        hashtags: '#장기렌트비교 #신차할부 #자동차리스 #첫차추천 #사회초년생차 #사업자절세 #아반떼장기렌트 #그랜저하이브리드 #신차견적 #머니핏'
+        badLabel: '호구 평균 지출 (취등록세 간과 할부)',
+        badVal: calcRes.installmentTco ? `${calcRes.installmentTco.toLocaleString()}원` : '54,820,000원',
+        goodLabel: '상위 1% 절약 지출 (세율 맞춤 최적안)',
+        goodVal: calcRes.rentTco ? `${calcRes.rentTco.toLocaleString()}원` : '46,150,000원',
+        diffVal: calcRes.diffMan ? `-${calcRes.diffMan.toLocaleString()}만 원 절약` : '-8,670,000원 절약',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       },
       telecom: {
-        tag: '인터넷 약정 호구 탈출 웹툰',
+        species: 'raccoon',
+        charName: '호구탈출 라쿤대리',
+        expertName: '안경 여우 통신박사',
+        tag: '인터넷 약정 호구 탈출 인스타툰',
+        sfxShock: '두둥탁!!',
         panel1Title: '1컷 · 3년 약정 끝나고 그냥 쓰는 중',
         panel1Bubble: `"귀찮아서 기존 인터넷 그냥 썼는데... 나만 현금 47만 원 못 받았다고?!"`,
         panel1Sub: '약정 만기 후 방치하거나 위약금 무서워 참으면 매달 손해',
-        panel2Title: '2컷 · 통신 성지 고수의 팩트폭행',
-        panel2Bubble: `"위약금 물어주고 갈아타도 당일 현금 사은품 + 요금할인이 훨씬 이득입니다!"`,
+        panel2Title: '2컷 · 안경 여우의 팩트폭격',
+        panel2Bubble: `"삐빅! 위약금 물어주고 갈아타도 당일 현금 사은품 47만 + 요금할인이 훨씬 이득!"`,
         panel2Sub: '내 잔여 위약금 vs 현금 사은품 47만 원 순수익 3초 계산',
-        hashtags: '#인터넷가입사은품 #인터넷교체 #인터넷위약금 #현금사은품 #자취방인터넷 #알뜰폰요금제 #통신비절약 #인터넷성지 #생활꿀팁 #머니핏'
+        badLabel: '호구 평균 지출 (기존 약정 방치)',
+        badVal: '+70,000원 혜택',
+        goodLabel: '상위 1% 절약 지출 (47만 사은품 환승)',
+        goodVal: calcRes.totalNetBenefit ? `+${calcRes.totalNetBenefit.toLocaleString()}원 순익` : '+518,000원 순익',
+        diffVal: calcRes.immediateNetWon ? `당일 현금 +${calcRes.immediateNetWon.toLocaleString()}원` : '+448,000원 이득',
+        hashtags: '#인스타툰 #자취꿀팁 #생활비절약 #머니핏'
       }
     };
 
     const meta = sceneByCalc[preset.calc] || sceneByCalc.electric;
 
-    // 1. Threads Main Post (NO LINK -> 100% Reach on Threads algorithm)
+    // 1. Threads Main Post (100% Free of raw https:// URLs -> 0 Spam Penalty + Curiosity Gap Hook)
     const threadsMain = [
-      `🚨 [4컷 웹툰] ${preset.title}, 아직도 감으로 계산하고 돈 날리시나요?`,
+      `🚨 [4컷 동물 인스타툰] "${preset.title}" 모르면 나만 상위 1% 호구 잡힙니다 😭`,
       ``,
-      `솔직히 이거 모르고 그냥 쓰다가 호구 잡히는 분들 진짜 많습니다 😭`,
-      `방금 2026년 최신 요율로 직접 시뮬레이션 돌려본 실제 영수증 결과:`,
-      `• ${calcRes.headline}`,
-      `• ${m0} / ${m1}`,
+      `솔직히 귀찮아서 감으로 넘겼다가 매달 생돈 날리는 분들 진짜 많습니다.`,
+      `방금 2026년 표준 수식으로 뽑아본 충격 실물 영수증 비교 결과:`,
+      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
+      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
+      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
       ``,
-      `📌 3번째 컷 [실제 비교 영수증]은 나중에 호구 안 잡히게 꼭 저장해두세요!`,
-      `👇 내 조건 넣어서 3초 만에 계산하는 무료 링크는 바로 아래 [첫 번째 댓글]에 달아뒀습니다!`
+      `❓ 내 조건 넣으면 상위 몇 % 호구일까?`,
+      `📌 3번째 컷 [절취선 실물 영수증] 먼저 저장해두시고,`,
+      `👇 3초 만에 내 영수증 뽑아보는 무료 시뮬레이터는 바로 아래 [첫 번째 대댓글] 또는 검색창에 [ truthofmarket ]을 검색해보세요!`
     ].join('\n');
 
     // 2. Threads & Facebook 1st Self-Reply Comment (Contains the Direct Link)
     const threadsReply = [
-      `🔗 [로그인/설치 없음] 3초 만에 내 조건 넣고 손익분기점 영수증 뽑아보기 👇`,
+      `🔗 [회원가입/설치 0개] 3초 만에 내 숫자 넣고 실물 손익 영수증 뽑아보기 👇`,
       `${presetUrl}`,
       ``,
-      `(숫자만 바꾸면 실시간으로 내 영수증이 바로 계산됩니다!)`
+      `(숫자만 바꾸면 실시간으로 내가 아낄 수 있는 금액이 1원 단위로 출력됩니다!)`
     ].join('\n');
 
-    // 3. Instagram Feed / Carousel Caption
+    // 3. Instagram Feed / Carousel Caption (100% Free of raw https:// URLs + Exactly 4 Ultra-Targeted Hashtags)
     const instaCaption = [
-      `📌 [나중에 돈 아끼려면 먼저 '저장'부터 해두세요!]`,
-      `"${preset.title}" — 만화로 보는 3초 팩트체크 💥`,
+      `❓ 내 조건 넣으면 상위 몇 % 호구일까? [나중에 돈 아끼려면 먼저 '저장📌'부터!]`,
+      `"${preset.title}" — ${meta.charName} × ${meta.expertName} 4컷 팩트체크 💥`,
       ``,
-      `솔직히 귀찮아서 대충 넘겼다가 매달 생돈 날리는 분들 너무 많아서 4컷 웹툰+영수증으로 정리했습니다.`,
+      `솔직히 귀찮아서 대충 넘겼다가 매달 생돈 날리는 분들이 너무 많아서 4컷 동물 인스타툰 + 절취선 실물 영수증으로 정리했습니다.`,
       ``,
-      `📊 [3번째 슬라이드 실제 영수증 요약]`,
-      `✅ 핵심 결론: ${calcRes.headline}`,
-      `✅ ${m0}`,
-      `✅ ${m1}`,
-      `✅ ${m2}`,
+      `🧾 [3번째 슬라이드 절취선 영수증 요약]`,
+      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
+      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
+      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
+      `• 💡 핵심 요약: ${calcRes.headline}${m0 ? ` (${m0} / ${m1})` : ''}`,
       ``,
-      `✈️ 주변에 이거 몰라서 돈 날리고 있는 자취생·직장인 친구에게 지금 바로 [DM 공유] 해주세요!`,
+      `✈️ 지금 이거 몰라서 생돈 날리고 있는 자취생·직장인 친구에게 바로 [DM 공유] 해주세요!`,
       ``,
-      `🔍 내 조건(평수·요금·예산) 넣어서 3초 만에 계산해보고 싶다면?`,
-      `👉 프로필 하단 링크(${siteUrl.replace('https://', '')}) 클릭 또는 댓글에 [계산기]라고 남겨주시면 링크 보내드려요!`,
+      `⚡ 내 숫자 넣고 3초 만에 무료 영수증 뽑아보고 싶다면?`,
+      `👉 프로필 하단 링크 클릭 또는 네이버·구글에 [ truthofmarket ] 검색!`,
       ``,
       meta.hashtags
     ].join('\n');
 
-    // 4. Facebook Storytelling Post
+    // 4. Facebook Storytelling Post (100% Free of raw https:// URLs in main body)
     const fbPost = [
-      `[공감 4컷] "${preset.title}" 모르면 나만 손해 보는 이유.jpg`,
+      `[공감 4컷 인스타툰] "${preset.title}" 모르면 나만 생돈 날리는 이유.jpg`,
       ``,
-      `처음엔 설마 이 정도 차이 나겠어? 하고 직접 계산기 돌려봤다가 영수증 보고 소름 돋았습니다...`,
+      `처음엔 설마 이 정도 차이 나겠어? 하고 직접 시뮬레이터 돌려봤다가 3번째 컷 실물 영수증 보고 소름 돋았습니다...`,
       ``,
-      `🔥 [실제 계산된 손익분기점 영수증]`,
-      `• ${calcRes.headline}`,
-      `• ${m0}`,
-      `• ${m1}`,
-      `• ${m2}`,
+      `🧾 [실제 계산된 절취선 손익 영수증]`,
+      `• ❌ ${meta.badLabel}: ${meta.badVal}`,
+      `• ✅ ${meta.goodLabel}: ${meta.goodVal}`,
+      `• 🔥 모르면 날리는 생돈: ${meta.diffVal}`,
+      `• 📌 한줄 결론: ${calcRes.headline}${m2 ? ` (${m2})` : ''}`,
       ``,
       `${calcRes.summary}`,
       ``,
-      `주변에 지금 이거 고민 중인 친구 @태그 해주시거나 저장해두시고, 내 조건은 아래 첫 번째 댓글(또는 아래 주소)에서 3초 만에 무료로 계산해보세요!`,
-      `👉 무료 시뮬레이터: ${presetUrl}`
+      `❓ 내 조건 넣으면 상위 몇 % 호구일까?`,
+      `주변에 지금 이거 고민 중인 친구 @태그 해주시거나 저장해두시고, 무료 3초 계산기는 바로 아래 [첫 번째 댓글] 또는 검색창에 [ truthofmarket ]을 검색해보세요! 👇`
     ].join('\n');
 
     return {
@@ -251,103 +314,489 @@
   }
 
   /**
-   * Draw Expressive Webtoon Character Illustration inside a panel
+   * Draw subtle manga focus lines (집중선) in panel background for dramatic shock scenes
    */
-  function drawWebtoonCharacter(ctx, cx, cy, mood, accentColor) {
+  function drawComicFocusLines(ctx, cx, cy, panelW, panelH, color = 'rgba(244, 63, 94, 0.13)') {
     ctx.save();
+    ctx.beginPath();
+    drawRoundedRect(ctx, 4, 64, panelW - 8, panelH - 68, 20);
+    ctx.clip();
+    ctx.strokeStyle = color;
+    const rays = 28;
+    for (let i = 0; i < rays; i++) {
+      const angle = (i / rays) * Math.PI * 2;
+      ctx.lineWidth = i % 2 === 0 ? 3.5 : 1.5;
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(angle) * 62, cy + Math.sin(angle) * 62);
+      ctx.lineTo(cx + Math.cos(angle) * 420, cy + Math.sin(angle) * 420);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
 
-    // Soft character halo
+  /**
+   * Draw a 4-point sparkle star at (sx, sy)
+   */
+  function drawSparkleStar(ctx, sx, sy, size, fill = '#fde047') {
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.quadraticCurveTo(size * 0.18, -size * 0.18, size, 0);
+    ctx.quadraticCurveTo(size * 0.18, size * 0.18, 0, size);
+    ctx.quadraticCurveTo(-size * 0.18, size * 0.18, -size, 0);
+    ctx.quadraticCurveTo(-size * 0.18, -size * 0.18, 0, -size);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  /**
+   * Draw Ultra-High-Quality Korean Anthropomorphized Animal Instatoon Character
+   * Species:
+   * - 'quokka'  (자취생 쿼카찌)
+   * - 'shiba'   (헬스 시바견 득근이)
+   * - 'cat'     (집사 치즈냥 박사)
+   * - 'bear'    (독립 아기곰 포근이)
+   * - 'fox'     (안경 여우 세무사)
+   * - 'raccoon' (호구탈출 라쿤대리)
+   */
+  function drawAnimalCharacter(ctx, cx, cy, species = 'quokka', mood = 'shock', accentColor = '#fecdd3', scale = 1) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(scale, scale);
+
+    const outline = '#1e293b';
+
+    // Soft pastel aura behind character
     ctx.fillStyle = accentColor;
     ctx.beginPath();
-    ctx.arc(cx, cy, 68, 0, Math.PI * 2);
+    ctx.arc(0, -2, 64, 0, Math.PI * 2);
     ctx.fill();
 
-    // Shoulders / Torso
-    ctx.fillStyle = mood === 'shock' ? '#ef4444' : mood === 'smart' ? '#1e40af' : '#059669';
-    drawRoundedRect(ctx, cx - 48, cy + 28, 96, 46, 22);
-    ctx.fill();
+    // Palette per species
+    const palettes = {
+      quokka: { fur: '#d97706', subFur: '#fbbf24', innerEar: '#fda4af', muzzle: '#fffbeb', nose: '#1e293b', prop: '⚡26°C' },
+      shiba: { fur: '#f59e0b', subFur: '#fef3c7', innerEar: '#fef3c7', muzzle: '#ffffff', nose: '#1e293b', prop: '💪득근' },
+      cat: { fur: '#fb923c', subFur: '#ffedd5', innerEar: '#fda4af', muzzle: '#fff7ed', nose: '#fb7185', prop: '🐾사료g' },
+      bear: { fur: '#fde68a', subFur: '#fef3c7', innerEar: '#d97706', muzzle: '#ffffff', nose: '#451a03', prop: '🏠BOM' },
+      fox: { fur: '#ea580c', subFur: '#ffffff', innerEar: '#fed7aa', muzzle: '#ffffff', nose: '#1e293b', prop: '📊팩트' },
+      raccoon: { fur: '#94a3b8', subFur: '#e2e8f0', innerEar: '#cbd5e1', muzzle: '#f8fafc', nose: '#0f172a', prop: '✉️+47만' }
+    };
+    const pal = palettes[species] || palettes.quokka;
 
-    // Head
-    ctx.fillStyle = '#fde68a';
-    ctx.strokeStyle = '#0f172a';
+    // 1. Outfit / Hoodie Torso
+    const shirtColor = mood === 'shock' ? '#f43f5e' : mood === 'smart' ? '#2563eb' : '#10b981';
+    ctx.fillStyle = shirtColor;
+    ctx.strokeStyle = outline;
     ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(cx, cy - 8, 42, 0, Math.PI * 2);
+    drawRoundedRect(ctx, -46, 26, 92, 48, 22);
     ctx.fill();
     ctx.stroke();
 
-    // Hair (Korean webtoon bang style)
-    ctx.fillStyle = '#1e293b';
+    // Cute white collar / hoodie strings
+    ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.arc(cx, cy - 18, 43, Math.PI * 0.95, Math.PI * 2.05);
+    ctx.arc(0, 29, 14, 0, Math.PI);
     ctx.fill();
+    ctx.stroke();
 
-    if (mood === 'shock') {
-      // Shocked wide eyes + sweat drop + screaming mouth
-      ctx.fillStyle = '#ffffff';
+    // 2. Ears (Species-specific)
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = outline;
+    if (species === 'shiba' || species === 'cat' || species === 'fox') {
+      const earH = species === 'fox' ? -62 : -55;
+      const earW = species === 'fox' ? 44 : 38;
+      // Left pointed ear
+      ctx.fillStyle = pal.fur;
       ctx.beginPath();
-      ctx.arc(cx - 15, cy - 10, 9, 0, Math.PI * 2);
-      ctx.arc(cx + 15, cy - 10, 9, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = '#0f172a';
-      ctx.beginPath();
-      ctx.arc(cx - 15, cy - 10, 3.5, 0, Math.PI * 2);
-      ctx.arc(cx + 15, cy - 10, 3.5, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Screaming O mouth
-      ctx.fillStyle = '#ef4444';
-      ctx.beginPath();
-      ctx.ellipse(cx, cy + 12, 11, 14, 0, 0, Math.PI * 2);
+      ctx.moveTo(-earW, -16);
+      ctx.lineTo(-earW + 6, earH);
+      ctx.lineTo(-10, -36);
+      ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // Blue sweat drop
-      ctx.fillStyle = '#38bdf8';
+      // Right pointed ear
       ctx.beginPath();
-      ctx.arc(cx + 34, cy - 22, 7, 0, Math.PI * 2);
+      ctx.moveTo(earW, -16);
+      ctx.lineTo(earW - 6, earH);
+      ctx.lineTo(10, -36);
+      ctx.closePath();
       ctx.fill();
-    } else if (mood === 'smart') {
-      // Smart glasses + confident smile
-      ctx.strokeStyle = '#0f172a';
-      ctx.lineWidth = 3.5;
-      ctx.fillStyle = '#e0f2fe';
-      drawRoundedRect(ctx, cx - 30, cy - 19, 24, 16, 4);
-      ctx.fill();
-      ctx.stroke();
-      drawRoundedRect(ctx, cx + 6, cy - 19, 24, 16, 4);
-      ctx.fill();
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(cx - 6, cy - 11);
-      ctx.lineTo(cx + 6, cy - 11);
       ctx.stroke();
 
-      // Confident smile
+      // Inner ear triangles
+      ctx.fillStyle = pal.innerEar;
       ctx.beginPath();
-      ctx.arc(cx, cy + 6, 12, 0.15 * Math.PI, 0.85 * Math.PI);
-      ctx.stroke();
+      ctx.moveTo(-earW + 6, -20);
+      ctx.lineTo(-earW + 8, earH + 11);
+      ctx.lineTo(-16, -33);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(earW - 6, -20);
+      ctx.lineTo(earW - 8, earH + 11);
+      ctx.lineTo(16, -33);
+      ctx.closePath();
+      ctx.fill();
+
+      // Fox dark ear tips
+      if (species === 'fox') {
+        ctx.fillStyle = '#1e293b';
+        ctx.beginPath();
+        ctx.moveTo(-39, -46);
+        ctx.lineTo(-38, -62);
+        ctx.lineTo(-26, -49);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(39, -46);
+        ctx.lineTo(38, -62);
+        ctx.lineTo(26, -49);
+        ctx.closePath();
+        ctx.fill();
+      }
     } else {
-      // Happy cheering eyes (^ ^) + big smile
-      ctx.strokeStyle = '#0f172a';
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.arc(cx - 15, cy - 8, 8, Math.PI * 1.15, Math.PI * 1.85);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(cx + 15, cy - 8, 8, Math.PI * 1.15, Math.PI * 1.85);
-      ctx.stroke();
+      // Round fluffy ears for Quokka, Bear, Raccoon
+      const earPositions = [
+        { x: -34, y: -34 },
+        { x: 34, y: -34 }
+      ];
+      earPositions.forEach(ep => {
+        ctx.fillStyle = pal.fur;
+        ctx.beginPath();
+        ctx.arc(ep.x, ep.y, 16, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
 
-      // Big happy mouth
-      ctx.fillStyle = '#f43f5e';
-      ctx.beginPath();
-      ctx.arc(cx, cy + 6, 14, 0, Math.PI);
-      ctx.fill();
-      ctx.stroke();
+        ctx.fillStyle = pal.innerEar;
+        ctx.beginPath();
+        ctx.arc(ep.x, ep.y, 8.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
     }
 
+    // 3. Head Base (Chubby Korean Instatoon proportions)
+    ctx.fillStyle = pal.fur;
+    ctx.strokeStyle = outline;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    if (species === 'quokka') {
+      // Extra chubby lower cheeks for Quokka
+      ctx.ellipse(0, -4, 48, 41, 0, 0, Math.PI * 2);
+    } else {
+      ctx.ellipse(0, -6, 45, 40, 0, 0, Math.PI * 2);
+    }
+    ctx.fill();
+    ctx.stroke();
+
+    // 4. Species-specific Facial Markings
+    if (species === 'quokka') {
+      // Warm golden lower cheek puffs
+      ctx.fillStyle = pal.subFur;
+      ctx.beginPath();
+      ctx.arc(-25, 6, 16, 0, Math.PI * 2);
+      ctx.arc(25, 6, 16, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (species === 'shiba') {
+      // Cream white lower face + Shiba cream eyebrow beans + Red sweatband
+      ctx.fillStyle = pal.subFur;
+      ctx.beginPath();
+      ctx.ellipse(0, 10, 36, 22, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cream eyebrow spots
+      ctx.beginPath();
+      ctx.ellipse(-15, -23, 5.5, 3.5, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(15, -23, 5.5, 3.5, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Red athletic headband
+      ctx.fillStyle = '#ef4444';
+      drawRoundedRect(ctx, -41, -36, 82, 11, 5);
+      ctx.fill();
+      ctx.stroke();
+    } else if (species === 'cat') {
+      // 3 Cute forehead tabby stripes + cheek whiskers
+      ctx.strokeStyle = '#9a3412';
+      ctx.lineWidth = 3.5;
+      [-9, 0, 9].forEach(sx => {
+        ctx.beginPath();
+        ctx.moveTo(sx, -42);
+        ctx.lineTo(sx, -30);
+        ctx.stroke();
+      });
+      // Whiskers
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 2.5;
+      [-1, 1].forEach(dir => {
+        ctx.beginPath();
+        ctx.moveTo(dir * 30, 2);
+        ctx.lineTo(dir * 52, -2);
+        ctx.moveTo(dir * 30, 9);
+        ctx.lineTo(dir * 52, 11);
+        ctx.stroke();
+      });
+    } else if (species === 'fox') {
+      // White desert fox cheek tufts
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(-22, 11, 19, 15, 0.2, 0, Math.PI * 2);
+      ctx.ellipse(22, 11, 19, 15, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (species === 'raccoon') {
+      // Dark charcoal raccoon eye-mask patches
+      ctx.fillStyle = '#334155';
+      ctx.beginPath();
+      ctx.ellipse(-17, -9, 14, 11, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(17, -9, 14, 11, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 5. Rosy Pastel Cheeks (#fda4af)
+    ctx.fillStyle = '#fda4af';
+    ctx.beginPath();
+    ctx.ellipse(-28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
+    ctx.ellipse(28, 8, 8.5, 5.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 6. Cute Snout / Muzzle & Button Nose
+    ctx.fillStyle = pal.muzzle;
+    ctx.strokeStyle = outline;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.ellipse(0, 8, 16, 12, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = pal.nose;
+    ctx.beginPath();
+    ctx.ellipse(0, 2, 5.5, 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 7. Dramatic Instatoon Mood Expressions (Eyes, Tears, Glasses, Mouth, Paws)
+    if (mood === 'shock') {
+      // Sky-blue Waterfall Tears (폭포 눈물) streaming down from both eyes
+      ctx.fillStyle = '#38bdf8';
+      drawRoundedRect(ctx, -23, -6, 11, 42, 5);
+      ctx.fill();
+      drawRoundedRect(ctx, 12, -6, 11, 42, 5);
+      ctx.fill();
+
+      // Big trembling eyes with tiny pupils
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.arc(-17, -10, 9.5, 0, Math.PI * 2);
+      ctx.arc(17, -10, 9.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = outline;
+      ctx.beginPath();
+      ctx.arc(-17, -10, 3.2, 0, Math.PI * 2);
+      ctx.arc(17, -10, 3.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Screaming open mouth
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.ellipse(0, 14, 9.5, 11, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Paws on cheeks in panic
+      ctx.fillStyle = pal.fur;
+      ctx.beginPath();
+      ctx.arc(-36, 20, 10, 0, Math.PI * 2);
+      ctx.arc(36, 20, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    } else if (mood === 'smart') {
+      // Confident eyes + Shiny Smart Glasses (안경 번쩍✨)
+      ctx.fillStyle = 'rgba(224, 242, 254, 0.92)';
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 3.8;
+      drawRoundedRect(ctx, -33, -21, 27, 19, 5);
+      ctx.fill();
+      ctx.stroke();
+      drawRoundedRect(ctx, 6, -21, 27, 19, 5);
+      ctx.fill();
+      ctx.stroke();
+
+      // Glasses bridge & shine diagonal lines
+      ctx.beginPath();
+      ctx.moveTo(-6, -12);
+      ctx.lineTo(6, -12);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(-28, -6);
+      ctx.lineTo(-18, -18);
+      ctx.moveTo(11, -6);
+      ctx.lineTo(21, -18);
+      ctx.stroke();
+
+      // Smirk / cat-mouth (ㅅ)
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 3.2;
+      ctx.beginPath();
+      ctx.moveTo(-8, 12);
+      ctx.quadraticCurveTo(-4, 16, 0, 10);
+      ctx.quadraticCurveTo(4, 16, 8, 12);
+      ctx.stroke();
+
+      // Star gleam on glasses frame (안경 번쩍✨)
+      drawSparkleStar(ctx, 34, -22, 10, '#fde047');
+
+      // Right paw holding red fact-check pointer stick
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 4.5;
+      ctx.beginPath();
+      ctx.moveTo(32, 34);
+      ctx.lineTo(58, -4);
+      ctx.stroke();
+      ctx.fillStyle = pal.fur;
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.arc(34, 34, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      // Happy curved eyes (^ ^) + cheering paws + floating coins/sparkles
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 3.8;
+      ctx.beginPath();
+      ctx.arc(-17, -10, 8, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(17, -10, 8, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.stroke();
+
+      // Cute cat/animal smile (ㅅ + happy pink tongue)
+      ctx.fillStyle = '#fb7185';
+      ctx.beginPath();
+      ctx.arc(0, 10, 9, 0, Math.PI);
+      ctx.fill();
+      ctx.stroke();
+
+      // Both paws raised up cheering
+      ctx.fillStyle = pal.fur;
+      ctx.beginPath();
+      ctx.arc(-44, 12, 10, 0, Math.PI * 2);
+      ctx.arc(44, 12, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Sparkles & Gold Coins around happy character
+      drawSparkleStar(ctx, -50, -28, 9, '#fde047');
+      drawSparkleStar(ctx, 50, -24, 10, '#fde047');
+    }
+
+    // 8. Category Mini Prop Badge at bottom of character
+    drawRoundedRect(ctx, -38, 52, 76, 24, 10);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = outline;
+    ctx.stroke();
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+    const propW = ctx.measureText(pal.prop).width;
+    ctx.fillText(pal.prop, -propW / 2, 69);
+
+    ctx.restore();
+  }
+
+  /**
+   * Backwards-compatible wrapper
+   */
+  function drawWebtoonCharacter(ctx, cx, cy, mood, accentColor) {
+    drawAnimalCharacter(ctx, cx, cy, mood === 'smart' ? 'fox' : 'quokka', mood, accentColor, 1);
+  }
+
+  /**
+   * Draw Perforated Real Thermal Receipt Card (톱니 절취선 실물 영수증 그래픽) inside Panel 3
+   */
+  function drawPerforatedReceiptCard(ctx, x, y, w, h) {
+    const zigCount = 18;
+    const zigW = w / zigCount;
+    const zigH = 9;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x, y + zigH);
+    // Top serrated zig-zag edge
+    for (let i = 0; i < zigCount; i++) {
+      ctx.lineTo(x + (i + 0.5) * zigW, y);
+      ctx.lineTo(x + (i + 1) * zigW, y + zigH);
+    }
+    // Right edge
+    ctx.lineTo(x + w, y + h - zigH);
+    // Bottom serrated zig-zag edge
+    for (let i = zigCount; i > 0; i--) {
+      ctx.lineTo(x + (i - 0.5) * zigW, y + h);
+      ctx.lineTo(x + (i - 1) * zigW, y + h - zigH);
+    }
+    ctx.closePath();
+
+    ctx.fillStyle = '#fffef7';
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#334155';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Cache for preloaded AI Animal Instatoon 2x2 sheets (/src/assets/webtoon/{calc}.jpg)
+  const categoryImageCache = {};
+
+  function getCategoryInstatoonImage(calcKey) {
+    if (typeof Image === 'undefined') return null;
+    const key = calcKey || 'electric';
+    if (categoryImageCache[key]) {
+      return categoryImageCache[key].loaded ? categoryImageCache[key].img : null;
+    }
+    const img = new Image();
+    const entry = { img, loaded: false };
+    categoryImageCache[key] = entry;
+    img.onload = function () {
+      entry.loaded = true;
+      refreshActive();
+    };
+    img.src = `/src/assets/webtoon/${key}.jpg`;
+    return null;
+  }
+
+  /**
+   * Helper: Draw 1 quadrant (panelIdx 0..3) of the 2x2 AI Animal Instatoon sheet (aspect-ratio-preserving cover)
+   */
+  function drawInstatoonQuadrant(ctx, img, panelIdx, dx, dy, dw, dh) {
+    const halfW = img.naturalWidth / 2;
+    const halfH = img.naturalHeight / 2;
+    const col = panelIdx % 2;
+    const row = Math.floor(panelIdx / 2);
+    const pad = Math.round(halfW * 0.025);
+    const sx = col * halfW + pad;
+    const sy = row * halfH + pad;
+    const sw = halfW - pad * 2;
+    const sh = Math.min(halfH - pad * 2, Math.round(sw * (dh / dw)));
+
+    ctx.save();
+    drawRoundedRect(ctx, dx, dy, dw, dh, 18);
+    ctx.clip();
+    ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
     ctx.restore();
   }
 
@@ -356,8 +805,8 @@
    */
   function drawSinglePanel(ctx, panelIdx, px, py, pw, ph, preset, story) {
     const { meta, calcRes } = story;
-    const m = calcRes.metrics || [];
     const scale = pw / 500;
+    const artImg = getCategoryInstatoonImage(preset.calc);
 
     ctx.save();
     ctx.translate(px, py);
@@ -377,160 +826,242 @@
     const headers = [
       meta.panel1Title,
       meta.panel2Title,
-      '3컷 · 실제 충격 영수증 비교 (📌저장필수)',
-      '4컷 · 3초 무료 자가진단 처방전'
+      '3컷 · 절취선 실물 영수증 비교 (📌저장필수)',
+      '4컷 · 3초 호구 탈출 자가진단'
     ];
-    drawRoundedRect(ctx, 20, 18, 460, 42, 12);
+    drawRoundedRect(ctx, 16, 14, 468, 40, 12);
     ctx.fillStyle = borderColors[panelIdx];
     ctx.fill();
     ctx.fillStyle = panelIdx === 2 ? '#0f172a' : '#ffffff';
-    ctx.font = 'bold 20px "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
-    ctx.fillText(headers[panelIdx], 36, 46);
+    ctx.font = 'bold 18.5px "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
+    ctx.fillText(headers[panelIdx], 30, 41);
 
     if (panelIdx === 0) {
-      // Panel 1: Shock Webtoon Scene
-      drawWebtoonCharacter(ctx, 110, 165, 'shock', '#fecdd3');
+      if (artImg) {
+        // Draw AI Animal Instatoon Quadrant 1 (Quokka / Shiba / Cat / Bear / Fox / Raccoon)
+        drawInstatoonQuadrant(ctx, artImg, 0, 12, 60, 476, 428);
+      } else {
+        drawComicFocusLines(ctx, 108, 220, 500, 500, 'rgba(244, 63, 94, 0.14)');
+        drawAnimalCharacter(ctx, 105, 225, meta.species || 'quokka', 'shock', '#fecdd3', 0.96);
+      }
 
-      // Speech Bubble
-      drawRoundedRect(ctx, 195, 82, 282, 155, 18);
-      ctx.fillStyle = '#ffffff';
+      // Top Korean Speech Bubble Overlay
+      drawRoundedRect(ctx, 18, 62, 464, 86, 16);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.fill();
-      ctx.lineWidth = 3.5;
+      ctx.lineWidth = 3;
       ctx.strokeStyle = '#0f172a';
       ctx.stroke();
 
       ctx.fillStyle = '#be123c';
-      ctx.font = 'bold 21px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, meta.panel1Bubble, 215, 118, 244, 30, 4);
+      ctx.font = 'bold 18px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, meta.panel1Bubble, 32, 92, 340, 24, 2);
+
+      // Comic SFX Badge (콰아앙⚡ / 두둥탁!!) in top-right corner
+      ctx.save();
+      ctx.translate(424, 94);
+      ctx.rotate(0.06);
+      drawRoundedRect(ctx, -48, -16, 96, 32, 10);
+      ctx.fillStyle = '#fde047';
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#0f172a';
+      ctx.stroke();
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.sfxShock || '콰아앙⚡', -36, 5);
+      ctx.restore();
 
       // Episode Title Box at Bottom
-      drawRoundedRect(ctx, 22, 265, 456, 210, 16);
-      ctx.fillStyle = '#1e293b';
+      drawRoundedRect(ctx, 18, 392, 464, 94, 14);
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
       ctx.fill();
       ctx.fillStyle = '#fbbf24';
-      ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
-      ctx.fillText(`🔥 오늘의 팩트폭행 주제 (${preset.category})`, 42, 300);
+      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(`🐾 주인공: ${meta.charName} (${preset.category})`, 32, 416);
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 26px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, preset.title, 42, 340, 416, 36, 2);
+      ctx.font = 'bold 19px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, preset.title, 32, 444, 436, 24, 1);
 
       ctx.fillStyle = '#fda4af';
-      ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, `⚠️ ${meta.panel1Sub}`, 42, 435, 416, 24, 2);
+      ctx.font = 'bold 14px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, `⚠️ ${meta.panel1Sub}`, 32, 472, 436, 20, 1);
     } else if (panelIdx === 1) {
-      // Panel 2: Smart Analyst Fact-Check
-      drawWebtoonCharacter(ctx, 110, 165, 'smart', '#bfdbfe');
+      if (artImg) {
+        // Draw AI Animal Instatoon Quadrant 2 (Smart Glasses Fox Fact-Checking!)
+        drawInstatoonQuadrant(ctx, artImg, 1, 12, 60, 476, 428);
+      } else {
+        drawAnimalCharacter(ctx, 105, 225, 'fox', 'smart', '#bfdbfe', 0.96);
+      }
 
-      drawRoundedRect(ctx, 195, 82, 282, 155, 18);
-      ctx.fillStyle = '#ffffff';
+      // Top Speech Bubble
+      drawRoundedRect(ctx, 18, 62, 464, 86, 16);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.fill();
-      ctx.lineWidth = 3.5;
+      ctx.lineWidth = 3;
       ctx.strokeStyle = '#0f172a';
       ctx.stroke();
 
       ctx.fillStyle = '#1d4ed8';
-      ctx.font = 'bold 21px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, meta.panel2Bubble, 215, 118, 244, 30, 4);
+      ctx.font = 'bold 17.5px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, meta.panel2Bubble, 32, 92, 315, 24, 2);
 
-      // Fact Point Box
-      drawRoundedRect(ctx, 22, 265, 456, 210, 16);
-      ctx.fillStyle = '#ffffff';
+      // '삐빅-! 팩트폭격' Badge in top-right
+      drawRoundedRect(ctx, 350, 72, 122, 28, 8);
+      ctx.fillStyle = '#dc2626';
       ctx.fill();
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#93c5fd';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 13px "Malgun Gothic", sans-serif';
+      ctx.fillText('🚨 삐빅-! 팩트폭격', 358, 91);
+
+      // Fact Point Box at Bottom
+      drawRoundedRect(ctx, 18, 392, 464, 94, 14);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#3b82f6';
       ctx.stroke();
 
       ctx.fillStyle = '#1e3a8a';
-      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-      ctx.fillText('💡 왜 대충 계산하면 무조건 손해일까?', 42, 305);
+      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(`🦊 ${meta.expertName}의 팩트체크 (안경 번쩍✨)`, 32, 418);
 
       ctx.fillStyle = '#334155';
-      ctx.font = 'bold 19px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, calcRes.summary || meta.panel2Sub, 42, 345, 416, 29, 4);
+      ctx.font = 'bold 15.5px "Malgun Gothic", sans-serif';
+      drawWrappedText(ctx, calcRes.summary || meta.panel2Sub, 32, 444, 436, 21, 2);
     } else if (panelIdx === 2) {
-      // Panel 3: Dark Mode Real Receipt Card (Save & Share Driver!)
-      drawRoundedRect(ctx, 24, 78, 452, 398, 16);
-      ctx.fillStyle = '#1e293b';
-      ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#475569';
-      ctx.stroke();
-
-      ctx.fillStyle = '#fbbf24';
-      ctx.font = 'bold 18px "Malgun Gothic", sans-serif';
-      ctx.fillText('🧾 [머니핏 2026 표준 수식 시뮬레이션 영수증]', 44, 114);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 24px "Malgun Gothic", sans-serif';
-      drawWrappedText(ctx, calcRes.headline, 44, 152, 412, 32, 2);
-
-      // 3 Metric Rows
-      for (let i = 0; i < 3; i++) {
-        const item = m[i] || { label: `핵심 지표 ${i + 1}`, val: '-' };
-        const ry = 225 + i * 68;
-        drawRoundedRect(ctx, 42, ry, 416, 54, 10);
-        ctx.fillStyle = '#0f172a';
-        ctx.fill();
-
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
-        ctx.fillText(item.label, 60, ry + 34);
-
-        ctx.fillStyle = i === 0 ? '#f87171' : i === 1 ? '#38bdf8' : '#34d399';
-        ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-        const valWidth = ctx.measureText(item.val).width;
-        ctx.fillText(item.val, 440 - valWidth, ry + 34);
+      if (artImg) {
+        // Draw Crying Animal Quadrant 3 at top of Panel 3, then Perforated Receipt below
+        drawInstatoonQuadrant(ctx, artImg, 2, 12, 60, 476, 175);
       }
 
-      ctx.fillStyle = '#fde047';
-      ctx.font = 'bold 16px "Malgun Gothic", sans-serif';
-      ctx.fillText('📌 나중에 호구 안 잡히게 이 영수증을 [저장] 해두세요!', 48, 456);
-    } else if (panelIdx === 3) {
-      // Panel 4: 3-Second Solution CTA
-      drawWebtoonCharacter(ctx, 110, 165, 'happy', '#a7f3d0');
+      // Panel 3: Perforated Real Thermal Receipt (절취선 실물 영수증 그래픽)
+      const recY = artImg ? 186 : 70;
+      const recH = artImg ? 302 : 408;
+      drawPerforatedReceiptCard(ctx, 20, recY, 460, recH);
 
-      drawRoundedRect(ctx, 195, 82, 282, 155, 18);
-      ctx.fillStyle = '#ffffff';
+      // Receipt Header
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
+      ctx.fillText('🧾 [머니핏 2026 실물 비교 영수증]', 36, recY + 30);
+
+      // Red Diagonal Stamp (🚨 호구주의보)
+      ctx.save();
+      ctx.translate(402, recY + 26);
+      ctx.rotate(-0.12);
+      drawRoundedRect(ctx, -58, -14, 116, 28, 7);
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(254, 226, 226, 0.95)';
       ctx.fill();
-      ctx.lineWidth = 3.5;
-      ctx.strokeStyle = '#0f172a';
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 13.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('🚨 호구주의보', -46, 5);
+      ctx.restore();
+
+      // Dashed Receipt Divider Line
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 14px monospace';
+      ctx.fillText('------------------------------------------', 34, recY + 48);
+
+      // Row 1: ❌ 호구 평균 지출 (Red highlight box)
+      const rowH = artImg ? 54 : 74;
+      const r1Y = recY + 56;
+      drawRoundedRect(ctx, 34, r1Y, 432, rowH, 10);
+      ctx.fillStyle = '#ffe4e6';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#f43f5e';
+      ctx.stroke();
+
+      ctx.fillStyle = '#9f1239';
+      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(`❌ ${meta.badLabel || '호구 평균 지출'}`, 48, r1Y + 22);
+      ctx.fillStyle = '#e11d48';
+      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.badVal, 48, r1Y + (artImg ? 45 : 56));
+
+      // Row 2: ✅ 상위 1% 절약 지출 (Emerald highlight box)
+      const r2Y = r1Y + rowH + 8;
+      drawRoundedRect(ctx, 34, r2Y, 432, rowH, 10);
+      ctx.fillStyle = '#d1fae5';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#10b981';
       ctx.stroke();
 
       ctx.fillStyle = '#065f46';
-      ctx.font = 'bold 21px "Malgun Gothic", sans-serif';
-      drawWrappedText(
-        ctx,
-        '"내 조건 넣으면 3초 만에 손익분기점 영수증이 무료로 출력됩니다!"',
-        215,
-        118,
-        244,
-        30,
-        4
-      );
+      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
+      ctx.fillText(`✅ ${meta.goodLabel || '상위 1% 절약 지출'}`, 48, r2Y + 22);
+      ctx.fillStyle = '#059669';
+      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
+      ctx.fillText(meta.goodVal, 48, r2Y + (artImg ? 45 : 56));
 
-      // Big CTA Card
-      drawRoundedRect(ctx, 22, 265, 456, 210, 16);
+      // Bottom Bold Yellow-Emerald Box: 🔥 모르면 매달/매년 날리는 생돈: {diffVal}
+      const boxY = r2Y + rowH + 10;
+      const boxH = artImg ? 68 : 88;
+      drawRoundedRect(ctx, 34, boxY, 432, boxH, 12);
       ctx.fillStyle = '#0f172a';
       ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#fbbf24';
+      ctx.stroke();
 
+      ctx.fillStyle = '#fde047';
+      ctx.font = 'bold 14.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('🔥 모르면 매달/매년 날리는 생돈:', 48, boxY + 24);
       ctx.fillStyle = '#34d399';
-      ctx.font = 'bold 20px "Malgun Gothic", sans-serif';
-      ctx.fillText('✅ 회원가입 0초 · 앱 설치 0개 · 100% 무료', 44, 305);
-
-      ctx.fillStyle = '#ffffff';
       ctx.font = 'bold 23px "Malgun Gothic", sans-serif';
-      ctx.fillText('지금 바로 내 진짜 손익분기점 확인하기 👇', 44, 348);
+      ctx.fillText(meta.diffVal, 48, boxY + (artImg ? 54 : 64));
+    } else if (panelIdx === 3) {
+      // Panel 4: High-CTR Curiosity-Gap Hook (클릭율 5배 상승 호기심 갭 CTA)
+      if (artImg) {
+        drawInstatoonQuadrant(ctx, artImg, 3, 12, 60, 476, 428);
+      } else {
+        drawAnimalCharacter(ctx, 102, 200, meta.species || 'quokka', 'happy', '#a7f3d0', 0.9);
+      }
 
-      drawRoundedRect(ctx, 40, 375, 420, 74, 14);
+      // 1) Top Question Badge
+      drawRoundedRect(ctx, 18, 62, 464, 42, 12);
+      ctx.fillStyle = '#fef08a';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#ca8a04';
+      ctx.stroke();
+      ctx.fillStyle = '#713f12';
+      ctx.font = 'bold 19px "Malgun Gothic", sans-serif';
+      ctx.fillText('❓ 내 조건 넣으면 상위 몇 % 호구일까?', 42, 90);
+
+      // 2) Interactive-looking UI Mockup Box + Anti-Spam Search CTA at Bottom
+      drawRoundedRect(ctx, 18, 340, 464, 146, 16);
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#10b981';
+      ctx.stroke();
+
+      // Interactive UI Mockup Box inside Panel 4
+      drawRoundedRect(ctx, 32, 352, 436, 50, 10);
+      ctx.fillStyle = '#1e293b';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.stroke();
+
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 18.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('[ ⚡ 내 숫자 넣고 3초 만에 영수증 뽑기 👉 ]', 44, 384);
+
+      // Bottom Anti-Spam High-CTR CTA Button
+      drawRoundedRect(ctx, 32, 412, 436, 60, 12);
       ctx.fillStyle = '#fbbf24';
       ctx.fill();
 
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 22px "Malgun Gothic", sans-serif';
-      ctx.fillText('🔎 프로필 링크 / 첫 댓글 클릭!', 92, 412);
-      ctx.font = 'bold 17px "Malgun Gothic", sans-serif';
-      ctx.fillText('공식 포털: truthofmarket.com', 125, 438);
+      ctx.font = 'bold 18.5px "Malgun Gothic", sans-serif';
+      ctx.fillText('👉 프로필 링크 클릭 또는 [ truthofmarket ] 검색!', 42, 449);
     }
 
     ctx.restore();
@@ -553,7 +1084,7 @@
     // Top Title Banner (0..76)
     ctx.fillStyle = '#fbbf24';
     ctx.font = 'bold 28px "Malgun Gothic", sans-serif';
-    ctx.fillText(`🎨 [머니핏 4컷 팩트툰] ${preset.title.slice(0, 28)}`, 32, 50);
+    ctx.fillText(`🐾 [머니핏 동물 인스타툰] ${preset.title.slice(0, 26)}`, 32, 50);
 
     // 4 Panels in 2x2 Grid (each 496x480)
     const positions = [
@@ -707,6 +1238,16 @@
     const previewLinkEl = document.getElementById('sniper-preset-preview-link');
     if (previewLinkEl) previewLinkEl.href = `/preset/${preset.id}/`;
 
+    const searchQuery = encodeURIComponent(preset.keyword || preset.title || '원룸 에어컨 전기세');
+    const jisikinLinkEl = document.getElementById('sniper-jisikin-link');
+    if (jisikinLinkEl) {
+      jisikinLinkEl.href = `https://kin.naver.com/search/list.naver?sort=date&query=${searchQuery}`;
+    }
+    const cafeLinkEl = document.getElementById('sniper-cafe-link');
+    if (cafeLinkEl) {
+      cafeLinkEl.href = `https://search.naver.com/search.naver?where=article&query=${searchQuery}`;
+    }
+
     // Render 4-Cut Webtoon Canvas
     renderWebtoonCanvas(preset, story);
 
@@ -721,7 +1262,7 @@
     if (instaEl) instaEl.textContent = story.instaCaption;
     if (fbEl) fbEl.textContent = story.fbPost;
 
-    // Populate legacy hidden elements if present
+    // Populate Naver Blog / Jisik-iN / Cafe elements
     const viralData = getViralData();
     const bundle = viralData[preset.id] || {};
     const blogEl = document.getElementById('generated-blog-post');
@@ -827,6 +1368,7 @@
     refreshActive,
     filterCategory,
     buildWebtoonStoryAndCopy,
+    drawAnimalCharacter,
     downloadWebtoonGridPng,
     downloadWebtoonSlidesPng,
     copyWithFeedback,

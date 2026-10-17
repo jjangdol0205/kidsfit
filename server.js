@@ -338,7 +338,7 @@ function isForbiddenRequestPath(cleanUrlPath) {
   const segments = lower.split('/');
   if (segments.some(seg => seg.startsWith('.'))) return true; // blocks .env, .git, .gitignore
 
-  const forbiddenPrefixes = ['logs/', 'scripts/', 'tests/', 'node_modules/', 'viral-content/'];
+  const forbiddenPrefixes = ['logs/', 'scripts/', 'tests/', 'node_modules/', 'viral-content/', 'backlog_human_posts/', 'sns_outbox/'];
   if (forbiddenPrefixes.some(p => lower === p.slice(0, -1) || lower.startsWith(p))) return true;
 
   const forbiddenExact = new Set([
@@ -386,12 +386,13 @@ function resolveFilePath(cleanUrlPath) {
     return htmlDist;
   }
 
-  // 3. Strictly allow only /src/* public frontend assets from ROOT_DIR if not in dist/
-  if (rel.startsWith('src/')) {
-    const candidateSrc = path.resolve(ROOT_DIR, rel);
-    const srcRoot = path.join(ROOT_DIR, 'src') + path.sep;
-    if (candidateSrc.startsWith(srcRoot) && fs.existsSync(candidateSrc) && fs.statSync(candidateSrc).isFile()) {
-      return candidateSrc;
+  // 3. Strictly allow only /src/* and /sns/* public frontend assets from ROOT_DIR if not in dist/
+  if (rel.startsWith('src/') || rel.startsWith('sns/')) {
+    const allowedPrefix = rel.startsWith('src/') ? 'src' : 'sns';
+    const candidateAsset = path.resolve(ROOT_DIR, rel);
+    const assetRoot = path.join(ROOT_DIR, allowedPrefix) + path.sep;
+    if (candidateAsset.startsWith(assetRoot) && fs.existsSync(candidateAsset) && fs.statSync(candidateAsset).isFile()) {
+      return candidateAsset;
     }
   }
 

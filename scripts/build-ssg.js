@@ -1623,7 +1623,14 @@ function build() {
   const srcDir = path.join(PROJECT_ROOT, 'src');
   const srcDestDir = path.join(DIST_DIR, 'src');
   copyDirRecursive(srcDir, srcDestDir);
-  console.log('  ✓ dist/src/ (CSS, JS, Data)');
+  console.log('  ✓ dist/src/ (CSS, JS, Data, Webtoon Assets)');
+
+  const snsDir = path.join(PROJECT_ROOT, 'sns');
+  if (fs.existsSync(snsDir)) {
+    const snsDestDir = path.join(DIST_DIR, 'sns');
+    copyDirRecursive(snsDir, snsDestDir);
+    console.log('  ✓ dist/sns/ (Public 4-Cut Webtoon PNGs)');
+  }
 
   // 3. Pre-render 36 Static Landing Pages
   console.log('\n[2/4] Pre-rendering 36 Programmatic SEO Landing Pages ...');

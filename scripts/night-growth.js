@@ -122,6 +122,15 @@ const pipelineMetrics = {
     console.log(`  ✓ Search Engine Autopilot ${isDryRun ? '[DRY-RUN OK: All Payloads Verified]' : '[LIVE OK: Broadcasted to Naver/Google/Bing]'}`);
     pipelineMetrics.indexNowStatus = isDryRun ? 'DRY_RUN_VERIFIED (6 Channels)' : 'LIVE_SUBMITTED (Naver/Google/Bing/AI)';
 
+    // Refresh General Manager Webtoon & Naver Backlog Audit Board
+    try {
+      const managerAudit = require('./manager-audit.js');
+      await managerAudit.runManagerAudit();
+      console.log('  ✓ 총괄매니저_백로그_및_실적관리_보드.md refreshed');
+    } catch (e) {
+      console.warn('  ⚠ Manager audit warning:', e.message);
+    }
+
     pipelineMetrics.durationMs = Date.now() - startTime;
 
     // -------------------------------------------------------------

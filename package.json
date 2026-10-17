@@ -15,6 +15,8 @@
     "telegram:discover": "node scripts/telegram-notify.js --discover",
     "telegram:bridge": "node scripts/telegram-antigravity-bridge.js",
     "report:daily": "node scripts/daily-revenue-report.js",
+    "manager:audit": "node scripts/manager-audit.js",
+    "webtoon:top6": "node scripts/sns-auto-publisher.js --top6",
     "seo:autopilot": "node scripts/seo-autopilot.js",
     "auto:all": "node scripts/auto-master.js"
   },

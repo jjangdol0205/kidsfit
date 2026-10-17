@@ -372,11 +372,55 @@
               </div>
             </div>
 
+            <!-- 4. 🟢 네이버(Naver) 블로그 · 지식iN · 카페 실전 원고 & 실시간 질문 저격 세트 -->
+            <div class="bg-emerald-50/50 border-2 border-emerald-300 rounded-2xl p-4 shadow-sm space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200/80 pb-2.5">
+                <span class="text-xs sm:text-sm font-extrabold text-emerald-950 flex items-center gap-1.5">
+                  <span class="bg-emerald-600 text-white text-[10px] px-2 py-0.5 rounded">네이버 검색 유입</span>
+                  <span>🟢 네이버 블로그 · 지식iN · 카페 실전 원고 & 실시간 질문 저격</span>
+                </span>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <a id="sniper-jisikin-link" href="https://kin.naver.com/search/list.naver?sort=date&query=%EC%9B%90%EB%A3%B8+%EC%97%90%EC%96%B4%EC%BB%A8+%EC%A0%84%EA%B8%B0%EC%84%B8" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-2.5 py-1 rounded-lg transition">
+                    🎯 지식iN 최신질문 ↗
+                  </a>
+                  <a id="sniper-cafe-link" href="https://search.naver.com/search.naver?where=article&query=%EC%9B%90%EB%A3%B8+%EC%97%90%EC%96%B4%EC%BB%A8+%EC%A0%84%EA%B8%B0%EC%84%B8" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-teal-700 hover:bg-teal-600 text-white font-bold px-2.5 py-1 rounded-lg transition">
+                    ☕ 네이버 카페 최신글 ↗
+                  </a>
+                  <a href="https://blog.naver.com/comedifarm" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-white font-bold px-2.5 py-1 rounded-lg transition">
+                    📝 내 블로그 ↗
+                  </a>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="bg-white border border-emerald-200 rounded-xl p-3">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-extrabold text-emerald-900 truncate">📝 네이버 블로그 원고</span>
+                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-blog-post', this, '네이버 블로그 원고')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
+                  </div>
+                  <pre id="generated-blog-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
+                </div>
+
+                <div class="bg-white border border-emerald-200 rounded-xl p-3">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-extrabold text-emerald-900 truncate">💡 지식iN 맞춤 답변</span>
+                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-jisikin-post', this, '네이버 지식iN 답변')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
+                  </div>
+                  <pre id="generated-jisikin-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
+                </div>
+
+                <div class="bg-white border border-emerald-200 rounded-xl p-3">
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-xs font-extrabold text-emerald-900 truncate">☕ 네이버 카페 댓글/글</span>
+                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-cafe-comment-post', this, '네이버 카페 원고')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
+                  </div>
+                  <pre id="generated-cafe-comment-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
+                </div>
+              </div>
+            </div>
+
             <!-- 호환성 유지용 숨김 엘리먼트 -->
             <div class="hidden">
-              <pre id="generated-jisikin-post"></pre>
-              <pre id="generated-cafe-comment-post"></pre>
-              <pre id="generated-blog-post"></pre>
               <pre id="generated-indexnow-json"></pre>
             </div>
           </div>
