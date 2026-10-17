@@ -972,6 +972,20 @@ function renderInteractiveCalculatorCard(preset, res) {
             <div id="res-zero-feel-banner" class="bg-gradient-to-r from-amber-400 to-orange-400 text-slate-950 text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-xl shadow-sm break-keep">
               ${zf && zf.callout ? zf.callout : '🔥 절약액 차감 시 내 실체감가: 0원 (오히려 순흑자!)'}
             </div>
+            <!-- [D-3 First Purchase Booster] 부담 없이 오늘 바로 사는 1만 원대 로켓배송 실구매 1위 소모품·필수템 -->
+            <div id="res-impulse-booster" class="bg-gradient-to-r from-rose-950/95 via-slate-900 to-amber-950/85 border-2 border-rose-500/75 rounded-xl p-3 space-y-2 shadow-md">
+              <div class="flex items-center justify-between gap-2">
+                <span id="res-impulse-badge" class="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shrink-0 whitespace-nowrap">${res.impulseItem ? res.impulseItem.badge : '⚡ 9,900원대 로켓배송 실구매 1위'}</span>
+                <span class="text-[10px] font-extrabold text-amber-300 shrink-0 whitespace-nowrap">🔥 오늘 주문 · 내일 새벽 도착</span>
+              </div>
+              <div id="res-impulse-title" class="text-xs sm:text-sm font-extrabold text-white leading-snug break-keep">${res.impulseItem ? res.impulseItem.title : '오늘 바로 쓰는 1만 원대 가성비 절약 필수템'}</div>
+              <div id="res-impulse-sub" class="text-[11px] text-emerald-300 font-semibold leading-snug break-keep">${res.impulseItem ? res.impulseItem.sub : '부담 없는 1만 원대 소모품으로 당장 새는 비용부터 즉시 방어하세요!'}</div>
+              <a id="res-impulse-btn" href="${monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId)}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordPresetClick('coupang', this.href, 'impulse_booster')"
+                 class="block w-full text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black py-2.5 px-3 rounded-lg text-xs transition shadow whitespace-nowrap truncate">
+                ${res.impulseItem ? res.impulseItem.btnLabel : '🛒 1만원대 로켓배송 필수템 최저가 ↗'}
+              </a>
+            </div>
             <div id="res-action-items" class="space-y-2">
               ${actionItemsHtml}
             </div>
@@ -1247,6 +1261,29 @@ ${JSON.stringify(schemaJson, null, 2)}
       <p class="text-base text-slate-600 leading-relaxed">
         ${preset.metaDescription}
       </p>
+
+      <!-- [D-3 Above-the-Fold Instant Answer & 1-Click Checkout Strip] 스크롤 없이 0.5초 결론 확인 & 즉시 최저가 이동 -->
+      <div id="atf-instant-checkout-bar" class="mt-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-4 border-2 border-amber-400/60 shadow-lg space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2 py-0.5 rounded-full shrink-0">⚡ 3초 핵심 결론</span>
+            <span id="atf-headline" class="text-xs sm:text-sm font-extrabold text-amber-300 truncate">${res.headline}</span>
+          </div>
+          <span class="text-[11px] font-bold text-emerald-300 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded-full shrink-0">${lc.savingBadge || res.badge}</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <a id="atf-main-btn" href="${res.actionItems && res.actionItems[0] ? monetization.buildCoupangUrl(res.actionItems[0].coupangKw, preset.calc, config.coupangAfId) : cpaTargetUrl}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('coupang', this.href, 'atf_hero_main')"
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs transition shadow whitespace-nowrap truncate">
+            ${res.actionItems && res.actionItems[0] ? res.actionItems[0].coupangBtn : '🚀 맞춤 최저가 즉시 확인 ↗'}
+          </a>
+          <a id="atf-impulse-btn" href="${monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId)}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('coupang', this.href, 'impulse_booster')"
+             class="block text-center bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs transition shadow whitespace-nowrap truncate">
+            ${res.impulseItem ? res.impulseItem.btnLabel : '🛒 1만원대 가성비 필수템 로켓배송 ↗'}
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- [인터랙티브 계산기 카드 섹션] -->
@@ -1481,6 +1518,35 @@ ${JSON.stringify(schemaJson, null, 2)}
       const buildLp = (merchant, url) => (typeof MoneyFitMonetization !== 'undefined' && MoneyFitMonetization.buildLinkPriceDeepLink)
         ? MoneyFitMonetization.buildLinkPriceDeepLink(merchant, url)
         : (url || '#');
+
+      // Update Above-the-Fold strip & Impulse Booster dynamically
+      const atfHeadline = document.getElementById('atf-headline');
+      const atfMainBtn = document.getElementById('atf-main-btn');
+      const atfImpulseBtn = document.getElementById('atf-impulse-btn');
+      if (atfHeadline && res.headline) atfHeadline.textContent = res.headline;
+      if (atfMainBtn && actionItems[0]) {
+        atfMainBtn.href = buildCp(actionItems[0].coupangKw);
+        atfMainBtn.textContent = actionItems[0].coupangBtn || '🚀 맞춤 최저가 즉시 확인 ↗';
+      }
+      if (res.impulseItem) {
+        const imp = res.impulseItem;
+        const impUrl = buildCp(imp.coupangKw);
+        if (atfImpulseBtn) {
+          atfImpulseBtn.href = impUrl;
+          atfImpulseBtn.textContent = imp.btnLabel || '🛒 1만원대 가성비 필수템 로켓배송 ↗';
+        }
+        const rImpBadge = document.getElementById('res-impulse-badge');
+        const rImpTitle = document.getElementById('res-impulse-title');
+        const rImpSub = document.getElementById('res-impulse-sub');
+        const rImpBtn = document.getElementById('res-impulse-btn');
+        if (rImpBadge && imp.badge) rImpBadge.textContent = imp.badge;
+        if (rImpTitle && imp.title) rImpTitle.textContent = imp.title;
+        if (rImpSub && imp.sub) rImpSub.textContent = imp.sub;
+        if (rImpBtn) {
+          rImpBtn.href = impUrl;
+          rImpBtn.textContent = imp.btnLabel || '🛒 1만원대 로켓배송 필수템 최저가 ↗';
+        }
+      }
 
       if (badge && res.badge) {
         badge.textContent = res.badge;

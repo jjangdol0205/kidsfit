@@ -338,6 +338,22 @@
       receiptZeroFeelEl.textContent = zf.callout;
     }
 
+    // [D-3 First Purchase Booster] 1만 원대 로켓배송 즉결템 (24시간 쿠키 적립 부스터)
+    if (res.impulseItem) {
+      const imp = res.impulseItem;
+      const impBadgeEl = document.getElementById('impulse-badge');
+      const impTitleEl = document.getElementById('impulse-title');
+      const impSubEl = document.getElementById('impulse-sub');
+      const impBtnEl = document.getElementById('impulse-coupang-btn');
+      if (impBadgeEl && imp.badge) impBadgeEl.textContent = imp.badge;
+      if (impTitleEl && imp.title) impTitleEl.textContent = imp.title;
+      if (impSubEl && imp.sub) impSubEl.textContent = imp.sub;
+      if (impBtnEl) {
+        impBtnEl.href = buildCoupangHref(imp.coupangKw);
+        impBtnEl.textContent = imp.btnLabel || '🛒 1만원대 로켓배송 필수템 최저가 ↗';
+      }
+    }
+
     if (badgeEl) {
       badgeEl.textContent = res.badge;
       if (res.badge && (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || res.badge.includes('권장') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0))) {

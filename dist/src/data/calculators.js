@@ -183,6 +183,15 @@ function calculateElectric(inputs = {}) {
         : `절약액 차감 시 내 실체감가: 0원 (${paybackMonths}개월 본전 회수 후 매년 +${(monthlySaving * 12).toLocaleString()}원 순흑자!)`,
       ctaHighlight: `실체감가 0원 (${paybackMonths}개월 본전) 최저가 확인 ↗`
     },
+    impulseItem: {
+      badge: "⚡ 9,900원대 로켓배송 실구매 1위",
+      title: isSummer
+        ? "대기전력 0W 스마트플러그 & 창문 열차단 단열시트 (냉방비 -25%)"
+        : "창문 외풍차단 방풍비닐·문풍지 & 대기전력 0W 스마트플러그",
+      sub: "가전 교체 전 오늘 당장 1만 원으로 매달 새는 누진세·난방비 즉시 방어!",
+      coupangKw: isSummer ? "스마트 플러그 전력측정기 절전 멀티탭" : "창문 방풍비닐 외풍차단 문풍지 스마트플러그",
+      btnLabel: "🛒 1만원대 절전·단열 필수템 로켓배송 ↗"
+    },
     actionItems: [
       {
         icon: targetApplianceIcon,
@@ -358,6 +367,13 @@ function calculateDiet(inputs = {}) {
       badge: "🔥 배달·편의점 절약액 차감 시 체감가 0원!",
       callout: `편의점·배달 절약액 차감 시 내 실체감가: 0원 (오히려 ${weeks}주 식비 +${dietSavingWon.toLocaleString()}원 세이브!)`,
       ctaHighlight: `식비 +${dietSavingWon.toLocaleString()}원 아끼는 대용량 특가 ↗`
+    },
+    impulseItem: {
+      badge: "🍗 1만원대 맛보기 실구매 1위",
+      title: "한입 소스 닭가슴살·스테이크 10+1팩 맛보기 골라담기 세트",
+      sub: `대용량(${chickenPacks}팩) 사기 전 입맛 테스트! 팩당 1,200원대 맛보기 세트로 오늘 바로 시작`,
+      coupangKw: "닭가슴살 혼합 맛보기 10팩 세트",
+      btnLabel: "🛒 1만원대 닭가슴살 맛보기 10팩 로켓프레시 ↗"
     },
     actionItems: [
       {
@@ -535,6 +551,15 @@ function calculatePet(inputs = {}) {
       badge: "🔥 병원비 180만 원 방어 시 사료 체감가 0원!",
       callout: `슬개골·비만 수술비(180만 원) 예방 시 실체감가: 0원 (하루 ${dailyGrams}g 정량 · ${daysPerBag}일분 맞춤 특가!)`,
       ctaHighlight: `병원비 180만 원 아끼는 맞춤 사료·계량템 ↗`
+    },
+    impulseItem: {
+      badge: "🐾 8,900원대 집사 소모품 1위",
+      title: factor <= 1.25 && petWeight <= 8
+        ? `1g 정밀 사료 계량스푼 저울 & 무먼지 두부모래·츄르 세트`
+        : `1g 정밀 사료 디지털 계량스푼 저울 & 대용량 배변패드 100매`,
+      sub: `종이컵 눈대중 급여 끝! 1끼 ${halfGrams}g 칼같이 재는 8천원대 전자저울 스푼`,
+      coupangKw: factor <= 1.25 && petWeight <= 8 ? "고양이 사료 전자저울 스푼 두부모래" : "강아지 사료 전자저울 스푼 배변패드 100매",
+      btnLabel: "🛒 8천원대 1g 계량스푼·패드 로켓배송 ↗"
     },
     actionItems: [
       {
@@ -776,6 +801,13 @@ function calculateRoom(inputs = {}) {
       callout: `오프라인 대비 아낀 ${Math.round(savingWon / 10000)}만 원 차감 시 소형가전 3종 실체감가: 0원! (예산 초과 0원 보장)`,
       ctaHighlight: `마진 -${Math.round(savingWon / 10000)}만 원 아끼는 로켓설치 특가 ↗`
     },
+    impulseItem: {
+      badge: "🏠 1만원대 입주 첫날 생존템 1위",
+      title: "개별스위치 고용량 멀티탭 + 원터치 빨래건조대 + 무타공 압축봉",
+      sub: "대형가전 배송 전 이사 첫날 당장 없으면 막막한 1만원대 자취 필수 소모품!",
+      coupangKw: "개별스위치 멀티탭 빨래건조대 자취 필수템",
+      btnLabel: "🛒 1만원대 자취 입주 필수템 로켓배송 ↗"
+    },
     actionItems: [
       {
         icon: "🧊",
@@ -1012,6 +1044,13 @@ function calculateAuto(inputs = {}) {
       callout: `취등록세·세금 절약액 차감 시 내 실체감가: 0원 (오히려 ${months}개월간 총 +${diffMan.toLocaleString()}만 원 이득!)`,
       ctaHighlight: `+${diffMan.toLocaleString()}만 원 아끼는 신차 필수템·견적 ↗`
     },
+    impulseItem: {
+      badge: "⛽ 1만원대 내 차 유지비 절감 1위",
+      title: "불스원샷 연비향상 연료첨가제 2개입 & 발수코팅 워셔액·활성탄 필터",
+      sub: "주유할 때 1병 넣으면 엔진 때 제거 + 연비 최대 15% 살아나는 국민 차량관리템",
+      coupangKw: "불스원샷 연료첨가제 2개입 에어컨필터",
+      btnLabel: "🛒 1만원대 불스원샷·필터 로켓배송 ↗"
+    },
     actionItems: [
       {
         icon: "🎥",
@@ -1198,6 +1237,13 @@ function calculateTelecom(inputs = {}) {
         ? `위약금 ${penaltyMan}만 원 차감 시 내 실체감가: 0원 (오히려 총 +${totalNetBenefit.toLocaleString()}원 현금 흑자!)`
         : "통신사 공유기 임대료(15.8만 원) 면제 시 장비 실체감가: 0원!",
       ctaHighlight: `체감가 0원 · 최대 +${cashGiftMan}만 원 혜택 확인 ↗`
+    },
+    impulseItem: {
+      badge: "📱 4,400원 반값요금제 즉시개통 1위",
+      title: "알뜰폰 3사 공용 NFC 무약정 유심칩 & C타입 초고속 PD 충전케이블",
+      sub: "대리점 방문 없이 내일 새벽 문앞 도착! 집에서 5분 셀프개통으로 매달 3만원 절약",
+      coupangKw: "알뜰폰 공용 NFC 유심칩 바로배송",
+      btnLabel: "🛒 4,400원 반값 유심칩 로켓배송 ↗"
     },
     actionItems: [
       {
