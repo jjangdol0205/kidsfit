@@ -279,7 +279,57 @@ function buildTotoEpisodeSpec(presetOrSlug) {
   const p2Lines = (sc.p2 || ['내 조건 넣으면', '정답이 나와요!']).map(stripMdBold);
   const p3Lines = (sc.p3 || ['비교 안 하면 손해!', '절약액 확인!']).map(stripMdBold);
   const p4Lines = (sc.p4 || ['3초 만에 계산 끝!', '바로 아꼈다!']).map(stripMdBold);
-  const cleanDiff = String(resolved.diffVal || '').replace(/\s*(차이|절약|이득|손해).*$/, '').trim();
+
+  const cleanReply = (str) =>
+    stripMdBold(String(str || ''))
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+  const splitIntoBalancedTwoLines = (text) => {
+    const cleaned = cleanReply(text);
+    if (!cleaned) return ['내 조건 숫자 넣으면', '3초 만에 답이 나와요!'];
+    if (cleaned.length <= 15) return [cleaned];
+    const words = cleaned.split(' ');
+    if (words.length <= 2) {
+      const mid = Math.ceil(cleaned.length / 2);
+      return [cleaned.slice(0, mid).trim(), cleaned.slice(mid).trim()];
+    }
+    const targetLen = cleaned.length / 2;
+    let acc = '';
+    let splitIdx = 1;
+    for (let i = 0; i < words.length - 1; i++) {
+      acc += (i > 0 ? ' ' : '') + words[i];
+      if (acc.length >= targetLen) {
+        splitIdx = i + 1;
+        break;
+      }
+    }
+    return [words.slice(0, splitIdx).join(' '), words.slice(splitIdx).join(' ')];
+  };
+
+  const replies = Array.isArray(sc.replies) ? sc.replies.map(cleanReply) : [];
+  const calcType = preset.calc || preset.calcId || 'electric';
+  const naturalMistakeByCategory = {
+    electric: ['잠깐 틀 거니까 괜찮겠지~', '소비전력 안 보고 그냥 켰다!'],
+    diet: ['바쁘니까 오늘도 편의점이나', '배달 식단으로 대충 챙겨 먹자~'],
+    pet: ['사료 그램 수 재기 귀찮으니까', '늘 주던 대로 종이컵으로 부어주자~'],
+    room: ['일단 마음에 드는 가전부터', '상한선 없이 장바구니에 담아볼까?'],
+    auto: ['월 납입금 숫자만 비슷하면', '할부나 렌트나 총비용은 똑같겠지?'],
+    telecom: ['위약금 물어내면 손해일 테니까', '약정 끝나도 그냥 쓰던 대로 쓰자~']
+  };
+  const step1Lines = naturalMistakeByCategory[calcType] || ['귀찮으니까 따져보지 말고', '늘 하던 방식 그대로 유지하자~'];
+  const slide3ReactionLines = replies[0]
+    ? splitIntoBalancedTwoLines(replies[0])
+    : p1Lines.slice(0, 2);
+  const slide4ExtraLine = replies[3]
+    ? cleanReply(replies[3])
+    : '쿠팡 로켓배송 특가템까지 한눈에 끝!';
+
+  // Keep receipt right-hand value concise so it never crowds the left label
+  const conciseBadVal = String(resolved.badVal || '')
+    .replace('과급여 (질환 위험)', '(과급여 위험)')
+    .replace('(기존 요금 그대로 납부)', '(기존 유지)');
 
   if (slug === 'electric-studio-ac') {
     return {
@@ -316,44 +366,26 @@ function buildTotoEpisodeSpec(presetOrSlug) {
     coverRole: meta.coverRole,
     colleagueRole: meta.colleagueRole,
     colleagueName: meta.colleagueName,
-    coverBubbleLines: [
-      `${meta.colleagueName || '여우 실장님'}! 혹시`,
-      ...p1Lines.slice(0, 2)
-    ],
-    coverBottomNarration: (sc.narrations && sc.narrations[0]) || `${preset.title}, 결제 전 꼭 비교해봐야 하는 이유!`,
+    coverBubbleLines: p1Lines.slice(0, 2),
+    coverBottomNarration: resolved.panel1Sub || `${preset.title} 핵심 팩트체크!`,
     slide2Step1Tag: 'STEP 01 · 흔한 착각',
-    slide2Step1Bubble: [
-      '귀찮으니까 남들 하는 대로',
-      ...p1Lines.slice(0, 2)
-    ],
+    slide2Step1Bubble: step1Lines,
     slide2Step2Tag: 'STEP 02 · 영수증 팩트체크',
-    slide2Step2LeftBubble: [
-      '헉?! 생각보다 돈이',
-      `너무 많이 나가는데요?! (${resolved.badVal})`
-    ],
-    slide2Step2RightBubble: [
-      ...p2Lines.slice(0, 2),
-      `비교해보면 답이 딱 나와요!`
-    ],
+    slide2Step2LeftBubble: p1Lines.slice(0, 2),
+    slide2Step2RightBubble: p2Lines.slice(0, 2),
     badLabel: resolved.badLabel,
-    badVal: resolved.badVal,
+    badVal: conciseBadVal,
     goodLabel: resolved.goodLabel,
     goodVal: resolved.goodVal,
     diffVal: resolved.diffVal,
-    slide3LeftBubble: [
-      p3Lines[0] || '모르고 그냥 결제해서',
-      `${cleanDiff} 차이 난다고요?!`
-    ],
-    slide3RightBubble: [
-      `${resolved.goodLabel} 기준으로 바꾸면`,
-      `${resolved.goodVal}으로 줄어듭니다!`
-    ],
+    slide3LeftBubble: slide3ReactionLines,
+    slide3RightBubble: p3Lines.slice(0, 2),
     slide4TopBubble: [
       p4Lines[0] || '내 조건 숫자만 넣으니까',
       p4Lines[1] || '3초 만에 1원 단위 비교 영수증 완성!',
-      '쿠팡 최저가 특가템까지 한눈에 끝!'
+      slide4ExtraLine
     ],
-    slide4CardTitle: `${preset.title.slice(0, 24)}`,
+    slide4CardTitle: preset.title,
     slide4CardChips: ['내 조건 숫자 입력', '3초 실물 영수증 비교', '로켓배송 특가 직결']
   };
 }
@@ -430,17 +462,17 @@ function setPen(ctx, width = 3.8, color = INK) {
   ctx.lineJoin = 'round';
 }
 
-function fillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily = '"GaeguBold", sans-serif', minSize = 22) {
+function fillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily = '"GaeguBold", sans-serif', minSize = 15) {
   let sz = baseSize;
   ctx.font = sz + 'px ' + fontFamily;
   while (sz > minSize && ctx.measureText(text).width > maxW) {
     sz -= 1;
     ctx.font = sz + 'px ' + fontFamily;
   }
-  ctx.fillText(text, x, y);
+  ctx.fillText(text, x, y, maxW);
 }
 
-function strokeAndFillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily, strokeColor, strokeW, fillColor, minSize = 28) {
+function strokeAndFillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily, strokeColor, strokeW, fillColor, minSize = 18) {
   let sz = baseSize;
   ctx.font = sz + 'px ' + fontFamily;
   while (sz > minSize && ctx.measureText(text).width > maxW) {
@@ -451,9 +483,9 @@ function strokeAndFillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily, s
   ctx.strokeStyle = strokeColor;
   ctx.lineJoin = 'round';
   ctx.miterLimit = 2;
-  ctx.strokeText(text, x, y);
+  ctx.strokeText(text, x, y, maxW);
   ctx.fillStyle = fillColor;
-  ctx.fillText(text, x, y);
+  ctx.fillText(text, x, y, maxW);
 }
 
 function drawNotebookCanvasBg(ctx, bgColor = CREAM_BG) {
@@ -578,7 +610,7 @@ function drawSpeechBubble(ctx, x, y, w, h, lines, options = {}) {
       ctx.fill();
     }
     ctx.fillStyle = INK;
-    fillTextAutoFit(ctx, line, x + w / 2, ly, w - 48, fontSize, '"GaeguBold", sans-serif', 24);
+    fillTextAutoFit(ctx, line, x + w / 2, ly, w - 44, fontSize, '"GaeguBold", sans-serif', 16);
   });
 
   ctx.restore();
@@ -1304,9 +1336,9 @@ function drawSlide3(ctx) {
 
   ctx.fillStyle = '#BE123C';
   ctx.textAlign = 'left';
-  fillTextAutoFit(ctx, '❌ ' + (sample.badLabel || '기존 방식'), rx + 58, ry + 156, 460, 38, '"Jua", sans-serif', 24);
+  fillTextAutoFit(ctx, '❌ ' + (sample.badLabel || '기존 방식'), rx + 52, ry + 156, 425, 36, '"Jua", sans-serif', 17);
   ctx.textAlign = 'right';
-  fillTextAutoFit(ctx, String(sample.badVal || ''), rx + rw - 58, ry + 156, 390, 44, '"Jua", sans-serif', 26);
+  fillTextAutoFit(ctx, String(sample.badVal || ''), rx + rw - 52, ry + 156, 345, 40, '"Jua", sans-serif', 18);
 
   // Row 2: Good Option (Emerald Box)
   ctx.fillStyle = '#ECFDF5';
@@ -1318,9 +1350,9 @@ function drawSlide3(ctx) {
 
   ctx.fillStyle = EMERALD_DARK;
   ctx.textAlign = 'left';
-  fillTextAutoFit(ctx, '✅ ' + (sample.goodLabel || '머니핏 최적 루트'), rx + 58, ry + 278, 460, 38, '"Jua", sans-serif', 24);
+  fillTextAutoFit(ctx, '✅ ' + (sample.goodLabel || '머니핏 최적 루트'), rx + 52, ry + 278, 425, 36, '"Jua", sans-serif', 17);
   ctx.textAlign = 'right';
-  fillTextAutoFit(ctx, String(sample.goodVal || ''), rx + rw - 58, ry + 278, 390, 44, '"Jua", sans-serif', 26);
+  fillTextAutoFit(ctx, String(sample.goodVal || ''), rx + rw - 52, ry + 278, 345, 40, '"Jua", sans-serif', 18);
 
   // Row 3: Highlighted Diff Stamp Banner
   ctx.fillStyle = '#FEF08A';
@@ -1332,7 +1364,7 @@ function drawSlide3(ctx) {
 
   ctx.fillStyle = CORAL_RED;
   ctx.textAlign = 'center';
-  fillTextAutoFit(ctx, '🔥 모르면 날리는 생돈 차이 : ' + String(sample.diffVal || ''), rx + rw / 2, ry + 395, rw - 110, 44, '"Jua", sans-serif', 26);
+  fillTextAutoFit(ctx, '🔥 모르면 날리는 생돈 차이 : ' + String(sample.diffVal || ''), rx + rw / 2, ry + 395, rw - 110, 42, '"Jua", sans-serif', 18);
   ctx.restore();
 
   // --- Bottom Reaction Scene (y = 618..1035) ---
@@ -1428,7 +1460,7 @@ function drawSlide4(ctx) {
   ctx.fillText('📱 회원가입 0원 · 내 조건 넣으면 3초 만에 영수증 출력!', 540, 688);
 
   ctx.fillStyle = WHITE;
-  fillTextAutoFit(ctx, '「 ' + (sample.slide4CardTitle || '') + ' 」', 540, 745, 880, 44, '"Jua", sans-serif', 28);
+  fillTextAutoFit(ctx, '「 ' + (sample.slide4CardTitle || '') + ' 」', 540, 745, 880, 42, '"Jua", sans-serif', 18);
 
   // 3 Feature Chips
   const chips = sample.slide4CardChips || ['내 조건 숫자 입력', '3초 비교 영수증', '로켓배송 특가 연동'];
@@ -1714,26 +1746,4 @@ if (require.main === module) {
       for (let i = 0; i < PRESETS.length; i += 2) {
         const batch = PRESETS.slice(i, i + 2);
         const resList = await Promise.all(batch.map(p => renderTotoEpisodeForSlug(p.id)));
-        resList.forEach(r => console.log(`  ✓ [${r.slug}] 4 slides + grid rendered`));
-      }
-      console.log('🎉 All 36 Original MoneyFit Webtoon episodes rendered!');
-    } else if (slug) {
-      const res = await renderTotoEpisodeForSlug(slug);
-      console.log('Generated Original MoneyFit Webtoon:', res);
-    } else {
-      const res = renderTotoSample1();
-      console.log('Generated Original MoneyFit Sample Webtoon:', res);
-    }
-  })().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
-
-module.exports = {
-  TOTO_CURATED_META,
-  buildTotoEpisodeSpec,
-  buildTotoRenderHtml,
-  renderTotoEpisodeForSlug,
-  renderTotoSample1
-};
+        resList.forEach(r => console.log(`
