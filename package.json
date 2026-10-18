@@ -19,6 +19,7 @@
     "webtoon:top6": "node scripts/sns-auto-publisher.js --top6",
     "webtoon:all36": "node scripts/sns-auto-publisher.js --all36",
     "sns:daily3": "node scripts/daily-sns-scheduler.js",
+    "brandconnect:launch": "node scripts/brandconnect-multi-account.js --launch",
     "seo:autopilot": "node scripts/seo-autopilot.js",
     "auto:all": "node scripts/auto-master.js"
   },
