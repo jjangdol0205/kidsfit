@@ -34,6 +34,8 @@ const DIST_PIVOT_JS = path.join(ROOT_DIR, 'dist', 'src', 'data', 'growth-pivot-s
 const REPORT_MD_FILE = path.join(ROOT_DIR, '6시간_성과분석_및_자동피봇_리포트.md');
 
 const { runStaffFeedbackCouncil } = require('./staff-feedback-council.js');
+const { generateDivision1DailyPack } = require('./division1-comedifarm-engine.js');
+const { generateDivision2DailyPack } = require('./division2-creator-adpost-engine.js');
 
 const CALC_META = {
   diet: {
@@ -639,7 +641,22 @@ ${naverWebtoonPackages
       `#### 🏆 ${pkg.rank}순위: \`${pkg.slug}\` (${pkg.epTitle})\n\`\`\`html\n${pkg.clipboardHtml}\n\`\`\``
   )
   .join('\n\n')}
+
+---
+
+## 6. 🏢 제1본부(\`comedifarm\`) vs 🏛️ 제2본부(\`expertise333\`) 완전 분리 독립 운영 현황
+
+| 구분 | 🏢 제1본부 (1계정 \`comedifarm\` + \`@moneyfit2026\`) | 🏛️ 제2본부 (2계정 \`expertise333\` 전담) |
+| :--- | :--- | :--- |
+| **전담 조직 / 포트** | \`🐆 치타 본부장\` 외 3인 (\`Port 9222\`) | \`🦅 독수리 본부장\` 외 3인 (\`Port 9223\`) |
+| **핵심 목표** | **\`www.truthofmarket.com\` 외부링크 유입 & 제휴 전환 극대화** | **네이버 크리에이터 어드바이저 기반 홈판 진입 & 애드포스트 수익 극대화** |
+| **운영 방식 (방안 B)** | 블로그(일 3편)·지식iN(일 4편)·커뮤니티(일 2편)·인스타/쓰레드(일 3편) 전량 홈페이지 외부링크 유도 | **블로그 일 5개 제한** (썸네일+소주제 필수: 애드포스트 순수 4편[80%] + 쇼핑커넥트 병행 1편[20%]) / C-Rank 보호 웹툰클립 일 2편 / 자체카페 일 2편 |
+| **외부링크 정책** | \`truthofmarket.com\` 외부링크 100% 삽입 | \`truthofmarket.com\` 외부링크 **0개 (절대 금지)** — 100% 네이버 내부 체류 |
+| **전용 운영보드** | [\`제1본부_comedifarm_외부유입_운영보드.md\`](제1본부_comedifarm_외부유입_운영보드.md) | [\`제2본부_expertise333_애드포스트_홈판_운영보드.md\`](제2본부_expertise333_애드포스트_홈판_운영보드.md) |
 `;
+
+  const div1Res = generateDivision1DailyPack();
+  const div2Res = generateDivision2DailyPack();
 
   fs.writeFileSync(REPORT_MD_FILE, mdReport, 'utf8');
 
@@ -653,28 +670,23 @@ ${naverWebtoonPackages
       const chatId = process.env.TELEGRAM_CHAT_ID || cfg?.telegram?.chatId || '';
       if (botToken && chatId && dailyReporter.sendTelegramMessage) {
         const tgMsg = [
-          `📊 <b>[머니핏 6시간 주기 성과분석 & 전직원 피드백 리포트 #${cycleCount}]</b>`,
+          `📊 <b>[머니핏 6시간 주기 성과분석 & 1·2본부 분리 운영 리포트 #${cycleCount}]</b>`,
           `⏰ 기준시각: ${checkedAtKst}`,
           `🗣️ <b>사전 절차: 전직원 상호 피드백 회의(제${staffCouncil.sessionCount}차) 완료 후 보고</b>`,
-          `  • 🦊여우➔🐆치타: 네이버·지식iN 큐를 식단(#07)·사료(#13)·난방비(#05)로 피봇 완료`,
-          `  • 📱팬더➔🐝꿀벌: 스마트폰 버튼 잘림 없도록 12~16자 초단문 가격표 압축 완료`,
-          `  • 🐝꿀벌➔📱팬더: 모바일 하단바에 '🚀내일도착·무료반품' 안심배지 탑재 완료`,
           ``,
-          `<b>✅ 1️⃣ [100% 실측 확정 데이터]</b>`,
+          `<b>✅ 1️⃣ [제1본부 (comedifarm) — 홈페이지 100% 실측 데이터]</b>`,
           `• <b>① 홈페이지 실유입</b>: 오늘 UV <b>${todayUv}명</b> (PV ${todayPv}회) / 누적 UV <b>${totalUv}명</b> (PV ${totalPv}회 · 봇 ${todayBots}회)`,
           `• <b>② 제휴 버튼 실클릭</b>: 누적 <b>${totalClicks}회</b> (실측 CTR <b>${ctrPercent}%</b> | 쿠팡 ${clicksByChannel.coupang}회 · 링크프라이스 ${clicksByChannel.linkprice}회 · CPA ${clicksByChannel.cpa}회)`,
-          `• <b>③ 확정 실구매(실매출)</b>: <b>확정 ${confirmedOrders}건 (${confirmedCommissionKrw.toLocaleString('ko-KR')}원)</b> ${isApiConnected ? '(Open API 연동)' : '(※ API 미연동 — 실제 결제는 오후 4시 쿠팡 리포트 확인)'}`,
+          `• <b>③ 확정 실구매(실매출)</b>: <b>확정 ${confirmedOrders}건 (${confirmedCommissionKrw.toLocaleString('ko-KR')}원)</b>`,
+          `• <b>④ 1본부 외부유입 큐</b>: 총 ${div1Res.dailyQuotas.totalOutlinkAssetsToday}건 (블로그3·지식iN4·커뮤니티2·SNS3 전량 truthofmarket.com 링크 탑재)`,
+          ``,
+          `<b>🏛️ 2️⃣ [제2본부 (expertise333) — 크리에이터 어드바이저 · 홈판 · 애드포스트 전담]</b>`,
+          `• <b>블로그 (일 5개 제한 / 방안B)</b>: ${div2Res.dailyQuotas.blogGenerated}/5편 완료 (고CTR 썸네일+4대 소주제 필수 | 순수 애드포스트 4편[80%] + 쇼핑커넥트 1편[20%])`,
+          `• <b>C-Rank 안전 연동</b>: 웹툰 클립 ${div2Res.dailyQuotas.clipWebtoonSafeCount}편 (블로그 유입 유도) / 자체 카페 ${div2Res.dailyQuotas.cafeSafeCount}편 (외부링크 0개)`,
           ``,
           `<b>📐 [참고용 클릭 전환 추정치 (실매출 아님)]</b>`,
           `• 클릭(${totalClicks}회) 기반 통계 기대치: 약 ${estPurchases}건 (추정 ${estCommissionKrw.toLocaleString('ko-KR')}원)`,
-          ``,
-          `<b>2️⃣ [강화 방향 🔥]</b>`,
-          `• 1순위 집중: <b>${reinforcedCalculators[0].name}</b> & <b>${reinforcedCalculators[1].name}</b>`,
-          ``,
-          `<b>3️⃣ [수정 방향 🛠️ (자동 피봇 완료)]</b>`,
-          `• 4,400~9,900원 로켓배송 즉결템 12~16자 모바일 버튼 자동 교체 완료`,
-          `• 다음 6시간 최우선 타격 큐: <code>${dynamicPriorityPresets.slice(0, 3).join(', ')}</code>`,
-          `👉 <a href="https://partners.coupang.com/#affiliate/ws/reports">[쿠팡 실제 매출 대시보드]</a> | <a href="https://ac.linkprice.com/">[링크프라이스 실적조회]</a> | <a href="https://truthofmarket.com/office">[가상 사옥 열기]</a>`
+          `👉 <a href="https://partners.coupang.com/#affiliate/ws/reports">[쿠팡 실제 매출 대시보드]</a> | <a href="https://creator-advisor.naver.com/">[네이버 크리에이터 어드바이저]</a> | <a href="https://truthofmarket.com/office">[가상 사옥 열기]</a>`
         ].join('\n');
         telegramResult = await dailyReporter.sendTelegramMessage(botToken, chatId, tgMsg);
       }

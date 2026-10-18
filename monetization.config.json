@@ -136,10 +136,48 @@
   },
   "coupangAccessKey": "3793eab4-a000-4bc3-a659-0e9ee25478bc",
   "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55",
+  "divisionArchitecture": {
+    "strictSeparation": true,
+    "division1": {
+      "divisionId": "DIV1_OUTLINK_HQ",
+      "name": "제1본부: 홈페이지 유입·제휴전환 총괄본부 (1계정 comedifarm 전담)",
+      "leadAgent": "🐆 치타 본부장 (inflow-sniper-lead)",
+      "teamAgents": ["🐝 꿀벌 과장 (coupang-cvr-specialist)", "🦜 앵무새 피디 (dept-webtoon-sns)", "🦔 고슴도치 대리 (dept-naver-seo)"],
+      "accountId": "comedifarm",
+      "snsHandle": "@moneyfit2026",
+      "browserPort": 9222,
+      "primaryGoal": "www.truthofmarket.com 외부링크 유입 극대화 및 쿠팡·링크프라이스·CPA 전환",
+      "channels": ["blog.naver.com/comedifarm", "네이버 지식iN", "외부 커뮤니티", "인스타그램 (@moneyfit2026)", "쓰레드 (@moneyfit2026)"],
+      "linkPolicy": "MANDATORY_TRUTHOFMARKET_OUTLINK (모든 채널에서 www.truthofmarket.com 유입 유도)",
+      "outboxDir": "division1_comedifarm_outbox"
+    },
+    "division2": {
+      "divisionId": "DIV2_ADPOST_HQ",
+      "name": "제2본부: 크리에이터 어드바이저·홈판·애드포스트 수익 극대화 본부 (2계정 expertise333 전담)",
+      "leadAgent": "🦅 독수리 본부장 (div2-adpost-director)",
+      "teamAgents": ["🎨 해달 아트디렉터 (2본부 썸네일·웹툰클립 전담)", "🐿️ 다람쥐 매니저 (2본부 자체카페 전담)", "🦦 수달 실장 (쇼핑커넥트 20% 지원)"],
+      "accountId": "expertise333",
+      "browserPort": 9223,
+      "primaryGoal": "네이버 홈판(홈피드) 진입 및 네이버 애드포스트(AdPost) 수익 극대화",
+      "keywordSource": "네이버 크리에이터 어드바이저 (https://creator-advisor.naver.com) 실시간 관심·고단가 키워드",
+      "planMode": "PLAN_B_ADPOST_80_SHOPPING_CONNECT_20 (일 5포스팅 중 애드포스트 순수 정보 4편[80%] + 쇼핑커넥트 병행 1편[20%])",
+      "mandatoryBlogFormat": "고CTR 홈판 썸네일(1080x1080) + 구조화된 소주제(Subheadings 4~5개) + 애드포스트 광고 밀착 문맥(Ad-Proximity)",
+      "externalLinkPolicy": "ZERO_TRUTHOFMARKET_LINKS (www.truthofmarket.com 외부링크 절대 금지 — 100% 네이버 내부 순환)",
+      "dailyStrictCaps": {
+        "blogPostsMaxPerDay": 5,
+        "adpostPurePostsPerDay": 4,
+        "shoppingConnectPostsPerDay": 1,
+        "webtoonClipMaxPerDay": 2,
+        "cafePostsMaxPerDay": 2,
+        "cRankSafetyRule": "클립(웹툰 영상)과 카페 모두 블로그 C-Rank 주제 전문성에 악영향을 주지 않는 선(하루 1~2개 이내, 동일 전문 카테고리)으로만 제한 운영"
+      },
+      "outboxDir": "division2_expertise333_outbox"
+    }
+  },
   "naverShoppingConnect": {
     "enabled": true,
-    "departmentName": "네이버 브랜드커넥트 커머스 본부 (B계정 전담팀)",
-    "departmentLead": "🦦 수달 본부장 (brandconnect-revenue-lead)",
+    "departmentName": "제2본부 산하: 크리에이터 어드바이저·애드포스트(80%) & 쇼핑커넥트(20%) 본부 (2계정 expertise333 전담)",
+    "departmentLead": "🦅 독수리 본부장 (div2-adpost-director) & 🦦 수달 실장",
     "dailyReportTimeKst": "06:00",
     "trafficAccountId": "comedifarm",
     "brandConnectAccountId": "expertise333",
@@ -149,19 +187,21 @@
     "officialCafeUrl": "https://cafe.naver.com/moneyfitlab",
     "officialCafeName": "머니핏 생활비 살림 팩트체크 연구소",
     "officialCafeClubId": "31805224",
-    "clipStickerPolicy": "NAVER_OFFICIAL_SHOPPING_CONNECT_FIRST",
+    "clipStickerPolicy": "BLOG_INFLOW_FIRST_FOR_ADPOST_AND_CRANK_SAFETY",
     "noticeText": "이 포스팅은 네이버 쇼핑커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다.",
     "dailyPublishingQuota": {
-      "accountBBlogMaxPerDay": 3,
+      "accountBBlogMaxPerDay": 5,
+      "accountBAdpostPureRatio": "80% (일 4건)",
+      "accountBShoppingConnectRatio": "20% (일 1건)",
       "accountABlogMaxPerDay": 3,
-      "officialCafeMaxPerDay": 3,
+      "officialCafeMaxPerDay": 2,
       "naverClipMaxPerDay": 2,
       "instagramThreadsMaxPerDay": 3,
       "naverJisikinMaxPerDay": 4,
       "externalCommunityMaxPerDay": 2,
-      "totalDailyTarget": "블로그 계정당 일 2~3건(정보성 90%+사람 문체), 인스타·쓰레드 일 3건 이내, 지식iN 일 3~5건(안티밴 순수 정보), 외부 커뮤니티 일 1~2건(상업링크 금지)",
-      "linksPerPost": "블로그·공식카페: 홈페이지 계산기(truthofmarket.com) 클릭형 링크 1개 + B계정 브랜드커넥트(naver.me) 1~2개 / 지식iN·외부커뮤니티: 상업링크 0개(순수 정보+계산기 출처만)",
-      "goldenTimeSlotsKst": ["08:30", "12:30", "20:30"]
+      "totalDailyTarget": "[제1본부 comedifarm] truthofmarket.com 외부링크 유입 전담(블로그 일 3건, 지식iN 4건, 커뮤니티 2건, 인스타/쓰레드 3건) | [제2본부 expertise333] 크리에이터 어드바이저 기반 홈판 진입 & 애드포스트 극대화(블로그 일 5건 제한[썸네일+소주제 필수, 애드포스트 4건+쇼핑커넥트 1건], C-Rank 보호 웹툰클립 일 1~2건, 자체카페 일 1~2건)",
+      "linksPerPost": "[제1본부 comedifarm] www.truthofmarket.com 외부링크 필수 삽입 | [제2본부 expertise333] 외부링크 0개(절대 금지), 클립↔블로그↔카페 내부 순환 + 하루 1건만 쇼핑커넥트(naver.me) 스티커 허용",
+      "goldenTimeSlotsKst": ["08:00", "11:30", "15:00", "18:30", "21:30"]
     },
     "categoryProductTags": {
       "electric": {
