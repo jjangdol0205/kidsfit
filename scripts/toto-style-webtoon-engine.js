@@ -1,13 +1,31 @@
 #!/usr/bin/env node
 /**
- * MoneyFit @to_to_studio_ Style Human-Drawn Instatoon Engine (Zero-Dependency Headless Chrome Canvas)
- * (토토 스튜디오 `@to_to_studio_` 스타일 100% 손그림 인스타툰 & 머니핏 직원 캐릭터 엔진)
+ * MoneyFit @to_to_studio_ Style Human-Drawn Instatoon Engine (36-Episode Full Suite)
+ * (토토 스튜디오 `@to_to_studio_` 감성 100% 학습 · 머니핏 직원 캐릭터 4슬라이드 인스타툰 엔진)
+ *
+ * Key Visual DNA from @to_to_studio_:
+ * 1. Never crams 4 panels into a 2x2 grid for Instagram — renders 4 full 1080x1080 slides (`slide-1.png` ~ `slide-4.png`)
+ *    plus a composite `webtoon-grid.png` for web/Naver preview.
+ * 2. Slide 1 (Cover): Borderless pure white canvas (#FFFFFF), giant 2-line yellow title (#FFD15C) with thick black outline
+ *    in 'Jua' font, 1 minimalist white marshmallow staff character (open-bottom stroke) holding a prop, pale mint/pastel
+ *    speech bubble (#E2F3F1), and 1-line bottom narration in 'Gaegu' handwriting font.
+ * 3. Slide 2 (Office Reality & Side Notes): Horizontal 2-split at y=365 with blue gloom vertical streaks at top,
+ *    yellow rectangular caption box (#FFF59D) flush left on the divider line, and 3 freeform vignettes in open white space
+ *    with handwritten side notes & curved arrows ("↗ 여우 실장님..", "뭔 소리여..") in 'Nanum Pen' font.
+ * 4. Slide 3 (Climax Scolding & Fact-Check Shock): Horizontal 2-split at y=545 with dark stormy (#52525B) top panel,
+ *    glowing white storm spots + lightning, angry 🐯 호랑이 이사님 + "극대노.." + 2 black spiky explosion bubbles with real
+ *    calculator numbers, and white bottom panel with frozen hollow-eyed staff character + spiky radial urchin bubble.
+ * 5. Slide 4 (Conclusion): Borderless white canvas, 2-line top narration, yellow note box (#FFF59D) on left,
+ *    handwritten note + swirl lines, and staff character at white desk with tablet/calculator.
  */
 
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const { spawnSync } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
+const { PRESETS } = require('../src/data/presets.js');
+const { CALCULATORS } = require('../src/data/calculators.js');
+const webtoonStories = require('../src/data/webtoon-stories.js');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const FONTS_DIR = path.join(ROOT_DIR, 'src', 'assets', 'fonts');
@@ -28,25 +46,351 @@ function getFontFileUrl(fileName) {
   return 'file:///' + path.join(FONTS_DIR, fileName).replace(/\\/g, '/');
 }
 
-const SAMPLE_EP01 = {
-  slug: 'electric-studio-ac',
-  coverTitleLines: ['에어컨 아끼다', '호구 되는 이유'],
-  coverBubbleLines: ['실장님 혹시', '에어컨 껐다 켰다', '하면 아껴지나요?'],
-  coverBottomNarration: '여름마다 머니핏 사무실에 가장 많이 오는 질문이다.',
-  slide2TopBubble: ['솔직히 전기세 무서워서', '조금만 시원해지면 끄고', '더우면 다시 켜긴 합니다.'],
-  slide2YellowBox: '더우면 켜고, 추우면 끄고를 반복함',
-  slide2Vignette1Bubble: ['시원하니까', '일단 끄자!'],
-  slide2Vignette2Bubble: ['실외기님..', '방금 또 켜서', '전력 3배 소모중..'],
-  slide2SideNoteRight: ['↗ 여우 실장님.', '실외기 감시 중'],
-  slide2Vignette3Bubble: ['전기세는 다음달의', '내가 내겠지.'],
-  slide2SideNoteBottom: '뭔 소리여..',
-  slide3TopBubble1: ['그렇게 껐다 켰다 해서', '한 달 88,420원 나온다고?'],
-  slide3TopBubble2: ['그냥 켜두면 31,200원인데??'],
-  slide3BottomUrchinBubble: ['아낀다고 끈 건데', '57,220원 더 냈다고요????'],
-  slide4TopNarration: ['나는 내 감을 믿지 않는다.', '그래서 3초 계산기로 통제한다.'],
-  slide4YellowBoxLines: ['우리집 평수·시간만 넣으면', '누진세 폭탄 구간이랑', '절전템까지 바로 계산해 둠'],
-  slide4HandwrittenNote: '계산기 돌려봐야지..'
+function stripMdBold(str) {
+  return String(str || '').replace(/\*\*/g, '').trim();
+}
+
+/**
+ * Curated 2-line @to_to_studio_ cover titles & staff cast rotation for all 36 presets
+ */
+const TOTO_CURATED_META = {
+  // 1. Electric
+  'electric-studio-ac': {
+    coverTitleLines: ['에어컨 아끼다', '호구 되는 이유'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  },
+  'electric-stand-ac': {
+    coverTitleLines: ['거실 에어컨 틀다', '폭탄 맞는 이유'],
+    coverRole: 'panda_lead', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'panda_lead'
+  },
+  'electric-dehumidifier': {
+    coverTitleLines: ['제습기 계속 틀다', '눈물 흘린 사연'],
+    coverRole: 'bee_manager', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'cheetah_lead', deskRole: 'fox_director'
+  },
+  'electric-dryer': {
+    coverTitleLines: ['건조기 전기세가', '무서웠던 막내'],
+    coverRole: 'maknae_bunny', coverFacing: 'right', coverProp: 'bag',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'panda_lead', deskRole: 'maknae_bunny'
+  },
+  'electric-winter-heater': {
+    coverTitleLines: ['전기히터 틀었다가', '월급 증발한 썰'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'fox_director'
+  },
+  'electric-inverter-roi': {
+    coverTitleLines: ['구형 에어컨 버티다', '생돈 날린 이유'],
+    coverRole: 'bee_manager', coverFacing: 'right', coverProp: 'pointer',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'panda_lead', deskRole: 'bee_manager'
+  },
+
+  // 2. Diet
+  'diet-male-fatloss': {
+    coverTitleLines: ['편의점 닭가슴살', '사먹다 파산한 썰'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'maknae_bunny', deskRole: 'cheetah_lead'
+  },
+  'diet-female-lean': {
+    coverTitleLines: ['고구마만 먹다가', '요요 터진 이유'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'panda_lead', deskRole: 'fox_director'
+  },
+  'diet-male-bulkup': {
+    coverTitleLines: ['보충제만 퍼먹다', '배만 나온 사연'],
+    coverRole: 'panda_lead', coverFacing: 'right', coverProp: 'bag',
+    colleagueRole: 'cheetah_lead', colleagueName: '치타 팀장님',
+    thirdRole: 'bee_manager', deskRole: 'panda_lead'
+  },
+  'diet-office-worker': {
+    coverTitleLines: ['직장인 점심값', '반값 줄인 비결'],
+    coverRole: 'panda_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'fox_director'
+  },
+  'diet-student-budget': {
+    coverTitleLines: ['자취생 일주일', '식단비 아끼는 법'],
+    coverRole: 'maknae_bunny', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'cheetah_lead', deskRole: 'maknae_bunny'
+  },
+  'diet-quick-3kg': {
+    coverTitleLines: ['급찐급빠 굶다가', '폭식 터진 이유'],
+    coverRole: 'bee_manager', coverFacing: 'left', coverProp: 'pointer',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'bee_manager'
+  },
+
+  // 3. Pet
+  'pet-maltese-5kg': {
+    coverTitleLines: ['종이컵으로 사료', '주다 큰일난 이유'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'bag',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  },
+  'pet-pomeranian-puppy': {
+    coverTitleLines: ['아기 강아지 사료', '눈대중의 최후'],
+    coverRole: 'panda_lead', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'panda_lead'
+  },
+  'pet-golden-retriever': {
+    coverTitleLines: ['대형견 소포장 사료', '사다 통장 털린 썰'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'panda_lead', deskRole: 'cheetah_lead'
+  },
+  'pet-korean-shorthair': {
+    coverTitleLines: ['고양이 자율급식', '믿었다가 생긴 일'],
+    coverRole: 'maknae_bunny', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'cheetah_lead', deskRole: 'fox_director'
+  },
+  'pet-senior-cat': {
+    coverTitleLines: ['노령묘 건사료만', '주다 후회한 이유'],
+    coverRole: 'bee_manager', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'bee_manager'
+  },
+  'pet-monthly-budget': {
+    coverTitleLines: ['강아지 첫 입양', '용품 호구 피하기'],
+    coverRole: 'panda_lead', coverFacing: 'left', coverProp: 'bag',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'maknae_bunny', deskRole: 'fox_director'
+  },
+
+  // 4. Room
+  'room-oneroom-100': {
+    coverTitleLines: ['첫 자취방 가구', '예산 초과 막는 법'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'maknae_bunny'
+  },
+  'room-officetel-300': {
+    coverTitleLines: ['오피스텔 인테리어', '감성만 쫓은 최후'],
+    coverRole: 'bee_manager', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'panda_lead', deskRole: 'fox_director'
+  },
+  'room-officetel-500': {
+    coverTitleLines: ['투룸 이사할 때', '백화점 가면 안됨'],
+    coverRole: 'panda_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'cheetah_lead', deskRole: 'panda_lead'
+  },
+  'room-newlywed-1000': {
+    coverTitleLines: ['신혼가전 견적서', '그대로 사면 손해'],
+    coverRole: 'cheetah_lead', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  },
+  'room-minimalist-50': {
+    coverTitleLines: ['단기 원룸에', '큰 가구 사면 안됨'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'bag',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'panda_lead', deskRole: 'maknae_bunny'
+  },
+  'room-appliances-only': {
+    coverTitleLines: ['중고가전 샀다가', '수리비 폭탄 맞음'],
+    coverRole: 'bee_manager', coverFacing: 'right', coverProp: 'pointer',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'bee_manager'
+  },
+
+  // 5. Auto
+  'auto-avante-3000': {
+    coverTitleLines: ['사회초년생 첫차', '렌트 vs 할부 진실'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'cheetah_lead', deskRole: 'fox_director'
+  },
+  'auto-grandeur-5000': {
+    coverTitleLines: ['사업자 그랜저를', '할부로 사면 손해'],
+    coverRole: 'fox_director', coverFacing: 'left', coverProp: 'tablet',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'maknae_bunny', deskRole: 'fox_director'
+  },
+  'auto-tucson-hybrid': {
+    coverTitleLines: ['투싼 하이브리드', '취등록세 아끼는법'],
+    coverRole: 'panda_lead', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'panda_lead'
+  },
+  'auto-genesis-g80': {
+    coverTitleLines: ['제네시스 G80', '절세 폭탄 피하기'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'panda_lead', deskRole: 'fox_director'
+  },
+  'auto-casper-cash-vs-rent': {
+    coverTitleLines: ['캐스퍼 첫차 보험료', '폭탄 피하는 방법'],
+    coverRole: 'maknae_bunny', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'panda_lead', deskRole: 'maknae_bunny'
+  },
+  'auto-ev-ioniq': {
+    coverTitleLines: ['전기차 보조금', '못 받을 뻔한 사연'],
+    coverRole: 'bee_manager', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'cheetah_lead', deskRole: 'fox_director'
+  },
+
+  // 6. Telecom
+  'telecom-penalty-15': {
+    coverTitleLines: ['위약금 15만원', '무서워 참은 최후'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  },
+  'telecom-penalty-30': {
+    coverTitleLines: ['위약금 30만원도', '바꾸면 이득인 이유'],
+    coverRole: 'maknae_bunny', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'bee_manager', colleagueName: '꿀벌 과장님',
+    thirdRole: 'panda_lead', deskRole: 'maknae_bunny'
+  },
+  'telecom-3yr-expired': {
+    coverTitleLines: ['3년 끝난 인터넷', '방치하면 호구됨'],
+    coverRole: 'panda_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'panda_lead'
+  },
+  'telecom-single-oneroom': {
+    coverTitleLines: ['자취방 인터넷만', '써도 현금 나오는법'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'cheetah_lead', colleagueName: '치타 팀장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  },
+  'telecom-family-4p': {
+    coverTitleLines: ['가족 휴대폰 따로', '쓰다 날린 171만원'],
+    coverRole: 'bee_manager', coverFacing: 'right', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'panda_lead', deskRole: 'bee_manager'
+  },
+  'telecom-mvno-switch': {
+    coverTitleLines: ['6만원 5G 요금제', '반값 줄인 비결'],
+    coverRole: 'cheetah_lead', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'maknae_bunny', deskRole: 'cheetah_lead'
+  }
 };
+
+/**
+ * Build complete @to_to_studio_ 4-slide script for any preset slug
+ */
+function buildTotoEpisodeSpec(presetOrSlug) {
+  const preset = typeof presetOrSlug === 'string'
+    ? PRESETS.find(p => p.id === presetOrSlug || p.slug === presetOrSlug) || PRESETS[0]
+    : presetOrSlug;
+  const slug = preset.id || preset.slug || 'electric-studio-ac';
+
+  if (slug === 'electric-studio-ac') {
+    return {
+      slug: 'electric-studio-ac',
+      coverTitleLines: ['에어컨 아끼다', '호구 되는 이유'],
+      coverRole: 'maknae_bunny',
+      coverFacing: 'left',
+      coverProp: 'phone',
+      colleagueRole: 'fox_director',
+      thirdRole: 'bee_manager',
+      deskRole: 'fox_director',
+      coverBubbleLines: ['실장님 혹시', '에어컨 껐다 켰다', '하면 아껴지나요?'],
+      coverBottomNarration: '여름마다 머니핏 사무실에 가장 많이 오는 질문이다.',
+      slide2TopBubble: ['솔직히 전기세 무서워서', '조금만 시원해지면 끄고', '더우면 다시 켜긴 합니다.'],
+      slide2YellowBox: '더우면 켜고, 추우면 끄고를 반복함',
+      slide2Vignette1Bubble: ['시원하니까', '일단 끄자!'],
+      slide2Vignette2Bubble: ['실외기님..', '방금 또 켜서', '전력 3배 소모중..'],
+      slide2SideNoteRight: ['↗ 여우 실장님.', '실외기 감시 중'],
+      slide2Vignette3Bubble: ['전기세는 다음달의', '내가 내겠지.'],
+      slide2SideNoteBottom: '뭔 소리여..',
+      slide3TopBubble1: ['그렇게 껐다 켰다 해서', '한 달 88,420원 나온다고?'],
+      slide3TopBubble2: ['그냥 켜두면 31,200원인데??'],
+      slide3BottomUrchinBubble: ['아낀다고 끈 건데', '57,220원 더 냈다고요????'],
+      slide4TopNarration: ['나는 내 감을 믿지 않는다.', '그래서 3초 계산기로 통제한다.'],
+      slide4YellowBoxLines: ['우리집 평수·시간만 넣으면', '누진세 폭탄 구간이랑', '절전템까지 바로 계산해 둠'],
+      slide4HandwrittenNote: '계산기 돌려봐야지..'
+    };
+  }
+
+  const calcKey = preset.calc || preset.calcKey || 'electric';
+  let calcRes = null;
+  if (preset.inputs && CALCULATORS && CALCULATORS[calcKey] && typeof CALCULATORS[calcKey].calculate === 'function') {
+    try {
+      calcRes = CALCULATORS[calcKey].calculate(preset.inputs);
+    } catch (e) {
+      calcRes = null;
+    }
+  }
+
+  const resolved = webtoonStories.resolveDynamicReceiptValues(preset, calcRes);
+  const sc = resolved.shortCartoon || {};
+  const meta = TOTO_CURATED_META[slug] || {
+    coverTitleLines: ['감으로 결제하다', '호구 되는 이유'],
+    coverRole: 'maknae_bunny', coverFacing: 'left', coverProp: 'phone',
+    colleagueRole: 'fox_director', colleagueName: '여우 실장님',
+    thirdRole: 'bee_manager', deskRole: 'fox_director'
+  };
+
+  const p1Lines = (sc.p1 || ['모르고 그냥 쓰면', '생돈 날려요!']).map(stripMdBold);
+  const p2Lines = (sc.p2 || ['내 조건 넣으면', '정답이 나와요!']).map(stripMdBold);
+  const p3Lines = (sc.p3 || ['비교 안 하면 손해!', '절약액 확인!']).map(stripMdBold);
+  const p4Lines = (sc.p4 || ['3초 만에 계산 끝!', '바로 아꼈다!']).map(stripMdBold);
+
+  return {
+    slug,
+    coverTitleLines: meta.coverTitleLines,
+    coverRole: meta.coverRole,
+    coverFacing: meta.coverFacing,
+    coverProp: meta.coverProp,
+    colleagueRole: meta.colleagueRole,
+    thirdRole: meta.thirdRole,
+    deskRole: meta.deskRole,
+    coverBubbleLines: [
+      `${meta.colleagueName || '실장님'} 혹시`,
+      ...p1Lines.slice(0, 2)
+    ],
+    coverBottomNarration: (sc.narrations && sc.narrations[0]) || `${preset.title} 고민할 때 가장 많이 하는 착각이다.`,
+    slide2TopBubble: [
+      (sc.replies && sc.replies[0] ? sc.replies[0].replace(/[^\w\s가-힣,.?!~+%]/g, '').slice(0, 18) : '솔직히 귀찮아서'),
+      ...p1Lines.slice(0, 2)
+    ],
+    slide2YellowBox: (resolved.panel1Sub || preset.title).slice(0, 22),
+    slide2Vignette1Bubble: ['일단 그냥', '결제하자!'],
+    slide2Vignette2Bubble: [
+      ...p2Lines.slice(0, 2),
+      `(${resolved.goodVal.slice(0, 12)})`
+    ],
+    slide2SideNoteRight: [`↗ ${meta.colleagueName || '여우 실장님'}.`, '영수증 팩트체크 중'],
+    slide2Vignette3Bubble: ['호구 영수증은 다음달', '내가 감당하겠지.'],
+    slide2SideNoteBottom: '뭔 소리여..',
+    slide3TopBubble1: [
+      `${resolved.badLabel.slice(0, 14)}하면`,
+      `${resolved.badVal} 나간다고?`
+    ],
+    slide3TopBubble2: [
+      `바꾸면 ${resolved.goodVal}인데??`
+    ],
+    slide3BottomUrchinBubble: [
+      p3Lines[0] || '모르고 그냥 써서',
+      `${String(resolved.diffVal || '').replace(/\s*(차이|절약|이득|손해).*$/, '').trim()} 차이난다고요????`
+    ],
+    slide4TopNarration: ['나는 내 감을 믿지 않는다.', '그래서 3초 계산기로 통제한다.'],
+    slide4YellowBoxLines: [
+      p4Lines[0] || '내 조건 숫자만 넣으면',
+      p4Lines[1] || '1원 단위 비교 영수증이랑',
+      '최저가 특가템까지 계산해 둠'
+    ],
+    slide4HandwrittenNote: '계산기 돌려봐야지..'
+  };
+}
 
 function buildTotoRenderHtml(sample, mode = 'slide-1') {
   const juaUrl = getFontFileUrl('Jua-Regular.ttf');
@@ -184,6 +528,16 @@ function drawHandBubble(ctx, x, y, w, h, options = {}) {
   ctx.restore();
 }
 
+function fillTextAutoFit(ctx, text, x, y, maxW, baseSize, fontFamily = '"GaeguBold", sans-serif', minSize = 24) {
+  let sz = baseSize;
+  ctx.font = sz + 'px ' + fontFamily;
+  while (sz > minSize && ctx.measureText(text).width > maxW) {
+    sz -= 1;
+    ctx.font = sz + 'px ' + fontFamily;
+  }
+  ctx.fillText(text, x, y);
+}
+
 function drawBlackSpikyBubble(ctx, cx, cy, rx, ry, lines, fontSize = 42) {
   ctx.save();
   const spikes = 28;
@@ -204,18 +558,17 @@ function drawBlackSpikyBubble(ctx, cx, cy, rx, ry, lines, fontSize = 42) {
   ctx.fill();
 
   ctx.fillStyle = WHITE;
-  ctx.font = fontSize + 'px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   const lineHeight = fontSize * 1.18;
   const startY = cy - ((lines.length - 1) * lineHeight) / 2;
   lines.forEach((line, idx) => {
-    ctx.fillText(line, cx, startY + idx * lineHeight);
+    fillTextAutoFit(ctx, line, cx, startY + idx * lineHeight, rx * 1.72, fontSize);
   });
   ctx.restore();
 }
 
-function drawUrchinFocusBubble(ctx, cx, cy, rx, ry, lines, fontSize = 46) {
+function drawUrchinFocusBubble(ctx, cx, cy, rx, ry, lines, fontSize = 44) {
   ctx.save();
   const numSpikes = 148;
   for (let i = 0; i < numSpikes; i++) {
@@ -240,19 +593,18 @@ function drawUrchinFocusBubble(ctx, cx, cy, rx, ry, lines, fontSize = 46) {
   ctx.fill();
 
   ctx.fillStyle = INK;
-  ctx.font = fontSize + 'px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   const lineHeight = fontSize * 1.22;
   const startY = cy - ((lines.length - 1) * lineHeight) / 2;
   lines.forEach((line, idx) => {
-    ctx.fillText(line, cx, startY + idx * lineHeight);
+    fillTextAutoFit(ctx, line, cx, startY + idx * lineHeight, rx * 1.62, fontSize);
   });
   ctx.restore();
 }
 
 /**
- * Draw Minimalist @to_to_studio_ Style Marshmallow Character with Open-Bottom Strokes
+ * Draw Minimalist @to_to_studio_ Style Marshmallow Staff Character with Open-Bottom Strokes
  */
 function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
   const {
@@ -275,7 +627,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
   ctx.fillStyle = WHITE;
 
   if (role === 'tiger_exec' && mood === 'angry') {
-    // 🐯 호랑이 이사님 극대노 (Post 3 Slide 2 top)
     ctx.fillStyle = '#8FA8BE';
     ctx.beginPath();
     ctx.moveTo(-115, 210);
@@ -292,19 +643,16 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.fill();
     ctx.stroke();
 
-    // Round Tiger Ears
     ctx.fillStyle = '#FDE68A';
     ctx.beginPath(); ctx.arc(-68, -74, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(68, -74, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
 
-    // Head
     ctx.fillStyle = '#FFFBEB';
     ctx.beginPath();
     ctx.arc(0, -20, 82, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
-    // Tiger Forehead Stripes
     setInkPen(ctx, 3.8, INK);
     ctx.beginPath();
     ctx.moveTo(-18, -82); ctx.lineTo(18, -82);
@@ -316,7 +664,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.moveTo(74, -10); ctx.lineTo(54, -8);
     ctx.stroke();
 
-    // Angry brows & eyes
     setInkPen(ctx, 3.4, INK);
     ctx.beginPath();
     ctx.moveTo(-36, -42); ctx.quadraticCurveTo(-20, -34, -10, -40);
@@ -325,7 +672,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.moveTo(12, -24); ctx.quadraticCurveTo(26, -32, 42, -24);
     ctx.stroke();
 
-    // Shouting mouth
     ctx.fillStyle = '#D97777';
     ctx.beginPath();
     ctx.roundRect(-30, -4, 60, 38, 14);
@@ -337,7 +683,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.fill();
     ctx.stroke();
 
-    // Raised pointing finger hand
     ctx.fillStyle = '#8FA8BE';
     ctx.beginPath();
     ctx.moveTo(-20, 185);
@@ -362,9 +707,7 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     return;
   }
 
-  // Standard Marshmallow 2-Head-Tall Character (@to_to_studio_ signature open-bottom silhouette!)
   if (role === 'maknae_bunny') {
-    // Fill white first
     ctx.fillStyle = WHITE;
     ctx.beginPath();
     ctx.moveTo(-76, bodyHeight);
@@ -380,7 +723,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.closePath();
     ctx.fill();
 
-    // Stroke ONLY the outer contour (leave bottom open just like @to_to_studio_!)
     ctx.beginPath();
     ctx.moveTo(-76, bodyHeight);
     ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
@@ -394,24 +736,19 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
     ctx.stroke();
   } else if (role === 'fox_director') {
-    // 🦊 여우 실장: Wide tilted pointed fox ears + fluffy cheek tufts + open-bottom torso
     ctx.fillStyle = WHITE;
     ctx.beginPath();
     ctx.moveTo(-76, bodyHeight);
     ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
-    // Left fox cheek tuft
     ctx.lineTo(-92, 42);
     ctx.lineTo(-78, 25);
     ctx.quadraticCurveTo(-90, -15, -62, -55);
-    // Left wide pointed fox ear
     ctx.lineTo(-96, -152);
     ctx.lineTo(-22, -76);
     ctx.quadraticCurveTo(0, -82, 22, -76);
-    // Right wide pointed fox ear
     ctx.lineTo(96, -152);
     ctx.lineTo(62, -55);
     ctx.quadraticCurveTo(90, -15, 78, 25);
-    // Right fox cheek tuft
     ctx.lineTo(92, 42);
     ctx.lineTo(62, 68);
     ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
@@ -435,15 +772,69 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
     ctx.stroke();
 
-    // Fox inner ear accent lines
     setInkPen(ctx, 2.4, INK);
     ctx.beginPath();
     ctx.moveTo(-78, -125); ctx.lineTo(-42, -72);
     ctx.moveTo(78, -125); ctx.lineTo(42, -72);
     ctx.stroke();
     setInkPen(ctx, 3.6, INK);
-  } else if (role === 'bee_manager') {
-    // 🐝 꿀벌 과장
+  } else if (role === 'panda_lead') {
+    // 📱 팬더 팀장: Round dark panda ears on marshmallow head
+    ctx.fillStyle = '#3F3F46';
+    ctx.beginPath(); ctx.arc(-62, -74, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(62, -74, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = WHITE;
+    ctx.beginPath();
+    ctx.moveTo(-76, bodyHeight);
+    ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
+    ctx.bezierCurveTo(-92, 45, -96, -35, -48, -68);
+    ctx.bezierCurveTo(-20, -86, 20, -86, 48, -68);
+    ctx.bezierCurveTo(96, -35, 92, 45, 62, 68);
+    ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-76, bodyHeight);
+    ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
+    ctx.bezierCurveTo(-92, 45, -96, -35, -48, -68);
+    ctx.bezierCurveTo(-20, -86, 20, -86, 48, -68);
+    ctx.bezierCurveTo(96, -35, 92, 45, 62, 68);
+    ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
+    ctx.stroke();
+  } else if (role === 'cheetah_lead') {
+    // 🐆 치타 팀장: Rounded ears + cute cheek whisker marks
+    ctx.fillStyle = WHITE;
+    ctx.beginPath(); ctx.arc(-58, -72, 22, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(58, -72, 22, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = WHITE;
+    ctx.beginPath();
+    ctx.moveTo(-76, bodyHeight);
+    ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
+    ctx.bezierCurveTo(-92, 45, -96, -35, -48, -68);
+    ctx.bezierCurveTo(-20, -86, 20, -86, 48, -68);
+    ctx.bezierCurveTo(96, -35, 92, 45, 62, 68);
+    ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-76, bodyHeight);
+    ctx.bezierCurveTo(-80, bodyHeight * 0.65, -74, 105, -58, 68);
+    ctx.bezierCurveTo(-92, 45, -96, -35, -48, -68);
+    ctx.bezierCurveTo(-20, -86, 20, -86, 48, -68);
+    ctx.bezierCurveTo(96, -35, 92, 45, 62, 68);
+    ctx.bezierCurveTo(80, 105, 86, bodyHeight * 0.65, 84, bodyHeight);
+    ctx.stroke();
+
+    ctx.fillStyle = INK;
+    [[-46, 2], [-54, 10], [46, 2], [54, 10]].forEach(([dx, dy]) => {
+      ctx.beginPath(); ctx.arc(dx, dy, 2.2, 0, Math.PI * 2); ctx.fill();
+    });
+  } else {
+    // 🐝 꿀벌 과장 (bee_manager)
     ctx.fillStyle = WHITE;
     ctx.beginPath();
     ctx.moveTo(-76, bodyHeight);
@@ -594,7 +985,6 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
     ctx.fill();
     ctx.stroke();
   } else if (prop === 'bag') {
-    // Rummaging / holding AC remote on table
     ctx.fillStyle = WHITE;
     ctx.beginPath();
     ctx.moveTo(-45, 75);
@@ -616,7 +1006,7 @@ function drawTotoStaffCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
 
 function drawTotoCoverTitle(ctx, lines, startY = 185) {
   ctx.save();
-  ctx.font = '118px "Jua", sans-serif';
+  ctx.font = '115px "Jua", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   const lineHeight = 138;
@@ -670,33 +1060,55 @@ function drawSlide1(ctx) {
 
   drawTotoCoverTitle(ctx, sample.coverTitleLines, 180);
 
-  drawHandBubble(ctx, 115, 515, 365, 235, {
-    fill: MINT_BUBBLE,
-    radius: 42,
-    tailDir: 'bottom-right',
-    tailTargetX: 495,
-    tailTargetY: 770
-  });
-  ctx.fillStyle = INK;
-  ctx.font = '46px "GaeguBold", sans-serif';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  sample.coverBubbleLines.forEach((l, i) => {
-    ctx.fillText(l, 115 + 365 / 2, 575 + i * 56);
-  });
+  const isRightFacing = sample.coverFacing === 'right';
+  if (isRightFacing) {
+    drawTotoStaffCharacter(ctx, 375, 665, 1.08, {
+      role: sample.coverRole || 'maknae_bunny',
+      mood: 'normal',
+      facing: 'right',
+      prop: sample.coverProp || 'phone',
+      bodyHeight: 175
+    });
+    drawHandBubble(ctx, 540, 510, 440, 240, {
+      fill: MINT_BUBBLE,
+      radius: 42,
+      tailDir: 'bottom-left',
+      tailTargetX: 535,
+      tailTargetY: 770
+    });
+    ctx.fillStyle = INK;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    sample.coverBubbleLines.forEach((l, i) => {
+      fillTextAutoFit(ctx, l, 540 + 440 / 2, 572 + i * 56, 396, 44);
+    });
+  } else {
+    drawHandBubble(ctx, 95, 510, 440, 240, {
+      fill: MINT_BUBBLE,
+      radius: 42,
+      tailDir: 'bottom-right',
+      tailTargetX: 505,
+      tailTargetY: 770
+    });
+    ctx.fillStyle = INK;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    sample.coverBubbleLines.forEach((l, i) => {
+      fillTextAutoFit(ctx, l, 95 + 440 / 2, 572 + i * 56, 396, 44);
+    });
 
-  drawTotoStaffCharacter(ctx, 680, 665, 1.08, {
-    role: 'maknae_bunny',
-    mood: 'normal',
-    facing: 'left',
-    prop: 'phone',
-    bodyHeight: 175
-  });
+    drawTotoStaffCharacter(ctx, 695, 665, 1.08, {
+      role: sample.coverRole || 'maknae_bunny',
+      mood: 'normal',
+      facing: 'left',
+      prop: sample.coverProp || 'phone',
+      bodyHeight: 175
+    });
+  }
 
   ctx.fillStyle = INK;
-  ctx.font = '50px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(sample.coverBottomNarration, 540, 965);
+  fillTextAutoFit(ctx, sample.coverBottomNarration, 540, 965, 980, 48);
 }
 
 function drawSlide2(ctx) {
@@ -723,14 +1135,14 @@ function drawSlide2(ctx) {
   }
 
   drawTotoStaffCharacter(ctx, 275, 255, 0.92, {
-    role: 'maknae_bunny',
+    role: sample.coverRole || 'maknae_bunny',
     mood: 'sweat',
     facing: 'right',
     prop: 'pointer',
     bodyHeight: 150
   });
 
-  drawHandBubble(ctx, 435, 52, 575, 230, {
+  drawHandBubble(ctx, 435, 52, 585, 230, {
     fill: WHITE,
     radius: 95,
     tailDir: 'left',
@@ -738,11 +1150,10 @@ function drawSlide2(ctx) {
     tailTargetY: 225
   });
   ctx.fillStyle = INK;
-  ctx.font = '44px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   sample.slide2TopBubble.forEach((l, i) => {
-    ctx.fillText(l, 435 + 575 / 2, 112 + i * 54);
+    fillTextAutoFit(ctx, l, 435 + 585 / 2, 112 + i * 54, 520, 42);
   });
   ctx.restore();
 
@@ -753,13 +1164,12 @@ function drawSlide2(ctx) {
   ctx.stroke();
 
   ctx.fillStyle = YELLOW_BOX;
-  ctx.fillRect(0, splitY, 620, 82);
-  ctx.strokeRect(0, splitY, 620, 82);
+  ctx.fillRect(0, splitY, 640, 82);
+  ctx.strokeRect(0, splitY, 640, 82);
   ctx.fillStyle = INK;
-  ctx.font = '44px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(sample.slide2YellowBox, 310, splitY + 42);
+  fillTextAutoFit(ctx, sample.slide2YellowBox, 320, splitY + 42, 600, 42);
 
   drawHandBubble(ctx, 42, 515, 240, 150, {
     fill: WHITE,
@@ -768,31 +1178,29 @@ function drawSlide2(ctx) {
     tailTargetX: 285,
     tailTargetY: 675
   });
-  ctx.font = '38px "GaeguBold", sans-serif';
   sample.slide2Vignette1Bubble.forEach((l, i) => {
-    ctx.fillText(l, 42 + 120, 565 + i * 44);
+    fillTextAutoFit(ctx, l, 42 + 120, 565 + i * 44, 210, 38);
   });
   drawTotoStaffCharacter(ctx, 355, 650, 0.72, {
-    role: 'maknae_bunny',
+    role: sample.coverRole || 'maknae_bunny',
     mood: 'normal',
     facing: 'left',
     prop: 'bag',
     bodyHeight: 145
   });
 
-  drawHandBubble(ctx, 725, 420, 325, 195, {
+  drawHandBubble(ctx, 705, 420, 345, 195, {
     fill: WHITE,
     radius: 75,
     tailDir: 'bottom-left',
     tailTargetX: 720,
     tailTargetY: 655
   });
-  ctx.font = '38px "GaeguBold", sans-serif';
   sample.slide2Vignette2Bubble.forEach((l, i) => {
-    ctx.fillText(l, 725 + 162, 470 + i * 44);
+    fillTextAutoFit(ctx, l, 705 + 172, 470 + i * 44, 310, 36);
   });
   drawTotoStaffCharacter(ctx, 645, 695, 0.74, {
-    role: 'fox_director',
+    role: sample.colleagueRole || 'fox_director',
     mood: 'sweat',
     facing: 'right',
     prop: 'none',
@@ -809,23 +1217,22 @@ function drawSlide2(ctx) {
     720
   );
 
-  drawHandBubble(ctx, 48, 825, 330, 155, {
+  drawHandBubble(ctx, 48, 825, 340, 155, {
     fill: WHITE,
     radius: 65,
     tailDir: 'right',
     tailTargetX: 395,
     tailTargetY: 945
   });
-  ctx.font = '38px "GaeguBold", sans-serif';
   sample.slide2Vignette3Bubble.forEach((l, i) => {
-    ctx.fillText(l, 48 + 165, 878 + i * 46);
+    fillTextAutoFit(ctx, l, 48 + 170, 878 + i * 46, 305, 38);
   });
 
   ctx.save();
   ctx.translate(485, 955);
   ctx.rotate(-0.35);
   drawTotoStaffCharacter(ctx, 0, 0, 0.72, {
-    role: 'bee_manager',
+    role: sample.thirdRole || 'bee_manager',
     mood: 'normal',
     facing: 'left',
     prop: 'phone',
@@ -907,8 +1314,8 @@ function drawSlide3(ctx) {
   ctx.fillStyle = INK;
   ctx.fillText('극대노..', 935, 265);
 
-  drawBlackSpikyBubble(ctx, 300, 195, 265, 115, sample.slide3TopBubble1, 42);
-  drawBlackSpikyBubble(ctx, 300, 415, 265, 76, sample.slide3TopBubble2, 42);
+  drawBlackSpikyBubble(ctx, 300, 195, 275, 115, sample.slide3TopBubble1, 40);
+  drawBlackSpikyBubble(ctx, 300, 415, 275, 76, sample.slide3TopBubble2, 40);
   ctx.restore();
 
   setInkPen(ctx, 3.8, INK);
@@ -918,14 +1325,14 @@ function drawSlide3(ctx) {
   ctx.stroke();
 
   drawTotoStaffCharacter(ctx, 255, 865, 1.08, {
-    role: 'maknae_bunny',
+    role: sample.coverRole || 'maknae_bunny',
     mood: 'shock',
     facing: 'left',
     prop: 'none',
     bodyHeight: 210
   });
 
-  drawUrchinFocusBubble(ctx, 715, 815, 305, 145, sample.slide3BottomUrchinBubble, 44);
+  drawUrchinFocusBubble(ctx, 715, 815, 305, 145, sample.slide3BottomUrchinBubble, 42);
 }
 
 function drawSlide4(ctx) {
@@ -933,23 +1340,21 @@ function drawSlide4(ctx) {
   ctx.fillRect(0, 0, 1080, 1080);
 
   ctx.fillStyle = INK;
-  ctx.font = '48px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   sample.slide4TopNarration.forEach((l, i) => {
-    ctx.fillText(l, 540, 105 + i * 64);
+    fillTextAutoFit(ctx, l, 540, 105 + i * 64, 980, 48);
   });
 
   ctx.fillStyle = YELLOW_BOX;
   setInkPen(ctx, 3.2, INK);
-  ctx.fillRect(125, 265, 465, 235);
-  ctx.strokeRect(125, 265, 465, 235);
+  ctx.fillRect(115, 265, 485, 235);
+  ctx.strokeRect(115, 265, 485, 235);
 
   ctx.fillStyle = INK;
-  ctx.font = '44px "GaeguBold", sans-serif';
   ctx.textAlign = 'center';
   sample.slide4YellowBoxLines.forEach((l, i) => {
-    ctx.fillText(l, 125 + 465 / 2, 325 + i * 58);
+    fillTextAutoFit(ctx, l, 115 + 485 / 2, 325 + i * 58, 450, 42);
   });
 
   ctx.font = '52px "NanumPen", sans-serif';
@@ -971,7 +1376,7 @@ function drawSlide4(ctx) {
   ctx.stroke();
 
   drawTotoStaffCharacter(ctx, 645, 645, 1.08, {
-    role: 'fox_director',
+    role: sample.deskRole || 'fox_director',
     mood: 'normal',
     facing: 'left',
     prop: 'tablet',
@@ -1013,44 +1418,59 @@ function renderNow() {
     const off3 = document.createElement('canvas'); off3.width = 1080; off3.height = 1080; drawSlide3(off3.getContext('2d'));
     const off4 = document.createElement('canvas'); off4.width = 1080; off4.height = 1080; drawSlide4(off4.getContext('2d'));
 
-    ctx.fillStyle = '#F4F4F5';
+    ctx.fillStyle = '#F5F5F4';
     ctx.fillRect(0, 0, 1080, 1080);
-    const pos = [[16, 16], [548, 16], [16, 548], [548, 548]];
-    [off1, off2, off3, off4].forEach((oc, idx) => {
-      const [px, py] = pos[idx];
-      ctx.drawImage(oc, px, py, 516, 516);
-      ctx.strokeStyle = '#D4D4D8';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(px, py, 516, 516);
+    const pad = 16;
+    const gap = 16;
+    const cell = (1080 - pad * 2 - gap) / 2;
+
+    const cells = [
+      [off1, pad, pad],
+      [off2, pad + cell + gap, pad],
+      [off3, pad, pad + cell + gap],
+      [off4, pad + cell + gap, pad + cell + gap]
+    ];
+    cells.forEach(([c, x, y]) => {
+      ctx.drawImage(c, x, y, cell, cell);
+      ctx.strokeStyle = INK;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(x, y, cell, cell);
     });
   }
 }
 
 if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(renderNow);
+  document.fonts.ready.then(() => {
+    renderNow();
+    document.body.setAttribute('data-rendered', 'true');
+  });
 } else {
-  renderNow();
+  window.onload = renderNow;
 }
 </script>
 </body>
 </html>`;
 }
 
-function renderPngWithChrome(chromePath, htmlContent, outputPngPath) {
-  const tempHtmlPath = outputPngPath.replace(/\.png$/i, '.temp.html');
-  const tempProfileDir = path.join(os.tmpdir(), 'mf-toto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8));
+function renderTotoPngWithChrome(chromePath, htmlContent, outputPngPath) {
+  const outDir = path.dirname(outputPngPath);
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+  const tempHtmlPath = path.join(
+    os.tmpdir(),
+    `mf-toto-${Date.now()}-${Math.random().toString(36).slice(2)}.html`
+  );
   fs.writeFileSync(tempHtmlPath, htmlContent, 'utf8');
   const fileUrl = 'file:///' + tempHtmlPath.replace(/\\/g, '/');
 
-  const res = spawnSync(
+  spawnSync(
     chromePath,
     [
       '--headless=new',
       '--disable-gpu',
       '--hide-scrollbars',
-      '--no-first-run',
-      '--no-default-browser-check',
-      `--user-data-dir=${tempProfileDir}`,
+      '--allow-file-access-from-files',
+      '--virtual-time-budget=2500',
       '--window-size=1080,1080',
       `--screenshot=${outputPngPath}`,
       fileUrl
@@ -1060,39 +1480,146 @@ function renderPngWithChrome(chromePath, htmlContent, outputPngPath) {
 
   try {
     if (fs.existsSync(tempHtmlPath)) fs.unlinkSync(tempHtmlPath);
-    if (fs.existsSync(tempProfileDir)) fs.rmSync(tempProfileDir, { recursive: true, force: true });
   } catch (e) {}
 
-  return res.status === 0 && fs.existsSync(outputPngPath);
+  return fs.existsSync(outputPngPath);
 }
 
-function generateFirstTotoSample() {
+function renderTotoPngWithChromeAsync(chromePath, htmlContent, outputPngPath) {
+  return new Promise(resolve => {
+    const outDir = path.dirname(outputPngPath);
+    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+    const tempHtmlPath = path.join(
+      os.tmpdir(),
+      `mf-toto-${Date.now()}-${Math.random().toString(36).slice(2)}.html`
+    );
+    fs.writeFileSync(tempHtmlPath, htmlContent, 'utf8');
+    const fileUrl = 'file:///' + tempHtmlPath.replace(/\\/g, '/');
+
+    const child = spawn(
+      chromePath,
+      [
+        '--headless=new',
+        '--disable-gpu',
+        '--hide-scrollbars',
+        '--allow-file-access-from-files',
+        '--virtual-time-budget=2000',
+        '--window-size=1080,1080',
+        `--screenshot=${outputPngPath}`,
+        fileUrl
+      ],
+      { stdio: 'ignore' }
+    );
+
+    const cleanup = () => {
+      try {
+        if (fs.existsSync(tempHtmlPath)) fs.unlinkSync(tempHtmlPath);
+      } catch (e) {}
+    };
+
+    const timer = setTimeout(() => {
+      try { child.kill(); } catch (e) {}
+      cleanup();
+      resolve(false);
+    }, 25000);
+
+    child.on('close', code => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(code === 0 && fs.existsSync(outputPngPath));
+    });
+    child.on('error', () => {
+      clearTimeout(timer);
+      cleanup();
+      resolve(false);
+    });
+  });
+}
+
+async function renderTotoEpisodeForSlug(slug = 'electric-studio-ac', options = {}) {
   const chromePath = findChromeExecutable();
   if (!chromePath) {
     throw new Error('Chrome executable not found');
   }
 
-  const outDir = path.join(ROOT_DIR, 'sns_outbox', SAMPLE_EP01.slug);
-  const snsDir = path.join(ROOT_DIR, 'sns');
-  fs.mkdirSync(outDir, { recursive: true });
-  fs.mkdirSync(snsDir, { recursive: true });
+  const sample = buildTotoEpisodeSpec(slug);
+  const outDir = path.join(ROOT_DIR, 'sns_outbox', sample.slug);
+  const publicSnsDir = path.join(ROOT_DIR, 'sns');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  if (!fs.existsSync(publicSnsDir)) fs.mkdirSync(publicSnsDir, { recursive: true });
 
   const s1Path = path.join(outDir, 'slide-1.png');
   const s2Path = path.join(outDir, 'slide-2.png');
   const s3Path = path.join(outDir, 'slide-3.png');
   const s4Path = path.join(outDir, 'slide-4.png');
   const gridPath = path.join(outDir, 'webtoon-grid.png');
-  const publicGridPath = path.join(snsDir, `${SAMPLE_EP01.slug}-grid.png`);
+  const publicGridPath = path.join(publicSnsDir, `${sample.slug}-grid.png`);
 
-  renderPngWithChrome(chromePath, buildTotoRenderHtml(SAMPLE_EP01, 'slide-1'), s1Path);
-  renderPngWithChrome(chromePath, buildTotoRenderHtml(SAMPLE_EP01, 'slide-2'), s2Path);
-  renderPngWithChrome(chromePath, buildTotoRenderHtml(SAMPLE_EP01, 'slide-3'), s3Path);
-  renderPngWithChrome(chromePath, buildTotoRenderHtml(SAMPLE_EP01, 'slide-4'), s4Path);
-  renderPngWithChrome(chromePath, buildTotoRenderHtml(SAMPLE_EP01, 'grid'), gridPath);
-  fs.copyFileSync(gridPath, publicGridPath);
+  const jobs = [
+    { mode: 'slide-1', path: s1Path },
+    { mode: 'slide-2', path: s2Path },
+    { mode: 'slide-3', path: s3Path },
+    { mode: 'slide-4', path: s4Path },
+    { mode: 'grid', path: gridPath }
+  ];
+
+  // Render all 5 images for this episode in parallel
+  await Promise.all(
+    jobs.map(async j => {
+      if (options.skipExisting && fs.existsSync(j.path)) return;
+      const ok = await renderTotoPngWithChromeAsync(chromePath, buildTotoRenderHtml(sample, j.mode), j.path);
+      if (!ok || !fs.existsSync(j.path)) {
+        renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, j.mode), j.path);
+      }
+    })
+  );
+
+  if (fs.existsSync(gridPath)) {
+    fs.copyFileSync(gridPath, publicGridPath);
+  }
 
   return {
-    slug: SAMPLE_EP01.slug,
+    slug: sample.slug,
+    s1Path,
+    s2Path,
+    s3Path,
+    s4Path,
+    gridPath,
+    publicGridPath
+  };
+}
+
+function renderTotoSample1() {
+  const chromePath = findChromeExecutable();
+  if (!chromePath) {
+    throw new Error('Chrome executable not found');
+  }
+  const sample = buildTotoEpisodeSpec('electric-studio-ac');
+  const outDir = path.join(ROOT_DIR, 'sns_outbox', sample.slug);
+  const publicSnsDir = path.join(ROOT_DIR, 'sns');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  if (!fs.existsSync(publicSnsDir)) fs.mkdirSync(publicSnsDir, { recursive: true });
+
+  const s1Path = path.join(outDir, 'slide-1.png');
+  const s2Path = path.join(outDir, 'slide-2.png');
+  const s3Path = path.join(outDir, 'slide-3.png');
+  const s4Path = path.join(outDir, 'slide-4.png');
+  const gridPath = path.join(outDir, 'webtoon-grid.png');
+  const publicGridPath = path.join(publicSnsDir, `${sample.slug}-grid.png`);
+
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-1'), s1Path);
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-2'), s2Path);
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-3'), s3Path);
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-4'), s4Path);
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'grid'), gridPath);
+
+  if (fs.existsSync(gridPath)) {
+    fs.copyFileSync(gridPath, publicGridPath);
+  }
+
+  return {
+    slug: sample.slug,
     s1Path,
     s2Path,
     s3Path,
@@ -1103,11 +1630,37 @@ function generateFirstTotoSample() {
 }
 
 if (require.main === module) {
-  const res = generateFirstTotoSample();
-  console.log('Generated @to_to_studio_ style sample webtoon:', res);
+  const args = process.argv.slice(2);
+  const isAll36 = args.includes('--all36');
+  const slugArg = args.find(a => a.startsWith('--slug='));
+  const slug = slugArg ? slugArg.split('=')[1] : null;
+
+  (async () => {
+    if (isAll36) {
+      console.log(`Rendering all ${PRESETS.length} episodes in @to_to_studio_ style...`);
+      for (let i = 0; i < PRESETS.length; i += 2) {
+        const batch = PRESETS.slice(i, i + 2);
+        const resList = await Promise.all(batch.map(p => renderTotoEpisodeForSlug(p.id)));
+        resList.forEach(r => console.log(`  ✓ [${r.slug}] 4 slides + grid rendered`));
+      }
+      console.log('🎉 All 36 @to_to_studio_ style episodes rendered!');
+    } else if (slug) {
+      const res = await renderTotoEpisodeForSlug(slug);
+      console.log('Generated @to_to_studio_ style webtoon:', res);
+    } else {
+      const res = renderTotoSample1();
+      console.log('Generated @to_to_studio_ style sample webtoon:', res);
+    }
+  })().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 }
 
 module.exports = {
-  generateFirstTotoSample,
-  SAMPLE_EP01
+  TOTO_CURATED_META,
+  buildTotoEpisodeSpec,
+  buildTotoRenderHtml,
+  renderTotoEpisodeForSlug,
+  renderTotoSample1
 };

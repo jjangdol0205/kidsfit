@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-10-18T04:23:50.399Z",
+  "slug": "pet-maltese-5kg",
+  "keyword": "5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수",
+  "targetUrl": "https://truthofmarket.com/preset/pet-maltese-5kg",
+  "gridPngPath": "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\webtoon-grid.png",
+  "publicImageUrl": "https://truthofmarket.com/sns/pet-maltese-5kg-grid.png",
+  "slidePaths": [
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\slide-1.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\slide-2.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\slide-3.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\slide-4.png"
+  ],
+  "story": {
+    "species": "cat",
+    "accent": "#ec4899",
+    "charName": "집사 치즈냥 박사",
+    "expertName": "안경 여우 수의영양사",
+    "sfxShock": "헉..!!",
+    "badge": "🐶 5kg 중성화 말티즈 하루 사료량 진단",
+    "panel1Speech": "우리 5kg 말티즈, 사료 봉투 뒤에 적힌 대로 종이컵 두 컵씩 줬더니 살이 쪄서 산책할 때 뒷다리를 절뚝거려 ㅠㅠ",
+    "panel1Sub": "5kg 소형견 말티즈 과급여로 인한 슬개골 탈구 위기",
+    "panel2Speech": "중성화한 5kg 성견(계수 1.6)의 하루 필요 열량은 375kcal로 사료 딱 103g(종이컵 1.3컵)이 정량이에요! 정량 배식이 180만 원 슬개골 수술을 막습니다!",
+    "panel2Sub": "5kg 말티즈 1끼 51.5g 정량 & 2kg 사료 19일 소진 주기",
+    "receiptTitle": "5kg 말티즈 정량 급여 vs 비만 의료비",
+    "badLabel": "눈대중 과급여 + 슬개골 수술 위험",
+    "badVal": "일 138g 과급여 (질환 위험)",
+    "goodLabel": "일 103g 정량 배식 (2kg=19일)",
+    "goodVal": "일 102g (2kg=19일)",
+    "diffLabel": "정량 배식+특약으로 아끼는 병원비",
+    "diffVal": "1끼 51g 정량 · 의료비 방어",
+    "ctaTitle": "우리 강아지 체중·사료 칼로리 넣고 하루 g수 계산!",
+    "hookLine": "5kg 중성화 말티즈에게 사료 봉투 뒷면 표만 보고 밥을 주면 왜 슬개골 탈구 위험이 급격히 높아질까요?",
+    "factLine": "수의영양학 공식(DER 375kcal)으로 계산한 5kg 말티즈의 하루 적정 사료량은 정확히 103g(한 끼 51.5g)이며, 2kg 한 포대는 19일 만에 소진됩니다.",
+    "closingLine": "아이 몸무게와 현재 먹이는 사료의 칼로리(kcal/kg)를 입력해 오늘부터 오차 없는 1끼 그램(g) 수를 확인해 보세요.",
+    "hashtags": "#말티즈사료량 #강아지사료급여량 #소형견슬개골탈구 #말티즈키우기 #강아지비만관리",
+    "shortCartoon": {
+      "epTitle": "EP.13 5kg 말티즈 종이컵 눈대중 배식의 위험 🐶",
+      "patternIdx": 0,
+      "quadOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "flipMask": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "zoomMask": [
+        1,
+        1.02,
+        1,
+        1.02
+      ],
+      "speakerSide": [
+        "left",
+        "left",
+        "right",
+        "right"
+      ],
+      "narrations": [
+        "밥 잘 먹는 게 예뻐서 종이컵으로 듬뿍 부어주던 일상",
+        "수의영양 박사 여우가 전자저울을 들고 달려왔다",
+        "하루 20g 과급여가 부르는 슬개골 탈구 수술비 청구서",
+        "우리 아이 몸무게·중성화 여부에 딱 맞는 1g 정량 완성!"
+      ],
+      "p1": [
+        "잘 먹는 게 귀여워서",
+        "**종이컵으로 대충** 줬는데?"
+      ],
+      "p2": [
+        "5kg 중성화 성견은 하루",
+        "**딱 103g(한 끼 52g)**이야!"
+      ],
+      "p3": [
+        "조금 더 준 게 비만 돼서",
+        "**슬개골 수술비 180만원**?!"
+      ],
+      "p4": [
+        "전자저울 **1g 칼계량**으로",
+        "관절 건강·병원비 완벽 방어!"
+      ],
+      "replies": [
+        "사료 봉투 뒤에 적힌 컵 그림 보고 눈대중으로 부었지 🐾",
+        "헉 종이컵 한 컵이 생각보다 그램 수가 엄청 다르네요?!",
+        "간식까지 합치면 매일 35%나 과급여하고 있었구나 😭",
+        "강아지·고양이 사료 칼로리 넣고 하루 정량 g수 계산해봐요!"
+      ]
+    }
+  },
+  "threadsMain": "🐾 [EP.13 5kg 말티즈 종이컵 눈대중 배식의 위험 🐶]\n💬 \"잘 먹는 게 귀여워서 종이컵으로 대충 줬는데?\" → \"조금 더 준 게 비만 돼서 슬개골 수술비 180만원?!\"\n\n❌ 눈대중 과급여 + 슬개골 수술 위험: 일 138g 과급여 (질환 위험)\n✅ 일 103g 정량 배식 (2kg=19일): 일 102g (2kg=19일) (1끼 51g 정량 · 의료비 방어)\n\n⚖️ 쓰친님들의 현실 선택은?\n🅰️ 귀찮아도 기존대로(눈대중 과급여 + 슬개골 수술 위험) vs 🅱️ 바꾸고 1끼 51g 정량 · 의료비 방어 아끼기(일 103g 정량 배식 (2kg=19일))\n👇 내 조건 3초 무료 계산기 & 다음 화 예고는 첫 댓글에!",
+  "threadsReply": "🔗 「5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수」 3초 무료 계산기 바로가기\nhttps://truthofmarket.com/preset/pet-maltese-5kg\n\n➕ @moneyfit2026 팔로우해두시면 내일 올라오는 「생후 4개월 1.5kg 포메라니안 퍼피 고단백 사료 급여량」 본전 영수증 만화도 놓치지 않아요 🔥",
+  "instagramCaption": "🐾 EP.13 5kg 말티즈 종이컵 눈대중 배식의 위험 🐶 (@moneyfit2026)\n💬 \"잘 먹는 게 귀여워서 종이컵으로 대충 줬는데?\" → \"조금 더 준 게 비만 돼서 슬개골 수술비 180만원?!\"\n\n📊 [3초 핵심 요약]\n• 눈대중 과급여 + 슬개골 수술 위험: 일 138g 과급여 (질환 위험)\n• 일 103g 정량 배식 (2kg=19일): 일 102g (2kg=19일)\n• 절약 효과: 1끼 51g 정량 · 의료비 방어\n\n💬 [댓글 투표] 우리 집은 1번(눈대중 과급여 + 슬개골 수술 위험) vs 2번(일 103g 정량 배식 (2kg=19일))? 댓글에 번호나 '계산기' 남겨주세요!\n📌 [저장 필수] 까먹기 전에 저장해두고 고지서·견적서 나올 때 바로 비교해보세요!\n➕ [팔로우 혜택] @moneyfit2026 팔로우하면 매주 새는 고정비 30만 원 막아주는 '4컷 영수증 만화'가 피드로 배달됩니다!\n👉 3초 무료 계산기는 @moneyfit2026 프로필 링크 클릭!\n\n#말티즈사료량 #강아지사료급여량 #소형견슬개골탈구 #말티즈키우기 #강아지비만관리",
+  "facebookPost": "🐾 [4컷 공감툰] EP.13 5kg 말티즈 종이컵 눈대중 배식의 위험 🐶\n• 눈대중 과급여 + 슬개골 수술 위험: 일 138g 과급여 (질환 위험) → 일 103g 정량 배식 (2kg=19일): 일 102g (2kg=19일) (1끼 51g 정량 · 의료비 방어)\n💡 지금 이거 고민 중인 친구 @태그 해주고 페이지 [팔로우] 해두시면 매주 생활비 아끼는 3초 영수증 만화를 받아보실 수 있어요!\n👇 내 조건 3초 무료 계산기 주소는 첫 댓글에 있습니다!",
+  "omniChannelKitPath": "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\pet-maltese-5kg\\omni_channel_kit.md"
+}

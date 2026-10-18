@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-10-18T04:22:15.770Z",
+  "slug": "diet-male-bulkup",
+  "keyword": "마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량",
+  "targetUrl": "https://truthofmarket.com/preset/diet-male-bulkup",
+  "gridPngPath": "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\webtoon-grid.png",
+  "publicImageUrl": "https://truthofmarket.com/sns/diet-male-bulkup-grid.png",
+  "slidePaths": [
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\slide-1.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\slide-2.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\slide-3.png",
+    "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\slide-4.png"
+  ],
+  "story": {
+    "species": "shiba",
+    "accent": "#f59e0b",
+    "charName": "헬스 시바견 득근이",
+    "expertName": "안경 여우 영양박사",
+    "sfxShock": "두둥탁!!",
+    "badge": "💪 마른 65kg 벌크업 칼로리 잉여 식단",
+    "panel1Speech": "65kg 마른 체형 탈출하려고 밤마다 치킨이랑 야식으로 칼로리 채웠는데 팔다리는 그대로고 배만 나왔어!",
+    "panel1Sub": "마른 체형이 정크푸드로 증량할 때 생기는 스키니팻",
+    "panel2Speech": "야식 지방이 아니라 유지 TDEE(2,210kcal)에 +350kcal 클린 잉여 열량과 하루 단백질 130g(4주 닭가슴살 103팩+WPI 1통)을 넣어줘야 근육이 붙어요!",
+    "panel2Sub": "65kg 린매스업 일 2,560kcal & WPI 분리유청 조합",
+    "receiptTitle": "65kg 4주 린매스업 벌크업 식비 비교",
+    "badLabel": "야식·배달 정크푸드 증량 지출",
+    "badVal": "421,900원/4주",
+    "goodLabel": "클린 벌크업 정량(103팩+WPI)",
+    "goodVal": "187,550원 (103팩)",
+    "diffLabel": "정량 벌크업 전환 시 4주 절약",
+    "diffVal": "-234,350원 절약",
+    "ctaTitle": "내 체중·증량 목표 넣으면 벌크업 식단량 3초 산출!",
+    "hookLine": "마른 체형 65kg에서 배만 나오는 마른 비만 없이 순수 근육으로 체격을 키우려면 하루 몇 칼로리를 먹어야 할까요?",
+    "factLine": "유지 대사량(TDEE)보다 +350kcal 높은 일일 2,560kcal를 복합 탄수화물(현미밥 56개)과 순단백질(닭가슴살 103팩 + WPI 프로틴)로 채워야 깔끔한 린매스업이 됩니다.",
+    "closingLine": "현재 체중과 주당 웨이트 횟수를 입력해 내 벌크업 목표 칼로리와 프로틴 필요량을 바로 계산해 보세요.",
+    "hashtags": "#마른남자벌크업 #65kg벌크업 #린매스업식단 #WPI프로틴 #벌크업칼로리",
+    "shortCartoon": {
+      "epTitle": "EP.09 65kg 마른 체형 탈출! 야식 vs 클린 벌크업 💪",
+      "patternIdx": 2,
+      "quadOrder": [
+        1,
+        0,
+        2,
+        3
+      ],
+      "flipMask": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "zoomMask": [
+        1.04,
+        1.05,
+        1,
+        1.04
+      ],
+      "speakerSide": [
+        "left",
+        "left",
+        "right",
+        "right"
+      ],
+      "narrations": [
+        "헬스장에서 만난 불곰 코치의 뼈아픈 체성분 팩트체크",
+        "덩치 키운다며 무작정 칼로리만 밀어 넣던 미어캣 회원",
+        "야식 배달비 45만원과 볼록 나온 배를 마주한 순간",
+        "유지칼로리 +350kcal 클린 잉여 식단으로 어깨깡패 달성!"
+      ],
+      "p1": [
+        "잠깐!! 벌크업한다면서",
+        "**팔뚝은 그대로고 배만** 나왔네?"
+      ],
+      "p2": [
+        "살 찌우려고 매일 밤",
+        "**치킨이랑 야식** 챙겨 먹었지~"
+      ],
+      "p3": [
+        "배달비만 **45만원 날리고**",
+        "마른 비만 행이라니 으앙!!"
+      ],
+      "p4": [
+        "**+350kcal 정량**이랑 WPI로",
+        "18만원에 진짜 근육 벌크업!"
+      ],
+      "replies": [
+        "어.. 분명 체중계 숫자는 3kg 늘었는데 왜 배만 나오죠?! 🐾",
+        "무조건 많이 먹으면 다 근육으로 가는 줄 알았지 헤헤 🍗",
+        "4주 닭가슴살 103팩 + 현미밥 56개 클린 식단이 절반 값이네 😭",
+        "살크업 말고 진짜 린매스업 식단량 3초 만에 뽑아보세요 💪"
+      ]
+    }
+  },
+  "threadsMain": "🐾 [EP.09 65kg 마른 체형 탈출! 야식 vs 클린 벌크업 💪]\n💬 \"잠깐!! 벌크업한다면서 팔뚝은 그대로고 배만 나왔네?\" → \"배달비만 45만원 날리고 마른 비만 행이라니 으앙!!\"\n\n❌ 야식·배달 정크푸드 증량 지출: 421,900원/4주\n✅ 클린 벌크업 정량(103팩+WPI): 187,550원 (103팩) (-234,350원 절약)\n\n⚖️ 쓰친님들의 현실 선택은?\n🅰️ 귀찮아도 기존대로(야식·배달 정크푸드 증량 지출) vs 🅱️ 바꾸고 -234,350원 절약 아끼기(클린 벌크업 정량(103팩+WPI))\n👇 내 조건 3초 무료 계산기 & 다음 화 예고는 첫 댓글에!",
+  "threadsReply": "🔗 「마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량」 3초 무료 계산기 바로가기\nhttps://truthofmarket.com/preset/diet-male-bulkup\n\n➕ @moneyfit2026 팔로우해두시면 내일 올라오는 「앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적」 본전 영수증 만화도 놓치지 않아요 🔥",
+  "instagramCaption": "🐾 EP.09 65kg 마른 체형 탈출! 야식 vs 클린 벌크업 💪 (@moneyfit2026)\n💬 \"잠깐!! 벌크업한다면서 팔뚝은 그대로고 배만 나왔네?\" → \"배달비만 45만원 날리고 마른 비만 행이라니 으앙!!\"\n\n📊 [3초 핵심 요약]\n• 야식·배달 정크푸드 증량 지출: 421,900원/4주\n• 클린 벌크업 정량(103팩+WPI): 187,550원 (103팩)\n• 절약 효과: -234,350원 절약\n\n💬 [댓글 투표] 우리 집은 1번(야식·배달 정크푸드 증량 지출) vs 2번(클린 벌크업 정량(103팩+WPI))? 댓글에 번호나 '계산기' 남겨주세요!\n📌 [저장 필수] 까먹기 전에 저장해두고 고지서·견적서 나올 때 바로 비교해보세요!\n➕ [팔로우 혜택] @moneyfit2026 팔로우하면 매주 새는 고정비 30만 원 막아주는 '4컷 영수증 만화'가 피드로 배달됩니다!\n👉 3초 무료 계산기는 @moneyfit2026 프로필 링크 클릭!\n\n#마른남자벌크업 #65kg벌크업 #린매스업식단 #WPI프로틴 #벌크업칼로리",
+  "facebookPost": "🐾 [4컷 공감툰] EP.09 65kg 마른 체형 탈출! 야식 vs 클린 벌크업 💪\n• 야식·배달 정크푸드 증량 지출: 421,900원/4주 → 클린 벌크업 정량(103팩+WPI): 187,550원 (103팩) (-234,350원 절약)\n💡 지금 이거 고민 중인 친구 @태그 해주고 페이지 [팔로우] 해두시면 매주 생활비 아끼는 3초 영수증 만화를 받아보실 수 있어요!\n👇 내 조건 3초 무료 계산기 주소는 첫 댓글에 있습니다!",
+  "omniChannelKitPath": "D:\\사업아이템\\moneyfit-portal\\sns_outbox\\diet-male-bulkup\\omni_channel_kit.md"
+}

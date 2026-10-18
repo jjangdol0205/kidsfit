@@ -169,6 +169,108 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
 }
 
 /**
+ * Build 7-Channel Omni-Channel Promotion Kit (`omni_channel_kit.md`) for Naver Clip, Karrot, Blind/Everytime, TikTok/Shorts, Pinterest
+ */
+function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.com') {
+  const cleanSiteUrl = String(siteUrl || 'https://truthofmarket.com').replace(/\/+$/, '');
+  const t = bundle.story || {};
+  const sc = t.shortCartoon || {};
+  const epTitle = sc.epTitle || preset.title;
+  const p1 = (sc.p1 || []).join(' ').replace(/\*\*/g, '');
+  const p2 = (sc.p2 || []).join(' ').replace(/\*\*/g, '');
+  const p3 = (sc.p3 || []).join(' ').replace(/\*\*/g, '');
+  const p4 = (sc.p4 || []).join(' ').replace(/\*\*/g, '');
+
+  const clipUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=naver_clip`;
+  const karrotUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=karrot_local`;
+  const commUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=community_viral`;
+  const shortsUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=shorts_tiktok`;
+  const pinUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=pinterest_pin`;
+
+  return [
+    `# 🚀 [${preset.title}] 전사 옴니채널 웹툰 홍보 키트 (OSMU 5대 확장 채널)`,
+    ``,
+    `- **슬러그**: \`${preset.slug}\``,
+    `- **에피소드**: ${epTitle}`,
+    `- **사용 이미지**:`,
+    `  - 4컷 슬라이드: \`sns_outbox/${preset.slug}/slide-1.png\` ~ \`slide-4.png\``,
+    `  - 1장 요약 합본: \`sns_outbox/${preset.slug}/webtoon-grid.png\` (\`${cleanSiteUrl}/sns/${preset.slug}-grid.png\`)`,
+    ``,
+    `---`,
+    ``,
+    `## 1️⃣ 🟢 네이버 클립 (Naver Clip — 10초 슬라이드 & 정보 스티커 직행)`,
+    `- **업로드 방식**: 네이버 앱/블로그 앱 ➔ \`[+ 클립 만들기]\` ➔ \`slide-1.png ~ slide-4.png\` 4장 선택 (각 2.5초, 총 10초)`,
+    `- **🔗 정보 스티커(링크 스티커) URL**: \`${clipUrl}\``,
+    `- **스티커 문구**: \`⚡ 내 조건 3초 영수증 계산기\``,
+    `- **클립 제목 (복붙용)**:`,
+    `\`\`\`text`,
+    `🐯 호랑이 이사님 극대노! ${preset.title} ${t.diffVal} 아끼는 3초 팩트체크`,
+    `\`\`\``,
+    `- **클립 캡션 & 해시태그 (복붙용)**:`,
+    `\`\`\`text`,
+    `"${p1}" ➔ "${p3}" 😱`,
+    `❌ ${t.badLabel}: ${t.badVal}`,
+    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
+    `화면 아래 [정보 스티커] 누르면 내 조건으로 3초 만에 무료 계산됩니다! 👇`,
+    `#네이버클립 #인스타툰 #생활비절약 #머니핏 #자취꿀팁`,
+    `\`\`\``,
+    ``,
+    `---`,
+    ``,
+    `## 2️⃣ 🥕 당근마켓 동네생활 ('동네 질문 / 살림·자취 꿀팁' 탭)`,
+    `- **업로드 이미지**: \`slide-1.png\`, \`slide-2.png\`, \`slide-3.png\` (1~3컷 스포일러만 첨부!)`,
+    `- **본문 원고 (복붙용)**:`,
+    `\`\`\`text`,
+    `동네 이웃님들 혹시 ${preset.title} 계산해보신 분 계신가요? 😭`,
+    `저는 귀찮아서 그냥(${t.badLabel}: ${t.badVal}) 썼는데,`,
+    `옆자리 실장님이 계산기 돌려보더니 바꾸면(${t.goodLabel}: ${t.goodVal}) ${t.diffVal}이나 차이 난다고 극대노하시네요;;`,
+    `혹시 동네 분들은 어떻게 쓰고 계세요?`,
+    `\`\`\``,
+    `- **첫 댓글 셀프 좌표 (복붙용)**:`,
+    `\`\`\`text`,
+    `혹시 궁금하신 분 계실까 봐 제가 돌려본 3초 무료 계산기 주소 남겨둘게요! (회원가입 없어요)`,
+    `👉 ${karrotUrl}`,
+    `\`\`\``,
+    ``,
+    `---`,
+    ``,
+    `## 3️⃣ 🏢 직장인 블라인드(Blind) · 🎓 에브리타임 · 🤱 맘카페 맞춤 원고`,
+    `- **업로드 이미지**: \`webtoon-grid.png\` (1장 요약 합본)`,
+    `- **제목 (복붙용)**: \`[현실툰] ${preset.title}, 감으로 결제했다가 호랑이 이사님한테 혼난 썰 (${t.diffVal})\``,
+    `- **본문 (복붙용)**:`,
+    `\`\`\`text`,
+    `1컷: "${p1}"`,
+    `2컷: "${p2}"`,
+    `3컷(이사님 극대노): ❌ ${t.badLabel}(${t.badVal}) vs ✅ ${t.goodLabel}(${t.goodVal}) ➔ ${t.diffVal}!`,
+    `4컷: "${p4}"`,
+    ``,
+    `내 조건 숫자 넣으면 3초 만에 본전 영수증 뽑아주는 무료 계산기 좌표:`,
+    `👉 ${commUrl}`,
+    `\`\`\``,
+    ``,
+    `---`,
+    ``,
+    `## 4️⃣ 🎵 틱톡 포토모드 (TikTok Photo Mode) & 📺 유튜브 쇼츠`,
+    `- **업로드 방식**: 틱톡 \`[포토모드]\`로 \`slide-1.png ~ slide-4.png\` 4장 업로드 (옆으로 넘기며 읽는 인스타툰 포맷 — 도달률 2.4배!)`,
+    `- **캡션 & 고정 댓글 (복붙용)**:`,
+    `\`\`\`text`,
+    `3컷에서 호랑이 이사님 극대노 숫자가 실화냐고요... 😱 (${t.badVal} vs ${t.goodVal})`,
+    `내 조건 3초 무료 계산기는 프로필 링크 또는 검색창에 [ 머니핏 ] 검색!`,
+    `🔗 ${shortsUrl}`,
+    `#인스타툰 #웹툰 #생활비절약 #자취꿀팁 #쇼츠`,
+    `\`\`\``,
+    ``,
+    `---`,
+    ``,
+    `## 5️⃣ 📌 핀터레스트 (Pinterest) & 구글 이미지 검색 영구 파이프라인`,
+    `- **업로드 이미지**: \`slide-1.png\` (노란 빅타이틀 표지) 또는 \`webtoon-grid.png\``,
+    `- **핀 제목**: \`[4컷 인스타툰] ${preset.title} — ${t.diffVal} 아끼는 3초 영수증 계산법\``,
+    `- **핀 설명**: \`"${p1}" ❌ ${t.badLabel}(${t.badVal}) vs ✅ ${t.goodLabel}(${t.goodVal}). 모르면 날리는 생돈 ${t.diffVal}을 3초 만에 계산해보세요.\``,
+    `- **도착 URL (Destination Link)**: \`${pinUrl}\``
+  ].join('\n');
+}
+
+/**
  * Create standalone HTML for headless Chrome 1080x1080 screenshot
  */
 function buildRenderHtml(bundle, mode = 'grid', slideNum = 1) {
@@ -2904,44 +3006,20 @@ async function generateWebtoonPack(options = {}) {
   const slidePaths = [1, 2, 3, 4].map(i => path.join(outDir, `slide-${i}.png`));
 
   if (!options.copyOnly && chromePath) {
-    if (!(options.skipExisting && fs.existsSync(gridPngPath))) {
-      try {
-        if (fs.existsSync(gridPngPath)) fs.unlinkSync(gridPngPath);
-      } catch (e) {}
-      const okGrid = await renderPngWithChromeAsync(chromePath, buildRenderHtml(bundle, 'grid', 1), gridPngPath);
-      if (!okGrid || !fs.existsSync(gridPngPath)) {
-        renderPngWithChrome(chromePath, buildRenderHtml(bundle, 'grid', 1), gridPngPath);
-      }
-    }
-    for (let i = 1; i <= 4; i += 2) {
-      const batchIdx = [i, i + 1].filter(n => n <= 4);
-      await Promise.all(
-        batchIdx.map(async n => {
-          const sPath = slidePaths[n - 1];
-          if (!(options.skipExisting && fs.existsSync(sPath))) {
-            try {
-              if (fs.existsSync(sPath)) fs.unlinkSync(sPath);
-            } catch (e) {}
-            const okSlide = await renderPngWithChromeAsync(chromePath, buildRenderHtml(bundle, 'slide', n), sPath);
-            if (!okSlide || !fs.existsSync(sPath)) {
-              renderPngWithChrome(chromePath, buildRenderHtml(bundle, 'slide', n), sPath);
-            }
-          }
-        })
-      );
-    }
-    if (fs.existsSync(gridPngPath)) {
-      fs.copyFileSync(gridPngPath, publicGridPngPath);
-    }
+    const { renderTotoEpisodeForSlug } = require('./toto-style-webtoon-engine.js');
+    await renderTotoEpisodeForSlug(preset.slug, { skipExisting: Boolean(options.skipExisting) });
   } else if (fs.existsSync(gridPngPath) && !fs.existsSync(publicGridPngPath)) {
     fs.copyFileSync(gridPngPath, publicGridPngPath);
   }
+
+  const omniChannelKitMd = buildOmniChannelKitMd(preset, bundle, cfg.siteUrl);
 
   // Write copy files
   fs.writeFileSync(path.join(outDir, 'threads_main.txt'), bundle.threadsMain + '\n', 'utf8');
   fs.writeFileSync(path.join(outDir, 'threads_reply.txt'), bundle.threadsReply + '\n', 'utf8');
   fs.writeFileSync(path.join(outDir, 'instagram_caption.txt'), bundle.instagramCaption + '\n', 'utf8');
   fs.writeFileSync(path.join(outDir, 'facebook_post.txt'), bundle.facebookPost + '\n', 'utf8');
+  fs.writeFileSync(path.join(outDir, 'omni_channel_kit.md'), omniChannelKitMd + '\n', 'utf8');
   fs.writeFileSync(
     path.join(outDir, 'post_bundle.json'),
     JSON.stringify(
@@ -2957,7 +3035,8 @@ async function generateWebtoonPack(options = {}) {
         threadsMain: bundle.threadsMain,
         threadsReply: bundle.threadsReply,
         instagramCaption: bundle.instagramCaption,
-        facebookPost: bundle.facebookPost
+        facebookPost: bundle.facebookPost,
+        omniChannelKitPath: path.join(outDir, 'omni_channel_kit.md')
       },
       null,
       2

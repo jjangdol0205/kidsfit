@@ -36,112 +36,112 @@ const MIN_INTERVAL_HOURS = 4;
  * Every single day features 3 completely different categories, animal protagonists, and storyline patterns.
  */
 const TWELVE_DAY_ROTATION = [
-  // Day 1 (Today's Initial 3-Episode Lineup — Uploaded Live)
+  // Day 1
   {
     day: 1,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-studio-ac', cast: '자취생 쿼카찌 & 민트후드 여우', category: '⚡ 전기요금', liveUrl: 'https://www.instagram.com/moneyfit2026/p/DenJRikEt-R/' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-female-lean', cast: '화이트 푸들 & 필라테스 고양이 코치', category: '🥗 다이어트', liveUrl: 'https://www.instagram.com/moneyfit2026/p/DenJ2wbkn5Y/' },
-      { slot: 'EVENING (20:30)', slug: 'auto-grandeur-5000', cast: '네이비 정장 호랑이 대표님 & 여우 세무사', category: '🚗 자동차절세', liveUrl: 'https://www.instagram.com/moneyfit2026/p/DenKYQ8EsZU/' }
+      { slot: 'MORNING (08:15)', slug: 'electric-studio-ac', cast: '막내 토끼 사원 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '⚡ 전기요금' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-female-lean', cast: '막내 토끼 사원 · 여우 실장 · 팬더 팀장 · 호랑이 이사', category: '🥗 다이어트' },
+      { slot: 'EVENING (21:15)', slug: 'auto-grandeur-5000', cast: '여우 실장 · 꿀벌 과장 · 막내 사원 · 호랑이 이사', category: '🚗 자동차절세' }
     ]
   },
   // Day 2
   {
     day: 2,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-single-oneroom', cast: '헤드셋 레서판다 게이머 & 치즈냥 선배', category: '🌐 통신/인터넷' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-pomeranian-puppy', cast: '빨간 리본 아기 포메 & 사슴 수의사', category: '🐾 반려동물' },
-      { slot: 'EVENING (20:30)', slug: 'room-officetel-500', cast: '노란 조끼 직장인 코알라 & 여우 선배', category: '🛋️ 자취/투룸' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-single-oneroom', cast: '막내 사원 · 치타 팀장 · 꿀벌 과장 · 호랑이 이사', category: '🌐 통신/인터넷' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-pomeranian-puppy', cast: '팬더 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🐾 반려동물' },
+      { slot: 'EVENING (21:15)', slug: 'room-officetel-500', cast: '팬더 팀장 · 꿀벌 과장 · 치타 팀장 · 호랑이 이사', category: '🛋️ 자취/투룸' }
     ]
   },
   // Day 3
   {
     day: 3,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-dehumidifier', cast: '노란 가디건 해달 & 민트후드 여우', category: '⚡ 전기요금' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-office-worker', cast: '넥타이 직장인 판다 대리 & 여우 박사', category: '🥗 다이어트' },
-      { slot: 'EVENING (20:30)', slug: 'auto-tucson-hybrid', cast: '아웃도어 조끼 웰시코기 아빠 & 라쿤 전문가', category: '🚗 패밀리카' }
+      { slot: 'MORNING (08:15)', slug: 'electric-dehumidifier', cast: '꿀벌 과장 · 여우 실장 · 치타 팀장 · 호랑이 이사', category: '⚡ 전기요금' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-office-worker', cast: '팬더 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🥗 다이어트' },
+      { slot: 'EVENING (21:15)', slug: 'auto-tucson-hybrid', cast: '팬더 팀장 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '🚗 패밀리카' }
     ]
   },
   // Day 4
   {
     day: 4,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-penalty-30', cast: '노란 셔츠 미어캣 사원 & 오소리 통신박사', category: '🌐 통신/인터넷' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-korean-shorthair', cast: '통통 턱시도 고양이 & 부엉이 수의사', category: '🐾 반려동물' },
-      { slot: 'EVENING (20:30)', slug: 'room-newlywed-1000', cast: '신혼 곰돌이 부부 & 부엉이 웨딩플래너', category: '🛋️ 신혼가전' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-penalty-30', cast: '막내 사원 · 꿀벌 과장 · 팬더 팀장 · 호랑이 이사', category: '🌐 통신/인터넷' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-korean-shorthair', cast: '막내 사원 · 여우 실장 · 치타 팀장 · 호랑이 이사', category: '🐾 반려동물' },
+      { slot: 'EVENING (21:15)', slug: 'room-newlywed-1000', cast: '치타 팀장 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '🛋️ 신혼가전' }
     ]
   },
   // Day 5
   {
     day: 5,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-dryer', cast: '분홍 앞치마 토끼·햄스터 룸메 & 여우', category: '⚡ 전기요금' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-male-bulkup', cast: '파란 나시 미어캣 & 근육 불곰 코치', category: '🥗 벌크업' },
-      { slot: 'EVENING (20:30)', slug: 'auto-casper-cash-vs-rent', cast: '사원증 병아리 신입 오리 & 부엉이 보험박사', category: '🚗 첫차보험' }
+      { slot: 'MORNING (08:15)', slug: 'electric-dryer', cast: '막내 사원 · 꿀벌 과장 · 팬더 팀장 · 호랑이 이사', category: '⚡ 전기요금' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-male-bulkup', cast: '팬더 팀장 · 치타 팀장 · 꿀벌 과장 · 호랑이 이사', category: '🥗 벌크업' },
+      { slot: 'EVENING (21:15)', slug: 'auto-casper-cash-vs-rent', cast: '막내 사원 · 꿀벌 과장 · 팬더 팀장 · 호랑이 이사', category: '🚗 첫차보험' }
     ]
   },
   // Day 6
   {
     day: 6,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-3yr-expired', cast: '줄무늬 스웨터 나무늘보 & 여우 고수', category: '🌐 통신/인터넷' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-golden-retriever', cast: '파란 스카프 골든리트리버 & 여우 박사', category: '🐾 대형견' },
-      { slot: 'EVENING (20:30)', slug: 'room-officetel-300', cast: '베이지 베레모 토끼 & 사막여우 건축가', category: '🛋️ 오피스텔' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-3yr-expired', cast: '팬더 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🌐 통신/인터넷' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-golden-retriever', cast: '치타 팀장 · 꿀벌 과장 · 팬더 팀장 · 호랑이 이사', category: '🐾 대형견' },
+      { slot: 'EVENING (21:15)', slug: 'room-officetel-300', cast: '꿀벌 과장 · 여우 실장 · 팬더 팀장 · 호랑이 이사', category: '🛋️ 오피스텔' }
     ]
   },
   // Day 7
   {
     day: 7,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-winter-heater', cast: '빨간 목도리 아기 펭귄 & 카피바라 선배', category: '⚡ 겨울난방비' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-student-budget', cast: '볼캡 대학생 다람쥐 & 과잠 라쿤 선배', category: '🥗 학생식단' },
-      { slot: 'EVENING (20:30)', slug: 'auto-genesis-g80', cast: '차콜 수트 도베르만 이사님 & 여우 세무사', category: '🚗 법인/리스' }
+      { slot: 'MORNING (08:15)', slug: 'electric-winter-heater', cast: '치타 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '⚡ 겨울난방비' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-student-budget', cast: '막내 사원 · 꿀벌 과장 · 치타 팀장 · 호랑이 이사', category: '🥗 학생식단' },
+      { slot: 'EVENING (21:15)', slug: 'auto-genesis-g80', cast: '치타 팀장 · 여우 실장 · 팬더 팀장 · 호랑이 이사', category: '🚗 법인/리스' }
     ]
   },
   // Day 8
   {
     day: 8,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-mvno-switch', cast: '청자켓 흰족제비(페럿) & 안경 라쿤 선배', category: '🌐 알뜰폰' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-senior-cat', cast: '숄 두른 시니어 러시안블루 & 여우 영양사', category: '🐾 노령묘' },
-      { slot: 'EVENING (20:30)', slug: 'room-appliances-only', cast: '체크셔츠 비버 & 멜빵 오소리 가전박사', category: '🛋️ 무옵션가전' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-mvno-switch', cast: '치타 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🌐 알뜰폰' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-senior-cat', cast: '꿀벌 과장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🐾 노령묘' },
+      { slot: 'EVENING (21:15)', slug: 'room-appliances-only', cast: '꿀벌 과장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🛋️ 무옵션가전' }
     ]
   },
   // Day 9
   {
     day: 9,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-stand-ac', cast: '북극곰 부부 & 부엉이 에너지박사', category: '⚡ 아파트전기세' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-male-fatloss', cast: '빨간 머리띠 헬린이 시바견 & 여우 박사', category: '🥗 체지방커팅' },
-      { slot: 'EVENING (20:30)', slug: 'auto-ev-ioniq', cast: '파란 후드 사모예드 & 여우 세무사', category: '🚗 전기차보조금' }
+      { slot: 'MORNING (08:15)', slug: 'electric-stand-ac', cast: '팬더 팀장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '⚡ 아파트전기세' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-male-fatloss', cast: '치타 팀장 · 꿀벌 과장 · 막내 사원 · 호랑이 이사', category: '🥗 체지방커팅' },
+      { slot: 'EVENING (21:15)', slug: 'auto-ev-ioniq', cast: '꿀벌 과장 · 여우 실장 · 치타 팀장 · 호랑이 이사', category: '🚗 전기차보조금' }
     ]
   },
   // Day 10
   {
     day: 10,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-family-4p', cast: '포근한 스웨터 비버 부부 & 여우 설계사', category: '🌐 가족결합' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-monthly-budget', cast: '줄무늬 셔츠 비숑 프리제 & 카피바라 플래너', category: '🐾 첫입양예산' },
-      { slot: 'EVENING (20:30)', slug: 'room-minimalist-50', cast: '노란 후드 인턴 다람쥐 & 여우 선배', category: '🛋️ 단기원룸' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-family-4p', cast: '꿀벌 과장 · 여우 실장 · 팬더 팀장 · 호랑이 이사', category: '🌐 가족결합' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-monthly-budget', cast: '팬더 팀장 · 꿀벌 과장 · 막내 사원 · 호랑이 이사', category: '🐾 첫입양예산' },
+      { slot: 'EVENING (21:15)', slug: 'room-minimalist-50', cast: '막내 사원 · 꿀벌 과장 · 팬더 팀장 · 호랑이 이사', category: '🛋️ 단기원룸' }
     ]
   },
   // Day 11
   {
     day: 11,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'electric-inverter-roi', cast: '멜빵바지 골든햄스터 사장님 & 여우 박사', category: '⚡ 1등급교체' },
-      { slot: 'LUNCH (12:30)', slug: 'diet-quick-3kg', cast: '노란 가디건 흰토끼 & 여우 영양박사', category: '🥗 단기3kg' },
-      { slot: 'EVENING (20:30)', slug: 'auto-avante-3000', cast: '정장 골든리트리버 대리 & 여우 세무사', category: '🚗 사회초년생첫차' }
+      { slot: 'MORNING (08:15)', slug: 'electric-inverter-roi', cast: '꿀벌 과장 · 여우 실장 · 팬더 팀장 · 호랑이 이사', category: '⚡ 1등급교체' },
+      { slot: 'LUNCH (12:45)', slug: 'diet-quick-3kg', cast: '꿀벌 과장 · 여우 실장 · 막내 사원 · 호랑이 이사', category: '🥗 단기3kg' },
+      { slot: 'EVENING (21:15)', slug: 'auto-avante-3000', cast: '막내 사원 · 여우 실장 · 치타 팀장 · 호랑이 이사', category: '🚗 사회초년생첫차' }
     ]
   },
   // Day 12
   {
     day: 12,
     slots: [
-      { slot: 'MORNING (08:30)', slug: 'telecom-penalty-15', cast: '줄무늬 셔츠 라쿤 대리 & 여우 통신박사', category: '🌐 위약금15만' },
-      { slot: 'LUNCH (12:30)', slug: 'pet-maltese-5kg', cast: '치즈태비 고양이·말티즈 & 여우 박사', category: '🐾 말티즈정량' },
-      { slot: 'EVENING (20:30)', slug: 'room-oneroom-100', cast: '노란 앞치마 아기곰 포근이 & 여우 박사', category: '🛋️ 원룸100만원' }
+      { slot: 'MORNING (08:15)', slug: 'telecom-penalty-15', cast: '치타 팀장 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '🌐 위약금15만' },
+      { slot: 'LUNCH (12:45)', slug: 'pet-maltese-5kg', cast: '막내 사원 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '🐾 말티즈정량' },
+      { slot: 'EVENING (21:15)', slug: 'room-oneroom-100', cast: '막내 사원 · 여우 실장 · 꿀벌 과장 · 호랑이 이사', category: '🛋️ 원룸100만원' }
     ]
   }
 ];
@@ -157,16 +157,15 @@ function getKstNow() {
 }
 
 function loadPublishedSlugs() {
-  const defaultPublished = ['electric-studio-ac', 'diet-female-lean', 'auto-grandeur-5000'];
   if (fs.existsSync(SNS_TRACKER_FILE)) {
     try {
       const parsed = JSON.parse(fs.readFileSync(SNS_TRACKER_FILE, 'utf8'));
       if (Array.isArray(parsed.publishedSlugs)) {
-        return Array.from(new Set([...defaultPublished, ...parsed.publishedSlugs]));
+        return Array.from(new Set(parsed.publishedSlugs));
       }
     } catch (e) {}
   }
-  return defaultPublished;
+  return [];
 }
 
 function loadScheduleState() {
@@ -228,9 +227,12 @@ function buildPrebuiltStandbyQueue(state) {
       const fileName = `Day${dayNumStr}_Slot${slotNumStr}_${slug}.txt`;
       const filePath = path.join(WEBTOON_STANDBY_DIR, fileName);
 
+      const omniPath = path.join(outboxDir, 'omni_channel_kit.md');
+      const omniText = fs.existsSync(omniPath) ? fs.readFileSync(omniPath, 'utf8').trim() : '';
+
       const contentLines = [
         `====================================================================`,
-        `[머니핏 동물 4컷 웹툰 사전제작 대기열 (Standby Queue)]`,
+        `[머니핏 @to_to_studio_ 감성 4컷 웹툰 사전제작 대기열 (Standby Queue)]`,
         `- 편성 일정 : Day ${dayNumStr} / Slot ${slotNumStr} (${slotItem.slot} KST)`,
         `- 현재 상태 : ${statusLabel}`,
         `- 슬러그    : ${slug}`,
@@ -265,7 +267,14 @@ function buildPrebuiltStandbyQueue(state) {
         ``,
         `[첫 번째 대댓글]`,
         (bundle.threadsReply || `👉 3초 무료 계산기: https://truthofmarket.com/preset/${slug}`).trim(),
-        `--------------------------------------------------------------------`
+        `--------------------------------------------------------------------`,
+        ...(omniText ? [
+          ``,
+          `[5] 🌐 5대 확장 채널 (네이버 클립 · 당근 동네생활 · 블라인드/에타/맘카페 · 틱톡/쇼츠 · 핀터레스트) 홍보 키트`,
+          `--------------------------------------------------------------------`,
+          omniText,
+          `--------------------------------------------------------------------`
+        ] : [])
       ];
 
       fs.writeFileSync(filePath, contentLines.join('\n') + '\n', 'utf8');
@@ -283,6 +292,7 @@ function buildPrebuiltStandbyQueue(state) {
         statusLabel,
         liveUrl: slotItem.liveUrl || null,
         standbyFile: `backlog_human_posts/webtoon_standby/${fileName}`,
+        omniChannelKitFile: `sns_outbox/${slug}/omni_channel_kit.md`,
         gridPng: `sns_outbox/${slug}/webtoon-grid.png`,
         publicGridUrl: `https://truthofmarket.com/sns/${slug}-grid.png`
       });
@@ -295,7 +305,7 @@ function buildPrebuiltStandbyQueue(state) {
     uploadedCount: manifestItems.filter(i => i.status === 'LIVE_UPLOADED').length,
     standbyCount: manifestItems.filter(i => i.status === 'STANDBY_READY').length,
     dailyCap: MAX_DAILY_POSTS,
-    scheduleSlotsKst: ['08:30', '12:30', '20:30'],
+    scheduleSlotsKst: ['08:15', '12:45', '21:15'],
     items: manifestItems
   };
 
