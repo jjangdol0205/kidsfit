@@ -182,12 +182,12 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
   const p4 = (sc.p4 || []).join(' ').replace(/\*\*/g, '');
 
   const SHOPPING_CONNECT_MAP = {
-    electric: { keyword: '에너지 1등급 인버터 에어컨 / 스마트플러그 전력측정기', label: '🛒 네이버 쇼핑커넥트 1등급 절전 가전 특가' },
-    diet: { keyword: '무염 닭가슴살 10kg 대용량 팩 / 주방 전자저울', label: '🛒 네이버 쇼핑커넥트 대용량 식단 최저가' },
-    pet: { keyword: '로얄캐닌 사료 대용량 포대 / 반려동물 급여 전자저울', label: '🛒 네이버 쇼핑커넥트 정품 대용량 사료 특가' },
-    room: { keyword: '원룸 접이식 토퍼 매트리스 / 올인원 로봇청소기', label: '🛒 네이버 쇼핑커넥트 자취·신혼 가성비 가구' },
-    auto: { keyword: '불스원샷 연료첨가제 / 차량용 4K 블랙박스', label: '🛒 네이버 쇼핑커넥트 차량 유지비 절약템' },
-    telecom: { keyword: '알뜰폰 무약정 유심칩 / Wi-Fi 6 공유기', label: '🛒 네이버 쇼핑커넥트 자급제·알뜰 유심 특가' }
+    electric: { keyword: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (수수료 8% · 39,800원)', url: 'https://naver.me/xm0ZVnAW', label: '🛒 네이버 쇼핑커넥트 에어컨 냉방효율 2배 서큘레이터 특가' },
+    diet: { keyword: '한끼통살 소스 통 닭가슴살 100g 20종 10개입 (수수료 6% · 25,900원)', url: 'https://naver.me/xvClW9nJ', label: '🛒 네이버 쇼핑커넥트 한끼통살 닭가슴살 최저가' },
+    pet: { keyword: '라비앙독 강아지 가수분해 연어 사료 4.8kg (수수료 8% · 36,900원)', url: 'https://naver.me/xAfcU6Im', label: '🛒 네이버 쇼핑커넥트 가수분해 대용량 사료 특가' },
+    room: { keyword: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기 (수수료 5% · 건당 39,950원)', url: 'https://naver.me/GgUlTvYj', label: '🛒 네이버 쇼핑커넥트 로보락 신형 로봇청소기 특가' },
+    auto: { keyword: '아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (수수료 5% · 98,980원)', url: 'https://naver.me/G5kYoDj6', label: '🛒 네이버 쇼핑커넥트 2채널 와이파이 블랙박스 특가' },
+    telecom: { keyword: '티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 공유기 (수수료 5% · 40,900원)', url: 'https://naver.me/FpwR436o', label: '🛒 네이버 쇼핑커넥트 Wi-Fi 6 기가 공유기 특가' }
   };
   const scItem = SHOPPING_CONNECT_MAP[preset.calcKey] || SHOPPING_CONNECT_MAP.electric;
 
@@ -208,22 +208,25 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     ``,
     `---`,
     ``,
-    `## 1️⃣ 🟢 네이버 클립 (Naver Clip) & 네이버 블로그 — 공식 [네이버 쇼핑커넥트] 1순위 연동 (정책 위배 ZERO!)`,
-    `- **핵심 전략**: 네이버 클립·블로그에서는 외부 타사 커머스/리다이렉트 링크 대신 **네이버 공식 [쇼핑커넥트(브랜드커넥트) 쇼핑 스티커 / 상품 태그]**를 부착하여 저품질·외부링크 페널티를 100% 원천 차단하고, 네이버 클립 피드 노출 가산점 + N페이 즉결 구매 수수료를 동시에 확보합니다!`,
+    `## 1️⃣ 🟢 네이버 클립 (Naver Clip) & 네이버 블로그 — 공식 [네이버 쇼핑커넥트] 1순위 연동 (B계정 \`expertise333\` 발급 링크 탑재!)`,
+    `- **핵심 전략**: 네이버 클립·블로그에서는 외부 타사 커머스/리다이렉트 링크 대신 **B계정(\`expertise333\`, Workspace \`989959114454560\`)에서 공식 발급한 [네이버 쇼핑커넥트 단축링크(\`${scItem.url}\`) 및 쇼핑 스티커]**를 부착하여 저품질·외부링크 페널티를 100% 원천 차단하고, 네이버 클립 피드 노출 가산점 + N페이 구매 수수료(직접 5~8% + 24시간 간접 1.8%)를 확보합니다!`,
     `- **업로드 파일**: \`sns_outbox/${preset.slug}/clip.mp4\` (10초 세로형 영상) 또는 \`slide-1.png ~ slide-4.png\``,
-    `- **🛍️ 네이버 쇼핑커넥트 추천 상품 태그 키워드**: \`${scItem.keyword}\``,
+    `- **🛍️ 발급 완료된 쇼핑커넥트 상품**: \`${scItem.keyword}\``,
+    `- **🔗 공식 쇼핑커넥트 제휴 URL**: \`${scItem.url}\``,
     `- **🏷️ 쇼핑 스티커 문구**: \`${scItem.label}\``,
     `- **클립·블로그 제목 (복붙용)**:`,
     `\`\`\`text`,
     `🦊 여우실장 3초 영수증 팩트체크! ${preset.title} ${t.diffVal} 아끼는 현실 꿀팁`,
     `\`\`\``,
-    `- **클립 캡션 & 해시태그 (복붙용 — 외부링크 없이 네이버 쇼핑커넥트 스티커 유도)**:`,
+    `- **클립·블로그 캡션 & 해시태그 (복붙용 — 공식 쇼핑커넥트 링크 포함)**:`,
     `\`\`\`text`,
     `"${p1}" ➔ "${p3}" 🧾`,
     `❌ ${t.badLabel}: ${t.badVal}`,
     `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
-    `화면 아래 [네이버 쇼핑커넥트 상품 스티커]에서 1등급 절약템 최저가를 바로 확인하거나, 네이버에 [ 머니핏 ]을 검색해 3초 무료 계산기를 돌려보세요! 👇`,
-    `※ 이 콘텐츠는 네이버 쇼핑커넥트 활동의 일환으로 판매 발생 시 수수료를 제공받습니다.`,
+    ``,
+    `${scItem.label}: ${scItem.url}`,
+    `🔎 내 조건 3초 무료 계산기는 네이버에 [ 머니핏 ]을 검색해보세요!`,
+    `※ 이 포스팅은 네이버 쇼핑커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다.`,
     `#네이버클립 #쇼핑커넥트 #인스타툰 #생활비절약 #머니핏 #자취꿀팁`,
     `\`\`\``,
     ``,

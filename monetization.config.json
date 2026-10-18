@@ -138,33 +138,55 @@
   "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55",
   "naverShoppingConnect": {
     "enabled": true,
-    "accountId": "comedifarm",
+    "trafficAccountId": "comedifarm",
+    "brandConnectAccountId": "expertise333",
+    "workspaceId": "989959114454560",
+    "dedicatedBrowserPort": 9223,
     "clipStickerPolicy": "NAVER_OFFICIAL_SHOPPING_CONNECT_FIRST",
-    "noticeText": "이 콘텐츠는 네이버 쇼핑커넥트(브랜드커넥트) 활동의 일환으로 판매 발생 시 수수료를 제공받습니다.",
+    "noticeText": "이 포스팅은 네이버 쇼핑커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다.",
     "categoryProductTags": {
       "electric": {
-        "keyword": "에너지 1등급 인버터 에어컨 / IoT 스마트플러그 전력측정기",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 1등급 절전 가전 특가 보기"
+        "keyword": "듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개)",
+        "price": "39,800원",
+        "commission": "8% (건당 3,184원)",
+        "url": "https://naver.me/xm0ZVnAW",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 에어컨 냉방효율 2배 에어서큘레이터 특가 (https://naver.me/xm0ZVnAW)"
       },
       "diet": {
-        "keyword": "무염 닭가슴살 10kg 대용량 팩 / 주방 전자저울",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 대용량 식단 최저가 보기"
+        "keyword": "한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개)",
+        "price": "25,900원",
+        "commission": "6% (건당 1,554원)",
+        "url": "https://naver.me/xvClW9nJ",
+        "subUrl": "https://naver.me/GxrdvbPG",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 한끼통살 소스 닭가슴살 10팩 최저가 (https://naver.me/xvClW9nJ)"
       },
       "pet": {
-        "keyword": "로얄캐닌 사료 대용량 포대 / 반려동물 급여 전자저울",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 정품 대용량 사료 특가 보기"
+        "keyword": "라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)",
+        "price": "36,900원",
+        "commission": "8% (건당 2,952원)",
+        "url": "https://naver.me/xAfcU6Im",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 가수분해 대용량 4.8kg 사료 특가 (https://naver.me/xAfcU6Im)"
       },
       "room": {
-        "keyword": "원룸 접이식 토퍼 매트리스 / 올인원 로봇청소기",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 자취·신혼 가성비 가구 보기"
+        "keyword": "[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기",
+        "price": "799,000원",
+        "commission": "5% (건당 39,950원)",
+        "url": "https://naver.me/GgUlTvYj",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 로보락 26년 신형 로봇청소기 슈퍼적립 특가 (https://naver.me/GgUlTvYj)"
       },
       "auto": {
-        "keyword": "불스원샷 연료첨가제 / 차량용 4K 블랙박스",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 차량 유지비 절약템 보기"
+        "keyword": "아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)",
+        "price": "98,980원",
+        "commission": "5% (건당 4,949원)",
+        "url": "https://naver.me/G5kYoDj6",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 2채널 와이파이 블랙박스 특가 (https://naver.me/G5kYoDj6)"
       },
       "telecom": {
-        "keyword": "알뜰폰 무약정 유심칩 / Wi-Fi 6 공유기",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 자급제·알뜰 유심 특가 보기"
+        "keyword": "티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 유무선 공유기",
+        "price": "40,900원",
+        "commission": "5% (건당 2,045원)",
+        "url": "https://naver.me/FpwR436o",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 Wi-Fi 6 기가 와이파이 공유기 특가 (https://naver.me/FpwR436o)"
       }
     }
   }
