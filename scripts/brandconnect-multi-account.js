@@ -64,16 +64,14 @@ async function launchBrandConnectBrowser() {
     fs.mkdirSync(BC_PROFILE_DIR, { recursive: true });
   }
 
-  const startUrl = 'https://brandconnect.naver.com/';
-  const args = [
-    `--remote-debugging-port=${BC_PORT}`,
-    `--user-data-dir=${BC_PROFILE_DIR}`,
-    '--no-first-run',
-    '--no-default-browser-check',
-    startUrl
-  ];
+  const startUrl = 'https://nid.naver.com/nidlogin.login?url=https%3A%2F%2Fbrandconnect.naver.com%2F';
+  const argList = `--remote-debugging-port=${BC_PORT} --user-data-dir="${BC_PROFILE_DIR}" --no-first-run --no-default-browser-check "${startUrl}"`;
 
-  const child = spawn(chromeExe, args, {
+  const child = spawn('powershell.exe', [
+    '-NoProfile',
+    '-Command',
+    `Start-Process -FilePath '${chromeExe}' -ArgumentList '${argList}'`
+  ], {
     detached: true,
     stdio: 'ignore'
   });
