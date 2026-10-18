@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-🏛️ [제2본부 expertise333 전용 미디어 렌더러 v3.0 — 홈판 Top 1% 좋은 그림 & 클립 10만 뷰 좋은 영상]
+🏛️ [제2본부 expertise333 전용 미디어 렌더러 v3.1 — 홈판 Top 1% 좋은 그림 & 클립 10만 뷰 좋은 영상]
 1. 네이버 모바일 홈판(추천피드) 진입용 고해상도 1080x1080 대표 썸네일 이미지 (.png) 5종 렌더링
-   - 고화질 웹툰 캐릭터 일러스트(slide-1.png) 비주얼 카드 합성 + 다크 네이비 비네팅 오버레이
-   - 우측 상단 긴급 스탬프 배지 + 초특대 네온 금액 하이라이트 박스
+   - 순수 캐릭터 원화(src/assets/webtoon/*.jpg) 우측 상단 일러스트 카드 합성 (말풍선 겹침 0%)
+   - 깨짐 없는 한글/기호 폰트(★, ▶, [HOT]) + 초특대 네온 금액 하이라이트 박스
 2. 요즘 유행하는 네이버 클립(Clip) 웹툰 숏폼 동영상 (1080x1920 세로형 .mp4) 5종 렌더링
    - 상단 어그로 고정 배너 + [STEP 1/4 ~ 4/4] 컷 인디케이터
    - 실시간 네온 프로그레스 바 (시청 지속률 200% 견인)
@@ -14,7 +14,7 @@ import os
 import sys
 import json
 from datetime import datetime, timedelta, timezone
-from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+from PIL import Image, ImageDraw, ImageFont
 import imageio
 import numpy as np
 
@@ -28,6 +28,7 @@ DIV2_OUTBOX = os.path.join(ROOT_DIR, 'division2_expertise333_outbox')
 THUMB_DIR = os.path.join(DIV2_OUTBOX, '2_homefeed_thumbnails')
 CLIP_DIR = os.path.join(DIV2_OUTBOX, '3_clip_webtoon_crank_safe')
 SNS_OUTBOX = os.path.join(ROOT_DIR, 'sns_outbox')
+WEBTOON_ART_DIR = os.path.join(ROOT_DIR, 'src', 'assets', 'webtoon')
 LOGS_DIR = os.path.join(ROOT_DIR, 'logs')
 CA_JSON_PATH = os.path.join(LOGS_DIR, 'creator_advisor_yesterday_keywords.json')
 FONTS_DIR = os.path.join(ROOT_DIR, 'src', 'assets', 'fonts')
@@ -38,6 +39,14 @@ PRESET_MAP = {
     3: 'telecom-3yr-expired',
     4: 'auto-grandeur-5000',
     5: 'room-officetel-500',
+}
+
+ART_MAP = {
+    1: 'hero-banner.jpg',
+    2: 'electric.jpg',
+    3: 'telecom.jpg',
+    4: 'auto.jpg',
+    5: 'room.jpg',
 }
 
 
@@ -56,7 +65,17 @@ def get_font(size, bold=True):
     return ImageFont.load_default()
 
 
+def clean_glyphs(text):
+    """Remove emoji characters that Malgun Gothic cannot render so there are zero tofu boxes."""
+    if not text:
+        return ''
+    for bad, rep in [('🔥', '★ '), ('👆', '▶ '), ('✔', '▶ '), ('💡', '★ '), ('📌', '★ ')]:
+        text = text.replace(bad, rep)
+    return text
+
+
 def draw_centered_text(draw, y, text, font, fill, width=1080, stroke_width=0, stroke_fill=(0, 0, 0)):
+    text = clean_glyphs(text)
     bbox = draw.textbbox((0, 0), text, font=font, stroke_width=stroke_width)
     tw = bbox[2] - bbox[0]
     x = (width - tw) // 2
@@ -65,77 +84,74 @@ def draw_centered_text(draw, y, text, font, fill, width=1080, stroke_width=0, st
 
 def render_homefeed_thumbnail_png(topic, slot, today_str, yesterday_str):
     palettes = [
-        {'bg_top': (11, 17, 32), 'bg_bot': (23, 37, 84), 'accent': (250, 204, 21), 'badge': (245, 158, 11)},
-        {'bg_top': (6, 48, 38), 'bg_bot': (2, 28, 22), 'accent': (52, 211, 153), 'badge': (16, 185, 129)},
-        {'bg_top': (23, 21, 62), 'bg_bot': (11, 17, 32), 'accent': (56, 189, 248), 'badge': (14, 165, 233)},
-        {'bg_top': (48, 7, 82), 'bg_bot': (23, 21, 62), 'accent': (251, 191, 36), 'badge': (236, 72, 153)},
-        {'bg_top': (56, 10, 10), 'bg_bot': (20, 18, 18), 'accent': (250, 204, 21), 'badge': (239, 68, 68)},
+        {'bg_top': (11, 17, 32), 'bg_card': (23, 37, 84), 'accent': (250, 204, 21), 'badge': (245, 158, 11)},
+        {'bg_top': (6, 48, 38), 'bg_card': (12, 74, 58), 'accent': (52, 211, 153), 'badge': (16, 185, 129)},
+        {'bg_top': (20, 24, 62), 'bg_card': (30, 41, 89), 'accent': (56, 189, 248), 'badge': (14, 165, 233)},
+        {'bg_top': (45, 12, 78), 'bg_card': (68, 20, 110), 'accent': (251, 191, 36), 'badge': (236, 72, 153)},
+        {'bg_top': (52, 12, 16), 'bg_card': (82, 20, 26), 'accent': (250, 204, 21), 'badge': (239, 68, 68)},
     ]
     pal = palettes[(slot - 1) % len(palettes)]
 
     img = Image.new('RGB', (1080, 1080), pal['bg_top'])
+    draw = ImageDraw.Draw(img)
 
-    # 1. Composite Webtoon Character Artwork into Background & Visual Card ("좋은 그림")
-    preset_slug = PRESET_MAP.get(slot, 'electric-studio-ac')
-    slide1_path = os.path.join(SNS_OUTBOX, preset_slug, 'slide-1.png')
-    if os.path.exists(slide1_path):
+    # Outer border frame & top visual card background
+    draw.rounded_rectangle([32, 32, 1048, 1048], radius=40, outline=pal['accent'], width=7)
+    draw.rounded_rectangle([60, 178, 1020, 462], radius=28, fill=pal['bg_card'], outline=(71, 85, 105), width=2)
+
+    # 1. Composite Pure Character Illustration on the Right Side of the Upper Card (x=735..1000, y=195..445)
+    art_file = os.path.join(WEBTOON_ART_DIR, ART_MAP.get(slot, 'electric.jpg'))
+    if os.path.exists(art_file):
         try:
-            art = Image.open(slide1_path).convert('RGB')
-            # Soft darkened full-bleed background texture for visual depth
-            bg_art = art.resize((1080, 1080), Image.Resampling.BILINEAR)
-            bg_art = ImageEnhance.Brightness(bg_art).enhance(0.24)
-            img = Image.blend(img, bg_art, 0.55)
-
-            # High-clarity character art portrait badge on the right side (y=190..540)
-            char_crop = art.crop((140, 260, 940, 960)).resize((310, 270), Image.Resampling.BILINEAR)
-            img.paste(char_crop, (710, 185))
+            art = Image.open(art_file).convert('RGB')
+            aw, ah = art.size
+            side = min(aw, ah)
+            left = (aw - side) // 2
+            top = (ah - side) // 2
+            char_portrait = art.crop((left, top, left + side, top + side)).resize((250, 250), Image.Resampling.BILINEAR)
+            img.paste(char_portrait, (748, 195))
+            draw.rounded_rectangle([744, 191, 1002, 449], radius=24, outline=pal['accent'], width=5)
         except Exception:
             pass
 
-    draw = ImageDraw.Draw(img)
+    # Top Creator Advisor Category Pill (Left)
+    draw.rounded_rectangle([60, 74, 710, 152], radius=38, fill=pal['badge'])
+    f_badge = get_font(33, bold=True)
+    draw.text((88, 92), clean_glyphs(topic.get('shortThumbBadge', '경제 트렌드 핵심 요약')), font=f_badge, fill=(255, 255, 255))
 
-    # Outer border frame
-    draw.rounded_rectangle([32, 32, 1048, 1048], radius=40, outline=pal['accent'], width=7)
-
-    # Frame around right-side character illustration
-    if os.path.exists(slide1_path):
-        draw.rounded_rectangle([706, 181, 1024, 459], radius=24, outline=pal['accent'], width=5)
-
-    # Top Creator Advisor Category Pill (Left-aligned so it pairs cleanly with stamp badge)
-    draw.rounded_rectangle([65, 78, 725, 158], radius=40, fill=pal['badge'])
-    f_badge = get_font(34, bold=True)
-    draw.text((95, 96), topic.get('shortThumbBadge', '경제 트렌드 핵심 요약'), font=f_badge, fill=(255, 255, 255))
-
-    # Top-Right Urgency Stamp Badge
-    draw.rounded_rectangle([745, 78, 1015, 158], radius=40, fill=(220, 38, 38), outline=(254, 240, 138), width=3)
+    # Top-Right Urgency Stamp Badge (Zero broken emoji)
+    draw.rounded_rectangle([730, 74, 1020, 152], radius=38, fill=(220, 38, 38), outline=(254, 240, 138), width=3)
     f_stamp = get_font(30, bold=True)
-    draw.text((772, 98), '🔥 전일자 경제 1위', font=f_stamp, fill=(255, 255, 255))
+    draw.text((758, 94), '★ 전일자 경제 1위', font=f_stamp, fill=(255, 255, 255))
 
-    # Main Hook Line 1 (Left-featured high-impact headline)
-    f_line1 = get_font(68, bold=True)
+    # Left Side of Upper Card: Sub-kicker + Main Hook Line 1 (Never overlaps right character portrait!)
+    f_kicker = get_font(30, bold=True)
+    draw.text((88, 222), '▶ 2026년 모르면 손해 보는 핵심 경제 정보', font=f_kicker, fill=pal['accent'])
+
+    f_line1 = get_font(54, bold=True)
     draw.text(
-        (72, 265),
-        topic.get('shortThumbLine1', ''),
+        (88, 295),
+        clean_glyphs(topic.get('shortThumbLine1', '')),
         font=f_line1,
         fill=(255, 255, 255),
-        stroke_width=5,
+        stroke_width=4,
         stroke_fill=(0, 0, 0),
     )
 
     # Main Hook Line 2 inside High-Contrast Neon Box (Full width, huge numbers)
-    draw.rounded_rectangle([65, 485, 1015, 655], radius=32, fill=pal['accent'], outline=(255, 255, 255), width=4)
-    f_line2 = get_font(76, bold=True)
-    draw_centered_text(draw, 520, topic.get('shortThumbLine2', ''), f_line2, (11, 17, 32))
+    draw.rounded_rectangle([60, 490, 1020, 665], radius=32, fill=pal['accent'], outline=(255, 255, 255), width=4)
+    f_line2 = get_font(74, bold=True)
+    draw_centered_text(draw, 528, topic.get('shortThumbLine2', ''), f_line2, (11, 17, 32))
 
     # Sub-topics summary box at bottom
-    draw.rounded_rectangle([65, 695, 1015, 985], radius=28, fill=(15, 23, 42), outline=pal['accent'], width=3)
-    f_sub1 = get_font(38, bold=True)
-    f_sub2 = get_font(30, bold=True)
-    draw_centered_text(draw, 735, '✔ 2026년 최신 구간별 금액 비교표 & 실제 사례 수록', f_sub1, (248, 250, 252))
-    draw_centered_text(draw, 808, '✔ 스마트폰 1분 조회 및 계좌 입금 신청 3단계 총정리', f_sub1, pal['accent'])
+    draw.rounded_rectangle([60, 698, 1020, 990], radius=28, fill=(15, 23, 42), outline=pal['accent'], width=3)
+    f_sub1 = get_font(36, bold=True)
+    f_sub2 = get_font(29, bold=True)
+    draw_centered_text(draw, 738, '▶ 2026년 최신 구간별 금액 비교표 & 실제 사례 수록', f_sub1, (248, 250, 252))
+    draw_centered_text(draw, 812, '▶ 스마트폰 1분 조회 및 계좌 입금 신청 3단계 총정리', f_sub1, pal['accent'])
     draw_centered_text(
         draw,
-        895,
+        898,
         f'네이버 크리에이터 어드바이저 [비즈니스·경제] ({yesterday_str} 기준)',
         f_sub2,
         (148, 163, 184),
@@ -160,14 +176,14 @@ def render_trendy_clip_mp4(topic, slot, today_str):
         fallback = Image.new('RGB', (960, 960), (30, 41, 59))
         slides.append(fallback)
 
-    f_top_badge = get_font(32, bold=True)
-    f_step_badge = get_font(30, bold=True)
-    f_top_title = get_font(52, bold=True)
+    f_top_badge = get_font(30, bold=True)
+    f_step_badge = get_font(28, bold=True)
+    f_top_title = get_font(50, bold=True)
     f_cap_badge = get_font(34, bold=True)
-    f_cap_line1 = get_font(46, bold=True)
-    f_cap_line2 = get_font(52, bold=True)
-    f_bot_cta = get_font(40, bold=True)
-    f_bot_sub = get_font(30, bold=True)
+    f_cap_line1 = get_font(44, bold=True)
+    f_cap_line2 = get_font(50, bold=True)
+    f_bot_cta = get_font(38, bold=True)
+    f_bot_sub = get_font(28, bold=True)
 
     clip_slides_meta = topic.get('clipSlides', [])
     fps = 12
@@ -194,12 +210,12 @@ def render_trendy_clip_mp4(topic, slot, today_str):
 
             # 1. Top Trendy Viral Header Box + STEP 1/4 ~ 4/4 Counter Badge
             draw.rounded_rectangle([40, 50, 1040, 305], radius=32, fill=(23, 37, 84), outline=(250, 204, 21), width=4)
-            draw.rounded_rectangle([70, 74, 680, 138], radius=32, fill=(250, 204, 21))
-            draw.text((98, 86), topic.get('shortThumbBadge', '경제 트렌드'), font=f_top_badge, fill=(15, 23, 42))
+            draw.rounded_rectangle([70, 74, 690, 138], radius=32, fill=(250, 204, 21))
+            draw.text((95, 86), clean_glyphs(topic.get('shortThumbBadge', '경제 트렌드')), font=f_top_badge, fill=(15, 23, 42))
 
             # Step Counter Pill at top-right
             draw.rounded_rectangle([720, 74, 1010, 138], radius=32, fill=(16, 185, 129), outline=(255, 255, 255), width=2)
-            draw.text((755, 88), f'STEP {cut_idx + 1} / 4 ▶', font=f_step_badge, fill=(255, 255, 255))
+            draw.text((760, 88), f'STEP {cut_idx + 1} / 4 ▶', font=f_step_badge, fill=(255, 255, 255))
 
             draw_centered_text(
                 draw,
@@ -266,7 +282,7 @@ def render_trendy_clip_mp4(topic, slot, today_str):
             draw_centered_text(
                 draw,
                 1682 + bounce_y,
-                '👆 상단 [블로그] 스티커 누르면 구간별 금액표 3초 확인!',
+                '▶ 상단 [블로그] 스티커 누르면 구간별 금액표 3초 확인!',
                 f_bot_cta,
                 (255, 255, 255),
                 stroke_width=2,
@@ -309,7 +325,7 @@ def main():
         render_homefeed_thumbnail_png(topic, slot, today_str, yesterday_str)
         render_trendy_clip_mp4(topic, slot, today_str)
 
-    print(f'Rendered {len(topics)} character-composited PNG thumbnails and {len(topics)} progress-bar MP4 webtoon clips.')
+    print(f'Rendered {len(topics)} v3.1 character-composited PNG thumbnails and {len(topics)} progress-bar MP4 webtoon clips.')
 
 
 if __name__ == '__main__':
