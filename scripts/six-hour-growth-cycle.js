@@ -649,9 +649,9 @@ ${naverWebtoonPackages
 | 구분 | 🏢 제1본부 (1계정 \`comedifarm\` + \`@moneyfit2026\`) | 🏛️ 제2본부 (2계정 \`expertise333\` 전담) |
 | :--- | :--- | :--- |
 | **전담 조직 / 포트** | \`🐆 치타 본부장\` 외 3인 (\`Port 9222\`) | \`🦅 독수리 본부장\` 외 3인 (\`Port 9223\`) |
-| **핵심 목표** | **\`www.truthofmarket.com\` 외부링크 유입 & 제휴 전환 극대화** | **네이버 크리에이터 어드바이저 기반 홈판 진입 & 애드포스트 수익 극대화** |
-| **운영 방식 (방안 B)** | 블로그(일 3편)·지식iN(일 4편)·커뮤니티(일 2편)·인스타/쓰레드(일 3편) 전량 홈페이지 외부링크 유도 | **블로그 일 5개 제한** (썸네일+소주제 필수: 애드포스트 순수 4편[80%] + 쇼핑커넥트 병행 1편[20%]) / C-Rank 보호 웹툰클립 일 2편 / 자체카페 일 2편 |
-| **외부링크 정책** | \`truthofmarket.com\` 외부링크 100% 삽입 | \`truthofmarket.com\` 외부링크 **0개 (절대 금지)** — 100% 네이버 내부 체류 |
+| **핵심 목표** | **안티밴(Zero-Ban) + 2,400자 설득형 원고로 \`truthofmarket.com\` 유입➔클릭➔실구매 극대화** | **전일자 크리에이터 어드바이저 \`[비즈니스·경제]\` 단일주제 집중 · 홈판/클립/카페 안착 & 애드포스트 극대화** |
+| **운영 방식 (방안 B)** | 블로그(일 2편)·지식iN(일 2건)·커뮤니티(일 2건)·인스타/쓰레드(일 2편) 엄선 | **블로그·클립·카페 각각 최대 5개 이내** (PNG 썸네일+24px/19px 소제목 HTML + 유행 웹툰 클립 MP4 5편 + 카페 칼럼 5편) |
+| **외부링크/백링크 정책** | **본문 도배 원천 차단** (댓글 분리형 · 브랜드 검색 유도형 · 하단 출처 1회형 교차) | 외부 사이트 링크 **0개 (절대 금지)** — 100% 네이버 내부 안착 |
 | **전용 운영보드** | [\`제1본부_comedifarm_외부유입_운영보드.md\`](제1본부_comedifarm_외부유입_운영보드.md) | [\`제2본부_expertise333_애드포스트_홈판_운영보드.md\`](제2본부_expertise333_애드포스트_홈판_운영보드.md) |
 `;
 
@@ -674,15 +674,16 @@ ${naverWebtoonPackages
           `⏰ 기준시각: ${checkedAtKst}`,
           `🗣️ <b>사전 절차: 전직원 상호 피드백 회의(제${staffCouncil.sessionCount}차) 완료 후 보고</b>`,
           ``,
-          `<b>✅ 1️⃣ [제1본부 (comedifarm) — 홈페이지 100% 실측 데이터]</b>`,
+          `<b>✅ 1️⃣ [제1본부 (comedifarm) — 안티밴 & 홈페이지 유입·클릭·구매 전담]</b>`,
           `• <b>① 홈페이지 실유입</b>: 오늘 UV <b>${todayUv}명</b> (PV ${todayPv}회) / 누적 UV <b>${totalUv}명</b> (PV ${totalPv}회 · 봇 ${todayBots}회)`,
           `• <b>② 제휴 버튼 실클릭</b>: 누적 <b>${totalClicks}회</b> (실측 CTR <b>${ctrPercent}%</b> | 쿠팡 ${clicksByChannel.coupang}회 · 링크프라이스 ${clicksByChannel.linkprice}회 · CPA ${clicksByChannel.cpa}회)`,
           `• <b>③ 확정 실구매(실매출)</b>: <b>확정 ${confirmedOrders}건 (${confirmedCommissionKrw.toLocaleString('ko-KR')}원)</b>`,
-          `• <b>④ 1본부 외부유입 큐</b>: 총 ${div1Res.dailyQuotas.totalOutlinkAssetsToday}건 (블로그3·지식iN4·커뮤니티2·SNS3 전량 truthofmarket.com 링크 탑재)`,
+          `• <b>④ 1본부 안티밴 고전환 큐</b>: 총 ${div1Res.dailyQuotas.totalOutlinkAssetsToday}건 (2,400자 구매설득형 원고 + 댓글분리/검색유도/하단1회 안티밴 보호)`,
           ``,
-          `<b>🏛️ 2️⃣ [제2본부 (expertise333) — 크리에이터 어드바이저 · 홈판 · 애드포스트 전담]</b>`,
-          `• <b>블로그 (일 5개 제한 / 방안B)</b>: ${div2Res.dailyQuotas.blogGenerated}/5편 완료 (고CTR 썸네일+4대 소주제 필수 | 순수 애드포스트 4편[80%] + 쇼핑커넥트 1편[20%])`,
-          `• <b>C-Rank 안전 연동</b>: 웹툰 클립 ${div2Res.dailyQuotas.clipWebtoonSafeCount}편 (블로그 유입 유도) / 자체 카페 ${div2Res.dailyQuotas.cafeSafeCount}편 (외부링크 0개)`,
+          `<b>🏛️ 2️⃣ [제2본부 (expertise333) — 전일자 경제 단일주제 · 홈판/클립/카페 · 애드포스트 전담]</b>`,
+          `• <b>단일 핵심 주제</b>: <code>${div2Res.singleMegaTrafficCategory}</code> (전일자 ${div2Res.creatorAdvisorYesterdayDate} 키워드)`,
+          `• <b>블로그 (최대 5개)</b>: ${div2Res.dailyQuotas.blogGenerated}/5편 완료 (1080x1080 PNG 썸네일 + 24px/19px 소제목 HTML | 애드포스트 4편 + 쇼핑커넥트 1편)`,
+          `• <b>유행 클립 & 카페 (최대 5개)</b>: 웹툰 클립 MP4 ${div2Res.dailyQuotas.clipWebtoonMp4Count}편 + 공식 카페 안착 칼럼 ${div2Res.dailyQuotas.cafeSafeCount}편 완료`,
           ``,
           `<b>📐 [참고용 클릭 전환 추정치 (실매출 아님)]</b>`,
           `• 클릭(${totalClicks}회) 기반 통계 기대치: 약 ${estPurchases}건 (추정 ${estCommissionKrw.toLocaleString('ko-KR')}원)`,

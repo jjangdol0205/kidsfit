@@ -287,6 +287,7 @@ const CAFE_SUBSCRIBER_HOOKS = [
 
 function buildHumanBlogPost(preset, res, idx) {
   const targetUrl = `${siteUrl}/preset/${preset.id}`;
+  const calcHubUrl = `${siteUrl}/?calc=${preset.calc}`;
   const st = PRESET_WEBTOON_MAP[preset.id] || {};
   const nextPreset = getNextCategoryPreset(preset, idx);
   const titleLine = BLOG_TITLE_PATTERNS[idx % BLOG_TITLE_PATTERNS.length](preset);
@@ -300,34 +301,72 @@ function buildHumanBlogPost(preset, res, idx) {
   const closing = BLOG_CLOSINGS[idx % BLOG_CLOSINGS.length](targetUrl, st);
   const neighborBox = BLOG_NEIGHBOR_BOXES[idx % BLOG_NEIGHBOR_BOXES.length](preset, nextPreset);
 
+  const badLabel = st.badLabel || '기존 비효율 선택';
+  const badVal = st.badVal || (res.metrics[0] ? res.metrics[0].val : '');
+  const goodLabel = st.goodLabel || '최적화 대안 선택';
+  const goodVal = st.goodVal || (res.metrics[1] ? res.metrics[1].val : '');
+  const diffVal = st.diffVal || res.headline;
+
   const faqParagraphs = (preset.faq || []).map((f, fIdx) => {
     const q = f.question || f.q;
     const a = f.answer || f.a;
     const tLead = FAQ_TRANSITIONS[(idx + fIdx * 2) % FAQ_TRANSITIONS.length](q);
     const aLead = FAQ_ANSWERS_LEAD[(idx + fIdx) % FAQ_ANSWERS_LEAD.length](a);
-    return `${tLead}\n${aLead}`;
+    return `Q${fIdx + 1}. ${tLead}\n➔ ${aLead}`;
   }).join('\n\n');
 
   const customTags = st.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #손익분기점계산기 #생활비절약`;
   const tags = `${customTags} #머니핏 #고정비다이어트 #서로이웃환영`;
 
-  return `${titleLine}
+  return `[🛡️ 안티밴(Anti-Ban) 안전 발행 수칙: 일 최대 2~3건 상한 / 게시물 간 최소 2~4시간 쿨다운 필수 / 본문 상·하단 truthofmarket.com 외부링크 & 24px 소제목·19px 영수증 서식 필수]
+${titleLine}
+
+====================================================================
+## ★ [24px 굵은 소제목] 바쁜 분들을 위한 3초 핵심 비교 영수증 & 무료 계산기
+====================================================================
+**[19px 굵게]** ✗ ${badLabel}: ${badVal}
+**[19px 굵게]** ✓ ${goodLabel}: ${goodVal} ➔ ★ 핵심 손익 차이: ${diffVal} (${res.headline})
+
+**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] ${preset.title} 내 조건 대입해 보기:
+${targetUrl}
 
 ${opening}
 
 ${bridge1}
 
+--------------------------------------------------------------------
+## 1. [24px 굵은 소제목] 공인 산출 공식 & 세부 기준 변수 팩트체크
+--------------------------------------------------------------------
 ${bridge2}
+
 ${domainNarrative}
 
+--------------------------------------------------------------------
+## 2. [24px 굵은 소제목] 조건별·구간별 1원 단위 실측 손익 비교표
+--------------------------------------------------------------------
 ${bridge3}
+
 ${tableSummary}
 
-이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다. ${res.summary}
+이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다.
 
+${res.summary}
+
+--------------------------------------------------------------------
+## 3. [24px 굵은 소제목] 자주 묻는 핵심 질문(FAQ) & 실전 체크리스트
+--------------------------------------------------------------------
 ${faqParagraphs}
 
+--------------------------------------------------------------------
+## 4. [24px 굵은 소제목] 내 조건 맞춤 3초 무료 계산기 바로가기 (외부링크)
+--------------------------------------------------------------------
 ${closing}
+
+**[19px 굵게]** ▶ [무료 3초 계산기] ${preset.title} 실시간 시뮬레이터:
+${targetUrl}
+
+**[19px 굵게]** ▶ [머니핏 6대 생활비 손익계산기 전체 모음]:
+${calcHubUrl}
 
 ${neighborBox}
 
@@ -344,7 +383,7 @@ const CAFE_INTROS = [
 ];
 
 const CAFE_OUTROS = [
-  (url, st) => `${st.closingLine}\n회원님들마다 세부 조건이나 예산이 조금씩 다르실 텐데, 로그인이나 번호 입력 없이 숫자만 바꾸면 3초 만에 비교 영수증이 나오는 무료 계산기 주소 남겨둘게요. (링크 클릭이 불편하시면 네이버에 '머니핏 계산기' 또는 'truthofmarket' 검색하셔도 됩니다!)\n\n${url}`,
+  (url, st) => `${st.closingLine}\n회원님들마다 세부 조건이나 예산이 조금씩 다르실 텐데, 로그인이나 번호 입력 없이 숫자만 바꾸면 3초 만에 비교 영수증이 나오는 무료 계산기 주소 남겨둘게요.\n\n${url}`,
   (url, st) => `${st.closingLine}\n광고나 개인정보 입력 창 같은 거 아예 없는 깔끔한 무료 시뮬레이터니까, 최종 결정하시기 전에 본인 숫자를 넣어서 한 번 확인해 보시길 추천드려요!\n\n${url}`,
   (url, st) => `${st.closingLine}\n제가 계산한 건 표준 조건 기준이라 각자 상황에 맞게 슬라이더를 조절해 보시면 훨씬 정확한 답이 나올 거예요. 다들 알뜰하고 현명한 선택 하시길 바랍니다 :)\n\n${url}`,
   (url, st) => `${st.closingLine}\n미리 1분만 투자해서 숫자로 비교해 두면 불필요하게 새나가는 돈을 확실히 막을 수 있더라고요. 필요한 분들을 위해 제가 썼던 무료 계산기 페이지 공유합니다!\n\n${url}`
@@ -352,32 +391,63 @@ const CAFE_OUTROS = [
 
 function buildHumanCafePost(preset, res, idx) {
   const targetUrl = `${siteUrl}/preset/${preset.id}`;
+  const calcHubUrl = `${siteUrl}/?calc=${preset.calc}`;
   const st = PRESET_WEBTOON_MAP[preset.id] || {};
   const nextPreset = getNextCategoryPreset(preset, idx);
   const metricsProse = formatMetricsProse(res.metrics);
   const domainNarrative = buildDomainInputNarrative(preset, res);
+  const tableSummary = formatTableRowsVaried(preset.tableRows, idx);
   const firstFaq = (preset.faq && preset.faq[0]) ? preset.faq[0] : null;
   const secondFaq = (preset.faq && preset.faq[1]) ? preset.faq[1] : null;
   const chosenFaq = (idx % 2 === 0 ? firstFaq : secondFaq) || firstFaq;
+
+  const badLabel = st.badLabel || '기존 방식';
+  const badVal = st.badVal || (res.metrics[0] ? res.metrics[0].val : '');
+  const goodLabel = st.goodLabel || '절약 방식';
+  const goodVal = st.goodVal || (res.metrics[1] ? res.metrics[1].val : '');
+  const diffVal = st.diffVal || res.headline;
 
   const intro = CAFE_INTROS[idx % CAFE_INTROS.length](preset, st);
   const outro = CAFE_OUTROS[idx % CAFE_OUTROS.length](targetUrl, st);
   const guide = CAFE_COMMENT_GUIDES[preset.calcId] || '본인 조건 수치';
   const subHook = CAFE_SUBSCRIBER_HOOKS[idx % CAFE_SUBSCRIBER_HOOKS.length](preset, nextPreset, guide);
 
-  return `[네이버 카페 게시글 원고 — 전체공개 + 검색·네이버 서비스 공개 필수]
-[제목 옵션 A] ${preset.title} 직접 시뮬레이션 해보고 정리한 현실 비교 후기 공유해요
-[제목 옵션 B] ${st.badge || preset.category} — ${preset.title} 손익분기점 찍어본 후기입니다
+  return `[네이버 카페 게시글 원고 — 전체공개 + 검색·네이버 서비스 공개 필수 | 안티밴: 일 최대 1~2건 / 최소 4시간 간격 준수]
+[제목 옵션 A] [3초영수증+비교표] ${preset.title} 직접 시뮬레이션 해보고 정리한 현실 손익 후기
+[제목 옵션 B] ${st.badge || preset.category} — ${preset.title} 손익분기점 1원 단위 비교 정리
+
+====================================================================
+## ★ [24px 굵은 소제목] 바쁜 회원님들을 위한 3초 핵심 영수증 요약
+====================================================================
+**[19px 굵게]** ✗ ${badLabel}: ${badVal}
+**[19px 굵게]** ✓ ${goodLabel}: ${goodVal} ➔ ★ 핵심 차이: ${diffVal}
+
+**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] ${preset.title}:
+${targetUrl}
 
 ${intro}
 
+--------------------------------------------------------------------
+## 1. [24px 굵은 소제목] 핵심 산출 근거 & 세부 조건 분석
+--------------------------------------------------------------------
 결론부터 먼저 말씀드리면 이 기준에서는 **${res.headline} (${res.badge})** 수준으로 계산이 나왔습니다. 세부 지표로 풀어서 보면 ${metricsProse} 정도였는데요, ${res.summary}
 
 ${domainNarrative}
 
+--------------------------------------------------------------------
+## 2. [24px 굵은 소제목] 선택지별 실측 비용 비교
+--------------------------------------------------------------------
+${tableSummary}
+
 ${chosenFaq ? `참고로 저도 처음에 "${chosenFaq.question || chosenFaq.q}" 부분이 제일 헷갈렸는데, 확인해 보니 ${chosenFaq.answer || chosenFaq.a}` : ''}
 
+--------------------------------------------------------------------
+## 3. [24px 굵은 소제목] 내 조건 대입 무료 3초 계산기 바로가기
+--------------------------------------------------------------------
 ${outro}
+
+▶ 머니핏 6대 생활비 3초 계산기 전체 모음:
+${calcHubUrl}
 
 ${subHook}`;
 }

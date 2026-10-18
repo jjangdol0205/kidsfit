@@ -283,6 +283,54 @@
         </div>
       </div>
 
+      <!-- ==================== [NEW] 쿠팡 파트너스(AF7865143) × 링크프라이스(A100708867) 실구매 1위 소싱템 비교 쇼룸 ==================== -->
+      <div id="sourced-product-showroom" class="bg-white rounded-3xl border-2 border-rose-500/80 p-4 sm:p-6 shadow-md space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
+          <div class="space-y-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="bg-rose-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full whitespace-nowrap">🏆 2026 실구매 가성비 소싱 1위</span>
+              <span id="sourced-showroom-unit-badge" class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-extrabold px-2.5 py-0.5 rounded-full whitespace-nowrap">월 전기세 -45~55% 절감 · 기기값 단기 본전 회수</span>
+            </div>
+            <h2 id="sourced-showroom-title" class="text-lg sm:text-xl font-black text-slate-900 tracking-tight break-keep">
+              ⚡ 전기세·누진세 방어 1등급 &amp; 절전 소싱템 최저가 비교 쇼룸
+            </h2>
+            <p id="sourced-showroom-subtitle" class="text-xs sm:text-sm text-slate-600 break-keep">
+              누진세 3단계(307.3원/kWh) 폭탄을 막아주는 실구매 1위 절전 가전·스마트플러그 (쿠팡 로켓배송 vs 하이마트·지마켓 공식몰 실시간 비교)
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+            <button type="button" onclick="selectCalc('electric', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition" data-cat="electric">⚡ 절전·가전</button>
+            <button type="button" onclick="selectCalc('diet', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="diet">🍗 닭가슴살·식단</button>
+            <button type="button" onclick="selectCalc('pet', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="pet">🐶 사료·영양제</button>
+            <button type="button" onclick="selectCalc('room', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="room">🛋️ 원룸·신혼가전</button>
+            <button type="button" onclick="selectCalc('auto', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="auto">🚗 블박·차량용품</button>
+            <button type="button" onclick="selectCalc('telecom', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="telecom">🌐 공유기·알뜰유심</button>
+          </div>
+        </div>
+
+        <!-- 쿠팡 로켓배송 실구매 베스트 소싱템 4선 (실제 상품 이미지 + 실구매가 + 원클릭 직행) -->
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2.5">
+            <span class="text-xs sm:text-sm font-black text-rose-600 flex items-center gap-1.5">
+              🚀 쿠팡 파트너스 공식 소싱 픽 (로켓배송 · 내일 도착 · 실구매 최저가)
+            </span>
+            <span class="text-[11px] font-bold text-slate-500">상품 터치 시 쿠팡 상세페이지로 즉시 이동 ↗</span>
+          </div>
+          <div id="sourced-coupang-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- 링크프라이스(LinkPrice) 제휴 공식몰 (하이마트·지마켓·11번가·오늘의집) 카드할인·대용량 비교 2선 -->
+        <div class="pt-3 border-t border-slate-100">
+          <div class="flex items-center justify-between gap-2 mb-2.5">
+            <span class="text-xs sm:text-sm font-black text-indigo-700 flex items-center gap-1.5">
+              🏷️ 링크프라이스(LinkPrice) 공식 제휴몰 특가 비교 (롯데하이마트 · 지마켓 · 11번가 · 오늘의집)
+            </span>
+            <span class="text-[11px] font-bold text-slate-500">카드 즉시할인 · 묶음 특가 비교 ↗</span>
+          </div>
+          <div id="sourced-linkprice-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+        </div>
+      </div>
+
       <!-- [CRO Booster] 메인 홈페이지 상단 동물 웹툰 × 3초 영수증 팩트체크 미니뷰어 -->
       <div id="home-webtoon-factcheck-bar" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-3.5 sm:p-4 border-2 border-amber-400/70 shadow-md space-y-3">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -1231,6 +1279,7 @@
   <script src="src/data/calculators.js?v=20261018_ep36"></script>
   <script src="src/data/presets.js?v=20261018_ep36"></script>
   <script src="src/data/coupang-official-links.js?v=20261018_ep36"></script>
+  <script src="src/data/sourced-products.js?v=20261018_ep36"></script>
   <script src="src/data/monetization.js?v=20261018_ep36"></script>
   <script src="src/data/viral-content.js?v=20261018_ep36"></script>
   <script src="src/data/webtoon-stories.js?v=20261018_ep36"></script>

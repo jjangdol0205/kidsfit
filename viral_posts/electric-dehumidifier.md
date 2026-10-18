@@ -10,39 +10,44 @@
 [제목] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익, 모르고 그냥 썼더니 -32,749원/월 절약? 직접 계산해보고 놀란 현실 영수증
 
 ![여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 네이버 홈판 대표 썸네일](https://truthofmarket.com/sns/electric-dehumidifier-thumb.png)
-*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)과 16초 모션웹툰 영상(`sns_outbox/electric-dehumidifier/clip.mp4`), 4컷 슬라이드(`slide-1~4.png`)를 함께 배치하면 네이버 홈판 노출 및 클릭률이 극대화됩니다)*
+*(▲ 스마트에디터 ONE 작성 시: 소제목은 24px 굵게(se-fs-fs24), 핵심 영수증 요약은 19px 굵게(se-fs-fs19), 본문은 16px(se-fs-fs16) 2줄 단락 여백으로 작성하며, 본문 최상단과 최하단에 https://truthofmarket.com/preset/electric-dehumidifier 링크를 직접 내장합니다)*
+
+## 💡 [24px 소제목] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 3초 핵심 요약 & 무료 계산기
+
+> **「🎨 3초 요약 영수증 (EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧 — 자취생 쿼카찌 × 안경 여우 에너지박사)」**  
+> ❌ **구형 3등급 24시간 연속가동**: **86,514원/월**  
+> ✅ **1등급 인버터 자동습도 유지**: **53,765원/월** (**-32,749원/월 절약**)  
+> 📌 **핵심 판정**: **추가 전기세 +51,961원 (총 86,514원)** (⚡ 누진세 2단계 진입)
+
+👉 **[무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 내 숫자 넣고 실시간 영수증 뽑기**:
+https://truthofmarket.com/preset/electric-dehumidifier
+
+🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
+https://truthofmarket.com/?calc=electric
+
+---
+
+## 📊 [24px 소제목] 1. 왜 제습기 24시간 전기세 1등급 계산을 감으로 하면 손해 볼까요?
 
 장마철 곰팡이 막으려고 제습기를 24시간 켜두시는 분들, 소비전력이 낮다고 방심하면 누진 구간이 바로 올라갑니다.
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익」** 조건에서 매달 고지서에 찍히는 전기요금 누진세 구간과 가전 소비전력(W) 효율 차이가 어떻게 계산되는지 한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰·모션클립을 공유해 드립니다.
+
+실제로 **「여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익」** 조건에서 매달 고지서에 찍히는 전기요금 누진세 구간과 가전 소비전력(W) 효율 차이가 어떻게 달라지는지 **한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식**에 대입해 보면 예상보다 차이가 큽니다.
 
 320W 제습기를 하루 종일 틀면 월 230kWh가 추가되어 기본 전력량과 합산 시 하계 누진 3단계 경계선(450kWh)에 도달합니다.
 
 ![여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/electric-dehumidifier-grid.png)
 
-> **「🎨 3초 요약 영수증 팩트체크」 — EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧 (자취생 쿼카찌 × 안경 여우 에너지박사)**  
-> ❌ 구형 3등급 24시간 연속가동: 86,514원/월 vs ✅ 1등급 인버터 자동습도 유지: 53,765원/월 (-32,749원/월 절약)  
-> 👉 **[무료 3초 계산기 바로가기] 내 숫자 넣고 실시간 영수증 뽑기 (회원가입 없음)**:  
-https://truthofmarket.com/preset/electric-dehumidifier
-> 🏠 **머니핏 전기·가전 계산기 공식 포털**:  
-https://truthofmarket.com/?calc=electric
-
----
-
-### 1. 머니핏 정밀 시뮬레이션 결과 (전기·가전)
-- **진단 상태**: ⚡ 누진세 2단계 진입
-- **핵심 판정**: 추가 전기세 +51,961원 (총 86,514원)
-
-#### 📊 핵심 산출 지표 요약
+#### 📌 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 핵심 산출 지표 (19px 강조)
 • **추가 전력**: +230 kWh
 • **월 절감액**: -32,749원
 • **본전 회수**: 11.6개월
 
-> **전문가 분석 코멘트**:  
-> 1등급 교체 시 월 -32,749원 (11.6개월 본전 회수)
+1등급 교체 시 월 -32,749원 (11.6개월 본전 회수)
 
 ---
 
-### 2. 조건별 상세 비교 데이터 (여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익)
+## 📋 [24px 소제목] 2. 조건별 상세 비교 데이터 (여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익)
+
 아래 표는 **제습기 24시간 전기세 1등급** 조건에서 선택지별 비용과 기대 효과를 비교한 실측 데이터입니다.
 
 | 구분 항목 | 가동 방식 | 소비전력 (W) | 월간 전력량 (kWh) | 예상 청구금액 (원) | 습도 및 요금 분석 |
@@ -53,14 +58,17 @@ https://truthofmarket.com/?calc=electric
 
 ---
 
-### 3. 전기·가전 손해 막는 3단계 체크리스트
+## ✅ [24px 소제목] 3. 전기·가전 손해 막는 3단계 체크리스트
+
 1. **내 조건 수치 대입 (소비전력(W)·가동시간·기본 사용량)**: 우리 집 월 기본 사용량(kWh)과 추가 가전의 실제 소비전력(W)·가동시간을 정확히 대입해 누진 구간 점프 여부를 먼저 확인하세요.
+
 2. **고정비 누수 포인트 차단**: 누진 3단계(400kWh 초과) 구간으로 넘어가는 시간을 줄이거나, 정속형·저효율 기기를 인버터 1등급으로 전환해 고정 누수를 차단하세요.
+
 3. **맞춤 특가 및 혜택 활용**: 한전 고효율 가전 구매비용 환급사업과 로켓설치·카드 즉시할인 혜택을 결합해 기기 교체 손익분기점(BEP)을 앞당기세요.
 
 ---
 
-### 4. 자주 묻는 질문 (FAQ)
+## 💬 [24px 소제목] 4. 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 자주 묻는 질문 (FAQ)
 **Q1. 제습기를 24시간 내내 돌리면 에어컨보다 전기를 더 많이 먹나요?**
 A. 16L 제습기의 소비전력은 약 300~350W로 벽걸이 에어컨의 절반 수준이지만, 24시간 연속 가동 시 월 230kWh가 추가되어 누진 단계가 상향되므로 월 4~5만 원 이상의 요금이 추가 청구될 수 있습니다.
 
@@ -72,8 +80,9 @@ A. 밀폐된 공간에서 목표 습도를 50~55%로 설정하고 자동 습도 
 
 ---
 
-### 5. 내 조건 3초 무료 계산기 직행 링크 & 함께 참고할 절약 아이템
-내 조건(소비전력(W)·가동시간·기본 사용량)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 아래 링크를 클릭하면 웹에서 바로 계산됩니다.
+## 🔗 [24px 소제목] 5. 내 조건 3초 무료 계산기 직행 링크 & 절약 아이템
+
+내 조건(소비전력(W)·가동시간·기본 사용량)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.
 
 👉 **[무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 전용 시뮬레이터**:
 https://truthofmarket.com/preset/electric-dehumidifier
@@ -99,25 +108,26 @@ https://cafe.naver.com/moneyfitlab
 
 ## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
 ```html
-<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
-  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
-  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익, 모르고 그냥 썼더니 -32,749원/월 절약? 직접 계산해보고 놀란 현실 영수증</div>
-  <div style="margin-bottom:12px;padding:10px 14px;background:#ecfdf5;border:1px solid #10b981;border-radius:10px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:15px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
+<div style="max-width:680px;margin:18px auto;padding:22px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.75;">
+  <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
+  <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익, 모르고 그냥 썼더니 -32,749원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
+  <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
+    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
   </div>
-  <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-dehumidifier-thumb.png" alt="여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="https://truthofmarket.com/sns/electric-dehumidifier-grid.png" alt="여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
-  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
-    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 구형 3등급 24시간 연속가동: <strong>86,514원/월</strong></div>
-    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 1등급 인버터 자동습도 유지: <strong>53,765원/월</strong></div>
-    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -32,749원/월 절약</div>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:19px;line-height:1.65;">
+    <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 구형 3등급 24시간 연속가동: <strong>86,514원/월</strong></div>
+    <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 인버터 자동습도 유지: <strong>53,765원/월</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -32,749원/월 절약</div>
   </div>
-  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
-    <a href="https://truthofmarket.com/?calc=electric" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 18px;background:#1e40af;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=electric) ↗</a>
-    <a href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개) ↗</a>
+  <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -32,749원 (11.6개월 본전 회수)</p>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
+    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:14px 22px;background:#0f172a;color:#ffffff;font-size:18px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
+    <a href="https://truthofmarket.com/?calc=electric" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 18px;background:#1e40af;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=electric) ↗</a>
+    <a href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#03c75a;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개) ↗</a>
   </div>
 </div>
 ```
@@ -168,34 +178,42 @@ https://truthofmarket.com/?calc=electric
 
 ## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
 ```text
-[📌 네이버 카페(moneyfitlab) & 커뮤니티 초고밀도 백서형 정보글 — 4컷 웹툰(slide-1~4.png) + 실측 비교표 + 상·하단 직관적 클릭 링크 2회 탑재]
+[📌 네이버 카페(moneyfitlab) & 커뮤니티 초가독성 백서형 정보글 — 24px 굵은 소제목 + 19px 3초 영수증 요약 + 4컷 웹툰(slide-1~4.png) + 상·하단 직행 링크 내장]
 
-요즘 카페에 **제습기 24시간 전기세 1등급** 고민하시는 글이 자주 보여서, 결정하기 전에 **한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식** 수식으로 직접 비교해 본 알짜 백서 요약본과 4컷 웹툰을 공유합니다! (저장해 두셨다가 비교하실 때 바로 꺼내 쓰세요 😊)
+## 💡 [3초 핵심 요약] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실측 비교 영수증
 
-📊 **[여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 3초 실측 비교 영수증]**
-• 그냥 유지할 때(구형 3등급 24시간 연속가동): **86,514원/월**
-• 조건 바꿨을 때(1등급 인버터 자동습도 유지): **53,765원/월** (➔ **-32,749원/월 절약**)
-• 핵심 지표: 추가 전력 +230 kWh / 월 절감액 -32,749원
+• **그냥 유지할 때(구형 3등급 24시간 연속가동)**: **86,514원/월**
+• **조건 바꿨을 때(1등급 인버터 자동습도 유지)**: **53,765원/월** (➔ **-32,749원/월 절약**)
+• **핵심 지표 (전기·가전)**: 추가 전력 +230 kWh / 월 절감액 -32,749원
 
 👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-dehumidifier
 
 ---
 
-📋 **[조건별 실측 비교 데이터표]**
+## 📋 1. 제습기 24시간 전기세 1등급 조건별 실측 비교 데이터표
+
 | 구분 항목 | 가동 방식 | 소비전력 (W) | 월간 전력량 (kWh) | 예상 청구금액 (원) | 습도 및 요금 분석 |
 | --- | --- | --- | --- | --- | --- |
 | 구형 3등급 제습기 연속 가동 | 24시간 연속 운전 | 320 W | 230 kWh (총 450kWh) | 89,400원 | 하계 누진 3단계 진입 경계 (+48,600원) |
 | 적정습도 50% 스마트 자동모드 | 센서 감지 가동 (12시간) | 180 W | 65 kWh (총 285kWh) | 34,200원 | 월 55,200원 절감 |
 | 1등급 인버터 제습기 교체 | 에너지소비효율 1등급 | 140 W | 50 kWh (총 270kWh) | 29,800원 | 11.8개월 내 기기값 본전 회수 |
 
-✅ **[결정 전 호구 막는 3단계 핵심 체크리스트]**
-1) 우리 집 월 기본 사용량(kWh)과 추가 가전의 실제 소비전력(W)·가동시간을 정확히 대입해 누진 구간 점프 여부를 먼저 확인하세요.
-2) 누진 3단계(400kWh 초과) 구간으로 넘어가는 시간을 줄이거나, 정속형·저효율 기기를 인버터 1등급으로 전환해 고정 누수를 차단하세요.
-3) 한전 고효율 가전 구매비용 환급사업과 로켓설치·카드 즉시할인 혜택을 결합해 기기 교체 손익분기점(BEP)을 앞당기세요.
+---
 
-막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(소비전력(W)·가동시간·기본 사용량) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
-회원가입 없이 클릭 한 번으로 3초 만에 내 조건 영수증을 뽑아볼 수 있는 무료 계산기 직행 링크 남겨둘게요 👇
+## ✅ 2. 결정 전 호구 막는 3단계 핵심 체크리스트
+
+1️⃣ **소비전력(W)·가동시간·기본 사용량 확인**: 우리 집 월 기본 사용량(kWh)과 추가 가전의 실제 소비전력(W)·가동시간을 정확히 대입해 누진 구간 점프 여부를 먼저 확인하세요.
+
+2️⃣ **고정비 누수 차단**: 누진 3단계(400kWh 초과) 구간으로 넘어가는 시간을 줄이거나, 정속형·저효율 기기를 인버터 1등급으로 전환해 고정 누수를 차단하세요.
+
+3️⃣ **실전 절약 팁**: 한전 고효율 가전 구매비용 환급사업과 로켓설치·카드 즉시할인 혜택을 결합해 기기 교체 손익분기점(BEP)을 앞당기세요.
+
+---
+
+## 🔗 3. 내 조건 1:1 무료 계산기 바로가기 (회원가입·설치 없음)
+
+**한국전력 주택용 누진세 요금표 및 에너지관리공단 효율 등급 수식** 수식에 내 조건(소비전력(W)·가동시간·기본 사용량) 숫자를 직접 넣으면 3초 만에 손익분기점이 계산됩니다!
 
 👉 **[무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익**:
 https://truthofmarket.com/preset/electric-dehumidifier
@@ -208,9 +226,17 @@ https://truthofmarket.com/?calc=electric
 
 ## 🧵 [스레드(Threads) / 블라인드] 3줄 FOMO 요약글 (손해 회피 심리 자극)
 ```text
-장마철 곰팡이 막으려고 제습기를 24시간 켜두시는 분들, 소비전력이 낮다고 방심하면 누진 구간이 바로 올라갑니다.
+🐾 [EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧] 3초 영수증 팩트체크!
+
+💬 장마철 곰팡이 막으려고 제습기를 24시간 켜두시는 분들, 소비전력이 낮다고 방심하면 누진 구간이 바로 올라갑니다.
+
+❌ 구형 3등급 24시간 연속가동: 86,514원/월
+✅ 1등급 인버터 자동습도 유지: 53,765원/월 (-32,749원/월 절약)
+📊 핵심 지표: 추가 전력: +230 kWh
+
 320W 제습기를 하루 종일 틀면 월 230kWh가 추가되어 기본 전력량과 합산 시 하계 누진 3단계 경계선(450kWh)에 도달합니다.
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 시뮬레이션 바로가기:
+
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
 https://truthofmarket.com/preset/electric-dehumidifier
-(https://truthofmarket.com/?calc=electric)
+🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```

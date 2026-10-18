@@ -796,16 +796,123 @@
       }
     }
 
-    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Sorted by Click Count + 1:1 Exact Product Link!)
+    // 3. [CRO Layer 3 + Sourced Product Showroom] Real Sourced Products from Coupang Open API & LinkPrice
+    const sourcedCatalog = (typeof window !== 'undefined' && window.SOURCED_PRODUCTS_CATALOG) ? window.SOURCED_PRODUCTS_CATALOG : null;
+    const presetSourced = (sourcedCatalog && sourcedCatalog.presets && sourcedCatalog.presets[activeScenarioId])
+      ? sourcedCatalog.presets[activeScenarioId]
+      : null;
+    const catSourced = (sourcedCatalog && sourcedCatalog.categories && sourcedCatalog.categories[currentCalc])
+      ? sourcedCatalog.categories[currentCalc]
+      : null;
+    const activeSourcedCoupangList = (presetSourced && Array.isArray(presetSourced.coupangProducts) && presetSourced.coupangProducts.length > 0)
+      ? presetSourced.coupangProducts
+      : ((catSourced && Array.isArray(catSourced.coupangProducts)) ? catSourced.coupangProducts : []);
+    const activeSourcedLpList = (presetSourced && Array.isArray(presetSourced.linkPriceDeals) && presetSourced.linkPriceDeals.length > 0)
+      ? presetSourced.linkPriceDeals
+      : ((catSourced && Array.isArray(catSourced.linkPriceDeals)) ? catSourced.linkPriceDeals : []);
+    const activeSourcingSpec = (presetSourced && presetSourced.sourcingSpec) || catSourced || null;
+
+    // 3A. Render Above-the-Fold Sourced Product Showroom (#sourced-product-showroom)
+    const showroomTitleEl = document.getElementById('sourced-showroom-title');
+    const showroomSubtitleEl = document.getElementById('sourced-showroom-subtitle');
+    const showroomBadgeEl = document.getElementById('sourced-showroom-unit-badge');
+    const showroomCoupangGridEl = document.getElementById('sourced-coupang-grid');
+    const showroomLpGridEl = document.getElementById('sourced-linkprice-grid');
+
+    if (activeSourcingSpec) {
+      if (showroomTitleEl && activeSourcingSpec.categoryTitle) {
+        showroomTitleEl.textContent = `${activeSourcingSpec.categoryTitle} 최저가 비교 쇼룸`;
+      }
+      if (showroomSubtitleEl && activeSourcingSpec.sourcingHeadline) {
+        showroomSubtitleEl.textContent = activeSourcingSpec.sourcingHeadline;
+      }
+      if (showroomBadgeEl) {
+        showroomBadgeEl.textContent = (res.lossComparison && res.lossComparison.savingBadge) || activeSourcingSpec.defaultUnitBadge || '실구매 가성비 1위';
+      }
+    }
+
+    document.querySelectorAll('.sourced-cat-pill').forEach(btn => {
+      const cat = btn.getAttribute('data-cat');
+      if (cat === currentCalc) {
+        btn.className = 'sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-rose-600 text-white shadow-sm transition';
+      } else {
+        btn.className = 'sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+      }
+    });
+
+    if (showroomCoupangGridEl && activeSourcedCoupangList.length > 0) {
+      showroomCoupangGridEl.innerHTML = activeSourcedCoupangList.slice(0, 4).map((sp, sIdx) => {
+        const directUrl = sp.productUrl || buildCoupangHref(sp.query || sp.productName);
+        const shipBadge = sp.isRocket
+          ? '<span class="bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-extrabold px-2 py-0.5 rounded-md">🚀 로켓배송</span>'
+          : '<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-extrabold px-2 py-0.5 rounded-md">📦 무료배송 특가</span>';
+        return `
+          <a href="${directUrl}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordAffiliateClick('coupang', this.href, 'sourced_showroom', 'sourced_cp_${currentCalc}_${sIdx}')"
+             class="group flex flex-col justify-between bg-slate-50/70 hover:bg-rose-50/30 border-2 border-slate-200 hover:border-rose-500 rounded-2xl p-3.5 transition shadow-xs hover:shadow-md min-w-0">
+            <div class="space-y-2 min-w-0">
+              <div class="flex items-center justify-between gap-1.5">
+                <span class="bg-rose-600 text-white text-[11px] font-black px-2 py-0.5 rounded-md">🏆 소싱 ${sIdx + 1}위</span>
+                ${shipBadge}
+              </div>
+              <div class="w-full h-36 bg-white rounded-xl border border-slate-200/80 flex items-center justify-center p-2 overflow-hidden">
+                <img src="${sp.productImage}" alt="${sp.productName}" loading="lazy" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" />
+              </div>
+              <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-rose-600 line-clamp-2 leading-snug break-keep">${sp.productName}</div>
+              <div class="flex items-baseline justify-between gap-1 pt-0.5">
+                <span class="text-[11px] font-semibold text-slate-500">쿠팡 실구매가</span>
+                <span class="text-base sm:text-lg font-black text-rose-600 tabular-nums">${sp.productPriceFormatted || (Number(sp.productPrice || 0).toLocaleString() + '원')}</span>
+              </div>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-200/70">
+              <div class="w-full text-center bg-rose-600 group-hover:bg-rose-500 text-white font-black text-xs sm:text-sm py-2.5 px-3 rounded-xl transition shadow-xs whitespace-nowrap truncate">
+                🛒 쿠팡 최저가 바로 구매 ↗
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    if (showroomLpGridEl && activeSourcedLpList.length > 0) {
+      showroomLpGridEl.innerHTML = activeSourcedLpList.slice(0, 2).map((lpItem, lIdx) => {
+        return `
+          <a href="${lpItem.lpUrl}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordAffiliateClick('linkprice', this.href, 'sourced_showroom', 'sourced_lp_${currentCalc}_${lIdx}')"
+             class="group flex flex-col justify-between bg-indigo-50/40 hover:bg-indigo-50/80 border-2 border-indigo-200 hover:border-indigo-600 rounded-2xl p-3.5 sm:p-4 transition shadow-xs hover:shadow-md min-w-0">
+            <div class="space-y-1.5 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <span class="bg-indigo-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-md shrink-0">🏷️ ${lpItem.merchantLabel}</span>
+                <span class="bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-extrabold px-2 py-0.5 rounded-md truncate">${lpItem.badge}</span>
+              </div>
+              <div class="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-indigo-700 leading-snug break-keep">${lpItem.title}</div>
+              <p class="text-xs text-slate-600 leading-relaxed break-keep">✔ ${lpItem.specSummary}</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-indigo-100 flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold text-indigo-700 truncate">💎 ${lpItem.priceText}</span>
+              <span class="shrink-0 bg-indigo-600 group-hover:bg-indigo-500 text-white font-black text-xs px-3.5 py-2 rounded-xl transition shadow-xs whitespace-nowrap">
+                공식몰 특가 비교 ↗
+              </span>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // 3B. Enriched Shopping Deal Cards (#product-recommendations) with Sourced Product Thumbnail & Live Price
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
       const sortedProducts = res.products
         .map((p, idx) => Object.assign({}, p, { _origIdx: idx, _clicks: itemClicks[p.itemKey] || 0 }))
         .sort((a, b) => (b._clicks - a._clicks) || (a._origIdx - b._origIdx));
 
+      let cpSourceIdx = 0;
       productsContainer.innerHTML = sortedProducts.map((p, idx) => {
+        const matchedSourcedCp = (p.type === 'coupang' && activeSourcedCoupangList[cpSourceIdx])
+          ? activeSourcedCoupangList[cpSourceIdx++]
+          : null;
         const href = p.type === 'coupang'
-          ? buildCoupangHref(p.kw)
+          ? ((matchedSourcedCp && matchedSourcedCp.productUrl) ? matchedSourcedCp.productUrl : buildCoupangHref(p.kw))
           : buildLpHref(p.merchant, p.url);
         const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
         const platformTag = p.type === 'coupang'
@@ -819,11 +926,18 @@
           : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
         const subBadge = p._clicks > 0
           ? `🔥 클릭 ${idx + 1}위 (${p._clicks}회)`
-          : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인'));
-        const ctaLabel = p.ctaText || '최저가 보기 →';
+          : (matchedSourcedCp ? `실구매가 ${matchedSourcedCp.productPriceFormatted}` : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인')));
+        const ctaLabel = matchedSourcedCp
+          ? `🛒 쿠팡 최저가(${matchedSourcedCp.productPriceFormatted}) 구매 →`
+          : (p.ctaText || '최저가 보기 →');
         const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
-        const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
+        const matchReason = matchedSourcedCp
+          ? `${p.matchReason || '계산 결과 맞춤 베스트셀러'} · [소싱모델: ${matchedSourcedCp.productName.slice(0, 32)}]`
+          : (p.matchReason || '계산 결과 맞춤 베스트셀러');
         const iconPrefix = p.icon ? `${p.icon} ` : '';
+        const thumbHtml = matchedSourcedCp && matchedSourcedCp.productImage
+          ? `<div class="w-16 h-16 rounded-xl border border-slate-200 bg-white p-1 shrink-0 flex items-center justify-center overflow-hidden"><img src="${matchedSourcedCp.productImage}" alt="${p.title}" loading="lazy" class="max-h-full max-w-full object-contain" /></div>`
+          : '';
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
@@ -832,16 +946,21 @@
             <div class="min-w-0 space-y-2">
               <div class="flex items-center justify-between gap-2">
                 <span class="inline-block text-xs font-medium px-2.5 py-0.5 rounded-lg border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
-                <span class="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
+                <span class="text-xs font-extrabold text-rose-700 bg-rose-50 border border-rose-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
               </div>
               <div class="bg-amber-50/90 border border-amber-200/80 text-amber-950 text-xs sm:text-[13px] px-3 py-1.5 rounded-xl leading-snug break-keep">
                 ${formatMatchTagContrastHtml(matchTag)}
               </div>
-              <div class="text-base sm:text-[17px] font-bold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${formatProductTitleContrastHtml(iconPrefix + p.title)}</div>
-              <p class="text-xs sm:text-[13.5px] text-slate-500 font-normal leading-relaxed break-keep">${formatReasonContrastHtml(matchReason)}</p>
+              <div class="flex items-start gap-3">
+                ${thumbHtml}
+                <div class="min-w-0 flex-1 space-y-1">
+                  <div class="text-base sm:text-[17px] font-bold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${formatProductTitleContrastHtml(iconPrefix + p.title)}</div>
+                  <p class="text-xs sm:text-[13.5px] text-slate-500 font-normal leading-relaxed break-keep">${formatReasonContrastHtml(matchReason)}</p>
+                </div>
+              </div>
             </div>
             <div class="mt-3.5 pt-3 border-t border-slate-100">
-              <div class="w-full text-center font-extrabold py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap ${btnBg}">
+              <div class="w-full text-center font-extrabold py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate ${btnBg}">
                 ${ctaLabel}
               </div>
             </div>

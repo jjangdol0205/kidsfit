@@ -10,39 +10,44 @@
 [제목] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적, 모르고 그냥 썼더니 -1,100,000원 절약? 직접 계산해보고 놀란 현실 영수증
 
 ![1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 네이버 홈판 대표 썸네일](https://truthofmarket.com/sns/room-officetel-500-thumb.png)
-*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)과 16초 모션웹툰 영상(`sns_outbox/room-officetel-500/clip.mp4`), 4컷 슬라이드(`slide-1~4.png`)를 함께 배치하면 네이버 홈판 노출 및 클릭률이 극대화됩니다)*
+*(▲ 스마트에디터 ONE 작성 시: 소제목은 24px 굵게(se-fs-fs24), 핵심 영수증 요약은 19px 굵게(se-fs-fs19), 본문은 16px(se-fs-fs16) 2줄 단락 여백으로 작성하며, 본문 최상단과 최하단에 https://truthofmarket.com/preset/room-officetel-500 링크를 직접 내장합니다)*
+
+## 💡 [24px 소제목] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 3초 핵심 요약 & 무료 계산기
+
+> **「🎨 3초 요약 영수증 (EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 — 독립 아기곰 포근이 × 안경 여우 견적박사)」**  
+> ❌ **백화점·대리점 개별 구매 견적**: **6,100,000원**  
+> ✅ **500만원 프리미엄 5대 풀세팅**: **5,000,000원** (**-1,100,000원 절약**)  
+> 📌 **핵심 판정**: **총 500만 원 풀세팅 (가전 400만 + 가구 100만)** (🏠 15평 [가성비] 초과 0원 배분)
+
+👉 **[무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 내 숫자 넣고 실시간 영수증 뽑기**:
+https://truthofmarket.com/preset/room-officetel-500
+
+🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
+https://truthofmarket.com/?calc=room
+
+---
+
+## 📊 [24px 소제목] 1. 왜 투룸 500만원 가전가구 견적 계산을 감으로 하면 손해 볼까요?
 
 15평 1.5룸이나 투룸에 500만 원 예산으로 입주할 때, 퇴근 후 가사 노동을 없애주는 가장 현명한 가전·가구 배분법은 무엇일까요?
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적」** 조건에서 첫 독립·이사·신혼 입주 시 평수와 총예산 한도 내에서 실패 없는 가전·가구 물량산출(BOM)가 어떻게 계산되는지 표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰·모션클립을 공유해 드립니다.
+
+실제로 **「1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적」** 조건에서 첫 독립·이사·신혼 입주 시 평수와 총예산 한도 내에서 실패 없는 가전·가구 물량산출(BOM)가 어떻게 달라지는지 **표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘**에 대입해 보면 예상보다 차이가 큽니다.
 
 물걸레 자동세척 로봇청소기와 건조 겸용 세탁기, 전동 모션베드까지 포함해도 24:22:20:16:18 비율을 지키면 500만 원 안에서 완벽히 해결됩니다.
 
 ![1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/room-officetel-500-grid.png)
 
-> **「🎨 3초 요약 영수증 팩트체크」 — EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)**  
-> ❌ 백화점·대리점 개별 구매 견적: 6,100,000원 vs ✅ 500만원 프리미엄 5대 풀세팅: 5,000,000원 (-1,100,000원 절약)  
-> 👉 **[무료 3초 계산기 바로가기] 내 숫자 넣고 실시간 영수증 뽑기 (회원가입 없음)**:  
-https://truthofmarket.com/preset/room-officetel-500
-> 🏠 **머니핏 자취·인테리어 계산기 공식 포털**:  
-https://truthofmarket.com/?calc=room
-
----
-
-### 1. 머니핏 정밀 시뮬레이션 결과 (자취·인테리어)
-- **진단 상태**: 🏠 15평 [가성비] 초과 0원 배분
-- **핵심 판정**: 총 500만 원 풀세팅 (가전 400만 + 가구 100만)
-
-#### 📊 핵심 산출 지표 요약
+#### 📌 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 핵심 산출 지표 (19px 강조)
 • **냉장고 예산**: 120만 원
 • **세탁기 예산**: 110만 원
 • **침대 예산**: 100만 원
 
-> **전문가 분석 코멘트**:  
-> 15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약
+15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약
 
 ---
 
-### 2. 조건별 상세 비교 데이터 (1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적)
+## 📋 [24px 소제목] 2. 조건별 상세 비교 데이터 (1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적)
+
 아래 표는 **투룸 500만원 가전가구 견적** 조건에서 선택지별 비용과 기대 효과를 비교한 실측 데이터입니다.
 
 | 프리미엄 투룸 BOM | 배분율 | 적정 예산 | 추천 프리미엄 사양 | 라이프스타일 가치 |
@@ -55,14 +60,17 @@ https://truthofmarket.com/?calc=room
 
 ---
 
-### 3. 자취·인테리어 손해 막는 3단계 체크리스트
+## ✅ [24px 소제목] 3. 자취·인테리어 손해 막는 3단계 체크리스트
+
 1. **내 조건 수치 대입 (총예산(만 원)·방 평수)**: 입주할 방의 실평수와 가용 총예산(만 원)을 먼저 입력해 예산 초과(Overrun) 없는 품목별 상한선을 확정하세요.
+
 2. **고정비 누수 포인트 차단**: 단품 충동구매로 예산을 다 써버리거나 방 크기에 맞지 않는 오버스펙 가구를 사서 동선이 막히는 시행착오를 피하세요.
+
 3. **맞춤 특가 및 혜택 활용**: 필수 코어 가전(냉장고·세탁기·전자레인지)과 수면 가구(매트리스·침대)를 우선 배정하고 남는 예비비로 수납·조명을 채우세요.
 
 ---
 
-### 4. 자주 묻는 질문 (FAQ)
+## 💬 [24px 소제목] 4. 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 자주 묻는 질문 (FAQ)
 **Q1. 500만 원 예산에서 로봇청소기를 포함시키는 것이 왜 합리적인가요?**
 A. 15평 투룸 공간은 퇴근 후 매일 직접 청소하기에 체력적 소모가 큽니다. 흡입과 물걸레 세척 및 열풍 건조가 자동 지원되는 올인원 로봇청소기(60~80만 원대)를 갖추면 주당 3시간 이상의 가사 노동을 절약할 수 있습니다.
 
@@ -74,8 +82,9 @@ A. 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존
 
 ---
 
-### 5. 내 조건 3초 무료 계산기 직행 링크 & 함께 참고할 절약 아이템
-내 조건(총예산(만 원)·방 평수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 아래 링크를 클릭하면 웹에서 바로 계산됩니다.
+## 🔗 [24px 소제목] 5. 내 조건 3초 무료 계산기 직행 링크 & 절약 아이템
+
+내 조건(총예산(만 원)·방 평수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.
 
 👉 **[무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 전용 시뮬레이터**:
 https://truthofmarket.com/preset/room-officetel-500
@@ -101,25 +110,26 @@ https://cafe.naver.com/moneyfitlab
 
 ## 📋 [스마트에디터 ONE 복붙용] 네이버 블로그·카페 웹툰 카드 클립보드 HTML
 ```html
-<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
-  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
-  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적, 모르고 그냥 썼더니 -1,100,000원 절약? 직접 계산해보고 놀란 현실 영수증</div>
-  <div style="margin-bottom:12px;padding:10px 14px;background:#ecfdf5;border:1px solid #10b981;border-radius:10px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:15px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
+<div style="max-width:680px;margin:18px auto;padding:22px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.75;">
+  <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
+  <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적, 모르고 그냥 썼더니 -1,100,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
+  <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
+    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
   </div>
-  <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-officetel-500-thumb.png" alt="1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="https://truthofmarket.com/sns/room-officetel-500-grid.png" alt="1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
-  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
-    <div style="margin-bottom:6px;color:#dc2626;font-weight:700;">❌ 백화점·대리점 개별 구매 견적: <strong>6,100,000원</strong></div>
-    <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 500만원 프리미엄 5대 풀세팅: <strong>5,000,000원</strong></div>
-    <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -1,100,000원 절약</div>
+  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:19px;line-height:1.65;">
+    <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 백화점·대리점 개별 구매 견적: <strong>6,100,000원</strong></div>
+    <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 500만원 프리미엄 5대 풀세팅: <strong>5,000,000원</strong></div>
+    <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -1,100,000원 절약</div>
   </div>
-  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
-    <a href="https://truthofmarket.com/?calc=room" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 18px;background:#1e40af;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=room) ↗</a>
-    <a href="https://naver.me/GgUlTvYj" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: [슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기 ↗</a>
+  <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약</p>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
+    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:14px 22px;background:#0f172a;color:#ffffff;font-size:18px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
+    <a href="https://truthofmarket.com/?calc=room" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 18px;background:#1e40af;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=room) ↗</a>
+    <a href="https://naver.me/GgUlTvYj" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#03c75a;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: [슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기 ↗</a>
   </div>
 </div>
 ```
@@ -170,21 +180,21 @@ https://truthofmarket.com/?calc=room
 
 ## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
 ```text
-[📌 네이버 카페(moneyfitlab) & 커뮤니티 초고밀도 백서형 정보글 — 4컷 웹툰(slide-1~4.png) + 실측 비교표 + 상·하단 직관적 클릭 링크 2회 탑재]
+[📌 네이버 카페(moneyfitlab) & 커뮤니티 초가독성 백서형 정보글 — 24px 굵은 소제목 + 19px 3초 영수증 요약 + 4컷 웹툰(slide-1~4.png) + 상·하단 직행 링크 내장]
 
-요즘 카페에 **투룸 500만원 가전가구 견적** 고민하시는 글이 자주 보여서, 결정하기 전에 **표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘** 수식으로 직접 비교해 본 알짜 백서 요약본과 4컷 웹툰을 공유합니다! (저장해 두셨다가 비교하실 때 바로 꺼내 쓰세요 😊)
+## 💡 [3초 핵심 요약] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 실측 비교 영수증
 
-📊 **[1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 3초 실측 비교 영수증]**
-• 그냥 유지할 때(백화점·대리점 개별 구매 견적): **6,100,000원**
-• 조건 바꿨을 때(500만원 프리미엄 5대 풀세팅): **5,000,000원** (➔ **-1,100,000원 절약**)
-• 핵심 지표: 냉장고 예산 120만 원 / 세탁기 예산 110만 원
+• **그냥 유지할 때(백화점·대리점 개별 구매 견적)**: **6,100,000원**
+• **조건 바꿨을 때(500만원 프리미엄 5대 풀세팅)**: **5,000,000원** (➔ **-1,100,000원 절약**)
+• **핵심 지표 (자취·인테리어)**: 냉장고 예산 120만 원 / 세탁기 예산 110만 원
 
 👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-officetel-500
 
 ---
 
-📋 **[조건별 실측 비교 데이터표]**
+## 📋 1. 투룸 500만원 가전가구 견적 조건별 실측 비교 데이터표
+
 | 프리미엄 투룸 BOM | 배분율 | 적정 예산 | 추천 프리미엄 사양 | 라이프스타일 가치 |
 | --- | --- | --- | --- | --- |
 | 대형 상냉장 냉장고 | 24% | 1,200,000원 | 400L급 4도어 글라스 인버터 냉장고 | 식자재 넉넉한 보관 |
@@ -193,13 +203,21 @@ https://truthofmarket.com/preset/room-officetel-500
 | 대화면 스마트 TV | 16% | 800,000원 | 55인치 QLED 스마트TV 사운드바 포함 | 홈시네마 구현 |
 | 라이더 로봇청소기 외 | 18% | 900,000원 | 물걸레 자동세척 로봇청소기 + 에어프라이어 | 가사 노동 제로화 |
 
-✅ **[결정 전 호구 막는 3단계 핵심 체크리스트]**
-1) 입주할 방의 실평수와 가용 총예산(만 원)을 먼저 입력해 예산 초과(Overrun) 없는 품목별 상한선을 확정하세요.
-2) 단품 충동구매로 예산을 다 써버리거나 방 크기에 맞지 않는 오버스펙 가구를 사서 동선이 막히는 시행착오를 피하세요.
-3) 필수 코어 가전(냉장고·세탁기·전자레인지)과 수면 가구(매트리스·침대)를 우선 배정하고 남는 예비비로 수납·조명을 채우세요.
+---
 
-막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(총예산(만 원)·방 평수) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
-회원가입 없이 클릭 한 번으로 3초 만에 내 조건 영수증을 뽑아볼 수 있는 무료 계산기 직행 링크 남겨둘게요 👇
+## ✅ 2. 결정 전 호구 막는 3단계 핵심 체크리스트
+
+1️⃣ **총예산(만 원)·방 평수 확인**: 입주할 방의 실평수와 가용 총예산(만 원)을 먼저 입력해 예산 초과(Overrun) 없는 품목별 상한선을 확정하세요.
+
+2️⃣ **고정비 누수 차단**: 단품 충동구매로 예산을 다 써버리거나 방 크기에 맞지 않는 오버스펙 가구를 사서 동선이 막히는 시행착오를 피하세요.
+
+3️⃣ **실전 절약 팁**: 필수 코어 가전(냉장고·세탁기·전자레인지)과 수면 가구(매트리스·침대)를 우선 배정하고 남는 예비비로 수납·조명을 채우세요.
+
+---
+
+## 🔗 3. 내 조건 1:1 무료 계산기 바로가기 (회원가입·설치 없음)
+
+**표준 주거 공간 평수별 동선 가이드 및 가전·가구 티어별 예산 배분 알고리즘** 수식에 내 조건(총예산(만 원)·방 평수) 숫자를 직접 넣으면 3초 만에 손익분기점이 계산됩니다!
 
 👉 **[무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적**:
 https://truthofmarket.com/preset/room-officetel-500
@@ -212,9 +230,17 @@ https://truthofmarket.com/?calc=room
 
 ## 🧵 [스레드(Threads) / 블라인드] 3줄 FOMO 요약글 (손해 회피 심리 자극)
 ```text
-15평 1.5룸이나 투룸에 500만 원 예산으로 입주할 때, 퇴근 후 가사 노동을 없애주는 가장 현명한 가전·가구 배분법은 무엇일까요?
+🐾 [EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖] 3초 영수증 팩트체크!
+
+💬 15평 1.5룸이나 투룸에 500만 원 예산으로 입주할 때, 퇴근 후 가사 노동을 없애주는 가장 현명한 가전·가구 배분법은 무엇일까요?
+
+❌ 백화점·대리점 개별 구매 견적: 6,100,000원
+✅ 500만원 프리미엄 5대 풀세팅: 5,000,000원 (-1,100,000원 절약)
+📊 핵심 지표: 냉장고 예산: 120만 원
+
 물걸레 자동세척 로봇청소기와 건조 겸용 세탁기, 전동 모션베드까지 포함해도 24:22:20:16:18 비율을 지키면 500만 원 안에서 완벽히 해결됩니다.
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 시뮬레이션 바로가기:
+
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
 https://truthofmarket.com/preset/room-officetel-500
-(https://truthofmarket.com/?calc=room)
+🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

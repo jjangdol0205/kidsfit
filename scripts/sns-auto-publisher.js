@@ -110,56 +110,73 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
     ? sameCatPresets[(catIdx + 1) % sameCatPresets.length]
     : PRESETS[(PRESETS.findIndex(p => (p.id || p.slug) === preset.slug) + 1) % PRESETS.length] || preset;
 
-  // 1. Threads Main Post (Ultra-short 5-line Instatoon punch + A vs B Debate Question for 10x Replies & Follows)
+  const calcHubUrl = `${cleanSiteUrl}/?calc=${preset.calcKey}`;
+
+  // 1. Threads Main Post (High-readability 1-line blocks + 3-second receipt + Built-in Homepage Link & A vs B Debate)
   const threadsMain = [
-    `🐾 [${sc.epTitle}]`,
-    `💬 "${plainP1}" → "${plainP3}"`,
+    `🐾 [${sc.epTitle}] 3초 영수증 팩트체크!`,
     '',
+    `💬 "${plainP1}" ➔ "${plainP3}"`,
+    '',
+    `🧾 [1원 단위 실측 비교]`,
     `❌ ${t.badLabel}: ${t.badVal}`,
-    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
+    `✅ ${t.goodLabel}: ${t.goodVal}`,
+    `💰 핵심 차이: ${t.diffVal}`,
+    '',
+    `👉 내 조건 3초 무료 계산기 바로가기:`,
+    targetUrl,
     '',
     `⚖️ 쓰친님들의 현실 선택은?`,
-    `🅰️ 귀찮아도 기존대로(${t.badLabel}) vs 🅱️ 바꾸고 ${t.diffVal} 아끼기(${t.goodLabel})`,
-    `👇 내 조건 3초 무료 계산기 & 다음 화 예고는 첫 댓글에!`
+    `🅰️ 기존대로(${t.badLabel}) vs 🅱️ 바꾸고 ${t.diffVal}(${t.goodLabel})`,
+    `👇 전체 6대 생활비 계산기 모음은 첫 댓글에!`
   ].join('\n');
 
-  // 2. Threads & Facebook 1st Self-Reply Comment (Direct Link + Next-Episode Cliffhanger Follow Hook)
+  // 2. Threads & Facebook 1st Self-Reply Comment (Direct Link + Calculator Hub + Next-Episode Cliffhanger Follow Hook)
   const threadsReply = [
     `🔗 「${preset.title}」 3초 무료 계산기 바로가기`,
     targetUrl,
     '',
+    `🏠 머니핏 6대 생활비 3초 계산기 공식 포털`,
+    calcHubUrl,
+    '',
     `➕ @moneyfit2026 팔로우해두시면 내일 올라오는 「${nextPreset.title}」 본전 영수증 만화도 놓치지 않아요 🔥`
   ].join('\n');
 
-  // 3. Instagram Caption (Save 📌 + Comment Vote 💬 + Follow @moneyfit2026 ➕ 3-Step Follower Magnet)
+  // 3. Instagram Caption (Ultra-readable 1-line bullet spacing + Save 📌 + Comment Vote 💬 + Profile Link)
   const instagramCaption = [
     `🐾 ${sc.epTitle} (@moneyfit2026)`,
-    `💬 "${plainP1}" → "${plainP3}"`,
     '',
-    `📊 [3초 핵심 요약]`,
-    `• ${t.badLabel}: ${t.badVal}`,
-    `• ${t.goodLabel}: ${t.goodVal}`,
-    `• 절약 효과: ${t.diffVal}`,
+    `💬 "${plainP1}"`,
+    `➔ "${plainP3}"`,
     '',
-    `💬 [댓글 투표] 우리 집은 1번(${t.badLabel}) vs 2번(${t.goodLabel})? 댓글에 번호나 '계산기' 남겨주세요!`,
-    `📌 [저장 필수] 까먹기 전에 저장해두고 고지서·견적서 나올 때 바로 비교해보세요!`,
-    `➕ [팔로우 혜택] @moneyfit2026 팔로우하면 매주 새는 고정비 30만 원 막아주는 '4컷 영수증 만화'가 피드로 배달됩니다!`,
-    `👉 3초 무료 계산기는 @moneyfit2026 프로필 링크 클릭!`,
+    `🧾 [한눈에 보는 3초 비교 영수증]`,
+    `❌ ${t.badLabel}: ${t.badVal}`,
+    `✅ ${t.goodLabel}: ${t.goodVal}`,
+    `💰 절약 효과: ${t.diffVal}`,
+    '',
+    `✅ [호구 탈출 3초 액션 가이드]`,
+    `1️⃣ 우리 집은 1번(${t.badLabel}) vs 2번(${t.goodLabel})? 댓글 투표!`,
+    `2️⃣ 까먹기 전에 [저장📌] 해두고 고지서·견적서 나올 때 비교하기`,
+    `3️⃣ @moneyfit2026 프로필 링크(${targetUrl})에서 3초 무료 계산기 돌리기!`,
     '',
     t.hashtags || `#인스타툰 #생활비절약 #자취꿀팁 #머니핏`
   ].join('\n');
 
-  // 4. Facebook Post (Concise 4-cut summary + Friend Tag & Page Follow Hook)
+  // 4. Facebook Post (Concise 4-cut summary + Built-in Direct Link)
   const facebookPost = [
     `🐾 [4컷 공감툰] ${sc.epTitle}`,
-    `• ${t.badLabel}: ${t.badVal} → ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
-    `💡 지금 이거 고민 중인 친구 @태그 해주고 페이지 [팔로우] 해두시면 매주 생활비 아끼는 3초 영수증 만화를 받아보실 수 있어요!`,
-    `👇 내 조건 3초 무료 계산기 주소는 첫 댓글에 있습니다!`
+    '',
+    `❌ ${t.badLabel}: ${t.badVal}`,
+    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
+    '',
+    `👉 내 조건 3초 무료 계산기 바로가기: ${targetUrl}`,
+    `👇 전체 6대 생활비 계산기 주소는 첫 댓글에서도 확인 가능합니다!`
   ].join('\n');
 
   return {
     preset,
     targetUrl,
+    calcHubUrl,
     story: t,
     threadsMain,
     threadsReply,
