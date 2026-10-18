@@ -65,14 +65,13 @@ async function launchBrandConnectBrowser() {
   }
 
   const startUrl = 'https://nid.naver.com/nidlogin.login?url=https%3A%2F%2Fbrandconnect.naver.com%2F';
-  const argList = `--remote-debugging-port=${BC_PORT} --user-data-dir="${BC_PROFILE_DIR}" --no-first-run --no-default-browser-check "${startUrl}"`;
+  const cmdLine = `"${chromeExe}" --remote-debugging-port=${BC_PORT} --user-data-dir="${BC_PROFILE_DIR}" --no-first-run --no-default-browser-check "${startUrl}"`;
 
   const child = spawn('powershell.exe', [
     '-NoProfile',
     '-Command',
-    `Start-Process -FilePath '${chromeExe}' -ArgumentList '${argList}'`
+    `Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{ CommandLine = '${cmdLine.replace(/'/g, "''")}' } | Out-Null`
   ], {
-    detached: true,
     stdio: 'ignore'
   });
   child.unref();
