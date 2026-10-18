@@ -1,71 +1,116 @@
-[🛡️ 안티밴(Anti-Ban) 안전 발행 수칙: 일 최대 2~3건 상한 / 게시물 간 최소 2~4시간 쿨다운 필수 / 본문 상·하단 truthofmarket.com 외부링크 & 24px 소제목·19px 영수증 서식 필수]
-[제목] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적, 초기 비용보다 중요한 누적 손익 비교기
+<!--
+================================================================================
+[발행자 전용 체크리스트 — 복붙 시 이 주석 박스는 제외하고 아래 본문부터 복사하세요]
+• 타겟 프리셋: room-officetel-500 (1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적)
+• 첨부할 웹툰 이미지 2장:
+  1) 도입부 요약 박스 위/아래: sns_outbox/room-officetel-500/slide-1.png
+  2) 2번 비교표 섹션 상단: sns_outbox/room-officetel-500/slide-3.png
+• 안티밴(Anti-Ban) 원칙: 본문 하단 클라이맥스에 단 1회(https://truthofmarket.com/preset/room-officetel-500)만 자연스럽게 삽입됨
+================================================================================
+-->
 
-====================================================================
-## ★ [24px 굵은 소제목] 바쁜 분들을 위한 3초 핵심 비교 영수증 & 무료 계산기
-====================================================================
-**[19px 굵게]** ✗ 백화점·대리점 개별 구매 견적: 120만 원
-**[19px 굵게]** ✓ 500만원 프리미엄 5대 풀세팅: 110만 원 ➔ ★ 핵심 손익 차이: 총 500만 원 풀세팅 (가전 400만 + 가구 100만) (총 500만 원 풀세팅 (가전 400만 + 가구 100만))
+# 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 — 직접 계산해보고 정리한 현실 비교 노트
 
-**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 내 조건 대입해 보기:
-https://truthofmarket.com/preset/room-officetel-500
+### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
+- **✗ 백화점·대리점 개별 구매 견적**: **6,100,000원**
+- **✓ 500만원 프리미엄 5대 풀세팅**: **5,000,000원**
+- **★ 핵심 체감 차이**: **-1,100,000원 절약 (총 500만 원 풀세팅 (가전 400만 + 가구 100만))**
 
-자취·인테리어 분야는 약관이나 계산 구조가 다소 복잡해서 소비자가 직관적으로 총비용을 계산하기 쉽지 않습니다. 15평 1.5룸이나 투룸에 500만 원 예산으로 입주할 때, 퇴근 후 가사 노동을 없애주는 가장 현명한 가전·가구 배분법은 무엇일까요? 오늘은 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 상황을 가정해 거품을 뺀 실질 부담액을 정리해 보았습니다.
+---
 
-실제 수식에 대입해 도출한 1차 판정은 **총 500만 원 풀세팅 (가전 400만 + 가구 100만) (🏠 15평 [가성비] 초과 0원 배분)**입니다. 구체적인 수치로 풀어서 보면 냉장고 예산은 약 120만 원, 세탁기 예산은 110만 원, 침대 예산은 100만 원에 해당하며, 막연한 직관과는 꽤 다른 흐름을 보입니다.
+## 1. 15평 공간 입주 전 총예산 500만 원 안에서 1원도 안 넘긴 가전·가구 배분표
 
---------------------------------------------------------------------
-## 1. [24px 굵은 소제목] 공인 산출 공식 & 세부 기준 변수 팩트체크
---------------------------------------------------------------------
-단순 결과치만 보는 것보다 어떤 원리와 조건에서 이 금액이 나왔는지 이해하는 것이 중요합니다.
+자취방 독립이나 오피스텔·신혼집 이사를 앞두고 가전·가구를 알아보다 보면, 처음에 마음먹었던 예산이 순식간에 백만 원 넘게 불어나서 당황스러울 때가 많습니다. 저도 처음에 아무 기준 없이 마음에 드는 냉장고랑 침대부터 장바구니에 담았더니 벌써 예산의 80%가 날아가 버리더라고요.
 
-물걸레 자동세척 로봇청소기와 건조 겸용 세탁기, 전동 모션베드까지 포함해도 24:22:20:16:18 비율을 지키면 500만 원 안에서 완벽히 해결됩니다. 공간 세팅 시뮬레이션의 기준 조건은 전용면적 약 15평 공간에 총 가용 예산 500만 원(5,000,000원), 최우선 배분 기준 '가성비' 모드입니다. 대형 가전이나 특정 가구 하나에 예산을 과소비해 정작 필수 품목을 사지 못하는 시행착오를 막기 위해 냉장고(24%)·세탁기(22%)·침대(20%)·TV/모니터(16%)·소형가전(18%)의 황금 배분율을 적용하여 총합 5,000,000원(예산 초과 0원)으로 설계했습니다.
+결국 예산 초과 없이 한 번에 풀세팅을 끝내려면, 결제하기 전에 내 총예산(**500만 원**)을 5대 필수 품목의 황금 비율(24% : 22% : 20% : 16% : 18%)로 먼저 쪼개서 품목별 상한선(캡)부터 정해두는 게 핵심이었습니다.
 
---------------------------------------------------------------------
-## 2. [24px 굵은 소제목] 조건별·구간별 1원 단위 실측 손익 비교표
---------------------------------------------------------------------
-아래는 현재 기준 조건과 대안 시나리오를 나란히 놓고 비교 분석한 세부 내역입니다.
+전용면적 약 **15평** 공간에 총예산 **500만 원(5,000,000원)**을 기준으로 직접 짜본 5대 품목 상한선은 다음과 같습니다.
 
-• **대형 상냉장 냉장고** 조건에서는 24% → 1,200,000원 → 400L급 4도어 글라스 인버터 냉장고 → 식자재 넉넉한 보관 흐름으로 집계됩니다.
-• **건조 겸용 대용량 세탁기** 시나리오를 보면 22% | 1,100,000원 | 15kg 세탁 + 8kg 건조 일체형 모델 | 장마철 빨래 건조 해결 수준으로 확인됩니다.
-• **호텔식 모션베드 침대** 기준의 경우 20% / 1,000,000원 / 전동 모션베드 퀸 프레임 + 메모리폼 / 무중력 수면 자세 지원 데이터를 보입니다.
-• **대화면 스마트 TV** 옵션을 선택하면 16% · 800,000원 · 55인치 QLED 스마트TV 사운드바 포함 · 홈시네마 구현 결과로 이어집니다.
-• **라이더 로봇청소기 외** 조건에서는 18% → 900,000원 → 물걸레 자동세척 로봇청소기 + 에어프라이어 → 가사 노동 제로화 흐름으로 집계됩니다.
+가장 먼저 24시간 돌아가는 **냉장고(120만 원)**와 **세탁기(110만 원)**에 중심을 잡고, 매일 수면의 질을 좌우하는 **침대·매트리스(100만 원)**와 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 **5,000,000원**으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.
 
-이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다.
+---
+
+## 2. 조건별로 직접 대조해 본 상세 비교표
+
+| 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
+| :--- | :--- | :--- |
+| **한줄 결론** | **총 500만 원 풀세팅 (가전 400만 + 가구 100만)** | 🏠 15평 [가성비] 초과 0원 배분 |
+| **냉장고 예산** | **120만 원** | 실측 산출 기준 |
+| **세탁기 예산** | **110만 원** | 권장 적용 기준 |
+| **침대 예산** | **100만 원** | 체감 유지 기준 |
+
+| 프리미엄 투룸 BOM | 배분율 | 적정 예산 | 추천 프리미엄 사양 | 라이프스타일 가치 |
+| :--- | :--- | :--- | :--- | :--- |
+| 대형 상냉장 냉장고 | 24% | 1,200,000원 | 400L급 4도어 글라스 인버터 냉장고 | 식자재 넉넉한 보관 |
+| 건조 겸용 대용량 세탁기 | 22% | 1,100,000원 | 15kg 세탁 + 8kg 건조 일체형 모델 | 장마철 빨래 건조 해결 |
+| 호텔식 모션베드 침대 | 20% | 1,000,000원 | 전동 모션베드 퀸 프레임 + 메모리폼 | 무중력 수면 자세 지원 |
+| 대화면 스마트 TV | 16% | 800,000원 | 55인치 QLED 스마트TV 사운드바 포함 | 홈시네마 구현 |
+| 라이더 로봇청소기 외 | 18% | 900,000원 | 물걸레 자동세척 로봇청소기 + 에어프라이어 | 가사 노동 제로화 |
 
 15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약
 
---------------------------------------------------------------------
-## 3. [24px 굵은 소제목] 자주 묻는 핵심 질문(FAQ) & 실전 체크리스트
---------------------------------------------------------------------
-Q1. 마지막으로 최종 결정을 내리기 전에 반드시 짚고 넘어가야 할 **"500만 원 예산에서 로봇청소기를 포함시키는 것이 왜 합리적인가요?"**에 대한 해답입니다.
-➔ 실제 약관과 현장의 기준을 대조해 보면 15평 투룸 공간은 퇴근 후 매일 직접 청소하기에 체력적 소모가 큽니다. 흡입과 물걸레 세척 및 열풍 건조가 자동 지원되는 올인원 로봇청소기(60~80만 원대)를 갖추면 주당 3시간 이상의 가사 노동을 절약할 수 있습니다.
+---
 
-Q2. 실생활에 바로 적용할 때 헷갈리기 쉬운 **"모션베드 침대는 일반 침대 프레임보다 어떤 점이 좋은가요?"** 포인트 역시 미리 확인해 두면 큰 도움이 됩니다.
-➔ 전문가들이 공통적으로 조언하는 해답을 보면 상하체 각도를 자유롭게 조절할 수 있어 퇴근 후 침대에 누워 OTT를 보거나 스마트폰을 할 때 허리와 목의 긴장을 완벽히 덜어주며, 하지정맥류 예방 및 코골이 완화에도 뛰어납니다.
+## 3. 오프라인 패키지 거품 빼고 품목별 베스트 모델로 아끼는 팁
 
-Q3. 실제로 이 주제를 알아볼 때 가장 많이 부딪히는 의문 중 하나가 **"온라인에서 가전·가구 구매 시 폐가전 수거는 어떻게 처리되나요?"**라는 점입니다.
-➔ 수치와 제도적 기준을 정확히 따져보면 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존 폐가전을 무료로 수거해주는 '1:1 무상수거' 서비스를 제공하므로 폐기물 스티커 구매 비용 없이 간편하게 교체할 수 있습니다.
+오프라인 매장에서 이른바 '입주 패키지'로 묶어서 사면 편하긴 해도 유통 마진이랑 불필요한 옵션 값 때문에 예산을 훌쩍 넘기기 쉽습니다. 반대로 위에서 정한 품목별 상한선에 맞춰 **샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (598,800원)**이나 **샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL (1,189,800원)**처럼 후기가 검증된 가성비 모델을 온라인으로 직접 매칭하면 같은 스펙인데도 **1,100,000원** 이상 아낄 수 있어요.
 
---------------------------------------------------------------------
-## 4. [24px 굵은 소제목] 내 조건 맞춤 3초 무료 계산기 바로가기 (외부링크)
---------------------------------------------------------------------
-내 투룸 예산과 우선순위를 입력해 예산 초과 없는 프리미엄 품목별 견적서를 3초 만에 받아보세요.
+남은 잔여 예산으로는 삶의 질을 확 올려주는 **고용량 멀티탭 + 건조대 + 압축봉(특가)**까지 챙길 수 있으니 계약 전에 꼭 품목별 상한선부터 대조해 보세요.
 
-위에서 살펴본 수치는 대표적인 표준 조건을 기준으로 산출한 것이라, 여러분의 실제 수치와는 미묘한 차이가 있을 수 있습니다. 별도의 앱 설치나 로그인 없이 웹에서 즉시 내 조건을 넣어볼 수 있는 계산기 페이지를 첨부해 두었으니 1분만 투자해 직접 비교해 보세요.
+### Q1. 500만 원 예산에서 로봇청소기를 포함시키는 것이 왜 합리적인가요?
+- **답변:** 15평 투룸 공간은 퇴근 후 매일 직접 청소하기에 체력적 소모가 큽니다. 흡입과 물걸레 세척 및 열풍 건조가 자동 지원되는 올인원 로봇청소기(60~80만 원대)를 갖추면 주당 3시간 이상의 가사 노동을 절약할 수 있습니다.
 
-🔗 실시간 손익 영수증 확인: https://truthofmarket.com/preset/room-officetel-500
+### Q2. 모션베드 침대는 일반 침대 프레임보다 어떤 점이 좋은가요?
+- **답변:** 상하체 각도를 자유롭게 조절할 수 있어 퇴근 후 침대에 누워 OTT를 보거나 스마트폰을 할 때 허리와 목의 긴장을 완벽히 덜어주며, 하지정맥류 예방 및 코골이 완화에도 뛰어납니다.
 
-고민을 덜어드리는 실용적인 이정표가 되었기를 바라며, 오늘도 기분 좋은 하루 보내세요!
+### Q3. 온라인에서 가전·가구 구매 시 폐가전 수거는 어떻게 처리되나요?
+- **답변:** 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존 폐가전을 무료로 수거해주는 '1:1 무상수거' 서비스를 제공하므로 폐기물 스티커 구매 비용 없이 간편하게 교체할 수 있습니다.
 
-**[19px 굵게]** ▶ [무료 3초 계산기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 실시간 시뮬레이터:
+---
+
+## 4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기
+
+집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!
+
+👉 **내 조건으로 3초 무료 계산해 보기**:
 https://truthofmarket.com/preset/room-officetel-500
 
-**[19px 굵게]** ▶ [머니핏 6대 생활비 손익계산기 전체 모음]:
-https://truthofmarket.com/?calc=room
+#생활비절약 #고정비다이어트 #머니핏 #가계부정리
 
-💡 **[연재 구독 & 댓글 맞춤 시뮬레이션 안내]**
-이번 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 정리에 이어 다음에는 **「신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지」** 실전 시뮬레이션 편이 이어집니다. **서로이웃** 맺어두시고 새 글 알림으로 편하게 확인해 보세요! 혼자 계산하기 애매한 조건은 **댓글**로 남겨주시면 3초 계산기로 직접 대조해 드립니다.
+---
 
-#투룸인테리어 #500만원가전 #로봇청소기추천 #모션베드 #오피스텔투룸꾸미기 #머니핏 #고정비다이어트 #서로이웃환영
+## 📋 [스마트에디터 ONE 복붙용 클린 HTML 코드]
+```html
+<!-- [발행 시 1번 그림 첨부 위치: sns_outbox/room-officetel-500/slide-1.png] -->
+<div style="background:#f8fafc;border-left:6px solid #10b981;padding:18px 20px;border-radius:0 14px 14px 0;margin:0 0 24px 0;">
+  <p class="se-text-paragraph" style="font-size:19px;font-weight:900;color:#0f172a;margin:0 0 10px 0;"><span class="se-fs-fs19"><b>🧾 바쁜 분들을 위한 3초 핵심 비교 요약</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#be123c;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>백화점·대리점 개별 구매 견적</b>: <b>6,100,000원</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>500만원 프리미엄 5대 풀세팅</b>: <b>5,000,000원</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#0f172a;margin:0;"><span class="se-fs-fs16">• <b>핵심 체감 차이</b>: <b>-1,100,000원 절약 (총 500만 원 풀세팅 (가전 400만 + 가구 100만))</b></span></p>
+</div>
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>1. 15평 공간 입주 전 총예산 500만 원 안에서 1원도 안 넘긴 가전·가구 배분표</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">자취방 독립이나 오피스텔·신혼집 이사를 앞두고 가전·가구를 알아보다 보면, 처음에 마음먹었던 예산이 순식간에 백만 원 넘게 불어나서 당황스러울 때가 많습니다. 저도 처음에 아무 기준 없이 마음에 드는 냉장고랑 침대부터 장바구니에 담았더니 벌써 예산의 80%가 날아가 버리더라고요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">결국 예산 초과 없이 한 번에 풀세팅을 끝내려면, 결제하기 전에 내 총예산(<b>500만 원</b>)을 5대 필수 품목의 황금 비율(24% : 22% : 20% : 16% : 18%)로 먼저 쪼개서 품목별 상한선(캡)부터 정해두는 게 핵심이었습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">전용면적 약 <b>15평</b> 공간에 총예산 <b>500만 원(5,000,000원)</b>을 기준으로 직접 짜본 5대 품목 상한선은 다음과 같습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">가장 먼저 24시간 돌아가는 <b>냉장고(120만 원)</b>와 <b>세탁기(110만 원)</b>에 중심을 잡고, 매일 수면의 질을 좌우하는 <b>침대·매트리스(100만 원)</b>와 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 <b>5,000,000원</b>으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<!-- [발행 시 2번 그림 첨부 위치: sns_outbox/room-officetel-500/slide-3.png] -->
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>2. 조건별로 직접 대조해 본 상세 비교표</b></span></p>
+<table style="width:100%;border-collapse:collapse;margin:18px 0;font-family:'Pretendard','Malgun Gothic',sans-serif;"><thead><tr><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">프리미엄 투룸 BOM</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">배분율</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">적정 예산</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">추천 프리미엄 사양</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">라이프스타일 가치</th></tr></thead><tbody><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">대형 상냉장 냉장고</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">24%</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">1,200,000원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">400L급 4도어 글라스 인버터 냉장고</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">식자재 넉넉한 보관</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">건조 겸용 대용량 세탁기</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">22%</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">1,100,000원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">15kg 세탁 + 8kg 건조 일체형 모델</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">장마철 빨래 건조 해결</td></tr><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">호텔식 모션베드 침대</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">20%</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">1,000,000원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">전동 모션베드 퀸 프레임 + 메모리폼</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">무중력 수면 자세 지원</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">대화면 스마트 TV</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">16%</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">800,000원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">55인치 QLED 스마트TV 사운드바 포함</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">홈시네마 구현</td></tr><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">라이더 로봇청소기 외</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">18%</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">900,000원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">물걸레 자동세척 로봇청소기 + 에어프라이어</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">가사 노동 제로화</td></tr></tbody></table>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#334155;margin:14px 0 0 0;"><span class="se-fs-fs16">15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>3. 오프라인 패키지 거품 빼고 품목별 베스트 모델로 아끼는 팁</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">오프라인 매장에서 이른바 '입주 패키지'로 묶어서 사면 편하긴 해도 유통 마진이랑 불필요한 옵션 값 때문에 예산을 훌쩍 넘기기 쉽습니다. 반대로 위에서 정한 품목별 상한선에 맞춰 <b>샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (598,800원)</b>이나 <b>샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL (1,189,800원)</b>처럼 후기가 검증된 가성비 모델을 온라인으로 직접 매칭하면 같은 스펙인데도 <b>1,100,000원</b> 이상 아낄 수 있어요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">남은 잔여 예산으로는 삶의 질을 확 올려주는 <b>고용량 멀티탭 + 건조대 + 압축봉(특가)</b>까지 챙길 수 있으니 계약 전에 꼭 품목별 상한선부터 대조해 보세요.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q1. 500만 원 예산에서 로봇청소기를 포함시키는 것이 왜 합리적인가요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 15평 투룸 공간은 퇴근 후 매일 직접 청소하기에 체력적 소모가 큽니다. 흡입과 물걸레 세척 및 열풍 건조가 자동 지원되는 올인원 로봇청소기(60~80만 원대)를 갖추면 주당 3시간 이상의 가사 노동을 절약할 수 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q2. 모션베드 침대는 일반 침대 프레임보다 어떤 점이 좋은가요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 상하체 각도를 자유롭게 조절할 수 있어 퇴근 후 침대에 누워 OTT를 보거나 스마트폰을 할 때 허리와 목의 긴장을 완벽히 덜어주며, 하지정맥류 예방 및 코골이 완화에도 뛰어납니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q3. 온라인에서 가전·가구 구매 시 폐가전 수거는 어떻게 처리되나요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 쿠팡 로켓설치나 브랜드 직영몰 주문 시 동일 품목의 기존 폐가전을 무료로 수거해주는 '1:1 무상수거' 서비스를 제공하므로 폐기물 스티커 구매 비용 없이 간편하게 교체할 수 있습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 14px 0;"><span class="se-fs-fs16">집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs19"><b>👉 내 조건으로 3초 무료 계산해 보기:</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;margin:0;"><span class="se-fs-fs16"><a href="https://truthofmarket.com/preset/room-officetel-500" target="_blank" style="color:#059669;font-weight:800;text-decoration:underline;">https://truthofmarket.com/preset/room-officetel-500</a></span></p>
+```

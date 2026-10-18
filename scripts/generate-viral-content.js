@@ -174,8 +174,15 @@ function formatMarkdownTable(headers, rows) {
   return `${headerLine}\n${sepLine}\n${rowLines}`;
 }
 
+const {
+  buildHumanCategoryNarrative,
+  buildSmartEditorHtmlForPreset,
+  cleanCaseLabel,
+  humanizeProductName
+} = require('./division1-comedifarm-engine.js');
+
 /**
- * Build copy bundle for a single preset
+ * Build copy bundle for a single preset (v4.0 Human-Written Quality & Zero Errors)
  */
 function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const res = calculatePresetResult(preset);
@@ -203,39 +210,44 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const resolvedStory = webtoonStories.resolveDynamicReceiptValues
     ? webtoonStories.resolveDynamicReceiptValues(preset, res)
     : story;
+  const narrative = buildHumanCategoryNarrative(preset, res, resolvedStory);
+
   const epTitle = (resolvedStory.shortCartoon && resolvedStory.shortCartoon.epTitle) || preset.title;
   const webtoonGridUrl = `${currentSiteUrl}/sns/${preset.id}-grid.png`;
   const blogHomeThumbUrl = `${currentSiteUrl}/sns/${preset.id}-thumb.png`;
-  const charName = resolvedStory.charName || '머니핏 프렌즈';
-  const expertName = resolvedStory.expertName || '안경 여우 박사';
-  const badLabel = resolvedStory.badLabel || '기존 선택';
   const badVal = resolvedStory.badVal || res.headline;
-  const goodLabel = resolvedStory.goodLabel || '최적화 선택';
   const goodVal = resolvedStory.goodVal || res.badge;
-  const diffVal = resolvedStory.diffVal || '즉시 절약';
+  const badLabel = cleanCaseLabel(resolvedStory.badLabel || '기존 방식 유지 시', badVal);
+  const goodLabel = cleanCaseLabel(resolvedStory.goodLabel || '맞춤 기준 적용 시', goodVal);
+  const diffVal = resolvedStory.diffVal || res.headline;
+  const diffDisplay = (diffVal && res.headline && diffVal !== res.headline && !res.headline.includes(diffVal))
+    ? `${diffVal} (${res.headline})`
+    : (diffVal || res.headline);
 
-  const strat = CATEGORY_STRATEGY_MAP[preset.calc] || CATEGORY_STRATEGY_MAP.electric;
-  const uniqueHashtags = story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`;
+  const uniqueHashtags = Array.isArray(story.hashtags)
+    ? story.hashtags.join(' ')
+    : (story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`);
 
-  // Naver Home-Feed (네이버 홈판 리빙·경제M·테크) High-CTR Title Formula
-  const homeFeedTitle = `${preset.title}, 모르고 그냥 썼더니 ${diffVal}? 직접 계산해보고 놀란 현실 영수증`;
+  // Natural human blog title (zero broken grammar)
+  const homeFeedTitle = `${preset.title} — 직접 계산해보고 정리한 현실 비교 노트 (${res.headline})`;
 
-  // Load Account B (expertise333) Official Brand Connect (Shopping Connect) links so both Account A (comedifarm) and Account B use them across Blog, Clip, and Cafe
+  const isCat = preset.id.includes('cat') || preset.id.includes('shorthair') || (preset.title && preset.title.includes('고양이')) || (preset.title && preset.title.includes('노령묘')) || (preset.title && preset.title.includes('코숏'));
+
   const BC_LINKS_BY_CALC = {
     electric: {
-      label: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개)',
+      label: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF',
       url: 'https://naver.me/xm0ZVnAW',
       subLabel: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기',
       subUrl: 'https://naver.me/GgUlTvYj'
     },
     diet: {
-      label: '한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개)',
+      label: '한끼통살 소스 통 닭가슴살 100g 20종 10개입',
       url: 'https://naver.me/xvClW9nJ',
       subLabel: '모던구루 유기농 애사비 스틱 오리지널 21포',
       subUrl: 'https://naver.me/GxrdvbPG'
     },
     pet: {
-      label: '라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)',
+      label: isCat ? '하림펫푸드 밥이보약 고양이 맞춤 레시피' : '라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg',
       url: 'https://naver.me/xAfcU6Im',
       subLabel: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 털청소 로봇청소기',
       subUrl: 'https://naver.me/GgUlTvYj'
@@ -247,7 +259,7 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
       subUrl: 'https://naver.me/xm0ZVnAW'
     },
     auto: {
-      label: '아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)',
+      label: '아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G',
       url: 'https://naver.me/G5kYoDj6',
       subLabel: '티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 공유기',
       subUrl: 'https://naver.me/FpwR436o'
@@ -264,251 +276,113 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const brandConnectSubUrl = bcItem.subUrl;
   const officialCafeUrl = 'https://cafe.naver.com/moneyfitlab';
 
-  const calcHubUrl = `${currentSiteUrl}/?calc=${preset.calc}`;
-  const clipVideoRelPath = `sns_outbox/${preset.id}/clip.mp4`;
-
-  // Load real sourced Coupang & LinkPrice products for this preset
-  const presetSourced = (SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[preset.id])
-    || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[preset.calc])
-    || null;
-  const sourcedSpec = (presetSourced && presetSourced.sourcingSpec) ? presetSourced.sourcingSpec : (presetSourced || {});
-  const sourcedCpList = (presetSourced && Array.isArray(presetSourced.coupangProducts)) ? presetSourced.coupangProducts.slice(0, 4) : [];
-  const sourcedLpList = (presetSourced && Array.isArray(presetSourced.linkPriceDeals)) ? presetSourced.linkPriceDeals.slice(0, 2) : [];
-  const topCp1 = sourcedCpList[0] || null;
-  const topCp2 = sourcedCpList[1] || null;
-  const topLp1 = sourcedLpList[0] || null;
-
-  const sourcedBlogSection = sourcedCpList.length > 0 ? `
----
-
-## 🏆 [24px 소제목] 2-1. ${preset.title} 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
-
-머니핏 포털(\`${targetUrl}\`) 상단 쇼룸에 실시간 연동된 **${sourcedSpec.categoryTitle || preset.category}** 실구매 베스트셀러 모델과 현재 가격입니다.
-
-${sourcedCpList.map((item, idx) => `• **[소싱 TOP ${idx + 1}] ${item.productName}**  
-  └ 실구매가: **${item.productPriceFormatted}** (${item.isRocket ? '🚀 로켓배송' : '🚚 무료배송'} · ${sourcedSpec.defaultUnitBadge || '가성비 검증 1위'})`).join('\n\n')}
-
-${sourcedLpList.map(deal => `• **[공식몰 제휴 비교 — ${deal.merchantLabel}] ${deal.title}**  
-  └ 혜택 요약: **${deal.badge}** (${deal.specSummary})`).join('\n\n')}
-
-👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] ${preset.title} 최저가 비교**:
-${targetUrl}
-` : '';
-
-  const sourcedCafeSection = topCp1 ? `
-## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
-• **소싱 1위 모델**: **${topCp1.productName}** (실구매가 **${topCp1.productPriceFormatted}**)
-${topCp2 ? `• **소싱 2위 모델**: **${topCp2.productName}** (실구매가 **${topCp2.productPriceFormatted}**)` : ''}
-${topLp1 ? `• **공식몰 비교 (${topLp1.merchantLabel})**: **${topLp1.title}** (${topLp1.badge})` : ''}
-👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: ${targetUrl}
-` : '';
-
-  const sourcedThreadsLine = topCp1
-    ? `\n🏆 실구매 1위 소싱템: ${topCp1.productName.slice(0, 38)} (${topCp1.productPriceFormatted})\n`
-    : '\n';
-
-  // 1. Blog Post (Naver Home-Feed D.I.A.+ Optimized with 24px Bold Subheadings + 19px Bold Callouts + 16px Airy 2-Line Paragraphs + Built-in Top/Bottom Links)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
-  const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
-  const faqList = (preset.faq || []).map((f, i) => `**Q${i + 1}. ${f.question || f.q}**\nA. ${f.answer || f.a}`).join('\n\n');
-  const summaryLines = String(res.summary || '').split(/(?<=[.!?다요])\s+/).filter(Boolean).join('\n\n');
+  const m0 = (res.metrics && res.metrics[0]) || { label: '핵심 지표 1', val: '-', sub: '실측 산출 기준' };
+  const m1 = (res.metrics && res.metrics[1]) || { label: '핵심 지표 2', val: '-', sub: '권장 적용 기준' };
+  const m2 = (res.metrics && res.metrics[2]) || { label: '핵심 지표 3', val: '-', sub: '체감 유지 기준' };
+  const faqList = (preset.faq || []).map((f, i) => `### Q${i + 1}. ${f.question || f.q}\n- **답변:** ${f.answer || f.a}`).join('\n\n');
 
-  const blogPost = `[제목] ${homeFeedTitle}
+  // 1. Blog Post (100% Human-Written First-Person Narrative, Zero Meta Tags, Single Climax Link)
+  const blogPost = `# ${homeFeedTitle}
 
-![${preset.title} 네이버 홈판 대표 썸네일](${blogHomeThumbUrl})
-*(▲ 스마트에디터 ONE 작성 시: 소제목은 24px 굵게(se-fs-fs24), 핵심 영수증 요약은 19px 굵게(se-fs-fs19), 본문은 16px(se-fs-fs16) 2줄 단락 여백으로 작성하며, 본문 최상단과 최하단에 ${targetUrl} 링크를 직접 내장합니다)*
-
-## 💡 [24px 소제목] ${preset.title} 3초 핵심 요약 & 무료 계산기
-
-> **「🎨 3초 요약 영수증 (${epTitle} — ${charName} × ${expertName})」**  
-> ❌ **${badLabel}**: **${badVal}**  
-> ✅ **${goodLabel}**: **${goodVal}** (**${diffVal}**)  
-> 📌 **핵심 판정**: **${res.headline}** (${res.badge})
-
-👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] ${preset.title}**:
-${targetUrl}
-
-🏠 **[머니핏 ${preset.category} 계산기 공식 포털 바로가기]**:
-${calcHubUrl}
+### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
+- **✗ ${badLabel}**: **${badVal}**
+- **✓ ${goodLabel}**: **${goodVal}**
+- **★ 핵심 체감 차이**: **${diffDisplay}**
 
 ---
 
-## 📊 [24px 소제목] 1. 왜 ${query} 계산을 감으로 하면 손해 볼까요?
+## 1. ${narrative.section1Title}
 
-${story.hookLine || `요즘 ${preset.title} 관련해서 실제 비용과 손익분기점을 궁금해하시는 분들이 정말 많습니다.`}
+${narrative.empathyIntro}
 
-실제로 **「${preset.title}」** 조건에서 ${strat.introContext}가 어떻게 달라지는지 **${strat.authoritySource}**에 대입해 보면 예상보다 차이가 큽니다.
-
-${story.factLine || preset.description}
-
-![${preset.title} 4컷 동물 웹툰 영수증](${webtoonGridUrl})
-
-#### 📌 ${preset.title} 핵심 산출 지표 (19px 강조)
-${metricsList}
-
-${summaryLines}
+${narrative.mechanismDeepDive}
 
 ---
 
-## 📋 [24px 소제목] 2. 조건별 상세 비교 데이터 (${preset.title})
+## 2. 조건별로 직접 대조해 본 상세 비교표
 
-아래 표는 **${query}** 조건에서 선택지별 비용과 기대 효과를 비교한 실측 데이터입니다.
+| 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
+| :--- | :--- | :--- |
+| **한줄 결론** | **${res.headline}** | ${res.badge || '실측 기준 요약'} |
+| **${m0.label}** | **${m0.val || m0.value || '-'}** | ${m0.sub || '실측 산출 기준'} |
+| **${m1.label}** | **${m1.val || m1.value || '-'}** | ${m1.sub || '권장 적용 기준'} |
+| **${m2.label}** | **${m2.val || m2.value || '-'}** | ${m2.sub || '체감 유지 기준'} |
 
 ${tableMd}
-${sourcedBlogSection}
----
 
-## ✅ [24px 소제목] 3. ${preset.category} 손해 막는 3단계 체크리스트
-
-1. **내 조건 수치 대입 (${strat.inputHint})**: ${strat.step1}
-
-2. **고정비 누수 포인트 차단**: ${strat.step2}
-
-3. **맞춤 특가 및 혜택 활용**: ${strat.step3}
+${res.summary}
 
 ---
 
-## 💬 [24px 소제목] 4. ${preset.title} 자주 묻는 질문 (FAQ)
+## 3. ${narrative.section3Title}
+
+${narrative.purchaseBridge}
+
 ${faqList}
 
 ---
 
-## 🔗 [24px 소제목] 5. 내 조건 3초 무료 계산기 직행 링크 & 절약 아이템
+## 4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기
 
-${story.ctaLine || `내 조건(${strat.inputHint})을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.`}
+집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!
 
-👉 **[무료 3초 계산기 바로가기] ${preset.title} 전용 시뮬레이터**:
+👉 **내 조건으로 3초 무료 계산해 보기**:
 ${targetUrl}
-
-🏠 **[머니핏 6대 생활비 3초 계산기 전체 모음 (${preset.category})]:**
-${calcHubUrl}
-
-🛍️ **[네이버 브랜드커넥트 참고 아이템 1] ${bcItem.label}**:
-${brandConnectUrl}
-
-🛍️ **[네이버 브랜드커넥트 참고 아이템 2] ${bcItem.subLabel}**:
-${brandConnectSubUrl}
-
-🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소**:
-${officialCafeUrl}
-
-*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 ${uniqueHashtags}`;
 
-  // 2. Jisik-iN High-Value "Aljja" Expert Cheat Sheet (100% pure informational, bookmark-worthy formulas & checklist -> natural homepage inflow)
-  const plainMetrics = res.metrics.map(m => `• ${m.label}: ${m.val}`).join('\n');
-  const firstFaq = (preset.faq && preset.faq[0]) ? `\n[💡 가장 많이 헷갈려 하시는 부분]\nQ. ${preset.faq[0].question || preset.faq[0].q}\nA. ${preset.faq[0].answer || preset.faq[0].a}\n` : '';
-  const jisikinPost = `[📌 안티밴 안전 수칙: 하루 3~5건 이내 · 최소 1~2시간 간격 · 상업성 쇼핑링크 0개 · 읽자마자 저장하고 싶어지는 '알짜 공식 요약본' + 3컷 영수증 이미지(slide-3.png) 첨부]
+  // 2. Jisik-iN Answer (100% Human Experience-Sharing Tone + Comment Link Split)
+  const jisikinPost = `안녕하세요! 저도 얼마 전에 **${preset.title}** 문제로 똑같이 고민하다가, 카더라 통신 말고 실제 수식에 숫자를 직접 넣어서 비교해 본 적이 있어 반가운 마음에 답변 남깁니다 :)
 
-안녕하세요! ${query} 기준이 헷갈려서 고민이 많으시겠어요.
-광고성 글 말고 실제 **${strat.authoritySource}** 기준으로 계산한 **알짜 핵심 수치와 체크리스트**만 딱 정리해 드릴게요.
+결론부터 말씀드리면 이 조건에서는 **${res.headline}** 수준으로 차이가 벌어지는데요. 바쁘신 질문자님을 위해 제가 계산해 본 핵심 숫자부터 깔끔하게 짚어드릴게요!
 
-1️⃣ 질문자님 조건(${preset.title}) 핵심 계산 결과
-• 한 줄 결론: **${res.headline} (${res.badge})**
-• 기존 방식(${badLabel}): ${badVal}
-• 최적 방식(${goodLabel}): ${goodVal} ➔ **${diffVal}**
-${plainMetrics}
+1. 한눈에 보는 핵심 계산 결과
+• ${badLabel}: ${badVal}
+• ${goodLabel}: ${goodVal}
+• 세부 수치 요약: ${m0.label} ${m0.val || '-'} / ${m1.label} ${m1.val || '-'} / ${m2.label} ${m2.val || '-'}
 
-👉 내 조건(${strat.inputHint}) 3초 무료 계산기 바로가기:
-${targetUrl}
+2. 왜 이렇게 차이가 날까요?
+${narrative.mechanismDeepDive}
 
-2️⃣ 실패 없는 결정을 위한 3가지 핵심 기준 (이것만 기억하세요!)
-① [기준 확인] ${strat.step1}
-② [손실 방지] ${strat.step2}
-③ [실전 팁] ${strat.step3}
-${firstFaq}
-3️⃣ 내 세부 조건(${strat.inputHint}) 1:1 대입해보기
-${story.factLine || res.summary}
-집마다 ${strat.inputHint} 숫자가 조금씩 달라서, 결정하시기 전에 본인 숫자를 직접 넣어서 손익분기점을 한 번 찍어보시는 게 가장 정확합니다.
+3. 실패 없이 아끼는 현실 팁
+${narrative.purchaseBridge}
 
-제가 계산할 때 썼던 무료 계산기 페이지 남겨드릴게요(회원가입이나 앱 설치 없이 숫자만 넣으면 3초 만에 위 비교표가 바로 나옵니다).
-👉 [무료 3초 계산기 바로가기] ${preset.title}:
-${targetUrl}
-🏠 [전체 6대 생활비 계산기 포털]:
-${calcHubUrl}
+질문자님의 세부 조건을 살짝 바꿔서 직접 영수증을 뽑아보고 싶으시다면 네이버나 구글 검색창에 「머니핏 ${query} 계산기」 (또는 truthofmarket)를 검색해 보세요! 로그인이나 광고 없이 숫자만 넣으면 3초 만에 확인하실 수 있어서 정말 편합니다. 고민 해결에 작은 도움이 되셨길 바라며, 답변이 도움 되셨다면 채택 부탁드립니다! 좋은 하루 보내세요 :)
 
-도움이 되셨다면 채택 부탁드리며, 추가로 궁금한 숫자 있으시면 댓글 남겨주세요!`;
+[답변 등록 1분 뒤 '대댓글(의견)'에 복사해 넣을 안내 문구]
+질문자님! 혹시 일일이 검색하시기 번거로우실까 봐 제가 직접 숫자 넣어봤던 무료 3초 계산기 주소도 댓글에 살짝 남겨둡니다 :) 회원가입 전혀 없어요! ➔ ${targetUrl}`;
 
-  // 3. Community / Cafe High-Readability Whitepaper Post (24px Subheadings + 3-Second Receipt Box + 1-Line Bullets + Top/Bottom Direct Clickable Links)
-  const firstMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label} ${res.metrics[0].val}` : res.headline;
-  const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
-  const cafeCommentPost = `[📌 네이버 카페(moneyfitlab) & 커뮤니티 초가독성 백서형 정보글 — 24px 굵은 소제목 + 19px 3초 영수증 요약 + 4컷 웹툰(slide-1~4.png) + 상·하단 직행 링크 내장]
+  // 3. Cafe / Community Post
+  const cafeCommentPost = `## [정보공유] ${preset.title}, 감으로 결정하기 전에 직접 계산해 본 비교 표 공유해요!
 
-## 💡 [3초 핵심 요약] ${preset.title} 실측 비교 영수증
+카페 회원님들 안녕하세요! 😊
+얼마 전부터 ${preset.title} 때문에 계속 고민하다가, 남들 카더라 후기만 보고 결정하면 괜히 생돈 날릴 것 같아서 실제 공식에 숫자를 하나씩 넣어서 비교표를 만들어 봤어요.
 
-• **그냥 유지할 때(${badLabel})**: **${badVal}**
-• **조건 바꿨을 때(${goodLabel})**: **${goodVal}** (➔ **${diffVal}**)
-• **핵심 지표 (${preset.category})**: ${firstMetric} / ${secondMetric}
+### 💡 1. 한눈에 보는 Before vs After 핵심 비교
+• ✗ ${badLabel}: ${badVal}
+• ✓ ${goodLabel}: ${goodVal}
+• ★ 핵심 체감 차이: ${diffDisplay}
 
-👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(${strat.inputHint}) 넣어서 1원 단위 영수증 바로 뽑기**:
-${targetUrl}
+### 📊 2. 왜 이렇게 차이가 날까요?
+${narrative.empathyIntro}
 
----
-
-## 📋 1. ${query} 조건별 실측 비교 데이터표
+${narrative.mechanismDeepDive}
 
 ${tableMd}
 
-${sourcedCafeSection}
----
+### ✅ 3. 돈 아끼면서 실패 없는 실전 팁
+${narrative.purchaseBridge}
 
-## ✅ 2. 결정 전 호구 막는 3단계 핵심 체크리스트
+👉 내 조건 넣어서 3초 만에 비교 영수증 뽑아보기 (무료/무가입):
+${targetUrl}`;
 
-1️⃣ **${strat.inputHint} 확인**: ${strat.step1}
-
-2️⃣ **고정비 누수 차단**: ${strat.step2}
-
-3️⃣ **실전 절약 팁**: ${strat.step3}
-
----
-
-## 🔗 3. 내 조건 1:1 무료 계산기 바로가기 (회원가입·설치 없음)
-
-**${strat.authoritySource}** 수식에 내 조건(${strat.inputHint}) 숫자를 직접 넣으면 3초 만에 손익분기점이 계산됩니다!
-
-👉 **[무료 3초 계산기 바로가기] ${preset.title}**:
-${targetUrl}
-
-🏠 **[머니핏 6대 생활비 3초 손익계산기 전체 모음]**:
-${calcHubUrl}`;
-
-  // 4. Threads / Instagram High-Readability Mobile Copy (Airy line breaks + visual receipt + direct link)
+  // 4. Threads / Blind 3-Line Copy
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
-  const threadsPost = `🐾 [${epTitle}] 3초 영수증 팩트체크!\n\n💬 ${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n\n❌ ${badLabel}: ${badVal}\n✅ ${goodLabel}: ${goodVal} (${diffVal})\n📊 핵심 지표: ${keyMetric}${sourcedThreadsLine}\n${story.factLine || res.summary}\n\n👉 내 조건(${strat.inputHint}) 3초 무료 계산기 & 소싱템 비교:\n${targetUrl}\n🏠 전체 계산기 모음: ${calcHubUrl}`;
+  const threadsPost = `🐾 [${epTitle}] 3초 영수증 팩트체크!\n\n❌ ${badLabel}: ${badVal}\n✅ ${goodLabel}: ${goodVal}\n💰 핵심 체감 차이: ${diffDisplay} (${keyMetric})\n\n👉 내 조건 3초 무료 계산기 바로가기:\n${targetUrl}`;
 
-  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Enforces 24px Bold Subheadings, 19px Bold Callouts, 16px Airy Paragraphs, and Built-In Top + Bottom Links)
-  const sourcedHtmlBlock = topCp1 ? `
-  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
-    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
-    <div style="font-weight:800;color:#0f172a;">• 1위 모델: ${topCp1.productName} (<span style="color:#e11d48;font-weight:900;">${topCp1.productPriceFormatted}</span>)</div>
-    ${topCp2 ? `<div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: ${topCp2.productName} (<span style="color:#e11d48;font-weight:800;">${topCp2.productPriceFormatted}</span>)</div>` : ''}
-    <div style="margin-top:8px;"><a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(${targetUrl})에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
-  </div>` : '';
-
-  const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:22px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.75;">
-  <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & ${epTitle} (${charName} × ${expertName})</div>
-  <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 ${homeFeedTitle}</h2>
-  <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="${targetUrl}?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] ${preset.title} (${targetUrl}) ↗</a>
-  </div>
-  <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
-    <img src="${blogHomeThumbUrl}" alt="${preset.title} 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
-    <img src="${webtoonGridUrl}" alt="${preset.title} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
-  </a>
-  <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin-bottom:16px;font-size:19px;line-height:1.65;">
-    <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ ${badLabel}: <strong>${badVal}</strong></div>
-    <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
-    <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: ${diffVal}</div>
-  </div>
-  ${sourcedHtmlBlock}
-  <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">${res.summary}</p>
-  <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
-    <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:14px 22px;background:#0f172a;color:#ffffff;font-size:18px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (${targetUrl}) ↗</a>
-    <a href="${calcHubUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 18px;background:#1e40af;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (${calcHubUrl}) ↗</a>
-    <a href="${brandConnectUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 20px;background:#03c75a;color:#ffffff;font-size:16px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: ${bcItem.label} ↗</a>
-  </div>
-</div>`;
+  // 5. Naver SmartEditor ONE Clean Copy-Paste HTML
+  const naverSmartEditorHtml = buildSmartEditorHtmlForPreset(preset, res, resolvedStory, narrative, targetUrl);
 
   return {
     id: preset.id,
@@ -551,12 +425,18 @@ ${calcHubUrl}`;
 function generateAllViralPosts(currentSiteUrl = siteUrl) {
   if (!fs.existsSync(VIRAL_DIR)) {
     fs.mkdirSync(VIRAL_DIR, { recursive: true });
+  } else {
+    for (const f of fs.readdirSync(VIRAL_DIR)) {
+      const fp = path.join(VIRAL_DIR, f);
+      if (fs.statSync(fp).isFile()) fs.unlinkSync(fp);
+    }
   }
 
   const viralPostsMap = {};
   const viralPostsList = [];
 
-  console.log(`\nGenerating 36 Viral Post Bundles (target base: ${currentSiteUrl}) ...`);
+  console.log(`\nPurging legacy viral_posts and generating 36 v4.0 Human-Written Viral Post Bundles (target base: ${currentSiteUrl}) ...`);
+
 
   for (const preset of PRESETS) {
     const bundle = buildCopyBundle(preset, currentSiteUrl);

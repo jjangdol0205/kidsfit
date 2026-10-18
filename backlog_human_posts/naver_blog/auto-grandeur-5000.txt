@@ -1,71 +1,115 @@
-[🛡️ 안티밴(Anti-Ban) 안전 발행 수칙: 일 최대 2~3건 상한 / 게시물 간 최소 2~4시간 쿨다운 필수 / 본문 상·하단 truthofmarket.com 외부링크 & 24px 소제목·19px 영수증 서식 필수]
-[제목] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익, 감으로 결정하기 전에 꼭 확인해야 할 숫자 정리
+<!--
+================================================================================
+[발행자 전용 체크리스트 — 복붙 시 이 주석 박스는 제외하고 아래 본문부터 복사하세요]
+• 타겟 프리셋: auto-grandeur-5000 (개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익)
+• 첨부할 웹툰 이미지 2장:
+  1) 도입부 요약 박스 위/아래: sns_outbox/auto-grandeur-5000/slide-1.png
+  2) 2번 비교표 섹션 상단: sns_outbox/auto-grandeur-5000/slide-3.png
+• 안티밴(Anti-Ban) 원칙: 본문 하단 클라이맥스에 단 1회(https://truthofmarket.com/preset/auto-grandeur-5000)만 자연스럽게 삽입됨
+================================================================================
+-->
 
-====================================================================
-## ★ [24px 굵은 소제목] 바쁜 분들을 위한 3초 핵심 비교 영수증 & 무료 계산기
-====================================================================
-**[19px 굵게]** ✗ 취등록세 350만 부담 일반 할부: 350만 원
-**[19px 굵게]** ✓ 4년 1,440만 절세 반영 장기렌트: 1643만 원 ➔ ★ 핵심 손익 차이: [신차 장기렌트] 총 2,733만 원 이득! ([신차 장기렌트] 총 2,733만 원 이득!)
+# 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 — 직접 계산해보고 정리한 현실 비교 노트
 
-**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 내 조건 대입해 보기:
-https://truthofmarket.com/preset/auto-grandeur-5000
+### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
+- **✗ 취등록세 350만 부담 일반 할부**: **63,700,000원**
+- **✓ 4년 1,440만 절세 반영 장기렌트**: **36,370,000원**
+- **★ 핵심 체감 차이**: **-2,733만 원 차이 ([신차 장기렌트] 총 2,733만 원 이득!)**
 
-주변 지인들과 이야기하다 보면 자동차·TCO 문제로 생각보다 많은 비용을 손해 보고 계신 경우가 종종 있습니다. 종합소득세율 24% 구간인 개인사업자가 5,000만 원 그랜저를 출고할 때, 일반 할부와 장기렌트의 4년 뒤 실부담금 차이는 얼마나 날까요? 그래서 오늘은 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 조건을 기준으로 실제 데이터상 어떤 차이가 발생하는지 차분히 기록해 두려고 합니다.
+---
 
-바쁘신 분들을 위해 계산된 요약치부터 정리해 드리면 **[신차 장기렌트] 총 2,733만 원 이득!**라는 결과가 나옵니다. 세부 항목별로는 취등록세(7%)는 약 350만 원, 절세·보험 절감은 1643만 원, 총 절약액은 2,733만 원 수준으로 산출되어, 사전에 숫자를 따져보는 것이 왜 중요한지 잘 보여줍니다.
+## 1. 출고가 5,000만 원 신차, 월 납입금 착시 걷어낸 4년 총유지비(TCO) 비교
 
---------------------------------------------------------------------
-## 1. [24px 굵은 소제목] 공인 산출 공식 & 세부 기준 변수 팩트체크
---------------------------------------------------------------------
-그렇다면 왜 이런 비용 구조가 만들어지는지 실제 적용된 기준 변수를 통해 살펴볼게요.
+신차를 뽑을 때 대리점이나 견적 사이트에서 보여주는 '월 납입금 OO만 원'이라는 숫자만 보고 할부가 나은지, 장기렌트나 리스가 나은지 결정하기가 참 어렵죠. 저도 처음 견적서를 받아봤을 때는 월 납입금만 비교했다가, 막상 차를 등록할 때 한 번에 내야 하는 취등록세(7%)와 매년 돌아오는 자동차세·보험료가 빠져 있다는 걸 뒤늦게 깨달았습니다.
 
-업무용 승용차 연간 1,500만 원 비용처리 한도를 48개월 동안 꽉 채우면 세금 감면액만 1,440만 원에 달해 초기 취등록세(350만 원) 면제까지 합쳐 압도적인 차이가 납니다. 차량 총소유비용(TCO) 비교 기준은 출고가 5,000만 원, 계약 기간 48개월(4년), 선납금 비율 20%, 할부 금리 연 5.5%, 운전자 조건 만 26세 이상 표준 보험 구간 및 과세표준 소득세율 24% 사업자 비용처리(절세액 14,400,000원) 시나리오입니다. 단순 월 납입금 착시를 걷어내고 초기 취등록세(3,500,000원)와 4년 누적 자동차세·보험료까지 모두 합산해 할부 총액(63,700,000원)과 장기렌트 총액(36,370,000원)을 1:1로 대조했습니다.
+진짜 어느 쪽이 내 통장에서 돈이 덜 나가는지 알려면, 계약 기간(**48개월**) 동안 들어가는 세금·보험료·할부 이자, 그리고 내가 사업자인지 직장인지에 따른 절세 금액까지 전부 더한 **총소유비용(TCO)**을 나란히 놓고 봐야 정확합니다.
 
---------------------------------------------------------------------
-## 2. [24px 굵은 소제목] 조건별·구간별 1원 단위 실측 손익 비교표
---------------------------------------------------------------------
-선택지를 바꿨을 때 체감 비용과 손익분기점이 어떻게 달라지는지 대조해 본 결과입니다.
+차량가 **5,000만 원**, 선납금 **20%**, 할부 금리 **연 5.5%**, 계약 기간 **48개월(4년)** 조건으로 1원 단위까지 직접 계산기를 돌려봤습니다.
 
-• **차량 취등록세 (7%)** 시나리오를 보면 3,500,000원 | 0원 (대여료 산입) | 초기 목돈 350만 세이브 | 유동성 확보 수준으로 확인됩니다.
-• **4년 보험료 및 자동차세** 기준의 경우 5,800,000원 / 0원 (렌트료 포함) / 보험료/세금 비용 0원 / 렌트사 일괄 대행 데이터를 보입니다.
-• **사업자 비용처리 절세 혜택** 옵션을 선택하면 감가상각 연 800만 한도 · 연 1,500만 원 전액 비용처리 · 4년 총 1,440만 원 절세 (24%) · 세금 합법적 감면 결과로 이어집니다.
-• **4년 총 실지출 TCO 비교** 조건에서는 64,700,000원 → 60,600,000원 → 장기렌트 410만 원 최종 승리! → 사업자 경비처리 최적화 흐름으로 집계됩니다.
+신차 할부로 구매할 때는 초기 취등록세 **3,500,000원**과 4년 치 보험료·자동차세를 모두 합쳐 총 **63,700,000원**이 들어가고, 장기렌트는 보험·세금 포함 조건(소득세율 24% 비용처리 절세액 14,400,000원 반영)으로 총 **36,370,000원**이 산출되어 두 방식 사이에 무려 **-2,733만 원 차이**의 격차가 벌어졌습니다.
 
-이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다.
+---
+
+## 2. 조건별로 직접 대조해 본 상세 비교표
+
+| 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
+| :--- | :--- | :--- |
+| **한줄 결론** | **[신차 장기렌트] 총 2,733만 원 이득!** | 🏆 48개월 총비용 승자 판정 |
+| **취등록세(7%)** | **350만 원** | 실측 산출 기준 |
+| **절세·보험 절감** | **1643만 원** | 권장 적용 기준 |
+| **총 절약액** | **2,733만 원** | 체감 유지 기준 |
+
+| 지출 및 절세 항목 (48개월) | 신차 할부 구매 | 신차 장기렌트 운용 | 사업자 실질 손익 | 세무 혜택 분석 |
+| :--- | :--- | :--- | :--- | :--- |
+| 차량 취등록세 (7%) | 3,500,000원 | 0원 (대여료 산입) | 초기 목돈 350만 세이브 | 유동성 확보 |
+| 4년 보험료 및 자동차세 | 5,800,000원 | 0원 (렌트료 포함) | 보험료/세금 비용 0원 | 렌트사 일괄 대행 |
+| 사업자 비용처리 절세 혜택 | 감가상각 연 800만 한도 | 연 1,500만 원 전액 비용처리 | 4년 총 1,440만 원 절세 (24%) | 세금 합법적 감면 |
+| 4년 총 실지출 TCO 비교 | 64,700,000원 | 60,600,000원 | 장기렌트 410만 원 최종 승리! | 사업자 경비처리 최적화 |
 
 취등록세(350만)·보험·절세 합산 시 [신차 장기렌트]가 2,733만 원 유리
 
---------------------------------------------------------------------
-## 3. [24px 굵은 소제목] 자주 묻는 핵심 질문(FAQ) & 실전 체크리스트
---------------------------------------------------------------------
-Q1. 더불어 주변에서 자주 물어보시는 핵심 질문으로 **"사업자 장기렌트 시 연간 최대 비용처리 한도는 얼마인가요?"** 부분도 빼놓을 수 없습니다.
-➔ 결론부터 정리하자면 세법상 업무용 승용차는 감가상각비(렌트료 중 원금 상당액) 연간 800만 원과 유지비(유류비, 통행료 등) 700만 원을 합쳐 연간 최대 1,500만 원까지 운행일지 작성 없이도 100% 전액 필요경비로 인정받습니다.
+---
 
-Q2. 많은 분들이 검색창에 가장 먼저 입력해 보시는 **"그랜저 5,000만 원 차량 기준 종합소득세율 24% 구간의 실제 절세액은?"**에 대해서도 명확한 기준을 정리해 둡니다.
-➔ 실제 약관과 현장의 기준을 대조해 보면 연 1,500만 원씩 4년간 총 6,000만 원을 경비처리할 경우, 종합소득세율 24%에 지방소득세 2.4%를 더한 26.4%가 적용되어 4년간 약 1,584만 원의 세금을 합법적으로 감면받게 됩니다.
+## 3. 계약 전 내 소득구간 대조법 & 딜러 서비스 거품 빼는 출고 준비
 
-Q3. 추가로 현장에서 자주 나오는 질문인 **"개인사업자가 할부로 사면 왜 건강보험료가 오르나요?"**에 대한 객관적인 팩트도 함께 살펴보겠습니다.
-➔ 전문가들이 공통적으로 조언하는 해답을 보면 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강보험료 부과 대상 자산에 차량 가액이 합산되어 매달 건강보험료가 오릅니다. 장기렌트는 렌트사 자산이므로 건보료가 1원도 오르지 않습니다.
+결국 일반 직장인(근로소득자)이신지, 아니면 종합소득세율 24~35% 구간의 개인·법인 사업자이신지에 따라 정답이 완전히 달라집니다. 계약서에 도장 찍기 전에 내 선납금 비율과 소득세율을 넣어서 어느 쪽이 총비용에서 수백만 원을 아끼는지 먼저 확인해 보시는 게 필수예요.
 
---------------------------------------------------------------------
-## 4. [24px 굵은 소제목] 내 조건 맞춤 3초 무료 계산기 바로가기 (외부링크)
---------------------------------------------------------------------
-차량 가격과 내 과세표준 세율(%)을 선택해 48개월간 실제로 아끼는 세금과 최종 TCO를 확인해 보세요.
+아울러 신차 출고할 때 딜러 서비스 품목에 비싼 할부 수수료를 녹이는 대신 현금 지원을 최대로 받으시고, **불스원샷 2개입 & 활성탄 에어컨필터**이나 **신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대 (18,900원)** 같은 필수 용품은 직접 로켓배송 특가로 챙기시면 초기 출고 비용을 한 번 더 아끼실 수 있습니다.
 
-결국 후회 없는 선택은 막연한 추천이 아니라 내 조건을 넣었을 때 찍히는 정확한 숫자에서 시작되더라고요. 아래 남겨드리는 무료 웹 시뮬레이터에서 슬라이더만 움직여도 실시간으로 손익분기점이 계산되니 본인 상황에 맞춰 테스트해 보시길 권해드립니다.
+### Q1. 사업자 장기렌트 시 연간 최대 비용처리 한도는 얼마인가요?
+- **답변:** 세법상 업무용 승용차는 감가상각비(렌트료 중 원금 상당액) 연간 800만 원과 유지비(유류비, 통행료 등) 700만 원을 합쳐 연간 최대 1,500만 원까지 운행일지 작성 없이도 100% 전액 필요경비로 인정받습니다.
 
-🔗 내 조건으로 3초 계산해 보기: https://truthofmarket.com/preset/auto-grandeur-5000
-(또는 검색창에 **truthofmarket** 검색)
+### Q2. 그랜저 5,000만 원 차량 기준 종합소득세율 24% 구간의 실제 절세액은?
+- **답변:** 연 1,500만 원씩 4년간 총 6,000만 원을 경비처리할 경우, 종합소득세율 24%에 지방소득세 2.4%를 더한 26.4%가 적용되어 4년간 약 1,584만 원의 세금을 합법적으로 감면받게 됩니다.
 
-긴 글 읽어주셔서 감사드리며, 다음에도 실생활에 도움이 되는 탄탄한 비교 분석으로 찾아오겠습니다!
+### Q3. 개인사업자가 할부로 사면 왜 건강보험료가 오르나요?
+- **답변:** 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강보험료 부과 대상 자산에 차량 가액이 합산되어 매달 건강보험료가 오릅니다. 장기렌트는 렌트사 자산이므로 건보료가 1원도 오르지 않습니다.
 
-**[19px 굵게]** ▶ [무료 3초 계산기] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 실시간 시뮬레이터:
+---
+
+## 4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기
+
+집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!
+
+👉 **내 조건으로 3초 무료 계산해 보기**:
 https://truthofmarket.com/preset/auto-grandeur-5000
 
-**[19px 굵게]** ▶ [머니핏 6대 생활비 손익계산기 전체 모음]:
-https://truthofmarket.com/?calc=auto
+#생활비절약 #고정비다이어트 #머니핏 #가계부정리
 
-🤝 **[이웃 추가하고 생활비 계산표 받아보세요]**
-조만간 후속편으로 **「3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교」** 1원 단위 비교 분석 글도 업로드할 계획이에요. 오른쪽 위 **서로이웃 신청** 환영하며, 글이 도움 되셨다면 하단 **공감 하트(❤️)** 한 번씩 부탁드립니다! 댓글로 궁금한 조건 적어주시면 빠르게 답글 드릴게요 :)
+---
 
-#그랜저장기렌트 #개인사업자차량절세 #그랜저하이브리드 #업무용승용차비용처리 #신차리스렌트비교 #머니핏 #고정비다이어트 #서로이웃환영
+## 📋 [스마트에디터 ONE 복붙용 클린 HTML 코드]
+```html
+<!-- [발행 시 1번 그림 첨부 위치: sns_outbox/auto-grandeur-5000/slide-1.png] -->
+<div style="background:#f8fafc;border-left:6px solid #10b981;padding:18px 20px;border-radius:0 14px 14px 0;margin:0 0 24px 0;">
+  <p class="se-text-paragraph" style="font-size:19px;font-weight:900;color:#0f172a;margin:0 0 10px 0;"><span class="se-fs-fs19"><b>🧾 바쁜 분들을 위한 3초 핵심 비교 요약</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#be123c;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>취등록세 350만 부담 일반 할부</b>: <b>63,700,000원</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>4년 1,440만 절세 반영 장기렌트</b>: <b>36,370,000원</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#0f172a;margin:0;"><span class="se-fs-fs16">• <b>핵심 체감 차이</b>: <b>-2,733만 원 차이 ([신차 장기렌트] 총 2,733만 원 이득!)</b></span></p>
+</div>
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>1. 출고가 5,000만 원 신차, 월 납입금 착시 걷어낸 4년 총유지비(TCO) 비교</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">신차를 뽑을 때 대리점이나 견적 사이트에서 보여주는 '월 납입금 OO만 원'이라는 숫자만 보고 할부가 나은지, 장기렌트나 리스가 나은지 결정하기가 참 어렵죠. 저도 처음 견적서를 받아봤을 때는 월 납입금만 비교했다가, 막상 차를 등록할 때 한 번에 내야 하는 취등록세(7%)와 매년 돌아오는 자동차세·보험료가 빠져 있다는 걸 뒤늦게 깨달았습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">진짜 어느 쪽이 내 통장에서 돈이 덜 나가는지 알려면, 계약 기간(<b>48개월</b>) 동안 들어가는 세금·보험료·할부 이자, 그리고 내가 사업자인지 직장인지에 따른 절세 금액까지 전부 더한 <b>총소유비용(TCO)</b>을 나란히 놓고 봐야 정확합니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">차량가 <b>5,000만 원</b>, 선납금 <b>20%</b>, 할부 금리 <b>연 5.5%</b>, 계약 기간 <b>48개월(4년)</b> 조건으로 1원 단위까지 직접 계산기를 돌려봤습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">신차 할부로 구매할 때는 초기 취등록세 <b>3,500,000원</b>과 4년 치 보험료·자동차세를 모두 합쳐 총 <b>63,700,000원</b>이 들어가고, 장기렌트는 보험·세금 포함 조건(소득세율 24% 비용처리 절세액 14,400,000원 반영)으로 총 <b>36,370,000원</b>이 산출되어 두 방식 사이에 무려 <b>-2,733만 원 차이</b>의 격차가 벌어졌습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<!-- [발행 시 2번 그림 첨부 위치: sns_outbox/auto-grandeur-5000/slide-3.png] -->
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>2. 조건별로 직접 대조해 본 상세 비교표</b></span></p>
+<table style="width:100%;border-collapse:collapse;margin:18px 0;font-family:'Pretendard','Malgun Gothic',sans-serif;"><thead><tr><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">지출 및 절세 항목 (48개월)</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">신차 할부 구매</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">신차 장기렌트 운용</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">사업자 실질 손익</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">세무 혜택 분석</th></tr></thead><tbody><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">차량 취등록세 (7%)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">3,500,000원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">0원 (대여료 산입)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">초기 목돈 350만 세이브</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">유동성 확보</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">4년 보험료 및 자동차세</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">5,800,000원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">0원 (렌트료 포함)</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">보험료/세금 비용 0원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">렌트사 일괄 대행</td></tr><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">사업자 비용처리 절세 혜택</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">감가상각 연 800만 한도</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">연 1,500만 원 전액 비용처리</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">4년 총 1,440만 원 절세 (24%)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">세금 합법적 감면</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">4년 총 실지출 TCO 비교</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">64,700,000원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">60,600,000원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">장기렌트 410만 원 최종 승리!</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">사업자 경비처리 최적화</td></tr></tbody></table>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#334155;margin:14px 0 0 0;"><span class="se-fs-fs16">취등록세(350만)·보험·절세 합산 시 [신차 장기렌트]가 2,733만 원 유리</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>3. 계약 전 내 소득구간 대조법 & 딜러 서비스 거품 빼는 출고 준비</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">결국 일반 직장인(근로소득자)이신지, 아니면 종합소득세율 24~35% 구간의 개인·법인 사업자이신지에 따라 정답이 완전히 달라집니다. 계약서에 도장 찍기 전에 내 선납금 비율과 소득세율을 넣어서 어느 쪽이 총비용에서 수백만 원을 아끼는지 먼저 확인해 보시는 게 필수예요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">아울러 신차 출고할 때 딜러 서비스 품목에 비싼 할부 수수료를 녹이는 대신 현금 지원을 최대로 받으시고, <b>불스원샷 2개입 & 활성탄 에어컨필터</b>이나 <b>신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대 (18,900원)</b> 같은 필수 용품은 직접 로켓배송 특가로 챙기시면 초기 출고 비용을 한 번 더 아끼실 수 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q1. 사업자 장기렌트 시 연간 최대 비용처리 한도는 얼마인가요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 세법상 업무용 승용차는 감가상각비(렌트료 중 원금 상당액) 연간 800만 원과 유지비(유류비, 통행료 등) 700만 원을 합쳐 연간 최대 1,500만 원까지 운행일지 작성 없이도 100% 전액 필요경비로 인정받습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q2. 그랜저 5,000만 원 차량 기준 종합소득세율 24% 구간의 실제 절세액은?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 연 1,500만 원씩 4년간 총 6,000만 원을 경비처리할 경우, 종합소득세율 24%에 지방소득세 2.4%를 더한 26.4%가 적용되어 4년간 약 1,584만 원의 세금을 합법적으로 감면받게 됩니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q3. 개인사업자가 할부로 사면 왜 건강보험료가 오르나요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강보험료 부과 대상 자산에 차량 가액이 합산되어 매달 건강보험료가 오릅니다. 장기렌트는 렌트사 자산이므로 건보료가 1원도 오르지 않습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 14px 0;"><span class="se-fs-fs16">집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs19"><b>👉 내 조건으로 3초 무료 계산해 보기:</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;margin:0;"><span class="se-fs-fs16"><a href="https://truthofmarket.com/preset/auto-grandeur-5000" target="_blank" style="color:#059669;font-weight:800;text-decoration:underline;">https://truthofmarket.com/preset/auto-grandeur-5000</a></span></p>
+```

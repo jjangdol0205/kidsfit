@@ -103,6 +103,19 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
   const plainP1 = (sc.p1 || []).join(' ').replace(/\*\*/g, '');
   const plainP3 = (sc.p3 || []).join(' ').replace(/\*\*/g, '');
 
+  function cleanLabel(label, val) {
+    let l = String(label || '').trim();
+    const v = String(val || '').trim();
+    const parenMatch = l.match(/\(([^)]+)\)$/);
+    if (parenMatch && v.includes(parenMatch[1])) {
+      l = l.replace(/\s*\([^)]+\)$/, '').trim();
+    }
+    return l;
+  }
+
+  const badLabelClean = cleanLabel(t.badLabel, t.badVal);
+  const goodLabelClean = cleanLabel(t.goodLabel, t.goodVal);
+
   // Find next preset in the same category (or overall) for the Next-Episode Cliffhanger Hook
   const sameCatPresets = PRESETS.filter(p => (p.calc || p.calcKey) === preset.calcKey);
   const catIdx = sameCatPresets.findIndex(p => (p.id || p.slug) === preset.slug);
@@ -119,15 +132,15 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
     `💬 "${plainP1}" ➔ "${plainP3}"`,
     '',
     `🧾 [1원 단위 실측 비교]`,
-    `❌ ${t.badLabel}: ${t.badVal}`,
-    `✅ ${t.goodLabel}: ${t.goodVal}`,
+    `❌ ${badLabelClean}: ${t.badVal}`,
+    `✅ ${goodLabelClean}: ${t.goodVal}`,
     `💰 핵심 차이: ${t.diffVal}`,
     '',
     `👉 내 조건 3초 무료 계산기 바로가기:`,
     targetUrl,
     '',
     `⚖️ 쓰친님들의 현실 선택은?`,
-    `🅰️ 기존대로(${t.badLabel}) vs 🅱️ 바꾸고 ${t.diffVal}(${t.goodLabel})`,
+    `🅰️ ${badLabelClean} (${t.badVal}) vs 🅱️ ${goodLabelClean} (${t.goodVal})`,
     `👇 전체 6대 생활비 계산기 모음은 첫 댓글에!`
   ].join('\n');
 
@@ -150,12 +163,12 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
     `➔ "${plainP3}"`,
     '',
     `🧾 [한눈에 보는 3초 비교 영수증]`,
-    `❌ ${t.badLabel}: ${t.badVal}`,
-    `✅ ${t.goodLabel}: ${t.goodVal}`,
-    `💰 절약 효과: ${t.diffVal}`,
+    `❌ ${badLabelClean}: ${t.badVal}`,
+    `✅ ${goodLabelClean}: ${t.goodVal}`,
+    `💰 핵심 차이: ${t.diffVal}`,
     '',
     `✅ [호구 탈출 3초 액션 가이드]`,
-    `1️⃣ 우리 집은 1번(${t.badLabel}) vs 2번(${t.goodLabel})? 댓글 투표!`,
+    `1️⃣ 우리 집은 1번(${badLabelClean}) vs 2번(${goodLabelClean})? 댓글 투표!`,
     `2️⃣ 까먹기 전에 [저장📌] 해두고 고지서·견적서 나올 때 비교하기`,
     `3️⃣ @moneyfit2026 프로필 링크(${targetUrl})에서 3초 무료 계산기 돌리기!`,
     '',
@@ -166,8 +179,8 @@ function buildStoryForPreset(rawPreset, siteUrl = 'https://truthofmarket.com') {
   const facebookPost = [
     `🐾 [4컷 공감툰] ${sc.epTitle}`,
     '',
-    `❌ ${t.badLabel}: ${t.badVal}`,
-    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
+    `❌ ${badLabelClean}: ${t.badVal}`,
+    `✅ ${goodLabelClean}: ${t.goodVal} (${t.diffVal})`,
     '',
     `👉 내 조건 3초 무료 계산기 바로가기: ${targetUrl}`,
     `👇 전체 6대 생활비 계산기 주소는 첫 댓글에서도 확인 가능합니다!`
@@ -198,10 +211,26 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
   const p3 = (sc.p3 || []).join(' ').replace(/\*\*/g, '');
   const p4 = (sc.p4 || []).join(' ').replace(/\*\*/g, '');
 
+  function cleanLabel(label, val) {
+    let l = String(label || '').trim();
+    const v = String(val || '').trim();
+    const parenMatch = l.match(/\(([^)]+)\)$/);
+    if (parenMatch && v.includes(parenMatch[1])) {
+      l = l.replace(/\s*\([^)]+\)$/, '').trim();
+    }
+    return l;
+  }
+
+  const badLabelClean = cleanLabel(t.badLabel, t.badVal);
+  const goodLabelClean = cleanLabel(t.goodLabel, t.goodVal);
+  const isCatPreset = /cat|고양이|묘|냥|캣/i.test(`${preset.slug} ${preset.title}`);
+
   const SHOPPING_CONNECT_MAP = {
     electric: { keyword: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (수수료 8% · 39,800원)', url: 'https://naver.me/xm0ZVnAW', label: '🛒 네이버 쇼핑커넥트 에어컨 냉방효율 2배 서큘레이터 특가' },
     diet: { keyword: '한끼통살 소스 통 닭가슴살 100g 20종 10개입 (수수료 6% · 25,900원)', url: 'https://naver.me/xvClW9nJ', label: '🛒 네이버 쇼핑커넥트 한끼통살 닭가슴살 최저가' },
-    pet: { keyword: '라비앙독 강아지 가수분해 연어 사료 4.8kg (수수료 8% · 36,900원)', url: 'https://naver.me/xAfcU6Im', label: '🛒 네이버 쇼핑커넥트 가수분해 대용량 사료 특가' },
+    pet: isCatPreset
+      ? { keyword: '맞춤 저알러지 가수분해 캣 사료 & 정량 급식기 (수수료 8% · 36,900원)', url: 'https://naver.me/xAfcU6Im', label: '🛒 네이버 쇼핑커넥트 반려묘 맞춤 영양 사료 특가' }
+      : { keyword: '라비앙독 강아지 가수분해 연어 사료 4.8kg (수수료 8% · 36,900원)', url: 'https://naver.me/xAfcU6Im', label: '🛒 네이버 쇼핑커넥트 가수분해 대용량 사료 특가' },
     room: { keyword: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기 (수수료 5% · 건당 39,950원)', url: 'https://naver.me/GgUlTvYj', label: '🛒 네이버 쇼핑커넥트 로보락 신형 로봇청소기 특가' },
     auto: { keyword: '아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (수수료 5% · 98,980원)', url: 'https://naver.me/G5kYoDj6', label: '🛒 네이버 쇼핑커넥트 2채널 와이파이 블랙박스 특가' },
     telecom: { keyword: '티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 공유기 (수수료 5% · 40,900원)', url: 'https://naver.me/FpwR436o', label: '🛒 네이버 쇼핑커넥트 Wi-Fi 6 기가 공유기 특가' }
@@ -214,7 +243,7 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
   const pinUrl = `${cleanSiteUrl}/preset/${preset.slug}?src=pinterest_pin`;
 
   return [
-    `# 🚀 [${preset.title}] 전사 옴니채널 웹툰 홍보 키트 (100% 저작권 안전 머니핏 오리지널 × 네이버 쇼핑커넥트)`,
+    `# 🚀 [${preset.title}] 전사 옴니채널 웹툰 홍보 키트 (100% 저작권 안전 머니핏 오리지널)`,
     ``,
     `- **슬러그**: \`${preset.slug}\``,
     `- **에피소드**: ${epTitle}`,
@@ -225,21 +254,21 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     ``,
     `---`,
     ``,
-    `## 1️⃣ 🟢 네이버 클립 (Naver Clip) & 네이버 블로그 — 공식 [네이버 쇼핑커넥트] 1순위 연동 (B계정 \`expertise333\` 발급 링크 탑재!)`,
-    `- **핵심 전략**: 네이버 클립·블로그에서는 외부 타사 커머스/리다이렉트 링크 대신 **B계정(\`expertise333\`, Workspace \`989959114454560\`)에서 공식 발급한 [네이버 쇼핑커넥트 단축링크(\`${scItem.url}\`) 및 쇼핑 스티커]**를 부착하여 저품질·외부링크 페널티를 100% 원천 차단하고, 네이버 클립 피드 노출 가산점 + N페이 구매 수수료(직접 5~8% + 24시간 간접 1.8%)를 확보합니다!`,
+    `## 1️⃣ 🟢 네이버 클립 (Naver Clip) & 네이버 블로그 — 공식 [네이버 쇼핑커넥트] 연동`,
+    `- **핵심 전략**: 네이버 클립·블로그에서는 **공식 발급한 [네이버 쇼핑커넥트 단축링크(\`${scItem.url}\`) 및 쇼핑 스티커]**를 부착하여 저품질·외부링크 페널티를 원천 차단하고, 클립 피드 노출 가산점과 N페이 구매 수수료를 확보합니다.`,
     `- **업로드 파일**: \`sns_outbox/${preset.slug}/clip.mp4\` (10초 세로형 영상) 또는 \`slide-1.png ~ slide-4.png\``,
-    `- **🛍️ 발급 완료된 쇼핑커넥트 상품**: \`${scItem.keyword}\``,
+    `- **🛍️ 쇼핑커넥트 추천 품목**: \`${scItem.keyword}\``,
     `- **🔗 공식 쇼핑커넥트 제휴 URL**: \`${scItem.url}\``,
     `- **🏷️ 쇼핑 스티커 문구**: \`${scItem.label}\``,
     `- **클립·블로그 제목 (복붙용)**:`,
     `\`\`\`text`,
-    `🦊 여우실장 3초 영수증 팩트체크! ${preset.title} ${t.diffVal} 아끼는 현실 꿀팁`,
+    `🐾 ${preset.title} — 3초 비교 영수증 (${t.diffVal})`,
     `\`\`\``,
     `- **클립·블로그 캡션 & 해시태그 (복붙용 — 공식 쇼핑커넥트 링크 포함)**:`,
     `\`\`\`text`,
     `"${p1}" ➔ "${p3}" 🧾`,
-    `❌ ${t.badLabel}: ${t.badVal}`,
-    `✅ ${t.goodLabel}: ${t.goodVal} (${t.diffVal})`,
+    `❌ ${badLabelClean}: ${t.badVal}`,
+    `✅ ${goodLabelClean}: ${t.goodVal} (${t.diffVal})`,
     ``,
     `${scItem.label}: ${scItem.url}`,
     `🔎 내 조건 3초 무료 계산기는 네이버에 [ 머니핏 ]을 검색해보세요!`,
@@ -253,10 +282,10 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     `- **업로드 이미지**: \`slide-1.png\`, \`slide-2.png\`, \`slide-3.png\` (1~3컷 영수증 팩트체크 첨부!)`,
     `- **본문 원고 (복붙용)**:`,
     `\`\`\`text`,
-    `동네 이웃님들 혹시 ${preset.title} 계산해보신 분 계신가요? 😭`,
-    `저는 귀찮아서 그냥(${t.badLabel}: ${t.badVal}) 썼는데,`,
-    `옆자리 여우 실장님이 3초 영수증 계산기 돌려보더니 바꾸면(${t.goodLabel}: ${t.goodVal}) ${t.diffVal}이나 차이 난다고 알려주시네요;;`,
-    `혹시 동네 분들은 어떻게 쓰고 계세요?`,
+    `동네 이웃님들 혹시 ${preset.title} 직접 계산해보신 분 계신가요? 😭`,
+    `저는 귀찮아서 그냥 기존 방식(${badLabelClean}: ${t.badVal})으로 알고 있었는데,`,
+    `방금 3초 영수증 계산기 돌려보니까 [${goodLabelClean}: ${t.goodVal}] 기준으로 맞추는 게 (${t.diffVal}) 훨씬 낫다고 나오네요!`,
+    `혹시 동네 분들은 어떻게 하고 계세요?`,
     `\`\`\``,
     `- **첫 댓글 셀프 좌표 (복붙용)**:`,
     `\`\`\`text`,
@@ -268,12 +297,12 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     ``,
     `## 3️⃣ 🏢 직장인 블라인드(Blind) · 🎓 에브리타임 · 🤱 맘카페 맞춤 원고`,
     `- **업로드 이미지**: \`webtoon-grid.png\` (1장 요약 합본)`,
-    `- **제목 (복붙용)**: \`[머니핏 4컷툰] ${preset.title}, 감으로 결제했다가 영수증 보고 충격받은 썰 (${t.diffVal})\``,
+    `- **제목 (복붙용)**: \`[머니핏 4컷툰] ${preset.title}, 감으로 결정했다가 영수증 보고 아차 싶었던 썰 (${t.diffVal})\``,
     `- **본문 (복붙용)**:`,
     `\`\`\`text`,
     `1컷: "${p1}"`,
     `2컷: "${p2}"`,
-    `3컷(실물 비교 영수증): ❌ ${t.badLabel}(${t.badVal}) vs ✅ ${t.goodLabel}(${t.goodVal}) ➔ ${t.diffVal}!`,
+    `3컷(실물 비교 영수증): ❌ ${badLabelClean}(${t.badVal}) vs ✅ ${goodLabelClean}(${t.goodVal}) ➔ ${t.diffVal}!`,
     `4컷: "${p4}"`,
     ``,
     `내 조건 숫자 넣으면 3초 만에 본전 영수증 뽑아주는 무료 계산기 좌표:`,
@@ -286,7 +315,7 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     `- **업로드 방식**: 틱톡 \`[포토모드]\`로 \`slide-1.png ~ slide-4.png\` 4장 업로드 또는 \`clip.mp4\` 업로드`,
     `- **캡션 & 고정 댓글 (복붙용)**:`,
     `\`\`\`text`,
-    `3컷 실물 비교 영수증 숫자가 실화냐고요... 😱 (${t.badVal} vs ${t.goodVal})`,
+    `3컷 실물 비교 영수증 숫자가 한눈에 들어오네요... 😱 (${t.badVal} vs ${t.goodVal})`,
     `내 조건 3초 무료 계산기는 프로필 링크 또는 검색창에 [ 머니핏 ] 검색!`,
     `🔗 ${shortsUrl}`,
     `#인스타툰 #웹툰 #생활비절약 #자취꿀팁 #쇼츠`,
@@ -296,8 +325,8 @@ function buildOmniChannelKitMd(preset, bundle, siteUrl = 'https://truthofmarket.
     ``,
     `## 5️⃣ 📌 핀터레스트 (Pinterest) & 구글 이미지 검색 영구 파이프라인`,
     `- **업로드 이미지**: \`slide-1.png\` (표지) 또는 \`webtoon-grid.png\``,
-    `- **핀 제목**: \`[머니핏 4컷 인스타툰] ${preset.title} — ${t.diffVal} 아끼는 3초 영수증 계산법\``,
-    `- **핀 설명**: \`"${p1}" ❌ ${t.badLabel}(${t.badVal}) vs ✅ ${t.goodLabel}(${t.goodVal}). 모르면 날리는 생돈 ${t.diffVal}을 3초 만에 계산해보세요.\``,
+    `- **핀 제목**: \`[머니핏 4컷 인스타툰] ${preset.title} — 3초 비교 영수증 (${t.diffVal})\``,
+    `- **핀 설명**: \`"${p1}" ❌ ${badLabelClean}(${t.badVal}) vs ✅ ${goodLabelClean}(${t.goodVal}). 핵심 차이(${t.diffVal})를 내 조건에 맞춰 3초 만에 계산해보세요.\``,
     `- **도착 URL (Destination Link)**: \`${pinUrl}\``
   ].join('\n');
 }

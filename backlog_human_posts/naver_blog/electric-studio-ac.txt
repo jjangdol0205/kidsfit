@@ -1,70 +1,114 @@
-[🛡️ 안티밴(Anti-Ban) 안전 발행 수칙: 일 최대 2~3건 상한 / 게시물 간 최소 2~4시간 쿨다운 필수 / 본문 상·하단 truthofmarket.com 외부링크 & 24px 소제목·19px 영수증 서식 필수]
-[제목] 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 — 실제 공식으로 따져본 손익분기점 비교
+<!--
+================================================================================
+[발행자 전용 체크리스트 — 복붙 시 이 주석 박스는 제외하고 아래 본문부터 복사하세요]
+• 타겟 프리셋: electric-studio-ac (원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산)
+• 첨부할 웹툰 이미지 2장:
+  1) 도입부 요약 박스 위/아래: sns_outbox/electric-studio-ac/slide-1.png
+  2) 2번 비교표 섹션 상단: sns_outbox/electric-studio-ac/slide-3.png
+• 안티밴(Anti-Ban) 원칙: 본문 하단 클라이맥스에 단 1회(https://truthofmarket.com/preset/electric-studio-ac)만 자연스럽게 삽입됨
+================================================================================
+-->
 
-====================================================================
-## ★ [24px 굵은 소제목] 바쁜 분들을 위한 3초 핵심 비교 영수증 & 무료 계산기
-====================================================================
-**[19px 굵게]** ✗ 구형 정속형 10시간 가동: +195 kWh
-**[19px 굵게]** ✓ 1등급 인버터 정속 유지: -21,927원 ➔ ★ 핵심 손익 차이: 추가 전기세 +35,335원 (총 59,223원) (추가 전기세 +35,335원 (총 59,223원))
+# 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 — 직접 계산해보고 정리한 현실 비교 노트
 
-**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 내 조건 대입해 보기:
-https://truthofmarket.com/preset/electric-studio-ac
+### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
+- **✗ 구형 정속형 10시간 가동**: **59,223원/월**
+- **✓ 1등급 인버터 정속 유지**: **37,296원/월**
+- **★ 핵심 체감 차이**: **-21,927원/월 절약 (추가 전기세 +35,335원 (총 59,223원))**
 
-원룸 6평 벽걸이 에어컨 하루 10시간 틀었을 때, 정속형인지 인버터인지에 따라 고지서가 2배 넘게 차이 납니다. 요즘처럼 매달 빠져나가는 고정비 부담이 클 때는 작은 선택 하나도 대충 넘기기가 어렵더라고요. 저도 이번에 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 문제를 두고 여러 후기를 찾아보다가, 광고성 글 대신 공인 수식에 직접 숫자를 대입해 결과를 뽑아보았습니다.
+---
 
-먼저 핵심 결론부터 짚어보면, 해당 조건에서는 **추가 전기세 +35,335원 (총 59,223원) (⚡ 누진세 2단계 진입)** 수준으로 분석됩니다. 주요 지표를 살펴보면 추가 전력은 약 +195 kWh, 월 절감액은 -21,927원, 본전 회수는 25.1개월로 계산되어 예상보다 뚜렷한 격차를 확인할 수 있습니다.
+## 1. 고지서 찍히기 전에 직접 따져본 한전 누진세와 650W 가동 요금
 
---------------------------------------------------------------------
-## 1. [24px 굵은 소제목] 공인 산출 공식 & 세부 기준 변수 팩트체크
---------------------------------------------------------------------
-이러한 숫자가 도출되는 배경과 세부 입력 조건을 조금 더 자세히 들여다보겠습니다.
+날씨가 더워지거나 추워질 때마다 콘센트 꽂아두고 제일 신경 쓰이는 게 결국 다음 달 관리비 고지서더라고요. 처음엔 저도 가전제품 옆에 적힌 소비전력(650W) 숫자만 보고 "이 정도면 하루에 10시간씩 틀어도 얼마 안 나오겠지" 하고 가볍게 생각했습니다.
 
-평소 150kWh 쓰는 원룸에서 650W 벽걸이를 10시간 돌리면 총 345kWh가 되어 누진 2단계 요율이 적용되거든요. 구체적인 시뮬레이션 입력값을 보면 평소 주택의 월 기본 전력 사용량을 150kWh로 설정하고, 소비전력 650W 기기를 하루 평균 10시간씩 30일간 가동하여 월 195kWh가 추가(합산 총 345kWh)되는 조건입니다. 한국전력 요금 체계는 하계(7~8월) 누진 완화 구간 기준에 따라 기본요금과 전력량 단가가 계단식으로 상승하고 기후환경요금·연료비조정액 및 부가가치세(10%)·전력기금(3.7%)이 복리로 부과되므로, 신규 기기 가격(550,000원) 대비 월 절감액(21,927원)으로 회수 기간(25.1개월)을 따져보는 것이 핵심입니다.
+그런데 막상 한전 주택용 전기요금표를 펴놓고 계산해 보니, 원래 우리 집이 평소에 쓰던 기본 전기량(150kWh) 위에 새로 켠 가전 전력량이 얹어지면서 누진 구간이 한 단계 점프하는 순간 기본요금이랑 kWh당 단가가 동시에 확 뛰더라고요.
 
---------------------------------------------------------------------
-## 2. [24px 굵은 소제목] 조건별·구간별 1원 단위 실측 손익 비교표
---------------------------------------------------------------------
-조건이나 선택 방식을 단계별로 달리했을 때 실제 수치가 어떻게 움직이는지 정리한 데이터는 다음과 같습니다.
+이번에 제 조건(여름철(7~8월 하계 구간), 기본 사용량 **150kWh** + **650W** 기기 하루 **10시간**씩 30일 가동)을 그대로 한전 수식에 넣어봤습니다. 한 달 동안 이 기기 하나가 추가로 쓰는 전기가 **195kWh**라서 집 전체 전력량이 총 **345kWh**가 되는데요.
 
-• **구형 정속형 에어컨 (기준)** 조건에서는 컴프레서 100% 지속 가동 → 650 W → 195 kWh (총 345kWh) → 55,300원 → 2단계 누진 구간 적용 (+31,450원) 흐름으로 집계됩니다.
-• **1등급 인버터 모델 (교체)** 시나리오를 보면 설정온도 도달 후 초절전 모드 | 292 W | 88 kWh (총 238kWh) | 23,850원 | 월 31,450원 절감 달성 수준으로 확인됩니다.
-• **1등급 + 써큘레이터 병용** 기준의 경우 공기 대류 순환 급속 냉각 / 230 W / 69 kWh (총 219kWh) / 19,200원 / 18.2개월 내 신규 기기값 55만 원 전액 회수 데이터를 보입니다.
+여기에 부가가치세(10%)와 전력산업기반기금(3.7%)까지 합산된 실제 예상 청구액을 뽑아보니 **+195 kWh** 수준이 나오고, 1등급 인버터 방식으로 바꿨을 때는 한 달에 **21,927원**씩 아껴서 약 **25.1개월**이면 기기값을 다 뽑는다는 계산이 딱 나왔습니다.
 
-이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다.
+---
+
+## 2. 조건별로 직접 대조해 본 상세 비교표
+
+| 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
+| :--- | :--- | :--- |
+| **한줄 결론** | **추가 전기세 +35,335원 (총 59,223원)** | ⚡ 누진세 2단계 진입 |
+| **추가 전력** | **+195 kWh** | 실측 산출 기준 |
+| **월 절감액** | **-21,927원** | 권장 적용 기준 |
+| **본전 회수** | **25.1개월** | 체감 유지 기준 |
+
+| 구분 항목 | 가동 방식 및 모델 | 소비전력 (W) | 월간 전력량 (kWh) | 예상 청구금액 (원) | 누진세 및 절감 효과 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 구형 정속형 에어컨 (기준) | 컴프레서 100% 지속 가동 | 650 W | 195 kWh (총 345kWh) | 55,300원 | 2단계 누진 구간 적용 (+31,450원) |
+| 1등급 인버터 모델 (교체) | 설정온도 도달 후 초절전 모드 | 292 W | 88 kWh (총 238kWh) | 23,850원 | 월 31,450원 절감 달성 |
+| 1등급 + 써큘레이터 병용 | 공기 대류 순환 급속 냉각 | 230 W | 69 kWh (총 219kWh) | 19,200원 | 18.2개월 내 신규 기기값 55만 원 전액 회수 |
 
 1등급 교체 시 월 -21,927원 (25.1개월 본전 회수)
 
---------------------------------------------------------------------
-## 3. [24px 굵은 소제목] 자주 묻는 핵심 질문(FAQ) & 실전 체크리스트
---------------------------------------------------------------------
-Q1. 실제로 이 주제를 알아볼 때 가장 많이 부딪히는 의문 중 하나가 **"원룸 벽걸이 에어컨은 정속형과 인버터 중 어떻게 구분하나요?"**라는 점입니다.
-➔ 공식 기준과 실측 데이터를 바탕으로 살펴보면, 실내기나 실외기 라벨의 제조년월이 2011년 이전이거나 '냉방능력' 항목에 정격/최소 구분이 없는 단일 수치라면 구형 정속형입니다. 최근 인버터 모델은 에너지소비효율 1~3등급 마크와 함께 인버터(Inverter) 문구가 선명히 인쇄되어 있습니다.
+---
 
-Q2. 마지막으로 최종 결정을 내리기 전에 반드시 짚고 넘어가야 할 **"원룸 에어컨을 24시간 계속 켜두는 게 껐다 켰다 하는 것보다 덜 나오나요?"**에 대한 해답입니다.
-➔ 결론부터 정리하자면 인버터 에어컨의 경우 설정 온도에 도달하면 소비전력이 150~200W 수준으로 급감하므로 껐다 켜는 것보다 연속 가동이 유리합니다. 반면 구형 정속형 에어컨은 켜져 있는 동안 항상 최대 전력(650W+)을 소모하므로 절대 계속 켜두시면 안 됩니다.
+## 3. 전기세 아끼려고 직접 써본 가성비 방어템 & 교체 손익분기점
 
-Q3. 실생활에 바로 적용할 때 헷갈리기 쉬운 **"원룸에서 에어컨 전기세를 가장 많이 아끼는 희망 온도는 몇 도인가요?"** 포인트 역시 미리 확인해 두면 큰 도움이 됩니다.
-➔ 실제 약관과 현장의 기준을 대조해 보면 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처음 가동할 때 바람 세기를 '강풍'으로 설정하여 실내 온도를 빠르게 낮춘 후, 희망 온도에 도달하면 써큘레이터나 선풍기를 함께 틀어 냉기를 순환시키면 체감 온도가 2℃ 이상 낮아져 추가로 약 10~15%의 전기세를 절약할 수 있습니다.
+무작정 참고 안 틀기에는 생활이 너무 불편하잖아요. 제가 직접 해보니 당장 큰돈 들이지 않고도 첫 달부터 고지서 앞자리를 바꾸는 가장 쉬운 방법은 **스마트플러그 & 열차단 시트(1만 원대)**으로 대기전력과 냉난방 효율부터 잡아주는 거였습니다.
 
---------------------------------------------------------------------
-## 4. [24px 굵은 소제목] 내 조건 맞춤 3초 무료 계산기 바로가기 (외부링크)
---------------------------------------------------------------------
-우리 방 에어컨 라벨의 소비전력(W)을 넣으면 이번 달 예상 고지서와 1등급 교체 본전 개월 수가 3초 만에 나옵니다.
+만약 집에 있는 기기가 산 지 7~8년 넘은 구형 정속형이라면, 계속 고쳐 쓰는 것보다 **[2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-00 (699,000원)**이나 **캐리어 신형 1등급 인버터 6평형 벽걸이 에어컨 DARB-0061GA (569,000원)** 같은 고효율 모델로 넘어가는 게 매달 새나가는 전기세를 아껴서 기기값을 버는 훨씬 남는 장사였어요. 큰 가전은 쿠팡 로켓설치 가격과 **롯데하이마트 공식몰** 공식몰 카드 혜택가를 한 번에 대조해 보시는 걸 추천합니다.
 
-사람마다 처한 환경이나 사용 패턴, 예산 범위가 조금씩 다르기 때문에 내 숫자를 직접 대입해 보는 과정이 꼭 필요합니다. 번거로운 회원가입이나 개인정보 입력 없이 바로 비교해 볼 수 있는 무료 계산기 주소를 아래에 남겨둘 테니 결정 전에 가볍게 확인해 보세요.
+### Q1. 원룸 벽걸이 에어컨은 정속형과 인버터 중 어떻게 구분하나요?
+- **답변:** 실내기나 실외기 라벨의 제조년월이 2011년 이전이거나 '냉방능력' 항목에 정격/최소 구분이 없는 단일 수치라면 구형 정속형입니다. 최근 인버터 모델은 에너지소비효율 1~3등급 마크와 함께 인버터(Inverter) 문구가 선명히 인쇄되어 있습니다.
 
-🔗 무료 계산기 바로가기: https://truthofmarket.com/preset/electric-studio-ac
-(※ 링크 이동이 번거로우신 분들은 네이버나 구글 검색창에 **'머니핏 계산기'** 또는 **'truthofmarket'**을 검색하셔도 바로 이용하실 수 있습니다.)
+### Q2. 원룸 에어컨을 24시간 계속 켜두는 게 껐다 켰다 하는 것보다 덜 나오나요?
+- **답변:** 인버터 에어컨의 경우 설정 온도에 도달하면 소비전력이 150~200W 수준으로 급감하므로 껐다 켜는 것보다 연속 가동이 유리합니다. 반면 구형 정속형 에어컨은 켜져 있는 동안 항상 최대 전력(650W+)을 소모하므로 절대 계속 켜두시면 안 됩니다.
 
-오늘 정리한 기록이 합리적인 지출 관리에 작은 보탬이 되었기를 바랍니다!
+### Q3. 원룸에서 에어컨 전기세를 가장 많이 아끼는 희망 온도는 몇 도인가요?
+- **답변:** 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처음 가동할 때 바람 세기를 '강풍'으로 설정하여 실내 온도를 빠르게 낮춘 후, 희망 온도에 도달하면 써큘레이터나 선풍기를 함께 틀어 냉기를 순환시키면 체감 온도가 2℃ 이상 낮아져 추가로 약 10~15%의 전기세를 절약할 수 있습니다.
 
-**[19px 굵게]** ▶ [무료 3초 계산기] 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 실시간 시뮬레이터:
+---
+
+## 4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기
+
+집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!
+
+👉 **내 조건으로 3초 무료 계산해 보기**:
 https://truthofmarket.com/preset/electric-studio-ac
 
-**[19px 굵게]** ▶ [머니핏 6대 생활비 손익계산기 전체 모음]:
-https://truthofmarket.com/?calc=electric
+#생활비절약 #고정비다이어트 #머니핏 #가계부정리
 
-📌 **[다음 글 예고 & 서로이웃 환영]**
-다음 포스팅에서는 많은 분들이 이어서 궁금해하시는 **「30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산」** 실제 손익분기점 비교 데이터를 다룰 예정입니다! 제 블로그 **'서로이웃 추가'**와 **'공감(❤️)'**을 눌러두시면 매주 새는 고정비를 아껴주는 현실 계산표를 가장 먼저 받아보실 수 있어요. 본인 조건이 헷갈리시면 언제든 **댓글**로 수치 남겨주세요, 직접 계산해 드립니다!
+---
 
-#원룸에어컨전기세 #벽걸이에어컨 #자취방관리비 #인버터에어컨 #누진세계산기 #머니핏 #고정비다이어트 #서로이웃환영
+## 📋 [스마트에디터 ONE 복붙용 클린 HTML 코드]
+```html
+<!-- [발행 시 1번 그림 첨부 위치: sns_outbox/electric-studio-ac/slide-1.png] -->
+<div style="background:#f8fafc;border-left:6px solid #10b981;padding:18px 20px;border-radius:0 14px 14px 0;margin:0 0 24px 0;">
+  <p class="se-text-paragraph" style="font-size:19px;font-weight:900;color:#0f172a;margin:0 0 10px 0;"><span class="se-fs-fs19"><b>🧾 바쁜 분들을 위한 3초 핵심 비교 요약</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#be123c;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>구형 정속형 10시간 가동</b>: <b>59,223원/월</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>1등급 인버터 정속 유지</b>: <b>37,296원/월</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#0f172a;margin:0;"><span class="se-fs-fs16">• <b>핵심 체감 차이</b>: <b>-21,927원/월 절약 (추가 전기세 +35,335원 (총 59,223원))</b></span></p>
+</div>
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>1. 고지서 찍히기 전에 직접 따져본 한전 누진세와 650W 가동 요금</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">날씨가 더워지거나 추워질 때마다 콘센트 꽂아두고 제일 신경 쓰이는 게 결국 다음 달 관리비 고지서더라고요. 처음엔 저도 가전제품 옆에 적힌 소비전력(650W) 숫자만 보고 "이 정도면 하루에 10시간씩 틀어도 얼마 안 나오겠지" 하고 가볍게 생각했습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">그런데 막상 한전 주택용 전기요금표를 펴놓고 계산해 보니, 원래 우리 집이 평소에 쓰던 기본 전기량(150kWh) 위에 새로 켠 가전 전력량이 얹어지면서 누진 구간이 한 단계 점프하는 순간 기본요금이랑 kWh당 단가가 동시에 확 뛰더라고요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">이번에 제 조건(여름철(7~8월 하계 구간), 기본 사용량 <b>150kWh</b> + <b>650W</b> 기기 하루 <b>10시간</b>씩 30일 가동)을 그대로 한전 수식에 넣어봤습니다. 한 달 동안 이 기기 하나가 추가로 쓰는 전기가 <b>195kWh</b>라서 집 전체 전력량이 총 <b>345kWh</b>가 되는데요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">여기에 부가가치세(10%)와 전력산업기반기금(3.7%)까지 합산된 실제 예상 청구액을 뽑아보니 <b>+195 kWh</b> 수준이 나오고, 1등급 인버터 방식으로 바꿨을 때는 한 달에 <b>21,927원</b>씩 아껴서 약 <b>25.1개월</b>이면 기기값을 다 뽑는다는 계산이 딱 나왔습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<!-- [발행 시 2번 그림 첨부 위치: sns_outbox/electric-studio-ac/slide-3.png] -->
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>2. 조건별로 직접 대조해 본 상세 비교표</b></span></p>
+<table style="width:100%;border-collapse:collapse;margin:18px 0;font-family:'Pretendard','Malgun Gothic',sans-serif;"><thead><tr><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">구분 항목</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">가동 방식 및 모델</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">소비전력 (W)</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">월간 전력량 (kWh)</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">예상 청구금액 (원)</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">누진세 및 절감 효과</th></tr></thead><tbody><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">구형 정속형 에어컨 (기준)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">컴프레서 100% 지속 가동</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">650 W</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">195 kWh (총 345kWh)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">55,300원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">2단계 누진 구간 적용 (+31,450원)</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">1등급 인버터 모델 (교체)</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">설정온도 도달 후 초절전 모드</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">292 W</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">88 kWh (총 238kWh)</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">23,850원</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">월 31,450원 절감 달성</td></tr><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">1등급 + 써큘레이터 병용</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">공기 대류 순환 급속 냉각</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">230 W</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">69 kWh (총 219kWh)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">19,200원</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">18.2개월 내 신규 기기값 55만 원 전액 회수</td></tr></tbody></table>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#334155;margin:14px 0 0 0;"><span class="se-fs-fs16">1등급 교체 시 월 -21,927원 (25.1개월 본전 회수)</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>3. 전기세 아끼려고 직접 써본 가성비 방어템 & 교체 손익분기점</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">무작정 참고 안 틀기에는 생활이 너무 불편하잖아요. 제가 직접 해보니 당장 큰돈 들이지 않고도 첫 달부터 고지서 앞자리를 바꾸는 가장 쉬운 방법은 <b>스마트플러그 & 열차단 시트(1만 원대)</b>으로 대기전력과 냉난방 효율부터 잡아주는 거였습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">만약 집에 있는 기기가 산 지 7~8년 넘은 구형 정속형이라면, 계속 고쳐 쓰는 것보다 <b>[2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-00 (699,000원)</b>이나 <b>캐리어 신형 1등급 인버터 6평형 벽걸이 에어컨 DARB-0061GA (569,000원)</b> 같은 고효율 모델로 넘어가는 게 매달 새나가는 전기세를 아껴서 기기값을 버는 훨씬 남는 장사였어요. 큰 가전은 쿠팡 로켓설치 가격과 <b>롯데하이마트 공식몰</b> 공식몰 카드 혜택가를 한 번에 대조해 보시는 걸 추천합니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q1. 원룸 벽걸이 에어컨은 정속형과 인버터 중 어떻게 구분하나요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 실내기나 실외기 라벨의 제조년월이 2011년 이전이거나 '냉방능력' 항목에 정격/최소 구분이 없는 단일 수치라면 구형 정속형입니다. 최근 인버터 모델은 에너지소비효율 1~3등급 마크와 함께 인버터(Inverter) 문구가 선명히 인쇄되어 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q2. 원룸 에어컨을 24시간 계속 켜두는 게 껐다 켰다 하는 것보다 덜 나오나요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 인버터 에어컨의 경우 설정 온도에 도달하면 소비전력이 150~200W 수준으로 급감하므로 껐다 켜는 것보다 연속 가동이 유리합니다. 반면 구형 정속형 에어컨은 켜져 있는 동안 항상 최대 전력(650W+)을 소모하므로 절대 계속 켜두시면 안 됩니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q3. 원룸에서 에어컨 전기세를 가장 많이 아끼는 희망 온도는 몇 도인가요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처음 가동할 때 바람 세기를 '강풍'으로 설정하여 실내 온도를 빠르게 낮춘 후, 희망 온도에 도달하면 써큘레이터나 선풍기를 함께 틀어 냉기를 순환시키면 체감 온도가 2℃ 이상 낮아져 추가로 약 10~15%의 전기세를 절약할 수 있습니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 14px 0;"><span class="se-fs-fs16">집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs19"><b>👉 내 조건으로 3초 무료 계산해 보기:</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;margin:0;"><span class="se-fs-fs16"><a href="https://truthofmarket.com/preset/electric-studio-ac" target="_blank" style="color:#059669;font-weight:800;text-decoration:underline;">https://truthofmarket.com/preset/electric-studio-ac</a></span></p>
+```

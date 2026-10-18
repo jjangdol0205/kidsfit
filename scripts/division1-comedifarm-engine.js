@@ -671,4 +671,14 @@ if (require.main === module) {
   console.log(`  ✓ 운영보드 저장  : ${DIV1_BOARD_PATH}`);
 }
 
-module.exports = { generateDivision1DailyPack };
+module.exports = {
+  generateDivision1DailyPack,
+  buildHumanCategoryNarrative,
+  buildSmartEditorHtmlForPreset,
+  cleanCaseLabel,
+  humanizeProductName,
+  runCalculatorForPreset,
+  buildMarkdownTable,
+  mdToHtmlInline
+};
+

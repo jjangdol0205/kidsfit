@@ -1674,6 +1674,32 @@ async function renderTotoEpisodeForSlug(slug = 'electric-studio-ac', options = {
     fs.copyFileSync(blogThumbPath, publicThumbPath);
   }
 
+  // Also sync to dist/sns if dist exists
+  const distSnsDir = path.join(ROOT_DIR, 'dist', 'sns');
+  if (fs.existsSync(distSnsDir)) {
+    if (fs.existsSync(gridPath)) {
+      fs.copyFileSync(gridPath, path.join(distSnsDir, `${sample.slug}-grid.png`));
+    }
+    if (fs.existsSync(blogThumbPath)) {
+      fs.copyFileSync(blogThumbPath, path.join(distSnsDir, `${sample.slug}-thumb.png`));
+    }
+  }
+
+  // Also sync to backlog_human_posts/webtoon_standby/{slug}
+  const standbyDir = path.join(ROOT_DIR, 'backlog_human_posts', 'webtoon_standby', sample.slug);
+  if (!fs.existsSync(standbyDir)) {
+    fs.mkdirSync(standbyDir, { recursive: true });
+  }
+  if (fs.existsSync(s1Path)) {
+    fs.copyFileSync(s1Path, path.join(standbyDir, '1_hook_empathy.png'));
+  }
+  if (fs.existsSync(s3Path)) {
+    fs.copyFileSync(s3Path, path.join(standbyDir, '3_receipt_comparison.png'));
+  }
+  if (fs.existsSync(gridPath)) {
+    fs.copyFileSync(gridPath, path.join(standbyDir, 'webtoon-grid.png'));
+  }
+
   return {
     slug: sample.slug,
     s1Path,

@@ -1,70 +1,115 @@
-[🛡️ 안티밴(Anti-Ban) 안전 발행 수칙: 일 최대 2~3건 상한 / 게시물 간 최소 2~4시간 쿨다운 필수 / 본문 상·하단 truthofmarket.com 외부링크 & 24px 소제목·19px 영수증 서식 필수]
-[제목] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 합리적인 선택을 위한 단계별 수치 대조 노트
+<!--
+================================================================================
+[발행자 전용 체크리스트 — 복붙 시 이 주석 박스는 제외하고 아래 본문부터 복사하세요]
+• 타겟 프리셋: diet-quick-3kg (한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합)
+• 첨부할 웹툰 이미지 2장:
+  1) 도입부 요약 박스 위/아래: sns_outbox/diet-quick-3kg/slide-1.png
+  2) 2번 비교표 섹션 상단: sns_outbox/diet-quick-3kg/slide-3.png
+• 안티밴(Anti-Ban) 원칙: 본문 하단 클라이맥스에 단 1회(https://truthofmarket.com/preset/diet-quick-3kg)만 자연스럽게 삽입됨
+================================================================================
+-->
 
-====================================================================
-## ★ [24px 굵은 소제목] 바쁜 분들을 위한 3초 핵심 비교 영수증 & 무료 계산기
-====================================================================
-**[19px 굵게]** ✗ 원푸드·배달 샐러드 단기 지출: 110/116/34g
-**[19px 굵게]** ✓ 근손실 방어 4주 정량(92팩): 92팩 ➔ ★ 핵심 손익 차이: 하루 1,209kcal · 닭가슴살 총 92팩! (하루 1,209kcal · 닭가슴살 총 92팩!)
+# 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 — 직접 계산해보고 정리한 현실 비교 노트
 
-**[19px 굵게]** ▶ [무료 3초 계산기 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 내 조건 대입해 보기:
-https://truthofmarket.com/preset/diet-quick-3kg
+### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
+- **✗ 원푸드·배달 샐러드 단기 지출**: **390,000원/4주**
+- **✓ 근손실 방어 4주 정량**: **173,800원 (92팩)**
+- **★ 핵심 체감 차이**: **-216,200원 절약 (하루 1,209kcal · 닭가슴살 총 92팩!)**
 
-합리적인 예산 관리를 위해 매주 생활 밀착형 손익 데이터를 하나씩 정리하고 있습니다. 한 달 안에 얼굴 처짐이나 요요 없이 깔끔하게 3kg을 감량하려면 하루에 정확히 몇 칼로리 적자를 만들어야 할까요? 이번에 다룰 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 편은 세부 변수를 하나씩 반영해 도출한 현실적인 비교 기록입니다.
+---
 
-결론부터 말씀드리면 이 시나리오의 핵심 지표는 **하루 1,209kcal · 닭가슴살 총 92팩!**입니다. 세부적으로는 탄·단·지(g)는 약 110/116/34g, 닭가슴살(4주)는 92팩, 현미밥(4주)는 56개로 나타나며, 초기 조건 설정에 따라 월간 및 연간 유불리가 확실하게 갈립니다.
+## 1. 무작정 굶지 않고 4주 동안 맞춘 내 기초대사량(BMR)과 단백질 정량
 
---------------------------------------------------------------------
-## 1. [24px 굵은 소제목] 공인 산출 공식 & 세부 기준 변수 팩트체크
---------------------------------------------------------------------
-계산기의 내부 산출 근거와 이 시나리오에 반영된 현실적인 변수들을 하나씩 짚어보겠습니다.
+다이어트나 식단 관리를 시작할 때 제일 많이 실패하는 이유가 내 몸이 하루에 쓰는 열량도 모른 채 무작정 굶거나, 그때그때 편의점·배달 샐러드를 사 먹는 거더라고요. 저도 처음엔 그렇게 시작했다가 식비는 식비대로 한 달에 40~50만 원씩 깨지고 배고픔을 못 참아 금방 요요가 왔던 쓰라린 기억이 있습니다.
 
-생리학적으로 체지방 1kg은 7,700kcal에 해당하므로, 하루 -550kcal 결손 식단과 체중 2배 단백질(닭가슴살 4주 92팩)을 유지하는 것이 가장 확실한 지름길입니다. 이번 분석에 적용된 신체 조건은 만 28세 여성, 신장 160cm, 현재 체중 58kg, 활동계수 1.375 기준이며 총 4주(28일) 프로젝트로 설계되었습니다. 유지 대사량에서 일일 -550kcal를 감량하는 체지방 커팅 목표에 맞춰 일일 권장 섭취 열량(1,209kcal)과 하루 순단백질 요구량(116g)을 먼저 확정한 뒤, 이를 실제 마트·온라인 구매 단위인 냉동 닭가슴살 92팩과 즉석 현미밥 56개로 변환해 장바구니 누수를 원천 차단했습니다.
+그래서 이번에는 아예 처음부터 내 키와 몸무게, 평소 활동량을 기준으로 하루 목표 칼로리와 순단백질 그램(g) 수를 먼저 계산해 놓고, 딱 필요한 만큼만 대용량으로 장을 보는 방식으로 바꿨습니다.
 
---------------------------------------------------------------------
-## 2. [24px 굵은 소제목] 조건별·구간별 1원 단위 실측 손익 비교표
---------------------------------------------------------------------
-실전에서 가장 많이 고민하시는 세 가지 선택 경로를 기준으로 산출한 비교 내역입니다.
+만 **28세 여성**, 키 **160cm**, 체중 **58kg**(활동계수 **1.375**) 기준으로 **4주간 하루 -550kcal 감량(체지방 커팅)** 목표를 잡아 계산해 봤습니다. 하루에 섭취해야 할 권장 열량은 **1,209kcal**, 근손실을 막기 위해 꼭 채워야 하는 하루 순단백질은 **116g**이 나오더라고요.
 
-• **유지 TDEE 및 감량 칼로리** 옵션을 선택하면 TDEE 1,840 kcal / 목표 1,290 kcal · 결손 총 15,400 kcal · 체지방 1kg = 7,700kcal 연소 · 4주 순체지방 2.0kg+수분 감량 결과로 이어집니다.
-• **근손실 방어 단백질** 조건에서는 116g / 일 (체중 2.0배) → 순단백질 3,248g → 골격근량 100% 보존 → 닭가슴살 100g 92팩 흐름으로 집계됩니다.
-• **저혈당 탄수화물 구성** 시나리오를 보면 110g / 일 (정제탄수 엄금) | 현미밥 56개 | 인슐린 스파이크 억제 | 즉석 현미밥 24개입 2.3박스 수준으로 확인됩니다.
-• **필수 미네랄 & 보충제** 기준의 경우 종합비타민 + 오메가3 + 전해질 / 4주 분량 / 체수분 대사 및 부종 제거 / 멀티비타민 1통 + 아르기닌 데이터를 보입니다.
+이걸 매 끼니 그램 수 재느라 스트레스받지 않으려고 아예 마트·온라인 묶음 단위로 환산해 보니, **4주 동안 냉동 닭가슴살 92팩 + 즉석 현미밥 56개**만 냉동실에 딱 채워두면 고민할 필요 없이 식단이 끝납니다.
 
-이처럼 조건별 수치를 직접 대조해 보면 단기적인 체감 비용보다 중장기 누적 손익을 따져보는 것이 왜 필수적인지 명확해집니다.
+---
+
+## 2. 조건별로 직접 대조해 본 상세 비교표
+
+| 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
+| :--- | :--- | :--- |
+| **한줄 결론** | **하루 1,209kcal · 닭가슴살 총 92팩!** | 🔥 4주 맞춤 식단 수량 |
+| **탄·단·지(g)** | **110/116/34g** | 실측 산출 기준 |
+| **닭가슴살(4주)** | **92팩** | 권장 적용 기준 |
+| **현미밥(4주)** | **56개** | 체감 유지 기준 |
+
+| 단기 3kg 감량 지표 | 일일 목표 수치 | 4주 누적 계산 | 체지방 연소 과학 | 필수 장보기 수량 |
+| :--- | :--- | :--- | :--- | :--- |
+| 유지 TDEE 및 감량 칼로리 | TDEE 1,840 kcal / 목표 1,290 kcal | 결손 총 15,400 kcal | 체지방 1kg = 7,700kcal 연소 | 4주 순체지방 2.0kg+수분 감량 |
+| 근손실 방어 단백질 | 116g / 일 (체중 2.0배) | 순단백질 3,248g | 골격근량 100% 보존 | 닭가슴살 100g 92팩 |
+| 저혈당 탄수화물 구성 | 110g / 일 (정제탄수 엄금) | 현미밥 56개 | 인슐린 스파이크 억제 | 즉석 현미밥 24개입 2.3박스 |
+| 필수 미네랄 & 보충제 | 종합비타민 + 오메가3 + 전해질 | 4주 분량 | 체수분 대사 및 부종 제거 | 멀티비타민 1통 + 아르기닌 |
 
 4주간 닭가슴살 92팩 · 현미밥 56개 · 프로틴 1통 필요
 
---------------------------------------------------------------------
-## 3. [24px 굵은 소제목] 자주 묻는 핵심 질문(FAQ) & 실전 체크리스트
---------------------------------------------------------------------
-Q1. 추가로 현장에서 자주 나오는 질문인 **"순수 체지방 1kg을 빼려면 정확히 몇 kcal의 적자가 필요한가요?"**에 대한 객관적인 팩트도 함께 살펴보겠습니다.
-➔ 핵심 원리를 알고 나면 간단한데, 생리학적으로 체지방 1kg은 약 7,700kcal의 열량과 일치합니다. 따라서 4주(28일) 동안 체지방 2~3kg을 감량하려면 매일 550~800kcal 수준의 칼로리 결손(식단 감량 + 활동량 증가)이 누적되어야 합니다.
+---
 
-Q2. 더불어 주변에서 자주 물어보시는 핵심 질문으로 **"단기 3kg 감량 시 얼굴 살이 처지거나 탈모가 오지 않게 하려면?"** 부분도 빼놓을 수 없습니다.
-➔ 공식 기준과 실측 데이터를 바탕으로 살펴보면, 극단적인 초저열량식(하루 800kcal 이하)을 피하고 최저 1,200kcal 이상의 영양을 유지해야 합니다. 비오틴, 아연, 오메가-3 지방산과 충분한 전해질 및 단백질을 매일 보충하면 피부 탄력과 모발을 지킬 수 있습니다.
+## 3. 편의점 단품 대신 끼니당 1,000원대로 줄인 식단 장보기 노하우
 
-Q3. 많은 분들이 검색창에 가장 먼저 입력해 보시는 **"체중 감량 정체기가 왔을 때 칼로리를 더 줄여야 하나요?"**에 대해서도 명확한 기준을 정리해 둡니다.
-➔ 결론부터 정리하자면 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합니다. 칼로리를 더 줄이기보다는 1~2일간 유지 칼로리만큼 탄수화물을 보충해주는 '리피드 데이(Re-feed Day)'를 가지면 렙틴 호르몬이 재활성화되어 대사가 다시 회복됩니다.
+출퇴근길에 편의점에서 닭가슴살이랑 밥을 낱개로 사 먹으면 한 끼에 6,000~8,000원은 우습게 넘어가잖아요. 대신 **자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (35,800원)**이나 **자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg (64,500원)**처럼 검증된 대용량 묶음 구성을 냉동실에 쟁여두면 한 끼 단백질 단가가 1,300~1,500원대로 뚝 떨어집니다.
 
---------------------------------------------------------------------
-## 4. [24px 굵은 소제목] 내 조건 맞춤 3초 무료 계산기 바로가기 (외부링크)
---------------------------------------------------------------------
-내 체중과 감량 목표치를 대입해 건강을 지키는 최소 안전 칼로리와 4주 식단 구성을 바로 확인해 보세요.
+여기에 양념이나 야식이 당길 때 입터짐을 막아주는 **닭가슴살 10+1팩 골라담기(특가)** 하나만 같이 구비해 두시면, 배달 앱 켜는 횟수가 줄어들어 한 달 식비만 최소 20만 원 이상 아끼실 수 있어요.
 
-한 번의 정확한 계산이 매달 통장에서 새나가는 고정비를 막아주는 가장 확실한 방패가 됩니다. 아래 페이지에서 본인의 실제 숫자를 넣고 3초 만에 비교 영수증을 뽑아보실 수 있습니다.
+### Q1. 순수 체지방 1kg을 빼려면 정확히 몇 kcal의 적자가 필요한가요?
+- **답변:** 생리학적으로 체지방 1kg은 약 7,700kcal의 열량과 일치합니다. 따라서 4주(28일) 동안 체지방 2~3kg을 감량하려면 매일 550~800kcal 수준의 칼로리 결손(식단 감량 + 활동량 증가)이 누적되어야 합니다.
 
-🔗 무료 손익분기점 시뮬레이터: https://truthofmarket.com/preset/diet-quick-3kg
+### Q2. 단기 3kg 감량 시 얼굴 살이 처지거나 탈모가 오지 않게 하려면?
+- **답변:** 극단적인 초저열량식(하루 800kcal 이하)을 피하고 최저 1,200kcal 이상의 영양을 유지해야 합니다. 비오틴, 아연, 오메가-3 지방산과 충분한 전해질 및 단백질을 매일 보충하면 피부 탄력과 모발을 지킬 수 있습니다.
 
-오늘 정보가 유익하셨길 바라며, 늘 여유롭고 건강한 일상 되시길 바랍니다!
+### Q3. 체중 감량 정체기가 왔을 때 칼로리를 더 줄여야 하나요?
+- **답변:** 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합니다. 칼로리를 더 줄이기보다는 1~2일간 유지 칼로리만큼 탄수화물을 보충해주는 '리피드 데이(Re-feed Day)'를 가지면 렙틴 호르몬이 재활성화되어 대사가 다시 회복됩니다.
 
-**[19px 굵게]** ▶ [무료 3초 계산기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 실시간 시뮬레이터:
+---
+
+## 4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기
+
+집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!
+
+👉 **내 조건으로 3초 무료 계산해 보기**:
 https://truthofmarket.com/preset/diet-quick-3kg
 
-**[19px 굵게]** ▶ [머니핏 6대 생활비 손익계산기 전체 모음]:
-https://truthofmarket.com/?calc=diet
+#생활비절약 #고정비다이어트 #머니핏 #가계부정리
 
-📬 **[다음 연재 알림 & 서로이웃 맺기]**
-곧 올라올 다음 글에서는 **「5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수」** 현실 비용을 비교해 드릴 예정이에요. 매주 업데이트되는 생활 밀착형 손익 리포트를 구독하시려면 **서로이웃 추가**와 **공감(❤️)** 잊지 마시고, 추가 질문은 편하게 댓글로 남겨주세요!
+---
 
-#한달3kg감량 #단기다이어트식단 #칼로리적자계산 #체지방감량 #다이어트장보기 #머니핏 #고정비다이어트 #서로이웃환영
+## 📋 [스마트에디터 ONE 복붙용 클린 HTML 코드]
+```html
+<!-- [발행 시 1번 그림 첨부 위치: sns_outbox/diet-quick-3kg/slide-1.png] -->
+<div style="background:#f8fafc;border-left:6px solid #10b981;padding:18px 20px;border-radius:0 14px 14px 0;margin:0 0 24px 0;">
+  <p class="se-text-paragraph" style="font-size:19px;font-weight:900;color:#0f172a;margin:0 0 10px 0;"><span class="se-fs-fs19"><b>🧾 바쁜 분들을 위한 3초 핵심 비교 요약</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#be123c;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>원푸드·배달 샐러드 단기 지출</b>: <b>390,000원/4주</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>근손실 방어 4주 정량</b>: <b>173,800원 (92팩)</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#0f172a;margin:0;"><span class="se-fs-fs16">• <b>핵심 체감 차이</b>: <b>-216,200원 절약 (하루 1,209kcal · 닭가슴살 총 92팩!)</b></span></p>
+</div>
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>1. 무작정 굶지 않고 4주 동안 맞춘 내 기초대사량(BMR)과 단백질 정량</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">다이어트나 식단 관리를 시작할 때 제일 많이 실패하는 이유가 내 몸이 하루에 쓰는 열량도 모른 채 무작정 굶거나, 그때그때 편의점·배달 샐러드를 사 먹는 거더라고요. 저도 처음엔 그렇게 시작했다가 식비는 식비대로 한 달에 40~50만 원씩 깨지고 배고픔을 못 참아 금방 요요가 왔던 쓰라린 기억이 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">그래서 이번에는 아예 처음부터 내 키와 몸무게, 평소 활동량을 기준으로 하루 목표 칼로리와 순단백질 그램(g) 수를 먼저 계산해 놓고, 딱 필요한 만큼만 대용량으로 장을 보는 방식으로 바꿨습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">만 <b>28세 여성</b>, 키 <b>160cm</b>, 체중 <b>58kg</b>(활동계수 <b>1.375</b>) 기준으로 <b>4주간 하루 -550kcal 감량(체지방 커팅)</b> 목표를 잡아 계산해 봤습니다. 하루에 섭취해야 할 권장 열량은 <b>1,209kcal</b>, 근손실을 막기 위해 꼭 채워야 하는 하루 순단백질은 <b>116g</b>이 나오더라고요.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">이걸 매 끼니 그램 수 재느라 스트레스받지 않으려고 아예 마트·온라인 묶음 단위로 환산해 보니, <b>4주 동안 냉동 닭가슴살 92팩 + 즉석 현미밥 56개</b>만 냉동실에 딱 채워두면 고민할 필요 없이 식단이 끝납니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<!-- [발행 시 2번 그림 첨부 위치: sns_outbox/diet-quick-3kg/slide-3.png] -->
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>2. 조건별로 직접 대조해 본 상세 비교표</b></span></p>
+<table style="width:100%;border-collapse:collapse;margin:18px 0;font-family:'Pretendard','Malgun Gothic',sans-serif;"><thead><tr><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">단기 3kg 감량 지표</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">일일 목표 수치</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">4주 누적 계산</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">체지방 연소 과학</th><th style="background:#0f172a;color:#ffffff;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #334155;text-align:left;">필수 장보기 수량</th></tr></thead><tbody><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">유지 TDEE 및 감량 칼로리</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">TDEE 1,840 kcal / 목표 1,290 kcal</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">결손 총 15,400 kcal</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">체지방 1kg = 7,700kcal 연소</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">4주 순체지방 2.0kg+수분 감량</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">근손실 방어 단백질</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">116g / 일 (체중 2.0배)</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">순단백질 3,248g</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">골격근량 100% 보존</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">닭가슴살 100g 92팩</td></tr><tr><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">저혈당 탄수화물 구성</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">110g / 일 (정제탄수 엄금)</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">현미밥 56개</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">인슐린 스파이크 억제</td><td style="background:#ffffff;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">즉석 현미밥 24개입 2.3박스</td></tr><tr><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:800;border:1px solid #cbd5e1;line-height:1.5;">필수 미네랄 & 보충제</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">종합비타민 + 오메가3 + 전해질</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">4주 분량</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">체수분 대사 및 부종 제거</td><td style="background:#f8fafc;color:#0f172a;padding:11px 14px;font-size:15px;font-weight:500;border:1px solid #cbd5e1;line-height:1.5;">멀티비타민 1통 + 아르기닌</td></tr></tbody></table>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#334155;margin:14px 0 0 0;"><span class="se-fs-fs16">4주간 닭가슴살 92팩 · 현미밥 56개 · 프로틴 1통 필요</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>3. 편의점 단품 대신 끼니당 1,000원대로 줄인 식단 장보기 노하우</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">출퇴근길에 편의점에서 닭가슴살이랑 밥을 낱개로 사 먹으면 한 끼에 6,000~8,000원은 우습게 넘어가잖아요. 대신 <b>자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (35,800원)</b>이나 <b>자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg (64,500원)</b>처럼 검증된 대용량 묶음 구성을 냉동실에 쟁여두면 한 끼 단백질 단가가 1,300~1,500원대로 뚝 떨어집니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">여기에 양념이나 야식이 당길 때 입터짐을 막아주는 <b>닭가슴살 10+1팩 골라담기(특가)</b> 하나만 같이 구비해 두시면, 배달 앱 켜는 횟수가 줄어들어 한 달 식비만 최소 20만 원 이상 아끼실 수 있어요.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q1. 순수 체지방 1kg을 빼려면 정확히 몇 kcal의 적자가 필요한가요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 생리학적으로 체지방 1kg은 약 7,700kcal의 열량과 일치합니다. 따라서 4주(28일) 동안 체지방 2~3kg을 감량하려면 매일 550~800kcal 수준의 칼로리 결손(식단 감량 + 활동량 증가)이 누적되어야 합니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q2. 단기 3kg 감량 시 얼굴 살이 처지거나 탈모가 오지 않게 하려면?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 극단적인 초저열량식(하루 800kcal 이하)을 피하고 최저 1,200kcal 이상의 영양을 유지해야 합니다. 비오틴, 아연, 오메가-3 지방산과 충분한 전해질 및 단백질을 매일 보충하면 피부 탄력과 모발을 지킬 수 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q3. 체중 감량 정체기가 왔을 때 칼로리를 더 줄여야 하나요?</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 정체기는 몸의 방어 기전(적응성 열발생)으로 인해 발생합니다. 칼로리를 더 줄이기보다는 1~2일간 유지 칼로리만큼 탄수화물을 보충해주는 '리피드 데이(Re-feed Day)'를 가지면 렙틴 호르몬이 재활성화되어 대사가 다시 회복됩니다.</span></p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
+<p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>4. 내 조건 숫자 넣어보고 3초 만에 계산 결과 확인하기</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 14px 0;"><span class="se-fs-fs16">집집마다 평수나 사용 시간, 예산이나 체중 조건이 조금씩 다르다 보니 내 숫자를 직접 넣어서 확인해 보시는 게 가장 정확합니다. 회원가입이나 개인정보 입력 없이 숫자만 넣으면 3초 만에 비교 영수증과 실속 추천 구성을 한눈에 볼 수 있는 계산기 주소를 아래에 남겨둘게요!</span></p>
+<p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs19"><b>👉 내 조건으로 3초 무료 계산해 보기:</b></span></p>
+<p class="se-text-paragraph" style="font-size:16px;margin:0;"><span class="se-fs-fs16"><a href="https://truthofmarket.com/preset/diet-quick-3kg" target="_blank" style="color:#059669;font-weight:800;text-decoration:underline;">https://truthofmarket.com/preset/diet-quick-3kg</a></span></p>
+```
