@@ -416,7 +416,7 @@ function verifyAC4() {
       const res = spawnSync(process.execPath, [nightScriptJs, '--dry-run'], {
         cwd: PROJECT_ROOT,
         encoding: 'utf8',
-        timeout: 15000
+        timeout: 60000
       });
       if (res.status !== 0) {
         errors.push(`night-growth.js --dry-run failed with exit code ${res.status}: ${res.stderr || res.stdout}`);

@@ -331,7 +331,22 @@ function buildTotoEpisodeSpec(presetOrSlug) {
     .replace('과급여 (질환 위험)', '(과급여 위험)')
     .replace('(기존 요금 그대로 납부)', '(기존 유지)');
 
+  const cleanReceiptLabel = (label, val) => {
+    let l = String(label || '').trim();
+    const v = String(val || '').trim();
+    const parenMatch = l.match(/\(([^)]+)\)$/);
+    if (parenMatch && v.includes(parenMatch[1])) {
+      l = l.replace(/\s*\([^)]+\)$/, '').trim();
+    }
+    return l;
+  };
+
+  const cleanBadLabel = cleanReceiptLabel(resolved.badLabel, conciseBadVal);
+  const cleanGoodLabel = cleanReceiptLabel(resolved.goodLabel, resolved.goodVal);
+
   if (slug === 'electric-studio-ac') {
+    const dynBad = String(resolved.badVal || '59,223원/월').replace(/\/월$/, '');
+    const dynDiff = String(resolved.diffVal || '-21,927원/월 절약').replace(/^-/, '').replace(/\/월.*$/, '').trim();
     return {
       slug: 'electric-studio-ac',
       categoryBadge: meta.categoryBadge,
@@ -344,20 +359,24 @@ function buildTotoEpisodeSpec(presetOrSlug) {
       slide2Step1Tag: 'STEP 01 · 흔한 착각',
       slide2Step1Bubble: ['조금만 시원해지면 끄고', '더워지면 다시 켜야지!', '이번 달 전기세 아꼈다~ ♪'],
       slide2Step2Tag: 'STEP 02 · 고지서 도착 & 팩트체크',
-      slide2Step2LeftBubble: ['헉?! 아낀다고 껐는데', '왜 88,420원이나 나왔지?!'],
-      slide2Step2RightBubble: ['구형 에어컨을 껐다 켜면', '실외기 기동전력이 3배 뛰어서', '누진세 3단계 폭탄 맞아요!'],
-      badLabel: resolved.badLabel || '구형 정속형 껐다켰다',
-      badVal: resolved.badVal || '월 88,420원',
-      goodLabel: resolved.goodLabel || '1등급 인버터 연속가동',
-      goodVal: resolved.goodVal || '월 31,200원',
-      diffVal: resolved.diffVal || '월 -57,220원 절약',
-      slide3LeftBubble: ['아끼려고 끈 건데 매달', '57,220원이나 더 냈다고요?!'],
+      slide2Step2LeftBubble: ['헉?! 아낀다고 껐는데', `왜 ${dynBad}이나 나왔지?!`],
+      slide2Step2RightBubble: ['구형 에어컨을 껐다 켜면', '실외기 기동전력이 3배 뛰어서', '누진세 구간이 확 올라가요!'],
+      badLabel: cleanBadLabel || '구형 정속형 껐다켰다',
+      badVal: resolved.badVal || '59,223원/월',
+      goodLabel: cleanGoodLabel || '1등급 인버터 연속가동',
+      goodVal: resolved.goodVal || '37,296원/월',
+      diffVal: resolved.diffVal || '-21,927원/월 절약',
+      slide3LeftBubble: ['아끼려고 끈 건데 매달', `${dynDiff}이나 더 냈다고요?!`],
       slide3RightBubble: ['인버터는 희망온도 맞춰', '연속 가동해야 월 3만원대로', '확 줄어듭니다!'],
       slide4TopBubble: ['내 방 평수·가동시간 넣으니까', '3초 만에 한전 누진세 영수증이랑', '1등급 절전템 본전 기간이 딱 나오네!'],
       slide4CardTitle: '원룸·자취방 에어컨 3초 전기세 계산기',
       slide4CardChips: ['소비전력(W) 입력', '하루 가동시간', '한전 누진세 자동반영']
     };
   }
+
+  const step2ShockLines = replies[1]
+    ? splitIntoBalancedTwoLines(replies[1])
+    : ['막상 계산기로 숫자를 찍어보니', `생각보다 차이가 너무 크네요?!`];
 
   return {
     slug,
@@ -371,11 +390,11 @@ function buildTotoEpisodeSpec(presetOrSlug) {
     slide2Step1Tag: 'STEP 01 · 흔한 착각',
     slide2Step1Bubble: step1Lines,
     slide2Step2Tag: 'STEP 02 · 영수증 팩트체크',
-    slide2Step2LeftBubble: p1Lines.slice(0, 2),
+    slide2Step2LeftBubble: step2ShockLines,
     slide2Step2RightBubble: p2Lines.slice(0, 2),
-    badLabel: resolved.badLabel,
+    badLabel: cleanBadLabel,
     badVal: conciseBadVal,
-    goodLabel: resolved.goodLabel,
+    goodLabel: cleanGoodLabel,
     goodVal: resolved.goodVal,
     diffVal: resolved.diffVal,
     slide3LeftBubble: slide3ReactionLines,

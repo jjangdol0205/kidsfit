@@ -1038,13 +1038,13 @@ ${topic.subheadings[3].body}
 
 ## 🧠 2. 부엉이 원장(🦉) 트리플 10K 성과 지표 & 자가학습(Reinforce / Auto-Pivot) 현황
 
-### 📊 (1) 트리플 10K(Triple 10,000) & 포털(\`truthofmarket.com\`) 일일 추적 지표
+### 📊 (1) 트리플 10K(Triple 10,000) & 애드포스트·쇼핑커넥트(방안 B) 일일 추적 지표
 | 채널 구분 | 계정 / 도메인 | 목표치 | 현재 달성 지표 | 일일 유입/재생 성과 | 핵심 전환 지표 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **① 네이버 블로그** | \`expertise333\` | **이웃 10,000명** | **${selfLearningMemory.triple10kMetrics.blog_expertise333.currentNeighbors.toLocaleString()}명** (+${selfLearningMemory.triple10kMetrics.blog_expertise333.dailyNeighborNetGain}/일) | 일 조회수 **${selfLearningMemory.triple10kMetrics.blog_expertise333.dailyViews.toLocaleString()}회** | 홈판 유입률 **${selfLearningMemory.triple10kMetrics.blog_expertise333.homeFeedInflowRate}** (체류 ${selfLearningMemory.triple10kMetrics.blog_expertise333.avgDwellTime}) |
 | **② 네이버 카페** | \`moneyfitlab\` | **회원 10,000명** | **${selfLearningMemory.triple10kMetrics.cafe_moneyfitlab.currentMembers.toLocaleString()}명** (+${selfLearningMemory.triple10kMetrics.cafe_moneyfitlab.dailyMemberNetGain}/일) | 검색 유입 **${selfLearningMemory.triple10kMetrics.cafe_moneyfitlab.searchInflowCount.toLocaleString()}회** | 댓글 참여율 **${selfLearningMemory.triple10kMetrics.cafe_moneyfitlab.commentEngagementRate}** |
 | **③ 네이버 클립** | \`@truthofmarket\` | **팔로워 10,000명** | **${selfLearningMemory.triple10kMetrics.clip_truthofmarket.currentFollowers.toLocaleString()}명** (+${selfLearningMemory.triple10kMetrics.clip_truthofmarket.dailyFollowerNetGain}/일) | 일 재생수 **${selfLearningMemory.triple10kMetrics.clip_truthofmarket.dailyClipPlays.toLocaleString()}회** | 블로그 스티커 클릭률 **${selfLearningMemory.triple10kMetrics.clip_truthofmarket.blogStickerClickRate}** |
-| **④ 권익 포털** | \`truthofmarket.com\` | **일 유입 극대화** | 일 순방문자 **${selfLearningMemory.triple10kMetrics.portal_truthofmarket.dailyUniqueVisitors.toLocaleString()}명** | 시뮬레이터 완주율 **${selfLearningMemory.triple10kMetrics.portal_truthofmarket.simulatorCompletionRate}** | 3초 환급/절세 계산기 양방향 순환 |
+| **④ 방안B 수익화** | \`애드포스트80%+쇼핑커넥트20%\` | **일 수익 극대화** | 외부 타사링크 **0건 (100% C-Rank 안전)** | 완독률 **${selfLearningMemory.triple10kMetrics.portal_truthofmarket.simulatorCompletionRate}** | 본문 체류 극대화 + 공식 쇼핑커넥트 1편 |
 
 ### 🚀 (2) 자가학습 강화(Reinforce +25%) & 자동 피봇(Auto-Pivot) 집행 내역
 - **강화(Reinforce +25%) 적용 패턴**:
@@ -1087,7 +1087,7 @@ if (require.main === module) {
   console.log(`  ✓ 단일 핵심 주제 : ${res.singleMegaTrafficCategory}`);
   console.log(`  ✓ 오늘의 대표주제: ${res.unifiedDailyFlagshipTopic.homeFeedTitle}`);
   console.log(`  ✓ 자가학습 메모리: ${res.selfLearningMemoryPath}`);
-  console.log(`  ✓ 블로그 (최대5) : ${res.dailyQuotas.blogGenerated}/5편 (24px/19px/16px + truthofmarket.com + 이웃1만 배너 + PNG 5장)`);
+  console.log(`  ✓ 블로그 (최대5) : ${res.dailyQuotas.blogGenerated}/5편 (24px/19px/16px + 외부타사링크 0건 + 이웃1만 배너 + PNG 5장)`);
   console.log(`  ✓ 클립영상(최대5): ${res.dailyQuotas.clipWebtoonMp4Count}/5편 (주제 100% 일치 4컷 웹툰 1080x1920 MP4 5편 완료)`);
   console.log(`  ✓ 자체카페(최대5): ${res.dailyQuotas.cafeSafeCount}/5편 (인기카페 1만 회원 유입용 백서 5편 완료)`);
   console.log(`  ✓ 운영보드 저장  : ${DIV2_BOARD_PATH}`);

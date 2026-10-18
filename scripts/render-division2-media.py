@@ -213,8 +213,15 @@ def render_homefeed_thumbnail_png(topic, slot, today_str, yesterday_str):
     draw.rounded_rectangle([60, 698, 1020, 990], radius=28, fill=(15, 23, 42), outline=pal['accent'], width=3)
     f_sub1 = get_font(36, bold=True)
     f_sub2 = get_font(29, bold=True)
+    slot_sub_line2 = {
+        1: '▶ 스마트폰 1분 조회 및 계좌 입금 신청 3단계 순서',
+        2: '▶ 한전 에너지캐시백 신청 & 누진세 구간 절약 공식',
+        3: '▶ 스마트초이스 미환급금 조회 & 위약금 손익 비교',
+        4: '▶ 위택스 자동차세 연납 할인율 & 신차 금융 비교표',
+        5: '▶ 예산별 황금 배분 비율 & 올인원 로청 필수 스펙 비교',
+    }.get(slot, '▶ 스마트폰 1분 확인 및 핵심 체크리스트 3단계 정리')
     draw_centered_text(draw, 738, '▶ 2026년 최신 구간별 금액 비교표 & 실제 사례 수록', f_sub1, (248, 250, 252))
-    draw_centered_text(draw, 812, '▶ 스마트폰 1분 조회 및 계좌 입금 신청 3단계 총정리', f_sub1, pal['accent'])
+    draw_centered_text(draw, 812, slot_sub_line2, f_sub1, pal['accent'])
     draw_centered_text(
         draw,
         898,

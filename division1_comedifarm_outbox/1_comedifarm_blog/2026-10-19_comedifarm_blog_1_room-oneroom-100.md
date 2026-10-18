@@ -27,7 +27,7 @@
 
 전용면적 약 **6평** 공간에 총예산 **100만 원(1,000,000원)**을 기준으로 직접 짜본 5대 품목 상한선은 다음과 같습니다.
 
-가장 먼저 24시간 돌아가는 **냉장고(24만 원)**와 **세탁기(22만 원)**에 중심을 잡고, 매일 수면의 질을 좌우하는 **침대·매트리스(20만 원)**와 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 **1,000,000원**으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.
+가장 먼저 매일 수면의 질을 좌우하는 **침대·매트리스(24만 원)**와 24시간 돌아가는 **냉장고(22만 원)**, 그리고 **세탁기(20만 원)**에 중심을 잡고 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 **1,000,000원**으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.
 
 ---
 
@@ -91,7 +91,7 @@ https://truthofmarket.com/preset/room-oneroom-100
 <p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">자취방 독립이나 오피스텔·신혼집 이사를 앞두고 가전·가구를 알아보다 보면, 처음에 마음먹었던 예산이 순식간에 백만 원 넘게 불어나서 당황스러울 때가 많습니다. 저도 처음에 아무 기준 없이 마음에 드는 냉장고랑 침대부터 장바구니에 담았더니 벌써 예산의 80%가 날아가 버리더라고요.</span></p>
 <p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">결국 예산 초과 없이 한 번에 풀세팅을 끝내려면, 결제하기 전에 내 총예산(<b>100만 원</b>)을 5대 필수 품목의 황금 비율(24% : 22% : 20% : 16% : 18%)로 먼저 쪼개서 품목별 상한선(캡)부터 정해두는 게 핵심이었습니다.</span></p>
 <p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">전용면적 약 <b>6평</b> 공간에 총예산 <b>100만 원(1,000,000원)</b>을 기준으로 직접 짜본 5대 품목 상한선은 다음과 같습니다.</span></p>
-<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">가장 먼저 24시간 돌아가는 <b>냉장고(24만 원)</b>와 <b>세탁기(22만 원)</b>에 중심을 잡고, 매일 수면의 질을 좌우하는 <b>침대·매트리스(20만 원)</b>와 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 <b>1,000,000원</b>으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">가장 먼저 매일 수면의 질을 좌우하는 <b>침대·매트리스(24만 원)</b>와 24시간 돌아가는 <b>냉장고(22만 원)</b>, 그리고 <b>세탁기(20만 원)</b>에 중심을 잡고 TV·전자레인지 등 소형가전까지 비율대로 배분했더니 총합 <b>1,000,000원</b>으로 단 1원의 예산 초과도 없이 깔끔하게 맞아떨어졌습니다.</span></p>
 <hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
 <!-- [발행 시 2번 그림 첨부 위치: sns_outbox/room-oneroom-100/slide-3.png] -->
 <p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>2. 조건별로 직접 대조해 본 상세 비교표</b></span></p>

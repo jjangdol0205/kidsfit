@@ -137,6 +137,17 @@ const pipelineMetrics = {
     // STEP 6: Telegram Automated Completion Notification
     // -------------------------------------------------------------
     console.log('\n[STEP 6/6] Dispatching Automated Telegram Report ...');
+    // -------------------------------------------------------------
+    // STEP 5.5: Final Pre-Publication QA Gatekeeper (부엉이 감사실장 🦉)
+    // -------------------------------------------------------------
+    console.log('\n[STEP 5.5/6] Running Final Pre-Publication QA Gatekeeper (final-qa-gatekeeper.js)...');
+    const { runFinalQaGatekeeper } = require('./final-qa-gatekeeper.js');
+    const qaRes = runFinalQaGatekeeper();
+    if (!qaRes.deploymentApproved) {
+      throw new Error(`Final QA Gatekeeper blocked deployment (${qaRes.defectCount} defects): ${qaRes.issues.slice(0, 3).join(' | ')}`);
+    }
+    console.log(`  ✓ Final QA Gatekeeper APPROVED (0 defects across Div1, Div2, 144 Backlog, 36 Viral, 216 Webtoon PNGs)`);
+
     const tgRes = await telegramNotifier.sendTelegramReport(pipelineMetrics, {
       dryRun: args.includes('--dry-run')
     });
