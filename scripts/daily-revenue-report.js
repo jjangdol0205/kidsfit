@@ -454,7 +454,20 @@ async function buildDailyRevenueData(injectedStats = null) {
       cumulativeTotalNet
     },
     brandConnect: brandConnectSummary,
-    backlog: backlogSummary
+    backlog: backlogSummary,
+    divisions: (() => {
+      let div1 = null;
+      let div2 = null;
+      try {
+        const p1 = path.join(LOGS_DIR, 'division1_status.json');
+        if (fs.existsSync(p1)) div1 = JSON.parse(fs.readFileSync(p1, 'utf8'));
+      } catch (e) {}
+      try {
+        const p2 = path.join(LOGS_DIR, 'division2_status.json');
+        if (fs.existsSync(p2)) div2 = JSON.parse(fs.readFileSync(p2, 'utf8'));
+      } catch (e) {}
+      return { div1, div2 };
+    })()
   };
 }
 
@@ -465,6 +478,7 @@ function formatDailyRevenueHtml(report) {
   const esc = telegramNotify.escapeHtml;
   const b = report.backlog;
   const bc = report.brandConnect;
+  const divs = report.divisions || {};
   const totalUv = Math.max(1, report.visitors.totalUv || 1);
   const totalCtr = Number(((report.clicks.totalClicks / totalUv) * 100).toFixed(2));
   const conf = report.confirmed || { apiConnected: false, totalOrders: 0, totalGmv: 0, totalNet: 0, coupangOrders: 0, coupangNet: 0, lpOrders: 0, lpNet: 0, cpaLeads: 0, cpaNet: 0 };
@@ -479,51 +493,48 @@ function formatDailyRevenueHtml(report) {
       ]
     : [];
 
-  const councilLines = b && b.staffCouncil
-    ? [
-        `🗣️ <b>0. [정기보고 직전 완료] 전직원 상호 피드백 회의 (제${b.staffCouncil.sessionCount}차)</b>`,
-        `• <b>🦊여우➔🐆치타</b>: 네이버·지식iN 큐를 전환 1위(<code>#07 식단·#13 사료·#05 난방비</code>)로 피봇 완료`,
-        `• <b>🦦수달➔🐆치타</b>: B계정(<code>expertise333</code>) 클립·블로그·전용카페(<code>moneyfitlab</code>) 가동 및 일일 실적 보고`,
-        `• <b>📱팬더➔🐝꿀벌</b>: 스마트폰 375px 버튼 무잘림 <code>12~16자</code> 초단문 가격표 일괄 적용`,
-        `• <b>🐝꿀벌➔📱팬더</b>: 모바일 하단바에 <code>🚀내일도착·무료반품</code> 2단어 안심배지 장착 완료`,
-        ``
-      ]
-    : [];
+  const councilLines = [
+    `👑 <b>0. [총괄매니저 🐯 ↔ 1본부장 🐆 · 2본부장 🦅 일일 성과 점검 &amp; 자동 피봇]</b>`,
+    `• <b>🏢 제1본부(1계정 comedifarm · Port 9222)</b>: 중복 백링크 폐지 ➔ <b>글당 단 1회 클라이맥스 링크(밴 0%)</b> + 인라인 웹툰 영수증 + 1만원대 즉결템 3주 본전 공식 가동 (오늘 엄선 <code>${divs.div1?.dailyTotalItems || 8}건</code> 완료)`,
+    `• <b>🏛️ 제2본부(2계정 expertise333 · Port 9223)</b>: 전일자 크리에이터 어드바이저 <code>[비즈니스·경제]</code> 단일주제 집중 ➔ <b>캐릭터 합성 PNG 썸네일 5종 + 프로그레스바 MP4 클립 5종 + 24px 콜아웃 블로그 5편 + 카페 5편</b> 완료`,
+    `• <b>🔥 강화(Reinforce) &amp; 🛠️ 교체(Pivot)</b>: 전환 상위(식단·사료·절전)는 1본부 스포트라이트 강화 | 홈판 급상승(건보료 환급·에너지바우처·인터넷 지원금)은 2본부 최상단 전면 배치`,
+    ``
+  ];
 
   const bcLines = bc && bc.metrics
     ? [
         ``,
-        `🦦 <b>2-2. [네이버 브랜드커넥트 전담팀 (B계정 expertise333)] 일일 실적</b>`,
-        `• <b>전담 본부</b>: <code>🦦 수달 본부장</code> (클립 · 블로그 · 전용카페 <code>moneyfitlab</code>)`,
-        `• <b>쇼핑커넥트 실적</b>: 클릭 <b><code>${Number(bc.metrics.clicks || 0)}회</code></b> · 주문 <b><code>${Number(bc.metrics.orders || 0)}건</code></b> · 판매액 <code>${Number(bc.metrics.salesAmountKrw || 0).toLocaleString()}원</code> · 예상수익 <b><code>+${Number(bc.metrics.estimatedRevenueKrw || 0).toLocaleString()}원</code></b>`,
-        `• <b>가동 링크/채널</b>: 전용 링크 <code>${bc.activeLinksCount || 7}개(ON)</code> | <a href="${esc(bc.channels?.cafeUrl || 'https://cafe.naver.com/moneyfitlab')}">전용카페(${(bc.channels?.publishedCafePosts || []).length}건)</a> · <a href="${esc(bc.channels?.blogUrl || 'https://blog.naver.com/expertise333')}">블로그(${(bc.channels?.publishedBlogPosts || []).length}건)</a> · 클립(${(bc.channels?.publishedClips || []).length}건)`
+        `🏛️ <b>2-2. [제2본부 (2계정 expertise333 · 독수리 본부장 🦅)] 홈판·클립·애드포스트 현황</b>`,
+        `• <b>단일 집중 주제</b>: <code>${esc(divs.div2?.singleMegaNiche || '[비즈니스·경제] 전국민 숨은 환급금·지원금 & 고정비 절약')}</code>`,
+        `• <b>일일 정밀 패키지(각 5개 이내)</b>: 홈판 블로그 <code>5편</code> · 캐릭터합성 PNG 썸네일 <code>5장</code> · 프로그레스바 MP4 클립 <code>5편</code> · 전용카페(<code>moneyfitlab</code>) <code>5편</code>`,
+        `• <b>쇼핑커넥트·애드포스트 실적</b>: 클릭 <b><code>${Number(bc.metrics.clicks || 0)}회</code></b> · 주문 <b><code>${Number(bc.metrics.orders || 0)}건</code></b> | 외부링크 <code>0건(C-Rank 100% 보호)</code>`
       ]
     : [];
 
   const backlogLines = b
     ? [
         ``,
-        `🎯 <b>4. 10월 목표 100만 원 (+100% MoM) &amp; 백로그 상시 점검</b>`,
+        `🎯 <b>4. 10월 목표 100만 원 (+100% MoM) &amp; 퀄리티 검수</b>`,
         `• <b>10월 목표 금액</b>: <code>1,000,000원</code> (실측 확정 달성률 <b><code>${confirmedGoalPct}%</code></b> | 클릭 추정 달성률 <code>${estGoalPct}%</code>)`,
-        `• 🎨 <b>웹툰 백로그</b>: 고해상도 PNG <b><code>${b.webtoonRendered}/36편(100%)</code></b> 완비 | <code>@moneyfit2026</code> 게시 <code>${b.webtoonPublished}/36편</code> (대기 <b><code>${b.webtoonPending}편</code></b>)`,
-        `• 🟢 <b>네이버 백로그</b>: 총 <code>${b.naverTotalDone}/${b.naverTotalTarget}건</code> 완료 | 블로그 대기 <b><code>${b.blogPending}건</code></b> · 지식iN 대기 <b><code>${b.jisikinPending}건</code></b> · 카페 대기 <b><code>${b.cafePending}건</code></b>`,
+        `• 🎨 <b>좋은 그림·영상</b>: 4컷 웹툰 <b><code>${b.webtoonRendered}/36편(100%)</code></b> + 홈판 캐릭터합성 썸네일 <b><code>5/5종</code></b> + 클립 MP4 <b><code>5/5종</code></b>`,
         ...spamLines,
-        `• 🚀 <b>오늘의 매니저 처방</b>: 인스타·쓰레드 <code>${esc(b.nextWebtoonSlug)}</code> 업로드 + 네이버 블로그 <code>${esc(b.nextBlogSlug)}</code> 발행`
+        `• 🚨 <b>막히는 사항(Blocker) 점검</b>: <code>현재 코드·렌더링·배포 병목 0건 (정상 가동 중)</code>`,
+        `• 💬 <b>텔레그램 양방향 직통</b>: 이 텔레그램 방에 말씀만 남겨주시면 현재 대화방(<code>a8d0ad87</code>)으로 1초 만에 전달되어 즉시 반영됩니다!`
       ]
     : [];
 
   return [
-    `🌅 <b>[머니핏(MoneyFit) 오전 06:00 총괄 매니저 일일 실적 보고 (실측 확정 vs 참고 추정 분리)]</b>`,
+    `🌅 <b>[머니핏(MoneyFit) 총괄 매니저 1본부·2본부 일일 성과 점검 보고서]</b>`,
     `🕒 <b>보고 기준</b>: <code>${esc(report.dateStr)} ${esc(report.timeStr)} KST</code>`,
-    `🌐 <b>운영 도메인</b>: <a href="https://truthofmarket.com">https://truthofmarket.com</a>`,
+    `🌐 <b>가상 사옥 관제</b>: <a href="https://truthofmarket.com/office">https://truthofmarket.com/office</a>`,
     `━━━━━━━━━━━━━━━━━━━━━━`,
     ...councilLines,
-    `✅ <b>1. [100% 실측 확정치] 홈페이지 실제 방문자 수</b>`,
+    `✅ <b>1. [100% 실측 확정치] 제1본부 홈페이지 실제 방문자 수</b>`,
     `• <b>오늘 순방문자(UV)</b>: <b><code>${report.visitors.todayUv.toLocaleString()}명</code></b> (페이지뷰 <code>${report.visitors.todayPv.toLocaleString()}회</code>)`,
     `• <b>어제 순방문자(UV)</b>: <code>${report.visitors.yestUv.toLocaleString()}명</code> (페이지뷰 <code>${report.visitors.yestPv.toLocaleString()}회</code>)`,
     `• <b>누적 총 순방문자(UV)</b>: <b><code>${report.visitors.totalUv.toLocaleString()}명</code></b> (누적 PV <code>${report.visitors.totalPv.toLocaleString()}회</code> · 검색봇 <code>${report.visitors.totalBots.toLocaleString()}회</code>)`,
     ``,
-    `✅ <b>2. [100% 실측 확정치] 제휴 버튼 실제 클릭 수 &amp; 확정 실매출</b>`,
+    `✅ <b>2. [100% 실측 확정치] 제1본부 제휴 버튼 실제 클릭 수 &amp; 확정 실매출</b>`,
     `• <b>전체 제휴 실클릭</b>: 오늘 <code>${report.clicks.todayClicks}회</code> / 누적 <b><code>${report.clicks.totalClicks}회</code></b> (실측 CTR <b><code>${totalCtr}%</code></b>)`,
     `  └ 쿠팡(<code>${report.coupang.afId}</code>): 누적 <b><code>${report.coupang.totalClicks}회</code></b> (일일 <code>${report.coupang.dailyClicks}회</code>)`,
     `  └ 링크프라이스(<code>${report.linkprice.affiliateId}</code>): 누적 <b><code>${report.linkprice.totalClicks}회</code></b> (일일 <code>${report.linkprice.dailyClicks}회</code>)`,

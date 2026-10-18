@@ -1,32 +1,14 @@
 {
   "startedAt": "2026-10-17T05:48:25.667Z",
-  "totalPageViews": 252,
-  "totalUniqueVisitors": 198,
-  "totalBotCrawls": 2188,
+  "totalPageViews": 253,
+  "totalUniqueVisitors": 199,
+  "totalBotCrawls": 2190,
   "totalAffiliateClicks": 15,
   "totalClicksByChannel": {
     "coupang": 9,
     "linkprice": 4,
     "cpa": 2,
     "sticky_mobile": 0
-  },
-  "totalClicksByCalc": {
-    "electric": 5,
-    "diet": 4,
-    "telecom": 2,
-    "auto": 2,
-    "pet": 1,
-    "room": 1,
-    "other": 0
-  },
-  "totalClicksByItem": {
-    "electric-main": 4,
-    "diet-chicken": 3,
-    "diet-rice": 2,
-    "telecom-router": 2,
-    "auto-blackbox": 2,
-    "pet-feed": 1,
-    "room-appliance": 1
   },
   "lastDailyReportDate": "2026-10-18",
   "days": {
@@ -53,9 +35,9 @@
       }
     },
     "2026-10-18": {
-      "uniqueVisitors": 39,
-      "pageViews": 53,
-      "botCrawls": 388,
+      "uniqueVisitors": 40,
+      "pageViews": 54,
+      "botCrawls": 390,
       "affiliateClicks": 2,
       "clicksByChannel": {
         "coupang": 1,
@@ -90,7 +72,7 @@
         "google": 0,
         "bing": 1,
         "ai": 0,
-        "other": 383
+        "other": 385
       },
       "pages": {}
     }

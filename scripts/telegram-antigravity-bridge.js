@@ -29,23 +29,23 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 const CONFIG_PATH = path.join(PROJECT_ROOT, 'monetization.config.json');
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json');
 
-const DEFAULT_CONVERSATION_ID = '8ef54af8-1e77-4d0a-9e4b-993c9782be50';
+const DEFAULT_CONVERSATION_ID = 'a8d0ad87-8ed4-4784-99fe-2541a487e61f';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
 const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe';
 
 const CONTROL_PANEL_KEYBOARD = {
   inline_keyboard: [
     [
-      { text: '📈 오늘 방문자 수 조회', callback_data: '/visitors' },
-      { text: '🎨 4컷 웹툰·쓰레드 홍보팩', callback_data: '/webtoon' }
+      { text: '🏢 1본부(comedifarm) 성과·큐', callback_data: '/visitors' },
+      { text: '🏛️ 2본부(expertise333) 홈판·클립', callback_data: '/webtoon' }
     ],
     [
       { text: '🚀 구글·네이버 즉시 색인', callback_data: '/seo' },
-      { text: '📊 실서버 상태 점검', callback_data: '/status' }
+      { text: '📊 전사 일일점검 & 실서버 상태', callback_data: '/status' }
     ],
     [
       { text: '🔄 재빌드 & 실서버 배포', callback_data: '/deploy' },
-      { text: '💰 내 수익화 ID 조회', callback_data: '/config' }
+      { text: '💰 수익화 ID & 본부 설정', callback_data: '/config' }
     ]
   ]
 };
@@ -411,18 +411,32 @@ async function handleIncomingCommand(rawText, options = {}) {
     return reply(cfgMsg, true);
   }
 
-  // 7. Natural Language or /ai <instruction> -> Forward directly to Antigravity AI!
+  // 7. Natural Language or /ai <instruction> -> Forward directly to THIS active Antigravity conversation!
   const cleanInstruction = text.replace(/^\/ai\s+/i, '').trim();
-  const convId = (cfg.fileConfig && cfg.fileConfig.antigravityConversationId) || DEFAULT_CONVERSATION_ID;
+  const convId = DEFAULT_CONVERSATION_ID;
+
+  try {
+    const inboxLogPath = path.join(PROJECT_ROOT, 'logs', 'telegram_inbox.jsonl');
+    fs.appendFileSync(
+      inboxLogPath,
+      JSON.stringify({
+        receivedAt: new Date().toISOString(),
+        chatId,
+        targetConversationId: convId,
+        message: cleanInstruction
+      }) + '\n',
+      'utf8'
+    );
+  } catch (e) {}
 
   await reply(
     [
-      `🧠 <b>[Antigravity AI 에이전트 원격 호출 완료!]</b>`,
+      `🧠 <b>[총괄 매니저 🐯 대화방 실시간 직결 완료!]</b>`,
       `━━━━━━━━━━━━━━━━━━`,
-      `📌 <b>전달된 명령</b>: <i>"${telegramNotifier.escapeHtml(cleanInstruction)}"</i>`,
-      `🖥 <b>대상 세션</b>: <code>${convId.slice(0, 8)}...</code>`,
+      `📌 <b>대표님 지시사항</b>: <i>"${telegramNotifier.escapeHtml(cleanInstruction)}"</i>`,
+      `🖥 <b>직결된 대화방 ID</b>: <code>${convId}</code>`,
       `━━━━━━━━━━━━━━━━━━`,
-      `⚡ PC의 안티그래비티(Antigravity)가 깨어나 작업을 수행 중입니다. 작업이 끝나면 즉시 이 채팅방으로 완료 보고가 도착합니다!`
+      `⚡ 대표님의 텔레그램 메시지가 현재 열려 있는 안티그래비티 대화방(제1본부·제2본부 통합 지휘실)으로 즉시 전달되어 실행 중입니다!`
     ].join('\n')
   );
 

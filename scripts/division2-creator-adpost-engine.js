@@ -382,11 +382,14 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
         .map((p) => `<p style="font-size:16px;line-height:1.9;color:#1e293b;margin:0 0 16px 0;">${p.replace(/\n/g, '<br/>')}</p>`)
         .join('\n');
       const tableHtml = sh.table ? renderHtmlTable(sh.table) : '';
+      const firstLineSummary = (sh.body.split('.')[0] || sh.h3).trim() + '.';
+      const calloutBox = `<div style="margin:0 0 16px 0;padding:14px 18px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;font-size:15px;line-height:1.65;color:#065f46;">
+          <strong style="color:#047857;">💡 [10초 핵심 요약 #${idx + 1}]</strong> ${firstLineSummary}
+        </div>`;
       const midAdBridge =
         idx === 1
-          ? `<div style="margin:26px 0;padding:16px 20px;background:#fffbeb;border:2px dashed #f59e0b;border-radius:12px;font-size:15px;font-weight:800;color:#92400e;text-align:center;">
-          💡 잠깐! 아래 1분 신청 절차로 내려가기 전에 내 조건에 맞는 관련 혜택·비교 정보도 함께 확인해 두세요 👇
-          <div style="font-size:12px;font-weight:600;color:#b45309;margin-top:4px;">(스마트에디터 ONE [본문 중간 애드포스트 광고] 삽입 권장 위치)</div>
+          ? `<div style="margin:26px 0;padding:18px 20px;background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;font-size:15px;font-weight:800;color:#92400e;text-align:center;">
+          📌 잠깐! 내 소득구간·가구원 수·약정 조건에서 <u>추가 환급/할인 대상</u>인지 아래 공식 조회 경로와 맞춤 금융·생활 혜택에서 바로 대조해 보세요 👇
         </div>`
           : '';
 
@@ -397,9 +400,10 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
           ${sh.h2}
         </h2>
         <!-- 보조 소제목 (스마트에디터 소제목2 크기: 19px ExtraBold + 형광펜 강조) -->
-        <h3 style="font-size:19px;font-weight:800;line-height:1.5;color:#0f172a;margin:0 0 16px 4px;">
+        <h3 style="font-size:19px;font-weight:800;line-height:1.5;color:#0f172a;margin:0 0 14px 4px;">
           <span style="background:linear-gradient(transparent 55%, #fef08a 45%);padding:0 4px;">✔ ${sh.h3}</span>
         </h3>
+        ${calloutBox}
         ${bodyParas}
         ${tableHtml}
         ${midAdBridge}
@@ -417,17 +421,17 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
 
   <!-- [발행 가이드 메타 박스] -->
   <div style="background:#0f172a;color:#f8fafc;padding:18px 22px;border-radius:14px;margin-bottom:28px;font-size:14px;line-height:1.6;">
-    <div style="color:#34d399;font-weight:900;font-size:16px;margin-bottom:6px;">🏛️ [제2본부 expertise333 전용] 홈판 진입 & 애드포스트 극대화 원고 (#${topic.slot}/5)</div>
+    <div style="color:#34d399;font-weight:900;font-size:16px;margin-bottom:6px;">🏛️ [제2본부 expertise333 전용 v3.0] 홈판 Top 1% & 애드포스트 극대화 원고 (#${topic.slot}/5)</div>
     <div>• <b>단일 핵심 카테고리</b>: ${topic.caCategory} (전일자 ${dates.yesterdayStr} 크리에이터 어드바이저 인기 키워드 #${topic.yesterdayRank}위 / ${topic.yesterdaySearchGrowth})</div>
-    <div>• <b>필수 대표 썸네일(PNG)</b>: <code>2_homefeed_thumbnails/${thumbPngFileName}</code> (스마트에디터 최상단 대표사진 지정 필수)</div>
-    <div>• <b>연동 웹툰 클립(MP4)</b>: <code>3_clip_webtoon_crank_safe/${clipMp4FileName}</code></div>
-    <div>• <b>소제목 크기 규격</b>: 대소제목 <b>24px(소제목1)</b> / 보조소제목 <b>19px(소제목2)</b> / 본문 <b>16px</b> 적용 완료</div>
+    <div>• <b>필수 대표 썸네일(캐릭터 합성 PNG)</b>: <code>2_homefeed_thumbnails/${thumbPngFileName}</code> (스마트에디터 최상단 대표사진 지정 필수)</div>
+    <div>• <b>연동 웹툰 클립(프로그레스바 MP4)</b>: <code>3_clip_webtoon_crank_safe/${clipMp4FileName}</code></div>
+    <div>• <b>소제목 & 콜아웃 규격</b>: 대소제목 <b>24px(소제목1)</b> / 보조소제목 <b>19px(소제목2)</b> / <b>10초 요약 콜아웃 박스</b> / 본문 <b>16px</b> 적용 완료</div>
   </div>
 
   <!-- ================= 스마트에디터 ONE 본문 복붙 시작 영역 ================= -->
   <div id="smarteditor-copy-zone">
 
-    <!-- 1. 홈판 대표 썸네일 이미지 (1080x1080 PNG) -->
+    <!-- 1. 홈판 대표 썸네일 이미지 (1080x1080 캐릭터 합성 PNG) -->
     <div style="text-align:center;margin-bottom:28px;">
       <img src="../2_homefeed_thumbnails/${thumbPngFileName}" alt="${topic.creatorAdvisorKeyword}" style="width:100%;max-width:560px;height:auto;border-radius:18px;border:1px solid #cbd5e1;" />
       <p style="font-size:13px;color:#64748b;margin-top:8px;">▲ ${topic.shortThumbLine1} ${topic.shortThumbLine2} 핵심 요약</p>
@@ -447,13 +451,13 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
       </ol>
     </div>
 
-    <!-- 4. 소제목(24px / 19px) + 비교표 + 심층 본문 섹션 -->
+    <!-- 4. 소제목(24px / 19px) + 10초 요약 콜아웃 + 비교표 + 심층 본문 섹션 -->
     ${sectionsHtml}
 
     <!-- 5. 마무리 & 클립·카페 안착 유도 (하단 애드포스트 광고 밀착형) -->
     <div style="margin-top:36px;padding:20px;background:#f1f5f9;border-radius:14px;font-size:15px;line-height:1.8;color:#1e293b;">
       <p style="margin:0 0 10px 0;font-weight:900;font-size:18px;color:#0f172a;">💬 오늘 정리해 드린 『${topic.shortThumbLine2}』, 지금 바로 1분만 투자해 확인해 보세요!</p>
-      <p style="margin:0 0 10px 0;">더 보기 편한 <b>11초 웹툰 요약 영상(네이버 클립)</b>과 <b>질의응답·체크리스트 게시판(네이버 공식 카페)</b>에서도 매주 새로운 생활경제·환급금 정보를 가장 빠르게 받아보실 수 있습니다.</p>
+      <p style="margin:0 0 10px 0;">더 보기 편한 <b>8초 웹툰 모션 요약 영상(네이버 클립)</b>과 <b>질의응답·체크리스트 게시판(네이버 공식 카페)</b>에서도 매주 새로운 생활경제·환급금 정보를 가장 빠르게 받아보실 수 있습니다.</p>
       <p style="margin:0;font-weight:800;color:#059669;">❤️ 이 글이 도움 되셨다면 [공감]과 [이웃 추가] 꾹 눌러두시고 가족·지인분들께도 공유해 주세요!</p>
     </div>
 
