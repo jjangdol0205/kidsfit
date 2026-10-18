@@ -158,6 +158,113 @@
     }
   }
 
+  const DEFAULT_CALC_ORDER = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'];
+  const POPULAR_CHIP_BY_CALC = {
+    electric: { presetId: 'electric-winter-heater', label: '⚡ 온풍기·에어컨 전기세', hoverCls: 'hover:bg-rose-600' },
+    diet: { presetId: 'diet-male-fatloss', label: '🍗 80kg 닭가슴살 식단', hoverCls: 'hover:bg-emerald-600' },
+    pet: { presetId: 'pet-maltese-5kg', label: '🐶 5kg 말티즈 사료량', hoverCls: 'hover:bg-amber-600' },
+    room: { presetId: 'room-oneroom-100', label: '🛋️ 원룸 100만 풀세팅', hoverCls: 'hover:bg-teal-600' },
+    auto: { presetId: 'auto-grandeur-5000', label: '🚗 그랜저 렌트 절세', hoverCls: 'hover:bg-blue-600' },
+    telecom: { presetId: 'telecom-penalty-15', label: '🌐 인터넷 47만 현금', hoverCls: 'hover:bg-indigo-600' }
+  };
+
+  let serverClicksByCalc = {};
+  let serverClicksByItem = {};
+
+  function getMergedClicksByCalc() {
+    const monetizationModule = getMonetizationModule();
+    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
+    const localMap = config.clicksByCalc || {};
+    const merged = {};
+    DEFAULT_CALC_ORDER.forEach(c => {
+      merged[c] = (Number(serverClicksByCalc[c]) || 0) + (Number(localMap[c]) || 0);
+    });
+    return merged;
+  }
+
+  function getMergedClicksByItem() {
+    const monetizationModule = getMonetizationModule();
+    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
+    const localMap = config.clicksByItem || {};
+    const merged = Object.assign({}, serverClicksByItem);
+    Object.keys(localMap).forEach(k => {
+      merged[k] = (Number(merged[k]) || 0) + (Number(localMap[k]) || 0);
+    });
+    return merged;
+  }
+
+  function incrementCalcClick(calcKey, itemKey = '') {
+    if (!DEFAULT_CALC_ORDER.includes(calcKey)) return;
+    const monetizationModule = getMonetizationModule();
+    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
+    const clicksByCalc = Object.assign({}, config.clicksByCalc || {});
+    clicksByCalc[calcKey] = (Number(clicksByCalc[calcKey]) || 0) + 1;
+    const clicksByItem = Object.assign({}, config.clicksByItem || {});
+    if (itemKey) {
+      clicksByItem[itemKey] = (Number(clicksByItem[itemKey]) || 0) + 1;
+    }
+    config.clicksByCalc = clicksByCalc;
+    config.clicksByItem = clicksByItem;
+    if (monetizationModule.saveConfigToStorage) {
+      monetizationModule.saveConfigToStorage({
+        clicksByCalc,
+        clicksByItem
+      });
+    }
+    reorderCalculatorsByClicks();
+  }
+
+  /**
+   * Dynamically reorder the 6 calculator tabs & popular TOP 4 chips so the most-clicked category is always #1 first!
+   */
+  function reorderCalculatorsByClicks() {
+    const counts = getMergedClicksByCalc();
+    const sortedCalcs = DEFAULT_CALC_ORDER.slice().sort((a, b) => {
+      const diff = (counts[b] || 0) - (counts[a] || 0);
+      if (diff !== 0) return diff;
+      return DEFAULT_CALC_ORDER.indexOf(a) - DEFAULT_CALC_ORDER.indexOf(b);
+    });
+
+    const navGrid = document.getElementById('calc-nav-grid');
+    if (navGrid) {
+      sortedCalcs.forEach((calcKey, idx) => {
+        const btn = document.getElementById(`calc-nav-${calcKey}`);
+        if (btn) {
+          navGrid.appendChild(btn);
+        }
+        const badge = document.getElementById(`calc-rank-badge-${calcKey}`);
+        if (badge) {
+          const cnt = counts[calcKey] || 0;
+          const cntSuffix = cnt > 0 ? ` · ${cnt}클릭` : '';
+          if (idx === 0) {
+            badge.textContent = `🔥 1위${cntSuffix}`;
+            badge.className = 'calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-rose-600 text-white shrink-0';
+          } else if (idx === 1) {
+            badge.textContent = `⚡ 2위${cntSuffix}`;
+            badge.className = 'calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 shrink-0';
+          } else {
+            badge.textContent = `${idx + 1}위${cntSuffix}`;
+            badge.className = 'calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0';
+          }
+        }
+      });
+    }
+
+    const popularChipsEl = document.getElementById('popular-calc-chips');
+    if (popularChipsEl) {
+      popularChipsEl.innerHTML = sortedCalcs.slice(0, 4).map((calcKey, idx) => {
+        const meta = POPULAR_CHIP_BY_CALC[calcKey] || POPULAR_CHIP_BY_CALC.electric;
+        const cnt = counts[calcKey] || 0;
+        const rankPrefix = idx === 0 ? '🥇 ' : (idx === 1 ? '🥈 ' : '');
+        const cntText = cnt > 0 ? ` (${cnt})` : '';
+        return `<button type="button" onclick="applyScenarioPreset('${meta.presetId}')" class="text-xs sm:text-sm font-semibold bg-white ${meta.hoverCls} text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">${rankPrefix}${meta.label}${cntText}</button>`;
+      }).join('');
+    }
+
+    return sortedCalcs;
+  }
+  window.reorderCalculatorsByClicks = reorderCalculatorsByClicks;
+
   /**
    * Apply a 1-Click Scenario Preset
    */
@@ -167,17 +274,31 @@
     if (!target) return;
     activeScenarioId = target.id;
     activeScenarioExtraInputs = Object.assign({}, target.inputs);
-    window.selectCalc(target.calc, target.inputs);
+    window.selectCalc(target.calc, target.inputs, true);
   };
 
   /**
    * Switch Active Calculator
    */
-  window.selectCalc = function (calcKey, customInputs = null) {
+  window.selectCalc = function (calcKey, customInputs = null, isUserClick = false) {
     currentCalc = calcKey;
     if (!customInputs) {
       activeScenarioExtraInputs = {};
     }
+    if (isUserClick) {
+      incrementCalcClick(calcKey);
+      try {
+        if (typeof fetch === 'function') {
+          fetch(`/api/track?type=calc_click&calc=${encodeURIComponent(calcKey)}&p=/`, {
+            method: 'GET',
+            keepalive: true
+          }).catch(() => {});
+        }
+      } catch (e) {}
+    } else {
+      reorderCalculatorsByClicks();
+    }
+
     const calcModule = getCalcModule();
     const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[calcKey] : null;
     if (!spec) return;
@@ -249,6 +370,7 @@
 
     recalculateCurrent();
   };
+  window.switchCalc = window.selectCalc;
 
   /**
    * Visual Marketing Contrast Formatters (강·중·약 위계 부여 & textContent 100% 보존)
@@ -356,7 +478,11 @@
         : (url || '#');
     };
 
-    const actionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+    const origActionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
+    const itemClicks = getMergedClicksByItem();
+    const actionItems = origActionItems
+      .map((it, idx) => Object.assign({}, it, { _origIdx: idx, _clicks: itemClicks[it.itemKey] || 0 }))
+      .sort((a, b) => (b._clicks - a._clicks) || (a._origIdx - b._origIdx));
     const primaryAction = actionItems[0] || null;
 
     // 0. [CRO Layer 1 + Experiment A] Left-column Input Instant Prescription Bridge + Zero-Feel Framing
@@ -384,10 +510,12 @@
       if (instantCoupangBtn) {
         instantCoupangBtn.href = buildCoupangHref(primaryAction.coupangKw);
         instantCoupangBtn.textContent = primaryAction.coupangBtn || '🚀 쿠팡 최저가 ↗';
+        instantCoupangBtn.setAttribute('onclick', `recordAffiliateClick('coupang', this.href, 'input_bridge', '${primaryAction.itemKey || ''}')`);
       }
       if (instantLpBtn) {
         instantLpBtn.href = buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl);
         instantLpBtn.textContent = primaryAction.lpBtn || '🏷️ 공식몰 특가 ↗';
+        instantLpBtn.setAttribute('onclick', `recordAffiliateClick('linkprice', this.href, 'input_bridge', '${primaryAction.itemKey || ''}')`);
       }
     }
 
@@ -451,7 +579,7 @@
     const naverConnectHref = (cpaDetails && cpaDetails.naverConnectUrl) || 'https://naver.me/xm0ZVnAW';
     const naverConnectBtnLabel = (cpaDetails && cpaDetails.naverConnectLabel) || '🟢 네이버 특가';
 
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (High-Contrast Action Pill for 3x CTR!)
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (1:1 Exact Product Matching via targetActionIdx & stepHint)
     if (metricsGrid && res.metrics) {
       const colClass = res.metrics.length >= 4
         ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-3.5 mobile-metrics-4"
@@ -460,13 +588,16 @@
       metricsGrid.innerHTML = res.metrics.map((m, idx) => {
         const isNeg = String(m.val).startsWith('-');
         const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
-        const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+        const matchedAction = (m.targetActionIdx !== undefined && origActionItems[m.targetActionIdx])
+          ? origActionItems[m.targetActionIdx]
+          : (origActionItems.length > 0 ? origActionItems[idx % origActionItems.length] : null);
         const metricHref = matchedAction ? buildCoupangHref(matchedAction.coupangKw) : '#product-recommendations';
-        const stepHint = matchedAction ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗` : '⚡ 최저가 확인 ↗';
+        const stepHint = m.stepHint || (matchedAction ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗` : '⚡ 최저가 확인 ↗');
+        const itemKeyAttr = matchedAction && matchedAction.itemKey ? matchedAction.itemKey : '';
 
         return `
           <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('coupang', this.href, 'metric_card')"
+             onclick="recordAffiliateClick('coupang', this.href, 'metric_card', '${itemKeyAttr}')"
              class="group block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-3 min-w-0 transition shadow-sm">
             <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
             <div class="text-lg sm:text-xl font-black ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
@@ -478,18 +609,27 @@
       }).join('');
     }
 
-    // Wire Top 3-Pipeline Quick Bar (#receipt-multi-pipeline-bar)
+    // Wire Top 3-Pipeline Quick Bar (#receipt-multi-pipeline-bar) with 1:1 exact product labels
     const topPipeCoupangEl = document.getElementById('top-pipe-coupang');
     const topPipeNaverEl = document.getElementById('top-pipe-naver');
     const topPipeLpEl = document.getElementById('top-pipe-lp');
     if (topPipeCoupangEl) {
       topPipeCoupangEl.href = primaryAction ? buildCoupangHref(primaryAction.coupangKw) : (cpaDetails?.coupangSubUrl || '#');
+      topPipeCoupangEl.textContent = primaryAction && primaryAction.coupangBtn
+        ? `${primaryAction.coupangBtn} ↗`
+        : `${cpaDetails?.coupangSubLabel || '🚀 쿠팡 최저가'} ↗`;
+      topPipeCoupangEl.setAttribute('onclick', `recordAffiliateClick('coupang', this.href, 'receipt_cart', '${primaryAction?.itemKey || ''}')`);
     }
     if (topPipeNaverEl) {
       topPipeNaverEl.href = naverConnectHref;
+      topPipeNaverEl.textContent = `${naverConnectBtnLabel} ↗`;
     }
     if (topPipeLpEl) {
       topPipeLpEl.href = primaryAction ? buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl) : (cpaDetails?.linkPriceSubUrl || '#');
+      topPipeLpEl.textContent = primaryAction && primaryAction.lpBtn
+        ? `${primaryAction.lpBtn} ↗`
+        : `${cpaDetails?.linkPriceSubLabel || '🏷️ 공식몰 할인'} ↗`;
+      topPipeLpEl.setAttribute('onclick', `recordAffiliateClick('linkprice', this.href, 'receipt_cart', '${primaryAction?.itemKey || ''}')`);
     }
 
     // 1.5 Visual Loss-Aversion Comparison Bar (Contrast: normal labels vs bold numbers)
@@ -523,38 +663,45 @@
       `;
     }
 
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (3-Channel Revenue Diversification + Social Proof Badge!)
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Exact Product Links + Click-Count Ordering!)
     if (receiptActionItemsEl && actionItems.length > 0) {
       const choiceRates = [89, 86, 84, 82];
       receiptActionItemsEl.innerHTML = actionItems.map((item, idx) => {
         const cpHref = buildCoupangHref(item.coupangKw);
         const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
         const choicePct = choiceRates[idx % choiceRates.length];
+        const hasItemNaver = Boolean(item.naverUrl);
+        const btnGridCols = hasItemNaver ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2';
+        const clickRankTag = item._clicks > 0
+          ? `<span class="text-[11px] font-extrabold bg-rose-500/25 text-rose-200 border border-rose-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🔥 클릭 ${idx + 1}위 (${item._clicks})</span>`
+          : '';
         return `
           <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap items-center gap-2 mb-1">
                   <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
+                  ${clickRankTag}
                   <span class="text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">⭐ 같은 조건 ${choicePct}% 선택 · ★4.9</span>
                   <span class="text-base font-bold text-white break-keep">${item.label}</span>
                 </div>
                 <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div class="grid ${btnGridCols} gap-2">
               <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
+                 onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart', '${item.itemKey || ''}')"
                  class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                 ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
               </a>
-              <a href="${naverConnectHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('cpa', this.href, 'receipt_cart')"
+              ${hasItemNaver ? `
+              <a href="${item.naverUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordAffiliateClick('cpa', this.href, 'receipt_cart', '${item.itemKey || ''}')"
                  class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
-                ${naverConnectBtnLabel} ↗
-              </a>
+                ${item.naverBtn || naverConnectBtnLabel} ↗
+              </a>` : ''}
               <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
+                 onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart', '${item.itemKey || ''}')"
                  class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                 ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
               </a>
@@ -595,7 +742,7 @@
       };
       const combos = CROSS_COMBO_MAP[currentCalc] || CROSS_COMBO_MAP.electric;
       crossComboGridEl.innerHTML = combos.map(c => `
-        <button type="button" onclick="switchCalc('${c.calc}'); window.scrollTo({top: 0, behavior: 'smooth'});"
+        <button type="button" onclick="selectCalc('${c.calc}', null, true); window.scrollTo({top: 0, behavior: 'smooth'});"
           class="text-left bg-slate-900 hover:bg-indigo-950/80 border border-slate-700 hover:border-indigo-400 rounded-xl p-2.5 transition group">
           <div class="text-[11px] font-extrabold text-amber-300">${c.badge}</div>
           <div class="text-xs sm:text-sm font-bold text-white group-hover:text-indigo-200 mt-0.5 truncate">${c.title}</div>
@@ -649,10 +796,14 @@
       }
     }
 
-    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Zero Truncation + Strong Visual Contrast!)
+    // 3. [CRO Layer 3] Enriched Shopping Deal Cards (Sorted by Click Count + 1:1 Exact Product Link!)
     const productsContainer = document.getElementById('product-recommendations');
     if (productsContainer && res.products) {
-      productsContainer.innerHTML = res.products.map(p => {
+      const sortedProducts = res.products
+        .map((p, idx) => Object.assign({}, p, { _origIdx: idx, _clicks: itemClicks[p.itemKey] || 0 }))
+        .sort((a, b) => (b._clicks - a._clicks) || (a._origIdx - b._origIdx));
+
+      productsContainer.innerHTML = sortedProducts.map((p, idx) => {
         const href = p.type === 'coupang'
           ? buildCoupangHref(p.kw)
           : buildLpHref(p.merchant, p.url);
@@ -666,7 +817,9 @@
         const btnBg = p.type === 'coupang'
           ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
           : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
-        const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인');
+        const subBadge = p._clicks > 0
+          ? `🔥 클릭 ${idx + 1}위 (${p._clicks}회)`
+          : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인'));
         const ctaLabel = p.ctaText || '최저가 보기 →';
         const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
         const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
@@ -674,7 +827,7 @@
 
         return `
           <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card')"
+             onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card', '${p.itemKey || ''}')"
              class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-2xl p-4 sm:p-5 transition-all bg-white hover:bg-blue-50/15 shadow-sm hover:shadow-md min-w-0">
             <div class="min-w-0 space-y-2">
               <div class="flex items-center justify-between gap-2">
@@ -773,7 +926,12 @@
     if (epBadgeEl) epBadgeEl.textContent = epBadgeText;
     if (diffPillEl) diffPillEl.textContent = diffPillText;
     if (wtTitleEl) wtTitleEl.textContent = epTitleText;
-    if (wtCoupangBtn) wtCoupangBtn.href = mainCoupangUrl;
+    if (wtCoupangBtn) {
+      wtCoupangBtn.href = mainCoupangUrl;
+      wtCoupangBtn.textContent = primaryAction
+        ? `🛒 웹툰 처방: ${primaryAction.coupangBtn || primaryAction.label} 확인 ↗`
+        : '🛒 웹툰 속 절약 비결 쿠팡 로켓배송 최저가 확인 ↗';
+    }
     if (wtImgLink) wtImgLink.href = mainCoupangUrl;
     if (wtDrawerMainBtn) {
       wtDrawerMainBtn.href = mainCoupangUrl;
@@ -1405,34 +1563,39 @@
   }
 
   /**
-   * Affiliate Link Click Tracker + Slot-Level CTR Analytics + Real-Time Telegram Conversion Signal
+   * Affiliate Link Click Tracker + Slot-Level CTR Analytics + Real-Time Category/Item Ordering + Telegram Conversion Signal
    */
-  window.recordAffiliateClick = function (channel, url, slot = 'deal_card') {
+  window.recordAffiliateClick = function (channel, url, slot = 'deal_card', itemKey = '') {
     const monetizationModule = getMonetizationModule();
     const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     config.clickCount = (config.clickCount || 0) + 1;
     const safeSlot = String(slot || 'deal_card').replace(/[^a-zA-Z0-9_-]/g, '');
+    const safeItemKey = String(itemKey || '').replace(/[^a-zA-Z0-9_-]/g, '');
     const clicksBySlot = Object.assign({}, config.clicksBySlot || {});
     clicksBySlot[safeSlot] = (clicksBySlot[safeSlot] || 0) + 1;
     config.clicksBySlot = clicksBySlot;
 
+    incrementCalcClick(currentCalc, safeItemKey);
+
     if (monetizationModule.saveConfigToStorage) {
       monetizationModule.saveConfigToStorage({
         clickCount: config.clickCount,
-        clicksBySlot: config.clicksBySlot
+        clicksBySlot: config.clicksBySlot,
+        clicksByCalc: config.clicksByCalc,
+        clicksByItem: config.clicksByItem
       });
     }
     const statusClicks = document.getElementById('status-click-count');
     if (statusClicks) statusClicks.textContent = config.clickCount;
-    highlightWinningSlot();
+    recalculateCurrent();
 
-    // 1. Report affiliate click + slot to backend server (/api/track) so 06:00 AM KST daily report & Manager Board have exact slot/channel CTR
+    // 1. Report affiliate click + slot + item to backend server (/api/track)
     try {
       const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
       const safeCalc = String(currentCalc || 'electric').replace(/[^a-zA-Z0-9_-]/g, '');
       const pagePath = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
       if (typeof fetch === 'function') {
-        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&slot=${encodeURIComponent(safeSlot)}&p=${encodeURIComponent(pagePath)}`, {
+        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&slot=${encodeURIComponent(safeSlot)}&item=${encodeURIComponent(safeItemKey)}&p=${encodeURIComponent(pagePath)}`, {
           method: 'GET',
           keepalive: true
         }).catch(() => {});
@@ -1710,6 +1873,29 @@
     }
   };
 
+  async function syncServerClickRanking(autoSelectTopCalc = false) {
+    if (typeof fetch !== 'function') return;
+    try {
+      const res = await fetch('/api/stats');
+      if (!res || !res.ok) return;
+      const stats = await res.json();
+      if (stats && stats.totals) {
+        if (stats.totals.clicksByCalc && typeof stats.totals.clicksByCalc === 'object') {
+          serverClicksByCalc = Object.assign({}, stats.totals.clicksByCalc);
+        }
+        if (stats.totals.clicksByItem && typeof stats.totals.clicksByItem === 'object') {
+          serverClicksByItem = Object.assign({}, stats.totals.clicksByItem);
+        }
+        const ranked = reorderCalculatorsByClicks();
+        if (autoSelectTopCalc && ranked.length > 0 && ranked[0] !== currentCalc) {
+          selectCalc(ranked[0], null, false);
+        } else {
+          recalculateCurrent();
+        }
+      }
+    } catch (e) {}
+  }
+
   /**
    * Bootstrapping on DOM Ready
    */
@@ -1721,27 +1907,34 @@
     const cfg = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
     updateStatusBar(cfg);
 
-    let initialCalc = 'electric';
+    const rankedCalcs = reorderCalculatorsByClicks();
+    let initialCalc = rankedCalcs[0] || 'electric';
     let initialPreset = null;
+    let hasExplicitUrlParam = false;
     try {
       const params = new URLSearchParams(window.location.search);
       const calcParam = params.get('calc');
       const presetParam = params.get('preset');
       if (presetParam) {
         const found = getPresetsList().find(p => p.id === presetParam);
-        if (found) initialPreset = found;
+        if (found) {
+          initialPreset = found;
+          hasExplicitUrlParam = true;
+        }
       }
       if (calcParam && ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(calcParam)) {
         initialCalc = calcParam;
+        hasExplicitUrlParam = true;
       }
     } catch (e) {}
 
     if (initialPreset) {
       window.applyScenarioPreset(initialPreset.id);
     } else {
-      selectCalc(initialCalc);
+      selectCalc(initialCalc, null, false);
     }
     runProfitSimulator();
+    syncServerClickRanking(!hasExplicitUrlParam);
 
     // Unlock owner-only admin mode if ?admin=2370 or ?admin=1 is present in URL
     try {

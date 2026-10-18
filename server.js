@@ -100,6 +100,7 @@ let analyticsStore = {
   totalClicksByChannel: { coupang: 0, linkprice: 0, cpa: 0, sticky_mobile: 0 },
   totalClicksBySlot: DEFAULT_SLOTS(),
   totalClicksByCalc: DEFAULT_CALCS(),
+  totalClicksByItem: {},
   lastDailyReportDate: '',
   lastSixHourCycleKey: '',
   days: {}
@@ -118,6 +119,7 @@ try {
         ),
         totalClicksBySlot: Object.assign(DEFAULT_SLOTS(), loaded.totalClicksBySlot || {}),
         totalClicksByCalc: Object.assign(DEFAULT_CALCS(), loaded.totalClicksByCalc || {}),
+        totalClicksByItem: Object.assign({}, loaded.totalClicksByItem || {}),
         days: loaded.days || {}
       };
     }
@@ -191,6 +193,21 @@ function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
     .split(',')[0]
     .trim();
 
+  if (eventType === 'calc_click') {
+    const rawCalc = String(extra.calc || '').toLowerCase().replace(/[^a-z0-9_]/g, '');
+    const normCalc = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(rawCalc) ? rawCalc : 'other';
+    bucket.clicksByCalc[normCalc] = (bucket.clicksByCalc[normCalc] || 0) + 1;
+    analyticsStore.totalClicksByCalc[normCalc] = (analyticsStore.totalClicksByCalc[normCalc] || 0) + 1;
+
+    const cleanItem = String(extra.item || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 64);
+    if (cleanItem) {
+      if (!analyticsStore.totalClicksByItem) analyticsStore.totalClicksByItem = {};
+      analyticsStore.totalClicksByItem[cleanItem] = (analyticsStore.totalClicksByItem[cleanItem] || 0) + 1;
+    }
+    saveAnalyticsToDisk();
+    return;
+  }
+
   if (eventType === 'click') {
     bucket.affiliateClicks += 1;
     analyticsStore.totalAffiliateClicks += 1;
@@ -228,6 +245,12 @@ function recordVisit(req, cleanPath, eventType = 'pageview', extra = {}) {
     const normCalc = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(rawCalc) ? rawCalc : 'other';
     bucket.clicksByCalc[normCalc] = (bucket.clicksByCalc[normCalc] || 0) + 1;
     analyticsStore.totalClicksByCalc[normCalc] = (analyticsStore.totalClicksByCalc[normCalc] || 0) + 1;
+
+    const cleanItem = String(extra.item || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 64);
+    if (cleanItem) {
+      if (!analyticsStore.totalClicksByItem) analyticsStore.totalClicksByItem = {};
+      analyticsStore.totalClicksByItem[cleanItem] = (analyticsStore.totalClicksByItem[cleanItem] || 0) + 1;
+    }
 
     saveAnalyticsToDisk();
     return;
@@ -321,6 +344,10 @@ function getStatsPayload() {
   const estNetKrw = Math.round(totalCpClicks * 45000 * 0.045 * 0.03 + totalLpClicks * 120000 * 0.035 * 0.04 + totalCpaClicks * 1500);
   const octoberGoalKrw = 1000000;
 
+  const calcOrder = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].sort(
+    (a, b) => (analyticsStore.totalClicksByCalc[b] || 0) - (analyticsStore.totalClicksByCalc[a] || 0)
+  );
+
   const totalsObj = {
     uniqueVisitors: analyticsStore.totalUniqueVisitors,
     pageViews: analyticsStore.totalPageViews,
@@ -330,6 +357,8 @@ function getStatsPayload() {
     clicksByChannel: analyticsStore.totalClicksByChannel,
     clicksBySlot: analyticsStore.totalClicksBySlot,
     clicksByCalc: analyticsStore.totalClicksByCalc,
+    clicksByItem: analyticsStore.totalClicksByItem || {},
+    calcRanking: calcOrder,
     topSlot: findTopKey(analyticsStore.totalClicksBySlot),
     topCalc: findTopKey(analyticsStore.totalClicksByCalc)
   };
@@ -1095,7 +1124,8 @@ const server = http.createServer(async (req, res) => {
     const channel = params.get('channel') || '';
     const calc = params.get('calc') || '';
     const slot = params.get('slot') || '';
-    recordVisit(req, targetPage, evType, { channel, calc, slot });
+    const item = params.get('item') || '';
+    recordVisit(req, targetPage, evType, { channel, calc, slot, item });
     res.writeHead(200, {
       ...SECURITY_HEADERS,
       'Content-Type': 'application/json; charset=utf-8',

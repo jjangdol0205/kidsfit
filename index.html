@@ -215,52 +215,70 @@
     <!-- ==================== [탭 1] 6대 고전환 손익 계산기 ==================== -->
     <section id="view-calculators" class="space-y-6">
       
-      <!-- 계산기 선택 네비게이션 그리드 (스마트폰 3x2 알약 / 데스크탑 6열 큰 글씨 탭) -->
-      <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
-        <button onclick="selectCalc('electric')" id="calc-nav-electric" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">⚡ 전기세</div>
+      <!-- 계산기 선택 네비게이션 그리드 (클릭수 1위 카테고리가 자동으로 맨 앞에 배치되는 실시간 순위 탭) -->
+      <div id="calc-nav-grid" class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+        <button onclick="selectCalc('electric', null, true)" id="calc-nav-electric" data-calc="electric" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">⚡ 전기세</div>
+            <span id="calc-rank-badge-electric" class="calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-rose-600 text-white shrink-0">🔥 1위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">1등급 본전</div>
         </button>
-        <button onclick="selectCalc('diet')" id="calc-nav-diet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🍗 식단</div>
+        <button onclick="selectCalc('diet', null, true)" id="calc-nav-diet" data-calc="diet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🍗 식단</div>
+            <span id="calc-rank-badge-diet" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">2위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">닭가슴살 수량</div>
         </button>
-        <button onclick="selectCalc('pet')" id="calc-nav-pet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🐶 사료량</div>
+        <button onclick="selectCalc('pet', null, true)" id="calc-nav-pet" data-calc="pet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🐶 사료량</div>
+            <span id="calc-rank-badge-pet" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">3위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">급여량·소진일</div>
         </button>
-        <button onclick="selectCalc('room')" id="calc-nav-room" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🛋️ 가전·가구</div>
+        <button onclick="selectCalc('room', null, true)" id="calc-nav-room" data-calc="room" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🛋️ 가전·가구</div>
+            <span id="calc-rank-badge-room" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">4위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">예산별 견적</div>
         </button>
-        <button onclick="selectCalc('auto')" id="calc-nav-auto" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🚗 신차 비교</div>
+        <button onclick="selectCalc('auto', null, true)" id="calc-nav-auto" data-calc="auto" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🚗 신차 비교</div>
+            <span id="calc-rank-badge-auto" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">5위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">렌트 vs 할부</div>
         </button>
-        <button onclick="selectCalc('telecom')" id="calc-nav-telecom" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🌐 인터넷</div>
+        <button onclick="selectCalc('telecom', null, true)" id="calc-nav-telecom" data-calc="telecom" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
+          <div class="flex items-center justify-between gap-1">
+            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🌐 인터넷</div>
+            <span id="calc-rank-badge-telecom" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">6위</span>
+          </div>
           <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">위약금 vs 47만</div>
         </button>
       </div>
 
-      <!-- 인기 계산 1초 자동 스위칭 배너 (짧고 굵은 키워드) -->
+      <!-- 인기 계산 1초 자동 스위칭 배너 (실시간 클릭수 상위 TOP 4 자동 정렬) -->
       <div id="seasonal-surge-banner" class="bg-gradient-to-r from-amber-50 via-orange-50/80 to-rose-50 border border-amber-200/90 rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-2.5 shadow-sm">
         <div class="flex items-center gap-2 shrink-0">
-          <span class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-1 rounded-full whitespace-nowrap animate-pulse">🔥 인기 급상승</span>
+          <span class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-1 rounded-full whitespace-nowrap animate-pulse">🔥 실시간 클릭 순위</span>
           <span class="text-sm sm:text-base font-bold text-slate-800 whitespace-nowrap">인기 계산 TOP 4</span>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
+        <div id="popular-calc-chips" class="flex flex-wrap items-center gap-2">
           <button type="button" onclick="applyScenarioPreset('electric-winter-heater')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-rose-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             ⚡ 온풍기 난방비
+          </button>
+          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-emerald-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+            🍗 80kg 식단
           </button>
           <button type="button" onclick="applyScenarioPreset('auto-grandeur-5000')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-blue-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             🚗 그랜저 절세
           </button>
           <button type="button" onclick="applyScenarioPreset('telecom-penalty-15')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-indigo-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
             🌐 인터넷 47만
-          </button>
-          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-emerald-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
-            🍗 80kg 식단
           </button>
         </div>
       </div>

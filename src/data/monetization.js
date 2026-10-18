@@ -196,6 +196,19 @@ function getOfficialCoupangLinksTable() {
   if (typeof global !== "undefined" && global.COUPANG_OFFICIAL_LINKS) {
     return global.COUPANG_OFFICIAL_LINKS;
   }
+  if (typeof require === "function") {
+    try {
+      const mod = require("./coupang-official-links.js");
+      if (mod && mod.COUPANG_OFFICIAL_LINKS) {
+        if (typeof global !== "undefined") {
+          global.COUPANG_OFFICIAL_LINKS = mod.COUPANG_OFFICIAL_LINKS;
+        }
+        return mod.COUPANG_OFFICIAL_LINKS;
+      }
+    } catch (e) {
+      // Fallback if module is unavailable
+    }
+  }
   return null;
 }
 
@@ -355,7 +368,7 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       coupangSubUrl: buildCoupangUrl("티피링크 스마트플러그 전력측정", "electric", afId),
       coupangSubLabel: "🚀 쿠팡 절전플러그·1등급",
       naverConnectUrl: "https://naver.me/xm0ZVnAW",
-      naverConnectLabel: "🟢 네이버 슈퍼적립 8% 서큘레이터",
+      naverConnectLabel: "🟢 네이버 무소음 에어서큘레이터 (8%적립)",
       linkPriceSubUrl: buildLinkPriceDeepLink("gmarket", "https://www.gmarket.co.kr/n/search?keyword=%EA%B0%9C%EB%B3%84%EC%8A%A4%EC%9C%84%EC%B9%98%20%EC%A0%88%EC%A0%84%20%EB%A9%80%ED%8B%B0%ED%83%AD%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%94%8C%EB%9F%AC%EA%B7%B8", lpId),
       linkPriceSubLabel: "🏷️ 지마켓 절전멀티탭 특가",
       tenpingCampaignName: "미소 정수기·가전 렌탈 가격비교 상담 (건당 CPA)",
@@ -369,14 +382,14 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       desc: "체성분 기반 1:1 식단 처방 상담",
       cta: `👉 ${calculatedResult.weeks || 4}주 목표 감량 무료 상담 신청`,
       benefit: `${calculatedResult.chickenPacks || 0}팩`,
-      liveBadge: "🚀 쿠팡 로켓프레시 · 네이버 · 아이허브",
+      liveBadge: "🚀 쿠팡 로켓프레시 · 네이버 · 지마켓",
       liveTitle: `${calculatedResult.weeks || 4}주 닭가슴살 ${calculatedResult.chickenPacks || 50}팩 · 현미밥 ${calculatedResult.brownRiceBowls || 56}개 로켓프레시 특가`,
       liveDesc: "편의점 낱개 구매 대비 식단비 -54% 즉시 절약 · 내일 새벽 도착",
       liveCta: `👉 닭가슴살 ${calculatedResult.chickenPacks || 50}팩 · 현미밥 쿠팡 최저가 보기`,
       coupangSubUrl: buildCoupangUrl("냉동 닭가슴살 100g 대용량 패키지", "diet", afId),
-      coupangSubLabel: "🚀 쿠팡 닭가슴살·현미밥",
+      coupangSubLabel: "🚀 쿠팡 닭가슴살 대용량",
       naverConnectUrl: "https://naver.me/xvClW9nJ",
-      naverConnectLabel: "🟢 네이버 한끼통살 10팩 특가",
+      naverConnectLabel: "🟢 네이버 한끼통살 닭가슴살 10팩",
       linkPriceSubUrl: buildLinkPriceDeepLink("iherb", "https://kr.iherb.com/search?kw=%EB%8B%A8%EB%B0%B1%EC%A7%88%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8", lpId),
       linkPriceSubLabel: "🏷️ 아이허브 프로틴·영양제",
       tenpingCampaignName: "1:1 맞춤 체질 감량 다이어트 무료상담 (건당 CPA)",
@@ -395,11 +408,11 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       liveDesc: `하루 ${calculatedResult.dailyGrams || 100}g 정량 급여 · 로켓와우 내일 도착 최저가`,
       liveCta: `👉 ${calculatedResult.petWeight || 5}kg 맞춤 사료·영양제 쿠팡 최저가 보기`,
       coupangSubUrl: buildCoupangUrl("강아지 고양이 가수분해 사료 관절 영양제 베스트", "pet", afId),
-      coupangSubLabel: "🚀 쿠팡 사료·영양제",
+      coupangSubLabel: "🚀 쿠팡 맞춤사료 로켓배송",
       naverConnectUrl: "https://naver.me/xAfcU6Im",
-      naverConnectLabel: "🟢 네이버 라비앙독 연어 4.8kg 특가",
+      naverConnectLabel: "🟢 네이버 라비앙독 연어사료 4.8kg",
       linkPriceSubUrl: buildLinkPriceDeepLink("gmarket", "https://www.gmarket.co.kr/n/search?keyword=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%88%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C", lpId),
-      linkPriceSubLabel: "🏷️ 지마켓 펫특가",
+      linkPriceSubLabel: "🏷️ 지마켓 맞춤사료 특가",
       tenpingCampaignName: "반려동물 케어·보험 맞춤 상담 캠페인 (건당 CPA)",
       tenpingSearchUrl: "https://tenping.kr/"
     },
@@ -416,9 +429,9 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       liveDesc: "오프라인 매장 대비 유통마진 -28% 즉시 절약 · 원하는 날짜 무료설치",
       liveCta: `👉 ${calculatedResult.roomSize || 7}평 맞춤 가전·침대 쿠팡 로켓설치 보기`,
       coupangSubUrl: buildCoupangUrl("원룸 자취방 냉장고 침대 매트리스 로켓설치", "room", afId),
-      coupangSubLabel: "🚀 쿠팡 로켓설치",
+      coupangSubLabel: "🚀 쿠팡 가전·침대 로켓설치",
       naverConnectUrl: "https://naver.me/GgUlTvYj",
-      naverConnectLabel: "🟢 네이버 로보락 슈퍼적립",
+      naverConnectLabel: "🟢 네이버 로보락 로봇청소기 슈퍼적립",
       linkPriceSubUrl: buildLinkPriceDeepLink("11st", "https://search.11st.co.kr/pc/total-search?kwd=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%20%EC%83%9D%ED%99%9C%EC%9A%A9%ED%92%88%20%EC%B9%A8%EA%B5%AC", lpId),
       linkPriceSubLabel: "🏷️ 11번가 자취필수템",
       tenpingCampaignName: "서경석의 이사방 / 모두이사 무료 비교견적 (건당 CPA)",
@@ -437,11 +450,11 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       liveDesc: `운전자 만족도 1위 차량용 거치대 · 전국 무료출장장착 블랙박스`,
       liveCta: `👉 차량용 맥세이프 거치대 & 블랙박스 쿠팡 특가 보기`,
       coupangSubUrl: buildCoupangUrl("2채널 QHD 블랙박스 맥세이프 거치대", "auto", afId),
-      coupangSubLabel: "🚀 쿠팡 차량용품·블랙박스",
+      coupangSubLabel: "🚀 쿠팡 2채널 블랙박스 무료장착",
       naverConnectUrl: "https://naver.me/G5kYoDj6",
       naverConnectLabel: "🟢 네이버 아이테라 2채널 블랙박스",
       linkPriceSubUrl: buildLinkPriceDeepLink("gmarket", "https://www.gmarket.co.kr/n/search?keyword=%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80%20%EB%B6%88%EC%8A%A4%EC%9B%90%EC%83%B7", lpId),
-      linkPriceSubLabel: "🏷️ 지마켓 차량용품 특가",
+      linkPriceSubLabel: "🏷️ 지마켓 2채널 블랙박스 특가",
       tenpingCampaignName: "카바딜러 신차 장기렌트·리스 최저가 비교견적 (건당 CPA)",
       tenpingSearchUrl: "https://tenping.kr/"
     },
@@ -458,19 +471,44 @@ function getCpaCardDetails(calcId, calculatedResult = {}, config = null) {
       liveDesc: "통신사 월 4,400원 임대료 아끼고 방 끝까지 와이파이 속도 3배 업그레이드",
       liveCta: "👉 와이파이6 공유기·알뜰유심 쿠팡 로켓배송 최저가 보기",
       coupangSubUrl: buildCoupangUrl("와이파이6 공유기 AX3000 기가랜선", "telecom", afId),
-      coupangSubLabel: "🚀 쿠팡 와이파이6·유심",
+      coupangSubLabel: "🚀 쿠팡 ipTIME 와이파이6 공유기",
       naverConnectUrl: "https://naver.me/FpwR436o",
       naverConnectLabel: "🟢 네이버 티피링크 Wi-Fi6 공유기",
       linkPriceSubUrl: buildLinkPriceDeepLink("gmarket", "https://www.gmarket.co.kr/n/search?keyword=ipTIME%20%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EB%9E%9C%EC%84%A0", lpId),
-      linkPriceSubLabel: "🏷️ 지마켓 공유기·랜선",
+      linkPriceSubLabel: "🏷️ 지마켓 ipTIME 와이파이6 공유기",
       tenpingCampaignName: "인터넷·TV 가입 현금 사은품 & 알뜰폰 비교 (건당 CPA)",
       tenpingSearchUrl: "https://tenping.kr/"
     }
   };
 
-  const details = map[calcId] || map.electric;
+  const details = { ...(map[calcId] || map.electric) };
+  const primaryItem = Array.isArray(calculatedResult.actionItems) && calculatedResult.actionItems[0]
+    ? calculatedResult.actionItems[0]
+    : null;
+
+  if (primaryItem && primaryItem.coupangKw) {
+    const exactPrimaryCoupangUrl = buildCoupangUrl(primaryItem.coupangKw, calcId, afId);
+    details.coupangSubUrl = exactPrimaryCoupangUrl;
+    if (primaryItem.coupangBtn) {
+      details.coupangSubLabel = primaryItem.coupangBtn;
+    }
+    if (primaryItem.lpUrl) {
+      details.linkPriceSubUrl = primaryItem.lpUrl;
+    }
+    if (primaryItem.lpBtn) {
+      details.linkPriceSubLabel = primaryItem.lpBtn;
+    }
+    details.liveTitle = calcId === "electric"
+      ? `${primaryItem.title} (월 ${(calculatedResult.monthlySaving || 10000).toLocaleString()}원 절감)`
+      : primaryItem.title;
+    details.liveDesc = primaryItem.desc || details.liveDesc;
+    details.liveCta = `👉 ${primaryItem.coupangBtn || details.liveCta} 바로 확인하기`;
+  }
+
   const actionUrl = buildCpaUrl(details.campaignKey, details.benefit, memberId);
-  const liveActionUrl = buildLiveFallbackCpaUrl(calcId, cfg);
+  const liveActionUrl = isCustomTenpingUrl
+    ? buildLiveFallbackCpaUrl(calcId, cfg)
+    : (details.coupangSubUrl || buildLiveFallbackCpaUrl(calcId, cfg));
 
   return {
     ...details,

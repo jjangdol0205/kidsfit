@@ -10,6 +10,24 @@
     "cpa": 2,
     "sticky_mobile": 0
   },
+  "totalClicksByCalc": {
+    "electric": 5,
+    "diet": 4,
+    "telecom": 2,
+    "auto": 2,
+    "pet": 1,
+    "room": 1,
+    "other": 0
+  },
+  "totalClicksByItem": {
+    "electric-main": 4,
+    "diet-chicken": 3,
+    "diet-rice": 2,
+    "telecom-router": 2,
+    "auto-blackbox": 2,
+    "pet-feed": 1,
+    "room-appliance": 1
+  },
   "lastDailyReportDate": "2026-10-18",
   "days": {
     "2026-10-17": {

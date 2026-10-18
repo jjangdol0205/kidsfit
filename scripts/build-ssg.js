@@ -870,17 +870,19 @@ function renderInteractiveCalculatorCard(preset, res) {
   const naverConnectHref = cpaCardInfo.naverConnectUrl || 'https://naver.me/xm0ZVnAW';
   const naverConnectBtnLabel = cpaCardInfo.naverConnectLabel || '🟢 네이버 특가';
 
-  // Pre-rendered metrics cards (High-Contrast Button Pill for 3x CTR!)
+  // Pre-rendered metrics cards (1:1 Exact Product Matching via targetActionIdx & stepHint)
   const metricsHtml = (res.metrics || []).map((m, idx) => {
     const isNeg = String(m.val).startsWith('-');
     const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
-    const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+    const matchedAction = (m.targetActionIdx !== undefined && actionItems[m.targetActionIdx])
+      ? actionItems[m.targetActionIdx]
+      : (actionItems.length > 0 ? actionItems[idx % actionItems.length] : null);
     const metricHref = matchedAction
       ? monetization.buildCoupangUrl(matchedAction.coupangKw, preset.calc, config.coupangAfId)
       : '#res-products-grid';
-    const stepHint = matchedAction
+    const stepHint = m.stepHint || (matchedAction
       ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗`
-      : '⚡ 최저가 확인 ↗';
+      : '⚡ 최저가 확인 ↗');
 
     return `
       <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
@@ -895,12 +897,14 @@ function renderInteractiveCalculatorCard(preset, res) {
     `;
   }).join('');
 
-  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (3-Channel Revenue Diversification + Social Proof Badge!)
+  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (Exact Product Links!)
   const choiceRates = [89, 86, 84, 82];
   const actionItemsHtml = actionItems.map((item, idx) => {
     const cpHref = monetization.buildCoupangUrl(item.coupangKw, preset.calc, config.coupangAfId);
     const lpHref = monetization.buildLinkPriceDeepLink(item.lpMerchant, item.lpUrl, config.linkPriceId);
     const choicePct = choiceRates[idx % choiceRates.length];
+    const hasItemNaver = Boolean(item.naverUrl);
+    const btnGridCols = hasItemNaver ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2';
     return `
       <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
         <div class="min-w-0">
@@ -911,17 +915,18 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
           <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <div class="grid ${btnGridCols} gap-2">
           <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
              class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
             ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
           </a>
-          <a href="${naverConnectHref}" target="_blank" rel="noopener noreferrer sponsored"
+          ${hasItemNaver ? `
+          <a href="${item.naverUrl}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('cpa', this.href, 'receipt_cart')"
              class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
-            ${naverConnectBtnLabel} ↗
-          </a>
+            ${item.naverBtn || naverConnectBtnLabel} ↗
+          </a>` : ''}
           <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
              class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
@@ -1907,9 +1912,11 @@ ${JSON.stringify(schemaJson, null, 2)}
         grid.innerHTML = res.metrics.map((m, idx) => {
           const isNeg = String(m.val).startsWith('-');
           const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
-          const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
+          const matchedAction = (m.targetActionIdx !== undefined && actionItems[m.targetActionIdx])
+            ? actionItems[m.targetActionIdx]
+            : (actionItems.length > 0 ? actionItems[idx % actionItems.length] : null);
           const metricHref = matchedAction ? buildCp(matchedAction.coupangKw) : '#res-products-grid';
-          const stepHint = matchedAction ? \`\${matchedAction.icon || '🛒'} \${matchedAction.stepTag || '맞춤 특가'} ↗\` : '🛒 최저가 보기 ↗';
+          const stepHint = m.stepHint || (matchedAction ? \`\${matchedAction.icon || '🛒'} \${matchedAction.stepTag || '맞춤 특가'} ↗\` : '🛒 최저가 보기 ↗');
           return \`
             <a href="\${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('coupang', this.href, 'metric_card')"
@@ -1926,6 +1933,8 @@ ${JSON.stringify(schemaJson, null, 2)}
         actionItemsEl.innerHTML = actionItems.map(item => {
           const cpHref = buildCp(item.coupangKw);
           const lpHref = buildLp(item.lpMerchant, item.lpUrl);
+          const hasItemNaver = Boolean(item.naverUrl);
+          const btnGridCols = hasItemNaver ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2';
           return \`
             <div class="bg-slate-950/90 border border-slate-700/90 hover:border-amber-400/60 rounded-xl p-3.5 transition space-y-2">
               <div class="min-w-0">
@@ -1935,15 +1944,21 @@ ${JSON.stringify(schemaJson, null, 2)}
                 </div>
                 <div class="text-xs sm:text-sm text-emerald-300 font-normal leading-snug break-keep">✔ \${item.calcVal}</div>
               </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              <div class="grid \${btnGridCols} gap-1.5">
                 <a href="\${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                   \${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
                 </a>
+                \${hasItemNaver ? \`
+                <a href="\${item.naverUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                   onclick="recordPresetClick('cpa', this.href, 'receipt_cart')"
+                   class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
+                  \${item.naverBtn || '🟢 네이버 특가'} ↗
+                </a>\` : ''}
                 <a href="\${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                    onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap">
+                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                   \${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
                 </a>
               </div>
