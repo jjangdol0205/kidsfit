@@ -19,7 +19,7 @@
 > ✅ **50만원 컴팩트 생존템 8종 완비**: **500,000원** (**-110,000원 절약**)  
 > 📌 **핵심 판정**: **총 50만 원 풀세팅 (가전 40만 + 가구 10만)** (🏠 5평 [가성비] 초과 0원 배분)
 
-👉 **[무료 3초 계산기 바로가기] 단기 거주 50만 원 미니멀 자취 필수 생존템 견적 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 단기 거주 50만 원 미니멀 자취 필수 생존템 견적**:
 https://truthofmarket.com/preset/room-minimalist-50
 
 🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
@@ -58,6 +58,33 @@ https://truthofmarket.com/?calc=room
 | 미니 1인용 밥솥 (1.5인용) | 소형가전 | 35,000원 | 1인 가구 즉석 취사 미니 밥솥 | 자취 식비 절감 |
 | 롤팩 토퍼 매트리스 (가구) | 가구 (18만 중 1위) | 100,000원 | 접이식 고밀도 폼 토퍼 싱글(S) | 바닥 배김 없는 수면 |
 | 접이식 행거 + 좌식 테이블 | 가구 (18만 중 2위) | 80,000원 | 스틸 이동식 행거 + 원목 좌식상 | 50만 원 완벽 생존 세팅 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 단기 거주 50만 원 미니멀 자취 필수 생존템 견적 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/room-minimalist-50`) 상단 쇼룸에 실시간 연동된 **🛋️ 자취·오피스텔·신혼 가성비 가전·가구 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 하늬홈 프리미엄 대용량 드레스룸 시스템 코너 철제 행거 옷장, 블랙**  
+  └ 실구매가: **69,900원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 2] KURUA 홈 Y형 튼튼한 접이식 대형 빨래건조대**  
+  └ 실구매가: **43,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 3] 데일리홈 고급 철제 수납 이동식 2단 스탠드 행거, 블랙**  
+  └ 실구매가: **42,400원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 4] 프랑스식 귀여운 레이스 자가드 체리 코디 진열장 옷장 현관 방진 가리개 봉집형 커튼 1P 압축봉 미포함**  
+  └ 실구매가: **18,900원** (🚚 무료배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[공식몰 제휴 비교 — 오늘의집 공식스토어] 오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가**  
+  └ 혜택 요약: **🛋️ 자취·신혼 인테리어 가구 1위** (오프라인 가구점 대비 유통마진 -35% 절감 · 실거주자 포토리뷰 1만건 검증)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 가전패키지] 롯데하이마트 냉장고·세탁기·로봇청소기·전자레인지 온라인 단독 패키지**  
+  └ 혜택 요약: **🏆 원룸·신혼 필수가전 세트 할인** (백화점·대리점 개별 구매 대비 최대 280만 원 절약 + 희망일 무료설치)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 단기 거주 50만 원 미니멀 자취 필수 생존템 견적 최저가 비교**:
+https://truthofmarket.com/preset/room-minimalist-50
 
 ---
 
@@ -115,7 +142,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.23 1년 단기 원룸 50만원 극한 가성비 생존 세팅 🎒 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 단기 거주 50만 원 미니멀 자취 필수 생존템 견적, 모르고 그냥 썼더니 -110,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-minimalist-50?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 단기 거주 50만 원 미니멀 자취 필수 생존템 견적 (https://truthofmarket.com/preset/room-minimalist-50) ↗</a>
+    <a href="https://truthofmarket.com/preset/room-minimalist-50?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 단기 거주 50만 원 미니멀 자취 필수 생존템 견적 (https://truthofmarket.com/preset/room-minimalist-50) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/room-minimalist-50?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-minimalist-50-thumb.png" alt="단기 거주 50만 원 미니멀 자취 필수 생존템 견적 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -125,6 +152,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 부피 큰 일반 가구·가전 구매 시: <strong>610,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 50만원 컴팩트 생존템 8종 완비: <strong>500,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -110,000원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 하늬홈 프리미엄 대용량 드레스룸 시스템 코너 철제 행거 옷장, 블랙 (<span style="color:#e11d48;font-weight:900;">69,900원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: KURUA 홈 Y형 튼튼한 접이식 대형 빨래건조대 (<span style="color:#e11d48;font-weight:800;">43,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/room-minimalist-50" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/room-minimalist-50)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">5평 50만 원 황금배분 · 온라인 특가로 -11만 원 절약</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -189,7 +223,7 @@ https://truthofmarket.com/?calc=room
 • **조건 바꿨을 때(50만원 컴팩트 생존템 8종 완비)**: **500,000원** (➔ **-110,000원 절약**)
 • **핵심 지표 (자취·인테리어)**: 냉장고 예산 12만 원 / 세탁기 예산 11만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-minimalist-50
 
 ---
@@ -204,6 +238,13 @@ https://truthofmarket.com/preset/room-minimalist-50
 | 미니 1인용 밥솥 (1.5인용) | 소형가전 | 35,000원 | 1인 가구 즉석 취사 미니 밥솥 | 자취 식비 절감 |
 | 롤팩 토퍼 매트리스 (가구) | 가구 (18만 중 1위) | 100,000원 | 접이식 고밀도 폼 토퍼 싱글(S) | 바닥 배김 없는 수면 |
 | 접이식 행거 + 좌식 테이블 | 가구 (18만 중 2위) | 80,000원 | 스틸 이동식 행거 + 원목 좌식상 | 50만 원 완벽 생존 세팅 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **하늬홈 프리미엄 대용량 드레스룸 시스템 코너 철제 행거 옷장, 블랙** (실구매가 **69,900원**)
+• **소싱 2위 모델**: **KURUA 홈 Y형 튼튼한 접이식 대형 빨래건조대** (실구매가 **43,800원**)
+• **공식몰 비교 (오늘의집 공식스토어)**: **오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가** (🛋️ 자취·신혼 인테리어 가구 1위)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/room-minimalist-50
 
 ---
 
@@ -239,10 +280,11 @@ https://truthofmarket.com/?calc=room
 ❌ 부피 큰 일반 가구·가전 구매 시: 610,000원
 ✅ 50만원 컴팩트 생존템 8종 완비: 500,000원 (-110,000원 절약)
 📊 핵심 지표: 냉장고 예산: 12만 원
+🏆 실구매 1위 소싱템: 하늬홈 프리미엄 대용량 드레스룸 시스템 코너 철제 행거 옷장, 블랙 (69,900원)
 
 미니 냉장고와 전자레인지, 1인용 밥솥, 접이식 고밀도 토퍼 매트리스, 이동식 행거까지 실속형으로 배분하면 45~50만 원 선에서 완벽히 해결됩니다.
 
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/room-minimalist-50
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

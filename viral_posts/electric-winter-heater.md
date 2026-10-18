@@ -19,7 +19,7 @@
 > ✅ **1등급 인버터 냉난방·절전**: **114,866원/월** (**-96,444원/월 절약**)  
 > 📌 **핵심 판정**: **추가 전기세 +166,023원 (총 211,310원)** (🚨 누진세 3단계 폭탄 경보!)
 
-👉 **[무료 3초 계산기 바로가기] 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단**:
 https://truthofmarket.com/preset/electric-winter-heater
 
 🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
@@ -55,6 +55,33 @@ https://truthofmarket.com/?calc=electric
 | 2000W 전기온풍기 풀가동 | 단일 저항식 열선 가열 | 2,000 W | 480 kWh (총 730kWh) | 284,500원 | 누진 3단계 최고세율 폭탄 직격 (+198,000원) |
 | PTC 절전형 히터 + 타이머 | 목표온도 제어 (4시간) | 1,000 W | 120 kWh (총 370kWh) | 68,200원 | 월 216,300원 요금 절감 |
 | 1등급 인버터 냉난방기 전환 | 히트펌프 열원 순환 | 650 W | 78 kWh (총 328kWh) | 52,400원 | 7.4개월 만에 기기 교체비용 전액 회수 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/electric-winter-heater`) 상단 쇼룸에 실시간 연동된 **⚡ 전기세·누진세 방어 1등급 & 절전 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 한일의료기 프리미엄 탄소매트 EMF 전자파차단 그래핀 카본 전기장판 전기요 온열매트, 싱글(95×180cm), 그레이**  
+  └ 실구매가: **99,000원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 2] [프리미엄 27년형] 따숨ON EMF 전자파없는 국산 탄소매트 워셔블 카본매트, 미니싱글(67.5*180cm), 프리미엄���링본그레이**  
+  └ 실구매가: **59,900원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 3] 더안 EMF 탄소매트 전기요 JJ-2200, 멜란지 그레이, 100 x 180 cm**  
+  └ 실구매가: **62,800원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 4] 티피링크 16A 에너지 모니터링 IoT 스마트 Wi-Fi 플러그, Tapo P115, 1개**  
+  └ 실구매가: **19,900원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 공식몰] 롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전**  
+  └ 혜택 요약: **💳 카드 즉시할인 + 으뜸효율 1등급 환급** (구형 정속형 대비 소비전력 -55% 절감 · 한전 1등급 환급 대상 모델 모음)
+
+• **[공식몰 제휴 비교 — 지마켓 슈퍼딜] 지마켓 실시간 전력측정 스마트플러그 & 개별스위치 절전 멀티탭 베스트**  
+  └ 혜택 요약: **⚡ 9,900원대 대기전력 0원 차단** (스마트폰 앱으로 누진세 3단계 진입 전 원격 전원 차단 · 타이머 스케줄)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 최저가 비교**:
+https://truthofmarket.com/preset/electric-winter-heater
 
 ---
 
@@ -112,7 +139,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.05 가스비 아끼려다 터진 겨울 온풍기 참사 🔥 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단, 모르고 그냥 썼더니 -96,444원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-winter-heater?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 (https://truthofmarket.com/preset/electric-winter-heater) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-winter-heater?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 (https://truthofmarket.com/preset/electric-winter-heater) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/electric-winter-heater?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-winter-heater-thumb.png" alt="겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -122,6 +149,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 2000W 열선 온풍기 8시간: <strong>211,310원/월</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 인버터 냉난방·절전: <strong>114,866원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -96,444원/월 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 한일의료기 프리미엄 탄소매트 EMF 전자파차단 그래핀 카본 전기장판 전기요 온열매트, 싱글(95×180cm), 그레이 (<span style="color:#e11d48;font-weight:900;">99,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: [프리미엄 27년형] 따숨ON EMF 전자파없는 국산 탄소매트 워셔블 카본매트, 미니싱글(67.5*180cm), 프리미엄���링본그레이 (<span style="color:#e11d48;font-weight:800;">59,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/electric-winter-heater" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/electric-winter-heater)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -96,444원 (4.7개월 본전 회수)</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -186,7 +220,7 @@ https://truthofmarket.com/?calc=electric
 • **조건 바꿨을 때(1등급 인버터 냉난방·절전)**: **114,866원/월** (➔ **-96,444원/월 절약**)
 • **핵심 지표 (전기·가전)**: 추가 전력 +480 kWh / 월 절감액 -96,444원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-winter-heater
 
 ---
@@ -198,6 +232,13 @@ https://truthofmarket.com/preset/electric-winter-heater
 | 2000W 전기온풍기 풀가동 | 단일 저항식 열선 가열 | 2,000 W | 480 kWh (총 730kWh) | 284,500원 | 누진 3단계 최고세율 폭탄 직격 (+198,000원) |
 | PTC 절전형 히터 + 타이머 | 목표온도 제어 (4시간) | 1,000 W | 120 kWh (총 370kWh) | 68,200원 | 월 216,300원 요금 절감 |
 | 1등급 인버터 냉난방기 전환 | 히트펌프 열원 순환 | 650 W | 78 kWh (총 328kWh) | 52,400원 | 7.4개월 만에 기기 교체비용 전액 회수 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **한일의료기 프리미엄 탄소매트 EMF 전자파차단 그래핀 카본 전기장판 전기요 온열매트, 싱글(95×180cm), 그레이** (실구매가 **99,000원**)
+• **소싱 2위 모델**: **[프리미엄 27년형] 따숨ON EMF 전자파없는 국산 탄소매트 워셔블 카본매트, 미니싱글(67.5*180cm), 프리미엄���링본그레이** (실구매가 **59,900원**)
+• **공식몰 비교 (롯데하이마트 공식몰)**: **롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전** (💳 카드 즉시할인 + 으뜸효율 1등급 환급)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/electric-winter-heater
 
 ---
 
@@ -233,10 +274,11 @@ https://truthofmarket.com/?calc=electric
 ❌ 2000W 열선 온풍기 8시간: 211,310원/월
 ✅ 1등급 인버터 냉난방·절전: 114,866원/월 (-96,444원/월 절약)
 📊 핵심 지표: 추가 전력: +480 kWh
+🏆 실구매 1위 소싱템: 한일의료기 프리미엄 탄소매트 EMF 전자파차단 그래핀 카본 전기장판  (99,000원)
 
 여름과 달리 겨울철에는 누진 3단계 기준이 400kWh로 낮아져서, 온풍기 하나만으로도 단독 480kWh를 쓰며 최고 요율을 밟게 됩니다.
 
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/electric-winter-heater
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```

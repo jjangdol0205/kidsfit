@@ -19,7 +19,7 @@
 > ✅ **TDEE 맞춤 도시락·닭가슴살 4주**: **206,300원 (118팩)** (**-259,100원 절약**)  
 > 📌 **핵심 판정**: **하루 1,542kcal · 닭가슴살 총 118팩!** (🔥 4주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적**:
 https://truthofmarket.com/preset/diet-office-worker
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=diet
 | 사무직 감량 타겟 칼로리 | 1,680 kcal / 일 (-450 결손) | 47,040 kcal | 점심 일반식 과식 방어 | 4주 체지방 -1.8kg 목표 |
 | 단백질 (체중 2배) | 148g / 일 | 순단백질 4,144g | 닭가슴살 도시락 + 단백질 쉐이크 | 닭가슴살 100g 118팩 |
 | 점심 다이어트 도시락 | 칼로리 450 kcal / 탄수 65g | 총 28개 (평일 점심) | 구내식당/외식 대체 | 즉석 현미밥 56개 + 닭가슴살 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-office-worker`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 빼빼곤약 현미귀리 곤약밥 35 저칼로리 즉석밥 100g당 35kcal, 110g, 30개**  
+  └ 실구매가: **70,100원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] 칼로리반 현미곤약밥, 150g, 10개**  
+  └ 실구매가: **18,900원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] 칼로리반 저칼로리 현미곤약밥 65kcal, 20개, 140g**  
+  └ 실구매가: **35,800원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 블랙컨슈머 다이어트 식단 도시락 3종 8+1팩 (치킨카레밥&미트볼 4팩 + 햄야채볶음밥&치즈불닭 3팩 + 치즈 닭갈비 볶음밥 2팩)**  
+  └ 실구매가: **29,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 최저가 비교**:
+https://truthofmarket.com/preset/diet-office-worker
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.10 하루 9시간 앉아 일하는 직장인 점심의 함정 🍱 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적, 모르고 그냥 썼더니 -259,100원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-office-worker?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 (https://truthofmarket.com/preset/diet-office-worker) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-office-worker?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 (https://truthofmarket.com/preset/diet-office-worker) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-office-worker?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-office-worker-thumb.png" alt="앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 평일 오피스 외식·커피 간식비: <strong>465,400원/4주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ TDEE 맞춤 도시락·닭가슴살 4주: <strong>206,300원 (118팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -259,100원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 빼빼곤약 현미귀리 곤약밥 35 저칼로리 즉석밥 100g당 35kcal, 110g, 30개 (<span style="color:#e11d48;font-weight:900;">70,100원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 칼로리반 현미곤약밥, 150g, 10개 (<span style="color:#e11d48;font-weight:800;">18,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-office-worker" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-office-worker)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">4주간 닭가슴살 118팩 · 현미밥 56개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(TDEE 맞춤 도시락·닭가슴살 4주)**: **206,300원 (118팩)** (➔ **-259,100원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 141/148/43g / 닭가슴살(4주) 118팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-office-worker
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-office-worker
 | 사무직 감량 타겟 칼로리 | 1,680 kcal / 일 (-450 결손) | 47,040 kcal | 점심 일반식 과식 방어 | 4주 체지방 -1.8kg 목표 |
 | 단백질 (체중 2배) | 148g / 일 | 순단백질 4,144g | 닭가슴살 도시락 + 단백질 쉐이크 | 닭가슴살 100g 118팩 |
 | 점심 다이어트 도시락 | 칼로리 450 kcal / 탄수 65g | 총 28개 (평일 점심) | 구내식당/외식 대체 | 즉석 현미밥 56개 + 닭가슴살 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **빼빼곤약 현미귀리 곤약밥 35 저칼로리 즉석밥 100g당 35kcal, 110g, 30개** (실구매가 **70,100원**)
+• **소싱 2위 모델**: **칼로리반 현미곤약밥, 150g, 10개** (실구매가 **18,900원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-office-worker
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 평일 오피스 외식·커피 간식비: 465,400원/4주
 ✅ TDEE 맞춤 도시락·닭가슴살 4주: 206,300원 (118팩) (-259,100원 절약)
 📊 핵심 지표: 탄·단·지(g): 141/148/43g
+🏆 실구매 1위 소싱템: 빼빼곤약 현미귀리 곤약밥 35 저칼로리 즉석밥 100g당 35kcal (70,100원)
 
 좌식 생활자의 대사량(TDEE 2,130kcal)에 맞춰 하루 1,680kcal로 설계하고 점심 외식(평균 1.2만 원)을 고단백 도시락으로 바꾸면 4주 식비도 크게 아낍니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-office-worker
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

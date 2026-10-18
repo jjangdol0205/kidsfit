@@ -19,7 +19,7 @@
 > ✅ **1등급 인버터 자동습도 유지**: **53,765원/월** (**-32,749원/월 절약**)  
 > 📌 **핵심 판정**: **추가 전기세 +51,961원 (총 86,514원)** (⚡ 누진세 2단계 진입)
 
-👉 **[무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익**:
 https://truthofmarket.com/preset/electric-dehumidifier
 
 🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
@@ -55,6 +55,33 @@ https://truthofmarket.com/?calc=electric
 | 구형 3등급 제습기 연속 가동 | 24시간 연속 운전 | 320 W | 230 kWh (총 450kWh) | 89,400원 | 하계 누진 3단계 진입 경계 (+48,600원) |
 | 적정습도 50% 스마트 자동모드 | 센서 감지 가동 (12시간) | 180 W | 65 kWh (총 285kWh) | 34,200원 | 월 55,200원 절감 |
 | 1등급 인버터 제습기 교체 | 에너지소비효율 1등급 | 140 W | 50 kWh (총 270kWh) | 29,800원 | 11.8개월 내 기기값 본전 회수 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/electric-dehumidifier`) 상단 쇼룸에 실시간 연동된 **⚡ 전기세·누진세 방어 1등급 & 절전 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 윈세이 위니아 16L 가정용 1등급 미니 제습기 원룸 화장실 거실, W16L1A**  
+  └ 실구매가: **259,000원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 2] 스마트에버 제습기 1등급 20리터IoT 스마트 제습기 저소음 전기절약 가정용 연속배수, 제습기**  
+  └ 실구매가: **224,930원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 3] 듀플렉스 제습기 11L, D11**  
+  └ 실구매가: **142,000원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 4] 캐리어 제습기 16L 1등급**  
+  └ 실구매가: **221,850원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 공식몰] 롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전**  
+  └ 혜택 요약: **💳 카드 즉시할인 + 으뜸효율 1등급 환급** (구형 정속형 대비 소비전력 -55% 절감 · 한전 1등급 환급 대상 모델 모음)
+
+• **[공식몰 제휴 비교 — 지마켓 슈퍼딜] 지마켓 실시간 전력측정 스마트플러그 & 개별스위치 절전 멀티탭 베스트**  
+  └ 혜택 요약: **⚡ 9,900원대 대기전력 0원 차단** (스마트폰 앱으로 누진세 3단계 진입 전 원격 전원 차단 · 타이머 스케줄)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 최저가 비교**:
+https://truthofmarket.com/preset/electric-dehumidifier
 
 ---
 
@@ -112,7 +139,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.03 장마철 제습기 24시간 풀가동 팩트체크 💧 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익, 모르고 그냥 썼더니 -32,749원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 (https://truthofmarket.com/preset/electric-dehumidifier) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/electric-dehumidifier?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-dehumidifier-thumb.png" alt="여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -122,6 +149,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 구형 3등급 24시간 연속가동: <strong>86,514원/월</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 인버터 자동습도 유지: <strong>53,765원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -32,749원/월 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 윈세이 위니아 16L 가정용 1등급 미니 제습기 원룸 화장실 거실, W16L1A (<span style="color:#e11d48;font-weight:900;">259,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 스마트에버 제습기 1등급 20리터IoT 스마트 제습기 저소음 전기절약 가정용 연속배수, 제습기 (<span style="color:#e11d48;font-weight:800;">224,930원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/electric-dehumidifier" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/electric-dehumidifier)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -32,749원 (11.6개월 본전 회수)</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -186,7 +220,7 @@ https://truthofmarket.com/?calc=electric
 • **조건 바꿨을 때(1등급 인버터 자동습도 유지)**: **53,765원/월** (➔ **-32,749원/월 절약**)
 • **핵심 지표 (전기·가전)**: 추가 전력 +230 kWh / 월 절감액 -32,749원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-dehumidifier
 
 ---
@@ -198,6 +232,13 @@ https://truthofmarket.com/preset/electric-dehumidifier
 | 구형 3등급 제습기 연속 가동 | 24시간 연속 운전 | 320 W | 230 kWh (총 450kWh) | 89,400원 | 하계 누진 3단계 진입 경계 (+48,600원) |
 | 적정습도 50% 스마트 자동모드 | 센서 감지 가동 (12시간) | 180 W | 65 kWh (총 285kWh) | 34,200원 | 월 55,200원 절감 |
 | 1등급 인버터 제습기 교체 | 에너지소비효율 1등급 | 140 W | 50 kWh (총 270kWh) | 29,800원 | 11.8개월 내 기기값 본전 회수 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **윈세이 위니아 16L 가정용 1등급 미니 제습기 원룸 화장실 거실, W16L1A** (실구매가 **259,000원**)
+• **소싱 2위 모델**: **스마트에버 제습기 1등급 20리터IoT 스마트 제습기 저소음 전기절약 가정용 연속배수, 제습기** (실구매가 **224,930원**)
+• **공식몰 비교 (롯데하이마트 공식몰)**: **롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전** (💳 카드 즉시할인 + 으뜸효율 1등급 환급)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/electric-dehumidifier
 
 ---
 
@@ -233,10 +274,11 @@ https://truthofmarket.com/?calc=electric
 ❌ 구형 3등급 24시간 연속가동: 86,514원/월
 ✅ 1등급 인버터 자동습도 유지: 53,765원/월 (-32,749원/월 절약)
 📊 핵심 지표: 추가 전력: +230 kWh
+🏆 실구매 1위 소싱템: 윈세이 위니아 16L 가정용 1등급 미니 제습기 원룸 화장실 거실,  (259,000원)
 
 320W 제습기를 하루 종일 틀면 월 230kWh가 추가되어 기본 전력량과 합산 시 하계 누진 3단계 경계선(450kWh)에 도달합니다.
 
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/electric-dehumidifier
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```

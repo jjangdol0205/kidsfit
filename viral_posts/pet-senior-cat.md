@@ -19,7 +19,7 @@
 > ✅ **시니어 일 58g 소량 4회 (1.5kg=25일)**: **일 58g (1.5kg=25일)** (**1끼 29g 정량 · 의료비 방어**)  
 > 📌 **핵심 판정**: **하루 58g (종이컵 0.7컵) · 25일 소진!** (🐾 수의영양학 정량 계산)
 
-👉 **[무료 3초 계산기 바로가기] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기**:
 https://truthofmarket.com/preset/pet-senior-cat
 
 🏠 **[머니핏 반려동물 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=pet
 | 노령묘 맞춤 사료량 (g) | 58g / 일 | 치아 상태 고려 미온수 급여 | 1.5kg 포대 25일 소진 | 저인·고소화성 단백질 사료 |
 | 종이컵 환산량 | 약 0.7 종이컵 | 소량씩 4회 분할 급여 | 음수량 실시간 체크 | 신부전 예방 순환 정수기 |
 | 월 의료비 및 관리비 | 처방 사료비 월 4.5만 원 | 신장 보조제 월 3.5만 원 | 정기 건강검진 연 40만 | 만성 신부전 입원비 리스크 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/pet-senior-cat`) 상단 쇼룸에 실시간 연동된 **🐶 수의영양학 정량 급여 사료·영양제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 뽀시래기 든든한 강아지 배변패드, 30개입, 1개**  
+  └ 실구매가: **12,250원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 2] 강아지 배변패드 애견 배변훈련용 표적 과녁 논슬립, 1개, 20개입**  
+  └ 실구매가: **19,800원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 3] 강아지 JATT8012 배변패드 (100매 형 33x45cm) DK53**  
+  └ 실구매가: **33,400원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 4] 강아지 배변패드 100p 슬림형 흡수력 우수 실속형 애완견 훈련용 위생 패드**  
+  └ 실구매가: **17,460원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[공식몰 제휴 비교 — 지마켓 반려동물 특가] 지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전**  
+  └ 혜택 요약: **🐶 정품 유통기한 보증 · 대용량 포대할인** (수의영양학 RER/DER 기준 100g당 최저 단가 · 알러지·눈물자국 케어 1위)
+
+• **[공식몰 제휴 비교 — 11번가 펫마트] 11번가 초흡수 배변패드 200매 & 무먼지 벤토나이트·두부모래 대용량**  
+  └ 혜택 요약: **🐾 배변패드·고양이모래 박스 특가** (매달 나가는 필수 소모품 박스 구매로 월 양육 고정비 -45% 절감)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 최저가 비교**:
+https://truthofmarket.com/preset/pet-senior-cat
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.17 10살 노령묘 신장 병원비 200만원 막는 사료 공식 🐈 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기, 모르고 그냥 썼더니 1끼 29g 정량 · 의료비 방어? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/pet-senior-cat?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 (https://truthofmarket.com/preset/pet-senior-cat) ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-senior-cat?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 (https://truthofmarket.com/preset/pet-senior-cat) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/pet-senior-cat?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/pet-senior-cat-thumb.png" alt="10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 일반 고단백 사료 방치 (신부전 위험): <strong>일 78g 과급여 (질환 위험)</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 시니어 일 58g 소량 4회 (1.5kg=25일): <strong>일 58g (1.5kg=25일)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: 1끼 29g 정량 · 의료비 방어</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 뽀시래기 든든한 강아지 배변패드, 30개입, 1개 (<span style="color:#e11d48;font-weight:900;">12,250원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 강아지 배변패드 애견 배변훈련용 표적 과녁 논슬립, 1개, 20개입 (<span style="color:#e11d48;font-weight:800;">19,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/pet-senior-cat" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/pet-senior-cat)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">하루 58g 급여 시 1.5kg 1포대는 25일 만에 소진됩니다.</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=pet
 • **조건 바꿨을 때(시니어 일 58g 소량 4회 (1.5kg=25일))**: **일 58g (1.5kg=25일)** (➔ **1끼 29g 정량 · 의료비 방어**)
 • **핵심 지표 (반려동물)**: 하루 칼로리 210 kcal / 하루 급여량(1끼) 58g (29g)
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/pet-senior-cat
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/pet-senior-cat
 | 노령묘 맞춤 사료량 (g) | 58g / 일 | 치아 상태 고려 미온수 급여 | 1.5kg 포대 25일 소진 | 저인·고소화성 단백질 사료 |
 | 종이컵 환산량 | 약 0.7 종이컵 | 소량씩 4회 분할 급여 | 음수량 실시간 체크 | 신부전 예방 순환 정수기 |
 | 월 의료비 및 관리비 | 처방 사료비 월 4.5만 원 | 신장 보조제 월 3.5만 원 | 정기 건강검진 연 40만 | 만성 신부전 입원비 리스크 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **뽀시래기 든든한 강아지 배변패드, 30개입, 1개** (실구매가 **12,250원**)
+• **소싱 2위 모델**: **강아지 배변패드 애견 배변훈련용 표적 과녁 논슬립, 1개, 20개입** (실구매가 **19,800원**)
+• **공식몰 비교 (지마켓 반려동물 특가)**: **지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전** (🐶 정품 유통기한 보증 · 대용량 포대할인)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/pet-senior-cat
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=pet
 ❌ 일반 고단백 사료 방치 (신부전 위험): 일 78g 과급여 (질환 위험)
 ✅ 시니어 일 58g 소량 4회 (1.5kg=25일): 일 58g (1.5kg=25일) (1끼 29g 정량 · 의료비 방어)
 📊 핵심 지표: 하루 칼로리: 210 kcal
+🏆 실구매 1위 소싱템: 뽀시래기 든든한 강아지 배변패드, 30개입, 1개 (12,250원)
 
 노령묘(3.8kg 기준 일 210kcal)는 인 함량 0.5% 이하의 고소화성 시니어 사료를 하루 58g 정량으로 나누어 급여하고 일일 음수량을 챙기는 것이 핵심입니다.
 
-👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 바로가기:
+👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/pet-senior-cat
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=pet
 ```

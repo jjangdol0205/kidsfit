@@ -19,7 +19,7 @@
 > ✅ **500만원 프리미엄 5대 풀세팅**: **5,000,000원** (**-1,100,000원 절약**)  
 > 📌 **핵심 판정**: **총 500만 원 풀세팅 (가전 400만 + 가구 100만)** (🏠 15평 [가성비] 초과 0원 배분)
 
-👉 **[무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적**:
 https://truthofmarket.com/preset/room-officetel-500
 
 🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=room
 | 호텔식 모션베드 침대 | 20% | 1,000,000원 | 전동 모션베드 퀸 프레임 + 메모리폼 | 무중력 수면 자세 지원 |
 | 대화면 스마트 TV | 16% | 800,000원 | 55인치 QLED 스마트TV 사운드바 포함 | 홈시네마 구현 |
 | 라이더 로봇청소기 외 | 18% | 900,000원 | 물걸레 자동세척 로봇청소기 + 에어프라이어 | 가사 노동 제로화 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/room-officetel-500`) 상단 쇼룸에 실시간 연동된 **🛋️ 자취·오피스텔·신혼 가성비 가전·가구 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL**  
+  └ 실구매가: **598,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 2] 샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL**  
+  └ 실구매가: **1,189,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 3] JONR 로봇청소기 T5 PRO GEN 2 열풍건조 자동세척 올인원 자동먼지비움, 화이트, T5 Pro Gen 2**  
+  └ 실구매가: **449,000원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 4] [호환] 로보락 세제 로봇청소기 클리너 세척액 세정제 로보젠**  
+  └ 실구매가: **10,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[공식몰 제휴 비교 — 오늘의집 공식스토어] 오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가**  
+  └ 혜택 요약: **🛋️ 자취·신혼 인테리어 가구 1위** (오프라인 가구점 대비 유통마진 -35% 절감 · 실거주자 포토리뷰 1만건 검증)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 가전패키지] 롯데하이마트 냉장고·세탁기·로봇청소기·전자레인지 온라인 단독 패키지**  
+  └ 혜택 요약: **🏆 원룸·신혼 필수가전 세트 할인** (백화점·대리점 개별 구매 대비 최대 280만 원 절약 + 희망일 무료설치)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 최저가 비교**:
+https://truthofmarket.com/preset/room-officetel-500
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.21 15평 투룸 퇴근 후 가사해방 500만원 공식 🤖 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적, 모르고 그냥 썼더니 -1,100,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
+    <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 (https://truthofmarket.com/preset/room-officetel-500) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/room-officetel-500?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-officetel-500-thumb.png" alt="1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 백화점·대리점 개별 구매 견적: <strong>6,100,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 500만원 프리미엄 5대 풀세팅: <strong>5,000,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -1,100,000원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (<span style="color:#e11d48;font-weight:900;">598,800원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL (<span style="color:#e11d48;font-weight:800;">1,189,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/room-officetel-500" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/room-officetel-500)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">15평 500만 원 황금배분 · 온라인 특가로 -110만 원 절약</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=room
 • **조건 바꿨을 때(500만원 프리미엄 5대 풀세팅)**: **5,000,000원** (➔ **-1,100,000원 절약**)
 • **핵심 지표 (자취·인테리어)**: 냉장고 예산 120만 원 / 세탁기 예산 110만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-officetel-500
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/room-officetel-500
 | 호텔식 모션베드 침대 | 20% | 1,000,000원 | 전동 모션베드 퀸 프레임 + 메모리폼 | 무중력 수면 자세 지원 |
 | 대화면 스마트 TV | 16% | 800,000원 | 55인치 QLED 스마트TV 사운드바 포함 | 홈시네마 구현 |
 | 라이더 로봇청소기 외 | 18% | 900,000원 | 물걸레 자동세척 로봇청소기 + 에어프라이어 | 가사 노동 제로화 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **샤오미 H50 Pro 로봇청소기, 화이트, OV42GL** (실구매가 **598,800원**)
+• **소싱 2위 모델**: **샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL** (실구매가 **1,189,800원**)
+• **공식몰 비교 (오늘의집 공식스토어)**: **오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가** (🛋️ 자취·신혼 인테리어 가구 1위)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/room-officetel-500
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=room
 ❌ 백화점·대리점 개별 구매 견적: 6,100,000원
 ✅ 500만원 프리미엄 5대 풀세팅: 5,000,000원 (-1,100,000원 절약)
 📊 핵심 지표: 냉장고 예산: 120만 원
+🏆 실구매 1위 소싱템: 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (598,800원)
 
 물걸레 자동세척 로봇청소기와 건조 겸용 세탁기, 전동 모션베드까지 포함해도 24:22:20:16:18 비율을 지키면 500만 원 안에서 완벽히 해결됩니다.
 
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/room-officetel-500
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

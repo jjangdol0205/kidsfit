@@ -19,7 +19,7 @@
 > ✅ **근손실 방어 4주 정량(92팩)**: **173,800원 (92팩)** (**-216,200원 절약**)  
 > 📌 **핵심 판정**: **하루 1,209kcal · 닭가슴살 총 92팩!** (🔥 4주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합**:
 https://truthofmarket.com/preset/diet-quick-3kg
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=diet
 | 근손실 방어 단백질 | 116g / 일 (체중 2.0배) | 순단백질 3,248g | 골격근량 100% 보존 | 닭가슴살 100g 92팩 |
 | 저혈당 탄수화물 구성 | 110g / 일 (정제탄수 엄금) | 현미밥 56개 | 인슐린 스파이크 억제 | 즉석 현미밥 24개입 2.3박스 |
 | 필수 미네랄 & 보충제 | 종합비타민 + 오메가3 + 전해질 | 4주 분량 | 체수분 대사 및 부종 제거 | 멀티비타민 1통 + 아르기닌 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-quick-3kg`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg**  
+  └ 실구매가: **35,800원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] 자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg**  
+  └ 실구매가: **64,500원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] 하림 IFF 가슴살**  
+  └ 실구매가: **37,730원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 천수만 2026년산 햅쌀 간척지쌀 백미 상등급**  
+  └ 실구매가: **29,900원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 최저가 비교**:
+https://truthofmarket.com/preset/diet-quick-3kg
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.12 한 달 단기 -3kg 감량 성공한 과학적 공식 ⚡ (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합, 모르고 그냥 썼더니 -216,200원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-quick-3kg?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 (https://truthofmarket.com/preset/diet-quick-3kg) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-quick-3kg?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 (https://truthofmarket.com/preset/diet-quick-3kg) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-quick-3kg?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-quick-3kg-thumb.png" alt="한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 원푸드·배달 샐러드 단기 지출: <strong>390,000원/4주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 근손실 방어 4주 정량(92팩): <strong>173,800원 (92팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -216,200원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (<span style="color:#e11d48;font-weight:900;">35,800원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg (<span style="color:#e11d48;font-weight:800;">64,500원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-quick-3kg" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-quick-3kg)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">4주간 닭가슴살 92팩 · 현미밥 56개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(근손실 방어 4주 정량(92팩))**: **173,800원 (92팩)** (➔ **-216,200원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 110/116/34g / 닭가슴살(4주) 92팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-quick-3kg
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-quick-3kg
 | 근손실 방어 단백질 | 116g / 일 (체중 2.0배) | 순단백질 3,248g | 골격근량 100% 보존 | 닭가슴살 100g 92팩 |
 | 저혈당 탄수화물 구성 | 110g / 일 (정제탄수 엄금) | 현미밥 56개 | 인슐린 스파이크 억제 | 즉석 현미밥 24개입 2.3박스 |
 | 필수 미네랄 & 보충제 | 종합비타민 + 오메가3 + 전해질 | 4주 분량 | 체수분 대사 및 부종 제거 | 멀티비타민 1통 + 아르기닌 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg** (실구매가 **35,800원**)
+• **소싱 2위 모델**: **자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg** (실구매가 **64,500원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-quick-3kg
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 원푸드·배달 샐러드 단기 지출: 390,000원/4주
 ✅ 근손실 방어 4주 정량(92팩): 173,800원 (92팩) (-216,200원 절약)
 📊 핵심 지표: 탄·단·지(g): 110/116/34g
+🏆 실구매 1위 소싱템: 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (35,800원)
 
 생리학적으로 체지방 1kg은 7,700kcal에 해당하므로, 하루 -550kcal 결손 식단과 체중 2배 단백질(닭가슴살 4주 92팩)을 유지하는 것이 가장 확실한 지름길입니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-quick-3kg
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

@@ -19,7 +19,7 @@
 > ✅ **단체보험·세금 포함 최적 플랜**: **34,561,875원** (**-1,063만 원 차이**)  
 > 📌 **핵심 판정**: **[신차 장기렌트] 총 1,063만 원 이득!** (🏆 60개월 총비용 승자 판정)
 
-👉 **[무료 3초 계산기 바로가기] 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교**:
 https://truthofmarket.com/preset/auto-avante-3000
 
 🏠 **[머니핏 자동차·TCO 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=auto
 | 5년 자동차세 (1,600cc) | 1,450,000원 (연 29만) | 0원 (월 렌트료 포함) | 자동차세 전액 면제 | 연 2회 고지서 스트레스 없음 |
 | 금융 할부 이자 (연 5.5%) | 3,300,000원 (80% 할부) | 대량구매 공급가 할인 반영 | 렌트사 특판 공급가 적용 | 개인 신용점수 하락 없음 |
 | 5년 총 실지출 TCO 비교 | 44,100,000원 | 41,300,000원 | 장기렌트 280만 원 승리! | 초보운전 장기렌트 압도적 유리 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/auto-avante-3000`) 상단 쇼룸에 실시간 연동된 **🚗 신차·장기렌트·할부 유지비 방어 차량용품 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB**  
+  └ 실구매가: **169,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 2] 아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB**  
+  └ 실구매가: **469,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 3] 아이나비 QUANTUM3 (128GB) 자가장착 기본패키지 /전후방 4K UHD 2채널블랙박스, 커넥티드패키지(2년), 128GB**  
+  └ 실구매가: **539,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 4] 아이나비 전방QHD 후방FHD 2채널 블랙박스 설치비포함 VX5000**  
+  └ 실구매가: **233,640원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 자동차용품관] 지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜**  
+  └ 혜택 요약: **🚗 전국 무료출장장착 포함 특가** (신차 딜러 서비스 저가 블박 대신 QHD 초고화질 + 무상 출장장착 10만원대 끝판왕)
+
+• **[공식몰 제휴 비교 — 11번가 카용품 베스트] 11번가 불스원샷 연료첨가제 & 활성탄 에어컨필터·워셔액 대용량 세트**  
+  └ 혜택 요약: **⛽ 셀프 정비로 공임비 80% 절약** (정비소 교체비용 5만 원 → 5분 셀프 교체로 개당 6,900원에 연비·실내공기 완벽 관리)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 최저가 비교**:
+https://truthofmarket.com/preset/auto-avante-3000
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.25 20대 첫차 아반떼 3000만원 할부의 숨은 함정 🚗 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교, 모르고 그냥 썼더니 -1,063만 원 차이? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/auto-avante-3000?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 (https://truthofmarket.com/preset/auto-avante-3000) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-avante-3000?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 (https://truthofmarket.com/preset/auto-avante-3000) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/auto-avante-3000?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/auto-avante-3000-thumb.png" alt="20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 취등록세·초보보험 별도 신차 할부: <strong>45,187,500원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 단체보험·세금 포함 최적 플랜: <strong>34,561,875원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -1,063만 원 차이</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB (<span style="color:#e11d48;font-weight:900;">169,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB (<span style="color:#e11d48;font-weight:800;">469,000원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/auto-avante-3000" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/auto-avante-3000)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">취등록세(210만)·보험·절세 합산 시 [신차 장기렌트]가 1,063만 원 유리</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=auto
 • **조건 바꿨을 때(단체보험·세금 포함 최적 플랜)**: **34,561,875원** (➔ **-1,063만 원 차이**)
 • **핵심 지표 (자동차·TCO)**: 취등록세(7%) 210만 원 / 절세·보험 절감 343만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/auto-avante-3000
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/auto-avante-3000
 | 5년 자동차세 (1,600cc) | 1,450,000원 (연 29만) | 0원 (월 렌트료 포함) | 자동차세 전액 면제 | 연 2회 고지서 스트레스 없음 |
 | 금융 할부 이자 (연 5.5%) | 3,300,000원 (80% 할부) | 대량구매 공급가 할인 반영 | 렌트사 특판 공급가 적용 | 개인 신용점수 하락 없음 |
 | 5년 총 실지출 TCO 비교 | 44,100,000원 | 41,300,000원 | 장기렌트 280만 원 승리! | 초보운전 장기렌트 압도적 유리 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB** (실구매가 **169,000원**)
+• **소싱 2위 모델**: **아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB** (실구매가 **469,000원**)
+• **공식몰 비교 (지마켓 자동차용품관)**: **지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜** (🚗 전국 무료출장장착 포함 특가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/auto-avante-3000
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=auto
 ❌ 취등록세·초보보험 별도 신차 할부: 45,187,500원
 ✅ 단체보험·세금 포함 최적 플랜: 34,561,875원 (-1,063만 원 차이)
 📊 핵심 지표: 취등록세(7%): 210만 원
+🏆 실구매 1위 소싱템: 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가 (169,000원)
 
 차량가 외에 초기 취등록세 7%(210만 원)와 만 26세 미만 첫차 자동차보험료(4년 약 640만 원), 자동차세를 합산한 총소유비용(TCO)으로 비교해야 정확한 유불리가 나옵니다.
 
-👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 바로가기:
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/auto-avante-3000
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=auto
 ```

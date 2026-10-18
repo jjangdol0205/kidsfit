@@ -19,7 +19,7 @@
 > ✅ **1등급 듀얼인버터 교체 시**: **71,959원/월** (**-87,524원/월 절약**)  
 > 📌 **핵심 판정**: **추가 전기세 +127,977원 (총 159,483원)** (🚨 누진세 3단계 폭탄 경보!)
 
-👉 **[무료 3초 계산기 바로가기] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간**:
 https://truthofmarket.com/preset/electric-inverter-roi
 
 🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
@@ -55,6 +55,33 @@ https://truthofmarket.com/?calc=electric
 | 10년 된 구형 정속형 에어컨 | 정속형 모터 (ON/OFF 반복) | 432 kWh (총 632kWh) | 118,500원 | 5년 누적 3,555,000원 | 교체 미진행 시 지속 손실 |
 | 신형 1등급 듀얼 인버터 | 가변속 듀얼 인버터 압축기 | 194 kWh (총 394kWh) | 54,300원 | 5년 누적 1,629,000원 | 월 64,200원 절감 달성 |
 | 1등급 교체 + 정부 환급금 | 1등급 으뜸효율 10% 환급 | 194 kWh (총 394kWh) | 54,300원 | 환급 차감 실구매 76.5만 | 13.2개월 내 본전 회수 (5년 280만 절약) |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/electric-inverter-roi`) 상단 쇼룸에 실시간 연동된 **⚡ 전기세·누진세 방어 1등급 & 절전 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] [2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-0061GAWSD 인버터 캐리어씽크(wifi) 가정용 업소용 사무실 상가 오피스텔 농막 전국배송 기본설치비포함, OARB-0061GAWSD, 일반 배관형**  
+  └ 실구매가: **699,000원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 2] 캐리어 신형 1등급 인버터 6평형 벽걸이 에어컨 DARB-0061GAWSD 실외기포함 국가대표에어컨, DARC-0081CAWSD (8평형) 1등급, 일반배관형**  
+  └ 실구매가: **569,000원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 3] 인버터 1등급 냉난방 벽걸이 에어컨 11형 CSV-Q117A 전국기본설치무료 (제주/도서지역 제외), CSV-Q117A, 일반배관형**  
+  └ 실구매가: **1,180,000원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 4] LG 벽걸이 에어컨 1등급 11평 인버터 SQ11GK1WES 수도권무료배송 기본설치비포함**  
+  └ 실구매가: **1,159,000원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 공식몰] 롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전**  
+  └ 혜택 요약: **💳 카드 즉시할인 + 으뜸효율 1등급 환급** (구형 정속형 대비 소비전력 -55% 절감 · 한전 1등급 환급 대상 모델 모음)
+
+• **[공식몰 제휴 비교 — 지마켓 슈퍼딜] 지마켓 실시간 전력측정 스마트플러그 & 개별스위치 절전 멀티탭 베스트**  
+  └ 혜택 요약: **⚡ 9,900원대 대기전력 0원 차단** (스마트폰 앱으로 누진세 3단계 진입 전 원격 전원 차단 · 타이머 스케줄)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 최저가 비교**:
+https://truthofmarket.com/preset/electric-inverter-roi
 
 ---
 
@@ -112,7 +139,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.06 10년 된 구형 에어컨 바꾸고 돈 번 사연 🔄 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간, 모르고 그냥 썼더니 -87,524원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-inverter-roi?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 (https://truthofmarket.com/preset/electric-inverter-roi) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-inverter-roi?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 (https://truthofmarket.com/preset/electric-inverter-roi) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/electric-inverter-roi?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-inverter-roi-thumb.png" alt="10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -122,6 +149,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 10년 구형 정속형 유지 시: <strong>159,483원/월</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 듀얼인버터 교체 시: <strong>71,959원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -87,524원/월 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: [2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-0061GAWSD 인버터 캐리어씽크(wifi) 가정용 업소용 사무실 상가 오피스텔 농막 전국배송 기본설치비포함, OARB-0061GAWSD, 일반 배관형 (<span style="color:#e11d48;font-weight:900;">699,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 캐리어 신형 1등급 인버터 6평형 벽걸이 에어컨 DARB-0061GAWSD 실외기포함 국가대표에어컨, DARC-0081CAWSD (8평형) 1등급, 일반배관형 (<span style="color:#e11d48;font-weight:800;">569,000원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/electric-inverter-roi" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/electric-inverter-roi)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -87,524원 (9.7개월 본전 회수)</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -186,7 +220,7 @@ https://truthofmarket.com/?calc=electric
 • **조건 바꿨을 때(1등급 듀얼인버터 교체 시)**: **71,959원/월** (➔ **-87,524원/월 절약**)
 • **핵심 지표 (전기·가전)**: 추가 전력 +432 kWh / 월 절감액 -87,524원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-inverter-roi
 
 ---
@@ -198,6 +232,13 @@ https://truthofmarket.com/preset/electric-inverter-roi
 | 10년 된 구형 정속형 에어컨 | 정속형 모터 (ON/OFF 반복) | 432 kWh (총 632kWh) | 118,500원 | 5년 누적 3,555,000원 | 교체 미진행 시 지속 손실 |
 | 신형 1등급 듀얼 인버터 | 가변속 듀얼 인버터 압축기 | 194 kWh (총 394kWh) | 54,300원 | 5년 누적 1,629,000원 | 월 64,200원 절감 달성 |
 | 1등급 교체 + 정부 환급금 | 1등급 으뜸효율 10% 환급 | 194 kWh (총 394kWh) | 54,300원 | 환급 차감 실구매 76.5만 | 13.2개월 내 본전 회수 (5년 280만 절약) |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **[2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-0061GAWSD 인버터 캐리어씽크(wifi) 가정용 업소용 사무실 상가 오피스텔 농막 전국배송 기본설치비포함, OARB-0061GAWSD, 일반 배관형** (실구매가 **699,000원**)
+• **소싱 2위 모델**: **캐리어 신형 1등급 인버터 6평형 벽걸이 에어컨 DARB-0061GAWSD 실외기포함 국가대표에어컨, DARC-0081CAWSD (8평형) 1등급, 일반배관형** (실구매가 **569,000원**)
+• **공식몰 비교 (롯데하이마트 공식몰)**: **롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전** (💳 카드 즉시할인 + 으뜸효율 1등급 환급)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/electric-inverter-roi
 
 ---
 
@@ -233,10 +274,11 @@ https://truthofmarket.com/?calc=electric
 ❌ 10년 구형 정속형 유지 시: 159,483원/월
 ✅ 1등급 듀얼인버터 교체 시: 71,959원/월 (-87,524원/월 절약)
 📊 핵심 지표: 추가 전력: +432 kWh
+🏆 실구매 1위 소싱템: [2026 NEW] 캐리어 벽걸이 에어컨 1등급 6평형 OARB-00 (699,000원)
 
 하루 8시간 가동 기준 구형 정속형과 최신 1등급 듀얼인버터의 전력 소모 차이는 55% 이상 벌어져, 아낀 전기세로 기기값이 회수됩니다.
 
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/electric-inverter-roi
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```

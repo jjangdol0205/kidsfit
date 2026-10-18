@@ -19,7 +19,7 @@
 > ✅ **47만 사은품 대납 환승 (3년 누적)**: **+518,000원 순이익** (**당일 현금 +320,000원**)  
 > 📌 **핵심 판정**: **위약금 15만 원 내고도 총 +52만 원 이득!** (💰 지금 바로 갈아타기 무조건 이득!)
 
-👉 **[무료 3초 계산기 바로가기] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익**:
 https://truthofmarket.com/preset/telecom-penalty-15
 
 🏠 **[머니핏 통신·약정 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=telecom
 | 당일 즉시 순이익 (현금 잔액) | 0원 | +320,000원 순수 현금 | +320,000원 | 갈아탄 당일 즉시 32만 원 흑자! |
 | 월 통신요금 인하 (36개월) | 월 44,000원 (총 158.4만) | 월 38,500원 (총 138.6만) | +198,000원 절감 | 월 5,500원 결합요금 인하 |
 | 3년 총 순수익 합계 | 기준 (0원) | 총 +518,000원 순이익 | +518,000원 순이익 | 손익분기점 0개월 (즉시 흑자 달성) |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/telecom-penalty-15`) 상단 쇼룸에 실시간 연동된 **🌐 통신사 임대료·요금 폭탄 해방 공유기·유심 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] ipTIME 유무선 공유기, 유무선 공유기/AX3000R, 1개**  
+  └ 실구매가: **49,600원** (🚚 무료배송 · 임대료 15.8만원 절약 + 사은품 최대 47만원 혜택)
+
+• **[소싱 TOP 2] 밥 미니언즈공유기 와이파이 Wi-Fi 6 AX-1800, 1개**  
+  └ 실구매가: **54,740원** (🚀 로켓배송 · 임대료 15.8만원 절약 + 사은품 최대 47만원 혜택)
+
+• **[소싱 TOP 3] ipTIME 유무선 공유기, 1개, 유무선공유기-<AX3000M>**  
+  └ 실구매가: **115,000원** (🚚 무료배송 · 임대료 15.8만원 절약 + 사은품 최대 47만원 혜택)
+
+• **[소싱 TOP 4] EFM IPTIME AX3000PLUS 11ax 기가비트 유무선공유기 WIFI6**  
+  └ 실구매가: **61,900원** (🚚 무료배송 · 임대료 15.8만원 절약 + 사은품 최대 47만원 혜택)
+
+• **[공식몰 제휴 비교 — 지마켓 네트워크 공식관] 지마켓 ipTIME·티피링크 AX3000 와이파이6 공유기 & CAT.8 기가랜선 특가**  
+  └ 혜택 요약: **🌐 통신사 임대료 15.8만원 즉시 절약** (통신사 공유기 임대료(월 4,400원×36개월=158,400원) 아끼고 속도 3배 업그레이드)
+
+• **[공식몰 제휴 비교 — KT샵 / 알뜰유심 공식몰] 자급제폰 + NFC 호환 알뜰폰 무제한 유심칩 5분 셀프개통 기획전**  
+  └ 혜택 요약: **📱 24개월 통신비 -132만원 절감** (통신 3사 5G 고가 요금제(월 8.9만) → 알뜰폰 무제한(월 3.3만) 전환으로 매달 5.6만원 절약)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 최저가 비교**:
+https://truthofmarket.com/preset/telecom-penalty-15
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.31 인터넷 위약금 15만원 무서워서 참고 쓰던 라쿤 💸 (알뜰 라쿤 대리 × 안경 여우 통신박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익, 모르고 그냥 썼더니 당일 현금 +320,000원? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/telecom-penalty-15?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 (https://truthofmarket.com/preset/telecom-penalty-15) ↗</a>
+    <a href="https://truthofmarket.com/preset/telecom-penalty-15?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 (https://truthofmarket.com/preset/telecom-penalty-15) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/telecom-penalty-15?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/telecom-penalty-15-thumb.png" alt="인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 위약금 무서워 기존 요금 유지: <strong>0원 (기존 요금 그대로 납부)</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 47만 사은품 대납 환승 (3년 누적): <strong>+518,000원 순이익</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: 당일 현금 +320,000원</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: ipTIME 유무선 공유기, 유무선 공유기/AX3000R, 1개 (<span style="color:#e11d48;font-weight:900;">49,600원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 밥 미니언즈공유기 와이파이 Wi-Fi 6 AX-1800, 1개 (<span style="color:#e11d48;font-weight:800;">54,740원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/telecom-penalty-15" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/telecom-penalty-15)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">사은품 47만 원 - 위약금 15만 원 + 3년 요금 절감 = 총 +518,000원 순수익</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=telecom
 • **조건 바꿨을 때(47만 사은품 대납 환승 (3년 누적))**: **+518,000원 순이익** (➔ **당일 현금 +320,000원**)
 • **핵심 지표 (통신·약정)**: 사은품-위약금 +32만 원 / 3년 요금절감 +20만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(남은 위약금·기존 요금·신규 요금·사은품) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(남은 위약금·기존 요금·신규 요금·사은품) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/telecom-penalty-15
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/telecom-penalty-15
 | 당일 즉시 순이익 (현금 잔액) | 0원 | +320,000원 순수 현금 | +320,000원 | 갈아탄 당일 즉시 32만 원 흑자! |
 | 월 통신요금 인하 (36개월) | 월 44,000원 (총 158.4만) | 월 38,500원 (총 138.6만) | +198,000원 절감 | 월 5,500원 결합요금 인하 |
 | 3년 총 순수익 합계 | 기준 (0원) | 총 +518,000원 순이익 | +518,000원 순이익 | 손익분기점 0개월 (즉시 흑자 달성) |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **ipTIME 유무선 공유기, 유무선 공유기/AX3000R, 1개** (실구매가 **49,600원**)
+• **소싱 2위 모델**: **밥 미니언즈공유기 와이파이 Wi-Fi 6 AX-1800, 1개** (실구매가 **54,740원**)
+• **공식몰 비교 (지마켓 네트워크 공식관)**: **지마켓 ipTIME·티피링크 AX3000 와이파이6 공유기 & CAT.8 기가랜선 특가** (🌐 통신사 임대료 15.8만원 즉시 절약)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/telecom-penalty-15
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=telecom
 ❌ 위약금 무서워 기존 요금 유지: 0원 (기존 요금 그대로 납부)
 ✅ 47만 사은품 대납 환승 (3년 누적): +518,000원 순이익 (당일 현금 +320,000원)
 📊 핵심 지표: 사은품-위약금: +32만 원
+🏆 실구매 1위 소싱템: ipTIME 유무선 공유기, 유무선 공유기/AX3000R, 1개 (49,600원)
 
 신규 가입 현금 사은품(47만 원)으로 위약금 15만 원을 전액 갚고도 당일 +32만 원 현금이 남으며, 월 요금 인하(월 5,500원×36개월)까지 합치면 총 +51.8만 원 흑자입니다.
 
-👉 내 조건(남은 위약금·기존 요금·신규 요금·사은품) 3초 무료 계산기 바로가기:
+👉 내 조건(남은 위약금·기존 요금·신규 요금·사은품) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/telecom-penalty-15
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=telecom
 ```

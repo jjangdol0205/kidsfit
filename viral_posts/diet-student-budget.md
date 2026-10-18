@@ -19,7 +19,7 @@
 > ✅ **온라인 벌크 정량(28팩+14공기)**: **49,700원 (28팩)** (**-62,300원 절약**)  
 > 📌 **핵심 판정**: **하루 2,031kcal · 닭가슴살 총 28팩!** (🔥 1주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 자취생·대학생 1주 가성비 헬스 식단 장보기 표 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 자취생·대학생 1주 가성비 헬스 식단 장보기 표**:
 https://truthofmarket.com/preset/diet-student-budget
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=diet
 | 가성비 다이어트 칼로리 | 1,880 kcal / 일 (-300 결손) | 13,160 kcal | 요요 방지 안정 결손 | 1주 감량 -0.3kg |
 | 닭가슴살 (단백질 140g/일) | 하루 4팩 (순단백질 92g+식사) | 1주 28팩 | 팩당 1,100원 초가성비 | 닭가슴살 28팩 약 30,800원 |
 | 즉석 현미밥 & 계란 | 하루 현미밥 2개 + 계란 2개 | 현미밥 14개 + 계란 1판 | 개당 950원 | 현미밥 13,300원 + 계란 6,500원 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 자취생·대학생 1주 가성비 헬스 식단 장보기 표 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-student-budget`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 시골아빠 파손보상 구운계란 대란 저온숙성 촉촉쫄깃 구운란, 1개, 90구**  
+  └ 실구매가: **28,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] [에그조아] 구운란 30구 하루한알 건강챙기기 중란 단백질 간식 파손보상 안전배송, 1세트, 30구**  
+  └ 실구매가: **11,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] [에그조아] 구운란 30구 60구 대란 대용량 실속 세트 아이 간식 파손보상 안전배송, 1세트, 30구**  
+  └ 실구매가: **15,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 계란의정원 킹단백 구운계란 대란 무항생제 햅썹인증**  
+  └ 실구매가: **20,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 자취생·대학생 1주 가성비 헬스 식단 장보기 표 최저가 비교**:
+https://truthofmarket.com/preset/diet-student-budget
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.11 지갑 얇은 자취생의 주 3만원대 득근 비결 🎓 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 자취생·대학생 1주 가성비 헬스 식단 장보기 표, 모르고 그냥 썼더니 -62,300원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-student-budget?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 자취생·대학생 1주 가성비 헬스 식단 장보기 표 (https://truthofmarket.com/preset/diet-student-budget) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-student-budget?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 자취생·대학생 1주 가성비 헬스 식단 장보기 표 (https://truthofmarket.com/preset/diet-student-budget) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-student-budget?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-student-budget-thumb.png" alt="자취생·대학생 1주 가성비 헬스 식단 장보기 표 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 편의점 소포장 1주일 단품 구매: <strong>112,000원/1주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 온라인 벌크 정량(28팩+14공기): <strong>49,700원 (28팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -62,300원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 시골아빠 파손보상 구운계란 대란 저온숙성 촉촉쫄깃 구운란, 1개, 90구 (<span style="color:#e11d48;font-weight:900;">28,900원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: [에그조아] 구운란 30구 하루한알 건강챙기기 중란 단백질 간식 파손보상 안전배송, 1세트, 30구 (<span style="color:#e11d48;font-weight:800;">11,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-student-budget" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-student-budget)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1주간 닭가슴살 28팩 · 현미밥 14개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(온라인 벌크 정량(28팩+14공기))**: **49,700원 (28팩)** (➔ **-62,300원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 242/140/56g / 닭가슴살(1주) 28팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-student-budget
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-student-budget
 | 가성비 다이어트 칼로리 | 1,880 kcal / 일 (-300 결손) | 13,160 kcal | 요요 방지 안정 결손 | 1주 감량 -0.3kg |
 | 닭가슴살 (단백질 140g/일) | 하루 4팩 (순단백질 92g+식사) | 1주 28팩 | 팩당 1,100원 초가성비 | 닭가슴살 28팩 약 30,800원 |
 | 즉석 현미밥 & 계란 | 하루 현미밥 2개 + 계란 2개 | 현미밥 14개 + 계란 1판 | 개당 950원 | 현미밥 13,300원 + 계란 6,500원 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **시골아빠 파손보상 구운계란 대란 저온숙성 촉촉쫄깃 구운란, 1개, 90구** (실구매가 **28,900원**)
+• **소싱 2위 모델**: **[에그조아] 구운란 30구 하루한알 건강챙기기 중란 단백질 간식 파손보상 안전배송, 1세트, 30구** (실구매가 **11,900원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-student-budget
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 편의점 소포장 1주일 단품 구매: 112,000원/1주
 ✅ 온라인 벌크 정량(28팩+14공기): 49,700원 (28팩) (-62,300원 절약)
 📊 핵심 지표: 탄·단·지(g): 242/140/56g
+🏆 실구매 1위 소싱템: 시골아빠 파손보상 구운계란 대란 저온숙성 촉촉쫄깃 구운란, 1개, 9 (28,900원)
 
 1주일 필요 수량(닭가슴살 28팩 + 현미밥 14개)을 정확히 계산해 대용량 벌크로 주문하면 편의점 단품 구매 대비 식비를 절반 이하로 낮출 수 있습니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-student-budget
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

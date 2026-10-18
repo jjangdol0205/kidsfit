@@ -19,7 +19,7 @@
 > ✅ **TDEE 정량 대용량 묶음(127팩)**: **217,550원 (127팩)** (**-273,950원 절약**)  
 > 📌 **핵심 판정**: **하루 2,240kcal · 닭가슴살 총 127팩!** (🔥 4주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량**:
 https://truthofmarket.com/preset/diet-male-fatloss
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ Mifflin-St Jeor 수식으로 계산하면 일일 1,950kcal 섭취 및 순단백�
 | 목표 섭취 칼로리 (결손 500) | 일일 1,950 kcal | 54,600 kcal (섭취) | - | 4주 순수 체지방 -2.0kg 감량 |
 | 순단백질 및 닭가슴살 | 160g / 일 (체중의 2.0배) | 순단백질 4,480g | 닭가슴살 65% 충당 | 냉동 닭가슴살 100g 총 127팩 |
 | 복합 탄수화물 (즉석 현미밥) | 탄수화물 약 220g / 일 | 현미밥 56개 | 식이섬유·글리코겐 | 즉석 현미밥(130g탄수) 24개입 2.5박스 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-male-fatloss`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg**  
+  └ 실구매가: **35,800원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] 자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg**  
+  └ 실구매가: **64,500원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] 하림 IFF 가슴살**  
+  └ 실구매가: **37,730원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 천수만 2026년산 햅쌀 간척지쌀 백미 상등급**  
+  └ 실구매가: **29,900원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 최저가 비교**:
+https://truthofmarket.com/preset/diet-male-fatloss
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.07 80kg 헬린이 시바의 편의점 식단 파산기 🥩 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량, 모르고 그냥 썼더니 -273,950원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-male-fatloss?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 (https://truthofmarket.com/preset/diet-male-fatloss) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-male-fatloss?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 (https://truthofmarket.com/preset/diet-male-fatloss) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-male-fatloss?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-male-fatloss-thumb.png" alt="남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 편의점 낱개·배달 샐러드 4주: <strong>491,500원/4주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ TDEE 정량 대용량 묶음(127팩): <strong>217,550원 (127팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -273,950원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (<span style="color:#e11d48;font-weight:900;">35,800원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg (<span style="color:#e11d48;font-weight:800;">64,500원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-male-fatloss" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-male-fatloss)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">4주간 닭가슴살 127팩 · 현미밥 56개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(TDEE 정량 대용량 묶음(127팩))**: **217,550원 (127팩)** (➔ **-273,950원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 261/160/62g / 닭가슴살(4주) 127팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-male-fatloss
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-male-fatloss
 | 목표 섭취 칼로리 (결손 500) | 일일 1,950 kcal | 54,600 kcal (섭취) | - | 4주 순수 체지방 -2.0kg 감량 |
 | 순단백질 및 닭가슴살 | 160g / 일 (체중의 2.0배) | 순단백질 4,480g | 닭가슴살 65% 충당 | 냉동 닭가슴살 100g 총 127팩 |
 | 복합 탄수화물 (즉석 현미밥) | 탄수화물 약 220g / 일 | 현미밥 56개 | 식이섬유·글리코겐 | 즉석 현미밥(130g탄수) 24개입 2.5박스 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg** (실구매가 **35,800원**)
+• **소싱 2위 모델**: **자연의닭 냉동 닭가슴살(껍질없음), 5개, 2kg** (실구매가 **64,500원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-male-fatloss
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 편의점 낱개·배달 샐러드 4주: 491,500원/4주
 ✅ TDEE 정량 대용량 묶음(127팩): 217,550원 (127팩) (-273,950원 절약)
 📊 핵심 지표: 탄·단·지(g): 261/160/62g
+🏆 실구매 1위 소싱템: 자연의닭 냉장 닭가슴살(껍질없음), 1개, 5kg (35,800원)
 
 Mifflin-St Jeor 수식으로 계산하면 일일 1,950kcal 섭취 및 순단백질 160g이 필요하며, 4주 총 닭가슴살 127팩을 묶음 구매할 때 식비가 50% 이상 줄어듭니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-male-fatloss
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

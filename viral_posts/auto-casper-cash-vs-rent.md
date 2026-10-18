@@ -19,7 +19,7 @@
 > ✅ **단체보험 포함 36개월 최적 플랜**: **20,737,125원** (**-558만 원 차이**)  
 > 📌 **핵심 판정**: **[신차 장기렌트] 총 558만 원 이득!** (🏆 36개월 총비용 승자 판정)
 
-👉 **[무료 3초 계산기 바로가기] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트**:
 https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 
 🏠 **[머니핏 자동차·TCO 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=auto
 | 3년 초보운전 보험료 | 4,800,000원 (연 160만) | 4,800,000원 | 0원 (렌트사 단체보험) | 초보운전자 보험료 480만 방어 |
 | 3년 경차 자동차세 | 312,000원 (연 10.4만) | 312,000원 | 0원 (렌트료 포함) | 유류세 환급 30만 원 별도 |
 | 3년 총 실부담 TCO | 23,112,000원 | 24,300,000원 | 21,800,000원 | 초보운전 장기렌트 131만 원 이득 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/auto-casper-cash-vs-rent`) 상단 쇼룸에 실시간 연동된 **🚗 신차·장기렌트·할부 유지비 방어 차량용품 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB**  
+  └ 실구매가: **169,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 2] 아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB**  
+  └ 실구매가: **469,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 3] 아이나비 QUANTUM3 (128GB) 자가장착 기본패키지 /전후방 4K UHD 2채널블랙박스, 커넥티드패키지(2년), 128GB**  
+  └ 실구매가: **539,000원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 4] 아이나비 전방QHD 후방FHD 2채널 블랙박스 설치비포함 VX5000**  
+  └ 실구매가: **233,640원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 자동차용품관] 지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜**  
+  └ 혜택 요약: **🚗 전국 무료출장장착 포함 특가** (신차 딜러 서비스 저가 블박 대신 QHD 초고화질 + 무상 출장장착 10만원대 끝판왕)
+
+• **[공식몰 제휴 비교 — 11번가 카용품 베스트] 11번가 불스원샷 연료첨가제 & 활성탄 에어컨필터·워셔액 대용량 세트**  
+  └ 혜택 요약: **⛽ 셀프 정비로 공임비 80% 절약** (정비소 교체비용 5만 원 → 5분 셀프 교체로 개당 6,900원에 연비·실내공기 완벽 관리)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 최저가 비교**:
+https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.29 취등록세 0원 경차 캐스퍼, 초보운전 보험료의 역습 🐣 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트, 모르고 그냥 썼더니 -558만 원 차이? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 (https://truthofmarket.com/preset/auto-casper-cash-vs-rent) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 (https://truthofmarket.com/preset/auto-casper-cash-vs-rent) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/auto-casper-cash-vs-rent-thumb.png" alt="1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 초보보험 3년 480만 별도 할부: <strong>26,320,500원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 단체보험 포함 36개월 최적 플랜: <strong>20,737,125원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -558만 원 차이</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB (<span style="color:#e11d48;font-weight:900;">169,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB (<span style="color:#e11d48;font-weight:800;">469,000원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/auto-casper-cash-vs-rent" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/auto-casper-cash-vs-rent)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">취등록세(126만)·보험·절세 합산 시 [신차 장기렌트]가 558만 원 유리</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=auto
 • **조건 바꿨을 때(단체보험 포함 36개월 최적 플랜)**: **20,737,125원** (➔ **-558만 원 차이**)
 • **핵심 지표 (자동차·TCO)**: 취등록세(7%) 126만 원 / 절세·보험 절감 206만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 | 3년 초보운전 보험료 | 4,800,000원 (연 160만) | 4,800,000원 | 0원 (렌트사 단체보험) | 초보운전자 보험료 480만 방어 |
 | 3년 경차 자동차세 | 312,000원 (연 10.4만) | 312,000원 | 0원 (렌트료 포함) | 유류세 환급 30만 원 별도 |
 | 3년 총 실부담 TCO | 23,112,000원 | 24,300,000원 | 21,800,000원 | 초보운전 장기렌트 131만 원 이득 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가설치 Z9900선택, 신형Z9900, 64GB** (실구매가 **169,000원**)
+• **소싱 2위 모델**: **아이나비 QUANTUM3 (128GB) 기본패키지+완전무료출장장착 /전후방 4K UHD 2채널블랙박스, 기본패키지, 128GB** (실구매가 **469,000원**)
+• **공식몰 비교 (지마켓 자동차용품관)**: **지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜** (🚗 전국 무료출장장착 포함 특가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=auto
 ❌ 초보보험 3년 480만 별도 할부: 26,320,500원
 ✅ 단체보험 포함 36개월 최적 플랜: 20,737,125원 (-558만 원 차이)
 📊 핵심 지표: 취등록세(7%): 126만 원
+🏆 실구매 1위 소싱템: 아이나비 Z9500 32G 정품메모리 2채널 블랙박스 QHD화질 자가 (169,000원)
 
 본인 명의 첫차 보험료가 연 150~160만 원(3년 480만 원)에 달하고 사고 시 할증 위험까지 크지만, 장기렌트는 렌트사 단체보험이 기본 포함되어 초기·유지 부담을 방어합니다.
 
-👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 바로가기:
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/auto-casper-cash-vs-rent
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=auto
 ```

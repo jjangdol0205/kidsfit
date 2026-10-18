@@ -19,7 +19,7 @@
 > ✅ **온라인 특가 1,000만원 3대이모님**: **10,000,000원** (**-2,200,000원 절약**)  
 > 📌 **핵심 판정**: **총 1000만 원 풀세팅 (가전 800만 + 가구 200만)** (🏠 24평 [가성비] 초과 0원 배분)
 
-👉 **[무료 3초 계산기 바로가기] 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지**:
 https://truthofmarket.com/preset/room-newlywed-1000
 
 🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=room
 | 프리미엄 킹(K) 침대 세트 | 20% | 2,000,000원 | 호텔형 템퍼/독립스프링 킹사이즈 침대 | 온라인 특가 45만 원 절감 |
 | 65인치 OLED/QLED TV | 16% | 1,600,000원 | 65인치 4K 시네마 스마트 TV | 벽걸이 설치 포함 35만 절감 |
 | 식기세척기 + 로봇청소기 | 18% | 1,800,000원 | 12인용 식기세척기 + 스마트 로봇청소기 | 신혼 3대 이모님 완성 (총 220만 절감) |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/room-newlywed-1000`) 상단 쇼룸에 실시간 연동된 **🛋️ 자취·오피스텔·신혼 가성비 가전·가구 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL**  
+  └ 실구매가: **598,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 2] 샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL**  
+  └ 실구매가: **1,189,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 3] JONR 로봇청소기 T5 PRO GEN 2 열풍건조 자동세척 올인원 자동먼지비움, 화이트, T5 Pro Gen 2**  
+  └ 실구매가: **449,000원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 4] [호환] 로보락 세제 로봇청소기 클리너 세척액 세정제 로보젠**  
+  └ 실구매가: **10,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[공식몰 제휴 비교 — 오늘의집 공식스토어] 오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가**  
+  └ 혜택 요약: **🛋️ 자취·신혼 인테리어 가구 1위** (오프라인 가구점 대비 유통마진 -35% 절감 · 실거주자 포토리뷰 1만건 검증)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 가전패키지] 롯데하이마트 냉장고·세탁기·로봇청소기·전자레인지 온라인 단독 패키지**  
+  └ 혜택 요약: **🏆 원룸·신혼 필수가전 세트 할인** (백화점·대리점 개별 구매 대비 최대 280만 원 절약 + 희망일 무료설치)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 최저가 비교**:
+https://truthofmarket.com/preset/room-newlywed-1000
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.22 24평 신혼가전 백화점 1500만원 견적 다이어트 💍 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지, 모르고 그냥 썼더니 -2,200,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-newlywed-1000?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 (https://truthofmarket.com/preset/room-newlywed-1000) ↗</a>
+    <a href="https://truthofmarket.com/preset/room-newlywed-1000?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 (https://truthofmarket.com/preset/room-newlywed-1000) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/room-newlywed-1000?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-newlywed-1000-thumb.png" alt="신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 오프라인 백화점·대리점 풀패키지: <strong>12,200,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 온라인 특가 1,000만원 3대이모님: <strong>10,000,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -2,200,000원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (<span style="color:#e11d48;font-weight:900;">598,800원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL (<span style="color:#e11d48;font-weight:800;">1,189,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/room-newlywed-1000" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/room-newlywed-1000)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">24평 1000만 원 황금배분 · 온라인 특가로 -220만 원 절약</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=room
 • **조건 바꿨을 때(온라인 특가 1,000만원 3대이모님)**: **10,000,000원** (➔ **-2,200,000원 절약**)
 • **핵심 지표 (자취·인테리어)**: 냉장고 예산 240만 원 / 세탁기 예산 220만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-newlywed-1000
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/room-newlywed-1000
 | 프리미엄 킹(K) 침대 세트 | 20% | 2,000,000원 | 호텔형 템퍼/독립스프링 킹사이즈 침대 | 온라인 특가 45만 원 절감 |
 | 65인치 OLED/QLED TV | 16% | 1,600,000원 | 65인치 4K 시네마 스마트 TV | 벽걸이 설치 포함 35만 절감 |
 | 식기세척기 + 로봇청소기 | 18% | 1,800,000원 | 12인용 식기세척기 + 스마트 로봇청소기 | 신혼 3대 이모님 완성 (총 220만 절감) |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **샤오미 H50 Pro 로봇청소기, 화이트, OV42GL** (실구매가 **598,800원**)
+• **소싱 2위 모델**: **샤오미 로봇청소기 6 Max, 웜 메탈릭 그레이, PV11GL** (실구매가 **1,189,800원**)
+• **공식몰 비교 (오늘의집 공식스토어)**: **오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가** (🛋️ 자취·신혼 인테리어 가구 1위)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/room-newlywed-1000
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=room
 ❌ 오프라인 백화점·대리점 풀패키지: 12,200,000원
 ✅ 온라인 특가 1,000만원 3대이모님: 10,000,000원 (-2,200,000원 절약)
 📊 핵심 지표: 냉장고 예산: 240만 원
+🏆 실구매 1위 소싱템: 샤오미 H50 Pro 로봇청소기, 화이트, OV42GL (598,800원)
 
 복잡한 카드 약정이나 상품권 페이백 조건 없이 온라인 로켓설치와 직영 기획전으로 핵심 모델만 조합하면 실결제 금액을 220만 원 이상 아낄 수 있습니다.
 
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/room-newlywed-1000
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

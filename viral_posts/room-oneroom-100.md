@@ -19,7 +19,7 @@
 > ✅ **100만원 황금비율 5종 풀세팅**: **1,000,000원** (**-220,000원 절약**)  
 > 📌 **핵심 판정**: **총 100만 원 풀세팅 (가전 80만 + 가구 20만)** (🏠 6평 [가성비] 초과 0원 배분)
 
-👉 **[무료 3초 계산기 바로가기] 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅**:
 https://truthofmarket.com/preset/room-oneroom-100
 
 🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=room
 | 매트리스 + 프레임 (가구) | 20% | 200,000원 | 슈퍼싱글(SS) 롤팩 독립스프링 매트리스 | 허리 지지 가성비 1위 |
 | 스마트 TV / 모니터 | 16% | 160,000원 | 32인치 FHD 스마트TV (OTT 내장) | 넷플릭스·유튜브 지원 |
 | 소형가전 3종 세트 | 18% | 180,000원 | 20L 전자레인지 + 3인용 밥솥 + 청소기 | 필수 생활 소형가전 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/room-oneroom-100`) 상단 쇼룸에 실시간 연동된 **🛋️ 자취·오피스텔·신혼 가성비 가전·가구 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] KALVORA슈퍼싱글 독립스프링 매트리스 30cm 중간 부드러움, 중간 부드러움, 30cm**  
+  └ 실구매가: **188,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 2] ms.sleep 독립통 스프링 침대 매트리스 15cm 20cm 25cm 부드럽고 단단한 것이 적당하다 압축 롤링 포장, 중간 단단함, 20cm**  
+  └ 실구매가: **119,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 3] [방문설치배송] 모던베이직 엔드리스스프링 매트리스, 단단한, 28cm**  
+  └ 실구매가: **239,000원** (🚚 무료배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 4] KURUA 침대 매트리스 독립스프링 매트리스**  
+  └ 실구매가: **69,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[공식몰 제휴 비교 — 오늘의집 공식스토어] 오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가**  
+  └ 혜택 요약: **🛋️ 자취·신혼 인테리어 가구 1위** (오프라인 가구점 대비 유통마진 -35% 절감 · 실거주자 포토리뷰 1만건 검증)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 가전패키지] 롯데하이마트 냉장고·세탁기·로봇청소기·전자레인지 온라인 단독 패키지**  
+  └ 혜택 요약: **🏆 원룸·신혼 필수가전 세트 할인** (백화점·대리점 개별 구매 대비 최대 280만 원 절약 + 희망일 무료설치)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 최저가 비교**:
+https://truthofmarket.com/preset/room-oneroom-100
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.19 6평 원룸 예산 100만원 풀세팅 황금비율 🛋️ (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅, 모르고 그냥 썼더니 -220,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-oneroom-100?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 (https://truthofmarket.com/preset/room-oneroom-100) ↗</a>
+    <a href="https://truthofmarket.com/preset/room-oneroom-100?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 (https://truthofmarket.com/preset/room-oneroom-100) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/room-oneroom-100?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-oneroom-100-thumb.png" alt="원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 무계획 단품 구매 시 예상 지출: <strong>1,220,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 100만원 황금비율 5종 풀세팅: <strong>1,000,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -220,000원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: KALVORA슈퍼싱글 독립스프링 매트리스 30cm 중간 부드러움, 중간 부드러움, 30cm (<span style="color:#e11d48;font-weight:900;">188,800원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: ms.sleep 독립통 스프링 침대 매트리스 15cm 20cm 25cm 부드럽고 단단한 것이 적당하다 압축 롤링 포장, 중간 단단함, 20cm (<span style="color:#e11d48;font-weight:800;">119,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/room-oneroom-100" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/room-oneroom-100)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">6평 100만 원 황금배분 · 온라인 특가로 -22만 원 절약</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=room
 • **조건 바꿨을 때(100만원 황금비율 5종 풀세팅)**: **1,000,000원** (➔ **-220,000원 절약**)
 • **핵심 지표 (자취·인테리어)**: 냉장고 예산 24만 원 / 세탁기 예산 22만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-oneroom-100
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/room-oneroom-100
 | 매트리스 + 프레임 (가구) | 20% | 200,000원 | 슈퍼싱글(SS) 롤팩 독립스프링 매트리스 | 허리 지지 가성비 1위 |
 | 스마트 TV / 모니터 | 16% | 160,000원 | 32인치 FHD 스마트TV (OTT 내장) | 넷플릭스·유튜브 지원 |
 | 소형가전 3종 세트 | 18% | 180,000원 | 20L 전자레인지 + 3인용 밥솥 + 청소기 | 필수 생활 소형가전 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **KALVORA슈퍼싱글 독립스프링 매트리스 30cm 중간 부드러움, 중간 부드러움, 30cm** (실구매가 **188,800원**)
+• **소싱 2위 모델**: **ms.sleep 독립통 스프링 침대 매트리스 15cm 20cm 25cm 부드럽고 단단한 것이 적당하다 압축 롤링 포장, 중간 단단함, 20cm** (실구매가 **119,800원**)
+• **공식몰 비교 (오늘의집 공식스토어)**: **오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가** (🛋️ 자취·신혼 인테리어 가구 1위)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/room-oneroom-100
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=room
 ❌ 무계획 단품 구매 시 예상 지출: 1,220,000원
 ✅ 100만원 황금비율 5종 풀세팅: 1,000,000원 (-220,000원 절약)
 📊 핵심 지표: 냉장고 예산: 24만 원
+🏆 실구매 1위 소싱템: KALVORA슈퍼싱글 독립스프링 매트리스 30cm 중간 부드러움, 중 (188,800원)
 
 150L 냉장고(24%), 9kg 통돌이(22%), 슈퍼싱글 롤팩 매트리스(20%), 32인치 스마트TV(16%), 소형가전 3종(18%) 비율로 나누면 예산 초과 0원으로 해결됩니다.
 
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/room-oneroom-100
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

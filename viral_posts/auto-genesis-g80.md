@@ -19,7 +19,7 @@
 > ✅ **3년 1,575만 절세 반영 리스·렌트**: **52,594,750원** (**-3,084만 원 차이**)  
 > 📌 **핵심 판정**: **[신차 장기렌트] 총 3,084만 원 이득!** (🏆 36개월 총비용 승자 판정)
 
-👉 **[무료 3초 계산기 바로가기] 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익**:
 https://truthofmarket.com/preset/auto-genesis-g80
 
 🏠 **[머니핏 자동차·TCO 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=auto
 | 3년 보험료/자동차세 | 4,350,000원 | 개인/법인 별도 가입 | 0원 (대여료 포함) | 단체요율 적용 |
 | 종합소득세/법인세 절세액 | 감가상각비 연 800만 | 연 1,500만 전액 경비 | 연 1,500만 전액 경비 (35%) | 3년간 총 1,575만 원 세금 절감 |
 | 3년 총비용 TCO | 85,410,000원 | 82,100,000원 | 80,210,000원 | 장기렌트 520만 원 절약 1위! |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/auto-genesis-g80`) 상단 쇼룸에 실시간 연동된 **🚗 신차·장기렌트·할부 유지비 방어 차량용품 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대**  
+  └ 실구매가: **18,900원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 2] 카멜레온360 Qi2 쿨링 맥세이프 차량용 핸드폰 거치대 송풍구 고속 무선충전 글로우+30W시거잭+CtoC케이블 세트, 티타늄그레이, CM360-MAGQI2**  
+  └ 실구매가: **32,800원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 3] Essager 마그네틱 차량용 충전기 LED 라이트 맥세이프 15w 고속 무선충전+송풍구형 거치대, EZJCX-YS01-Z, 블랙**  
+  └ 실구매가: **22,190원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 4] 신지모루 25W Qi2.2 아이스쿨 초고속 펠티어 냉각 쿨링 M 에어쿨러 터보 맥세이프 차량용 무선충전 거치대**  
+  └ 실구매가: **34,900원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 자동차용품관] 지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜**  
+  └ 혜택 요약: **🚗 전국 무료출장장착 포함 특가** (신차 딜러 서비스 저가 블박 대신 QHD 초고화질 + 무상 출장장착 10만원대 끝판왕)
+
+• **[공식몰 제휴 비교 — 11번가 카용품 베스트] 11번가 불스원샷 연료첨가제 & 활성탄 에어컨필터·워셔액 대용량 세트**  
+  └ 혜택 요약: **⛽ 셀프 정비로 공임비 80% 절약** (정비소 교체비용 5만 원 → 5분 셀프 교체로 개당 6,900원에 연비·실내공기 완벽 관리)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 최저가 비교**:
+https://truthofmarket.com/preset/auto-genesis-g80
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.28 제네시스 G80 연두색 번호판 오해와 1575만원 절세 👑 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익, 모르고 그냥 썼더니 -3,084만 원 차이? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/auto-genesis-g80?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 (https://truthofmarket.com/preset/auto-genesis-g80) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-genesis-g80?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 (https://truthofmarket.com/preset/auto-genesis-g80) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/auto-genesis-g80?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/auto-genesis-g80-thumb.png" alt="7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 취등록세 490만 부담 현금·할부: <strong>83,435,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 3년 1,575만 절세 반영 리스·렌트: <strong>52,594,750원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -3,084만 원 차이</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대 (<span style="color:#e11d48;font-weight:900;">18,900원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 카멜레온360 Qi2 쿨링 맥세이프 차량용 핸드폰 거치대 송풍구 고속 무선충전 글로우+30W시거잭+CtoC케이블 세트, 티타늄그레이, CM360-MAGQI2 (<span style="color:#e11d48;font-weight:800;">32,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/auto-genesis-g80" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/auto-genesis-g80)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">취등록세(490만)·보험·절세 합산 시 [신차 장기렌트]가 3,084만 원 유리</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=auto
 • **조건 바꿨을 때(3년 1,575만 절세 반영 리스·렌트)**: **52,594,750원** (➔ **-3,084만 원 차이**)
 • **핵심 지표 (자동차·TCO)**: 취등록세(7%) 490만 원 / 절세·보험 절감 1712만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/auto-genesis-g80
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/auto-genesis-g80
 | 3년 보험료/자동차세 | 4,350,000원 | 개인/법인 별도 가입 | 0원 (대여료 포함) | 단체요율 적용 |
 | 종합소득세/법인세 절세액 | 감가상각비 연 800만 | 연 1,500만 전액 경비 | 연 1,500만 전액 경비 (35%) | 3년간 총 1,575만 원 세금 절감 |
 | 3년 총비용 TCO | 85,410,000원 | 82,100,000원 | 80,210,000원 | 장기렌트 520만 원 절약 1위! |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대** (실구매가 **18,900원**)
+• **소싱 2위 모델**: **카멜레온360 Qi2 쿨링 맥세이프 차량용 핸드폰 거치대 송풍구 고속 무선충전 글로우+30W시거잭+CtoC케이블 세트, 티타늄그레이, CM360-MAGQI2** (실구매가 **32,800원**)
+• **공식몰 비교 (지마켓 자동차용품관)**: **지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜** (🚗 전국 무료출장장착 포함 특가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/auto-genesis-g80
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=auto
 ❌ 취등록세 490만 부담 현금·할부: 83,435,000원
 ✅ 3년 1,575만 절세 반영 리스·렌트: 52,594,750원 (-3,084만 원 차이)
 📊 핵심 지표: 취등록세(7%): 490만 원
+🏆 실구매 1위 소싱템: 신지모루 LED 8색 앰비언트 맥세이프 차량용 고속 무선충전 거치대 (18,900원)
 
 7,000만 원 G80은 8,000만 원 미만이라 일반 번호판으로 출고 가능하며, 3년간 총 4,500만 원 비용처리 시 약 1,575만 원의 세금 감면 효과가 발생합니다.
 
-👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 바로가기:
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/auto-genesis-g80
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=auto
 ```

@@ -28,6 +28,13 @@ const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
 const monetization = require('../src/data/monetization.js');
 const webtoonStories = require('../src/data/webtoon-stories.js');
+let SOURCED_PRODUCTS_CATALOG = { categories: {}, presets: {} };
+try {
+  const sourcedMod = require('../src/data/sourced-products.js');
+  if (sourcedMod && sourcedMod.SOURCED_PRODUCTS_CATALOG) {
+    SOURCED_PRODUCTS_CATALOG = sourcedMod.SOURCED_PRODUCTS_CATALOG;
+  }
+} catch (e) {}
 
 // Load monetization config
 const CONFIG_PATH = path.join(PROJECT_ROOT, 'monetization.config.json');
@@ -937,21 +944,47 @@ function renderInteractiveCalculatorCard(preset, res) {
     `;
   }).join('');
 
-  // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations (Zero Truncation + Visual Contrast)
+  // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations (With Real Sourced Thumbnails & Live Prices)
+  const presetSourced = (SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[preset.id])
+    || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[preset.calc])
+    || null;
+  const sourcedCpItems = (presetSourced && Array.isArray(presetSourced.coupangProducts)) ? presetSourced.coupangProducts : [];
+  let cpIdx = 0;
+
   const productsHtml = (res.products || []).map(p => {
-    const href = p.type === 'coupang'
-      ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
-      : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId);
+    const matchedSourced = (p.type === 'coupang' && sourcedCpItems.length > 0)
+      ? sourcedCpItems[cpIdx++ % sourcedCpItems.length]
+      : null;
+    const href = matchedSourced && matchedSourced.productUrl
+      ? matchedSourced.productUrl
+      : (p.type === 'coupang'
+        ? monetization.buildCoupangUrl(p.kw, preset.calc, config.coupangAfId)
+        : monetization.buildLinkPriceDeepLink(p.merchant, p.url, config.linkPriceId));
     const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
     const badgeText = p.type === 'coupang'
-      ? '🚀 쿠팡 로켓배송'
+      ? (matchedSourced && matchedSourced.isRocket ? '🚀 로켓배송 실물 소싱' : '🚀 쿠팡 파트너스 공식 소싱')
       : `🏷️ ${merchantName}`;
-    const subBadge = p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인');
-    const ctaLabel = p.ctaText || '최저가 보기 →';
+    const subBadge = matchedSourced && matchedSourced.productPriceFormatted
+      ? `실구매가 ${matchedSourced.productPriceFormatted}`
+      : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인'));
+    const ctaLabel = matchedSourced && matchedSourced.productPriceFormatted
+      ? `🛒 ${matchedSourced.productPriceFormatted} 쿠팡 상품 직결 →`
+      : (p.ctaText || '최저가 보기 →');
     const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
-    const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
+    const matchReason = matchedSourced && matchedSourced.productName
+      ? `소싱 모델: ${matchedSourced.productName.slice(0, 56)}`
+      : (p.matchReason || '계산 결과 맞춤 베스트셀러');
     const iconPrefix = p.icon ? `${p.icon} ` : '';
     const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
+    const thumbHtml = matchedSourced && matchedSourced.productImage
+      ? `<div class="flex items-center gap-3 bg-slate-900/90 p-2.5 rounded-xl border border-slate-700/80">
+           <img src="${matchedSourced.productImage}" alt="${String(matchedSourced.productName || p.title).replace(/"/g, '&quot;')}" loading="lazy" width="60" height="60" class="w-14 h-14 object-contain rounded-lg bg-white p-1 shrink-0" />
+           <div class="min-w-0 flex-1">
+             <div class="text-[11px] font-bold text-amber-300 truncate">${matchedSourced.productName}</div>
+             <div class="text-base font-black text-rose-400 tabular-nums mt-0.5">${matchedSourced.productPriceFormatted}</div>
+           </div>
+         </div>`
+      : '';
     return `
       <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
          onclick="recordPresetClick('${p.type}', this.href, 'deal_card')"
@@ -959,8 +992,9 @@ function renderInteractiveCalculatorCard(preset, res) {
         <div class="space-y-1.5 min-w-0">
           <div class="flex items-center justify-between gap-2">
             <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">${badgeText}</span>
-            <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
+            <span class="text-xs font-black text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">${subBadge}</span>
           </div>
+          ${thumbHtml}
           <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs px-2.5 py-1 rounded-lg leading-snug break-keep">${formatMatchTagRichSsg(matchTag)}</div>
           <div class="text-base font-bold text-white leading-snug break-keep">${formatTitleRichSsg(iconPrefix + p.title)}</div>
           <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">${matchReason}</p>
@@ -1221,6 +1255,121 @@ function buildSeoSnippetAndKeywords(preset, res) {
 }
 
 /**
+ * Render Above-the-Fold Sourced Product Showroom for a Preset Page
+ */
+function renderPresetSourcedShowroomHtml(preset, res) {
+  const presetSourced = (SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[preset.id])
+    || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[preset.calc])
+    || null;
+  if (!presetSourced) return '';
+
+  const spec = presetSourced.sourcingSpec || presetSourced;
+  const cpProducts = (presetSourced.coupangProducts || []).slice(0, 4);
+  const lpDeals = (presetSourced.linkPriceDeals || []).slice(0, 2);
+  if (cpProducts.length === 0 && lpDeals.length === 0) return '';
+
+  const cpCardsHtml = cpProducts.map((item, idx) => {
+    const rocketBadge = item.isRocket
+      ? `<span class="bg-blue-600 text-white text-[11px] font-black px-2 py-0.5 rounded-md">🚀 로켓배송</span>`
+      : (item.isFreeShipping
+        ? `<span class="bg-emerald-600 text-white text-[11px] font-black px-2 py-0.5 rounded-md">🚚 무료배송</span>`
+        : `<span class="bg-slate-700 text-white text-[11px] font-bold px-2 py-0.5 rounded-md">⚡ 쿠팡특가</span>`);
+    const unitBadge = spec.defaultUnitBadge || '실구매 가성비 검증 1위';
+    return `
+      <a href="${item.productUrl}" target="_blank" rel="noopener noreferrer sponsored"
+         onclick="recordPresetClick('coupang', this.href, 'sourced_showroom')"
+         class="group flex flex-col justify-between bg-slate-50 hover:bg-rose-50/50 border-2 border-slate-200 hover:border-rose-500 rounded-2xl p-3.5 transition shadow-sm hover:shadow-md">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between gap-1.5">
+            <span class="bg-rose-600 text-white text-[11px] font-black px-2 py-0.5 rounded-md">🏆 소싱 TOP ${idx + 1}</span>
+            ${rocketBadge}
+          </div>
+          <div class="relative w-full h-36 bg-white rounded-xl border border-slate-200 flex items-center justify-center p-2 overflow-hidden">
+            <img src="${item.productImage}" alt="${String(item.productName || '').replace(/"/g, '&quot;')}" loading="lazy" width="140" height="140"
+                 class="max-h-32 w-auto object-contain group-hover:scale-105 transition duration-300" />
+          </div>
+          <div class="text-[11px] font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-1 rounded-lg truncate">
+            ✔ ${unitBadge}
+          </div>
+          <h3 class="text-sm font-black text-slate-900 line-clamp-2 leading-snug min-h-[2.5rem] break-keep">
+            ${item.productName}
+          </h3>
+        </div>
+        <div class="pt-2.5 mt-2 border-t border-slate-200/80 space-y-2">
+          <div class="flex items-baseline justify-between">
+            <span class="text-[11px] font-bold text-slate-500">쿠팡 실구매가</span>
+            <span class="text-lg font-black text-rose-600 tabular-nums">${item.productPriceFormatted}</span>
+          </div>
+          <div class="w-full text-center bg-rose-600 group-hover:bg-rose-500 text-white font-black text-xs py-2.5 px-3 rounded-xl transition shadow-sm whitespace-nowrap">
+            🚀 쿠팡 상품 상세·로켓배송 보기 ↗
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+
+  const lpCardsHtml = lpDeals.map(deal => `
+    <a href="${deal.lpUrl}" target="_blank" rel="noopener noreferrer sponsored"
+       onclick="recordPresetClick('linkprice', this.href, 'sourced_showroom_lp')"
+       class="group flex flex-col justify-between bg-indigo-50/50 hover:bg-indigo-50 border-2 border-indigo-200 hover:border-indigo-500 rounded-2xl p-4 transition shadow-sm">
+      <div class="space-y-1.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="bg-indigo-600 text-white text-xs font-black px-2.5 py-1 rounded-lg">🏷️ ${deal.merchantLabel || '공식몰 제휴'}</span>
+          <span class="text-xs font-extrabold text-indigo-800 bg-white border border-indigo-200 px-2.5 py-0.5 rounded-full">${deal.badge}</span>
+        </div>
+        <h3 class="text-base font-black text-slate-900 group-hover:text-indigo-700 leading-snug break-keep pt-1">
+          ${deal.title}
+        </h3>
+        <p class="text-xs font-bold text-slate-600 leading-relaxed break-keep">
+          ✔ ${deal.specSummary}
+        </p>
+      </div>
+      <div class="pt-3 mt-3 border-t border-indigo-200/60 flex items-center justify-between gap-2">
+        <span class="text-xs font-extrabold text-emerald-700">💳 ${deal.priceText}</span>
+        <span class="bg-indigo-600 group-hover:bg-indigo-500 text-white font-black text-xs px-3.5 py-2 rounded-xl transition shadow-sm whitespace-nowrap">
+          공식몰 쿠폰·카드할인가 비교 ↗
+        </span>
+      </div>
+    </a>
+  `).join('');
+
+  return `
+    <!-- [Real Sourced Product Showroom] 쿠팡 로켓배송 실물 소싱 TOP 4 vs 링크프라이스 공식몰 비교 쇼룸 -->
+    <section id="preset-sourced-showroom" class="mt-4 bg-white rounded-3xl p-4 sm:p-6 border-2 border-rose-500/80 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-200">
+        <div class="space-y-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-rose-600 text-white text-xs font-black px-2.5 py-1 rounded-full">🏆 2026 실구매 가성비 소싱 1위</span>
+            <span class="text-xs font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">⚡ ${res.headline} 맞춤 소싱</span>
+          </div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 break-keep">
+            ${spec.categoryTitle || `🔥 ${preset.title} 실구매 베스트셀러 비교 쇼룸`}
+          </h2>
+          <p class="text-xs sm:text-sm font-bold text-slate-600 break-keep">
+            ${spec.sourcingHeadline || '쿠팡 로켓배송 실시간 가격과 링크프라이스 공식몰 카드할인가를 한눈에 비교하고 바로 구매하세요.'}
+          </p>
+        </div>
+      </div>
+
+      <!-- 쿠팡 로켓배송 실물 소싱 TOP 4 그리드 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        ${cpCardsHtml}
+      </div>
+
+      <!-- 링크프라이스 공식몰 비교 딜 2선 -->
+      <div class="pt-3 border-t border-slate-200/80 space-y-2.5">
+        <div class="text-xs sm:text-sm font-black text-indigo-950">
+          🏷️ 링크프라이스 공식 제휴몰 (하이마트·지마켓·11번가·오늘의집·KT샵) 쿠폰·카드 즉시할인 비교
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${lpCardsHtml}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
  * Render Full Static HTML Document for a Single Preset
  */
 function renderPresetPageHtml(preset) {
@@ -1229,6 +1378,7 @@ function renderPresetPageHtml(preset) {
   const tableHtml = renderTableHtml(preset, res);
   const calculatorCardHtml = renderInteractiveCalculatorCard(preset, res);
   const seoInfo = buildSeoSnippetAndKeywords(preset, res);
+  const sourcedShowroomHtml = renderPresetSourcedShowroomHtml(preset, res);
 
   const canonicalUrl = `${CANONICAL_BASE}/preset/${preset.id}/`;
   const ogImageUrl = `${CANONICAL_BASE}/sns/${preset.id}-grid.png`;
@@ -1239,10 +1389,25 @@ function renderPresetPageHtml(preset) {
   const story = webtoonStories.resolveDynamicReceiptValues(preset, res);
   const epTitle = (story.shortCartoon && story.shortCartoon.epTitle) || ('🐾 ' + preset.title + ' 4컷 팩트체크');
   const p3Bubble = (story.shortCartoon && story.shortCartoon.p3) ? story.shortCartoon.p3.join(' ').replace(/\*\*/g, '') : res.headline;
-  const primaryCoupangUrl = res.actionItems && res.actionItems[0]
-    ? monetization.buildCoupangUrl(res.actionItems[0].coupangKw, preset.calc, config.coupangAfId)
-    : cpaTargetUrl;
-  const impulseCoupangUrl = monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId);
+
+  const presetSourced = (SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[preset.id])
+    || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[preset.calc])
+    || null;
+  const topSourcedCp = (presetSourced && Array.isArray(presetSourced.coupangProducts) && presetSourced.coupangProducts[0])
+    ? presetSourced.coupangProducts[0]
+    : null;
+  const secondSourcedCp = (presetSourced && Array.isArray(presetSourced.coupangProducts) && presetSourced.coupangProducts[1])
+    ? presetSourced.coupangProducts[1]
+    : topSourcedCp;
+
+  const primaryCoupangUrl = (topSourcedCp && topSourcedCp.productUrl)
+    ? topSourcedCp.productUrl
+    : (res.actionItems && res.actionItems[0]
+      ? monetization.buildCoupangUrl(res.actionItems[0].coupangKw, preset.calc, config.coupangAfId)
+      : cpaTargetUrl);
+  const impulseCoupangUrl = (secondSourcedCp && secondSourcedCp.productUrl)
+    ? secondSourcedCp.productUrl
+    : monetization.buildCoupangUrl(res.impulseItem ? res.impulseItem.coupangKw : preset.title, preset.calc, config.coupangAfId);
 
   // Schema.org BreadcrumbList + WebApplication + TechArticle + ImageObject + Dataset + HowTo + FAQPage JSON-LD
   const schemaJson = {
@@ -1514,6 +1679,8 @@ ${JSON.stringify(schemaJson, null, 2)}
         </div>
       </div>
 
+      ${sourcedShowroomHtml}
+
       <!-- [CRO Booster] 상단 4컷 동물 웹툰 × 3컷 영수증 직결 브릿지 -->
       <section id="atf-webtoon-receipt-bridge" aria-label="${epTitle} 4컷 웹툰 및 3컷 영수증" class="mt-4 bg-gradient-to-br from-amber-50/90 via-white to-rose-50/70 rounded-3xl p-4 sm:p-5 border-2 border-amber-300 shadow-md">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-center">
@@ -1715,6 +1882,7 @@ ${JSON.stringify(schemaJson, null, 2)}
   <!-- 클라이언트 측 실시간 인터랙티브 계산기 스크립트 -->
   <script src="../../src/data/calculators.js"></script>
   <script src="../../src/data/coupang-official-links.js"></script>
+  <script src="../../src/data/sourced-products.js"></script>
   <script src="../../src/data/monetization.js"></script>
   <script>
     const PRESET_ID = '${preset.id}';
@@ -2010,20 +2178,46 @@ ${JSON.stringify(schemaJson, null, 2)}
       }
 
       if (productsGrid && res.products && typeof MoneyFitMonetization !== 'undefined') {
+        const sourcedCat = (typeof SOURCED_PRODUCTS_CATALOG !== 'undefined' && SOURCED_PRODUCTS_CATALOG)
+          ? ((SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[PRESET_ID]) || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[PRESET_CALC]))
+          : null;
+        const sourcedCpItems = (sourcedCat && Array.isArray(sourcedCat.coupangProducts)) ? sourcedCat.coupangProducts : [];
+        let cpIdx = 0;
+
         productsGrid.innerHTML = res.products.map(p => {
-          const href = p.type === 'coupang'
-            ? buildCp(p.kw)
-            : buildLp(p.merchant, p.url);
+          const matchedSourced = (p.type === 'coupang' && sourcedCpItems.length > 0)
+            ? sourcedCpItems[cpIdx++ % sourcedCpItems.length]
+            : null;
+          const href = matchedSourced && matchedSourced.productUrl
+            ? matchedSourced.productUrl
+            : (p.type === 'coupang'
+              ? buildCp(p.kw)
+              : buildLp(p.merchant, p.url));
           const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
           const badgeText = p.type === 'coupang'
-            ? '🚀 쿠팡 로켓배송'
+            ? (matchedSourced && matchedSourced.isRocket ? '🚀 로켓배송 실물 소싱' : '🚀 쿠팡 파트너스 공식 소싱')
             : \`🏷️ \${merchantName}\`;
-          const subBadge = (zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인'));
-          const ctaLabel = p.ctaText || '최저가 보기 →';
+          const subBadge = matchedSourced && matchedSourced.productPriceFormatted
+            ? \`실구매가 \${matchedSourced.productPriceFormatted}\`
+            : ((zf && zf.badge) ? zf.badge : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 정품 할인')));
+          const ctaLabel = matchedSourced && matchedSourced.productPriceFormatted
+            ? \`🛒 \${matchedSourced.productPriceFormatted} 쿠팡 상품 직결 →\`
+            : (p.ctaText || '최저가 보기 →');
           const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
-          const matchReason = p.matchReason || '계산 결과 맞춤 베스트셀러';
+          const matchReason = matchedSourced && matchedSourced.productName
+            ? \`소싱 모델: \${matchedSourced.productName.slice(0, 56)}\`
+            : (p.matchReason || '계산 결과 맞춤 베스트셀러');
           const iconPrefix = p.icon ? \`\${p.icon} \` : '';
           const btnBg = p.type === 'coupang' ? 'bg-rose-600 hover:bg-rose-500' : 'bg-indigo-600 hover:bg-indigo-500';
+          const thumbHtml = matchedSourced && matchedSourced.productImage
+            ? \`<div class="flex items-center gap-3 bg-slate-900/90 p-2.5 rounded-xl border border-slate-700/80">
+                 <img src="\${matchedSourced.productImage}" alt="" loading="lazy" width="60" height="60" class="w-14 h-14 object-contain rounded-lg bg-white p-1 shrink-0" />
+                 <div class="min-w-0 flex-1">
+                   <div class="text-[11px] font-bold text-amber-300 truncate">\${matchedSourced.productName}</div>
+                   <div class="text-base font-black text-rose-400 tabular-nums mt-0.5">\${matchedSourced.productPriceFormatted}</div>
+                 </div>
+               </div>\`
+            : '';
           return \`
             <a href="\${href}" target="_blank" rel="noopener noreferrer sponsored"
                onclick="recordPresetClick('\${p.type}', this.href, 'deal_card')"
@@ -2031,8 +2225,9 @@ ${JSON.stringify(schemaJson, null, 2)}
               <div class="space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between gap-1.5">
                   <span class="text-xs font-medium text-amber-300 shrink-0 whitespace-nowrap">\${badgeText}</span>
-                  <span class="text-xs font-medium text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
+                  <span class="text-xs font-black text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">\${subBadge}</span>
                 </div>
+                \${thumbHtml}
                 <div class="bg-amber-400/15 border border-amber-400/30 text-amber-200 text-xs font-semibold px-2.5 py-1 rounded-lg leading-snug break-keep">\${matchTag}</div>
                 <div class="text-base font-bold text-white leading-snug break-keep">\${iconPrefix}\${p.title}</div>
                 <p class="text-xs font-normal text-slate-300 leading-relaxed break-keep">\${matchReason}</p>

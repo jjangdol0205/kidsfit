@@ -19,7 +19,7 @@
 > ✅ **1등급 히트펌프 에코 가동 시**: **62,961원/월** (**-11,956원/월 절약**)  
 > 📌 **핵심 판정**: **추가 전기세 +21,833원 (총 74,917원)** (⚡ 누진세 2단계 진입)
 
-👉 **[무료 3초 계산기 바로가기] 전기 의류건조기 주 4회 사용 시 한 달 전기세 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 전기 의류건조기 주 4회 사용 시 한 달 전기세**:
 https://truthofmarket.com/preset/electric-dryer
 
 🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
@@ -55,6 +55,33 @@ https://truthofmarket.com/?calc=electric
 | 히터 가열식 구형 건조기 | 주 4회 (월 16회 2시간씩) | 2,000 W | 120 kWh (총 400kWh) | 28,500원 | 1회 가동당 약 1,780원 |
 | 히트펌프 인버터 건조기 (기준) | 주 4회 (월 16회 2시간씩) | 1,400 W | 84 kWh (총 364kWh) | 18,900원 | 1회 가동당 약 1,180원 |
 | 인버터 1등급 에코 모드 | 저온 제습 에코 가동 | 900 W | 54 kWh (총 334kWh) | 11,800원 | 1회 가동당 약 740원 (으뜸효율 환급) |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 전기 의류건조기 주 4회 사용 시 한 달 전기세 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/electric-dryer`) 상단 쇼룸에 실시간 연동된 **⚡ 전기세·누진세 방어 1등급 & 절전 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] [세트] 양모볼3개+오일3병 / 플러퓨스 울 드라이어볼, 양모볼, 건���기볼천연섬유유연제, 5000개, 0**  
+  └ 실구매가: **59,260원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 2] [단품] 아로마오일 3병 / 방향제, 건조기용 오일 , 디퓨저 플러퓨스 울 드라이어볼 양모볼 건조기볼천연섬유유연제, 3개, 15ml**  
+  └ 실구매가: **36,160원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 3] [단품] 양모볼6개 / 플러퓨스 울 드라이어볼, 양모볼, 건조기볼천연섬유유연제,세탁볼[Hedgehog], 1개, 드라이어볼 6개**  
+  └ 실구매가: **58,900원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 4] 지피상점 양모볼 건조기드라이볼 정전기방지**  
+  └ 실구매가: **21,800원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 공식몰] 롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전**  
+  └ 혜택 요약: **💳 카드 즉시할인 + 으뜸효율 1등급 환급** (구형 정속형 대비 소비전력 -55% 절감 · 한전 1등급 환급 대상 모델 모음)
+
+• **[공식몰 제휴 비교 — 지마켓 슈퍼딜] 지마켓 실시간 전력측정 스마트플러그 & 개별스위치 절전 멀티탭 베스트**  
+  └ 혜택 요약: **⚡ 9,900원대 대기전력 0원 차단** (스마트폰 앱으로 누진세 3단계 진입 전 원격 전원 차단 · 타이머 스케줄)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 전기 의류건조기 주 4회 사용 시 한 달 전기세 최저가 비교**:
+https://truthofmarket.com/preset/electric-dryer
 
 ---
 
@@ -112,7 +139,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.04 의류건조기 전기세 폭탄 소문의 진실 👕 (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 전기 의류건조기 주 4회 사용 시 한 달 전기세, 모르고 그냥 썼더니 -11,956원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-dryer?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 전기 의류건조기 주 4회 사용 시 한 달 전기세 (https://truthofmarket.com/preset/electric-dryer) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-dryer?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 전기 의류건조기 주 4회 사용 시 한 달 전기세 (https://truthofmarket.com/preset/electric-dryer) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/electric-dryer?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-dryer-thumb.png" alt="전기 의류건조기 주 4회 사용 시 한 달 전기세 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -122,6 +149,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 구형 열풍식 건조기 가동 시: <strong>74,917원/월</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 히트펌프 에코 가동 시: <strong>62,961원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -11,956원/월 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: [세트] 양모볼3개+오일3병 / 플러퓨스 울 드라이어볼, 양모볼, 건���기볼천연섬유유연제, 5000개, 0 (<span style="color:#e11d48;font-weight:900;">59,260원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: [단품] 아로마오일 3병 / 방향제, 건조기용 오일 , 디퓨저 플러퓨스 울 드라이어볼 양모볼 건조기볼천연섬유유연제, 3개, 15ml (<span style="color:#e11d48;font-weight:800;">36,160원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/electric-dryer" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/electric-dryer)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -11,956원 (79.5개월 본전 회수)</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -186,7 +220,7 @@ https://truthofmarket.com/?calc=electric
 • **조건 바꿨을 때(1등급 히트펌프 에코 가동 시)**: **62,961원/월** (➔ **-11,956원/월 절약**)
 • **핵심 지표 (전기·가전)**: 추가 전력 +84 kWh / 월 절감액 -11,956원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-dryer
 
 ---
@@ -198,6 +232,13 @@ https://truthofmarket.com/preset/electric-dryer
 | 히터 가열식 구형 건조기 | 주 4회 (월 16회 2시간씩) | 2,000 W | 120 kWh (총 400kWh) | 28,500원 | 1회 가동당 약 1,780원 |
 | 히트펌프 인버터 건조기 (기준) | 주 4회 (월 16회 2시간씩) | 1,400 W | 84 kWh (총 364kWh) | 18,900원 | 1회 가동당 약 1,180원 |
 | 인버터 1등급 에코 모드 | 저온 제습 에코 가동 | 900 W | 54 kWh (총 334kWh) | 11,800원 | 1회 가동당 약 740원 (으뜸효율 환급) |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **[세트] 양모볼3개+오일3병 / 플러퓨스 울 드라이어볼, 양모볼, 건���기볼천연섬유유연제, 5000개, 0** (실구매가 **59,260원**)
+• **소싱 2위 모델**: **[단품] 아로마오일 3병 / 방향제, 건조기용 오일 , 디퓨저 플러퓨스 울 드라이어볼 양모볼 건조기볼천연섬유유연제, 3개, 15ml** (실구매가 **36,160원**)
+• **공식몰 비교 (롯데하이마트 공식몰)**: **롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전** (💳 카드 즉시할인 + 으뜸효율 1등급 환급)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/electric-dryer
 
 ---
 
@@ -233,10 +274,11 @@ https://truthofmarket.com/?calc=electric
 ❌ 구형 열풍식 건조기 가동 시: 74,917원/월
 ✅ 1등급 히트펌프 에코 가동 시: 62,961원/월 (-11,956원/월 절약)
 📊 핵심 지표: 추가 전력: +84 kWh
+🏆 실구매 1위 소싱템: [세트] 양모볼3개+오일3병 / 플러퓨스 울 드라이어볼, 양모볼, 건 (59,260원)
 
 과거 열풍식 건조기는 전기를 많이 먹었지만, 최신 1등급 듀얼인버터 히트펌프 방식은 1회 가동 비용이 커피 반 잔 값도 안 됩니다.
 
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/electric-dryer
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```

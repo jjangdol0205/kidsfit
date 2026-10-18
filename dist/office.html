@@ -41,31 +41,35 @@
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-dot"></span>
           <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white">
-            🏢 머니핏(MoneyFit) AI 코퍼레이션 가상 사옥
+            🏢 머니핏 AI 코퍼레이션 사옥 (1본부 comedifarm ⚔️ 2본부 expertise333)
           </h1>
           <span class="hidden md:inline-block text-xs font-bold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
-            통합 멀티에이전트 LIVE 가동중
+            🐯 총괄매니저 ↔ 1·2본부 채팅 & 텔레그램 양방향 LIVE
           </span>
         </div>
       </div>
 
       <!-- 실시간 전광판 KPI -->
       <div class="flex flex-wrap items-center gap-2 text-xs">
-        <div class="bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl flex items-center gap-2">
-          <span class="text-slate-400">🎯 10월 목표:</span>
-          <strong class="text-amber-300 font-extrabold">1,000,000원 (+100% MoM)</strong>
+        <div class="bg-blue-950/80 border border-blue-500/40 px-3 py-1.5 rounded-xl flex items-center gap-2">
+          <span class="text-blue-300 font-bold">🏢 1본부(comedifarm):</span>
+          <strong class="text-amber-300 font-extrabold">유입➔클릭➔실구매 (단일백링크·밴0%)</strong>
+        </div>
+        <div class="bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl flex items-center gap-2">
+          <span class="text-emerald-300 font-bold">🏛️ 2본부(expertise333):</span>
+          <strong class="text-emerald-200 font-extrabold">경제 단일주제 · 홈판/클립/카페 일5개</strong>
         </div>
         <div class="bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl flex items-center gap-2">
-          <span class="text-slate-400">🎨 웹툰:</span>
-          <strong id="hud-webtoon-stat" class="text-emerald-300 font-extrabold">36/36편 (180 PNG)</strong>
+          <span class="text-slate-400">🎨 미디어:</span>
+          <strong id="hud-webtoon-stat" class="text-emerald-300 font-extrabold">썸네일5종+클립MP4 5종</strong>
         </div>
         <div class="bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl flex items-center gap-2">
-          <span class="text-slate-400">🟢 네이버:</span>
-          <strong id="hud-naver-stat" class="text-sky-300 font-extrabold">98/144건 (대기 46건)</strong>
+          <span class="text-slate-400">🟢 원고큐:</span>
+          <strong id="hud-naver-stat" class="text-sky-300 font-extrabold">초고밀도 퀄리티 모드</strong>
         </div>
-        <div class="bg-emerald-950/80 border border-emerald-500/40 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
-          <span>🛡️ 스팸·중복:</span>
-          <strong id="hud-spam-stat" class="text-emerald-300 font-extrabold">0건 (CLEAN)</strong>
+        <div class="bg-purple-950/80 border border-purple-500/40 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
+          <span>📲 텔레그램 브릿지:</span>
+          <strong id="hud-spam-stat" class="text-purple-200 font-extrabold">양방향 즉시수신 LIVE</strong>
         </div>
       </div>
     </div>
@@ -80,16 +84,16 @@
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="flex flex-wrap items-center gap-2">
           <button id="btn-feedback-huddle" onclick="triggerCompanyEvent('feedback')" class="bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-slate-950 font-black text-xs px-3.5 py-2 rounded-xl transition shadow-lg flex items-center gap-1.5">
-            <span>🗣️</span><span>정기보고 전 전직원 상호 피드백 회의 소집</span>
+            <span>🗣️</span><span>총괄매니저 🐯 ↔ 1본부장 🐆 · 2본부장 🦅 합동 전략회의 소집</span>
           </button>
           <button onclick="triggerCompanyEvent('rally')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            📢 총괄매니저실 전체 보고
+            📢 일일 1·2본부 성과 점검 소집
           </button>
           <button onclick="triggerCompanyEvent('audit')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            🛡️ 스팸·중복 감찰 출동
+            🛡️ 안티밴·단일백링크 감찰
           </button>
           <button onclick="triggerCompanyEvent('sprint')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs px-3 py-2 rounded-xl transition shadow">
-            🔥 CTR·백로그 스프린트
+            🔥 좋은 글·그림·영상 퀄리티 부스트
           </button>
         </div>
         <div class="flex items-center gap-2">
@@ -106,104 +110,104 @@
       <div class="relative bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden pixel-border">
         <canvas id="office-canvas" width="920" height="560" class="w-full h-auto block"></canvas>
         <div class="bg-slate-950/90 border-t border-slate-800 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-          <span>💡 <strong>조작 팁:</strong> 상단 <strong>[🗣️ 정기보고 전 전직원 상호 피드백 회의 소집]</strong>을 누르면 전 직원이 중앙 라운지 원탁에 모여 부서 간 크로스 피드백을 주고받습니다!</span>
+          <span>💡 <strong>2대 독립 사업부 체제:</strong> <strong>🏢 제1본부(1계정 comedifarm: 홈페이지 유입·클릭·실구매)</strong>와 <strong>🏛️ 제2본부(2계정 expertise333: 전일자 경제 단일주제·홈판·클립·애드포스트)</strong>가 총괄 매니저(🐯) 지휘 아래 실시간 소통합니다!</span>
           <span id="canvas-live-clock" class="text-emerald-400 font-mono font-bold">LIVE SYNC</span>
         </div>
       </div>
 
-      <!-- 4대 본부 실시간 진행률 카드 그리드 -->
+      <!-- 2대 독립 본부 + 총괄 지휘실 실시간 현황 카드 그리드 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-        <div onclick="selectDepartment('dept-homepage-cro')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-blue-500/30 rounded-2xl p-3.5 transition space-y-2">
+        <div onclick="selectDepartment('dept-homepage-cro')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-blue-500/40 rounded-2xl p-3.5 transition space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-extrabold text-blue-300">💻 제1본부: 홈페이지·CRO</span>
-            <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full font-bold">가동중</span>
+            <span class="text-xs font-extrabold text-blue-300">🏢 제1본부 A동: 홈페이지·구매전환</span>
+            <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full font-bold">CVR 극대화</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">모바일 1스크린 다이어트 & 쿠팡 전환</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">쿠팡(3%)·네이버(5~8%)·공식몰 3원화 결제 직결</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div class="bg-blue-500 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>팬더📱 · 사슴🦌 · 꿀벌🐝</span>
-            <span class="text-blue-300 font-bold">116 테스트 PASS</span>
+            <span>꿀벌🐝 · 팬더📱 · 사슴🦌</span>
+            <span class="text-blue-300 font-bold">3대 수익원 가동</span>
           </div>
         </div>
 
-        <div onclick="selectDepartment('dept-naver-seo')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-emerald-500/30 rounded-2xl p-3.5 transition space-y-2">
+        <div onclick="selectDepartment('dept-naver-seo')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-sky-500/40 rounded-2xl p-3.5 transition space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-extrabold text-emerald-300">🟢 제2본부: 네이버·SEO</span>
-            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">발행중</span>
+            <span class="text-xs font-extrabold text-sky-300">🏢 제1본부 B동: comedifarm 유입</span>
+            <span class="text-xs bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full font-bold">단일백링크·밴0%</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">144개 원고(유사도 4.3%) & 계절·전환큐</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">노써치식 구매설득 원고 + 인라인 시각영수증</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-            <div id="bar-naver-prog" class="bg-emerald-500 h-full rounded-full" style="width: 68%"></div>
+            <div id="bar-naver-prog" class="bg-sky-500 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>치타🐆 · 고슴도치🦔 · 미어캣🐾</span>
-            <span id="txt-naver-prog" class="text-emerald-300 font-bold">98/144 완료</span>
+            <span>치타 본부장🐆 · 고슴도치🦔 · 앵무새🦜</span>
+            <span id="txt-naver-prog" class="text-sky-300 font-bold">6시간 쿨다운 엄수</span>
           </div>
         </div>
 
-        <div onclick="selectDepartment('dept-webtoon-sns')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-amber-500/30 rounded-2xl p-3.5 transition space-y-2">
+        <div onclick="selectDepartment('dept-webtoon-sns')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-emerald-500/40 rounded-2xl p-3.5 transition space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-extrabold text-amber-300">🎨 제3본부: 웹툰·SNS</span>
-            <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">v2 리뉴얼 완료</span>
+            <span class="text-xs font-extrabold text-emerald-300">🏛️ 제2본부: expertise333 홈판·클립</span>
+            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">애드포스트 특화</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">38px/76px 초특대 1말풍선 36편(180 PNG)</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">전일자 경제 단일주제 · 캐릭터썸네일 · 클립MP4</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-            <div class="bg-amber-400 h-full rounded-full" style="width: 100%"></div>
+            <div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>해달🎨 · 렛서판다🐼 · 앵무새🦜</span>
-            <span class="text-amber-300 font-bold">36/36 렌더링</span>
+            <span>독수리 본부장🦅 · 해달🎨 · 렛서판다🐼</span>
+            <span class="text-emerald-300 font-bold">일 각 5개 완성</span>
           </div>
         </div>
 
-        <div onclick="selectDepartment('dept-antispam-qa')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-purple-500/30 rounded-2xl p-3.5 transition space-y-2">
+        <div onclick="selectDepartment('hq-manager')" class="cursor-pointer bg-slate-900 hover:bg-slate-800/90 border border-amber-500/40 rounded-2xl p-3.5 transition space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-extrabold text-purple-300">🛡️ 감찰실: 스팸·품질·보안</span>
-            <span class="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold">무결성 100%</span>
+            <span class="text-xs font-extrabold text-amber-300">👑 총괄 지휘 & 일일 성과점검실</span>
+            <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">텔레그램 직통</span>
           </div>
-          <div class="text-xs text-slate-300 font-semibold leading-snug">중복·스팸 0건 / 일일 발행속도 통제</div>
+          <div class="text-xs text-slate-300 font-semibold leading-snug">일 1회 성과 감사(강화/교체) & 대표님 양방향 소통</div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-            <div class="bg-purple-500 h-full rounded-full" style="width: 100%"></div>
+            <div class="bg-amber-500 h-full rounded-full" style="width: 100%"></div>
           </div>
           <div class="text-xs text-slate-400 flex justify-between">
-            <span>매 감사역🦅 · 부엉이🦉</span>
-            <span class="text-purple-300 font-bold">undefined 0건</span>
+            <span>호랑이 이사🐯 · 여우 실장🦊 · 매🦅</span>
+            <span class="text-amber-300 font-bold">실시간 브릿지 가동</span>
           </div>
         </div>
       </div>
 
-      <!-- 🏢 vs 🏛️ [신규] 제1본부(1계정 comedifarm) vs 제2본부(2계정 expertise333) 완전 분리 독립 운영 보드 -->
+      <!-- 🏢 vs 🏛️ 제1본부(1계정 comedifarm) vs 제2본부(2계정 expertise333) 완전 분리 독립 운영 보드 -->
       <div id="dual-division-separation-board" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
         <!-- 제1본부: 1계정 comedifarm (안티밴 & 2,400자 구매설득형 유입·전환 전담) -->
         <div class="bg-gradient-to-br from-blue-950/60 via-slate-900 to-slate-950 border-2 border-blue-500/40 rounded-2xl p-4 space-y-2.5 shadow-xl">
           <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
             <div class="flex items-center gap-2">
               <span class="bg-blue-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full">🏢 제1본부 (Port 9222)</span>
-              <h3 class="text-sm font-black text-white">1계정 <code class="text-blue-300">comedifarm</code> · 안티밴 고전환 본부</h3>
+              <h3 class="text-sm font-black text-white">1계정 <code class="text-blue-300">comedifarm</code> · 유입·클릭·구매전환 사업부</h3>
             </div>
-            <span class="text-[11px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full">🛡️ 밴 위험 0%</span>
+            <span class="text-[11px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full">🛡️ 단일백링크 · 밴 0%</span>
           </div>
           <p class="text-xs text-slate-300 font-semibold leading-snug">
-            🎯 <strong>핵심 미션:</strong> <strong>백링크 도배 금지(댓글분리·검색유도·하단1회)</strong>로 계정을 100% 보호하며, <strong>2,400자 구매설득형(Pre-Selling) 원고</strong>로 <code class="text-amber-300">truthofmarket.com</code> 유입➔클릭➔실구매 직결
+            🎯 <strong>핵심 미션:</strong> 양치기·백링크 도배 완전 폐지! <strong>노써치·토스식 Why Now 손실영수증 + 인라인 웹툰 그림 + 1만원대 즉결템 본전공식 + 하단 클라이맥스 단일 링크(1회)</strong>로 <code class="text-amber-300">truthofmarket.com</code> 실구매 직결
           </p>
           <div class="grid grid-cols-2 gap-2 text-[11px]">
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">① comedifarm 블로그</div>
-              <div class="text-blue-300 font-extrabold mt-0.5">2,400자 설득형 (일 2편 엄선)</div>
+              <div class="text-blue-300 font-extrabold mt-0.5">시각영수증+단일링크 (일 2편 엄선)</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">② 지식iN & 커뮤니티</div>
-              <div class="text-blue-300 font-extrabold mt-0.5">무링크 검색유도·댓글분리 (일 4건)</div>
+              <div class="text-blue-300 font-extrabold mt-0.5">무링크 검색유도·댓글분리 (6h 쿨다운)</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">③ 인스타 & 쓰레드</div>
-              <div class="text-blue-300 font-extrabold mt-0.5">@moneyfit2026 본문무링크+대댓글</div>
+              <div class="text-blue-300 font-extrabold mt-0.5">@moneyfit2026 4컷웹툰+첫대댓글</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
-              <div class="text-slate-400">④ 전담 조직</div>
-              <div class="text-emerald-300 font-extrabold mt-0.5">🐆치타 · 🐝꿀벌 · 🦜앵무새 · 🦔고슴도치</div>
+              <div class="text-slate-400">④ 제1본부 지휘관</div>
+              <div class="text-emerald-300 font-extrabold mt-0.5">🐆치타 본부장 · 🐝꿀벌 · 🦜앵무새</div>
             </div>
           </div>
         </div>
@@ -213,30 +217,102 @@
           <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
             <div class="flex items-center gap-2">
               <span class="bg-emerald-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full">🏛️ 제2본부 (Port 9223)</span>
-              <h3 class="text-sm font-black text-white">2계정 <code class="text-emerald-300">expertise333</code> · 단일주제 홈판·클립 본부</h3>
+              <h3 class="text-sm font-black text-white">2계정 <code class="text-emerald-300">expertise333</code> · 홈판·클립·애드포스트 사업부</h3>
             </div>
-            <span class="text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full">전일자 경제 키워드 · 일 5개</span>
+            <span class="text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full">전일자 경제 단일주제 · 일 5개</span>
           </div>
           <p class="text-xs text-slate-300 font-semibold leading-snug">
-            🎯 <strong>핵심 미션:</strong> <strong>전일자 크리에이터 어드바이저 <code>[비즈니스·경제]</code> 단일 주제</strong> 집중 공략으로 블로그(24px/19px 소제목+PNG썸네일)·유행 클립(MP4)·카페에 독자 안착 & 애드포스트 극대화
+            🎯 <strong>핵심 미션:</strong> <strong>전일자 크리에이터 어드바이저 <code>[비즈니스·경제]</code> 단일 주제</strong> 집중 공략! <strong>캐릭터 일러스트 합성 PNG 썸네일 + 24px/19px 콜아웃 원고 + 프로그레스바 MP4 클립 + 카페 안착</strong>으로 애드포스트 극대화
           </p>
           <div class="grid grid-cols-2 gap-2 text-[11px]">
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">① 홈판 유행 블로그 (일 5개)</div>
-              <div class="text-emerald-300 font-extrabold mt-0.5">PNG썸네일 + 24px/19px 소제목 HTML</div>
+              <div class="text-emerald-300 font-extrabold mt-0.5">캐릭터합성 PNG썸네일 + 24px 콜아웃</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">② 유행 클립 영상 (일 5개)</div>
-              <div class="text-emerald-300 font-extrabold mt-0.5">1080x1920 웹툰 숏폼 MP4 렌더링</div>
+              <div class="text-emerald-300 font-extrabold mt-0.5">프로그레스바+STEP 1080x1920 MP4</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
               <div class="text-slate-400">③ 공식 카페 안착 (일 5개)</div>
               <div class="text-emerald-300 font-extrabold mt-0.5">단일 경제주제 비교표·Q&A 정착</div>
             </div>
             <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-2">
-              <div class="text-slate-400">④ 전담 조직</div>
-              <div class="text-amber-300 font-extrabold mt-0.5">🦅독수리 본부장 · 🎨해달 · 🐿️다람쥐</div>
+              <div class="text-slate-400">④ 제2본부 지휘관</div>
+              <div class="text-amber-300 font-extrabold mt-0.5">🦅독수리 본부장 · 🎨해달 · 🐼렛서판다</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💬 [신규 핵심] 총괄 매니저(🐯) ↔ 🏢 제1본부(🐆 치타 본부장) & 🏛️ 제2본부(🦅 독수리 본부장) 실시간 소통·지휘 채팅창 -->
+      <div id="inter-division-command-chat" class="bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border-2 border-amber-400/50 rounded-2xl p-4 space-y-3 shadow-2xl">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2.5 py-0.5 rounded-full">💬 본부 간 실시간 지휘 채널</span>
+            <h3 class="text-sm font-black text-white">총괄 매니저(🐯) ↔ 🏢 제1본부장(🐆) & 🏛️ 제2본부장(🦅) 실시간 전략 소통창</h3>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-[11px] font-extrabold bg-sky-500/20 text-sky-300 border border-sky-500/40 px-2.5 py-0.5 rounded-full">📲 대표님 텔레그램 양방향 브릿지 연결됨</span>
+            <button type="button" onclick="triggerDivisionCommandSync('all')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[11px] px-2.5 py-1 rounded-lg transition">🔄 1·2본부 일일 성과점검 & 피봇 지시</button>
+          </div>
+        </div>
+
+        <!-- 3자 실시간 대화 스트림 -->
+        <div id="division-chat-stream" class="space-y-2 max-h-60 overflow-y-auto pr-1 text-xs">
+          <div class="bg-amber-950/40 border border-amber-500/40 rounded-xl p-2.5 flex items-start gap-2.5">
+            <span class="text-lg shrink-0">🐯</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <strong class="text-amber-300 font-black">[총괄 매니저 아기 호랑이 이사] ➔ 1본부장·2본부장 지시</strong>
+                <span class="text-[10px] font-mono text-amber-200/70">실시간 총괄 지침</span>
+              </div>
+              <p class="text-slate-100 mt-1 leading-relaxed font-semibold">
+                "대표님 특명 하달! 단순 양치기는 즉시 중단하고 <strong>독자가 끝까지 읽고 감탄하는 좋은 글·좋은 그림·좋은 영상</strong>으로 승부한다! <strong>1본부(치타 본부장🐆)</strong>는 백링크 중복을 없애고 글 클라이맥스에 단 1회만 링크를 배치해 밴 위험을 0%로 만들면서 실구매 전환을 극대화하고, <strong>2본부(독수리 본부장🦅)</strong>는 전일자 크리에이터 어드바이저 [비즈니스·경제] 단일 주제로 캐릭터 합성 썸네일·프로그레스바 MP4 클립·24px 콜아웃 블로그를 일 5개 이내로 정밀 배포하라!"
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-2.5 flex items-start gap-2.5">
+            <span class="text-lg shrink-0">🐆</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <strong class="text-blue-300 font-black">[🏢 제1본부장 치타 — 1계정 comedifarm] ➔ 총괄 매니저 보고</strong>
+                <span class="text-[10px] font-mono text-emerald-300">✅ 즉시 반영 완료</span>
+              </div>
+              <p class="text-slate-200 mt-1 leading-relaxed">
+                "총괄 매니저님! 제1본부 원고 내 상·하단 3중 중복 링크를 전면 폐지하고 <strong>클라이맥스 단일 네이티브 CTA 카드(1 Post = 1 Link)</strong>와 <strong>6시간+ 엄격 쿨다운</strong>을 적용했습니다! 본문에는 <strong>Why Now 일할 손실 영수증 오프닝 + 인라인 웹툰 시각 영수증(slide-1·slide-3) + 노써치식 스펙 컷오프 & 1만원대 즉결템 3주 본전 회수 공식</strong>을 탑재해 <code class="text-amber-300">truthofmarket.com</code> 유입 즉시 쿠팡·네이버·공식몰 구매 버튼을 누르도록 개편 완료했습니다!"
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-2.5 flex items-start gap-2.5">
+            <span class="text-lg shrink-0">🦅</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <strong class="text-emerald-300 font-black">[🏛️ 제2본부장 독수리 — 2계정 expertise333] ➔ 총괄 매니저 보고</strong>
+                <span class="text-[10px] font-mono text-emerald-300">✅ 즉시 반영 완료</span>
+              </div>
+              <p class="text-slate-200 mt-1 leading-relaxed">
+                "총괄 매니저님! 제2본부는 전일자 네이버 크리에이터 어드바이저 <strong>[비즈니스·경제] 단일 대주제(전국민 숨은 환급금·지원금 & 고정비 절약)</strong>만 집중 파고듭니다! <strong>① 1080x1080 대표 썸네일</strong>에 고화질 웹툰 캐릭터 일러스트+다크 비네팅+초특대 금액 하이라이트를 합성했고, <strong>② 1080x1920 클립 MP4</strong>에 실시간 네온 프로그레스 바와 STEP 1/4~4/4 카운터를 장착했으며, <strong>③ 24px/19px 블로그 본문</strong>마다 토스피드·어피티식 <strong>[💡 10초 핵심 요약 & 실전 케이스 콜아웃 박스]</strong>를 탑재해 홈판 체류시간과 애드포스트 수익을 극대화했습니다!"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 원클릭 본부 지시 하달 바 -->
+        <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800">
+          <button type="button" onclick="triggerDivisionCommandSync('div1')" class="bg-blue-600/30 hover:bg-blue-600/50 border border-blue-400/50 text-blue-200 font-extrabold text-[11px] px-3 py-1.5 rounded-xl transition">
+            🏢 1본부(치타🐆)에 유입·실구매 강화 지시
+          </button>
+          <button type="button" onclick="triggerDivisionCommandSync('div2')" class="bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-400/50 text-emerald-200 font-extrabold text-[11px] px-3 py-1.5 rounded-xl transition">
+            🏛️ 2본부(독수리🦅)에 홈판·클립·애드포스트 강화 지시
+          </button>
+          <div class="flex-1 flex items-center gap-1.5 min-w-[220px]">
+            <input id="custom-div-directive-input" type="text" placeholder="대표님/총괄매니저 지시사항 입력 (텔레그램 양방향 연동)..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400" />
+            <button type="button" onclick="sendCustomDivisionDirective()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs px-3 py-1.5 rounded-xl transition shrink-0">
+              ⚡ 즉시 하달
+            </button>
           </div>
         </div>
       </div>

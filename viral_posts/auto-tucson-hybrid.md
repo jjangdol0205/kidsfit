@@ -19,7 +19,7 @@
 > ✅ **특판 할인 반영 최적 구매 플랜**: **32,650,000원** (**-1,715만 원 차이**)  
 > 📌 **핵심 판정**: **[신차 장기렌트] 총 1,715만 원 이득!** (🏆 48개월 총비용 승자 판정)
 
-👉 **[무료 3초 계산기 바로가기] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교**:
 https://truthofmarket.com/preset/auto-tucson-hybrid
 
 🏠 **[머니핏 자동차·TCO 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=auto
 | 할부 금융이자 (금리 5.5%) | 3,344,000원 | 특판 6% 공급 할인 | 금융비용 절감 | 대출 한도 미차감 |
 | 4년 사업자/프리 절세액 | 일반 감가상각 제한 | 연 1,500만 한도 반영 (15%) | 4년 총 900만 원 절세 | 종합소득세율 15% 적용 |
 | 최종 총지출 TCO | 49,804,000원 | 46,854,000원 | 장기렌트 295만 원 절약 승리! | 감가상각 리스크 렌트사 전가 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/auto-tucson-hybrid`) 상단 쇼룸에 실시간 연동된 **🚗 신차·장기렌트·할부 유지비 방어 차량용품 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 불스원 불스파워 시그니처 엔진코팅제 300ml, 2개, 공용**  
+  └ 실구매가: **32,130원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 2] [본사정품] 카밈 울트라 엔진 에디티브 연료첨가제 가솔린, 2개, 가솔린/휘발유**  
+  └ 실구매가: **32,900원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 3] 불스원샷 시그니처 딥클린 500ml**  
+  └ 실구매가: **21,300원** (🚚 무료배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[소싱 TOP 4] 불스원 불스원샷 익스트림 연료첨가제 가솔린**  
+  └ 실구매가: **25,180원** (🚀 로켓배송 · 무료출장장착 포함 · 정비 공임비 -80% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 자동차용품관] 지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜**  
+  └ 혜택 요약: **🚗 전국 무료출장장착 포함 특가** (신차 딜러 서비스 저가 블박 대신 QHD 초고화질 + 무상 출장장착 10만원대 끝판왕)
+
+• **[공식몰 제휴 비교 — 11번가 카용품 베스트] 11번가 불스원샷 연료첨가제 & 활성탄 에어컨필터·워셔액 대용량 세트**  
+  └ 혜택 요약: **⛽ 셀프 정비로 공임비 80% 절약** (정비소 교체비용 5만 원 → 5분 셀프 교체로 개당 6,900원에 연비·실내공기 완벽 관리)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 최저가 비교**:
+https://truthofmarket.com/preset/auto-tucson-hybrid
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.27 패밀리카 투싼 하이브리드 5.5% 할부 vs 특판 대결 🚙 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교, 모르고 그냥 썼더니 -1,715만 원 차이? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/auto-tucson-hybrid?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 (https://truthofmarket.com/preset/auto-tucson-hybrid) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-tucson-hybrid?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 (https://truthofmarket.com/preset/auto-tucson-hybrid) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/auto-tucson-hybrid?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/auto-tucson-hybrid-thumb.png" alt="3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 고금리 할부 + 취등록세·보험 별도: <strong>49,804,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 특판 할인 반영 최적 구매 플랜: <strong>32,650,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -1,715만 원 차이</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 불스원 불스파워 시그니처 엔진코팅제 300ml, 2개, 공용 (<span style="color:#e11d48;font-weight:900;">32,130원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: [본사정품] 카밈 울트라 엔진 에디티브 연료첨가제 가솔린, 2개, 가솔린/휘발유 (<span style="color:#e11d48;font-weight:800;">32,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/auto-tucson-hybrid" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/auto-tucson-hybrid)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">취등록세(266만)·보험·절세 합산 시 [신차 장기렌트]가 1,715만 원 유리</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=auto
 • **조건 바꿨을 때(특판 할인 반영 최적 구매 플랜)**: **32,650,000원** (➔ **-1,715만 원 차이**)
 • **핵심 지표 (자동차·TCO)**: 취등록세(7%) 266만 원 / 절세·보험 절감 887만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/auto-tucson-hybrid
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/auto-tucson-hybrid
 | 할부 금융이자 (금리 5.5%) | 3,344,000원 | 특판 6% 공급 할인 | 금융비용 절감 | 대출 한도 미차감 |
 | 4년 사업자/프리 절세액 | 일반 감가상각 제한 | 연 1,500만 한도 반영 (15%) | 4년 총 900만 원 절세 | 종합소득세율 15% 적용 |
 | 최종 총지출 TCO | 49,804,000원 | 46,854,000원 | 장기렌트 295만 원 절약 승리! | 감가상각 리스크 렌트사 전가 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **불스원 불스파워 시그니처 엔진코팅제 300ml, 2개, 공용** (실구매가 **32,130원**)
+• **소싱 2위 모델**: **[본사정품] 카밈 울트라 엔진 에디티브 연료첨가제 가솔린, 2개, 가솔린/휘발유** (실구매가 **32,900원**)
+• **공식몰 비교 (지마켓 자동차용품관)**: **지마켓 아이나비·파인뷰 2채널 QHD 블랙박스 & 맥세이프 거치대 슈퍼딜** (🚗 전국 무료출장장착 포함 특가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/auto-tucson-hybrid
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=auto
 ❌ 고금리 할부 + 취등록세·보험 별도: 49,804,000원
 ✅ 특판 할인 반영 최적 구매 플랜: 32,650,000원 (-1,715만 원 차이)
 📊 핵심 지표: 취등록세(7%): 266만 원
+🏆 실구매 1위 소싱템: 불스원 불스파워 시그니처 엔진코팅제 300ml, 2개, 공용 (32,130원)
 
 할부 원리금에 숨어 있는 취등록세(약 266만 원), 4년 치 자동차세와 보험료 인상분까지 한 장의 영수증에 올려놓고 비교해야 딜러 수수료 거품을 피할 수 있습니다.
 
-👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 바로가기:
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/auto-tucson-hybrid
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=auto
 ```

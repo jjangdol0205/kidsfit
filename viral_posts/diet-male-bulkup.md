@@ -19,7 +19,7 @@
 > ✅ **클린 벌크업 정량(103팩+WPI)**: **187,550원 (103팩)** (**-234,350원 절약**)  
 > 📌 **핵심 판정**: **하루 2,867kcal · 닭가슴살 총 103팩!** (🔥 4주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량**:
 https://truthofmarket.com/preset/diet-male-bulkup
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=diet
 | 린매스업 목표 칼로리 | 2,560 kcal / 일 (+350 잉여) | 총 71,680 kcal | 단백동화 환경 극대화 | 월 +1.2kg 근육량 증가 목표 |
 | 단백질 요구량 (체중 2배) | 130g / 일 | 순단백질 3,640g | 닭가슴살 103팩 + WPI 프로틴 | 닭가슴살 100g 103팩 + WPI 1통(900g) |
 | 탄수화물 잉여 보충 | 320g / 일 (고탄수화물) | 현미밥 56개 + 바나나/오트밀 | 인슐린 분비 및 글리코겐 로딩 | 현미밥 56개 + 바나나 4송이 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-male-bulkup`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 코코랩 WPI 웨이아이솔레이트 초코맛 미국산 단백질 보충제 분리유청단백 아이솔레이트, 1개, 1.7kg**  
+  └ 실구매가: **106,120원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] WPI 분리유청단백질 분말 500g HACCP 인증제품, 500g, 3개**  
+  └ 실구매가: **128,190원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] 자주가게 분리 유청 단백질 WPI 락토프리 식약청 해썹 인증 대용량**  
+  └ 실구매가: **28,600원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 건강중심 WPI 분리 유청 단백질 분말 가루**  
+  └ 실구매가: **36,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 최저가 비교**:
+https://truthofmarket.com/preset/diet-male-bulkup
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.09 65kg 마른 체형 탈출! 야식 vs 클린 벌크업 💪 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량, 모르고 그냥 썼더니 -234,350원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-male-bulkup?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 (https://truthofmarket.com/preset/diet-male-bulkup) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-male-bulkup?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 (https://truthofmarket.com/preset/diet-male-bulkup) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-male-bulkup?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-male-bulkup-thumb.png" alt="마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 야식·배달 정크푸드 증량 지출: <strong>421,900원/4주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 클린 벌크업 정량(103팩+WPI): <strong>187,550원 (103팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -234,350원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 코코랩 WPI 웨이아이솔레이트 초코맛 미국산 단백질 보충제 분리유청단백 아이솔레이트, 1개, 1.7kg (<span style="color:#e11d48;font-weight:900;">106,120원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: WPI 분리유청단백질 분말 500g HACCP 인증제품, 500g, 3개 (<span style="color:#e11d48;font-weight:800;">128,190원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-male-bulkup" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-male-bulkup)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">4주간 닭가슴살 103팩 · 현미밥 56개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(클린 벌크업 정량(103팩+WPI))**: **187,550원 (103팩)** (➔ **-234,350원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 407/130/80g / 닭가슴살(4주) 103팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-male-bulkup
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-male-bulkup
 | 린매스업 목표 칼로리 | 2,560 kcal / 일 (+350 잉여) | 총 71,680 kcal | 단백동화 환경 극대화 | 월 +1.2kg 근육량 증가 목표 |
 | 단백질 요구량 (체중 2배) | 130g / 일 | 순단백질 3,640g | 닭가슴살 103팩 + WPI 프로틴 | 닭가슴살 100g 103팩 + WPI 1통(900g) |
 | 탄수화물 잉여 보충 | 320g / 일 (고탄수화물) | 현미밥 56개 + 바나나/오트밀 | 인슐린 분비 및 글리코겐 로딩 | 현미밥 56개 + 바나나 4송이 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **코코랩 WPI 웨이아이솔레이트 초코맛 미국산 단백질 보충제 분리유청단백 아이솔레이트, 1개, 1.7kg** (실구매가 **106,120원**)
+• **소싱 2위 모델**: **WPI 분리유청단백질 분말 500g HACCP 인증제품, 500g, 3개** (실구매가 **128,190원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-male-bulkup
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 야식·배달 정크푸드 증량 지출: 421,900원/4주
 ✅ 클린 벌크업 정량(103팩+WPI): 187,550원 (103팩) (-234,350원 절약)
 📊 핵심 지표: 탄·단·지(g): 407/130/80g
+🏆 실구매 1위 소싱템: 코코랩 WPI 웨이아이솔레이트 초코맛 미국산 단백질 보충제 분리유청단 (106,120원)
 
 유지 대사량(TDEE)보다 +350kcal 높은 일일 2,560kcal를 복합 탄수화물(현미밥 56개)과 순단백질(닭가슴살 103팩 + WPI 프로틴)로 채워야 깔끔한 린매스업이 됩니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-male-bulkup
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

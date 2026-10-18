@@ -19,7 +19,7 @@
 > ✅ **2주 정량 밀프렙(44팩+28공기)**: **84,400원 (44팩)** (**-104,800원 절약**)  
 > 📌 **핵심 판정**: **하루 1,330kcal · 닭가슴살 총 44팩!** (🔥 2주 맞춤 식단 수량)
 
-👉 **[무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트**:
 https://truthofmarket.com/preset/diet-female-lean
 
 🏠 **[머니핏 식단·다이어트 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=diet
 | 다이어트 목표 칼로리 | 1,420 kcal / 일 (-400 결손) | 총 19,880 kcal | - | 2주 예상 감량 -0.8kg |
 | 단백질 섭취량 (체중 2배) | 110g / 일 | 순단백질 1,540g | 닭가슴살 + 달걀 + 두부 | 닭가슴살 100g 44팩 |
 | 탄수화물 (복합 통곡물) | 145g / 일 | 현미밥 28개 | 즉석 현미밥 (일 2공기) | 현미밥 24개입 1박스 + 4개 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/diet-female-lean`) 상단 쇼룸에 실시간 연동된 **🍗 단백질 1g당 최저가 식단·보충제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 햇살닭 소스 통살 닭가슴살 맛보기 10종, 30개, 100g**  
+  └ 실구매가: **43,610원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 2] 국내산 바로먹는 실온 닭가슴살 5종 혼합 홀리닭 다이어트 식단 단백질 간편한 실온보관 헬스 닭가슴살추천, 110g, 60개**  
+  └ 실구매가: **93,900원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 3] [로켓프레시] 맛있닭 소스 통 닭가슴살 혼합, 100g, 30개, 1세트**  
+  └ 실구매가: **42,600원** (🚀 로켓배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[소싱 TOP 4] 다온햄 소스 통살 닭가슴살 5종 혼합 맛보기**  
+  └ 실구매가: **39,770원** (🚚 무료배송 · 단백질 1g당 51원대 · 편의점 대비 -58% 절약)
+
+• **[공식몰 제휴 비교 — 지마켓 식품 슈퍼딜] 지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가**  
+  └ 혜택 요약: **🍗 1팩당 1,100원대 대용량 최저가** (편의점 낱개(2,900원) 대비 식단비 -58% 절감 · 단백질 1g당 51원 최저가)
+
+• **[공식몰 제휴 비교 — 11번가 쇼킹딜] 11번가 WPI 분리유청 프로틴 보충제 & 무설탕 단백질바 베스트 기획전**  
+  └ 혜택 요약: **💪 1스쿱 단백질 24g · 가성비 보충제** (유당불내증 없는 순수 WPI 90% · 운동 직후 근합성 골든타임 1스쿱 980원)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 최저가 비교**:
+https://truthofmarket.com/preset/diet-female-lean
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트, 모르고 그냥 썼더니 -104,800원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 (https://truthofmarket.com/preset/diet-female-lean) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 (https://truthofmarket.com/preset/diet-female-lean) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/diet-female-lean-thumb.png" alt="여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 배달 포케·소매 단품 2주 지출: <strong>189,200원/2주</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 2주 정량 밀프렙(44팩+28공기): <strong>84,400원 (44팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -104,800원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 햇살닭 소스 통살 닭가슴살 맛보기 10종, 30개, 100g (<span style="color:#e11d48;font-weight:900;">43,610원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 국내산 바로먹는 실온 닭가슴살 5종 혼합 홀리닭 다이어트 식단 단백질 간편한 실온보관 헬스 닭가슴살추천, 110g, 60개 (<span style="color:#e11d48;font-weight:800;">93,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/diet-female-lean" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/diet-female-lean)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">2주간 닭가슴살 44팩 · 현미밥 28개 · 프로틴 1통 필요</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=diet
 • **조건 바꿨을 때(2주 정량 밀프렙(44팩+28공기))**: **84,400원 (44팩)** (➔ **-104,800원 절약**)
 • **핵심 지표 (식단·다이어트)**: 탄·단·지(g) 139/110/37g / 닭가슴살(2주) 44팩
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/diet-female-lean
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/diet-female-lean
 | 다이어트 목표 칼로리 | 1,420 kcal / 일 (-400 결손) | 총 19,880 kcal | - | 2주 예상 감량 -0.8kg |
 | 단백질 섭취량 (체중 2배) | 110g / 일 | 순단백질 1,540g | 닭가슴살 + 달걀 + 두부 | 닭가슴살 100g 44팩 |
 | 탄수화물 (복합 통곡물) | 145g / 일 | 현미밥 28개 | 즉석 현미밥 (일 2공기) | 현미밥 24개입 1박스 + 4개 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **햇살닭 소스 통살 닭가슴살 맛보기 10종, 30개, 100g** (실구매가 **43,610원**)
+• **소싱 2위 모델**: **국내산 바로먹는 실온 닭가슴살 5종 혼합 홀리닭 다이어트 식단 단백질 간편한 실온보관 헬스 닭가슴살추천, 110g, 60개** (실구매가 **93,900원**)
+• **공식몰 비교 (지마켓 식품 슈퍼딜)**: **지마켓 하림·한끼통살 냉동 닭가슴살 30~50팩 & 현미곤약밥 묶음 특가** (🍗 1팩당 1,100원대 대용량 최저가)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/diet-female-lean
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=diet
 ❌ 배달 포케·소매 단품 2주 지출: 189,200원/2주
 ✅ 2주 정량 밀프렙(44팩+28공기): 84,400원 (44팩) (-104,800원 절약)
 📊 핵심 지표: 탄·단·지(g): 139/110/37g
+🏆 실구매 1위 소싱템: 햇살닭 소스 통살 닭가슴살 맛보기 10종, 30개, 100g (43,610원)
 
 무작정 굶는 대신 하루 1,420kcal(단백질 110g) 기준에 맞춰 2주간 닭가슴살 44팩과 현미밥 28개로 밀프렙을 세팅하면 배고픔과 식비를 동시에 잡을 수 있습니다.
 
-👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/diet-female-lean
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=diet
 ```

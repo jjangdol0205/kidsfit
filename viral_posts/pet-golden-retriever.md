@@ -19,7 +19,7 @@
 > ✅ **일 410g 정량 (12kg 포대=29일 소진)**: **일 410g (12kg=29일)** (**1끼 205g 정량 · 의료비 방어**)  
 > 📌 **핵심 판정**: **하루 410g (종이컵 5.1컵) · 29일 소진!** (🐾 수의영양학 정량 계산)
 
-👉 **[무료 3초 계산기 바로가기] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일**:
 https://truthofmarket.com/preset/pet-golden-retriever
 
 🏠 **[머니핏 반려동물 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=pet
 | 일일 사료 급여량 (g) | 410g / 일 | 1회당 205g | 12kg 포대 29일 만에 전량 소진 | 월 사료 12.3kg 소비 |
 | 종이컵 계량 부피 | 약 5.1 종이컵 | 1회당 2.55 컵 | 사료 전용 대형 계량컵 권장 | 위염전 예방 슬로우식기 필수 |
 | 대형견 월 고정 지출 | 사료값 월 9.5만 원 | 대형견 패드·간식 월 6만 | 심장사상충·구충 월 3만 | 고관절 이형성증 치료비 대비 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/pet-golden-retriever`) 상단 쇼룸에 실시간 연동된 **🐶 수의영양학 정량 급여 사료·영양제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 협성로하스 케어플렉스 HA 강아지 관절 영양제, 100정, 관절, 1개**  
+  └ 실구매가: **150,000원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 2] 강아지 관절영양제 150정 대용량, 글루코사민 칼슘 슬개골 탈구 무릅, 150g, 1개, 관절+장건강**  
+  └ 실구매가: **27,900원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 3] 닥터도비 강아지 기능성 사료**  
+  └ 실구매가: **29,000원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 4] 굿초이스 고단백 반려동물 동결건조 간식**  
+  └ 실구매가: **19,990원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[공식몰 제휴 비교 — 지마켓 반려동물 특가] 지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전**  
+  └ 혜택 요약: **🐶 정품 유통기한 보증 · 대용량 포대할인** (수의영양학 RER/DER 기준 100g당 최저 단가 · 알러지·눈물자국 케어 1위)
+
+• **[공식몰 제휴 비교 — 11번가 펫마트] 11번가 초흡수 배변패드 200매 & 무먼지 벤토나이트·두부모래 대용량**  
+  └ 혜택 요약: **🐾 배변패드·고양이모래 박스 특가** (매달 나가는 필수 소모품 박스 구매로 월 양육 고정비 -45% 절감)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 최저가 비교**:
+https://truthofmarket.com/preset/pet-golden-retriever
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일, 모르고 그냥 썼더니 1끼 205g 정량 · 의료비 방어? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/pet-golden-retriever?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 (https://truthofmarket.com/preset/pet-golden-retriever) ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-golden-retriever?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 (https://truthofmarket.com/preset/pet-golden-retriever) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/pet-golden-retriever?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/pet-golden-retriever-thumb.png" alt="30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 급한 폭식 급여 + 대형견 고관절 위험: <strong>일 554g 과급여 (질환 위험)</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 일 410g 정량 (12kg 포대=29일 소진): <strong>일 410g (12kg=29일)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: 1끼 205g 정량 · 의료비 방어</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 협성로하스 케어플렉스 HA 강아지 관절 영양제, 100정, 관절, 1개 (<span style="color:#e11d48;font-weight:900;">150,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 강아지 관절영양제 150정 대용량, 글루코사민 칼슘 슬개골 탈구 무릅, 150g, 1개, 관절+장건강 (<span style="color:#e11d48;font-weight:800;">27,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/pet-golden-retriever" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/pet-golden-retriever)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">하루 410g 급여 시 12kg 1포대는 29일 만에 소진됩니다.</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=pet
 • **조건 바꿨을 때(일 410g 정량 (12kg 포대=29일 소진))**: **일 410g (12kg=29일)** (➔ **1끼 205g 정량 · 의료비 방어**)
 • **핵심 지표 (반려동물)**: 하루 칼로리 1436 kcal / 하루 급여량(1끼) 410g (205g)
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/pet-golden-retriever
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/pet-golden-retriever
 | 일일 사료 급여량 (g) | 410g / 일 | 1회당 205g | 12kg 포대 29일 만에 전량 소진 | 월 사료 12.3kg 소비 |
 | 종이컵 계량 부피 | 약 5.1 종이컵 | 1회당 2.55 컵 | 사료 전용 대형 계량컵 권장 | 위염전 예방 슬로우식기 필수 |
 | 대형견 월 고정 지출 | 사료값 월 9.5만 원 | 대형견 패드·간식 월 6만 | 심장사상충·구충 월 3만 | 고관절 이형성증 치료비 대비 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **협성로하스 케어플렉스 HA 강아지 관절 영양제, 100정, 관절, 1개** (실구매가 **150,000원**)
+• **소싱 2위 모델**: **강아지 관절영양제 150정 대용량, 글루코사민 칼슘 슬개골 탈구 무릅, 150g, 1개, 관절+장건강** (실구매가 **27,900원**)
+• **공식몰 비교 (지마켓 반려동물 특가)**: **지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전** (🐶 정품 유통기한 보증 · 대용량 포대할인)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/pet-golden-retriever
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=pet
 ❌ 급한 폭식 급여 + 대형견 고관절 위험: 일 554g 과급여 (질환 위험)
 ✅ 일 410g 정량 (12kg 포대=29일 소진): 일 410g (12kg=29일) (1끼 205g 정량 · 의료비 방어)
 📊 핵심 지표: 하루 칼로리: 1436 kcal
+🏆 실구매 1위 소싱템: 협성로하스 케어플렉스 HA 강아지 관절 영양제, 100정, 관절, 1 (150,000원)
 
 하루 필요 열량 1,436kcal 기준 일일 권장 급여량은 410g(한 끼 205g)으로, 12kg 한 포대가 정확히 29일 만에 전량 소진됩니다.
 
-👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 바로가기:
+👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/pet-golden-retriever
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=pet
 ```

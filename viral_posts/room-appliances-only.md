@@ -19,7 +19,7 @@
 > ✅ **150만원 1등급 가전 5종 직접 구매**: **1,500,000원** (**-330,000원 절약**)  
 > 📌 **핵심 판정**: **총 150만 원 풀세팅 (가전 128만 + 가구 23만)** (🏠 7평 [가전 집중] 초과 0원 배분)
 
-👉 **[무료 3초 계산기 바로가기] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합**:
 https://truthofmarket.com/preset/room-appliances-only
 
 🏠 **[머니핏 자취·인테리어 계산기 공식 포털 바로가기]**:
@@ -57,6 +57,33 @@ https://truthofmarket.com/?calc=room
 | 1등급 벽걸이 인버터 에어컨 | 3순위 필수 | 420,000원 | 6평형 듀얼 인버터 냉방기 | 여름철 누진세 완벽 방어 |
 | 1등급 대용량 제습기 | 4순위 필수 | 240,000원 | 16L 인버터 에너지 1등급 제습기 | 원룸 곰팡이/습기 차단 |
 | 인버터 전자레인지 + 밥솥 | 5순위 필수 | 150,000원 | 스마트 인버터 조리기 2종 세트 | 합산 150만 원 예산 준수 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/room-appliances-only`) 상단 쇼룸에 실시간 연동된 **🛋️ 자취·오피스텔·신혼 가성비 가전·가구 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 쿠잉전자 4in1 멀티 에어프라이어 복합 광파오븐레인지 23L, MGA-23WW01**  
+  └ 실구매가: **199,000원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 2] 대웅 보이는 소형 에어프라이어 4L, 블랙, 대웅모닝컴 에어프라이어**  
+  └ 실구매가: **58,800원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 3] 대웅 다이얼식 투명창 에어프라이어 3.5L, DWC-AF350W, 아이보리**  
+  └ 실구매가: **39,390원** (🚀 로켓배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[소싱 TOP 4] 미니냉장고 선반 프레임 미니 냉장고 냉장 정리 거치 전자레인지 소형 원룸 에어프라이어**  
+  └ 실구매가: **193,100원** (🚚 무료배송 · 유통마진 -35% 절감 · 내일 바로 무료 로켓설치)
+
+• **[공식몰 제휴 비교 — 오늘의집 공식스토어] 오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가**  
+  └ 혜택 요약: **🛋️ 자취·신혼 인테리어 가구 1위** (오프라인 가구점 대비 유통마진 -35% 절감 · 실거주자 포토리뷰 1만건 검증)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 가전패키지] 롯데하이마트 냉장고·세탁기·로봇청소기·전자레인지 온라인 단독 패키지**  
+  └ 혜택 요약: **🏆 원룸·신혼 필수가전 세트 할인** (백화점·대리점 개별 구매 대비 최대 280만 원 절약 + 희망일 무료설치)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 최저가 비교**:
+https://truthofmarket.com/preset/room-appliances-only
 
 ---
 
@@ -114,7 +141,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.24 월세 싼 무옵션 빌라 vs 풀옵션 원룸 2년 손익 🔌 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합, 모르고 그냥 썼더니 -330,000원 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-appliances-only?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 (https://truthofmarket.com/preset/room-appliances-only) ↗</a>
+    <a href="https://truthofmarket.com/preset/room-appliances-only?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 (https://truthofmarket.com/preset/room-appliances-only) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/room-appliances-only?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/room-appliances-only-thumb.png" alt="옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -124,6 +151,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 풀옵션 원룸 추가 월세 2년 누적: <strong>1,830,000원</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 150만원 1등급 가전 5종 직접 구매: <strong>1,500,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -330,000원 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 쿠잉전자 4in1 멀티 에어프라이어 복합 광파오븐레인지 23L, MGA-23WW01 (<span style="color:#e11d48;font-weight:900;">199,000원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 대웅 보이는 소형 에어프라이어 4L, 블랙, 대웅모닝컴 에어프라이어 (<span style="color:#e11d48;font-weight:800;">58,800원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/room-appliances-only" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/room-appliances-only)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">7평 150만 원 황금배분 · 온라인 특가로 -33만 원 절약</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +222,7 @@ https://truthofmarket.com/?calc=room
 • **조건 바꿨을 때(150만원 1등급 가전 5종 직접 구매)**: **1,500,000원** (➔ **-330,000원 절약**)
 • **핵심 지표 (자취·인테리어)**: 냉장고 예산 45만 원 / 세탁기 예산 42만 원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(총예산(만 원)·방 평수) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/room-appliances-only
 
 ---
@@ -202,6 +236,13 @@ https://truthofmarket.com/preset/room-appliances-only
 | 1등급 벽걸이 인버터 에어컨 | 3순위 필수 | 420,000원 | 6평형 듀얼 인버터 냉방기 | 여름철 누진세 완벽 방어 |
 | 1등급 대용량 제습기 | 4순위 필수 | 240,000원 | 16L 인버터 에너지 1등급 제습기 | 원룸 곰팡이/습기 차단 |
 | 인버터 전자레인지 + 밥솥 | 5순위 필수 | 150,000원 | 스마트 인버터 조리기 2종 세트 | 합산 150만 원 예산 준수 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **쿠잉전자 4in1 멀티 에어프라이어 복합 광파오븐레인지 23L, MGA-23WW01** (실구매가 **199,000원**)
+• **소싱 2위 모델**: **대웅 보이는 소형 에어프라이어 4L, 블랙, 대웅모닝컴 에어프라이어** (실구매가 **58,800원**)
+• **공식몰 비교 (오늘의집 공식스토어)**: **오늘의집 원룸·오피스텔 수납침대·매트리스·암막커튼 베스트셀러 특가** (🛋️ 자취·신혼 인테리어 가구 1위)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/room-appliances-only
 
 ---
 
@@ -237,10 +278,11 @@ https://truthofmarket.com/?calc=room
 ❌ 풀옵션 원룸 추가 월세 2년 누적: 1,830,000원
 ✅ 150만원 1등급 가전 5종 직접 구매: 1,500,000원 (-330,000원 절약)
 📊 핵심 지표: 냉장고 예산: 45만 원
+🏆 실구매 1위 소싱템: 쿠잉전자 4in1 멀티 에어프라이어 복합 광파오븐레인지 23L, MG (199,000원)
 
 냉장고·세탁기·벽걸이에어컨·제습기·조리기를 150만 원에 직접 세팅하면 1년 반 만에 월세 차액으로 본전을 뽑고 퇴거 시 중고 판매로 현금 회수까지 가능합니다.
 
-👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 바로가기:
+👉 내 조건(총예산(만 원)·방 평수) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/room-appliances-only
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=room
 ```

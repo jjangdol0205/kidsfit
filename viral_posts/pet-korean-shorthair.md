@@ -19,7 +19,7 @@
 > ✅ **일 68g 제한배식 (2kg 포대=29일)**: **일 68g (2kg=29일)** (**1끼 34g 정량 · 의료비 방어**)  
 > 📌 **핵심 판정**: **하루 68g (종이컵 0.8컵) · 29일 소진!** (🐾 수의영양학 정량 계산)
 
-👉 **[무료 3초 계산기 바로가기] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량**:
 https://truthofmarket.com/preset/pet-korean-shorthair
 
 🏠 **[머니핏 반려동물 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=pet
 | 건사료 일일 급여량 (g) | 68g / 일 | 하루 3~4회 소량 급여 | 2.0kg 포대 29일 소진 | 뚱냥이 방지 제한배식 필수 |
 | 종이컵 환산량 | 약 0.9 종이컵 | 1회당 약 0.25 컵 | 습식캔(주 3회) 병행 권장 | 수분 섭취량 일 200ml 보장 |
 | 월간 고양이 양육비 | 사료값 월 3.2만 원 | 벤토나이트 모래 월 2.5만 | 습식캔 간식 월 2.0만 | 방광염·요로결석 병원비 대비 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/pet-korean-shorthair`) 상단 쇼룸에 실시간 연동된 **🐶 수의영양학 정량 급여 사료·영양제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 푸푸펫츠 반려동물 스마트 자동 급수기, 1개, 그레이**  
+  └ 실구매가: **53,900원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 2] 보니렌 퓨어냥프로 자동급수기 고양이 강아지, 1개, _화이트_**  
+  └ 실구매가: **59,900원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 3] 치어블 엘핀 E1+ 무선 고양이 자동급수기 펌프리스 정수기 2L (스테인리스), 1세트, 화이트**  
+  └ 실구매가: **118,000원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 4] 쉬즈곤 먼지아웃 벤토나이트 고양이 모래**  
+  └ 실구매가: **36,900원** (🚀 로켓배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[공식몰 제휴 비교 — 지마켓 반려동물 특가] 지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전**  
+  └ 혜택 요약: **🐶 정품 유통기한 보증 · 대용량 포대할인** (수의영양학 RER/DER 기준 100g당 최저 단가 · 알러지·눈물자국 케어 1위)
+
+• **[공식몰 제휴 비교 — 11번가 펫마트] 11번가 초흡수 배변패드 200매 & 무먼지 벤토나이트·두부모래 대용량**  
+  └ 혜택 요약: **🐾 배변패드·고양이모래 박스 특가** (매달 나가는 필수 소모품 박스 구매로 월 양육 고정비 -45% 절감)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 최저가 비교**:
+https://truthofmarket.com/preset/pet-korean-shorthair
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.16 4.5kg 냥이 자율배식 믿다가 뚱냥이 될 뻔 🐱 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량, 모르고 그냥 썼더니 1끼 34g 정량 · 의료비 방어? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/pet-korean-shorthair?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 (https://truthofmarket.com/preset/pet-korean-shorthair) ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-korean-shorthair?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 (https://truthofmarket.com/preset/pet-korean-shorthair) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/pet-korean-shorthair?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/pet-korean-shorthair-thumb.png" alt="4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 무제한 자율배식 (비만·요로결석 위험): <strong>일 92g 과급여 (질환 위험)</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 일 68g 제한배식 (2kg 포대=29일): <strong>일 68g (2kg=29일)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: 1끼 34g 정량 · 의료비 방어</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 푸푸펫츠 반려동물 스마트 자동 급수기, 1개, 그레이 (<span style="color:#e11d48;font-weight:900;">53,900원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 보니렌 퓨어냥프로 자동급수기 고양이 강아지, 1개, _화이트_ (<span style="color:#e11d48;font-weight:800;">59,900원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/pet-korean-shorthair" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/pet-korean-shorthair)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">하루 68g 급여 시 2kg 1포대는 29일 만에 소진됩니다.</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=pet
 • **조건 바꿨을 때(일 68g 제한배식 (2kg 포대=29일))**: **일 68g (2kg=29일)** (➔ **1끼 34g 정량 · 의료비 방어**)
 • **핵심 지표 (반려동물)**: 하루 칼로리 260 kcal / 하루 급여량(1끼) 68g (34g)
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/pet-korean-shorthair
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/pet-korean-shorthair
 | 건사료 일일 급여량 (g) | 68g / 일 | 하루 3~4회 소량 급여 | 2.0kg 포대 29일 소진 | 뚱냥이 방지 제한배식 필수 |
 | 종이컵 환산량 | 약 0.9 종이컵 | 1회당 약 0.25 컵 | 습식캔(주 3회) 병행 권장 | 수분 섭취량 일 200ml 보장 |
 | 월간 고양이 양육비 | 사료값 월 3.2만 원 | 벤토나이트 모래 월 2.5만 | 습식캔 간식 월 2.0만 | 방광염·요로결석 병원비 대비 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **푸푸펫츠 반려동물 스마트 자동 급수기, 1개, 그레이** (실구매가 **53,900원**)
+• **소싱 2위 모델**: **보니렌 퓨어냥프로 자동급수기 고양이 강아지, 1개, _화이트_** (실구매가 **59,900원**)
+• **공식몰 비교 (지마켓 반려동물 특가)**: **지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전** (🐶 정품 유통기한 보증 · 대용량 포대할인)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/pet-korean-shorthair
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=pet
 ❌ 무제한 자율배식 (비만·요로결석 위험): 일 92g 과급여 (질환 위험)
 ✅ 일 68g 제한배식 (2kg 포대=29일): 일 68g (2kg=29일) (1끼 34g 정량 · 의료비 방어)
 📊 핵심 지표: 하루 칼로리: 260 kcal
+🏆 실구매 1위 소싱템: 푸푸펫츠 반려동물 스마트 자동 급수기, 1개, 그레이 (53,900원)
 
 중성화 후에는 기초대사량이 25% 이상 감소해 하루 260kcal(건사료 68g)만 넘어도 쉽게 비만과 당뇨, 하부요로계 질환으로 이어집니다.
 
-👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 바로가기:
+👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/pet-korean-shorthair
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=pet
 ```

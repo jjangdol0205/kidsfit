@@ -28,6 +28,13 @@ const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
 const monetization = require('../src/data/monetization.js');
 const webtoonStories = require('../src/data/webtoon-stories.js');
+let SOURCED_PRODUCTS_CATALOG = { categories: {}, presets: {} };
+try {
+  const sourcedMod = require('../src/data/sourced-products.js');
+  if (sourcedMod && sourcedMod.SOURCED_PRODUCTS_CATALOG) {
+    SOURCED_PRODUCTS_CATALOG = sourcedMod.SOURCED_PRODUCTS_CATALOG;
+  }
+} catch (e) {}
 
 // Default config fallback
 let siteUrl = 'https://truthofmarket.com';
@@ -260,6 +267,46 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const calcHubUrl = `${currentSiteUrl}/?calc=${preset.calc}`;
   const clipVideoRelPath = `sns_outbox/${preset.id}/clip.mp4`;
 
+  // Load real sourced Coupang & LinkPrice products for this preset
+  const presetSourced = (SOURCED_PRODUCTS_CATALOG.presets && SOURCED_PRODUCTS_CATALOG.presets[preset.id])
+    || (SOURCED_PRODUCTS_CATALOG.categories && SOURCED_PRODUCTS_CATALOG.categories[preset.calc])
+    || null;
+  const sourcedSpec = (presetSourced && presetSourced.sourcingSpec) ? presetSourced.sourcingSpec : (presetSourced || {});
+  const sourcedCpList = (presetSourced && Array.isArray(presetSourced.coupangProducts)) ? presetSourced.coupangProducts.slice(0, 4) : [];
+  const sourcedLpList = (presetSourced && Array.isArray(presetSourced.linkPriceDeals)) ? presetSourced.linkPriceDeals.slice(0, 2) : [];
+  const topCp1 = sourcedCpList[0] || null;
+  const topCp2 = sourcedCpList[1] || null;
+  const topLp1 = sourcedLpList[0] || null;
+
+  const sourcedBlogSection = sourcedCpList.length > 0 ? `
+---
+
+## 🏆 [24px 소제목] 2-1. ${preset.title} 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(\`${targetUrl}\`) 상단 쇼룸에 실시간 연동된 **${sourcedSpec.categoryTitle || preset.category}** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+${sourcedCpList.map((item, idx) => `• **[소싱 TOP ${idx + 1}] ${item.productName}**  
+  └ 실구매가: **${item.productPriceFormatted}** (${item.isRocket ? '🚀 로켓배송' : '🚚 무료배송'} · ${sourcedSpec.defaultUnitBadge || '가성비 검증 1위'})`).join('\n\n')}
+
+${sourcedLpList.map(deal => `• **[공식몰 제휴 비교 — ${deal.merchantLabel}] ${deal.title}**  
+  └ 혜택 요약: **${deal.badge}** (${deal.specSummary})`).join('\n\n')}
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] ${preset.title} 최저가 비교**:
+${targetUrl}
+` : '';
+
+  const sourcedCafeSection = topCp1 ? `
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **${topCp1.productName}** (실구매가 **${topCp1.productPriceFormatted}**)
+${topCp2 ? `• **소싱 2위 모델**: **${topCp2.productName}** (실구매가 **${topCp2.productPriceFormatted}**)` : ''}
+${topLp1 ? `• **공식몰 비교 (${topLp1.merchantLabel})**: **${topLp1.title}** (${topLp1.badge})` : ''}
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: ${targetUrl}
+` : '';
+
+  const sourcedThreadsLine = topCp1
+    ? `\n🏆 실구매 1위 소싱템: ${topCp1.productName.slice(0, 38)} (${topCp1.productPriceFormatted})\n`
+    : '\n';
+
   // 1. Blog Post (Naver Home-Feed D.I.A.+ Optimized with 24px Bold Subheadings + 19px Bold Callouts + 16px Airy 2-Line Paragraphs + Built-in Top/Bottom Links)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
   const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
@@ -278,7 +325,7 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
 > ✅ **${goodLabel}**: **${goodVal}** (**${diffVal}**)  
 > 📌 **핵심 판정**: **${res.headline}** (${res.badge})
 
-👉 **[무료 3초 계산기 바로가기] ${preset.title} 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] ${preset.title}**:
 ${targetUrl}
 
 🏠 **[머니핏 ${preset.category} 계산기 공식 포털 바로가기]**:
@@ -308,7 +355,7 @@ ${summaryLines}
 아래 표는 **${query}** 조건에서 선택지별 비용과 기대 효과를 비교한 실측 데이터입니다.
 
 ${tableMd}
-
+${sourcedBlogSection}
 ---
 
 ## ✅ [24px 소제목] 3. ${preset.category} 손해 막는 3단계 체크리스트
@@ -394,7 +441,7 @@ ${calcHubUrl}
 • **조건 바꿨을 때(${goodLabel})**: **${goodVal}** (➔ **${diffVal}**)
 • **핵심 지표 (${preset.category})**: ${firstMetric} / ${secondMetric}
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(${strat.inputHint}) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(${strat.inputHint}) 넣어서 1원 단위 영수증 바로 뽑기**:
 ${targetUrl}
 
 ---
@@ -403,6 +450,7 @@ ${targetUrl}
 
 ${tableMd}
 
+${sourcedCafeSection}
 ---
 
 ## ✅ 2. 결정 전 호구 막는 3단계 핵심 체크리스트
@@ -427,14 +475,22 @@ ${calcHubUrl}`;
 
   // 4. Threads / Instagram High-Readability Mobile Copy (Airy line breaks + visual receipt + direct link)
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
-  const threadsPost = `🐾 [${epTitle}] 3초 영수증 팩트체크!\n\n💬 ${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n\n❌ ${badLabel}: ${badVal}\n✅ ${goodLabel}: ${goodVal} (${diffVal})\n📊 핵심 지표: ${keyMetric}\n\n${story.factLine || res.summary}\n\n👉 내 조건(${strat.inputHint}) 3초 무료 계산기 바로가기:\n${targetUrl}\n🏠 전체 계산기 모음: ${calcHubUrl}`;
+  const threadsPost = `🐾 [${epTitle}] 3초 영수증 팩트체크!\n\n💬 ${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n\n❌ ${badLabel}: ${badVal}\n✅ ${goodLabel}: ${goodVal} (${diffVal})\n📊 핵심 지표: ${keyMetric}${sourcedThreadsLine}\n${story.factLine || res.summary}\n\n👉 내 조건(${strat.inputHint}) 3초 무료 계산기 & 소싱템 비교:\n${targetUrl}\n🏠 전체 계산기 모음: ${calcHubUrl}`;
 
   // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Enforces 24px Bold Subheadings, 19px Bold Callouts, 16px Airy Paragraphs, and Built-In Top + Bottom Links)
+  const sourcedHtmlBlock = topCp1 ? `
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: ${topCp1.productName} (<span style="color:#e11d48;font-weight:900;">${topCp1.productPriceFormatted}</span>)</div>
+    ${topCp2 ? `<div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: ${topCp2.productName} (<span style="color:#e11d48;font-weight:800;">${topCp2.productPriceFormatted}</span>)</div>` : ''}
+    <div style="margin-top:8px;"><a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(${targetUrl})에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
+  </div>` : '';
+
   const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:22px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.75;">
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & ${epTitle} (${charName} × ${expertName})</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 ${homeFeedTitle}</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="${targetUrl}?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] ${preset.title} (${targetUrl}) ↗</a>
+    <a href="${targetUrl}?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] ${preset.title} (${targetUrl}) ↗</a>
   </div>
   <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="${blogHomeThumbUrl}" alt="${preset.title} 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -445,6 +501,7 @@ ${calcHubUrl}`;
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: ${diffVal}</div>
   </div>
+  ${sourcedHtmlBlock}
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">${res.summary}</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
     <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:14px 22px;background:#0f172a;color:#ffffff;font-size:18px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (${targetUrl}) ↗</a>

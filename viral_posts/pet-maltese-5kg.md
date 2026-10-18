@@ -19,7 +19,7 @@
 > ✅ **일 103g 정량 배식 (2kg=19일)**: **일 102g (2kg=19일)** (**1끼 51g 정량 · 의료비 방어**)  
 > 📌 **핵심 판정**: **하루 102g (종이컵 1.3컵) · 19일 소진!** (🐾 수의영양학 정량 계산)
 
-👉 **[무료 3초 계산기 바로가기] 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수**:
 https://truthofmarket.com/preset/pet-maltese-5kg
 
 🏠 **[머니핏 반려동물 계산기 공식 포털 바로가기]**:
@@ -56,6 +56,33 @@ https://truthofmarket.com/?calc=pet
 | 하루 권장 사료량 (g) | 103g / 일 | 1회당 51.5g | 2.0kg 포대 약 19일 만에 소진 | 월 사료 소비량 약 3.1kg |
 | 종이컵 환산 부피 | 약 1.3 종이컵 | 1회당 0.65 컵 | 종이컵 1컵 = 80g 기준 | 정량 배식으로 비만 완벽 차단 |
 | 월 양육비 및 병원비 | 사료비 월 3.8만 원 | 간식·패드 월 3.5만 원 | 연간 접종비 25만 원 | 슬개골 탈구 수술비 180만 리스크 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/pet-maltese-5kg`) 상단 쇼룸에 실시간 연동된 **🐶 수의영양학 정량 급여 사료·영양제 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 로얄캐닌 독 엑스스몰 퍼피, 1.5kg, 1개, 닭**  
+  └ 실구매가: **19,650원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 2] 로얄캐닌 시니어 곡물 미니 인도어 반려견 사료, 1.5kg, 1개**  
+  └ 실구매가: **20,180원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 3] 로얄캐닌 독 미니인도어 어덜트 8+ 1.5kg, 1.5kg, 1개, 닭+곡물, 미니 인도어 시니어 1.5kg**  
+  └ 실구매가: **23,000원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[소싱 TOP 4] 당일출고 (최근입고분 )로얄캐닌 강아지사료 미니인도어 퍼피 1.5kg 면역력 강화 소화력 향상 건강한 피모 증정품)닭가슴살1개**  
+  └ 실구매가: **28,950원** (🚚 무료배송 · 정량 배식으로 사료비 -30% · 병원비 리스크 방어)
+
+• **[공식몰 제휴 비교 — 지마켓 반려동물 특가] 지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전**  
+  └ 혜택 요약: **🐶 정품 유통기한 보증 · 대용량 포대할인** (수의영양학 RER/DER 기준 100g당 최저 단가 · 알러지·눈물자국 케어 1위)
+
+• **[공식몰 제휴 비교 — 11번가 펫마트] 11번가 초흡수 배변패드 200매 & 무먼지 벤토나이트·두부모래 대용량**  
+  └ 혜택 요약: **🐾 배변패드·고양이모래 박스 특가** (매달 나가는 필수 소모품 박스 구매로 월 양육 고정비 -45% 절감)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 최저가 비교**:
+https://truthofmarket.com/preset/pet-maltese-5kg
 
 ---
 
@@ -113,7 +140,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.13 5kg 말티즈 종이컵 눈대중 배식의 위험 🐶 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수, 모르고 그냥 썼더니 1끼 51g 정량 · 의료비 방어? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/pet-maltese-5kg?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 (https://truthofmarket.com/preset/pet-maltese-5kg) ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-maltese-5kg?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 (https://truthofmarket.com/preset/pet-maltese-5kg) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/pet-maltese-5kg?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/pet-maltese-5kg-thumb.png" alt="5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -123,6 +150,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 눈대중 과급여 + 슬개골 수술 위험: <strong>일 138g 과급여 (질환 위험)</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 일 103g 정량 배식 (2kg=19일): <strong>일 102g (2kg=19일)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: 1끼 51g 정량 · 의료비 방어</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 로얄캐닌 독 엑스스몰 퍼피, 1.5kg, 1개, 닭 (<span style="color:#e11d48;font-weight:900;">19,650원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: 로얄캐닌 시니어 곡물 미니 인도어 반려견 사료, 1.5kg, 1개 (<span style="color:#e11d48;font-weight:800;">20,180원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/pet-maltese-5kg" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/pet-maltese-5kg)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">하루 102g 급여 시 2kg 1포대는 19일 만에 소진됩니다.</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -187,7 +221,7 @@ https://truthofmarket.com/?calc=pet
 • **조건 바꿨을 때(일 103g 정량 배식 (2kg=19일))**: **일 102g (2kg=19일)** (➔ **1끼 51g 정량 · 의료비 방어**)
 • **핵심 지표 (반려동물)**: 하루 칼로리 374 kcal / 하루 급여량(1끼) 102g (51g)
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/pet-maltese-5kg
 
 ---
@@ -200,6 +234,13 @@ https://truthofmarket.com/preset/pet-maltese-5kg
 | 하루 권장 사료량 (g) | 103g / 일 | 1회당 51.5g | 2.0kg 포대 약 19일 만에 소진 | 월 사료 소비량 약 3.1kg |
 | 종이컵 환산 부피 | 약 1.3 종이컵 | 1회당 0.65 컵 | 종이컵 1컵 = 80g 기준 | 정량 배식으로 비만 완벽 차단 |
 | 월 양육비 및 병원비 | 사료비 월 3.8만 원 | 간식·패드 월 3.5만 원 | 연간 접종비 25만 원 | 슬개골 탈구 수술비 180만 리스크 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **로얄캐닌 독 엑스스몰 퍼피, 1.5kg, 1개, 닭** (실구매가 **19,650원**)
+• **소싱 2위 모델**: **로얄캐닌 시니어 곡물 미니 인도어 반려견 사료, 1.5kg, 1개** (실구매가 **20,180원**)
+• **공식몰 비교 (지마켓 반려동물 특가)**: **지마켓 로얄캐닌·하림펫푸드 가수분해 사료 & 관절영양제 공식 기획전** (🐶 정품 유통기한 보증 · 대용량 포대할인)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/pet-maltese-5kg
 
 ---
 
@@ -235,10 +276,11 @@ https://truthofmarket.com/?calc=pet
 ❌ 눈대중 과급여 + 슬개골 수술 위험: 일 138g 과급여 (질환 위험)
 ✅ 일 103g 정량 배식 (2kg=19일): 일 102g (2kg=19일) (1끼 51g 정량 · 의료비 방어)
 📊 핵심 지표: 하루 칼로리: 374 kcal
+🏆 실구매 1위 소싱템: 로얄캐닌 독 엑스스몰 퍼피, 1.5kg, 1개, 닭 (19,650원)
 
 수의영양학 공식(DER 375kcal)으로 계산한 5kg 말티즈의 하루 적정 사료량은 정확히 103g(한 끼 51.5g)이며, 2kg 한 포대는 19일 만에 소진됩니다.
 
-👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 바로가기:
+👉 내 조건(반려동물 체중·생애주기·사료 칼로리) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/pet-maltese-5kg
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=pet
 ```

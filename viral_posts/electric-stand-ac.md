@@ -19,7 +19,7 @@
 > ✅ **1등급 듀얼인버터 절전운전**: **171,904원/월** (**-159,279원/월 절약**)  
 > 📌 **핵심 판정**: **추가 전기세 +281,057원 (총 331,183원)** (🚨 누진세 3단계 폭탄 경보!)
 
-👉 **[무료 3초 계산기 바로가기] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 내 숫자 넣고 실시간 영수증 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산**:
 https://truthofmarket.com/preset/electric-stand-ac
 
 🏠 **[머니핏 전기·가전 계산기 공식 포털 바로가기]**:
@@ -55,6 +55,33 @@ https://truthofmarket.com/?calc=electric
 | 스탠드 풀가동 (현재) | 일 12시간 연속 가동 | 2,200 W | 792 kWh (총 1,102kWh) | 432,600원 | 누진 3단계 최고구간 진입 (폭탄 요율) |
 | 희망온도 26도 + 절전모드 | 인버터 가변 주파수 운전 | 1,100 W | 396 kWh (총 706kWh) | 215,800원 | 월 216,800원 요금 절감 |
 | 1등급 신형 교체 + 맞춤 운전 | 듀얼 인버터 고효율 압축기 | 950 W | 342 kWh (총 652kWh) | 178,200원 | 14.5개월 내 기기값 회수 완료 |
+
+---
+
+## 🏆 [24px 소제목] 2-1. 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 실구매 가성비 소싱 TOP 4 (쿠팡 로켓배송 vs 공식몰 실구매가 비교)
+
+머니핏 포털(`https://truthofmarket.com/preset/electric-stand-ac`) 상단 쇼룸에 실시간 연동된 **⚡ 전기세·누진세 방어 1등급 & 절전 소싱템** 실구매 베스트셀러 모델과 현재 가격입니다.
+
+• **[소싱 TOP 1] 인배 프리미엄 써큘레이터 BLDC 인공지능(AI)모드 탁상용결합 저전력 무소음 입체회전 14엽윙날개**  
+  └ 실구매가: **66,600원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 2] (특가) 무소음 에어서큘레이터 고성능 가정용 스마트 쿨링 선풍기 /지능형 흔들기+무드등**  
+  └ 실구매가: **21,500원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 3] 르젠 스탠드 리모컨 서큘레이터 선풍기, LZEF-AR390(멜로우멜론)**  
+  └ 실구매가: **69,800원** (🚀 로켓배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[소싱 TOP 4] 신일 BLDC 모터 무소음 에어 서큘레이터**  
+  └ 실구매가: **120,990원** (🚚 무료배송 · 월 전기세 -45~55% 절감 · 기기값 단기 본전 회수)
+
+• **[공식몰 제휴 비교 — 롯데하이마트 공식몰] 롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전**  
+  └ 혜택 요약: **💳 카드 즉시할인 + 으뜸효율 1등급 환급** (구형 정속형 대비 소비전력 -55% 절감 · 한전 1등급 환급 대상 모델 모음)
+
+• **[공식몰 제휴 비교 — 지마켓 슈퍼딜] 지마켓 실시간 전력측정 스마트플러그 & 개별스위치 절전 멀티탭 베스트**  
+  └ 혜택 요약: **⚡ 9,900원대 대기전력 0원 차단** (스마트폰 앱으로 누진세 3단계 진입 전 원격 전원 차단 · 타이머 스케줄)
+
+👉 **[실물 소싱 쇼룸 & 3초 계산기 바로가기] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 최저가 비교**:
+https://truthofmarket.com/preset/electric-stand-ac
 
 ---
 
@@ -112,7 +139,7 @@ https://cafe.naver.com/moneyfitlab
   <div style="font-size:14px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.02 30평 거실 에어컨 34만원 고지서 역추적 ⚡ (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <h2 style="font-size:24px;font-weight:900;color:#0f172a;line-height:1.4;margin:0 0 14px 0;">💡 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산, 모르고 그냥 썼더니 -159,279원/월 절약? 직접 계산해보고 놀란 현실 영수증</h2>
   <div style="margin-bottom:14px;padding:12px 16px;background:#ecfdf5;border:2px solid #10b981;border-radius:12px;text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-stand-ac?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 (https://truthofmarket.com/preset/electric-stand-ac) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-stand-ac?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:19px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 & 소싱 쇼룸 바로가기] 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 (https://truthofmarket.com/preset/electric-stand-ac) ↗</a>
   </div>
   <a href="https://truthofmarket.com/preset/electric-stand-ac?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:16px;">
     <img src="https://truthofmarket.com/sns/electric-stand-ac-thumb.png" alt="30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
@@ -122,6 +149,13 @@ https://cafe.naver.com/moneyfitlab
     <div style="margin-bottom:8px;color:#dc2626;font-weight:800;">❌ 구형 스탠드 12시간 풀가동: <strong>331,183원/월</strong></div>
     <div style="margin-bottom:8px;color:#059669;font-weight:800;">✅ 1등급 듀얼인버터 절전운전: <strong>171,904원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:19px;">💡 핵심 손익 차이: -159,279원/월 절약</div>
+  </div>
+  
+  <div style="background:#fff1f2;border:2px solid #f43f5e;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:16px;line-height:1.6;">
+    <div style="font-weight:900;color:#be123c;margin-bottom:6px;">🏆 [2026 실구매 가성비 소싱 1위] 쿠팡 로켓배송 vs 공식몰 실구매가</div>
+    <div style="font-weight:800;color:#0f172a;">• 1위 모델: 인배 프리미엄 써큘레이터 BLDC 인공지능(AI)모드 탁상용결합 저전력 무소음 입체회전 14엽윙날개 (<span style="color:#e11d48;font-weight:900;">66,600원</span>)</div>
+    <div style="font-weight:700;color:#334155;margin-top:4px;">• 2위 모델: (특가) 무소음 에어서큘레이터 고성능 가정용 스마트 쿨링 선풍기 /지능형 흔들기+무드등 (<span style="color:#e11d48;font-weight:800;">21,500원</span>)</div>
+    <div style="margin-top:8px;"><a href="https://truthofmarket.com/preset/electric-stand-ac" target="_blank" rel="noopener noreferrer" style="color:#be123c;font-weight:900;text-decoration:underline;">👉 머니핏 포털(https://truthofmarket.com/preset/electric-stand-ac)에서 실물 소싱 비교 쇼룸 바로 보기 ↗</a></div>
   </div>
   <p style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;">1등급 교체 시 월 -159,279원 (11.6개월 본전 회수)</p>
   <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
@@ -186,7 +220,7 @@ https://truthofmarket.com/?calc=electric
 • **조건 바꿨을 때(1등급 듀얼인버터 절전운전)**: **171,904원/월** (➔ **-159,279원/월 절약**)
 • **핵심 지표 (전기·가전)**: 추가 전력 +792 kWh / 월 절감액 -159,279원
 
-👉 **[무료 3초 계산기 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
+👉 **[무료 3초 계산기 & 실물 소싱 쇼룸 바로가기] 내 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 1원 단위 영수증 바로 뽑기**:
 https://truthofmarket.com/preset/electric-stand-ac
 
 ---
@@ -198,6 +232,13 @@ https://truthofmarket.com/preset/electric-stand-ac
 | 스탠드 풀가동 (현재) | 일 12시간 연속 가동 | 2,200 W | 792 kWh (총 1,102kWh) | 432,600원 | 누진 3단계 최고구간 진입 (폭탄 요율) |
 | 희망온도 26도 + 절전모드 | 인버터 가변 주파수 운전 | 1,100 W | 396 kWh (총 706kWh) | 215,800원 | 월 216,800원 요금 절감 |
 | 1등급 신형 교체 + 맞춤 운전 | 듀얼 인버터 고효율 압축기 | 950 W | 342 kWh (총 652kWh) | 178,200원 | 14.5개월 내 기기값 회수 완료 |
+
+
+## 🏆 [실물 소싱 비교] 이 조건 실구매 가성비 베스트 모델 & 현재 가격
+• **소싱 1위 모델**: **인배 프리미엄 써큘레이터 BLDC 인공지능(AI)모드 탁상용결합 저전력 무소음 입체회전 14엽윙날개** (실구매가 **66,600원**)
+• **소싱 2위 모델**: **(특가) 무소음 에어서큘레이터 고성능 가정용 스마트 쿨링 선풍기 /지능형 흔들기+무드등** (실구매가 **21,500원**)
+• **공식몰 비교 (롯데하이마트 공식몰)**: **롯데하이마트 에너지 1등급 인버터 에어컨·제습기·건조기 단독 특가전** (💳 카드 즉시할인 + 으뜸효율 1등급 환급)
+👉 **위 소싱 모델 스펙 비교표 & 3초 계산기 바로가기**: https://truthofmarket.com/preset/electric-stand-ac
 
 ---
 
@@ -233,10 +274,11 @@ https://truthofmarket.com/?calc=electric
 ❌ 구형 스탠드 12시간 풀가동: 331,183원/월
 ✅ 1등급 듀얼인버터 절전운전: 171,904원/월 (-159,279원/월 절약)
 📊 핵심 지표: 추가 전력: +792 kWh
+🏆 실구매 1위 소싱템: 인배 프리미엄 써큘레이터 BLDC 인공지능(AI)모드 탁상용결합 저전 (66,600원)
 
 하계 누진 3단계 경계선(450kWh)을 넘는 순간 기본요금이 7,300원으로 뛰고 kWh당 단가도 307.3원으로 급등하기 때문입니다.
 
-👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 바로가기:
+👉 내 조건(소비전력(W)·가동시간·기본 사용량) 3초 무료 계산기 & 소싱템 비교:
 https://truthofmarket.com/preset/electric-stand-ac
 🏠 전체 계산기 모음: https://truthofmarket.com/?calc=electric
 ```
