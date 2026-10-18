@@ -98,12 +98,52 @@ def blend_transition(img_a, img_b, t):
     return Image.blend(combined, alpha_blend, 0.35)
 
 
-def build_base_templates(fonts):
+CLIP_REVENUE_META = {
+    'electric': {
+        'hook_tag': '⚡ 전기세 폭탄 3초 팩트체크',
+        'bc_product': '듀플렉스 스탠드 서큘레이터 (리뷰 20,951개)',
+        'bc_url': 'https://naver.me/xm0ZVnAW',
+    },
+    'diet': {
+        'hook_tag': '🥗 다이어트 식비·칼로리 팩트체크',
+        'bc_product': '한끼통살 소스 닭가슴살 10팩 (리뷰 49,365개)',
+        'bc_url': 'https://naver.me/xvClW9nJ',
+    },
+    'pet': {
+        'hook_tag': '🐾 강아지·고양이 사료비 팩트체크',
+        'bc_product': '라비앙독 가수분해 연어 사료 4.8kg (리뷰 26,136개)',
+        'bc_url': 'https://naver.me/xAfcU6Im',
+    },
+    'room': {
+        'hook_tag': '🛋️ 자취·이사 가전 예산 팩트체크',
+        'bc_product': '[슈퍼적립] 로보락 Qrevo Curv 26년 로봇청소기',
+        'bc_url': 'https://naver.me/GgUlTvYj',
+    },
+    'auto': {
+        'hook_tag': '🚗 신차 할부 vs 장기렌트 팩트체크',
+        'bc_product': '아이테라 26년형 2채널 FHD 블랙박스 (3년 AS)',
+        'bc_url': 'https://naver.me/G5kYoDj6',
+    },
+    'telecom': {
+        'hook_tag': '🌐 인터넷 위약금 vs 47만 사은품 팩트체크',
+        'bc_product': '티피링크 Archer AX1500 Wi-Fi 6 기가 공유기',
+        'bc_url': 'https://naver.me/FpwR436o',
+    },
+}
+
+
+def get_cat_meta(slug):
+    prefix = slug.split('-')[0] if '-' in slug else 'electric'
+    return CLIP_REVENUE_META.get(prefix, CLIP_REVENUE_META['electric'])
+
+
+def build_base_templates(fonts, slug='electric-studio-ac'):
     """
     Pre-render base 1080x1920 templates for the 4 cuts (with active vs alt CTA button color)
-    to make frame composition 6x faster.
+    including category-specific Brand Connect revenue product + truthofmarket.com URL.
     """
     font_badge, font_hook, font_cta, font_sub = fonts
+    meta = get_cat_meta(slug)
     cut_hooks = [
         "[1컷] 흔한 생활비 착각, 진짜 아껴질까?",
         "[2컷] 여우실장님의 1원 단위 팩트폭격!",
@@ -130,20 +170,28 @@ def build_base_templates(fonts):
             draw.line([(0, 218), (1080, 218)], fill=(28, 25, 23), width=5)
             draw.line([(0, 1302), (1080, 1302)], fill=(28, 25, 23), width=5)
 
-            # Bottom CTA Card
-            card_top = 1358
-            card_bot = 1738
+            # Bottom Revenue-Linked CTA Card (y = 1338..1845)
+            card_top = 1338
+            card_bot = 1845
             bg_fill = (236, 253, 245) if step_idx >= 2 else (255, 255, 255)
             draw.rounded_rectangle([48, card_top, 1032, card_bot], radius=36, fill=bg_fill, outline=(28, 25, 23), width=5)
 
-            draw.rounded_rectangle([84, card_top + 28, 620, card_top + 88], radius=30, fill=(254, 240, 138), outline=(28, 25, 23), width=3)
-            draw.text((352, card_top + 58), "★ 머니핏 3초 영수증 & 쇼핑커넥트", fill=(28, 25, 23), font=font_sub, anchor="mm")
+            draw.rounded_rectangle([84, card_top + 24, 650, card_top + 82], radius=29, fill=(254, 240, 138), outline=(28, 25, 23), width=3)
+            draw.text((367, card_top + 53), meta['hook_tag'], fill=(28, 25, 23), font=font_sub, anchor="mm")
 
-            draw.text((540, card_top + 148), "내 조건 넣으면 매달 얼마 아낄 수 있을까?", fill=(28, 25, 23), font=font_cta, anchor="mm")
+            draw.text((540, card_top + 132), "내 조건 넣으면 매달 얼마 아낄 수 있을까?", fill=(28, 25, 23), font=font_cta, anchor="mm")
 
-            btn_fill = (16, 185, 129) if btn_state == 0 else (5, 150, 105)
-            draw.rounded_rectangle([84, card_top + 205, 996, card_top + 325], radius=28, fill=btn_fill, outline=(28, 25, 23), width=4)
-            draw.text((540, card_top + 265), "▶ 본문 최저가 링크 & [ 머니핏 ] 3초 무료 계산기", fill=(255, 255, 255), font=font_hook, anchor="mm")
+            # Button 1: Homepage 3-Second Calculator (Inflow Engine)
+            btn_fill = (15, 23, 42) if btn_state == 0 else (30, 41, 59)
+            draw.rounded_rectangle([84, card_top + 182, 996, card_top + 288], radius=24, fill=btn_fill, outline=(52, 211, 153), width=4)
+            draw.text((540, card_top + 235), "🔎 무료 3초 계산기 : 검색창에 [ 머니핏 ] 검색!", fill=(52, 211, 153), font=font_hook, anchor="mm")
+
+            # Button 2: Verified Naver Brand Connect Revenue Product
+            bc_fill = (3, 199, 90) if btn_state == 0 else (5, 150, 105)
+            draw.rounded_rectangle([84, card_top + 306, 996, card_top + 412], radius=24, fill=bc_fill, outline=(28, 25, 23), width=4)
+            draw.text((540, card_top + 359), f"🛍️ 특가템: {meta['bc_product']}", fill=(255, 255, 255), font=font_sub, anchor="mm")
+
+            draw.text((540, card_top + 455), f"👉 고정댓글 & 정보 스티커 클릭 ({meta['bc_url']})", fill=(225, 29, 72), font=font_sub, anchor="mm")
 
             templates[(step_idx, btn_state)] = canvas
     return templates
@@ -169,7 +217,8 @@ def generate_clip_for_slug(slug):
 
     slides = [Image.open(p).convert('RGB') for p in slides_paths]
     fonts = load_fonts()
-    templates = build_base_templates(fonts)
+    templates = build_base_templates(fonts, slug=slug)
+    meta = get_cat_meta(slug)
 
     out_mp4 = os.path.join(ep_dir, "clip.mp4")
     fps = 15
@@ -208,16 +257,36 @@ def generate_clip_for_slug(slug):
                 frame_idx += 1
 
     writer.close()
-    print(f"[OK] Generated Natural Motion 9:16 Naver Clip MP4 (15fps, 16.0s): {out_mp4}", flush=True)
+
+    # Write revenue-linked Naver Clip caption & pinned comment kit
+    caption_path = os.path.join(ep_dir, "clip_revenue_caption.txt")
+    caption_text = (
+        f"[네이버 클립 수익 연동 패키지 — {slug}]\n"
+        f"1. 클립 제목: {meta['hook_tag']} | 모르고 쓰면 매달 새는 생돈 3초 비교 영수증!\n"
+        f"2. 클립 정보(링크) 스티커 1 (홈페이지 유입): https://truthofmarket.com/preset/{slug}\n"
+        f"3. 클립 쇼핑/링크 스티커 2 (브랜드커넥트 수익): {meta['bc_url']} ({meta['bc_product']})\n"
+        f"4. 클립 고정 댓글 (수익 + 유입 동시 전환):\n"
+        f"📌 [3초 무료 계산기 & 검증 특가템 좌표]\n"
+        f"• 내 조건 1원 단위 무료 계산기: https://truthofmarket.com/preset/{slug}\n"
+        f"• 영상 속 추천 절약템 최저가: {meta['bc_url']}\n"
+        f"(※ 네이버 브랜드커넥트 활동의 일환으로 판매 발생 시 수수료를 제공받습니다.)\n"
+    )
+    with open(caption_path, "w", encoding="utf-8") as cf:
+        cf.write(caption_text)
+
+    print(f"[OK] Generated Revenue-Linked 9:16 Naver Clip MP4 (15fps, 16.0s): {out_mp4}", flush=True)
     return out_mp4
 
 
 if __name__ == '__main__':
     slugs = sys.argv[1:] if len(sys.argv) > 1 else [
         'electric-studio-ac',
-        'diet-female-lean',
+        'diet-male-fatloss',
+        'pet-maltese-5kg',
+        'room-officetel-500',
         'auto-grandeur-5000',
-        'room-officetel-500'
+        'telecom-penalty-15'
     ]
     for s in slugs:
         generate_clip_for_slug(s)
+

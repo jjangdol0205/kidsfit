@@ -198,6 +198,7 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
     : story;
   const epTitle = (resolvedStory.shortCartoon && resolvedStory.shortCartoon.epTitle) || preset.title;
   const webtoonGridUrl = `${currentSiteUrl}/sns/${preset.id}-grid.png`;
+  const blogHomeThumbUrl = `${currentSiteUrl}/sns/${preset.id}-thumb.png`;
   const charName = resolvedStory.charName || '머니핏 프렌즈';
   const expertName = resolvedStory.expertName || '안경 여우 박사';
   const badLabel = resolvedStory.badLabel || '기존 선택';
@@ -208,6 +209,9 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
 
   const strat = CATEGORY_STRATEGY_MAP[preset.calc] || CATEGORY_STRATEGY_MAP.electric;
   const uniqueHashtags = story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`;
+
+  // Naver Home-Feed (네이버 홈판 리빙·경제M·테크) High-CTR Title Formula
+  const homeFeedTitle = `${preset.title}, 모르고 그냥 썼더니 ${diffVal}? 직접 계산해보고 놀란 현실 영수증`;
 
   // Load Account B (expertise333) Official Brand Connect (Shopping Connect) links so both Account A (comedifarm) and Account B use them across Blog, Clip, and Cafe
   const BC_LINKS_BY_CALC = {
@@ -253,15 +257,18 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const brandConnectSubUrl = bcItem.subUrl;
   const officialCafeUrl = 'https://cafe.naver.com/moneyfitlab';
 
-  // 1. Blog Post (Preset-Unique Opening, Domain-Specific Strategy, Zero Cross-Category Boilerplate)
+  // 1. Blog Post (Naver Home-Feed D.I.A.+ Optimized with 1:1 Representative Thumbnail FIRST)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
   const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
   const faqList = (preset.faq || []).map((f, i) => `**Q${i + 1}. ${f.question || f.q}**\nA. ${f.answer || f.a}`).join('\n\n');
 
-  const blogPost = `[제목] ${preset.title} — 2026 실제 수식 비교 & 손익분기점 정리
+  const blogPost = `[제목] ${homeFeedTitle}
+
+![${preset.title} 네이버 홈판 대표 썸네일](${blogHomeThumbUrl})
+*(▲ 위 1:1 정방형 썸네일(\`blog-home-thumb.png\`)을 스마트에디터 ONE '대표 사진'으로 지정하면 네이버 모바일 홈판(리빙·경제M) 노출 시 가독성과 클릭률이 극대화됩니다)*
 
 ${story.hookLine || `요즘 ${preset.title} 관련해서 실제 비용과 손익분기점을 궁금해하시는 분들이 정말 많습니다.`}
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「${preset.title}」** 조건에서 ${strat.introContext}가 어떻게 계산되는지 ${strat.authoritySource}에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표를 공유해 드립니다.
+저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「${preset.title}」** 조건에서 ${strat.introContext}가 어떻게 계산되는지 ${strat.authoritySource}에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰을 공유해 드립니다.
 
 ${story.factLine || preset.description}
 
@@ -324,44 +331,64 @@ ${officialCafeUrl}
 
 ${uniqueHashtags}`;
 
-  // 2. Jisik-iN Natural Human Answer (Anti-Ban Safe: 100% pure informational, max 3~5/day, zero commercial shopping links!)
-  const plainMetrics = res.metrics.map(m => `- ${m.label}: ${m.val}`).join('\n');
-  const jisikinPost = `[📌 안티밴 안전 수칙: 하루 3~5건 이내 · 최소 1~2시간 간격 · 상업성 쇼핑링크 절대 금지 · 질문자 조건 1:1 맞춤 정보 답변 + 3컷 영수증 이미지(slide-3.png) 1장 첨부]
+  // 2. Jisik-iN High-Value "Aljja" Expert Cheat Sheet (100% pure informational, bookmark-worthy formulas & checklist -> natural homepage inflow)
+  const plainMetrics = res.metrics.map(m => `• ${m.label}: ${m.val}`).join('\n');
+  const firstFaq = (preset.faq && preset.faq[0]) ? `\n[💡 가장 많이 헷갈려 하시는 부분]\nQ. ${preset.faq[0].question || preset.faq[0].q}\nA. ${preset.faq[0].answer || preset.faq[0].a}\n` : '';
+  const jisikinPost = `[📌 안티밴 안전 수칙: 하루 3~5건 이내 · 최소 1~2시간 간격 · 상업성 쇼핑링크 0개 · 읽자마자 저장하고 싶어지는 '알짜 공식 요약본' + 3컷 영수증 이미지(slide-3.png) 첨부]
 
-안녕하세요! ${query} 때문에 고민이 많으시겠어요.
-저도 얼마 전에 ${story.panel1Speech ? story.panel1Speech.replace(/"/g, '') : `${preset.title} 조건이 헷갈려서`} 직접 공식을 찾아서 계산해 보고 기준을 잡았던 기억이 나네요.
+안녕하세요! ${query} 기준이 헷갈려서 고민이 많으시겠어요.
+광고성 글 말고 실제 **${strat.authoritySource}** 기준으로 계산한 **알짜 핵심 수치와 체크리스트**만 딱 정리해 드릴게요.
 
-질문자님과 비슷한 조건(${preset.title})으로 실제 수식을 대입해 보면 핵심 결과는 **'${res.headline} (${res.badge})'** 정도로 계산됩니다.
-
-[📊 조건별 핵심 비교 수치]
-- 기존 방식 (${badLabel}): ${badVal}
-- 절약 방식 (${goodLabel}): ${goodVal} (${diffVal})
+1️⃣ 질문자님 조건(${preset.title}) 핵심 계산 결과
+• 한 줄 결론: **${res.headline} (${res.badge})**
+• 기존 방식(${badLabel}): ${badVal}
+• 최적 방식(${goodLabel}): ${goodVal} ➔ **${diffVal}**
 ${plainMetrics}
 
+2️⃣ 실패 없는 결정을 위한 3가지 핵심 기준 (이것만 기억하세요!)
+① [기준 확인] ${strat.step1}
+② [손실 방지] ${strat.step2}
+③ [실전 팁] ${strat.step3}
+${firstFaq}
+3️⃣ 내 세부 조건(${strat.inputHint}) 1:1 대입해보기
 ${story.factLine || res.summary}
+집마다 ${strat.inputHint} 숫자가 조금씩 달라서, 결정하시기 전에 본인 숫자를 직접 넣어서 손익분기점을 한 번 찍어보시는 게 가장 정확합니다.
 
-집마다 세부 조건(${strat.inputHint})이 조금씩 다르다 보니, 어림짐작으로 결정하기보다 본인 숫자를 한 번 넣어보시는 게 가장 정확하더라고요.
-회원가입이나 광고 없이 숫자만 넣으면 3초 만에 비교표가 나오는 무료 계산기 주소 남겨드릴 테니 결정하시기 전에 가볍게 확인해 보세요.
+제가 계산할 때 썼던 무료 계산기 페이지 남겨드릴게요(회원가입이나 앱 설치 없이 숫자만 넣으면 3초 만에 위 비교표가 바로 나옵니다).
+👉 무료 계산기: ${targetUrl}
 
-참고한 무료 계산기: ${targetUrl}
-작게나마 고민 해결하시는 데 도움이 되었으면 좋겠습니다!`;
+도움이 되셨다면 채택 부탁드리며, 추가로 궁금한 숫자 있으시면 댓글 남겨주세요!`;
 
-  // 3. Natural Cafe / Community Experience Post (Anti-Ban Safe: max 1~2/day, zero commercial links)
+  // 3. Community / Cafe High-Value "Aljja" Information Post (Bookmark-worthy summary note that naturally drives homepage visits)
   const firstMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label} ${res.metrics[0].val}` : res.headline;
   const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
-  const cafeCommentPost = `${story.hookLine || `저도 얼마 전에 ${query} 때문에 똑같은 고민 했었어요 ㅎㅎ`}
-막연히 감으로 고르면 괜히 손해 볼까 봐 걱정됐는데, 제 조건(${strat.inputHint}) 넣어서 계산해 보니까 [${res.headline} / ${firstMetric}, ${secondMetric}] 이렇게 숫자로 딱 정리돼서 속이 시원하더라고요!
-혹시 비슷하게 고민 중이신 분들은 검색창에 '머니핏 계산기' 치거나 ${targetUrl} 여기서 본인 조건 한 번 넣어보시면 기준 잡기 훨씬 편하실 거예요 :)`;
+  const cafeCommentPost = `[📌 커뮤니티 알짜 정보글/댓글 템플릿 — 상업 링크 0개 · 실측 비교 데이터 공유로 자연 유입 유도]
+
+요즘 카페에 **${query}** 고민하시는 글이 자주 보여서, 제가 결정하기 전에 **${strat.authoritySource}** 수식으로 직접 비교해 본 알짜 요약본 공유해요! (저장해 두셨다가 비교하실 때 쓰세요 😊)
+
+📊 **[${preset.title} 실측 비교 요약]**
+• 그냥 유지할 때(${badLabel}): **${badVal}**
+• 조건 바꿨을 때(${goodLabel}): **${goodVal}** (➔ **${diffVal}**)
+• 핵심 지표: ${firstMetric} / ${secondMetric}
+
+✅ **[결정 전 꼭 체크할 2가지 포인트]**
+1) ${strat.step1}
+2) ${strat.step2}
+
+막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(${strat.inputHint}) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
+회원가입 없이 3초 만에 내 조건 영수증 뽑아볼 수 있는 무료 계산기 좌표 남겨둘게요 👇
+🔎 **내 조건 3초 무료 계산기**: ${targetUrl} (또는 검색창에 '머니핏 계산기' 검색!)`;
 
   // 4. Threads / Blind 3-Line Copy (Clean, non-spammy, preset-accurate)
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
   const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n${story.ctaLine || `내 조건(${strat.inputHint}) 3초 무료 시뮬레이션`}: ${targetUrl}`;
 
-  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Dual-Funnel: Homepage UV First + Account B Brand Connect)
+  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Includes 1:1 Home-Feed Representative Thumbnail + 4-Cut Webtoon + Homepage & Brand Connect)
   const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
-  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 ${epTitle} (${charName} × ${expertName})</div>
-  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${preset.title} — 3컷 스포일러 영수증 비교</div>
+  <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & ${epTitle} (${charName} × ${expertName})</div>
+  <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${homeFeedTitle}</div>
   <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+    <img src="${blogHomeThumbUrl}" alt="${preset.title} 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="${webtoonGridUrl}" alt="${preset.title} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -381,8 +408,10 @@ ${story.factLine || res.summary}
     calc: preset.calc,
     category: preset.category,
     title: preset.title,
+    homeFeedTitle,
     epTitle,
     webtoonGridUrl,
+    blogHomeThumbUrl,
     query,
     subQueries,
     targetUrl,

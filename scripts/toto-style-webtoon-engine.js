@@ -920,90 +920,223 @@ function drawMoneyFitOriginalCharacter(ctx, cx, cy, scale = 1.0, options = {}) {
 }
 
 /**
- * SLIDE 1: 100% Original MoneyFit Magazine Cover Card
+ * SLIDE 1: 100% Original MoneyFit Magazine Cover Card (Upgraded for Instagram & Threads Eye-Catching Feed Impact)
  */
 function drawSlide1(ctx) {
   drawNotebookCanvasBg(ctx, '#FAF7F2');
+
+  // Subtle radial webtoon focus lines behind cover for eye-catching feed impact
+  ctx.save();
+  ctx.translate(540, 520);
+  ctx.strokeStyle = 'rgba(245, 158, 11, 0.14)';
+  ctx.lineWidth = 3;
+  for (let a = 0; a < 36; a++) {
+    const angle = (a * Math.PI * 2) / 36;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(angle) * 280, Math.sin(angle) * 280);
+    ctx.lineTo(Math.cos(angle) * 680, Math.sin(angle) * 680);
+    ctx.stroke();
+  }
+  ctx.restore();
+
   drawTopBrandBar(ctx, sample.categoryBadge, '1 / 4');
 
   // Original Tilted Signboard Card for Cover Headline
   ctx.save();
   ctx.translate(540, 265);
   ctx.rotate(-0.018);
-  ctx.shadowColor = 'rgba(15, 23, 42, 0.12)';
-  ctx.shadowBlur = 18;
-  ctx.shadowOffsetY = 8;
+  ctx.shadowColor = 'rgba(15, 23, 42, 0.15)';
+  ctx.shadowBlur = 22;
+  ctx.shadowOffsetY = 10;
 
   ctx.fillStyle = WHITE;
-  setPen(ctx, 4.5, INK);
+  setPen(ctx, 5.0, INK);
   ctx.beginPath();
   ctx.roundRect(-455, -125, 910, 250, 28);
   ctx.fill();
   ctx.shadowColor = 'transparent';
   ctx.stroke();
 
-  // Top decorative Emerald tape on the signboard
+  // Top-left decorative Emerald tape on the signboard
   ctx.fillStyle = EMERALD;
   ctx.beginPath();
-  ctx.roundRect(-110, -142, 220, 34, 10);
+  ctx.roundRect(-410, -146, 250, 40, 12);
   ctx.fill();
   ctx.stroke();
   ctx.fillStyle = WHITE;
-  ctx.font = '22px "Jua", sans-serif';
+  ctx.font = '24px "Jua", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('3초 본전 팩트체크', 0, -124);
+  ctx.fillText('⚡ 3초 본전 팩트체크', -285, -125);
+
+  // Top-right High-Contrast Shock Savings Sticker Badge (Pops in IG/Threads feed!)
+  ctx.save();
+  ctx.translate(255, -126);
+  ctx.rotate(0.05);
+  ctx.fillStyle = '#FEF08A';
+  setPen(ctx, 4.0, CORAL_RED);
+  ctx.beginPath();
+  ctx.roundRect(-175, -24, 350, 48, 24);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = CORAL_RED;
+  fillTextAutoFit(ctx, '🔥 ' + String(sample.diffVal || '초특급 절약'), 0, 1, 325, 27, '"Jua", sans-serif', 20);
+  ctx.restore();
 
   // Highlight bar behind Line 2
   ctx.fillStyle = '#FEF08A';
   ctx.beginPath();
-  ctx.roundRect(-410, 12, 820, 86, 16);
+  ctx.roundRect(-415, 10, 830, 90, 16);
   ctx.fill();
 
   // 2-Line Cover Headline (Deep Navy Line 1 + Coral-Red Line 2)
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[0] || '', 0, -52, 840, 86, '"Jua", sans-serif', WHITE, 8, NAVY, 48);
-  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[1] || '', 0, 52, 840, 88, '"Jua", sans-serif', WHITE, 8, CORAL_RED, 48);
+  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[0] || '', 0, -50, 850, 90, '"Jua", sans-serif', WHITE, 9, NAVY, 50);
+  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[1] || '', 0, 54, 850, 92, '"Jua", sans-serif', WHITE, 9, CORAL_RED, 50);
   ctx.restore();
 
   // Center Speech Bubble + 2 MoneyFit Original Characters conversing
-  drawSpeechBubble(ctx, 295, 420, 490, 190, sample.coverBubbleLines || [], {
+  drawSpeechBubble(ctx, 285, 418, 510, 192, sample.coverBubbleLines || [], {
     fill: '#FFFBEB',
     radius: 28,
     tailSide: 'bottom-left',
     tailX: 255,
     tailY: 645,
-    fontSize: 40,
+    fontSize: 41,
     highlightIdx: 1,
     highlightColor: '#FDE68A'
   });
 
-  drawMoneyFitOriginalCharacter(ctx, 205, 755, 0.92, {
+  drawMoneyFitOriginalCharacter(ctx, 205, 755, 0.94, {
     role: sample.coverRole || 'maknae_bunny',
     mood: 'sweat',
     facing: 'right',
     prop: 'bill_red'
   });
 
-  drawMoneyFitOriginalCharacter(ctx, 870, 755, 0.92, {
+  drawMoneyFitOriginalCharacter(ctx, 870, 755, 0.94, {
     role: sample.colleagueRole || 'fox_director',
     mood: 'smile',
     facing: 'left',
     prop: 'calc_tablet'
   });
 
-  // Bottom Narration Ribbon Bar
+  // Bottom Narration Ribbon Bar + Eye-Catching Swipe Callout Pill
   ctx.save();
   ctx.fillStyle = NAVY;
   ctx.beginPath();
-  ctx.roundRect(54, 955, 972, 74, 20);
+  ctx.roundRect(48, 950, 984, 82, 22);
   ctx.fill();
+
   ctx.fillStyle = '#FDE68A';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  fillTextAutoFit(ctx, '💬 ' + (sample.coverBottomNarration || ''), 74, 991, 610, 34, '"GaeguBold", sans-serif', 22);
+
+  // Swipe Callout Pill on Right
+  ctx.fillStyle = EMERALD;
+  ctx.beginPath();
+  ctx.roundRect(705, 963, 310, 56, 28);
+  ctx.fill();
+  ctx.fillStyle = NAVY;
+  ctx.font = '26px "Jua", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('영수증 넘겨보기 👉 1/4', 860, 992);
+  ctx.restore();
+}
+
+/**
+ * BLOG HOME THUMB (blog-home-thumb.png):
+ * Dedicated 1:1 Square Thumbnail engineered specifically for Naver Mobile Home Feed (네이버 홈판).
+ * Optimized to remain 100% legible even when shrunk to 120x120px on mobile feeds!
+ */
+function drawBlogHomeThumb(ctx) {
+  // High-contrast warm ivory + emerald-tinted border for Naver Home Feed standout
+  ctx.fillStyle = '#FFFDF9';
+  ctx.fillRect(0, 0, 1080, 1080);
+
+  // Bold Outer Frame
+  ctx.save();
+  setPen(ctx, 14, NAVY);
+  ctx.beginPath();
+  ctx.roundRect(18, 18, 1044, 1044, 36);
+  ctx.stroke();
+  ctx.restore();
+
+  // Top Full-Width Impact Ribbon (y = 36..142)
+  ctx.save();
+  ctx.fillStyle = NAVY;
+  ctx.beginPath();
+  ctx.roundRect(36, 36, 1008, 104, 24);
+  ctx.fill();
+
+  ctx.fillStyle = '#34D399';
+  ctx.font = '44px "Jua", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  fillTextAutoFit(ctx, '💬 ' + (sample.coverBottomNarration || ''), 540, 993, 920, 38, '"GaeguBold", sans-serif', 24);
+  fillTextAutoFit(ctx, sample.categoryBadge + ' · 3초 영수증', 540, 88, 940, 44, '"Jua", sans-serif', 30);
   ctx.restore();
+
+  // Giant 2-Line Center Headline Box (y = 162..550) - Massive 96px~104px Font for 120px mobile thumbnail legibility!
+  ctx.save();
+  ctx.fillStyle = '#FEFCE8';
+  setPen(ctx, 5.5, INK);
+  ctx.beginPath();
+  ctx.roundRect(42, 162, 996, 388, 32);
+  ctx.fill();
+  ctx.stroke();
+
+  // Yellow Highlighter Bar behind Line 2
+  ctx.fillStyle = '#FEF08A';
+  ctx.beginPath();
+  ctx.roundRect(68, 368, 944, 142, 22);
+  ctx.fill();
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[0] || '', 540, 265, 920, 102, '"Jua", sans-serif', WHITE, 12, NAVY, 58);
+  strokeAndFillTextAutoFit(ctx, sample.coverTitleLines[1] || '', 540, 438, 920, 106, '"Jua", sans-serif', WHITE, 12, CORAL_RED, 58);
+  ctx.restore();
+
+  // Left-Bottom Shock Comparison Stack (x = 42..650, y = 578..1028)
+  ctx.save();
+  // Bad vs Good Quick Box
+  ctx.fillStyle = WHITE;
+  setPen(ctx, 4.5, INK);
+  ctx.beginPath();
+  ctx.roundRect(42, 578, 610, 256, 26);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#BE123C';
+  fillTextAutoFit(ctx, '❌ ' + String(sample.badVal || ''), 72, 650, 550, 54, '"Jua", sans-serif', 32);
+
+  ctx.fillStyle = EMERALD_DARK;
+  fillTextAutoFit(ctx, '✅ ' + String(sample.goodVal || ''), 72, 762, 550, 58, '"Jua", sans-serif', 34);
+
+  // Giant Red/Yellow Savings Stamp Box at Bottom-Left (y = 856..1028)
+  ctx.fillStyle = CORAL_RED;
+  setPen(ctx, 5.0, INK);
+  ctx.beginPath();
+  ctx.roundRect(42, 856, 610, 172, 28);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#FEF08A';
+  ctx.textAlign = 'center';
+  strokeAndFillTextAutoFit(ctx, String(sample.diffVal || ''), 347, 942, 565, 68, '"Jua", sans-serif', INK, 8, '#FEF08A', 38);
+  ctx.restore();
+
+  // Right-Bottom Large Expressive Character (x = 855, y = 815)
+  drawMoneyFitOriginalCharacter(ctx, 855, 815, 1.08, {
+    role: sample.colleagueRole || 'fox_director',
+    mood: 'cheer',
+    facing: 'left',
+    prop: 'calc_tablet'
+  });
 }
 
 /**
@@ -1336,6 +1469,7 @@ function renderNow() {
   else if (mode === 'slide-2') drawSlide2(ctx);
   else if (mode === 'slide-3') drawSlide3(ctx);
   else if (mode === 'slide-4') drawSlide4(ctx);
+  else if (mode === 'blog-thumb') drawBlogHomeThumb(ctx);
   else if (mode === 'grid') {
     const off1 = document.createElement('canvas'); off1.width = 1080; off1.height = 1080; drawSlide1(off1.getContext('2d'));
     const off2 = document.createElement('canvas'); off2.width = 1080; off2.height = 1080; drawSlide2(off2.getContext('2d'));
@@ -1478,14 +1612,17 @@ async function renderTotoEpisodeForSlug(slug = 'electric-studio-ac', options = {
   const s3Path = path.join(outDir, 'slide-3.png');
   const s4Path = path.join(outDir, 'slide-4.png');
   const gridPath = path.join(outDir, 'webtoon-grid.png');
+  const blogThumbPath = path.join(outDir, 'blog-home-thumb.png');
   const publicGridPath = path.join(publicSnsDir, `${sample.slug}-grid.png`);
+  const publicThumbPath = path.join(publicSnsDir, `${sample.slug}-thumb.png`);
 
   const jobs = [
     { mode: 'slide-1', path: s1Path },
     { mode: 'slide-2', path: s2Path },
     { mode: 'slide-3', path: s3Path },
     { mode: 'slide-4', path: s4Path },
-    { mode: 'grid', path: gridPath }
+    { mode: 'grid', path: gridPath },
+    { mode: 'blog-thumb', path: blogThumbPath }
   ];
 
   await Promise.all(
@@ -1501,6 +1638,9 @@ async function renderTotoEpisodeForSlug(slug = 'electric-studio-ac', options = {
   if (fs.existsSync(gridPath)) {
     fs.copyFileSync(gridPath, publicGridPath);
   }
+  if (fs.existsSync(blogThumbPath)) {
+    fs.copyFileSync(blogThumbPath, publicThumbPath);
+  }
 
   return {
     slug: sample.slug,
@@ -1509,7 +1649,9 @@ async function renderTotoEpisodeForSlug(slug = 'electric-studio-ac', options = {
     s3Path,
     s4Path,
     gridPath,
-    publicGridPath
+    blogThumbPath,
+    publicGridPath,
+    publicThumbPath
   };
 }
 
@@ -1529,16 +1671,22 @@ function renderTotoSample1() {
   const s3Path = path.join(outDir, 'slide-3.png');
   const s4Path = path.join(outDir, 'slide-4.png');
   const gridPath = path.join(outDir, 'webtoon-grid.png');
+  const blogThumbPath = path.join(outDir, 'blog-home-thumb.png');
   const publicGridPath = path.join(publicSnsDir, `${sample.slug}-grid.png`);
+  const publicThumbPath = path.join(publicSnsDir, `${sample.slug}-thumb.png`);
 
   renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-1'), s1Path);
   renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-2'), s2Path);
   renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-3'), s3Path);
   renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'slide-4'), s4Path);
   renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'grid'), gridPath);
+  renderTotoPngWithChrome(chromePath, buildTotoRenderHtml(sample, 'blog-thumb'), blogThumbPath);
 
   if (fs.existsSync(gridPath)) {
     fs.copyFileSync(gridPath, publicGridPath);
+  }
+  if (fs.existsSync(blogThumbPath)) {
+    fs.copyFileSync(blogThumbPath, publicThumbPath);
   }
 
   return {
@@ -1548,7 +1696,9 @@ function renderTotoSample1() {
     s3Path,
     s4Path,
     gridPath,
-    publicGridPath
+    blogThumbPath,
+    publicGridPath,
+    publicThumbPath
   };
 }
 

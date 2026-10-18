@@ -523,17 +523,20 @@
       `;
     }
 
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (3-Channel Revenue Diversification!)
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (3-Channel Revenue Diversification + Social Proof Badge!)
     if (receiptActionItemsEl && actionItems.length > 0) {
-      receiptActionItemsEl.innerHTML = actionItems.map(item => {
+      const choiceRates = [89, 86, 84, 82];
+      receiptActionItemsEl.innerHTML = actionItems.map((item, idx) => {
         const cpHref = buildCoupangHref(item.coupangKw);
         const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
+        const choicePct = choiceRates[idx % choiceRates.length];
         return `
           <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap items-center gap-2 mb-1">
                   <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
+                  <span class="text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">⭐ 같은 조건 ${choicePct}% 선택 · ★4.9</span>
                   <span class="text-base font-bold text-white break-keep">${item.label}</span>
                 </div>
                 <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
