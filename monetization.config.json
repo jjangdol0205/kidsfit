@@ -135,5 +135,37 @@
     }
   },
   "coupangAccessKey": "3793eab4-a000-4bc3-a659-0e9ee25478bc",
-  "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55"
+  "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55",
+  "naverShoppingConnect": {
+    "enabled": true,
+    "accountId": "comedifarm",
+    "clipStickerPolicy": "NAVER_OFFICIAL_SHOPPING_CONNECT_FIRST",
+    "noticeText": "이 콘텐츠는 네이버 쇼핑커넥트(브랜드커넥트) 활동의 일환으로 판매 발생 시 수수료를 제공받습니다.",
+    "categoryProductTags": {
+      "electric": {
+        "keyword": "에너지 1등급 인버터 에어컨 / IoT 스마트플러그 전력측정기",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 1등급 절전 가전 특가 보기"
+      },
+      "diet": {
+        "keyword": "무염 닭가슴살 10kg 대용량 팩 / 주방 전자저울",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 대용량 식단 최저가 보기"
+      },
+      "pet": {
+        "keyword": "로얄캐닌 사료 대용량 포대 / 반려동물 급여 전자저울",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 정품 대용량 사료 특가 보기"
+      },
+      "room": {
+        "keyword": "원룸 접이식 토퍼 매트리스 / 올인원 로봇청소기",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 자취·신혼 가성비 가구 보기"
+      },
+      "auto": {
+        "keyword": "불스원샷 연료첨가제 / 차량용 4K 블랙박스",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 차량 유지비 절약템 보기"
+      },
+      "telecom": {
+        "keyword": "알뜰폰 무약정 유심칩 / Wi-Fi 6 공유기",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 자급제·알뜰 유심 특가 보기"
+      }
+    }
+  }
 }
