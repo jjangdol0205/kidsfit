@@ -10,14 +10,16 @@
 [제목] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 — 2026 실제 수식 비교 & 손익분기점 정리
 
 30kg 대형견 골든리트리버를 키울 때 12kg짜리 대용량 사료 1포대는 정확히 며칠 만에 바닥날까요?
-오늘은 **「30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일」** 조건에서 반려동물 생애주기별 일일 적정 에너지 요구량(DER)과 월간 사료·케어 고정비가 실제로 어떻게 계산되는지, 미국국립연구위원회(NRC)·유럽반려동물산업연맹(FEDIAF) 수의영양학 칼로리 공식을 바탕으로 1원·1g 단위까지 투명하게 정리해 드립니다.
+저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일」** 조건에서 반려동물 생애주기별 일일 적정 에너지 요구량(DER)과 월간 사료·케어 고정비가 어떻게 계산되는지 미국국립연구위원회(NRC)·유럽반려동물산업연맹(FEDIAF) 수의영양학 칼로리 공식에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표를 공유해 드립니다.
 
 하루 필요 열량 1,436kcal 기준 일일 권장 급여량은 410g(한 끼 205g)으로, 12kg 한 포대가 정확히 29일 만에 전량 소진됩니다.
 
 ![30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 4컷 동물 웹툰 영수증](https://truthofmarket.com/sns/pet-golden-retriever-grid.png)
 
-> **「🎨 3컷 스포일러 & 4컷 호기심 브릿지」 — EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺 (집사 치즈냥 박사 × 안경 여우 수의영양사)**  
-> ❌ 급한 폭식 급여 + 대형견 고관절 위험: 일 554g 과급여 (질환 위험) vs ✅ 일 410g 정량 (12kg 포대=29일 소진): 일 410g (12kg=29일) (1끼 205g 정량 · 의료비 방어) ➔ 내 조건 넣은 4컷 최종 영수증은 https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog 에서 3초 계산!
+> **「🎨 3초 요약 영수증 팩트체크」 — EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺 (집사 치즈냥 박사 × 안경 여우 수의영양사)**  
+> ❌ 급한 폭식 급여 + 대형견 고관절 위험: 일 554g 과급여 (질환 위험) vs ✅ 일 410g 정량 (12kg 포대=29일 소진): 일 410g (12kg=29일) (1끼 205g 정량 · 의료비 방어)  
+> 🔎 **내 숫자 넣고 3초 만에 무료 영수증 뽑기 (회원가입 없음)**:  
+https://truthofmarket.com/preset/pet-golden-retriever
 
 ---
 
@@ -66,20 +68,20 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 
 ---
 
-### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
+### 5. 내 조건 3초 무료 계산기 & 함께 참고할 절약 아이템
 내 조건(반려동물 체중·생애주기·사료 칼로리)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
 
-🛍️ **[네이버 브랜드커넥트 1순위 추천] 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)**:  
-🔗 https://naver.me/xAfcU6Im
+👉 **[무료] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 3초 시뮬레이터 바로가기**:
+https://truthofmarket.com/preset/pet-golden-retriever
 
-🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] [슈퍼적립] 로보락 Qrevo Curv 2 Flow 털청소 로봇청소기**:  
-🔗 https://naver.me/GgUlTvYj
+🛍️ **[네이버 브랜드커넥트 참고 아이템 1] 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)**:
+https://naver.me/xAfcU6Im
 
-🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
-🔗 https://cafe.naver.com/moneyfitlab
+🛍️ **[네이버 브랜드커넥트 참고 아이템 2] [슈퍼적립] 로보락 Qrevo Curv 2 Flow 털청소 로봇청소기**:
+https://naver.me/GgUlTvYj
 
-👉 **[무료] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 3초 시뮬레이터 바로가기**:  
-🔗 https://truthofmarket.com/preset/pet-golden-retriever
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소**:
+https://cafe.naver.com/moneyfitlab
 
 *(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
@@ -93,7 +95,7 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://naver.me/xAfcU6Im" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/pet-golden-retriever-grid.png" alt="30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -102,8 +104,8 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 1끼 205g 정량 · 의료비 방어</div>
   </div>
   <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="https://naver.me/xAfcU6Im" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개) ↗</a>
-    <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/pet-golden-retriever) ↗</a>
+    <a href="https://naver.me/xAfcU6Im" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개) ↗</a>
   </div>
 </div>
 ```
@@ -112,27 +114,27 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 
 ## 💡 [네이버 지식iN / 대표 카페] 전문가 맞춤 답변 (10초 복붙용 수치 근거 & 3컷 영수증 팁)
 ```text
-[📌 사진 첨부 팁: sns_outbox/pet-golden-retriever/slide-3.png (3컷 비교 영수증) 또는 webtoon-grid.png 1장을 함께 첨부하면 채택률과 클릭률이 3배 높아집니다]
+[📌 안티밴 안전 수칙: 하루 3~5건 이내 · 최소 1~2시간 간격 · 상업성 쇼핑링크 절대 금지 · 질문자 조건 1:1 맞춤 정보 답변 + 3컷 영수증 이미지(slide-3.png) 1장 첨부]
 
-안녕하세요! 골든리트리버 하루 사료량 양육비 관련해서 고민 중이시군요.
-저도 얼마 전에 30kg 골든리트리버 대용량 12kg 사료 한 포대 사면 두 달은 먹겠지 싶었는데 벌써 바닥났어! 하루에 얼마큼 줘야 해? 실제 수식대로 직접 계산해 보고 기준을 잡았습니다.
+안녕하세요! 골든리트리버 하루 사료량 양육비 때문에 고민이 많으시겠어요.
+저도 얼마 전에 30kg 골든리트리버 대용량 12kg 사료 한 포대 사면 두 달은 먹겠지 싶었는데 벌써 바닥났어! 하루에 얼마큼 줘야 해? 직접 공식을 찾아서 계산해 보고 기준을 잡았던 기억이 나네요.
 
-질문자님과 비슷한 조건(30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일)으로 시뮬레이션을 돌려보면 핵심 결과는 **'하루 410g (종이컵 5.1컵) · 29일 소진! (🐾 수의영양학 정량 계산)'**로 산출됩니다.
+질문자님과 비슷한 조건(30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일)으로 실제 수식을 대입해 보면 핵심 결과는 **'하루 410g (종이컵 5.1컵) · 29일 소진! (🐾 수의영양학 정량 계산)'** 정도로 계산됩니다.
 
-[🎨 3컷 비교 영수증 핵심 수치 — EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺]
-- ❌ 급한 폭식 급여 + 대형견 고관절 위험: 일 554g 과급여 (질환 위험) vs ✅ 일 410g 정량 (12kg 포대=29일 소진): 일 410g (12kg=29일) (1끼 205g 정량 · 의료비 방어)
+[📊 조건별 핵심 비교 수치]
+- 기존 방식 (급한 폭식 급여 + 대형견 고관절 위험): 일 554g 과급여 (질환 위험)
+- 절약 방식 (일 410g 정량 (12kg 포대=29일 소진)): 일 410g (12kg=29일) (1끼 205g 정량 · 의료비 방어)
 - 하루 칼로리: 1436 kcal
 - 하루 급여량(1끼): 410g (205g)
 - 12kg 소진일: 29일
 
 하루 필요 열량 1,436kcal 기준 일일 권장 급여량은 410g(한 끼 205g)으로, 12kg 한 포대가 정확히 29일 만에 전량 소진됩니다.
 
-사람마다 세부 조건(반려동물 체중·생애주기·사료 칼로리)이 조금씩 다르다 보니 눈대중으로 결정하면 생각보다 손해 보는 금액이 꽤 크더라고요.
-회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
+집마다 세부 조건(반려동물 체중·생애주기·사료 칼로리)이 조금씩 다르다 보니, 어림짐작으로 결정하기보다 본인 숫자를 한 번 넣어보시는 게 가장 정확하더라고요.
+회원가입이나 광고 없이 숫자만 넣으면 3초 만에 비교표가 나오는 무료 계산기 주소 남겨드릴 테니 결정하시기 전에 가볍게 확인해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/pet-golden-retriever
-스마트스토어 추천 절약템: https://naver.me/xAfcU6Im
-작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
+작게나마 고민 해결하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
 ---
@@ -140,9 +142,8 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 ## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
 ```text
 30kg 대형견 골든리트리버를 키울 때 12kg짜리 대용량 사료 1포대는 정확히 며칠 만에 바닥날까요?
-막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 돌려보니까 [하루 410g (종이컵 5.1컵) · 29일 소진! / 하루 칼로리 1436 kcal, 하루 급여량(1끼) 410g (205g)] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/xAfcU6Im)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
-https://truthofmarket.com/preset/pet-golden-retriever
+막연히 감으로 고르면 괜히 손해 볼까 봐 걱정됐는데, 제 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 계산해 보니까 [하루 410g (종이컵 5.1컵) · 29일 소진! / 하루 칼로리 1436 kcal, 하루 급여량(1끼) 410g (205g)] 이렇게 숫자로 딱 정리돼서 속이 시원하더라고요!
+혹시 비슷하게 고민 중이신 분들은 검색창에 '머니핏 계산기' 치거나 https://truthofmarket.com/preset/pet-golden-retriever 여기서 본인 조건 한 번 넣어보시면 기준 잡기 훨씬 편하실 거예요 :)
 ```
 
 ---

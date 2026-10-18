@@ -348,7 +348,7 @@
     const buildCoupangHref = (kw) => {
       return monetizationModule.buildCoupangUrl
         ? monetizationModule.buildCoupangUrl(kw, currentCalc)
-        : `https://www.coupang.com/np/search?q=${encodeURIComponent(kw || '')}&lptag=AF7865143`;
+        : 'https://link.coupang.com/a/hWnhNJFy1Y';
     };
     const buildLpHref = (merchant, url) => {
       return monetizationModule.buildLinkPriceDeepLink
@@ -1593,7 +1593,7 @@
     const buildCoupangHref = (kw) => {
       return monetizationModule.buildCoupangUrl
         ? monetizationModule.buildCoupangUrl(kw, currentCalc)
-        : `https://www.coupang.com/np/search?q=${encodeURIComponent(kw || '')}&lptag=AF7865143`;
+        : 'https://link.coupang.com/a/hWnhNJFy1Y';
     };
     const buildLpHref = (merchant, url) => {
       return monetizationModule.buildLinkPriceDeepLink
@@ -1638,9 +1638,6 @@
 
   window.copyKakaoMemoBridge = function (btnEl) {
     const pkg = buildKakaoMemoPackage();
-    if (typeof window.recordAffiliateClick === 'function') {
-      window.recordAffiliateClick('coupang', pkg.url, 'receipt_cart');
-    }
 
     const showFeedback = () => {
       if (btnEl) {
@@ -1669,9 +1666,6 @@
 
   window.shareKakaoOrNative = function (btnEl) {
     const pkg = buildKakaoMemoPackage();
-    if (typeof window.recordAffiliateClick === 'function') {
-      window.recordAffiliateClick('coupang', pkg.url, 'receipt_cart');
-    }
     if (navigator.share) {
       navigator.share({
         title: pkg.title,

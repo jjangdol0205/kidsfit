@@ -156,8 +156,11 @@
       "accountABlogMaxPerDay": 3,
       "officialCafeMaxPerDay": 3,
       "naverClipMaxPerDay": 2,
-      "totalDailyTarget": "8~10건 (블로그 계정당 하루 2~3건 이내, 최소 4시간 간격)",
-      "linksPerPost": "1~2개 (핵심 주력 고단가템 1개 + 보조 가성비템 1개)",
+      "instagramThreadsMaxPerDay": 3,
+      "naverJisikinMaxPerDay": 4,
+      "externalCommunityMaxPerDay": 2,
+      "totalDailyTarget": "블로그 계정당 일 2~3건(정보성 90%+사람 문체), 인스타·쓰레드 일 3건 이내, 지식iN 일 3~5건(안티밴 순수 정보), 외부 커뮤니티 일 1~2건(상업링크 금지)",
+      "linksPerPost": "블로그·공식카페: 홈페이지 계산기(truthofmarket.com) 클릭형 링크 1개 + B계정 브랜드커넥트(naver.me) 1~2개 / 지식iN·외부커뮤니티: 상업링크 0개(순수 정보+계산기 출처만)",
       "goldenTimeSlotsKst": ["08:30", "12:30", "20:30"]
     },
     "categoryProductTags": {

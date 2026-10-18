@@ -478,8 +478,18 @@ function isForbiddenRequestPath(cleanUrlPath) {
   return false;
 }
 
+const LEGACY_PRESET_ALIASES = {
+  'telecom-family-bundle': 'telecom-family-4p',
+  'auto-sorento-family': 'auto-tucson-hybrid',
+  'auto-gv80-ceo': 'auto-genesis-g80'
+};
+
 function resolveFilePath(cleanUrlPath) {
-  const cleanPath = String(cleanUrlPath || '/').replace(/\\/g, '/');
+  let cleanPath = String(cleanUrlPath || '/').replace(/\\/g, '/');
+  const presetAliasMatch = cleanPath.match(/^\/preset\/([a-zA-Z0-9_-]+)(\/.*)?$/);
+  if (presetAliasMatch && LEGACY_PRESET_ALIASES[presetAliasMatch[1]]) {
+    cleanPath = `/preset/${LEGACY_PRESET_ALIASES[presetAliasMatch[1]]}${presetAliasMatch[2] || ''}`;
+  }
 
   if (cleanPath === '/' || cleanPath === '/index.html') {
     const distIdx = path.join(DIST_DIR, 'index.html');
