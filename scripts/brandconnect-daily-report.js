@@ -200,15 +200,18 @@ async function buildBrandConnectDailyReport(options = {}) {
 
   const channels = Object.assign(
     {
-      accountB: 'expertise333 (better_life333)',
+      accountB: 'expertise333 (머니핏여우실장)',
       workspaceId: WORKSPACE_ID,
       blogUrl: 'https://blog.naver.com/expertise333',
+      blogName: '머니핏 3초 영수증 살림 팩트체크 연구소',
       cafeUrl: 'https://cafe.naver.com/moneyfitlab',
       cafeName: '머니핏 생활비 살림 팩트체크 연구소',
       cafeClubId: '31805224',
       publishedBlogPosts: [
+        'https://blog.naver.com/expertise333/224445607867',
+        'https://blog.naver.com/expertise333/224445607158',
         'https://blog.naver.com/expertise333/224445565766',
-        'https://blog.naver.com/expertise333/224445539447',
+        'https://blog.naver.com/comedifarm/224445608566',
         'https://blog.naver.com/comedifarm/224445577716',
         'https://blog.naver.com/comedifarm/224445537618'
       ],
@@ -219,11 +222,38 @@ async function buildBrandConnectDailyReport(options = {}) {
         'https://cafe.naver.com/moneyfitlab/5'
       ],
       publishedClips: [
-        'https://cafe.naver.com/moneyfitlab/5',
-        'https://blog.naver.com/comedifarm/224445577716'
+        'https://blog.naver.com/expertise333/224445607867',
+        'https://blog.naver.com/expertise333/224445607158',
+        'https://blog.naver.com/comedifarm/224445608566',
+        'https://cafe.naver.com/moneyfitlab/5'
       ]
     },
     existing.channels || {},
+    {
+      accountB: 'expertise333 (머니핏여우실장)',
+      blogName: '머니핏 3초 영수증 살림 팩트체크 연구소',
+      cafeClubId: '31805224',
+      publishedBlogPosts: [
+        'https://blog.naver.com/expertise333/224445607867',
+        'https://blog.naver.com/expertise333/224445607158',
+        'https://blog.naver.com/expertise333/224445565766',
+        'https://blog.naver.com/comedifarm/224445608566',
+        'https://blog.naver.com/comedifarm/224445577716',
+        'https://blog.naver.com/comedifarm/224445537618'
+      ],
+      publishedCafePosts: [
+        'https://cafe.naver.com/moneyfitlab/2',
+        'https://cafe.naver.com/moneyfitlab/3',
+        'https://cafe.naver.com/moneyfitlab/4',
+        'https://cafe.naver.com/moneyfitlab/5'
+      ],
+      publishedClips: [
+        'https://blog.naver.com/expertise333/224445607867',
+        'https://blog.naver.com/expertise333/224445607158',
+        'https://blog.naver.com/comedifarm/224445608566',
+        'https://cafe.naver.com/moneyfitlab/5'
+      ]
+    },
     options.channelsOverride || {}
   );
 
