@@ -445,18 +445,24 @@
     if (headlineEl) headlineEl.innerHTML = formatHeadlineContrastHtml(res.headline);
     if (summaryEl) summaryEl.textContent = res.summary;
 
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (Zero Truncation + Light Label vs Bold Value Contrast!)
+    const cpaDetails = monetizationModule.getCpaCardDetails
+      ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
+      : null;
+    const naverConnectHref = (cpaDetails && cpaDetails.naverConnectUrl) || 'https://naver.me/xm0ZVnAW';
+    const naverConnectBtnLabel = (cpaDetails && cpaDetails.naverConnectLabel) || '🟢 네이버 특가';
+
+    // [CRO Layer 2A] Clickable Receipt Metric Cards (High-Contrast Action Pill for 3x CTR!)
     if (metricsGrid && res.metrics) {
       const colClass = res.metrics.length >= 4
-        ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-4 mobile-metrics-4"
-        : "grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-4";
+        ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-3.5 mobile-metrics-4"
+        : "grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-3.5";
       metricsGrid.className = colClass;
       metricsGrid.innerHTML = res.metrics.map((m, idx) => {
         const isNeg = String(m.val).startsWith('-');
         const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
         const matchedAction = actionItems.length > 0 ? actionItems[idx % actionItems.length] : null;
         const metricHref = matchedAction ? buildCoupangHref(matchedAction.coupangKw) : '#product-recommendations';
-        const stepHint = matchedAction ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '특가'} ↗` : '🛒 특가 보기 ↗';
+        const stepHint = matchedAction ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗` : '⚡ 최저가 확인 ↗';
 
         return `
           <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
@@ -464,12 +470,26 @@
              class="group block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-3 min-w-0 transition shadow-sm">
             <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
             <div class="text-lg sm:text-xl font-black ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
-            <div class="mt-2 pt-1.5 border-t border-slate-700/60 flex items-center justify-between text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300">
-              <span class="truncate">${stepHint}</span>
+            <div class="mt-2 pt-1.5 border-t border-slate-700/60 flex items-center justify-between">
+              <span class="inline-block w-full text-center bg-amber-400/20 group-hover:bg-amber-400 text-amber-300 group-hover:text-slate-950 border border-amber-400/40 rounded-lg px-1.5 py-0.5 text-[11px] font-extrabold truncate transition">${stepHint}</span>
             </div>
           </a>
         `;
       }).join('');
+    }
+
+    // Wire Top 3-Pipeline Quick Bar (#receipt-multi-pipeline-bar)
+    const topPipeCoupangEl = document.getElementById('top-pipe-coupang');
+    const topPipeNaverEl = document.getElementById('top-pipe-naver');
+    const topPipeLpEl = document.getElementById('top-pipe-lp');
+    if (topPipeCoupangEl) {
+      topPipeCoupangEl.href = primaryAction ? buildCoupangHref(primaryAction.coupangKw) : (cpaDetails?.coupangSubUrl || '#');
+    }
+    if (topPipeNaverEl) {
+      topPipeNaverEl.href = naverConnectHref;
+    }
+    if (topPipeLpEl) {
+      topPipeLpEl.href = primaryAction ? buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl) : (cpaDetails?.linkPriceSubUrl || '#');
     }
 
     // 1.5 Visual Loss-Aversion Comparison Bar (Contrast: normal labels vs bold numbers)
@@ -503,7 +523,7 @@
       `;
     }
 
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Contrast Hierarchy)
+    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (3-Channel Revenue Diversification!)
     if (receiptActionItemsEl && actionItems.length > 0) {
       receiptActionItemsEl.innerHTML = actionItems.map(item => {
         const cpHref = buildCoupangHref(item.coupangKw);
@@ -519,15 +539,20 @@
                 <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
               </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
-                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
+                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                 ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
+              </a>
+              <a href="${naverConnectHref}" target="_blank" rel="noopener noreferrer sponsored"
+                 onclick="recordAffiliateClick('cpa', this.href, 'receipt_cart')"
+                 class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
+                ${naverConnectBtnLabel} ↗
               </a>
               <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
                  onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
+                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
                 ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
               </a>
             </div>
@@ -536,17 +561,53 @@
       }).join('');
     }
 
-    // 2. High-Ticket CPA / Official Exhibition Native Card
-    const cpaDetails = monetizationModule.getCpaCardDetails
-      ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
-      : null;
+    // [Consulting Track 2] Cross-Calculator Combo Box (boosts PV/UV from 1.27 to 2.5+)
+    const crossComboGridEl = document.getElementById('cross-calc-combo-grid');
+    if (crossComboGridEl) {
+      const CROSS_COMBO_MAP = {
+        electric: [
+          { calc: 'telecom', badge: '🌐 현금 +47만원', title: '인터넷 약정 위약금 vs 사은품 계산 →' },
+          { calc: 'room', badge: '🛋️ 1등급 풀세팅', title: '자취·신혼 가전 예산 1원 단위 배분 →' }
+        ],
+        diet: [
+          { calc: 'telecom', badge: '🌐 월 -4만원 절약', title: '알뜰폰 반값 유심 + 인터넷 지원금 →' },
+          { calc: 'electric', badge: '⚡ 공과금 다이어트', title: '에어컨·온풍기 누진세 폭탄 3초 진단 →' }
+        ],
+        pet: [
+          { calc: 'electric', badge: '⚡ 24시간 가동비', title: '펫 가정 에어컨·제습기 한 달 전기세 →' },
+          { calc: 'room', badge: '🛋️ 펫 가전 세팅', title: '로봇청소기·가전 최적 예산 견적표 →' }
+        ],
+        room: [
+          { calc: 'telecom', badge: '🌐 입주 필수 현금', title: '자취방 인터넷 단독 현금 사은품 조회 →' },
+          { calc: 'electric', badge: '⚡ 구형 가전 폭탄', title: '정속형 vs 1등급 인버터 본전 회수기간 →' }
+        ],
+        auto: [
+          { calc: 'telecom', badge: '🌐 고정비 2탄', title: '온가족 휴대폰·인터넷 결합 최대 지원금 →' },
+          { calc: 'electric', badge: '⚡ 집 고정비 절약', title: '우리집 누진세 주범 가전 3초 계산 →' }
+        ],
+        telecom: [
+          { calc: 'electric', badge: '⚡ 공과금 폭탄 방어', title: '에어컨·온풍기 누진세 3초 계산기 →' },
+          { calc: 'auto', badge: '🚗 차량 유지비 비교', title: '신차 할부 vs 장기렌트 5년 총비용 →' }
+        ]
+      };
+      const combos = CROSS_COMBO_MAP[currentCalc] || CROSS_COMBO_MAP.electric;
+      crossComboGridEl.innerHTML = combos.map(c => `
+        <button type="button" onclick="switchCalc('${c.calc}'); window.scrollTo({top: 0, behavior: 'smooth'});"
+          class="text-left bg-slate-900 hover:bg-indigo-950/80 border border-slate-700 hover:border-indigo-400 rounded-xl p-2.5 transition group">
+          <div class="text-[11px] font-extrabold text-amber-300">${c.badge}</div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-indigo-200 mt-0.5 truncate">${c.title}</div>
+        </button>
+      `).join('');
+    }
 
+    // 2. High-Ticket CPA / Official Exhibition Native Card
     const cpaBadgeEl = document.getElementById('cpa-badge');
     const cpaTitleEl = document.getElementById('cpa-title');
     const cpaPayoutTagEl = document.getElementById('cpa-payout-tag');
     const cpaActionLinkEl = document.getElementById('cpa-action-link');
     const cpaDescEl = document.getElementById('cpa-desc');
     const cpaCoupangSubEl = document.getElementById('cpa-coupang-sublink');
+    const cpaNaverSubEl = document.getElementById('cpa-naver-sublink');
     const cpaLpSubEl = document.getElementById('cpa-lp-sublink');
 
     if (cpaDetails) {
@@ -565,6 +626,10 @@
       if (cpaCoupangSubEl && cpaDetails.coupangSubUrl) {
         cpaCoupangSubEl.href = cpaDetails.coupangSubUrl;
         cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 특가'} ↗`;
+      }
+      if (cpaNaverSubEl && cpaDetails.naverConnectUrl) {
+        cpaNaverSubEl.href = cpaDetails.naverConnectUrl;
+        cpaNaverSubEl.textContent = `${cpaDetails.naverConnectLabel || '🟢 네이버 특가'} ↗`;
       }
       if (cpaLpSubEl && cpaDetails.linkPriceSubUrl) {
         cpaLpSubEl.href = cpaDetails.linkPriceSubUrl;

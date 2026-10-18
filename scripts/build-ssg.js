@@ -18,6 +18,12 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 
 // Load SSOT modules
+try {
+  const officialLinksMod = require('../src/data/coupang-official-links.js');
+  if (officialLinksMod && officialLinksMod.COUPANG_OFFICIAL_LINKS) {
+    global.COUPANG_OFFICIAL_LINKS = officialLinksMod.COUPANG_OFFICIAL_LINKS;
+  }
+} catch (e) {}
 const { PRESETS } = require('../src/data/presets.js');
 const calculators = require('../src/data/calculators.js');
 const monetization = require('../src/data/monetization.js');
@@ -504,13 +510,6 @@ function renderTableHtml(preset, res) {
             const matchedAct = actionItems.length > 0 ? actionItems[rIdx % actionItems.length] : primaryAction;
             const rowCpUrl = monetization.buildCoupangUrl(matchedAct.coupangKw || preset.title, preset.calc, config.coupangAfId);
             const rowLpUrl = monetization.buildLinkPriceDeepLink(matchedAct.lpMerchant || 'himart', matchedAct.lpUrl || 'https://www.e-himart.co.kr/', config.linkPriceId);
-            const isHighlightRow = rIdx === tableRows.length - 1 || rIdx === 1;
-            const btnHref = (rIdx % 2 === 0) ? rowCpUrl : rowLpUrl;
-            const btnChannel = (rIdx % 2 === 0) ? 'coupang' : 'linkprice';
-            const btnLabel = (rIdx % 2 === 0) ? '🚀 최저가 확인 ↗' : '🏷️ 제휴 특가 ↗';
-            const btnCls = isHighlightRow
-              ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-sm'
-              : 'bg-blue-600 hover:bg-blue-500 text-white';
 
             return `
             <tr class="${rIdx % 2 === 1 ? 'bg-slate-50/70' : 'bg-white'} hover:bg-blue-50/50 transition">
@@ -519,12 +518,19 @@ function renderTableHtml(preset, res) {
                   ${cell}
                 </td>
               `).join('')}
-              <td class="py-3 px-3 text-center whitespace-nowrap">
-                <a href="${btnHref}" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordPresetClick('${btnChannel}', this.href, 'preset_table')"
-                   class="inline-block ${btnCls} font-extrabold text-[11px] px-2.5 py-1.5 rounded-lg transition whitespace-nowrap">
-                  ${btnLabel}
-                </a>
+              <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                <div class="inline-flex items-center gap-1">
+                  <a href="${rowCpUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                     onclick="recordPresetClick('coupang', this.href, 'preset_table')"
+                     class="inline-block bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-[11px] px-2 py-1.5 rounded-lg transition whitespace-nowrap shadow-sm">
+                    🚀 쿠팡가 ↗
+                  </a>
+                  <a href="${rowLpUrl}" target="_blank" rel="noopener noreferrer sponsored"
+                     onclick="recordPresetClick('linkprice', this.href, 'preset_table')"
+                     class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[11px] px-2 py-1.5 rounded-lg transition whitespace-nowrap">
+                    🏷️ 공식몰 ↗
+                  </a>
+                </div>
               </td>
             </tr>
             `;
@@ -858,7 +864,13 @@ function renderInteractiveCalculatorCard(preset, res) {
     );
   };
 
-  // Pre-rendered metrics cards (Zero Truncation + Light Label vs Bold Value Contrast!)
+  // Target CPA card
+  const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
+  const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
+  const naverConnectHref = cpaCardInfo.naverConnectUrl || 'https://naver.me/xm0ZVnAW';
+  const naverConnectBtnLabel = cpaCardInfo.naverConnectLabel || '🟢 네이버 특가';
+
+  // Pre-rendered metrics cards (High-Contrast Button Pill for 3x CTR!)
   const metricsHtml = (res.metrics || []).map((m, idx) => {
     const isNeg = String(m.val).startsWith('-');
     const valColor = isNeg ? 'text-rose-400' : 'text-amber-300';
@@ -867,8 +879,8 @@ function renderInteractiveCalculatorCard(preset, res) {
       ? monetization.buildCoupangUrl(matchedAction.coupangKw, preset.calc, config.coupangAfId)
       : '#res-products-grid';
     const stepHint = matchedAction
-      ? `${matchedAction.icon || '🛒'} ${matchedAction.stepTag || '특가'} ↗`
-      : '🛒 특가 보기 ↗';
+      ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗`
+      : '⚡ 최저가 확인 ↗';
 
     return `
       <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
@@ -876,12 +888,14 @@ function renderInteractiveCalculatorCard(preset, res) {
          class="group block bg-slate-800/90 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700 hover:border-amber-400 min-w-0 transition">
         <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
         <div class="font-black text-lg sm:text-xl ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
-        <div class="mt-2 pt-1.5 border-t border-slate-700/60 text-[11px] sm:text-xs font-medium text-emerald-300/90 group-hover:text-amber-300 truncate">${stepHint}</div>
+        <div class="mt-2 pt-1.5 border-t border-slate-700/60">
+          <span class="inline-block w-full text-center bg-amber-400/20 group-hover:bg-amber-400 text-amber-300 group-hover:text-slate-950 border border-amber-400/40 rounded-lg px-1.5 py-0.5 text-[11px] font-extrabold truncate transition">${stepHint}</span>
+        </div>
       </a>
     `;
   }).join('');
 
-  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (Contrast Hierarchy)
+  // Pre-rendered 1:1 Action Items Prescription Shopping Cart (3-Channel Revenue Diversification!)
   const actionItemsHtml = actionItems.map(item => {
     const cpHref = monetization.buildCoupangUrl(item.coupangKw, preset.calc, config.coupangAfId);
     const lpHref = monetization.buildLinkPriceDeepLink(item.lpMerchant, item.lpUrl, config.linkPriceId);
@@ -894,25 +908,26 @@ function renderInteractiveCalculatorCard(preset, res) {
           </div>
           <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('coupang', this.href, 'receipt_cart')"
-             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
+             class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
             ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
+          </a>
+          <a href="${naverConnectHref}" target="_blank" rel="noopener noreferrer sponsored"
+             onclick="recordPresetClick('cpa', this.href, 'receipt_cart')"
+             class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
+            ${naverConnectBtnLabel} ↗
           </a>
           <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
              onclick="recordPresetClick('linkprice', this.href, 'receipt_cart')"
-             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-3 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap">
+             class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
             ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
           </a>
         </div>
       </div>
     `;
   }).join('');
-
-  // Target CPA card
-  const cpaCardInfo = monetization.getCpaCardDetails(preset.calc, res, config);
-  const cpaTargetUrl = cpaCardInfo.liveActionUrl || cpaCardInfo.actionUrl;
 
   // Coupang (AF7865143) + LinkPrice (A100708867) Enriched Product Recommendations (Zero Truncation + Visual Contrast)
   const productsHtml = (res.products || []).map(p => {
