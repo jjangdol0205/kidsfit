@@ -1746,4 +1746,26 @@ if (require.main === module) {
       for (let i = 0; i < PRESETS.length; i += 2) {
         const batch = PRESETS.slice(i, i + 2);
         const resList = await Promise.all(batch.map(p => renderTotoEpisodeForSlug(p.id)));
-        resList.forEach(r => console.log(`
+        resList.forEach(r => console.log(`  ✓ [${r.slug}] 4 slides + grid rendered`));
+      }
+      console.log('🎉 All 36 Original MoneyFit Webtoon episodes rendered!');
+    } else if (slug) {
+      const res = await renderTotoEpisodeForSlug(slug);
+      console.log('Generated Original MoneyFit Webtoon:', res);
+    } else {
+      const res = renderTotoSample1();
+      console.log('Generated Original MoneyFit Sample Webtoon:', res);
+    }
+  })().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  TOTO_CURATED_META,
+  buildTotoEpisodeSpec,
+  buildTotoRenderHtml,
+  renderTotoEpisodeForSlug,
+  renderTotoSample1
+};

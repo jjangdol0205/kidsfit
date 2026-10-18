@@ -298,18 +298,18 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
       yesterdayRank: 1,
       yesterdaySearchGrowth: '+240% 급상승',
       liveTrendBridgeKeywords: ['청년미래적금', '케이뱅크 돈나무', '금시세'],
-      creatorAdvisorKeyword: '건강보험료 환급금 조회 방법 & 청년미래적금·케이뱅크 돈나무 종잣돈 마련 공식',
+      creatorAdvisorKeyword: '건강보험료 환급금 조회 방법 및 본인부담상한제 지급 신청',
       conversationalHookQuote: '"어제 조회해보고 깜짝 놀란 48만원! 모르고 그냥 냈다가 소멸될 뻔했습니다"',
-      homeFeedTitle: '"어제 조회해보고 깜짝 놀란 48만원!" 건강보험료 숨은 환급금 1분 조회 및 청년미래적금·케이뱅크 돈나무 재테크 공식 (평균 135만원)',
+      homeFeedTitle: '"어제 조회해보고 깜짝 놀란 48만원!" 건강보험료 숨은 환급금 1분 조회 및 본인부담상한제 신청법 총정리',
       shortThumbBadge: '전일자 경제 트렌드 1위 · 숨은돈 찾기',
       shortThumbLine1: '신청 안 하면 국고 환수!',
       shortThumbLine2: '건보료 환급금 1분 조회법',
-      simulatorUrl: 'https://truthofmarket.com/?tab=refund&utm_source=naver_blog_expertise333&utm_medium=homefeed_slot1',
-      simulatorAnchorText: '내 소득분위별 건강보험료 본인부담상한제 예상 환급액 3초 계산기 (truthofmarket.com)',
+      simulatorUrl: 'https://blog.naver.com/expertise333',
+      simulatorAnchorText: '내 소득분위별 건강보험료 본인부담상한제 환급 기준표',
       selfLearningWeight: 1.563,
       adpostCpcTier: '최상 (추정 CPC 1,500~3,400원 · 보험/금융/세무 최고단가 광고 매칭)',
       postType: 'ADPOST_PURE',
-      homeFeedIntro: `어제 저녁에 부모님과 통화하다가 혹시나 해서 국민건강보험공단 앱에 들어가 '미지급 환급금 조회'를 눌러봤는데, 세상에 찾아가지 않은 본인부담상한제 환급금이 48만 원이나 잠자고 있는 걸 발견했습니다.\n\n요즘 네이버 크리에이터 어드바이저 경제 검색어 상위에 오른 **'청년미래적금'**, **'케이뱅크 돈나무'**, **'금시세'**처럼 하루 몇백 원씩 아끼고 모으는 재테크에는 관심이 많으면서도, 정작 이 제도를 몰라서 수십만 원에서 백만 원이 넘는 환급금을 그냥 묵혀두고 계신 분들이 정말 많더라고요.\n\n특히 환급 발생일로부터 3년 안에 신청하지 않으면 소멸시효가 지나 아예 찾아갈 수 없게 됩니다. 오늘 글에서는 어제 네이버 경제·생활 카테고리에서 검색량이 폭발한 **'건강보험료 환급금 & 본인부담상한제 지급 신청 방법'**과 환급금을 종잣돈으로 굴리는 법을 가장 알기 쉽게 정리해 드립니다.`,
+      homeFeedIntro: `어제 저녁에 부모님과 통화하다가 혹시나 해서 국민건강보험공단 앱에 들어가 '미지급 환급금 조회'를 눌러봤는데, 세상에 찾아가지 않은 본인부담상한제 환급금이 48만 원이나 잠자고 있는 걸 발견했습니다.\n\n요즘 파킹통장이나 적금 금리 0.1% 더 주는 곳을 찾으려고 발품을 파는 분들은 많지만, 정작 공단에서 돌려주겠다고 쌓아둔 수십만 원~백만 원대 환급금은 제도를 몰라서 그냥 묵혀두는 경우가 정말 많더라고요.\n\n특히 환급 발생일로부터 3년 안에 신청하지 않으면 소멸시효가 지나 국고로 환수되어 아예 찾아갈 수 없게 됩니다. 오늘 글에서는 어제 네이버 경제·생활 카테고리에서 검색량이 폭발한 **'건강보험료 환급금 & 본인부담상한제 지급 신청 방법'**을 가장 알기 쉽게 정리해 드립니다.`,
       cafeIntro: `카페 회원님들 안녕하세요! 어제 저녁 가족들 건강보험공단 앱을 점검해 보다가 미처 찾아가지 않았던 본인부담상한제 환급금을 발견해, 회원님들도 소멸시효(3년)가 지나기 전에 꼭 확인해 보시라고 핵심 기준표와 1분 신청 순서를 정리해 가져왔습니다.`,
       subheadings: [
         {
@@ -319,16 +319,16 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
           body: `건강보험공단에서 국민들에게 돌려주는 환급금은 크게 두 가지입니다.\n\n첫째는 **'본인부담상한제 사후환급금'**입니다. 1년 동안(1월 1일~12월 31일) 병·의원이나 약국에서 지출한 건강보험 적용 본인부담금 총액이 내 소득분위별 상한액(1분위 약 87만 원 ~ 10분위 약 808만 원)을 초과했을 때, 그 초과분을 공단에서 전액 현금으로 돌려주는 제도입니다.\n\n둘째는 **'보험료 과오납 환급금'**입니다. 퇴사나 이직, 사업장 변경, 혹은 지역가입자에서 직장가입자 피부양자로 자격이 변동되는 과정에서 보험료가 이중으로 빠져나갔거나 잘못 산정된 차액을 돌려주는 돈입니다.`
         },
         {
-          h2: '2. 2026년 적용 소득구간별 본인부담상한액 기준표 & 환급금 재테크 활용법',
+          h2: '2. 2026년 적용 소득구간별 본인부담상한액 기준표 (얼마부터 돌려받나?)',
           h3: '1~3분위 직장인·부모님은 연 87만~138만원만 넘어도 전액 환급 대상!',
-          summaryTip: '소득 하위 1~3분위 가구는 1년 치 건강보험 적용 병원비가 87만~138만 원만 넘어도 초과 금액 전부를 돌려받아 청년미래적금이나 파킹통장 종잣돈으로 활용할 수 있습니다.',
-          body: `아래 표는 소득분위(1분위~10분위)에 따라 1년 치 건강보험 본인부담 병원비가 얼마를 넘었을 때 현금 환급이 나오는지, 그리고 돌려받은 돈을 **청년미래적금·케이뱅크 돈나무·금시세** 재테크에 어떻게 연결하면 좋은지 정리한 핵심 기준표입니다.`,
+          summaryTip: '소득 하위 1~3분위 가구는 1년 치 건강보험 적용 병원비가 87만~138만 원만 넘어도 초과 금액 전부를 공단에서 현금으로 돌려받습니다.',
+          body: `아래 표는 소득분위(1분위~10분위)에 따라 1년 치 건강보험 본인부담 병원비가 얼마를 넘었을 때 현금 환급이 나오는지 정리한 핵심 기준표입니다. (※ 비급여 치료비, 임플란트, 상급병실료, 추나요법 등은 상한제 산정에서 제외됩니다.)`,
           table: [
-            ['소득 분위 구간', '월 건강보험료 기준(직장인 약식)', '연간 본인부담 상한액', '초과 시 환급 예시 (연 병원비 250만원 지출 시)', '추천 재테크 연결'],
-            ['1분위 (하위 10%)', '월 5만 원 이하 구간', '약 87만 원', '약 163만 원 현금 환급', '청년미래적금 / 특판 예치'],
-            ['2~3분위', '월 5만 ~ 8.5만 원 구간', '약 108만 ~ 138만 원', '약 112만 ~ 142만 원 현금 환급', '청년미래적금 월 납입금 활용'],
-            ['4~5분위 (중위권)', '월 8.5만 ~ 14만 원 구간', '약 196만 원', '약 54만 원 현금 환급', '케이뱅크 돈나무 파킹통장'],
-            ['6~7분위', '월 14만 ~ 23만 원 구간', '약 325만 원', '325만 원 초과분 전액 환급', 'KRX 금시세 소액 적립']
+            ['소득 분위 구간', '월 건강보험료 기준(직장인 약식)', '연간 본인부담 상한액', '초과 시 환급 예시 (연 병원비 250만원 지출 시)'],
+            ['1분위 (하위 10%)', '월 5만 원 이하 구간', '약 87만 원', '약 163만 원 현금 환급'],
+            ['2~3분위', '월 5만 ~ 8.5만 원 구간', '약 108만 ~ 138만 원', '약 112만 ~ 142만 원 현금 환급'],
+            ['4~5분위 (중위권)', '월 8.5만 ~ 14만 원 구간', '약 196만 원', '약 54만 원 현금 환급'],
+            ['6~7분위', '월 14만 ~ 23만 원 구간', '약 325만 원', '325만 원 초과분 전액 환급']
           ]
         },
         {
@@ -357,15 +357,15 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
       caCategory: '비즈니스·경제',
       yesterdayRank: 2,
       yesterdaySearchGrowth: '+195% 급상승',
-      liveTrendBridgeKeywords: ['한전 에너지캐시백', '케이뱅크 돈나무', '고정비 절약'],
+      liveTrendBridgeKeywords: ['한전 에너지캐시백', '고효율 가전 환급', '고정비 절약'],
       creatorAdvisorKeyword: '한전 에너지캐시백 신청 방법 및 주택용 전기요금 누진세 구간 절약 꿀팁',
       conversationalHookQuote: '"모르고 그냥 냈다가 매달 생돈 나갔네요! 한 번 등록으로 전기세 자동 할인"',
       homeFeedTitle: '"모르고 그냥 냈다가 나만 손해!" 매달 전기세 깎아주는 한전 에너지캐시백 & 가전 환급금 완벽 정리',
       shortThumbBadge: '전일자 경제 트렌드 2위 · 공과금 절약',
       shortThumbLine1: '모르면 나만 다 내는 전기세!',
       shortThumbLine2: '한전 캐시백 & 환급 신청법',
-      simulatorUrl: 'https://truthofmarket.com/?tab=electric&utm_source=naver_blog_expertise333&utm_medium=homefeed_slot2',
-      simulatorAnchorText: '우리 집 월 전력량(kWh) 누진세 구간 & 에너지캐시백 절감액 3초 계산기 (truthofmarket.com)',
+      simulatorUrl: 'https://blog.naver.com/expertise333',
+      simulatorAnchorText: '우리 집 월 전력량(kWh) 누진세 구간 & 에너지캐시백 절감 기준표',
       selfLearningWeight: 1.48,
       adpostCpcTier: '최상 (추정 CPC 950~2,100원 · 공공/금융/생활가전 광고 매칭)',
       postType: 'ADPOST_PURE',
@@ -417,18 +417,18 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
       yesterdayRank: 3,
       yesterdaySearchGrowth: '+180% 급상승',
       liveTrendBridgeKeywords: ['유플러스 멤버십', '넷플릭스 요금제', '유튜브 프리미엄'],
-      creatorAdvisorKeyword: '통신사 미환급금 조회 스마트초이스 & 인터넷 약정 만료 47만원·유플러스 멤버십·넷플릭스 요금제·유튜브 프리미엄 절약법',
+      creatorAdvisorKeyword: '통신사 미환급금 조회 스마트초이스 및 인터넷 약정 만료 47만원 손익분기점 계산법',
       conversationalHookQuote: '"어제 조회해보고 깜짝 놀란 통신사 미환급금! 인터넷 3년 약정 방치했다가 47만원 놓칠 뻔"',
-      homeFeedTitle: '"어제 조회해보고 깜짝 놀란 미환급금!" 통신사 미환급금 30초 조회법 & 인터넷 3년 약정 만료 47만원 + 넷플릭스·유튜브 절약 공식',
+      homeFeedTitle: '"어제 조회해보고 깜짝 놀란 미환급금!" 통신사 미환급금 30초 조회법 & 인터넷 3년 약정 만료 47만원 손익 비교표',
       shortThumbBadge: '전일자 경제 트렌드 3위 · 통신비 환급',
       shortThumbLine1: '잠자는 통신사 미환급금 조회 &',
       shortThumbLine2: '인터넷 약정 만료 47만원 공식',
-      simulatorUrl: 'https://truthofmarket.com/?tab=telecom&utm_source=naver_blog_expertise333&utm_medium=homefeed_slot3',
-      simulatorAnchorText: '인터넷 3년 약정 만료 위약금 vs 47만원 지원금 손익분기점 3초 계산기 (truthofmarket.com)',
+      simulatorUrl: 'https://blog.naver.com/expertise333',
+      simulatorAnchorText: '인터넷 3년 약정 만료 위약금 vs 47만원 지원금 손익분기점 비교표',
       selfLearningWeight: 1.445,
       adpostCpcTier: '최상 (추정 CPC 1,300~2,900원 · 통신/인터넷/카드 고단가 광고 매칭)',
       postType: 'ADPOST_PURE',
-      homeFeedIntro: `예전에 휴대폰 번호이동을 했거나 이사하면서 인터넷을 해지할 때, 정산 과정에서 더 냈던 요금이나 보증금이 통신사 계좌에 그대로 남아 있는 경우가 생각보다 많습니다.\n\n실제로 과학기술정보통신부와 한국통신사업자연합회가 운영하는 공식 사이트에서 조회해 보면 몇천 원에서 몇만 원씩 잠자고 있는 **'통신사 미환급액'**이 바로 뜨는데요.\n\n여기에 더해 어제 크리에이터 어드바이저 인기 검색어에 오른 **'유플러스 멤버십'**, **'넷플릭스 요금제'**, **'유튜브 프리미엄'** 결합 절약 팁과 집 인터넷 3년 약정이 끝났는데도 그대로 쓰고 계신 분들이 놓치고 있는 **'최대 47만 원 지원금 손익분기점 공식'**까지 한 번에 정리해 드립니다.`,
+      homeFeedIntro: `예전에 휴대폰 번호이동을 했거나 이사하면서 인터넷을 해지할 때, 정산 과정에서 더 냈던 요금이나 보증금이 통신사 계좌에 그대로 남아 있는 경우가 생각보다 많습니다.\n\n실제로 과학기술정보통신부와 한국통신사업자연합회가 운영하는 공식 사이트에서 조회해 보면 몇천 원에서 몇만 원씩 잠자고 있는 **'통신사 미환급액'**이 바로 뜨는데요.\n\n오늘은 내 명의의 숨은 통신사 미환급금을 30초 만에 조회하는 방법과 함께, 집 인터넷 3년 약정이 끝났는데도 그대로 쓰고 계신 분들이 놓치고 있는 **'최대 47만 원 지원금 손익분기점 공식'**까지 한 번에 정리해 드립니다.`,
       cafeIntro: `예전에 해지한 휴대폰·인터넷 회선에 남아 있는 '통신사 미환급금' 30초 조회 방법과, 집 인터넷 3년 약정이 끝났을 때 호구 잡히지 않고 혜택을 챙기는 손익 비교표를 카페 회원님들을 위해 정리했습니다.`,
       subheadings: [
         {
@@ -450,10 +450,10 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
           ]
         },
         {
-          h2: '3. 유플러스 멤버십·넷플릭스 요금제·유튜브 프리미엄 결합 & 통신비 다이어트 체크리스트',
-          h3: '무조건 비싼 1기가(1Gbps) 요금제 대신 가구원 수에 맞는 실속 속도와 멤버십 구독콕을 선택하세요',
-          summaryTip: '일반 가정에서는 100메가~500메가 요금제와 통신사 멤버십(유플러스 멤버십 등) OTT 제휴를 활용하면 넷플릭스 요금제와 유튜브 프리미엄 고정비를 매달 크게 줄일 수 있습니다.',
-          body: `**첫째,** 1~2인 가구나 원룸·오피스텔에서 유튜브 시청과 웹서핑 위주로 사용한다면 **100메가(월 2만 원대 초반)** 요금제로도 속도 차이를 전혀 느끼지 못합니다.\n\n**둘째,** 어제 실시간 인기 검색어에 오른 **'유플러스 멤버십'**, **'넷플릭스 요금제'**, **'유튜브 프리미엄'**은 개별 결제하기보다 통신사 VIP 구독콕·결합 요금제로 묶으면 매달 1만~2만 원을 추가로 아낄 수 있습니다.\n\n**셋째,** 통신사 고객센터에 전화해 현재 회선의 정확한 '약정 만료일'과 '재약정 시 방어 혜택'을 먼저 물어본 뒤 타사 이동 혜택과 비교하면 절대 손해 보지 않습니다.`
+          h2: '3. 호구 안 잡히고 인터넷·통신비 매달 1.5만 원 아끼는 실전 체크리스트 3가지',
+          h3: '무조건 비싼 1기가(1Gbps) 요금제 대신 가구원 수에 맞는 실속 속도와 멤버십 혜택을 선택하세요',
+          summaryTip: '일반 가정에서는 100메가~500메가 요금제와 통신사 멤버십 OTT 제휴를 활용하면 매달 나가는 고정비를 크게 줄일 수 있습니다.',
+          body: `**첫째,** 1~2인 가구나 원룸·오피스텔에서 유튜브 시청과 웹서핑 위주로 사용한다면 **100메가(월 2만 원대 초반)** 요금제로도 속도 차이를 전혀 느끼지 못합니다.\n\n**둘째,** 넷플릭스나 유튜브 프리미엄 같은 OTT 구독료는 개별 결제하기보다 통신사 멤버십 구독 혜택이나 결합 요금제로 묶으면 매달 1만~2만 원을 추가로 아낄 수 있습니다.\n\n**셋째,** 통신사 고객센터에 전화해 현재 회선의 정확한 '약정 만료일'과 '재약정 시 방어 혜택'을 먼저 물어본 뒤 타사 이동 혜택과 비교하면 절대 손해 보지 않습니다.`
         },
         {
           h2: '4. 자주 묻는 질문(FAQ) — 알뜰폰(MVNO)을 써도 인터넷 결합 할인이 되나요?',
@@ -475,34 +475,34 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
       caCategory: '비즈니스·경제',
       yesterdayRank: 4,
       yesterdaySearchGrowth: '+165% 급상승',
-      liveTrendBridgeKeywords: ['투싼', '아반떼 신형', '아이오닉9', '운전면허증 갱신'],
-      creatorAdvisorKeyword: '자동차세 연납 공제 & 투싼·아반떼 신형·아이오닉9 신차 할부 vs 장기렌트 5년 유지비 비교 및 운전면허증 갱신',
+      liveTrendBridgeKeywords: ['자동차세 연납', '신차 장기렌트 비교', '다이렉트 자동차보험'],
+      creatorAdvisorKeyword: '자동차세 연납 신청 공제율 및 신차 할부 vs 장기렌트 5년 유지비 비교',
       conversationalHookQuote: '"모르고 그냥 냈다가 자동차 유지비로만 5년 800만원 더 낼 뻔했습니다!"',
-      homeFeedTitle: '"모르고 그냥 냈다가 수백만원 손해!" 자동차세 연납 공제율 & 투싼·아반떼 신형·아이오닉9 할부 vs 장기렌트 5년 총비용 비교표',
+      homeFeedTitle: '"모르고 그냥 냈다가 수백만원 손해!" 자동차세 연납 공제율 & 신차 할부 vs 장기렌트 5년 총비용 비교표',
       shortThumbBadge: '전일자 경제 트렌드 4위 · 자동차 금융',
       shortThumbLine1: '자동차 유지비 연 150만원 아끼는',
       shortThumbLine2: '세금 공제 & 신차 구매 공식',
-      simulatorUrl: 'https://truthofmarket.com/?tab=auto&utm_source=naver_blog_expertise333&utm_medium=homefeed_slot4',
-      simulatorAnchorText: '신차(투싼·아반떼·아이오닉9 등) 할부 vs 장기렌트 vs 리스 5년 총비용(TCO) 3초 계산기 (truthofmarket.com)',
+      simulatorUrl: 'https://blog.naver.com/expertise333',
+      simulatorAnchorText: '신차 할부 vs 장기렌트 vs 리스 5년 총비용(TCO) 비교 기준표',
       selfLearningWeight: 1.41,
       adpostCpcTier: '최상 (추정 CPC 1,600~3,500원 · 다이렉트 자동차보험/캐피탈/리스 최고단가 광고 매칭)',
       postType: 'ADPOST_PURE',
-      homeFeedIntro: `차를 한 대 유지하다 보면 기름값 말고도 매년 돌아오는 자동차세, 자동차보험 갱신료, 그리고 할부 원리금까지 통장에서 빠져나가는 고정비가 정말 만만치 않습니다.\n\n그런데 어제 크리에이터 어드바이저 인기 검색어에 오른 **'투싼'**, **'아반떼 신형'**, **'아이오닉9'** 같은 차량을 운용할 때도 **자동차세 연납 공제 혜택**과 **다이렉트 보험 특약(주행거리 마일리지·티맵 안전운전)**, 그리고 **내 소득세율에 맞는 차량 구매 방식**만 제대로 챙기면 5년 동안 무려 500만~1,200만 원 이상 차이가 난다는 사실, 알고 계셨나요?\n\n오늘 글에서는 놓치면 과태료가 나오는 **'운전면허증 갱신 온라인 신청 팁'**부터 **'자동차 세금·보험 절약법 및 신차 5년 총유지비(TCO) 비교표'**를 한눈에 들어오게 정리해 드립니다.`,
+      homeFeedIntro: `차를 한 대 유지하다 보면 기름값 말고도 매년 돌아오는 자동차세, 자동차보험 갱신료, 그리고 할부 원리금까지 통장에서 빠져나가는 고정비가 정말 만만치 않습니다.\n\n그런데 **자동차세 연납 공제 혜택**과 **다이렉트 보험 특약(주행거리 마일리지·티맵 안전운전)**, 그리고 **내 소득세율에 맞는 차량 구매 방식**만 제대로 챙기면 5년 동안 무려 500만~1,200만 원 이상 차이가 난다는 사실, 알고 계셨나요?\n\n어제 네이버 크리에이터 어드바이저에서 검색량이 급증한 **'자동차 세금·보험 절약법 및 신차 5년 총유지비(TCO) 비교표'**를 한눈에 들어오게 정리해 드립니다.`,
       cafeIntro: `차량 유지비 부담을 확 줄이고 싶은 회원님들을 위해, 매년 챙겨야 할 '위택스 자동차세 연납 공제 & 카드 캐시백' 팁과 신차 구매 시 '할부 vs 장기렌트 vs 리스 5년 총비용 비교표'를 정리해 공유합니다.`,
       subheadings: [
         {
-          h2: '1. 매년 그냥 내면 손해! 자동차세 연납 공제 및 운전면허증 갱신 과태료 방어법',
-          h3: '위택스(Wetax)에서 연납 신청 후 카드사 지방세 이벤트와 운전면허증 온라인 갱신까지 챙기세요',
+          h2: '1. 매년 6월·12월 그냥 내면 손해! 위택스(Wetax) 자동차세 연납 공제 혜택',
+          h3: '1월·3월·6월·9월 연납 신청 기간을 활용하고 카드사 지방세 무이자·캐시백을 결합하세요',
           summaryTip: '위택스(서울은 이택스)에서 자동차세 연납을 신청하면 잔여 기간 세액을 할인받고 카드사 지방세 납부 캐시백까지 이중으로 챙길 수 있습니다.',
-          body: `자동차세는 원래 6월(1기분)과 12월(2기분) 두 번에 나누어 고지되지만, **위택스(Wetax, 서울은 이택스)**를 통해 연납(일시납부)을 신청하면 잔여 기간에 대해 약 **3~5% 수준의 세액 공제 혜택**을 받을 수 있습니다.\n\n특히 지방세 납부 달에 각 카드사에서 진행하는 '지방세 납부 2~6개월 무이자 할부' 또는 '캐시백 이벤트'를 결합하면 체감 할인율을 한층 더 높일 수 있으며, 올해 **'운전면허증 갱신'** 대상자분들은 안전운전 통합민원에서 미리 온라인 신청해 과태료를 예방하세요.`
+          body: `자동차세는 원래 6월(1기분)과 12월(2기분) 두 번에 나누어 고지되지만, **위택스(Wetax, 서울은 이택스)**를 통해 연납(일시납부)을 신청하면 잔여 기간에 대해 약 **3~5% 수준의 세액 공제 혜택**을 받을 수 있습니다.\n\n특히 연납 신청 달에 각 카드사에서 진행하는 '지방세 납부 2~6개월 무이자 할부' 또는 '포인트·스타벅스 쿠폰 캐시백 이벤트'를 결합하면 체감 할인율을 한층 더 높일 수 있습니다.`
         },
         {
-          h2: '2. 투싼·아반떼 신형·아이오닉9 등 신차 할부 구매 vs 장기렌트 vs 오토리스 5년 총비용 비교표',
+          h2: '2. 신차 할부 구매 vs 장기렌트 vs 오토리스 5년 총비용(TCO) 완벽 비교표',
           h3: '초기 취등록세 7%(약 280만원)와 종합소득세 비용처리 여부가 승패를 가릅니다',
           summaryTip: '근로소득 직장인은 초기 취등록세를 내더라도 저금리 할부가 유리한 반면, 종합소득세율 24~35% 이상 사업자는 연간 1,500만 원까지 경비처리가 되는 장기렌트·리스가 유리합니다.',
-          body: `**아반떼 신형**, **투싼**, **아이오닉9** 등 차를 새로 바꾸거나 첫 차를 구매할 때 월 납입금만 보지 말고 아래 5대 항목을 합산한 5년 총비용(TCO)을 비교해야 합니다.`,
+          body: `4,000만 원대 중형차·SUV를 기준으로 할부 구매와 장기렌트, 오토리스를 5년간 운용했을 때 어떤 차이가 나는지 핵심 항목을 비교했습니다.`,
           table: [
-            ['비교 항목', '신차 할부 구매 (개인 명의)', '신차 장기렌트 (렌트사 명의)', '오토리스 (금융사 명의)'],
+            ['비교 항목 (4,000만원 신차 기준)', '신차 할부 구매 (개인 명의)', '신차 장기렌트 (렌트사 명의)', '오토리스 (금융사 명의)'],
             ['초기 취등록세 (7%)', '약 280만 원 일시불 납부', '0원 (월 대여료에 면세 반영)', '취등록세 별도 또는 포함'],
             ['자동차보험료 & 할증', '본인 요율 (사고 시 보험료 할증)', '렌트사 보험 포함 (사고 할증 없음)', '본인 명의 보험 경력 유지'],
             ['사업자 절세 (연 1,500만 한도)', '감가상각비 + 유지비 비용처리', '월 렌트료 간편 비용처리 (세율 24~35% 유리)', '월 리스료 비용처리 가능'],
@@ -535,15 +535,15 @@ function loadYesterdayCreatorAdvisorKeywords(yesterdayStr, liveTrends) {
       caCategory: '비즈니스·경제',
       yesterdayRank: 5,
       yesterdaySearchGrowth: '+150% 급상승',
-      liveTrendBridgeKeywords: ['코스트코', '트레이더스', '1등급 가전 환급'],
+      liveTrendBridgeKeywords: ['신혼가전 예산표', '1등급 가전 환급', '올인원 로봇청소기'],
       creatorAdvisorKeyword: '신혼·이사 가전 예산 배분표 및 1등급 고효율 가전 환급·올인원 로봇청소기 선택 기준',
       conversationalHookQuote: '"어제 매장 견적 받아보고 깜짝 놀란 이사 가전! 이 비율 모르고 계약했다가 200만원 초과할 뻔"',
       homeFeedTitle: '"모르고 계약했다가 200만원 초과!" 이사·신혼 가전 호구 안 잡히는 황금 예산표 & 1등급 환급 + 올인원 로봇청소기 선택 기준',
       shortThumbBadge: '전일자 경제 트렌드 5위 · 가전 예산',
       shortThumbLine1: '이사 가전 예산 100만원 아끼는',
       shortThumbLine2: '품목별 상한선 & 로봇청소기 기준',
-      simulatorUrl: 'https://truthofmarket.com/?tab=appliance&utm_source=naver_blog_expertise333&utm_medium=homefeed_slot5',
-      simulatorAnchorText: '신혼·이사 가용 예산별 5대 가전 황금 배분 & 1등급 환급액 3초 계산기 (truthofmarket.com)',
+      simulatorUrl: 'https://blog.naver.com/expertise333',
+      simulatorAnchorText: '신혼·이사 가용 예산별 5대 가전 황금 배분 기준표',
       selfLearningWeight: 1.375,
       adpostCpcTier: '최상 (추정 CPC 1,100~2,400원 · 가전/리빙 애드포스트 + 네이버 공식 쇼핑커넥트 20% 병행)',
       postType: 'ADPOST_PLUS_SHOPPING_CONNECT',
@@ -677,7 +677,7 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
       const midAdBridge =
         idx === 1
           ? `<div style="margin:26px 0;padding:18px 20px;background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;font-size:15px;font-weight:800;color:#92400e;text-align:center;">
-          📌 잠깐! 내 소득구간·가구원 수·약정 조건에서 <u>추가 환급·할인 대상</u>에 해당하는지 아래 1분 신청 절차와 <b><a href="${topic.simulatorUrl}" target="_blank" rel="noopener noreferrer" style="color:#b45309;text-decoration:underline;">truthofmarket.com 3초 무료 계산기</a></b>에서 바로 확인해 보세요 👇
+          📌 잠깐! 내 소득구간·가구원 수·약정 조건에서 <u>추가 환급·할인 대상</u>에 해당하는지 아래 1분 신청 절차와 주의사항까지 꼭 함께 확인해 보세요 👇
         </div>`
           : '';
 
@@ -709,18 +709,17 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
 
   <!-- [발행자 전용 안내 박스 — 스마트에디터 복붙 시 아래 #smarteditor-copy-zone 영역만 복사하세요] -->
   <div style="background:#0f172a;color:#f8fafc;padding:18px 22px;border-radius:14px;margin-bottom:28px;font-size:14px;line-height:1.6;">
-    <div style="color:#34d399;font-weight:900;font-size:16px;margin-bottom:6px;">🏛️ [제2본부 expertise333 전용 v4.0 · 트리플 10K 자가학습] 홈판 Top 1% 원고 (#${topic.slot}/5)</div>
+    <div style="color:#34d399;font-weight:900;font-size:16px;margin-bottom:6px;">🏛️ [제2본부 expertise333 전용 v4.0 · 사람 칼럼 & 홈판 최적화] 원고 (#${topic.slot}/5)</div>
     <div>• <b>단일 핵심 카테고리</b>: ${topic.caCategory} (전일자 ${dates.yesterdayStr} 크리에이터 어드바이저 인기 키워드 #${topic.yesterdayRank}위 / ${topic.yesterdaySearchGrowth})</div>
-    <div>• <b>실측 트렌드 연동 키워드</b>: <code>${(topic.liveTrendBridgeKeywords || []).join(', ')}</code> (자가학습 가중치 <b>${topic.selfLearningWeight}</b> / +25% 강화)</div>
     <div>• <b>필수 대표 썸네일(단독 캐릭터 클로즈업 PNG)</b>: <code>2_homefeed_thumbnails/${thumbPngFileName}</code> (스마트에디터 최상단 대표사진 지정 필수)</div>
     <div>• <b>연동 웹툰 클립(주제 100% 일치 8초 MP4)</b>: <code>3_clip_webtoon_crank_safe/${clipMp4FileName}</code></div>
-    <div>• <b>무결점 검수 완료</b>: 대소제목 <b>24px</b> / 보조소제목 <b>19px</b> / 본문 <b>16px</b> / 전용 10초 요약 박스 / <code>truthofmarket.com</code> 연동 / 이웃 1만 명 배너</div>
+    <div>• <b>무결점 검수 완료</b>: 대소제목 <b>24px</b> / 보조소제목 <b>19px</b> / 본문 <b>16px</b> / 전용 10초 요약 박스 / 외부 유도 링크 <b>0개 (100% C-Rank 보호)</b></div>
   </div>
 
   <!-- ================= 스마트에디터 ONE 본문 복붙 시작 영역 ================= -->
   <div id="smarteditor-copy-zone">
 
-    <!-- 0. 홈판 대화형 인용구 훅 (자가학습 Auto-Pivot 최강 클릭률 패턴) -->
+    <!-- 0. 홈판 대화형 인용구 훅 -->
     <blockquote style="margin:0 0 22px 0;padding:16px 20px;background:#fefce8;border-left:6px solid #eab308;border-radius:0 14px 14px 0;font-size:17px;font-weight:900;color:#713f12;line-height:1.55;">
       💬 ${topic.conversationalHookQuote}
     </blockquote>
@@ -748,12 +747,11 @@ function buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName) {
     <!-- 4. 소제목(24px / 19px) + 전용 핵심 요약 콜아웃 + 비교표 + 심층 본문 섹션 -->
     ${sectionsHtml}
 
-    <!-- 5. 마무리 & truthofmarket.com 시뮬레이터 · 트리플 10K(블로그 이웃 10,000명 · 카페 10,000명 · 클립 10,000명) 안착 유도 -->
+    <!-- 5. 마무리 & 블로그/클립/카페 삼각 안착 유도 (하단 애드포스트 광고 직전 체류 극대화) -->
     <div style="margin-top:36px;padding:22px;background:#f1f5f9;border:2px solid #03c75a;border-radius:14px;font-size:15px;line-height:1.8;color:#1e293b;">
       <p style="margin:0 0 10px 0;font-weight:900;font-size:18px;color:#0f172a;">💬 오늘 정리해 드린 『${topic.shortThumbLine2}』, 지금 바로 1분만 투자해 확인해 보세요!</p>
-      <p style="margin:0 0 10px 0;">• <b>[3초 무료 환급·절세 시뮬레이터]</b>: <a href="${topic.simulatorUrl}" target="_blank" rel="noopener noreferrer" style="color:#059669;font-weight:800;text-decoration:underline;">${topic.simulatorAnchorText}</a>에서 내 조건별 예상 금액을 바로 계산해 보실 수 있습니다.</p>
-      <p style="margin:0 0 10px 0;">• <b>[네이버 클립 & 공식 카페]</b>: 한눈에 들어오는 <b>8초 웹툰 모션 요약 영상(네이버 클립 <code>@truthofmarket</code>)</b>과 <b>질의응답·체크리스트 게시판(네이버 공식 카페 <code>moneyfitlab</code>)</b>에서도 매주 새로운 생활경제·환급금 정보를 가장 빠르게 받아보실 수 있습니다.</p>
-      <p style="margin:0;font-weight:900;color:#059669;">❤️ [이웃 10,000명 돌파 캠페인] 이 글이 도움 되셨다면 [공감 ♥]과 [이웃 추가 +] 꾹 눌러두시고 매주 월요일 숨은 환급금 알림을 받아보세요!</p>
+      <p style="margin:0 0 10px 0;">• <b>[네이버 클립 & 공식 카페]</b>: 한눈에 들어오는 <b>8초 웹툰 요약 영상(네이버 클립)</b>과 <b>질의응답·체크리스트 게시판(네이버 카페)</b>에서도 매주 새로운 생활경제·환급금 정보를 가장 빠르게 받아보실 수 있습니다.</p>
+      <p style="margin:0;font-weight:900;color:#059669;">❤️ 이 글이 도움 되셨다면 아래 [공감 ♥]과 [서로이웃 추가 +] 꾹 눌러두시고, 궁금한 점은 댓글로 편하게 남겨주세요!</p>
     </div>
 
   </div>
@@ -816,8 +814,8 @@ function generateDivision2DailyPack() {
 
     const isHybrid = topic.postType === 'ADPOST_PLUS_SHOPPING_CONNECT';
     const modeBadge = isHybrid
-      ? '🟢 [방안B 20%] 애드포스트 + 네이버 공식 쇼핑커넥트 병행 + truthofmarket.com 시뮬레이터 연동'
-      : '💰 [방안B 80%] 고단가 애드포스트 홈판 저격 + truthofmarket.com 시뮬레이터 연동';
+      ? '🟢 [방안B 20%] 애드포스트 + 네이버 공식 쇼핑커넥트 병행 (외부 유도 링크 0개)'
+      : '💰 [방안B 80%] 순수 정보성 · 고단가 애드포스트 홈판 저격 (외부 유도 링크 0개)';
 
     // Build Rich HTML file (with explicit 24px/19px subheadings for SmartEditor ONE)
     const htmlContent = buildSmartEditorHtml(topic, dates, thumbPngFileName, clipMp4FileName);
@@ -830,7 +828,7 @@ function generateDivision2DailyPack() {
         const tableMd = sh.table ? `\n\n${renderMarkdownTable(sh.table)}\n` : '';
         const midBridge =
           sIdx === 1
-            ? `\n> 📌 **잠깐! 내 소득구간·가구원 수·약정 조건에서 추가 환급·할인 대상에 해당하는지 [${topic.simulatorAnchorText}](${topic.simulatorUrl}) 및 아래 1분 신청 절차에서 바로 확인해 보세요 👇**\n`
+            ? `\n> 📌 **잠깐! 내 소득구간·가구원 수·약정 조건에서 추가 환급·할인 대상에 해당하는지 아래 1분 신청 절차와 주의사항까지 꼭 함께 확인해 보세요 👇**\n`
             : '';
         return `---
 
@@ -848,13 +846,12 @@ ${sh.body}${tableMd}${midBridge}`;
 [제2본부 expertise333 발행자 체크리스트 — 복붙 시 이 주석 박스는 제외하세요]
 • 전담 계정: 네이버 2계정 expertise333 (Port 9223)
 • 단일 집중 카테고리: 네이버 크리에이터 어드바이저 [${topic.caCategory}] (전일자 ${caYesterday.referenceDateYesterday} 급상승 #${topic.yesterdayRank}위 · ${topic.yesterdaySearchGrowth})
-• 실측 트렌드 연동 키워드: ${(topic.liveTrendBridgeKeywords || []).join(', ')} (자가학습 가중치 ${topic.selfLearningWeight})
 • 타겟 키워드: ${topic.creatorAdvisorKeyword}
-• 안티밴 안전 발행 시각: ${dates.todayStr} ${publishTime} KST (블로그 일 1~2편 최소 6~8시간 간격 권장)
+• 권장 발행 시각: ${dates.todayStr} ${publishTime} KST
 • 수익화 모드: ${modeBadge} (${topic.adpostCpcTier})
-• 시뮬레이터 연동: ${topic.simulatorUrl}
 • 필수 대표 썸네일(PNG): division2_expertise333_outbox/2_homefeed_thumbnails/${thumbPngFileName}
 • 스마트에디터 복붙용 HTML: division2_expertise333_outbox/1_blog_daily_5_homefeed/${path.basename(htmlFilePath)}
+• 외부 유도 링크: 0개 (1본부와 100% 분리 · C-Rank 및 홈판 노출 보호)
 ================================================================================
 -->
 
@@ -869,9 +866,8 @@ ${subheadingBlocksMd}
 ---
 
 ### 💬 오늘 정리해 드린 『${topic.shortThumbLine2}』, 지금 바로 1분만 투자해 조회·신청해 보세요!
-- **3초 무료 환급·절세 계산기**: [${topic.simulatorAnchorText}](${topic.simulatorUrl})
-- **네이버 클립 & 공식 카페**: **8초 웹툰 모션 요약 영상(네이버 클립 \`@truthofmarket\`)**과 상세 체크리스트 게시판(**공식 네이버 카페 \`moneyfitlab\`**)에서도 매주 가장 돈이 되는 생활경제 정보를 받아보실 수 있습니다.
-- **이웃 10,000명 돌파 캠페인**: 이 글이 도움 되셨다면 **[공감 ♥]**과 **[이웃 추가 +]**를 꾹 눌러두세요!
+- **네이버 클립 & 카페 안내**: **8초 웹툰 모션 요약 영상(네이버 클립)**과 상세 체크리스트 게시판(**네이버 카페**)에서도 매주 가장 돈이 되는 생활경제 정보를 받아보실 수 있습니다.
+- 이 글이 도움 되셨다면 **[공감 ♥]**과 **[서로이웃 추가 +]**를 눌러두시고, 궁금한 점은 댓글로 편하게 남겨주세요!
 `;
 
     const postFilePath = path.join(subDirs.blog, `${dates.todayStr}_post${slot}_${topic.id}.md`);
@@ -895,18 +891,17 @@ ${subheadingBlocksMd}
       adpostCpcTier: topic.adpostCpcTier,
       thumbPath,
       postFilePath,
-      htmlFilePath
+      htmlFilePath,
+      externalLinksCount: 0
     });
 
     // Build Trendy Clip Guide + link to generated MP4 (up to 5 clips, matching the 5 blog posts 1:1)
-    const clipGuideMd = `# [2본부/@truthofmarket 주제 100% 일치 4컷 웹툰 클립 #${slot}/5] ${topic.shortThumbLine2}
+    const clipGuideMd = `# [2본부/클립 주제 100% 일치 4컷 웹툰 #${slot}/5] ${topic.shortThumbLine2}
 
 - **전담**: 🏛️ 제2본부 \`🦚 공작새 감독\` · \`🎨 해달 아트디렉터\` · \`🦉 부엉이 원장\`
-- **클립 채널 / 목표**: **\`@truthofmarket\`** (클립 팔로워 **10,000명** 달성 루프)
-- **단일 주제 카테고리**: \`[${topic.caCategory}]\` (전일자 \`${caYesterday.referenceDateYesterday}\` 크리에이터 어드바이저 키워드 #${topic.yesterdayRank}위 + 실측 트렌드 \`${(topic.liveTrendBridgeKeywords || []).join('·')}\` 100% 일치)
+- **단일 주제 카테고리**: \`[${topic.caCategory}]\` (전일자 \`${caYesterday.referenceDateYesterday}\` 크리에이터 어드바이저 키워드 #${topic.yesterdayRank}위 100% 일치)
 - **렌더링된 실전 클립 동영상(1080x1920 9:16 세로형 8.0초 MP4)**: \`division2_expertise333_outbox/3_clip_webtoon_crank_safe/${clipMp4FileName}\`
-- **안티밴(Anti-Ban) 업로드 원칙**: 일 1~2편 안전 업로드 (최소 6시간 간격 엄수)
-- **연동 블로그 & 시뮬레이터**: 슬롯 #${slot} (\`${topic.homeFeedTitle}\`) / \`${topic.simulatorUrl}\`
+- **연동 블로그 포스팅**: 슬롯 #${slot} (\`${topic.homeFeedTitle}\`)
 
 ---
 
@@ -916,9 +911,9 @@ ${subheadingBlocksMd}
 ${topic.clipSlides.map((s) => `   - **[${s.cut}컷 | ${s.badge}]** 웹툰 말풍선: *"${s.bubble1} ${s.bubble2}"* / 하단 자막: "${s.line1} / **${s.line2}**"`).join('\n')}
 3. **하단 고정 행동 유도 스티커 배너**: \`▶ 상단 [블로그] 스티커 누르면 구간별 금액표 3초 확인!\`
 
-## 📋 클립 업로드 시 복붙할 제목 · 캡션 · 고정 댓글 (팔로워 10K 유도)
+## 📋 클립 업로드 시 복붙할 제목 · 캡션 · 고정 댓글
 - **클립 제목**: ${topic.shortThumbLine1} ${topic.shortThumbLine2} (2026 최신 기준)
-- **클립 설명/태그**: ${topic.conversationalHookQuote} 내 소득·조건별 정확한 금액표와 3초 무료 계산기(truthofmarket.com)는 영상 위 [블로그] 스티커를 눌러 본문에서 바로 확인하세요! 매주 숨은 환급금 알림은 [@truthofmarket 팔로우] 필수! #생활경제 #환급금조회 #정부지원금 #절약꿀팁 #네이버클립
+- **클립 설명/태그**: ${topic.conversationalHookQuote} 내 소득·조건별 정확한 금액표와 1분 신청 순서는 영상 위 [블로그] 스티커를 눌러 본문에서 바로 확인하세요! #생활경제 #환급금조회 #정부지원금 #절약꿀팁 #네이버클립
 `;
     const clipGuidePath = path.join(subDirs.clip, `${dates.todayStr}_clip${slot}_${topic.id}_guide.md`);
     fs.writeFileSync(clipGuidePath, clipGuideMd, 'utf8');
@@ -932,14 +927,14 @@ ${topic.clipSlides.map((s) => `   - **[${s.cut}컷 | ${s.badge}]** 웹툰 말풍
       clipGuidePath
     });
 
-    // Build High-Retention Cafe Post (with dedicated cafeIntro + 10K member whitepaper & 3-stage infiltration guide)
+    // Build High-Retention Cafe Post (with dedicated cafeIntro)
     const cafeMd = `<!--
-[제2본부 공식 네이버 카페(moneyfitlab) 10,000명 회원 유입용 백서 #${slot}/5]
-• 발행처: https://cafe.naver.com/moneyfitlab (안티밴: 일 1~2편 최소 6시간 간격 엄수)
-• 카테고리: [${topic.caCategory}] (전일자 ${caYesterday.referenceDateYesterday} 크리에이터 어드바이저 #${topic.yesterdayRank}위 키워드 + 실측 트렌드 ${(topic.liveTrendBridgeKeywords || []).join('·')})
+[제2본부 자체 네이버 카페 안착용 정보 칼럼 #${slot}/5 — 복붙 시 이 주석 박스는 제외하세요]
+• 카테고리: [${topic.caCategory}] (전일자 ${caYesterday.referenceDateYesterday} 크리에이터 어드바이저 #${topic.yesterdayRank}위 키워드)
+• 외부 사이트 유도 링크: 0개 (카페 회원 안착 및 댓글 소통 전용)
 -->
 
-# [필독 백서] ${topic.shortThumbLine1} ${topic.shortThumbLine2} 핵심 기준표 & 1분 신청 체크리스트
+# [필독 정보] ${topic.shortThumbLine1} ${topic.shortThumbLine2} 핵심 기준표 & 1분 신청 정리
 
 > 💬 **${topic.conversationalHookQuote}**
 
@@ -969,10 +964,7 @@ ${topic.subheadings[3].body}
 
 ---
 
-### 🧮 3초 무료 자동 계산기 & 카페 회원 10,000명 돌파 이벤트
-- **무료 3초 시뮬레이터**: [${topic.simulatorAnchorText}](${topic.simulatorUrl})
-- **공식 블로그 전문 해설**: [공식 블로그(\`https://blog.naver.com/expertise333\`) #${slot}번 칼럼](https://blog.naver.com/expertise333)
-- **💬 회원 참여 미션**: 직접 조회해 보니 대상자에 해당하시나요? 신청하시면서 막히는 부분이나 내 구간 계산이 헷갈리시면 **아래 댓글**로 편하게 남겨주세요! (외부 인기카페 배포 시에는 본문 내 외부 링크 없이 순수 정보만 게시 후 댓글 질문에 답변하는 3단계 신뢰 침투 수칙을 준수합니다.)
+- **💬 카페 회원님들은 어떠신가요?** 직접 조회해 보니 대상자에 해당하시나요? 신청하시면서 막히는 부분이나 내 구간 계산이 헷갈리시면 **아래 댓글**로 편하게 남겨주세요! 확인하는 대로 바로 답변해 드릴게요 😊
 `;
     const cafeFilePath = path.join(subDirs.cafe, `${dates.todayStr}_cafe${slot}_${topic.id}.md`);
     fs.writeFileSync(cafeFilePath, cafeMd, 'utf8');
@@ -986,13 +978,12 @@ ${topic.subheadings[3].body}
   });
 
   const statusPayload = {
-    divisionId: 'DIV2_TRIPLE_10K_SELF_LEARNING_HQ',
-    engineVersion: '4.0-TRIPLE-10K',
-    divisionName: '제2본부: 트리플 10K(블로그 1만·카페 1만·클립 1만) · 자가학습(Self-Learning) · 무결점 칼럼 & 주제 일치 4컷 웹툰 본부',
+    divisionId: 'DIV2_EXPERTISE333_CREATOR_ADPOST_HQ',
+    engineVersion: '4.0-HUMAN-QUALITY',
+    divisionName: '제2본부: 2계정(expertise333) 크리에이터 어드바이저 단일 주제 · 홈판 · 클립(MP4) · 카페 애드포스트 본부',
     accountId: 'expertise333',
     cafeId: 'moneyfitlab',
     clipHandle: '@truthofmarket',
-    portalDomain: 'https://truthofmarket.com',
     browserPort: 9223,
     updatedAt: dates.fullStr,
     date: dates.todayStr,
@@ -1000,8 +991,9 @@ ${topic.subheadings[3].body}
     singleMegaTrafficCategory: caYesterday.category,
     unifiedDailyFlagshipTopic: caYesterday.unifiedDailyFlagshipTopic,
     selfLearningMemoryPath: SELF_LEARNING_MEMORY_PATH,
-    planMode: 'PLAN_B_TRIPLE_10K (블로그·클립·카페 각각 최대 5개 이내 | 애드포스트 80%[4편] + 쇼핑커넥트 20%[1편] | 안티밴 일 1~2편 안전 속도)',
+    planMode: 'PLAN_B (블로그·클립·카페 각각 최대 5개 이내 | 애드포스트 80%[4편] + 쇼핑커넥트 20%[1편])',
     strictSeparationVerified: true,
+    externalLinksToTruthOfMarket: 0,
     dailyQuotas: {
       blogMaxCap: 5,
       blogGenerated: blogPosts.length,

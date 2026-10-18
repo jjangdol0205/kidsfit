@@ -128,18 +128,22 @@ function buildHumanCategoryNarrative(preset, res, resolved) {
 
   let item1Name = cp1
     ? humanizeProductName(cp1.productName, cp1.productPriceFormatted)
-    : ((res.recommendations && res.recommendations[0] && res.recommendations[0].title) || '베스트 절약 아이템');
+    : ((res.recommendations && res.recommendations[0] && res.recommendations[0].title) || '가성비 정량 사료');
   let item2Name = cp2
     ? humanizeProductName(cp2.productName, cp2.productPriceFormatted)
-    : ((res.recommendations && res.recommendations[1] && res.recommendations[1].title) || '인기 가성비 아이템');
+    : ((res.recommendations && res.recommendations[1] && res.recommendations[1].title) || '저자극 기능성 케어 사료');
 
   if (isCat) {
-    if (item1Name.includes('강아지')) item1Name = '하림펫푸드 밥이보약 고양이 맞춤 레시피 (2만 원대)';
-    if (item2Name.includes('강아지') || item2Name === item1Name) item2Name = '초정밀 1g 디지털 사료 계량스푼 & 저더스트 두부모래';
+    if (!cp1 || item1Name.includes('강아지') || item1Name.includes('아이템')) {
+      item1Name = '하림펫푸드 밥이보약 고양이 맞춤 레시피 (2만 원대)';
+    }
+    if (!cp2 || item2Name.includes('강아지') || item2Name.includes('아이템') || item2Name === item1Name) {
+      item2Name = '탐사 고양이 저더스트 두부모래 7L 대용량 묶음';
+    }
   }
 
   const impulse = isCat
-    ? { title: '1g 디지털 계량스푼 & 고양이 음수대 필터 세트', priceLabel: '9,900원대' }
+    ? { title: '1g 디지털 계량스푼 & 고양이 음수대 필터', priceLabel: '9,900원대' }
     : (res.impulseItem || { title: '필수 절약 소모품', priceLabel: '1만 원대' });
 
   switch (calcType) {
@@ -178,7 +182,7 @@ function buildHumanCategoryNarrative(preset, res, resolved) {
         empathyIntro: `반려동물 키우면서 사료 줄 때 대부분 집에 있는 종이컵이나 사료 스푼으로 '대충 이 정도면 되겠지' 하고 눈대중으로 부어주시죠? 저도 예전엔 그렇게 급여했는데, 정기검진 갔다가 수의사 선생님께 "사료 하루에 정확히 몇 그램 주시는지 아세요?"라는 질문을 받고 말문이 막혔던 적이 있습니다.\n\n손대중으로 하루에 15~20g씩만 더 줘도 작은 아이들에게는 사람으로 치면 매일 야식으로 치킨 반 마리를 더 먹는 셈이라, 나이가 들수록 **${healthRisk}**으로 이어져 나중에 병원비가 수백만 원씩 깨질 수 있다고 하더라고요.`,
         mechanismDeepDive: `그래서 사료 봉투 뒷면에 적힌 칼로리 밀도(**${inp.kcalPerKg.toLocaleString()}kcal/kg**)와 우리 아이 체중(**${weightKg}kg**), 그리고 연령·중성화 상태 계수(**${inp.factor}**)를 수의영양학 공식에 직접 넣어 계산해 봤습니다.\n\n그 결과 하루에 꼭 필요한 열량(DER)은 **${res.der}kcal**이고, 이를 사료 무게로 환산하면 **하루 총 ${res.dailyGrams}g (아침·저녁 2끼 기준 한 끼에 딱 ${res.halfGrams}g씩, 종이컵 약 ${res.cupsPerDay}컵)**이 정확한 정량이었습니다. 이렇게 정량대로 급여하면 **${bagKg}kg**짜리 한 포대를 개봉 후 산패되기 전인 **${res.daysPerBag}일** 만에 가장 신선하게 다 먹일 수 있어요.`,
         section3Title: `사료 산패 막는 포대 규격 선택법 & 정량 급여 필수템`,
-        purchaseBridge: `솔직히 종이컵으로 **${res.cupsPerDay}컵**을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 **${impulse.title}**을 사료통 옆에 두고 아침저녁으로 정확히 **${res.halfGrams}g**씩 재서 주고 있습니다.\n\n또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(**${res.daysPerBag}일** 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 **${item1Name}**이나 **${item2Name}**을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.`,
+        purchaseBridge: `솔직히 종이컵으로 **${res.cupsPerDay}컵**을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 **${impulse.title}** 구성을 사료통 옆에 두고 아침저녁으로 정확히 **${res.halfGrams}g**씩 재서 주고 있습니다.\n\n또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(**${res.daysPerBag}일** 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 **${item1Name}**이나 **${item2Name}** 구성을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.`,
         communityBody: `집에서 키우는 **${weightKg}kg ${petLabel}** 사료를 맨날 종이컵 눈대중으로 주다가, 병원비 폭탄 맞기 전에 수의영양학 칼로리 공식(**${inp.kcalPerKg.toLocaleString()}kcal/kg**, 계수 **${inp.factor}**) 넣어서 1g 단위로 직접 계산해 봄.\n\n하루 필요 열량이 **${res.der}kcal**라 하루 총 **${res.dailyGrams}g**(한 끼당 **${res.halfGrams}g**)만 주는 게 정량이었음. 이렇게 먹이면 **${bagKg}kg** 한 포대를 산패 걱정 없이 딱 **${res.daysPerBag}일** 만에 소진함. 눈대중으로 과급여(**${resolved.badVal}**)하다가 병원비 깨지는 것보다 1g 저울 스푼으로 정량 맞추는 게 훨씬 이득임.`
       };
     }
@@ -261,11 +265,22 @@ function buildHtmlComparisonTable(headers, rows) {
 /**
  * 스마트에디터 ONE 복붙용 HTML 생성 (내부 지시어/프롬프트 문구 0%, 마크다운 ** 노출 0%, 100% 깔끔한 사람 블로그 서식)
  */
+function cleanCaseLabel(label, val) {
+  if (!label) return '';
+  const str = String(label).trim();
+  const valStr = String(val || '').trim();
+  const parenMatch = str.match(/\(([^)]+)\)\s*$/);
+  if (parenMatch && valStr.includes(parenMatch[1])) {
+    return str.replace(/\s*\([^)]+\)\s*$/, '').trim();
+  }
+  return str;
+}
+
 function buildSmartEditorHtmlForPreset(preset, res, resolved, narrative, targetUrl) {
-  const badLabel = resolved.badLabel || '기존 방식 유지 시';
   const badVal = resolved.badVal;
-  const goodLabel = resolved.goodLabel || '맞춤 기준 적용 시';
   const goodVal = resolved.goodVal;
+  const badLabel = cleanCaseLabel(resolved.badLabel || '기존 방식 유지 시', badVal);
+  const goodLabel = cleanCaseLabel(resolved.goodLabel || '맞춤 기준 적용 시', goodVal);
   const diffVal = resolved.diffVal;
   const diffDisplay = (diffVal && res.headline && diffVal !== res.headline && !res.headline.includes(diffVal))
     ? `${diffVal} (${res.headline})`
@@ -357,13 +372,13 @@ function generateDivision1DailyPack() {
     const narrative = buildHumanCategoryNarrative(p, res, resolved);
     const targetUrl = `https://truthofmarket.com/preset/${p.id}`;
 
-    const m0 = (res.metrics && res.metrics[0]) || { label: '핵심 지표 1', val: '-' };
-    const m1 = (res.metrics && res.metrics[1]) || { label: '핵심 지표 2', val: '-' };
-    const m2 = (res.metrics && res.metrics[2]) || { label: '핵심 지표 3', val: '-' };
-    const badLabel = resolved.badLabel || '기존 방식 유지 시';
+    const m0 = (res.metrics && res.metrics[0]) || { label: '핵심 지표 1', val: '-', sub: '기준 산출 수치' };
+    const m1 = (res.metrics && res.metrics[1]) || { label: '핵심 지표 2', val: '-', sub: '실전 권장 수치' };
+    const m2 = (res.metrics && res.metrics[2]) || { label: '핵심 지표 3', val: '-', sub: '유지·소진 기준' };
     const badVal = resolved.badVal;
-    const goodLabel = resolved.goodLabel || '맞춤 기준 적용 시';
     const goodVal = resolved.goodVal;
+    const badLabel = cleanCaseLabel(resolved.badLabel || '기존 방식 유지 시', badVal);
+    const goodLabel = cleanCaseLabel(resolved.goodLabel || '맞춤 기준 적용 시', goodVal);
     const diffVal = resolved.diffVal;
     const diffDisplay = (diffVal && res.headline && diffVal !== res.headline && !res.headline.includes(diffVal))
       ? `${diffVal} (${res.headline})`
@@ -409,9 +424,9 @@ ${narrative.mechanismDeepDive}
 | 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
 | :--- | :--- | :--- |
 | **한줄 결론** | **${res.headline}** | ${res.badge || '실측 기준 요약'} |
-| **${m0.label}** | **${metricVal(m0)}** | 핵심 체크 포인트 1 |
-| **${m1.label}** | **${metricVal(m1)}** | 핵심 체크 포인트 2 |
-| **${m2.label}** | **${metricVal(m2)}** | 핵심 체크 포인트 3 |
+| **${m0.label}** | **${metricVal(m0)}** | ${m0.sub || '실측 산출 기준'} |
+| **${m1.label}** | **${metricVal(m1)}** | ${m1.sub || '권장 적용 기준'} |
+| **${m2.label}** | **${metricVal(m2)}** | ${m2.sub || '체감 유지 기준'} |
 
 ${mdTable}
 

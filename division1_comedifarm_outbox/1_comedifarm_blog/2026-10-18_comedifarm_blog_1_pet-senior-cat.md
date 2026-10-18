@@ -14,7 +14,7 @@
 
 ### 🧾 바쁜 분들을 위한 3초 핵심 비교 요약
 - **✗ 일반 고단백 사료 방치 (신부전 위험)**: **일 78g 과급여 (질환 위험)**
-- **✓ 시니어 일 58g 소량 4회 (1.5kg=25일)**: **일 58g (1.5kg=25일)**
+- **✓ 시니어 일 58g 소량 4회**: **일 58g (1.5kg=25일)**
 - **★ 핵심 체감 차이**: **1끼 29g 정량 · 의료비 방어 (하루 58g (종이컵 0.7컵) · 25일 소진!)**
 
 ---
@@ -36,9 +36,9 @@
 | 핵심 확인 항목 | 계산된 수치 | 상세 설명 |
 | :--- | :--- | :--- |
 | **한줄 결론** | **하루 58g (종이컵 0.7컵) · 25일 소진!** | 🐾 수의영양학 정량 계산 |
-| **하루 칼로리** | **210 kcal** | 핵심 체크 포인트 1 |
-| **하루 급여량(1끼)** | **58g (29g)** | 핵심 체크 포인트 2 |
-| **1.5kg 소진일** | **25일** | 핵심 체크 포인트 3 |
+| **하루 칼로리** | **210 kcal** | 실측 산출 기준 |
+| **하루 급여량(1끼)** | **58g (29g)** | 권장 적용 기준 |
+| **1.5kg 소진일** | **25일** | 체감 유지 기준 |
 
 | 노령묘 케어 항목 | 일일 권장량 | 소화 흡수 고려 배식 | 1.5kg 포대 소진일 | 신장·관절 질환 예방 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -53,9 +53,9 @@
 
 ## 3. 사료 산패 막는 포대 규격 선택법 & 정량 급여 필수템
 
-솔직히 종이컵으로 **0.7컵**을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 **1g 디지털 계량스푼 & 고양이 음수대 필터 세트**을 사료통 옆에 두고 아침저녁으로 정확히 **29g**씩 재서 주고 있습니다.
+솔직히 종이컵으로 **0.7컵**을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 **1g 디지털 계량스푼 & 고양이 음수대 필터** 구성을 사료통 옆에 두고 아침저녁으로 정확히 **29g**씩 재서 주고 있습니다.
 
-또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(**25일** 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 **베스트 절약 아이템**이나 **인기 가성비 아이템**을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.
+또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(**25일** 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 **하림펫푸드 밥이보약 고양이 맞춤 레시피 (2만 원대)**이나 **탐사 고양이 저더스트 두부모래 7L 대용량 묶음** 구성을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.
 
 ### Q1. 노령묘 사료를 고를 때 성분표에서 가장 먼저 확인해야 할 것은?
 - **답변:** 인(Phosphorus)과 나트륨 함량입니다. 10세 이상 고양이 사망 원인 1위인 만성 신부전(CKD)을 예방하기 위해 인 함량이 0.5% 이하로 낮고, 단백질 소화흡수율이 높은 시니어 전용 케어 사료를 선택해야 합니다.
@@ -83,7 +83,7 @@ https://truthofmarket.com/preset/pet-senior-cat
 <div style="background:#f8fafc;border-left:6px solid #10b981;padding:18px 20px;border-radius:0 14px 14px 0;margin:0 0 24px 0;">
   <p class="se-text-paragraph" style="font-size:19px;font-weight:900;color:#0f172a;margin:0 0 10px 0;"><span class="se-fs-fs19"><b>🧾 바쁜 분들을 위한 3초 핵심 비교 요약</b></span></p>
   <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#be123c;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>일반 고단백 사료 방치 (신부전 위험)</b>: <b>일 78g 과급여 (질환 위험)</b></span></p>
-  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>시니어 일 58g 소량 4회 (1.5kg=25일)</b>: <b>일 58g (1.5kg=25일)</b></span></p>
+  <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#047857;margin:0 0 6px 0;"><span class="se-fs-fs16">• <b>시니어 일 58g 소량 4회</b>: <b>일 58g (1.5kg=25일)</b></span></p>
   <p class="se-text-paragraph" style="font-size:16px;line-height:1.75;color:#0f172a;margin:0;"><span class="se-fs-fs16">• <b>핵심 체감 차이</b>: <b>1끼 29g 정량 · 의료비 방어 (하루 58g (종이컵 0.7컵) · 25일 소진!)</b></span></p>
 </div>
 <p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>1. 종이컵 눈대중 대신 1g 단위로 직접 계산해 본 3.8kg 고양이 하루 사료 정량</b></span></p>
@@ -98,8 +98,8 @@ https://truthofmarket.com/preset/pet-senior-cat
 <p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#334155;margin:14px 0 0 0;"><span class="se-fs-fs16">하루 58g 급여 시 1.5kg 1포대는 25일 만에 소진됩니다.</span></p>
 <hr style="border:0;border-top:1px solid #e2e8f0;margin:28px 0;" />
 <p class="se-text-paragraph" style="font-size:24px;font-weight:900;color:#0f172a;margin:28px 0 14px 0;"><span class="se-fs-fs24"><b>3. 사료 산패 막는 포대 규격 선택법 & 정량 급여 필수템</b></span></p>
-<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">솔직히 종이컵으로 <b>0.7컵</b>을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 <b>1g 디지털 계량스푼 & 고양이 음수대 필터 세트</b>을 사료통 옆에 두고 아침저녁으로 정확히 <b>29g</b>씩 재서 주고 있습니다.</span></p>
-<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(<b>25일</b> 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 <b>베스트 절약 아이템</b>이나 <b>인기 가성비 아이템</b>을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">솔직히 종이컵으로 <b>0.7컵</b>을 눈대중으로 맞추는 건 매번 오차가 날 수밖에 없더라고요. 그래서 저는 아예 만 원 안팎 하는 <b>1g 디지털 계량스푼 & 고양이 음수대 필터</b> 구성을 사료통 옆에 두고 아침저녁으로 정확히 <b>29g</b>씩 재서 주고 있습니다.</span></p>
+<p class="se-text-paragraph" style="font-size:16px;line-height:1.85;color:#1e293b;margin:0 0 16px 0;"><span class="se-fs-fs16">또한 사료는 개봉하는 순간부터 공기와 닿아 산패가 시작되므로 무조건 한 달 남짓(<b>25일</b> 내외)에 다 먹을 수 있는 용량으로 고르시고, 기호성과 성분이 검증된 <b>하림펫푸드 밥이보약 고양이 맞춤 레시피 (2만 원대)</b>이나 <b>탐사 고양이 저더스트 두부모래 7L 대용량 묶음</b> 구성을 정주기 배송으로 맞춰두시면 사료 낭비와 병원비 걱정을 한 번에 덜 수 있습니다.</span></p>
 <p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q1. 노령묘 사료를 고를 때 성분표에서 가장 먼저 확인해야 할 것은?</b></span></p>
 <p class="se-text-paragraph" style="font-size:16px;line-height:1.8;color:#334155;margin:0 0 14px 0;"><span class="se-fs-fs16">➔ 인(Phosphorus)과 나트륨 함량입니다. 10세 이상 고양이 사망 원인 1위인 만성 신부전(CKD)을 예방하기 위해 인 함량이 0.5% 이하로 낮고, 단백질 소화흡수율이 높은 시니어 전용 케어 사료를 선택해야 합니다.</span></p>
 <p class="se-text-paragraph" style="font-size:19px;font-weight:800;color:#0f172a;margin:18px 0 6px 0;"><span class="se-fs-fs19"><b>Q2. 나이 든 고양이가 밥을 잘 안 먹고 살이 빠질 때 대처법은?</b></span></p>
