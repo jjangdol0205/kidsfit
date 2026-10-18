@@ -173,9 +173,9 @@ def generate_clip_for_slug(slug):
 
     out_mp4 = os.path.join(ep_dir, "clip.mp4")
     fps = 15
-    hold_frames = 36       # 2.40s hold with natural Ken Burns motion per panel
+    hold_frames = 54       # 3.60s hold with natural Ken Burns motion per panel
     trans_frames = 8       # 0.53s smooth slide + dissolve transition between panels
-    total_frames = 4 * hold_frames + 3 * trans_frames
+    total_frames = 4 * hold_frames + 3 * trans_frames  # 240 frames = 16.0 seconds @ 15fps
 
     writer = imageio.get_writer(
         out_mp4,
@@ -208,7 +208,7 @@ def generate_clip_for_slug(slug):
                 frame_idx += 1
 
     writer.close()
-    print(f"[OK] Generated Natural Motion 9:16 Naver Clip MP4 (15fps, 11.2s): {out_mp4}", flush=True)
+    print(f"[OK] Generated Natural Motion 9:16 Naver Clip MP4 (15fps, 16.0s): {out_mp4}", flush=True)
     return out_mp4
 
 

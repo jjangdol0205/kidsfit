@@ -2461,6 +2461,22 @@ function build() {
     console.log(`  ✓ [${builtCount}/36] dist/preset/${preset.id}/index.html (${koreanChars.length} Korean chars)`);
   }
 
+  // Generate legacy preset slug aliases so older Naver Blog links never 404
+  const LEGACY_PRESET_ALIASES = {
+    'telecom-family-bundle': 'telecom-family-4p',
+    'auto-sorento-family': 'auto-tucson-hybrid',
+    'auto-gv80-ceo': 'auto-genesis-g80'
+  };
+  for (const [aliasSlug, targetSlug] of Object.entries(LEGACY_PRESET_ALIASES)) {
+    const srcHtmlPath = path.join(DIST_DIR, 'preset', targetSlug, 'index.html');
+    if (fs.existsSync(srcHtmlPath)) {
+      const aliasDir = path.join(DIST_DIR, 'preset', aliasSlug);
+      fs.mkdirSync(aliasDir, { recursive: true });
+      fs.copyFileSync(srcHtmlPath, path.join(aliasDir, 'index.html'));
+      console.log(`  ✓ [Alias] dist/preset/${aliasSlug}/index.html -> ${targetSlug}`);
+    }
+  }
+
   // 4. Generate sitemap.xml, rss.xml, llms.txt, robots.txt, and IndexNow key files
   console.log('\n[3/4] Generating sitemap.xml, rss.xml, llms.txt, robots.txt & IndexNow keys ...');
   const sitemapXml = generateSitemapXml();

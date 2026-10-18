@@ -208,11 +208,10 @@ async function buildBrandConnectDailyReport(options = {}) {
       cafeName: '머니핏 생활비 살림 팩트체크 연구소',
       cafeClubId: '31805224',
       publishedBlogPosts: [
+        'https://blog.naver.com/expertise333/224445652599',
         'https://blog.naver.com/expertise333/224445607867',
-        'https://blog.naver.com/expertise333/224445607158',
         'https://blog.naver.com/expertise333/224445565766',
-        'https://blog.naver.com/comedifarm/224445608566',
-        'https://blog.naver.com/comedifarm/224445577716',
+        'https://blog.naver.com/comedifarm/224445653323',
         'https://blog.naver.com/comedifarm/224445537618'
       ],
       publishedCafePosts: [
@@ -222,9 +221,10 @@ async function buildBrandConnectDailyReport(options = {}) {
         'https://cafe.naver.com/moneyfitlab/5'
       ],
       publishedClips: [
+        'https://clip.naver.com/@truthofmarket',
+        'https://blog.naver.com/expertise333/224445652599',
         'https://blog.naver.com/expertise333/224445607867',
-        'https://blog.naver.com/expertise333/224445607158',
-        'https://blog.naver.com/comedifarm/224445608566',
+        'https://blog.naver.com/comedifarm/224445653323',
         'https://cafe.naver.com/moneyfitlab/5'
       ]
     },
@@ -234,11 +234,10 @@ async function buildBrandConnectDailyReport(options = {}) {
       blogName: '머니핏 3초 영수증 살림 팩트체크 연구소',
       cafeClubId: '31805224',
       publishedBlogPosts: [
+        'https://blog.naver.com/expertise333/224445652599',
         'https://blog.naver.com/expertise333/224445607867',
-        'https://blog.naver.com/expertise333/224445607158',
         'https://blog.naver.com/expertise333/224445565766',
-        'https://blog.naver.com/comedifarm/224445608566',
-        'https://blog.naver.com/comedifarm/224445577716',
+        'https://blog.naver.com/comedifarm/224445653323',
         'https://blog.naver.com/comedifarm/224445537618'
       ],
       publishedCafePosts: [
@@ -248,9 +247,10 @@ async function buildBrandConnectDailyReport(options = {}) {
         'https://cafe.naver.com/moneyfitlab/5'
       ],
       publishedClips: [
+        'https://clip.naver.com/@truthofmarket',
+        'https://blog.naver.com/expertise333/224445652599',
         'https://blog.naver.com/expertise333/224445607867',
-        'https://blog.naver.com/expertise333/224445607158',
-        'https://blog.naver.com/comedifarm/224445608566',
+        'https://blog.naver.com/comedifarm/224445653323',
         'https://cafe.naver.com/moneyfitlab/5'
       ]
     },
