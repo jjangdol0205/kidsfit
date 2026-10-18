@@ -10,10 +10,10 @@
 [제목] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산, 모르고 그냥 썼더니 -2,842만 원 차이? 직접 계산해보고 놀란 현실 영수증
 
 ![5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 네이버 홈판 대표 썸네일](https://truthofmarket.com/sns/auto-ev-ioniq-thumb.png)
-*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)을 스마트에디터 ONE '대표 사진'으로 지정하면 네이버 모바일 홈판(리빙·경제M) 노출 시 가독성과 클릭률이 극대화됩니다)*
+*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)과 16초 모션웹툰 영상(`sns_outbox/auto-ev-ioniq/clip.mp4`), 4컷 슬라이드(`slide-1~4.png`)를 함께 배치하면 네이버 홈판 노출 및 클릭률이 극대화됩니다)*
 
 5,500만 원 아이오닉 전기차를 탈 때 정부·지자체 보조금 800만 원 혜택을 그대로 받으면서 4년 뒤 배터리 중고차 감가 걱정을 없애는 방법은?
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 어떻게 계산되는지 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰을 공유해 드립니다.
+저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산」** 조건에서 신차 구매 시 할부·장기렌트·리스 방식별 초기 취등록세, 보험료, 종합소득세 절세 효과 비교가 어떻게 계산되는지 여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰·모션클립을 공유해 드립니다.
 
 장기렌트 역시 보조금 800만 원이 차량 원금에서 선차감되어 월 대여료가 산출되며, 사업자 절세(24%)와 48개월 만기 반납을 결합하면 약 460만 원 이상 유리합니다.
 
@@ -21,8 +21,10 @@
 
 > **「🎨 3초 요약 영수증 팩트체크」 — EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋 (골든 리트리버 대리 × 안경 여우 세무사)**  
 > ❌ 배터리 감가 본인다부담 신차 할부: 69,490,000원 vs ✅ 보조금 선차감+반납형 48개월 렌트: 41,070,000원 (-2,842만 원 차이)  
-> 🔎 **내 숫자 넣고 3초 만에 무료 영수증 뽑기 (회원가입 없음)**:  
+> 👉 **[무료 3초 계산기 바로가기] 내 숫자 넣고 실시간 영수증 뽑기 (회원가입 없음)**:  
 https://truthofmarket.com/preset/auto-ev-ioniq
+> 🏠 **머니핏 자동차·TCO 계산기 공식 포털**:  
+https://truthofmarket.com/?calc=auto
 
 ---
 
@@ -71,11 +73,14 @@ A. 전기차 충전 요금은 차량 명의와 무관하게 한전 및 환경부
 
 ---
 
-### 5. 내 조건 3초 무료 계산기 & 함께 참고할 절약 아이템
-내 조건(차량가·이용기간·소득세율 구간)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+### 5. 내 조건 3초 무료 계산기 직행 링크 & 함께 참고할 절약 아이템
+내 조건(차량가·이용기간·소득세율 구간)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 아래 링크를 클릭하면 웹에서 바로 계산됩니다.
 
-👉 **[무료] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 3초 시뮬레이터 바로가기**:
+👉 **[무료 3초 계산기 바로가기] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 전용 시뮬레이터**:
 https://truthofmarket.com/preset/auto-ev-ioniq
+
+🏠 **[머니핏 6대 생활비 3초 계산기 전체 모음 (자동차·TCO)]:**
+https://truthofmarket.com/?calc=auto
 
 🛍️ **[네이버 브랜드커넥트 참고 아이템 1] 아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)**:
 https://naver.me/G5kYoDj6
@@ -98,7 +103,10 @@ https://cafe.naver.com/moneyfitlab
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.30 아이오닉 전기차 보조금 800만원 + 배터리 감가 방어 🔋 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산, 모르고 그냥 썼더니 -2,842만 원 차이? 직접 계산해보고 놀란 현실 영수증</div>
-  <a href="https://truthofmarket.com/preset/auto-ev-ioniq/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <div style="margin-bottom:12px;padding:10px 14px;background:#ecfdf5;border:1px solid #10b981;border-radius:10px;text-align:center;">
+    <a href="https://truthofmarket.com/preset/auto-ev-ioniq?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:15px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 (https://truthofmarket.com/preset/auto-ev-ioniq) ↗</a>
+  </div>
+  <a href="https://truthofmarket.com/preset/auto-ev-ioniq?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/auto-ev-ioniq-thumb.png" alt="5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="https://truthofmarket.com/sns/auto-ev-ioniq-grid.png" alt="5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
@@ -108,7 +116,8 @@ https://cafe.naver.com/moneyfitlab
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -2,842만 원 차이</div>
   </div>
   <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="https://truthofmarket.com/preset/auto-ev-ioniq/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/auto-ev-ioniq) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-ev-ioniq?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/auto-ev-ioniq) ↗</a>
+    <a href="https://truthofmarket.com/?calc=auto" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 18px;background:#1e40af;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=auto) ↗</a>
     <a href="https://naver.me/G5kYoDj6" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS) ↗</a>
   </div>
 </div>
@@ -131,6 +140,9 @@ https://cafe.naver.com/moneyfitlab
 • 절세·보험 절감: 1643만 원
 • 총 절약액: 2,842만 원
 
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 계산기 바로가기:
+https://truthofmarket.com/preset/auto-ev-ioniq
+
 2️⃣ 실패 없는 결정을 위한 3가지 핵심 기준 (이것만 기억하세요!)
 ① [기준 확인] 차량가(만 원), 이용 기간(개월), 본인의 종합소득세율 구간(%)을 입력해 취득세·보험료·세금 감면액이 반영된 실질 TCO를 비교하세요.
 ② [손실 방지] 직장인(세율 0%)이 영업사원 말만 듣고 비싼 렌트를 타거나, 고소득 사업자(24~35%)가 할부로 사서 수천만 원 절세 혜택을 놓치는 실수를 막으세요.
@@ -145,7 +157,10 @@ A. 네, 대형 렌트사가 법인 지자체 보조금을 신청하여 차량 �
 집마다 차량가·이용기간·소득세율 구간 숫자가 조금씩 달라서, 결정하시기 전에 본인 숫자를 직접 넣어서 손익분기점을 한 번 찍어보시는 게 가장 정확합니다.
 
 제가 계산할 때 썼던 무료 계산기 페이지 남겨드릴게요(회원가입이나 앱 설치 없이 숫자만 넣으면 3초 만에 위 비교표가 바로 나옵니다).
-👉 무료 계산기: https://truthofmarket.com/preset/auto-ev-ioniq
+👉 [무료 3초 계산기 바로가기] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산:
+https://truthofmarket.com/preset/auto-ev-ioniq
+🏠 [전체 6대 생활비 계산기 포털]:
+https://truthofmarket.com/?calc=auto
 
 도움이 되셨다면 채택 부탁드리며, 추가로 궁금한 숫자 있으시면 댓글 남겨주세요!
 ```
@@ -154,22 +169,41 @@ A. 네, 대형 렌트사가 법인 지자체 보조금을 신청하여 차량 �
 
 ## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
 ```text
-[📌 커뮤니티 알짜 정보글/댓글 템플릿 — 상업 링크 0개 · 실측 비교 데이터 공유로 자연 유입 유도]
+[📌 네이버 카페(moneyfitlab) & 커뮤니티 초고밀도 백서형 정보글 — 4컷 웹툰(slide-1~4.png) + 실측 비교표 + 상·하단 직관적 클릭 링크 2회 탑재]
 
-요즘 카페에 **아이오닉 전기차 보조금 장기렌트** 고민하시는 글이 자주 보여서, 제가 결정하기 전에 **여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식** 수식으로 직접 비교해 본 알짜 요약본 공유해요! (저장해 두셨다가 비교하실 때 쓰세요 😊)
+요즘 카페에 **아이오닉 전기차 보조금 장기렌트** 고민하시는 글이 자주 보여서, 결정하기 전에 **여신금융협회 자동차 금융 공시 기준 및 국세청 업무용승용차 손금산입 세법 수식** 수식으로 직접 비교해 본 알짜 백서 요약본과 4컷 웹툰을 공유합니다! (저장해 두셨다가 비교하실 때 바로 꺼내 쓰세요 😊)
 
-📊 **[5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 실측 비교 요약]**
+📊 **[5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산 3초 실측 비교 영수증]**
 • 그냥 유지할 때(배터리 감가 본인다부담 신차 할부): **69,490,000원**
 • 조건 바꿨을 때(보조금 선차감+반납형 48개월 렌트): **41,070,000원** (➔ **-2,842만 원 차이**)
 • 핵심 지표: 취등록세(7%) 385만 원 / 절세·보험 절감 1643만 원
 
-✅ **[결정 전 꼭 체크할 2가지 포인트]**
+👉 **[무료 3초 계산기 바로가기] 내 조건(차량가·이용기간·소득세율 구간) 넣어서 1원 단위 영수증 바로 뽑기**:
+https://truthofmarket.com/preset/auto-ev-ioniq
+
+---
+
+📋 **[조건별 실측 비교 데이터표]**
+| 전기차 분석 항목 | 신차 할부 (보조금 반영) | 신차 장기렌트 (보조금 선반영) | 배터리 감가상각 비교 | 전기차 경제성 총평 |
+| --- | --- | --- | --- | --- |
+| 국고·지자체 전기차 보조금 | -8,000,000원 직접 수령 | 렌트료 원금에 800만 원 즉시 차감 | 동일 보조금 혜택 반영 | 실구매가 4,700만 원 기준 |
+| 취등록세 (140만 원 감면) | 2,450,000원 | 0원 | 취등록세 목돈 면제 | 초기부담 제로 |
+| 배터리 잔존가치 및 감가 리스크 | 중고차 매각 시 배터리 열화 리스크 본인 부담 | 계약 만기 시 반납으로 감가 리스크 제로 | 배터리 보증 불안 해소 | 4년 후 신기술 EV로 손쉬운 교체 |
+| 4년 TCO (절세액 24% 반영) | 61,200,000원 | 56,600,000원 | 장기렌트 460만 원 절약 승리! | 사업자 전기차 장기렌트 최적 |
+
+✅ **[결정 전 호구 막는 3단계 핵심 체크리스트]**
 1) 차량가(만 원), 이용 기간(개월), 본인의 종합소득세율 구간(%)을 입력해 취득세·보험료·세금 감면액이 반영된 실질 TCO를 비교하세요.
 2) 직장인(세율 0%)이 영업사원 말만 듣고 비싼 렌트를 타거나, 고소득 사업자(24~35%)가 할부로 사서 수천만 원 절세 혜택을 놓치는 실수를 막으세요.
+3) 구매 방식 판정 결과에 따라 다이렉트 오토 캐시백 또는 무보증 즉시출고 특판 견적을 최소 2~3곳 이상 비교해 월 납입금을 낮추세요.
 
 막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(차량가·이용기간·소득세율 구간) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
-회원가입 없이 3초 만에 내 조건 영수증 뽑아볼 수 있는 무료 계산기 좌표 남겨둘게요 👇
-🔎 **내 조건 3초 무료 계산기**: https://truthofmarket.com/preset/auto-ev-ioniq (또는 검색창에 '머니핏 계산기' 검색!)
+회원가입 없이 클릭 한 번으로 3초 만에 내 조건 영수증을 뽑아볼 수 있는 무료 계산기 직행 링크 남겨둘게요 👇
+
+👉 **[무료 3초 계산기 바로가기] 5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산**:
+https://truthofmarket.com/preset/auto-ev-ioniq
+
+🏠 **[머니핏 6대 생활비 3초 손익계산기 전체 모음]**:
+https://truthofmarket.com/?calc=auto
 ```
 
 ---
@@ -178,5 +212,7 @@ A. 네, 대형 렌트사가 법인 지자체 보조금을 신청하여 차량 �
 ```text
 5,500만 원 아이오닉 전기차를 탈 때 정부·지자체 보조금 800만 원 혜택을 그대로 받으면서 4년 뒤 배터리 중고차 감가 걱정을 없애는 방법은?
 장기렌트 역시 보조금 800만 원이 차량 원금에서 선차감되어 월 대여료가 산출되며, 사업자 절세(24%)와 48개월 만기 반납을 결합하면 약 460만 원 이상 유리합니다.
-내 조건(차량가·이용기간·소득세율 구간) 3초 무료 시뮬레이션: https://truthofmarket.com/preset/auto-ev-ioniq
+👉 내 조건(차량가·이용기간·소득세율 구간) 3초 무료 시뮬레이션 바로가기:
+https://truthofmarket.com/preset/auto-ev-ioniq
+(https://truthofmarket.com/?calc=auto)
 ```

@@ -10,10 +10,10 @@
 [제목] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트, 모르고 그냥 썼더니 -104,800원 절약? 직접 계산해보고 놀란 현실 영수증
 
 ![여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 네이버 홈판 대표 썸네일](https://truthofmarket.com/sns/diet-female-lean-thumb.png)
-*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)을 스마트에디터 ONE '대표 사진'으로 지정하면 네이버 모바일 홈판(리빙·경제M) 노출 시 가독성과 클릭률이 극대화됩니다)*
+*(▲ 위 1:1 정방형 썸네일(`blog-home-thumb.png`)과 16초 모션웹툰 영상(`sns_outbox/diet-female-lean/clip.mp4`), 4컷 슬라이드(`slide-1~4.png`)를 함께 배치하면 네이버 홈판 노출 및 클릭률이 극대화됩니다)*
 
 55kg 여성이 근육 탄력은 지키면서 2주 동안 군살 라인을 정리하려면 하루 몇 칼로리를 어떻게 먹어야 할까요?
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트」** 조건에서 내 기초대사량(BMR)·활동대사량(TDEE)에 맞춘 일일 칼로리 설계와 식단 장보기 예산가 어떻게 계산되는지 미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰을 공유해 드립니다.
+저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트」** 조건에서 내 기초대사량(BMR)·활동대사량(TDEE)에 맞춘 일일 칼로리 설계와 식단 장보기 예산가 어떻게 계산되는지 미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰·모션클립을 공유해 드립니다.
 
 무작정 굶는 대신 하루 1,420kcal(단백질 110g) 기준에 맞춰 2주간 닭가슴살 44팩과 현미밥 28개로 밀프렙을 세팅하면 배고픔과 식비를 동시에 잡을 수 있습니다.
 
@@ -21,8 +21,10 @@
 
 > **「🎨 3초 요약 영수증 팩트체크」 — EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗 (헬스 시바견 득근이 × 안경 여우 영양박사)**  
 > ❌ 배달 포케·소매 단품 2주 지출: 189,200원/2주 vs ✅ 2주 정량 밀프렙(44팩+28공기): 84,400원 (44팩) (-104,800원 절약)  
-> 🔎 **내 숫자 넣고 3초 만에 무료 영수증 뽑기 (회원가입 없음)**:  
+> 👉 **[무료 3초 계산기 바로가기] 내 숫자 넣고 실시간 영수증 뽑기 (회원가입 없음)**:  
 https://truthofmarket.com/preset/diet-female-lean
+> 🏠 **머니핏 식단·다이어트 계산기 공식 포털**:  
+https://truthofmarket.com/?calc=diet
 
 ---
 
@@ -71,11 +73,14 @@ A. 삶은 달걀 2개(단백질 12g), 소우둔살/홍두깨살 100g(단백질 2
 
 ---
 
-### 5. 내 조건 3초 무료 계산기 & 함께 참고할 절약 아이템
-내 조건(성별·체중·키·활동량·목표주수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+### 5. 내 조건 3초 무료 계산기 직행 링크 & 함께 참고할 절약 아이템
+내 조건(성별·체중·키·활동량·목표주수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 아래 링크를 클릭하면 웹에서 바로 계산됩니다.
 
-👉 **[무료] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 3초 시뮬레이터 바로가기**:
+👉 **[무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 전용 시뮬레이터**:
 https://truthofmarket.com/preset/diet-female-lean
+
+🏠 **[머니핏 6대 생활비 3초 계산기 전체 모음 (식단·다이어트)]:**
+https://truthofmarket.com/?calc=diet
 
 🛍️ **[네이버 브랜드커넥트 참고 아이템 1] 한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개)**:
 https://naver.me/xvClW9nJ
@@ -98,7 +103,10 @@ https://cafe.naver.com/moneyfitlab
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & EP.08 55kg 무작정 한 끼 굶기 요요 참사 역추적 🥗 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트, 모르고 그냥 썼더니 -104,800원 절약? 직접 계산해보고 놀란 현실 영수증</div>
-  <a href="https://truthofmarket.com/preset/diet-female-lean/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <div style="margin-bottom:12px;padding:10px 14px;background:#ecfdf5;border:1px solid #10b981;border-radius:10px;text-align:center;">
+    <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:15px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 (https://truthofmarket.com/preset/diet-female-lean) ↗</a>
+  </div>
+  <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/diet-female-lean-thumb.png" alt="여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="https://truthofmarket.com/sns/diet-female-lean-grid.png" alt="여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
@@ -108,7 +116,8 @@ https://cafe.naver.com/moneyfitlab
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -104,800원 절약</div>
   </div>
   <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="https://truthofmarket.com/preset/diet-female-lean/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/diet-female-lean) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-female-lean?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (https://truthofmarket.com/preset/diet-female-lean) ↗</a>
+    <a href="https://truthofmarket.com/?calc=diet" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 18px;background:#1e40af;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (https://truthofmarket.com/?calc=diet) ↗</a>
     <a href="https://naver.me/xvClW9nJ" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개) ↗</a>
   </div>
 </div>
@@ -131,6 +140,9 @@ https://cafe.naver.com/moneyfitlab
 • 닭가슴살(2주): 44팩
 • 현미밥(2주): 28개
 
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 계산기 바로가기:
+https://truthofmarket.com/preset/diet-female-lean
+
 2️⃣ 실패 없는 결정을 위한 3가지 핵심 기준 (이것만 기억하세요!)
 ① [기준 확인] 체중·키·나이·활동량을 기반으로 내 정확한 일일 활동대사량(TDEE)과 목표 칼로리(감량 적자 또는 벌크업 흑자)를 먼저 산출하세요.
 ② [손실 방지] 배달음식·외식·단품 편의점 결제로 새나가는 식비를 줄이고, 일일 목표 단백질(g)에 맞춘 대용량 묶음 식단으로 100g당 단가를 낮추세요.
@@ -145,7 +157,10 @@ A. 다이어트 중 단백질을 충분히 섭취하면 음식 유도성 열대�
 집마다 성별·체중·키·활동량·목표주수 숫자가 조금씩 달라서, 결정하시기 전에 본인 숫자를 직접 넣어서 손익분기점을 한 번 찍어보시는 게 가장 정확합니다.
 
 제가 계산할 때 썼던 무료 계산기 페이지 남겨드릴게요(회원가입이나 앱 설치 없이 숫자만 넣으면 3초 만에 위 비교표가 바로 나옵니다).
-👉 무료 계산기: https://truthofmarket.com/preset/diet-female-lean
+👉 [무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트:
+https://truthofmarket.com/preset/diet-female-lean
+🏠 [전체 6대 생활비 계산기 포털]:
+https://truthofmarket.com/?calc=diet
 
 도움이 되셨다면 채택 부탁드리며, 추가로 궁금한 숫자 있으시면 댓글 남겨주세요!
 ```
@@ -154,22 +169,41 @@ A. 다이어트 중 단백질을 충분히 섭취하면 음식 유도성 열대�
 
 ## 💬 [맘카페 / 자취카페 / 동호회] 내돈내산·경험담 자연스러운 댓글 (스팸 차단 우회)
 ```text
-[📌 커뮤니티 알짜 정보글/댓글 템플릿 — 상업 링크 0개 · 실측 비교 데이터 공유로 자연 유입 유도]
+[📌 네이버 카페(moneyfitlab) & 커뮤니티 초고밀도 백서형 정보글 — 4컷 웹툰(slide-1~4.png) + 실측 비교표 + 상·하단 직관적 클릭 링크 2회 탑재]
 
-요즘 카페에 **여자 55kg 다이어트 식단 탄단지** 고민하시는 글이 자주 보여서, 제가 결정하기 전에 **미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준** 수식으로 직접 비교해 본 알짜 요약본 공유해요! (저장해 두셨다가 비교하실 때 쓰세요 😊)
+요즘 카페에 **여자 55kg 다이어트 식단 탄단지** 고민하시는 글이 자주 보여서, 결정하기 전에 **미국 임상영양학회 Mifflin-St Jeor 대사량 공식 및 보건복지부 영양섭취기준** 수식으로 직접 비교해 본 알짜 백서 요약본과 4컷 웹툰을 공유합니다! (저장해 두셨다가 비교하실 때 바로 꺼내 쓰세요 😊)
 
-📊 **[여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 실측 비교 요약]**
+📊 **[여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트 3초 실측 비교 영수증]**
 • 그냥 유지할 때(배달 포케·소매 단품 2주 지출): **189,200원/2주**
 • 조건 바꿨을 때(2주 정량 밀프렙(44팩+28공기)): **84,400원 (44팩)** (➔ **-104,800원 절약**)
 • 핵심 지표: 탄·단·지(g) 139/110/37g / 닭가슴살(2주) 44팩
 
-✅ **[결정 전 꼭 체크할 2가지 포인트]**
+👉 **[무료 3초 계산기 바로가기] 내 조건(성별·체중·키·활동량·목표주수) 넣어서 1원 단위 영수증 바로 뽑기**:
+https://truthofmarket.com/preset/diet-female-lean
+
+---
+
+📋 **[조건별 실측 비교 데이터표]**
+| 식단 구성 항목 | 일일 권장 섭취량 | 2주(14일) 총 소요량 | 주요 급원 식품 | 장보기 수량 |
+| --- | --- | --- | --- | --- |
+| BMR & 유지 TDEE | BMR 1,248 kcal / TDEE 1,820 kcal | 총 대사 25,480 kcal | - | 가벼운 활동(1.375) |
+| 다이어트 목표 칼로리 | 1,420 kcal / 일 (-400 결손) | 총 19,880 kcal | - | 2주 예상 감량 -0.8kg |
+| 단백질 섭취량 (체중 2배) | 110g / 일 | 순단백질 1,540g | 닭가슴살 + 달걀 + 두부 | 닭가슴살 100g 44팩 |
+| 탄수화물 (복합 통곡물) | 145g / 일 | 현미밥 28개 | 즉석 현미밥 (일 2공기) | 현미밥 24개입 1박스 + 4개 |
+
+✅ **[결정 전 호구 막는 3단계 핵심 체크리스트]**
 1) 체중·키·나이·활동량을 기반으로 내 정확한 일일 활동대사량(TDEE)과 목표 칼로리(감량 적자 또는 벌크업 흑자)를 먼저 산출하세요.
 2) 배달음식·외식·단품 편의점 결제로 새나가는 식비를 줄이고, 일일 목표 단백질(g)에 맞춘 대용량 묶음 식단으로 100g당 단가를 낮추세요.
+3) 닭가슴살·복합탄수화물·프로틴 파우더를 한 달 필요량(kg) 기준으로 장바구니에 담아 식비와 체성분을 동시에 잡으세요.
 
 막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(성별·체중·키·활동량·목표주수) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
-회원가입 없이 3초 만에 내 조건 영수증 뽑아볼 수 있는 무료 계산기 좌표 남겨둘게요 👇
-🔎 **내 조건 3초 무료 계산기**: https://truthofmarket.com/preset/diet-female-lean (또는 검색창에 '머니핏 계산기' 검색!)
+회원가입 없이 클릭 한 번으로 3초 만에 내 조건 영수증을 뽑아볼 수 있는 무료 계산기 직행 링크 남겨둘게요 👇
+
+👉 **[무료 3초 계산기 바로가기] 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트**:
+https://truthofmarket.com/preset/diet-female-lean
+
+🏠 **[머니핏 6대 생활비 3초 손익계산기 전체 모음]**:
+https://truthofmarket.com/?calc=diet
 ```
 
 ---
@@ -178,5 +212,7 @@ A. 다이어트 중 단백질을 충분히 섭취하면 음식 유도성 열대�
 ```text
 55kg 여성이 근육 탄력은 지키면서 2주 동안 군살 라인을 정리하려면 하루 몇 칼로리를 어떻게 먹어야 할까요?
 무작정 굶는 대신 하루 1,420kcal(단백질 110g) 기준에 맞춰 2주간 닭가슴살 44팩과 현미밥 28개로 밀프렙을 세팅하면 배고픔과 식비를 동시에 잡을 수 있습니다.
-내 조건(성별·체중·키·활동량·목표주수) 3초 무료 시뮬레이션: https://truthofmarket.com/preset/diet-female-lean
+👉 내 조건(성별·체중·키·활동량·목표주수) 3초 무료 시뮬레이션 바로가기:
+https://truthofmarket.com/preset/diet-female-lean
+(https://truthofmarket.com/?calc=diet)
 ```

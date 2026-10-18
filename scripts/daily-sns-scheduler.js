@@ -20,6 +20,7 @@ const fs = require('fs');
 const path = require('path');
 const { generateWebtoonPack } = require('./sns-auto-publisher.js');
 const { SHORT_4CUT_BY_SLUG } = require('../src/data/webtoon-stories.js');
+const { generateDivision1DailyPack } = require('./division1-comedifarm-engine.js');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const LOGS_DIR = path.join(ROOT_DIR, 'logs');
@@ -209,6 +210,7 @@ function buildPrebuiltStandbyQueue(state) {
   for (const dayPlan of TWELVE_DAY_ROTATION) {
     dayPlan.slots.forEach((slotItem, sIdx) => {
       const slug = slotItem.slug;
+      const calcKey = slug.split('-')[0] || 'electric';
       const ep = SHORT_4CUT_BY_SLUG[slug] || {};
       const outboxDir = path.join(ROOT_DIR, 'sns_outbox', slug);
       const bundlePath = path.join(outboxDir, 'post_bundle.json');
@@ -232,7 +234,7 @@ function buildPrebuiltStandbyQueue(state) {
 
       const contentLines = [
         `====================================================================`,
-        `[머니핏 @to_to_studio_ 감성 4컷 웹툰 사전제작 대기열 (Standby Queue)]`,
+        `[머니핏 @to_to_studio_ 감성 4컷 웹툰 & 16초 모션클립 사전제작 대기열 (Standby Queue)]`,
         `- 편성 일정 : Day ${dayNumStr} / Slot ${slotNumStr} (${slotItem.slot} KST)`,
         `- 현재 상태 : ${statusLabel}`,
         `- 슬러그    : ${slug}`,
@@ -243,11 +245,14 @@ function buildPrebuiltStandbyQueue(state) {
         ...(slotItem.liveUrl ? [`- 게시 링크 : ${slotItem.liveUrl}`] : []),
         `====================================================================`,
         ``,
-        `[1] 사전제작 완료된 이미지 에셋 (총 5장 100% 렌더링 대기)`,
+        `[1] 사전제작 완료된 웹툰 & 모션영상 에셋 (블로그 · 카페 · 인스타 · 쓰레드 동시 활용)`,
         `- 합본 4컷 그리드 (1080x1080) : sns_outbox/${slug}/webtoon-grid.png`,
         `- 슬라이드 1~4컷 (1080x1080)  : sns_outbox/${slug}/slide-1.png ~ slide-4.png`,
+        `- 네이버 홈판 1:1 대표 썸네일 : sns_outbox/${slug}/blog-home-thumb.png`,
+        `- 16초 숏폼 모션클립 (9:16)   : sns_outbox/${slug}/clip.mp4`,
         `- 홈페이지/네이버 배포 URL    : https://truthofmarket.com/sns/${slug}-grid.png`,
-        `- 계산기 랜딩 URL             : https://truthofmarket.com/preset/${slug}`,
+        `- 👉 [무료 3초 계산기 직행]   : https://truthofmarket.com/preset/${slug}`,
+        `- 🏠 [계산기 허브 직행]       : https://truthofmarket.com/?calc=${calcKey}`,
         ``,
         `[2] 4컷 대사 및 3컷 영수증 요약`,
         `- 1컷 : ${(ep.p1 || []).join(' ')}`,
@@ -260,13 +265,13 @@ function buildPrebuiltStandbyQueue(state) {
         (bundle.instagramCaption || '').trim(),
         `--------------------------------------------------------------------`,
         ``,
-        `[4] 🧵 쓰레드 (@moneyfit2026) 본문 (외부 링크 0개) + 첫 번째 대댓글 (계산기 딥링크)`,
+        `[4] 🧵 쓰레드 (@moneyfit2026) 본문 (외부 링크 0개) + 첫 번째 대댓글 (계산기 딥링크 2종)`,
         `--------------------------------------------------------------------`,
         `[본문]`,
         (bundle.threadsMain || '').trim(),
         ``,
         `[첫 번째 대댓글]`,
-        (bundle.threadsReply || `👉 3초 무료 계산기: https://truthofmarket.com/preset/${slug}`).trim(),
+        (bundle.threadsReply || `👉 [무료 3초 계산기 바로가기]:\nhttps://truthofmarket.com/preset/${slug}\n🏠 [전체 6대 생활비 계산기]:\nhttps://truthofmarket.com/?calc=${calcKey}`).trim(),
         `--------------------------------------------------------------------`,
         ...(omniText ? [
           ``,
@@ -284,6 +289,7 @@ function buildPrebuiltStandbyQueue(state) {
         slotIndex: sIdx + 1,
         slotTime: slotItem.slot,
         slug,
+        calc: calcKey,
         category: slotItem.category,
         epTitle: ep.epTitle || slug,
         cast: slotItem.cast,
@@ -291,9 +297,12 @@ function buildPrebuiltStandbyQueue(state) {
         status: statusCode,
         statusLabel,
         liveUrl: slotItem.liveUrl || null,
+        targetUrl: `https://truthofmarket.com/preset/${slug}`,
+        calcHubUrl: `https://truthofmarket.com/?calc=${calcKey}`,
         standbyFile: `backlog_human_posts/webtoon_standby/${fileName}`,
         omniChannelKitFile: `sns_outbox/${slug}/omni_channel_kit.md`,
         gridPng: `sns_outbox/${slug}/webtoon-grid.png`,
+        clipMp4: `sns_outbox/${slug}/clip.mp4`,
         publicGridUrl: `https://truthofmarket.com/sns/${slug}-grid.png`
       });
     });
@@ -306,6 +315,7 @@ function buildPrebuiltStandbyQueue(state) {
     standbyCount: manifestItems.filter(i => i.status === 'STANDBY_READY').length,
     dailyCap: MAX_DAILY_POSTS,
     scheduleSlotsKst: ['08:15', '12:45', '21:15'],
+    blogAndCafeNightWavesKst: ['18:30', '20:30', '21:00', '22:30', '23:00'],
     items: manifestItems
   };
 
@@ -423,12 +433,14 @@ async function prepareTodayThreePacks(options = {}) {
   saveScheduleState(state);
   const standbyManifest = buildPrebuiltStandbyQueue(state);
   const reportPath = writeScheduleMarkdownReport(state, standbyManifest);
+  const division1Pack = generateDivision1DailyPack();
 
   return {
     state,
     todayPlan,
     prepared,
     standbyManifest,
+    division1Pack,
     reportPath
   };
 }

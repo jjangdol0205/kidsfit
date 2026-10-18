@@ -1,5 +1,5 @@
 ====================================================================
-[머니핏 @to_to_studio_ 감성 4컷 웹툰 사전제작 대기열 (Standby Queue)]
+[머니핏 @to_to_studio_ 감성 4컷 웹툰 & 16초 모션클립 사전제작 대기열 (Standby Queue)]
 - 편성 일정 : Day 10 / Slot 3 (EVENING (21:15) KST)
 - 현재 상태 : ⏳ 사전제작 대기 중 (Day 10 · EVENING (21:15))
 - 슬러그    : room-minimalist-50
@@ -9,11 +9,14 @@
 - 구도 패턴 : standard
 ====================================================================
 
-[1] 사전제작 완료된 이미지 에셋 (총 5장 100% 렌더링 대기)
+[1] 사전제작 완료된 웹툰 & 모션영상 에셋 (블로그 · 카페 · 인스타 · 쓰레드 동시 활용)
 - 합본 4컷 그리드 (1080x1080) : sns_outbox/room-minimalist-50/webtoon-grid.png
 - 슬라이드 1~4컷 (1080x1080)  : sns_outbox/room-minimalist-50/slide-1.png ~ slide-4.png
+- 네이버 홈판 1:1 대표 썸네일 : sns_outbox/room-minimalist-50/blog-home-thumb.png
+- 16초 숏폼 모션클립 (9:16)   : sns_outbox/room-minimalist-50/clip.mp4
 - 홈페이지/네이버 배포 URL    : https://truthofmarket.com/sns/room-minimalist-50-grid.png
-- 계산기 랜딩 URL             : https://truthofmarket.com/preset/room-minimalist-50
+- 👉 [무료 3초 계산기 직행]   : https://truthofmarket.com/preset/room-minimalist-50
+- 🏠 [계산기 허브 직행]       : https://truthofmarket.com/?calc=room
 
 [2] 4컷 대사 및 3컷 영수증 요약
 - 1컷 : 1년만 살 단기 원룸인데 생필품 담으니 **68만원 초과**?!
@@ -39,7 +42,7 @@
 #원룸50만원세팅 #단기자취필수템 #미니멀자취 #자취생존템 #원룸최소비용
 --------------------------------------------------------------------
 
-[4] 🧵 쓰레드 (@moneyfit2026) 본문 (외부 링크 0개) + 첫 번째 대댓글 (계산기 딥링크)
+[4] 🧵 쓰레드 (@moneyfit2026) 본문 (외부 링크 0개) + 첫 번째 대댓글 (계산기 딥링크 2종)
 --------------------------------------------------------------------
 [본문]
 🐾 [EP.23 1년 단기 원룸 50만원 극한 가성비 생존 세팅 🎒]

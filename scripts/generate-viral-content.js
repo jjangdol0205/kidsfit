@@ -257,7 +257,10 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const brandConnectSubUrl = bcItem.subUrl;
   const officialCafeUrl = 'https://cafe.naver.com/moneyfitlab';
 
-  // 1. Blog Post (Naver Home-Feed D.I.A.+ Optimized with 1:1 Representative Thumbnail FIRST)
+  const calcHubUrl = `${currentSiteUrl}/?calc=${preset.calc}`;
+  const clipVideoRelPath = `sns_outbox/${preset.id}/clip.mp4`;
+
+  // 1. Blog Post (Naver Home-Feed D.I.A.+ Optimized with 1:1 Representative Thumbnail + Motion Clip + 4-Cut Webtoon + Dual Direct Links)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
   const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
   const faqList = (preset.faq || []).map((f, i) => `**Q${i + 1}. ${f.question || f.q}**\nA. ${f.answer || f.a}`).join('\n\n');
@@ -265,10 +268,10 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const blogPost = `[제목] ${homeFeedTitle}
 
 ![${preset.title} 네이버 홈판 대표 썸네일](${blogHomeThumbUrl})
-*(▲ 위 1:1 정방형 썸네일(\`blog-home-thumb.png\`)을 스마트에디터 ONE '대표 사진'으로 지정하면 네이버 모바일 홈판(리빙·경제M) 노출 시 가독성과 클릭률이 극대화됩니다)*
+*(▲ 위 1:1 정방형 썸네일(\`blog-home-thumb.png\`)과 16초 모션웹툰 영상(\`${clipVideoRelPath}\`), 4컷 슬라이드(\`slide-1~4.png\`)를 함께 배치하면 네이버 홈판 노출 및 클릭률이 극대화됩니다)*
 
 ${story.hookLine || `요즘 ${preset.title} 관련해서 실제 비용과 손익분기점을 궁금해하시는 분들이 정말 많습니다.`}
-저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「${preset.title}」** 조건에서 ${strat.introContext}가 어떻게 계산되는지 ${strat.authoritySource}에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰을 공유해 드립니다.
+저도 처음에는 막연하게 눈대중으로만 어림잡았는데, 실제로 **「${preset.title}」** 조건에서 ${strat.introContext}가 어떻게 계산되는지 ${strat.authoritySource}에 직접 대입해 보니 생각보다 차이가 꽤 크더라고요. 오늘은 제가 정리한 1원·1g 단위 비교표와 4컷 요약 웹툰·모션클립을 공유해 드립니다.
 
 ${story.factLine || preset.description}
 
@@ -276,8 +279,10 @@ ${story.factLine || preset.description}
 
 > **「🎨 3초 요약 영수증 팩트체크」 — ${epTitle} (${charName} × ${expertName})**  
 > ❌ ${badLabel}: ${badVal} vs ✅ ${goodLabel}: ${goodVal} (${diffVal})  
-> 🔎 **내 숫자 넣고 3초 만에 무료 영수증 뽑기 (회원가입 없음)**:  
+> 👉 **[무료 3초 계산기 바로가기] 내 숫자 넣고 실시간 영수증 뽑기 (회원가입 없음)**:  
 ${targetUrl}
+> 🏠 **머니핏 ${preset.category} 계산기 공식 포털**:  
+${calcHubUrl}
 
 ---
 
@@ -312,11 +317,14 @@ ${faqList}
 
 ---
 
-### 5. 내 조건 3초 무료 계산기 & 함께 참고할 절약 아이템
-${story.ctaLine || `내 조건(${strat.inputHint})을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.`} 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+### 5. 내 조건 3초 무료 계산기 직행 링크 & 함께 참고할 절약 아이템
+${story.ctaLine || `내 조건(${strat.inputHint})을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.`} 회원가입이나 앱 설치 없이 아래 링크를 클릭하면 웹에서 바로 계산됩니다.
 
-👉 **[무료] ${preset.title} 3초 시뮬레이터 바로가기**:
+👉 **[무료 3초 계산기 바로가기] ${preset.title} 전용 시뮬레이터**:
 ${targetUrl}
+
+🏠 **[머니핏 6대 생활비 3초 계산기 전체 모음 (${preset.category})]:**
+${calcHubUrl}
 
 🛍️ **[네이버 브랜드커넥트 참고 아이템 1] ${bcItem.label}**:
 ${brandConnectUrl}
@@ -345,6 +353,9 @@ ${uniqueHashtags}`;
 • 최적 방식(${goodLabel}): ${goodVal} ➔ **${diffVal}**
 ${plainMetrics}
 
+👉 내 조건(${strat.inputHint}) 3초 무료 계산기 바로가기:
+${targetUrl}
+
 2️⃣ 실패 없는 결정을 위한 3가지 핵심 기준 (이것만 기억하세요!)
 ① [기준 확인] ${strat.step1}
 ② [손실 방지] ${strat.step2}
@@ -355,39 +366,59 @@ ${story.factLine || res.summary}
 집마다 ${strat.inputHint} 숫자가 조금씩 달라서, 결정하시기 전에 본인 숫자를 직접 넣어서 손익분기점을 한 번 찍어보시는 게 가장 정확합니다.
 
 제가 계산할 때 썼던 무료 계산기 페이지 남겨드릴게요(회원가입이나 앱 설치 없이 숫자만 넣으면 3초 만에 위 비교표가 바로 나옵니다).
-👉 무료 계산기: ${targetUrl}
+👉 [무료 3초 계산기 바로가기] ${preset.title}:
+${targetUrl}
+🏠 [전체 6대 생활비 계산기 포털]:
+${calcHubUrl}
 
 도움이 되셨다면 채택 부탁드리며, 추가로 궁금한 숫자 있으시면 댓글 남겨주세요!`;
 
-  // 3. Community / Cafe High-Value "Aljja" Information Post (Bookmark-worthy summary note that naturally drives homepage visits)
+  // 3. Community / Cafe High-Value "Aljja" Whitepaper Post (4-Cut Webtoon + Exact Comparison Table + Top/Bottom Direct Clickable Links)
   const firstMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label} ${res.metrics[0].val}` : res.headline;
   const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
-  const cafeCommentPost = `[📌 커뮤니티 알짜 정보글/댓글 템플릿 — 상업 링크 0개 · 실측 비교 데이터 공유로 자연 유입 유도]
+  const cafeCommentPost = `[📌 네이버 카페(moneyfitlab) & 커뮤니티 초고밀도 백서형 정보글 — 4컷 웹툰(slide-1~4.png) + 실측 비교표 + 상·하단 직관적 클릭 링크 2회 탑재]
 
-요즘 카페에 **${query}** 고민하시는 글이 자주 보여서, 제가 결정하기 전에 **${strat.authoritySource}** 수식으로 직접 비교해 본 알짜 요약본 공유해요! (저장해 두셨다가 비교하실 때 쓰세요 😊)
+요즘 카페에 **${query}** 고민하시는 글이 자주 보여서, 결정하기 전에 **${strat.authoritySource}** 수식으로 직접 비교해 본 알짜 백서 요약본과 4컷 웹툰을 공유합니다! (저장해 두셨다가 비교하실 때 바로 꺼내 쓰세요 😊)
 
-📊 **[${preset.title} 실측 비교 요약]**
+📊 **[${preset.title} 3초 실측 비교 영수증]**
 • 그냥 유지할 때(${badLabel}): **${badVal}**
 • 조건 바꿨을 때(${goodLabel}): **${goodVal}** (➔ **${diffVal}**)
 • 핵심 지표: ${firstMetric} / ${secondMetric}
 
-✅ **[결정 전 꼭 체크할 2가지 포인트]**
+👉 **[무료 3초 계산기 바로가기] 내 조건(${strat.inputHint}) 넣어서 1원 단위 영수증 바로 뽑기**:
+${targetUrl}
+
+---
+
+📋 **[조건별 실측 비교 데이터표]**
+${tableMd}
+
+✅ **[결정 전 호구 막는 3단계 핵심 체크리스트]**
 1) ${strat.step1}
 2) ${strat.step2}
+3) ${strat.step3}
 
 막연히 감으로 고르면 은근히 새는 돈이 큰데, 내 조건(${strat.inputHint}) 숫자를 직접 넣어보니까 1원 단위로 손익분기점이 딱 나와서 결정하기 훨씬 수월하더라고요!
-회원가입 없이 3초 만에 내 조건 영수증 뽑아볼 수 있는 무료 계산기 좌표 남겨둘게요 👇
-🔎 **내 조건 3초 무료 계산기**: ${targetUrl} (또는 검색창에 '머니핏 계산기' 검색!)`;
+회원가입 없이 클릭 한 번으로 3초 만에 내 조건 영수증을 뽑아볼 수 있는 무료 계산기 직행 링크 남겨둘게요 👇
+
+👉 **[무료 3초 계산기 바로가기] ${preset.title}**:
+${targetUrl}
+
+🏠 **[머니핏 6대 생활비 3초 손익계산기 전체 모음]**:
+${calcHubUrl}`;
 
   // 4. Threads / Blind 3-Line Copy (Clean, non-spammy, preset-accurate)
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
-  const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n${story.ctaLine || `내 조건(${strat.inputHint}) 3초 무료 시뮬레이션`}: ${targetUrl}`;
+  const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n👉 내 조건(${strat.inputHint}) 3초 무료 시뮬레이션 바로가기:\n${targetUrl}\n(${calcHubUrl})`;
 
-  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Includes 1:1 Home-Feed Representative Thumbnail + 4-Cut Webtoon + Homepage & Brand Connect)
+  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (Includes 1:1 Home-Feed Representative Thumbnail + 4-Cut Webtoon + Dual Homepage Direct Links & Brand Connect)
   const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🔥 네이버 홈판 1:1 대표 썸네일 & ${epTitle} (${charName} × ${expertName})</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${homeFeedTitle}</div>
-  <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <div style="margin-bottom:12px;padding:10px 14px;background:#ecfdf5;border:1px solid #10b981;border-radius:10px;text-align:center;">
+    <a href="${targetUrl}?src=naver_blog_top" target="_blank" rel="noopener noreferrer" style="color:#047857;font-size:15px;font-weight:900;text-decoration:underline;">👉 [무료 3초 계산기 바로가기] ${preset.title} (${targetUrl}) ↗</a>
+  </div>
+  <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="${blogHomeThumbUrl}" alt="${preset.title} 네이버 홈판 대표 썸네일" style="width:100%;max-width:520px;height:auto;border-radius:14px;border:2px solid #0f172a;display:block;margin:0 auto 12px auto;" />
     <img src="${webtoonGridUrl}" alt="${preset.title} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
@@ -397,7 +428,8 @@ ${story.factLine || res.summary}
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: ${diffVal}</div>
   </div>
   <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
-    <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (${targetUrl}) ↗</a>
+    <a href="${targetUrl}?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#0f172a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 (${targetUrl}) ↗</a>
+    <a href="${calcHubUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 18px;background:#1e40af;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🏠 머니핏 6대 생활비 3초 계산기 공식 포털 (${calcHubUrl}) ↗</a>
     <a href="${brandConnectUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#03c75a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: ${bcItem.label} ↗</a>
   </div>
 </div>`;
