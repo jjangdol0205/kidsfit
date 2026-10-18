@@ -386,6 +386,68 @@ async function sendErrorAlert(stageName, errorObj, options = {}) {
   }
 }
 
+/**
+ * Send a local photo file via Telegram sendPhoto (multipart/form-data)
+ */
+function sendTelegramPhoto(botToken, chatId, photoPath, caption = '') {
+  return new Promise((resolve, reject) => {
+    const boundary = '----MoneyFitBoundary' + Date.now().toString(16);
+    const filename = path.basename(photoPath);
+    const fileBuf = fs.readFileSync(photoPath);
+
+    const parts = [];
+    parts.push(Buffer.from(
+      `--${boundary}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n${chatId}\r\n`,
+      'utf8'
+    ));
+    if (caption) {
+      parts.push(Buffer.from(
+        `--${boundary}\r\nContent-Disposition: form-data; name="caption"\r\n\r\n${caption}\r\n`,
+        'utf8'
+      ));
+    }
+    parts.push(Buffer.from(
+      `--${boundary}\r\nContent-Disposition: form-data; name="photo"; filename="${filename}"\r\nContent-Type: image/png\r\n\r\n`,
+      'utf8'
+    ));
+    parts.push(fileBuf);
+    parts.push(Buffer.from(`\r\n--${boundary}--\r\n`, 'utf8'));
+
+    const bodyBuf = Buffer.concat(parts);
+    const options = {
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: `/bot${botToken}/sendPhoto`,
+      method: 'POST',
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${boundary}`,
+        'Content-Length': bodyBuf.length
+      },
+      timeout: 20000
+    };
+
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode >= 200 && res.statusCode < 300 && parsed.ok) {
+            resolve(parsed.result);
+          } else {
+            reject(new Error(parsed.description || `HTTP ${res.statusCode}`));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+    req.on('error', reject);
+    req.write(bodyBuf);
+    req.end();
+  });
+}
+
 // CLI execution
 if (require.main === module) {
   (async () => {
@@ -395,6 +457,8 @@ if (require.main === module) {
     const tokenArgIdx = args.indexOf('--token');
     const chatArgIdx = args.indexOf('--chat-id');
     const msgArgIdx = args.indexOf('--message');
+    const photoArgIdx = args.indexOf('--photo');
+    const captionArgIdx = args.indexOf('--caption');
 
     if (tokenArgIdx !== -1 && args[tokenArgIdx + 1]) {
       saveTelegramConfig({ telegramBotToken: args[tokenArgIdx + 1].trim() });
@@ -420,6 +484,14 @@ if (require.main === module) {
       process.exit(0);
     }
 
+    if (photoArgIdx !== -1 && args[photoArgIdx + 1]) {
+      const photoPath = path.resolve(PROJECT_ROOT, args[photoArgIdx + 1]);
+      const caption = captionArgIdx !== -1 && args[captionArgIdx + 1] ? args.slice(captionArgIdx + 1).join(' ') : '';
+      const photoRes = await sendTelegramPhoto(cfg.botToken, cfg.chatId, photoPath, caption);
+      console.log(`[Telegram Photo Sent] message_id=${photoRes.message_id}`);
+      process.exit(0);
+    }
+
     if (msgArgIdx !== -1 && args[msgArgIdx + 1]) {
       const rawMsg = args.slice(msgArgIdx + 1).join(' ');
       const customHtml = `🤖 <b>[Antigravity AI 작업 완료 보고]</b>\n━━━━━━━━━━━━━━━━━━\n${escapeHtml(rawMsg)}\n━━━━━━━━━━━━━━━━━━\n🌐 <a href="${cfg.siteUrl}">${cfg.siteUrl}</a>`;
@@ -441,9 +513,11 @@ module.exports = {
   getTelegramConfig,
   saveTelegramConfig,
   telegramApiRequest,
+  sendTelegramPhoto,
   escapeHtml,
   discoverChatId,
   buildCompletionMessageHtml,
   sendTelegramReport,
   sendErrorAlert
 };
+

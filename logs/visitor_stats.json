@@ -1,8 +1,8 @@
 {
   "startedAt": "2026-10-17T05:48:25.667Z",
-  "totalPageViews": 245,
-  "totalUniqueVisitors": 193,
-  "totalBotCrawls": 2170,
+  "totalPageViews": 252,
+  "totalUniqueVisitors": 198,
+  "totalBotCrawls": 2183,
   "totalAffiliateClicks": 15,
   "totalClicksByChannel": {
     "coupang": 9,
@@ -35,9 +35,9 @@
       }
     },
     "2026-10-18": {
-      "uniqueVisitors": 34,
-      "pageViews": 46,
-      "botCrawls": 370,
+      "uniqueVisitors": 39,
+      "pageViews": 53,
+      "botCrawls": 383,
       "affiliateClicks": 2,
       "clicksByChannel": {
         "coupang": 1,
@@ -72,7 +72,7 @@
         "google": 0,
         "bing": 1,
         "ai": 0,
-        "other": 368
+        "other": 381
       },
       "pages": {}
     }

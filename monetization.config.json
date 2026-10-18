@@ -133,5 +133,7 @@
       "defaultUrl": "https://ohou.se/",
       "commission": "2.0%~4.0%"
     }
-  }
+  },
+  "coupangAccessKey": "3793eab4-a000-4bc3-a659-0e9ee25478bc",
+  "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55"
 }

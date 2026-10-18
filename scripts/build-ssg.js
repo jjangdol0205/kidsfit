@@ -1691,6 +1691,7 @@ ${JSON.stringify(schemaJson, null, 2)}
 
   <!-- 클라이언트 측 실시간 인터랙티브 계산기 스크립트 -->
   <script src="../../src/data/calculators.js"></script>
+  <script src="../../src/data/coupang-official-links.js"></script>
   <script src="../../src/data/monetization.js"></script>
   <script>
     const PRESET_ID = '${preset.id}';

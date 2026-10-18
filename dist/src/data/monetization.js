@@ -189,6 +189,19 @@ function sanitizeSafeId(rawId, fallback) {
   return cleaned.length >= 4 ? cleaned : fallback;
 }
 
+function getOfficialCoupangLinksTable() {
+  if (typeof window !== "undefined" && window.COUPANG_OFFICIAL_LINKS) {
+    return window.COUPANG_OFFICIAL_LINKS;
+  }
+  if (typeof require === "function") {
+    try {
+      const mod = require("./coupang-official-links.js");
+      if (mod && mod.COUPANG_OFFICIAL_LINKS) return mod.COUPANG_OFFICIAL_LINKS;
+    } catch (e) {}
+  }
+  return null;
+}
+
 function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
   let afId = currentConfig.coupangAfId || "AF7865143";
   let calcId = "portal";
@@ -207,9 +220,41 @@ function buildCoupangUrl(keyword, afIdOrCalcId = null, optionalCalcId = null) {
 
   const cleanAfId = sanitizeSafeId(afId, "AF7865143");
   const cleanCalcId = String(calcId || "portal").replace(/[^a-zA-Z0-9_-]/g, "") || "portal";
-  const safeKw = keyword !== undefined && keyword !== null ? String(keyword) : "";
+  const safeKw = keyword !== undefined && keyword !== null ? String(keyword).trim() : "";
   const encoded = encodeURIComponent(safeKw);
   const subId = `mf_${cleanCalcId}_${cleanAfId}`;
+
+  // Official Coupang Partners Open API Short-Link Lookup (100% click tracking in Coupang Console + Mobile App Deep-Link)
+  const officialTable = getOfficialCoupangLinksTable();
+  if (cleanAfId === "AF7865143" && officialTable && officialTable.linksByKeyword) {
+    const exactEntry = officialTable.linksByKeyword[safeKw];
+    if (exactEntry && exactEntry.shortenUrl) {
+      return exactEntry.shortenUrl;
+    }
+    // Partial keyword match against official pre-synced Open API short links
+    const keys = Object.keys(officialTable.linksByKeyword);
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i];
+      if (safeKw && (k.includes(safeKw) || safeKw.includes(k))) {
+        const hit = officialTable.linksByKeyword[k];
+        if (hit && hit.shortenUrl) return hit.shortenUrl;
+      }
+    }
+    // Category fallback to official Open API short link
+    const catDefaultKw = {
+      electric: "에너지 1등급 인버터 에어컨",
+      diet: "하림 닭가슴살 10팩",
+      pet: "로얄캐닌 사료",
+      room: "지누스 매트리스 침대프레임",
+      auto: "2채널 QHD 블랙박스 무료장착",
+      telecom: "ipTIME AX3000 공유기",
+      portal: "로봇청소기"
+    }[cleanCalcId] || "로봇청소기";
+    if (officialTable.linksByKeyword[catDefaultKw] && officialTable.linksByKeyword[catDefaultKw].shortenUrl) {
+      return officialTable.linksByKeyword[catDefaultKw].shortenUrl;
+    }
+  }
+
   const brandKey = encodeURIComponent(resolveCoupangBrandKey(safeKw, cleanCalcId));
   return `https://link.coupang.com/re/AFFBRAND?lptag=${cleanAfId}&subid=${subId}&pageKey=${brandKey}&q=${encoded}&channel=user`;
 }

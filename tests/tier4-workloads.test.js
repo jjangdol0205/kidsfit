@@ -33,7 +33,7 @@ suite.test('Workload 4.1: Studio Move-in: 150만원 Budget Full Setup + Moving C
   // 4. Generate affiliate links for BOM items
   const coupangRef = buildCoupangUrl(refItem.name, "room");
   const hanssemBed = buildLinkPriceDeepLink("hanssem", "https://mall.hanssem.com/bed", "A100123456");
-  assert(coupangRef.includes("lptag="));
+  assert(coupangRef.includes("link.coupang.com/a/") || coupangRef.includes("lptag="));
   assert(hanssemBed.includes("m=hanssem"));
 
   // 5. Connect to moving estimate CPA card
@@ -99,7 +99,7 @@ suite.test('Workload 4.3: Office Worker Body Recomp: 80kg -500kcal Grocery BOM',
 
   // 3. Generate Coupang search URL for 127 packs of chicken breast
   const chickenLink = buildCoupangUrl("냉동 닭가슴살 100g 127팩", "diet");
-  assert(chickenLink.includes("subid=mf_diet_"));
+  assert(chickenLink.includes("link.coupang.com/a/") || chickenLink.includes("subid=mf_diet_"));
 
   // 4. CPA card offers 1:1 consultation
   const cpa = getCpaCardDetails("diet", diet);
@@ -153,7 +153,7 @@ suite.test('Workload 4.5: Puppy Care: 1.5kg Pomeranian Feeding & Pet Insurance',
 
   // 3. Purchase links for small dog puppy food
   const foodLink = buildCoupangUrl("로얄캐닌 미니 퍼피 1.5kg", "pet");
-  assert(foodLink.includes("subid=mf_pet_"));
+  assert(foodLink.includes("link.coupang.com/a/") || foodLink.includes("subid=mf_pet_"));
 
   // 4. Pet insurance CPA card to hedge against 1.8M won patella luxation
   const cpa = getCpaCardDetails("pet", pet);

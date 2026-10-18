@@ -55,8 +55,9 @@ suite.test('Interaction 3.4: Coupang Partners Default Fallback to Config AF ID',
   const cfg = getConfig();
   const url = buildCoupangUrl("로봇청소기");
 
-  assert(url.includes(`lptag=${cfg.coupangAfId}`), 'Must fall back to config coupangAfId');
-  assert(url.includes(`subid=mf_portal_${cfg.coupangAfId}`));
+  const isOfficialShortLink = /^https:\/\/link\.coupang\.com\/a\/[a-zA-Z0-9]+/.test(url);
+  const isFallbackGateway = url.includes(`lptag=${cfg.coupangAfId}`) && url.includes(`subid=mf_portal_${cfg.coupangAfId}`);
+  assert(isOfficialShortLink || isFallbackGateway, `Must return official Coupang Open API short link (link.coupang.com/a/...) or lptag=${cfg.coupangAfId}, got: ${url}`);
 });
 
 suite.test('Interaction 3.5: LinkPrice Deep Link Synthesis Syntax & URI Encoding', async () => {

@@ -1,0 +1,633 @@
+{
+  "syncedAt": "2026-10-18T03:17:54.646Z",
+  "afId": "AF7865143",
+  "totalKeywords": 95,
+  "categoryHeroLinks": {
+    "electric": {
+      "query": "서큘레이터",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_electric&pageKey=%EC%84%9C%ED%81%98%EB%A0%88%EC%9D%B4%ED%84%B0&traceid=V0-163-b75cdfb42ff0173f&requestid=20261018121749790238716870",
+      "productId": 151389394,
+      "productName": "아이리스 수퍼 서큘레이터 PCF-HM23, PCF-HM23(화이트)",
+      "productPrice": 64900,
+      "productImage": "https://ads-partners.coupang.com/image1/OqNLHnrsRJqQyRHcOkPF2nGBFXccahBwNIH6Rlsft8xiyYL2Dvy6VIgUjN86qldLCATmwrqiCZam6iSY2hg8rn4nK-mutXq9a2GHPQw_A9db5Ah3WCbXuB8ofNREYEqSVeK0trE2wO3sN3S25zrv3G7MG2eSlL5WJ7b-6DG7F43lzcltTGZLPBhOXEE0M5BAZBGRVHmwGSmo7v81Sa5ycxXM_pJcqzNmVAM24JogcuDCrvuZZaPO0ftgOVby6AvfDwIHmPawrpwZG5Ni2ta3E62glbWzWshXFszlXZno8YupA7oXNC1yXMFSfUKtHwfPEubIM26mVaqj34YNUWnMV8si65KjiWvUduFDOk_4P_vXMHzmF7YbQA5Zz78aUgQ4lgEsiNyWENQmVUkh-g3gfF_47IOlIaiEc9p7Up5jlppsguAnr_ZJpM2Liy5wyVi9MM_Q_5rovX4BfLbyKrE1Idl_XisvRdXkPJ1TDYq5P3En02UFq-UHcH7qAAs_Ed38ceW62sRXMe6DH5V8IYeTwQ==",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_electric&pageKey=151389394&itemId=436970442&vendorItemId=4080146115&traceid=V0-153-d71383ae18c9bbc2&clickBeacon=7f84ac30-caa2-11f1-acc1-7ef54fcad965%7E3&requestid=20261018121749790238716870&token=31850C%7CCMG&pt=1&slot=1"
+    },
+    "diet": {
+      "query": "하림 닭가슴살",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_diet&pageKey=%ED%95%98%EB%A6%BC%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4&traceid=V0-163-89901c5673d0872a&requestid=20261018121750571276682259",
+      "productId": 9482806099,
+      "productName": "뺀닭 블랙페퍼 닭가슴살, 50개, 100g",
+      "productPrice": 60000,
+      "productImage": "https://ads-partners.coupang.com/image1/aldetqzKrAy0Q2T9asqOjeEmBb1PiBh-Ag02l4gTWJCildEWBzaSCx33pOP8Fz-J1ktLkTvv3-Vv91iITrNRQ3YKVYE8E_Ulq-Y7mz7h77wPAc7kjN1ER-zacQf9ZWDhcoJ0wvsva8SiTLXAHI1WAPWNZUZZcLGfTeIcZT05a855OoOyx5AL5YuwUrbHZxq-Q_5wM7Aqc-3Seg_YGdmD_k2qcyiDbrAKcypsFbEMKuVEwrNXh_AH6Cw0BOuKmsTuQEVp5xAIApFldjnR_-Hfr5iChhMHg2kKOnhgbQIDYZTXJABywiEeiGWdyXaMQI9YOrzCOHU0lDTEjIDZJ9038sAp0m4i4puRO0CORYtotpM-QsT8y9rrLR2-WnScw2KoQ1ROfeQCifXvDYc2MIJ4iXE9gcbjYUjwD1zadlJplD2oZZOx-nTZJ8oxAhQ1hI0Oyz8kgluSB-w7AAOijTYqQ8XSEMHvjSecWQgxnxRGeS4y58d99J6Hv93XTj6yXMIrk4EHZWPyJOVL-w17hukHoTihxUhey7KcZJMPGoQ=",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_diet&pageKey=9482806099&itemId=28235580949&vendorItemId=95189260724&traceid=V0-153-83eae9f3b8aa1d21&clickBeacon=7ffc2620-caa2-11f1-8e1e-95470932f2a3%7E3&requestid=20261018121750571276682259&token=31850C%7CCMG&pt=1&slot=1"
+    },
+    "pet": {
+      "query": "로얄캐닌 강아지 사료",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_pet&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C%20%EA%B0%95%EC%95%84%EC%A7%80%20%EC%82%AC%EB%A3%8C&traceid=V0-163-441fc60e81c8af5d&requestid=20261018121751363104887986",
+      "productId": 5932997631,
+      "productName": "로얄캐닌 엑스 스몰 퍼피 3kg,1개, 3kg, 1개, 닭",
+      "productPrice": 43000,
+      "productImage": "https://ads-partners.coupang.com/image1/okQE7qEtweVFve64ovz5MOvrUHWAvE6f0kESsUktCzCOpdFkkl1xG5iNP2c4e3-uTXcI0GCM1gaLAy8Dfb1m9kt0wf0tMf0ghTDlUerfpRbJlps80J2Kc6xlTXtLGHPnYMXDgaCPPZWCzSCSc2rJzNrosQJcexIlNvQDVv2ikmT96DyKMv95ZpOt4F-Ki-TKLZEVURu1TJc4joul71NAxKTzB7FZX6Psom0Xhkeg63uJzmssQ8edoyPpbIT_UBewg94aY0jpB4trEKXfwcOv5U4sTyHJE5Z7bogk8mZ24WzgUaPbTdAZJMzmc2Gbo7VZkpddW2bhUfgji6Kp-iEaxbF_JsmH9pmQZNOND0Ko0epkrabIbyC3t2t5Mns5i7ne7k1WZWFxzt9fvu86UbBEnO9i-FioNH4H0lTdFW28CHXWpMyLtl_Y2ZrRyFDc8EkNtROX6bIvUywMcf8eHuYjy-D76IUnF_bTP8oNiYzy8uweXKFy2eq-_0jiz-ALdxnWSSdj7SqdSjMIUWpDPLbi8ly5-RtIObhQhBlGrsH4",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_pet&pageKey=5932997631&itemId=10548731842&vendorItemId=92764789286&traceid=V0-153-a661763870d93985&clickBeacon=807526b0-caa2-11f1-8d4f-787b48a931b3%7E3&requestid=20261018121751363104887986&token=31850C%7CCMG&pt=1&slot=1"
+    },
+    "room": {
+      "query": "지누스 매트리스",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_room&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&traceid=V0-163-c2d287dd4bbaf869&requestid=20261018121752137192005221",
+      "productId": 9606254242,
+      "productName": "침대 매트리스독립스프링 매트리스, 중간 단단함, 25cm",
+      "productPrice": 169200,
+      "productImage": "https://ads-partners.coupang.com/image1/fHCbEbWHIONCWMw4fKe2oMn8_4DTb0Jvh8M6ZCm_TVzYF0r25Jh9qe8n3nZf7mgVYckXMwFrdSlPM3s68jpWFWyz1Qh20VqmfdxZtxk-Jdx5u6pAEeh70SKuI_O_fgF3c-RAW_5LILueRzbcldxrfCdAREOWSENzrugd8QRUf3lPGtck7fTz6cwazlNX9RXfPfdeA5rug6LpxaQc-mUysHkG1rV7IsMfR8vDwD8dDuLEk2EEu-7Vt9ytRmci6LJPPomGEL7R_dKl7aXmUqRkddwPMG9wrYygQSIdKdMAlEN4HfIsfLnuqWailF38o7LYf_9O0-yHlDhxgJaNDfVe-qrn6uoEpGBhUKBFNbC7Nzp062judPhXn-cIr7IhufNWDbsXYHVHBQXYipvaxqqDkJhG1wYkYiWh0sHoUHtCuhr4xbWb7CRcRjaOuS8OuRuk_QAXoykM3k3YNI42-KxQATj6DHXBRGVU-Nsl7vYn07CD1v2zHajSchxE51p8H3tSNl7O7kfU8PWpICU3ohXEcb1gypSBB6b8K9UU3t1Tft8sWDO3imxM-8dd4sqVmUsrNN8vzCZI9QagorIViZUfMGfl",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_room&pageKey=9606254242&itemId=28677782445&vendorItemId=95619511469&traceid=V0-153-282a3b082ff9c51a&clickBeacon=80ec7990-caa2-11f1-adfc-b8aa94bf9b9b%7E3&requestid=20261018121752137192005221&token=31850C%7CCMG&pt=1&slot=1"
+    },
+    "auto": {
+      "query": "아이나비 블랙박스",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_auto&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4&traceid=V0-163-3846d48a20291333&requestid=20261018121753011130508995",
+      "productId": 8771932955,
+      "productName": "아이나비 2채널 블랙박스 Z1000, 32GB, 2채널 블랙박스 + 출장 할인권 + 메모리 카드",
+      "productPrice": 108900,
+      "productImage": "https://ads-partners.coupang.com/image1/ErwB06M0obHA3RXrEhEzDjg6Hf2fmCMEux0SqSn-qAvTL2SCbTCiAbMjIuBZ-JZ04ISDQOxzyDx3itaoOR3gBF197c33xhQDNW2qP7XOgmIIQXpRWiFB-WcXReZWcJ_JwSgdBJG-6YusPWfYE-FQWo2ty8pNQr1rnI9QmbO2-5HV1R8T4-jQgiBr0ea6fnfyfbSS9dxKKQt4nmksC482mcedhXTq6q6m1zS7WH6kLwaYnt-TNmsfR4FTyts8bqWkcIbl8AHO5edJaclpoTAXAk1G_vE9viwZcNIqIWXTsBEHbNO5SjXT8Dl1ie8q0ihtxMSCeW7d-lqWh-a0oBTg1LMbTeq6YRvm0pAY-3Uz4mU7GdrARzUrKi-_b2KBzRlfcdbIENoikw-pbzdogBPZ8CPNSPRfVNX1CpQMwdmDMUdAab8bJfXP0oKinHFZIXSIFrPgZGO0cMPygSvZKuktPEkxVm6P56R_x9QkrTxuGDHnFhe_eRzyEC2ryM_nc8yscmedE2qVV45X_dH8nlc=",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_auto&pageKey=8771932955&itemId=25516669900&vendorItemId=95878466565&traceid=V0-153-d34ea93ed39fd361&clickBeacon=81700170-caa2-11f1-adad-c6239d0395b3%7E3&requestid=20261018121753011130508995&token=31850C%7CCMG&pt=1&slot=1"
+    },
+    "telecom": {
+      "query": "ipTIME 공유기",
+      "searchLandingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=mf_telecom&pageKey=ipTIME%20%EA%B3%B5%EC%9C%A0%EA%B8%B0&traceid=V0-163-e7a4156c9edffc98&requestid=20261018121753841192005899",
+      "productId": 8615288894,
+      "productName": "ipTIME 유무선 공유기, AX3000Q, 1개",
+      "productPrice": 60600,
+      "productImage": "https://ads-partners.coupang.com/image1/w44lV48sJqk7DRBJw7TE0XBTPxLohfZH62AYbioq-isd3VUVy9K1cm9_7QnuYCTF8CL9EzMYWegpoJ3IAeAuvuRGDJwXf3BkYCoaN001YiqmXWiKz0CykHulo1vZf2aW_q2fbB-md8E6bcA7-QfrWTxaHDP1H4stS8wocUZ6ZwoPXloZ73cAid5cw4jd9La-ApL89eeiBbscKLKCO2zEwnt7oVjQ5aN0uZL3d4QlyvYT04cM8pRusE30O9mMEil3icDpbgU6ihDEr-EQIR-23KGYpr1pSxfpG9Aob9ozC1mdZkQxj5YHExn0dDA2JQ_ht7F8_7potjray0G203NhdAkbdz5d8Ss8_U5yR6t7muvBJeW0ldpyA6EwXc-fIWI12OXAuLvzQrf0g6r9FDoBWKnnLTJ7Pc3btlYgqNNrIDglA230NTo8kLZ-29BfThjca6kOIvGmuQNMTfBfcbExGIV9QsPOt1_I5W4ibIO5JfsgZL95tZoFZy5gsBe64xq5KpsSDGNABrFasv_-juSpBd01",
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=mf_telecom&pageKey=8615288894&itemId=24991184475&vendorItemId=93828024193&traceid=V0-153-6064fb2ae0585050&clickBeacon=81ef1c80-caa2-11f1-899c-727af28a0bf3%7E3&requestid=20261018121753841192005899&token=31850C%7CCMG&pt=1&slot=1"
+    }
+  },
+  "linksByKeyword": {
+    "에너지 1등급 인버터 에어컨": {
+      "keyword": "에너지 1등급 인버터 에어컨",
+      "shortenUrl": "https://link.coupang.com/a/hWk0Za5sKO",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8&traceid=V0-183-376c975173758ecf",
+      "traceId": "V0-183-376c975173758ecf"
+    },
+    "로봇청소기": {
+      "keyword": "로봇청소기",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZeuJDU",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A1%9C%EB%B4%87%EC%B2%AD%EC%86%8C%EA%B8%B0&traceid=V0-183-d97d21ca4f0f576c",
+      "traceId": "V0-183-d97d21ca4f0f576c"
+    },
+    "서큘레이터": {
+      "keyword": "서큘레이터",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZhrvP2",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%84%9C%ED%81%98%EB%A0%88%EC%9D%B4%ED%84%B0&traceid=V0-183-b75cdfb42ff0173f",
+      "traceId": "V0-183-b75cdfb42ff0173f"
+    },
+    "에어컨 서큘레이터": {
+      "keyword": "에어컨 서큘레이터",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZkvS0G",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%84%9C%ED%81%98%EB%A0%88%EC%9D%B4%ED%84%B0&traceid=V0-183-fa8387e7f150de44",
+      "traceId": "V0-183-fa8387e7f150de44"
+    },
+    "스마트 플러그 전력측정": {
+      "keyword": "스마트 플러그 전력측정",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZnidlA",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%EB%A7%88%ED%8A%B8%20%ED%94%8C%EB%9F%AC%EA%B7%B8%20%EC%A0%84%EB%A0%A5%EC%B8%A1%EC%A0%95&traceid=V0-183-35130036401af822",
+      "traceId": "V0-183-35130036401af822"
+    },
+    "1등급 제습기": {
+      "keyword": "1등급 제습기",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZqpS6C",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=1%EB%93%B1%EA%B8%89%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&traceid=V0-183-fc630a4ee7c3f75d",
+      "traceId": "V0-183-fc630a4ee7c3f75d"
+    },
+    "단열 에어캡 문풍지": {
+      "keyword": "단열 에어캡 문풍지",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZtEgqO",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%8B%A8%EC%97%B4%20%EC%97%90%EC%96%B4%EC%BA%A1%20%EB%AC%B8%ED%92%8D%EC%A7%80&traceid=V0-183-132039afdcbc6377",
+      "traceId": "V0-183-132039afdcbc6377"
+    },
+    "냉동 닭가슴살 100g 대용량 현미밥 다이어트 식단 패키지": {
+      "keyword": "냉동 닭가슴살 100g 대용량 현미밥 다이어트 식단 패키지",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZwIDBs",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8%20%EC%8B%9D%EB%8B%A8%20%ED%8C%A8%ED%82%A4%EC%A7%80&traceid=V0-183-c35fe7d5e0ed8594",
+      "traceId": "V0-183-c35fe7d5e0ed8594"
+    },
+    "하림 닭가슴살 10팩": {
+      "keyword": "하림 닭가슴살 10팩",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZzuXWm",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%95%98%EB%A6%BC%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%2010%ED%8C%A9&traceid=V0-183-6ff6e0bb1df7eb2d",
+      "traceId": "V0-183-6ff6e0bb1df7eb2d"
+    },
+    "곰곰 단백질바 현미밥": {
+      "keyword": "곰곰 단백질바 현미밥",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZCCDHo",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B3%B0%EA%B3%B0%20%EB%8B%A8%EB%B0%B1%EC%A7%88%EB%B0%94%20%ED%98%84%EB%AF%B8%EB%B0%A5&traceid=V0-183-8f0f434f7430de99",
+      "traceId": "V0-183-8f0f434f7430de99"
+    },
+    "강아지 고양이 가수분해 사료 관절 영양제 베스트": {
+      "keyword": "강아지 고양이 가수분해 사료 관절 영양제 베스트",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZFNNLw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EB%B2%A0%EC%8A%A4%ED%8A%B8&traceid=V0-183-9db41b1913d876be",
+      "traceId": "V0-183-9db41b1913d876be"
+    },
+    "로얄캐닌 사료": {
+      "keyword": "로얄캐닌 사료",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZIRJeu",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C%20%EC%82%AC%EB%A3%8C&traceid=V0-183-bdacf26cc041cb86",
+      "traceId": "V0-183-bdacf26cc041cb86"
+    },
+    "강아지 배변패드 100매": {
+      "keyword": "강아지 배변패드 100매",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZLZoZw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EB%B0%B0%EB%B3%80%ED%8C%A8%EB%93%9C%20100%EB%A7%A4&traceid=V0-183-acd0f605ddc42578",
+      "traceId": "V0-183-acd0f605ddc42578"
+    },
+    "반려동물 전자저울 사료스푼": {
+      "keyword": "반려동물 전자저울 사료스푼",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZOWbbE",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC%20%EC%A0%84%EC%9E%90%EC%A0%80%EC%9A%B8%20%EC%82%AC%EB%A3%8C%EC%8A%A4%ED%91%BC&traceid=V0-183-c87eac17be5b7c0c",
+      "traceId": "V0-183-c87eac17be5b7c0c"
+    },
+    "침대 매트리스": {
+      "keyword": "침대 매트리스",
+      "shortenUrl": "https://link.coupang.com/a/hWk0ZRnG8q",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&traceid=V0-183-045a1189d1bcf334",
+      "traceId": "V0-183-045a1189d1bcf334"
+    },
+    "지누스 매트리스 침대프레임": {
+      "keyword": "지누스 매트리스 침대프레임",
+      "shortenUrl": "https://link.coupang.com/a/hWk01lsBu8",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&traceid=V0-183-08dc858e60f4e9a7",
+      "traceId": "V0-183-08dc858e60f4e9a7"
+    },
+    "스탠드 행거 수납함": {
+      "keyword": "스탠드 행거 수납함",
+      "shortenUrl": "https://link.coupang.com/a/hWk01nXMpE",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%ED%83%A0%EB%93%9C%20%ED%96%89%EA%B1%B0%20%EC%88%98%EB%82%A9%ED%95%A8&traceid=V0-183-98671015b5adaab7",
+      "traceId": "V0-183-98671015b5adaab7"
+    },
+    "2채널 QHD 블랙박스 무료장착": {
+      "keyword": "2채널 QHD 블랙박스 무료장착",
+      "shortenUrl": "https://link.coupang.com/a/hWk01rAT8K",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%AC%B4%EB%A3%8C%EC%9E%A5%EC%B0%A9&traceid=V0-183-0e88354533112cbf",
+      "traceId": "V0-183-0e88354533112cbf"
+    },
+    "맥세이프 차량용 무선충전 거치대": {
+      "keyword": "맥세이프 차량용 무선충전 거치대",
+      "shortenUrl": "https://link.coupang.com/a/hWk01voy3o",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%AC%B4%EC%84%A0%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&traceid=V0-183-0b1d7f832a8a3dfb",
+      "traceId": "V0-183-0b1d7f832a8a3dfb"
+    },
+    "불스원샷 연료첨가제": {
+      "keyword": "불스원샷 연료첨가제",
+      "shortenUrl": "https://link.coupang.com/a/hWk01xB8PQ",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%B6%88%EC%8A%A4%EC%9B%90%EC%83%B7%20%EC%97%B0%EB%A3%8C%EC%B2%A8%EA%B0%80%EC%A0%9C&traceid=V0-183-42e1b9611ef956dc",
+      "traceId": "V0-183-42e1b9611ef956dc"
+    },
+    "기가 와이파이6 공유기": {
+      "keyword": "기가 와이파이6 공유기",
+      "shortenUrl": "https://link.coupang.com/a/hWk01AXKLc",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B8%B0%EA%B0%80%20%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0&traceid=V0-183-bf67d828638e886e",
+      "traceId": "V0-183-bf67d828638e886e"
+    },
+    "ipTIME AX3000 공유기": {
+      "keyword": "ipTIME AX3000 공유기",
+      "shortenUrl": "https://link.coupang.com/a/hWk01DCVPg",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=ipTIME%20AX3000%20%EA%B3%B5%EC%9C%A0%EA%B8%B0&traceid=V0-183-beb993c6aa1ab606",
+      "traceId": "V0-183-beb993c6aa1ab606"
+    },
+    "알뜰폰 공용 유심칩": {
+      "keyword": "알뜰폰 공용 유심칩",
+      "shortenUrl": "https://link.coupang.com/a/hWk01F76JM",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%8C%EB%9C%B0%ED%8F%B0%20%EA%B3%B5%EC%9A%A9%20%EC%9C%A0%EC%8B%AC%EC%B9%A9&traceid=V0-183-10f1aa001e3e5a72",
+      "traceId": "V0-183-10f1aa001e3e5a72"
+    },
+    "셋톱박스 공유기 숨김 정리함": {
+      "keyword": "셋톱박스 공유기 숨김 정리함",
+      "shortenUrl": "https://link.coupang.com/a/hWk01JfHau",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%85%8B%ED%86%B1%EB%B0%95%EC%8A%A4%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EC%88%A8%EA%B9%80%20%EC%A0%95%EB%A6%AC%ED%95%A8&traceid=V0-183-31b8c6d39f1520f7",
+      "traceId": "V0-183-31b8c6d39f1520f7"
+    },
+    "스마트 플러그 전력측정기 절전 멀티탭": {
+      "keyword": "스마트 플러그 전력측정기 절전 멀티탭",
+      "shortenUrl": "https://link.coupang.com/a/hWk01L11vo",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%EB%A7%88%ED%8A%B8%20%ED%94%8C%EB%9F%AC%EA%B7%B8%20%EC%A0%84%EB%A0%A5%EC%B8%A1%EC%A0%95%EA%B8%B0%20%EC%A0%88%EC%A0%84%20%EB%A9%80%ED%8B%B0%ED%83%AD&traceid=V0-183-437e3867de2f8d8d",
+      "traceId": "V0-183-437e3867de2f8d8d"
+    },
+    "에너지소비효율 1등급 벽걸이 인버터 에어컨 로켓설치": {
+      "keyword": "에너지소비효율 1등급 벽걸이 인버터 에어컨 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk01OYS1Q",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EB%B2%BD%EA%B1%B8%EC%9D%B4%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-02bb544ca8150482",
+      "traceId": "V0-183-02bb544ca8150482"
+    },
+    "스마트 플러그 실시간 전력측정기 타이머": {
+      "keyword": "스마트 플러그 실시간 전력측정기 타이머",
+      "shortenUrl": "https://link.coupang.com/a/hWk01RcsOi",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%EB%A7%88%ED%8A%B8%20%ED%94%8C%EB%9F%AC%EA%B7%B8%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%A0%84%EB%A0%A5%EC%B8%A1%EC%A0%95%EA%B8%B0%20%ED%83%80%EC%9D%B4%EB%A8%B8&traceid=V0-183-1ef0e70e0c2b2994",
+      "traceId": "V0-183-1ef0e70e0c2b2994"
+    },
+    "BLDC 무소음 에어서큘레이터": {
+      "keyword": "BLDC 무소음 에어서큘레이터",
+      "shortenUrl": "https://link.coupang.com/a/hWk01TYM9c",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=BLDC%20%EB%AC%B4%EC%86%8C%EC%9D%8C%20%EC%97%90%EC%96%B4%EC%84%9C%ED%81%98%EB%A0%88%EC%9D%B4%ED%84%B0&traceid=V0-183-7f9aaaf5f3a5350f",
+      "traceId": "V0-183-7f9aaaf5f3a5350f"
+    },
+    "스마트 플러그 전력측정기": {
+      "keyword": "스마트 플러그 전력측정기",
+      "shortenUrl": "https://link.coupang.com/a/hWk01XdfNI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%EB%A7%88%ED%8A%B8%20%ED%94%8C%EB%9F%AC%EA%B7%B8%20%EC%A0%84%EB%A0%A5%EC%B8%A1%EC%A0%95%EA%B8%B0&traceid=V0-183-756719aed0b2e022",
+      "traceId": "V0-183-756719aed0b2e022"
+    },
+    "에너지소비효율 1등급 2in1 인버터 에어컨 로켓설치": {
+      "keyword": "에너지소비효율 1등급 2in1 인버터 에어컨 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk01ZqPAa",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%202in1%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-dc7aa57fc4105647",
+      "traceId": "V0-183-dc7aa57fc4105647"
+    },
+    "에너지소비효율 1등급 인버터 제습기": {
+      "keyword": "에너지소비효율 1등급 인버터 제습기",
+      "shortenUrl": "https://link.coupang.com/a/hWk03A0sBo",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&traceid=V0-183-c1f4da742d1135b9",
+      "traceId": "V0-183-c1f4da742d1135b9"
+    },
+    "습기제거제 대용량 제습제": {
+      "keyword": "습기제거제 대용량 제습제",
+      "shortenUrl": "https://link.coupang.com/a/hWk03DXeNw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%B5%EA%B8%B0%EC%A0%9C%EA%B1%B0%EC%A0%9C%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EC%A0%9C%EC%8A%B5%EC%A0%9C&traceid=V0-183-2699d40166cf0f3a",
+      "traceId": "V0-183-2699d40166cf0f3a"
+    },
+    "창문 방풍비닐 외풍차단 문풍지 스마트플러그": {
+      "keyword": "창문 방풍비닐 외풍차단 문풍지 스마트플러그",
+      "shortenUrl": "https://link.coupang.com/a/hWk03GspH2",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%B0%BD%EB%AC%B8%20%EB%B0%A9%ED%92%8D%EB%B9%84%EB%8B%90%20%EC%99%B8%ED%92%8D%EC%B0%A8%EB%8B%A8%20%EB%AC%B8%ED%92%8D%EC%A7%80%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%94%8C%EB%9F%AC%EA%B7%B8&traceid=V0-183-bf1f63076852de2b",
+      "traceId": "V0-183-bf1f63076852de2b"
+    },
+    "에너지소비효율 1등급 인버터 의류건조기 로켓설치": {
+      "keyword": "에너지소비효율 1등급 인버터 의류건조기 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk03JeJ2W",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%9D%98%EB%A5%98%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-cd27dc75af33790a",
+      "traceId": "V0-183-cd27dc75af33790a"
+    },
+    "건조기 양모볼 드라이어볼": {
+      "keyword": "건조기 양모볼 드라이어볼",
+      "shortenUrl": "https://link.coupang.com/a/hWk03MmpNY",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EC%96%91%EB%AA%A8%EB%B3%BC%20%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%96%B4%EB%B3%BC&traceid=V0-183-b343c14bcb0f770f",
+      "traceId": "V0-183-b343c14bcb0f770f"
+    },
+    "저전력 카본매트 온수매트 1등급 난방기": {
+      "keyword": "저전력 카본매트 온수매트 1등급 난방기",
+      "shortenUrl": "https://link.coupang.com/a/hWk03PjbZ6",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A0%80%EC%A0%84%EB%A0%A5%20%EC%B9%B4%EB%B3%B8%EB%A7%A4%ED%8A%B8%20%EC%98%A8%EC%88%98%EB%A7%A4%ED%8A%B8%201%EB%93%B1%EA%B8%89%20%EB%82%9C%EB%B0%A9%EA%B8%B0&traceid=V0-183-28abade33782e80b",
+      "traceId": "V0-183-28abade33782e80b"
+    },
+    "창문 방풍비닐 외풍차단 문풍지": {
+      "keyword": "창문 방풍비닐 외풍차단 문풍지",
+      "shortenUrl": "https://link.coupang.com/a/hWk03RwLMy",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%B0%BD%EB%AC%B8%20%EB%B0%A9%ED%92%8D%EB%B9%84%EB%8B%90%20%EC%99%B8%ED%92%8D%EC%B0%A8%EB%8B%A8%20%EB%AC%B8%ED%92%8D%EC%A7%80&traceid=V0-183-35b5e3c08eb1267c",
+      "traceId": "V0-183-35b5e3c08eb1267c"
+    },
+    "닭가슴살 혼합 맛보기 10팩 세트": {
+      "keyword": "닭가슴살 혼합 맛보기 10팩 세트",
+      "shortenUrl": "https://link.coupang.com/a/hWk03UAHfw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20%ED%98%BC%ED%95%A9%20%EB%A7%9B%EB%B3%B4%EA%B8%B0%2010%ED%8C%A9%20%EC%84%B8%ED%8A%B8&traceid=V0-183-949919dba06e8679",
+      "traceId": "V0-183-949919dba06e8679"
+    },
+    "냉동 닭가슴살 100g 대용량 패키지": {
+      "keyword": "냉동 닭가슴살 100g 대용량 패키지",
+      "shortenUrl": "https://link.coupang.com/a/hWk03XZX8C",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&traceid=V0-183-65109cc8908a31d0",
+      "traceId": "V0-183-65109cc8908a31d0"
+    },
+    "즉석 현미밥 곤약밥 대용량 박스": {
+      "keyword": "즉석 현미밥 곤약밥 대용량 박스",
+      "shortenUrl": "https://link.coupang.com/a/hWk030WKkK",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A6%89%EC%84%9D%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EA%B3%A4%EC%95%BD%EB%B0%A5%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EB%B0%95%EC%8A%A4&traceid=V0-183-eff789ef85455098",
+      "traceId": "V0-183-eff789ef85455098"
+    },
+    "WPI 분리유청단백질 프로틴 파우더": {
+      "keyword": "WPI 분리유청단백질 프로틴 파우더",
+      "shortenUrl": "https://link.coupang.com/a/hWk033rVfg",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=WPI%20%EB%B6%84%EB%A6%AC%EC%9C%A0%EC%B2%AD%EB%8B%A8%EB%B0%B1%EC%A7%88%20%ED%94%84%EB%A1%9C%ED%8B%B4%20%ED%8C%8C%EC%9A%B0%EB%8D%94&traceid=V0-183-29bcbdf838adb1ae",
+      "traceId": "V0-183-29bcbdf838adb1ae"
+    },
+    "즉석 현미밥 대용량 박스": {
+      "keyword": "즉석 현미밥 대용량 박스",
+      "shortenUrl": "https://link.coupang.com/a/hWk036NrQi",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A6%89%EC%84%9D%20%ED%98%84%EB%AF%B8%EB%B0%A5%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EB%B0%95%EC%8A%A4&traceid=V0-183-1c95c5bd13414d00",
+      "traceId": "V0-183-1c95c5bd13414d00"
+    },
+    "강아지 사료 전자저울 스푼 배변패드 100매": {
+      "keyword": "강아지 사료 전자저울 스푼 배변패드 100매",
+      "shortenUrl": "https://link.coupang.com/a/hWk039U7Bk",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EC%82%AC%EB%A3%8C%20%EC%A0%84%EC%9E%90%EC%A0%80%EC%9A%B8%20%EC%8A%A4%ED%91%BC%20%EB%B0%B0%EB%B3%80%ED%8C%A8%EB%93%9C%20100%EB%A7%A4&traceid=V0-183-78831d139485e7da",
+      "traceId": "V0-183-78831d139485e7da"
+    },
+    "강아지 가수분해 사료 로얄캐닌 2kg": {
+      "keyword": "강아지 가수분해 사료 로얄캐닌 2kg",
+      "shortenUrl": "https://link.coupang.com/a/hWk04c9uVw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C%202kg&traceid=V0-183-135eba2e2bcce748",
+      "traceId": "V0-183-135eba2e2bcce748"
+    },
+    "강아지 고양이 디지털 전자저울 사료스푼 자동급식기": {
+      "keyword": "강아지 고양이 디지털 전자저울 사료스푼 자동급식기",
+      "shortenUrl": "https://link.coupang.com/a/hWk04fm4HY",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EB%94%94%EC%A7%80%ED%84%B8%20%EC%A0%84%EC%9E%90%EC%A0%80%EC%9A%B8%20%EC%82%AC%EB%A3%8C%EC%8A%A4%ED%91%BC%20%EC%9E%90%EB%8F%99%EA%B8%89%EC%8B%9D%EA%B8%B0&traceid=V0-183-510b6ce02a388a08",
+      "traceId": "V0-183-510b6ce02a388a08"
+    },
+    "강아지 슬개골 관절 영양제 유산균": {
+      "keyword": "강아지 슬개골 관절 영양제 유산균",
+      "shortenUrl": "https://link.coupang.com/a/hWk05DS4pU",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%EC%8A%AC%EA%B0%9C%EA%B3%A8%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EC%9C%A0%EC%82%B0%EA%B7%A0&traceid=V0-183-5666b377b84c2673",
+      "traceId": "V0-183-5666b377b84c2673"
+    },
+    "로얄캐닌 미니 인도어 퍼피 강아지 사료": {
+      "keyword": "로얄캐닌 미니 인도어 퍼피 강아지 사료",
+      "shortenUrl": "https://link.coupang.com/a/hWk05GI3Iy",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C%20%EB%AF%B8%EB%8B%88%20%EC%9D%B8%EB%8F%84%EC%96%B4%20%ED%8D%BC%ED%94%BC%20%EA%B0%95%EC%95%84%EC%A7%80%20%EC%82%AC%EB%A3%8C&traceid=V0-183-38101d4717965e67",
+      "traceId": "V0-183-38101d4717965e67"
+    },
+    "강아지 퍼피 유산균 초유 영양제": {
+      "keyword": "강아지 퍼피 유산균 초유 영양제",
+      "shortenUrl": "https://link.coupang.com/a/hWk05KK6vc",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%95%EC%95%84%EC%A7%80%20%ED%8D%BC%ED%94%BC%20%EC%9C%A0%EC%82%B0%EA%B7%A0%20%EC%B4%88%EC%9C%A0%20%EC%98%81%EC%96%91%EC%A0%9C&traceid=V0-183-b7b12d624ef0824a",
+      "traceId": "V0-183-b7b12d624ef0824a"
+    },
+    "대형견 대용량 사료 12kg 로얄캐닌": {
+      "keyword": "대형견 대용량 사료 12kg 로얄캐닌",
+      "shortenUrl": "https://link.coupang.com/a/hWk05NxqP6",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%8C%80%ED%98%95%EA%B2%AC%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%EC%82%AC%EB%A3%8C%2012kg%20%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C&traceid=V0-183-10a9008040b99963",
+      "traceId": "V0-183-10a9008040b99963"
+    },
+    "대형견 관절 영양제 콘드로이친": {
+      "keyword": "대형견 관절 영양제 콘드로이친",
+      "shortenUrl": "https://link.coupang.com/a/hWk05QE6A8",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%8C%80%ED%98%95%EA%B2%AC%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EC%BD%98%EB%93%9C%EB%A1%9C%EC%9D%B4%EC%B9%9C&traceid=V0-183-03a41887e3861520",
+      "traceId": "V0-183-03a41887e3861520"
+    },
+    "고양이 사료 전자저울 스푼 두부모래": {
+      "keyword": "고양이 사료 전자저울 스푼 두부모래",
+      "shortenUrl": "https://link.coupang.com/a/hWk05TBSNg",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%82%AC%EB%A3%8C%20%EC%A0%84%EC%9E%90%EC%A0%80%EC%9A%B8%20%EC%8A%A4%ED%91%BC%20%EB%91%90%EB%B6%80%EB%AA%A8%EB%9E%98&traceid=V0-183-d792f843e2658aca",
+      "traceId": "V0-183-d792f843e2658aca"
+    },
+    "로얄캐닌 인도어 고양이 사료 체중조절": {
+      "keyword": "로얄캐닌 인도어 고양이 사료 체중조절",
+      "shortenUrl": "https://link.coupang.com/a/hWk05VPszI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C%20%EC%9D%B8%EB%8F%84%EC%96%B4%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%82%AC%EB%A3%8C%20%EC%B2%B4%EC%A4%91%EC%A1%B0%EC%A0%88&traceid=V0-183-caeaf20643e29abb",
+      "traceId": "V0-183-caeaf20643e29abb"
+    },
+    "고양이 신장 영양제 유산균 두부모래": {
+      "keyword": "고양이 신장 영양제 유산균 두부모래",
+      "shortenUrl": "https://link.coupang.com/a/hWk05YkbMy",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B3%A0%EC%96%91%EC%9D%B4%20%EC%8B%A0%EC%9E%A5%20%EC%98%81%EC%96%91%EC%A0%9C%20%EC%9C%A0%EC%82%B0%EA%B7%A0%20%EB%91%90%EB%B6%80%EB%AA%A8%EB%9E%98&traceid=V0-183-3fa7b666134afc55",
+      "traceId": "V0-183-3fa7b666134afc55"
+    },
+    "개별스위치 멀티탭 빨래건조대 자취 필수템": {
+      "keyword": "개별스위치 멀티탭 빨래건조대 자취 필수템",
+      "shortenUrl": "https://link.coupang.com/a/hWk051agpw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B0%9C%EB%B3%84%EC%8A%A4%EC%9C%84%EC%B9%98%20%EB%A9%80%ED%8B%B0%ED%83%AD%20%EB%B9%A8%EB%9E%98%EA%B1%B4%EC%A1%B0%EB%8C%80%20%EC%9E%90%EC%B7%A8%20%ED%95%84%EC%88%98%ED%85%9C&traceid=V0-183-eaca7f273ee5d5e9",
+      "traceId": "V0-183-eaca7f273ee5d5e9"
+    },
+    "원룸 자취방 무소음 냉장고 로켓설치": {
+      "keyword": "원룸 자취방 무소음 냉장고 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk053PrtA",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%AC%B4%EC%86%8C%EC%9D%8C%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-f947c42f3d9e1ad0",
+      "traceId": "V0-183-f947c42f3d9e1ad0"
+    },
+    "원룸 세탁기 로켓설치": {
+      "keyword": "원룸 세탁기 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk056kCn6",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%9B%90%EB%A3%B8%20%EC%84%B8%ED%83%81%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-987d94d94e9904cc",
+      "traceId": "V0-183-987d94d94e9904cc"
+    },
+    "지누스 독립스프링 매트리스 침대프레임": {
+      "keyword": "지누스 독립스프링 매트리스 침대프레임",
+      "shortenUrl": "https://link.coupang.com/a/hWk058PlAW",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A7%80%EB%88%84%EC%8A%A4%20%EB%8F%85%EB%A6%BD%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&traceid=V0-183-a15c41f31eff39f6",
+      "traceId": "V0-183-a15c41f31eff39f6"
+    },
+    "4K 스마트TV 삼탠바이미 이동식 모니터": {
+      "keyword": "4K 스마트TV 삼탠바이미 이동식 모니터",
+      "shortenUrl": "https://link.coupang.com/a/hWk06bFqdU",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=4K%20%EC%8A%A4%EB%A7%88%ED%8A%B8TV%20%EC%82%BC%ED%83%A0%EB%B0%94%EC%9D%B4%EB%AF%B8%20%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EB%AA%A8%EB%8B%88%ED%84%B0&traceid=V0-183-4509ab5e0b288035",
+      "traceId": "V0-183-4509ab5e0b288035"
+    },
+    "자취방 전자레인지 전기밥솥 무선청소기 세트": {
+      "keyword": "자취방 전자레인지 전기밥솥 무선청소기 세트",
+      "shortenUrl": "https://link.coupang.com/a/hWk06eCcp2",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EC%A0%84%EC%9E%90%EB%A0%88%EC%9D%B8%EC%A7%80%20%EC%A0%84%EA%B8%B0%EB%B0%A5%EC%86%A5%20%EB%AC%B4%EC%84%A0%EC%B2%AD%EC%86%8C%EA%B8%B0%20%EC%84%B8%ED%8A%B8&traceid=V0-183-7244831af6eb2520",
+      "traceId": "V0-183-7244831af6eb2520"
+    },
+    "냉장고/김치냉장고": {
+      "keyword": "냉장고/김치냉장고",
+      "shortenUrl": "https://link.coupang.com/a/hWk06g7nky",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%83%89%EC%9E%A5%EA%B3%A0%2F%EA%B9%80%EC%B9%98%EB%83%89%EC%9E%A5%EA%B3%A0&traceid=V0-183-35f40c0bc7c77a8a",
+      "traceId": "V0-183-35f40c0bc7c77a8a"
+    },
+    "세탁기/건조기": {
+      "keyword": "세탁기/건조기",
+      "shortenUrl": "https://link.coupang.com/a/hWk08vYrca",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%84%B8%ED%83%81%EA%B8%B0%2F%EA%B1%B4%EC%A1%B0%EA%B8%B0&traceid=V0-183-6bb78a96a87c7aab",
+      "traceId": "V0-183-6bb78a96a87c7aab"
+    },
+    "매트리스+침대프레임": {
+      "keyword": "매트리스+침대프레임",
+      "shortenUrl": "https://link.coupang.com/a/hWk08ytB6G",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%2B%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&traceid=V0-183-851e36ba7e85f4fc",
+      "traceId": "V0-183-851e36ba7e85f4fc"
+    },
+    "스마트TV/모니터": {
+      "keyword": "스마트TV/모니터",
+      "shortenUrl": "https://link.coupang.com/a/hWk08BPd12",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8A%A4%EB%A7%88%ED%8A%B8TV%2F%EB%AA%A8%EB%8B%88%ED%84%B0&traceid=V0-183-f1488419e89c7193",
+      "traceId": "V0-183-f1488419e89c7193"
+    },
+    "전자레인지+밥솥+청소기": {
+      "keyword": "전자레인지+밥솥+청소기",
+      "shortenUrl": "https://link.coupang.com/a/hWk08EL0eb",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A0%84%EC%9E%90%EB%A0%88%EC%9D%B8%EC%A7%80%2B%EB%B0%A5%EC%86%A5%2B%EC%B2%AD%EC%86%8C%EA%B8%B0&traceid=V0-183-f1fdcaadaaa9b1ac",
+      "traceId": "V0-183-f1fdcaadaaa9b1ac"
+    },
+    "화이트 냉장고 로켓설치": {
+      "keyword": "화이트 냉장고 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk08HQnoO",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%99%94%EC%9D%B4%ED%8A%B8%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-744a7bc660020d07",
+      "traceId": "V0-183-744a7bc660020d07"
+    },
+    "화이트 드럼세탁기 로켓설치": {
+      "keyword": "화이트 드럼세탁기 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk08KCHJI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%99%94%EC%9D%B4%ED%8A%B8%20%EB%93%9C%EB%9F%BC%EC%84%B8%ED%83%81%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-c30d02f9f5295968",
+      "traceId": "V0-183-c30d02f9f5295968"
+    },
+    "화이트 수납 침대프레임 포켓스프링 매트리스": {
+      "keyword": "화이트 수납 침대프레임 포켓스프링 매트리스",
+      "shortenUrl": "https://link.coupang.com/a/hWk08NsMmG",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%99%94%EC%9D%B4%ED%8A%B8%20%EC%88%98%EB%82%A9%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84%20%ED%8F%AC%EC%BC%93%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&traceid=V0-183-c1e3f11ddd93aa36",
+      "traceId": "V0-183-c1e3f11ddd93aa36"
+    },
+    "화이트 침대프레임+매트리스": {
+      "keyword": "화이트 침대프레임+매트리스",
+      "shortenUrl": "https://link.coupang.com/a/hWk08QG9GS",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%99%94%EC%9D%B4%ED%8A%B8%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84%2B%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&traceid=V0-183-a707e47fc7f479a9",
+      "traceId": "V0-183-a707e47fc7f479a9"
+    },
+    "화이트 소형가전 3종": {
+      "keyword": "화이트 소형가전 3종",
+      "shortenUrl": "https://link.coupang.com/a/hWk08TtVJs",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%99%94%EC%9D%B4%ED%8A%B8%20%EC%86%8C%ED%98%95%EA%B0%80%EC%A0%84%203%EC%A2%85&traceid=V0-183-6e7b9200dc85bc53",
+      "traceId": "V0-183-6e7b9200dc85bc53"
+    },
+    "양문형 4도어 냉장고 로켓설치": {
+      "keyword": "양문형 4도어 냉장고 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk08Wgf4m",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%96%91%EB%AC%B8%ED%98%95%204%EB%8F%84%EC%96%B4%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-3f2777e217ec13c4",
+      "traceId": "V0-183-3f2777e217ec13c4"
+    },
+    "드럼세탁기 건조기 로켓설치": {
+      "keyword": "드럼세탁기 건조기 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk08Y6kHk",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%93%9C%EB%9F%BC%EC%84%B8%ED%83%81%EA%B8%B0%20%EA%B1%B4%EC%A1%B0%EA%B8%B0%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-b971c4ffc6f490fa",
+      "traceId": "V0-183-b971c4ffc6f490fa"
+    },
+    "퀸 침대프레임 호텔식 독립스프링 매트리스": {
+      "keyword": "퀸 침대프레임 호텔식 독립스프링 매트리스",
+      "shortenUrl": "https://link.coupang.com/a/hWk082kH1w",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%ED%80%B8%20%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84%20%ED%98%B8%ED%85%94%EC%8B%9D%20%EB%8F%85%EB%A6%BD%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&traceid=V0-183-b177661f27793c24",
+      "traceId": "V0-183-b177661f27793c24"
+    },
+    "실속형 매트리스+침대프레임": {
+      "keyword": "실속형 매트리스+침대프레임",
+      "shortenUrl": "https://link.coupang.com/a/hWk0847t36",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8B%A4%EC%86%8D%ED%98%95%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%2B%EC%B9%A8%EB%8C%80%ED%94%84%EB%A0%88%EC%9E%84&traceid=V0-183-58fb76a7f733616d",
+      "traceId": "V0-183-58fb76a7f733616d"
+    },
+    "고화력 전자레인지+밥솥+청소기": {
+      "keyword": "고화력 전자레인지+밥솥+청소기",
+      "shortenUrl": "https://link.coupang.com/a/hWk088KG7w",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EA%B3%A0%ED%99%94%EB%A0%A5%20%EC%A0%84%EC%9E%90%EB%A0%88%EC%9D%B8%EC%A7%80%2B%EB%B0%A5%EC%86%A5%2B%EC%B2%AD%EC%86%8C%EA%B8%B0&traceid=V0-183-f313581c6e07bacb",
+      "traceId": "V0-183-f313581c6e07bacb"
+    },
+    "불스원샷 연료첨가제 2개입 에어컨필터": {
+      "keyword": "불스원샷 연료첨가제 2개입 에어컨필터",
+      "shortenUrl": "https://link.coupang.com/a/hWk09bY4rI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EB%B6%88%EC%8A%A4%EC%9B%90%EC%83%B7%20%EC%97%B0%EB%A3%8C%EC%B2%A8%EA%B0%80%EC%A0%9C%202%EA%B0%9C%EC%9E%85%20%EC%97%90%EC%96%B4%EC%BB%A8%ED%95%84%ED%84%B0&traceid=V0-183-4db0ca6bf20ae392",
+      "traceId": "V0-183-4db0ca6bf20ae392"
+    },
+    "아이나비 파인뷰 2채널 QHD 블랙박스 무료출장장착": {
+      "keyword": "아이나비 파인뷰 2채널 QHD 블랙박스 무료출장장착",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aHWiu4",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84%20%ED%8C%8C%EC%9D%B8%EB%B7%B0%202%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%AC%B4%EB%A3%8C%EC%B6%9C%EC%9E%A5%EC%9E%A5%EC%B0%A9&traceid=V0-183-d0fd66ed8c407d90",
+      "traceId": "V0-183-d0fd66ed8c407d90"
+    },
+    "아반떼 스포티지 투싼 전용 6D 코일매트": {
+      "keyword": "아반떼 스포티지 투싼 전용 6D 코일매트",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aJ9Shw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%84%EB%B0%98%EB%96%BC%20%EC%8A%A4%ED%8F%AC%ED%8B%B0%EC%A7%80%20%ED%88%AC%EC%8B%BC%20%EC%A0%84%EC%9A%A9%206D%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8&traceid=V0-183-c023d77b7b7810c6",
+      "traceId": "V0-183-c023d77b7b7810c6"
+    },
+    "신지모루 차량용 맥세이프 고속충전 거치대 활성탄 에어컨필터": {
+      "keyword": "신지모루 차량용 맥세이프 고속충전 거치대 활성탄 에어컨필터",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aNdNKu",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8B%A0%EC%A7%80%EB%AA%A8%EB%A3%A8%20%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B3%A0%EC%86%8D%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80%20%ED%99%9C%EC%84%B1%ED%83%84%20%EC%97%90%EC%96%B4%EC%BB%A8%ED%95%84%ED%84%B0&traceid=V0-183-3c8a842d439cb3ed",
+      "traceId": "V0-183-3c8a842d439cb3ed"
+    },
+    "2채널 QHD 블랙박스": {
+      "keyword": "2채널 QHD 블랙박스",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aQltvw",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4&traceid=V0-183-d5efcfe1cb5dac4b",
+      "traceId": "V0-183-d5efcfe1cb5dac4b"
+    },
+    "차량용 맥세이프 고속충전 거치대": {
+      "keyword": "차량용 맥세이프 고속충전 거치대",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aTzQPI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%B0%A8%EB%9F%89%EC%9A%A9%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B3%A0%EC%86%8D%EC%B6%A9%EC%A0%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&traceid=V0-183-57c989edcc0658fa",
+      "traceId": "V0-183-57c989edcc0658fa"
+    },
+    "아이오닉5 EV6 카니발 전용 코일매트 V2L 액세서리": {
+      "keyword": "아이오닉5 EV6 카니발 전용 코일매트 V2L 액세서리",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aV41Ke",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%895%20EV6%20%EC%B9%B4%EB%8B%88%EB%B0%9C%20%EC%A0%84%EC%9A%A9%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20V2L%20%EC%95%A1%EC%84%B8%EC%84%9C%EB%A6%AC&traceid=V0-183-0d480a1b663b7822",
+      "traceId": "V0-183-0d480a1b663b7822"
+    },
+    "쏘렌토 싼타페 그랜저 6D 코일매트 신차패키지": {
+      "keyword": "쏘렌토 싼타페 그랜저 6D 코일매트 신차패키지",
+      "shortenUrl": "https://link.coupang.com/a/hWk1aYRl48",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%8F%98%EB%A0%8C%ED%86%A0%20%EC%8B%BC%ED%83%80%ED%8E%98%20%EA%B7%B8%EB%9E%9C%EC%A0%80%206D%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%EC%8B%A0%EC%B0%A8%ED%8C%A8%ED%82%A4%EC%A7%80&traceid=V0-183-fd570faf792d65c7",
+      "traceId": "V0-183-fd570faf792d65c7"
+    },
+    "제네시스 G80 GV70 GV80 전용 고급 코일매트 가죽케어": {
+      "keyword": "제네시스 G80 GV70 GV80 전용 고급 코일매트 가죽케어",
+      "shortenUrl": "https://link.coupang.com/a/hWk1a1HqH6",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4%20G80%20GV70%20GV80%20%EC%A0%84%EC%9A%A9%20%EA%B3%A0%EA%B8%89%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%EA%B0%80%EC%A3%BD%EC%BC%80%EC%96%B4&traceid=V0-183-be4f48d391e87aaa",
+      "traceId": "V0-183-be4f48d391e87aaa"
+    },
+    "캐스퍼 레이 아반떼 전용 코일매트 트렁크매트": {
+      "keyword": "캐스퍼 레이 아반떼 전용 코일매트 트렁크매트",
+      "shortenUrl": "https://link.coupang.com/a/hWk1a4VN2i",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%BA%90%EC%8A%A4%ED%8D%BC%20%EB%A0%88%EC%9D%B4%20%EC%95%84%EB%B0%98%EB%96%BC%20%EC%A0%84%EC%9A%A9%20%EC%BD%94%EC%9D%BC%EB%A7%A4%ED%8A%B8%20%ED%8A%B8%EB%A0%81%ED%81%AC%EB%A7%A4%ED%8A%B8&traceid=V0-183-6f664c568084754b",
+      "traceId": "V0-183-6f664c568084754b"
+    },
+    "알뜰폰 공용 NFC 유심칩 바로배송": {
+      "keyword": "알뜰폰 공용 NFC 유심칩 바로배송",
+      "shortenUrl": "https://link.coupang.com/a/hWk1a7qYWO",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%8C%EB%9C%B0%ED%8F%B0%20%EA%B3%B5%EC%9A%A9%20NFC%20%EC%9C%A0%EC%8B%AC%EC%B9%A9%20%EB%B0%94%EB%A1%9C%EB%B0%B0%EC%86%A1&traceid=V0-183-1e8126a63d728649",
+      "traceId": "V0-183-1e8126a63d728649"
+    },
+    "ipTIME 와이파이6 공유기 AX3000 메쉬": {
+      "keyword": "ipTIME 와이파이6 공유기 AX3000 메쉬",
+      "shortenUrl": "https://link.coupang.com/a/hWk1badjhI",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=ipTIME%20%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EB%A9%94%EC%89%AC&traceid=V0-183-1d2fede53494c807",
+      "traceId": "V0-183-1d2fede53494c807"
+    },
+    "셋톱박스 공유기 무타공 정리함 거치대 CAT8 랜선": {
+      "keyword": "셋톱박스 공유기 무타공 정리함 거치대 CAT8 랜선",
+      "shortenUrl": "https://link.coupang.com/a/hWk1bdaaOa",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%85%8B%ED%86%B1%EB%B0%95%EC%8A%A4%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EB%AC%B4%ED%83%80%EA%B3%B5%20%EC%A0%95%EB%A6%AC%ED%95%A8%20%EA%B1%B0%EC%B9%98%EB%8C%80%20CAT8%20%EB%9E%9C%EC%84%A0&traceid=V0-183-b77362258284bcc7",
+      "traceId": "V0-183-b77362258284bcc7"
+    },
+    "알뜰폰 무약정 공용 유심칩 NFC 바로배송": {
+      "keyword": "알뜰폰 무약정 공용 유심칩 NFC 바로배송",
+      "shortenUrl": "https://link.coupang.com/a/hWk1bfFlIG",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%95%8C%EB%9C%B0%ED%8F%B0%20%EB%AC%B4%EC%95%BD%EC%A0%95%20%EA%B3%B5%EC%9A%A9%20%EC%9C%A0%EC%8B%AC%EC%B9%A9%20NFC%20%EB%B0%94%EB%A1%9C%EB%B0%B0%EC%86%A1&traceid=V0-183-f228c1833822ab7f",
+      "traceId": "V0-183-f228c1833822ab7f"
+    },
+    "와이파이6 공유기 AX3000": {
+      "keyword": "와이파이6 공유기 AX3000",
+      "shortenUrl": "https://link.coupang.com/a/hWk1birF3A",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000&traceid=V0-183-be550cdc19f01d39",
+      "traceId": "V0-183-be550cdc19f01d39"
+    },
+    "셋톱박스 공유기 정리함": {
+      "keyword": "셋톱박스 공유기 정리함",
+      "shortenUrl": "https://link.coupang.com/a/hWk1blQWWG",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%85%8B%ED%86%B1%EB%B0%95%EC%8A%A4%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EC%A0%95%EB%A6%AC%ED%95%A8&traceid=V0-183-8d824abbe28111b3",
+      "traceId": "V0-183-8d824abbe28111b3"
+    },
+    "에너지소비효율 1등급 인버터 에어컨 제습기": {
+      "keyword": "에너지소비효율 1등급 인버터 에어컨 제습기",
+      "shortenUrl": "https://link.coupang.com/a/hWk1cWpkIu",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&traceid=V0-183-e0e5fa4c0d640d08",
+      "traceId": "V0-183-e0e5fa4c0d640d08"
+    },
+    "원룸 자취방 냉장고 침대 매트리스 로켓설치": {
+      "keyword": "원룸 자취방 냉장고 침대 매트리스 로켓설치",
+      "shortenUrl": "https://link.coupang.com/a/hWk1cZtgbs",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&traceid=V0-183-c92f325e20277c58",
+      "traceId": "V0-183-c92f325e20277c58"
+    },
+    "2채널 QHD 블랙박스 맥세이프 거치대": {
+      "keyword": "2채널 QHD 블랙박스 맥세이프 거치대",
+      "shortenUrl": "https://link.coupang.com/a/hWk1c298cC",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&traceid=V0-183-39f0eebc87a81fe0",
+      "traceId": "V0-183-39f0eebc87a81fe0"
+    },
+    "와이파이6 공유기 AX3000 기가랜선": {
+      "keyword": "와이파이6 공유기 AX3000 기가랜선",
+      "shortenUrl": "https://link.coupang.com/a/hWk1c5Iq2S",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&traceid=V0-183-f093d7830b79b2d9",
+      "traceId": "V0-183-f093d7830b79b2d9"
+    },
+    "에너지 1등급 가전": {
+      "keyword": "에너지 1등급 가전",
+      "shortenUrl": "https://link.coupang.com/a/hWk1c87HVY",
+      "landingUrl": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=moneyfit&pageKey=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EA%B0%80%EC%A0%84&traceid=V0-183-68137f0c3e5cb47e",
+      "traceId": "V0-183-68137f0c3e5cb47e"
+    }
+  }
+}
