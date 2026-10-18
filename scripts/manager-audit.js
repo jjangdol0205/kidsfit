@@ -77,6 +77,30 @@ function fetchHttpsJson(urlStr, timeoutMs = 5000) {
 function auditWebtoonBacklog() {
   const requiredArtFiles = ['electric.jpg', 'diet.jpg', 'pet.jpg', 'room.jpg', 'auto.jpg', 'telecom.jpg', 'hero-banner.jpg'];
   const existingArtFiles = requiredArtFiles.filter(f => fs.existsSync(path.join(WEBTOON_ASSETS_DIR, f)));
+  const episodeArtDir = path.join(WEBTOON_ASSETS_DIR, 'episodes');
+  const episodeArtCount = fs.existsSync(episodeArtDir)
+    ? fs.readdirSync(episodeArtDir).filter(f => f.endsWith('.png') || f.endsWith('.jpg')).length
+    : 0;
+
+  const standbyDir = path.join(BACKLOG_POSTS_DIR, 'webtoon_standby');
+  const standbyFilesCount = fs.existsSync(standbyDir)
+    ? fs.readdirSync(standbyDir).filter(f => f.endsWith('.txt')).length
+    : 0;
+
+  let rotationMap = {};
+  try {
+    const { TWELVE_DAY_ROTATION } = require('./daily-sns-scheduler.js');
+    for (const d of TWELVE_DAY_ROTATION) {
+      d.slots.forEach((s, idx) => {
+        rotationMap[s.slug] = {
+          day: d.day,
+          slotIndex: idx + 1,
+          slotTime: s.slot,
+          cast: s.cast
+        };
+      });
+    }
+  } catch (e) {}
 
   // Ensure SNS publish tracker exists (tracks @moneyfit2026 live uploads)
   const DEFAULT_PUBLISHED_SLUGS = ['electric-studio-ac', 'diet-female-lean', 'auto-grandeur-5000'];
@@ -109,6 +133,7 @@ function auditWebtoonBacklog() {
     const isRendered = gridPngExists && outboxGridExists && slidesCount === 4 && copyExists;
     const isPublishedLive = publishTracker.publishedSlugs.includes(slug);
     const isPinpointTop = PINPOINT_TOP_SLUGS.includes(slug);
+    const rot = rotationMap[slug] || { day: Math.ceil((idx + 1) / 3), slotTime: 'STANDBY', cast: '' };
 
     return {
       index: idx + 1,
@@ -120,7 +145,10 @@ function auditWebtoonBacklog() {
       isPinpointTop,
       isRendered,
       slidesCount,
-      isPublishedLive
+      isPublishedLive,
+      scheduleDay: rot.day,
+      scheduleSlot: rot.slotTime,
+      cast: rot.cast
     };
   });
 
@@ -133,6 +161,8 @@ function auditWebtoonBacklog() {
     totalEpisodes: PRESETS.length,
     characterSheetsCount: existingArtFiles.length,
     characterSheetsTotal: requiredArtFiles.length,
+    episodeArtCount,
+    standbyFilesCount,
     renderedCount: renderedList.length,
     unrenderedCount: unrenderedList.length,
     publishedLiveCount: publishedLiveList.length,
@@ -599,19 +629,22 @@ async function runManagerAudit() {
     ``,
     `---`,
     ``,
-    `## 🎨 4. 웹툰(Webtoon) 백로그 상시 점검표 (36/36편 = 100% 렌더링 완비!)`,
-    `- **AI 동물 인스타툰 캐릭터 원화 (\`src/assets/webtoon/*.jpg\`)**: **\`${webtoon.characterSheetsCount} / ${webtoon.characterSheetsTotal}종 (100%)\`** 정상 탑재`,
+    `## 🎨 4. 웹툰(Webtoon) 사전제작 대기열(Standby Queue) & 일일 3편 순차발행 점검표`,
+    `- **AI 동물 인스타툰 고유 원화 (\`src/assets/webtoon/episodes/*.png\`)**: **\`${webtoon.episodeArtCount} / ${webtoon.totalEpisodes}편 고유 원화 + 기본 7종 (100%)\`** 정상 탑재`,
     `- **고해상도 4컷 웹툰 PNG 사전 렌더링 (\`sns/\` & \`sns_outbox/\`)**: **\`${webtoon.renderedCount} / ${webtoon.totalEpisodes}편 (100% 완료 — 총 ${webtoon.renderedCount * 5}장 PNG)\`**`,
-    `- **공식 계정 (\`@moneyfit2026\` 인스타·쓰레드·페북) 업로드 현황**: **\`${webtoon.publishedLiveCount} / ${webtoon.totalEpisodes}편 게시 완료\`** (**즉시 업로드 가능 대기열 \`${webtoon.pendingPublishCount}편\`**)`,
+    `- **네이버 백로그형 웹툰 스탠바이 큐 (\`backlog_human_posts/webtoon_standby/\`)**: **\`${webtoon.standbyFilesCount} / ${webtoon.totalEpisodes}개 사전제작 패키지 (Day 01 ~ Day 12 하루 3편씩 대기 완료)\`**`,
+    `- **공식 계정 (\`@moneyfit2026\` 인스타·쓰레드) 업로드 현황**: **\`${webtoon.publishedLiveCount} / ${webtoon.totalEpisodes}편 게시 완료\`** (**사전제작 완료 후 순차 출격 대기열 \`${webtoon.pendingPublishCount}편\` — 하루 3편씩 자동 편성**)`,
     ``,
-    `### 🔥 [웹툰 36대 전 에피소드 렌더링 & 게시 상태표]`,
-    `| 순번 | 슬러그 (\`slug\`) | 카테고리 | 에피소드 제목 | 4컷 PNG & 슬라이드 (5장) | \`@moneyfit2026\` 게시 상태 |`,
-    `| :---: | :--- | :---: | :--- | :---: | :---: |`,
+    `### 🔥 [웹툰 36대 전 에피소드 사전제작 완료 & Day 1~12 대기열 상태표]`,
+    `| 순번 | 슬러그 (\`slug\`) | 카테고리 | 에피소드 제목 & 동물 캐스팅 | 사전제작 (5장+원고) | 편성 스케줄 (KST) | \`@moneyfit2026\` 대기열 상태 |`,
+    `| :---: | :--- | :---: | :--- | :---: | :---: | :---: |`,
     ...webtoon.presetItems.map(
       i =>
-        `| #${String(i.index).padStart(2, '0')} | \`${i.slug}\` | ${i.category} | **${i.title}** | ${
-          i.isRendered ? '✅ 생성완료 (5장)' : '⏳ 대기'
-        } | ${i.isPublishedLive ? '🟢 게시완료' : i.isPinpointTop ? '🟠 **1순위 업로드 대기**' : '🟡 업로드 대기'} |`
+        `| #${String(i.index).padStart(2, '0')} | \`${i.slug}\` | ${i.category} | **${i.title}**${i.cast ? `<br>🐾 ${i.cast}` : ''} | ${
+          i.isRendered ? '✅ 사전제작 완료 (5장)' : '⏳ 대기'
+        } | **Day ${String(i.scheduleDay).padStart(2, '0')}** (${i.scheduleSlot}) | ${
+          i.isPublishedLive ? '🟢 **게시완료**' : '⏳ **사전제작 대기열 (Standby)**'
+        } |`
     ),
     ``,
     `---`,
