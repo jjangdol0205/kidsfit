@@ -493,10 +493,10 @@ function drawTopBrandBar(ctx, badgeText, stepLabel = '1 / 4') {
   ctx.textBaseline = 'middle';
   ctx.fillText(badgeText || '🐾 머니핏 오리지널 영수증툰', 74, 75);
 
-  // Right step & account pill
+  // Right account pill (@moneyfit2026 only, no 1/4 step number)
   ctx.fillStyle = '#E2E8F0';
   ctx.beginPath();
-  ctx.roundRect(790, 48, 240, 52, 26);
+  ctx.roundRect(810, 48, 220, 52, 26);
   ctx.fill();
   setPen(ctx, 2.5, INK);
   ctx.stroke();
@@ -504,7 +504,7 @@ function drawTopBrandBar(ctx, badgeText, stepLabel = '1 / 4') {
   ctx.fillStyle = INK;
   ctx.font = '26px "Jua", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('@moneyfit2026 · ' + stepLabel, 910, 75);
+  ctx.fillText('@moneyfit2026', 920, 75);
   ctx.restore();
 }
 

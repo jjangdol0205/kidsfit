@@ -67,19 +67,22 @@ A. 에너지소비효율 1등급 라벨 사진, 제품 제조번호(시리얼 �
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(총예산(만 원)·방 평수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] [슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기**:  
+🔗 https://naver.me/GgUlTvYj
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF**:  
+🔗 https://naver.me/xm0ZVnAW
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/room-appliances-only
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 로켓설치 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_room_AF7865143&pageKey=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90&q=%EC%9B%90%EB%A3%B8%20%EC%9E%90%EC%B7%A8%EB%B0%A9%20%EB%83%89%EC%9E%A5%EA%B3%A0%20%EC%B9%A8%EB%8C%80%20%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%20%EB%A1%9C%EC%BC%93%EC%84%A4%EC%B9%98&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 현대Hmall 가구전 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=hmall&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.hmall.com%2Fmd%2Fpde%2Fsearch%3FsearchTerm%3D%25EC%25B9%25A8%25EB%258C%2580%2520%25EB%25A7%25A4%25ED%258A%25B8%25EB%25A6%25AC%25EC%258A%25A4
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #무옵션원룸가전 #원룸가전150만원 #에너지1등급가전 #자취가전추천 #원룸냉장고세탁기
 ```
@@ -91,7 +94,7 @@ A. 에너지소비효율 1등급 라벨 사진, 제품 제조번호(시리얼 �
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.24 월세 싼 무옵션 빌라 vs 풀옵션 원룸 2년 손익 🔌 (독립 아기곰 포근이 × 안경 여우 견적박사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/room-appliances-only/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/GgUlTvYj" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/room-appliances-only-grid.png" alt="옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -99,8 +102,9 @@ A. 에너지소비효율 1등급 라벨 사진, 제품 제조번호(시리얼 �
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 150만원 1등급 가전 5종 직접 구매: <strong>1,500,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -330,000원 절약</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/room-appliances-only/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/GgUlTvYj" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: [슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기 ↗</a>
+    <a href="https://truthofmarket.com/preset/room-appliances-only/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -128,6 +132,7 @@ A. 에너지소비효율 1등급 라벨 사진, 제품 제조번호(시리얼 �
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/room-appliances-only
+스마트스토어 추천 절약템: https://naver.me/GgUlTvYj
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -137,7 +142,7 @@ A. 에너지소비효율 1등급 라벨 사진, 제품 제조번호(시리얼 �
 ```text
 풀옵션 원룸에 매달 월세 5~10만 원 더 내는 것보다, 무옵션 원룸에 150만 원으로 에너지 1등급 가전 5종을 직접 들이는 게 얼마나 이득일까요?
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(총예산(만 원)·방 평수) 넣어서 돌려보니까 [총 150만 원 풀세팅 (가전 128만 + 가구 23만) / 냉장고 예산 45만 원, 세탁기 예산 42만 원] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/GgUlTvYj)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/room-appliances-only
 ```
 

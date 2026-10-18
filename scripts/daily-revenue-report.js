@@ -372,6 +372,14 @@ async function buildDailyRevenueData(injectedStats = null) {
     backlogSummary = null;
   }
 
+  let brandConnectSummary = null;
+  try {
+    const bcReporter = require('./brandconnect-daily-report.js');
+    brandConnectSummary = await bcReporter.buildBrandConnectDailyReport({ scrapeLive: false });
+  } catch (e) {
+    brandConnectSummary = null;
+  }
+
   return {
     dateStr: stats.dateStr,
     yesterdayStr: stats.yesterdayStr,
@@ -445,6 +453,7 @@ async function buildDailyRevenueData(injectedStats = null) {
       cumulativeTotalGmv,
       cumulativeTotalNet
     },
+    brandConnect: brandConnectSummary,
     backlog: backlogSummary
   };
 }
@@ -455,6 +464,7 @@ async function buildDailyRevenueData(injectedStats = null) {
 function formatDailyRevenueHtml(report) {
   const esc = telegramNotify.escapeHtml;
   const b = report.backlog;
+  const bc = report.brandConnect;
   const totalUv = Math.max(1, report.visitors.totalUv || 1);
   const totalCtr = Number(((report.clicks.totalClicks / totalUv) * 100).toFixed(2));
   const conf = report.confirmed || { apiConnected: false, totalOrders: 0, totalGmv: 0, totalNet: 0, coupangOrders: 0, coupangNet: 0, lpOrders: 0, lpNet: 0, cpaLeads: 0, cpaNet: 0 };
@@ -473,9 +483,20 @@ function formatDailyRevenueHtml(report) {
     ? [
         `🗣️ <b>0. [정기보고 직전 완료] 전직원 상호 피드백 회의 (제${b.staffCouncil.sessionCount}차)</b>`,
         `• <b>🦊여우➔🐆치타</b>: 네이버·지식iN 큐를 전환 1위(<code>#07 식단·#13 사료·#05 난방비</code>)로 피봇 완료`,
+        `• <b>🦦수달➔🐆치타</b>: B계정(<code>expertise333</code>) 클립·블로그·전용카페(<code>moneyfitlab</code>) 가동 및 일일 실적 보고`,
         `• <b>📱팬더➔🐝꿀벌</b>: 스마트폰 375px 버튼 무잘림 <code>12~16자</code> 초단문 가격표 일괄 적용`,
         `• <b>🐝꿀벌➔📱팬더</b>: 모바일 하단바에 <code>🚀내일도착·무료반품</code> 2단어 안심배지 장착 완료`,
         ``
+      ]
+    : [];
+
+  const bcLines = bc && bc.metrics
+    ? [
+        ``,
+        `🦦 <b>2-2. [네이버 브랜드커넥트 전담팀 (B계정 expertise333)] 일일 실적</b>`,
+        `• <b>전담 본부</b>: <code>🦦 수달 본부장</code> (클립 · 블로그 · 전용카페 <code>moneyfitlab</code>)`,
+        `• <b>쇼핑커넥트 실적</b>: 클릭 <b><code>${Number(bc.metrics.clicks || 0)}회</code></b> · 주문 <b><code>${Number(bc.metrics.orders || 0)}건</code></b> · 판매액 <code>${Number(bc.metrics.salesAmountKrw || 0).toLocaleString()}원</code> · 예상수익 <b><code>+${Number(bc.metrics.estimatedRevenueKrw || 0).toLocaleString()}원</code></b>`,
+        `• <b>가동 링크/채널</b>: 전용 링크 <code>${bc.activeLinksCount || 7}개(ON)</code> | <a href="${esc(bc.channels?.cafeUrl || 'https://cafe.naver.com/moneyfitlab')}">전용카페(${(bc.channels?.publishedCafePosts || []).length}건)</a> · <a href="${esc(bc.channels?.blogUrl || 'https://blog.naver.com/expertise333')}">블로그(${(bc.channels?.publishedBlogPosts || []).length}건)</a> · 클립(${(bc.channels?.publishedClips || []).length}건)`
       ]
     : [];
 
@@ -509,6 +530,7 @@ function formatDailyRevenueHtml(report) {
     `  └ 고단가 CPA(<code>${report.cpa.memberId}</code>): 누적 <b><code>${report.cpa.totalClicks}회</code></b> (일일 <code>${report.cpa.dailyClicks}회</code>)`,
     `• <b>서버·원장 확인 확정 실구매</b>: <b><code>확정 ${conf.totalOrders}건 (확정 수익 ${conf.totalNet.toLocaleString()}원)</code></b>`,
     `  └ <i>${conf.apiConnected ? '쿠팡 Open API 실시간 정산 연동 중' : '※ 현재 쿠팡 Open API 미연동 상태이므로, 실제 카드 결제 건수는 아래 [쿠팡파트너스 리포트(매일 16시 정산)] 및 [링크프라이스]에서 직접 확인합니다.'}</i>`,
+    ...bcLines,
     ``,
     `📐 <b>3. [참고용 통계 추정치 — 실매출 확정 아님]</b>`,
     `• <i>실클릭(${report.clicks.totalClicks}회) × 업종 평균 전환율(3~5%) 단순 통계 기대치:</i>`,
@@ -519,7 +541,7 @@ function formatDailyRevenueHtml(report) {
     ...backlogLines,
     `━━━━━━━━━━━━━━━━━━━━━━`,
     `🔗 <b>실제 결제·매출 확정 대시보드 1초 확인</b>:`,
-    `• <a href="https://partners.coupang.com/#affiliate/ws/reports">[🟡 쿠팡파트너스 실제 매출 리포트 (오후 4시 정산)]</a> | <a href="https://ac.linkprice.com/">[🔵 링크프라이스 실시간 실적조회]</a>`,
+    `• <a href="https://partners.coupang.com/#affiliate/ws/reports">[🟡 쿠팡파트너스 리포트]</a> | <a href="https://ac.linkprice.com/">[🔵 링크프라이스]</a> | <a href="https://brandconnect.naver.com/989959114454560/affiliate/sales-dashboard">[🟢 네이버 브랜드커넥트 실적]</a>`,
     `<i>※ 대표님 지시에 따라 100% 실측 확정치(방문자·실클릭·확정주문)와 참고 추정치를 엄격히 분리하여 보고합니다.</i>`
   ].join('\n');
 }

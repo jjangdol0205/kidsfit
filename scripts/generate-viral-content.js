@@ -203,6 +203,50 @@ function buildCopyBundle(preset, currentSiteUrl = siteUrl) {
   const strat = CATEGORY_STRATEGY_MAP[preset.calc] || CATEGORY_STRATEGY_MAP.electric;
   const uniqueHashtags = story.hashtags || `#${preset.category.replace(/[^가-힣a-zA-Z0-9]/g, '')} #${query.split(' ').join(' #')} #머니핏`;
 
+  // Load Account B (expertise333) Official Brand Connect (Shopping Connect) links so both Account A (comedifarm) and Account B use them across Blog, Clip, and Cafe
+  const BC_LINKS_BY_CALC = {
+    electric: {
+      label: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개)',
+      url: 'https://naver.me/xm0ZVnAW',
+      subLabel: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기',
+      subUrl: 'https://naver.me/GgUlTvYj'
+    },
+    diet: {
+      label: '한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개)',
+      url: 'https://naver.me/xvClW9nJ',
+      subLabel: '모던구루 유기농 애사비 스틱 오리지널 21포',
+      subUrl: 'https://naver.me/GxrdvbPG'
+    },
+    pet: {
+      label: '라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)',
+      url: 'https://naver.me/xAfcU6Im',
+      subLabel: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 털청소 로봇청소기',
+      subUrl: 'https://naver.me/GgUlTvYj'
+    },
+    room: {
+      label: '[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기',
+      url: 'https://naver.me/GgUlTvYj',
+      subLabel: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF',
+      subUrl: 'https://naver.me/xm0ZVnAW'
+    },
+    auto: {
+      label: '아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)',
+      url: 'https://naver.me/G5kYoDj6',
+      subLabel: '티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 공유기',
+      subUrl: 'https://naver.me/FpwR436o'
+    },
+    telecom: {
+      label: '티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 유무선 공유기',
+      url: 'https://naver.me/FpwR436o',
+      subLabel: '듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF',
+      subUrl: 'https://naver.me/xm0ZVnAW'
+    }
+  };
+  const bcItem = BC_LINKS_BY_CALC[preset.calc] || BC_LINKS_BY_CALC.electric;
+  const brandConnectUrl = bcItem.url;
+  const brandConnectSubUrl = bcItem.subUrl;
+  const officialCafeUrl = 'https://cafe.naver.com/moneyfitlab';
+
   // 1. Blog Post (Preset-Unique Opening, Domain-Specific Strategy, Zero Cross-Category Boilerplate)
   const tableMd = formatMarkdownTable(preset.tableHeaders, preset.tableRows);
   const metricsList = res.metrics.map(m => `• **${m.label}**: ${m.val}`).join('\n');
@@ -253,19 +297,22 @@ ${faqList}
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 ${story.ctaLine || `내 조건(${strat.inputHint})을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요.`} 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] ${bcItem.label}**:  
+🔗 ${brandConnectUrl}
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] ${bcItem.subLabel}**:  
+🔗 ${brandConnectSubUrl}
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 ${officialCafeUrl}
 
 👉 **[무료] ${preset.title} 3초 시뮬레이터 바로가기**:  
 🔗 ${targetUrl}
 
-🚀 **[쿠팡 파트너스] ${cpaDetails.coupangSubLabel} 확인하기**:  
-🔗 ${coupangUrl}
-
-🏷️ **[공식몰 기획전] ${cpaDetails.linkPriceSubLabel} 바로가기**:  
-🔗 ${linkPriceUrl}
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 ${uniqueHashtags}`;
 
@@ -288,6 +335,7 @@ ${story.factLine || res.summary}
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: ${targetUrl}
+스마트스토어 추천 절약템: ${brandConnectUrl}
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!`;
 
   // 3. Natural Cafe / Club Member Experience Comment
@@ -295,18 +343,18 @@ ${story.factLine || res.summary}
   const secondMetric = res.metrics && res.metrics[1] ? `${res.metrics[1].label} ${res.metrics[1].val}` : res.badge;
   const cafeCommentPost = `${story.hookLine || `저도 얼마 전에 ${query} 때문에 똑같은 고민 했었어요 ㅎㅎ`}
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(${strat.inputHint}) 넣어서 돌려보니까 [${res.headline} / ${firstMetric}, ${secondMetric}] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(${brandConnectUrl})랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 ${targetUrl}`;
 
   // 4. Threads / Blind 3-Line Copy (Clean, non-spammy, preset-accurate)
   const keyMetric = res.metrics && res.metrics[0] ? `${res.metrics[0].label}: ${res.metrics[0].val}` : res.headline;
   const threadsPost = `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n${story.factLine || `실제 수식으로 계산해 보니 [${res.headline} / ${keyMetric}] 차이가 발생합니다.`}\n${story.ctaLine || `내 조건(${strat.inputHint}) 3초 무료 시뮬레이션`}: ${targetUrl}`;
 
-  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card
+  // 5. Naver SmartEditor ONE Inline-Style Rich HTML Card (with Account B Brand Connect Links)
   const naverSmartEditorHtml = `<div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 ${epTitle} (${charName} × ${expertName})</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">${preset.title} — 3컷 스포일러 영수증 비교</div>
-  <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="${brandConnectUrl}" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="${webtoonGridUrl}" alt="${preset.title} 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -314,8 +362,9 @@ ${targetUrl}`;
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ ${goodLabel}: <strong>${goodVal}</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: ${diffVal}</div>
   </div>
-  <div style="text-align:center;">
-    <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="${brandConnectUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: ${bcItem.label} ↗</a>
+    <a href="${targetUrl}/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>`;
 
@@ -330,6 +379,9 @@ ${targetUrl}`;
     query,
     subQueries,
     targetUrl,
+    brandConnectUrl,
+    brandConnectSubUrl,
+    officialCafeUrl,
     coupangUrl,
     linkPriceUrl,
     cpaActionUrl,

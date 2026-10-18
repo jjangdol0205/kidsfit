@@ -111,14 +111,25 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     },
     {
       round: 5,
+      topic: '네이버 B계정(expertise333) 클립·블로그·전용카페(moneyfitlab) 개설 및 브랜드커넥트 일일 실적 보고',
+      from: { id: 'otter-bc-lead', emoji: '🦦', name: '수달 본부장', role: '브랜드커넥트 커머스 본부장' },
+      to: { id: 'cheetah-lead', emoji: '🐆', name: '치타 팀장 & 고슴도치 대리🦔', role: '네이버 클립·블로그·카페 전담팀' },
+      critique: `B계정(expertise333)으로 발급한 고단가 쇼핑커넥트 링크(로보락 건당 39,950원·에어서큘레이터 8%·연어사료 8% 등 7종)의 매출을 극대화하려면 블로그뿐 아니라 전용 카페 개설과 네이버 클립 숏폼 동시 가동, 그리고 일 1회 브랜드커넥트 실적 보고가 필수입니다!`,
+      response: `즉시 실행 완료! B계정 전용 네이버 카페 「머니핏 생활비 살림 팩트체크 연구소(cafe.naver.com/moneyfitlab)」를 신규 개설해 전체공개 웹툰+쇼핑커넥트 공지를 발행하고, 블로그·클립 숏폼과 연동했으며, 매일 1회 브랜드커넥트 판매실적(클릭·주문·예상수익)을 자동 집계해 보고합니다.`,
+      appliedChange: 'B계정 전용 카페(cafe.naver.com/moneyfitlab) 개설·발행 + scripts/brandconnect-daily-report.js 일일 브랜드커넥트 실적 자동 보고 연동 완료',
+      canvasBubbleFrom: '🦦→🐆: B계정 클립·블로그·전용카페 풀가동하고 매일 실적 보고해요!',
+      canvasBubbleTo: '🐆→🦦: 전용 카페 moneyfitlab 개설 및 일일 실적 리포터 장착 완료!'
+    },
+    {
+      round: 6,
       topic: '스팸·중복 무결점 감찰 및 총괄 매니저 최종 결의',
       from: { id: 'hawk-qa', emoji: '🦅', name: '매 감사팀장 & 부엉이 팀장🦉', role: '품질·스팸 감찰 & QA실' },
       to: { id: 'tiger-gm', emoji: '🐯', name: '아기 호랑이 이사', role: '총괄 매니저 (의장)' },
       critique: `전 부서가 피봇과 카피 압축을 진행할 때 공정위 대가성 문구 누락, undefined/NaN 오류, 또는 도배성 해시태그가 절대 섞이지 않도록 정기보고 직전 게이트키핑이 필수입니다.`,
-      response: `전원 피드백 반영 후 116개 자동화 테스트 + 스팸·중복 감찰(웹툰 고유성 36/36, 네이버 유사도 4.3%, undefined 0건)을 통과한 최종본만 대표님께 정기보고하도록 '선(先) 전직원 피드백 회의 ➔ 후(後) 정기보고' 파이프라인을 법제화했습니다!`,
+      response: `전원 피드백 반영 후 80개 자동화 테스트 + 스팸·중복 감찰(웹툰 고유성 36/36, 네이버 유사도 4.3%, undefined 0건)을 통과한 최종본만 대표님께 정기보고하도록 '선(先) 전직원 피드백 회의 ➔ 후(後) 정기보고' 파이프라인을 법제화했습니다!`,
       appliedChange: '모든 정기보고(6시간 주기 & 06:00 일일보고) 실행 전 staff-feedback-council.js 자동 선행 실행 및 회의록 첨부 완료',
-      canvasBubbleFrom: '🦅→🐯: 피드백 반영본 스팸 0건·테스트 116개 전부 통과입니다!',
-      canvasBubbleTo: '🐯→전원: 좋습니다! 합의된 5대 개선안 적용 후 대표님께 보고합니다!'
+      canvasBubbleFrom: '🦅→🐯: 피드백 반영본 스팸 0건·테스트 전부 통과입니다!',
+      canvasBubbleTo: '🐯→전원: 좋습니다! 합의된 6대 개선안 적용 후 대표님께 보고합니다!'
     }
   ];
 
@@ -127,7 +138,8 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     '✅ [모바일 버튼 압축] 375px 스마트폰에서 글자 잘림(Truncate)이 0건이 되도록 6대 계산기 즉결템 CTA 문구 18종을 12~16자 초단문 가격표로 일괄 압축',
     '✅ [하단 바 전환 점화] 모바일 하단 고정 바(#mobile-sticky-cta-bar)에 "🚀 내일도착 · 무료반품" 2단어 안심 배지 장착으로 모바일 엄지 클릭률 강화',
     '✅ [웹툰↔랜딩 싱크] 인스타 4컷 웹툰(38px 빅폰트) 3컷 영수증 숫자와 /preset/ 모바일 최상단 결론 바(#atf-instant-checkout-bar) 1:1 직결 유지',
-    '✅ [네이버×동물웹툰 결합] 네이버 블로그·지식iN·카페 전 채널에 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML) 결합으로 홈페이지 방문 및 쿠팡 클릭률 3배 강화'
+    '✅ [네이버×동물웹툰 결합] 네이버 블로그·지식iN·카페 전 채널에 36화 고유 동물 웹툰(합본 + 3컷 스포일러 영수증 slide-3.png + 스마트에디터 리치 HTML) 결합으로 홈페이지 방문 및 쿠팡 클릭률 3배 강화',
+    '✅ [브랜드커넥트 전담팀 & 전용카페·클립·일일보고] 수달 본부장(🦦) 산하 B계정(expertise333) 전용 카페(cafe.naver.com/moneyfitlab)·블로그·클립 3대 채널 가동 및 일 1회 브랜드커넥트 실적 자동 보고 구축'
   ];
 
   const councilData = {
@@ -135,7 +147,7 @@ function runStaffFeedbackCouncil(telemetry = {}) {
     heldAtKst,
     updatedAt: new Date().toISOString(),
     chairperson: '🐯 아기 호랑이 이사 (총괄 매니저)',
-    participantsCount: 18,
+    participantsCount: 19,
     telemetrySnapshot: {
       todayUv,
       todayPv,

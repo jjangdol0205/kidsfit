@@ -138,10 +138,17 @@
   "coupangSecretKey": "3f798e0e532b06c42748ed13de8e264f3d597b55",
   "naverShoppingConnect": {
     "enabled": true,
+    "departmentName": "네이버 브랜드커넥트 커머스 본부 (B계정 전담팀)",
+    "departmentLead": "🦦 수달 본부장 (brandconnect-revenue-lead)",
+    "dailyReportTimeKst": "06:00",
     "trafficAccountId": "comedifarm",
     "brandConnectAccountId": "expertise333",
     "workspaceId": "989959114454560",
     "dedicatedBrowserPort": 9223,
+    "officialBlogUrl": "https://blog.naver.com/expertise333",
+    "officialCafeUrl": "https://cafe.naver.com/moneyfitlab",
+    "officialCafeName": "머니핏 생활비 살림 팩트체크 연구소",
+    "officialCafeClubId": "31805224",
     "clipStickerPolicy": "NAVER_OFFICIAL_SHOPPING_CONNECT_FIRST",
     "noticeText": "이 포스팅은 네이버 쇼핑커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다.",
     "categoryProductTags": {
@@ -161,11 +168,11 @@
         "stickerLabel": "🛒 네이버 쇼핑커넥트 한끼통살 소스 닭가슴살 10팩 최저가 (https://naver.me/xvClW9nJ)"
       },
       "pet": {
-        "keyword": "라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)",
-        "price": "36,900원",
-        "commission": "8% (건당 2,952원)",
-        "url": "https://naver.me/xAfcU6Im",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 가수분해 대용량 4.8kg 사료 특가 (https://naver.me/xAfcU6Im)"
+        "keyword": "웰츠 독 연어 대용량 6kg 강아지 전연령 눈물케어 사료",
+        "price": "53,600원",
+        "commission": "8% (건당 4,288원)",
+        "url": "https://naver.me/5R4lAC6h",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 웰츠 연어 대용량 6kg 사료 특가 (https://naver.me/5R4lAC6h)"
       },
       "room": {
         "keyword": "[슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기",
@@ -175,18 +182,18 @@
         "stickerLabel": "🛒 네이버 쇼핑커넥트 로보락 26년 신형 로봇청소기 슈퍼적립 특가 (https://naver.me/GgUlTvYj)"
       },
       "auto": {
-        "keyword": "아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)",
-        "price": "98,980원",
-        "commission": "5% (건당 4,949원)",
-        "url": "https://naver.me/G5kYoDj6",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 2채널 와이파이 블랙박스 특가 (https://naver.me/G5kYoDj6)"
+        "keyword": "파인뷰 2채널 FHD 블랙박스 X600 와이파이 출장장착 32GB",
+        "price": "139,000원",
+        "commission": "5% (건당 6,950원)",
+        "url": "https://naver.me/Fdo032I1",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 파인뷰 2채널 와이파이 블랙박스 특가 (https://naver.me/Fdo032I1)"
       },
       "telecom": {
-        "keyword": "티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 유무선 공유기",
-        "price": "40,900원",
-        "commission": "5% (건당 2,045원)",
-        "url": "https://naver.me/FpwR436o",
-        "stickerLabel": "🛒 네이버 쇼핑커넥트 Wi-Fi 6 기가 와이파이 공유기 특가 (https://naver.me/FpwR436o)"
+        "keyword": "아이피타임 AX3000SM 와이파이6 기가비트 메시 유무선 공유기",
+        "price": "79,000원",
+        "commission": "5% (건당 3,950원)",
+        "url": "https://naver.me/5X92bN4Y",
+        "stickerLabel": "🛒 네이버 쇼핑커넥트 아이피타임 Wi-Fi 6 기가 공유기 특가 (https://naver.me/5X92bN4Y)"
       }
     }
   }

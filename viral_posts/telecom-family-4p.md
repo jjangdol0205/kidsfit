@@ -67,19 +67,22 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(남은 위약금·기존 요금·신규 요금·사은품)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] 티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 유무선 공유기**:  
+🔗 https://naver.me/FpwR436o
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF**:  
+🔗 https://naver.me/xm0ZVnAW
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 온가족 4인 인터넷+TV 통합 변경 시 최대 사은품 손익 계산 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/telecom-family-4p
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 와이파이6 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_telecom_AF7865143&pageKey=ipTIME&q=%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B46%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20AX3000%20%EA%B8%B0%EA%B0%80%EB%9E%9C%EC%84%A0&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 하이마트 공유기전 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EA%25B8%25B0%25EA%25B0%2580%2520%25EC%2599%2580%25EC%259D%25B4%25ED%258C%258C%25EC%259D%25B46%2520%25EA%25B3%25B5%25EC%259C%25A0%25EA%25B8%25B0
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #가족결합할인 #인터넷TV결합사은품 #4인가족통신비 #휴대폰인터넷결합 #통신비다이어트
 ```
@@ -91,7 +94,7 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.35 4인 가족 휴대폰·인터넷 뿔뿔이 쓰다 날린 171만원 👨‍👩‍👧‍👦 (알뜰 라쿤 대리 × 안경 여우 통신박사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">온가족 4인 인터넷+TV 통합 변경 시 최대 사은품 손익 계산 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/telecom-family-4p/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/FpwR436o" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/telecom-family-4p-grid.png" alt="온가족 4인 인터넷+TV 통합 변경 시 최대 사은품 손익 계산 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -99,8 +102,9 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 인터넷+TV 47만 사은품 + 가족결합: <strong>+926,000원 순이익</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 당일 현금 +350,000원</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/telecom-family-4p/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/FpwR436o" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 유무선 공유기 ↗</a>
+    <a href="https://truthofmarket.com/preset/telecom-family-4p/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -128,6 +132,7 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/telecom-family-4p
+스마트스토어 추천 절약템: https://naver.me/FpwR436o
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -137,7 +142,7 @@ A. 최신 안드로이드 OS 기반 기가지니/U+tv 사운드바/애플TV 4K �
 ```text
 가족 4명의 휴대폰과 집 인터넷+TV가 서로 다른 통신사로 흩어져 있다면 3년 동안 놓치고 있는 돈이 얼마일까요?
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(남은 위약금·기존 요금·신규 요금·사은품) 넣어서 돌려보니까 [위약금 12만 원 내고도 총 +93만 원 이득! / 사은품-위약금 +35만 원, 3년 요금절감 +58만 원] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/FpwR436o)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/telecom-family-4p
 ```
 

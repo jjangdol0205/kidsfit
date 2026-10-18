@@ -66,19 +66,22 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(반려동물 체중·생애주기·사료 칼로리)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개)**:  
+🔗 https://naver.me/xAfcU6Im
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] [슈퍼적립] 로보락 Qrevo Curv 2 Flow 털청소 로봇청소기**:  
+🔗 https://naver.me/GgUlTvYj
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/pet-golden-retriever
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 사료·영양제 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_pet_AF7865143&pageKey=%EB%A1%9C%EC%96%84%EC%BA%90%EB%8B%8C&q=%EA%B0%95%EC%95%84%EC%A7%80%20%EA%B3%A0%EC%96%91%EC%9D%B4%20%EA%B0%80%EC%88%98%EB%B6%84%ED%95%B4%20%EC%82%AC%EB%A3%8C%20%EA%B4%80%EC%A0%88%20%EC%98%81%EC%96%91%EC%A0%9C%20%EB%B2%A0%EC%8A%A4%ED%8A%B8&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 지마켓 펫특가 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EA%25B0%2595%25EC%2595%2584%25EC%25A7%2580%2520%25EA%25B0%2580%25EC%2588%2598%25EB%25B6%2584%25ED%2595%25B4%2520%25EC%2582%25AC%25EB%25A3%258C%2520%25EA%25B4%2580%25EC%25A0%2588%2520%25EC%2598%2581%25EC%2596%2591%25EC%25A0%259C
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #골든리트리버사료량 #대형견사료추천 #대형견한달식비 #리트리버키우기 #강아지급여량계산
 ```
@@ -90,7 +93,7 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.15 30kg 대형견 리트리버 12kg 사료 순삭 사건 🐕‍🦺 (집사 치즈냥 박사 × 안경 여우 수의영양사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/xAfcU6Im" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/pet-golden-retriever-grid.png" alt="30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -98,8 +101,9 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 일 410g 정량 (12kg 포대=29일 소진): <strong>일 410g (12kg=29일)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: 1끼 205g 정량 · 의료비 방어</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/xAfcU6Im" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 라비앙독 강아지 가수분해 피부·눈물 케어 연어 사료 4.8kg (리뷰 26,136개) ↗</a>
+    <a href="https://truthofmarket.com/preset/pet-golden-retriever/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -127,6 +131,7 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/pet-golden-retriever
+스마트스토어 추천 절약템: https://naver.me/xAfcU6Im
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -136,7 +141,7 @@ A. 체중이 1kg 늘어날 때마다 고관절에 가해지는 부담은 4배로
 ```text
 30kg 대형견 골든리트리버를 키울 때 12kg짜리 대용량 사료 1포대는 정확히 며칠 만에 바닥날까요?
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(반려동물 체중·생애주기·사료 칼로리) 넣어서 돌려보니까 [하루 410g (종이컵 5.1컵) · 29일 소진! / 하루 칼로리 1436 kcal, 하루 급여량(1끼) 410g (205g)] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/xAfcU6Im)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/pet-golden-retriever
 ```
 

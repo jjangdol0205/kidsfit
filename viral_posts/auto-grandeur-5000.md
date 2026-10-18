@@ -66,19 +66,22 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(차량가·이용기간·소득세율 구간)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] 아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS)**:  
+🔗 https://naver.me/G5kYoDj6
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] 티피링크 Archer AX1500 Wi-Fi 6 기가 와이파이 공유기**:  
+🔗 https://naver.me/FpwR436o
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/auto-grandeur-5000
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 블랙박스·용품 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_auto_AF7865143&pageKey=%EC%95%84%EC%9D%B4%EB%82%98%EB%B9%84&q=2%EC%B1%84%EB%84%90%20QHD%20%EB%B8%94%EB%9E%99%EB%B0%95%EC%8A%A4%20%EB%A7%A5%EC%84%B8%EC%9D%B4%ED%94%84%20%EA%B1%B0%EC%B9%98%EB%8C%80&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 지마켓 무료장착 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=gmarket&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D2%25EC%25B1%2584%25EB%2584%2590%2520QHD%2520%25EB%25B8%2594%25EB%259E%2599%25EB%25B0%2595%25EC%258A%25A4%2520%25EB%25AC%25B4%25EB%25A3%258C%25EC%259E%25A5%25EC%25B0%25A9
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #그랜저장기렌트 #개인사업자차량절세 #그랜저하이브리드 #업무용승용차비용처리 #신차리스렌트비교
 ```
@@ -90,7 +93,7 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.26 개인사업자 그랜저 현금 구매 시 날리는 세금 1440만원 💼 (골든 리트리버 대리 × 안경 여우 세무사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/G5kYoDj6" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/auto-grandeur-5000-grid.png" alt="개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -98,8 +101,9 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 4년 1,440만 절세 반영 장기렌트: <strong>36,370,000원</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -2,733만 원 차이</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/G5kYoDj6" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 아이테라 26년형 2채널 FHD 블랙박스 와이파이 동글포함 32G (3년 AS) ↗</a>
+    <a href="https://truthofmarket.com/preset/auto-grandeur-5000/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -127,6 +131,7 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/auto-grandeur-5000
+스마트스토어 추천 절약템: https://naver.me/G5kYoDj6
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -136,7 +141,7 @@ A. 할부나 현금으로 차량을 본인 명의로 등록하면 지역건강�
 ```text
 종합소득세율 24% 구간인 개인사업자가 5,000만 원 그랜저를 출고할 때, 일반 할부와 장기렌트의 4년 뒤 실부담금 차이는 얼마나 날까요?
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(차량가·이용기간·소득세율 구간) 넣어서 돌려보니까 [[신차 장기렌트] 총 2,733만 원 이득! / 취등록세(7%) 350만 원, 절세·보험 절감 1643만 원] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/G5kYoDj6)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/auto-grandeur-5000
 ```
 

@@ -66,19 +66,22 @@ A. 쿠팡 로켓프레시나 브랜드 정기배송을 활용하여 1~2주 단�
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(성별·체중·키·활동량·목표주수)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] 한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개)**:  
+🔗 https://naver.me/xvClW9nJ
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] 모던구루 유기농 애사비 스틱 오리지널 21포**:  
+🔗 https://naver.me/GxrdvbPG
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/diet-male-fatloss
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 닭가슴살 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_diet_AF7865143&pageKey=%ED%95%98%EB%A6%BC&q=%EB%83%89%EB%8F%99%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4%20100g%20%EB%8C%80%EC%9A%A9%EB%9F%89%20%ED%8C%A8%ED%82%A4%EC%A7%80&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 롯데ON 프로틴 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=lotteon&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.lotteon.com%2Fcsearch%2Fsearch%2Fsearch%3Frender%3Dsearch%26platform%3Dpc%26q%3D%25EB%25B6%2584%25EB%25A6%25AC%25EC%259C%25A0%25EC%25B2%25AD%25EB%258B%25A8%25EB%25B0%25B1%25EC%25A7%2588%2520WPI
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #남자다이어트식단 #80kg다이어트 #닭가슴살장보기 #TDEE계산기 #체지방커팅
 ```
@@ -90,7 +93,7 @@ A. 쿠팡 로켓프레시나 브랜드 정기배송을 활용하여 1~2주 단�
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.07 80kg 헬린이 시바의 편의점 식단 파산기 🥩 (헬스 시바견 득근이 × 안경 여우 영양박사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/diet-male-fatloss/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/xvClW9nJ" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/diet-male-fatloss-grid.png" alt="남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -98,8 +101,9 @@ A. 쿠팡 로켓프레시나 브랜드 정기배송을 활용하여 1~2주 단�
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ TDEE 정량 대용량 묶음(127팩): <strong>217,550원 (127팩)</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -273,950원 절약</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/diet-male-fatloss/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/xvClW9nJ" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 한끼통살 소스 통 닭가슴살 100g 20종 10개입 (리뷰 49,365개) ↗</a>
+    <a href="https://truthofmarket.com/preset/diet-male-fatloss/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -127,6 +131,7 @@ Mifflin-St Jeor 수식으로 계산하면 일일 1,950kcal 섭취 및 순단백�
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/diet-male-fatloss
+스마트스토어 추천 절약템: https://naver.me/xvClW9nJ
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -136,7 +141,7 @@ Mifflin-St Jeor 수식으로 계산하면 일일 1,950kcal 섭취 및 순단백�
 ```text
 80kg 남성이 근손실 없이 4주 동안 체지방만 깔끔하게 커팅하려면 닭가슴살 몇 팩과 현미밥 몇 개를 미리 사둬야 할까요?
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(성별·체중·키·활동량·목표주수) 넣어서 돌려보니까 [하루 2,240kcal · 닭가슴살 총 127팩! / 탄·단·지(g) 261/160/62g, 닭가슴살(4주) 127팩] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/xvClW9nJ)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/diet-male-fatloss
 ```
 

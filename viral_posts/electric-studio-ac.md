@@ -65,19 +65,22 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
 
 ---
 
-### 5. 내 조건으로 3초 무료 계산 & 맞춤 혜택 확인하기
+### 5. 네이버 쇼핑커넥트 공식 검증 특가템 & 3초 무료 계산기 (A·B계정 공통)
 내 조건(소비전력(W)·가동시간·기본 사용량)을 직접 입력해 3초 만에 손익분기점 영수증을 확인해 보세요. 회원가입이나 앱 설치 없이 웹에서 바로 계산됩니다.
+
+🛍️ **[네이버 브랜드커넥트 1순위 추천] 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개)**:  
+🔗 https://naver.me/xm0ZVnAW
+
+🛍️ **[네이버 브랜드커넥트 함께 보면 좋은 꿀템] [슈퍼적립] 로보락 Qrevo Curv 2 Flow 26년 신형 로봇청소기**:  
+🔗 https://naver.me/GgUlTvYj
+
+🏛️ **[머니핏 공식 네이버 카페] 6대 살림 팩트체크 연구소 바로가기**:  
+🔗 https://cafe.naver.com/moneyfitlab
 
 👉 **[무료] 원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 3초 시뮬레이터 바로가기**:  
 🔗 https://truthofmarket.com/preset/electric-studio-ac
 
-🚀 **[쿠팡 파트너스] 🚀 쿠팡 로켓설치 확인하기**:  
-🔗 https://link.coupang.com/re/AFFBRAND?lptag=AF7865143&subid=mf_electric_AF7865143&pageKey=LG%EC%A0%84%EC%9E%90&q=%EC%97%90%EB%84%88%EC%A7%80%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0%20%EC%97%90%EC%96%B4%EC%BB%A8%20%EC%A0%9C%EC%8A%B5%EA%B8%B0&channel=user
-
-🏷️ **[공식몰 기획전] 🏷️ 하이마트 1등급전 바로가기**:  
-🔗 https://click.linkprice.com/click.php?m=himart&a=A100708867&l=9999&tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0
-
-*(※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 또한 링크프라이스(LinkPrice)·텐핑(Tenping) 등 제휴 마케팅 활동의 일환으로 소정의 커미션을 제공받을 수 있으나, 이용자(구매자)에게 발생하는 추가 부담금은 일절 없습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
+*(※ 이 포스팅은 네이버 브랜드커넥트(쇼핑커넥트) 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. 본 시뮬레이션 수치는 참고용 추정치이며 실제 약관에 따라 상이할 수 있습니다.)*
 
 #원룸에어컨전기세 #벽걸이에어컨 #자취방관리비 #인버터에어컨 #누진세계산기
 ```
@@ -89,7 +92,7 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
 <div style="max-width:680px;margin:18px auto;padding:20px;border:2px solid #10b981;border-radius:16px;background:#f8fafc;font-family:'Pretendard','Malgun Gothic',sans-serif;color:#0f172a;line-height:1.6;">
   <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:6px;">🎨 EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡ (자취생 쿼카찌 × 안경 여우 에너지박사)</div>
   <div style="font-size:18px;font-weight:900;color:#0f172a;margin-bottom:12px;">원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 — 3컷 스포일러 영수증 비교</div>
-  <a href="https://truthofmarket.com/preset/electric-studio-ac/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
+  <a href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;margin-bottom:14px;">
     <img src="https://truthofmarket.com/sns/electric-studio-ac-grid.png" alt="원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산 4컷 동물 웹툰 영수증" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1px solid #cbd5e1;display:block;margin:0 auto;" />
   </a>
   <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:15px;">
@@ -97,8 +100,9 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
     <div style="margin-bottom:6px;color:#059669;font-weight:800;">✅ 1등급 인버터 정속 유지: <strong>37,296원/월</strong></div>
     <div style="color:#2563eb;font-weight:900;font-size:16px;">💡 핵심 손익 차이: -21,927원/월 절약</div>
   </div>
-  <div style="text-align:center;">
-    <a href="https://truthofmarket.com/preset/electric-studio-ac/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#10b981;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:8px;">
+    <a href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;background:#03c75a;color:#ffffff;font-size:15px;font-weight:900;border-radius:10px;text-decoration:none;">🛍️ 네이버 쇼핑커넥트 검증 특가: 듀플렉스 스탠드 에어서큘레이터 선풍기 DPK-55CF (리뷰 20,951개) ↗</a>
+    <a href="https://truthofmarket.com/preset/electric-studio-ac/?src=naver_blog" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:11px 20px;background:#0f172a;color:#ffffff;font-size:14px;font-weight:800;border-radius:10px;text-decoration:none;">👉 내 조건 넣은 4컷 최종 영수증 3초 무료 계산하기 ↗</a>
   </div>
 </div>
 ```
@@ -126,6 +130,7 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
 회원가입이나 개인정보 입력 없이 본인 숫자만 넣으면 3초 만에 위 비교표를 그대로 뽑아볼 수 있는 무료 계산기 주소 남겨둘 테니 결정하시기 전에 한 번 대입해 보세요.
 
 참고한 무료 계산기: https://truthofmarket.com/preset/electric-studio-ac
+스마트스토어 추천 절약템: https://naver.me/xm0ZVnAW
 작게나마 결정하시는 데 도움이 되었으면 좋겠습니다!
 ```
 
@@ -135,7 +140,7 @@ A. 한국에너지공단 권장 적정 냉방 온도는 26~27℃입니다. 처�
 ```text
 원룸 6평 벽걸이 에어컨 하루 10시간 틀었을 때, 정속형인지 인버터인지에 따라 고지서가 2배 넘게 차이 납니다.
 막연히 감으로 고르면 손해 볼까 봐 걱정됐는데, 제 조건(소비전력(W)·가동시간·기본 사용량) 넣어서 돌려보니까 [추가 전기세 +35,335원 (총 59,223원) / 추가 전력 +195 kWh, 월 절감액 -21,927원] 이렇게 숫자로 딱 정리돼서 나오더라고요!
-로그인 같은 거 전혀 없는 무료 계산기인데 내 조건에 맞는 최저가 비교까지 한 번에 나와서 편했습니다 :)
+로그인 같은 거 전혀 없는 무료 계산기인데 스마트스토어 특가(https://naver.me/xm0ZVnAW)랑 내 조건 비교까지 한 번에 나와서 편했습니다 :)
 https://truthofmarket.com/preset/electric-studio-ac
 ```
 
