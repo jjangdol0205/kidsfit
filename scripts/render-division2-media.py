@@ -42,7 +42,7 @@ PRESET_MAP = {
 }
 
 ART_MAP = {
-    1: 'hero-banner.jpg',
+    1: 'profile-avatar.jpg',
     2: 'electric.jpg',
     3: 'telecom.jpg',
     4: 'auto.jpg',
