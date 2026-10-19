@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 KidsFit Growth Studio - Master Sample Generator (scripts/generate_all_samples.py)
-Generates all 5 tangible, high-resolution parenting samples:
+Generates all 5 tangible, high-resolution parenting samples with REAL 2.5D CHARACTER & SCENE MOTION:
   1. samples/1_blog_sample/       (blog_post_sample.md, blog_post_sample.html)
   2. samples/2_webtoon_sample/    (webtoon_cut_01~06.png [pure illustration only], webtoon_full_6cut.png, webtoon_preview.html)
   3. samples/3_cardnews_sample/   (cardnews_01~06.png [no CARD badge, no 공신력 검증 text], cardnews_preview.html)
-  4. samples/4_webtoon_video_sample/webtoon_parenting_video.mp4  (1080x1920 MP4, 2.5s per cut = 15s total)
-  5. samples/5_cardnews_video_sample/cardnews_parenting_video.mp4 (1080x1920 MP4, 2.5s per cut = 15s total)
+  4. samples/4_webtoon_video_sample/webtoon_parenting_video.mp4  (1080x1920 MP4, 2.5s/cut = 15s, OpenCV 2.5D Moving Characters)
+  5. samples/5_cardnews_video_sample/cardnews_parenting_video.mp4 (1080x1920 MP4, 2.5s/cut = 15s, OpenCV 2.5D Moving Characters)
 """
 
 import asyncio
@@ -16,6 +16,8 @@ import struct
 import subprocess
 import wave
 from pathlib import Path
+import cv2
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg
 
@@ -64,6 +66,275 @@ def wrap_korean_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeT
         if current:
             lines.append(current)
     return lines
+
+
+# ==============================================================================
+# OPENCV 2.5D CHARACTER PUPPET & DYNAMIC SCENE ANIMATION ENGINE
+# ==============================================================================
+_GRID_SIZE = 240
+_GY, _GX = np.meshgrid(
+    np.linspace(0.0, 1.0, _GRID_SIZE, dtype=np.float32),
+    np.linspace(0.0, 1.0, _GRID_SIZE, dtype=np.float32),
+    indexing="ij",
+)
+
+
+def apply_puppet_warp(img_rgb: np.ndarray, bones: list) -> np.ndarray:
+    """
+    Applies non-rigid 2.5D skeletal/puppet mesh deformation using Gaussian RBF bones.
+    Each bone is a tuple: (cx_norm, cy_norm, radius_norm, dx_pixels, dy_pixels)
+    In inverse mapping for cv2.remap, to move image content by (+dx, +dy),
+    we sample from (x - dx, y - dy).
+    """
+    H, W = img_rgb.shape[:2]
+    dx_low = np.zeros((_GRID_SIZE, _GRID_SIZE), dtype=np.float32)
+    dy_low = np.zeros((_GRID_SIZE, _GRID_SIZE), dtype=np.float32)
+
+    for (cx, cy, sigma, dx, dy) in bones:
+        dist2 = (_GX - cx) ** 2 + (_GY - cy) ** 2
+        weight = np.exp(-dist2 / (2.0 * (sigma ** 2)))
+        dx_low -= weight * float(dx)
+        dy_low -= weight * float(dy)
+
+    # Pin image borders smoothly to zero displacement so edges never tear
+    edge_x = np.minimum(_GX, 1.0 - _GX) / 0.08
+    edge_y = np.minimum(_GY, 1.0 - _GY) / 0.08
+    edge_mask = np.clip(np.minimum(edge_x, edge_y), 0.0, 1.0)
+    dx_low *= edge_mask
+    dy_low *= edge_mask
+
+    dx_full = cv2.resize(dx_low, (W, H), interpolation=cv2.INTER_CUBIC)
+    dy_full = cv2.resize(dy_low, (W, H), interpolation=cv2.INTER_CUBIC)
+
+    base_x = np.arange(W, dtype=np.float32)[None, :]
+    base_y = np.arange(H, dtype=np.float32)[:, None]
+    map_x = base_x + dx_full
+    map_y = base_y + dy_full
+
+    return cv2.remap(img_rgb, map_x, map_y, interpolation=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+
+
+def draw_heart_polygon(draw: ImageDraw.ImageDraw, cx: float, cy: float, size: float, fill_rgba):
+    pts = []
+    for deg in range(0, 360, 10):
+        rad = math.radians(deg)
+        x = 16 * (math.sin(rad) ** 3)
+        y = -(13 * math.cos(rad) - 5 * math.cos(2 * rad) - 2 * math.cos(3 * rad) - math.cos(4 * rad))
+        pts.append((cx + x * (size / 16.0), cy + y * (size / 16.0)))
+    draw.polygon(pts, fill=fill_rgba)
+
+
+def draw_sparkle_star(draw: ImageDraw.ImageDraw, cx: float, cy: float, r: float, fill_rgba):
+    pts = [
+        (cx, cy - r),
+        (cx + r * 0.28, cy - r * 0.28),
+        (cx + r, cy),
+        (cx + r * 0.28, cy + r * 0.28),
+        (cx, cy + r),
+        (cx - r * 0.28, cy + r * 0.28),
+        (cx - r, cy),
+        (cx - r * 0.28, cy - r * 0.28),
+    ]
+    draw.polygon(pts, fill=fill_rgba)
+
+
+def animate_illustration_frame(base_rgb: np.ndarray, cut_num: int, prog: float) -> Image.Image:
+    """
+    Produces a live-animated frame (1080x1080) for `cut_num` (1..6) at normalized progress `prog` in [0, 1].
+    Combines OpenCV non-rigid character puppet movement (head nod/shake, arm/hand action, breathing)
+    with dynamic scene lighting and particle effects.
+    """
+    t = prog * 2.0 * math.pi  # 1 full cycle = 2*pi
+    H, W = base_rgb.shape[:2]
+    scale = W / 1080.0
+
+    bones = []
+    if cut_num == 1:
+        # Cut 1: Toddler shakes head stubbornly & pushes hand; Mother sighs & reaches hands; water puddle ripples
+        bones = [
+            # Toddler head shaking "싫어!" side-to-side
+            (0.67, 0.48, 0.11, 20.0 * math.sin(t * 3.0) * scale, -6.0 * abs(math.sin(t * 3.0)) * scale),
+            # Toddler right arm pushing away mom's hand
+            (0.53, 0.55, 0.09, -22.0 * abs(math.sin(t * 2.5)) * scale, -10.0 * math.sin(t * 2.5) * scale),
+            # Toddler body stubborn bounce
+            (0.66, 0.68, 0.13, 8.0 * math.sin(t * 3.0) * scale, -12.0 * abs(math.sin(t * 2.0)) * scale),
+            # Mother head tilting/nodding with worried sigh
+            (0.43, 0.34, 0.12, -10.0 * math.sin(t * 1.5) * scale, 14.0 * math.sin(t * 1.5) * scale),
+            # Mother reaching hands
+            (0.54, 0.64, 0.10, 18.0 * math.sin(t * 2.0) * scale, -8.0 * math.cos(t * 2.0) * scale),
+            # Spilled water ripple on floor
+            (0.86, 0.89, 0.09, 14.0 * math.sin(t * 4.0) * scale, 6.0 * math.cos(t * 4.0) * scale),
+        ]
+    elif cut_num == 2:
+        # Cut 2: Mother sighs & strokes sleeping child's blanket; sleeping child breathes; warm lamp glows
+        bones = [
+            # Mother head leaning forward in gentle sorrow
+            (0.44, 0.34, 0.13, 8.0 * math.sin(t * 1.2) * scale, 15.0 * (0.5 - 0.5 * math.cos(t * 1.5)) * scale),
+            # Mother right hand gently stroking blanket
+            (0.54, 0.64, 0.10, 22.0 * math.sin(t * 2.0) * scale, 6.0 * math.cos(t * 2.0) * scale),
+            # Sleeping child chest/blanket rising & falling peacefully
+            (0.60, 0.72, 0.16, 0.0, -16.0 * math.sin(t * 1.5) * scale),
+            # Sleeping child head subtle breathing nod
+            (0.80, 0.65, 0.10, -5.0 * math.sin(t * 1.5) * scale, -7.0 * math.sin(t * 1.5) * scale),
+        ]
+    elif cut_num == 3:
+        # Cut 3: Mother nods "Aha!" in realization; child's hand on tablet wiggles fingers; brain pulses
+        bones = [
+            # Mother head lifting & nodding in realization
+            (0.60, 0.31, 0.14, -12.0 * math.sin(t * 2.0) * scale, 16.0 * math.sin(t * 2.5) * scale),
+            # Mother ponytail swaying
+            (0.83, 0.39, 0.10, 18.0 * math.cos(t * 2.0) * scale, 10.0 * math.sin(t * 2.0) * scale),
+            # Mother right hand pointing/holding tablet
+            (0.51, 0.71, 0.11, -14.0 * math.sin(t * 2.0) * scale, -12.0 * abs(math.sin(t * 2.0)) * scale),
+            # Child's hand on tablet flexing fingers
+            (0.29, 0.63, 0.10, 15.0 * math.sin(t * 3.0) * scale, -15.0 * math.cos(t * 3.0) * scale),
+            # Brain illustration pulsing on tablet
+            (0.40, 0.53, 0.09, 10.0 * math.cos(t * 3.0) * scale, 10.0 * math.sin(t * 3.0) * scale),
+        ]
+    elif cut_num == 4:
+        # Cut 4: Toddler uses wooden tongs to pick up pom-pom; Mother nods warmly watching
+        bones = [
+            # Toddler right hand with tongs moving up & down picking pom-pom
+            (0.53, 0.73, 0.11, 16.0 * math.cos(t * 2.5) * scale, -24.0 * abs(math.sin(t * 2.5)) * scale),
+            # Toddler left hand holding red pom-pom
+            (0.68, 0.71, 0.09, -12.0 * math.sin(t * 2.5) * scale, -10.0 * math.cos(t * 2.5) * scale),
+            # Toddler head bobbing in concentration
+            (0.67, 0.50, 0.12, -8.0 * math.sin(t * 2.0) * scale, 14.0 * math.sin(t * 2.5) * scale),
+            # Mother head nodding proudly
+            (0.43, 0.33, 0.13, 10.0 * math.sin(t * 1.5) * scale, 15.0 * math.sin(t * 2.5) * scale),
+            # Mother hands clapping/encouraging
+            (0.44, 0.73, 0.10, 12.0 * math.sin(t * 2.5) * scale, -10.0 * abs(math.sin(t * 2.5)) * scale),
+        ]
+    elif cut_num == 5:
+        # Cut 5: Toddler bounces & waves pointing arm at sculpture; Mom & Dad nod; flower sculpture spins/sways
+        bones = [
+            # Toddler pointing arm waving up and down excitedly
+            (0.66, 0.58, 0.10, 14.0 * math.cos(t * 3.0) * scale, -26.0 * math.sin(t * 3.0) * scale),
+            # Toddler head & body bouncing happily
+            (0.53, 0.54, 0.13, 8.0 * math.sin(t * 2.0) * scale, -18.0 * abs(math.sin(t * 2.5)) * scale),
+            # Mother head nodding & smiling
+            (0.38, 0.41, 0.12, 10.0 * math.sin(t * 2.0) * scale, 12.0 * math.cos(t * 2.0) * scale),
+            # Father head nodding warmly
+            (0.63, 0.36, 0.12, -10.0 * math.sin(t * 2.0) * scale, 12.0 * math.sin(t * 2.0) * scale),
+            # Colorful flower/sun sculpture swaying in park breeze
+            (0.85, 0.36, 0.14, 18.0 * math.sin(t * 2.0) * scale, 10.0 * math.cos(t * 2.0) * scale),
+        ]
+    else:
+        # Cut 6: Mother & toddler sway in warm hug; child waves paper heart & safety scissors
+        bones = [
+            # Mother & toddler hugging sway
+            (0.48, 0.35, 0.16, 16.0 * math.sin(t * 1.5) * scale, 10.0 * math.cos(t * 1.5) * scale),
+            (0.68, 0.52, 0.15, 16.0 * math.sin(t * 1.5) * scale, -12.0 * abs(math.sin(t * 2.0)) * scale),
+            # Red paper heart pulsing & waving
+            (0.52, 0.71, 0.11, 14.0 * math.cos(t * 2.5) * scale, -18.0 * abs(math.sin(t * 2.5)) * scale),
+            # Hand holding safety scissors waving proudly
+            (0.82, 0.70, 0.11, -14.0 * math.sin(t * 2.5) * scale, -20.0 * abs(math.cos(t * 2.5)) * scale),
+        ]
+
+    warped_rgb = apply_puppet_warp(base_rgb, bones)
+    pil_img = Image.fromarray(warped_rgb).convert("RGBA")
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    odraw = ImageDraw.Draw(overlay)
+
+    # Dynamic scene effects per cut
+    if cut_num == 1:
+        # Animated comic sweat drop on mom & motion lines above stubborn toddler + expanding water rings
+        drop_y = int((0.31 + 0.025 * (prog * 2.0 % 1.0)) * H)
+        drop_x = int(0.35 * W)
+        odraw.ellipse((drop_x - 8, drop_y - 12, drop_x + 8, drop_y + 12), fill=(125, 211, 252, 210))
+        # Stress/action lines above toddler's head
+        for k in range(3):
+            ang = -0.5 + k * 0.45
+            r1 = 95 + 18 * math.sin(t * 3.0 + k)
+            r2 = r1 + 28
+            cx, cy = 0.67 * W, 0.42 * H
+            x1, y1 = cx + math.sin(ang) * r1, cy - math.cos(ang) * r1
+            x2, y2 = cx + math.sin(ang) * r2, cy - math.cos(ang) * r2
+            odraw.line([(x1, y1), (x2, y2)], fill=(239, 68, 68, 190), width=5)
+        # Expanding ripple on spilled water puddle
+        rip_r = int((25 + 45 * ((prog * 2.0) % 1.0)) * scale)
+        rip_alpha = int(190 * (1.0 - ((prog * 2.0) % 1.0)))
+        wx, wy = int(0.85 * W), int(0.90 * H)
+        odraw.ellipse((wx - rip_r, wy - rip_r // 2, wx + rip_r, wy + rip_r // 2), outline=(255, 255, 255, rip_alpha), width=4)
+
+    elif cut_num == 2:
+        # Pulsing warm golden lamp glow + floating sleep sparkles
+        glow_r = int((110 + 25 * math.sin(t * 2.0)) * scale)
+        lx, ly = int(0.70 * W), int(0.42 * H)
+        odraw.ellipse((lx - glow_r, ly - glow_r, lx + glow_r, ly + glow_r), fill=(253, 224, 71, 48))
+        # Animated tear drop rolling down mom's cheek
+        ty = int((0.365 + 0.025 * ((prog * 1.5) % 1.0)) * H)
+        tx = int(0.442 * W)
+        odraw.ellipse((tx - 5, ty - 8, tx + 5, ty + 8), fill=(186, 230, 253, 220))
+        # Gentle floating sleep orbs rising from sleeping child
+        for i in range(3):
+            p_loc = (prog + i * 0.33) % 1.0
+            sx = int((0.81 + 0.03 * math.sin(p_loc * 6.0 + i)) * W)
+            sy = int((0.60 - 0.14 * p_loc) * H)
+            sr = int((8 + 6 * (1.0 - p_loc)) * scale)
+            odraw.ellipse((sx - sr, sy - sr, sx + sr, sy + sr), fill=(254, 240, 138, int(170 * (1.0 - p_loc))))
+
+    elif cut_num == 3:
+        # Glowing neural synapse particles traveling from hand (0.29, 0.63) to brain (0.40, 0.52)
+        path_pts = [
+            (0.29, 0.63),
+            (0.31, 0.56),
+            (0.35, 0.51),
+            (0.40, 0.52),
+        ]
+        for i in range(6):
+            p_pos = (prog * 2.0 + i / 6.0) % 1.0
+            seg = p_pos * (len(path_pts) - 1)
+            idx = min(int(seg), len(path_pts) - 2)
+            frac = seg - idx
+            px = (path_pts[idx][0] * (1 - frac) + path_pts[idx + 1][0] * frac) * W
+            py = (path_pts[idx][1] * (1 - frac) + path_pts[idx + 1][1] * frac) * H
+            odraw.ellipse((px - 10, py - 10, px + 10, py + 10), fill=(253, 224, 71, 220))
+            odraw.ellipse((px - 5, py - 5, px + 5, py + 5), fill=(255, 255, 255, 255))
+        # Realization sparkles around mom
+        draw_sparkle_star(odraw, 0.45 * W, 0.22 * H, (22 + 8 * math.sin(t * 3.0)) * scale, (250, 204, 21, 230))
+        draw_sparkle_star(odraw, 0.74 * W, 0.19 * H, (18 + 7 * math.cos(t * 3.0)) * scale, (250, 204, 21, 210))
+
+    elif cut_num == 4:
+        # Shimmering sunbeams + concentration sparkles around the tongs & pom-poms
+        for i in range(4):
+            ang = i * 1.57 + t * 0.5
+            sx = (0.53 + 0.09 * math.cos(ang)) * W
+            sy = (0.76 + 0.06 * math.sin(ang)) * H
+            r = (14 + 6 * math.sin(t * 3.0 + i)) * scale
+            draw_sparkle_star(odraw, sx, sy, r, (251, 191, 36, 220))
+        draw_heart_polygon(
+            odraw,
+            0.55 * W,
+            (0.34 - 0.05 * prog) * H,
+            (22 + 4 * math.sin(t * 2.0)) * scale,
+            (244, 114, 182, 200),
+        )
+
+    elif cut_num == 5:
+        # Sunlight rays & floating hearts/sparkles in the park
+        sun_r = int((95 + 22 * math.sin(t * 2.5)) * scale)
+        sx, sy = int(0.94 * W), int(0.27 * H)
+        odraw.ellipse((sx - sun_r, sy - sun_r, sx + sun_r, sy + sun_r), fill=(253, 224, 71, 60))
+        for i in range(4):
+            p_loc = (prog + i * 0.25) % 1.0
+            hx = (0.48 + 0.18 * (i % 2) + 0.03 * math.sin(p_loc * 6.0 + i)) * W
+            hy = (0.42 - 0.16 * p_loc) * H
+            draw_heart_polygon(odraw, hx, hy, (18 + 4 * (1 - p_loc)) * scale, (251, 113, 133, int(210 * (1 - p_loc))))
+
+    else:
+        # Cut 6: Floating warm pastel hearts & golden sparkles rising around hugging mom & child
+        for i in range(6):
+            p_loc = (prog + i * 0.17) % 1.0
+            hx = (0.18 + 0.13 * i + 0.03 * math.sin(p_loc * 6.28 + i)) * W
+            hy = (0.78 - 0.55 * p_loc) * H
+            alpha = int(225 * math.sin(p_loc * math.pi))
+            draw_heart_polygon(odraw, hx, hy, (22 + (i % 3) * 6) * scale, (244, 63, 94, alpha))
+        draw_sparkle_star(odraw, 0.14 * W, 0.28 * H, (26 + 8 * math.sin(t * 3.0)) * scale, (250, 204, 21, 230))
+        draw_sparkle_star(odraw, 0.86 * W, 0.24 * H, (24 + 8 * math.cos(t * 3.0)) * scale, (250, 204, 21, 230))
+
+    combined = Image.alpha_composite(pil_img, overlay).convert("RGB")
+    return combined
 
 
 # ==============================================================================
@@ -159,8 +430,8 @@ def render_webtoon_samples():
     <div class="cut-card"><img src="webtoon_cut_05.png" alt="웹툰 5컷"></div>
     <div class="cut-card"><img src="webtoon_cut_06.png" alt="웹툰 6컷"></div>
     <div class="cta-box">
-      <h3 style="margin: 0 0 0.4rem 0; color: #065F46;">🎬 1컷당 2.5초 호흡으로 제작된 웹툰 영상 샘플도 확인해보세요!</h3>
-      <a class="btn" href="../4_webtoon_video_sample/webtoon_parenting_video.mp4">▶ 웹툰 기반 영상 샘플 재생하기 (15초)</a>
+      <h3 style="margin: 0 0 0.4rem 0; color: #065F46;">🎬 캐릭터가 살아 움직이는 15초(컷당 2.5초) 애니메이션 영상 샘플도 확인해보세요!</h3>
+      <a class="btn" href="../4_webtoon_video_sample/webtoon_parenting_video.mp4">▶ 움직이는 웹툰 영상 샘플 재생하기 (15초)</a>
       <a class="btn" style="background: #059669; margin-left: 0.5rem;" href="../../index.html">🏠 키즈핏 그로스 스튜디오 홈으로</a>
     </div>
   </div>
@@ -176,6 +447,7 @@ def render_webtoon_samples():
 CARDNEWS_SLIDES = [
     {
         "num": 1,
+        "cut_num": 1,
         "title": "“내가 혼자 할 거야!”\n만 3세 아이의 고집,\n혼내면 안 되는 진짜 이유",
         "subtitle": "퇴근 후 단추 씨름하며 울컥하는 엄마·아빠를 위한\n우리아이 두뇌 발달 & 성장 골든타임 가이드",
         "accent": (79, 70, 229),
@@ -191,6 +463,7 @@ CARDNEWS_SLIDES = [
     },
     {
         "num": 2,
+        "cut_num": 3,
         "title": "손가락은 '제2의 뇌'\n뇌 운동피질의 30%가\n아이 손끝에 연결됩니다",
         "subtitle": "만 24~47개월 영유아 시기에 찾아오는 결정적 손끝 민감기",
         "accent": (5, 150, 105),
@@ -206,6 +479,7 @@ CARDNEWS_SLIDES = [
     },
     {
         "num": 3,
+        "cut_num": 2,
         "title": "만 3세에 150만 원 가베?\n시기가 맞지 않으면\n‘거실 방치템’이 됩니다",
         "subtitle": "내 아이 월령에 딱 맞는 교육법 순서를 알아야 중복 지출을 막습니다",
         "accent": (249, 115, 22),
@@ -221,6 +495,7 @@ CARDNEWS_SLIDES = [
     },
     {
         "num": 4,
+        "cut_num": 4,
         "title": "비싼 장난감 사기 전,\n오늘 저녁 주방 서랍으로\n시작하는 '0원 놀이 3선'",
         "subtitle": "하루 15분, 엄마·아빠의 다정한 눈맞춤과 집안 소품이면 충분합니다",
         "accent": (79, 70, 229),
@@ -236,6 +511,7 @@ CARDNEWS_SLIDES = [
     },
     {
         "num": 5,
+        "cut_num": 5,
         "title": "낮에 손끝을 쓴 아이가\n밤 10시 '숨은 키 7cm'\n성장호르몬도 폭발합니다",
         "subtitle": "깊은 숙면과 자연식 영양·바른 자세가 만드는 키 성장 시너지",
         "accent": (5, 150, 105),
@@ -251,6 +527,7 @@ CARDNEWS_SLIDES = [
     },
     {
         "num": 6,
+        "cut_num": 6,
         "title": "완벽한 엄마보다\n아이의 속도를 읽어주는\n다정한 엄마면 충분합니다",
         "subtitle": "우리 아이 신체 성장 × 소근육 발달 × 주말 나들이 맞춤 가이드",
         "accent": (79, 70, 229),
@@ -267,68 +544,76 @@ CARDNEWS_SLIDES = [
 ]
 
 
-def render_cardnews_samples():
-    print("📊 [Sample 3] 6컷 양육 카드뉴스 렌더링 중 (CARD 배지 및 공신력 검증 문구 제거)...")
+def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) -> Image.Image:
     W, H = 1080, 1350
-
     font_title = get_font(52, bold=True)
     font_sub = get_font(28, bold=False)
     font_point = get_font(27, bold=True)
 
-    for s in CARDNEWS_SLIDES:
-        canvas = Image.new("RGB", (W, H), (250, 248, 245))
-        draw = ImageDraw.Draw(canvas)
-        acc = s["accent"]
-        tint = s["bg_tint"]
+    canvas = Image.new("RGB", (W, H), (250, 248, 245))
+    draw = ImageDraw.Draw(canvas)
+    acc = s["accent"]
+    tint = s["bg_tint"]
 
-        # Outer card frame (no top CARD pill, no bottom 공신력 검증 footer)
-        draw_rounded_rect(draw, (36, 36, W - 36, H - 36), radius=36, fill=(255, 255, 255), outline=(226, 232, 240), width=3)
+    # Outer card frame (no CARD badge, no 공신력 검증 footer)
+    draw_rounded_rect(draw, (36, 36, W - 36, H - 36), radius=36, fill=(255, 255, 255), outline=(226, 232, 240), width=3)
 
-        # Main Headline starting cleanly at top
-        ty = 96
-        for line in s["title"].split("\n"):
-            draw.text((84, ty), line, font=font_title, fill=(15, 23, 42))
-            ty += 68
+    # Main Headline
+    ty = 96
+    for line in s["title"].split("\n"):
+        draw.text((84, ty), line, font=font_title, fill=(15, 23, 42))
+        ty += 68
 
-        # Subtitle
-        ty += 14
-        for line in s["subtitle"].split("\n"):
-            draw.text((86, ty), line, font=font_sub, fill=(100, 116, 139))
-            ty += 40
+    # Subtitle
+    ty += 14
+    for line in s["subtitle"].split("\n"):
+        draw.text((86, ty), line, font=font_sub, fill=(100, 116, 139))
+        ty += 40
 
-        # Center Visual Illustration Strip (from raw webtoon art)
+    # Center Visual Illustration Strip
+    if animated_art_pil is not None:
+        art = animated_art_pil
+    else:
         raw_path = WEBTOON_RAW_DIR / s["raw_bg"]
         art = Image.open(raw_path).convert("RGB")
-        vw, vh = W - 168, 450
-        art_ratio = art.width / art.height
-        box_ratio = vw / vh
-        if art_ratio > box_ratio:
-            nh = vh
-            nw = int(nh * art_ratio)
-        else:
-            nw = vw
-            nh = int(nw / art_ratio)
-        art_r = art.resize((nw, nh), Image.Resampling.LANCZOS)
-        crop_l = (nw - vw) // 2
-        crop_t = (nh - vh) // 2
-        art_c = art_r.crop((crop_l, crop_t, crop_l + vw, crop_t + vh))
 
-        mask = Image.new("L", (vw, vh), 0)
-        ImageDraw.Draw(mask).rounded_rectangle((0, 0, vw, vh), radius=28, fill=255)
-        canvas.paste(art_c, (84, 425), mask)
-        draw_rounded_rect(draw, (84, 425, 84 + vw, 425 + vh), radius=28, outline=acc, width=3)
+    vw, vh = W - 168, 450
+    art_ratio = art.width / art.height
+    box_ratio = vw / vh
+    if art_ratio > box_ratio:
+        nh = vh
+        nw = int(nh * art_ratio)
+    else:
+        nw = vw
+        nh = int(nw / art_ratio)
+    art_r = art.resize((nw, nh), Image.Resampling.BILINEAR)
+    crop_l = (nw - vw) // 2
+    crop_t = (nh - vh) // 2
+    art_c = art_r.crop((crop_l, crop_t, crop_l + vw, crop_t + vh))
 
-        # 3 Key Actionable Points Box
-        py = 915
-        for pt in s["points"]:
-            draw_rounded_rect(draw, (84, py, W - 84, py + 104), radius=22, fill=tint, outline=acc, width=2)
-            pt_lines = wrap_korean_text(draw, pt, font_point, W - 220)
-            ly = py + (104 - len(pt_lines) * 34) // 2 - 4
-            for pl in pt_lines:
-                draw.text((114, ly), pl, font=font_point, fill=(30, 41, 59))
-                ly += 34
-            py += 120
+    mask = Image.new("L", (vw, vh), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, vw, vh), radius=28, fill=255)
+    canvas.paste(art_c, (84, 425), mask)
+    draw_rounded_rect(draw, (84, 425, 84 + vw, 425 + vh), radius=28, outline=acc, width=3)
 
+    # 3 Key Actionable Points Box
+    py = 915
+    for pt in s["points"]:
+        draw_rounded_rect(draw, (84, py, W - 84, py + 104), radius=22, fill=tint, outline=acc, width=2)
+        pt_lines = wrap_korean_text(draw, pt, font_point, W - 220)
+        ly = py + (104 - len(pt_lines) * 34) // 2 - 4
+        for pl in pt_lines:
+            draw.text((114, ly), pl, font=font_point, fill=(30, 41, 59))
+            ly += 34
+        py += 120
+
+    return canvas
+
+
+def render_cardnews_samples():
+    print("📊 [Sample 3] 6컷 양육 카드뉴스 렌더링 중 (CARD 배지 및 공신력 검증 문구 제거)...")
+    for s in CARDNEWS_SLIDES:
+        canvas = render_single_cardnews_frame(s, animated_art_pil=None)
         out_path = CARDNEWS_DIR / f"cardnews_0{s['num']}.png"
         canvas.save(out_path, "PNG", optimize=True)
 
@@ -361,8 +646,8 @@ def render_cardnews_samples():
       <div class="card"><img src="cardnews_06.png" alt="카드뉴스 6"></div>
     </div>
     <div class="cta-box">
-      <h3 style="margin: 0 0 0.4rem 0; color: #312E81;">🎬 1컷당 2.5초 호흡으로 제작된 카드뉴스 영상 샘플도 확인해보세요!</h3>
-      <a class="btn" href="../5_cardnews_video_sample/cardnews_parenting_video.mp4">▶ 카드뉴스 기반 영상 샘플 재생하기 (15초)</a>
+      <h3 style="margin: 0 0 0.4rem 0; color: #312E81;">🎬 캐릭터가 살아 움직이는 15초(컷당 2.5초) 카드뉴스 영상 샘플도 확인해보세요!</h3>
+      <a class="btn" href="../5_cardnews_video_sample/cardnews_parenting_video.mp4">▶ 움직이는 카드뉴스 영상 샘플 재생하기 (15초)</a>
       <a class="btn" style="background: #059669; margin-left: 0.5rem;" href="../../index.html">🏠 키즈핏 그로스 스튜디오 홈으로</a>
     </div>
   </div>
@@ -373,7 +658,7 @@ def render_cardnews_samples():
 
 
 # ==============================================================================
-# 3. SYNTHESIZE WARM ACOUSTIC BGM WAV & SHORT TTS + BUILD 2.5s/CUT MP4 VIDEOS
+# 3. SYNTHESIZE WARM ACOUSTIC BGM WAV & SHORT TTS + BUILD 2.5s/CUT MOVING VIDEOS
 # ==============================================================================
 def generate_warm_music_wav(wav_path: Path, duration_sec: float, sample_rate: int = 44100):
     """Generates a gentle, warm music-box / electric-piano chord progression WAV."""
@@ -460,7 +745,6 @@ async def synthesize_tts_clips(items, out_dir: Path, prefix: str, target_dur: fl
 
 def build_vertical_video(
     items,
-    slide_images,
     wav_files,
     durations,
     out_mp4_path: Path,
@@ -501,7 +785,7 @@ def build_vertical_video(
         stderr=subprocess.DEVNULL,
     )
 
-    # 2. Render 1080x1920 vertical video frames @ 24fps (2.5s per cut = 60 frames/cut, 15s total)
+    # 2. Render 1080x1920 vertical video frames @ 24fps with OpenCV 2.5D Moving Character Animation
     fps = 24
     VW, VH = 1080, 1920
     font_top_title = get_font(40, bold=True)
@@ -529,29 +813,37 @@ def build_vertical_video(
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     elapsed_global = 0.0
-    for idx, (item, slide_img_path, dur) in enumerate(zip(items, slide_images, durations)):
-        src_img = Image.open(slide_img_path).convert("RGB")
+    for idx, (item, dur) in enumerate(zip(items, durations)):
+        raw_path = WEBTOON_RAW_DIR / (item["raw"] if is_webtoon else item["raw_bg"])
+        raw_pil = Image.open(raw_path).convert("RGB").resize((1080, 1080), Image.Resampling.LANCZOS)
+        base_rgb = np.array(raw_pil)
+        cut_num = item["num"] if is_webtoon else item.get("cut_num", item["num"])
+
         n_frames = max(1, int(round(dur * fps)))
 
         for f_idx in range(n_frames):
             prog = f_idx / float(max(1, n_frames - 1))
             global_prog = (elapsed_global + (f_idx / fps)) / max(0.1, total_dur)
 
+            # Generate live 2.5D character & scene animation frame
+            animated_art = animate_illustration_frame(base_rgb, cut_num, prog)
+
             frame = Image.new("RGB", (VW, VH), (250, 248, 245))
             draw = ImageDraw.Draw(frame)
 
-            # Clean Title at top (no EP.01 / CARD / 공신력 검증 text)
+            # Clean Title at top
             bbox_t = draw.textbbox((0, 0), header_title_text, font=font_top_title)
             tw = bbox_t[2] - bbox_t[0]
             draw.text(((VW - tw) // 2, 95), header_title_text, font=font_top_title, fill=(15, 23, 42))
 
-            # Subtle Ken Burns zoom on the image
             if is_webtoon:
                 card_w, card_h = 992, 992
                 card_y = 260
+                src_img = animated_art
             else:
                 card_w, card_h = 992, 1240
                 card_y = 190
+                src_img = render_single_cardnews_frame(item, animated_art_pil=animated_art)
 
             zoom = 1.0 + 0.04 * prog
             zw, zh = int(card_w * zoom), int(card_h * zoom)
@@ -603,7 +895,7 @@ def generate_blog_sample():
     print("📝 [Sample 1] 최고 퀄리티 양육 블로그 칼럼 샘플 생성 중...")
     md_content = """# [소아성장·발달 칼럼] "내가 다 할 거야!" 만 3세 아이의 고집, 혼내기 전에 꼭 알아야 할 '손끝 소근육 민감기'와 밤 10시 성장의 비밀
 
-> **🏛️ 공신력 데이터 검증 안내**
+> **🏛️ 국가 표준 데이터 기반 양육 가이드**
 > 본 칼럼은 **보건복지부·질병관리청 『한국 영유아 발달선별검사(K-DST)』**, **질병관리청 『소아청소년 성장도표(KDCA)』**, **보건복지부·한국영양학회 『한국인 영양소 섭취기준(KDRIs)』**, 그리고 **대한소아내분비학회**의 공식 가이드라인을 바탕으로 작성된 학부모 양육 지원 칼럼입니다.
 
 ---
@@ -834,13 +1126,11 @@ async def main_async():
     render_webtoon_samples()
     render_cardnews_samples()
 
-    print(f"🎬 [Sample 4] 6컷 웹툰 기반 영상 샘플(1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
+    print(f"🎬 [Sample 4] 6컷 움직이는 웹툰 영상 샘플(OpenCV 2.5D 캐릭터 모션, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
     wt_wavs, wt_durs = await synthesize_tts_clips(WEBTOON_CUTS, WEBTOON_VID_DIR, "wt", CUT_DURATION_SEC)
-    wt_imgs = [WEBTOON_DIR / f"webtoon_cut_0{c['num']}.png" for c in WEBTOON_CUTS]
     wt_mp4 = WEBTOON_VID_DIR / "webtoon_parenting_video.mp4"
     build_vertical_video(
         WEBTOON_CUTS,
-        wt_imgs,
         wt_wavs,
         wt_durs,
         wt_mp4,
@@ -848,15 +1138,13 @@ async def main_async():
         accent_rgb=(79, 70, 229),
         is_webtoon=True,
     )
-    print(f"✅ [Sample 4] 웹툰 기반 영상 생성 완료: {wt_mp4} ({wt_mp4.stat().st_size:,} bytes)")
+    print(f"✅ [Sample 4] 움직이는 웹툰 영상 생성 완료: {wt_mp4} ({wt_mp4.stat().st_size:,} bytes)")
 
-    print(f"🎬 [Sample 5] 6컷 카드뉴스 기반 영상 샘플(1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
+    print(f"🎬 [Sample 5] 6컷 움직이는 카드뉴스 영상 샘플(OpenCV 2.5D 캐릭터 모션, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
     cn_wavs, cn_durs = await synthesize_tts_clips(CARDNEWS_SLIDES, CARDNEWS_VID_DIR, "cn", CUT_DURATION_SEC)
-    cn_imgs = [CARDNEWS_DIR / f"cardnews_0{s['num']}.png" for s in CARDNEWS_SLIDES]
     cn_mp4 = CARDNEWS_VID_DIR / "cardnews_parenting_video.mp4"
     build_vertical_video(
         CARDNEWS_SLIDES,
-        cn_imgs,
         cn_wavs,
         cn_durs,
         cn_mp4,
@@ -864,7 +1152,7 @@ async def main_async():
         accent_rgb=(5, 150, 105),
         is_webtoon=False,
     )
-    print(f"✅ [Sample 5] 카드뉴스 기반 영상 생성 완료: {cn_mp4} ({cn_mp4.stat().st_size:,} bytes)")
+    print(f"✅ [Sample 5] 움직이는 카드뉴스 영상 생성 완료: {cn_mp4} ({cn_mp4.stat().st_size:,} bytes)")
 
 
 if __name__ == "__main__":
