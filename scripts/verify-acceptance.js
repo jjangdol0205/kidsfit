@@ -1,520 +1,512 @@
 /**
- * MoneyFit Portal - Master Acceptance Criteria Verifier (AC 1 ~ AC 4)
- * Programmatic end-to-end verification harness.
- * Executable via `node scripts/verify-acceptance.js`
- * Exit code 0 on 100% success, Exit code 1 on any failure.
+ * scripts/verify-acceptance.js
+ * Acceptance verifier for KidsFit Growth Studio
+ * Verifies workspace cleanup, preservation, build infrastructure, and feature milestones.
  */
 
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { execSync } = require('child_process');
 
-const PROJECT_ROOT = path.resolve(__dirname, '..');
-const { getCalculators, assertStrictLTE, assertApprox } = require('../tests/test-helper');
+const ROOT_DIR = path.resolve(__dirname, '..');
 
-const SLUGS = [
-  // 1. Electric (6)
-  'electric-studio-ac',
-  'electric-stand-ac',
-  'electric-dehumidifier',
-  'electric-dryer',
-  'electric-winter-heater',
-  'electric-inverter-roi',
-  // 2. Diet (6)
-  'diet-male-fatloss',
-  'diet-female-lean',
-  'diet-male-bulkup',
-  'diet-office-worker',
-  'diet-student-budget',
-  'diet-quick-3kg',
-  // 3. Pet (6)
-  'pet-maltese-5kg',
-  'pet-pomeranian-puppy',
-  'pet-golden-retriever',
-  'pet-korean-shorthair',
-  'pet-senior-cat',
-  'pet-monthly-budget',
-  // 4. Room (6)
-  'room-oneroom-100',
-  'room-officetel-300',
-  'room-officetel-500',
-  'room-newlywed-1000',
-  'room-minimalist-50',
-  'room-appliances-only',
-  // 5. Auto (6)
-  'auto-avante-3000',
-  'auto-grandeur-5000',
-  'auto-tucson-hybrid',
-  'auto-genesis-g80',
-  'auto-casper-cash-vs-rent',
-  'auto-ev-ioniq',
-  // 6. Telecom (6)
-  'telecom-penalty-15',
-  'telecom-penalty-30',
-  'telecom-3yr-expired',
-  'telecom-single-oneroom',
-  'telecom-family-4p',
-  'telecom-mvno-switch'
-];
+let totalChecks = 0;
+let passedChecks = 0;
+let failedChecks = 0;
 
-async function verifyAC1() {
-  console.log('\n--- [AC 1] 6 Life Financial Calculators Domain Math & BOM Invariant ---');
-  const {
-    calculateElectric,
-    calculateDiet,
-    calculatePet,
-    calculateRoom,
-    calculateAuto,
-    calculateTelecom
-  } = await getCalculators();
-
-  const errors = [];
-  let scenarioCount = 0;
-
-  // 1. Electric (3 scenarios)
+function check(title, assertionFn) {
+  totalChecks++;
   try {
-    const e1 = calculateElectric({ wattage: 650, hours: 10, baseKwh: 150, newPrice: 550000 });
-    if (e1.addedKwh !== 195 || e1.totalKwh !== 345) throw new Error(`E1 math mismatch: added=${e1.addedKwh}, total=${e1.totalKwh}`);
-    scenarioCount++;
-
-    const e2 = calculateElectric({ wattage: 2200, hours: 12, baseKwh: 310, isSummer: true });
-    if (e2.totalKwh !== 1102 || !e2.badge.includes('폭탄')) throw new Error('E2 summer explosion not triggered');
-    scenarioCount++;
-
-    const e3 = calculateElectric({ wattage: 320, hours: 24, baseKwh: 220 });
-    if (e3.addedKwh !== 230 || e3.totalKwh !== 450) throw new Error('E3 dehumidifier calculation error');
-    scenarioCount++;
+    assertionFn();
+    console.log(`  [PASS] ${title}`);
+    passedChecks++;
   } catch (err) {
-    errors.push(`Calc 1 (Electric): ${err.message}`);
+    console.error(`  [FAIL] ${title}`);
+    console.error(`         Reason: ${err.message}`);
+    failedChecks++;
   }
-
-  // 2. Diet (3 scenarios)
-  try {
-    const d1 = calculateDiet({ gender: 'male', weight: 80, height: 178, age: 30, activityFactor: 1.55, weeks: 4, deficit: -500 });
-    if (d1.dailyProteinG !== 160 || d1.chickenPacks !== 127) throw new Error(`D1 diet mismatch: protein=${d1.dailyProteinG}, chicken=${d1.chickenPacks}`);
-    scenarioCount++;
-
-    const d2 = calculateDiet({ gender: 'female', weight: 55, height: 163, age: 30, activityFactor: 1.375, weeks: 2, deficit: -400 });
-    if (d2.chickenPacks !== 44 || d2.brownRiceBowls !== 28) throw new Error('D2 female diet mismatch');
-    scenarioCount++;
-
-    const d3 = calculateDiet({ gender: 'male', weight: 65, height: 175, age: 25, activityFactor: 1.55, weeks: 4, deficit: 350 });
-    if (d3.targetKcal <= d3.tdee) throw new Error('D3 bulkup target kcal should exceed TDEE');
-    scenarioCount++;
-  } catch (err) {
-    errors.push(`Calc 2 (Diet): ${err.message}`);
-  }
-
-  // 3. Pet (3 scenarios)
-  try {
-    const p1 = calculatePet({ petWeight: 5.0, factor: 1.6, kcalPerKg: 3650, bagKg: 2.0 });
-    if (p1.dailyGrams < 95 || p1.dailyGrams > 110) throw new Error(`P1 Maltese daily grams out of bounds: ${p1.dailyGrams}`);
-    scenarioCount++;
-
-    const p2 = calculatePet({ petWeight: 1.5, factor: 2.8, kcalPerKg: 3900, bagKg: 1.5 });
-    if (p2.dailyGrams < 60 || p2.dailyGrams > 75) throw new Error('P2 Pomeranian puppy daily grams error');
-    scenarioCount++;
-
-    const p3 = calculatePet({ petWeight: 30.0, factor: 1.6, kcalPerKg: 3500, bagKg: 12.0 });
-    if (p3.dailyGrams < 390 || p3.dailyGrams > 430) throw new Error('P3 Golden retriever daily grams error');
-    scenarioCount++;
-  } catch (err) {
-    errors.push(`Calc 3 (Pet): ${err.message}`);
-  }
-
-  // 4. Room BOM & Strict Invariant (3 scenarios + 11 budgets invariant check)
-  try {
-    const r1 = calculateRoom({ budgetMan: 50, roomSize: 5 });
-    if (r1.totalCost > 500000) throw new Error(`R1 budget overrun: ${r1.totalCost} > 500,000`);
-    scenarioCount++;
-
-    const r2 = calculateRoom({ budgetMan: 150, roomSize: 7 });
-    if (r2.totalCost > 1500000) throw new Error(`R2 budget overrun: ${r2.totalCost} > 1,500,000`);
-    scenarioCount++;
-
-    const r3 = calculateRoom({ budgetMan: 1000, roomSize: 24 });
-    if (r3.totalCost > 10000000) throw new Error(`R3 budget overrun: ${r3.totalCost} > 10,000,000`);
-    scenarioCount++;
-
-    // Exhaustive Invariant Assertion
-    const invariantBudgets = [50, 75, 100, 150, 200, 300, 500, 750, 1000, 1500, 2000];
-    for (const b of invariantBudgets) {
-      const res = calculateRoom({ budgetMan: b });
-      const sum = res.items.reduce((acc, cur) => acc + cur.cost, 0);
-      if (sum > b * 10000) {
-        throw new Error(`CRITICAL INVARIANT VIOLATION: Budget ${b * 10000} won, BOM sum = ${sum} won`);
-      }
-    }
-  } catch (err) {
-    errors.push(`Calc 4 (Room BOM): ${err.message}`);
-  }
-
-  // 5. Auto TCO (3 scenarios)
-  try {
-    const a1 = calculateAuto({ carPriceMan: 3000, months: 60, taxRate: 0 });
-    if (a1.taxSaving !== 0 || a1.acqTax !== 2100000) throw new Error('A1 salaried worker auto error');
-    scenarioCount++;
-
-    const a2 = calculateAuto({ carPriceMan: 5000, months: 48, taxRate: 24 });
-    if (a2.taxSaving !== 14400000) throw new Error(`A2 taxSaving error: ${a2.taxSaving}`);
-    scenarioCount++;
-
-    const a3 = calculateAuto({ carPriceMan: 7000, months: 36, taxRate: 35 });
-    if (a3.taxSaving !== 15750000) throw new Error('A3 high-earner tax deduction error');
-    scenarioCount++;
-  } catch (err) {
-    errors.push(`Calc 5 (Auto TCO): ${err.message}`);
-  }
-
-  // 6. Telecom (3 scenarios)
-  try {
-    const t1 = calculateTelecom({ penaltyMan: 15, oldFee: 46000, newFee: 38500, cashGiftMan: 47 });
-    if (t1.immediateNetWon !== 320000 || t1.bepMonths !== 0) throw new Error('T1 telecom switch error');
-    scenarioCount++;
-
-    const t2 = calculateTelecom({ penaltyMan: 30, oldFee: 51000, newFee: 41000, cashGiftMan: 47 });
-    if (t2.immediateNetWon !== 170000) throw new Error('T2 high penalty error');
-    scenarioCount++;
-
-    const t3 = calculateTelecom({ penaltyMan: 0, oldFee: 45000, newFee: 36000, cashGiftMan: 47 });
-    if (t3.immediateNetWon !== 470000) throw new Error('T3 contract expired error');
-    scenarioCount++;
-  } catch (err) {
-    errors.push(`Calc 6 (Telecom): ${err.message}`);
-  }
-
-  const passed = errors.length === 0;
-  if (passed) {
-    console.log(`  ✓ AC 1 PASS: All 6 calculators passed (${scenarioCount} scenarios verified, strict BOM <= budget invariant held)`);
-  } else {
-    console.error(`  ✗ AC 1 FAIL: ${errors.length} error(s):`);
-    errors.forEach(e => console.error(`    - ${e}`));
-  }
-  return { ac: 'AC 1', passed, errors, scenarios: scenarioCount };
 }
 
-function verifyAC2() {
-  console.log('\n--- [AC 2] 36 Programmatic SEO Static HTML Pages (SSG) & Indexing ---');
-  const errors = [];
-  const titles = new Set();
-  const descriptions = new Set();
-  let verifiedPages = 0;
+function verifyMilestone1() {
+  console.log('====================================================');
+  console.log('  Acceptance Verification: Milestone 1 Infrastructure');
+  console.log('====================================================');
 
-  for (const slug of SLUGS) {
-    // Check possible static locations: dist/preset/{slug}/index.html or dist/preset/{slug}.html
-    const targetPath1 = path.join(PROJECT_ROOT, 'dist', 'preset', slug, 'index.html');
-    const targetPath2 = path.join(PROJECT_ROOT, 'dist', 'preset', `${slug}.html`);
-    const filePath = fs.existsSync(targetPath1) ? targetPath1 : (fs.existsSync(targetPath2) ? targetPath2 : null);
-
-    if (!filePath) {
-      errors.push(`Missing static HTML page for preset: ${slug} (checked ${targetPath1})`);
-      continue;
+  console.log('\n[Group 1: Preserved Deployment Assets & Git]');
+  check('.git directory exists at root', () => {
+    if (!fs.existsSync(path.join(ROOT_DIR, '.git'))) {
+      throw new Error('.git folder not found at project root');
     }
+  });
 
-    const html = fs.readFileSync(filePath, 'utf8');
+  check('git remote is preserved and points to truth_of_market', () => {
+    const remote = execSync('git remote -v', { cwd: ROOT_DIR, encoding: 'utf8' });
+    if (!remote.includes('truth_of_market')) {
+      throw new Error(`Git remote does not match expected truth_of_market: ${remote}`);
+    }
+  });
 
-    // (a) Unique <title> and <meta name="description">
-    const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
-    const descMatch = html.match(/<meta\s+name=["']description["']\s+content=["'](.*?)["']/i) ||
-                      html.match(/<meta\s+content=["'](.*?)["']\s+name=["']description["']/i);
+  check('CNAME exists at root and contains truthofmarket.com', () => {
+    const cnamePath = path.join(ROOT_DIR, 'CNAME');
+    if (!fs.existsSync(cnamePath)) throw new Error('CNAME missing');
+    const content = fs.readFileSync(cnamePath, 'utf8').trim();
+    if (content !== 'truthofmarket.com') {
+      throw new Error(`CNAME contains unexpected content: "${content}"`);
+    }
+  });
 
-    if (!titleMatch || !titleMatch[1].trim()) {
-      errors.push(`Preset ${slug}: Missing or empty <title> tag`);
-    } else {
-      const title = titleMatch[1].trim();
-      if (titles.has(title)) {
-        errors.push(`Preset ${slug}: Duplicate <title> detected ("${title}")`);
+  check('.env exists at root and contains telegram tokens', () => {
+    const envPath = path.join(ROOT_DIR, '.env');
+    if (!fs.existsSync(envPath)) throw new Error('.env missing');
+    const content = fs.readFileSync(envPath, 'utf8');
+    if (!content.includes('TELEGRAM_BOT_TOKEN') || !content.includes('TELEGRAM_CHAT_ID')) {
+      throw new Error('.env missing expected Telegram token configurations');
+    }
+  });
+
+  check('.gitignore ignores .agents/ and .gemini/', () => {
+    const gitignorePath = path.join(ROOT_DIR, '.gitignore');
+    if (!fs.existsSync(gitignorePath)) throw new Error('.gitignore missing');
+    const content = fs.readFileSync(gitignorePath, 'utf8');
+    if (!content.includes('.agents/')) throw new Error('.gitignore does not contain .agents/');
+    if (!content.includes('.gemini/')) throw new Error('.gitignore does not contain .gemini/');
+  });
+
+  check('.github/workflows/deploy.yml is updated for KidsFit Growth Studio', () => {
+    const deployPath = path.join(ROOT_DIR, '.github', 'workflows', 'deploy.yml');
+    if (!fs.existsSync(deployPath)) throw new Error('deploy.yml missing');
+    const content = fs.readFileSync(deployPath, 'utf8');
+    if (!content.includes('Deploy KidsFit Growth Studio to Pages')) {
+      throw new Error('deploy.yml does not contain updated workflow name');
+    }
+    if (content.includes('build-ssg.js')) {
+      throw new Error('deploy.yml still references legacy build-ssg.js');
+    }
+  });
+
+  check('daily-seo-autopilot.yml is removed', () => {
+    const autopilotPath = path.join(ROOT_DIR, '.github', 'workflows', 'daily-seo-autopilot.yml');
+    if (fs.existsSync(autopilotPath)) {
+      throw new Error('Legacy daily-seo-autopilot.yml still exists');
+    }
+  });
+
+  console.log('\n[Group 2: Legacy Workspace Purge]');
+  check('moneyfit-portal legacy directory is purged', () => {
+    if (fs.existsSync(path.join(ROOT_DIR, 'moneyfit-portal'))) {
+      throw new Error('moneyfit-portal directory still exists');
+    }
+  });
+
+  check('사업아이템 legacy directory is purged', () => {
+    if (fs.existsSync(path.join(ROOT_DIR, '사업아이템'))) {
+      throw new Error('사업아이템 directory still exists');
+    }
+  });
+
+  check('Legacy root markdown files are purged', () => {
+    ['오늘의_실전마케팅_스나이퍼_키트.md', '전자책_집필용_AI자율회사_구축_마스터북.md'].forEach((file) => {
+      if (fs.existsSync(path.join(ROOT_DIR, file))) {
+        throw new Error(`Legacy root markdown file still exists: ${file}`);
       }
-      titles.add(title);
+    });
+  });
+
+  console.log('\n[Group 3: Project Configuration & Build Pipeline]');
+  check('package.json has build, test, and verify scripts', () => {
+    const pkgPath = path.join(ROOT_DIR, 'package.json');
+    if (!fs.existsSync(pkgPath)) throw new Error('package.json missing');
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+    if (!pkg.scripts.build || !pkg.scripts.test || !pkg.scripts.verify) {
+      throw new Error('Missing one or more required scripts in package.json');
+    }
+  });
+
+  check('scripts/build.js builds dist/ with index.html and CNAME', () => {
+    // Run the build
+    execSync('node scripts/build.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+
+    const distDir = path.join(ROOT_DIR, 'dist');
+    if (!fs.existsSync(distDir)) throw new Error('dist/ directory not generated');
+
+    const distIndex = path.join(distDir, 'index.html');
+    if (!fs.existsSync(distIndex) || fs.statSync(distIndex).size === 0) {
+      throw new Error('dist/index.html is missing or empty');
     }
 
-    if (!descMatch || !descMatch[1].trim()) {
-      errors.push(`Preset ${slug}: Missing or empty meta description`);
-    } else {
-      const desc = descMatch[1].trim();
-      if (descriptions.has(desc)) {
-        errors.push(`Preset ${slug}: Duplicate meta description detected ("${desc}")`);
+    const distCname = path.join(distDir, 'CNAME');
+    if (!fs.existsSync(distCname)) throw new Error('dist/CNAME is missing');
+    const distCnameContent = fs.readFileSync(distCname, 'utf8').trim();
+    if (distCnameContent !== 'truthofmarket.com') {
+      throw new Error(`dist/CNAME has invalid domain: ${distCnameContent}`);
+    }
+  });
+}
+
+function verifyMilestone2() {
+  console.log('\n====================================================');
+  console.log('  Acceptance Verification: Milestone 2 Design & Quiz');
+  console.log('====================================================');
+
+  console.log('\n[Group 4: Korean 3040 Moms Design System]');
+  check('src/css/style.css exists with Warm Ivory & Clinic White tokens', () => {
+    const cssPath = path.join(ROOT_DIR, 'src', 'css', 'style.css');
+    if (!fs.existsSync(cssPath)) throw new Error('src/css/style.css missing');
+    const css = fs.readFileSync(cssPath, 'utf8');
+    if (!css.includes('#FAF8F5')) throw new Error('Missing Warm Ivory (#FAF8F5)');
+    if (!css.includes('#FFFFFF')) throw new Error('Missing Clinic White (#FFFFFF)');
+    if (!css.includes('#5B4BFF')) throw new Error('Missing Indigo (#5B4BFF)');
+    if (!css.includes('#10B981')) throw new Error('Missing Mint (#10B981)');
+    if (!css.includes('#F97316')) throw new Error('Missing Coral (#F97316)');
+    if (!css.includes('9999px')) throw new Error('Missing 9999px capsule tab radius');
+    if (!css.includes('Pretendard')) throw new Error('Missing Pretendard font');
+  });
+
+  console.log('\n[Group 5: Ad-Free Onboarding, Trust Badge & 3 Tabs]');
+  check('index.html contains KDCA/K-DST trust badge, 3 tabs, and 0 ads', () => {
+    const indexPath = path.join(ROOT_DIR, 'index.html');
+    if (!fs.existsSync(indexPath)) throw new Error('index.html missing');
+    const html = fs.readFileSync(indexPath, 'utf8');
+
+    if (!html.includes('질병관리청 소아청소년 성장도표') || !html.includes('K-DST')) {
+      throw new Error('Missing official KDCA/K-DST trust badge in index.html');
+    }
+    if (!html.includes('data-tab="tab-growth"') || !html.includes('data-tab="tab-development"') || !html.includes('data-tab="tab-outing"')) {
+      throw new Error('Missing 3 capsule navigation tabs');
+    }
+    if (html.includes('DAN-SAMPLE-TOP')) {
+      throw new Error('Legacy ad banner DAN-SAMPLE-TOP found in index.html');
+    }
+  });
+
+  console.log('\n[Group 6: 6 Quick Presets & 6-Step Deep Diagnosis Form]');
+  check('index.html and app.js implement 6 presets and 6-step deep form', () => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+    for (let i = 1; i <= 6; i++) {
+      if (!html.includes(`data-preset-id="preset-${i}"`)) {
+        throw new Error(`Missing preset ${i} in index.html`);
       }
-      descriptions.add(desc);
+      if (!html.includes(`id="step-content-${i}"`)) {
+        throw new Error(`Missing step content ${i} in index.html`);
+      }
+    }
+    if (!html.includes('id="analysis-overlay"')) {
+      throw new Error('Missing interactive prescription transition overlay');
     }
 
-    // (b) Comparative <table> presence
-    if (!html.includes('<table') || !html.includes('</table>')) {
-      errors.push(`Preset ${slug}: Missing comparative <table> element`);
+    const app = require(path.join(ROOT_DIR, 'src', 'js', 'app.js'));
+    if (Object.keys(app.PRESETS).length !== 6) {
+      throw new Error('app.js does not contain exactly 6 presets');
+    }
+  });
+
+  console.log('\n[Group 7: Production Build Output with Full Assets]');
+  check('dist/ directory contains index.html, CNAME, and src/ assets', () => {
+    execSync('node scripts/build.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+    const distHtml = path.join(ROOT_DIR, 'dist', 'index.html');
+    const distCss = path.join(ROOT_DIR, 'dist', 'src', 'css', 'style.css');
+    const distJs = path.join(ROOT_DIR, 'dist', 'src', 'js', 'app.js');
+
+    if (!fs.existsSync(distHtml)) throw new Error('dist/index.html missing');
+    if (!fs.existsSync(distCss)) throw new Error('dist/src/css/style.css missing');
+    if (!fs.existsSync(distJs)) throw new Error('dist/src/js/app.js missing');
+  });
+
+  console.log('\n[Group 8: Unit and E2E Tests Pass]');
+  check('tests/ui-onboarding.test.js passes cleanly', () => {
+    execSync('node tests/ui-onboarding.test.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+  });
+}
+
+function verifyMilestone3() {
+  console.log('\n====================================================');
+  console.log('  Acceptance Verification: Milestone 3 Domain Engines');
+  console.log('====================================================');
+
+  console.log('\n[Group 9: KDCA 2017 LMS Standards & Growth Engine]');
+  check('src/data/growth-standards.json exists with 12~216mo LMS tables for both sexes', () => {
+    const dataPath = path.join(ROOT_DIR, 'src', 'data', 'growth-standards.json');
+    if (!fs.existsSync(dataPath)) throw new Error('growth-standards.json missing');
+    const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    if (!data.boy || !data.girl) throw new Error('Missing boy or girl LMS data arrays');
+    if (data.boy.length < 15 || data.girl.length < 15) {
+      throw new Error('LMS data table is incomplete (< 15 age points)');
+    }
+    const sample = data.boy.find(x => x.m === 84);
+    if (!sample || sample.M !== 121.1) {
+      throw new Error(`Expected 84mo boy median 121.1cm, got ${sample ? sample.M : 'undefined'}`);
+    }
+  });
+
+  check('src/js/growth-engine.js calculates Box-Cox Z-score, erf percentiles, and Tanner MPH', () => {
+    const growthEngine = require(path.join(ROOT_DIR, 'src', 'js', 'growth-engine.js'));
+    const lms120 = growthEngine.getLmsForMonth('boy', 120);
+    const p50 = growthEngine.calculateKdcaPercentile(137.0, lms120.L, lms120.M, lms120.S);
+    if (Math.abs(p50.percentile - 50.0) > 0.5) {
+      throw new Error(`Expected ~50th percentile, got ${p50.percentile}`);
     }
 
-    // (c) Schema.org JSON-LD (WebApplication and FAQPage)
-    const jsonLdMatch = html.match(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/i);
-    if (!jsonLdMatch) {
-      errors.push(`Preset ${slug}: Missing application/ld+json structured data`);
-    } else {
-      try {
-        const schema = JSON.parse(jsonLdMatch[1].trim());
-        const schemas = Array.isArray(schema) ? schema : (schema['@graph'] ? schema['@graph'] : [schema]);
-        const types = schemas.map(s => s['@type']);
+    const p97 = growthEngine.calculateKdcaPercentile(149.7, lms120.L, lms120.M, lms120.S);
+    if (p97.percentile < 96.0 || p97.percentile > 98.0) {
+      throw new Error(`Expected ~97th percentile for 149.7cm 120mo boy, got ${p97.percentile}`);
+    }
 
-        const hasWebApp = types.includes('WebApplication') || schemas.some(s => s['@type'] === 'WebApplication');
-        const hasFaq = types.includes('FAQPage') || schemas.some(s => s['@type'] === 'FAQPage');
+    const boyMph = growthEngine.calculateMph(178, 162, 'boy');
+    if (boyMph !== 176.5) throw new Error(`Expected 176.5cm MPH for boy, got ${boyMph}`);
 
-        if (!hasWebApp) errors.push(`Preset ${slug}: JSON-LD missing WebApplication schema`);
-        if (!hasFaq) errors.push(`Preset ${slug}: JSON-LD missing FAQPage schema`);
+    const girlMph = growthEngine.calculateMph(178, 162, 'girl');
+    if (girlMph !== 163.5) throw new Error(`Expected 163.5cm MPH for girl, got ${girlMph}`);
+  });
 
-        const faqSchema = schemas.find(s => s['@type'] === 'FAQPage');
-        if (faqSchema && (!Array.isArray(faqSchema.mainEntity) || faqSchema.mainEntity.length < 2)) {
-          errors.push(`Preset ${slug}: FAQPage mainEntity must have at least 2 Q&A items`);
+  check('src/js/growth-engine.js calculates 3-tier heights and renders SVG growth curve & bar chart', () => {
+    const growthEngine = require(path.join(ROOT_DIR, 'src', 'js', 'growth-engine.js'));
+    const allHabits = ['late_sleep', 'poor_posture', 'picky_eater', 'milk_trouble', 'obesity_risk'];
+    const pred = growthEngine.calculateHeightPrediction(175.0, allHabits, 'none');
+
+    if (pred.unmanagedLoss !== 5.0 || pred.unmanagedHeight !== 170.0) {
+      throw new Error('Habit loss penalty cap at -5.0cm not enforced correctly');
+    }
+    if (pred.potentialHeight <= pred.geneticMph) {
+      throw new Error('Golden time boost should exceed genetic baseline');
+    }
+
+    const svg = growthEngine.renderSvgGrowthCurve('boy', 84, 122.5);
+    if (!svg.includes('<svg') || !svg.includes('3%') || !svg.includes('50%') || !svg.includes('97%') || !svg.includes('122.5cm')) {
+      throw new Error('Growth curve SVG is missing required percentile curve elements or current coordinate');
+    }
+
+    const barHtml = growthEngine.render3TierBarChart(pred);
+    if (!barHtml.includes('① 부모 유전 예상키') || !barHtml.includes('② 방해 습관 방치 시 예측키') || !barHtml.includes('③ 골든타임 밀착 관리 시 최대 잠재키')) {
+      throw new Error('Predicted height bar chart HTML missing required 3 tiers');
+    }
+
+    const cardsHtml = growthEngine.renderCoachingCards(['milk_trouble', 'poor_posture']);
+    if (!cardsHtml.includes('구연산 칼슘') || !cardsHtml.includes('숨은 키 2cm')) {
+      throw new Error('Coaching cards missing prescriptive nutritional and postural advice');
+    }
+  });
+
+  console.log('\n[Group 10: K-DST Balance Radar & Age-Based Pedagogy]');
+  check('src/data/kdst-rubrics.json contains 6 domains, 4 pedagogies, and curated toys', () => {
+    const rubricsPath = path.join(ROOT_DIR, 'src', 'data', 'kdst-rubrics.json');
+    if (!fs.existsSync(rubricsPath)) throw new Error('kdst-rubrics.json missing');
+    const rubrics = JSON.parse(fs.readFileSync(rubricsPath, 'utf8'));
+    if (!rubrics.domains || Object.keys(rubrics.domains).length !== 6) {
+      throw new Error('Expected 6 K-DST domains');
+    }
+    if (!rubrics.pedagogies || Object.keys(rubrics.pedagogies).length !== 4) {
+      throw new Error('Expected 4 pedagogies (Montessori, Froebel, Waldorf, Creative Science)');
+    }
+    if (!rubrics.curatedToys || rubrics.curatedToys.length < 8) {
+      throw new Error('Curated toys catalog incomplete (< 8 toys)');
+    }
+  });
+
+  check('src/js/development-engine.js generates 6-axis SVG radar and evaluates pedagogy', () => {
+    const devEngine = require(path.join(ROOT_DIR, 'src', 'js', 'development-engine.js'));
+    const evalRes = devEngine.evaluateKdstBalance(36, ['fine_motor']);
+    if (evalRes.radarScores.fineMotor !== 62) {
+      throw new Error(`Expected fine motor score 62 for fine_motor concern, got ${evalRes.radarScores.fineMotor}`);
+    }
+
+    const radarSvg = devEngine.renderSvgRadarChart(evalRes.radarScores, evalRes.polygonPoints);
+    if (!radarSvg.includes('<svg') || !radarSvg.includes('polygon points=') || !radarSvg.includes('소근육') || !radarSvg.includes('대근육')) {
+      throw new Error('Radar SVG missing polygon or domain labels');
+    }
+
+    const montessori = devEngine.evaluatePedagogy(36);
+    if (montessori.recommended !== 'MONTESSORI' || !montessori.rationale.includes('가베를 들이면')) {
+      throw new Error('Expected Montessori pedagogy with anti-Gabe advice for 36mo child');
+    }
+
+    const waldorf = devEngine.evaluatePedagogy(18);
+    if (waldorf.recommended !== 'WALDORF') throw new Error('Expected Waldorf pedagogy for <24mo child');
+
+    const gabe = devEngine.evaluatePedagogy(60);
+    if (gabe.recommended !== 'GABE') throw new Error('Expected Froebel Gabe for 48~71mo child');
+
+    const science = devEngine.evaluatePedagogy(84);
+    if (science.recommended !== 'CREATIVE_SCIENCE') throw new Error('Expected Creative Science for 72+mo child');
+
+    const toys = devEngine.getCuratedToys(36, ['fine_motor']);
+    if (toys.length !== 4) throw new Error(`Expected exactly 4 curated toys, got ${toys.length}`);
+  });
+
+  console.log('\n[Group 11: 40 Regional Weekend Outing Courses & Activity Kits]');
+  check('src/data/curation-catalog.json contains exactly 40 courses across 8 regions × 5 themes', () => {
+    const catPath = path.join(ROOT_DIR, 'src', 'data', 'curation-catalog.json');
+    if (!fs.existsSync(catPath)) throw new Error('curation-catalog.json missing');
+    const cat = JSON.parse(fs.readFileSync(catPath, 'utf8'));
+    if (!cat.courses || cat.courses.length !== 40) {
+      throw new Error(`Expected exactly 40 outing courses, found ${cat.courses ? cat.courses.length : 0}`);
+    }
+    const regions = new Set(cat.courses.map(c => c.region));
+    if (regions.size !== 8) throw new Error(`Expected 8 distinct regions, found ${regions.size}`);
+  });
+
+  check('src/js/weekend-curator.js queries all 40 courses and attaches linked Coupang packages', () => {
+    const curator = require(path.join(ROOT_DIR, 'src', 'js', 'weekend-curator.js'));
+    const seoulArt = curator.getWeekendOuting('서울 강남·서초·송파', 'art');
+    if (!seoulArt || !seoulArt.linkedPackage || !seoulArt.linkedPackage.coupangPath) {
+      throw new Error('Course does not contain required linked Coupang package');
+    }
+
+    const cardHtml = curator.renderOutingCard(seoulArt, { coupang: 'AF7865143' });
+    if (!cardHtml.includes('AF7865143') || !cardHtml.includes('추천 동선') || !cardHtml.includes('발달 관람 포인트')) {
+      throw new Error('Outing course card HTML missing recommended route, viewing points, or affiliate SubID');
+    }
+  });
+}
+
+function verifyMilestone4() {
+  console.log('\n====================================================');
+  console.log('  Acceptance Verification: Milestone 4 Monetization & OSMU');
+  console.log('====================================================');
+
+  console.log('\n[Group 12: 4-Tier Native Monetization & Grocery Receipt UI]');
+  check('src/js/monetization.js generates 5-item grocery receipt UI with daily amortized cost', () => {
+    const monetization = require(path.join(ROOT_DIR, 'src', 'js', 'monetization.js'));
+    const receipt = monetization.getGroceryReceiptItems({}, 'tier_15_30');
+
+    if (!receipt.items || receipt.items.length !== 5) {
+      throw new Error(`Expected exactly 5 receipt items, got ${receipt.items ? receipt.items.length : 0}`);
+    }
+    const supplements = receipt.items.filter(i => i.category === 'supplements');
+    const toys = receipt.items.filter(i => i.category === 'toys');
+    const books = receipt.items.filter(i => i.category === 'books');
+    if (supplements.length !== 2 || toys.length !== 2 || books.length !== 1) {
+      throw new Error('Receipt items composition violated (must be 2 supplements, 2 toys, 1 book)');
+    }
+    if (receipt.dailyAverage < 2000 || receipt.dailyAverage > 6000) {
+      throw new Error(`Daily amortized cost out of realistic bounds: ${receipt.dailyAverage}`);
+    }
+
+    const html = monetization.renderLayer2Receipt(receipt, { coupang: 'AF7865143' });
+    if (!html.includes('receipt-outer-wrapper') || !html.includes('||| | |||||') || !html.includes('4주 총 투자 합계')) {
+      throw new Error('Receipt HTML missing outer wrapper, barcode, or daily amortized cost display');
+    }
+  });
+
+  check('src/js/monetization.js implements Layers 1, 3, and 4 with live affiliate synchronization', () => {
+    const monetization = require(path.join(ROOT_DIR, 'src', 'js', 'monetization.js'));
+    const layer1 = monetization.renderLayer1Cpa({}, { linkprice: 'A100708867', tenping: '010-****-2370' });
+    if (!layer1.includes('HT042') || !layer1.includes('몬테소리') || !layer1.includes('A100708867')) {
+      throw new Error('Layer 1 CPA missing HT042, Montessori trial, or LinkPrice affiliate ID');
+    }
+
+    const hwItems = monetization.getHardwareRecommendations();
+    if (hwItems.length !== 4) throw new Error('Expected 4 hardware upsell recommendations');
+
+    const layer3 = monetization.renderLayer3Hardware(hwItems, { coupang: 'AF7865143' });
+    if (!layer3.includes('의자') || !layer3.includes('트램폴린') || !layer3.includes('독서대')) {
+      throw new Error('Layer 3 Hardware upselling missing posture chair, reading desk, or trampoline');
+    }
+
+    const layer4 = monetization.renderLayer4LockIn({ gender: 'boy' }, { cafeUrl: 'https://cafe.naver.com/kidsfitgrowth' });
+    if (!layer4.includes('btn-share-prescription') || !layer4.includes('워크지 50종 PDF') || !layer4.includes('kidsfitgrowth')) {
+      throw new Error('Layer 4 missing share button, PDF worksheet download banner, or Naver Cafe URL');
+    }
+  });
+
+  console.log('\n[Group 13: Secret Admin Studio & OSMU 4-Channel Marketing Generator]');
+  check('src/js/admin-osmu.js generates 4 distinct formats across 3 scenarios with 1-click copy', () => {
+    const adminOsmu = require(path.join(ROOT_DIR, 'src', 'js', 'admin-osmu.js'));
+    ['scenario-1', 'scenario-2', 'scenario-3'].forEach(scId => {
+      const bundle = adminOsmu.generateOsmuBundle(scId, { coupang: 'AF7865143' });
+      if (!bundle.webtoonStoryboard || !bundle.shortformScript || !bundle.blogColumn || !bundle.cafePost) {
+        throw new Error(`OSMU bundle missing one of the 4 formats for ${scId}`);
+      }
+      for (let cut = 1; cut <= 6; cut++) {
+        if (!bundle.webtoonStoryboard.includes(`[컷 ${cut}]`)) {
+          throw new Error(`Webtoon storyboard missing cut ${cut} for ${scId}`);
         }
-      } catch (e) {
-        errors.push(`Preset ${slug}: Invalid JSON in ld+json script: ${e.message}`);
       }
-    }
-
-    // (d) Korean character count >= 1,500
-    // Strip scripts, styles, svg, noscript, and tags
-    const cleaned = html
-      .replace(/<script[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[\s\S]*?<\/style>/gi, '')
-      .replace(/<svg[\s\S]*?<\/svg>/gi, '')
-      .replace(/<noscript[\s\S]*?<\/noscript>/gi, '')
-      .replace(/<[^>]+>/g, ' ');
-
-    const koreanChars = cleaned.match(/[가-힣]/g) || [];
-    if (koreanChars.length < 1500) {
-      errors.push(`Preset ${slug}: Insufficient Korean character count (${koreanChars.length} < 1,500 required)`);
-    }
-
-    verifiedPages++;
-  }
-
-  // (e) Sitemap.xml verification
-  const sitemapDist = path.join(PROJECT_ROOT, 'dist', 'sitemap.xml');
-  const sitemapRoot = path.join(PROJECT_ROOT, 'sitemap.xml');
-  const sitemapPath = fs.existsSync(sitemapDist) ? sitemapDist : (fs.existsSync(sitemapRoot) ? sitemapRoot : null);
-
-  if (!sitemapPath) {
-    errors.push('Missing sitemap.xml in dist/ or root');
-  } else {
-    const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
-    const locMatches = sitemapContent.match(/<loc>(.*?)<\/loc>/g) || [];
-    if (locMatches.length < 37) {
-      errors.push(`sitemap.xml has insufficient URLs: ${locMatches.length} < 37 (home + 36 presets)`);
-    }
-  }
-
-  // (f) robots.txt
-  const robotsDist = path.join(PROJECT_ROOT, 'dist', 'robots.txt');
-  const robotsRoot = path.join(PROJECT_ROOT, 'robots.txt');
-  if (!fs.existsSync(robotsDist) && !fs.existsSync(robotsRoot)) {
-    errors.push('Missing robots.txt in dist/ or root');
-  }
-
-  // (g) indexnow-submit.js --dry-run
-  const indexNowScript = path.join(PROJECT_ROOT, 'scripts', 'indexnow-submit.js');
-  if (!fs.existsSync(indexNowScript)) {
-    errors.push('Missing scripts/indexnow-submit.js');
-  } else {
-    try {
-      const res = spawnSync(process.execPath, [indexNowScript, '--dry-run'], {
-        cwd: PROJECT_ROOT,
-        encoding: 'utf8',
-        timeout: 10000
-      });
-      if (res.status !== 0) {
-        errors.push(`indexnow-submit.js --dry-run failed with exit code ${res.status}: ${res.stderr || res.stdout}`);
+      if (!bundle.shortformScript.includes('0~3초') || !bundle.shortformScript.includes('13~15초')) {
+        throw new Error(`Shortform script missing timed intervals for ${scId}`);
       }
-    } catch (e) {
-      errors.push(`Failed to execute indexnow-submit.js: ${e.message}`);
-    }
-  }
+      if (bundle.blogColumn.length < 1500 || !bundle.blogColumn.includes('|')) {
+        throw new Error(`Blog column too short or missing markdown comparison table for ${scId}`);
+      }
+      if (!bundle.cafePost.includes('맘') && !bundle.cafePost.includes('공유')) {
+        throw new Error(`Naver cafe post missing sympathetic mom framing for ${scId}`);
+      }
+    });
 
-  const passed = errors.length === 0 && verifiedPages === 36;
-  if (passed) {
-    console.log(`  ✓ AC 2 PASS: All 36 SSG pages verified (unique title/meta, <table>, JSON-LD, 1500+ Korean chars, sitemap >=37 URLs, robots.txt, IndexNow dry-run)`);
-  } else {
-    console.error(`  ✗ AC 2 FAIL: ${errors.length} error(s) found across ${verifiedPages}/36 pages:`);
-    errors.slice(0, 10).forEach(e => console.error(`    - ${e}`));
-    if (errors.length > 10) console.error(`    ... and ${errors.length - 10} more errors`);
-  }
-  return { ac: 'AC 2', passed, errors, verifiedPages };
+    const fullHtml = adminOsmu.renderOsmuStudioUI('scenario-1', { coupang: 'AF7865143' });
+    if (!fullHtml.includes('osmu-tab-btn') || !fullHtml.includes('btn-copy-osmu') || !fullHtml.includes('원클릭 복사')) {
+      throw new Error('OSMU Manager HTML missing tabs or 1-click copy buttons');
+    }
+  });
+
+  check('Secret Admin studio is accessible via ?admin=1 and 5 clicks on footer copyright', () => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+    if (!html.includes('id="admin-modal"') || !html.includes('id="cfg-coupang"') || !html.includes('id="cfg-linkprice"')) {
+      throw new Error('Admin modal missing in index.html with affiliate inputs');
+    }
+    if (!html.includes('id="footer-copyright"') || !html.includes('© 2026 KidsFit Studio')) {
+      throw new Error('Footer copyright trigger missing in index.html');
+    }
+
+    const app = require(path.join(ROOT_DIR, 'src', 'js', 'app.js'));
+    if (typeof app.saveAffiliateConfig !== 'function' || typeof app.getAffiliateConfig !== 'function') {
+      throw new Error('Affiliate config sync functions missing in app.js');
+    }
+
+    const testCfg = { coupang: 'AF_TEST_123', linkprice: 'LP_TEST_456' };
+    app.saveAffiliateConfig(testCfg);
+    const retrieved = app.getAffiliateConfig();
+    if (retrieved.coupang !== 'AF_TEST_123' || retrieved.linkprice !== 'LP_TEST_456') {
+      throw new Error('Affiliate configuration failed to persist in app state');
+    }
+  });
+
+  console.log('\n[Group 14: Comprehensive Verification & Dist Build]');
+  check('All test suites pass cleanly via tests/run-all.js', () => {
+    execSync('node tests/run-all.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+  });
+
+  check('Production build populates dist/ with all src/data, src/js, src/css, and index.html', () => {
+    execSync('node scripts/build.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+    const distFiles = [
+      path.join(ROOT_DIR, 'dist', 'index.html'),
+      path.join(ROOT_DIR, 'dist', 'CNAME'),
+      path.join(ROOT_DIR, 'dist', 'src', 'css', 'style.css'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'app.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'growth-engine.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'development-engine.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'weekend-curator.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'monetization.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'js', 'admin-osmu.js'),
+      path.join(ROOT_DIR, 'dist', 'src', 'data', 'growth-standards.json'),
+      path.join(ROOT_DIR, 'dist', 'src', 'data', 'kdst-rubrics.json'),
+      path.join(ROOT_DIR, 'dist', 'src', 'data', 'curation-catalog.json'),
+      path.join(ROOT_DIR, 'dist', 'src', 'data', 'data-bundle.js')
+    ];
+
+    distFiles.forEach(file => {
+      if (!fs.existsSync(file)) {
+        throw new Error(`Production dist missing file: ${file}`);
+      }
+    });
+  });
 }
 
-function verifyAC3() {
-  console.log('\n--- [AC 3] Monetization Pipelines & Viral Marketing Bundles ---');
-  const errors = [];
+function runAcceptance() {
+  verifyMilestone1();
+  verifyMilestone2();
+  verifyMilestone3();
+  verifyMilestone4();
 
-  // 1. monetization.config.json
-  const configPath = path.join(PROJECT_ROOT, 'monetization.config.json');
-  if (!fs.existsSync(configPath)) {
-    errors.push('Missing monetization.config.json');
-  } else {
-    try {
-      const cfg = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-      const requiredKeys = ['siteUrl', 'coupangAfId', 'linkPriceId', 'cpaMemberId', 'adfitUnitId', 'campaigns', 'merchants', 'ftcNotice'];
-      for (const k of requiredKeys) {
-        if (!cfg[k]) errors.push(`monetization.config.json missing required key: ${k}`);
-      }
-    } catch (e) {
-      errors.push(`Invalid JSON in monetization.config.json: ${e.message}`);
-    }
-  }
+  console.log('\n====================================================');
+  console.log(`Acceptance Verification Summary: ${passedChecks}/${totalChecks} checks passed.`);
+  console.log('====================================================');
 
-  // 2. 36 viral post bundles in viral_posts/{slug}.md
-  const viralDir = path.join(PROJECT_ROOT, 'viral_posts');
-  let validBundles = 0;
-
-  if (!fs.existsSync(viralDir)) {
-    errors.push('Missing viral_posts/ directory');
-  } else {
-    for (const slug of SLUGS) {
-      const postFile = path.join(viralDir, `${slug}.md`);
-      if (!fs.existsSync(postFile)) {
-        errors.push(`Missing viral copy bundle: viral_posts/${slug}.md`);
-        continue;
-      }
-      const content = fs.readFileSync(postFile, 'utf8');
-
-      // Check for Blog, Jisik-iN, and Threads sections
-      const hasBlog = content.includes('블로그') || content.includes('Blog');
-      const hasKin = content.includes('지식iN') || content.includes('지식인') || content.includes('카페');
-      const hasThreads = content.includes('스레드') || content.includes('Threads') || content.includes('3줄');
-
-      if (!hasBlog) errors.push(`viral_posts/${slug}.md missing Blog copy section`);
-      if (!hasKin) errors.push(`viral_posts/${slug}.md missing Jisik-iN copy section`);
-      if (!hasThreads) errors.push(`viral_posts/${slug}.md missing Threads 3-line copy section`);
-
-      if (hasBlog && hasKin && hasThreads) validBundles++;
-    }
-  }
-
-  // 3. Sniper kit output
-  const sniperKitRoot = path.join(PROJECT_ROOT, '오늘의_실전마케팅_스나이퍼_키트.md');
-  const sniperKitParent = path.join(PROJECT_ROOT, '..', '사업아이템', '오늘의_실전마케팅_스나이퍼_키트.md');
-
-  if (!fs.existsSync(sniperKitRoot) && !fs.existsSync(sniperKitParent)) {
-    errors.push('Missing 오늘의_실전마케팅_스나이퍼_키트.md');
-  }
-
-  const passed = errors.length === 0;
-  if (passed) {
-    console.log(`  ✓ AC 3 PASS: Monetization config valid, 36/36 viral post bundles verified (Blog + Jisik-iN + Threads), marketing sniper kit present`);
-  } else {
-    console.error(`  ✗ AC 3 FAIL: ${errors.length} error(s) found:`);
-    errors.forEach(e => console.error(`    - ${e}`));
-  }
-  return { ac: 'AC 3', passed, errors, validBundles };
-}
-
-function verifyAC4() {
-  console.log('\n--- [AC 4] Autonomous Night Growth Routine & Launch Readiness ---');
-  const errors = [];
-
-  // 1. Night growth script execution test
-  const nightScriptJs = path.join(PROJECT_ROOT, 'scripts', 'night-growth.js');
-  const nightScriptPy = path.join(PROJECT_ROOT, 'scripts', 'night_grow.py');
-
-  if (fs.existsSync(nightScriptJs)) {
-    try {
-      const res = spawnSync(process.execPath, [nightScriptJs, '--dry-run'], {
-        cwd: PROJECT_ROOT,
-        encoding: 'utf8',
-        timeout: 60000
-      });
-      if (res.status !== 0) {
-        errors.push(`night-growth.js --dry-run failed with exit code ${res.status}: ${res.stderr || res.stdout}`);
-      }
-    } catch (e) {
-      errors.push(`Failed to execute night-growth.js: ${e.message}`);
-    }
-  } else if (fs.existsSync(nightScriptPy)) {
-    try {
-      const res = spawnSync('python', [nightScriptPy, '--dry-run'], {
-        cwd: PROJECT_ROOT,
-        encoding: 'utf8',
-        timeout: 15000
-      });
-      if (res.status !== 0) {
-        errors.push(`night_grow.py --dry-run failed with exit code ${res.status}: ${res.stderr || res.stdout}`);
-      }
-    } catch (e) {
-      errors.push(`Failed to execute night_grow.py: ${e.message}`);
-    }
-  } else {
-    errors.push('Missing scripts/night-growth.js (or scripts/night_grow.py)');
-  }
-
-  // 2. 일일_야간작업_리포트.md
-  const reportPath = path.join(PROJECT_ROOT, '일일_야간작업_리포트.md');
-  if (!fs.existsSync(reportPath)) {
-    errors.push('Missing 일일_야간작업_리포트.md');
-  } else {
-    const reportContent = fs.readFileSync(reportPath, 'utf8');
-    if (!reportContent.includes('야간') && !reportContent.includes('증식') && !reportContent.includes('리포트')) {
-      errors.push('일일_야간작업_리포트.md content invalid or empty');
-    }
-  }
-
-  // 3. LAUNCH_GUIDE.md
-  const guidePath = path.join(PROJECT_ROOT, 'LAUNCH_GUIDE.md');
-  if (!fs.existsSync(guidePath)) {
-    errors.push('Missing LAUNCH_GUIDE.md');
-  } else {
-    const guideContent = fs.readFileSync(guidePath, 'utf8');
-    if (!guideContent.includes('배포') && !guideContent.includes('수익화')) {
-      errors.push('LAUNCH_GUIDE.md missing essential deployment or monetization setup instructions');
-    }
-  }
-
-  const passed = errors.length === 0;
-  if (passed) {
-    console.log(`  ✓ AC 4 PASS: Night growth routine executed cleanly with code 0, 일일_야간작업_리포트.md and LAUNCH_GUIDE.md verified`);
-  } else {
-    console.error(`  ✗ AC 4 FAIL: ${errors.length} error(s) found:`);
-    errors.forEach(e => console.error(`    - ${e}`));
-  }
-  return { ac: 'AC 4', passed, errors };
-}
-
-async function main() {
-  console.log('===============================================================');
-  console.log('   MONEYFIT PORTAL - MASTER ACCEPTANCE CRITERIA VERIFIER       ');
-  console.log('===============================================================');
-
-  const args = process.argv.slice(2);
-  const onlyAc1 = args.includes('--ac1');
-
-  const r1 = await verifyAC1();
-  let r2 = { ac: 'AC 2', passed: false, errors: ['Skipped'] };
-  let r3 = { ac: 'AC 3', passed: false, errors: ['Skipped'] };
-  let r4 = { ac: 'AC 4', passed: false, errors: ['Skipped'] };
-
-  if (!onlyAc1) {
-    r2 = verifyAC2();
-    r3 = verifyAC3();
-    r4 = verifyAC4();
-  }
-
-  const results = [r1, r2, r3, r4];
-  const allPassed = onlyAc1 ? r1.passed : (r1.passed && r2.passed && r3.passed && r4.passed);
-
-  console.log('\n===============================================================');
-  console.log('                 ACCEPTANCE CRITERIA SUMMARY                   ');
-  console.log('===============================================================');
-  for (const r of results) {
-    const status = r.passed ? '✓ PASSED' : (r.errors[0] === 'Skipped' ? '○ SKIPPED' : '✗ FAILED');
-    const errCount = r.passed ? '' : (r.errors[0] === 'Skipped' ? '' : ` (${r.errors.length} errors)`);
-    console.log(`  ${r.ac.padEnd(8, ' ')} : ${status}${errCount}`);
-  }
-  console.log('===============================================================');
-
-  if (allPassed) {
-    console.log('🎉 ALL ACCEPTANCE CRITERIA PASSED PROGRAMMATIC VERIFICATION!');
-    process.exit(0);
-  } else {
-    console.log('⚠️ Programmatic verification finished. Some criteria pending or failed.');
+  if (failedChecks > 0) {
     process.exit(1);
+  } else {
+    process.exit(0);
   }
 }
 
-main().catch(err => {
-  console.error('Fatal verification error:', err);
-  process.exit(1);
-});
+runAcceptance();
+

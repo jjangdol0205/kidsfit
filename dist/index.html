@@ -1,1319 +1,572 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>머니핏(MoneyFit) — 전기요금·누진세·다이어트 TDEE·사료량·가전예산·장기렌트 할부·인터넷 위약금 3초 손익계산기</title>
-  <meta name="description" content="전기요금 누진세 계산기, 에어컨 전기세 및 1등급 가전 본전 회수, 다이어트 기초대사량(TDEE)·닭가슴살 수량, 강아지·고양이 사료 급여량(g), 자취방·신혼 가전 예산표, 자동차 장기렌트 vs 할부 총비용(TCO), 인터넷 약정 위약금 vs 현금 사은품 47만원 손익을 3초 만에 무료 계산하세요." />
-  <meta name="keywords" content="전기요금 계산기, 에어컨 전기세 계산기, 한전 누진세 계산기, 1등급 가전 본전 계산기, 제습기 전기세, 온풍기 전기세, 다이어트 기초대사량 계산기, TDEE 계산기, 닭가슴살 단백질 계산기, 벌크업 탄단지 계산기, 강아지 사료량 계산기, 고양이 사료 급여량 계산기, 사료 소진일 계산, 자취방 가전 예산 견적, 원룸 풀세팅 비용, 신혼가전 1000만원 견적표, 장기렌트 할부 비교 계산기, 자동차 유지비 TCO 계산기, 사업자 장기렌트 절세, 인터넷 약정 위약금 계산기, 인터넷 변경 현금 사은품 47만원, 알뜰폰 요금제 절약 계산기, 손익분기점 계산기, 머니핏, MoneyFit" />
-  <meta name="author" content="머니핏(MoneyFit) 리서치 스튜디오" />
-  
-  <!-- Canonical, Robots, Verification, RSS & OpenGraph Meta Tags -->
-  <meta name="naver-site-verification" content="cebead3ca31f58965e886cde5801a335e06f2abc" />
-  <meta name="google-site-verification" content="fCnpUEn0SeIV04aGsg-QkP9i_0osqrNgK0q6yyKyCL4" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="Yeti" content="index, follow" />
-  <meta name="Googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <link rel="canonical" href="https://truthofmarket.com/" />
-  <link rel="alternate" type="application/rss+xml" title="머니핏(MoneyFit) 전체 손익계산 리포트 RSS" href="https://truthofmarket.com/rss.xml" />
-  <meta property="og:title" content="머니핏(MoneyFit) — 전기요금·식단 TDEE·사료량·가전예산·장기렌트·인터넷 위약금 3초 손익계산기" />
-  <meta property="og:description" content="전기요금 누진세, 다이어트 식단 장보기, 강아지·고양이 사료량, 자취·신혼 가전 예산, 장기렌트 vs 할부 TCO, 인터넷 위약금 vs 47만원 사은품 손익을 3초 만에 확인하세요." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://truthofmarket.com/" />
-  <meta property="og:site_name" content="머니핏(MoneyFit)" />
-  <meta property="og:locale" content="ko_KR" />
-  <meta property="og:image" content="https://truthofmarket.com/sns/electric-studio-ac-grid.png" />
-  <meta property="og:image:width" content="1080" />
-  <meta property="og:image:height" content="1080" />
-  <meta property="og:image:alt" content="머니핏(MoneyFit) 6대 생활·금융 손익분기점 3초 계산기" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="머니핏(MoneyFit) — 생활·금융 손익분기점 & 맞춤 견적 3초 계산기" />
-  <meta name="twitter:description" content="전기요금 누진세, 다이어트 TDEE, 반려동물 사료량, 가전가구 예산, 자동차 장기렌트 vs 할부, 인터넷 위약금 실시간 충격 진단" />
-  <meta name="twitter:image" content="https://truthofmarket.com/sns/electric-studio-ac-grid.png" />
-  
-  <!-- Tailwind CSS & Styles -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="src/css/style.css?v=2.6" />
-  
-  <!-- Structured Data (Schema.org Organization + WebSite + WebApplication + SiteNavigationElement + BreadcrumbList + ItemList + FAQPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://truthofmarket.com/#organization",
-        "name": "머니핏(MoneyFit)",
-        "alternateName": ["MoneyFit", "머니핏 손익계산기", "머니핏 생활금융 포털"],
-        "url": "https://truthofmarket.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://truthofmarket.com/sns/electric-studio-ac-grid.png",
-          "width": 1080,
-          "height": 1080
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://truthofmarket.com/#website",
-        "name": "머니핏(MoneyFit) — 3초 생활·금융 손익분기점 계산기",
-        "alternateName": "MoneyFit 손익계산기 포털",
-        "url": "https://truthofmarket.com/",
-        "inLanguage": "ko-KR",
-        "publisher": { "@id": "https://truthofmarket.com/#organization" }
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://truthofmarket.com/#webapp",
-        "name": "머니핏(MoneyFit) 손익분기점 & 맞춤 견적 계산기 포털",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "All",
-        "url": "https://truthofmarket.com/",
-        "image": "https://truthofmarket.com/sns/electric-studio-ac-grid.png",
-        "description": "한국전력 주택용 누진 요금표, Mifflin-St Jeor TDEE 공식, 수의영양학 RER/DER 공식, 가전·가구 BOM 최적화, 자동차 장기렌트·리스·할부 TCO 및 사업자 절세 수식, 인터넷 약정 위약금 vs 현금 사은품 순이익을 3초 만에 계산하는 무료 웹 애플리케이션",
-        "featureList": [
-          "전기요금 계산기 및 한전 누진세 3단계 폭탄 시뮬레이터",
-          "에어컨·제습기·온풍기 전기세 및 1등급 인버터 가전 교체 본전 회수기간 계산기",
-          "다이어트 기초대사량(BMR)·일일 총소모칼로리(TDEE)·탄단지(g) 및 닭가슴살 장보기 수량 계산기",
-          "강아지·고양이 체중별 맞춤 사료 급여량(g/kcal) 및 사료 1포대 소진일수 계산기",
-          "자취방·원룸·오피스텔·신혼부부 예산별(50만~1,000만원) 가전·가구 풀세팅 최적 BOM 견적기",
-          "자동차 장기렌트 vs 리스 vs 할부 vs 일시불 4년 총소유비용(TCO) 및 사업자 비용처리 절세 계산기",
-          "인터넷·TV 약정 해지 위약금 vs 신규 가입 현금 사은품(최대 47만원) 및 알뜰폰 전환 순익 계산기"
-        ],
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "KRW"
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "머니핏 홈",
-            "item": "https://truthofmarket.com/"
-          }
-        ]
-      },
-      {
-        "@type": "ItemList",
-        "name": "머니핏 6대 생활·금융 손익분기점 계산기",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "전기요금·누진세 폭탄 & 1등급 교체 본전 계산기", "url": "https://truthofmarket.com/?calc=electric" },
-          { "@type": "ListItem", "position": 2, "name": "다이어트·벌크업 탄단지(TDEE) & 장보기 수량 계산기", "url": "https://truthofmarket.com/?calc=diet" },
-          { "@type": "ListItem", "position": 3, "name": "반려동물 맞춤 칼로리·사료 급여량(g) & 소진일 진단기", "url": "https://truthofmarket.com/?calc=pet" },
-          { "@type": "ListItem", "position": 4, "name": "자취·이사·신혼 예산별 가전/가구 풀세팅 최적 견적기", "url": "https://truthofmarket.com/?calc=room" },
-          { "@type": "ListItem", "position": 5, "name": "자동차 구매(장기렌트 vs 리스 vs 할부) 총비용 손익 계산기", "url": "https://truthofmarket.com/?calc=auto" },
-          { "@type": "ListItem", "position": 6, "name": "인터넷·TV 약정 위약금 vs 현금 사은품(47만원) 갈아타기 계산기", "url": "https://truthofmarket.com/?calc=telecom" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "에어컨·제습기·온풍기 사용 시 전기요금 누진세 폭탄 구간과 1등급 교체 본전 회수기간은 어떻게 계산하나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "한국전력 주택용 전기요금은 월 사용량이 400kWh(하계 7~8월은 450kWh)를 초과하는 순간 3단계 누진세(kWh당 307.3원 + 기본료 7,300원 + 부가세 10% + 전력기반기금 3.7%)가 적용되어 요금이 급증합니다. 머니핏 전기요금 계산기에 소비전력(W)과 하루 가동시간을 입력하면 월 추가 전기세와 에너지소비효율 1등급 인버터 기기 교체 시 매달 절감액 및 기기값 본전 회수기간(개월)이 3초 만에 계산됩니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "다이어트·벌크업 시 내 체중에 맞는 기초대사량(TDEE)과 한 달 닭가슴살·현미밥 구매 수량은 몇 팩인가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Mifflin-St Jeor 공식으로 산출한 기초대사량(BMR)에 활동계수를 곱해 일일 총소모칼로리(TDEE)를 구한 뒤, 체지방 감량 시 -500kcal, 벌크업 시 +300kcal를 적용합니다. 단백질은 체중 1kg당 1.6~2.0g 기준으로 환산하여 닭가슴살(1팩 단백질 23g 기준)과 즉석현미밥(1공기 탄수화물 65g 기준)의 주간·월간 정확한 장보기 팩 수를 즉시 산출합니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "강아지·고양이 체중별 하루 사료 급여량(g)과 종이컵 계량, 사료 1포대 소진일은 어떻게 계산하나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "수의영양학 표준 공식인 휴식기 에너지 요구량 RER = 70 × (체중 kg)^0.75 에 생애주기 활동계수(성견 중성화 1.6, 퍼피 2.5~3.0, 성묘 중성화 1.2, 노령묘 1.1 등)를 곱해 일일 필요 칼로리(DER)를 산출합니다. 이를 사료의 대사 에너지(kcal/kg)로 나누면 하루 정확한 급여량(g)과 사료 1포대(2kg·6kg·12kg)의 정확한 소진일수 및 정기배송 주기를 알 수 있습니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "원룸 자취방 100만원부터 신혼부부 1,000만원까지 가전·가구 풀세팅 예산 배분 황금비율은 무엇인가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "예산 초과 없이 방 크기에 맞는 필수 품목을 세팅하려면 전체 예산의 약 60~65%를 핵심 생활가전(냉장고, 세탁기, 에어컨/제습기, 전자레인지 등)에, 35~40%를 수면·수납 가구(매트리스, 침대 프레임, 행거, 책상 등)에 배분하는 BOM(Bill of Materials) 알고리즘이 가장 효율적입니다. 머니핏 가전·가구 계산기는 입력된 총예산 한도 내에서 단 1원도 초과하지 않는 최적 품목 조합을 자동 구성합니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "신차 구매 시 장기렌트 vs 리스 vs 할부 중 4년 총소유비용(TCO)과 개인·법인사업자 절세 혜택은 무엇이 유리한가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "할부 구매는 초기 취등록세(차량가의 7%), 매년 자동차세 및 할부 이자, 개인 보험료 할증이 발생하지만 만기 후 중고차 잔존가치를 회수할 수 있습니다. 반면 장기렌트는 취등록세·자동차세·보험료가 월 렌트료에 통합되어 초기 목돈이 들지 않으며, 특히 개인·법인사업자는 연간 최대 1,500만 원(임대료 800만 원 + 유지비 700만 원)까지 비용처리하여 종합소득세·법인세를 수백만 원 절세할 수 있습니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "인터넷·TV 약정 기간이 남았을 때 위약금을 물고 갈아타기 vs 만기까지 유지 중 어느 쪽이 이득인가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "통신사 신규 이동 시 지급되는 법정 최대 현금 사은품(경품고시제 기준 인터넷+TV 결합 최대 47만 원)에 36개월간의 월 요금 절감액을 더한 금액이 현재 해지 위약금(할인반환금)보다 크다면 지금 즉시 갈아타는 것이 무조건 이득입니다. 특히 잔여 위약금이 15만~30만 원 이하이거나 3년 약정이 만료된 경우에는 신규 이동 시 최대 수십만 원의 순수익(Surplus)이 발생합니다."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키즈핏 그로스 스튜디오 (KidsFit Growth Studio) — 우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시·역사 코스 맞춤 처방소</title>
+  <meta name="description" content="질병관리청 소아청소년 성장도표 &amp; 보건복지부 K-DST 영유아 발달선별검사 기반, 우리 아이 숨은 키 7cm 성장판 골든타임과 두뇌·소근육 맞춤 교구, 이번 주말 핀셋 나들이 코스를 정밀 처방합니다.">
+  <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+<body>
 
-  <!-- 상단 네비게이션 헤더 -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2.5 min-w-0">
-        <span onclick="if(window.handleLogoSecretTap) window.handleLogoSecretTap()" title="머니핏 홈" class="bg-blue-600 text-white font-black px-3 py-1.5 rounded-xl text-base tracking-tight shrink-0 whitespace-nowrap cursor-pointer select-none">MoneyFit</span>
-        <h1 class="font-black text-lg sm:text-xl text-slate-900 hidden sm:inline truncate">머니핏 3초 손익계산기</h1>
-        <h1 class="font-black text-lg text-slate-900 sm:hidden truncate">머니핏 계산기</h1>
-        <span class="text-xs sm:text-sm bg-blue-50 text-blue-700 border border-blue-200/80 font-extrabold px-2.5 py-0.5 rounded-full shrink-0 whitespace-nowrap">2026 공인 수식</span>
+  <!-- Top Trust Header -->
+  <header class="clinic-header">
+    <div class="header-trust-bar">
+      <div class="header-trust-badge" id="trust-badge">
+        <span class="trust-badge-icon">🏛️</span>
+        <span class="trust-badge-text">Built on Official Standards: 질병관리청 소아청소년 성장도표 &amp; 보건복지부 영유아 발달선별검사(K-DST) 기준 적용</span>
       </div>
-      <nav class="flex items-center gap-2 shrink-0">
-        <span id="consumer-trust-pill" class="hidden md:inline-flex items-center gap-1 text-sm text-slate-700 bg-slate-100 px-3 py-1.5 rounded-xl font-bold whitespace-nowrap">
-          🔒 무로그인 · 3초 진단
-        </span>
-        <button onclick="switchMainTab('calculators')" id="tab-btn-calculators" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl text-sm sm:text-base font-extrabold bg-blue-600 text-white shadow-sm transition whitespace-nowrap">
-          🧮 손익 계산기
-        </button>
-        <button onclick="switchMainTab('seo')" id="tab-btn-seo" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">
-          🎨 웹툰·SNS 스튜디오
-        </button>
-        <button onclick="switchMainTab('wizard')" id="tab-btn-wizard" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">
-          ⚙️ 수익화 설정
-        </button>
-        <a href="/office" id="tab-btn-office" class="hidden px-3 py-1.5 rounded-lg text-sm font-extrabold bg-amber-500 text-slate-950 hover:bg-amber-400 transition whitespace-nowrap">
-          🏢 AI 가상 사옥
-        </a>
-      </nav>
+    </div>
+    <div class="header-inner">
+      <div class="brand-wrapper">
+        <div class="brand-logo-icon">🌱</div>
+        <div class="brand-titles">
+          <span class="brand-title">KidsFit Growth Studio</span>
+          <span class="brand-tagline">우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시 맞춤 처방소</span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- 상단 총괄 매니저 상태 표시줄 (일반 방문자에게는 기본 hidden — 광고 경계심 완벽 차단 / ?admin=1 또는 로고 5연타 시 노출) -->
-  <div id="admin-status-bar" class="hidden bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex flex-wrap items-center gap-3">
-        <span>👑 <strong>총괄 매니저 모드</strong> | <a href="/office" class="text-amber-300 underline font-extrabold hover:text-amber-200">🏢 AI 가상 사옥(게임뷰) 열기 ↗</a> | 쿠팡: <code id="status-coupang-id" class="text-amber-300">AF7865143</code> | 링크프라이스: <code id="status-lp-id" class="text-emerald-300">A100708867</code> | CPA: <code id="status-cpa-id" class="text-sky-300">자동연동</code></span>
-      </div>
-      <div class="flex flex-wrap items-center gap-4">
-        <span>👥 오늘 방문자: <strong id="status-today-uv" class="text-emerald-400">1</strong>명 (조회 <strong id="status-today-pv" class="text-sky-400">1</strong>회 / 봇 <strong id="status-today-bots" class="text-purple-400">0</strong>회) | 🎯 클릭: <strong id="status-click-count" class="text-amber-400">0</strong>회 (CTR <strong id="status-ctr-percent" class="text-emerald-300">0%</strong> · 1위슬롯 <strong id="status-top-slot" class="text-rose-300">receipt_cart</strong>)</span>
-      </div>
-    </div>
+  <!-- 3 Capsule Tab Navigation -->
+  <div class="capsule-nav-wrapper">
+    <nav class="capsule-nav" aria-label="처방 탭 네비게이션" id="capsule-tabs">
+      <button type="button" class="capsule-tab active" data-tab="tab-growth" id="tab-btn-growth" role="tab" aria-selected="true" aria-controls="tab-pane-growth">
+        <span>📏</span> <span>신체 성장 &amp; 숨은 키 7cm 처방</span>
+      </button>
+      <button type="button" class="capsule-tab" data-tab="tab-development" id="tab-btn-development" role="tab" aria-selected="false" aria-controls="tab-pane-development">
+        <span>🧩</span> <span>월령별 소근육·두뇌 발달 &amp; 맞춤 교구</span>
+      </button>
+      <button type="button" class="capsule-tab" data-tab="tab-outing" id="tab-btn-outing" role="tab" aria-selected="false" aria-controls="tab-pane-outing">
+        <span>🎨</span> <span>성향·지역 맞춤 미술관·전시·역사 코스</span>
+      </button>
+    </nav>
   </div>
 
-  <!-- 메인 컨테이너 -->
-  <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-1">
+  <main class="main-container">
 
-    <!-- ==================== [탭 1] 6대 고전환 손익 계산기 ==================== -->
-    <section id="view-calculators" class="space-y-6">
-      
-      <!-- 계산기 선택 네비게이션 그리드 (클릭수 1위 카테고리가 자동으로 맨 앞에 배치되는 실시간 순위 탭) -->
-      <div id="calc-nav-grid" class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
-        <button onclick="selectCalc('electric', null, true)" id="calc-nav-electric" data-calc="electric" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">⚡ 전기세</div>
-            <span id="calc-rank-badge-electric" class="calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-rose-600 text-white shrink-0">🔥 1위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">1등급 본전</div>
-        </button>
-        <button onclick="selectCalc('diet', null, true)" id="calc-nav-diet" data-calc="diet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🍗 식단</div>
-            <span id="calc-rank-badge-diet" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">2위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">닭가슴살 수량</div>
-        </button>
-        <button onclick="selectCalc('pet', null, true)" id="calc-nav-pet" data-calc="pet" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🐶 사료량</div>
-            <span id="calc-rank-badge-pet" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">3위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">급여량·소진일</div>
-        </button>
-        <button onclick="selectCalc('room', null, true)" id="calc-nav-room" data-calc="room" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🛋️ 가전·가구</div>
-            <span id="calc-rank-badge-room" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">4위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">예산별 견적</div>
-        </button>
-        <button onclick="selectCalc('auto', null, true)" id="calc-nav-auto" data-calc="auto" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🚗 신차 비교</div>
-            <span id="calc-rank-badge-auto" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">5위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">렌트 vs 할부</div>
-        </button>
-        <button onclick="selectCalc('telecom', null, true)" id="calc-nav-telecom" data-calc="telecom" class="calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400">
-          <div class="flex items-center justify-between gap-1">
-            <div class="text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap truncate">🌐 인터넷</div>
-            <span id="calc-rank-badge-telecom" class="calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">6위</span>
-          </div>
-          <div class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5 whitespace-nowrap truncate">위약금 vs 47만</div>
-        </button>
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="서비스 소개">
+      <div class="hero-pill-badge">
+        <span>🩺</span> 소아청소년과 전문 표준 지표 적용
+      </div>
+      <h1 class="hero-headline">
+        우리 아이 지금 잘 크고 있을까?<br>
+        <span class="hero-headline-highlight">소아과 전문 기준 정밀 처방전</span>을 받아보세요
+      </h1>
+      <p class="hero-subtitle">
+        질병관리청(KDCA) 성장도표와 보건복지부 K-DST 발달검사를 기반으로, 유전 예상키 대비 숨은 키 골든타임부터 월령별 족집게 발달 교구, 이번 주말 핀셋 나들이 코스까지 1분 만에 진단합니다.
+      </p>
+    </section>
+
+    <!-- 1-Second Quick Presets Section (6 Types) -->
+    <section class="presets-section" aria-label="1초 빠른 진단 프리셋">
+      <div class="section-header-row">
+        <div class="section-label-group">
+          <span class="section-badge-pill">⚡ 빠른 진단</span>
+          <h2 class="section-title">연령·고민별 1초 빠른 프리셋</h2>
+        </div>
+        <span class="section-hint">가장 가까운 상황을 터치하면 진단 폼과 처방 결과가 즉시 채워집니다</span>
       </div>
 
-      <!-- 인기 계산 1초 자동 스위칭 배너 (실시간 클릭수 상위 TOP 4 자동 정렬) -->
-      <div id="seasonal-surge-banner" class="bg-gradient-to-r from-amber-50 via-orange-50/80 to-rose-50 border border-amber-200/90 rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-2.5 shadow-sm">
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-1 rounded-full whitespace-nowrap animate-pulse">🔥 실시간 클릭 순위</span>
-          <span class="text-sm sm:text-base font-bold text-slate-800 whitespace-nowrap">인기 계산 TOP 4</span>
-        </div>
-        <div id="popular-calc-chips" class="flex flex-wrap items-center gap-2">
-          <button type="button" onclick="applyScenarioPreset('electric-winter-heater')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-rose-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
-            ⚡ 온풍기 난방비
-          </button>
-          <button type="button" onclick="applyScenarioPreset('diet-male-fatloss')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-emerald-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
-            🍗 80kg 식단
-          </button>
-          <button type="button" onclick="applyScenarioPreset('auto-grandeur-5000')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-blue-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
-            🚗 그랜저 절세
-          </button>
-          <button type="button" onclick="applyScenarioPreset('telecom-penalty-15')" class="text-xs sm:text-sm font-semibold bg-white hover:bg-indigo-600 text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
-            🌐 인터넷 47만
-          </button>
-        </div>
-      </div>
+      <div class="presets-grid" id="presets-grid">
+        <!-- Preset 1 -->
+        <button type="button" class="preset-card" data-preset-id="preset-1" id="preset-card-1">
+          <div class="preset-card-badge preset-badge-mint">👶 만 2~3세 (24~47개월)</div>
+          <h3 class="preset-card-title">소근육·감각 골든타임 집중</h3>
+          <p class="preset-card-desc">몬테소리 일상 감각 교구 입문 &amp; 촉각 오감 미술관 코스</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
 
-      <!-- ==================== [NEW] 쿠팡 파트너스(AF7865143) × 링크프라이스(A100708867) 실구매 1위 소싱템 비교 쇼룸 ==================== -->
-      <div id="sourced-product-showroom" class="bg-white rounded-3xl border-2 border-rose-500/80 p-4 sm:p-6 shadow-md space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
-          <div class="space-y-1 min-w-0">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="bg-rose-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full whitespace-nowrap">🏆 2026 실구매 가성비 소싱 1위</span>
-              <span id="sourced-showroom-unit-badge" class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-extrabold px-2.5 py-0.5 rounded-full whitespace-nowrap">월 전기세 -45~55% 절감 · 기기값 단기 본전 회수</span>
-            </div>
-            <h2 id="sourced-showroom-title" class="text-lg sm:text-xl font-black text-slate-900 tracking-tight break-keep">
-              ⚡ 전기세·누진세 방어 1등급 &amp; 절전 소싱템 최저가 비교 쇼룸
-            </h2>
-            <p id="sourced-showroom-subtitle" class="text-xs sm:text-sm text-slate-600 break-keep">
-              누진세 3단계(307.3원/kWh) 폭탄을 막아주는 실구매 1위 절전 가전·스마트플러그 (쿠팡 로켓배송 vs 하이마트·지마켓 공식몰 실시간 비교)
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-1.5 shrink-0">
-            <button type="button" onclick="selectCalc('electric', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition" data-cat="electric">⚡ 절전·가전</button>
-            <button type="button" onclick="selectCalc('diet', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="diet">🍗 닭가슴살·식단</button>
-            <button type="button" onclick="selectCalc('pet', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="pet">🐶 사료·영양제</button>
-            <button type="button" onclick="selectCalc('room', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="room">🛋️ 원룸·신혼가전</button>
-            <button type="button" onclick="selectCalc('auto', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="auto">🚗 블박·차량용품</button>
-            <button type="button" onclick="selectCalc('telecom', null, true)" class="sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="telecom">🌐 공유기·알뜰유심</button>
-          </div>
-        </div>
+        <!-- Preset 2 -->
+        <button type="button" class="preset-card" data-preset-id="preset-2" id="preset-card-2">
+          <div class="preset-card-badge preset-badge-indigo">🧒 만 4~5세 (48~71개월)</div>
+          <h3 class="preset-card-title">수리·공간 창의력 &amp; 편식 극복</h3>
+          <p class="preset-card-desc">프뢰벨 은물·가베·자석교구 &amp; 공룡·자연 과학관 코스</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
 
-        <!-- 쿠팡 로켓배송 실구매 베스트 소싱템 4선 (실제 상품 이미지 + 실구매가 + 원클릭 직행) -->
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-2.5">
-            <span class="text-xs sm:text-sm font-black text-rose-600 flex items-center gap-1.5">
-              🚀 쿠팡 파트너스 공식 소싱 픽 (로켓배송 · 내일 도착 · 실구매 최저가)
-            </span>
-            <span class="text-[11px] font-bold text-slate-500">상품 터치 시 쿠팡 상세페이지로 즉시 이동 ↗</span>
-          </div>
-          <div id="sourced-coupang-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
-        </div>
+        <!-- Preset 3 -->
+        <button type="button" class="preset-card" data-preset-id="preset-3" id="preset-card-3">
+          <div class="preset-card-badge preset-badge-coral">👧 초등 저학년 (만 7~9세)</div>
+          <h3 class="preset-card-title">역사·예술 흥미 &amp; 또래키 상위 20%</h3>
+          <p class="preset-card-desc">박물관 궁궐 역사 코스 &amp; 바른 자세·성장판 자극 플랜</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
 
-        <!-- 링크프라이스(LinkPrice) 제휴 공식몰 (하이마트·지마켓·11번가·오늘의집) 카드할인·대용량 비교 2선 -->
-        <div class="pt-3 border-t border-slate-100">
-          <div class="flex items-center justify-between gap-2 mb-2.5">
-            <span class="text-xs sm:text-sm font-black text-indigo-700 flex items-center gap-1.5">
-              🏷️ 링크프라이스(LinkPrice) 공식 제휴몰 특가 비교 (롯데하이마트 · 지마켓 · 11번가 · 오늘의집)
-            </span>
-            <span class="text-[11px] font-bold text-slate-500">카드 즉시할인 · 묶음 특가 비교 ↗</span>
-          </div>
-          <div id="sourced-linkprice-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </div>
-      </div>
+        <!-- Preset 4 -->
+        <button type="button" class="preset-card" data-preset-id="preset-4" id="preset-card-4">
+          <div class="preset-card-badge preset-badge-coral">👦 초등 고학년 (만 10~13세)</div>
+          <h3 class="preset-card-title">사춘기 급성장판 숨은 키 7cm</h3>
+          <p class="preset-card-desc">성장판 닫히기 전 2차 성징 골든타임 마지막 집중 처방</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
 
-      <!-- [CRO Booster] 메인 홈페이지 상단 동물 웹툰 × 3초 영수증 팩트체크 미니뷰어 -->
-      <div id="home-webtoon-factcheck-bar" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-3.5 sm:p-4 border-2 border-amber-400/70 shadow-md space-y-3">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div class="flex items-center gap-3 min-w-0 flex-1">
-            <img id="home-webtoon-thumb" src="/sns/electric-studio-ac-grid.png" alt="머니핏 4컷 동물 웹툰 썸네일" width="60" height="60"
-                 onclick="toggleHomeWebtoonViewer()"
-                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border-2 border-amber-400 cursor-pointer shrink-0 bg-white shadow" />
-            <div class="min-w-0 flex-1 space-y-1">
-              <div class="flex flex-wrap items-center gap-1.5">
-                <span id="home-webtoon-ep-badge" class="bg-amber-400 text-slate-950 text-[11px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap">🐾 4컷 팩트체크</span>
-                <span id="home-webtoon-diff-pill" class="bg-rose-600 text-white text-[11px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap">-57,220원/월 절약</span>
-              </div>
-              <div id="home-webtoon-title" class="text-sm sm:text-base font-extrabold text-white truncate">EP.01 원룸 에어컨 껐다 켰다의 참사 ⚡</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 shrink-0">
-            <button type="button" id="home-webtoon-toggle-btn" onclick="toggleHomeWebtoonViewer()"
-                    class="flex-1 sm:flex-initial bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-400/50 font-extrabold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition whitespace-nowrap">
-              🎨 4컷 만화 보기 ▾
-            </button>
-            <a id="home-webtoon-coupang-btn" href="https://link.coupang.com/a/hWnhNJFy1Y"
-               target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordAffiliateClick('coupang', this.href, 'webtoon_home_bar')"
-               class="flex-1 sm:flex-initial text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm px-3.5 py-2.5 rounded-xl shadow transition whitespace-nowrap truncate">
-              🛒 웹툰 속 절약 비결 쿠팡 로켓배송 최저가 확인 ↗
-            </a>
-          </div>
-        </div>
+        <!-- Preset 5 -->
+        <button type="button" class="preset-card" data-preset-id="preset-5" id="preset-card-5">
+          <div class="preset-card-badge preset-badge-yellow">🍼 영아기 (만 12~23개월)</div>
+          <h3 class="preset-card-title">대근육·오감 &amp; 우유 배앓이 완화</h3>
+          <p class="preset-card-desc">기초 골격 형성 루틴 &amp; 소근육 집게 손가락 발달 교구</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
 
-        <!-- 접이식 4컷 동물 웹툰 & 3컷 영수증 드로어 (기본 hidden) -->
-        <div id="home-webtoon-drawer" class="hidden pt-3 border-t border-slate-700/80">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-            <div class="lg:col-span-5">
-              <a id="home-webtoon-img-link" href="https://link.coupang.com/a/hWnhNJFy1Y"
-                 target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href, 'webtoon_home_drawer')"
-                 class="block rounded-2xl overflow-hidden border-2 border-amber-400 shadow-lg bg-white">
-                <img id="home-webtoon-full-img" src="/sns/electric-studio-ac-grid.png" alt="머니핏 1080x1080 4컷 동물 웹툰 및 3컷 영수증" width="540" height="540" loading="lazy" class="w-full h-auto object-cover" />
-              </a>
-            </div>
-            <div class="lg:col-span-7 space-y-3">
-              <div id="home-webtoon-dialogue" class="bg-slate-950/90 border border-slate-800 rounded-2xl p-3.5 sm:p-4 space-y-2 text-xs sm:text-sm text-slate-200 leading-relaxed"></div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <a id="home-webtoon-drawer-main-btn" href="https://link.coupang.com/a/hWnhNJFy1Y"
-                   target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow whitespace-nowrap truncate">
-                  🛒 3컷 영수증 호구 탈출 특가템 바로 보기 ↗
-                </a>
-                <a id="home-webtoon-drawer-impulse-btn" href="https://link.coupang.com/a/hWnhNG0nXU"
-                   target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('coupang', this.href, 'impulse_booster')"
-                   class="block text-center bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow whitespace-nowrap truncate">
-                  ⚡ 9,900원대 즉결템 로켓배송 보러가기 ↗
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 12칼럼 반응형 레이아웃: 좌측 5칼럼 입력 폼 / 우측 7칼럼 영수증 & 수익화 리포트 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
-        
-        <!-- 좌측: 입력 폼 + 1초 시나리오 칩 (5칼럼) -->
-        <div class="lg:col-span-5 bg-white rounded-2xl border-2 border-slate-200 p-4 sm:p-6 shadow-sm space-y-3.5 sm:space-y-5">
-          <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-3 sm:pb-4">
-            <div class="min-w-0 flex-1">
-              <h2 id="calc-form-title" class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight whitespace-nowrap truncate">⚡ 전기세 &amp; 1등급 본전</h2>
-              <p id="calc-form-subtitle" class="text-sm text-slate-500 font-normal mt-1 whitespace-nowrap truncate">월 추가 요금·기기값 회수일</p>
-            </div>
-            <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-blue-50 text-blue-700 border border-blue-200/60 px-3 py-1 rounded-full font-semibold">3초 계산</span>
-          </div>
-
-          <!-- [UX Upgrade] 인기 실전 시나리오 1초 자동입력 칩 바 -->
-          <div id="calc-scenario-bar" class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 sm:p-3.5 space-y-2">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-sm font-semibold text-slate-700 truncate">⚡ 조건 자동입력</span>
-              <a id="active-preset-report-link" href="/preset/electric-studio-ac/" class="shrink-0 whitespace-nowrap text-xs sm:text-sm font-semibold text-blue-600 hover:underline">상세 리포트 →</a>
-            </div>
-            <div id="calc-scenario-chips" class="flex flex-wrap gap-2"></div>
-          </div>
-
-          <div id="calc-inputs-container" class="space-y-4"></div>
-
-          <!-- [Mobile UX Upgrade] 스마트폰 전용 실시간 1줄 결과 요약 바 (스크롤 없이 즉시 결과 확인) -->
-          <a href="#receipt-card" id="mobile-live-result-bar" class="md:hidden flex items-center justify-between gap-2 bg-slate-900 text-white px-3.5 py-3 rounded-xl border border-slate-700 shadow-sm">
-            <div class="min-w-0 flex items-center gap-2">
-              <span class="bg-amber-400 text-slate-950 text-xs font-bold px-2 py-0.5 rounded-md shrink-0">결과</span>
-              <span id="mobile-live-result-text" class="text-sm font-extrabold text-amber-300 truncate">실시간 계산 완료</span>
-            </div>
-            <span class="text-xs font-medium text-sky-300 shrink-0 whitespace-nowrap">영수증 ↓</span>
-          </a>
-
-          <!-- [CRO Layer 1] 입력폼 직결 실시간 1초 처방 & 즉시 구매 브릿지 -->
-          <div id="input-instant-cta-box" class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-4 sm:p-5 border border-slate-700 shadow-md space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span id="input-instant-badge" class="text-xs sm:text-sm font-bold bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full whitespace-nowrap">⚡ 맞춤 처방</span>
-              <a href="#receipt-card" class="text-xs sm:text-sm font-medium text-amber-300 hover:underline whitespace-nowrap">영수증 ↓</a>
-            </div>
-            <div id="input-instant-headline" class="text-base sm:text-lg font-bold text-white leading-snug break-keep">맞춤 최저가 계산 중...</div>
-            <div id="input-instant-sub" class="text-sm text-emerald-200 font-normal leading-normal break-keep"></div>
-            <div id="input-zero-feel-callout" class="bg-amber-400/15 border border-amber-400/40 text-amber-200 text-sm font-medium px-3 py-2 rounded-xl leading-snug break-keep">
-              🔥 절약 시 체감가 0원!
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-              <a id="input-instant-coupang-btn" href="https://link.coupang.com/a/hWnhNJFy1Y" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href, 'input_bridge')"
-                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-3.5 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
-                🚀 쿠팡 최저가 ↗
-              </a>
-              <a id="input-instant-lp-btn" href="https://click.linkprice.com/click.php?m=himart&amp;a=A100708867&amp;l=9999&amp;tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0%2520%25EC%2597%2590%25EC%2596%25B4%25EC%25BB%25A8" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('linkprice', this.href, 'input_bridge')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-3.5 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate">
-                🏷️ 공식몰 특가 ↗
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 우측: 결과 리포트 + 고전환 수익화 버튼 + 영수증 카드 (7칼럼) -->
-        <div class="lg:col-span-7 space-y-5">
-          
-          <!-- 영수증 형태 충격 진단 결과 카드 -->
-          <div id="receipt-card" class="receipt-paper text-white rounded-2xl p-6 sm:p-7 shadow-lg border border-slate-700">
-            <div class="border-b border-slate-700/80 pb-4 mb-5 space-y-2.5">
-              <div class="flex items-center justify-between gap-2">
-                <span id="result-badge" class="inline-flex items-center bg-rose-500 text-white text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap">
-                  🚨 누진세 주의보
-                </span>
-                <button id="btn-share-receipt" onclick="copyReceiptShareText(this)" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm px-3.5 py-1.5 rounded-xl font-bold inline-flex items-center gap-1.5 shadow-sm transition shrink-0 whitespace-nowrap">
-                  💬 카톡 공유
-                </button>
-              </div>
-              <h3 id="result-headline" class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug break-keep">계산 결과 로딩 중...</h3>
-            </div>
-            <div id="result-metrics-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mb-3.5"></div>
-
-            <!-- [컨설팅 Track 1 & 3] 영수증 최상단 3대 쇼핑몰(쿠팡 로켓 · 네이버 슈퍼적립 · 공식몰) 1-Click 멀티 비교 바 -->
-            <div id="receipt-multi-pipeline-bar" class="bg-slate-900/95 border border-amber-400/50 rounded-xl p-3 mb-4 space-y-2">
-              <div class="flex items-center justify-between gap-2 text-xs">
-                <span class="font-extrabold text-amber-300">⚡ 내 계산 맞춤 3대 쇼핑몰 최저가 즉시 비교</span>
-                <span class="text-emerald-300 font-semibold whitespace-nowrap">🚀 내일도착 · 적립특가</span>
-              </div>
-              <div class="grid grid-cols-3 gap-1.5">
-                <a id="top-pipe-coupang" href="https://link.coupang.com/a/hWnhNJFy1Y" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart')"
-                   class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2 px-2 rounded-lg text-xs transition shadow-sm truncate">
-                  🚀 쿠팡 최저가 ↗
-                </a>
-                <a id="top-pipe-naver" href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('cpa', this.href, 'receipt_cart')"
-                   class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2 px-2 rounded-lg text-xs transition shadow-sm truncate">
-                  🟢 네이버 특가 ↗
-                </a>
-                <a id="top-pipe-lp" href="https://click.linkprice.com/click.php?m=himart&amp;a=A100708867&amp;l=9999&amp;tu=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fsearch%2FtotalSearch%3Fquery%3D%25EC%2597%2590%25EB%2584%2588%25EC%25A7%2580%25201%25EB%2593%25B1%25EA%25B8%2589%2520%25EC%259D%25B8%25EB%25B2%2584%25ED%2584%25B0%2520%25EC%2597%2590%25EC%2596%25B4%25EC%25BB%25A8" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart')"
-                   class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-2 px-2 rounded-lg text-xs transition shadow-sm truncate">
-                  🏷️ 공식몰 할인 ↗
-                </a>
-              </div>
-            </div>
-
-            <!-- [CRO Upgrade 1] 손실회피(Loss-Aversion) 시각 비교 게이지 바 -->
-            <div id="result-loss-bar" class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 mb-4 space-y-3"></div>
-
-            <p id="result-summary-text" class="text-base text-slate-200 font-normal bg-slate-800/90 border border-slate-700 rounded-xl p-4 leading-relaxed break-keep"></p>
-
-            <!-- [CRO Layer 2] 영수증 내부 1:1 계산 수치 직결 처방 장바구니 -->
-            <div id="receipt-action-items-box" class="mt-5 pt-5 border-t border-slate-700/90 space-y-3.5">
-              <div class="flex items-center justify-between gap-2">
-                <h4 class="text-base sm:text-lg font-bold text-amber-300 flex items-center gap-1.5 whitespace-nowrap truncate">
-                  🧾 맞춤 처방 장바구니
-                </h4>
-                <span class="text-xs sm:text-sm bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full font-medium shrink-0 whitespace-nowrap">
-                  자동 매칭
-                </span>
-              </div>
-              <div id="receipt-zero-feel-banner" class="bg-gradient-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 border border-amber-400/50 text-amber-100 text-sm sm:text-base font-medium px-3.5 py-2.5 rounded-xl leading-snug break-keep">
-                🔥 절약 시 체감가 0원!
-              </div>
-              <!-- [D-3 First Purchase Booster] 부담 없이 오늘 바로 사는 1만 원대 로켓배송 실구매 1위 소모품·필수템 -->
-              <div id="impulse-buy-booster" class="bg-gradient-to-r from-rose-950/90 via-slate-900 to-amber-950/80 border-2 border-rose-500/70 rounded-2xl p-4 space-y-2.5 shadow-md">
-                <div class="flex items-center justify-between gap-2">
-                  <span id="impulse-badge" class="bg-rose-600 text-white text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full shrink-0 whitespace-nowrap">⚡ 9,900원대 1위</span>
-                  <span class="text-xs sm:text-sm font-medium text-amber-300 shrink-0 whitespace-nowrap">🔥 내일 도착</span>
-                </div>
-                <div id="impulse-title" class="text-base sm:text-lg font-bold text-white leading-snug break-keep">방풍비닐 &amp; 절전 스마트플러그</div>
-                <div id="impulse-sub" class="text-sm text-emerald-200 font-normal leading-snug break-keep">1만 원으로 매달 새는 전기세 즉시 차단!</div>
-                <a id="impulse-coupang-btn" href="https://link.coupang.com/a/hWnhNG0nXU" target="_blank" rel="noopener noreferrer sponsored"
-                   onclick="recordAffiliateClick('coupang', this.href, 'impulse_booster')"
-                   class="block w-full text-center bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black py-3 px-4 rounded-xl text-sm sm:text-base transition shadow whitespace-nowrap truncate">
-                  🛒 1만원대 절전템 최저가 ↗
-                </a>
-              </div>
-              <div id="receipt-action-items" class="space-y-3"></div>
-
-              <!-- [컨설팅 Track 2] 내부 페이지뷰 승수(PV/UV 1.27 ➔ 2.5+) 증폭용 2단계 연쇄 고정비 콤보 계산기 -->
-              <div id="cross-calc-combo-box" class="mt-3 bg-slate-950/90 border border-indigo-500/40 rounded-xl p-3.5 space-y-2.5">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="text-xs sm:text-sm font-extrabold text-indigo-300">🔗 이어서 3초 만에 고정비 한 번 더 아끼기 (연쇄 계산)</span>
-                  <span class="text-[11px] bg-indigo-500/20 text-indigo-200 px-2 py-0.5 rounded-full font-bold shrink-0">평균 -32만원 추가 절약</span>
-                </div>
-                <div id="cross-calc-combo-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
-              </div>
-
-              <!-- [Improvement 2] 내 계산 견적서 + 최저가 구매링크 카톡·메모장 1초 보관함 브릿지 -->
-              <div id="receipt-kakao-memo-bridge" class="mt-3 bg-slate-900/95 border border-amber-400/40 rounded-xl p-3.5 space-y-2.5">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="text-sm sm:text-base font-bold text-amber-300 truncate">💛 견적+최저가 1초 보관함</span>
-                  <span class="text-xs font-normal text-slate-400 shrink-0 whitespace-nowrap">가족 상의용</span>
-                </div>
-                <p class="text-xs text-slate-300 font-normal leading-snug break-keep">
-                  계산 결과와 최저가 링크를 카톡·메모장에 저장하세요.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  <button type="button" id="btn-kakao-memo-save" onclick="copyKakaoMemoBridge(this)"
-                    class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm py-3 px-3.5 rounded-xl transition shadow-sm whitespace-nowrap truncate">
-                    💬 견적+링크 복사
-                  </button>
-                  <button type="button" id="btn-native-share-sheet" onclick="shareKakaoOrNative(this)"
-                    class="w-full bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-400/30 font-semibold text-sm py-3 px-3.5 rounded-xl transition whitespace-nowrap truncate">
-                    📲 카톡·문자 공유
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 맞춤 혜택 액션 카드 (쿠팡 파트너스 + 네이버 슈퍼적립 + 링크프라이스 + 텐핑/CPA 100% 매칭) -->
-          <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-5 sm:p-6 text-white shadow-md pulse-cta">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span id="cpa-badge" class="bg-amber-400 text-slate-900 text-xs sm:text-sm font-bold px-3 py-0.5 rounded-lg shrink-0 whitespace-nowrap">맞춤 혜택</span>
-              <span id="cpa-payout-tag" class="text-xs sm:text-sm text-blue-100 font-normal whitespace-nowrap truncate">⚡ 공식 제휴 특가</span>
-            </div>
-            <h4 id="cpa-title" class="text-lg sm:text-xl font-bold mb-1.5 tracking-tight whitespace-nowrap truncate">맞춤 무료 견적</h4>
-            <p id="cpa-desc" class="text-sm text-blue-100 font-normal mb-3.5 leading-relaxed break-keep">내 조건 최적 할인·지원금 확인</p>
-            <a id="cpa-action-link" href="https://link.coupang.com/a/hWnhYhTKAC" target="_blank" rel="noopener noreferrer sponsored"
-               onclick="recordAffiliateClick('coupang', this.href, 'cpa_card')"
-               class="block w-full text-center bg-white text-blue-700 hover:bg-blue-50 font-black py-3.5 px-4 rounded-xl text-base sm:text-lg transition shadow-sm whitespace-nowrap truncate">
-              👉 무료 견적·지원금 조회
-            </a>
-            <div id="cpa-sub-links" class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
-              <a id="cpa-coupang-sublink" href="https://link.coupang.com/a/hWnhYhTKAC" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href, 'cpa_card')"
-                 class="block text-center bg-blue-800/80 hover:bg-blue-900 text-amber-300 border border-blue-400/40 font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition whitespace-nowrap truncate">
-                🚀 쿠팡 특가 ↗
-              </a>
-              <a id="cpa-naver-sublink" href="https://naver.me/xm0ZVnAW" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('cpa', this.href, 'cpa_card')"
-                 class="block text-center bg-emerald-800/85 hover:bg-emerald-900 text-emerald-200 border border-emerald-400/40 font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition whitespace-nowrap truncate">
-                🟢 네이버 특가 ↗
-              </a>
-              <a id="cpa-lp-sublink" href="https://click.linkprice.com/click.php?m=gmarket&amp;a=A100708867&amp;l=9999&amp;tu=https%3A%2F%2Fwww.gmarket.co.kr%2Fn%2Fsearch%3Fkeyword%3D%25EA%25B0%259C%25EB%25B3%2584%25EC%258A%25A4%25EC%259C%2584%25EC%25B9%2598%2520%25EC%25A0%2588%25EC%25A0%2584%2520%25EB%25A9%2580%25ED%258B%25B0%25ED%2583%25AD%2520%25EC%258A%25A4%25EB%25A7%2588%25ED%258A%25B8%25ED%2594%258C%25EB%259F%25AC%25EA%25B7%25B8" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('linkprice', this.href, 'cpa_card')"
-                 class="block text-center bg-indigo-800/80 hover:bg-indigo-900 text-indigo-200 border border-indigo-400/40 font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition whitespace-nowrap truncate">
-                🏷️ 공식몰 기획전 ↗
-              </a>
-            </div>
-          </div>
-
-          <!-- 맞춤 상품 비교 리스트 -->
-          <div class="bg-white rounded-2xl border-2 border-slate-200 p-5 sm:p-6 shadow-sm">
-            <div class="flex items-center justify-between gap-2 mb-4">
-              <div>
-                <h4 class="font-bold text-slate-900 text-base sm:text-lg whitespace-nowrap truncate">🛒 내 계산 맞춤 특가</h4>
-                <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">산출 수량·예산 1:1 매칭 베스트셀러</p>
-              </div>
-              <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full font-semibold">최저가 연동</span>
-            </div>
-            <div id="product-recommendations" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-
-            <!-- 공정위 필수 대가성 문구 (쿠팡 파트너스 · 링크프라이스 · 텐핑 통합 고지) -->
-            <div role="note" aria-label="대가성 제휴 안내" id="ftc-disclosure-box" class="mt-4 bg-slate-100 text-slate-700 border border-slate-200 rounded-xl p-3 text-xs sm:text-sm leading-relaxed break-keep">
-              ℹ️ <span id="ftc-disclosure-text">본 페이지는 쿠팡 파트너스·링크프라이스 제휴 활동으로 일정액의 수수료를 제공받으나, 구매자 추가 부담은 없습니다.</span>
-            </div>
-
-            <!-- 금전적·법적 면책 공고문 (계산기 카드 직하단) -->
-            <div role="note" aria-label="금전적 법적 면책 공고문" id="legal-disclaimer-box" class="mt-2 bg-slate-50 text-slate-500 border border-slate-200/80 rounded-xl p-3 text-xs leading-relaxed break-keep">
-              ⚖️ <strong class="text-slate-700">[면책 안내]</strong> 본 계산은 공인 수식 기반 참고용 시뮬레이션이며, 실제 요금·세액·혜택은 각 공급사 약관에 따릅니다.
-            </div>
-          </div>
-
-          <!-- [SEO/UX Upgrade] 현재 카테고리 정밀 분석 리포트 6선 바로가기 -->
-          <div id="related-category-reports-box" class="bg-slate-100/90 rounded-2xl border border-slate-200 p-4 sm:p-5 space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <h4 id="related-category-reports-title" class="font-black text-slate-900 text-sm sm:text-base whitespace-nowrap truncate">📌 카테고리별 상세 리포트</h4>
-              <span class="shrink-0 whitespace-nowrap text-xs sm:text-sm text-blue-600 font-bold">비교표·FAQ</span>
-            </div>
-            <div id="related-category-reports-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-          </div>
-
-          <!-- 수익화 트랙 4: 카카오 애드핏 배너 영역 (DAN 코드 실제 입력 전까지 기본 비노출 처리) -->
-          <div id="adfit-banner-container" class="hidden bg-slate-100 border border-dashed border-slate-300 rounded-xl p-3 text-center text-xs text-slate-500">
-            <span>📢 <strong>카카오 애드핏(Kakao AdFit) 배너 슬롯</strong> (단위 ID: <code id="adfit-unit-label" class="text-blue-600">DAN-SAMPLE-TOP</code>) — 애드센스 없이도 즉시 노출 수익 발생</span>
-          </div>
-
-        </div>
+        <!-- Preset 6 -->
+        <button type="button" class="preset-card" data-preset-id="preset-6" id="preset-card-6">
+          <div class="preset-card-badge preset-badge-indigo">👩‍💼 바쁜 워킹맘 전용</div>
+          <h3 class="preset-card-title">주말 3시간 고효율 핀셋 육아</h3>
+          <p class="preset-card-desc">실패 없는 발달 핫템 교구 TOP 4 + 집 근처 예약 필수 코스</p>
+          <div class="preset-card-action">1초 만에 진단 적용 →</div>
+        </button>
       </div>
     </section>
 
-    <!-- ==================== [탭 2] 인스타그램 · 페이스북 · 쓰레드 4컷 웹툰 × 충격 영수증 스튜디오 ==================== -->
-    <section id="view-seo" class="hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="text-xl font-extrabold text-slate-800">🎨 인스타그램 · 페이스북 · 쓰레드 「4컷 웹툰 × 충격 영수증」 자동 제작 스튜디오</h2>
-          <span class="text-xs bg-gradient-to-r from-pink-600 to-purple-600 text-white font-extrabold px-3 py-1 rounded-full shadow-sm">✨ 메타(Meta) 3대 채널 올인원</span>
-        </div>
-        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
-          기존의 복잡한 블로그·커뮤니티 원고를 모두 정리하고, 현재 도달률과 전환율이 가장 높은 <strong>인스타그램 · 페이스북 · 쓰레드(Threads)</strong> 전용 <strong>[웹툰 공감 훅(1~2컷) + 실제 충격 영수증 비교표(3컷) + 3초 무료 처방(4컷)] 하이브리드 카드뉴스</strong>를 자동 생성합니다. 좌측 36개 주제 중 하나를 고르면 <strong>고해상도 웹툰 PNG 이미지 다운로드</strong>와 <strong>채널별 맞춤 원고(알고리즘 링크 페널티 우회 적용) 1초 복사</strong>가 즉시 가능합니다!
-        </p>
-
-        <!-- 카테고리 필터 칩 바 -->
-        <div class="flex flex-wrap items-center gap-1.5 mb-4 pb-3 border-b border-slate-100">
-          <span class="text-xs font-bold text-slate-500 mr-1">주제 분류:</span>
-          <button onclick="MoneyFitCopyKit.filterCategory('all')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-white hover:bg-slate-700 transition">전체 (36개)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('pinpoint')" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-rose-600 text-white hover:bg-rose-500 shadow-sm transition">🔥 인스타·쓰레드 떡상 TOP 6</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('electric')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200 transition">⚡ 전기·가전 (6)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('diet')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200 transition">🍗 다이어트 (6)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('pet')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 transition">🐶 반려동물 (6)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('room')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200 transition">🛋️ 자취·신혼 (6)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('auto')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-800 hover:bg-blue-100 border border-blue-200 transition">🚗 자동차 TCO (6)</button>
-          <button onclick="MoneyFitCopyKit.filterCategory('telecom')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-50 text-cyan-800 hover:bg-cyan-100 border border-cyan-200 transition">🌐 인터넷·통신 (6)</button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <!-- 좌측: 36개 웹툰 에피소드 리스트 (5칼럼) -->
-          <div class="lg:col-span-5 space-y-2 max-h-[840px] overflow-y-auto pr-2" id="seo-preset-list"></div>
-
-          <!-- 우측: 4컷 웹툰 캔버스 생성기 & 인스타/페북/쓰레드 원고 (7칼럼) -->
-          <div class="lg:col-span-7 space-y-4">
-
-            <!-- 1. 실시간 4컷 웹툰 × 충격 영수증 캔버스 & PNG 다운로드 박스 -->
-            <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-md border border-slate-800 space-y-4">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <span class="inline-block bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded mb-1">WEBTOON × RECEIPT HYBRID</span>
-                  <h3 id="webtoon-episode-title" class="text-base sm:text-lg font-extrabold text-white leading-snug">4컷 웹툰 × 실제 충격 영수증 카드뉴스</h3>
-                </div>
-                <a id="sniper-preset-preview-link" href="/preset/electric-studio-ac/" target="_blank" rel="noopener noreferrer" class="text-xs bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 px-3 py-1.5 rounded-xl font-bold transition">
-                  🔗 연결될 계산기 페이지 열기 ↗
-                </a>
-              </div>
-
-              <!-- 고해상도 1080x1080 4컷 웹툰 캔버스 미리보기 -->
-              <div class="bg-slate-950 rounded-xl p-2 border border-slate-800 flex justify-center">
-                <canvas id="webtoon-canvas" width="1080" height="1080" class="w-full max-w-[460px] h-auto rounded-lg shadow-lg bg-white"></canvas>
-              </div>
-
-              <!-- 원클릭 PNG 다운로드 버튼 2종 -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <button type="button" onclick="MoneyFitCopyKit.downloadWebtoonGridPng()"
-                        class="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-300 hover:to-orange-300 text-slate-950 font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center justify-center gap-1.5">
-                  📥 4컷 한판 웹툰(PNG) 다운로드 (쓰레드·페북용)
-                </button>
-                <button type="button" onclick="MoneyFitCopyKit.downloadWebtoonSlidesPng()"
-                        class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center justify-center gap-1.5">
-                  📸 인스타 카드뉴스 4장 개별(PNG×4) 다운로드
-                </button>
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">
-                💡 <strong>왜 '웹툰 + 영수증' 조합인가요?</strong> 1~2컷 만화로 스크롤을 멈추게 하고, 3컷 <strong>실제 금액 비교 영수증</strong>으로 인스타·페북의 <strong>[저장 📌]과 [친구 DM 공유 ✈️]</strong>를 폭발시켜 알고리즘 탐색탭 노출을 극대화합니다!
-              </p>
-            </div>
-
-            <!-- 2. 🧵 쓰레드(Threads) 무페널티 2단 콤보 (본문 + 첫 번째 셀프 대댓글) -->
-            <div class="bg-white border-2 border-slate-900 rounded-2xl p-4 shadow-sm space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
-                <span class="text-xs sm:text-sm font-extrabold text-slate-900 flex items-center gap-1.5">
-                  <span class="bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded">1순위 추천</span>
-                  <span>🧵 쓰레드(Threads) — 알고리즘 링크 페널티 우회 2단 세트</span>
-                </span>
-                <a href="https://www.threads.net/" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-slate-900 hover:bg-slate-700 text-white font-bold px-2.5 py-1 rounded-lg transition">
-                  쓰레드 열기 ↗
-                </a>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
-                  <div class="flex items-center justify-between gap-2 mb-1.5">
-                    <span class="text-xs font-extrabold text-slate-800">① 본문 (웹툰 이미지 첨부 · 링크 없음)</span>
-                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-threads-post', this, '쓰레드 본문')" class="bg-slate-900 hover:bg-slate-700 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
-                  </div>
-                  <pre id="generated-threads-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
-                </div>
-                <div class="bg-blue-50/60 border border-blue-200 rounded-xl p-3">
-                  <div class="flex items-center justify-between gap-2 mb-1.5">
-                    <span class="text-xs font-extrabold text-blue-900">② 내 글의 첫 번째 대댓글 (계산기 직링크)</span>
-                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-threads-reply', this, '쓰레드 첫 댓글 링크')" class="bg-blue-600 hover:bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
-                  </div>
-                  <pre id="generated-threads-reply" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. 📸 인스타그램 & 👍 페이스북 전용 원고 2열 그리드 -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="bg-white border-2 border-pink-200 rounded-2xl p-4 shadow-sm">
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-xs font-extrabold text-pink-700 truncate">📸 인스타그램 (저장·DM 유도 캡션 + 해시태그)</span>
-                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-insta-post', this, '인스타그램 캡션')" class="bg-pink-600 hover:bg-pink-500 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm shrink-0">1초 복사</button>
-                </div>
-                <pre id="generated-insta-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-44 overflow-y-auto p-2.5 bg-pink-50/40 rounded-lg"></pre>
-              </div>
-
-              <div class="bg-white border-2 border-blue-200 rounded-2xl p-4 shadow-sm">
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-xs font-extrabold text-blue-800 truncate">👍 페이스북 (공감 스토리텔링 + 친구 태그 유도)</span>
-                  <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-fb-post', this, '페이스북 본문')" class="bg-blue-700 hover:bg-blue-600 text-white text-xs px-2.5 py-1 rounded-lg font-bold transition shadow-sm shrink-0">1초 복사</button>
-                </div>
-                <pre id="generated-fb-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-44 overflow-y-auto p-2.5 bg-blue-50/40 rounded-lg"></pre>
-              </div>
-            </div>
-
-            <!-- 4. 🟢 네이버(Naver) 블로그 · 지식iN · 카페 실전 원고 & 실시간 질문 저격 세트 -->
-            <div class="bg-emerald-50/50 border-2 border-emerald-300 rounded-2xl p-4 shadow-sm space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200/80 pb-2.5">
-                <span class="text-xs sm:text-sm font-extrabold text-emerald-950 flex items-center gap-1.5">
-                  <span class="bg-emerald-600 text-white text-[10px] px-2 py-0.5 rounded">네이버 검색 유입</span>
-                  <span>🟢 네이버 블로그 · 지식iN · 카페 실전 원고 & 실시간 질문 저격</span>
-                </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <button type="button" onclick="MoneyFitCopyKit.copyNaverRichWebtoonHtml(this)"
-                          class="text-[11px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black px-3 py-1 rounded-lg shadow-sm transition">
-                    🟢 네이버 에디터용 웹툰+본문 리치복사(HTML)
-                  </button>
-                  <a id="sniper-jisikin-link" href="https://kin.naver.com/search/list.naver?sort=date&query=%EC%9B%90%EB%A3%B8+%EC%97%90%EC%96%B4%EC%BB%A8+%EC%A0%84%EA%B8%B0%EC%84%B8" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-2.5 py-1 rounded-lg transition">
-                    🎯 지식iN 최신질문 ↗
-                  </a>
-                  <a id="sniper-cafe-link" href="https://search.naver.com/search.naver?where=article&query=%EC%9B%90%EB%A3%B8+%EC%97%90%EC%96%B4%EC%BB%A8+%EC%A0%84%EA%B8%B0%EC%84%B8" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-teal-700 hover:bg-teal-600 text-white font-bold px-2.5 py-1 rounded-lg transition">
-                    ☕ 네이버 카페 최신글 ↗
-                  </a>
-                  <a href="https://blog.naver.com/comedifarm" target="_blank" rel="noopener noreferrer" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-white font-bold px-2.5 py-1 rounded-lg transition">
-                    📝 내 블로그 ↗
-                  </a>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div class="bg-white border border-emerald-200 rounded-xl p-3">
-                  <div class="flex items-center justify-between gap-2 mb-1.5">
-                    <span class="text-xs font-extrabold text-emerald-900 truncate">📝 네이버 블로그 원고</span>
-                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-blog-post', this, '네이버 블로그 원고')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
-                  </div>
-                  <pre id="generated-blog-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
-                </div>
-
-                <div class="bg-white border border-emerald-200 rounded-xl p-3">
-                  <div class="flex items-center justify-between gap-2 mb-1.5">
-                    <span class="text-xs font-extrabold text-emerald-900 truncate">💡 지식iN 맞춤 답변</span>
-                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-jisikin-post', this, '네이버 지식iN 답변')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
-                  </div>
-                  <pre id="generated-jisikin-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
-                </div>
-
-                <div class="bg-white border border-emerald-200 rounded-xl p-3">
-                  <div class="flex items-center justify-between gap-2 mb-1.5">
-                    <span class="text-xs font-extrabold text-emerald-900 truncate">☕ 네이버 카페 댓글/글</span>
-                    <button onclick="MoneyFitCopyKit.copyWithFeedback('generated-cafe-comment-post', this, '네이버 카페 원고')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold transition shrink-0">1초 복사</button>
-                  </div>
-                  <pre id="generated-cafe-comment-post" class="text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed max-h-36 overflow-y-auto"></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 호환성 유지용 숨김 엘리먼트 -->
-            <div class="hidden">
-              <pre id="generated-indexnow-json"></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== [탭 3] 수익화 설정 마법사 & 월 100만 원 시뮬레이터 ==================== -->
-    <section id="view-wizard" class="hidden space-y-6">
-      
-      <!-- 저장 성공 알림 뱃지 -->
-      <div id="config-saved-alert" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-xl p-3 text-xs font-bold flex items-center justify-between">
-        <span>✅ 설정이 저장되었으며 모든 계산기에 즉시 반영되었습니다!</span>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- 6-Step Deep Diagnosis Onboarding Form Section -->
+    <section class="quiz-section" id="quiz-section" aria-label="정밀 성장·발달 진단 퀴즈">
+      <div class="quiz-card bento-card">
         
-        <!-- 좌측: 내 제휴 ID 입력 및 관리 (6칼럼) -->
-        <div class="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-          <div class="border-b border-slate-100 pb-3">
-            <h2 class="text-xl font-extrabold text-slate-800">⚙️ 수익화 설정 마법사</h2>
-            <p class="text-xs text-slate-500 mt-1">
-              발급받으신 제휴 ID가 있을 때 입력 후 <strong>[사이트 전체 즉시 반영]</strong>을 누르면 모든 계산기 링크에 자동 적용됩니다.
-            </p>
+        <!-- Step Header & Progress Track -->
+        <div class="quiz-header">
+          <div class="quiz-meta-row">
+            <span class="quiz-step-tag" id="quiz-step-tag">Step 1 / 6</span>
+            <span class="quiz-progress-text" id="quiz-progress-text">17% 완료</span>
           </div>
-
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">1. 내 쿠팡 파트너스 ID (선택)</label>
-            <input id="cfg-coupang-id" type="text" value="" placeholder="발급 후 입력 (예: AF...)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono focus:border-blue-600 focus:outline-none" />
+          <h2 class="quiz-step-title" id="quiz-step-title">아이 기본 프로필 &amp; 거주 지역</h2>
+          <p class="quiz-step-subtitle" id="quiz-step-subtitle">질병관리청 표준 성장도표 백분위와 지역 맞춤 나들이 매칭에 활용됩니다.</p>
+          <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 16.66%;"></div>
           </div>
+        </div>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">2. 내 링크프라이스 ID (선택)</label>
-            <input id="cfg-lp-id" type="text" value="" placeholder="발급 후 입력 (예: A100...)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono focus:border-blue-600 focus:outline-none" />
-          </div>
+        <form id="diagnosis-form" novalidate>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">3. 내 CPA 회원 식별코드 (선택)</label>
-            <input id="cfg-cpa-id" type="text" value="" placeholder="발급 후 입력" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono focus:border-blue-600 focus:outline-none" />
-          </div>
+          <!-- Step 1: Profile (Gender, Age/Months, Child Height, Child Weight, Father Height, Mother Height) & 8 Regions -->
+          <div class="quiz-step-content active" data-step="1" id="step-content-1">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label form-label-required">아이 성별</label>
+                <div class="choice-chips-grid">
+                  <label class="chip-label">
+                    <input type="radio" name="child-gender" value="boy" class="chip-input" id="gender-boy" checked>
+                    <span class="chip-pill">👦 남아</span>
+                  </label>
+                  <label class="chip-label">
+                    <input type="radio" name="child-gender" value="girl" class="chip-input" id="gender-girl">
+                    <span class="chip-pill">👧 여아</span>
+                  </label>
+                </div>
+              </div>
 
-          <!-- 3-1. 카테고리별 CPA 단축링크 직접 연결 -->
-          <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3.5 space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-xs font-extrabold text-amber-950">🔥 3-1. 카테고리별 CPA 단축링크 직접 연결 (선택)</span>
-            </div>
-            <p class="text-[11px] text-amber-900 leading-relaxed">
-              원하는 캠페인의 단축 URL을 붙여넣으면 해당 계산기의 메인 혜택 버튼이 지정한 캠페인으로 즉시 연결됩니다. 비워두면 공식 기획전으로 자동 연결됩니다.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">⚡ 전기·가전 캠페인 URL</label>
-                <input id="cfg-cpa-url-electric" type="text" value="" placeholder="미입력 시 1등급 가전 기획전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">🍗 식단·다이어트 캠페인 URL</label>
-                <input id="cfg-cpa-url-diet" type="text" value="" placeholder="미입력 시 다이어트 기획전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">🐶 반려동물·펫보험 캠페인 URL</label>
-                <input id="cfg-cpa-url-pet" type="text" value="" placeholder="미입력 시 펫 특가전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">🛋️ 자취·이사·신혼 캠페인 URL</label>
-                <input id="cfg-cpa-url-room" type="text" value="" placeholder="미입력 시 가전·가구 특가전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">🚗 자동차 신차·렌트 캠페인 URL</label>
-                <input id="cfg-cpa-url-auto" type="text" value="" placeholder="미입력 시 자동차 특가전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-0.5">🌐 인터넷·통신 캠페인 URL</label>
-                <input id="cfg-cpa-url-telecom" type="text" value="" placeholder="미입력 시 통신·유심 특가전 자동연결" class="w-full border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:border-amber-600 focus:outline-none" />
+              <div class="form-group">
+                <label for="child-age-months" class="form-label form-label-required">현재 월령 (개월 수)</label>
+                <div class="input-suffix-wrapper">
+                  <input type="number" id="child-age-months" name="child-age-months" class="form-input" placeholder="예: 48" min="12" max="216" value="48" required>
+                  <span class="input-suffix">개월</span>
+                </div>
               </div>
             </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="child-height" class="form-label form-label-required">현재 아이 키</label>
+                <div class="input-suffix-wrapper">
+                  <input type="number" id="child-height" name="child-height" step="0.1" class="form-input" placeholder="예: 104.5" min="50" max="210" value="104.5" required>
+                  <span class="input-suffix">cm</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="child-weight" class="form-label form-label-required">현재 아이 몸무게</label>
+                <div class="input-suffix-wrapper">
+                  <input type="number" id="child-weight" name="child-weight" step="0.1" class="form-input" placeholder="예: 17.2" min="5" max="120" value="17.2" required>
+                  <span class="input-suffix">kg</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="father-height" class="form-label form-label-required">아빠 키 (유전 예측키 산출용)</label>
+                <div class="input-suffix-wrapper">
+                  <input type="number" id="father-height" name="father-height" step="0.1" class="form-input" placeholder="예: 175.0" min="130" max="220" value="175.0" required>
+                  <span class="input-suffix">cm</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="mother-height" class="form-label form-label-required">엄마 키 (유전 예측키 산출용)</label>
+                <div class="input-suffix-wrapper">
+                  <input type="number" id="mother-height" name="mother-height" step="0.1" class="form-input" placeholder="예: 162.0" min="120" max="210" value="162.0" required>
+                  <span class="input-suffix">cm</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="user-region" class="form-label form-label-required">거주 지역 (주말 나들이 코스 매칭)</label>
+              <select id="user-region" name="user-region" class="form-select" required>
+                <option value="서울 강남·서초·송파">서울 강남·서초·송파</option>
+                <option value="서울 강북·마포·용산">서울 강북·마포·용산</option>
+                <option value="경기 남부(분당·수원·용인·동탄)">경기 남부(분당·수원·용인·동탄)</option>
+                <option value="경기 북부·인천">경기 북부·인천</option>
+                <option value="부산·경남">부산·경남</option>
+                <option value="대구·경북">대구·경북</option>
+                <option value="대전·충청">대전·충청</option>
+                <option value="광주·전라·기타">광주·전라·기타</option>
+              </select>
+            </div>
           </div>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">4. 카카오 애드핏(Kakao AdFit) 상단 배너 광고 단위 ID (추후 입력 시 자동 노출)</label>
-            <input id="cfg-adfit-id" type="text" value="DAN-SAMPLE-TOP" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
-          </div>
+          <!-- Step 2: Puberty Golden Time (3 stages) & 5 Inhibiting Habits -->
+          <div class="quiz-step-content" data-step="2" id="step-content-2">
+            <div class="form-group">
+              <label class="form-label form-label-required">사춘기 &amp; 성장판 골든타임 신호</label>
+              <div class="bento-choice-grid">
+                <label class="bento-choice-label">
+                  <input type="radio" name="puberty-stage" value="none" class="chip-input" id="puberty-none" checked>
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🌱</span>
+                    <h4 class="bento-choice-title">아직 신호 없음 (여유기)</h4>
+                    <p class="bento-choice-desc">또래와 비슷한 완만한 성장세로 성장판 여유가 충분한 단계입니다.</p>
+                  </div>
+                </label>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">5. 내 사이트 도메인 (Vercel / Cloudflare URL)</label>
-            <input id="cfg-site-url" type="text" value="https://truthofmarket.com" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-600 focus:outline-none" />
-          </div>
+                <label class="bento-choice-label">
+                  <input type="radio" name="puberty-stage" value="growth_spurt" class="chip-input" id="puberty-spurt">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">⚡</span>
+                    <h4 class="bento-choice-title">최근 6개월 급성장 진입</h4>
+                    <p class="bento-choice-desc">키가 부쩍 자라며 1차 급성장기에 진입한 상태입니다.</p>
+                  </div>
+                </label>
 
-          <!-- 텔레그램 무인 자동 보고 & 매일 오전 6시 매출·수익 정기 브리핑 설정 -->
-          <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-3.5 space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-xs font-extrabold text-sky-900">📲 6. 텔레그램(Telegram) 매일 06:00 방문자·매출·수익 정기 보고</span>
-              <div class="flex items-center gap-2">
-                <span class="text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded-full whitespace-nowrap">⏰ 매일 06:00 KST 자동발송</span>
-                <label class="flex items-center gap-1 text-[11px] font-bold text-sky-800 cursor-pointer whitespace-nowrap">
-                  <input id="cfg-tg-auto-notify" type="checkbox" checked class="w-3.5 h-3.5 text-sky-600 rounded" />
-                  실시간 클릭 알림
+                <label class="bento-choice-label">
+                  <input type="radio" name="puberty-stage" value="urgent_secondary_signs" class="chip-input" id="puberty-urgent">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🚨</span>
+                    <h4 class="bento-choice-title">2차 성징 초기 신호 (골든타임 긴급!)</h4>
+                    <p class="bento-choice-desc">체모·머리냄새·가슴멍울 등 신호 발생, 성장판 닫히기 전 마지막 1~2년!</p>
+                  </div>
                 </label>
               </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-1">텔레그램 봇 토큰 (@BotFather 발급)</label>
-                <input id="cfg-tg-token" type="text" placeholder="예: 123456789:AAH..." value="YOUR_TELEGRAM_BOT_TOKEN" class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs focus:border-sky-600 focus:outline-none bg-white" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 mb-1">채팅방 ID (비워두면 자동 감지!)</label>
-                <input id="cfg-tg-chat-id" type="text" placeholder="자동 감지됨" value="YOUR_CHAT_ID" class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs focus:border-sky-600 focus:outline-none bg-white" />
-              </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <button type="button" onclick="testTelegramFromBrowser()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm whitespace-nowrap truncate">
-                🤖 채팅방 감지 & 연동 테스트 발송
-              </button>
-              <button type="button" onclick="sendDailyRevenueReportFromBrowser()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition shadow-sm whitespace-nowrap truncate">
-                🌅 오전 6시 방문자·매출·수익 보고서 즉시 발송
-              </button>
-            </div>
-            <div id="tg-test-status" class="hidden text-[11px] font-semibold text-sky-900 bg-white/80 rounded-lg p-2 border border-sky-200"></div>
-          </div>
 
-          <div class="flex flex-wrap gap-2 pt-2">
-            <button onclick="applyMonetizationConfig()" class="flex-1 min-w-[140px] bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm">
-              ✅ 사이트 전체 즉시 반영
-            </button>
-            <button onclick="exportConfigJson()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition">
-              💾 JSON 저장
-            </button>
-            <label class="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 font-bold px-4 py-2.5 rounded-xl text-sm cursor-pointer transition">
-              📂 JSON 불러오기
-              <input type="file" accept=".json" onchange="importConfigFromFile(event)" class="hidden" />
-            </label>
-          </div>
-
-          <div id="config-verify-box" class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900 space-y-1">
-            <div class="font-bold">🔗 실시간 합성된 3대 제휴 링크 샘플 (내 ID 반영 확인):</div>
-            <div id="sample-synthesized-coupang" class="truncate font-mono text-[11px] text-emerald-800"></div>
-            <div id="sample-synthesized-lp" class="truncate font-mono text-[11px] text-emerald-800"></div>
-            <div id="sample-synthesized-cpa" class="truncate font-mono text-[11px] text-emerald-800"></div>
-          </div>
-        </div>
-
-        <!-- 우측: 월 100만 원 수익 시뮬레이터 (6칼럼) -->
-        <div class="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-          <div class="border-b border-slate-100 pb-3">
-            <h2 class="text-xl font-extrabold text-slate-800">💰 월 100만 원 무인 수익 시뮬레이터</h2>
-            <p class="text-xs text-slate-500 mt-1">
-              방문자 수와 CPA 승인 단가를 조정하여 <strong>CPA(상담) + CPS(구매 3%) + 애드핏</strong>의 합산 월 예상 수익을 실시간 계산합니다.
-            </p>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs font-bold mb-1">
-              <span>일일 순방문자 수 (36대 SEO 페이지 합산)</span>
-              <span id="sim-visitors-val" class="text-blue-600 font-extrabold">900명 / 일</span>
-            </div>
-            <input id="sim-visitors" type="range" min="100" max="5000" step="50" value="900" oninput="runProfitSimulator()" class="w-full" />
-            <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
-              <span>100명</span>
-              <span>1,000명</span>
-              <span>2,500명</span>
-              <span>5,000명</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs font-bold mb-1">
-              <span>고단가 CPA 평균 승인 건당 정산액 (렌트·인터넷·보험)</span>
-              <span id="sim-cpa-payout-val" class="text-blue-600 font-extrabold">45,000원 / 건</span>
-            </div>
-            <input id="sim-cpa-payout" type="range" min="20000" max="75000" step="5000" value="45000" oninput="runProfitSimulator()" class="w-full" />
-            <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
-              <span>20,000원</span>
-              <span>45,000원</span>
-              <span>75,000원</span>
-            </div>
-          </div>
-
-          <!-- 시뮬레이터 결과 다크 카드 -->
-          <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4 border border-slate-800">
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-xs text-slate-400 block mb-0.5">예상 월 총수익 (세전 합산)</span>
-                <span id="sim-total-krw" class="text-2xl font-extrabold text-amber-400">1,125,000원</span>
-              </div>
-              <div id="sim-goal-status"></div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-2 text-center text-xs border-t border-slate-700 pt-3">
-              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                <div class="text-[11px] text-slate-400">고단가 CPA 수익</div>
-                <div id="sim-cpa-krw" class="font-bold text-sky-300 mt-1">710,775원</div>
-              </div>
-              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                <div class="text-[11px] text-slate-400">쿠팡·CPS 제휴</div>
-                <div id="sim-cps-krw" class="font-bold text-emerald-300 mt-1">160,380원</div>
-              </div>
-              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                <div class="text-[11px] text-slate-400">카카오 애드핏</div>
-                <div id="sim-adfit-krw" class="font-bold text-purple-300 mt-1">68,040원</div>
+            <div class="form-group" style="margin-top: 1.5rem;">
+              <label class="form-label">아이의 신체 성장 방해 습관 (해당되는 항목 복수 선택)</label>
+              <div class="choice-chips-grid" id="habits-group">
+                <label class="chip-label">
+                  <input type="checkbox" name="growth-habits" value="picky_eater" class="chip-input" id="habit-picky">
+                  <span class="chip-pill">#고기·채소편식_입짧음</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="growth-habits" value="milk_trouble" class="chip-input" id="habit-milk">
+                  <span class="chip-pill">#우유먹으면_배앓이</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="growth-habits" value="late_sleep" class="chip-input" id="habit-sleep">
+                  <span class="chip-pill">#밤10시30분이후_늦은취침</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="growth-habits" value="poor_posture" class="chip-input" id="habit-posture">
+                  <span class="chip-pill">#스마트폰·책상_거북목·구부정한자세</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="growth-habits" value="obesity_risk" class="chip-input" id="habit-obesity">
+                  <span class="chip-pill">#과체중·소아비만우려</span>
+                </label>
               </div>
             </div>
-            
-            <p class="text-[11px] text-slate-400 leading-relaxed bg-slate-800/40 p-2.5 rounded-lg border border-slate-700/50">
-              💡 <strong>수학적 근거</strong>: 일 900명(월 27,000명) 유입 시, CPA 카드 CTR 4.5% × CVR 1.3% = 월 15.8건 상담 신청, 상품 추천 CTR 8% × 24시간 장바구니 전환 5.5% = 월 118.8건 구매가 발생하는 보수적 산출식입니다.
-            </p>
           </div>
-        </div>
 
+          <!-- Step 3: Brain & Fine Motor Concerns (K-DST 5 tags) -->
+          <div class="quiz-step-content" data-step="3" id="step-content-3">
+            <div class="form-group">
+              <label class="form-label form-label-required">두뇌 &amp; 소근육 발달 고민 (보건복지부 K-DST 6대 영역 기반 복수 선택)</label>
+              <p class="section-hint" style="margin-bottom: 0.85rem;">아이에게 자극을 채워주고 싶은 핵심 발달 영역을 골라주세요.</p>
+              <div class="choice-chips-grid" id="kdst-group">
+                <label class="chip-label">
+                  <input type="checkbox" name="kdst-concerns" value="fine_motor" class="chip-input" id="kdst-fine-motor" checked>
+                  <span class="chip-pill">✂️ 손가락소근육·가위질협응</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="kdst-concerns" value="gross_motor" class="chip-input" id="kdst-gross-motor">
+                  <span class="chip-pill">🏃 대근육·균형감각·자세제어</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="kdst-concerns" value="language_reading" class="chip-input" id="kdst-language">
+                  <span class="chip-pill">📚 언어표현·문해력·어휘확장</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="kdst-concerns" value="math_space" class="chip-input" id="kdst-math">
+                  <span class="chip-pill">🧩 수리인지·공간지각·블록조립</span>
+                </label>
+                <label class="chip-label">
+                  <input type="checkbox" name="kdst-concerns" value="emotion_art" class="chip-input" id="kdst-emotion">
+                  <span class="chip-pill">🎨 정서안정·오감미술·감각자극</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Teaching Philosophy (4 Options) -->
+          <div class="quiz-step-content" data-step="4" id="step-content-4">
+            <div class="form-group">
+              <label class="form-label form-label-required">가장 선호하거나 고민 중인 교육법 &amp; 교구 스타일</label>
+              <div class="bento-choice-grid-4">
+                <label class="bento-choice-label">
+                  <input type="radio" name="teaching-philosophy" value="montessori" class="chip-input" id="phil-montessori" checked>
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🪵</span>
+                    <h4 class="bento-choice-title">#몬테소리</h4>
+                    <p class="bento-choice-desc">일상생활·감각·소근육 자율 교구, 스스로 손끝을 움직이며 집중하는 원목 환경</p>
+                  </div>
+                </label>
+
+                <label class="bento-choice-label">
+                  <input type="radio" name="teaching-philosophy" value="froebel_gabe" class="chip-input" id="phil-froebel">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">📐</span>
+                    <h4 class="bento-choice-title">#프뢰벨 은물 / 가베</h4>
+                    <p class="bento-choice-desc">도형·입체·공간지각·창의 수리 교구, 체계적인 수학적 구조 감각 형성</p>
+                  </div>
+                </label>
+
+                <label class="bento-choice-label">
+                  <input type="radio" name="teaching-philosophy" value="waldorf_art" class="chip-input" id="phil-waldorf">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🖌️</span>
+                    <h4 class="bento-choice-title">#발도르프 / 오감 미술놀이</h4>
+                    <p class="bento-choice-desc">자연 친화적 감각 자극, 정형화되지 않은 물감·찰흙 자유 조형 및 정서 교감</p>
+                  </div>
+                </label>
+
+                <label class="bento-choice-label">
+                  <input type="radio" name="teaching-philosophy" value="science_coding" class="chip-input" id="phil-science">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🔬</span>
+                    <h4 class="bento-choice-title">#과학·레고·코딩 탐구형</h4>
+                    <p class="bento-choice-desc">원리 탐구와 물리적 조립, 문제해결력과 공학적 호기심을 키우는 프로젝트형</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Child Interests (5 themes) -->
+          <div class="quiz-step-content" data-step="5" id="step-content-5">
+            <div class="form-group">
+              <label class="form-label form-label-required">아이가 가장 몰입하는 관심사 테마</label>
+              <div class="choice-chips-grid">
+                <label class="chip-label">
+                  <input type="radio" name="child-interest" value="art_making" class="chip-input" id="interest-art" checked>
+                  <span class="chip-pill">🎨 그림·물감·만들기</span>
+                </label>
+                <label class="chip-label">
+                  <input type="radio" name="child-interest" value="history_tradition" class="chip-input" id="interest-history">
+                  <span class="chip-pill">👑 역사·전통·궁궐·위인</span>
+                </label>
+                <label class="chip-label">
+                  <input type="radio" name="child-interest" value="dino_nature" class="chip-input" id="interest-dino">
+                  <span class="chip-pill">🦖 공룡·동물·자연</span>
+                </label>
+                <label class="chip-label">
+                  <input type="radio" name="child-interest" value="space_science" class="chip-input" id="interest-space">
+                  <span class="chip-pill">🚀 우주·과학·로봇·자동차</span>
+                </label>
+                <label class="chip-label">
+                  <input type="radio" name="child-interest" value="music_musical" class="chip-input" id="interest-music">
+                  <span class="chip-pill">🎵 음악·공연·동화·뮤지컬</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6: Budget Tier (3 tiers) -->
+          <div class="quiz-step-content" data-step="6" id="step-content-6">
+            <div class="form-group">
+              <label class="form-label form-label-required">월 육아·성장 투자 예산 티어</label>
+              <div class="bento-choice-grid">
+                <label class="bento-choice-label">
+                  <input type="radio" name="budget-tier" value="tier_5_10" class="chip-input" id="budget-low">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">☕</span>
+                    <h4 class="bento-choice-title">월 5~10만 원 (가성비 실속형)</h4>
+                    <p class="bento-choice-desc">하루 커피 한 잔 값으로 꼭 필요한 필수 영양소와 핵심 발달 교구만 핀셋 집중</p>
+                  </div>
+                </label>
+
+                <label class="bento-choice-label">
+                  <input type="radio" name="budget-tier" value="tier_15_30" class="chip-input" id="budget-mid" checked>
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">🏆</span>
+                    <h4 class="bento-choice-title">월 15~30만 원 (프리미엄 밸런스형)</h4>
+                    <p class="bento-choice-desc">성장 영양제 2종 + 소근육 발달 교구 2종 + 주말 나들이 연계 도서 풀패키지</p>
+                  </div>
+                </label>
+
+                <label class="bento-choice-label">
+                  <input type="radio" name="budget-tier" value="tier_unlimited" class="chip-input" id="budget-high">
+                  <div class="bento-choice-card">
+                    <span class="bento-choice-icon">💎</span>
+                    <h4 class="bento-choice-title">비용 무관 (VIP 풀케어형)</h4>
+                    <p class="bento-choice-desc">1:1 성장 전문 플래너 상담 &amp; 몬테소리 전용 교구장 및 인체공학 바른 자세 가구</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiz Stepper Navigation Bar -->
+          <div class="quiz-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btn-prev-step" style="display: none;">← 이전 단계</button>
+            <div style="flex: 1;"></div>
+            <button type="button" class="btn btn-primary" id="btn-next-step">다음 단계 →</button>
+            <button type="submit" class="btn btn-submit" id="btn-submit-quiz" style="display: none;">📋 우리 아이 정밀 처방전 발급받기</button>
+          </div>
+
+        </form>
       </div>
     </section>
 
-    <!-- [구글 추천 스니펫 · 네이버 스마트블록 최상단 노출용] 6대 공인 산출 공식 비교표 & 핵심 질문(FAQ) 지식백과 허브 -->
-    <section id="seo-homepage-knowledge-hub" aria-label="머니핏 6대 생활·금융 손익분기점 공인 수식 및 FAQ 가이드" class="mt-10 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
-      <details id="seo-homepage-details" open>
-        <summary class="cursor-pointer flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h2 class="text-base sm:text-lg font-bold text-slate-900">📖 머니핏(MoneyFit) 6대 생활·금융 손익분기점 공인 계산 공식 &amp; 비교 가이드</h2>
-            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">전기요금 누진세 · 다이어트 TDEE · 강아지 고양이 사료량 · 가전예산 · 장기렌트 할부 TCO · 인터넷 위약금 공식</p>
-          </div>
-          <span class="text-xs sm:text-sm text-blue-600 font-semibold shrink-0">공식·비교표·FAQ 펼치기/접기 ▾</span>
-        </summary>
-
-        <div class="mt-5 pt-5 border-t border-slate-100 space-y-6 text-slate-700 text-xs sm:text-sm leading-relaxed">
-          <!-- 1. 6대 계산기 핵심 공식 및 손익분기점 요약 비교표 (구글 Featured Table Snippet 타겟) -->
-          <div class="space-y-2.5">
-            <h3 class="text-sm sm:text-base font-bold text-slate-900">📊 2026 머니핏 6대 생활·금융 계산기 공인 산출 공식 및 손익분기점 비교표</h3>
-            <div class="overflow-x-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                <caption class="sr-only">머니핏 6대 생활·금융 손익분기점 계산기 분야별 핵심 검색 키워드, 공인 산출 공식 및 평균 절감 효과 비교표</caption>
-                <thead class="bg-slate-100 text-slate-800 font-semibold border-b border-slate-200">
-                  <tr>
-                    <th class="p-2.5 sm:p-3 whitespace-nowrap">계산기 분야</th>
-                    <th class="p-2.5 sm:p-3">대표 검색 키워드</th>
-                    <th class="p-2.5 sm:p-3">적용 공인 수식 및 산출 기준</th>
-                    <th class="p-2.5 sm:p-3 whitespace-nowrap">핵심 손익분기점 지표</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 bg-white">
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=electric" class="text-blue-700 hover:underline">⚡ 전기요금·누진세</a></td>
-                    <td class="p-2.5 sm:p-3">전기요금 계산기, 에어컨 전기세 계산기, 한전 누진세 계산기, 1등급 가전 환급·본전 계산기</td>
-                    <td class="p-2.5 sm:p-3">한전 주택용 3단계 누진 요율표(200kWh·400kWh 구간, 하계 7~8월 300kWh·450kWh 완화) + 부가가치세(10%) + 전력산업기반기금(3.7%)</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-rose-600 whitespace-nowrap">월 추가 요금 · 1등급 회수개월</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=diet" class="text-blue-700 hover:underline">🍗 다이어트·식단</a></td>
-                    <td class="p-2.5 sm:p-3">다이어트 기초대사량 TDEE 계산기, 닭가슴살 단백질 계산기, 벌크업 탄단지 비율 계산기</td>
-                    <td class="p-2.5 sm:p-3">Mifflin-St Jeor 기초대사량(BMR) 공식 × 활동계수(TDEE) ± 목표 칼로리(감량 -500kcal / 증량 +300kcal) · 체중 1kg당 단백질 1.8~2.0g</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-emerald-700 whitespace-nowrap">일일 kcal · 닭가슴살·현미밥 수량</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=pet" class="text-blue-700 hover:underline">🐶 반려동물 사료량</a></td>
-                    <td class="p-2.5 sm:p-3">강아지 사료량 계산기, 고양이 사료 급여량 계산기, 퍼피·성견·노령묘 사료 소진일 계산</td>
-                    <td class="p-2.5 sm:p-3">수의영양학 휴식기 에너지 요구량 RER = 70 × (체중 kg)^0.75 × 생애주기 계수(DER) ÷ 사료 대사에너지(kcal/kg)</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-blue-700 whitespace-nowrap">1일 급여량(g) · 1포대 소진일수</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=room" class="text-blue-700 hover:underline">🛋️ 자취·신혼 가전예산</a></td>
-                    <td class="p-2.5 sm:p-3">자취방 가전 예산 견적, 원룸 100만원 풀세팅, 신혼가전 1000만원 견적표</td>
-                    <td class="p-2.5 sm:p-3">가용 총예산 100% 상한 제약(Strict Budget Cap) 기반 필수 생활가전(60~65%) : 수면·수납 가구(35~40%) 최적 BOM 배분 알고리즘</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-indigo-700 whitespace-nowrap">품목별 적정 배분액 · 잔여 예산</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=auto" class="text-blue-700 hover:underline">🚗 장기렌트 vs 할부</a></td>
-                    <td class="p-2.5 sm:p-3">장기렌트 할부 비교 계산기, 자동차 유지비 TCO 계산기, 개인·법인사업자 장기렌트 절세</td>
-                    <td class="p-2.5 sm:p-3">할부(취등록세 7% + 원리금균등이자 + 자동차세 + 보험료 - 중고 잔존가치) vs 장기렌트(월 렌트료 통합 - 연 1,500만 한도 비용처리 절세액)</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-rose-600 whitespace-nowrap">4년 총비용(TCO) 차액 · 절세액</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2.5 sm:p-3 font-semibold text-slate-900 whitespace-nowrap"><a href="/?calc=telecom" class="text-blue-700 hover:underline">🌐 인터넷 위약금·사은품</a></td>
-                    <td class="p-2.5 sm:p-3">인터넷 약정 위약금 계산기, 인터넷 변경 현금 사은품 47만원 비교, 알뜰폰 유심 요금제 절약</td>
-                    <td class="p-2.5 sm:p-3">신규 이동 순이익 = 법정 최대 현금 사은품(최대 47만 원) + 36개월 월 요금 절감 누적액 - 기존 통신사 약정 해지 위약금(할인반환금)</td>
-                    <td class="p-2.5 sm:p-3 font-semibold text-emerald-700 whitespace-nowrap">즉시 이동 순수익 · 손익분기 개월</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- 2. 6대 핵심 검색 키워드별 3초 공식 요약 (네이버 스마트블록 & 구글 스니펫 매칭) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">⚡ 1. 전기요금 계산기 · 에어컨 전기세 · 누진세 3단계 본전 계산</h3>
-              <p class="text-xs text-slate-600">원룸 벽걸이 에어컨, 30평 스탠드 에어컨, 제습기 24시간 가동, 겨울철 전기온풍기 사용 시 월간 추가 전력량(kWh = 소비전력 W × 하루 사용시간 × 30일 ÷ 1,000)을 산출하여 한국전력 누진세 3단계 폭탄 여부와 에너지소비효율 1등급 인버터 교체 시 기기값 본전 회수기간을 즉시 계산합니다.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">🍗 2. 다이어트 기초대사량(TDEE) 계산기 · 닭가슴살 단백질 수량</h3>
-              <p class="text-xs text-slate-600">성별·체중(kg)·키(cm)·식단 기간(주)을 바탕으로 기초대사량(BMR)과 일일 활동 대사량(TDEE)을 계산하고, 체지방 컷팅(-500kcal) 또는 린매스업·벌크업(+300kcal) 목표에 맞춰 하루 탄수화물·단백질·지방(g)과 닭가슴살(100g 팩)·즉석현미밥의 정확한 구매 수량을 환산합니다.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">🐶 3. 강아지 사료량 계산기 · 고양이 사료 급여량(g) &amp; 소진일</h3>
-              <p class="text-xs text-slate-600">말티즈·포메라니안·골든리트리버 등 강아지와 코리안숏헤어·노령묘 등 고양이의 체중(kg) 및 활동계수(퍼피·중성화 성견·비만견·노령묘)에 맞춰 하루 필요 칼로리(DER)와 사료 급여량(g), 사료 1포대 소진일수 및 정기배송 주기를 정밀 진단합니다.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">🛋️ 4. 자취방 가전 예산 견적 · 신혼가전 1,000만원 풀세팅 BOM</h3>
-              <p class="text-xs text-slate-600">단기 자취 50만 원, 원룸 100만~150만 원, 오피스텔 300만~500만 원, 신혼부부 1,000만 원까지 설정한 총예산을 단 1원도 초과하지 않는 범위에서 냉장고·세탁기·전자레인지·침대 매트리스·로봇청소기 등 품목별 최적 예산 배분표를 자동 생성합니다.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">🚗 5. 장기렌트 할부 비교 계산기 · 자동차 유지비(TCO) &amp; 사업자 절세</h3>
-              <p class="text-xs text-slate-600">아반떼·그랜저·투싼 하이브리드·제네시스 G80·캐스퍼·아이오닉 등 신차 구매 시 할부(취등록세 7% + 할부금리 + 자동차세 + 보험료 - 잔존가치)와 장기렌트·리스의 36~60개월 총소유비용(TCO) 및 개인·법인사업자 비용처리 절세 효과를 1원 단위까지 비교합니다.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <h3 class="font-bold text-slate-900 text-sm">🌐 6. 인터넷 약정 위약금 계산기 · 현금 사은품 47만원 &amp; 알뜰폰 비교</h3>
-              <p class="text-xs text-slate-600">KT·SK브로드밴드·LG유플러스 인터넷+TV 약정 만기 또는 잔여 위약금(15만~30만 원) 발생 시, 타사 신규 가입 현금 사은품(최대 47만 원)과 3년 요금 차액을 대조하여 지금 바로 갈아타는 것이 얼마큼 이득인지, 5G 요금제를 알뜰폰 유심으로 바꾸면 2년간 얼마를 아끼는지 계산합니다.</p>
-            </div>
-          </div>
-
-          <!-- 3. 홈페이지 핵심 자주 묻는 질문 Top 6 (Schema.org FAQPage 1:1 매칭) -->
-          <div class="space-y-3 pt-2 border-t border-slate-100">
-            <h3 class="text-sm sm:text-base font-bold text-slate-900">❓ 자주 묻는 질문 (FAQ) — 구글·네이버 검색 요약</h3>
-            <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q1. 에어컨·제습기·온풍기 사용 시 전기요금 누진세 폭탄 구간과 1등급 교체 본전 회수기간은 어떻게 계산하나요?</dt>
-                <dd class="text-slate-600">주택용 전기요금은 월 사용량이 400kWh(하계 7~8월 450kWh)를 초과하면 3단계 누진세(kWh당 307.3원 + 기본료 7,300원 + 부가세·기금 13.7%)가 적용됩니다. 소비전력(W)과 사용시간을 입력하면 월 추가 전기세와 1등급 인버터 기기 교체 시 월 절감액 및 본전 회수기간(개월)이 즉시 산출됩니다.</dd>
-              </div>
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q2. 다이어트·벌크업 시 내 체중에 맞는 기초대사량(TDEE)과 한 달 닭가슴살·현미밥 구매 수량은 몇 팩인가요?</dt>
-                <dd class="text-slate-600">Mifflin-St Jeor 기초대사량(BMR)에 활동계수를 곱해 TDEE를 구한 뒤 감량(-500kcal)·증량(+300kcal)을 반영합니다. 체중 1kg당 단백질 1.6~2.0g 기준으로 닭가슴살(1팩 단백질 23g)과 즉석현미밥(1공기 탄수화물 65g)의 주간·월간 정확한 장보기 팩 수를 계산해 줍니다.</dd>
-              </div>
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q3. 강아지·고양이 체중별 하루 사료 급여량(g)과 사료 1포대 소진일은 어떻게 계산하나요?</dt>
-                <dd class="text-slate-600">휴식기 에너지 요구량 RER = 70 × (체중 kg)^0.75 에 생애주기 활동계수(성견 1.6, 퍼피 2.5, 성묘 1.2, 노령묘 1.1)를 곱해 일일 필요 칼로리(DER)를 구한 뒤 사료 칼로리(kcal/kg)로 나누면 하루 급여량(g)과 1포대 소진일수를 정확히 알 수 있습니다.</dd>
-              </div>
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q4. 원룸 자취방 100만원부터 신혼부부 1,000만원까지 가전·가구 풀세팅 예산 배분 황금비율은 무엇인가요?</dt>
-                <dd class="text-slate-600">총예산의 60~65%를 핵심 생활가전(냉장고·세탁기·전자레인지·에어컨)에, 35~40%를 수면·수납 가구(매트리스·침대·책상·행거)에 배분하는 BOM 알고리즘을 통해 설정 예산을 단 1원도 초과하지 않는 최적 품목 견적표를 제시합니다.</dd>
-              </div>
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q5. 신차 구매 시 장기렌트 vs 리스 vs 할부 중 4년 총소유비용(TCO)과 사업자 절세 혜택은 무엇이 유리한가요?</dt>
-                <dd class="text-slate-600">할부는 초기 취등록세(7%)·자동차세·보험료 부담이 크지만 중고차 잔존가치를 회수할 수 있고, 장기렌트는 세금·보험료가 월 납입금에 통합되며 개인·법인사업자는 연간 최대 1,500만 원 비용처리로 종합소득세·법인세를 대폭 절세할 수 있습니다.</dd>
-              </div>
-              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-1">
-                <dt class="font-bold text-slate-900">Q6. 인터넷·TV 약정 기간이 남았을 때 위약금을 물고 갈아타기 vs 만기까지 유지 중 어느 쪽이 이득인가요?</dt>
-                <dd class="text-slate-600">신규 이동 시 받는 법정 최대 현금 사은품(최대 47만 원)과 36개월 요금 절감액의 합계가 현재 해지 위약금보다 크다면 즉시 이동하는 것이 이득입니다. 잔여 위약금이 15만~30만 원 이하이거나 약정 만기 시 수십만 원의 순수익이 발생합니다.</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </details>
-      <script>
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-          var hpDetails = document.getElementById('seo-homepage-details');
-          if (hpDetails) hpDetails.removeAttribute('open');
-        }
-      </script>
-    </section>
-
-    <!-- 검색엔진(구글·네이버·다음·빙) 크롤러 100% 자동 수집용 36대 세부 계산기 정적 디렉토리 -->
-    <section aria-label="36대 세부 손익계산 리포트 전체 목록" class="mt-4 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
-      <details id="seo-directory-details" open>
-        <summary class="cursor-pointer flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h2 class="text-base font-bold text-slate-800">📚 머니핏 36대 세부 손익분기점 정밀 리포트 전체 바로가기</h2>
-            <p class="text-xs text-slate-500 font-normal mt-0.5">클릭 시 3,000자 상세 해설·비교표·FAQ가 포함된 전용 시뮬레이터 페이지로 이동합니다.</p>
-          </div>
-          <div class="flex items-center gap-2 text-xs">
-            <a href="/sitemap.xml" class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 hover:text-blue-600 font-semibold">Sitemap XML</a>
-            <a href="/rss.xml" class="px-2.5 py-1 rounded bg-amber-50 text-amber-700 hover:text-amber-800 font-semibold">RSS 2.0 피드</a>
-            <a href="/llms.txt" class="px-2.5 py-1 rounded bg-indigo-50 text-indigo-700 hover:text-indigo-800 font-semibold">AI 검색(LLMs.txt)</a>
-            <span class="text-blue-600 font-semibold ml-1">목록 ▾</span>
-          </div>
-        </summary>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs mt-4 pt-4 border-t border-slate-100">
-          <a href="/preset/electric-studio-ac/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 원룸 벽걸이 에어컨 하루 10시간 전기세 계산</a>
-          <a href="/preset/electric-stand-ac/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산</a>
-          <a href="/preset/electric-dehumidifier/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 여름철 제습기 24시간 가동 전기요금 & 1등급 교체 손익</a>
-          <a href="/preset/electric-dryer/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 전기 의류건조기 주 4회 사용 시 한 달 전기세</a>
-          <a href="/preset/electric-winter-heater/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄</a>
-          <a href="/preset/electric-inverter-roi/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">⚡ 10년 된 구형 정속형 에어컨 vs 1등급 인버터 회수기간</a>
-          <a href="/preset/diet-male-fatloss/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 수량</a>
-          <a href="/preset/diet-female-lean/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단</a>
-          <a href="/preset/diet-male-bulkup/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴</a>
-          <a href="/preset/diet-office-worker/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적</a>
-          <a href="/preset/diet-student-budget/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 자취생·대학생 1주 가성비 헬스 식단 장보기 표</a>
-          <a href="/preset/diet-quick-3kg/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🍗 한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단</a>
-          <a href="/preset/pet-maltese-5kg/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐶 5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일</a>
-          <a href="/preset/pet-pomeranian-puppy/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐶 생후 4개월 포메라니안 퍼피 고단백 사료 급여량 계산</a>
-          <a href="/preset/pet-golden-retriever/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐶 30kg 골든리트리버 대형견 월 사료값 및 총 양육비 진단</a>
-          <a href="/preset/pet-korean-shorthair/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐱 4.5kg 코숏 고양이 중성화 비만 방지 사료 급여량</a>
-          <a href="/preset/pet-senior-cat/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐱 10살 이상 노령묘 신장·관절 케어 사료량 및 병원비</a>
-          <a href="/preset/pet-monthly-budget/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🐶 초보 반려인 강아지 첫 입양 월평균 고정비 시뮬레이션</a>
-          <a href="/preset/room-oneroom-100/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅</a>
-          <a href="/preset/room-officetel-300/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 신축 오피스텔 300만 원 화이트 감성 가전·가구 배분</a>
-          <a href="/preset/room-officetel-500/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적</a>
-          <a href="/preset/room-newlywed-1000/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지</a>
-          <a href="/preset/room-minimalist-50/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 단기 거주 50만 원 미니멀 자취 필수 생존템 8종 견적</a>
-          <a href="/preset/room-appliances-only/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🛋️ 가구 없이 가전만! 150만 원 원룸 필수 1등급 가전 5종</a>
-          <a href="/preset/auto-avante-3000/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부</a>
-          <a href="/preset/auto-grandeur-5000/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익</a>
-          <a href="/preset/auto-tucson-hybrid/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부</a>
-          <a href="/preset/auto-genesis-g80/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 7,000만 원 제네시스 G80 법인 리스 vs 렌트 비교</a>
-          <a href="/preset/auto-casper-cash-vs-rent/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 1,800만 원 캐스퍼 초보운전 보험료 포함 일시불 vs 렌트</a>
-          <a href="/preset/auto-ev-ioniq/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🚗 5,500만 원 아이오닉 전기차 보조금 반영 장기렌트 손익</a>
-          <a href="/preset/telecom-penalty-15/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순익</a>
-          <a href="/preset/telecom-penalty-30/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 약정 1년 남은 통신 위약금 30만 원 vs 사은품 47만 원 손익</a>
-          <a href="/preset/telecom-3yr-expired/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 인터넷 3년 약정 만기 후 기존 재약정 vs 신규 이동 비교</a>
-          <a href="/preset/telecom-single-oneroom/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 자취방 인터넷 단독 가입 vs 휴대폰 결합 3년 총비용 비교</a>
-          <a href="/preset/telecom-family-4p/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 온가족 4인 휴대폰+인터넷 통합 결합 변경 최대 지원금</a>
-          <a href="/preset/telecom-mvno-switch/" class="p-2 rounded-lg border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 text-slate-700 font-medium truncate">🌐 5G 고가 요금제 → 알뜰폰 유심 요금제 전환 24개월 절감액</a>
-        </div>
-      </details>
-      <script>
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-          var dirDetails = document.getElementById('seo-directory-details');
-          if (dirDetails) dirDetails.removeAttribute('open');
-        }
-      </script>
-    </section>
-
-    <!-- 4대 채널(인스타·쓰레드·블로그·RSS) 공식 팔로우 & 구독 허브 -->
-    <section id="official-channel-follow-bar" aria-label="머니핏 공식 SNS 팔로우 및 구독 채널" class="mt-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-4 sm:p-5 shadow-md border border-indigo-500/30">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2 py-0.5 rounded-full">매주 연재</span>
-            <h2 class="text-sm sm:text-base font-extrabold text-white">🐯 매주 새는 고정비 30만 원 막아주는 4컷 영수증 만화 & 계산표 구독</h2>
-          </div>
-          <p class="text-xs text-slate-300 font-normal mt-1">인스타그램·쓰레드 <strong class="text-amber-300">@moneyfit2026</strong> 팔로우하고 호구 탈출 1원 단위 본전 계산표를 받아보세요!</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
-          <a href="https://www.instagram.com/moneyfit2026/" target="_blank" rel="noopener noreferrer"
-             class="flex-1 sm:flex-initial text-center px-3.5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-400 hover:to-rose-400 text-white font-extrabold text-xs shadow-sm transition whitespace-nowrap">
-            📸 인스타 팔로우
-          </a>
-          <a href="https://www.threads.net/@moneyfit2026" target="_blank" rel="noopener noreferrer"
-             class="flex-1 sm:flex-initial text-center px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold text-xs transition whitespace-nowrap">
-            🧵 쓰레드 팔로우
-          </a>
-          <a href="/rss.xml" target="_blank" rel="noopener noreferrer"
-             class="flex-1 sm:flex-initial text-center px-3.5 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 font-extrabold text-xs transition whitespace-nowrap">
-            📗 블로그·RSS 구독
-          </a>
+    <!-- Interactive Prescription Transition Overlay -->
+    <div class="analysis-overlay" id="analysis-overlay" style="display: none;" aria-hidden="true">
+      <div class="analysis-modal">
+        <div class="analysis-spinner"></div>
+        <h3 class="analysis-title" id="analysis-title">소아성장도표(KDCA) 기준 데이터 대조 중...</h3>
+        <p class="analysis-desc" id="analysis-desc">아이의 월령별 성장 백분위와 K-DST 6대 발달 밸런스를 계산하고 있습니다.</p>
+        <div class="analysis-progress-bar">
+          <div class="analysis-progress-bar-fill" id="analysis-bar-fill"></div>
         </div>
       </div>
+    </div>
+
+    <!-- Prescription Results Container (Tabs 1, 2, 3) -->
+    <section class="prescription-container" id="prescription-container" style="display: none;" aria-label="처방전 결과">
+      
+      <!-- Prescription Header Banner -->
+      <div class="prescription-banner">
+        <div class="prescription-banner-left">
+          <div class="prescription-avatar" id="rx-avatar">🌱</div>
+          <div class="prescription-child-info">
+            <h2 id="rx-header-title">만 48개월 남아 맞춤 처방전</h2>
+            <p id="rx-header-subtitle">질병관리청 2017 소아청소년 성장도표 &amp; 보건복지부 K-DST 기준 분석 완료</p>
+          </div>
+        </div>
+        <button type="button" class="prescription-retest-btn" id="btn-retest">🔄 다시 진단하기</button>
+      </div>
+
+      <!-- Tab 1 Pane: Physical Growth & Golden Time -->
+      <div class="tab-pane active" id="tab-pane-growth" role="tabpanel" aria-labelledby="tab-btn-growth">
+        <div class="tab-section-intro">
+          <span class="tab-badge tab-badge-indigo">📏 성장판 &amp; 유전 예측키</span>
+          <h3 class="tab-title">신체 성장 곡선 &amp; 3단 예상키 처방전</h3>
+          <p class="tab-desc">부모 유전키 대비 잠재 성장 폭과 방해 습관에 따른 손실치를 정밀 분석합니다.</p>
+        </div>
+        <div class="bento-card" id="growth-report-card">
+          <!-- Will be rendered by Milestone 3 domain engine -->
+          <div class="report-placeholder" style="text-align: center; padding: 2rem 1rem;">
+            <p style="font-weight: 700; color: var(--primary-indigo); font-size: 1.1rem; margin-bottom: 0.5rem;">📊 성장도표 분석 및 유전 예상키(MPH) 계산 완료</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">성장 곡선(Growth Curve) 그래프 및 3단 비교 막대 차트 준비 중</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2 Pane: Development & Play Tools -->
+      <div class="tab-pane" id="tab-pane-development" role="tabpanel" aria-labelledby="tab-btn-development">
+        <div class="tab-section-intro">
+          <span class="tab-badge tab-badge-mint">🧩 K-DST 6대 발달영역</span>
+          <h3 class="tab-title">월령별 소근육·두뇌 발달 &amp; 맞춤 교구 처방</h3>
+          <p class="tab-desc">몬테소리 vs 은물·가베 판정과 엄마들이 검증한 발달 핫템 교구 4종을 큐레이션합니다.</p>
+        </div>
+        <div class="bento-card" id="dev-report-card">
+          <!-- Will be rendered by Milestone 3 domain engine -->
+          <div class="report-placeholder" style="text-align: center; padding: 2rem 1rem;">
+            <p style="font-weight: 700; color: var(--growth-mint-hover); font-size: 1.1rem; margin-bottom: 0.5rem;">🧩 K-DST 6각 발달 레이더 및 교육법 판정 완료</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">월령별 교육법 비교 박스 및 발달 핫템 TOP 4 추천 준비 중</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3 Pane: Outings & Weekend Courses -->
+      <div class="tab-pane" id="tab-pane-outing" role="tabpanel" aria-labelledby="tab-btn-outing">
+        <div class="tab-section-intro">
+          <span class="tab-badge tab-badge-coral">🎨 지역 × 관심사 나들이</span>
+          <h3 class="tab-title">성향·지역 맞춤 미술관·전시·역사 코스</h3>
+          <p class="tab-desc">거주 권역과 아이 관심사를 1:1 매칭한 이번 주말 핀셋 나들이 코스와 연계 도서 세트입니다.</p>
+        </div>
+        <div class="bento-card" id="outing-report-card">
+          <!-- Will be rendered by Milestone 3 domain engine -->
+          <div class="report-placeholder" style="text-align: center; padding: 2rem 1rem;">
+            <p style="font-weight: 700; color: var(--coral-alert); font-size: 1.1rem; margin-bottom: 0.5rem;">🏛️ 8개 권역 × 5개 테마 핀셋 나들이 코스 매칭 완료</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">이번 주말 추천 동선 및 전후 연계 도서 패키지 준비 중</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Tier Monetization Appendix Container -->
+      <div id="monetization-appendix-container"></div>
+
     </section>
 
   </main>
 
-  <!-- 하단 푸터 -->
-  <footer class="bg-white border-t border-slate-200 mt-12 py-8 pb-24 lg:pb-8 text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-4 space-y-3">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-2">
-          <span class="bg-slate-800 text-white font-extrabold px-2 py-0.5 rounded text-xs">MoneyFit</span>
-          <span class="font-bold text-slate-700">머니핏 손익분기점 & 맞춤 견적 포털</span>
-        </div>
-        <div>
-          <span>© 2026 MoneyFit Studio. All rights reserved.</span>
-        </div>
-      </div>
-      <p id="footer-legal-disclaimer" class="leading-relaxed text-slate-400 break-keep text-xs sm:text-sm">
-        ⚖️ <strong>[면책 안내]</strong> 본 사이트의 모든 계산 결과는 표준 요율·통계 기반 참고용 시뮬레이션이며, 실제 청구 요금·금리·절세액·사은품은 계약 시점 각 공급사의 공식 약관에 따릅니다.
-      </p>
-      <p id="footer-ftc-disclosure" class="text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-200 leading-relaxed break-keep text-xs sm:text-sm">
-        ℹ️ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 링크프라이스 등 제휴 활동으로 소정의 커미션을 제공받을 수 있으나 구매자 추가 부담은 없습니다.
-      </p>
+  <!-- Clinic Footer -->
+  <footer class="clinic-footer">
+    <div class="footer-disclaimer">
+      본 서비스의 진단 및 처방 결과는 질병관리청 2017 소아청소년 성장도표와 보건복지부 한국 영유아 발달선별검사(K-DST) 공표 데이터를 기반으로 산출된 육아·발달 참고 정보이며, 소아청소년과 전문의의 의학적 진료나 치료를 대신하지 않습니다.
+    </div>
+    <div class="footer-copyright" id="footer-copyright" title="KidsFit Studio">
+      © 2026 KidsFit Studio
     </div>
   </footer>
 
-  <!-- [CRO Upgrade 3 + Staff Feedback Round 3] 모바일 전용 하단 고정 1-Tap 수익 전환 바 -->
-  <div id="mobile-sticky-cta-bar" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-700 px-3.5 py-2.5 shadow-2xl">
-    <div class="max-w-xl mx-auto flex items-center justify-between gap-2.5">
-      <div class="min-w-0 flex-1">
-        <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
-          <span id="sticky-cta-sub" class="text-xs font-extrabold text-amber-300 truncate">계산 완료</span>
-          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-black px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap">🚀 내일도착·무료반품</span>
-        </div>
-        <div id="sticky-cta-main" class="text-sm sm:text-base font-black text-white truncate mt-0.5">맞춤 최저가·지원금 조회</div>
+  <!-- Secret Admin Modal (Hidden by default) -->
+  <div class="admin-modal-overlay" id="admin-modal" style="display: none;" aria-hidden="true">
+    <div class="admin-card">
+      <div class="admin-header">
+        <h3 class="admin-title">🔒 KidsFit 시크릿 관리자 스튜디오</h3>
+        <button type="button" class="admin-close-btn" id="btn-close-admin" aria-label="닫기">✕</button>
       </div>
-      <a id="sticky-cta-btn" href="https://link.coupang.com/a/hWnhNJFy1Y" target="_blank" rel="noopener noreferrer sponsored"
-         onclick="recordAffiliateClick('sticky_mobile', this.href, 'sticky_mobile')"
-         class="shrink-0 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-sm px-3.5 py-3 rounded-xl shadow-md transition whitespace-nowrap">
-        최저가 보기 ↗
-      </a>
+      <div class="admin-body">
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+          제휴 파트너스 ID 및 마케팅 채널 URL을 설정하면 모든 추천 버튼 및 영수증 링크에 실시간 반영됩니다.
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="cfg-coupang">쿠팡 파트너스 서브 ID</label>
+          <input type="text" id="cfg-coupang" class="form-input" value="AF7865143">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-linkprice">링크프라이스 제휴 ID</label>
+          <input type="text" id="cfg-linkprice" class="form-input" value="A100708867">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-tenping">CPA / 텐핑 식별 코드</label>
+          <input type="text" id="cfg-tenping" class="form-input" value="010-****-2370">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-cafe">네이버 카페 커뮤니티 URL</label>
+          <input type="url" id="cfg-cafe" class="form-input" value="https://cafe.naver.com/kidsfitgrowth">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-blog">네이버 블로그 URL</label>
+          <input type="url" id="cfg-blog" class="form-input" value="https://blog.naver.com/kidsfit_studio">
+        </div>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-admin">취소</button>
+          <button type="button" class="btn btn-primary" id="btn-save-admin">저장 및 실시간 동기화</button>
+        </div>
+
+        <!-- Secret Admin OSMU 4-Channel Marketing Studio Container -->
+        <div id="admin-osmu-container"></div>
+      </div>
     </div>
   </div>
 
-  <!-- 스크립트 모듈 로드 순서: 계산기 SSOT -> 프리셋 SSOT -> 수익화 SSOT -> 바이럴 원고 -> 웹툰 스토리 SSOT -> UI 홍보 키트 -> 앱 로직 -->
-  <script src="src/data/calculators.js?v=20261018_ep36"></script>
-  <script src="src/data/presets.js?v=20261018_ep36"></script>
-  <script src="src/data/coupang-official-links.js?v=20261018_ep36"></script>
-  <script src="src/data/sourced-products.js?v=20261018_ep36"></script>
-  <script src="src/data/monetization.js?v=20261018_ep36"></script>
-  <script src="src/data/viral-content.js?v=20261018_ep36"></script>
-  <script src="src/data/webtoon-stories.js?v=20261018_ep36"></script>
-  <script src="src/data/growth-pivot-state.js?v=20261018_ep36"></script>
-  <script src="src/js/ui-copy-kit.js?v=20261018_ep36"></script>
-  <script src="src/js/app.js?v=20261018_ep36"></script>
-  <script>
-    (function() {
-      fetch('/api/stats')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data && data.today) {
-            var uvEl = document.getElementById('status-today-uv');
-            var pvEl = document.getElementById('status-today-pv');
-            var botEl = document.getElementById('status-today-bots');
-            var clkEl = document.getElementById('status-click-count');
-            var ctrEl = document.getElementById('status-ctr-percent');
-            var topSlotEl = document.getElementById('status-top-slot');
-            if (uvEl) uvEl.textContent = String(data.today.uniqueVisitors || 1);
-            if (pvEl) pvEl.textContent = String(data.today.pageViews || 1);
-            if (botEl) botEl.textContent = String(data.today.botCrawls || 0);
-            if (clkEl && data.today.affiliateClicks !== undefined) {
-              clkEl.textContent = String(data.today.affiliateClicks || 0);
-            }
-            if (ctrEl && data.today.ctrPercent !== undefined) {
-              ctrEl.textContent = String(data.today.ctrPercent) + '%';
-            }
-            if (topSlotEl && data.totals && data.totals.topSlot) {
-              topSlotEl.textContent = String(data.totals.topSlot);
-            }
-          }
-        })
-        .catch(function() {});
-    })();
-  </script>
+  <script src="src/data/data-bundle.js"></script>
+  <script src="src/js/growth-engine.js"></script>
+  <script src="src/js/development-engine.js"></script>
+  <script src="src/js/weekend-curator.js"></script>
+  <script src="src/js/monetization.js"></script>
+  <script src="src/js/admin-osmu.js"></script>
+  <script src="src/js/app.js"></script>
 </body>
 </html>

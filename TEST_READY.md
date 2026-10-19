@@ -1,68 +1,81 @@
-# MoneyFit Portal - Test Suite Ready Report (TEST_READY.md)
+# TEST_READY: KidsFit Growth Studio Automated Test Suite
 
-> **Execution Status**: `TEST_READY`  
-> **Total Automated Tests**: 80 Tests across 4 Tiers (100% Pass)  
-> **Master Acceptance Verifier**: Ready (`scripts/verify-acceptance.js`)  
-> **Test Framework**: Pure Node.js Built-in (`node:assert`, `node:fs`, `node:path`) - Zero External Dependencies  
-> **Timestamp**: 2026-10-14T11:00:00Z  
+## Executive Status: READY (100% PASSING)
 
----
-
-## 1. Test Architecture & Tier Summary
-
-The MoneyFit portal test infrastructure is organized into 4 distinct verification tiers plus a master acceptance verifier, delivering full end-to-end coverage of the 6 core calculators, 5 monetization pipelines, strict invariant constraints, and real-world workloads.
-
-| Tier | Suite File | Total Tests | Pass | Fail | Execution Time | Scope / Target |
-|:---|:---|:---:|:---:|:---:|:---:|:---|
-| **Tier 1** | `tests/tier1-features.test.js` | 30 | 30 | 0 | 40ms | Feature nominal coverage (5 tests per calculator $\times$ 6 calculators) |
-| **Tier 2** | `tests/tier2-boundaries.test.js` | 30 | 30 | 0 | 7ms | Extreme inputs, tier transitions, clamping, 1,200kcal floor, 15M deduction cap |
-| **Tier 3** | `tests/tier3-interactions.test.js` | 14 | 14 | 0 | 7ms | Strict BOM budget $\le$ user budget invariant, Coupang/LinkPrice/CPA link synthesis, revenue simulation math |
-| **Tier 4** | `tests/tier4-workloads.test.js` | 6 | 6 | 0 | 2ms | Real-world personas (studio move-in, summer surge, diet prep, auto TCO, puppy care, telecom switch) |
-| **TOTAL** | `tests/run-all.js` | **80** | **80** | **0** | **56ms** | **Full Automated Test Suite Execution** |
+- **Target System**: KidsFit Growth Studio (키즈핏 그로스 스튜디오)
+- **Deployment Domain**: `truthofmarket.com`
+- **Verification Date**: 2026-10-19T11:52:00Z
+- **Test Runner Command**: `npm test`
+- **Total Test Suites**: 2
+- **Total Executed Tests**: 149 tests (124 in `tests/e2e-kidsfit.test.js`, 25 in `tests/ui-onboarding.test.js`)
+- **Passing Tests**: 149 (100%)
+- **Failing Tests**: 0 (0%)
+- **Exit Code**: `0`
 
 ---
 
-## 2. Master Programmatic Acceptance Verifier (`scripts/verify-acceptance.js`)
+## 1. Test Suite Architecture & Breakdown
 
-`scripts/verify-acceptance.js` provides comprehensive verification across all 4 project Acceptance Criteria:
+The test suite is structured strictly according to the **4-Tier Testing Methodology** specified in `TEST_INFRA.md`:
 
-| Acceptance Criteria | Description | Current Status | Notes |
-|:---|:---|:---:|:---|
-| **AC 1** | 6 Life Calculators Domain Math & BOM Budget Invariant | **PASS (18/18 Scenarios)** | Verified nominal outputs and strict budget constraint ($\sum \text{BOM} \le B$) across 11 budget bands |
-| **AC 2** | 36 Programmatic SEO Static HTML Pages (SSG) & Indexing | *PENDING (M3)* | Validates unique title/meta, `<table>`, `WebApplication` + `FAQPage` JSON-LD, 1,500+ Korean chars, sitemap, robots, IndexNow dry-run |
-| **AC 3** | Monetization Pipelines & Viral Marketing Bundles | *PENDING (M4)* | Validates `monetization.config.json`, 36 viral post bundles in `viral_posts/`, and sniper engine output |
-| **AC 4** | Autonomous Night Growth Routine & Launch Readiness | *PENDING (M4/M5)* | Validates `night-growth.js --dry-run`, `일일_야간작업_리포트.md`, and `LAUNCH_GUIDE.md` |
+| Tier | Tier Name | Purpose | Test Count | Pass | Fail | Execution Time |
+|:---:|:---|:---|:---:|:---:|:---:|:---:|
+| **Tier 1** | Feature Coverage | Nominal happy path coverage across 12 functional domains ($\ge 5$ tests each) | **73** | 73 | 0 | 18ms |
+| **Tier 2** | Boundary & Corner Cases | Extreme boundaries, fallbacks, statutory limits, and security timeouts | **31** | 31 | 0 | 7ms |
+| **Tier 3** | Cross-Feature Combinations | Multi-dimensional interactions (Presets × Habits × Outings × Budgets) and mathematical invariants | **15** | 15 | 0 | 4ms |
+| **Tier 4** | Real-World Persona Scenarios | Full end-to-end parent diagnostic workflows (5 authentic Korean 3040 personas) | **5** | 5 | 0 | 3ms |
+| **UI** | UI & Onboarding Structure | Milestone 2 Design tokens, Warm Ivory CSS, trust badges, 6-step deep form navigation | **25** | 25 | 0 | 8ms |
+| **TOTAL** | **Full Project Verification** | **Zero-dependency deterministic offline verification** | **149** | **149** | **0** | **~40ms** |
 
 ---
 
-## 3. How to Execute Tests
+## 2. Feature Inventory Verification Matrix
 
+| Feature ID | Feature Description | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Verification Status |
+|:---|:---|:---:|:---:|:---:|:---:|:---:|
+| **F01** | 6 Quick Presets Auto-load (2~3yo, 4~5yo, 7~9yo, 10~13yo, 12~23mo, Working Mom) | 7 | 2 | 6 | 5 | **VERIFIED** |
+| **F02** | 6-Step Deep Diagnosis Form (Profile, Puberty, K-DST, Philosophy, Interests, Budget) | 6 | 5 | 6 | 5 | **VERIFIED** |
+| **F03** | Mid-Parental Height (MPH) Formula (Boy: `(F+M+13)/2`, Girl: `(F+M-13)/2`, Gender Delta 13cm) | 6 | 5 | 6 | 5 | **VERIFIED** |
+| **F04** | KDCA 2017 LMS Growth Percentiles (Box-Cox Z-score, CDF, 3rd~97th, Median Delta) | 6 | 6 | 3 | 4 | **VERIFIED** |
+| **F05** | 3-Tier Predicted Height Bar Chart (MPH, Unmanaged Habit Loss, Golden Time Max Potential) | 6 | 5 | 6 | 5 | **VERIFIED** |
+| **F06** | K-DST 6-Axis Radar & SVG Geometry (Fine Motor, Cognitive, Language, Social, Self-Care, Gross) | 6 | 3 | 3 | 3 | **VERIFIED** |
+| **F07** | Age-based Education Decision Matrix (Montessori vs Froebel/Gabe vs Waldorf vs Science) | 6 | 3 | 3 | 4 | **VERIFIED** |
+| **F08** | TOP 4 Toys Curation with Pedagogical Rationale & Coupang Rocket Delivery | 6 | 2 | 2 | 3 | **VERIFIED** |
+| **F09** | 8 Regions × 5 Themes = 40 Weekend Outing Catalog & Pre/Post Book Packages | 6 | 1 | 6 | 5 | **VERIFIED** |
+| **F10** | 4 Monetization Layers (CPA, 5-item grocery receipt UI, hardware upsell, Kakao share) | 6 | 3 | 6 | 5 | **VERIFIED** |
+| **F11** | Secret Admin Triggers (`?admin=1`, 5 footer clicks) & Storage Persistence | 6 | 5 | 2 | 1 | **VERIFIED** |
+| **F12** | OSMU 4-Channel Marketing Studio (Webtoon 6-cut, 15s Shorts, 2,000-char Blog, Cafe Post) | 6 | 2 | 1 | 1 | **VERIFIED** |
+
+---
+
+## 3. How to Run the Tests
+
+### Primary Test Runner
 ```bash
-# 1. Run all 80 automated unit & integration tests
-node tests/run-all.js
+npm test
+```
+*Expected output: Exit code 0, 149/149 tests passing.*
 
-# 2. Run master acceptance verifier (all criteria)
-node scripts/verify-acceptance.js
+### Direct E2E Suite Execution
+```bash
+node tests/e2e-kidsfit.test.js
+```
 
-# 3. Run master acceptance verifier for AC 1 only (Core Calculators)
-node scripts/verify-acceptance.js --ac1
-
-# 4. Run individual test tiers
-node tests/tier1-features.test.js
-node tests/tier2-boundaries.test.js
-node tests/tier3-interactions.test.js
-node tests/tier4-workloads.test.js
+### Build & Acceptance Pipeline Verification
+```bash
+npm run build
+npm run verify
 ```
 
 ---
 
-## 4. Authoritative Verification Sources
+## 4. Test Invariants & Integrity Assurance
 
-Every test case and assertion was derived directly from authoritative domain specifications:
-1. **KEPCO Residential Progressive Rates**: 3 tiers (120.0원, 214.6원, 307.3원), summer thresholds (300/450kWh), climate charge (9원), fuel adjustment (5원), VAT (10%), basis fund (3.7%).
-2. **Mifflin-St Jeor BMR & TDEE**: Gender-specific equations, 2.0g protein/kg, 1200 kcal floor, exact grocery conversions (chicken breast 23g, brown rice 65g, WPI 30g).
-3. **Veterinary Clinical Nutrition (WSAVA / NRC)**: $\text{RER} = 70 \times W^{0.75}$, $\text{DER} = \text{RER} \times \text{factor}$, daily grams, paper cup (80g) conversion, days per bag.
-4. **Strict BOM Budget Invariant**: Refrigerator (24%), Washing Machine (22%), Bed (20%), TV (16%), Small Appliances (18%) guaranteeing $\sum \text{items} \le \text{budget}$.
-5. **Vehicle TCO & Tax Deduction**: 7% acquisition tax, $1,450,000 annual insurance/tax, 5.5% installment interest, 15,000,000 KRW statutory business depreciation cap.
-6. **Telecom Contract Economics**: Immediate net cash, 36-month fee savings, and day-1 break-even logic.
-7. **Monetization Gateways**: Coupang `subid=mf_{calcId}_{afId}` and LinkPrice `click.linkprice.com/click.php` URL encoding standards.
+1. **Zero External Dependencies**: All assertions use Node.js core libraries (`assert`, `fs`, `path`).
+2. **Deterministic & Network-Free**: Tests run completely offline with no live HTTP calls to Coupang, Naver, or external APIs.
+3. **Strict Mathematical Boundaries**:
+   - $\text{Percentile} \in [0.1\%, 99.9\%]$
+   - $\text{HabitLoss} \le 5.0\text{cm}$
+   - $\text{ReceiptDailyAverage} = \text{round}(\text{Receipt4WeekTotal} / 30)$
+   - $\text{SVG Radar Coordinates} \in [0, 300] \times [0, 300]$
+   - $40\text{ Outing Courses} = 8\text{ Regions} \times 5\text{ Themes}$ (100% complete, 0 missing)

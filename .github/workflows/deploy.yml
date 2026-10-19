@@ -1,4 +1,4 @@
-name: Deploy MoneyFit Portal to Pages
+name: Deploy KidsFit Growth Studio to Pages
 
 on:
   push:
@@ -27,8 +27,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Build SSG & Sitemap
-        run: node scripts/build-ssg.js
+      - name: Build KidsFit Growth Studio
+        run: node scripts/build.js
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

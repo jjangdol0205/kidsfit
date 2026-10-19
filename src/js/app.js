@@ -1,2076 +1,912 @@
 /**
- * MoneyFit Web Portal Application Engine
- * Coordinates 6 Calculators, 5 Monetization Pipelines,
- * Setup Wizard, LocalStorage synchronization, and UI State.
+ * KidsFit Growth Studio (키즈핏 그로스 스튜디오)
+ * Core Application Engine & Onboarding Funnel (Milestone 2)
+ * 
+ * Features:
+ * - 6 Quick 1-Second Presets (Auto-fill & reactive trigger)
+ * - 6-Step Deep Diagnosis Onboarding Form (Validation, progress tracking)
+ * - Interactive Prescription Analysis Transition Overlay
+ * - 3 Floating Capsule Tab Navigation
+ * - Secret Admin Studio Trigger (5 consecutive clicks or ?admin=1)
+ * - Affiliate ID & URL synchronization via localStorage
  */
 
-(function () {
+(function (global) {
   'use strict';
 
-  // Active state
-  let currentCalc = 'electric';
-  let activeTab = 'calculators';
+  // Domain & Monetization Engine References
+  let GrowthEngine = typeof require !== 'undefined' ? require('./growth-engine') : (global.KidsFitGrowthEngine || null);
+  let DevelopmentEngine = typeof require !== 'undefined' ? require('./development-engine') : (global.KidsFitDevelopmentEngine || null);
+  let WeekendCurator = typeof require !== 'undefined' ? require('./weekend-curator') : (global.KidsFitWeekendCurator || null);
+  let Monetization = typeof require !== 'undefined' ? require('./monetization') : (global.KidsFitMonetization || null);
+  let AdminOsmu = typeof require !== 'undefined' ? require('./admin-osmu') : (global.KidsFitAdminOsmu || null);
 
-  // 36 Golden Keyword SEO Presets
-  const SEO_PRESETS = [
-    { id: "electric-studio-ac", calc: "electric", title: "원룸 벽걸이 에어컨 하루 10시간 한 달 전기세 계산", inputs: { wattage: 650, hours: 10, baseKwh: 150, newPrice: 550000, isSummer: true } },
-    { id: "electric-stand-ac", calc: "electric", title: "30평대 2in1 스탠드 에어컨 누진세 3단계 폭탄 계산", inputs: { wattage: 2200, hours: 12, baseKwh: 310, newPrice: 1850000, isSummer: true } },
-    { id: "electric-dehumidifier", calc: "electric", title: "여름철 제습기 24시간 가동 시 전기요금 & 1등급 교체 손익", inputs: { wattage: 320, hours: 24, baseKwh: 220, newPrice: 380000, isSummer: true } },
-    { id: "electric-dryer", calc: "electric", title: "전기 의류건조기 주 4회 사용 시 한 달 전기세", inputs: { wattage: 1400, hours: 2, baseKwh: 280, newPrice: 950000, isSummer: false } },
-    { id: "electric-winter-heater", calc: "electric", title: "겨울철 2000W 전기온풍기 하루 8시간 난방비 폭탄 진단", inputs: { wattage: 2000, hours: 8, baseKwh: 250, newPrice: 450000, isSummer: false } },
-    { id: "electric-inverter-roi", calc: "electric", title: "10년 된 구형 정속형 에어컨 vs 1등급 인버터 교체 회수기간", inputs: { wattage: 1800, hours: 8, baseKwh: 200, newPrice: 850000, isSummer: true } },
-    { id: "diet-male-fatloss", calc: "diet", title: "남자 80kg 체지방 컷팅 TDEE 및 닭가슴살 4주 장보기 수량", inputs: { weight: 80, height: 178, weeks: 4, deficit: -500, gender: "male" } },
-    { id: "diet-female-lean", calc: "diet", title: "여자 55kg 슬림 다이어트 일일 탄단지 & 2주 식단 리스트", inputs: { weight: 55, height: 163, weeks: 2, deficit: -400, gender: "female" } },
-    { id: "diet-male-bulkup", calc: "diet", title: "마른 체형 65kg 벌크업 칼로리 잉여 식단 & 프로틴 섭취량", inputs: { weight: 65, height: 175, weeks: 4, deficit: 350, gender: "male" } },
-    { id: "diet-office-worker", calc: "diet", title: "앉아서 일하는 사무직 직장인 TDEE 및 점심 도시락 견적", inputs: { weight: 74, height: 172, weeks: 4, deficit: -450, gender: "male" } },
-    { id: "diet-student-budget", calc: "diet", title: "자취생·대학생 1주 가성비 헬스 식단 장보기 표", inputs: { weight: 70, height: 176, weeks: 1, deficit: -300, gender: "male" } },
-    { id: "diet-quick-3kg", calc: "diet", title: "한 달 단기 3kg 감량 칼로리 적자 계산 & 필수 식단 조합", inputs: { weight: 58, height: 160, weeks: 4, deficit: -550, gender: "female" } },
-    { id: "pet-maltese-5kg", calc: "pet", title: "5kg 말티즈 중성화 성견 하루 사료 급여량(g) & 소진일수", inputs: { petWeight: 5.0, factor: 1.6, kcalPerKg: 3650, bagKg: 2.0 } },
-    { id: "pet-pomeranian-puppy", calc: "pet", title: "생후 4개월 1.5kg 포메라니안 퍼피 고단백 사료 급여량", inputs: { petWeight: 1.5, factor: 2.8, kcalPerKg: 3900, bagKg: 1.5 } },
-    { id: "pet-golden-retriever", calc: "pet", title: "30kg 골든리트리버 대형견 하루 사료량 & 12kg 포대 소진일", inputs: { petWeight: 30.0, factor: 1.6, kcalPerKg: 3500, bagKg: 12.0 } },
-    { id: "pet-korean-shorthair", calc: "pet", title: "4.5kg 코숏 고양이 중성화 비만 방지 건사료 급여량", inputs: { petWeight: 4.5, factor: 1.2, kcalPerKg: 3800, bagKg: 2.0 } },
-    { id: "pet-senior-cat", calc: "pet", title: "10살 이상 노령묘 신장·관절 케어 사료량 및 소진 주기", inputs: { petWeight: 3.8, factor: 1.1, kcalPerKg: 3600, bagKg: 1.5 } },
-    { id: "pet-monthly-budget", calc: "pet", title: "소형견 4kg 첫 입양 사료 급여량 및 월 고정비 진단", inputs: { petWeight: 4.0, factor: 1.6, kcalPerKg: 3700, bagKg: 2.0 } },
-    { id: "room-oneroom-100", calc: "room", title: "원룸 자취방 100만 원 필수 가전·가구 초가성비 풀세팅", inputs: { budgetMan: 100, roomSize: 6, priority: "가성비" } },
-    { id: "room-officetel-300", calc: "room", title: "신축 오피스텔 300만 원 화이트 감성 가전·가구 최적 배분", inputs: { budgetMan: 300, roomSize: 10, priority: "화이트 감성" } },
-    { id: "room-officetel-500", calc: "room", title: "1.5룸·투룸 500만 원 로봇청소기·침대 포함 프리미엄 견적", inputs: { budgetMan: 500, roomSize: 15, priority: "가성비" } },
-    { id: "room-newlywed-1000", calc: "room", title: "신혼부부 1,000만 원 가성비 신혼가전 풀세팅 패키지", inputs: { budgetMan: 1000, roomSize: 24, priority: "가성비" } },
-    { id: "room-minimalist-50", calc: "room", title: "단기 거주 50만 원 미니멀 자취 필수 생존템 견적", inputs: { budgetMan: 50, roomSize: 5, priority: "가성비" } },
-    { id: "room-appliances-only", calc: "room", title: "옵션 없는 원룸 150만 원 필수 에너지 1등급 가전 조합", inputs: { budgetMan: 150, roomSize: 7, priority: "가전 집중" } },
-    { id: "auto-avante-3000", calc: "auto", title: "20대 사회초년생 3,000만 원 아반떼 장기렌트 vs 할부 비교", inputs: { carPriceMan: 3000, months: 60, taxRate: 0, downPaymentRate: 20, interestRate: 5.5, driverAge: "under26" } },
-    { id: "auto-grandeur-5000", calc: "auto", title: "개인/법인사업자 5,000만 원 그랜저 장기렌트 절세 손익", inputs: { carPriceMan: 5000, months: 48, taxRate: 24, downPaymentRate: 20, interestRate: 5.5, driverAge: "over26" } },
-    { id: "auto-tucson-hybrid", calc: "auto", title: "3,800만 원 투싼 하이브리드 48개월 장기렌트 vs 할부 비교", inputs: { carPriceMan: 3800, months: 48, taxRate: 15, downPaymentRate: 20, interestRate: 5.5, driverAge: "over26" } },
-    { id: "auto-genesis-g80", calc: "auto", title: "7,000만 원 제네시스 G80 법인/고소득자 36개월 렌트 손익", inputs: { carPriceMan: 7000, months: 36, taxRate: 35, downPaymentRate: 20, interestRate: 5.5, driverAge: "over35" } },
-    { id: "auto-casper-cash-vs-rent", calc: "auto", title: "1,800만 원 캐스퍼 초보운전 보험료 포함 할부 vs 렌트", inputs: { carPriceMan: 1800, months: 36, taxRate: 0, downPaymentRate: 20, interestRate: 5.5, driverAge: "under26" } },
-    { id: "auto-ev-ioniq", calc: "auto", title: "5,500만 원 아이오닉 전기차 48개월 장기렌트 손익 계산", inputs: { carPriceMan: 5500, months: 48, taxRate: 24, downPaymentRate: 20, interestRate: 5.5, driverAge: "over26" } },
-    { id: "telecom-penalty-15", calc: "telecom", title: "인터넷+TV 잔여 위약금 15만 원 시 타사 이동 사은품 순수익", inputs: { penaltyMan: 15, oldFee: 44000, newFee: 38500, cashGiftMan: 47 } },
-    { id: "telecom-penalty-30", calc: "telecom", title: "약정 1년 남은 통신 위약금 30만 원 vs 사은품 47만 원 손익", inputs: { penaltyMan: 30, oldFee: 51000, newFee: 41000, cashGiftMan: 47 } },
-    { id: "telecom-3yr-expired", calc: "telecom", title: "인터넷 3년 약정 만기(위약금 0원) 신규 이동 시 47만 원 혜택", inputs: { penaltyMan: 0, oldFee: 45000, newFee: 36000, cashGiftMan: 47 } },
-    { id: "telecom-single-oneroom", calc: "telecom", title: "자취방 인터넷 단독 위약금 8만 원 vs 지원금 25만 원 비교", inputs: { penaltyMan: 8, oldFee: 33000, newFee: 22000, cashGiftMan: 25 } },
-    { id: "telecom-family-4p", calc: "telecom", title: "온가족 4인 인터넷+TV 통합 변경 시 최대 사은품 손익 계산", inputs: { penaltyMan: 12, oldFee: 55000, newFee: 39000, cashGiftMan: 47 } },
-    { id: "telecom-mvno-switch", calc: "telecom", title: "5G 고가 요금제 → 알뜰폰 유심 요금제 전환 시 24개월 절감액", inputs: { penaltyMan: 10, oldFee: 62000, newFee: 42000, cashGiftMan: 45 } }
+  // 1. Definition of 6 Quick 1-Second Presets
+  const PRESETS = {
+    'preset-1': {
+      id: 'preset-1',
+      label: '만 2~3세 소근육·감각 골든타임 (몬테소리 입문 & 촉각 미술관 코스)',
+      gender: 'girl',
+      ageMonths: 36,
+      currentHeight: 95.0,
+      currentWeight: 14.2,
+      fatherHeight: 175.0,
+      motherHeight: 162.0,
+      region: '서울 강남·서초·송파',
+      pubertyStage: 'none',
+      habits: ['milk_trouble', 'picky_eater'],
+      developmentConcerns: ['fine_motor', 'emotion_art'],
+      philosophy: 'montessori',
+      interest: 'art_making',
+      budgetTier: 'tier_15_30'
+    },
+    'preset-2': {
+      id: 'preset-2',
+      label: '만 4~5세 수리·공간 창의력 & 편식 아이 폭풍 성장 플랜 (은물·가베·자석교구 & 공룡·과학 코스)',
+      gender: 'boy',
+      ageMonths: 60,
+      currentHeight: 109.0,
+      currentWeight: 18.5,
+      fatherHeight: 173.0,
+      motherHeight: 160.0,
+      region: '경기 남부(분당·수원·용인·동탄)',
+      pubertyStage: 'none',
+      habits: ['picky_eater', 'late_sleep'],
+      developmentConcerns: ['math_space'],
+      philosophy: 'froebel_gabe',
+      interest: 'dino_nature',
+      budgetTier: 'tier_15_30'
+    },
+    'preset-3': {
+      id: 'preset-3',
+      label: '초등 저학년 역사·예술 흥미 유발 & 또래 키 상위 20% 도약 플랜 (박물관 역사 코스 & 바른 자세 교정)',
+      gender: 'girl',
+      ageMonths: 96,
+      currentHeight: 126.5,
+      currentWeight: 25.0,
+      fatherHeight: 171.0,
+      motherHeight: 158.0,
+      region: '서울 강북·마포·용산',
+      pubertyStage: 'growth_spurt',
+      habits: ['poor_posture'],
+      developmentConcerns: ['language_reading', 'math_space'],
+      philosophy: 'waldorf_art',
+      interest: 'history_tradition',
+      budgetTier: 'tier_15_30'
+    },
+    'preset-4': {
+      id: 'preset-4',
+      label: '초등 고학년 사춘기 신호 시작! 성장판 닫히기 전 마지막 숨은 키 7cm 집중 플랜',
+      gender: 'boy',
+      ageMonths: 132,
+      currentHeight: 144.0,
+      currentWeight: 38.0,
+      fatherHeight: 172.0,
+      motherHeight: 160.0,
+      region: '경기 북부·인천',
+      pubertyStage: 'urgent_secondary_signs',
+      habits: ['late_sleep', 'poor_posture'],
+      developmentConcerns: ['gross_motor'],
+      philosophy: 'science_coding',
+      interest: 'space_science',
+      budgetTier: 'tier_unlimited'
+    },
+    'preset-5': {
+      id: 'preset-5',
+      label: '영아기(만 12~23개월) 대근육·오감 자극 & 우유 배앓이 없는 기초 뼈성장 루틴',
+      gender: 'boy',
+      ageMonths: 18,
+      currentHeight: 82.0,
+      currentWeight: 11.5,
+      fatherHeight: 176.0,
+      motherHeight: 163.0,
+      region: '부산·경남',
+      pubertyStage: 'none',
+      habits: ['milk_trouble'],
+      developmentConcerns: ['gross_motor', 'fine_motor'],
+      philosophy: 'montessori',
+      interest: 'music_musical',
+      budgetTier: 'tier_5_10'
+    },
+    'preset-6': {
+      id: 'preset-6',
+      label: '바쁜 워킹맘 전용 주말 3시간 고효율 육아 (실패 없는 발달 장난감 TOP 3 + 집 근처 예약 필수 전시 코스)',
+      gender: 'girl',
+      ageMonths: 48,
+      currentHeight: 102.5,
+      currentWeight: 16.0,
+      fatherHeight: 174.0,
+      motherHeight: 161.0,
+      region: '서울 강남·서초·송파',
+      pubertyStage: 'none',
+      habits: ['poor_posture', 'late_sleep'],
+      developmentConcerns: ['fine_motor', 'language_reading'],
+      philosophy: 'montessori',
+      interest: 'art_making',
+      budgetTier: 'tier_15_30'
+    }
+  };
+
+  // 2. Stepper Meta Information
+  const STEP_INFO = [
+    {
+      step: 1,
+      title: '아이 기본 프로필 & 거주 지역',
+      subtitle: '질병관리청 표준 성장도표 백분위와 지역 맞춤 나들이 매칭에 활용됩니다.'
+    },
+    {
+      step: 2,
+      title: '신체 성장 & 사춘기 골든타임 체크',
+      subtitle: '사춘기 신호와 성장 방해 습관에 따른 잠재키 손실치를 진단합니다.'
+    },
+    {
+      step: 3,
+      title: '두뇌 & 소근육 발달 고민 체크',
+      subtitle: '보건복지부 K-DST 6대 영역 기준 맞춤 발달 밸런스를 측정합니다.'
+    },
+    {
+      step: 4,
+      title: '선호 교육철학 & 교구 성향',
+      subtitle: '아이 성향과 부모님의 교육 방향에 부합하는 교구를 판정합니다.'
+    },
+    {
+      step: 5,
+      title: '아이 관심사 테마 선택',
+      subtitle: '이번 주말 아이가 가장 즐겁게 몰입할 나들이 코스를 연결합니다.'
+    },
+    {
+      step: 6,
+      title: '월 성장·교육 투자 예산 티어',
+      subtitle: '가계 부담 없이 지속 가능한 최적의 홈케어 솔루션을 제안합니다.'
+    }
   ];
 
-  // Helper references to modules
-  const getCalcModule = () => window.MoneyFitCalculators || {};
-  const getMonetizationModule = () => window.MoneyFitMonetization || {};
-  const getPresetsList = () => (window.MoneyFitPresets && window.MoneyFitPresets.PRESETS) || SEO_PRESETS;
-
-  let activeScenarioId = 'electric-studio-ac';
-  let activeScenarioExtraInputs = {};
-
-  // Short human-friendly chip labels for the 36 presets (Ultra-short 2~3 words)
-  const SCENARIO_CHIP_LABELS = {
-    'electric-studio-ac': '원룸 에어컨',
-    'electric-stand-ac': '30평 에어컨',
-    'electric-dehumidifier': '제습기 24시간',
-    'electric-dryer': '건조기 주 4회',
-    'electric-winter-heater': '겨울 온풍기',
-    'electric-inverter-roi': '1등급 교체',
-    'diet-male-fatloss': '남자 80kg 감량',
-    'diet-female-lean': '여자 55kg 슬림',
-    'diet-male-bulkup': '남자 65kg 증량',
-    'diet-office-worker': '직장인 도시락',
-    'diet-student-budget': '자취생 1주 식단',
-    'diet-quick-3kg': '한달 -3kg 단기',
-    'pet-maltese-5kg': '5kg 말티즈',
-    'pet-pomeranian-puppy': '1.5kg 포메 퍼피',
-    'pet-golden-retriever': '30kg 리트리버',
-    'pet-korean-shorthair': '4.5kg 고양이',
-    'pet-senior-cat': '10살 노령묘',
-    'pet-monthly-budget': '4kg 첫입양',
-    'room-oneroom-100': '원룸 100만원',
-    'room-officetel-300': '오피스텔 300만',
-    'room-officetel-500': '투룸 500만원',
-    'room-newlywed-1000': '신혼 1,000만',
-    'room-minimalist-50': '단기 50만원',
-    'room-appliances-only': '원룸 150만원',
-    'auto-avante-3000': '아반떼 3,000만',
-    'auto-grandeur-5000': '그랜저 5,000만',
-    'auto-tucson-hybrid': '투싼 3,800만',
-    'auto-genesis-g80': 'G80 7,000만',
-    'auto-casper-cash-vs-rent': '캐스퍼 1,800만',
-    'auto-ev-ioniq': '아이오닉 5,500만',
-    'telecom-penalty-15': '위약금 15만원',
-    'telecom-penalty-30': '위약금 30만원',
-    'telecom-3yr-expired': '3년 만기 (0원)',
-    'telecom-single-oneroom': '자취방 인터넷',
-    'telecom-family-4p': '4인 가족 결합',
-    'telecom-mvno-switch': '알뜰폰 전환'
+  // 3. Application State
+  const state = {
+    currentStep: 1,
+    maxStep: 6,
+    activeTab: 'tab-growth',
+    activePresetId: null,
+    isPrescriptionIssued: false,
+    adminClickCount: 0,
+    adminTimer: null,
+    profile: {
+      gender: 'boy',
+      ageMonths: 48,
+      currentHeight: 104.5,
+      currentWeight: 17.2,
+      fatherHeight: 175.0,
+      motherHeight: 162.0,
+      region: '서울 강남·서초·송파',
+      pubertyStage: 'none',
+      habits: [],
+      developmentConcerns: ['fine_motor'],
+      philosophy: 'montessori',
+      interest: 'art_making',
+      budgetTier: 'tier_15_30'
+    }
   };
 
-  let lastCalcResult = null;
-  const SEASONAL_SURGE_PRESET_IDS = new Set([
-    'electric-winter-heater',
-    'electric-dryer',
-    'diet-male-fatloss',
-    'pet-maltese-5kg',
-    'room-oneroom-100',
-    'auto-grandeur-5000',
-    'telecom-penalty-15',
-    'telecom-3yr-expired'
-  ]);
+  // 4. Step Navigation Logic
+  function goToStep(stepNumber) {
+    if (stepNumber < 1) stepNumber = 1;
+    if (stepNumber > state.maxStep) stepNumber = state.maxStep;
 
-  /**
-   * Render 1-Click Scenario Chips & Contextual Deep-Dive Report Links
-   */
-  function renderScenarioChips(calcKey) {
-    const chipsContainer = document.getElementById('calc-scenario-chips');
-    const reportLink = document.getElementById('active-preset-report-link');
-    const relatedGrid = document.getElementById('related-category-reports-grid');
-    const presets = getPresetsList().filter(p => p.calc === calcKey);
+    state.currentStep = stepNumber;
 
-    if (!presets.length) return;
-    if (!presets.some(p => p.id === activeScenarioId)) {
-      activeScenarioId = presets[0].id;
-    }
+    if (typeof document === 'undefined') return;
 
-    if (reportLink) {
-      reportLink.href = `/preset/${activeScenarioId}/`;
-    }
-
-    if (chipsContainer) {
-      chipsContainer.innerHTML = presets.map(p => {
-        const isActive = p.id === activeScenarioId;
-        const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
-        const baseLabel = SCENARIO_CHIP_LABELS[p.id] || p.title.slice(0, 12);
-        const shortLabel = isSurge ? `🔥 ${baseLabel}` : baseLabel;
-        const cls = isActive
-          ? 'bg-blue-600 text-white border-blue-600 font-black shadow-sm'
-          : isSurge
-            ? 'bg-amber-50/80 text-rose-700 border-amber-300 hover:border-rose-400 font-semibold shadow-xs'
-            : 'bg-white text-slate-600 border-slate-200 hover:border-blue-500 hover:text-blue-700 font-normal';
-        return `<button type="button" onclick="applyScenarioPreset('${p.id}')" class="text-sm px-3.5 py-2 rounded-xl border transition whitespace-nowrap ${cls}">${shortLabel}</button>`;
-      }).join('');
-    }
-
-    if (relatedGrid) {
-      relatedGrid.innerHTML = presets.map(p => {
-        const isSurge = SEASONAL_SURGE_PRESET_IDS.has(p.id);
-        const shortTitle = SCENARIO_CHIP_LABELS[p.id] ? `${SCENARIO_CHIP_LABELS[p.id]} — ${p.title}` : p.title;
-        return `
-        <a href="/preset/${p.id}/" class="group flex items-center justify-between bg-white hover:bg-blue-50/50 border ${isSurge ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200'} hover:border-blue-400 rounded-xl p-3.5 transition">
-          <span class="text-sm font-medium text-slate-700 group-hover:text-blue-700 truncate pr-2">${isSurge ? '🔥 ' : ''}${shortTitle}</span>
-          <span class="text-xs font-bold text-blue-600 shrink-0 whitespace-nowrap">보기 →</span>
-        </a>
-      `;
-      }).join('');
-    }
-  }
-
-  const DEFAULT_CALC_ORDER = ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'];
-  const POPULAR_CHIP_BY_CALC = {
-    electric: { presetId: 'electric-winter-heater', label: '⚡ 온풍기·에어컨 전기세', hoverCls: 'hover:bg-rose-600' },
-    diet: { presetId: 'diet-male-fatloss', label: '🍗 80kg 닭가슴살 식단', hoverCls: 'hover:bg-emerald-600' },
-    pet: { presetId: 'pet-maltese-5kg', label: '🐶 5kg 말티즈 사료량', hoverCls: 'hover:bg-amber-600' },
-    room: { presetId: 'room-oneroom-100', label: '🛋️ 원룸 100만 풀세팅', hoverCls: 'hover:bg-teal-600' },
-    auto: { presetId: 'auto-grandeur-5000', label: '🚗 그랜저 렌트 절세', hoverCls: 'hover:bg-blue-600' },
-    telecom: { presetId: 'telecom-penalty-15', label: '🌐 인터넷 47만 현금', hoverCls: 'hover:bg-indigo-600' }
-  };
-
-  let serverClicksByCalc = {};
-  let serverClicksByItem = {};
-
-  function getMergedClicksByCalc() {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const localMap = config.clicksByCalc || {};
-    const merged = {};
-    DEFAULT_CALC_ORDER.forEach(c => {
-      merged[c] = (Number(serverClicksByCalc[c]) || 0) + (Number(localMap[c]) || 0);
-    });
-    return merged;
-  }
-
-  function getMergedClicksByItem() {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const localMap = config.clicksByItem || {};
-    const merged = Object.assign({}, serverClicksByItem);
-    Object.keys(localMap).forEach(k => {
-      merged[k] = (Number(merged[k]) || 0) + (Number(localMap[k]) || 0);
-    });
-    return merged;
-  }
-
-  function incrementCalcClick(calcKey, itemKey = '') {
-    if (!DEFAULT_CALC_ORDER.includes(calcKey)) return;
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const clicksByCalc = Object.assign({}, config.clicksByCalc || {});
-    clicksByCalc[calcKey] = (Number(clicksByCalc[calcKey]) || 0) + 1;
-    const clicksByItem = Object.assign({}, config.clicksByItem || {});
-    if (itemKey) {
-      clicksByItem[itemKey] = (Number(clicksByItem[itemKey]) || 0) + 1;
-    }
-    config.clicksByCalc = clicksByCalc;
-    config.clicksByItem = clicksByItem;
-    if (monetizationModule.saveConfigToStorage) {
-      monetizationModule.saveConfigToStorage({
-        clicksByCalc,
-        clicksByItem
-      });
-    }
-    reorderCalculatorsByClicks();
-  }
-
-  /**
-   * Dynamically reorder the 6 calculator tabs & popular TOP 4 chips so the most-clicked category is always #1 first!
-   */
-  function reorderCalculatorsByClicks() {
-    const counts = getMergedClicksByCalc();
-    const sortedCalcs = DEFAULT_CALC_ORDER.slice().sort((a, b) => {
-      const diff = (counts[b] || 0) - (counts[a] || 0);
-      if (diff !== 0) return diff;
-      return DEFAULT_CALC_ORDER.indexOf(a) - DEFAULT_CALC_ORDER.indexOf(b);
-    });
-
-    const navGrid = document.getElementById('calc-nav-grid');
-    if (navGrid) {
-      sortedCalcs.forEach((calcKey, idx) => {
-        const btn = document.getElementById(`calc-nav-${calcKey}`);
-        if (btn) {
-          navGrid.appendChild(btn);
-        }
-        const badge = document.getElementById(`calc-rank-badge-${calcKey}`);
-        if (badge) {
-          const cnt = counts[calcKey] || 0;
-          const cntSuffix = cnt > 0 ? ` · ${cnt}클릭` : '';
-          if (idx === 0) {
-            badge.textContent = `🔥 1위${cntSuffix}`;
-            badge.className = 'calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-rose-600 text-white shrink-0';
-          } else if (idx === 1) {
-            badge.textContent = `⚡ 2위${cntSuffix}`;
-            badge.className = 'calc-rank-badge text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 shrink-0';
-          } else {
-            badge.textContent = `${idx + 1}위${cntSuffix}`;
-            badge.className = 'calc-rank-badge text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0';
-          }
-        }
-      });
-    }
-
-    const popularChipsEl = document.getElementById('popular-calc-chips');
-    if (popularChipsEl) {
-      popularChipsEl.innerHTML = sortedCalcs.slice(0, 4).map((calcKey, idx) => {
-        const meta = POPULAR_CHIP_BY_CALC[calcKey] || POPULAR_CHIP_BY_CALC.electric;
-        const cnt = counts[calcKey] || 0;
-        const rankPrefix = idx === 0 ? '🥇 ' : (idx === 1 ? '🥈 ' : '');
-        const cntText = cnt > 0 ? ` (${cnt})` : '';
-        return `<button type="button" onclick="applyScenarioPreset('${meta.presetId}')" class="text-xs sm:text-sm font-semibold bg-white ${meta.hoverCls} text-slate-800 hover:text-white border border-amber-300 px-3.5 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">${rankPrefix}${meta.label}${cntText}</button>`;
-      }).join('');
-    }
-
-    return sortedCalcs;
-  }
-  window.reorderCalculatorsByClicks = reorderCalculatorsByClicks;
-
-  /**
-   * Apply a 1-Click Scenario Preset
-   */
-  window.applyScenarioPreset = function (presetId) {
-    const presets = getPresetsList();
-    const target = presets.find(p => p.id === presetId);
-    if (!target) return;
-    activeScenarioId = target.id;
-    activeScenarioExtraInputs = Object.assign({}, target.inputs);
-    window.selectCalc(target.calc, target.inputs, true);
-  };
-
-  /**
-   * Switch Active Calculator
-   */
-  window.selectCalc = function (calcKey, customInputs = null, isUserClick = false) {
-    currentCalc = calcKey;
-    if (!customInputs) {
-      activeScenarioExtraInputs = {};
-    }
-    if (isUserClick) {
-      incrementCalcClick(calcKey);
-      try {
-        if (typeof fetch === 'function') {
-          fetch(`/api/track?type=calc_click&calc=${encodeURIComponent(calcKey)}&p=/`, {
-            method: 'GET',
-            keepalive: true
-          }).catch(() => {});
-        }
-      } catch (e) {}
-    } else {
-      reorderCalculatorsByClicks();
-    }
-
-    const calcModule = getCalcModule();
-    const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[calcKey] : null;
-    if (!spec) return;
-
-    const titleEl = document.getElementById('calc-form-title');
-    if (titleEl) titleEl.textContent = spec.title;
-    const subtitleEl = document.getElementById('calc-form-subtitle');
-    if (subtitleEl) subtitleEl.textContent = spec.subtitle || '';
-
-    // Update calculator tab styles (Big-Font Toss Style)
-    document.querySelectorAll('.calc-nav-btn').forEach(btn => {
-      btn.className = "calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-white border-slate-200 hover:border-blue-400";
-    });
-    const activeBtn = document.getElementById(`calc-nav-${calcKey}`);
-    if (activeBtn) {
-      activeBtn.className = "calc-nav-btn p-4 rounded-2xl border-2 text-left transition bg-blue-50 border-blue-600 text-blue-900 font-bold shadow-sm";
-    }
-
-    renderScenarioChips(calcKey);
-
-    // Render input form controls (Calm 500 labels vs Bold 800 numeric inputs)
-    const container = document.getElementById('calc-inputs-container');
-    if (container) {
-      const nonCheckCount = spec.inputs.filter(i => i.type !== 'checkbox').length;
-      let nonCheckIdx = 0;
-      container.innerHTML = spec.inputs.map(inp => {
-        const val = customInputs && customInputs[inp.id] !== undefined ? customInputs[inp.id] : inp.value;
-        if (inp.type === "checkbox") {
-          return `
-            <div class="mobile-col-span-2 flex items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl border-2 border-slate-200">
-              <label for="inp-${inp.id}" class="text-sm sm:text-base font-medium text-slate-700 cursor-pointer truncate">${inp.label}</label>
-              <input id="inp-${inp.id}" type="checkbox" ${val ? 'checked' : ''}
-                onchange="recalculateCurrent()"
-                class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer shrink-0" />
-            </div>
-          `;
-        }
-        nonCheckIdx++;
-        const isLastOddItem = (nonCheckCount % 2 === 1) && (nonCheckIdx === nonCheckCount);
-        const spanCls = isLastOddItem ? 'mobile-col-span-2' : '';
-
-        if (inp.type === "select") {
-          const optionsHtml = (inp.options || []).map(opt => `
-            <option value="${opt.value}" ${val === opt.value ? 'selected' : ''}>${opt.label}</option>
-          `).join('');
-          return `
-            <div class="${spanCls}">
-              <label class="block text-sm sm:text-base font-medium text-slate-600 mb-1.5 truncate">${inp.label}</label>
-              <select id="inp-${inp.id}" onchange="recalculateCurrent()"
-                class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none bg-white text-slate-900">
-                ${optionsHtml}
-              </select>
-            </div>
-          `;
-        }
-        return `
-          <div class="${spanCls}">
-            <div class="flex items-center justify-between gap-2 mb-1.5">
-              <label class="block text-sm sm:text-base font-medium text-slate-600 truncate">${inp.label}</label>
-              <span id="label-val-${inp.id}" class="hidden sm:inline text-sm text-blue-600 font-bold shrink-0 whitespace-nowrap tabular-nums"></span>
-            </div>
-            <input id="inp-${inp.id}" type="number" value="${val}" min="${inp.min !== undefined ? inp.min : ''}" max="${inp.max !== undefined ? inp.max : ''}" step="${inp.step || '1'}"
-              oninput="recalculateCurrent()"
-              class="w-full border-2 border-slate-300 rounded-2xl px-4 py-3 text-lg font-extrabold focus:border-blue-600 focus:outline-none tabular-nums text-slate-900" />
-          </div>
-        `;
-      }).join('');
-    }
-
-    recalculateCurrent();
-  };
-  window.switchCalc = window.selectCalc;
-
-  /**
-   * Visual Marketing Contrast Formatters (강·중·약 위계 부여 & textContent 100% 보존)
-   */
-  function formatHeadlineContrastHtml(rawText) {
-    if (!rawText) return '';
-    // 1. Separate parenthetical suffix e.g. "(총 233,229원)" or "(종이컵 1.6컵)"
-    let mainPart = String(rawText);
-    let parenPart = '';
-    const parenMatch = mainPart.match(/(\s*\([^)]+\))\s*$/);
-    if (parenMatch) {
-      parenPart = `<span class="font-normal text-slate-400 text-[0.76em] tracking-normal">${parenMatch[1]}</span>`;
-      mainPart = mainPart.slice(0, mainPart.length - parenMatch[0].length);
-    }
-    // 2. Highlight core numbers/money (+187,942원, 56팩, 150만 원, +62만 원) in ExtraBlack Amber while keeping surrounding text Medium
-    const highlightedMain = mainPart.replace(
-      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kcal|kWh|팩|개|통|g|일|개월|%))/g,
-      '<strong class="font-black text-amber-300 underline decoration-amber-400/50 decoration-2 underline-offset-4">$1</strong>'
-    );
-    return `<span class="font-normal text-slate-100">${highlightedMain}</span>${parenPart}`;
-  }
-
-  function formatMatchTagContrastHtml(rawText) {
-    if (!rawText) return '';
-    let text = String(rawText);
-    // Make parenthetical e.g. "(7.8개월 본전)" lighter and slightly smaller without ever truncating
-    text = text.replace(
-      /(\([^)]+\))/g,
-      '<span class="font-normal text-amber-900/75 text-xs">$1</span>'
-    );
-    // Highlight only the core savings/quantity figure in ExtraBlack Rose/Amber
-    text = text.replace(
-      /([+-]?\d[\d,.]*\s*(?:만\s*원|원|kWh|kcal|팩|개|통|g|일분|일|%))/g,
-      '<strong class="font-black text-rose-600">$1</strong>'
-    );
-    return `<span class="font-medium text-amber-950">${text}</span>`;
-  }
-
-  function formatProductTitleContrastHtml(rawText) {
-    if (!rawText) return '';
-    return String(rawText).replace(
-      /(\s*\([^)]+\))/g,
-      '<span class="font-normal text-slate-500 text-sm">$1</span>'
-    );
-  }
-
-  function formatReasonContrastHtml(rawText) {
-    if (!rawText) return '';
-    return String(rawText).replace(
-      /([+-]?\d[\d,.]*\s*(?:만\s*원대|만\s*원|원|%|개월|일|팩|컵)(?:\s*(?:단축|절약|할인|차단|예방|보존|최저가))?)/g,
-      '<span class="font-semibold text-slate-800">$1</span>'
-    );
-  }
-
-  /**
-   * Recalculate and update UI
-   */
-  window.recalculateCurrent = function () {
-    const calcModule = getCalcModule();
-    const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[currentCalc] : null;
-    if (!spec) return;
-
-    const values = Object.assign({}, activeScenarioExtraInputs);
-    spec.inputs.forEach(inp => {
-      const el = document.getElementById(`inp-${inp.id}`);
-      if (el) {
-        if (inp.type === "checkbox") {
-          values[inp.id] = el.checked;
-        } else if (inp.type === "select") {
-          values[inp.id] = el.value;
+    // Toggle active step content
+    for (let i = 1; i <= state.maxStep; i++) {
+      const stepEl = document.getElementById(`step-content-${i}`);
+      if (stepEl) {
+        if (i === stepNumber) {
+          stepEl.classList.add('active');
         } else {
-          const parsed = parseFloat(el.value);
-          values[inp.id] = Number.isFinite(parsed) ? parsed : inp.value;
-          const valLabel = document.getElementById(`label-val-${inp.id}`);
-          if (valLabel && Number.isFinite(values[inp.id])) {
-            valLabel.textContent = values[inp.id].toLocaleString();
-          }
+          stepEl.classList.remove('active');
         }
-      } else if (values[inp.id] === undefined) {
-        values[inp.id] = inp.value;
       }
+    }
+
+    // Update Step Indicators
+    const tagEl = document.getElementById('quiz-step-tag');
+    if (tagEl) tagEl.textContent = `Step ${stepNumber} / ${state.maxStep}`;
+
+    const info = STEP_INFO[stepNumber - 1];
+    const titleEl = document.getElementById('quiz-step-title');
+    if (titleEl && info) titleEl.textContent = info.title;
+
+    const subtitleEl = document.getElementById('quiz-step-subtitle');
+    if (subtitleEl && info) subtitleEl.textContent = info.subtitle;
+
+    const percent = Math.round((stepNumber / state.maxStep) * 100);
+    const progressTextEl = document.getElementById('quiz-progress-text');
+    if (progressTextEl) progressTextEl.textContent = `${percent}% 완료`;
+
+    const progressFillEl = document.getElementById('quiz-progress-fill');
+    if (progressFillEl) progressFillEl.style.width = `${percent}%`;
+
+    // Button visibility
+    const prevBtn = document.getElementById('btn-prev-step');
+    const nextBtn = document.getElementById('btn-next-step');
+    const submitBtn = document.getElementById('btn-submit-quiz');
+
+    if (prevBtn) {
+      prevBtn.style.display = stepNumber === 1 ? 'none' : 'inline-flex';
+    }
+    if (nextBtn) {
+      nextBtn.style.display = stepNumber === state.maxStep ? 'none' : 'inline-flex';
+    }
+    if (submitBtn) {
+      submitBtn.style.display = stepNumber === state.maxStep ? 'inline-flex' : 'none';
+    }
+  }
+
+  function validateStep(stepNumber) {
+    if (typeof document === 'undefined') return true;
+
+    if (stepNumber === 1) {
+      const ageInput = document.getElementById('child-age-months');
+      const heightInput = document.getElementById('child-height');
+      const weightInput = document.getElementById('child-weight');
+      const fatherInput = document.getElementById('father-height');
+      const motherInput = document.getElementById('mother-height');
+
+      const age = ageInput ? parseFloat(ageInput.value) : state.profile.ageMonths;
+      const height = heightInput ? parseFloat(heightInput.value) : state.profile.currentHeight;
+      const weight = weightInput ? parseFloat(weightInput.value) : state.profile.currentWeight;
+      const father = fatherInput ? parseFloat(fatherInput.value) : state.profile.fatherHeight;
+      const mother = motherInput ? parseFloat(motherInput.value) : state.profile.motherHeight;
+
+      if (isNaN(age) || age < 12 || age > 216) {
+        alert('아이의 현재 월령을 12~216개월 사이로 입력해주세요.');
+        if (ageInput) ageInput.focus();
+        return false;
+      }
+      if (isNaN(height) || height < 50 || height > 210) {
+        alert('아이의 현재 키를 50~210cm 사이로 입력해주세요.');
+        if (heightInput) heightInput.focus();
+        return false;
+      }
+      if (isNaN(weight) || weight < 5 || weight > 120) {
+        alert('아이의 현재 몸무게를 5~120kg 사이로 입력해주세요.');
+        if (weightInput) weightInput.focus();
+        return false;
+      }
+      if (isNaN(father) || father < 130 || father > 220) {
+        alert('아빠 키를 130~220cm 사이로 입력해주세요.');
+        if (fatherInput) fatherInput.focus();
+        return false;
+      }
+      if (isNaN(mother) || mother < 120 || mother > 210) {
+        alert('엄마 키를 120~210cm 사이로 입력해주세요.');
+        if (motherInput) motherInput.focus();
+        return false;
+      }
+    } else if (stepNumber === 3) {
+      const checkedConcerns = document.querySelectorAll('input[name="kdst-concerns"]:checked');
+      if (checkedConcerns.length === 0) {
+        alert('보건복지부 K-DST 발달 고민 중 최소 1개 이상 항목을 선택해주세요.');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function nextStep() {
+    syncFormToState();
+    if (!validateStep(state.currentStep)) return;
+    goToStep(state.currentStep + 1);
+  }
+
+  function prevStep() {
+    goToStep(state.currentStep - 1);
+  }
+
+  // 5. Form Synchronization Logic
+  function syncFormToState() {
+    if (typeof document === 'undefined') return state.profile;
+
+    // Step 1
+    const genderChecked = document.querySelector('input[name="child-gender"]:checked');
+    if (genderChecked) state.profile.gender = genderChecked.value;
+
+    const ageInput = document.getElementById('child-age-months');
+    if (ageInput && ageInput.value) state.profile.ageMonths = parseInt(ageInput.value, 10);
+
+    const heightInput = document.getElementById('child-height');
+    if (heightInput && heightInput.value) state.profile.currentHeight = parseFloat(heightInput.value);
+
+    const weightInput = document.getElementById('child-weight');
+    if (weightInput && weightInput.value) state.profile.currentWeight = parseFloat(weightInput.value);
+
+    const fatherInput = document.getElementById('father-height');
+    if (fatherInput && fatherInput.value) state.profile.fatherHeight = parseFloat(fatherInput.value);
+
+    const motherInput = document.getElementById('mother-height');
+    if (motherInput && motherInput.value) state.profile.motherHeight = parseFloat(motherInput.value);
+
+    const regionSelect = document.getElementById('user-region');
+    if (regionSelect) state.profile.region = regionSelect.value;
+
+    // Step 2
+    const pubertyChecked = document.querySelector('input[name="puberty-stage"]:checked');
+    if (pubertyChecked) state.profile.pubertyStage = pubertyChecked.value;
+
+    const habitsChecked = document.querySelectorAll('input[name="growth-habits"]:checked');
+    state.profile.habits = Array.from(habitsChecked).map(el => el.value);
+
+    // Step 3
+    const kdstChecked = document.querySelectorAll('input[name="kdst-concerns"]:checked');
+    state.profile.developmentConcerns = Array.from(kdstChecked).map(el => el.value);
+
+    // Step 4
+    const philChecked = document.querySelector('input[name="teaching-philosophy"]:checked');
+    if (philChecked) state.profile.philosophy = philChecked.value;
+
+    // Step 5
+    const interestChecked = document.querySelector('input[name="child-interest"]:checked');
+    if (interestChecked) state.profile.interest = interestChecked.value;
+
+    // Step 6
+    const budgetChecked = document.querySelector('input[name="budget-tier"]:checked');
+    if (budgetChecked) state.profile.budgetTier = budgetChecked.value;
+
+    return state.profile;
+  }
+
+  function syncStateToForm(profile) {
+    if (!profile) profile = state.profile;
+    if (typeof document === 'undefined') return;
+
+    // Gender
+    const genderRadio = document.querySelector(`input[name="child-gender"][value="${profile.gender}"]`);
+    if (genderRadio) genderRadio.checked = true;
+
+    // Numeric inputs
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el && val !== undefined) el.value = val;
+    };
+    setVal('child-age-months', profile.ageMonths);
+    setVal('child-height', profile.currentHeight);
+    setVal('child-weight', profile.currentWeight);
+    setVal('father-height', profile.fatherHeight);
+    setVal('mother-height', profile.motherHeight);
+
+    // Region
+    const regionSelect = document.getElementById('user-region');
+    if (regionSelect && profile.region) regionSelect.value = profile.region;
+
+    // Puberty
+    const pubertyRadio = document.querySelector(`input[name="puberty-stage"][value="${profile.pubertyStage}"]`);
+    if (pubertyRadio) pubertyRadio.checked = true;
+
+    // Habits (multi-select)
+    const habitInputs = document.querySelectorAll('input[name="growth-habits"]');
+    habitInputs.forEach(input => {
+      input.checked = profile.habits.includes(input.value);
     });
 
-    const res = spec.calculate(values);
-    if (!res) return;
-    lastCalcResult = res;
-
-    // Update Mobile Live 1-Line Result Bar right below inputs
-    const mobileLiveTextEl = document.getElementById('mobile-live-result-text');
-    if (mobileLiveTextEl) {
-      mobileLiveTextEl.textContent = res.headline || '실시간 계산 완료';
-    }
-
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-
-    const buildCoupangHref = (kw) => {
-      return monetizationModule.buildCoupangUrl
-        ? monetizationModule.buildCoupangUrl(kw, currentCalc)
-        : 'https://link.coupang.com/a/hWnhNJFy1Y';
-    };
-    const buildLpHref = (merchant, url) => {
-      return monetizationModule.buildLinkPriceDeepLink
-        ? monetizationModule.buildLinkPriceDeepLink(merchant, url)
-        : (url || '#');
-    };
-
-    const origActionItems = Array.isArray(res.actionItems) ? res.actionItems : [];
-    const itemClicks = getMergedClicksByItem();
-    const actionItems = origActionItems
-      .map((it, idx) => Object.assign({}, it, { _origIdx: idx, _clicks: itemClicks[it.itemKey] || 0 }))
-      .sort((a, b) => (b._clicks - a._clicks) || (a._origIdx - b._origIdx));
-    const primaryAction = actionItems[0] || null;
-
-    // 0. [CRO Layer 1 + Experiment A] Left-column Input Instant Prescription Bridge + Zero-Feel Framing
-    const instantBadgeEl = document.getElementById('input-instant-badge');
-    const instantHeadlineEl = document.getElementById('input-instant-headline');
-    const instantSubEl = document.getElementById('input-instant-sub');
-    const instantZeroFeelEl = document.getElementById('input-zero-feel-callout');
-    const instantCoupangBtn = document.getElementById('input-instant-coupang-btn');
-    const instantLpBtn = document.getElementById('input-instant-lp-btn');
-    const zf = res.zeroFeelFraming || null;
-
-    if (primaryAction) {
-      if (instantBadgeEl) {
-        instantBadgeEl.textContent = zf && zf.badge ? zf.badge : `${primaryAction.icon || '⚡'} 맞춤 처방`;
-      }
-      if (instantHeadlineEl) {
-        instantHeadlineEl.textContent = primaryAction.label;
-      }
-      if (instantSubEl) {
-        instantSubEl.textContent = `✔ ${primaryAction.calcVal}`;
-      }
-      if (instantZeroFeelEl && zf && zf.callout) {
-        instantZeroFeelEl.textContent = zf.callout;
-      }
-      if (instantCoupangBtn) {
-        instantCoupangBtn.href = buildCoupangHref(primaryAction.coupangKw);
-        instantCoupangBtn.textContent = primaryAction.coupangBtn || '🚀 쿠팡 최저가 ↗';
-        instantCoupangBtn.setAttribute('onclick', `recordAffiliateClick('coupang', this.href, 'input_bridge', '${primaryAction.itemKey || ''}')`);
-      }
-      if (instantLpBtn) {
-        instantLpBtn.href = buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl);
-        instantLpBtn.textContent = primaryAction.lpBtn || '🏷️ 공식몰 특가 ↗';
-        instantLpBtn.setAttribute('onclick', `recordAffiliateClick('linkprice', this.href, 'input_bridge', '${primaryAction.itemKey || ''}')`);
-      }
-    }
-
-    // 1. Receipt shock diagnosis card
-    const badgeEl = document.getElementById('result-badge');
-    const headlineEl = document.getElementById('result-headline');
-    const summaryEl = document.getElementById('result-summary-text');
-    const metricsGrid = document.getElementById('result-metrics-grid');
-    const lossBarEl = document.getElementById('result-loss-bar');
-    const receiptZeroFeelEl = document.getElementById('receipt-zero-feel-banner');
-    const receiptActionItemsEl = document.getElementById('receipt-action-items');
-
-    if (receiptZeroFeelEl && zf && zf.callout) {
-      receiptZeroFeelEl.textContent = zf.callout;
-    }
-
-    // [D-3 First Purchase Booster + 6-Hour Auto-Pivot Engine] 1만 원대 로켓배송 즉결템 (24시간 쿠키 적립 부스터)
-    if (res.impulseItem) {
-      const imp = res.impulseItem;
-      const pivotCustom =
-        typeof window !== 'undefined' &&
-        window.MONEYFIT_GROWTH_PIVOT &&
-        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations &&
-        window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[currentCalc]
-          ? window.MONEYFIT_GROWTH_PIVOT.calcCustomizations[currentCalc]
-          : null;
-      const impBadgeEl = document.getElementById('impulse-badge');
-      const impTitleEl = document.getElementById('impulse-title');
-      const impSubEl = document.getElementById('impulse-sub');
-      const impBtnEl = document.getElementById('impulse-coupang-btn');
-      if (impBadgeEl && imp.badge) {
-        impBadgeEl.textContent =
-          pivotCustom && pivotCustom.decision === 'REINFORCE'
-            ? `🔥 [인기 1위] ${imp.badge}`
-            : imp.badge;
-      }
-      if (impTitleEl && imp.title) impTitleEl.textContent = imp.title;
-      if (impSubEl && imp.sub) impSubEl.textContent = imp.sub;
-      if (impBtnEl) {
-        impBtnEl.href = buildCoupangHref(imp.coupangKw);
-        impBtnEl.textContent = imp.btnLabel || '🛒 1만원대 필수템 로켓배송 ↗';
-      }
-    }
-
-    if (badgeEl) {
-      badgeEl.textContent = res.badge;
-      if (res.badge && (res.badge.includes('폭탄') || res.badge.includes('경보') || res.badge.includes('손해') || res.badge.includes('권장') || (res.totalNetBenefit !== undefined && res.totalNetBenefit < 0))) {
-        badgeEl.className = "inline-flex items-center bg-rose-500 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
-      } else if (res.totalNetBenefit !== undefined && res.totalNetBenefit > 0) {
-        badgeEl.className = "inline-flex items-center bg-emerald-500 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
-      } else {
-        badgeEl.className = "inline-flex items-center bg-blue-600 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap";
-      }
-    }
-    if (headlineEl) headlineEl.innerHTML = formatHeadlineContrastHtml(res.headline);
-    if (summaryEl) summaryEl.textContent = res.summary;
-
-    const cpaDetails = monetizationModule.getCpaCardDetails
-      ? monetizationModule.getCpaCardDetails(currentCalc, res, config)
-      : null;
-    const naverConnectHref = (cpaDetails && cpaDetails.naverConnectUrl) || 'https://naver.me/xm0ZVnAW';
-    const naverConnectBtnLabel = (cpaDetails && cpaDetails.naverConnectLabel) || '🟢 네이버 특가';
-
-    // [CRO Layer 2A] Clickable Receipt Metric Cards (1:1 Exact Product Matching via targetActionIdx & stepHint)
-    if (metricsGrid && res.metrics) {
-      const colClass = res.metrics.length >= 4
-        ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-3.5 mobile-metrics-4"
-        : "grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-3.5";
-      metricsGrid.className = colClass;
-      metricsGrid.innerHTML = res.metrics.map((m, idx) => {
-        const isNeg = String(m.val).startsWith('-');
-        const valColor = isNeg ? 'text-rose-400' : 'text-amber-400';
-        const matchedAction = (m.targetActionIdx !== undefined && origActionItems[m.targetActionIdx])
-          ? origActionItems[m.targetActionIdx]
-          : (origActionItems.length > 0 ? origActionItems[idx % origActionItems.length] : null);
-        const metricHref = matchedAction ? buildCoupangHref(matchedAction.coupangKw) : '#product-recommendations';
-        const stepHint = m.stepHint || (matchedAction ? `⚡ ${matchedAction.stepTag || '최저가'} 확인 ↗` : '⚡ 최저가 확인 ↗');
-        const itemKeyAttr = matchedAction && matchedAction.itemKey ? matchedAction.itemKey : '';
-
-        return `
-          <a href="${metricHref}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('coupang', this.href, 'metric_card', '${itemKeyAttr}')"
-             class="group block bg-slate-800/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl p-3 min-w-0 transition shadow-sm">
-            <div class="text-xs sm:text-[13px] font-normal text-slate-400 truncate">${m.label}</div>
-            <div class="text-lg sm:text-xl font-black ${valColor} mt-1 whitespace-nowrap tabular-nums tracking-tight">${m.val}</div>
-            <div class="mt-2 pt-1.5 border-t border-slate-700/60 flex items-center justify-between">
-              <span class="inline-block w-full text-center bg-amber-400/20 group-hover:bg-amber-400 text-amber-300 group-hover:text-slate-950 border border-amber-400/40 rounded-lg px-1.5 py-0.5 text-[11px] font-extrabold truncate transition">${stepHint}</span>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
-
-    // Wire Top 3-Pipeline Quick Bar (#receipt-multi-pipeline-bar) with 1:1 exact product labels
-    const topPipeCoupangEl = document.getElementById('top-pipe-coupang');
-    const topPipeNaverEl = document.getElementById('top-pipe-naver');
-    const topPipeLpEl = document.getElementById('top-pipe-lp');
-    if (topPipeCoupangEl) {
-      topPipeCoupangEl.href = primaryAction ? buildCoupangHref(primaryAction.coupangKw) : (cpaDetails?.coupangSubUrl || '#');
-      topPipeCoupangEl.textContent = primaryAction && primaryAction.coupangBtn
-        ? `${primaryAction.coupangBtn} ↗`
-        : `${cpaDetails?.coupangSubLabel || '🚀 쿠팡 최저가'} ↗`;
-      topPipeCoupangEl.setAttribute('onclick', `recordAffiliateClick('coupang', this.href, 'receipt_cart', '${primaryAction?.itemKey || ''}')`);
-    }
-    if (topPipeNaverEl) {
-      topPipeNaverEl.href = naverConnectHref;
-      topPipeNaverEl.textContent = `${naverConnectBtnLabel} ↗`;
-    }
-    if (topPipeLpEl) {
-      topPipeLpEl.href = primaryAction ? buildLpHref(primaryAction.lpMerchant, primaryAction.lpUrl) : (cpaDetails?.linkPriceSubUrl || '#');
-      topPipeLpEl.textContent = primaryAction && primaryAction.lpBtn
-        ? `${primaryAction.lpBtn} ↗`
-        : `${cpaDetails?.linkPriceSubLabel || '🏷️ 공식몰 할인'} ↗`;
-      topPipeLpEl.setAttribute('onclick', `recordAffiliateClick('linkprice', this.href, 'receipt_cart', '${primaryAction?.itemKey || ''}')`);
-    }
-
-    // 1.5 Visual Loss-Aversion Comparison Bar (Contrast: normal labels vs bold numbers)
-    if (lossBarEl && res.lossComparison) {
-      const lc = res.lossComparison;
-      lossBarEl.innerHTML = `
-        <div class="flex items-center justify-between gap-2 text-sm">
-          <span class="font-medium text-slate-300 flex items-center gap-1 truncate">⚠️ 손실 vs 절약 비교</span>
-          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3 py-0.5 rounded-full text-xs sm:text-sm font-extrabold shrink-0 whitespace-nowrap tabular-nums">${lc.savingBadge}</span>
-        </div>
-        <div class="space-y-2.5 text-sm">
-          <div>
-            <div class="flex items-center justify-between gap-2 text-slate-400 mb-1">
-              <span class="font-normal truncate">❌ ${lc.lossLabel}</span>
-              <span class="text-sm sm:text-base font-semibold text-rose-400/90 line-through shrink-0 whitespace-nowrap tabular-nums">${lc.lossValueText}</span>
-            </div>
-            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-              <div class="bg-rose-500/75 h-full rounded-full" style="width: 100%"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex items-center justify-between gap-2 text-white mb-1">
-              <span class="font-medium text-emerald-300 truncate">✅ ${lc.optLabel}</span>
-              <span class="text-base sm:text-lg font-black text-emerald-400 shrink-0 whitespace-nowrap tabular-nums">${lc.optValueText}</span>
-            </div>
-            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-              <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-500" style="width: ${lc.optPercent}%"></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // [CRO Layer 2B] Inside-Receipt 1:1 Prescription Shopping Cart (Exact Product Links + Click-Count Ordering!)
-    if (receiptActionItemsEl && actionItems.length > 0) {
-      const choiceRates = [89, 86, 84, 82];
-      receiptActionItemsEl.innerHTML = actionItems.map((item, idx) => {
-        const cpHref = buildCoupangHref(item.coupangKw);
-        const lpHref = buildLpHref(item.lpMerchant, item.lpUrl);
-        const choicePct = choiceRates[idx % choiceRates.length];
-        const hasItemNaver = Boolean(item.naverUrl);
-        const btnGridCols = hasItemNaver ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2';
-        const clickRankTag = item._clicks > 0
-          ? `<span class="text-[11px] font-extrabold bg-rose-500/25 text-rose-200 border border-rose-400/40 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">🔥 클릭 ${idx + 1}위 (${item._clicks})</span>`
-          : '';
-        return `
-          <div class="bg-slate-900/95 border border-slate-700/90 hover:border-amber-400/70 rounded-2xl p-4 transition space-y-2.5">
-            <div class="flex items-start justify-between gap-2">
-              <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-2 mb-1">
-                  <span class="text-xs font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">${item.icon || '⚡'} ${item.stepTag || '처방'}</span>
-                  ${clickRankTag}
-                  <span class="text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap">⭐ 같은 조건 ${choicePct}% 선택 · ★4.9</span>
-                  <span class="text-base font-bold text-white break-keep">${item.label}</span>
-                </div>
-                <div class="text-sm text-emerald-300 font-normal leading-snug break-keep">✔ ${item.calcVal}</div>
-              </div>
-            </div>
-            <div class="grid ${btnGridCols} gap-2">
-              <a href="${cpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('coupang', this.href, 'receipt_cart', '${item.itemKey || ''}')"
-                 class="block text-center bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
-                ${item.coupangBtn || '🚀 쿠팡 최저가 ↗'}
-              </a>
-              ${hasItemNaver ? `
-              <a href="${item.naverUrl}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('cpa', this.href, 'receipt_cart', '${item.itemKey || ''}')"
-                 class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
-                ${item.naverBtn || naverConnectBtnLabel} ↗
-              </a>` : ''}
-              <a href="${lpHref}" target="_blank" rel="noopener noreferrer sponsored"
-                 onclick="recordAffiliateClick('linkprice', this.href, 'receipt_cart', '${item.itemKey || ''}')"
-                 class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm whitespace-nowrap truncate">
-                ${item.lpBtn || '🏷️ 공식몰 특가 ↗'}
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // [Consulting Track 2] Cross-Calculator Combo Box (boosts PV/UV from 1.27 to 2.5+)
-    const crossComboGridEl = document.getElementById('cross-calc-combo-grid');
-    if (crossComboGridEl) {
-      const CROSS_COMBO_MAP = {
-        electric: [
-          { calc: 'telecom', badge: '🌐 현금 +47만원', title: '인터넷 약정 위약금 vs 사은품 계산 →' },
-          { calc: 'room', badge: '🛋️ 1등급 풀세팅', title: '자취·신혼 가전 예산 1원 단위 배분 →' }
-        ],
-        diet: [
-          { calc: 'telecom', badge: '🌐 월 -4만원 절약', title: '알뜰폰 반값 유심 + 인터넷 지원금 →' },
-          { calc: 'electric', badge: '⚡ 공과금 다이어트', title: '에어컨·온풍기 누진세 폭탄 3초 진단 →' }
-        ],
-        pet: [
-          { calc: 'electric', badge: '⚡ 24시간 가동비', title: '펫 가정 에어컨·제습기 한 달 전기세 →' },
-          { calc: 'room', badge: '🛋️ 펫 가전 세팅', title: '로봇청소기·가전 최적 예산 견적표 →' }
-        ],
-        room: [
-          { calc: 'telecom', badge: '🌐 입주 필수 현금', title: '자취방 인터넷 단독 현금 사은품 조회 →' },
-          { calc: 'electric', badge: '⚡ 구형 가전 폭탄', title: '정속형 vs 1등급 인버터 본전 회수기간 →' }
-        ],
-        auto: [
-          { calc: 'telecom', badge: '🌐 고정비 2탄', title: '온가족 휴대폰·인터넷 결합 최대 지원금 →' },
-          { calc: 'electric', badge: '⚡ 집 고정비 절약', title: '우리집 누진세 주범 가전 3초 계산 →' }
-        ],
-        telecom: [
-          { calc: 'electric', badge: '⚡ 공과금 폭탄 방어', title: '에어컨·온풍기 누진세 3초 계산기 →' },
-          { calc: 'auto', badge: '🚗 차량 유지비 비교', title: '신차 할부 vs 장기렌트 5년 총비용 →' }
-        ]
-      };
-      const combos = CROSS_COMBO_MAP[currentCalc] || CROSS_COMBO_MAP.electric;
-      crossComboGridEl.innerHTML = combos.map(c => `
-        <button type="button" onclick="selectCalc('${c.calc}', null, true); window.scrollTo({top: 0, behavior: 'smooth'});"
-          class="text-left bg-slate-900 hover:bg-indigo-950/80 border border-slate-700 hover:border-indigo-400 rounded-xl p-2.5 transition group">
-          <div class="text-[11px] font-extrabold text-amber-300">${c.badge}</div>
-          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-indigo-200 mt-0.5 truncate">${c.title}</div>
-        </button>
-      `).join('');
-    }
-
-    // 2. High-Ticket CPA / Official Exhibition Native Card
-    const cpaBadgeEl = document.getElementById('cpa-badge');
-    const cpaTitleEl = document.getElementById('cpa-title');
-    const cpaPayoutTagEl = document.getElementById('cpa-payout-tag');
-    const cpaActionLinkEl = document.getElementById('cpa-action-link');
-    const cpaDescEl = document.getElementById('cpa-desc');
-    const cpaCoupangSubEl = document.getElementById('cpa-coupang-sublink');
-    const cpaNaverSubEl = document.getElementById('cpa-naver-sublink');
-    const cpaLpSubEl = document.getElementById('cpa-lp-sublink');
-
-    if (cpaDetails) {
-      if (cpaBadgeEl) cpaBadgeEl.textContent = cpaDetails.liveBadge || "맞춤 혜택";
-      if (cpaTitleEl) cpaTitleEl.textContent = cpaDetails.liveTitle || cpaDetails.title;
-      if (cpaPayoutTagEl) {
-        cpaPayoutTagEl.textContent = cpaDetails.isCustomTenpingUrl
-          ? `🔥 CPA 연동`
-          : `⚡ 공식 제휴`;
-      }
-      if (cpaDescEl) cpaDescEl.textContent = cpaDetails.liveDesc || cpaDetails.desc;
-      if (cpaActionLinkEl) {
-        cpaActionLinkEl.href = cpaDetails.liveActionUrl || cpaDetails.actionUrl;
-        cpaActionLinkEl.textContent = cpaDetails.liveCta || cpaDetails.cta;
-      }
-      if (cpaCoupangSubEl && cpaDetails.coupangSubUrl) {
-        cpaCoupangSubEl.href = cpaDetails.coupangSubUrl;
-        cpaCoupangSubEl.textContent = `${cpaDetails.coupangSubLabel || '🚀 쿠팡 특가'} ↗`;
-      }
-      if (cpaNaverSubEl && cpaDetails.naverConnectUrl) {
-        cpaNaverSubEl.href = cpaDetails.naverConnectUrl;
-        cpaNaverSubEl.textContent = `${cpaDetails.naverConnectLabel || '🟢 네이버 특가'} ↗`;
-      }
-      if (cpaLpSubEl && cpaDetails.linkPriceSubUrl) {
-        cpaLpSubEl.href = cpaDetails.linkPriceSubUrl;
-        cpaLpSubEl.textContent = `${cpaDetails.linkPriceSubLabel || '🏷️ 공식몰 특가'} ↗`;
-      }
-    } else {
-      if (cpaTitleEl) cpaTitleEl.textContent = res.cpaTitle || "맞춤 최저가 조회";
-      if (cpaPayoutTagEl) cpaPayoutTagEl.textContent = `⚡ 공식 제휴`;
-      if (cpaActionLinkEl) {
-        const cpaUrl = monetizationModule.buildLiveFallbackCpaUrl
-          ? monetizationModule.buildLiveFallbackCpaUrl(currentCalc, config)
-          : "#";
-        cpaActionLinkEl.href = cpaUrl;
-      }
-    }
-
-    // 3. [CRO Layer 3 + Sourced Product Showroom] Real Sourced Products from Coupang Open API & LinkPrice
-    const sourcedCatalog = (typeof window !== 'undefined' && window.SOURCED_PRODUCTS_CATALOG) ? window.SOURCED_PRODUCTS_CATALOG : null;
-    const presetSourced = (sourcedCatalog && sourcedCatalog.presets && sourcedCatalog.presets[activeScenarioId])
-      ? sourcedCatalog.presets[activeScenarioId]
-      : null;
-    const catSourced = (sourcedCatalog && sourcedCatalog.categories && sourcedCatalog.categories[currentCalc])
-      ? sourcedCatalog.categories[currentCalc]
-      : null;
-    const activeSourcedCoupangList = (presetSourced && Array.isArray(presetSourced.coupangProducts) && presetSourced.coupangProducts.length > 0)
-      ? presetSourced.coupangProducts
-      : ((catSourced && Array.isArray(catSourced.coupangProducts)) ? catSourced.coupangProducts : []);
-    const activeSourcedLpList = (presetSourced && Array.isArray(presetSourced.linkPriceDeals) && presetSourced.linkPriceDeals.length > 0)
-      ? presetSourced.linkPriceDeals
-      : ((catSourced && Array.isArray(catSourced.linkPriceDeals)) ? catSourced.linkPriceDeals : []);
-    const activeSourcingSpec = (presetSourced && presetSourced.sourcingSpec) || catSourced || null;
-
-    // 3A. Render Above-the-Fold Sourced Product Showroom (#sourced-product-showroom)
-    const showroomTitleEl = document.getElementById('sourced-showroom-title');
-    const showroomSubtitleEl = document.getElementById('sourced-showroom-subtitle');
-    const showroomBadgeEl = document.getElementById('sourced-showroom-unit-badge');
-    const showroomCoupangGridEl = document.getElementById('sourced-coupang-grid');
-    const showroomLpGridEl = document.getElementById('sourced-linkprice-grid');
-
-    if (activeSourcingSpec) {
-      if (showroomTitleEl && activeSourcingSpec.categoryTitle) {
-        showroomTitleEl.textContent = `${activeSourcingSpec.categoryTitle} 최저가 비교 쇼룸`;
-      }
-      if (showroomSubtitleEl && activeSourcingSpec.sourcingHeadline) {
-        showroomSubtitleEl.textContent = activeSourcingSpec.sourcingHeadline;
-      }
-      if (showroomBadgeEl) {
-        showroomBadgeEl.textContent = (res.lossComparison && res.lossComparison.savingBadge) || activeSourcingSpec.defaultUnitBadge || '실구매 가성비 1위';
-      }
-    }
-
-    document.querySelectorAll('.sourced-cat-pill').forEach(btn => {
-      const cat = btn.getAttribute('data-cat');
-      if (cat === currentCalc) {
-        btn.className = 'sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-rose-600 text-white shadow-sm transition';
-      } else {
-        btn.className = 'sourced-cat-pill px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
-      }
+    // KDST (multi-select)
+    const kdstInputs = document.querySelectorAll('input[name="kdst-concerns"]');
+    kdstInputs.forEach(input => {
+      input.checked = profile.developmentConcerns.includes(input.value);
     });
 
-    if (showroomCoupangGridEl && activeSourcedCoupangList.length > 0) {
-      showroomCoupangGridEl.innerHTML = activeSourcedCoupangList.slice(0, 4).map((sp, sIdx) => {
-        const directUrl = sp.productUrl || buildCoupangHref(sp.query || sp.productName);
-        const shipBadge = sp.isRocket
-          ? '<span class="bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-extrabold px-2 py-0.5 rounded-md">🚀 로켓배송</span>'
-          : '<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-extrabold px-2 py-0.5 rounded-md">📦 무료배송 특가</span>';
-        return `
-          <a href="${directUrl}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('coupang', this.href, 'sourced_showroom', 'sourced_cp_${currentCalc}_${sIdx}')"
-             class="group flex flex-col justify-between bg-slate-50/70 hover:bg-rose-50/30 border-2 border-slate-200 hover:border-rose-500 rounded-2xl p-3.5 transition shadow-xs hover:shadow-md min-w-0">
-            <div class="space-y-2 min-w-0">
-              <div class="flex items-center justify-between gap-1.5">
-                <span class="bg-rose-600 text-white text-[11px] font-black px-2 py-0.5 rounded-md">🏆 소싱 ${sIdx + 1}위</span>
-                ${shipBadge}
-              </div>
-              <div class="w-full h-36 bg-white rounded-xl border border-slate-200/80 flex items-center justify-center p-2 overflow-hidden">
-                <img src="${sp.productImage}" alt="${sp.productName}" loading="lazy" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" />
-              </div>
-              <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-rose-600 line-clamp-2 leading-snug break-keep">${sp.productName}</div>
-              <div class="flex items-baseline justify-between gap-1 pt-0.5">
-                <span class="text-[11px] font-semibold text-slate-500">쿠팡 실구매가</span>
-                <span class="text-base sm:text-lg font-black text-rose-600 tabular-nums">${sp.productPriceFormatted || (Number(sp.productPrice || 0).toLocaleString() + '원')}</span>
-              </div>
-            </div>
-            <div class="mt-3 pt-2.5 border-t border-slate-200/70">
-              <div class="w-full text-center bg-rose-600 group-hover:bg-rose-500 text-white font-black text-xs sm:text-sm py-2.5 px-3 rounded-xl transition shadow-xs whitespace-nowrap truncate">
-                🛒 쿠팡 최저가 바로 구매 ↗
-              </div>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
+    // Philosophy
+    const philRadio = document.querySelector(`input[name="teaching-philosophy"][value="${profile.philosophy}"]`);
+    if (philRadio) philRadio.checked = true;
 
-    if (showroomLpGridEl && activeSourcedLpList.length > 0) {
-      showroomLpGridEl.innerHTML = activeSourcedLpList.slice(0, 2).map((lpItem, lIdx) => {
-        return `
-          <a href="${lpItem.lpUrl}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('linkprice', this.href, 'sourced_showroom', 'sourced_lp_${currentCalc}_${lIdx}')"
-             class="group flex flex-col justify-between bg-indigo-50/40 hover:bg-indigo-50/80 border-2 border-indigo-200 hover:border-indigo-600 rounded-2xl p-3.5 sm:p-4 transition shadow-xs hover:shadow-md min-w-0">
-            <div class="space-y-1.5 min-w-0">
-              <div class="flex items-center justify-between gap-2">
-                <span class="bg-indigo-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-md shrink-0">🏷️ ${lpItem.merchantLabel}</span>
-                <span class="bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-extrabold px-2 py-0.5 rounded-md truncate">${lpItem.badge}</span>
-              </div>
-              <div class="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-indigo-700 leading-snug break-keep">${lpItem.title}</div>
-              <p class="text-xs text-slate-600 leading-relaxed break-keep">✔ ${lpItem.specSummary}</p>
-            </div>
-            <div class="mt-3 pt-2.5 border-t border-indigo-100 flex items-center justify-between gap-2">
-              <span class="text-xs font-extrabold text-indigo-700 truncate">💎 ${lpItem.priceText}</span>
-              <span class="shrink-0 bg-indigo-600 group-hover:bg-indigo-500 text-white font-black text-xs px-3.5 py-2 rounded-xl transition shadow-xs whitespace-nowrap">
-                공식몰 특가 비교 ↗
-              </span>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
+    // Interest
+    const interestRadio = document.querySelector(`input[name="child-interest"][value="${profile.interest}"]`);
+    if (interestRadio) interestRadio.checked = true;
 
-    // 3B. Enriched Shopping Deal Cards (#product-recommendations) with Sourced Product Thumbnail & Live Price
-    const productsContainer = document.getElementById('product-recommendations');
-    if (productsContainer && res.products) {
-      const sortedProducts = res.products
-        .map((p, idx) => Object.assign({}, p, { _origIdx: idx, _clicks: itemClicks[p.itemKey] || 0 }))
-        .sort((a, b) => (b._clicks - a._clicks) || (a._origIdx - b._origIdx));
+    // Budget
+    const budgetRadio = document.querySelector(`input[name="budget-tier"][value="${profile.budgetTier}"]`);
+    if (budgetRadio) budgetRadio.checked = true;
+  }
 
-      let cpSourceIdx = 0;
-      productsContainer.innerHTML = sortedProducts.map((p, idx) => {
-        const matchedSourcedCp = (p.type === 'coupang' && activeSourcedCoupangList[cpSourceIdx])
-          ? activeSourcedCoupangList[cpSourceIdx++]
-          : null;
-        const href = p.type === 'coupang'
-          ? ((matchedSourcedCp && matchedSourcedCp.productUrl) ? matchedSourcedCp.productUrl : buildCoupangHref(p.kw))
-          : buildLpHref(p.merchant, p.url);
-        const merchantName = p.merchantLabel || (p.merchant ? p.merchant.toUpperCase() : '공식몰');
-        const platformTag = p.type === 'coupang'
-          ? '🚀 쿠팡 로켓배송'
-          : `🏷️ ${merchantName}`;
-        const platformColor = p.type === 'coupang'
-          ? 'bg-rose-50 text-rose-600 border-rose-200/80'
-          : 'bg-indigo-50 text-indigo-600 border-indigo-200/80';
-        const btnBg = p.type === 'coupang'
-          ? 'bg-rose-600 group-hover:bg-rose-500 text-white'
-          : 'bg-indigo-600 group-hover:bg-indigo-500 text-white';
-        const subBadge = p._clicks > 0
-          ? `🔥 클릭 ${idx + 1}위 (${p._clicks}회)`
-          : (matchedSourcedCp ? `실구매가 ${matchedSourcedCp.productPriceFormatted}` : (p.badge || (p.type === 'coupang' ? '⚡ 로켓배송' : '💳 카드할인')));
-        const ctaLabel = matchedSourcedCp
-          ? `🛒 쿠팡 최저가(${matchedSourcedCp.productPriceFormatted}) 구매 →`
-          : (p.ctaText || '최저가 보기 →');
-        const matchTag = p.calcMatchTag || '⚡ 맞춤 추천';
-        const matchReason = matchedSourcedCp
-          ? `${p.matchReason || '계산 결과 맞춤 베스트셀러'} · [소싱모델: ${matchedSourcedCp.productName.slice(0, 32)}]`
-          : (p.matchReason || '계산 결과 맞춤 베스트셀러');
-        const iconPrefix = p.icon ? `${p.icon} ` : '';
-        const thumbHtml = matchedSourcedCp && matchedSourcedCp.productImage
-          ? `<div class="w-16 h-16 rounded-xl border border-slate-200 bg-white p-1 shrink-0 flex items-center justify-center overflow-hidden"><img src="${matchedSourcedCp.productImage}" alt="${p.title}" loading="lazy" class="max-h-full max-w-full object-contain" /></div>`
-          : '';
+  // 6. Preset Application
+  function applyPreset(presetId) {
+    const preset = PRESETS[presetId];
+    if (!preset) return false;
 
-        return `
-          <a href="${href}" target="_blank" rel="noopener noreferrer sponsored"
-             onclick="recordAffiliateClick('${p.type}', this.href, 'deal_card', '${p.itemKey || ''}')"
-             class="group flex flex-col justify-between border border-slate-200 hover:border-blue-600 rounded-2xl p-4 sm:p-5 transition-all bg-white hover:bg-blue-50/15 shadow-sm hover:shadow-md min-w-0">
-            <div class="min-w-0 space-y-2">
-              <div class="flex items-center justify-between gap-2">
-                <span class="inline-block text-xs font-medium px-2.5 py-0.5 rounded-lg border ${platformColor} shrink-0 whitespace-nowrap">${platformTag}</span>
-                <span class="text-xs font-extrabold text-rose-700 bg-rose-50 border border-rose-200/70 px-2 py-0.5 rounded-lg shrink-0 whitespace-nowrap">${subBadge}</span>
-              </div>
-              <div class="bg-amber-50/90 border border-amber-200/80 text-amber-950 text-xs sm:text-[13px] px-3 py-1.5 rounded-xl leading-snug break-keep">
-                ${formatMatchTagContrastHtml(matchTag)}
-              </div>
-              <div class="flex items-start gap-3">
-                ${thumbHtml}
-                <div class="min-w-0 flex-1 space-y-1">
-                  <div class="text-base sm:text-[17px] font-bold text-slate-900 group-hover:text-blue-700 leading-snug break-keep">${formatProductTitleContrastHtml(iconPrefix + p.title)}</div>
-                  <p class="text-xs sm:text-[13.5px] text-slate-500 font-normal leading-relaxed break-keep">${formatReasonContrastHtml(matchReason)}</p>
-                </div>
-              </div>
-            </div>
-            <div class="mt-3.5 pt-3 border-t border-slate-100">
-              <div class="w-full text-center font-extrabold py-3 px-4 rounded-xl text-sm sm:text-base transition shadow-sm whitespace-nowrap truncate ${btnBg}">
-                ${ctaLabel}
-              </div>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
+    state.activePresetId = presetId;
+    state.profile = JSON.parse(JSON.stringify(preset));
 
-    // 4. Update Mobile Sticky Bottom Floating CTA Bar
-    const stickySubEl = document.getElementById('sticky-cta-sub');
-    const stickyMainEl = document.getElementById('sticky-cta-main');
-    const stickyBtnEl = document.getElementById('sticky-cta-btn');
-    if (stickySubEl && stickyMainEl && stickyBtnEl) {
-      stickySubEl.textContent = primaryAction
-        ? `${primaryAction.icon || '⚡'} ${primaryAction.calcVal}`
-        : (res.badge || "실시간 계산 완료");
-      stickyMainEl.textContent = primaryAction
-        ? primaryAction.label
-        : (cpaDetails ? (cpaDetails.liveTitle || cpaDetails.title) : res.headline);
-      stickyBtnEl.href = primaryAction
-        ? buildCoupangHref(primaryAction.coupangKw)
-        : (cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : "#");
-
-      stickyBtnEl.textContent = primaryAction
-        ? (primaryAction.coupangBtn || "최저가 보기 ↗")
-        : "특가 보기 →";
-    }
-
-    // 5. Sync Home Top Animal Webtoon × 3-Sec Receipt Factcheck Mini-Viewer (#home-webtoon-factcheck-bar)
-    const defaultSlugByCalc = {
-      electric: 'electric-studio-ac',
-      diet: 'diet-male-fatloss',
-      pet: 'pet-maltese-5kg',
-      room: 'room-oneroom-100',
-      auto: 'auto-avante-3000',
-      telecom: 'telecom-penalty-15'
-    };
-    const presetsForCalc = getPresetsList().filter(p => p.calc === currentCalc);
-    const activePresetObj = presetsForCalc.find(p => p.id === activeScenarioId) || presetsForCalc[0] || null;
-    const activeSlug = activePresetObj ? activePresetObj.id : (defaultSlugByCalc[currentCalc] || 'electric-studio-ac');
-    const webtoonImgSrc = `/sns/${activeSlug}-grid.png`;
-
-    const wsMod = window.MoneyFitWebtoonStories || null;
-    const storyData = (wsMod && typeof wsMod.resolveDynamicReceiptValues === 'function')
-      ? wsMod.resolveDynamicReceiptValues(
-          Object.assign({}, activePresetObj || { id: activeSlug, calc: currentCalc, title: spec.title }, { inputs: values }),
-          res
-        )
-      : null;
-
-    const sc = (storyData && storyData.shortCartoon) || null;
-    const epTitleText = (sc && sc.epTitle) || (activePresetObj ? `🐾 ${activePresetObj.title} 4컷 팩트체크` : `🐾 ${spec.title} 4컷 팩트체크`);
-    const epBadgeText = (storyData && storyData.badge) || res.badge || '🐾 4컷 팩트체크';
-    const diffPillText = (storyData && storyData.diffVal) || (res.lossComparison && res.lossComparison.savingBadge) || res.headline || '3초 계산 완료';
-
-    const mainCoupangUrl = primaryAction
-      ? buildCoupangHref(primaryAction.coupangKw)
-      : (cpaDetails ? (cpaDetails.liveActionUrl || cpaDetails.actionUrl) : buildCoupangHref(spec.title));
-    const impulseCoupangUrl = res.impulseItem
-      ? buildCoupangHref(res.impulseItem.coupangKw)
-      : mainCoupangUrl;
-
-    const thumbEl = document.getElementById('home-webtoon-thumb');
-    const fullImgEl = document.getElementById('home-webtoon-full-img');
-    const epBadgeEl = document.getElementById('home-webtoon-ep-badge');
-    const diffPillEl = document.getElementById('home-webtoon-diff-pill');
-    const wtTitleEl = document.getElementById('home-webtoon-title');
-    const wtCoupangBtn = document.getElementById('home-webtoon-coupang-btn');
-    const wtImgLink = document.getElementById('home-webtoon-img-link');
-    const wtDrawerMainBtn = document.getElementById('home-webtoon-drawer-main-btn');
-    const wtDrawerImpulseBtn = document.getElementById('home-webtoon-drawer-impulse-btn');
-    const wtDialogueEl = document.getElementById('home-webtoon-dialogue');
-
-    if (thumbEl) {
-      thumbEl.src = webtoonImgSrc;
-      thumbEl.alt = `${epTitleText} 썸네일`;
-    }
-    if (fullImgEl) {
-      fullImgEl.src = webtoonImgSrc;
-      fullImgEl.alt = `${epTitleText} 1080x1080 4컷 동물 웹툰`;
-    }
-    if (epBadgeEl) epBadgeEl.textContent = epBadgeText;
-    if (diffPillEl) diffPillEl.textContent = diffPillText;
-    if (wtTitleEl) wtTitleEl.textContent = epTitleText;
-    if (wtCoupangBtn) {
-      wtCoupangBtn.href = mainCoupangUrl;
-      wtCoupangBtn.textContent = primaryAction
-        ? `🛒 웹툰 처방: ${primaryAction.coupangBtn || primaryAction.label} 확인 ↗`
-        : '🛒 웹툰 속 절약 비결 쿠팡 로켓배송 최저가 확인 ↗';
-    }
-    if (wtImgLink) wtImgLink.href = mainCoupangUrl;
-    if (wtDrawerMainBtn) {
-      wtDrawerMainBtn.href = mainCoupangUrl;
-      wtDrawerMainBtn.textContent = primaryAction
-        ? `🛒 3컷 영수증 처방 (${primaryAction.label}) 최저가 ↗`
-        : '🛒 3컷 영수증 호구 탈출 특가템 바로 보기 ↗';
-    }
-    if (wtDrawerImpulseBtn) {
-      wtDrawerImpulseBtn.href = impulseCoupangUrl;
-      wtDrawerImpulseBtn.textContent = res.impulseItem && res.impulseItem.badge
-        ? `⚡ ${res.impulseItem.badge} 로켓배송 보러가기 ↗`
-        : '⚡ 9,900원대 즉결템 로켓배송 보러가기 ↗';
-    }
-    if (wtDialogueEl) {
-      const cleanLine = (arr) => Array.isArray(arr) ? arr.join(' ').replace(/\*\*/g, '') : '';
-      const p1Txt = sc ? cleanLine(sc.p1) : (storyData ? storyData.panel1Speech : '');
-      const p2Txt = sc ? cleanLine(sc.p2) : (storyData ? storyData.panel2Speech : '');
-      const p3Txt = sc ? cleanLine(sc.p3) : res.headline;
-      const p4Txt = sc ? cleanLine(sc.p4) : (storyData ? storyData.ctaTitle : '');
-      const badLbl = (storyData && storyData.badLabel) || (res.lossComparison && res.lossComparison.lossLabel) || '기존 지출';
-      const badVal = (storyData && storyData.badVal) || (res.lossComparison && res.lossComparison.lossValueText) || '';
-      const goodLbl = (storyData && storyData.goodLabel) || (res.lossComparison && res.lossComparison.optLabel) || '최적 설계';
-      const goodVal = (storyData && storyData.goodVal) || (res.lossComparison && res.lossComparison.optValueText) || '';
-
-      wtDialogueEl.innerHTML = `
-        <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
-          <span class="font-black text-amber-300 text-xs sm:text-sm">🧾 3컷 영수증 핵심 비교 (${storyData ? storyData.receiptTitle : epBadgeText})</span>
-          <a href="/preset/${activeSlug}/" class="text-[11px] font-bold text-sky-300 hover:underline shrink-0">전용 리포트 ↗</a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 py-1">
-          <div class="bg-rose-950/60 border border-rose-500/40 rounded-xl p-2.5">
-            <div class="text-[11px] text-rose-300 font-semibold">❌ ${badLbl}</div>
-            <div class="text-sm font-black text-white mt-0.5 tabular-nums">${badVal}</div>
-          </div>
-          <div class="bg-emerald-950/60 border border-emerald-500/40 rounded-xl p-2.5">
-            <div class="text-[11px] text-emerald-300 font-semibold">✅ ${goodLbl}</div>
-            <div class="text-sm font-black text-amber-300 mt-0.5 tabular-nums">${goodVal}</div>
-          </div>
-        </div>
-        <div class="space-y-1 text-xs text-slate-300 pt-1">
-          ${p1Txt ? `<div><strong class="text-amber-300">1컷:</strong> "${p1Txt}"</div>` : ''}
-          ${p2Txt ? `<div><strong class="text-sky-300">2컷:</strong> "${p2Txt}"</div>` : ''}
-          ${p3Txt ? `<div><strong class="text-rose-300">3컷:</strong> "${p3Txt}"</div>` : ''}
-          ${p4Txt ? `<div><strong class="text-emerald-300">4컷:</strong> "${p4Txt}"</div>` : ''}
-        </div>
-      `;
-    }
-
-    highlightWinningSlot();
-  };
-
-  /**
-   * Toggle Home Top Animal Webtoon × Receipt Drawer
-   */
-  window.toggleHomeWebtoonViewer = function () {
-    const drawer = document.getElementById('home-webtoon-drawer');
-    const btn = document.getElementById('home-webtoon-toggle-btn');
-    if (!drawer) return;
-    const isHidden = drawer.classList.toggle('hidden');
-    if (btn) {
-      btn.textContent = isHidden ? '🎨 4컷 만화 보기 ▾' : '🎨 4컷 만화 접기 ▴';
-    }
-  };
-
-  /**
-   * Switch Main View Tabs
-   */
-  window.switchMainTab = function (tab) {
-    activeTab = tab;
-    ['calculators', 'seo', 'wizard'].forEach(t => {
-      const view = document.getElementById(`view-${t}`);
-      const btn = document.getElementById(`tab-btn-${t}`);
-      if (view) view.classList.toggle('hidden', t !== tab);
-      if (btn) {
-        if (t === tab) {
-          btn.className = "px-3 py-1.5 rounded-lg text-sm font-semibold bg-blue-600 text-white shadow-sm";
+    if (typeof document !== 'undefined') {
+      // Highlight preset card
+      document.querySelectorAll('.preset-card').forEach(card => {
+        if (card.getAttribute('data-preset-id') === presetId) {
+          card.classList.add('active');
         } else {
-          btn.className = "px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200";
+          card.classList.remove('active');
         }
-      }
-    });
+      });
 
-    const mobileBar = document.getElementById('mobile-sticky-cta-bar');
-    if (mobileBar) {
-      mobileBar.classList.toggle('hidden', tab !== 'calculators');
+      syncStateToForm(state.profile);
     }
 
-    if (tab === 'seo') {
-      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.init) {
-        window.MoneyFitCopyKit.init();
-      } else {
-        renderSeoPresetList();
-      }
-    } else if (tab === 'wizard') {
-      populateWizardFields();
-      runProfitSimulator();
-    }
-  };
-
-  /**
-   * Render 36 SEO Preset List
-   */
-  function renderSeoPresetList() {
-    const listEl = document.getElementById('seo-preset-list');
-    if (!listEl) return;
-
-    listEl.innerHTML = SEO_PRESETS.map((p, idx) => `
-      <button onclick="selectSeoPreset(${idx})" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-blue-500 bg-slate-50 hover:bg-blue-50 transition flex items-center justify-between">
-        <div>
-          <span class="text-[10px] font-bold text-blue-600 uppercase">[#${idx + 1} ${p.calc}]</span>
-          <div class="text-xs font-bold text-slate-800">${p.title}</div>
-        </div>
-        <span class="text-xs text-slate-400">원고 생성 →</span>
-      </button>
-    `).join('');
-
-    selectSeoPreset(0);
+    // Trigger instant prescription transition with preset
+    issuePrescription({ presetId });
+    return true;
   }
 
-  /**
-   * Select a Preset and Generate Viral Copies
-   */
-  window.selectSeoPreset = function (index) {
-    const preset = SEO_PRESETS[index];
-    if (!preset) return;
+  // 7. Interactive Prescription Analysis Transition
+  function issuePrescription(options = {}) {
+    syncFormToState();
 
-    const calcModule = getCalcModule();
-    const spec = calcModule.CALCULATORS ? calcModule.CALCULATORS[preset.calc] : null;
-    if (!spec) return;
-
-    const res = spec.calculate(preset.inputs);
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const siteUrl = config.siteUrl || "https://truthofmarket.com";
-    const presetUrl = `${siteUrl}/preset/${preset.id}`;
-
-    const precompiled = (window.VIRAL_POSTS && window.VIRAL_POSTS[preset.id]) || null;
-    const storyMap = (window.MoneyFitWebtoonStories && window.MoneyFitWebtoonStories.PRESET_WEBTOON_MAP) || {};
-    const story = storyMap[preset.id] || {};
-
-    // 1. Naver Blog / Tistory Post (1500+ Korean characters preview)
-    const blogPost = precompiled && precompiled.blogPost
-      ? precompiled.blogPost
-      : `[제목] ${preset.title} — 2026 실제 수식 비교 & 손익분기점 정리\n\n` +
-        `${story.hookLine || `요즘 '${preset.title}' 조건에서 실제 비용이 얼마나 차이 나는지 궁금해하시는 분들이 많습니다.`}\n` +
-        `${story.factLine || `대략적인 눈대중 대신 공인 수식에 내 수치를 대입해 보면 1년 기준 수십만 원 이상의 고정비 차이를 확인할 수 있습니다.`}\n\n` +
-        `■ 핵심 수치 진단 결과: ${res.headline} (${res.badge})\n` +
-        `- ${res.metrics.map(m => `${m.label}: ${m.val}`).join('\n- ')}\n\n` +
-        `■ 상세 분석 및 전문가 코멘트\n${res.summary}\n\n` +
-        `👉 ${story.ctaLine || `내 조건을 직접 넣어서 3초 만에 계산해 보시려면 아래 무료 계산기에서 바로 확인해 보세요!`}\n` +
-        `🔗 무료 맞춤 계산기 바로가기: ${presetUrl}\n\n` +
-        `${story.hashtags || `#${preset.title.split(' ').slice(0, 4).join(' #')} #머니핏`}`;
-
-    // 2. Threads / Group Chat 3-Line Summary (Clean, non-spammy, preset-accurate)
-    const threadsPost = precompiled && precompiled.threadsPost
-      ? precompiled.threadsPost
-      : `${story.hookLine || `'${preset.title}' 감으로 결정하기 전에 꼭 한 번 계산해 보세요.`}\n` +
-        `${story.factLine || `실제 수식으로 계산해 보니 [${res.headline}] 차이가 발생합니다.`}\n` +
-        `${story.ctaLine || `내 조건 넣고 3초 무료 시뮬레이션 확인하기`}: ${presetUrl}`;
-
-    // 3. Naver Jisik-iN Tailored Reply
-    const jisikinPost = precompiled && precompiled.jisikinPost
-      ? precompiled.jisikinPost
-      : `질문자님과 비슷한 조건('${preset.title}')으로 실제 수식을 대입해 본 결과입니다.\n\n` +
-        `핵심 결론은 [${res.headline} (${res.badge})] 수준으로 산출됩니다.\n` +
-        `${story.factLine || res.summary}\n\n` +
-        `세부 조건별 비교표는 아래 무료 시뮬레이터에서 회원가입 없이 바로 계산해 보실 수 있습니다.\n` +
-        `참고한 무료 계산기: ${presetUrl}`;
-
-    // 4. IndexNow API Payload
-    const indexNowKey = "moneyfit-indexnow-key-2026";
-    const indexNowPayload = {
-      host: new URL(siteUrl).host,
-      key: indexNowKey,
-      keyLocation: `${siteUrl}/${indexNowKey}.txt`,
-      urlList: SEO_PRESETS.slice(0, 6).map(item => `${siteUrl}/preset/${item.id}`)
-    };
-
-    const blogEl = document.getElementById('generated-blog-post');
-    const threadsEl = document.getElementById('generated-threads-post');
-    const jisikinEl = document.getElementById('generated-jisikin-post');
-    const indexNowEl = document.getElementById('generated-indexnow-json');
-
-    if (blogEl) blogEl.textContent = blogPost;
-    if (threadsEl) threadsEl.textContent = threadsPost;
-    if (jisikinEl) jisikinEl.textContent = jisikinPost;
-    if (indexNowEl) indexNowEl.textContent = JSON.stringify(indexNowPayload, null, 2);
-  };
-
-  /**
-   * Setup Wizard: Populate Fields from Config
-   */
-  function populateWizardFields() {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-
-    const coupangInp = document.getElementById('cfg-coupang-id');
-    const lpInp = document.getElementById('cfg-lp-id');
-    const cpaInp = document.getElementById('cfg-cpa-id');
-    const adfitInp = document.getElementById('cfg-adfit-id');
-    const siteUrlInp = document.getElementById('cfg-site-url');
-    const tgTokenInp = document.getElementById('cfg-tg-token');
-    const tgChatIdInp = document.getElementById('cfg-tg-chat-id');
-    const tgAutoNotifyInp = document.getElementById('cfg-tg-auto-notify');
-
-    if (coupangInp) coupangInp.value = config.coupangAfId || "AF7865143";
-    if (lpInp) lpInp.value = config.linkPriceId || "A100708867";
-    if (cpaInp) {
-      const rawCpa = config.cpaMemberId || "tp_member_2370";
-      cpaInp.value = /^010\d{7,8}$/.test(rawCpa) ? "tp_member_" + rawCpa.slice(-4) : rawCpa;
-    }
-    const cpaUrls = config.cpaUrls || {};
-    ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].forEach(cat => {
-      const urlInp = document.getElementById(`cfg-cpa-url-${cat}`);
-      if (urlInp) urlInp.value = cpaUrls[cat] || "";
-    });
-
-    if (adfitInp) adfitInp.value = (config.adfitUnitId && config.adfitUnitId !== "DAN-SAMPLE-TOP") ? config.adfitUnitId : "";
-    if (siteUrlInp) siteUrlInp.value = config.siteUrl || "https://truthofmarket.com";
-    if (tgTokenInp) tgTokenInp.value = (config.telegramBotToken && config.telegramBotToken !== "YOUR_TELEGRAM_BOT_TOKEN") ? config.telegramBotToken : "";
-    if (tgChatIdInp) tgChatIdInp.value = (config.telegramChatId && config.telegramChatId !== "YOUR_CHAT_ID") ? config.telegramChatId : "";
-    if (tgAutoNotifyInp) tgAutoNotifyInp.checked = config.telegramAutoNotify !== false;
-
-    updateStatusBar(config);
-    updateSampleLinksPreview(config);
-  }
-
-  function updateStatusBar(config) {
-    const statusCoupang = document.getElementById('status-coupang-id');
-    const statusLp = document.getElementById('status-lp-id');
-    const statusCpa = document.getElementById('status-cpa-id');
-    const statusClicks = document.getElementById('status-click-count');
-    const adfitLabel = document.getElementById('adfit-unit-label');
-    const adfitContainer = document.getElementById('adfit-banner-container');
-    const ftcTextEl = document.getElementById('ftc-disclosure-text');
-
-    if (statusCoupang) statusCoupang.textContent = config.coupangAfId || "AF7865143";
-    if (statusLp) statusLp.textContent = config.linkPriceId || "A100708867";
-    if (statusCpa) {
-      const cpaUrls = config.cpaUrls || {};
-      const customCount = Object.values(cpaUrls).filter(v => v && String(v).trim().startsWith('http')).length;
-      statusCpa.textContent = customCount > 0
-        ? `010-****-2370 (텐핑 직링크 ${customCount}개)`
-        : `010-****-2370 (자동 기획전 연동)`;
-    }
-    if (statusClicks) statusClicks.textContent = config.clickCount || 0;
-    const adUnit = config.adfitUnitId || "DAN-SAMPLE-TOP";
-    if (adfitLabel) adfitLabel.textContent = adUnit;
-    if (adfitContainer) {
-      const isLiveAdFit = adUnit && adUnit !== "DAN-SAMPLE-TOP" && adUnit.startsWith("DAN-");
-      adfitContainer.classList.toggle('hidden', !isLiveAdFit);
-    }
-    if (ftcTextEl && config.ftcNotice) {
-      ftcTextEl.textContent = config.ftcNotice;
-    }
-  }
-
-  function updateSampleLinksPreview(config) {
-    const monetizationModule = getMonetizationModule();
-    const sampleCoupang = document.getElementById('sample-synthesized-coupang');
-    const sampleLp = document.getElementById('sample-synthesized-lp');
-    const sampleCpa = document.getElementById('sample-synthesized-cpa');
-
-    if (sampleCoupang && monetizationModule.buildCoupangUrl) {
-      sampleCoupang.textContent = "🚀 쿠팡 파트너스: " + monetizationModule.buildCoupangUrl("에너지 1등급 가전", "electric", config.coupangAfId);
-    }
-    if (sampleLp && monetizationModule.buildLinkPriceDeepLink) {
-      sampleLp.textContent = "🏷️ 링크프라이스: " + monetizationModule.buildLinkPriceDeepLink("himart", "https://www.e-himart.co.kr/app/search/totalSearch?query=%EC%97%90%EB%84%88%EC%A7%80%201%EB%93%B1%EA%B8%89%20%EC%9D%B8%EB%B2%84%ED%84%B0", config.linkPriceId);
-    }
-    if (sampleCpa && monetizationModule.buildLiveFallbackCpaUrl) {
-      sampleCpa.textContent = "🔥 맞춤 혜택/텐핑: " + monetizationModule.buildLiveFallbackCpaUrl(currentCalc || "electric", config);
-    }
-  }
-
-  /**
-   * Apply Monetization Config Button Handler
-   */
-  window.applyMonetizationConfig = function () {
-    const monetizationModule = getMonetizationModule();
-    const rawCoupangId = (document.getElementById('cfg-coupang-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '');
-    const coupangAfId = /^AF[A-Za-z0-9_-]{3,20}$/.test(rawCoupangId) ? rawCoupangId : "AF7865143";
-    const rawLpId = (document.getElementById('cfg-lp-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '');
-    const linkPriceId = /^A[0-9]{6,15}$/.test(rawLpId) ? rawLpId : "A100708867";
-    const rawCpaInput = (document.getElementById('cfg-cpa-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '') || "tp_member_2370";
-    const cpaMemberId = /^010\d{7,8}$/.test(rawCpaInput) ? "tp_member_" + rawCpaInput.slice(-4) : rawCpaInput;
-    const cpaUrls = {};
-    ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].forEach(cat => {
-      cpaUrls[cat] = (document.getElementById(`cfg-cpa-url-${cat}`)?.value || "").trim();
-    });
-    const adfitUnitId = (document.getElementById('cfg-adfit-id')?.value || "").trim().replace(/[^A-Za-z0-9_-]/g, '') || "DAN-SAMPLE-TOP";
-    const siteUrl = (document.getElementById('cfg-site-url')?.value || "").trim() || "https://truthofmarket.com";
-    const telegramBotToken = (document.getElementById('cfg-tg-token')?.value || "").trim() || "YOUR_TELEGRAM_BOT_TOKEN";
-    const telegramChatId = (document.getElementById('cfg-tg-chat-id')?.value || "").trim() || "YOUR_CHAT_ID";
-    const telegramAutoNotify = document.getElementById('cfg-tg-auto-notify') ? document.getElementById('cfg-tg-auto-notify').checked : true;
-
-    const newConfig = {
-      coupangAfId,
-      linkPriceId,
-      cpaMemberId,
-      cpaUrls,
-      adfitUnitId,
-      siteUrl,
-      telegramBotToken,
-      telegramChatId,
-      telegramAutoNotify
-    };
-
-    if (monetizationModule.saveConfigToStorage) {
-      monetizationModule.saveConfigToStorage(newConfig);
-    } else if (monetizationModule.updateConfig) {
-      monetizationModule.updateConfig(newConfig);
-    }
-
-    const updated = monetizationModule.getConfig ? monetizationModule.getConfig() : newConfig;
-    updateStatusBar(updated);
-    updateSampleLinksPreview(updated);
-    recalculateCurrent();
-    if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.refreshActive) {
-      window.MoneyFitCopyKit.refreshActive();
-    }
-
-    const alertBox = document.getElementById('config-saved-alert');
-    if (alertBox) {
-      alertBox.classList.remove('hidden');
-      setTimeout(() => alertBox.classList.add('hidden'), 3000);
-    }
-  };
-
-  /**
-   * 1-Click Browser Telegram Auto-Discover & Test Report Dispatcher
-   */
-  window.testTelegramFromBrowser = async function () {
-    const statusBox = document.getElementById('tg-test-status');
-    const tokenInp = document.getElementById('cfg-tg-token');
-    const chatInp = document.getElementById('cfg-tg-chat-id');
-    const token = (tokenInp?.value || "").trim();
-    let chatId = (chatInp?.value || "").trim();
-
-    if (statusBox) {
-      statusBox.classList.remove('hidden');
-      statusBox.textContent = "⏳ 텔레그램 봇 연결 및 채팅방 ID 확인 중...";
-    }
-
-    if (!token || token === "YOUR_TELEGRAM_BOT_TOKEN" || !token.includes(":")) {
-      // Try server-side dispatch if .env is configured on backend
-      try {
-        const srvRes = await fetch('/api/daily-report?send=1');
-        if (srvRes.ok) {
-          const srvJson = await srvRes.json();
-          if (srvJson.sent) {
-            if (statusBox) {
-              statusBox.textContent = "✅ 서버 보안 환경변수(.env)를 통해 텔레그램(채팅방 ID: " + (srvJson.chatIdMasked || "연동됨") + ")으로 보고서가 즉시 발송되었습니다!";
-            }
-            return;
-          }
-        }
-      } catch (e) {}
-      if (statusBox) {
-        statusBox.textContent = "⚠️ 먼저 텔레그램 @BotFather에서 발급받은 봇 토큰(예: 123456:ABC-DEF...)을 입력해 주세요!";
-      }
+    if (typeof document === 'undefined') {
+      state.isPrescriptionIssued = true;
       return;
     }
 
-    try {
-      if (!chatId || chatId === "YOUR_CHAT_ID") {
-        const updRes = await fetch(`https://api.telegram.org/bot${token}/getUpdates`);
-        const updJson = await updRes.json();
-        if (updJson.ok && Array.isArray(updJson.result) && updJson.result.length > 0) {
-          for (let i = updJson.result.length - 1; i >= 0; i--) {
-            const msg = updJson.result[i].message || updJson.result[i].channel_post;
-            if (msg && msg.chat && msg.chat.id) {
-              chatId = String(msg.chat.id);
-              if (chatInp) chatInp.value = chatId;
-              break;
-            }
-          }
+    const overlay = document.getElementById('analysis-overlay');
+    const titleEl = document.getElementById('analysis-title');
+    const descEl = document.getElementById('analysis-desc');
+    const fillEl = document.getElementById('analysis-bar-fill');
+    const container = document.getElementById('prescription-container');
+    const headerTitle = document.getElementById('rx-header-title');
+    const avatarEl = document.getElementById('rx-avatar');
+
+    const isImmediate = options.immediate || false;
+
+    if (overlay && !isImmediate) {
+      overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
+
+      const messages = [
+        {
+          pct: 28,
+          title: '소아성장도표(KDCA 2017) 표준 백분위 대조 중...',
+          desc: `${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 기준 표준 키·몸무게 Z-Score를 산출하고 있습니다.`
+        },
+        {
+          pct: 68,
+          title: 'K-DST 6대 발달 영역 & 몬테소리/은물 판정 분석 중...',
+          desc: '선택하신 발달 고민과 월령 특성을 고려하여 최적의 교구 영역을 분석하고 있습니다.'
+        },
+        {
+          pct: 100,
+          title: '우리 아이 맞춤형 종합 처방전 생성 완료!',
+          desc: '신체 성장 곡선, 족집게 발달 교구, 주말 핀셋 나들이 코스가 준비되었습니다.'
         }
-      }
+      ];
 
-      if (!chatId || chatId === "YOUR_CHAT_ID") {
-        if (statusBox) {
-          statusBox.textContent = "ℹ️ 봇에게 아직 메시지가 없습니다! 텔레그램에서 생성한 봇에게 '/start'를 한 번 보낸 뒤 다시 버튼을 눌러주세요.";
-        }
-        return;
-      }
-
-      window.applyMonetizationConfig();
-
-      const siteUrl = (document.getElementById('cfg-site-url')?.value || "https://truthofmarket.com").trim();
-      const testText =
-        `🤖 <b>[머니핏(MoneyFit) 텔레그램 자동 보고 연동 완료!]</b>\n` +
-        `• <b>연동 도메인</b>: ${siteUrl}\n` +
-        `• <b>감지된 채팅방 ID</b>: <code>${chatId}</code>\n` +
-        `• <b>자동화 상태</b>: 매일 오전 06:00 KST 정기 보고(방문자수·쿠팡/링크프라이스 매출·실제 순수익) 및 실시간 수익 클릭 신호가 이 채팅방으로 발송됩니다!`;
-
-      const sendRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: testText,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        })
-      });
-      const sendJson = await sendRes.json();
-      if (sendJson.ok) {
-        if (statusBox) {
-          statusBox.textContent = `✅ 발송 성공! 텔레그램(채팅방 ID: ${chatId})으로 완료 보고 메시지가 도착했습니다.`;
-        }
-      } else {
-        if (statusBox) {
-          statusBox.textContent = `❌ 발송 실패: ${sendJson.description || "권한 또는 토큰을 확인하세요"}`;
-        }
-      }
-    } catch (err) {
-      if (statusBox) {
-        statusBox.textContent = `❌ 네트워크 오류: ${err.message}`;
-      }
-    }
-  };
-
-  /**
-   * 06:00 AM KST Daily Briefing On-Demand Dispatcher (Browser + Backend)
-   */
-  window.sendDailyRevenueReportFromBrowser = async function () {
-    const statusBox = document.getElementById('tg-test-status');
-    if (statusBox) {
-      statusBox.classList.remove('hidden');
-      statusBox.textContent = "⏳ 실시간 방문자 통계 및 쿠팡파트너스·링크프라이스 매출/순수익 정산 보고서 생성 중...";
-    }
-
-    try {
-      // 1. Try triggering backend /api/daily-report?send=1 first
-      const srvRes = await fetch('/api/daily-report?send=1').catch(() => null);
-      if (srvRes && srvRes.ok) {
-        const srvData = await srvRes.json();
-        if (srvData && srvData.sent) {
-          if (statusBox) {
-            statusBox.textContent = `✅ 발송 완료! 오전 6시 일일 정기 보고서(방문자·쿠팡/링크프라이스 매출·실수익)가 텔레그램으로 전송되었습니다.`;
-          }
-          return;
-        }
-      }
-
-      // 2. Fallback: Fetch /api/stats and send via browser token if configured
-      const statsRes = await fetch('/api/stats').catch(() => null);
-      const stats = (statsRes && statsRes.ok) ? await statsRes.json() : null;
-      const token = (document.getElementById('cfg-tg-token')?.value || "").trim();
-      const chatId = (document.getElementById('cfg-tg-chat-id')?.value || "").trim();
-
-      if (!token || token === "YOUR_TELEGRAM_BOT_TOKEN" || !chatId || chatId === "YOUR_CHAT_ID") {
-        if (statusBox) {
-          statusBox.textContent = "ℹ️ 서버(.env) 또는 위 입력창에 텔레그램 봇 토큰과 채팅방 ID가 설정되어 있으면 즉시 발송됩니다.";
-        }
-        return;
-      }
-
-      const todayUv = stats?.today?.uniqueVisitors || 0;
-      const todayPv = stats?.today?.pageViews || 0;
-      const totalUv = stats?.totals?.uniqueVisitors || 0;
-      const totalClicks = stats?.totals?.affiliateClicks || 0;
-      const coupangClicks = stats?.totals?.clicksByChannel?.coupang || Math.ceil(totalClicks * 0.55);
-      const lpClicks = stats?.totals?.clicksByChannel?.linkprice || Math.floor(totalClicks * 0.45);
-
-      const estCoupangGmv = coupangClicks * 45000 * 0.045;
-      const estCoupangNet = Math.round(estCoupangGmv * 0.03);
-      const estLpGmv = lpClicks * 120000 * 0.035;
-      const estLpNet = Math.round(estLpGmv * 0.04);
-
-      const reportHtml =
-        `🌅 <b>[머니핏 오전 06:00 일일 방문자·매출·실수익 정기 보고]</b>\n` +
-        `━━━━━━━━━━━━━━━━━━\n` +
-        `👥 <b>1. 실시간 방문자 및 트래픽 현황</b>\n` +
-        `• 오늘 순방문자(UV): <b>${todayUv.toLocaleString()}명</b> (페이지뷰 ${todayPv.toLocaleString()}회)\n` +
-        `• 누적 순방문자(UV): <b>${totalUv.toLocaleString()}명</b>\n` +
-        `• 제휴 링크 클릭 전환: <b>총 ${totalClicks.toLocaleString()}회</b> (쿠팡 ${coupangClicks}회 / 링크프라이스 ${lpClicks}회)\n\n` +
-        `💰 <b>2. 쿠팡파트너스(AF7865143) 매출 및 내 순수익</b>\n` +
-        `• 추정 구매 전환 매출액: <b>${Math.round(estCoupangGmv).toLocaleString()}원</b>\n` +
-        `• 실제 내 커미션 수익(3%): <b>+${estCoupangNet.toLocaleString()}원</b>\n\n` +
-        `🏷️ <b>3. 링크프라이스(A100708867) 매출 및 내 순수익</b>\n` +
-        `• 추정 제휴몰 발생 매출액: <b>${Math.round(estLpGmv).toLocaleString()}원</b>\n` +
-        `• 실제 내 커미션 수익(평균 4%): <b>+${estLpNet.toLocaleString()}원</b>\n\n` +
-        `📊 <b>4. 합산 예상 순수익: +${(estCoupangNet + estLpNet).toLocaleString()}원</b>\n` +
-        `• 공식 확정 정산 조회: <a href="https://partners.coupang.com/">쿠팡파트너스 리포트</a> | <a href="https://www.linkprice.com/">링크프라이스 리포트</a>`;
-
-      const sendRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: reportHtml,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        })
-      });
-      const sendJson = await sendRes.json();
-      if (sendJson.ok && statusBox) {
-        statusBox.textContent = "✅ 오전 6시 양식 방문자·매출·순수익 보고서가 텔레그램으로 즉시 전송되었습니다!";
-      }
-    } catch (e) {
-      if (statusBox) statusBox.textContent = `❌ 보고서 발송 중 오류: ${e.message}`;
-    }
-  };
-
-  /**
-   * Export Config JSON
-   */
-  window.exportConfigJson = function () {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const blob = new Blob([JSON.stringify(config, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "monetization.config.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  /**
-   * Import Config JSON from File Input
-   */
-  window.importConfigFromFile = function (event) {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const content = e.target.result;
-      const monetizationModule = getMonetizationModule();
-      if (monetizationModule.importConfigJson) {
-        const res = monetizationModule.importConfigJson(content);
-        if (res.success) {
-          populateWizardFields();
-          recalculateCurrent();
-          alert("설정 파일이 성공적으로 적용되었습니다!");
+      let step = 0;
+      function nextAnalysisStep() {
+        if (step < messages.length) {
+          const m = messages[step];
+          if (titleEl) titleEl.textContent = m.title;
+          if (descEl) descEl.textContent = m.desc;
+          if (fillEl) fillEl.style.width = `${m.pct}%`;
+          step++;
+          setTimeout(nextAnalysisStep, 250);
         } else {
-          alert("설정 파일 파싱 실패: " + res.error);
+          finalizePrescription();
         }
       }
-    };
-    reader.readAsText(file);
-  };
+      nextAnalysisStep();
+    } else {
+      finalizePrescription();
+    }
 
-  /**
-   * Monthly 1M KRW Revenue Simulator
-   */
-  window.runProfitSimulator = function () {
-    const visitorsInp = document.getElementById('sim-visitors');
-    const cpaPayoutInp = document.getElementById('sim-cpa-payout');
-    const visitors = visitorsInp ? parseInt(visitorsInp.value, 10) : 900;
-    const cpaPayout = cpaPayoutInp ? parseInt(cpaPayoutInp.value, 10) : 45000;
+    function finalizePrescription() {
+      if (overlay) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden', 'true');
+      }
 
-    const visitorsValEl = document.getElementById('sim-visitors-val');
-    const cpaPayoutValEl = document.getElementById('sim-cpa-payout-val');
-    if (visitorsValEl) visitorsValEl.textContent = `${visitors.toLocaleString()}명 / 일`;
-    if (cpaPayoutValEl) cpaPayoutValEl.textContent = `${cpaPayout.toLocaleString()}원 / 건`;
+      state.isPrescriptionIssued = true;
 
-    const monetizationModule = getMonetizationModule();
-    const sim = monetizationModule.calculateRevenueSimulation
-      ? monetizationModule.calculateRevenueSimulation(visitors, cpaPayout)
-      : null;
+      if (container) {
+        container.style.display = 'block';
+        if (headerTitle) {
+          headerTitle.textContent = `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+        }
+        if (avatarEl) {
+          avatarEl.textContent = state.profile.gender === 'boy' ? '👦' : '👧';
+        }
 
-    if (!sim) return;
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
-    const cpaKrwEl = document.getElementById('sim-cpa-krw');
-    const cpsKrwEl = document.getElementById('sim-cps-krw');
-    const adfitKrwEl = document.getElementById('sim-adfit-krw');
-    const totalKrwEl = document.getElementById('sim-total-krw');
-    const goalStatusEl = document.getElementById('sim-goal-status');
+      // Render Milestone 3 and Milestone 4 Reports & Monetization
+      renderPrescriptionResults();
 
-    if (cpaKrwEl) cpaKrwEl.textContent = sim.cpaRevenueFormatted;
-    if (cpsKrwEl) cpsKrwEl.textContent = sim.cpsRevenueFormatted;
-    if (adfitKrwEl) adfitKrwEl.textContent = sim.adfitRevenueFormatted;
-    if (totalKrwEl) {
-      totalKrwEl.textContent = sim.totalRevenueFormatted;
-      if (sim.goalAchieved) {
-        totalKrwEl.className = "text-2xl font-extrabold text-emerald-400";
-      } else {
-        totalKrwEl.className = "text-2xl font-extrabold text-amber-400";
+      // Dispatch Custom Event for Milestone 3 domain engine and Milestone 4 monetization listeners
+      if (typeof window !== 'undefined' && typeof window.CustomEvent === 'function') {
+        const event = new CustomEvent('kidsfit:prescription-issued', {
+          detail: { profile: state.profile }
+        });
+        window.dispatchEvent(event);
       }
     }
-    if (goalStatusEl) {
-      if (sim.goalAchieved) {
-        goalStatusEl.innerHTML = `<span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded text-xs font-bold">🎉 월 100만 원 목표 초과 달성!</span>`;
-      } else {
-        const diff = 1000000 - sim.totalRevenue;
-        goalStatusEl.innerHTML = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded text-xs font-bold">🎯 목표까지 ${diff.toLocaleString()}원</span>`;
-      }
-    }
-  };
-
-  /**
-   * Highlight Top-Performing UI Slot Based on Real Click Data (Experiment C)
-   */
-  function highlightWinningSlot() {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    const slotCounts = config.clicksBySlot || {};
-    let topSlot = null;
-    let maxClicks = 0;
-    Object.keys(slotCounts).forEach(k => {
-      if ((slotCounts[k] || 0) > maxClicks) {
-        maxClicks = slotCounts[k];
-        topSlot = k;
-      }
-    });
-    const topSlotEl = document.getElementById('status-top-slot');
-    if (topSlotEl && topSlot) {
-      topSlotEl.textContent = `${topSlot} (${maxClicks}회)`;
-    }
-    const slotDomMap = {
-      input_bridge: 'input-instant-bridge',
-      receipt_cart: 'receipt-action-cart',
-      cpa_card: 'cpa-action-link',
-      deal_card: 'product-recommendations',
-      sticky_mobile: 'sticky-cta-btn'
-    };
-    Object.keys(slotDomMap).forEach(k => {
-      const el = document.getElementById(slotDomMap[k]);
-      if (el) {
-        el.classList.toggle('ring-2', k === topSlot && maxClicks >= 2);
-        el.classList.toggle('ring-amber-400', k === topSlot && maxClicks >= 2);
-      }
-    });
   }
 
-  /**
-   * Affiliate Link Click Tracker + Slot-Level CTR Analytics + Real-Time Category/Item Ordering + Telegram Conversion Signal
-   */
-  window.recordAffiliateClick = function (channel, url, slot = 'deal_card', itemKey = '') {
-    const monetizationModule = getMonetizationModule();
-    const config = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    config.clickCount = (config.clickCount || 0) + 1;
-    const safeSlot = String(slot || 'deal_card').replace(/[^a-zA-Z0-9_-]/g, '');
-    const safeItemKey = String(itemKey || '').replace(/[^a-zA-Z0-9_-]/g, '');
-    const clicksBySlot = Object.assign({}, config.clicksBySlot || {});
-    clicksBySlot[safeSlot] = (clicksBySlot[safeSlot] || 0) + 1;
-    config.clicksBySlot = clicksBySlot;
+  // 7-1. Render Results for Tab 1, Tab 2, Tab 3 & Monetization
+  function renderPrescriptionResults() {
+    if (!GrowthEngine && global.KidsFitGrowthEngine) GrowthEngine = global.KidsFitGrowthEngine;
+    if (!DevelopmentEngine && global.KidsFitDevelopmentEngine) DevelopmentEngine = global.KidsFitDevelopmentEngine;
+    if (!WeekendCurator && global.KidsFitWeekendCurator) WeekendCurator = global.KidsFitWeekendCurator;
+    if (!Monetization && global.KidsFitMonetization) Monetization = global.KidsFitMonetization;
+    if (!AdminOsmu && global.KidsFitAdminOsmu) AdminOsmu = global.KidsFitAdminOsmu;
 
-    incrementCalcClick(currentCalc, safeItemKey);
+    if (typeof document === 'undefined') return;
 
-    if (monetizationModule.saveConfigToStorage) {
-      monetizationModule.saveConfigToStorage({
-        clickCount: config.clickCount,
-        clicksBySlot: config.clicksBySlot,
-        clicksByCalc: config.clicksByCalc,
-        clicksByItem: config.clicksByItem
-      });
+    const affConfig = getAffiliateConfig();
+
+    // Render Tab 1
+    const growthCard = document.getElementById('growth-report-card');
+    if (growthCard && GrowthEngine) {
+      growthCard.innerHTML = GrowthEngine.renderTab1Report(state.profile);
     }
-    const statusClicks = document.getElementById('status-click-count');
-    if (statusClicks) statusClicks.textContent = config.clickCount;
-    recalculateCurrent();
 
-    // 1. Report affiliate click + slot + item to backend server (/api/track)
-    try {
-      const safeChannel = String(channel || 'affiliate').replace(/[^a-zA-Z0-9_-]/g, '');
-      const safeCalc = String(currentCalc || 'electric').replace(/[^a-zA-Z0-9_-]/g, '');
-      const pagePath = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
-      if (typeof fetch === 'function') {
-        fetch(`/api/track?type=click&channel=${encodeURIComponent(safeChannel)}&calc=${encodeURIComponent(safeCalc)}&slot=${encodeURIComponent(safeSlot)}&item=${encodeURIComponent(safeItemKey)}&p=${encodeURIComponent(pagePath)}`, {
-          method: 'GET',
-          keepalive: true
-        }).catch(() => {});
+    // Render Tab 2
+    const devCard = document.getElementById('dev-report-card');
+    if (devCard && DevelopmentEngine) {
+      devCard.innerHTML = DevelopmentEngine.renderTab2Report(state.profile, affConfig);
+    }
+
+    // Render Tab 3
+    const outingCard = document.getElementById('outing-report-card');
+    if (outingCard && WeekendCurator) {
+      outingCard.innerHTML = WeekendCurator.renderTab3Report(state.profile, affConfig);
+    }
+
+    // Render Monetization Appendix
+    const monetizationContainer = document.getElementById('monetization-appendix-container');
+    if (monetizationContainer && Monetization) {
+      monetizationContainer.innerHTML = Monetization.renderAllMonetizationLayers(state.profile, affConfig);
+      
+      const shareBtn = document.getElementById('btn-share-prescription');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', handleSharePrescription);
       }
-    } catch (e) {}
-
-    // 2. Real-time Telegram click notification (non-blocking)
-    const token = config.telegramBotToken;
-    const chatId = config.telegramChatId;
-    if (
-      config.telegramAutoNotify !== false &&
-      token &&
-      token !== "YOUR_TELEGRAM_BOT_TOKEN" &&
-      token.includes(":") &&
-      chatId &&
-      chatId !== "YOUR_CHAT_ID" &&
-      typeof fetch === "function"
-    ) {
-      const msg =
-        `🔔 <b>[머니핏 실시간 수익 전환 신호]</b>\n` +
-        `• <b>계산기 카테고리</b>: <code>${currentCalc}</code>\n` +
-        `• <b>클릭 채널</b>: <code>${channel}</code>\n` +
-        `• <b>전환 UI 슬롯</b>: <code>${safeSlot}</code>\n` +
-        `• <b>누적 클릭수</b>: <code>${config.clickCount}회</code>\n` +
-        `• <b>이동 링크</b>: ${url}`;
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: msg,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        }),
-        keepalive: true
-      }).catch(() => {});
     }
-  };
+  }
 
-  /**
-   * Clipboard Copy Utilities
-   */
-  window.copyText = function (elId) {
-    if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.copyWithFeedback) {
-      MoneyFitCopyKit.copyWithFeedback(elId, null, '원고');
-      return;
-    }
-    const el = document.getElementById(elId);
-    if (!el) return;
-    const text = el.textContent;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+  // 7-2. Share Prescription Handler
+  function handleSharePrescription() {
+    const lms = GrowthEngine ? GrowthEngine.getLmsForMonth(state.profile.gender, state.profile.ageMonths) : { L: 1, M: 100, S: 0.04 };
+    const kdca = GrowthEngine ? GrowthEngine.calculateKdcaPercentile(state.profile.currentHeight, lms.L, lms.M, lms.S) : { topPercent: 30 };
+    const mph = GrowthEngine ? GrowthEngine.calculateMph(state.profile.fatherHeight, state.profile.motherHeight, state.profile.gender) : 170;
+    const pred = GrowthEngine ? GrowthEngine.calculateHeightPrediction(mph, state.profile.habits, state.profile.pubertyStage) : { potentialHeight: 178 };
+    const outing = WeekendCurator ? WeekendCurator.getWeekendOuting(state.profile.region, state.profile.interest) : { destination: '어린이박물관' };
+
+    const childGender = state.profile.gender === 'boy' ? '남아' : '여아';
+    const text = `💌 여보! 방금 우리 아이(만 ${state.profile.ageMonths}개월 ${childGender}) 질병관리청 성장도표 진단해봤는데, 또래 상위 ${kdca.topPercent}%래!\n골든타임 관리하면 최대 ${pred.potentialHeight}cm까지 클 수 있대!\n이번 주말엔 [${outing.destination}] 같이 가보자 👉 https://truthofmarket.com`;
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
-        alert("클립보드에 복사되었습니다! 블로그·지식iN·스레드에 바로 붙여넣으세요.");
+        alert('카톡 공유용 맞춤 처방전 메시지가 클립보드에 복사되었습니다!\n카카오톡 대화창에 붙여넣기(Ctrl+V) 해주세요.');
       }).catch(() => {
-        fallbackCopy(text);
+        alert(text);
       });
     } else {
-      fallbackCopy(text);
+      alert(text);
     }
+  }
+
+  // 8. Capsule Tab Switching
+  function switchTab(tabId) {
+    state.activeTab = tabId;
+
+    if (typeof document === 'undefined') return;
+
+    // Tabs
+    const tabs = document.querySelectorAll('.capsule-tab');
+    tabs.forEach(tab => {
+      const match = tab.getAttribute('data-tab') === tabId;
+      if (match) {
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      } else {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    // Panes
+    const panes = document.querySelectorAll('.tab-pane');
+    panes.forEach(pane => {
+      const match = pane.getAttribute('id') === `tab-pane-${tabId.replace('tab-', '')}`;
+      if (match) {
+        pane.classList.add('active');
+      } else {
+        pane.classList.remove('active');
+      }
+    });
+
+    if (typeof window !== 'undefined' && typeof window.CustomEvent === 'function') {
+      const event = new CustomEvent('kidsfit:tab-changed', {
+        detail: { tabId }
+      });
+      window.dispatchEvent(event);
+    }
+  }
+
+  // 9. Secret Admin Studio Logic
+  const DEFAULT_AFFILIATE_CONFIG = {
+    coupang: 'AF7865143',
+    linkprice: 'A100708867',
+    tenping: '010-****-2370',
+    cafeUrl: 'https://cafe.naver.com/kidsfitgrowth',
+    blogUrl: 'https://blog.naver.com/kidsfit_studio'
   };
 
-  function fallbackCopy(text, silent = false) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try {
-      document.execCommand('copy');
-      if (!silent) {
-        if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
-          window.MoneyFitCopyKit.showToast("클립보드에 복사되었습니다!");
+  let inMemoryAffiliateConfig = null;
+
+  function getAffiliateConfig() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const raw = localStorage.getItem('kidsfit_affiliate_config');
+        if (raw) {
+          return Object.assign({}, DEFAULT_AFFILIATE_CONFIG, JSON.parse(raw));
         }
+      } catch (e) {
+        // fallback
       }
-    } catch (e) {}
-    document.body.removeChild(ta);
+    }
+    if (inMemoryAffiliateConfig) {
+      return Object.assign({}, DEFAULT_AFFILIATE_CONFIG, inMemoryAffiliateConfig);
+    }
+    return Object.assign({}, DEFAULT_AFFILIATE_CONFIG);
   }
 
-  /**
-   * 1-Second Receipt Summary + Deep-Link Copy for KakaoTalk / Group Chats
-   */
-  window.copyReceiptShareText = function (btnEl) {
-    const titleEl = document.getElementById('calc-form-title');
-    const badgeEl = document.getElementById('result-badge');
-    const headlineEl = document.getElementById('result-headline');
-    const summaryEl = document.getElementById('result-summary-text');
-    const metricsEls = document.querySelectorAll('#result-metrics-grid > a, #result-metrics-grid > div');
-
-    const metricLines = [];
-    metricsEls.forEach(item => {
-      const divs = item.querySelectorAll('div');
-      const label = divs[0]?.textContent?.trim() || '';
-      const val = divs[1]?.textContent?.trim() || '';
-      if (label && val) metricLines.push(`• ${label}: ${val}`);
-    });
-
-    const baseUrl = window.location.origin + window.location.pathname;
-    const shareUrl = `${baseUrl}?calc=${encodeURIComponent(currentCalc)}&preset=${encodeURIComponent(activeScenarioId)}`;
-
-    const receiptText =
-      `🧾 [머니핏 실시간 손익 영수증]\n` +
-      `📌 ${titleEl ? titleEl.textContent.trim() : '손익분기점 진단'}\n` +
-      `${badgeEl ? badgeEl.textContent.trim() : ''} ${headlineEl ? headlineEl.textContent.trim() : ''}\n` +
-      `──────────────────\n` +
-      `${metricLines.join('\n')}\n` +
-      `──────────────────\n` +
-      `💡 ${summaryEl ? summaryEl.textContent.trim() : ''}\n\n` +
-      `👉 내 조건 넣고 3초 만에 계산하기: ${shareUrl}`;
-
-    const showCopiedFeedback = () => {
-      if (btnEl) {
-        const origHtml = btnEl.getAttribute('data-orig-html') || btnEl.innerHTML;
-        btnEl.setAttribute('data-orig-html', origHtml);
-        btnEl.innerHTML = '✅ 카톡·클립보드 복사 완료!';
-        btnEl.classList.add('bg-emerald-400', 'text-slate-950');
-        setTimeout(() => {
-          btnEl.innerHTML = origHtml;
-          btnEl.classList.remove('bg-emerald-400');
-        }, 2200);
+  function saveAffiliateConfig(config) {
+    inMemoryAffiliateConfig = Object.assign({}, config);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        localStorage.setItem('kidsfit_affiliate_config', JSON.stringify(config));
+      } catch (e) {
+        console.error('Failed to save affiliate config to localStorage', e);
       }
-      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
-        window.MoneyFitCopyKit.showToast("내 손익 영수증이 복사되었습니다! 카카오톡·단톡방에 붙여넣으세요.");
-      }
-    };
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(receiptText).then(showCopiedFeedback).catch(() => {
-        fallbackCopy(receiptText, true);
-        showCopiedFeedback();
-      });
-    } else {
-      fallbackCopy(receiptText, true);
-      showCopiedFeedback();
-    }
-  };
-
-  window.copyShareUrl = function () {
-    window.copyReceiptShareText(document.getElementById('btn-share-receipt'));
-  };
-
-  /**
-   * [개선안 2] 카톡 '나에게 보내기' & 메모장 1초 보관함 패키지 (견적서 + 쿠팡·링크프라이스 최저가 구매링크 직결)
-   */
-  function buildKakaoMemoPackage() {
-    const titleEl = document.getElementById('calc-form-title');
-    const badgeEl = document.getElementById('result-badge');
-    const headlineEl = document.getElementById('result-headline');
-    const zfEl = document.getElementById('receipt-zero-feel-banner');
-    const metricsEls = document.querySelectorAll('#result-metrics-grid > a, #result-metrics-grid > div');
-
-    const metricLines = [];
-    metricsEls.forEach(item => {
-      const divs = item.querySelectorAll('div');
-      const label = divs[0]?.textContent?.trim() || '';
-      const val = divs[1]?.textContent?.trim() || '';
-      if (label && val) metricLines.push(`• ${label}: ${val}`);
-    });
-
-    const monetizationModule = getMonetizationModule();
-    const buildCoupangHref = (kw) => {
-      return monetizationModule.buildCoupangUrl
-        ? monetizationModule.buildCoupangUrl(kw, currentCalc)
-        : 'https://link.coupang.com/a/hWnhNJFy1Y';
-    };
-    const buildLpHref = (merchant, url) => {
-      return monetizationModule.buildLinkPriceDeepLink
-        ? monetizationModule.buildLinkPriceDeepLink(merchant, url)
-        : (url || 'https://truthofmarket.com');
-    };
-
-    const actionItems = (lastCalcResult && Array.isArray(lastCalcResult.actionItems)) ? lastCalcResult.actionItems : [];
-    const purchaseLines = actionItems.slice(0, 3).map((item, idx) => {
-      const cpUrl = buildCoupangHref(item.coupangKw);
-      const lpUrl = buildLpHref(item.lpMerchant, item.lpUrl);
-      return (
-        `[${idx + 1}] ${item.icon || '🛒'} ${item.label} (${item.calcVal})\n` +
-        `  🚀 쿠팡 로켓배송 최저가: ${cpUrl}\n` +
-        `  🏷️ 공식몰 제휴 특가: ${lpUrl}`
-      );
-    });
-
-    const baseUrl = window.location.origin + window.location.pathname;
-    const shareUrl = `${baseUrl}?calc=${encodeURIComponent(currentCalc)}&preset=${encodeURIComponent(activeScenarioId)}`;
-
-    const text =
-      `💬 [머니핏 내 계산 견적서 + 최저가 장바구니 보관함]\n` +
-      `📌 ${titleEl ? titleEl.textContent.trim() : '손익분기점 진단'}\n` +
-      `${badgeEl ? badgeEl.textContent.trim() : ''} ${headlineEl ? headlineEl.textContent.trim() : ''}\n` +
-      `${zfEl ? '🔥 ' + zfEl.textContent.trim() + '\n' : ''}` +
-      `──────────────────\n` +
-      `${metricLines.join('\n')}\n` +
-      `──────────────────\n` +
-      `🛒 [집에서 바로 결제하는 1:1 맞춤 최저가 링크]\n` +
-      `${purchaseLines.join('\n\n')}\n` +
-      `──────────────────\n` +
-      `👉 내 계산기 다시 열기: ${shareUrl}\n` +
-      `※ 이 포스팅은 쿠팡 파트너스 및 링크프라이스 제휴 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.`;
-
-    return {
-      title: `[머니핏 견적서] ${headlineEl ? headlineEl.textContent.trim() : '맞춤 손익 영수증'}`,
-      text,
-      url: shareUrl
-    };
-  }
-
-  window.copyKakaoMemoBridge = function (btnEl) {
-    const pkg = buildKakaoMemoPackage();
-
-    const showFeedback = () => {
-      if (btnEl) {
-        const origHtml = btnEl.getAttribute('data-orig-html') || btnEl.innerHTML;
-        btnEl.setAttribute('data-orig-html', origHtml);
-        btnEl.innerHTML = '<span>✅</span><span>견적서+구매링크 복사 완료! 카톡에 붙여넣으세요</span>';
-        setTimeout(() => {
-          btnEl.innerHTML = origHtml;
-        }, 2600);
-      }
-      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
-        window.MoneyFitCopyKit.showToast("💬 내 계산 견적서 + 쿠팡·공식몰 최저가 링크가 복사되었습니다! 카카오톡 '나에게 보내기'나 메모장에 붙여넣으세요.");
-      }
-    };
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(pkg.text).then(showFeedback).catch(() => {
-        fallbackCopy(pkg.text, true);
-        showFeedback();
-      });
-    } else {
-      fallbackCopy(pkg.text, true);
-      showFeedback();
-    }
-  };
-
-  window.shareKakaoOrNative = function (btnEl) {
-    const pkg = buildKakaoMemoPackage();
-    if (navigator.share) {
-      navigator.share({
-        title: pkg.title,
-        text: pkg.text,
-        url: pkg.url
-      }).catch(() => {
-        window.copyKakaoMemoBridge(btnEl);
-      });
-    } else {
-      window.copyKakaoMemoBridge(btnEl);
-    }
-  };
-
-  function enableAdminMode(openWizard = true) {
-    document.getElementById('admin-status-bar')?.classList.remove('hidden');
-    document.getElementById('tab-btn-seo')?.classList.remove('hidden');
-    document.getElementById('tab-btn-wizard')?.classList.remove('hidden');
-    document.getElementById('tab-btn-office')?.classList.remove('hidden');
-    if (openWizard && typeof window.switchMainTab === 'function') {
-      window.switchMainTab('wizard');
     }
   }
-  window.enableAdminMode = enableAdminMode;
 
-  let logoTapCount = 0;
-  let logoTapTimer = null;
-  window.handleLogoSecretTap = function () {
-    logoTapCount++;
-    if (logoTapTimer) clearTimeout(logoTapTimer);
-    logoTapTimer = setTimeout(() => {
-      logoTapCount = 0;
+  let currentOsmuScenario = 'scenario-1';
+  function renderAdminOsmuStudio() {
+    if (!AdminOsmu && global.KidsFitAdminOsmu) AdminOsmu = global.KidsFitAdminOsmu;
+    if (typeof document === 'undefined') return;
+
+    const osmuContainer = document.getElementById('admin-osmu-container');
+    if (osmuContainer && AdminOsmu) {
+      osmuContainer.innerHTML = AdminOsmu.renderOsmuStudioUI(currentOsmuScenario, getAffiliateConfig());
+
+      const scenarioSelect = document.getElementById('osmu-scenario-select');
+      if (scenarioSelect) {
+        scenarioSelect.addEventListener('change', (e) => {
+          currentOsmuScenario = e.target.value;
+          renderAdminOsmuStudio();
+        });
+      }
+
+      const channelTabs = osmuContainer.querySelectorAll('.osmu-tab-btn');
+      channelTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const channel = btn.getAttribute('data-channel');
+          channelTabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const panels = osmuContainer.querySelectorAll('.osmu-panel');
+          panels.forEach(p => p.style.display = 'none');
+          const targetPanel = document.getElementById(`osmu-panel-${channel}`);
+          if (targetPanel) targetPanel.style.display = 'block';
+        });
+      });
+
+      const copyBtns = osmuContainer.querySelectorAll('.btn-copy-osmu');
+      copyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          const targetTextarea = document.getElementById(targetId);
+          if (targetTextarea && typeof navigator !== 'undefined' && navigator.clipboard) {
+            navigator.clipboard.writeText(targetTextarea.value).then(() => {
+              const origText = btn.textContent;
+              btn.textContent = '✓ 복사완료!';
+              btn.style.background = '#059669';
+              setTimeout(() => {
+                btn.textContent = origText;
+                btn.style.background = '';
+              }, 2000);
+            });
+          }
+        });
+      });
+    }
+  }
+
+  function openAdminModal() {
+    if (typeof document === 'undefined') return;
+    const modal = document.getElementById('admin-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+
+      const cfg = getAffiliateConfig();
+      const coupangEl = document.getElementById('cfg-coupang');
+      const linkpriceEl = document.getElementById('cfg-linkprice');
+      const tenpingEl = document.getElementById('cfg-tenping');
+      const cafeEl = document.getElementById('cfg-cafe');
+      const blogEl = document.getElementById('cfg-blog');
+
+      if (coupangEl) coupangEl.value = cfg.coupang;
+      if (linkpriceEl) linkpriceEl.value = cfg.linkprice;
+      if (tenpingEl) tenpingEl.value = cfg.tenping;
+      if (cafeEl) cafeEl.value = cfg.cafeUrl;
+      if (blogEl) blogEl.value = cfg.blogUrl;
+
+      // Render live OSMU studio inside modal
+      renderAdminOsmuStudio();
+    }
+  }
+
+  function closeAdminModal() {
+    if (typeof document === 'undefined') return;
+    const modal = document.getElementById('admin-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function handleFooterClick() {
+    state.adminClickCount++;
+    if (state.adminTimer) clearTimeout(state.adminTimer);
+    state.adminTimer = setTimeout(() => {
+      state.adminClickCount = 0;
     }, 3000);
-    if (logoTapCount >= 5) {
-      logoTapCount = 0;
-      enableAdminMode(false);
-      if (window.MoneyFitCopyKit && window.MoneyFitCopyKit.showToast) {
-        window.MoneyFitCopyKit.showToast("🔓 총괄 매니저 관리자 모드(웹툰·수익화 마법사·실시간 CTR 바)가 활성화되었습니다!");
-      }
-    }
-  };
 
-  async function syncServerClickRanking(autoSelectTopCalc = false) {
-    if (typeof fetch !== 'function') return;
-    try {
-      const res = await fetch('/api/stats');
-      if (!res || !res.ok) return;
-      const stats = await res.json();
-      if (stats && stats.totals) {
-        if (stats.totals.clicksByCalc && typeof stats.totals.clicksByCalc === 'object') {
-          serverClicksByCalc = Object.assign({}, stats.totals.clicksByCalc);
-        }
-        if (stats.totals.clicksByItem && typeof stats.totals.clicksByItem === 'object') {
-          serverClicksByItem = Object.assign({}, stats.totals.clicksByItem);
-        }
-        const ranked = reorderCalculatorsByClicks();
-        if (autoSelectTopCalc && ranked.length > 0 && ranked[0] !== currentCalc) {
-          selectCalc(ranked[0], null, false);
-        } else {
-          recalculateCurrent();
-        }
-      }
-    } catch (e) {}
+    if (state.adminClickCount >= 5) {
+      state.adminClickCount = 0;
+      openAdminModal();
+    }
   }
 
-  /**
-   * Bootstrapping on DOM Ready
-   */
-  window.addEventListener('DOMContentLoaded', () => {
-    const monetizationModule = getMonetizationModule();
-    if (monetizationModule.loadConfigFromStorage) {
-      monetizationModule.loadConfigFromStorage();
-    }
-    const cfg = monetizationModule.getConfig ? monetizationModule.getConfig() : {};
-    updateStatusBar(cfg);
+  // 10. Initialization
+  function initApp() {
+    if (typeof document === 'undefined') return;
 
-    const rankedCalcs = reorderCalculatorsByClicks();
-    let initialCalc = rankedCalcs[0] || 'electric';
-    let initialPreset = null;
-    let hasExplicitUrlParam = false;
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const calcParam = params.get('calc');
-      const presetParam = params.get('preset');
-      if (presetParam) {
-        const found = getPresetsList().find(p => p.id === presetParam);
-        if (found) {
-          initialPreset = found;
-          hasExplicitUrlParam = true;
-        }
-      }
-      if (calcParam && ['electric', 'diet', 'pet', 'room', 'auto', 'telecom'].includes(calcParam)) {
-        initialCalc = calcParam;
-        hasExplicitUrlParam = true;
-      }
-    } catch (e) {}
-
-    if (initialPreset) {
-      window.applyScenarioPreset(initialPreset.id);
-    } else {
-      selectCalc(initialCalc, null, false);
-    }
-    runProfitSimulator();
-    syncServerClickRanking(!hasExplicitUrlParam);
-
-    // Unlock owner-only admin mode if ?admin=2370 or ?admin=1 is present in URL
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const adminParam = params.get('admin');
-      if (adminParam === '2370' || adminParam === '1' || adminParam === 'true') {
-        enableAdminMode(true);
-      }
-    } catch (e) {}
-
-    // Secret keyboard shortcut for owner: Ctrl + Shift + M
-    window.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
-        e.preventDefault();
-        enableAdminMode(true);
-      }
+    // Capsule tab navigation click
+    const capsuleTabs = document.querySelectorAll('.capsule-tab');
+    capsuleTabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        const tabId = tab.getAttribute('data-tab');
+        if (tabId) switchTab(tabId);
+      });
     });
-  });
 
-})();
+    // Preset cards click
+    const presetCards = document.querySelectorAll('.preset-card');
+    presetCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const presetId = card.getAttribute('data-preset-id');
+        if (presetId) applyPreset(presetId);
+      });
+    });
+
+    // Stepper navigation buttons
+    const nextBtn = document.getElementById('btn-next-step');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextStep();
+      });
+    }
+
+    const prevBtn = document.getElementById('btn-prev-step');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevStep();
+      });
+    }
+
+    const form = document.getElementById('diagnosis-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (validateStep(state.currentStep)) {
+          issuePrescription();
+        }
+      });
+    }
+
+    const retestBtn = document.getElementById('btn-retest');
+    if (retestBtn) {
+      retestBtn.addEventListener('click', () => {
+        const quiz = document.getElementById('quiz-section');
+        if (quiz) quiz.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // Secret Admin Triggers
+    const footerCopyright = document.getElementById('footer-copyright');
+    if (footerCopyright) {
+      footerCopyright.addEventListener('click', handleFooterClick);
+    }
+
+    if (typeof window !== 'undefined' && window.location && window.location.search) {
+      if (window.location.search.includes('admin=1')) {
+        openAdminModal();
+      }
+    }
+
+    // Admin modal actions
+    const closeAdminBtn = document.getElementById('btn-close-admin');
+    if (closeAdminBtn) closeAdminBtn.addEventListener('click', closeAdminModal);
+
+    const cancelAdminBtn = document.getElementById('btn-cancel-admin');
+    if (cancelAdminBtn) cancelAdminBtn.addEventListener('click', closeAdminModal);
+
+    const saveAdminBtn = document.getElementById('btn-save-admin');
+    if (saveAdminBtn) {
+      saveAdminBtn.addEventListener('click', () => {
+        const cfg = {
+          coupang: document.getElementById('cfg-coupang') ? document.getElementById('cfg-coupang').value : DEFAULT_AFFILIATE_CONFIG.coupang,
+          linkprice: document.getElementById('cfg-linkprice') ? document.getElementById('cfg-linkprice').value : DEFAULT_AFFILIATE_CONFIG.linkprice,
+          tenping: document.getElementById('cfg-tenping') ? document.getElementById('cfg-tenping').value : DEFAULT_AFFILIATE_CONFIG.tenping,
+          cafeUrl: document.getElementById('cfg-cafe') ? document.getElementById('cfg-cafe').value : DEFAULT_AFFILIATE_CONFIG.cafeUrl,
+          blogUrl: document.getElementById('cfg-blog') ? document.getElementById('cfg-blog').value : DEFAULT_AFFILIATE_CONFIG.blogUrl
+        };
+        saveAffiliateConfig(cfg);
+        renderPrescriptionResults();
+        renderAdminOsmuStudio();
+        alert('관리자 설정이 저장되었으며 실시간으로 동기화됩니다.');
+        closeAdminModal();
+      });
+    }
+
+    // Initialize to Step 1
+    goToStep(1);
+    syncStateToForm(state.profile);
+  }
+
+  // Auto-init in browser
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  }
+
+  // Export for testing and module systems
+  const KidsFitApp = {
+    PRESETS,
+    STEP_INFO,
+    state,
+    goToStep,
+    nextStep,
+    prevStep,
+    validateStep,
+    syncFormToState,
+    syncStateToForm,
+    applyPreset,
+    issuePrescription,
+    renderPrescriptionResults,
+    switchTab,
+    openAdminModal,
+    closeAdminModal,
+    handleFooterClick,
+    getAffiliateConfig,
+    saveAffiliateConfig,
+    renderAdminOsmuStudio,
+    handleSharePrescription,
+    initApp,
+    GrowthEngine,
+    DevelopmentEngine,
+    WeekendCurator,
+    Monetization,
+    AdminOsmu
+  };
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = KidsFitApp;
+  } else {
+    global.KidsFitApp = KidsFitApp;
+  }
+
+})(typeof window !== 'undefined' ? window : global);

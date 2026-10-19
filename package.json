@@ -1,38 +1,21 @@
 {
-  "name": "moneyfit-portal",
+  "name": "kidsfit-growth-studio",
   "version": "1.0.0",
-  "description": "MoneyFit — 6 Life Financial Calculators & Multi-Monetization Portal",
-  "main": "server.js",
+  "description": "KidsFit Growth Studio — 우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시·역사 코스 맞춤 처방소",
+  "main": "index.html",
+  "type": "commonjs",
   "scripts": {
-    "start": "node server.js",
+    "build": "node scripts/build.js",
     "test": "node tests/run-all.js",
-    "lint": "node scripts/lint.js",
-    "build": "node scripts/build-ssg.js",
-    "verify": "node scripts/verify-acceptance.js",
-    "marketing:sniper": "node scripts/marketing-sniper.js",
-    "night-grow": "node scripts/night-growth.js",
-    "telegram:notify": "node scripts/telegram-notify.js",
-    "telegram:discover": "node scripts/telegram-notify.js --discover",
-    "telegram:bridge": "node scripts/telegram-antigravity-bridge.js",
-    "report:daily": "node scripts/daily-revenue-report.js",
-    "manager:audit": "node scripts/manager-audit.js",
-    "webtoon:top6": "node scripts/sns-auto-publisher.js --top6",
-    "webtoon:all36": "node scripts/sns-auto-publisher.js --all36",
-    "sns:daily3": "node scripts/daily-sns-scheduler.js",
-    "brandconnect:launch": "node scripts/brandconnect-multi-account.js --launch",
-    "seo:autopilot": "node scripts/seo-autopilot.js",
-    "auto:all": "node scripts/auto-master.js"
+    "verify": "node scripts/verify-acceptance.js"
   },
   "keywords": [
-    "moneyfit",
-    "calculator",
-    "tco",
-    "tdee",
-    "electricity-rate",
-    "telecom",
-    "affiliate",
-    "monetization"
+    "kidsfit",
+    "growth-studio",
+    "kdst",
+    "kdca",
+    "pediatric-growth"
   ],
-  "author": "MoneyFit Team",
-  "license": "MIT"
+  "author": "KidsFit Studio",
+  "license": "ISC"
 }
