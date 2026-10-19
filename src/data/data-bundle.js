@@ -1323,7 +1323,7 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-19T22:12:45Z",
+    "generated_at": "2026-10-19T22:30:48Z",
     "total_papers": 143,
     "pillar_counts": {
       "growth_endocrinology": 34,
