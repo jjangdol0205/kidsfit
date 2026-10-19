@@ -2,5 +2,7 @@ node_modules/
 .env
 .env.*
 logs/*.json
+logs/flow_daemon_status.json
+.flow-browser-profile/
 .agents/
 .gemini/

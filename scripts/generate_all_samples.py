@@ -3,9 +3,9 @@
 KidsFit Growth Studio - Master Sample Generator (scripts/generate_all_samples.py)
 Generates all 5 tangible, high-resolution parenting samples with REAL 2.5D CHARACTER & SCENE MOTION:
   1. samples/1_blog_sample/       (blog_post_sample.md, blog_post_sample.html)
-  2. samples/2_webtoon_sample/    (webtoon_cut_01~06.png [pure illustration only], webtoon_full_6cut.png, webtoon_preview.html)
-  3. samples/3_cardnews_sample/   (cardnews_01~06.png [no CARD badge, no 공신력 검증 text], cardnews_preview.html)
-  4. samples/4_webtoon_video_sample/webtoon_parenting_video.mp4  (1080x1920 MP4, 2.5s/cut = 15s, OpenCV 2.5D Moving Characters)
+  2. samples/2_webtoon_sample/    (webtoon_cut_01~06.png [with conversational speech bubbles], webtoon_full_6cut.png, webtoon_preview.html)
+  3. samples/3_cardnews_sample/   (cardnews_01~06.png [1-line concise points, large 36pt/58pt unclipped font], cardnews_preview.html)
+  4. samples/4_webtoon_video_sample/webtoon_parenting_video.mp4  (1080x1920 MP4, 2.5s/cut = 15s, OpenCV 2.5D Moving Characters + Speech Bubbles)
   5. samples/5_cardnews_video_sample/cardnews_parenting_video.mp4 (1080x1920 MP4, 2.5s/cut = 15s, OpenCV 2.5D Moving Characters)
 """
 
@@ -47,25 +47,6 @@ def get_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
 
 def draw_rounded_rect(draw: ImageDraw.ImageDraw, xy, radius: int, fill=None, outline=None, width: int = 1):
     draw.rounded_rectangle(xy, radius=radius, fill=fill, outline=outline, width=width)
-
-
-def wrap_korean_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int):
-    lines = []
-    for paragraph in text.split("\n"):
-        words = paragraph.split(" ")
-        current = ""
-        for w in words:
-            candidate = w if not current else f"{current} {w}"
-            bbox = draw.textbbox((0, 0), candidate, font=font)
-            if bbox[2] - bbox[0] <= max_width:
-                current = candidate
-            else:
-                if current:
-                    lines.append(current)
-                current = w
-        if current:
-            lines.append(current)
-    return lines
 
 
 # ==============================================================================
@@ -138,11 +119,12 @@ def draw_sparkle_star(draw: ImageDraw.ImageDraw, cx: float, cy: float, r: float,
     draw.polygon(pts, fill=fill_rgba)
 
 
-def animate_illustration_frame(base_rgb: np.ndarray, cut_num: int, prog: float) -> Image.Image:
+def animate_illustration_frame(base_rgb: np.ndarray, cut_num: int, prog: float, with_bubbles: bool = False) -> Image.Image:
     """
     Produces a live-animated frame (1080x1080) for `cut_num` (1..6) at normalized progress `prog` in [0, 1].
     Combines OpenCV non-rigid character puppet movement (head nod/shake, arm/hand action, breathing)
     with dynamic scene lighting and particle effects.
+    If `with_bubbles=True`, overlays the crisp conversational speech bubbles after character deformation.
     """
     t = prog * 2.0 * math.pi  # 1 full cycle = 2*pi
     H, W = base_rgb.shape[:2]
@@ -334,62 +316,240 @@ def animate_illustration_frame(base_rgb: np.ndarray, cut_num: int, prog: float) 
         draw_sparkle_star(odraw, 0.86 * W, 0.24 * H, (24 + 8 * math.cos(t * 3.0)) * scale, (250, 204, 21, 230))
 
     combined = Image.alpha_composite(pil_img, overlay).convert("RGB")
+    if with_bubbles:
+        combined = draw_webtoon_speech_bubbles(combined, cut_num)
     return combined
 
 
 # ==============================================================================
-# 1. 6-CUT WEBTOON DATA & RENDERER (PURE ILLUSTRATION ONLY - NO EP.01 / SPEAKER)
+# 1. 6-CUT WEBTOON DATA & CONVERSATIONAL SPEECH BUBBLE RENDERER
 # ==============================================================================
 WEBTOON_CUTS = [
     {
         "num": 1,
         "raw": "cut_01.jpg",
-        "tts": "내가 혼자 단추 끼울 거야!",
-        "sub": "도와주겠다는 엄마 손을 뿌리치며\n혼자 하겠다고 고집부리는 세 살 아이"
+        "tts": "아이고 물 다 쏟았네! 싫어, 내가 혼자 끼울 거야!",
+        "sub": "도와주겠다는 엄마 손을 뿌리치며\n혼자 하겠다고 고집부리는 세 살 아이",
+        "bubbles": [
+            {
+                "speaker": "엄마",
+                "speaker_bg": (79, 70, 229),
+                "box": (36, 36, 560, 184),
+                "tail": ((370, 180), (415, 180), (425, 232)),
+                "text": "아이고 지우야, 물 다 쏟았잖아…\n엄마가 단추 빨리 끼워줄게!",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 246),
+            },
+            {
+                "speaker": "지우 (3세)",
+                "speaker_bg": (225, 29, 72),
+                "box": (585, 170, 1044, 318),
+                "tail": ((700, 314), (745, 314), (725, 385)),
+                "text": "싫어!! 엄마 가!\n내가 혼자 끼울 거야!!",
+                "border": (225, 29, 72),
+                "fill": (255, 250, 251, 248),
+            },
+        ],
     },
     {
         "num": 2,
         "raw": "cut_02.jpg",
-        "tts": "내가 바빠서 우리 아이만 늦는 걸까?",
-        "sub": "잠든 아이의 작은 손을 보며\n밤마다 찾아오는 엄마의 미안함"
+        "tts": "내가 바빠서 늦는 걸까? 화내서 미안해 우리 아가.",
+        "sub": "잠든 아이의 작은 손을 보며\n밤마다 찾아오는 엄마의 미안함",
+        "bubbles": [
+            {
+                "speaker": "엄마의 속마음",
+                "speaker_bg": (79, 70, 229),
+                "box": (36, 38, 565, 186),
+                "tail": ((410, 182), (455, 182), (445, 228)),
+                "text": "내가 일하느라 바빠서\n우리 지우만 손끝이 늦는 걸까…",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 246),
+            },
+            {
+                "speaker": "엄마",
+                "speaker_bg": (217, 119, 6),
+                "box": (36, 895, 650, 1036),
+                "tail": ((400, 898), (445, 898), (440, 820)),
+                "text": "아까 화내서 정말 미안해,\n잘 자 우리 아가… 사랑해♥",
+                "border": (217, 119, 6),
+                "fill": (255, 252, 245, 248),
+            },
+        ],
     },
     {
         "num": 3,
         "raw": "cut_03.jpg",
-        "tts": "고집이 아니라 손끝 소근육 민감기 신호!",
-        "sub": "반항이 아니었습니다! 두뇌와 연결된\n'손끝 소근육 민감기'의 건강한 신호"
+        "tts": "만 3세 고집은 두뇌와 연결된 손끝 민감기 신호였구나!",
+        "sub": "반항이 아니었습니다! 두뇌와 연결된\n'손끝 소근육 민감기'의 건강한 신호",
+        "bubbles": [
+            {
+                "speaker": "소아발달 팁",
+                "speaker_bg": (5, 150, 105),
+                "box": (36, 40, 520, 192),
+                "tail": ((305, 188), (350, 188), (335, 420)),
+                "text": "만 3세 고집은 두뇌 30%와 연결된\n'손끝 소근육 민감기' 신호예요!",
+                "border": (5, 150, 105),
+                "fill": (240, 253, 244, 248),
+            },
+            {
+                "speaker": "엄마",
+                "speaker_bg": (79, 70, 229),
+                "box": (375, 892, 1044, 1040),
+                "tail": ((660, 895), (705, 895), (675, 795)),
+                "text": "아하! 엄마를 힘들게 하려는 게 아니라\n혼자 크려는 기특한 신호였구나!",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 248),
+            },
+        ],
     },
     {
         "num": 4,
         "raw": "cut_04.jpg",
-        "tts": "집게 놀이와 기다림으로 30분 초집중!",
-        "sub": "비싼 전집 대신 손끝 힘을 기르는\n집게 놀이와 엄마의 다정한 기다림"
+        "tts": "천천히 해도 기다려 줄게! 엄마 봐봐요, 파란 공 집었어!",
+        "sub": "비싼 전집 대신 손끝 힘을 기르는\n집게 놀이와 엄마의 다정한 기다림",
+        "bubbles": [
+            {
+                "speaker": "엄마",
+                "speaker_bg": (79, 70, 229),
+                "box": (36, 36, 565, 184),
+                "tail": ((410, 180), (455, 180), (445, 225)),
+                "text": "옳지~ 악어 손가락으로 집어볼까?\n천천히 해도 엄마가 기다려 줄게!",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 246),
+            },
+            {
+                "speaker": "지우 (3세)",
+                "speaker_bg": (5, 150, 105),
+                "box": (585, 180, 1044, 328),
+                "tail": ((700, 324), (745, 324), (720, 398)),
+                "text": "우와 엄마 봐봐요!\n파란 공 집었어, 진짜 재밌다!!",
+                "border": (5, 150, 105),
+                "fill": (240, 253, 244, 248),
+            },
+        ],
     },
     {
         "num": 5,
         "raw": "cut_05.jpg",
-        "tts": "주말엔 눈높이 대화, 밤 10시엔 꿀잠!",
-        "sub": "주말엔 눈높이 대화로 정서를 채우고\n밤 10시 깊은 숙면으로 키 성장을 지켜요"
+        "tts": "이 꽃은 어떤 느낌일까? 반짝반짝 따뜻해요!",
+        "sub": "주말엔 눈높이 대화로 정서를 채우고\n밤 10시 깊은 숙면으로 키 성장을 지켜요",
+        "bubbles": [
+            {
+                "speaker": "엄마 · 아빠",
+                "speaker_bg": (79, 70, 229),
+                "box": (36, 38, 555, 186),
+                "tail": ((375, 182), (420, 182), (405, 305)),
+                "text": "지우야, 이 알록달록한 꽃은\n만지면 어떤 느낌일까?",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 246),
+            },
+            {
+                "speaker": "지우 (3세)",
+                "speaker_bg": (217, 119, 6),
+                "box": (420, 895, 1044, 1042),
+                "tail": ((565, 898), (610, 898), (575, 830)),
+                "text": "반짝반짝 따뜻해요!\n오늘 밤엔 10시에 쿨쿨 잘래요!",
+                "border": (217, 119, 6),
+                "fill": (255, 252, 245, 248),
+            },
+        ],
     },
     {
         "num": 6,
         "raw": "cut_06.jpg",
-        "tts": "아이 속도를 읽어주는 다정한 엄마면 충분해요.",
-        "sub": "완벽한 엄마보다 아이의 속도를 읽어주는\n다정한 엄마면 충분합니다"
-    }
+        "tts": "엄마 내가 하트 오렸어요! 고마워 우리 아가.",
+        "sub": "완벽한 엄마보다 아이의 속도를 읽어주는\n다정한 엄마면 충분합니다",
+        "bubbles": [
+            {
+                "speaker": "지우 (3세)",
+                "speaker_bg": (225, 29, 72),
+                "box": (540, 36, 1044, 186),
+                "tail": ((735, 182), (780, 182), (755, 295)),
+                "text": "엄마! 내가 혼자 가위로\n하트 오렸어요! 선물이에요!",
+                "border": (225, 29, 72),
+                "fill": (255, 250, 251, 248),
+            },
+            {
+                "speaker": "엄마",
+                "speaker_bg": (79, 70, 229),
+                "box": (36, 892, 650, 1040),
+                "tail": ((395, 895), (440, 895), (435, 815)),
+                "text": "고마워 우리 아가,\n네 속도로 자라줘서 정말 고마워♥",
+                "border": (79, 70, 229),
+                "fill": (255, 255, 255, 248),
+            },
+        ],
+    },
 ]
 
 
+def draw_webtoon_speech_bubbles(img_rgb_pil: Image.Image, cut_num: int) -> Image.Image:
+    """
+    Draws warm, crisp Korean webtoon conversational speech bubbles with pointer tails
+    and speaker badges onto a 1080x1080 webtoon illustration.
+    """
+    cut_data = next((c for c in WEBTOON_CUTS if c["num"] == cut_num), None)
+    if not cut_data or "bubbles" not in cut_data:
+        return img_rgb_pil
+
+    base = img_rgb_pil.convert("RGBA")
+    W, H = base.size
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+
+    font_text = get_font(29, bold=True)
+    font_badge = get_font(20, bold=True)
+
+    for b in cut_data["bubbles"]:
+        x1, y1, x2, y2 = b["box"]
+        (tb1x, tb1y), (tb2x, tb2y), (ttx, tty) = b["tail"]
+        border_col = b["border"] + (255,)
+        fill_col = b["fill"]
+        shadow_col = (15, 23, 42, 42)
+
+        # 1. Soft drop shadow for bubble & tail
+        draw.polygon([(tb1x + 4, tb1y + 6), (tb2x + 4, tb2y + 6), (ttx + 4, tty + 6)], fill=shadow_col)
+        draw.rounded_rectangle((x1 + 4, y1 + 6, x2 + 4, y2 + 6), radius=30, fill=shadow_col)
+
+        # 2. Main bubble rounded rectangle
+        draw.rounded_rectangle((x1, y1, x2, y2), radius=30, fill=fill_col, outline=border_col, width=4)
+
+        # 3. Pointer tail polygon + outer border strokes (seamless join with bubble)
+        draw.polygon([(tb1x, tb1y), (tb2x, tb2y), (ttx, tty)], fill=fill_col)
+        draw.line([(tb1x, tb1y), (ttx, tty)], fill=border_col, width=4)
+        draw.line([(tb2x, tb2y), (ttx, tty)], fill=border_col, width=4)
+        # Erase border seam along the base of the tail inside the bubble
+        seam_y_shift = -3 if tty > tb1y else 3
+        draw.line([(tb1x + 3, tb1y), (tb2x - 3, tb2y)], fill=fill_col, width=6)
+        draw.line([(tb1x + 3, tb1y + seam_y_shift), (tb2x - 3, tb2y + seam_y_shift)], fill=fill_col, width=6)
+
+        # 4. Centered multi-line conversational dialogue text inside bubble
+        lines = b["text"].split("\n")
+        line_gap = 42
+        total_text_h = len(lines) * line_gap
+        cur_y = y1 + (y2 - y1 - total_text_h) // 2
+        for line in lines:
+            l_bbox = draw.textbbox((0, 0), line, font=font_text)
+            lw = l_bbox[2] - l_bbox[0]
+            lh = l_bbox[3] - l_bbox[1]
+            tx = x1 + (x2 - x1 - lw) // 2 - l_bbox[0]
+            ty = cur_y + (line_gap - lh) // 2 - l_bbox[1]
+            draw.text((tx, ty), line, font=font_text, fill=(15, 23, 42, 255))
+            cur_y += line_gap
+
+    return Image.alpha_composite(base, overlay).convert("RGB")
+
+
 def render_webtoon_samples():
-    print("🎨 [Sample 2] 6컷 양육 공감 웹툰 렌더링 중 (텍스트 박스 없이 순수 그림만 출력)...")
+    print("🎨 [Sample 2] 6컷 양육 공감 웹툰 렌더링 중 (캐릭터 대화형 말풍선 포함)...")
     cut_images = []
     W, H = 1080, 1080
 
     for c in WEBTOON_CUTS:
         raw_path = WEBTOON_RAW_DIR / c["raw"]
-        art = Image.open(raw_path).convert("RGB")
-        # Pure illustration only (no EP.01 bar, no speech bubble, no 아이&엄마 box)
-        canvas = art.resize((W, H), Image.Resampling.LANCZOS)
+        art = Image.open(raw_path).convert("RGB").resize((W, H), Image.Resampling.LANCZOS)
+        canvas = draw_webtoon_speech_bubbles(art, c["num"])
 
         out_path = WEBTOON_DIR / f"webtoon_cut_0{c['num']}.png"
         canvas.save(out_path, "PNG", optimize=True)
@@ -438,117 +598,117 @@ def render_webtoon_samples():
 </body>
 </html>"""
     (WEBTOON_DIR / "webtoon_preview.html").write_text(html, encoding="utf-8")
-    print("✅ [Sample 2] 순수 일러스트 6컷 웹툰 PNG 6장 + 합본 + HTML 뷰어 생성 완료!")
+    print("✅ [Sample 2] 대화형 말풍선 6컷 웹툰 PNG 6장 + 합본 + HTML 뷰어 생성 완료!")
 
 
 # ==============================================================================
-# 2. 6-CUT CARD NEWS DATA & RENDERER (NO 'CARD' BADGE, NO '공신력 검증' TEXT)
+# 2. 6-CUT CARD NEWS DATA & RENDERER (1-LINE CONCISE COPY, LARGE UNCLIPPED FONT)
 # ==============================================================================
 CARDNEWS_SLIDES = [
     {
         "num": 1,
         "cut_num": 1,
-        "title": "“내가 혼자 할 거야!”\n만 3세 아이의 고집,\n혼내면 안 되는 진짜 이유",
-        "subtitle": "퇴근 후 단추 씨름하며 울컥하는 엄마·아빠를 위한\n우리아이 두뇌 발달 & 성장 골든타임 가이드",
+        "title": "“내가 혼자 할 거야!”\n만 3세 고집의 진짜 이유",
+        "subtitle": "혼내기 전에 꼭 알아야 할 두뇌 발달의 비밀",
         "accent": (79, 70, 229),
         "bg_tint": (238, 242, 255),
         "raw_bg": "cut_01.jpg",
         "points": [
-            "● 만 2~4세 아이가 혼자 하겠다고 고집부리는 뇌과학적 이유",
-            "● 비싼 교구 사기 전 거실에서 시작하는 '0원 소근육 놀이'",
-            "● 낮의 손끝 놀이가 밤 10시 '숨은 키 7cm'로 이어지는 비밀"
+            "① 반항이 아닌 ‘손끝 소근육 민감기’",
+            "② 비싼 교구 대신 ‘거실 0원 놀이’",
+            "③ 낮의 몰입이 ‘밤 10시 키성장’ 연결",
         ],
         "tts": "만 3세 아이의 고집, 혼내면 안 되는 진짜 이유!",
-        "sub": "“내가 혼자 할 거야!” 만 3세 아이의 고집,\n혼내기 전에 꼭 알아야 할 발달과 성장의 비밀"
+        "sub": "“내가 혼자 할 거야!” 만 3세 아이의 고집,\n혼내기 전에 꼭 알아야 할 발달과 성장의 비밀",
     },
     {
         "num": 2,
         "cut_num": 3,
-        "title": "손가락은 '제2의 뇌'\n뇌 운동피질의 30%가\n아이 손끝에 연결됩니다",
-        "subtitle": "만 24~47개월 영유아 시기에 찾아오는 결정적 손끝 민감기",
+        "title": "손가락은 ‘제2의 뇌’\n뇌 운동피질 30% 연결",
+        "subtitle": "만 24~47개월에 찾아오는 결정적 손끝 성장기",
         "accent": (5, 150, 105),
         "bg_tint": (236, 253, 245),
         "raw_bg": "cut_03.jpg",
         "points": [
-            "● 뇌 지도(Homunculus): 손가락 영역이 대뇌 운동피질의 30% 차지",
-            "● 삼지창 파지: 엄지·검지·중지 세 손가락 협응이 완성되는 시기",
-            "★ 아이의 고집 = 전두엽 시냅스를 스스로 연결하려는 기특한 본능!"
+            "① 대뇌 운동피질 30%가 손끝에 집중",
+            "② 엄지·검지·중지 세 손가락 협응 완성",
+            "③ 스스로 해보는 과정이 전두엽을 자극",
         ],
         "tts": "손가락은 제2의 뇌! 운동피질의 30퍼센트가 연결됩니다.",
-        "sub": "손가락은 제2의 뇌! 뇌 운동피질의 30%가 연결된\n세 손가락 협응의 결정적 민감기입니다."
+        "sub": "손가락은 제2의 뇌! 뇌 운동피질의 30%가 연결된\n세 손가락 협응의 결정적 민감기입니다.",
     },
     {
         "num": 3,
         "cut_num": 2,
-        "title": "만 3세에 150만 원 가베?\n시기가 맞지 않으면\n‘거실 방치템’이 됩니다",
-        "subtitle": "내 아이 월령에 딱 맞는 교육법 순서를 알아야 중복 지출을 막습니다",
+        "title": "만 3세에 비싼 가베?\n시기 안 맞으면 방치템!",
+        "subtitle": "내 아이 개월 수에 맞는 교구 순서가 핵심",
         "accent": (249, 115, 22),
         "bg_tint": (255, 247, 237),
         "raw_bg": "cut_02.jpg",
         "points": [
-            "● 만 2~3세 (24~47개월) 적기: 일상·감각 소근육 조작 놀이",
-            "● 만 4~5세 (48~71개월) 적기: 은물·가베 입체 기하·공간지각 놀이",
-            "★ 핵심 조언: 손끝 힘이 약한 만 3세에 추상 도형 가베는 좌절감만 유발!"
+            "① 만 2~3세: 손끝 힘 기르는 일상교구",
+            "② 만 4~5세: 입체 공간지각 은물·가베",
+            "③ 손끝 악력이 먼저 잡혀야 흥미 지속",
         ],
         "tts": "만 3세엔 일상 소근육 놀이가 먼저, 가베는 만 4세 이후에!",
-        "sub": "만 2~3세는 손끝 힘을 기르는 일상 소근육 놀이가 먼저!\n가베는 만 4세 이후에 시작해야 중복 지출을 막습니다."
+        "sub": "만 2~3세는 손끝 힘을 기르는 일상 소근육 놀이가 먼저!\n가베는 만 4세 이후에 시작해야 중복 지출을 막습니다.",
     },
     {
         "num": 4,
         "cut_num": 4,
-        "title": "비싼 장난감 사기 전,\n오늘 저녁 주방 서랍으로\n시작하는 '0원 놀이 3선'",
-        "subtitle": "하루 15분, 엄마·아빠의 다정한 눈맞춤과 집안 소품이면 충분합니다",
+        "title": "장난감 사기 전 시작하는\n우리 집 ‘0원 놀이 3선’",
+        "subtitle": "오늘 저녁 주방 서랍 소품으로 하루 15분!",
         "accent": (79, 70, 229),
         "bg_tint": (238, 242, 255),
         "raw_bg": "cut_04.jpg",
         "points": [
-            "① 나무 빨래집게 색깔 놀이: 엄지·검지 '악어 손가락' 악력 강화",
-            "② 페트병 뚜껑 저금통 넣기: 다 쓴 물티슈 캡 구멍에 뚜껑 밀어 넣기",
-            "③ 휴지심 사자 갈기 오리기: 도톰한 휴지심 끝을 안전가위로 톡톡 오리기"
+            "① 나무 빨래집게 찍기 (손끝 악력 강화)",
+            "② 물티슈 캡에 병뚜껑 넣기 (눈손 협응)",
+            "③ 다 쓴 휴지심 가위 오리기 (성취감)",
         ],
         "tts": "빨래집게와 휴지심으로 오늘 저녁 0원 놀이를 시작해 보세요!",
-        "sub": "나무 빨래집게, 페트병 뚜껑, 다 쓴 휴지심으로\n오늘 저녁 15분 '거실 0원 소근육 놀이'를 시작해보세요."
+        "sub": "나무 빨래집게, 페트병 뚜껑, 다 쓴 휴지심으로\n오늘 저녁 15분 '거실 0원 소근육 놀이'를 시작해보세요.",
     },
     {
         "num": 5,
         "cut_num": 5,
-        "title": "낮에 손끝을 쓴 아이가\n밤 10시 '숨은 키 7cm'\n성장호르몬도 폭발합니다",
-        "subtitle": "깊은 숙면과 자연식 영양·바른 자세가 만드는 키 성장 시너지",
+        "title": "낮에 손끝을 쓴 아이가\n밤 10시 숨은 키도 쑥!",
+        "subtitle": "깊은 숙면과 자연식 영양의 키 성장 시너지",
         "accent": (5, 150, 105),
         "bg_tint": (236, 253, 245),
         "raw_bg": "cut_05.jpg",
         "points": [
-            "● 밤 10시~새벽 2시: 깊은 숙면 중 일일 성장호르몬(GH) 65% 집중 분비",
-            "● 일일 칼슘(600~800mg): 우유 배앓이 시 잔멸치·두부·치즈로 대체",
-            "● 숨은 키 2cm 자세 습관: 스마트폰 거북목 예방 & 하루 10분 점프 운동"
+            "① 밤 10시~2시 성장호르몬 65% 분비",
+            "② 우유 배앓이엔 잔멸치·두부·치즈 대체",
+            "③ 거북목 예방 & 하루 10분 점프 스트레칭",
         ],
         "tts": "밤 10시 깊은 숙면과 자연식 칼슘으로 숨은 키를 깨워주세요!",
-        "sub": "밤 10시 깊은 숙면과 자연식 칼슘·바른 자세로\n우리 아이 숨은 키 7cm를 지켜주세요."
+        "sub": "밤 10시 깊은 숙면과 자연식 칼슘·바른 자세로\n우리 아이 숨은 키 7cm를 지켜주세요.",
     },
     {
         "num": 6,
         "cut_num": 6,
-        "title": "완벽한 엄마보다\n아이의 속도를 읽어주는\n다정한 엄마면 충분합니다",
-        "subtitle": "우리 아이 신체 성장 × 소근육 발달 × 주말 나들이 맞춤 가이드",
+        "title": "아이의 속도를 읽어주는\n다정한 엄마면 충분해요",
+        "subtitle": "우리 아이 성장·발달·주말 나들이 1분 진단",
         "accent": (79, 70, 229),
         "bg_tint": (238, 242, 255),
         "raw_bg": "cut_06.jpg",
         "points": [
-            "① 신체 성장: 우리 아이 키·몸무게 백분위 & 부모 유전키 대비 예상키",
-            "② 두뇌·소근육 발달: 6각 발달 밸런스 & 월령별 0원 집콕놀이 처방",
-            "③ 주말 나들이 코스: 내 지역 × 아이 관심사 미술관·박물관 대화 가이드"
+            "① 우리 아이 키·몸무게 백분위 & 예상키",
+            "② 월령별 6각 발달 밸런스 & 0원 놀이",
+            "③ 내 지역 × 관심사 주말 미술관 코스",
         ],
         "tts": "아이의 속도를 읽어주는 다정한 엄마, 키즈핏이 함께합니다.",
-        "sub": "아이의 성장 속도를 읽어주는 다정한 나침반,\n키즈핏 그로스 스튜디오에서 맞춤 가이드를 확인하세요."
-    }
+        "sub": "아이의 성장 속도를 읽어주는 다정한 나침반,\n키즈핏 그로스 스튜디오에서 맞춤 가이드를 확인하세요.",
+    },
 ]
 
 
 def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) -> Image.Image:
     W, H = 1080, 1350
-    font_title = get_font(52, bold=True)
-    font_sub = get_font(28, bold=False)
-    font_point = get_font(27, bold=True)
+    font_title = get_font(58, bold=True)
+    font_sub = get_font(32, bold=True)
+    font_point = get_font(36, bold=True)
 
     canvas = Image.new("RGB", (W, H), (250, 248, 245))
     draw = ImageDraw.Draw(canvas)
@@ -556,19 +716,24 @@ def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) 
     tint = s["bg_tint"]
 
     # Outer card frame (no CARD badge, no 공신력 검증 footer)
-    draw_rounded_rect(draw, (36, 36, W - 36, H - 36), radius=36, fill=(255, 255, 255), outline=(226, 232, 240), width=3)
+    draw_rounded_rect(draw, (32, 32, W - 32, H - 32), radius=36, fill=(255, 255, 255), outline=(226, 232, 240), width=3)
 
-    # Main Headline
-    ty = 96
+    # Main Headline (2 concise lines, 58pt bold, centered horizontally, zero clipping)
+    ty = 72
     for line in s["title"].split("\n"):
-        draw.text((84, ty), line, font=font_title, fill=(15, 23, 42))
-        ty += 68
+        t_bbox = draw.textbbox((0, 0), line, font=font_title)
+        tw = t_bbox[2] - t_bbox[0]
+        tx = (W - tw) // 2 - t_bbox[0]
+        draw.text((tx, ty - t_bbox[1]), line, font=font_title, fill=(15, 23, 42))
+        ty += 76
 
-    # Subtitle
-    ty += 14
-    for line in s["subtitle"].split("\n"):
-        draw.text((86, ty), line, font=font_sub, fill=(100, 116, 139))
-        ty += 40
+    # Subtitle (strictly 1 concise line, 32pt bold, centered horizontally)
+    ty += 12
+    sub_line = s["subtitle"].replace("\n", " ")
+    s_bbox = draw.textbbox((0, 0), sub_line, font=font_sub)
+    sw = s_bbox[2] - s_bbox[0]
+    sx = (W - sw) // 2 - s_bbox[0]
+    draw.text((sx, ty - s_bbox[1]), sub_line, font=font_sub, fill=acc)
 
     # Center Visual Illustration Strip
     if animated_art_pil is not None:
@@ -577,7 +742,8 @@ def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) 
         raw_path = WEBTOON_RAW_DIR / s["raw_bg"]
         art = Image.open(raw_path).convert("RGB")
 
-    vw, vh = W - 168, 450
+    vw, vh = W - 144, 540
+    vy = 315
     art_ratio = art.width / art.height
     box_ratio = vw / vh
     if art_ratio > box_ratio:
@@ -593,25 +759,27 @@ def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) 
 
     mask = Image.new("L", (vw, vh), 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, vw, vh), radius=28, fill=255)
-    canvas.paste(art_c, (84, 425), mask)
-    draw_rounded_rect(draw, (84, 425, 84 + vw, 425 + vh), radius=28, outline=acc, width=3)
+    canvas.paste(art_c, (72, vy), mask)
+    draw_rounded_rect(draw, (72, vy, 72 + vw, vy + vh), radius=28, outline=acc, width=3)
 
-    # 3 Key Actionable Points Box
-    py = 915
+    # 3 Key Points at bottom: Strictly 1 concise line per box, large 36pt bold font, zero clipping
+    py = 890
+    box_h = 114
     for pt in s["points"]:
-        draw_rounded_rect(draw, (84, py, W - 84, py + 104), radius=22, fill=tint, outline=acc, width=2)
-        pt_lines = wrap_korean_text(draw, pt, font_point, W - 220)
-        ly = py + (104 - len(pt_lines) * 34) // 2 - 4
-        for pl in pt_lines:
-            draw.text((114, ly), pl, font=font_point, fill=(30, 41, 59))
-            ly += 34
-        py += 120
+        draw_rounded_rect(draw, (72, py, W - 72, py + box_h), radius=24, fill=tint, outline=acc, width=3)
+        p_bbox = draw.textbbox((0, 0), pt, font=font_point)
+        pw = p_bbox[2] - p_bbox[0]
+        ph = p_bbox[3] - p_bbox[1]
+        px = (W - pw) // 2 - p_bbox[0]
+        pty = py + (box_h - ph) // 2 - p_bbox[1]
+        draw.text((px, pty), pt, font=font_point, fill=(15, 23, 42))
+        py += box_h + 18
 
     return canvas
 
 
 def render_cardnews_samples():
-    print("📊 [Sample 3] 6컷 양육 카드뉴스 렌더링 중 (CARD 배지 및 공신력 검증 문구 제거)...")
+    print("📊 [Sample 3] 6컷 양육 카드뉴스 렌더링 중 (한줄 요약 & 큰 글씨 완벽 정렬)...")
     for s in CARDNEWS_SLIDES:
         canvas = render_single_cardnews_frame(s, animated_art_pil=None)
         out_path = CARDNEWS_DIR / f"cardnews_0{s['num']}.png"
@@ -826,7 +994,7 @@ def build_vertical_video(
             global_prog = (elapsed_global + (f_idx / fps)) / max(0.1, total_dur)
 
             # Generate live 2.5D character & scene animation frame
-            animated_art = animate_illustration_frame(base_rgb, cut_num, prog)
+            animated_art = animate_illustration_frame(base_rgb, cut_num, prog, with_bubbles=is_webtoon)
 
             frame = Image.new("RGB", (VW, VH), (250, 248, 245))
             draw = ImageDraw.Draw(frame)
@@ -845,7 +1013,7 @@ def build_vertical_video(
                 card_y = 190
                 src_img = render_single_cardnews_frame(item, animated_art_pil=animated_art)
 
-            zoom = 1.0 + 0.04 * prog
+            zoom = 1.0 + 0.03 * prog
             zw, zh = int(card_w * zoom), int(card_h * zoom)
             resized = src_img.resize((zw, zh), Image.Resampling.BILINEAR)
             cx = (zw - card_w) // 2
@@ -1126,7 +1294,7 @@ async def main_async():
     render_webtoon_samples()
     render_cardnews_samples()
 
-    print(f"🎬 [Sample 4] 6컷 움직이는 웹툰 영상 샘플(OpenCV 2.5D 캐릭터 모션, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
+    print(f"🎬 [Sample 4] 6컷 움직이는 웹툰 영상 샘플(OpenCV 2.5D 캐릭터 모션 + 대화형 말풍선, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
     wt_wavs, wt_durs = await synthesize_tts_clips(WEBTOON_CUTS, WEBTOON_VID_DIR, "wt", CUT_DURATION_SEC)
     wt_mp4 = WEBTOON_VID_DIR / "webtoon_parenting_video.mp4"
     build_vertical_video(
@@ -1140,7 +1308,7 @@ async def main_async():
     )
     print(f"✅ [Sample 4] 움직이는 웹툰 영상 생성 완료: {wt_mp4} ({wt_mp4.stat().st_size:,} bytes)")
 
-    print(f"🎬 [Sample 5] 6컷 움직이는 카드뉴스 영상 샘플(OpenCV 2.5D 캐릭터 모션, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
+    print(f"🎬 [Sample 5] 6컷 움직이는 카드뉴스 영상 샘플(OpenCV 2.5D 캐릭터 모션 + 한줄 요약 카드뉴스, 1컷당 {CUT_DURATION_SEC}초, 총 {CUT_DURATION_SEC * 6:.0f}초) 생성 중...")
     cn_wavs, cn_durs = await synthesize_tts_clips(CARDNEWS_SLIDES, CARDNEWS_VID_DIR, "cn", CUT_DURATION_SEC)
     cn_mp4 = CARDNEWS_VID_DIR / "cardnews_parenting_video.mp4"
     build_vertical_video(

@@ -2,9 +2,10 @@
   "name": "kidsfit-growth-studio",
   "version": "1.0.0",
   "description": "KidsFit Growth Studio — 우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시·역사 코스 맞춤 처방소",
-  "main": "index.html",
+  "main": "server.js",
   "type": "commonjs",
   "scripts": {
+    "start": "node server.js",
     "build": "node scripts/build.js",
     "test": "node tests/run-all.js",
     "verify": "node scripts/verify-acceptance.js"
