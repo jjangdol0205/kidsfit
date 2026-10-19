@@ -46,6 +46,7 @@ from crawl_research_papers import (
 )
 
 EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
+    # Pillar 1: growth_endocrinology
     {
         "pillar": "growth_endocrinology",
         "engine": "pubmed",
@@ -57,6 +58,27 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "query": "pediatric height velocity sleep duration growth hormone IGF-1 children",
     },
     {
+        "pillar": "growth_endocrinology",
+        "engine": "crossref",
+        "query": "linear growth stunting zinc calcium supplementation children randomized trial",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"circadian\"[Title/Abstract] OR \"melatonin\"[Title/Abstract]) AND (\"growth hormone\"[Title/Abstract]) AND (\"sleep\"[Title/Abstract])",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "openalex",
+        "query": "childhood obesity precocious puberty bone maturation epiphyseal closure",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "crossref",
+        "query": "astragalus phlomis longitudinal bone growth IGFBP-3 children",
+    },
+    # Pillar 2: fine_motor_neuroscience
+    {
         "pillar": "fine_motor_neuroscience",
         "engine": "pubmed",
         "query": "(\"visuomotor integration\"[Title/Abstract]) AND (\"mathematics\"[Title/Abstract] OR \"reading\"[Title/Abstract]) AND (\"kindergarten\"[Title/Abstract])",
@@ -66,6 +88,27 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "openalex",
         "query": "fine motor manipulation prefrontal cortex executive function early childhood",
     },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "crossref",
+        "query": "pincer grasp tripod grip handwriting readiness preschool cognitive development",
+    },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "pubmed",
+        "query": "(\"manual dexterity\"[Title/Abstract] OR \"finger gnosis\"[Title/Abstract]) AND (\"numerical\"[Title/Abstract] OR \"arithmetic\"[Title/Abstract]) AND (children)",
+    },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "openalex",
+        "query": "bimanual coordination tool use toddler developmental milestones brain connectivity",
+    },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "crossref",
+        "query": "developmental screening test infants children fine motor validity sensitivity",
+    },
+    # Pillar 3: pedagogy_montessori_froebel
     {
         "pillar": "pedagogy_montessori_froebel",
         "engine": "crossref",
@@ -77,6 +120,27 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "query": "wooden block play spatial language mental rotation preschool children",
     },
     {
+        "pillar": "pedagogy_montessori_froebel",
+        "engine": "pubmed",
+        "query": "(\"spatial assembly\"[Title/Abstract] OR \"construction play\"[Title/Abstract]) AND (\"mathematical\"[Title/Abstract] OR \"executive function\"[Title/Abstract])",
+    },
+    {
+        "pillar": "pedagogy_montessori_froebel",
+        "engine": "openalex",
+        "query": "Froebel gifts geometric block construction early childhood mathematics geometry",
+    },
+    {
+        "pillar": "pedagogy_montessori_froebel",
+        "engine": "crossref",
+        "query": "open-ended toys electronic toys parent-child language interaction toddler",
+    },
+    {
+        "pillar": "pedagogy_montessori_froebel",
+        "engine": "openalex",
+        "query": "tactile sensory play clay finger painting emotional regulation early childhood",
+    },
+    # Pillar 4: parent_child_interaction_museum
+    {
         "pillar": "parent_child_interaction_museum",
         "engine": "pubmed",
         "query": "(\"emotion coaching\"[Title/Abstract] OR \"elaborative reminiscing\"[Title/Abstract]) AND (\"self-regulation\"[Title/Abstract] OR \"children\"[Title/Abstract])",
@@ -87,6 +151,27 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "query": "parent child inquiry conversation science museum learning scaffolding",
     },
     {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "crossref",
+        "query": "autonomy supportive parenting toddler executive function longitudinal study",
+    },
+    {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "pubmed",
+        "query": "(\"shared book reading\"[Title/Abstract] OR \"dialogic reading\"[Title/Abstract]) AND (\"language development\"[Title/Abstract]) AND (\"preschool\"[Title/Abstract])",
+    },
+    {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "openalex",
+        "query": "family museum visit object-based learning historical empathy children",
+    },
+    {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "crossref",
+        "query": "maternal sensitivity autonomy support toddler defiance compliance self-regulation",
+    },
+    # Pillar 5: posture_biomechanics_exercise
+    {
         "pillar": "posture_biomechanics_exercise",
         "engine": "pubmed",
         "query": "(\"rope skipping\"[Title/Abstract] OR \"plyometric\"[Title/Abstract]) AND (\"bone\"[Title/Abstract] OR \"growth\"[Title/Abstract]) AND (children)",
@@ -96,16 +181,41 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "openalex",
         "query": "pediatric scoliosis forward head posture corrective exercise children",
     },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "smartphone screen time craniovertebral angle neck posture school children",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "pubmed",
+        "query": "(\"high-impact exercise\"[Title/Abstract] OR \"jumping\"[Title/Abstract]) AND (\"bone mineral accrual\"[Title/Abstract]) AND (\"prepubertal\"[Title/Abstract])",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "openalex",
+        "query": "ergonomic school furniture sitting posture lumbar lordosis children",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "trampoline balance training proprioception gross motor coordination children",
+    },
 ]
 
 
-def crawl_openalex_live(pillar_id: str, query: str, per_page: int = 4) -> List[Dict[str, Any]]:
+def crawl_openalex_live(
+    pillar_id: str, query: str, per_page: int = 5, page: int = 1
+) -> List[Dict[str, Any]]:
     """
     Queries OpenAlex Works API for peer-reviewed articles with DOI and citation metrics.
     """
     results: List[Dict[str, Any]] = []
     encoded_q = urllib.parse.quote(query)
-    url = f"https://api.openalex.org/works?search={encoded_q}&filter=has_doi:true,type:article&per-page={per_page}&sort=cited_by_count:desc"
+    url = (
+        f"https://api.openalex.org/works?search={encoded_q}"
+        f"&filter=has_doi:true,type:article&per-page={per_page}&page={page}&sort=cited_by_count:desc"
+    )
     data = http_get_json(url, timeout=15)
     if not data or "results" not in data:
         return results
@@ -165,14 +275,28 @@ def crawl_openalex_live(pillar_id: str, query: str, per_page: int = 4) -> List[D
     return results
 
 
-def run_incremental_cycle(cycle_index: int = 1) -> Dict[str, Any]:
+def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
     """
-    Runs one incremental learning cycle: ensures base KB exists, executes expanded
-    PubMed / Crossref / OpenAlex queries, deduplicates, merges, and regenerates docs.
+    Runs one incremental learning cycle: ensures base KB exists, executes rotating
+    PubMed / Crossref / OpenAlex queries with dynamic page offsets, deduplicates,
+    merges, regenerates docs, and rebuilds dist/ when new papers are learned.
     """
     if not DATA_OUT.exists():
         print("[DAEMON] Base knowledge base not found. Running initial crawl...")
         run_crawler()
+
+    # Load previous cycle index from status file if available
+    prev_cycle = 0
+    if LOG_OUT.exists():
+        try:
+            with open(LOG_OUT, "r", encoding="utf-8") as sf:
+                prev_status = json.load(sf)
+                prev_cycle = int(prev_status.get("cycle_index", 0))
+        except Exception:
+            prev_cycle = 0
+
+    if cycle_index <= prev_cycle:
+        cycle_index = prev_cycle + 1
 
     with open(DATA_OUT, "r", encoding="utf-8") as f:
         kb_data = json.load(f)
@@ -185,17 +309,26 @@ def run_incremental_cycle(cycle_index: int = 1) -> Dict[str, Any]:
     newly_added = 0
     cycle_queries_log = []
 
-    for eq in EXPANDED_DAEMON_QUERIES:
+    # Select a rotating window of 10 queries per cycle + dynamic pagination offset
+    total_q = len(EXPANDED_DAEMON_QUERIES)
+    batch_size = 10
+    start_idx = ((cycle_index - 1) * 5) % total_q
+    selected_queries = [
+        EXPANDED_DAEMON_QUERIES[(start_idx + i) % total_q] for i in range(batch_size)
+    ]
+    page_num = ((cycle_index - 1) // 3) + 1
+
+    for eq in selected_queries:
         pid = eq["pillar"]
         engine = eq["engine"]
         q = eq["query"]
 
         if engine == "pubmed":
-            fetched = crawl_pubmed_live(pid, q, retmax=2)
+            fetched = crawl_pubmed_live(pid, q, retmax=4 + page_num)
         elif engine == "crossref":
-            fetched = crawl_crossref_live(pid, q, rows=3)
+            fetched = crawl_crossref_live(pid, q, rows=4 + page_num)
         else:
-            fetched = crawl_openalex_live(pid, q, per_page=3)
+            fetched = crawl_openalex_live(pid, q, per_page=4, page=page_num)
 
         added_here = 0
         for cand in fetched:
@@ -218,11 +351,12 @@ def run_incremental_cycle(cycle_index: int = 1) -> Dict[str, Any]:
                 "engine": engine,
                 "pillar": pid,
                 "query": q,
+                "page": page_num,
                 "fetched": len(fetched),
                 "newly_added": added_here,
             }
         )
-        time.sleep(0.3)
+        time.sleep(0.25)
 
     # Re-sort and recompute pillar counts
     pillar_order = list(PILLARS.keys())
@@ -257,6 +391,20 @@ def run_incremental_cycle(cycle_index: int = 1) -> Dict[str, Any]:
     md_content = build_markdown_encyclopedia(kb_data)
     with open(DOC_OUT, "w", encoding="utf-8") as f:
         f.write(md_content)
+
+    # Auto-rebuild dist/ when new papers are learned so the web app reflects the latest count
+    if newly_added > 0:
+        try:
+            import subprocess
+            subprocess.run(
+                ["node", str(SCRIPT_DIR / "build.js")],
+                cwd=str(SCRIPT_DIR.parent),
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except Exception:
+            pass
 
     status_payload = {
         "status": "daemon_active",
