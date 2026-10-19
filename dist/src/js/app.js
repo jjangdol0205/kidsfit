@@ -841,6 +841,30 @@
     const cancelAdminBtn = document.getElementById('btn-cancel-admin');
     if (cancelAdminBtn) cancelAdminBtn.addEventListener('click', closeAdminModal);
 
+    const resetNaverBtn = document.getElementById('btn-reset-naver-channels');
+    if (resetNaverBtn) {
+      resetNaverBtn.addEventListener('click', () => {
+        if (typeof window !== 'undefined' && window.localStorage) {
+          const keysToRemove = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k && (k.toLowerCase().includes('moneyfit') || k.toLowerCase().includes('naver') || k.toLowerCase().includes('affiliate'))) {
+              keysToRemove.push(k);
+            }
+          }
+          keysToRemove.forEach((k) => localStorage.removeItem(k));
+        }
+        saveAffiliateConfig(DEFAULT_AFFILIATE_CONFIG);
+        const cafeEl = document.getElementById('cfg-cafe');
+        const blogEl = document.getElementById('cfg-blog');
+        if (cafeEl) cafeEl.value = DEFAULT_AFFILIATE_CONFIG.cafeUrl;
+        if (blogEl) blogEl.value = DEFAULT_AFFILIATE_CONFIG.blogUrl;
+        renderPrescriptionResults();
+        renderAdminOsmuStudio();
+        alert('기존 머니핏 네이버 블로그·카페 연동 캐시 및 설정이 100% 초기화되었으며, 키즈핏 그로스 스튜디오 기본값으로 재설정되었습니다.');
+      });
+    }
+
     const saveAdminBtn = document.getElementById('btn-save-admin');
     if (saveAdminBtn) {
       saveAdminBtn.addEventListener('click', () => {

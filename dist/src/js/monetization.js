@@ -492,14 +492,46 @@
 
     return `
       <div class="monetization-appendix-container" style="margin-top: 2rem; border-top: 2px solid var(--border-clinic); padding-top: 2rem;">
+
+        <!-- Official 6-Agency Public Data Verification Box -->
+        <div class="official-authority-verification-box" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 22px; padding: 1.35rem 1.5rem; margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+            <div style="font-weight: 800; font-size: 1rem; color: #0F172A; display: flex; align-items: center; gap: 0.45rem;">
+              <span>🏛️</span> [공신력 검증 완료] 본 진단 리포트에 연동된 6대 공공·학술 표준 데이터
+            </div>
+            <span style="background: #ECFDF5; color: #047857; font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+              학부모 양육 방향성 지원 최우선 원칙 준수
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.6rem; font-size: 0.81rem; color: #334155; line-height: 1.5;">
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>① 질병관리청(KDCA)·대한소아청소년과학회:</strong> 소아청소년 성장도표(키·체중·BMI LMS 백분위)
+            </div>
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>② 보건복지부:</strong> 한국 영유아 발달선별검사(K-DST) 6대 영역 월령별 이정표
+            </div>
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>③ 보건복지부·한국영양학회:</strong> 한국인 영양소 섭취기준(KDRIs) 연령별 권장량 및 자연식 환산
+            </div>
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>④ 대한소아내분비학회:</strong> 연간 성장속도(cm/년) 표준 및 성조숙증·저신장 Red Flag 기준
+            </div>
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>⑤ 미국수면재단(NSF):</strong> 성장호르몬(GH) 서파수면 골든타임 및 연령별 권장 수면시간
+            </div>
+            <div style="background: #F8FAFC; padding: 0.65rem 0.85rem; border-radius: 12px;">
+              <strong>⑥ 문화체육관광부·국립박물관:</strong> 어린이 전시·문화유산 3단계 하브루타 관람 가이드
+            </div>
+          </div>
+        </div>
         
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="tab-badge tab-badge-indigo" style="font-size: 0.85rem;">📋 클리닉 맞춤 처방 부록</span>
+          <span class="tab-badge tab-badge-indigo" style="font-size: 0.85rem;">📋 선택형 가정 보조 참고 부록</span>
           <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0.5rem 0 0.35rem 0;">
-            우리 아이 맞춤형 월간 홈케어 처방 플랜 요약표
+            우리 아이 맞춤형 월간 홈케어 처방 플랜 요약표 (선택 참고용)
           </h3>
           <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
-            성장 영양소, 소근육 교구, 주말 전시 연계 도서를 한곳에 모은 통합 장보기 리포트
+            가정 내 자연식 식단·수면 루틴·0원 일상 놀이를 먼저 실천하시고, 보조 도구가 필요할 때만 참고해 보세요.
           </p>
         </div>
 

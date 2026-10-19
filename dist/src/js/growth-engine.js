@@ -1,7 +1,10 @@
 /**
  * KidsFit Growth Studio - Growth Engine (src/js/growth-engine.js)
- * Implements KDCA 2017 LMS Box-Cox Z-Score & erf normal CDF percentiles,
- * Tanner Mid-Parental Height (MPH), 3-tier height chart, and SVG growth curve rendering.
+ * Implements:
+ * - KDCA 2017 LMS Box-Cox Z-Score & erf normal CDF percentiles (Height + Weight + BMI)
+ * - Tanner Mid-Parental Height (MPH), 3-tier height chart, and SVG growth curve rendering
+ * - KSPENDO & NSF official growth velocity & red-flag clinical guidance
+ * - MOHW & KNS 2020 KDRIs daily nutrient requirements & real home-cooked meal equivalents
  */
 
 (function (global) {
@@ -9,66 +12,71 @@
 
   // 1. Data Loader (Node.js require or Browser global/embedded)
   let growthData = null;
+  let authoritiesData = null;
   if (typeof require !== 'undefined') {
     try {
       growthData = require('../data/growth-standards.json');
-    } catch (e) {
-      // fallback
-    }
+    } catch (e) {}
+    try {
+      authoritiesData = require('../data/official-authorities.json');
+    } catch (e) {}
   }
   if (!growthData && typeof window !== 'undefined' && window.KIDSFIT_GROWTH_DATA) {
     growthData = window.KIDSFIT_GROWTH_DATA;
+  }
+  if (!authoritiesData && typeof window !== 'undefined' && window.KIDSFIT_AUTHORITIES_DATA) {
+    authoritiesData = window.KIDSFIT_AUTHORITIES_DATA;
   }
 
   // Fallback representative tables if json not loaded
   const FALLBACK_KDCA = {
     boy: [
-      { m: 12, L: 1.0, M: 75.7, S: 0.0337, p3: 71.0, p50: 75.7, p97: 80.5 },
-      { m: 18, L: 1.0, M: 82.3, S: 0.0352, p3: 76.9, p50: 82.3, p97: 87.8 },
-      { m: 24, L: 1.0, M: 87.1, S: 0.0371, p3: 81.0, p50: 87.1, p97: 93.2 },
-      { m: 30, L: 1.0, M: 91.9, S: 0.0385, p3: 85.3, p50: 91.9, p97: 98.6 },
-      { m: 36, L: 1.0, M: 96.5, S: 0.0401, p3: 89.7, p50: 96.5, p97: 104.4 },
-      { m: 42, L: 1.0, M: 99.8, S: 0.0408, p3: 92.7, p50: 99.8, p97: 107.8 },
-      { m: 48, L: 1.0, M: 103.1, S: 0.0416, p3: 95.6, p50: 103.1, p97: 111.2 },
-      { m: 54, L: 1.0, M: 106.3, S: 0.0423, p3: 98.6, p50: 106.3, p97: 114.7 },
-      { m: 60, L: 1.0, M: 109.6, S: 0.0429, p3: 101.6, p50: 109.6, p97: 118.0 },
-      { m: 72, L: 1.0, M: 115.5, S: 0.0441, p3: 106.7, p50: 115.5, p97: 124.5 },
-      { m: 84, L: 1.0, M: 121.1, S: 0.0453, p3: 111.5, p50: 121.1, p97: 130.9 },
-      { m: 96, L: 1.0, M: 126.5, S: 0.0468, p3: 116.0, p50: 126.5, p97: 137.1 },
-      { m: 108, L: 1.0, M: 131.7, S: 0.0483, p3: 120.3, p50: 131.7, p97: 143.3 },
-      { m: 120, L: 1.0, M: 137.0, S: 0.0498, p3: 124.5, p50: 137.0, p97: 149.7 },
-      { m: 132, L: 1.0, M: 142.5, S: 0.0521, p3: 128.8, p50: 142.5, p97: 156.4 },
-      { m: 144, L: 1.0, M: 148.7, S: 0.0545, p3: 133.5, p50: 148.7, p97: 163.9 },
-      { m: 156, L: 1.0, M: 155.6, S: 0.0558, p3: 138.9, p50: 155.6, p97: 171.9 },
-      { m: 168, L: 1.0, M: 162.4, S: 0.0560, p3: 145.1, p50: 162.4, p97: 179.5 },
-      { m: 180, L: 1.0, M: 167.4, S: 0.0489, p3: 151.3, p50: 167.4, p97: 182.2 },
-      { m: 192, L: 1.0, M: 170.0, S: 0.0441, p3: 155.7, p50: 170.0, p97: 184.1 },
-      { m: 204, L: 1.0, M: 171.4, S: 0.0436, p3: 157.9, p50: 171.4, p97: 185.5 },
-      { m: 216, L: 1.0, M: 172.0, S: 0.0430, p3: 158.6, p50: 172.0, p97: 185.8 }
+      { m: 12, L: 1.0, M: 75.7, S: 0.0337, p3: 71.0, p50: 75.7, p97: 80.5, wM: 9.8, wS: 0.102, bmiP5: 14.5, bmiP50: 17.0, bmiP85: 18.8, bmiP95: 19.8 },
+      { m: 18, L: 1.0, M: 82.3, S: 0.0352, p3: 76.9, p50: 82.3, p97: 87.8, wM: 11.1, wS: 0.104, bmiP5: 14.2, bmiP50: 16.4, bmiP85: 18.1, bmiP95: 19.1 },
+      { m: 24, L: 1.0, M: 87.1, S: 0.0371, p3: 81.0, p50: 87.1, p97: 93.2, wM: 12.3, wS: 0.107, bmiP5: 14.0, bmiP50: 16.2, bmiP85: 17.8, bmiP95: 18.8 },
+      { m: 30, L: 1.0, M: 91.9, S: 0.0385, p3: 85.3, p50: 91.9, p97: 98.6, wM: 13.5, wS: 0.111, bmiP5: 13.9, bmiP50: 16.0, bmiP85: 17.6, bmiP95: 18.6 },
+      { m: 36, L: 1.0, M: 96.5, S: 0.0401, p3: 89.7, p50: 96.5, p97: 104.4, wM: 14.7, wS: 0.115, bmiP5: 13.8, bmiP50: 15.8, bmiP85: 17.4, bmiP95: 18.4 },
+      { m: 42, L: 1.0, M: 99.8, S: 0.0408, p3: 92.7, p50: 99.8, p97: 107.8, wM: 15.7, wS: 0.119, bmiP5: 13.7, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.4 },
+      { m: 48, L: 1.0, M: 103.1, S: 0.0416, p3: 95.6, p50: 103.1, p97: 111.2, wM: 16.7, wS: 0.124, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.5 },
+      { m: 54, L: 1.0, M: 106.3, S: 0.0423, p3: 98.6, p50: 106.3, p97: 114.7, wM: 17.8, wS: 0.130, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.4, bmiP95: 18.7 },
+      { m: 60, L: 1.0, M: 109.6, S: 0.0429, p3: 101.6, p50: 109.6, p97: 118.0, wM: 19.0, wS: 0.136, bmiP5: 13.6, bmiP50: 15.8, bmiP85: 17.6, bmiP95: 19.0 },
+      { m: 72, L: 1.0, M: 115.5, S: 0.0441, p3: 106.7, p50: 115.5, p97: 124.5, wM: 21.5, wS: 0.149, bmiP5: 13.7, bmiP50: 16.0, bmiP85: 18.1, bmiP95: 19.8 },
+      { m: 84, L: 1.0, M: 121.1, S: 0.0453, p3: 111.5, p50: 121.1, p97: 130.9, wM: 24.4, wS: 0.163, bmiP5: 13.9, bmiP50: 16.5, bmiP85: 19.0, bmiP95: 21.0 },
+      { m: 96, L: 1.0, M: 126.5, S: 0.0468, p3: 116.0, p50: 126.5, p97: 137.1, wM: 27.6, wS: 0.175, bmiP5: 14.1, bmiP50: 17.1, bmiP85: 20.0, bmiP95: 22.3 },
+      { m: 108, L: 1.0, M: 131.7, S: 0.0483, p3: 120.3, p50: 131.7, p97: 143.3, wM: 31.3, wS: 0.184, bmiP5: 14.4, bmiP50: 17.8, bmiP85: 21.1, bmiP95: 23.6 },
+      { m: 120, L: 1.0, M: 137.0, S: 0.0498, p3: 124.5, p50: 137.0, p97: 149.7, wM: 35.5, wS: 0.190, bmiP5: 14.8, bmiP50: 18.6, bmiP85: 22.1, bmiP95: 24.8 },
+      { m: 132, L: 1.0, M: 142.5, S: 0.0521, p3: 128.8, p50: 142.5, p97: 156.4, wM: 40.2, wS: 0.193, bmiP5: 15.2, bmiP50: 19.4, bmiP85: 23.0, bmiP95: 25.8 },
+      { m: 144, L: 1.0, M: 148.7, S: 0.0545, p3: 133.5, p50: 148.7, p97: 163.9, wM: 45.4, wS: 0.191, bmiP5: 15.7, bmiP50: 20.1, bmiP85: 23.8, bmiP95: 26.6 },
+      { m: 156, L: 1.0, M: 155.6, S: 0.0558, p3: 138.9, p50: 155.6, p97: 171.9, wM: 51.0, wS: 0.185, bmiP5: 16.3, bmiP50: 20.8, bmiP85: 24.4, bmiP95: 27.2 },
+      { m: 168, L: 1.0, M: 162.4, S: 0.0560, p3: 145.1, p50: 162.4, p97: 179.5, wM: 56.5, wS: 0.176, bmiP5: 16.9, bmiP50: 21.3, bmiP85: 24.9, bmiP95: 27.6 },
+      { m: 180, L: 1.0, M: 167.4, S: 0.0489, p3: 151.3, p50: 167.4, p97: 182.2, wM: 61.0, wS: 0.168, bmiP5: 17.4, bmiP50: 21.7, bmiP85: 25.2, bmiP95: 27.9 },
+      { m: 192, L: 1.0, M: 170.0, S: 0.0441, p3: 155.7, p50: 170.0, p97: 184.1, wM: 63.8, wS: 0.162, bmiP5: 17.8, bmiP50: 22.0, bmiP85: 25.4, bmiP95: 28.0 },
+      { m: 204, L: 1.0, M: 171.4, S: 0.0436, p3: 157.9, p50: 171.4, p97: 185.5, wM: 65.3, wS: 0.158, bmiP5: 18.1, bmiP50: 22.2, bmiP85: 25.5, bmiP95: 28.1 },
+      { m: 216, L: 1.0, M: 172.0, S: 0.0430, p3: 158.6, p50: 172.0, p97: 185.8, wM: 66.2, wS: 0.155, bmiP5: 18.3, bmiP50: 22.4, bmiP85: 25.6, bmiP95: 28.2 }
     ],
     girl: [
-      { m: 12, L: 1.0, M: 74.0, S: 0.0349, p3: 69.2, p50: 74.0, p97: 78.9 },
-      { m: 18, L: 1.0, M: 80.7, S: 0.0366, p3: 75.2, p50: 80.7, p97: 86.3 },
-      { m: 24, L: 1.0, M: 85.7, S: 0.0384, p3: 79.3, p50: 85.7, p97: 92.1 },
-      { m: 30, L: 1.0, M: 90.7, S: 0.0396, p3: 84.0, p50: 90.7, p97: 97.4 },
-      { m: 36, L: 1.0, M: 95.4, S: 0.0409, p3: 88.1, p50: 95.4, p97: 103.0 },
-      { m: 42, L: 1.0, M: 98.8, S: 0.0415, p3: 91.3, p50: 98.8, p97: 106.6 },
-      { m: 48, L: 1.0, M: 102.2, S: 0.0422, p3: 94.4, p50: 102.2, p97: 110.1 },
-      { m: 54, L: 1.0, M: 105.3, S: 0.0428, p3: 97.2, p50: 105.3, p97: 113.6 },
-      { m: 60, L: 1.0, M: 108.4, S: 0.0435, p3: 99.9, p50: 108.4, p97: 117.0 },
-      { m: 72, L: 1.0, M: 114.7, S: 0.0445, p3: 106.6, p50: 114.7, p97: 123.3 },
-      { m: 84, L: 1.0, M: 120.8, S: 0.0460, p3: 112.2, p50: 120.8, p97: 130.2 },
-      { m: 96, L: 1.0, M: 126.7, S: 0.0478, p3: 117.5, p50: 126.7, p97: 137.1 },
-      { m: 108, L: 1.0, M: 132.6, S: 0.0501, p3: 122.8, p50: 132.6, p97: 144.1 },
-      { m: 120, L: 1.0, M: 139.1, S: 0.0526, p3: 128.2, p50: 139.1, p97: 151.2 },
-      { m: 132, L: 1.0, M: 145.8, S: 0.0532, p3: 133.8, p50: 145.8, p97: 157.6 },
-      { m: 144, L: 1.0, M: 151.7, S: 0.0494, p3: 139.5, p50: 151.7, p97: 162.6 },
-      { m: 156, L: 1.0, M: 155.9, S: 0.0438, p3: 144.7, p50: 155.9, p97: 166.0 },
-      { m: 168, L: 1.0, M: 158.3, S: 0.0416, p3: 147.9, p50: 158.3, p97: 168.1 },
-      { m: 180, L: 1.0, M: 159.5, S: 0.0408, p3: 149.3, p50: 159.5, p97: 169.2 },
-      { m: 192, L: 1.0, M: 160.0, S: 0.0403, p3: 150.3, p50: 160.0, p97: 169.8 },
-      { "m": 204, L: 1.0, M: 160.2, S: 0.0400, p3: 151.0, p50: 160.2, p97: 170.1 },
-      { "m": 216, L: 1.0, M: 160.3, S: 0.0398, p3: 151.2, p50: 160.3, p97: 170.2 }
+      { m: 12, L: 1.0, M: 74.0, S: 0.0349, p3: 69.2, p50: 74.0, p97: 78.9, wM: 9.2, wS: 0.105, bmiP5: 14.1, bmiP50: 16.6, bmiP85: 18.4, bmiP95: 19.4 },
+      { m: 18, L: 1.0, M: 80.7, S: 0.0366, p3: 75.2, p50: 80.7, p97: 86.3, wM: 10.5, wS: 0.108, bmiP5: 13.8, bmiP50: 16.1, bmiP85: 17.8, bmiP95: 18.8 },
+      { m: 24, L: 1.0, M: 85.7, S: 0.0384, p3: 79.3, p50: 85.7, p97: 92.1, wM: 11.7, wS: 0.111, bmiP5: 13.7, bmiP50: 15.9, bmiP85: 17.5, bmiP95: 18.5 },
+      { m: 30, L: 1.0, M: 90.7, S: 0.0396, p3: 84.0, p50: 90.7, p97: 97.4, wM: 12.9, wS: 0.115, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.3 },
+      { m: 36, L: 1.0, M: 95.4, S: 0.0409, p3: 88.1, p50: 95.4, p97: 103.0, wM: 14.1, wS: 0.119, bmiP5: 13.5, bmiP50: 15.5, bmiP85: 17.2, bmiP95: 18.2 },
+      { m: 42, L: 1.0, M: 98.8, S: 0.0415, p3: 91.3, p50: 98.8, p97: 106.6, wM: 15.1, wS: 0.124, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.2, bmiP95: 18.3 },
+      { m: 48, L: 1.0, M: 102.2, S: 0.0422, p3: 94.4, p50: 102.2, p97: 110.1, wM: 16.1, wS: 0.129, bmiP5: 13.4, bmiP50: 15.4, bmiP85: 17.2, bmiP95: 18.4 },
+      { m: 54, L: 1.0, M: 105.3, S: 0.0428, p3: 97.2, p50: 105.3, p97: 113.6, wM: 17.2, wS: 0.135, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.3, bmiP95: 18.6 },
+      { m: 60, L: 1.0, M: 108.4, S: 0.0435, p3: 99.9, p50: 108.4, p97: 117.0, wM: 18.3, wS: 0.141, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.4, bmiP95: 18.8 },
+      { m: 72, L: 1.0, M: 114.7, S: 0.0445, p3: 106.6, p50: 114.7, p97: 123.3, wM: 20.8, wS: 0.153, bmiP5: 13.5, bmiP50: 15.7, bmiP85: 17.8, bmiP95: 19.4 },
+      { m: 84, L: 1.0, M: 120.8, S: 0.0460, p3: 112.2, p50: 120.8, p97: 130.2, wM: 23.6, wS: 0.165, bmiP5: 13.6, bmiP50: 16.1, bmiP85: 18.5, bmiP95: 20.3 },
+      { m: 96, L: 1.0, M: 126.7, S: 0.0478, p3: 117.5, p50: 126.7, p97: 137.1, wM: 26.8, wS: 0.175, bmiP5: 13.8, bmiP50: 16.6, bmiP85: 19.3, bmiP95: 21.3 },
+      { m: 108, L: 1.0, M: 132.6, S: 0.0501, p3: 122.8, p50: 132.6, p97: 144.1, wM: 30.5, wS: 0.183, bmiP5: 14.1, bmiP50: 17.2, bmiP85: 20.2, bmiP95: 22.3 },
+      { m: 120, L: 1.0, M: 139.1, S: 0.0526, p3: 128.2, p50: 139.1, p97: 151.2, wM: 34.8, wS: 0.187, bmiP5: 14.5, bmiP50: 17.9, bmiP85: 21.1, bmiP95: 23.3 },
+      { m: 132, L: 1.0, M: 145.8, S: 0.0532, p3: 133.8, p50: 145.8, p97: 157.6, wM: 39.7, wS: 0.186, bmiP5: 15.0, bmiP50: 18.6, bmiP85: 21.9, bmiP95: 24.2 },
+      { m: 144, L: 1.0, M: 151.7, S: 0.0494, p3: 139.5, p50: 143.4, p97: 162.6, wM: 44.5, wS: 0.180, bmiP5: 15.5, bmiP50: 19.3, bmiP85: 22.6, bmiP95: 24.9 },
+      { m: 156, L: 1.0, M: 155.9, S: 0.0438, p3: 144.7, p50: 155.9, p97: 166.0, wM: 48.6, wS: 0.171, bmiP5: 16.1, bmiP50: 19.9, bmiP85: 23.2, bmiP95: 25.5 },
+      { m: 168, L: 1.0, M: 158.3, S: 0.0416, p3: 147.9, p50: 158.3, p97: 168.1, wM: 51.5, wS: 0.162, bmiP5: 16.6, bmiP50: 20.4, bmiP85: 23.6, bmiP95: 25.9 },
+      { m: 180, L: 1.0, M: 159.5, S: 0.0408, p3: 149.3, p50: 159.5, p97: 169.2, wM: 53.2, wS: 0.155, bmiP5: 17.0, bmiP50: 20.8, bmiP85: 23.9, bmiP95: 26.2 },
+      { m: 192, L: 1.0, M: 160.0, S: 0.0403, p3: 150.3, p50: 160.0, p97: 169.8, wM: 54.1, wS: 0.150, bmiP5: 17.2, bmiP50: 21.0, bmiP85: 24.1, bmiP95: 26.3 },
+      { m: 204, L: 1.0, M: 160.2, S: 0.0400, p3: 151.0, p50: 160.2, p97: 170.1, wM: 54.5, wS: 0.147, bmiP5: 17.4, bmiP50: 21.1, bmiP85: 24.2, bmiP95: 26.4 },
+      { m: 216, L: 1.0, M: 160.3, S: 0.0398, p3: 151.2, p50: 160.3, p97: 170.2, wM: 54.7, wS: 0.145, bmiP5: 17.5, bmiP50: 21.2, bmiP85: 24.3, bmiP95: 26.5 }
     ]
   };
 
@@ -119,7 +127,13 @@
           S: (1 - alpha) * r1.S + alpha * r2.S,
           p3: (1 - alpha) * r1.p3 + alpha * r2.p3,
           p50: (1 - alpha) * r1.p50 + alpha * r2.p50,
-          p97: (1 - alpha) * r1.p97 + alpha * r2.p97
+          p97: (1 - alpha) * r1.p97 + alpha * r2.p97,
+          wM: (1 - alpha) * (r1.wM || 16.5) + alpha * (r2.wM || 16.5),
+          wS: (1 - alpha) * (r1.wS || 0.13) + alpha * (r2.wS || 0.13),
+          bmiP5: (1 - alpha) * (r1.bmiP5 || 13.8) + alpha * (r2.bmiP5 || 13.8),
+          bmiP50: (1 - alpha) * (r1.bmiP50 || 16.0) + alpha * (r2.bmiP50 || 16.0),
+          bmiP85: (1 - alpha) * (r1.bmiP85 || 18.0) + alpha * (r2.bmiP85 || 18.0),
+          bmiP95: (1 - alpha) * (r1.bmiP95 || 19.5) + alpha * (r2.bmiP95 || 19.5)
         };
       }
     }
@@ -143,6 +157,41 @@
       percentile,
       topPercent,
       deltaMedian
+    };
+  }
+
+  // 4-1. KDCA Weight & BMI Status Evaluator
+  function evaluateWeightAndBmi(heightCm, weightKg, lms) {
+    const hMeter = Math.max(0.5, (heightCm || 100) / 100.0);
+    const wKg = Math.max(5.0, weightKg || lms.wM || 16.5);
+    const bmi = Math.round((wKg / (hMeter * hMeter)) * 10) / 10;
+    const wPct = calculateKdcaPercentile(wKg, 1.0, lms.wM || 16.5, lms.wS || 0.13);
+
+    let bmiStatus = '표준 균형 체형 (정상 5~84백분위)';
+    let bmiNote = '현재 키 대비 체중 밸런스가 이상적입니다. 근육과 골격 성장을 위한 양질의 단백질 섭취를 유지해주세요.';
+    let bmiBadgeColor = '#059669';
+
+    if (bmi < (lms.bmiP5 || 13.6)) {
+      bmiStatus = '저체중 주의 (<5백분위)';
+      bmiNote = '또래 대비 체중과 열량 비축이 부족합니다. 키 성장의 재료가 되는 단백질·아연·철분 보강이 우선입니다.';
+      bmiBadgeColor = '#D97706';
+    } else if (bmi >= (lms.bmiP95 || 19.5)) {
+      bmiStatus = '소아비만·성조숙 주의 (≥95백분위)';
+      bmiNote = '과도한 체지방(렙틴 호르몬)은 사춘기 신호와 성장판 골화를 앞당길 수 있습니다. 정제 탄수화물을 줄이고 점프·유산소 운동을 늘려주세요.';
+      bmiBadgeColor = '#E11D48';
+    } else if (bmi >= (lms.bmiP85 || 17.8)) {
+      bmiStatus = '과체중 경계 (85~94백분위)';
+      bmiNote = '체중 증가 속도가 키 성장 속도보다 빠르지 않도록 야식과 액상과당 음료를 조절해주세요.';
+      bmiBadgeColor = '#D97706';
+    }
+
+    return {
+      bmi,
+      weightPercentile: wPct.percentile,
+      weightDelta: wPct.deltaMedian,
+      bmiStatus,
+      bmiNote,
+      bmiBadgeColor
     };
   }
 
@@ -173,7 +222,6 @@
     habits.forEach((h) => {
       if (HABIT_LOSS_MAP[h]) loss += HABIT_LOSS_MAP[h];
     });
-    // Cap at -5.0cm max penalty
     const unmanagedLoss = Math.min(5.0, Math.round(loss * 10) / 10);
     const unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
 
@@ -240,7 +288,6 @@
     const pathP50 = makePath(data.p50);
     const pathP3 = makePath(data.p3);
 
-    // Current point
     const curX = scaleX(Math.max(12, Math.min(216, currentAgeMonths)));
     const curY = scaleY(Math.max(65, Math.min(190, currentHeight)));
 
@@ -395,10 +442,141 @@
     `;
   }
 
+  // 11-1. Render Official Authority Clinical & Nutritional Guidance (Parenting Help First)
+  function renderOfficialClinicalAndNutritionBox(ageMonths, bmiInfo) {
+    if (!authoritiesData && typeof window !== 'undefined' && window.KIDSFIT_AUTHORITIES_DATA) {
+      authoritiesData = window.KIDSFIT_AUTHORITIES_DATA;
+    }
+    const clampedM = Math.max(12, Math.min(216, ageMonths || 48));
+
+    const velocityList = (authoritiesData && authoritiesData.growthVelocityAndRedFlags) || [];
+    const velocityGuide = velocityList.find((v) => clampedM >= v.minMonths && clampedM <= v.maxMonths) || {
+      ageRangeLabel: '소아·학령기 표준 기준',
+      normalVelocityCmPerYear: '연간 5.0 ~ 7.0cm 성장',
+      sleepRecommendation: '일일 총 9~12시간 (밤 9시 30분 이전 취침 권장)',
+      clinicalAdvice: '매년 일정한 백분위 궤도를 유지하며 자라는지 6개월 단위로 키·체중을 기록해주세요.',
+      redFlags: [
+        '신장이 동일 월령·성별 3백분위수 미만인 경우',
+        '1년간 키 성장 속도가 4.0cm 미만으로 떨어진 경우'
+      ]
+    };
+
+    const kdriList = (authoritiesData && authoritiesData.kdriNutritionByAge) || [];
+    const kdriGuide = kdriList.find((k) => clampedM >= k.minMonths && clampedM <= k.maxMonths) || {
+      label: '보건복지부 한국인 영양소 섭취기준(KDRIs)',
+      calciumMg: 600,
+      vitaminDIu: 400,
+      proteinG: 25,
+      zincMg: 4.5,
+      ironMg: 7.5,
+      foodEquivalents: [
+        '칼슘 = 우유/두유 2컵 + 두부 반 모 + 잔멸치 한 줌',
+        '단백질 = 달걀 1개 + 살코기/생선 1토막',
+        '비타민D = 연어/고등어 주 2회 + 하루 20분 야외 햇볕 산책'
+      ]
+    };
+
+    return `
+      <!-- Official KSPENDO & NSF Clinical Direction Card -->
+      <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🏛️</span>
+            <h4 style="font-size: 1.08rem; font-weight: 800; color: #0F172A; margin: 0;">
+              [공신력 검증 ①] 대한소아내분비학회 · 미국수면재단(NSF) 연령별 양육 방향 가이드
+            </h4>
+          </div>
+          <span style="background: #EEF2FF; color: #4F46E5; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+            ${velocityGuide.ageRangeLabel}
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">정상 연간 성장속도 기준</div>
+            <div style="font-size: 1.02rem; font-weight: 800; color: #059669; margin-top: 0.25rem;">${velocityGuide.normalVelocityCmPerYear}</div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">미국수면재단(NSF) 권장 수면</div>
+            <div style="font-size: 0.92rem; font-weight: 800; color: #4F46E5; margin-top: 0.25rem;">${velocityGuide.sleepRecommendation}</div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">KDCA 체질량지수(BMI ${bmiInfo.bmi}) 판정</div>
+            <div style="font-size: 0.92rem; font-weight: 800; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.25rem;">${bmiInfo.bmiStatus}</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #334155; line-height: 1.65; margin: 0 0 0.9rem 0; background: #FFFFFF; padding: 0.95rem 1.1rem; border-radius: 14px; border-left: 4px solid #5B4BFF;">
+          <strong>👩‍⚕️ 지금 시기 부모님이 가장 먼저 챙겨주실 양육 방향:</strong><br>
+          ${velocityGuide.clinicalAdvice}<br>
+          <span style="color: #475569; font-size: 0.85rem;">• 체형 코칭: ${bmiInfo.bmiNote}</span>
+        </p>
+
+        <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 14px; padding: 0.85rem 1.1rem;">
+          <div style="font-size: 0.84rem; font-weight: 800; color: #BE123C; margin-bottom: 0.35rem;">
+            🚨 소아청소년과(소아내분비과) 진료·골연령 검사를 권장하는 의학적 신호 (Red Flags)
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #881337; line-height: 1.55;">
+            ${velocityGuide.redFlags.map((rf) => `<li>${rf}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Official MOHW KDRIs 2020 Daily Nutrition & Real Home Meal Table -->
+      <div style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 24px; padding: 1.5rem; margin-top: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🥗</span>
+            <h4 style="font-size: 1.05rem; font-weight: 800; color: #064E3B; margin: 0;">
+              [공신력 검증 ②] 보건복지부 『한국인 영양소 섭취기준(KDRIs)』 일일 권장량 &amp; 자연식 식탁 환산표
+            </h4>
+          </div>
+          <span style="background: #DCFCE7; color: #065F46; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+            ${kdriGuide.label}
+          </span>
+        </div>
+        <p style="font-size: 0.85rem; color: #166534; margin: 0 0 0.85rem 0;">
+          영양제보다 중요한 것은 매일 먹는 세 끼 식탁입니다. 아래 일일 권장량을 <strong>가정 내 자연식 식단</strong>으로 먼저 채워주세요.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.65rem; margin-bottom: 1rem; text-align: center;">
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
+            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 칼슘 권장량</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.calciumMg}mg</div>
+          </div>
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
+            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 비타민D</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.vitaminDIu}IU</div>
+          </div>
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
+            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 단백질</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.proteinG}g</div>
+          </div>
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
+            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 아연(면역·입맛)</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.zincMg}mg</div>
+          </div>
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
+            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 철분(조혈·집중)</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.ironMg}mg</div>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border-radius: 14px; padding: 0.9rem 1.1rem; border: 1px solid #BBF7D0;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #065F46; margin-bottom: 0.4rem;">🍽️ 오늘 저녁 식탁에서 바로 실천하는 자연식 반찬 환산법</div>
+          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.84rem; color: #14532D; line-height: 1.6;">
+            ${kdriGuide.foodEquivalents.map((fe) => `<li>${fe}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+
   // 12. Full Report Renderer for Tab 1
   function renderTab1Report(profile) {
     const lms = getLmsForMonth(profile.gender, profile.ageMonths);
     const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);
+    const bmiInfo = evaluateWeightAndBmi(profile.currentHeight, profile.currentWeight, lms);
     const mph = calculateMph(profile.fatherHeight, profile.motherHeight, profile.gender);
     const pred = calculateHeightPrediction(mph, profile.habits, profile.pubertyStage);
 
@@ -411,13 +589,13 @@
         <div class="stat-card" style="background: var(--primary-indigo-sub); border: 1px solid #D7DDFD; border-radius: 20px; padding: 1.25rem; text-align: center;">
           <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary-indigo);">또래 100명 중 신체 백분위</span>
           <div style="font-size: 2rem; font-weight: 800; color: var(--primary-indigo); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>
-          <span style="font-size: 0.82rem; color: #475569;">전체 ${kdca.percentile} 백분위수</span>
+          <span style="font-size: 0.82rem; color: #475569;">신장 ${kdca.percentile}백분위 · 체중 ${bmiInfo.weightPercentile}백분위</span>
         </div>
 
         <div class="stat-card" style="background: var(--growth-mint-sub); border: 1px solid #C4F3DE; border-radius: 20px; padding: 1.25rem; text-align: center;">
           <span style="font-size: 0.85rem; font-weight: 700; color: var(--growth-mint-hover);">표준 평균키 대비 차이</span>
           <div style="font-size: 2rem; font-weight: 800; color: var(--growth-mint-hover); margin: 0.35rem 0;">${deltaSign}cm</div>
-          <span style="font-size: 0.82rem; color: #475569;">동일 월령 표준키 ${lms.M.toFixed(1)}cm 기준</span>
+          <span style="font-size: 0.82rem; color: #475569;">동일 월령 표준키 ${lms.M.toFixed(1)}cm · 표준체중 ${(lms.wM || 16.5).toFixed(1)}kg</span>
         </div>
 
         <div class="stat-card" style="background: var(--coral-alert-sub); border: 1px solid #FEE0E0; border-radius: 20px; padding: 1.25rem; text-align: center;">
@@ -442,9 +620,12 @@
         ${render3TierBarChart(pred)}
       </div>
 
+      <!-- Official Clinical Velocity, Sleep & KDRIs Nutrition Guidance (Parenting Help First!) -->
+      ${renderOfficialClinicalAndNutritionBox(profile.ageMonths, bmiInfo)}
+
       <!-- 3 Prescriptive Habit Coaching Cards -->
-      <div>
-        <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem 0; color: var(--text-primary);">🩺 전문 소아성장 맞춤 코칭 솔루션</h4>
+      <div style="margin-top: 1.5rem;">
+        <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem 0; color: var(--text-primary);">🩺 성장 방해 습관별 맞춤 홈케어 코칭 솔루션</h4>
         ${renderCoachingCards(profile.habits)}
       </div>
     `;
@@ -456,12 +637,14 @@
     normalCDF,
     getLmsForMonth,
     calculateKdcaPercentile,
+    evaluateWeightAndBmi,
     calculateMph,
     calculateHeightPrediction,
     getGrowthCurveData,
     renderSvgGrowthCurve,
     render3TierBarChart,
     renderCoachingCards,
+    renderOfficialClinicalAndNutritionBox,
     renderTab1Report
   };
 

@@ -9,15 +9,31 @@
 
   // 1. Data Loader
   let rubricsData = null;
+  let authoritiesData = null;
   if (typeof require !== 'undefined') {
     try {
       rubricsData = require('../data/kdst-rubrics.json');
     } catch (e) {
       // fallback
     }
+    try {
+      authoritiesData = require('../data/official-authorities.json');
+    } catch (e) {
+      // fallback
+    }
   }
   if (!rubricsData && typeof window !== 'undefined' && window.KIDSFIT_KDST_DATA) {
     rubricsData = window.KIDSFIT_KDST_DATA;
+  }
+  if (!authoritiesData && typeof window !== 'undefined' && window.KIDSFIT_AUTHORITIES_DATA) {
+    authoritiesData = window.KIDSFIT_AUTHORITIES_DATA;
+  }
+
+  function getKdstAgeDetail(ageMonths) {
+    const m = Number(ageMonths) || 36;
+    const list = (authoritiesData && (authoritiesData.kdstHomeGuidanceByAge || authoritiesData.kdstAgeMilestones)) || [];
+    const matched = list.find((b) => m >= b.minMonths && m <= b.maxMonths) || list[1] || list[0];
+    return matched || null;
   }
 
   // 2. K-DST 6-Axis Radar & SVG Points Calculator
@@ -313,14 +329,82 @@
     `;
   }
 
-  // 7. Render Curated TOP 4 Hot Items
+  // 6.5 Render Official K-DST Milestones & Zero-Cost Home Play Guide
+  function renderOfficialKdstCoaching(ageMonths) {
+    const detail = getKdstAgeDetail(ageMonths);
+    if (!detail) return '';
+    const milestonesList = Array.isArray(detail.milestones) ? detail.milestones : Object.values(detail.milestones || {});
+    const playsList = detail.zeroCostHomePlays || detail.zeroCostHomePlay || [];
+    const script = detail.parentConversationScript || detail.parentingConversationScript || null;
+
+    return `
+      <!-- Official K-DST Milestones & Zero-Cost Home Play Section -->
+      <div class="kdst-official-coaching-card" style="background: #FFFFFF; border: 1.5px solid #C7D2FE; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <div>
+            <span style="background: #EEF2FF; color: #4338CA; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 9999px; display: inline-block; margin-bottom: 0.35rem;">
+              공신력 검증 · 보건복지부·대한소아과학회 K-DST 기준
+            </span>
+            <h4 style="font-size: 1.12rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+              ${detail.label} &amp; 가정 내 0원 일상 놀이 처방
+            </h4>
+          </div>
+          <span style="font-size: 0.8rem; color: #4F46E5; font-weight: 700;">🧠 손끝 전두엽 시냅스 골든타임</span>
+        </div>
+
+        <!-- K-DST Milestones Grid -->
+        <div style="margin-bottom: 1.25rem;">
+          <div style="font-weight: 800; font-size: 0.92rem; color: #1E293B; margin-bottom: 0.6rem;">
+            ✅ 이 시기 보건복지부 K-DST 중점 관찰 이정표 (가정 점검표)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
+            ${milestonesList.map((ms) => `
+              <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 0.7rem 0.9rem; font-size: 0.84rem; color: #166534; line-height: 1.45;">
+                • ${ms}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Zero-cost Home Plays -->
+        <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 16px; padding: 1.1rem 1.25rem; margin-bottom: 1.15rem;">
+          <div style="font-weight: 800; font-size: 0.95rem; color: #92400E; margin-bottom: 0.5rem;">
+            🏠 교구 사기 전 오늘 저녁 거실에서 바로 해보는 '0원 일상 놀이' 3선
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.86rem; color: #78350F; line-height: 1.65;">
+            ${playsList.map((play) => `<li>${play}</li>`).join('')}
+          </ul>
+        </div>
+
+        <!-- Parent-Child Empathy Conversation Script -->
+        ${script ? `
+          <div style="background: #EEF2FF; border-radius: 16px; padding: 1.1rem 1.25rem; border-left: 4px solid #4F46E5;">
+            <div style="font-weight: 800; font-size: 0.92rem; color: #312E81; margin-bottom: 0.45rem;">
+              💬 아이의 자존감과 전두엽을 깨우는 엄마·아빠 공감 대화 처방 ${script.situation ? `(${script.situation})` : ''}
+            </div>
+            <div style="font-size: 0.84rem; color: #991B1B; margin-bottom: 0.35rem; line-height: 1.5;">
+              ❌ 피해야 할 말: “${script.avoid || script.before || ''}”
+            </div>
+            <div style="font-size: 0.86rem; color: #1E40AF; font-weight: 700; line-height: 1.55;">
+              ⭕ 권장 공감 대화: “${script.recommend || script.after || ''}”
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  // 7. Render Curated TOP 4 Hot Items (Framed as Optional Secondary Aids)
   function renderToyCards(toys, affiliateConfig = {}) {
     const coupangId = affiliateConfig.coupang || 'AF7865143';
 
     return `
       <div class="curated-toys-section" style="margin-top: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem;">
-          <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0;">요즘 엄마들이 검증한 발달 핫템 교구 TOP 4</h4>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+          <div>
+            <span style="font-size: 0.76rem; font-weight: 700; color: #64748B; display: block; margin-bottom: 0.15rem;">[선택형 보조 교구 가이드 — 가정 내 일상 놀이를 먼저 실천해 보세요]</span>
+            <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0;">요즘 엄마들이 검증한 발달 핫템 교구 TOP 4</h4>
+          </div>
           <span style="font-size: 0.8rem; color: var(--text-secondary);">소아발달 적기 처방 기준</span>
         </div>
 
@@ -375,6 +459,9 @@
         ${renderSvgRadarChart(radar.radarScores, radar.polygonPoints)}
       </div>
 
+      <!-- Official K-DST Milestones & Zero-cost Home Play -->
+      ${renderOfficialKdstCoaching(profile.ageMonths)}
+
       <!-- Pedagogical Verdict -->
       ${renderPedagogyBox(pedagogy)}
 
@@ -388,8 +475,10 @@
     evaluateKdstBalance,
     evaluatePedagogy,
     evaluatePedagogicalMethod,
+    getKdstAgeDetail,
     getCuratedToys,
     renderSvgRadarChart,
+    renderOfficialKdstCoaching,
     renderPedagogyBox,
     renderToyCards,
     renderTab2Report

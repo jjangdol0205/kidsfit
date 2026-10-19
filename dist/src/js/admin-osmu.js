@@ -447,9 +447,70 @@
     return { webtoonStoryboard, shortformScript, blogColumn, cafePost };
   }
 
+  function generateCardNewsAndFlowBundle(scenarioId = 'scenario-1') {
+    const cardnewsStoryboard = `[네이버 블로그·인스타·유튜브 쇼츠 6컷 양육 공감 카드뉴스 & 영상 TTS 대본]
+주제: "퇴근 후 매일 미안한 엄마에게 — 만 3세 아이의 고집은 '손끝 소근육 민감기' 신호입니다" (보건복지부 K-DST & 질병관리청 데이터 기반)
+
+[카드 1 — 표지 (공감 훅)]
+- 헤드라인: "내가 다 할 거야!" 매일 밤 단추 씨름하며 울컥하는 엄마에게
+- 서브카피: 만 2~4세 아이의 고집, 사실은 전두엽이 보내는 '소근육 성장 신호'입니다
+- 영상 TTS (0~5초): "퇴근 후 바쁜 저녁, 내가 할 거라며 고집부리고 물을 쏟는 아이 앞에서 오늘도 한숨 쉬셨나요?"
+
+[카드 2 — 의학적 팩트체크 (뇌과학 & K-DST)]
+- 헤드라인: 손가락은 '제2의 뇌' — 대뇌 운동피질의 30%가 손끝에 연결됩니다
+- 핵심 데이터: 보건복지부 K-DST 영유아 발달선별검사 기준, 24~47개월은 엄지·검지·중지 '삼지창 파지(Three-jaw chuck)'가 완성되는 결정적 민감기!
+- 영상 TTS (5~11초): "아이의 고집은 엄마를 힘들게 하려는 게 아닙니다. 뇌 운동피질의 30%와 연결된 손끝 시냅스를 스스로 깨우려는 기특한 발달 본능입니다."
+
+[카드 3 — 워킹맘 지갑 지킴이 비교표 (몬테소리 vs 가베)]
+- 헤드라인: 만 3세에 150만 원 가베 전집? 시기가 다르면 '거실 방치템' 됩니다
+- 비교 핵심: 만 2~3세는 [몬테소리 일상·소근육 조작] 적기 / 만 4~5세 이후 [프뢰벨 은물·가베 3D 공간지각] 적기
+- 영상 TTS (11~17초): "불안한 마음에 백만 원대 가베 전집부터 찾지 마세요. 만 3세에는 추상 도형보다 손가락 힘을 기르는 일상 조작 놀이가 먼저입니다."
+
+[카드 4 — 오늘 저녁 거실 0원 일상 놀이 처방 3선]
+- 헤드라인: 비싼 교구 사기 전, 오늘 저녁 주방 서랍으로 시작하는 '0원 놀이'
+- 실천 3선: ① 나무 빨래집게 색깔 짝맞추기 (손끝 악력) ② 페트병 뚜껑 저금통 넣기 (눈-손 협응) ③ 휴지심 사자 갈기 안전가위 오리기
+- 영상 TTS (17~23초): "오늘 저녁엔 비싼 장난감 대신 빨래집게와 페트병 뚜껑을 건네주세요. 아이가 20분 넘게 초집중하는 기적이 시작됩니다."
+
+[카드 5 — 숨은 키 7cm 신체 성장 골든타임 루틴]
+- 헤드라인: 두뇌만큼 중요한 '밤 10시 성장호르몬 & 바른 식탁 루틴'
+- 핵심 데이터: 질병관리청(KDCA) 성장도표 & 한국인 영양소 섭취기준(KDRIs) — 밤 10시 서파수면(GH 65% 분비) + 일일 칼슘 600mg·비타민D 400IU 충족
+- 영상 TTS (23~29초): "낮에 손끝을 충분히 쓴 아이는 밤 10시 깊은 서파수면에 빠져 성장호르몬이 3배 더 활발하게 분비됩니다."
+
+[카드 6 — 부모 마음 처방 & 무료 진단 안내]
+- 헤드라인: 완벽한 엄마보다 '아이의 속도를 읽어주는 다정한 엄마'면 충분합니다
+- 하단 안내: 질병관리청 성장도표 × 보건복지부 K-DST 기반 우리 아이 1분 무료 발달·성장 처방소 [키즈핏 그로스 스튜디오]
+- 영상 TTS (29~35초): "오늘도 최선을 다한 엄마 아빠를 응원합니다. 우리 아이 월령별 맞춤 성장·발달 방향, 키즈핏 그로스 스튜디오에서 무료로 확인해 보세요."`;
+
+    const googleFlowPrompts = `[안티그래비티 × 구글 Flow (labs.google/fx/tools/flow · Veo 3.1) 영상 제작 프롬프트 세트]
+활용 모드:
+① Ingredients to Video: 엄마 캐릭터 시트 + 아이 캐릭터 시트 + 파스텔 배경 시트 3장을 Ingredients에 등록하여 6컷 전체 캐릭터 일관성 100% 고정
+② Frames to Video: 키즈핏에서 생성한 웹툰/카드뉴스 각 컷 이미지를 시작 프레임(Start Frame)으로 업로드 후 아래 카메라 모션 프롬프트 입력
+
+[Cut 1 — Frames to Video 프롬프트]
+Warm Korean pastel watercolor webtoon animation. A tired 35-year-old Korean mother in a cream cardigan kneels in a cozy apartment entryway at evening, gently watching her 3-year-old toddler in a mint striped shirt trying to button his shirt and spilling a little water. Subtle slow push-in camera motion, warm ambient indoor lighting, soft breathing and natural blinking, emotional cinematic parenting mood, 9:16 vertical.
+
+[Cut 2 — Frames to Video 프롬프트]
+Warm Korean pastel webtoon style. Late night under a warm desk lamp, the Korean mother looks lovingly at her sleeping toddler under a soft blanket, resting her chin on her hand with a tender, reflective expression. Gentle warm light particles floating, slow camera pan, peaceful lullaby atmosphere, 9:16 vertical.
+
+[Cut 3 — Frames to Video 프롬프트]
+Warm Korean pastel webtoon style. The mother looks at a glowing pediatric brain-and-hand development illustration on her tablet, her face brightening with a warm relieved smile ("Aha!" moment). Soft golden-mint light glow around the synapse graphic, subtle zoom-in, 9:16 vertical.
+
+[Cut 4 — Frames to Video 프롬프트]
+Warm Korean pastel webtoon style. Sunny weekend morning in a bright Korean living room. The toddler happily picks up colorful pom-poms with wooden tongs and threads large wooden beads with focused little hands while the mother smiles warmly beside him. Natural morning sunlight streaming through sheer curtains, gentle motion, 9:16 vertical.
+
+[Cut 5 — Frames to Video 프롬프트]
+Warm Korean pastel webtoon style. Sunlit children's art museum park. Mother and father squat down to eye-level with their beaming 3-year-old toddler, pointing and talking happily about a colorful art sculpture together. Gentle breeze moving hair and leaves, warm family joy, 9:16 vertical.
+
+[Cut 6 — Frames to Video 프롬프트]
+Warm Korean pastel webtoon style. Close-up heartwarming hug between the smiling mother and her 3-year-old toddler holding up a paper heart cut with safety scissors. Soft pastel sparkles and warm bokeh in background, gentle pull-back camera motion, 9:16 vertical.`;
+
+    return { cardnewsStoryboard, googleFlowPrompts };
+  }
+
   // Render OSMU Admin Studio Tabs
   function renderOsmuStudioUI(scenarioId = 'scenario-1', affiliateConfig = {}) {
     const bundle = generateOsmuBundle(scenarioId, affiliateConfig);
+    const extra = generateCardNewsAndFlowBundle(scenarioId);
 
     return `
       <div class="osmu-studio-wrapper" style="margin-top: 1.5rem; border-top: 1.5px solid #E2E8F0; padding-top: 1.5rem;">
@@ -457,10 +518,10 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
           <div>
             <h4 style="font-size: 1.15rem; font-weight: 800; color: #1E293B; margin: 0 0 0.25rem 0;">
-              📢 OSMU 4채널 원소스 멀티유즈 마케팅 자동 생성기
+              📢 OSMU 6채널 원소스 멀티유즈 양육 콘텐츠 &amp; 구글 Flow 영상 스튜디오
             </h4>
             <p style="font-size: 0.84rem; color: #64748B; margin: 0;">
-              시나리오를 선택하면 웹툰, 숏폼, 2,000자 블로그, 카페 글이 1초 만에 자동 생성됩니다.
+              시나리오를 선택하면 6컷 웹툰, 카드뉴스, 숏폼, 2,000자 블로그, 카페 글, 구글 Flow 영상 프롬프트가 1초 만에 생성됩니다.
             </p>
           </div>
 
@@ -476,10 +537,12 @@
 
         <!-- Channel Navigation Tabs -->
         <div class="osmu-channel-tabs" style="display: flex; gap: 0.5rem; border-bottom: 2px solid #E2E8F0; padding-bottom: 0.5rem; margin-bottom: 1rem; overflow-x: auto;">
-          <button type="button" class="btn btn-secondary osmu-tab-btn active" data-channel="webtoon" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">🎨 6컷 웹툰 &amp; TTS</button>
-          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="shortform" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">📱 15초 숏폼 대본</button>
-          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="blog" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">✍️ 2,000자 블로그 칼럼</button>
-          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="cafe" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">☕ 카페 등업 &amp; 공구글</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn active" data-channel="webtoon" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">🎨 6컷 웹툰 &amp; 영상대본</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="cardnews" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">📊 6컷 카드뉴스 &amp; 영상대본</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="flow" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">🎬 구글 Flow 영상 프롬프트</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="shortform" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">📱 15초 숏폼 대본</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="blog" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">✍️ 2,000자 블로그 칼럼</button>
+          <button type="button" class="btn btn-secondary osmu-tab-btn" data-channel="cafe" style="font-size: 0.82rem; padding: 0.45rem 0.75rem;">☕ 카페 양육칼럼 &amp; 관리</button>
         </div>
 
         <!-- Channel Content Displays -->
@@ -492,6 +555,24 @@
               <button type="button" class="btn btn-primary btn-copy-osmu" data-target="osmu-text-webtoon" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">📋 원클릭 복사</button>
             </div>
             <textarea id="osmu-text-webtoon" readonly style="width: 100%; height: 220px; font-family: monospace; font-size: 0.82rem; padding: 0.85rem; border: 1px solid #CBD5E1; border-radius: 12px; background: #F8FAFC; resize: vertical; box-sizing: border-box;">${bundle.webtoonStoryboard}</textarea>
+          </div>
+
+          <!-- Panel 1-B: CardNews -->
+          <div class="osmu-panel" id="osmu-panel-cardnews" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: #475569;">6컷 양육 공감 카드뉴스 슬라이드 원고 &amp; 영상 나레이션 대본</span>
+              <button type="button" class="btn btn-primary btn-copy-osmu" data-target="osmu-text-cardnews" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">📋 원클릭 복사</button>
+            </div>
+            <textarea id="osmu-text-cardnews" readonly style="width: 100%; height: 220px; font-family: monospace; font-size: 0.82rem; padding: 0.85rem; border: 1px solid #CBD5E1; border-radius: 12px; background: #F8FAFC; resize: vertical; box-sizing: border-box;">${extra.cardnewsStoryboard}</textarea>
+          </div>
+
+          <!-- Panel 1-C: Google Flow Prompts -->
+          <div class="osmu-panel" id="osmu-panel-flow" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: #475569;">안티그래비티 × 구글 Flow (Veo 3.1) Ingredients/Frames to Video 프롬프트</span>
+              <button type="button" class="btn btn-primary btn-copy-osmu" data-target="osmu-text-flow" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">📋 원클릭 복사</button>
+            </div>
+            <textarea id="osmu-text-flow" readonly style="width: 100%; height: 220px; font-family: monospace; font-size: 0.82rem; padding: 0.85rem; border: 1px solid #CBD5E1; border-radius: 12px; background: #F8FAFC; resize: vertical; box-sizing: border-box;">${extra.googleFlowPrompts}</textarea>
           </div>
 
           <!-- Panel 2: Shortform -->
@@ -531,6 +612,7 @@
   const AdminOsmu = {
     SCENARIOS,
     generateOsmuBundle,
+    generateCardNewsAndFlowBundle,
     renderOsmuStudioUI
   };
 

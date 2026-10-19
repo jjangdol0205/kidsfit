@@ -491,11 +491,86 @@ function verifyMilestone4() {
   });
 }
 
+function verifyMilestone5() {
+  console.log('\n====================================================');
+  console.log('  Acceptance Verification: Milestone 5 Official Data, Samples & Flow');
+  console.log('====================================================');
+
+  console.log('\n[Group 15: 6-Agency Authoritative Public Data & Parenting-First Guidance]');
+  check('src/data/official-authorities.json and engines provide KDCA Weight/BMI, KDRIs, K-DST 0-cost plays, and Havruta guides', () => {
+    const authPath = path.join(ROOT_DIR, 'src', 'data', 'official-authorities.json');
+    if (!fs.existsSync(authPath)) throw new Error('official-authorities.json missing');
+    const auth = JSON.parse(fs.readFileSync(authPath, 'utf8'));
+    if (!auth.authorities || auth.authorities.length < 6) {
+      throw new Error('Expected at least 6 official public data sources');
+    }
+
+    const growthEngine = require(path.join(ROOT_DIR, 'src', 'js', 'growth-engine.js'));
+    const lms48 = growthEngine.getLmsForMonth('boy', 48);
+    const wb = growthEngine.evaluateWeightAndBmi(104.5, 17.2, lms48);
+    if (!wb || typeof wb.bmi !== 'number' || !wb.bmiStatus) {
+      throw new Error('evaluateWeightAndBmi failed');
+    }
+
+    const devEngine = require(path.join(ROOT_DIR, 'src', 'js', 'development-engine.js'));
+    const tab2Html = devEngine.renderTab2Report({ ageMonths: 36, developmentConcerns: ['fine_motor'] });
+    if (!tab2Html.includes('0원 일상 놀이') || !tab2Html.includes('공감 대화 처방')) {
+      throw new Error('Tab 2 report missing K-DST 0-cost home play or empathy conversation script');
+    }
+
+    const weekendCurator = require(path.join(ROOT_DIR, 'src', 'js', 'weekend-curator.js'));
+    const tab3Html = weekendCurator.renderTab3Report({ region: '서울 강남·서초·송파', interest: 'art_making' });
+    if (!tab3Html.includes('3단계 하브루타 대화법')) {
+      throw new Error('Tab 3 report missing 3-stage Havruta parent-child conversation guide');
+    }
+  });
+
+  console.log('\n[Group 16: Naver Blog & Cafe Reset + Management Masterplan]');
+  check('Naver Blog/Cafe reset script, status manifest, and masterplan exist', () => {
+    const requiredDocs = [
+      path.join(ROOT_DIR, 'scripts', 'reset-naver-blog-cafe.js'),
+      path.join(ROOT_DIR, 'docs', 'naver_reset_status.json'),
+      path.join(ROOT_DIR, 'docs', '네이버_카페_블로그_초기화_및_운영관리_마스터플랜.md'),
+      path.join(ROOT_DIR, 'docs', '안티그래비티_구글Flow_영상제작_완벽가이드.md')
+    ];
+    requiredDocs.forEach((p) => {
+      if (!fs.existsSync(p)) throw new Error(`Missing required file: ${p}`);
+    });
+  });
+
+  console.log('\n[Group 17: All 5 Tangible Parenting Samples (Blog, 6-Cut Webtoon, 6-Cut CardNews, 2 MP4 Videos)]');
+  check('All 5 sample directories contain complete viewable/playable files in samples/ and dist/samples/', () => {
+    const sampleFiles = [
+      path.join(ROOT_DIR, 'samples', '1_blog_sample', 'blog_post_sample.md'),
+      path.join(ROOT_DIR, 'samples', '1_blog_sample', 'blog_post_sample.html'),
+      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_cut_01.png'),
+      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_cut_06.png'),
+      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_full_6cut.png'),
+      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_preview.html'),
+      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_01.png'),
+      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_06.png'),
+      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_preview.html'),
+      path.join(ROOT_DIR, 'samples', '4_webtoon_video_sample', 'webtoon_parenting_video.mp4'),
+      path.join(ROOT_DIR, 'samples', '5_cardnews_video_sample', 'cardnews_parenting_video.mp4'),
+      path.join(ROOT_DIR, 'dist', 'samples', '4_webtoon_video_sample', 'webtoon_parenting_video.mp4'),
+      path.join(ROOT_DIR, 'dist', 'samples', '5_cardnews_video_sample', 'cardnews_parenting_video.mp4')
+    ];
+    sampleFiles.forEach((f) => {
+      if (!fs.existsSync(f)) throw new Error(`Missing sample file: ${f}`);
+      const stat = fs.statSync(f);
+      if (f.endsWith('.mp4') && stat.size < 1000000) {
+        throw new Error(`Video sample too small (<1MB): ${f}`);
+      }
+    });
+  });
+}
+
 function runAcceptance() {
   verifyMilestone1();
   verifyMilestone2();
   verifyMilestone3();
   verifyMilestone4();
+  verifyMilestone5();
 
   console.log('\n====================================================');
   console.log(`Acceptance Verification Summary: ${passedChecks}/${totalChecks} checks passed.`);
