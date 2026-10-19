@@ -628,6 +628,73 @@
         <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem 0; color: var(--text-primary);">🩺 성장 방해 습관별 맞춤 홈케어 코칭 솔루션</h4>
         ${renderCoachingCards(profile.habits)}
       </div>
+
+      ${renderAcademicEvidenceSection()}
+    `;
+  }
+
+  function loadResearchData() {
+    if (typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
+      return window.KIDSFIT_RESEARCH_DATA;
+    }
+    if (typeof global !== 'undefined' && global.KIDSFIT_RESEARCH_DATA) {
+      return global.KIDSFIT_RESEARCH_DATA;
+    }
+    if (typeof require === 'function') {
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const p = path.resolve(__dirname, '../data/research-knowledge-base.json');
+        if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  function renderAcademicEvidenceSection() {
+    const kb = loadResearchData();
+    if (!kb || !Array.isArray(kb.papers)) return '';
+    const papers = kb.papers
+      .filter((p) => p.pillar === 'growth_endocrinology' || p.pillar === 'posture_biomechanics_exercise')
+      .slice(0, 4);
+    if (!papers.length) return '';
+    const totalCount = (kb.metadata && kb.metadata.total_papers) || kb.papers.length;
+
+    return `
+      <div style="background: #F8FAFC; border: 1.5px solid #C7D2FE; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🔬</span>
+            <h4 style="font-size: 1.05rem; font-weight: 800; color: #1E1B4B; margin: 0;">
+              소아 내분비·수면·척추 생체역학 동료심사(Peer-Reviewed) 논문 임상 근거
+            </h4>
+          </div>
+          <span style="background: #EEF2FF; color: #4338CA; font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+            PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동
+          </span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.9rem;">
+          ${papers.map((p) => `
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                <span style="font-size: 0.74rem; font-weight: 800; color: #4F46E5; background: #EEF2FF; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                  ${p.journal} (${p.year})
+                </span>
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #059669; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
+              </div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
+                ${p.title_ko || p.title}
+              </div>
+              <p style="font-size: 0.8rem; color: #334155; line-height: 1.5; margin: 0 0 0.45rem 0;">
+                <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
+              </p>
+              <div style="font-size: 0.79rem; color: #065F46; background: #F0FDF4; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
+                <strong>💡 양육 적용:</strong> ${p.parenting_prescription_ko || ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
     `;
   }
 

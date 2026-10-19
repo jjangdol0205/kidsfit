@@ -217,6 +217,65 @@
     return `
       <div>
         ${renderOutingCard(outing, affiliateConfig)}
+        ${renderMuseumAcademicEvidence()}
+      </div>
+    `;
+  }
+
+  function renderMuseumAcademicEvidence() {
+    let kb = null;
+    if (typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
+      kb = window.KIDSFIT_RESEARCH_DATA;
+    } else if (typeof global !== 'undefined' && global.KIDSFIT_RESEARCH_DATA) {
+      kb = global.KIDSFIT_RESEARCH_DATA;
+    } else if (typeof require === 'function') {
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const p = path.resolve(__dirname, '../data/research-knowledge-base.json');
+        if (fs.existsSync(p)) kb = JSON.parse(fs.readFileSync(p, 'utf8'));
+      } catch (e) {}
+    }
+    if (!kb || !Array.isArray(kb.papers)) return '';
+    const papers = kb.papers
+      .filter((p) => p.pillar === 'parent_child_interaction_museum')
+      .slice(0, 3);
+    if (!papers.length) return '';
+
+    return `
+      <div style="background: #F8FAFC; border: 1.5px solid #FDE68A; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🏛️</span>
+            <h4 style="font-size: 1.05rem; font-weight: 800; color: #78350F; margin: 0;">
+              박물관 하브루타 대화법 &amp; 자율성 지지 양육 발달심리학 논문 근거
+            </h4>
+          </div>
+          <span style="background: #FEF3C7; color: #92400E; font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+            Developmental Psychology · Child Development 학술 DB
+          </span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
+          ${papers.map((p) => `
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                <span style="font-size: 0.74rem; font-weight: 800; color: #D97706; background: #FFFBEB; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                  ${p.journal} (${p.year})
+                </span>
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #4F46E5; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
+              </div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
+                ${p.title_ko || p.title}
+              </div>
+              <p style="font-size: 0.8rem; color: #334155; line-height: 1.5; margin: 0 0 0.45rem 0;">
+                <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
+              </p>
+              <div style="font-size: 0.79rem; color: #065F46; background: #F0FDF4; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
+                <strong>💡 양육 적용:</strong> ${p.parenting_prescription_ko || ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
       </div>
     `;
   }
