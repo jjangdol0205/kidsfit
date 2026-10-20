@@ -20,22 +20,22 @@
   const DICTIONARY = {
     ko: {
       // Header & Brand
-      'brand.title': 'TALLER BIO LABS',
-      'brand.tagline': '소아 성장 궤적 · 내분비 호르몬 · 생체역학 & 인지 발달 분석 플랫폼',
-      'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 K-DST 기준 적용',
+      'brand.title': 'KIDS-FIT AI STUDIO',
+      'brand.tagline': '독자 개발 K-GROWTH AI™ 기반 맞춤형 성장·발달 큐레이션 아틀리에',
+      'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용',
       'nav.auxology': '신체 성장 & 골연령 궤적',
       'nav.endocrinology': '호르몬·수면 & 임상 영양',
       'nav.biomechanics': '척추 감압 & 생체역학',
       'nav.neuro': '뇌인지 & 탐구 로드맵',
       'nav.tracker': '90일 트래커 & A4 리포트',
-      'theme.dark': '🌙 다크 바이오',
-      'theme.light': '☀️ 라이트 클리닉',
+      'theme.dark': '🌙 아틀리에 무드',
+      'theme.light': '☀️ 부티크 에디토리얼',
       'lang.toggle': '🇺🇸 EN',
 
       // Hero
-      'hero.badge': '임상 소아내분비 & 생체역학 정밀 분석',
-      'hero.headline': '우리 아이 숨은 성장 잠재력,\n임상 생체 데이터로 정밀 해독합니다',
-      'hero.subtitle': 'CDC 2000 및 질병관리청(KDCA) 소아성장도표 기반 LMS Z-Score 분석, 24시간 성장호르몬 분비 궤적, 척추 감압 생체역학 운동 처방을 한눈에 확인하세요.',
+      'hero.badge': 'PROPRIETARY K-GROWTH AI™ v4.0 · 독자 개발 인공지능 성장 연구소',
+      'hero.headline': '감(感)에 의존하던 성장 관리를 넘어,\n독자 개발 AI 인텔리전스로 잠재력을 디자인합니다',
+      'hero.subtitle': '1,150+편 글로벌 소아내분비·뇌과학 논문과 실시간 코호트 DB를 자가학습하는 독자 개발 인공지능 「K-GROWTH AI™」가 학부모와 청소년을 위한 세상에 단 하나뿐인 성장 마스터북을 발행합니다.',
 
       // Presets
       'presets.badge': '연령대별 빠른 데모',
@@ -122,22 +122,22 @@
 
     en: {
       // Header & Brand
-      'brand.title': 'TALLER BIO LABS',
-      'brand.tagline': 'Clinical Growth Trajectory, Endocrinology, Biomechanics & Cognitive Analytics',
+      'brand.title': 'KIDS-FIT AI STUDIO',
+      'brand.tagline': 'Proprietary K-GROWTH AI™ Growth & Neuro-Developmental Atelier',
       'trust.badge': 'Built on Official Standards: US CDC 2000, WHO & KDCA Pediatric Auxology',
       'nav.auxology': 'Physical Growth & Auxology',
       'nav.endocrinology': 'Endocrinology & Bio-Nutrition',
       'nav.biomechanics': 'Biomechanics & Posture',
       'nav.neuro': 'Neuro-Cognitive Matrix',
       'nav.tracker': '90-Day Tracker & A4 PDF',
-      'theme.dark': '🌙 Dark Bio',
-      'theme.light': '☀️ Light Clinic',
+      'theme.dark': '🌙 Atelier Mood',
+      'theme.light': '☀️ Boutique Light',
       'lang.toggle': '🇰🇷 한국어',
 
       // Hero
-      'hero.badge': 'Clinical Pediatric Endocrinology & Biomechanics',
-      'hero.headline': 'Precision Biomarkers for Your Child\'s Maximum Growth Potential',
-      'hero.subtitle': 'LMS Z-Score auxology based on US CDC 2000 & WHO standards, 24-hour slow-wave sleep hormone simulation, and spinal decompression biomechanics.',
+      'hero.badge': 'PROPRIETARY K-GROWTH AI™ v4.0 · AI Growth Intelligence Atelier',
+      'hero.headline': 'Beyond Intuition: Designing Human Growth Potential with Proprietary AI',
+      'hero.subtitle': 'Powered by our proprietary K-GROWTH AI™ engine trained on 1,150+ clinical papers and a self-evolving cohort database, delivering a bespoke 5-chapter growth masterbook.',
 
       // Presets
       'presets.badge': 'Clinical Demo Presets',

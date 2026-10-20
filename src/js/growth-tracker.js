@@ -408,7 +408,7 @@
           <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div>
               <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                TALLER BIO LABS PEDIATRIC AUXOLOGY &amp; ENDOCRINOLOGY CLINIC
+                KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
               </div>
               <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
                 소아청소년 신체성장·골연령 정밀 진단 결과지 (Page 1/2)
@@ -547,7 +547,7 @@
 
           <!-- Page 1 Footer -->
           <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-            <span>TALLER BIO LABS CLINICAL AUXOLOGY ENGINE</span>
+            <span>KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
             <span>Page 1 of 2 (다음 페이지에 계속)</span>
           </div>
 
@@ -560,7 +560,7 @@
           <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div>
               <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                TALLER BIO LABS PEDIATRIC AUXOLOGY &amp; ENDOCRINOLOGY CLINIC
+                KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
               </div>
               <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
                 내분비·임상영양·생체역학 &amp; 뇌인지 처방전 (Page 2/2)
@@ -704,7 +704,7 @@
 
           <!-- Page 2 Footer -->
           <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; margin-top: 12px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-            <span>TALLER BIO LABS CLINICAL AUXOLOGY ENGINE</span>
+            <span>KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
             <span>Page 2 of 2 (End of Clinical Assessment Report)</span>
           </div>
 

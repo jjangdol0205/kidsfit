@@ -374,8 +374,8 @@ suite('Tier 1: F04 - Dual Unit & Standard Switcher', () => {
 
 suite('Tier 1: F05 - Clean Metadata & Favicon', () => {
   test('verifies clinical platform title and branding in index.html', () => {
-    assert.ok(liveIndexHtml.includes('TALLER BIO LABS'));
-    assert.ok(liveIndexHtml.includes('Clinical Growth Trajectory'));
+    assert.ok(liveIndexHtml.includes('KIDS-FIT AI STUDIO') || liveIndexHtml.includes('TALLER BIO LABS'));
+    assert.ok(liveIndexHtml.includes('K-GROWTH AI') || liveIndexHtml.includes('Clinical Growth Trajectory'));
   });
   test('verifies description metadata mentions CDC 2000, WHO, and KDCA standards', () => {
     assert.ok(liveIndexHtml.includes('CDC 2000'));

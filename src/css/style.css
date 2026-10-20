@@ -1536,163 +1536,411 @@ body {
 }
 
 /* ==========================================================================
-   TALLER.XYZ SIGNATURE DESIGN SYSTEM & PERSONALIZED GROWTH GUIDEBOOK UI
+   KIDS-FIT AI STUDIO — CREATIVE MARKETING AGENCY & LUXURY BOUTIQUE DESIGN
+   (Inspired by 29CM, W Concept, Nonfiction, Tamburins & Editorial Ateliers)
    ========================================================================== */
 
-body[data-theme="dark"] {
-  background-color: #05070E;
+:root,
+body,
+body[data-theme="dark"],
+body[data-theme="light"],
+[data-theme="dark"],
+[data-theme="light"] {
+  --theme-bg: #FAF8F5;
+  --theme-surface: #FFFFFF;
+  --theme-surface-solid: #FFFFFF;
+  --theme-surface-sub: #F4EFE6;
+  --theme-border: #E5DFD5;
+  --theme-border-subtle: #EFECE6;
+  --theme-accent: #181512;
+  --theme-accent-hover: #C86D51;
+  --theme-accent-sub: #F5EFE6;
+  --theme-accent-glow: rgba(200, 109, 81, 0.14);
+
+  --text-primary: #181512;
+  --text-secondary: #57534E;
+  --text-muted: #8C857B;
+  --text-light: #FFFFFF;
+
+  --editorial-serif: "Cormorant Garamond", "Playfair Display", "Noto Serif KR", Georgia, serif;
+  --couture-terracotta: #C86D51;
+  --couture-indigo: #4F46E5;
+  --couture-sage: #059669;
+  --couture-sand: #F4EFE6;
+  --couture-espresso: #181512;
+
+  --shadow-sm: 0 2px 10px rgba(24, 21, 18, 0.04);
+  --shadow-card: 0 18px 48px rgba(24, 21, 18, 0.06);
+  --shadow-card-hover: 0 24px 60px rgba(24, 21, 18, 0.10);
+  --shadow-glow-cyan: 0 8px 24px rgba(24, 21, 18, 0.08);
+  --shadow-glow-emerald: 0 8px 24px rgba(5, 150, 105, 0.12);
+}
+
+body,
+body[data-theme="dark"],
+body[data-theme="light"] {
+  background-color: #FAF8F5;
+  color: #181512;
   background-image:
-    radial-gradient(circle at 14% 12%, rgba(121, 40, 202, 0.24) 0%, transparent 42%),
-    radial-gradient(circle at 86% 16%, rgba(56, 189, 248, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 50% 82%, rgba(16, 185, 129, 0.14) 0%, transparent 50%),
-    linear-gradient(rgba(56, 189, 248, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.028) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    radial-gradient(circle at 12% 8%, rgba(200, 109, 81, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 88% 14%, rgba(79, 70, 229, 0.05) 0%, transparent 45%),
+    linear-gradient(rgba(24, 21, 18, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 21, 18, 0.022) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
   background-attachment: fixed;
 }
 
-/* Taller.xyz Hero Showcase Card */
-.taller-hero-showcase {
-  margin-top: 1.15rem;
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(10, 15, 29, 0.94) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.32);
-  border-radius: 22px;
-  padding: 1.1rem 1.35rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(56, 189, 248, 0.14);
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 1.1rem;
-  align-items: center;
+/* Header & Editorial Navigation Bar */
+.clinic-header,
+[data-theme="dark"] .clinic-header,
+[data-theme="light"] .clinic-header {
+  background: rgba(250, 248, 245, 0.92);
+  border-bottom: 1px solid #E5DFD5;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.header-trust-bar,
+[data-theme="dark"] .header-trust-bar,
+[data-theme="light"] .header-trust-bar {
+  background: #181512;
+  color: #FAF8F5;
+  border-bottom: none;
+  padding: 0.42rem 1rem;
+  letter-spacing: 0.02em;
+}
+
+.header-trust-badge {
+  color: #FAF8F5 !important;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.brand-logo-icon {
+  background: #181512;
+  color: #FAF8F5;
+  border: 1px solid #181512;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.brand-title {
+  font-family: var(--font-family);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #181512;
+}
+
+.brand-badge {
+  background: #F4EFE6;
+  color: #C86D51;
+  border: 1px solid #E5DFD5;
+  font-weight: 800;
+}
+
+/* First-Screen Gate: Hide Survey & Presets until user clicks "Start Diagnosis" */
+body:not(.studio-mode-active) #quick-presets-bar,
+body:not(.studio-mode-active) #quiz-section {
+  display: none;
+}
+
+body.studio-mode-active #brand-editorial-showcase,
+body.studio-mode-active .editorial-cta-bar {
+  display: none !important;
+}
+
+body:not(.studio-mode-active) #studio-utility-return-bar {
+  display: none !important;
+}
+
+/* Creative Marketing Agency & Women's Boutique Editorial Showcase */
+.agency-editorial-showcase {
+  padding: 1.5rem 0 2.5rem;
   text-align: left;
+}
+
+.agency-top-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.38rem 0.95rem;
+  background: #FFFFFF;
+  border: 1px solid #DFD8CC;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #181512;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px rgba(24, 21, 18, 0.04);
+}
+
+.agency-hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  background: #FFFFFF;
+  border: 1px solid #E5DFD5;
+  border-radius: 28px;
+  padding: 2.6rem 2.5rem;
+  box-shadow: 0 24px 60px rgba(24, 21, 18, 0.06);
+  margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
 }
 
-[data-theme="light"] .taller-hero-showcase {
-  background: linear-gradient(145deg, #FFFFFF 0%, #F4F6FB 100%);
-  border: 1px solid rgba(91, 75, 255, 0.25);
-  box-shadow: 0 14px 36px rgba(91, 75, 255, 0.1);
+.agency-editorial-display {
+  font-size: clamp(1.95rem, 3.8vw, 2.85rem);
+  font-weight: 900;
+  color: #181512;
+  line-height: 1.24;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.15rem;
 }
 
-.taller-hero-showcase::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(121, 40, 202, 0.12) 50%, transparent 72%);
-  pointer-events: none;
+.agency-editorial-display .serif-italic {
+  font-family: var(--editorial-serif);
+  font-weight: 700;
+  font-style: italic;
+  color: #C86D51;
 }
 
-.taller-social-proof-row {
+.agency-manifesto-lead {
+  font-size: 1rem;
+  color: #44403C;
+  line-height: 1.75;
+  margin-bottom: 1.65rem;
+  font-weight: 500;
+}
+
+.btn-couture-noir {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  flex-wrap: wrap;
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(168, 85, 247, 0.38);
+  justify-content: center;
+  gap: 0.6rem;
+  background: #181512;
+  color: #FAF8F5 !important;
+  border: 1.5px solid #181512;
+  padding: 1.05rem 2rem;
   border-radius: 9999px;
-  padding: 0.32rem 0.9rem;
-  margin-bottom: 0.65rem;
-  font-size: 0.76rem;
+  font-size: 0.96rem;
   font-weight: 800;
-  color: #E2E8F0;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.18);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 28px rgba(24, 21, 18, 0.16);
+  text-decoration: none;
 }
 
-[data-theme="light"] .taller-social-proof-row {
-  background: #F3F0FF;
-  border-color: rgba(91, 75, 255, 0.3);
-  color: #1E293B;
+.btn-couture-noir:hover {
+  background: #C86D51;
+  border-color: #C86D51;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(200, 109, 81, 0.28);
 }
 
-/* Taller.xyz 6-Segment Glowing Progress Bar */
+.btn-couture-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #FFFFFF;
+  color: #181512 !important;
+  border: 1.5px solid #D6CFC2;
+  padding: 0.9rem 1.45rem;
+  border-radius: 9999px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-couture-outline:hover {
+  border-color: #181512;
+  background: #F4EFE6;
+  transform: translateY(-1px);
+}
+
+/* Editorial Lookbook Right Showcase Card */
+.agency-lookbook-visual-card {
+  background: linear-gradient(160deg, #F7F3EB 0%, #EFE8DC 100%);
+  border: 1px solid #DFD7C8;
+  border-radius: 22px;
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* 3-Column Business Narrative Lookbook Grid */
+.agency-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2.4rem 0 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1.5px solid #181512;
+}
+
+.agency-lookbook-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.agency-lookbook-card {
+  background: #FFFFFF;
+  border: 1px solid #E5DFD5;
+  border-radius: 22px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(24, 21, 18, 0.04);
+}
+
+.agency-lookbook-card:hover {
+  transform: translateY(-4px);
+  border-color: #C86D51;
+  box-shadow: 0 20px 44px rgba(24, 21, 18, 0.09);
+}
+
+.lookbook-num {
+  font-family: var(--editorial-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #C86D51;
+  line-height: 1;
+  margin-bottom: 0.65rem;
+}
+
+/* Survey & Results Cards Styled in Boutique Atelier Aesthetic */
+body[data-theme="dark"] .quiz-card,
+body[data-theme="light"] .quiz-card,
+.quiz-card,
+.bento-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5DFD5 !important;
+  border-radius: 26px !important;
+  box-shadow: 0 20px 50px rgba(24, 21, 18, 0.06) !important;
+  color: #181512 !important;
+}
+
 .taller-segmented-bar {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0.42rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.95rem;
 }
 
 .taller-seg-pill {
-  height: 7px;
+  height: 6px;
   border-radius: 9999px;
-  background: rgba(148, 163, 184, 0.18);
+  background: #EAE4DA;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
 }
 
 .taller-seg-pill.completed {
-  background: linear-gradient(90deg, #7928CA 0%, #38BDF8 100%);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  background: #181512;
 }
 
 .taller-seg-pill.active {
-  background: linear-gradient(90deg, #38BDF8 0%, #10B981 100%);
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.65);
-  transform: scaleY(1.22);
+  background: #C86D51;
+  transform: scaleY(1.25);
 }
 
-/* Enhanced Taller.xyz Quiz Glass Card & Tap Pills */
-body[data-theme="dark"] .quiz-card {
-  background: linear-gradient(165deg, rgba(15, 23, 42, 0.88) 0%, rgba(9, 13, 24, 0.95) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(56, 189, 248, 0.1);
+.chip-pill {
+  background: #FAF8F5 !important;
+  border: 1.5px solid #E2DBD0 !important;
+  color: #181512 !important;
+  font-weight: 700 !important;
+  border-radius: 14px !important;
 }
 
 .chip-input:checked + .chip-pill {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(16, 185, 129, 0.18) 100%);
-  border-color: #38BDF8;
-  box-shadow: 0 0 22px rgba(56, 189, 248, 0.28), inset 0 0 12px rgba(56, 189, 248, 0.12);
+  background: #181512 !important;
+  border-color: #181512 !important;
+  color: #FAF8F5 !important;
+  box-shadow: 0 8px 20px rgba(24, 21, 18, 0.15) !important;
   transform: translateY(-1px);
 }
 
-/* Taller.xyz Giant Potential Height Reveal Hero Card */
+.bento-choice-card {
+  background: #FAF8F5 !important;
+  border: 1.5px solid #E2DBD0 !important;
+  color: #181512 !important;
+}
+
+.chip-input:checked + .bento-choice-card {
+  background: #FFFDF9 !important;
+  border: 2px solid #C86D51 !important;
+  box-shadow: 0 12px 28px rgba(200, 109, 81, 0.14) !important;
+}
+
+.form-input,
+.form-select {
+  background: #FAF8F5 !important;
+  border: 1.5px solid #DFD8CC !important;
+  color: #181512 !important;
+  border-radius: 14px !important;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #181512 !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(200, 109, 81, 0.15) !important;
+}
+
+.btn-primary {
+  background: #181512 !important;
+  color: #FAF8F5 !important;
+  border-radius: 9999px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 10px 24px rgba(24, 21, 18, 0.15) !important;
+}
+
+.btn-primary:hover {
+  background: #C86D51 !important;
+}
+
+/* Boutique Editorial Potential Height Hero Card in Results */
 .taller-height-reveal-hero {
-  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.2) 0%, rgba(121, 40, 202, 0.14) 42%, rgba(10, 15, 29, 0.96) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.42);
-  border-radius: 22px;
-  padding: 1.35rem 1.4rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 32px rgba(56, 189, 248, 0.16);
+  background: linear-gradient(145deg, #FAF6EE 0%, #F2EAE0 100%);
+  border: 1.5px solid #DDD3C4;
+  border-radius: 24px;
+  padding: 1.65rem 1.75rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 16px 40px rgba(24, 21, 18, 0.06);
   position: relative;
   overflow: hidden;
 }
 
-[data-theme="light"] .taller-height-reveal-hero {
-  background: linear-gradient(135deg, #EEF2FF 0%, #ECFDF5 100%);
-  border-color: rgba(91, 75, 255, 0.35);
-  box-shadow: 0 12px 32px rgba(91, 75, 255, 0.12);
-}
-
 .taller-giant-height-number {
-  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-size: clamp(2.5rem, 5.5vw, 3.7rem);
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 50%, #10B981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: var(--font-mono);
-}
-
-[data-theme="light"] .taller-giant-height-number {
-  background: linear-gradient(135deg, #1E1B4B 0%, #5B4BFF 55%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #181512;
+  font-family: var(--editorial-serif);
 }
 
 /* Guidebook Chapter Quick-Jump Navigation Bar */
 .guidebook-chapter-nav {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.35rem 0 0.75rem 0;
-  margin-bottom: 1rem;
+  padding: 0.35rem 0 0.85rem 0;
+  margin-bottom: 1.1rem;
   scrollbar-width: none;
 }
 
@@ -1704,28 +1952,31 @@ body[data-theme="dark"] .quiz-card {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.42rem 0.85rem;
+  padding: 0.48rem 0.95rem;
   border-radius: 9999px;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 800;
   white-space: nowrap;
   text-decoration: none;
-  background: rgba(15, 23, 42, 0.78);
-  color: #CBD5E1;
-  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: #FAF8F5;
+  color: #181512;
+  border: 1px solid #DFD8CC;
   transition: var(--transition-smooth);
 }
 
 .guidebook-chapter-pill:hover {
-  border-color: #38BDF8;
-  color: #38BDF8;
-  background: rgba(56, 189, 248, 0.14);
+  border-color: #181512;
+  background: #181512;
+  color: #FAF8F5;
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
-  .taller-hero-showcase {
+@media (max-width: 860px) {
+  .agency-hero-grid,
+  .agency-lookbook-grid-3 {
     grid-template-columns: 1fr;
-    padding: 0.95rem 1rem;
+  }
+  .agency-hero-grid {
+    padding: 1.65rem 1.35rem;
   }
 }

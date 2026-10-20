@@ -481,12 +481,16 @@ function auditStage7ScopeAndGuidance() {
       currentWeight: 58.0,
       habits: ['late_sleep', 'poor_posture']
     });
+    const indexHtmlContent = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
     const isCohortValid = Boolean(rec && rec.id && cohortAnalytics.totalRecords >= 128 && cohortAnalytics.autoLearningWeights.chronobiology_sleep_architecture > 1.0);
     const isTallerGuidebookValid = youthGuidebookHtml.includes('id="taller-potential-reveal-hero"') &&
                                    youthGuidebookHtml.includes('id="user-cohort-self-improve-section"') &&
-                                   youthGuidebookHtml.includes('청소년·본인 전용');
+                                   youthGuidebookHtml.includes('청소년·본인 전용') &&
+                                   indexHtmlContent.includes('id="brand-editorial-showcase"') &&
+                                   indexHtmlContent.includes('K-GROWTH AI') &&
+                                   !indexHtmlContent.toLowerCase().includes('taller.xyz');
     recordCheck('Stage 7: Scope & Guidance', 'User Input Cohort DB Persists Inputs & Computes Dynamic Self-Improvement Weights', isCohortValid, `Total cohort records: ${cohortAnalytics.totalRecords}`);
-    recordCheck('Stage 7: Scope & Guidance', 'Taller.xyz Giant Potential Height Hero & Parent/Youth Personalized Growth Guidebook Active', isTallerGuidebookValid, 'Taller.xyz Hero & 5-Chapter Guidebook verified');
+    recordCheck('Stage 7: Scope & Guidance', 'Proprietary K-GROWTH AI™ Editorial Brand Showcase & 5-Chapter Growth Guidebook Active (Zero taller.xyz)', isTallerGuidebookValid, 'Brand Showcase, Proprietary AI & 5-Chapter Guidebook verified');
   } catch (err) {
     recordCheck('Stage 7: Scope & Guidance', 'User Input Cohort DB & Taller.xyz Growth Guidebook Verification', false, err.message);
   }

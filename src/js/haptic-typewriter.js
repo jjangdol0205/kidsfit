@@ -345,19 +345,19 @@
       const pill = document.getElementById(`theatre-stage-pill-${i + 1}`);
       if (pill) {
         if (i < activeStageIdx) {
-          pill.style.background = 'rgba(16, 185, 129, 0.2)';
-          pill.style.borderColor = '#10B981';
-          pill.style.color = '#10B981';
+          pill.style.background = '#ECFDF5';
+          pill.style.borderColor = '#059669';
+          pill.style.color = '#059669';
           pill.textContent = `✓ Step ${i + 1}`;
         } else if (i === activeStageIdx) {
-          pill.style.background = 'rgba(56, 189, 248, 0.22)';
-          pill.style.borderColor = '#38BDF8';
-          pill.style.color = '#38BDF8';
-          pill.textContent = `⚡ Step ${i + 1} 분석중`;
+          pill.style.background = '#FDF3F0';
+          pill.style.borderColor = '#C86D51';
+          pill.style.color = '#C86D51';
+          pill.textContent = `✦ Step ${i + 1} 분석중`;
         } else {
-          pill.style.background = 'rgba(30, 41, 59, 0.5)';
-          pill.style.borderColor = 'rgba(255,255,255,0.08)';
-          pill.style.color = '#64748B';
+          pill.style.background = '#FAF8F5';
+          pill.style.borderColor = '#E6DFD5';
+          pill.style.color = '#8C857B';
           pill.textContent = `Step ${i + 1}`;
         }
       }
@@ -368,21 +368,21 @@
       cardBodyEl.setAttribute('data-card-idx', String(cardIdx));
       cardBodyEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; flex-wrap: wrap;">
-          <span style="background: rgba(56, 189, 248, 0.16); color: #38BDF8; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+          <span style="background: #FDF3F0; color: #C86D51; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(200,109,81,0.3);">
             ${currentCard.badge}
           </span>
           <div style="display: flex; gap: 0.35rem;">
-            <button type="button" id="btn-theatre-prev-card" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #E2E8F0; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">◀ 이전</button>
-            <button type="button" id="btn-theatre-next-card" style="background: rgba(56,189,248,0.16); border: 1px solid rgba(56,189,248,0.35); color: #38BDF8; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">다음 브리핑 ▶</button>
+            <button type="button" id="btn-theatre-prev-card" style="background: #FFFFFF; border: 1px solid #E6DFD5; color: #181512; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">◀ 이전</button>
+            <button type="button" id="btn-theatre-next-card" style="background: #181512; border: 1px solid #181512; color: #FAF8F5; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">다음 브리핑 ▶</button>
           </div>
         </div>
-        <h4 style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0; line-height: 1.4;">
+        <h4 style="font-size: 1.05rem; font-weight: 900; color: #181512; margin: 0 0 0.5rem 0; line-height: 1.4;">
           ${currentCard.title}
         </h4>
-        <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.58; margin: 0 0 0.65rem 0;">
+        <p style="font-size: 0.88rem; color: #44403C; line-height: 1.58; margin: 0 0 0.65rem 0;">
           ${currentCard.body}
         </p>
-        <div style="background: rgba(16, 185, 129, 0.11); border-left: 3px solid #10B981; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.81rem; color: #A7F3D0; font-weight: 700;">
+        <div style="background: #ECFDF5; border-left: 3.5px solid #059669; padding: 0.55rem 0.75rem; border-radius: 6px; font-size: 0.81rem; color: #065F46; font-weight: 800;">
           ${currentCard.highlight}
         </div>
       `;
@@ -412,23 +412,23 @@
       quizBoxEl.setAttribute('data-quiz-idx', `${quizIdx}-${state.quizAnswered}`);
       quizBoxEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-          <span style="font-size: 0.76rem; font-weight: 800; color: #A78BFA;">
+          <span style="font-size: 0.76rem; font-weight: 800; color: #4F46E5;">
             ⚡ 기다리는 동안 1초 터치 O/X 논문 팩트 퀴즈 (${quizIdx + 1}/${PARENT_OX_QUIZZES.length})
           </span>
-          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #94A3B8; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">다른 퀴즈 보기 ↻</button>
+          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #57534E; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">다른 퀴즈 보기 ↻</button>
         </div>
-        <div style="font-size: 0.92rem; font-weight: 800; color: #F8FAFC; margin-bottom: 0.65rem; line-height: 1.4;">
+        <div style="font-size: 0.92rem; font-weight: 900; color: #181512; margin-bottom: 0.65rem; line-height: 1.4;">
           ${currentQuiz.q}
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
-          <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid rgba(56,189,248,0.4); background: rgba(56,189,248,0.12); color: #38BDF8;">
+          <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #059669; background: #ECFDF5; color: #059669;">
             ⭕ 맞다 (O)
           </button>
-          <button type="button" id="btn-ox-x" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid rgba(244,63,94,0.4); background: rgba(244,63,94,0.12); color: #FDA4AF;">
+          <button type="button" id="btn-ox-x" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #C86D51; background: #FDF3F0; color: #C86D51;">
             ❌ 아니다 (X)
           </button>
         </div>
-        <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.6rem 0.75rem; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 8px; font-size: 0.8rem; color: #E2E8F0; line-height: 1.48;">
+        <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.65rem 0.8rem; background: #FFFFFF; border: 1px solid #059669; border-radius: 8px; font-size: 0.8rem; color: #181512; line-height: 1.48;">
           ${currentQuiz.explain}
         </div>
       `;
@@ -493,18 +493,18 @@
         theatreDiv.style.cssText = 'margin-top: 1rem; text-align: left; width: 100%;';
         theatreDiv.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; flex-wrap: wrap;">
-            <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #10B981; background: rgba(16,185,129,0.14); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+            <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #059669; background: #ECFDF5; border: 1px solid rgba(5,150,105,0.3); padding: 0.22rem 0.65rem; border-radius: 9999px;">
               정밀 맞춤 연산 중 · 약 60초 남음
             </span>
-            <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #38BDF8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
+            <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #C86D51; background: #FDF3F0; border: 1px solid rgba(200,109,81,0.35); padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
               📳 햅틱·진동 ON
             </button>
           </div>
           <div id="theatre-stage-pills" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.3rem; margin-bottom: 0.85rem;">
-            ${[1, 2, 3, 4, 5, 6].map(n => `<div id="theatre-stage-pill-${n}" style="font-size: 0.68rem; font-weight: 800; text-align: center; padding: 0.25rem 0.15rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">Step ${n}</div>`).join('')}
+            ${[1, 2, 3, 4, 5, 6].map(n => `<div id="theatre-stage-pill-${n}" style="font-size: 0.68rem; font-weight: 800; text-align: center; padding: 0.25rem 0.15rem; border-radius: 6px; border: 1px solid #E6DFD5;">Step ${n}</div>`).join('')}
           </div>
-          <div id="theatre-dynamic-card" data-card-idx="-1" style="background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 14px; padding: 1rem; margin-bottom: 0.85rem;"></div>
-          <div id="theatre-ox-quiz-box" data-quiz-idx="-1" style="background: rgba(30, 41, 59, 0.65); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 14px; padding: 0.85rem;"></div>
+          <div id="theatre-dynamic-card" data-card-idx="-1" style="background: #FAF8F5; border: 1px solid #E6DFD5; border-radius: 14px; padding: 1rem; margin-bottom: 0.85rem;"></div>
+          <div id="theatre-ox-quiz-box" data-quiz-idx="-1" style="background: #F4EFE6; border: 1px solid #E6DFD5; border-radius: 14px; padding: 0.85rem;"></div>
         `;
         const skipBtn = document.getElementById('btn-skip-scan');
         if (skipBtn && skipBtn.parentNode === modal) {

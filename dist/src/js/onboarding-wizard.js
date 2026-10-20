@@ -814,15 +814,72 @@
     const bannerEl = document.getElementById('guidebook-mode-banner');
     if (bannerEl) {
       if (isSelf) {
-        bannerEl.style.color = '#E9D5FF';
-        bannerEl.style.background = 'rgba(168, 85, 247, 0.12)';
-        bannerEl.style.borderColor = 'rgba(168, 85, 247, 0.35)';
-        bannerEl.innerHTML = '🙋 <strong>[청소년·본인 맞춤형 성장 가이드북 모드]</strong> 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원(+1.8~7.2cm) 루틴, 전두엽 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
+        bannerEl.style.color = '#181512';
+        bannerEl.style.background = '#EEF2FF';
+        bannerEl.style.borderColor = 'rgba(79, 70, 229, 0.35)';
+        bannerEl.innerHTML = '🙋 <strong>[청소년·본인 맞춤형 성장 가이드북 에디션]</strong> 독자 개발 <strong>K-GROWTH AI™</strong>가 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원(+1.8~7.2cm) 루틴, 전두엽 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
       } else {
-        bannerEl.style.color = '#A7F3D0';
-        bannerEl.style.background = 'rgba(16, 185, 129, 0.08)';
-        bannerEl.style.borderColor = 'rgba(16, 185, 129, 0.25)';
-        bannerEl.innerHTML = '📘 <strong>[학부모 맞춤형 성장 가이드북 모드]</strong> 아이의 생년월일과 신체 계측치를 바탕으로 <strong>만 N세→N+1세→N+2세 연속 양육 로드맵</strong>과 <strong>1:1 핀셋 영양제·교구·도서 처방전</strong>을 생성합니다.';
+        bannerEl.style.color = '#181512';
+        bannerEl.style.background = '#F4EFE6';
+        bannerEl.style.borderColor = '#E6DFD5';
+        bannerEl.innerHTML = '📘 <strong>[학부모 맞춤형 성장 가이드북 에디션]</strong> 독자 개발 <strong>K-GROWTH AI™</strong>가 아이의 생년월일과 신체 계측치를 바탕으로 <strong>만 N세→N+1세→N+2세 연속 양육 로드맵</strong>과 <strong>1:1 핀셋 영양제·교구·도서 처방전</strong>을 생성합니다.';
+      }
+    }
+  }
+
+  function enterStudioMode(mode) {
+    if (typeof document === 'undefined') return;
+    if (document.body && document.body.classList) {
+      document.body.classList.add('studio-mode-active');
+    }
+    const childRadio = document.getElementById('target-child');
+    const selfRadio = document.getElementById('target-self');
+    if (mode === 'self' && selfRadio && childRadio) {
+      selfRadio.checked = true;
+      childRadio.checked = false;
+      syncTargetSubjectMode();
+    } else if (mode === 'child' && selfRadio && childRadio) {
+      childRadio.checked = true;
+      selfRadio.checked = false;
+      syncTargetSubjectMode();
+    }
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) {
+      quizSection.style.display = 'block';
+    }
+    const presetsBar = document.getElementById('quick-presets-bar');
+    if (presetsBar) {
+      presetsBar.style.display = 'block';
+    }
+    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+    if (dashboard) {
+      dashboard.classList.add('hidden');
+      dashboard.style.display = 'none';
+    }
+    goToStep(1);
+    if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
+      HapticEngine.triggerHaptic('step', quizSection);
+    }
+    if (quizSection && typeof quizSection.scrollIntoView === 'function') {
+      quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function exitStudioMode() {
+    if (typeof document === 'undefined') return;
+    if (document.body && document.body.classList) {
+      document.body.classList.remove('studio-mode-active');
+    }
+    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+    if (dashboard) {
+      dashboard.classList.add('hidden');
+      dashboard.style.display = 'none';
+    }
+    const heroSection = document.getElementById('hero-section');
+    if (heroSection) {
+      heroSection.style.display = 'block';
+      if (typeof heroSection.scrollIntoView === 'function') {
+        heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   }
@@ -935,11 +992,27 @@
     syncDobAndAutoStage();
     syncTargetSubjectMode();
 
+    // Brand Showcase -> Studio Mode Entry & Return Buttons
+    const btnEnterTop = document.getElementById('btn-enter-studio-top');
+    const btnEnterParent = document.getElementById('btn-enter-studio-parent');
+    const btnEnterYouth = document.getElementById('btn-enter-studio-youth');
+    const btnBackBrand = document.getElementById('btn-back-to-brand');
+    const brandHomeTrigger = document.getElementById('brand-home-trigger');
+
+    if (btnEnterTop) btnEnterTop.addEventListener('click', () => enterStudioMode('child'));
+    if (btnEnterParent) btnEnterParent.addEventListener('click', () => enterStudioMode('child'));
+    if (btnEnterYouth) btnEnterYouth.addEventListener('click', () => enterStudioMode('self'));
+    if (btnBackBrand) btnBackBrand.addEventListener('click', () => exitStudioMode());
+    if (brandHomeTrigger) brandHomeTrigger.addEventListener('click', () => exitStudioMode());
+
     // Preset cards
     for (let i = 1; i <= 5; i++) {
       const card = document.getElementById(`preset-card-${i}`);
       if (card) {
         card.addEventListener('click', () => {
+          if (document.body && document.body.classList) {
+            document.body.classList.add('studio-mode-active');
+          }
           applyPreset(`preset-${i}`);
         });
       }
@@ -949,6 +1022,9 @@
     const retestBtn = document.getElementById('btn-retest');
     if (retestBtn) {
       retestBtn.addEventListener('click', () => {
+        if (document.body && document.body.classList) {
+          document.body.classList.add('studio-mode-active');
+        }
         const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
         if (dashboard) {
           dashboard.classList.add('hidden');
@@ -976,6 +1052,8 @@
     validateStep,
     updateMphPreview,
     syncDobAndAutoStage,
+    enterStudioMode,
+    exitStudioMode,
     applyPreset,
     start3SecondScan,
     completeScan,

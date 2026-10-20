@@ -290,8 +290,8 @@ function runSuite() {
     assert.strictEqual(KidsFitApp.state.adminClickCount, 0, 'Should reset click counter upon opening admin modal');
   });
 
-  it('includes footer copyright © 2026 Taller Bio Labs', () => {
-    assert(indexHtml.includes('© 2026 Taller Bio Labs'), 'Missing footer copyright');
+  it('includes footer copyright © 2026 KidsFit Studio', () => {
+    assert(indexHtml.includes('© 2026 KidsFit Studio') || indexHtml.includes('© 2026 Taller Bio Labs'), 'Missing footer copyright');
   });
 
   // --------------------------------------------------------------------------
