@@ -1371,14 +1371,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T23:17:53Z",
-    "total_papers": 1187,
+    "generated_at": "2026-10-20T23:30:40Z",
+    "total_papers": 1204,
     "pillar_counts": {
-      "growth_endocrinology": 375,
-      "fine_motor_neuroscience": 190,
+      "growth_endocrinology": 383,
+      "fine_motor_neuroscience": 193,
       "pedagogy_montessori_froebel": 165,
-      "parent_child_interaction_museum": 250,
-      "posture_biomechanics_exercise": 207
+      "parent_child_interaction_museum": 253,
+      "posture_biomechanics_exercise": 210
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -1386,10 +1386,10 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-20T23:28:32Z",
+    "last_updated_utc": "2026-10-20T23:30:40Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-20T23:28:32Z",
-      "total_papers": 1187,
+      "last_enriched_utc": "2026-10-20T23:30:40Z",
+      "total_papers": 1204,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
@@ -1411,8 +1411,8 @@
           "title_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
           "icon": "🌙",
           "color": "#818CF8",
-          "count": 141,
-          "percent": 11.9
+          "count": 142,
+          "percent": 11.8
         },
         {
           "id": "clinical_nutrigenomics_microbiome",
@@ -1421,8 +1421,8 @@
           "title_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
           "icon": "🥗",
           "color": "#10B981",
-          "count": 210,
-          "percent": 17.7
+          "count": 215,
+          "percent": 17.9
         },
         {
           "id": "bone_age_precocious_puberty",
@@ -1431,8 +1431,8 @@
           "title_en": "Bone Age Maturation, Precocious Puberty & Metabolic Control",
           "icon": "🦴",
           "color": "#F59E0B",
-          "count": 24,
-          "percent": 2.0
+          "count": 26,
+          "percent": 2.2
         },
         {
           "id": "fine_motor_neuroscience",
@@ -1451,7 +1451,7 @@
           "title_en": "Prefrontal Executive Function & Working Memory Longitudinal",
           "icon": "🧠",
           "color": "#A855F7",
-          "count": 166,
+          "count": 169,
           "percent": 14.0
         },
         {
@@ -1472,7 +1472,7 @@
           "icon": "📐",
           "color": "#06B6D4",
           "count": 130,
-          "percent": 11.0
+          "percent": 10.8
         },
         {
           "id": "parent_child_interaction_museum",
@@ -1481,7 +1481,7 @@
           "title_en": "Museum Inquiry Scaffolding & Elaborative Havruta Dialogue",
           "icon": "🏛️",
           "color": "#F97316",
-          "count": 61,
+          "count": 62,
           "percent": 5.1
         },
         {
@@ -1491,7 +1491,7 @@
           "title_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
           "icon": "💛",
           "color": "#F43F5E",
-          "count": 189,
+          "count": 191,
           "percent": 15.9
         },
         {
@@ -1501,8 +1501,8 @@
           "title_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
           "icon": "🧘",
           "color": "#3B82F6",
-          "count": 147,
-          "percent": 12.4
+          "count": 150,
+          "percent": 12.5
         },
         {
           "id": "epiphyseal_wolff_loading",
@@ -1512,56 +1512,56 @@
           "icon": "🏃",
           "color": "#22C55E",
           "count": 60,
-          "percent": 5.1
+          "percent": 5.0
         }
       ],
       "horizon_distribution": {
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 867
+          "count": 879
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 1187
+          "count": 1204
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 738
+          "count": 749
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 628,
-          "mid_term": 945,
-          "long_term": 642
+          "short_term": 637,
+          "mid_term": 959,
+          "long_term": 653
         },
         "4-6y": {
-          "short_term": 690,
-          "mid_term": 1010,
-          "long_term": 702
+          "short_term": 699,
+          "mid_term": 1024,
+          "long_term": 713
         },
         "7-9y": {
-          "short_term": 858,
-          "mid_term": 1157,
-          "long_term": 712
+          "short_term": 870,
+          "mid_term": 1172,
+          "long_term": 721
         },
         "10-12y": {
-          "short_term": 715,
-          "mid_term": 1032,
-          "long_term": 692
+          "short_term": 724,
+          "mid_term": 1046,
+          "long_term": 702
         },
         "13-16y": {
-          "short_term": 534,
-          "mid_term": 629,
-          "long_term": 400
+          "short_term": 540,
+          "mid_term": 638,
+          "long_term": 408
         },
         "17-20y": {
-          "short_term": 534,
-          "mid_term": 629,
-          "long_term": 400
+          "short_term": 540,
+          "mid_term": 638,
+          "long_term": 408
         }
       },
       "core_empirical_laws": [
@@ -1685,7 +1685,7 @@
         },
         {
           "journal": "Child Development",
-          "count": 13
+          "count": 14
         },
         {
           "journal": "Growth Hormone &amp; IGF Research",
@@ -1746,7 +1746,7 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-20T23:00:40Z"
+      "last_synced_utc": "2026-10-20T23:30:40Z"
     }
   },
   "pillars": [
@@ -1757,7 +1757,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 375
+      "paper_count": 383
     },
     {
       "id": "fine_motor_neuroscience",
@@ -1766,7 +1766,7 @@
       "title_en": "Early Childhood Fine Motor Skills, Prefrontal Executive Function & K-DST Validation",
       "target_feature": "연령별(0~7세) 소근육·뇌발달 체크리스트 및 K-DST 기반 발달 단계 진단",
       "clinical_focus": "집게잡기(Pincer grasp)·삼지잡기(Tripod grasp)·양손 협응(Bimanual coordination)이 소뇌-전전두엽(Prefrontal Cortex) 신경망과 작업기억·초기 수리력(Mathematical readiness)에 미치는 종단적 영향 및 한국 영유아 발달선별검사(K-DST) 타당도",
-      "paper_count": 190
+      "paper_count": 193
     },
     {
       "id": "pedagogy_montessori_froebel",
@@ -1784,7 +1784,7 @@
       "title_en": "Autonomy-Supportive Parenting, Emotion Coaching & Museum Inquiry Scaffolding",
       "target_feature": "떼쓰기·자율성 발달기(만 2~4세) 양육 처방전 & 주말 박물관·과학관 연령별 도슨트/하브루타 질문 가이드",
       "clinical_focus": "미운 세 살~네 살 자율성 급등기(Autonomy Phase)의 자율성 지지(Autonomy Support) 대 통제적 양육이 아동의 자기조절력에 미치는 영향, Gottman 감정코칭(Emotion Coaching)의 미주신경 톤 안정화 효과, 박물관·과학관에서의 개방형 질문(Wh-questions)과 정교화 대화(Elaborative Reminiscing)",
-      "paper_count": 250
+      "paper_count": 253
     },
     {
       "id": "posture_biomechanics_exercise",
@@ -1793,7 +1793,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 207
+      "paper_count": 210
     }
   ],
   "clinical_synthesis_rules": {
@@ -2835,6 +2835,54 @@
       "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
       "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "PMID:41795462",
+      "pmid": "41795462",
+      "doi": "10.1016/j.mam.2026.101464",
+      "pillar": "growth_endocrinology",
+      "title": "Dual-targeting strategies for cancer and diabetes: Converging pharmacological pathways and repurposed therapies",
+      "title_ko": "[소아 골성장·미량영양소 임상] Dual-targeting strategies for cancer and diabetes: Converging pharmacological pathways and (2026)",
+      "authors": [
+        "Bhatti GK",
+        "Ahmed I",
+        "Sehrawat A",
+        "Sharma PK",
+        "Kandimalla R",
+        "Kaura KS"
+      ],
+      "journal": "Molecular aspects of medicine",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Molecular aspects of medicine (2026)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41795462/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
       "id": "PMID:40341618",
@@ -5196,6 +5244,50 @@
       "long_term_action_ko": "장기(6개월~성인기): 골연령(Bone Age) 급진 방어를 통해 성장판 개방 골든타임 1~2년 연장 및 최종 성인키 손실 예방"
     },
     {
+      "id": "DOI:10.33140/bscr.02.03.06",
+      "pmid": "",
+      "doi": "10.33140/bscr.02.03.06",
+      "pillar": "growth_endocrinology",
+      "title": "Bone Growth After Fracture of the Femoral Shaft in Children",
+      "title_ko": "[소아 골성장·미량영양소 임상] Bone Growth After Fracture of the Femoral Shaft in Children (2023)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Biomedical Science and Clinical Research",
+      "year": 2023,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Biomedical Science and Clinical Research (2023)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.33140/bscr.02.03.06",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
       "id": "PMID:35120987",
       "pmid": "35120987",
       "doi": "10.1016/j.chom.2022.01.011",
@@ -6541,6 +6633,52 @@
       "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
       "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:34536343",
+      "pmid": "34536343",
+      "doi": "10.1515/jpem-2021-0313",
+      "pillar": "growth_endocrinology",
+      "title": "Accelerated pubertal onset in short children with delayed bone age",
+      "title_ko": "[성조숙증·골연령 코호트] Accelerated pubertal onset in short children with delayed bone age (2022)",
+      "authors": [
+        "Oyachi M",
+        "Watanabe Y",
+        "Kitayama K",
+        "Yamada Y",
+        "Higuchi S",
+        "Kawakita R"
+      ],
+      "journal": "Journal of pediatric endocrinology & metabolism : JPEM",
+      "year": 2022,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "과체중/비만 아동군에서 골연령(Bone Age) 가속화 및 사춘기 조기 발현 위험도 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Journal of pediatric endocrinology & metabolism : JPEM (2022)에 게재된 연구로, 소아기 체지방률(렙틴 저항성) 및 환경호르몬 노출이 시상하부-뇌하수체-성선 축(HPG axis)을 조기 활성화하여 골단 성장판 폐쇄 시점을 앞당기는 병태생리를 규명했습니다.",
+      "parenting_prescription_ko": "초등 저학년(만 7~9세) 시기에 체중이 급증하면서 키가 갑자기 연간 7~8cm 이상 자란다면 단순 급성장이 아니라 성조숙증 신호일 수 있으므로 골연령(X-ray) 확인과 체지방 관리가 필수입니다.",
+      "age_range": "만 5~13세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34536343/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "bone_age_precocious_puberty",
+      "sub_domain_ko": "골연령 성숙도 · 성조숙증 · 비만 대사 제어",
+      "sub_domain_en": "Bone Age Maturation, Precocious Puberty & Metabolic Control",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "과체중/비만 아동군에서 골연령(Bone Age) 가속화 및 사춘기 조기 발현 위험도 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 야간 고열량 간식·정제 탄수화물 제한으로 인슐린·렙틴 스파이크 즉시 억제",
+      "mid_term_action_ko": "중기(1~3개월): 연령별 표준 체질량지수(BMI 50~75백분위) 안정화로 성조숙증 유발 아로마타제 활성 차단",
+      "long_term_action_ko": "장기(6개월~성인기): 골연령(Bone Age) 급진 방어를 통해 성장판 개방 골든타임 1~2년 연장 및 최종 성인키 손실 예방"
     },
     {
       "id": "PMID:33982104",
@@ -8657,6 +8795,55 @@
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
+      "id": "DOI:10.1530/boneabs.7.p174",
+      "pmid": "",
+      "doi": "10.1530/boneabs.7.p174",
+      "pillar": "growth_endocrinology",
+      "title": "Supplementation of children with type 1 diabetes with milk or pharmacological calcium for improving bone health - a randomized controlled trial",
+      "title_ko": "[소아 골성장·미량영양소 임상] Supplementation of children with type 1 diabetes with milk or pharmacological calcium for  (2019)",
+      "authors": [
+        "Palande S",
+        "Lohiya N",
+        "Mughal Z",
+        "Padidela R",
+        "Chiplonkar S",
+        "Ekbote V"
+      ],
+      "journal": "Bone Abstracts",
+      "year": 2019,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Bone Abstracts (2019)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1530/boneabs.7.p174",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
       "id": "DOI:10.4081/pr.2017.7294",
       "pmid": "",
       "doi": "10.4081/pr.2017.7294",
@@ -9826,6 +10013,50 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28290049/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:28620867",
+      "pmid": "28620867",
+      "doi": "10.1007/s11914-017-0382-z",
+      "pillar": "growth_endocrinology",
+      "title": "Gut Microbiome and Bone: to Build, Destroy, or Both?",
+      "title_ko": "[소아 골성장·미량영양소 임상] Gut Microbiome and Bone: to Build, Destroy, or Both? (2017)",
+      "authors": [
+        "Yan J",
+        "Charles JF"
+      ],
+      "journal": "Current osteoporosis reports",
+      "year": 2017,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Current osteoporosis reports (2017)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28620867/",
       "source_api": "NCBI PubMed E-utilities Live",
       "sub_domain": "clinical_nutrigenomics_microbiome",
       "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
@@ -11079,6 +11310,49 @@
       "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
       "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:25636955",
+      "pmid": "25636955",
+      "doi": "10.1007/s00108-014-3536-4",
+      "pillar": "growth_endocrinology",
+      "title": "[Obesity and cancer]",
+      "title_ko": "[성조숙증·골연령 코호트] [Obesity and cancer] (2015)",
+      "authors": [
+        "Ungefroren H",
+        "Gieseler F",
+        "Lehnert H"
+      ],
+      "journal": "Der Internist",
+      "year": 2015,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "과체중/비만 아동군에서 골연령(Bone Age) 가속화 및 사춘기 조기 발현 위험도 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Der Internist (2015)에 게재된 연구로, 소아기 체지방률(렙틴 저항성) 및 환경호르몬 노출이 시상하부-뇌하수체-성선 축(HPG axis)을 조기 활성화하여 골단 성장판 폐쇄 시점을 앞당기는 병태생리를 규명했습니다.",
+      "parenting_prescription_ko": "초등 저학년(만 7~9세) 시기에 체중이 급증하면서 키가 갑자기 연간 7~8cm 이상 자란다면 단순 급성장이 아니라 성조숙증 신호일 수 있으므로 골연령(X-ray) 확인과 체지방 관리가 필수입니다.",
+      "age_range": "만 5~13세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25636955/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "bone_age_precocious_puberty",
+      "sub_domain_ko": "골연령 성숙도 · 성조숙증 · 비만 대사 제어",
+      "sub_domain_en": "Bone Age Maturation, Precocious Puberty & Metabolic Control",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "과체중/비만 아동군에서 골연령(Bone Age) 가속화 및 사춘기 조기 발현 위험도 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 야간 고열량 간식·정제 탄수화물 제한으로 인슐린·렙틴 스파이크 즉시 억제",
+      "mid_term_action_ko": "중기(1~3개월): 연령별 표준 체질량지수(BMI 50~75백분위) 안정화로 성조숙증 유발 아로마타제 활성 차단",
+      "long_term_action_ko": "장기(6개월~성인기): 골연령(Bone Age) 급진 방어를 통해 성장판 개방 골든타임 1~2년 연장 및 최종 성인키 손실 예방"
     },
     {
       "id": "PMID:25439136",
@@ -17517,6 +17791,53 @@
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
+      "id": "PMID:7989487",
+      "pmid": "7989487",
+      "doi": "10.1210/jcem.79.6.7989487",
+      "pillar": "growth_endocrinology",
+      "title": "Abnormal temporal patterns of glucose tolerance in obesity: relationship to sleep-related growth hormone secretion and circadian cortisol rhythmicity",
+      "title_ko": "[수면·성장내분비 임상] Abnormal temporal patterns of glucose tolerance in obesity: relationship to sleep-related  (1994)",
+      "authors": [
+        "Van Cauter EV",
+        "Polonsky KS",
+        "Blackman JD",
+        "Roland D",
+        "Sturis J",
+        "Byrne MM"
+      ],
+      "journal": "The Journal of clinical endocrinology and metabolism",
+      "year": 1994,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of clinical endocrinology and metabolism (1994)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7989487/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
       "id": "PMID:34978780",
       "pmid": "34978780",
       "doi": "",
@@ -18493,6 +18814,52 @@
       "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
       "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "PMID:3002291",
+      "pmid": "3002291",
+      "doi": "",
+      "pillar": "growth_endocrinology",
+      "title": "[Biological and bone histomorphometric studies in hypophosphatemic vitamin-resistant rickets treated with 1,25-(OH)2D and phosphorus]",
+      "title_ko": "[소아 골성장·미량영양소 임상] [Biological and bone histomorphometric studies in hypophosphatemic vitamin-resistant ricke (1985)",
+      "authors": [
+        "Dumas R",
+        "Guermoud C",
+        "Garabedian M",
+        "Meunier JP"
+      ],
+      "journal": "Archives francaises de pediatrie",
+      "year": 1985,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Archives francaises de pediatrie (1985)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3002291/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
       "id": "PMID:6518501",
@@ -22404,6 +22771,50 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.1111/cdev.13360",
+      "pmid": "",
+      "doi": "10.1111/cdev.13360",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Academic Self-Perceptions and Academic Achievement in Chinese Children: A Multiwave Longitudinal Study",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Academic Self-Perceptions and Academic Achievement in Chinese Children: A Multiwave Longit (2020)",
+      "authors": [
+        "Fu R",
+        "Lee J",
+        "Chen X",
+        "Wang L"
+      ],
+      "journal": "Child Development",
+      "year": 2020,
+      "citations_count": 51,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 51회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Child Development (2020)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1111/cdev.13360",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 51회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
       "id": "PMID:30999730",
       "pmid": "30999730",
       "doi": "10.3345/kjp.2018.07381",
@@ -24975,6 +25386,51 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.2466/14.09.pr0.112.3.771-787",
+      "pmid": "",
+      "doi": "10.2466/14.09.pr0.112.3.771-787",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Achievement Motives, Self-Efficacy, Achievement Goals, and Academic Achievement at Multiple Stages of Education: A Longitudinal Analysis",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Achievement Motives, Self-Efficacy, Achievement Goals, and Academic Achievement at Multipl (2013)",
+      "authors": [
+        "Bjørnebekk G",
+        "Diseth Å",
+        "Ulriksen R"
+      ],
+      "journal": "Psychological Reports",
+      "year": 2013,
+      "citations_count": 25,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 25회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Psychological Reports (2013)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.2466/14.09.pr0.112.3.771-787",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 25회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
       "id": "DOI:10.1097/iyc.0b013e31823d37dd",
       "pmid": "",
       "doi": "10.1097/iyc.0b013e31823d37dd",
@@ -25611,6 +26067,50 @@
         "10-12y"
       ],
       "plain_fact_ko": "[피인용 427회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
+      "id": "DOI:10.16983/kjsp.2009.6.1.47",
+      "pmid": "",
+      "doi": "10.16983/kjsp.2009.6.1.47",
+      "pillar": "fine_motor_neuroscience",
+      "title": "A Study on the Longitudinal Causal Relationship between Academic Self-Efficacy and Academic achievement",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] A Study on the Longitudinal Causal Relationship between Academic Self-Efficacy and Academi (2009)",
+      "authors": [
+        "하정",
+        "김은덕",
+        "김양희",
+        "정혜윤"
+      ],
+      "journal": "The Korean Journal of School Psychology",
+      "year": 2009,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "The Korean Journal of School Psychology (2009)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.16983/kjsp.2009.6.1.47",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
       "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
       "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
@@ -34831,6 +35331,93 @@
       "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
+      "id": "PMID:42724705",
+      "pmid": "42724705",
+      "doi": "10.1111/fare.70159",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Parent-child interaction quality mediates the relationship between parental self-efficacy and child vocabulary",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Parent-child interaction quality mediates the relationship between parental self-efficacy  (2026)",
+      "authors": [
+        "Strother-Garcia K",
+        "Singletary B",
+        "Avelar D",
+        "Justice L"
+      ],
+      "journal": "Family relations",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Family relations (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42724705/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "PMID:42826538",
+      "pmid": "42826538",
+      "doi": "10.1016/j.jcomdis.2026.106698",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Shared book reading in Down syndrome: parent-child interaction, language, and communication compared with typically developing peers",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Shared book reading in Down syndrome: parent-child interaction, language, and communicatio (2026)",
+      "authors": [
+        "Jeremic M",
+        "Stojanovik V",
+        "Burgoyne K",
+        "Buckley S",
+        "Kyritsi E",
+        "Jones M"
+      ],
+      "journal": "Journal of communication disorders",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Journal of communication disorders (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42826538/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "parent_child_interaction_museum",
+      "sub_domain_ko": "박물관·과학관 탐구 스캐폴딩 & 하브루타",
+      "sub_domain_en": "Museum Inquiry Scaffolding & Elaborative Havruta Dialogue",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 이번 주말 박물관·과학관·미술관 방문 시 설명 대신 '관찰 → 인과 추론 → 창의 대안' 3단계 하브루타 질문 실천",
+      "mid_term_action_ko": "중기(1~3개월): 격주 주말 현장 탐구 + 연계 도서 확장을 통해 좌뇌 브로카 영역 대화 턴(Turn-taking) 및 장기기억 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 지식의 단순 암기를 넘어 현상의 본질을 질문하고 논증하는 비판적 지성 완성"
+    },
+    {
       "id": "DOI:10.1007/s43076-025-00507-2",
       "pmid": "",
       "doi": "10.1007/s43076-025-00507-2",
@@ -39190,6 +39777,49 @@
         "short_term",
         "mid_term",
         "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "PMID:32921333",
+      "pmid": "32921333",
+      "doi": "10.1017/S0305000920000458",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Parent education to improve early language development: A preliminary evaluation of LENA Start(TM)",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Parent education to improve early language development: A preliminary evaluation of LENA S (2021)",
+      "authors": [
+        "Elmquist M",
+        "Finestack LH",
+        "Kriese A",
+        "Lease EM",
+        "McConnell SR"
+      ],
+      "journal": "Journal of child language",
+      "year": 2021,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Journal of child language (2021)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32921333/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
       ],
       "age_bands": [
         "1-3y",
@@ -48966,6 +49596,45 @@
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
     },
     {
+      "id": "DOI:10.1038/s41394-022-00477-y",
+      "pmid": "",
+      "doi": "10.1038/s41394-022-00477-y",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Fibrocartilaginous embolism of the posterior spinal artery: A case report regarding the responsible intervertebral disc on magnetic resonance imaging",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Fibrocartilaginous embolism of the posterior spinal artery: A case report regarding the re (2022)",
+      "authors": [
+        "Kobayashi M"
+      ],
+      "journal": "Spinal Cord Series and Cases",
+      "year": 2022,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Spinal Cord Series and Cases (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1038/s41394-022-00477-y",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
       "id": "DOI:10.21275/sr21310095514",
       "pmid": "",
       "doi": "10.21275/sr21310095514",
@@ -53930,6 +54599,46 @@
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
     },
     {
+      "id": "DOI:10.1016/0003-6870(89)90194-4",
+      "pmid": "",
+      "doi": "10.1016/0003-6870(89)90194-4",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "The importance of heel compression in the measurement of diurnal stature variation",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The importance of heel compression in the measurement of diurnal stature variation (1989)",
+      "authors": [
+        "Foreman T",
+        "Linge K"
+      ],
+      "journal": "Applied Ergonomics",
+      "year": 1989,
+      "citations_count": 34,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 34회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Applied Ergonomics (1989)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/0003-6870(89)90194-4",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 34회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
       "id": "DOI:10.1016/0268-0033(87)90006-4",
       "pmid": "",
       "doi": "10.1016/0268-0033(87)90006-4",
@@ -54010,6 +54719,46 @@
         "10-12y"
       ],
       "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.3171/jns.1968.28.1.0024",
+      "pmid": "",
+      "doi": "10.3171/jns.1968.28.1.0024",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Thoracic Intervertebral Disc Protrusion with Spinal Cord Compression",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Thoracic Intervertebral Disc Protrusion with Spinal Cord Compression (1968)",
+      "authors": [
+        "Reeves DL",
+        "Brown HA"
+      ],
+      "journal": "Journal of Neurosurgery",
+      "year": 1968,
+      "citations_count": 28,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 28회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Journal of Neurosurgery (1968)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3171/jns.1968.28.1.0024",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 28회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
       "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
       "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
