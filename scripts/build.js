@@ -147,13 +147,36 @@ function generateDataBundle() {
 `;
 
   const srcBundle = path.join(ROOT_DIR, 'src', 'data', 'data-bundle.js');
-  fs.writeFileSync(srcBundle, bundleContent, 'utf8');
+  let needWriteSrc = true;
+  if (fs.existsSync(srcBundle)) {
+    try {
+      const existing = fs.readFileSync(srcBundle, 'utf8');
+      if (existing === bundleContent) needWriteSrc = false;
+    } catch (_) {}
+  }
+  if (needWriteSrc) {
+    for (let attempt = 0; attempt < 5; attempt++) {
+      try {
+        fs.writeFileSync(srcBundle, bundleContent, 'utf8');
+        break;
+      } catch (e) {
+        if (attempt === 4) throw e;
+      }
+    }
+  }
 
   const distBundleDir = path.join(DIST_DIR, 'src', 'data');
   if (!fs.existsSync(distBundleDir)) {
     fs.mkdirSync(distBundleDir, { recursive: true });
   }
-  fs.writeFileSync(path.join(distBundleDir, 'data-bundle.js'), bundleContent, 'utf8');
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      fs.writeFileSync(path.join(distBundleDir, 'data-bundle.js'), bundleContent, 'utf8');
+      break;
+    } catch (e) {
+      if (attempt === 4) throw e;
+    }
+  }
   console.log('[Build] Generated client-side data-bundle.js with inlined datasets (including official-authorities.json)');
 }
 
