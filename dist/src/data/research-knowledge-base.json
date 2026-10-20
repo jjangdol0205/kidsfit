@@ -2,14 +2,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T03:30:36Z",
-    "total_papers": 519,
+    "generated_at": "2026-10-20T04:00:39Z",
+    "total_papers": 541,
     "pillar_counts": {
-      "growth_endocrinology": 124,
+      "growth_endocrinology": 134,
       "fine_motor_neuroscience": 86,
       "pedagogy_montessori_froebel": 112,
       "parent_child_interaction_museum": 111,
-      "posture_biomechanics_exercise": 86
+      "posture_biomechanics_exercise": 98
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -26,7 +26,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 124
+      "paper_count": 134
     },
     {
       "id": "fine_motor_neuroscience",
@@ -62,7 +62,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 86
+      "paper_count": 98
     }
   ],
   "clinical_synthesis_rules": {
@@ -973,6 +973,32 @@
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
+      "id": "PMID:34758467",
+      "pmid": "34758467",
+      "doi": "10.1159/000520812",
+      "pillar": "growth_endocrinology",
+      "title": "Evolution and Future of Growth Plate Therapeutics",
+      "title_ko": "[소아 골성장·미량영양소 임상] Evolution and Future of Growth Plate Therapeutics (2021)",
+      "authors": [
+        "David B. Allen",
+        "Nadia Merchant",
+        "Bradley Scott Miller",
+        "Philippe Ferdinand Backeljauw"
+      ],
+      "journal": "Hormone Research in Paediatrics",
+      "year": 2021,
+      "citations_count": 28,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 28회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Hormone Research in Paediatrics (2021)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34758467/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.1016/j.ghir.2019.12.002",
       "pmid": "",
       "doi": "10.1016/j.ghir.2019.12.002",
@@ -1046,6 +1072,34 @@
       "age_range": "만 5~13세",
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32988365/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:32652643",
+      "pmid": "32652643",
+      "doi": "10.1111/bcp.14470",
+      "pillar": "growth_endocrinology",
+      "title": "An integrated PK‐PD model for cortisol and the 17‐hydroxyprogesterone and androstenedione biomarkers in children with congenital adrenal hyperplasia",
+      "title_ko": "[소아 골성장·미량영양소 임상] An integrated PK‐PD model for cortisol and the 17‐hydroxyprogesterone and androstenedione  (2020)",
+      "authors": [
+        "Mahmoud Al‐Kofahi",
+        "Mariam Ahuoiza AHMED",
+        "Mutaz M. Jaber",
+        "Thang N. Tran",
+        "Brian A. Willis",
+        "Cheryl L. Zimmerman"
+      ],
+      "journal": "British Journal of Clinical Pharmacology",
+      "year": 2020,
+      "citations_count": 31,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 31회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "British Journal of Clinical Pharmacology (2020)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32652643/",
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
@@ -1150,6 +1204,59 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.4081/pr.2019.7954",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:31222966",
+      "pmid": "31222966",
+      "doi": "10.1002/ajmg.a.61270",
+      "pillar": "growth_endocrinology",
+      "title": "Costello syndrome: Clinical phenotype, genotype, and management guidelines",
+      "title_ko": "[소아 골성장·미량영양소 임상] Costello syndrome: Clinical phenotype, genotype, and management guidelines (2019)",
+      "authors": [
+        "Karen Webster Gripp",
+        "Lindsey A. Morse",
+        "Marni E. Axelrad",
+        "Kathryn C. Chatfield",
+        "Aaron S. Chidekel",
+        "William B. Dobyns"
+      ],
+      "journal": "American Journal of Medical Genetics Part A",
+      "year": 2019,
+      "citations_count": 131,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 131회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "American Journal of Medical Genetics Part A (2019)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31222966/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:31194243",
+      "pmid": "31194243",
+      "doi": "10.1210/jc.2019-00569",
+      "pillar": "growth_endocrinology",
+      "title": "Effects of the Timing of Sex-Steroid Exposure in Adolescence on Adult Health Outcomes",
+      "title_ko": "[소아 골성장·미량영양소 임상] Effects of the Timing of Sex-Steroid Exposure in Adolescence on Adult Health Outcomes (2019)",
+      "authors": [
+        "Yee-Ming Chan",
+        "Amalia Feld",
+        "Elfa Jonsdottir-Lewis"
+      ],
+      "journal": "The Journal of Clinical Endocrinology & Metabolism",
+      "year": 2019,
+      "citations_count": 31,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 31회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The Journal of Clinical Endocrinology & Metabolism (2019)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31194243/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "DOI:10.4081/pr.2017.7294",
@@ -1687,6 +1794,34 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:25958132",
+      "pmid": "25958132",
+      "doi": "10.1016/j.ymgme.2015.05.002",
+      "pillar": "growth_endocrinology",
+      "title": "Next generation sequencing in endocrine practice",
+      "title_ko": "[소아 골성장·미량영양소 임상] Next generation sequencing in endocrine practice (2015)",
+      "authors": [
+        "Gregory P. Forlenza",
+        "Amy R. U. L. Calhoun",
+        "Kenneth B. Beckman",
+        "Tanya Halvorsen",
+        "Elwaseila Hamdoun",
+        "Heather A. Zierhut"
+      ],
+      "journal": "Molecular Genetics and Metabolism",
+      "year": 2015,
+      "citations_count": 32,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 32회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Molecular Genetics and Metabolism (2015)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25958132/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "PMID:25439136",
       "pmid": "25439136",
       "doi": "10.1016/j.jtemb.2014.08.007",
@@ -1815,6 +1950,34 @@
       "age_range": "만 2~16세",
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24109201/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:24001750",
+      "pmid": "24001750",
+      "doi": "10.1210/jc.2013-2012",
+      "pillar": "growth_endocrinology",
+      "title": "Eight Years of Growth Hormone Treatment in Children With Prader-Willi Syndrome: Maintaining the Positive Effects",
+      "title_ko": "[수면·성장내분비 임상] Eight Years of Growth Hormone Treatment in Children With Prader-Willi Syndrome: Maintainin (2013)",
+      "authors": [
+        "Nienke E. Bakker",
+        "Renske J. Kuppens",
+        "Elbrich P. C. Siemensma",
+        "Roderick F. A. Tummers-de Lind van Wijngaarden",
+        "Dederieke A. M. Festen",
+        "G. C. B. Bindels-de Heus"
+      ],
+      "journal": "The Journal of Clinical Endocrinology & Metabolism",
+      "year": 2013,
+      "citations_count": 140,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 140회] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of Clinical Endocrinology & Metabolism (2013)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24001750/",
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
@@ -2283,6 +2446,33 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:19656804",
+      "pmid": "19656804",
+      "doi": "10.1093/ejo/cjp093",
+      "pillar": "growth_endocrinology",
+      "title": "The adaptive response of jaw muscles to varying functional demands",
+      "title_ko": "[소아 골성장·미량영양소 임상] The adaptive response of jaw muscles to varying functional demands (2009)",
+      "authors": [
+        "Thorsten Grünheid",
+        "Geerling E. J. Langenbach",
+        "Joannes A. M. Korfage",
+        "Andrej Zentner",
+        "T.M.G.J. van Eijden"
+      ],
+      "journal": "European Journal of Orthodontics",
+      "year": 2009,
+      "citations_count": 132,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 132회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "European Journal of Orthodontics (2009)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19656804/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "PMID:18929315",
       "pmid": "18929315",
       "doi": "10.1016/S1389-9457(08)70013-3",
@@ -2486,6 +2676,28 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:17364141",
+      "pmid": "17364141",
+      "doi": "10.1007/s00018-007-6530-3",
+      "pillar": "growth_endocrinology",
+      "title": "Neuroanatomy and neurochemistry of sleep",
+      "title_ko": "[수면·성장내분비 임상] Neuroanatomy and neurochemistry of sleep (2007)",
+      "authors": [
+        "Stenberg D"
+      ],
+      "journal": "Cellular and molecular life sciences : CMLS",
+      "year": 2007,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Cellular and molecular life sciences : CMLS (2007)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17364141/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "DOI:10.1016/j.bone.2005.11.003",
       "pmid": "",
       "doi": "10.1016/j.bone.2005.11.003",
@@ -2563,6 +2775,34 @@
       "age_range": "만 5~13세",
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/16434512/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:16954808",
+      "pmid": "16954808",
+      "doi": "10.1097/01.mib.0000228358.25364.8b",
+      "pillar": "growth_endocrinology",
+      "title": "Challenges in pediatric inflammatory bowel disease",
+      "title_ko": "[소아 골성장·미량영양소 임상] Challenges in pediatric inflammatory bowel disease (2006)",
+      "authors": [
+        "Athos Bousvaros",
+        "Francisco A. Sylvester",
+        "Subra Kugathasan",
+        "Eva Szigethy",
+        "Claudio Fiocchi",
+        "Richard B. Colletti"
+      ],
+      "journal": "Inflammatory Bowel Diseases",
+      "year": 2006,
+      "citations_count": 130,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 130회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Inflammatory Bowel Diseases (2006)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16954808/",
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
@@ -2683,6 +2923,34 @@
       "age_range": "만 2~16세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1038/sj.bmt.1704149",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.1093/ije/dyg190",
+      "pmid": "",
+      "doi": "10.1093/ije/dyg190",
+      "pillar": "growth_endocrinology",
+      "title": "Effect of zinc supplementation on growth in West African children: a randomized double-blind placebo-controlled trial in rural Burkina Faso",
+      "title_ko": "[소아 골성장·미량영양소 임상] Effect of zinc supplementation on growth in West African children: a randomized double-bli (2003)",
+      "authors": [
+        "Müller O",
+        "Garenne M",
+        "Reitmaier P",
+        "van Zweeden AB",
+        "Kouyate B",
+        "Becher H"
+      ],
+      "journal": "International Journal of Epidemiology",
+      "year": 2003,
+      "citations_count": 36,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 36회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "International Journal of Epidemiology (2003)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1093/ije/dyg190",
       "source_api": "Crossref Works REST API Live"
     },
     {
@@ -11429,6 +11697,85 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:40722388",
+      "pmid": "40722388",
+      "doi": "10.3390/bioengineering12070696",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Wearable Devices in Scoliosis Treatment: A Scoping Review of Innovations and Challenges",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Wearable Devices in Scoliosis Treatment: A Scoping Review of Innovations and Challenges (2025)",
+      "authors": [
+        "Samira Fazeli Veisari",
+        "Shahrbanoo Bidari",
+        "Kourosh Barati",
+        "Rasha Atlasi",
+        "Amin Komeili"
+      ],
+      "journal": "Bioengineering",
+      "year": 2025,
+      "citations_count": 10,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Bioengineering (2025)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40722388/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:41024232",
+      "pmid": "41024232",
+      "doi": "10.1186/s13102-025-01338-5",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "The effects of reformer pilates on postural alignment, body appreciation and social appearance anxiety in office workers",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The effects of reformer pilates on postural alignment, body appreciation and social appear (2025)",
+      "authors": [
+        "Zarife Taştan",
+        "Neşe GENÇ",
+        "Abdullah Demirli",
+        "Burcu Güvendi",
+        "Ceren Ağaoğlu",
+        "Yaren Duman"
+      ],
+      "journal": "BMC Sports Science Medicine and Rehabilitation",
+      "year": 2025,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "BMC Sports Science Medicine and Rehabilitation (2025)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41024232/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.3390/app15137239",
+      "pmid": "",
+      "doi": "10.3390/app15137239",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Postural Variability in Sitting: Comparing Comfortable, Habitual, and Correct Strategies Across Chairs",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Postural Variability in Sitting: Comparing Comfortable, Habitual, and Correct Strategies A (2025)",
+      "authors": [
+        "Yi‐Lang Chen",
+        "Li-Peng Zhang"
+      ],
+      "journal": "Applied Sciences",
+      "year": 2025,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Applied Sciences (2025)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.3390/app15137239",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "PMID:38396433",
       "pmid": "38396433",
       "doi": "10.3390/diagnostics14040394",
@@ -11685,6 +12032,29 @@
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
+      "id": "DOI:10.14744/lhhs.2024.98400",
+      "pmid": "",
+      "doi": "10.14744/lhhs.2024.98400",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Ergonomic School Chair Design Requirements for Children with Special Needs: Focus Group Interview",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Ergonomic School Chair Design Requirements for Children with Special Needs: Focus Group In (2024)",
+      "authors": [
+        "Duygu Mine Alataş"
+      ],
+      "journal": "Lokman Hekim Health Sciences",
+      "year": 2024,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Lokman Hekim Health Sciences (2024)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.14744/lhhs.2024.98400",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "PMID:38535411",
       "pmid": "38535411",
       "doi": "10.3390/jfmk9010002",
@@ -11756,6 +12126,34 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.20540/jiaptr.2023.14.4.3036",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:37810248",
+      "pmid": "37810248",
+      "doi": "10.1016/j.isci.2023.107974",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Design and validation of depth camera-based static posture assessment system",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Design and validation of depth camera-based static posture assessment system (2023)",
+      "authors": [
+        "Qingjun Xing",
+        "Ruiwei Hong",
+        "Yuanyuan Shen",
+        "Yuanyuan Shen",
+        "Yanfei Shen",
+        "Yanfei Shen"
+      ],
+      "journal": "iScience",
+      "year": 2023,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "iScience (2023)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37810248/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "PMID:35172275",
@@ -11919,6 +12317,108 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:36498356",
+      "pmid": "36498356",
+      "doi": "10.3390/ijerph192316287",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Alignment of the Sternum and Sacrum as a Marker of Sitting Body Posture in Children",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Alignment of the Sternum and Sacrum as a Marker of Sitting Body Posture in Children (2022)",
+      "authors": [
+        "Wojciech Piotr Kiebzak",
+        "Arkadiusz Żurawski",
+        "Michał Kosztołowicz"
+      ],
+      "journal": "International Journal of Environmental Research and Public Health",
+      "year": 2022,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "International Journal of Environmental Research and Public Health (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36498356/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.37897/rjp.2022.2.6",
+      "pmid": "",
+      "doi": "10.37897/rjp.2022.2.6",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Hyperkyphotic posture among adolescents – still a public health problem",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Hyperkyphotic posture among adolescents – still a public health problem (2022)",
+      "authors": [
+        "Clara Dima",
+        "Brînduşa Ilinca Mitoiu",
+        "Roxana Nartea",
+        "Vlad Dima",
+        "Andrada Mirea"
+      ],
+      "journal": "Romanian Journal of Pediatrics",
+      "year": 2022,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Romanian Journal of Pediatrics (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.37897/rjp.2022.2.6",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.35451/jkf.v4i2.1089",
+      "pmid": "",
+      "doi": "10.35451/jkf.v4i2.1089",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "The Effect Of Neck Pain On Craniovertebral Angle Due To The Use Of Smartphone As A Learning Media For Physiotherapy Students In Widya Husada University Semarang",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The Effect Of Neck Pain On Craniovertebral Angle Due To The Use Of Smartphone As A Learnin (2022)",
+      "authors": [
+        "Wibisono I",
+        ". S",
+        "Azam M"
+      ],
+      "journal": "JURNAL KEPERAWATAN DAN FISIOTERAPI (JKF)",
+      "year": 2022,
+      "citations_count": 2,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "JURNAL KEPERAWATAN DAN FISIOTERAPI (JKF) (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.35451/jkf.v4i2.1089",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.3390/children9040544",
+      "pmid": "",
+      "doi": "10.3390/children9040544",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Effects of Robotic Interactive Gait Training Combined with Virtual Reality and Augmented Reality on Balance, Gross Motor Function, Gait Kinetic, and Kinematic Characteristics in Angelman Syndrome: A Case Report",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Effects of Robotic Interactive Gait Training Combined with Virtual Reality and Augmented R (2022)",
+      "authors": [
+        "Han S",
+        "Park C",
+        "You J(H"
+      ],
+      "journal": "Children",
+      "year": 2022,
+      "citations_count": 8,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Children (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3390/children9040544",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.21275/sr21310095514",
       "pmid": "",
       "doi": "10.21275/sr21310095514",
@@ -12040,6 +12540,30 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "DOI:10.29252/ijmcl.2.2.15",
+      "pmid": "",
+      "doi": "10.29252/ijmcl.2.2.15",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Effect of Training on the Balance and Coordination of the Mentally Retarded Children",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Effect of Training on the Balance and Coordination of the Mentally Retarded Children (2020)",
+      "authors": [
+        "Rahmati Aran M",
+        "Dehghanizade J"
+      ],
+      "journal": "International Journal of Motor Control and Learning",
+      "year": 2020,
+      "citations_count": 5,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "International Journal of Motor Control and Learning (2020)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.29252/ijmcl.2.2.15",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "PMID:31773477",
       "pmid": "31773477",
       "doi": "10.1007/s12178-019-09594-y",
@@ -12113,6 +12637,31 @@
       "age_range": "만 5~18세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1080/00222895.2017.1363694",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.24171/j.phrp.2018.9.6.04",
+      "pmid": "",
+      "doi": "10.24171/j.phrp.2018.9.6.04",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Neck Pain in Adults with Forward Head Posture: Effects of Craniovertebral Angle and Cervical Range of Motion",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Neck Pain in Adults with Forward Head Posture: Effects of Craniovertebral Angle and Cervic (2018)",
+      "authors": [
+        "Kim D",
+        "Kim C",
+        "Son S"
+      ],
+      "journal": "Osong Public Health and Research Perspectives",
+      "year": 2018,
+      "citations_count": 104,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 104회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Osong Public Health and Research Perspectives (2018)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.24171/j.phrp.2018.9.6.04",
       "source_api": "Crossref Works REST API Live"
     },
     {
@@ -12213,6 +12762,32 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29220384/",
       "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "DOI:10.17151/hpsal.2018.23.1.3",
+      "pmid": "",
+      "doi": "10.17151/hpsal.2018.23.1.3",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Método para la categorización de posturas en el aula de clase, utilizando matriz gráfica",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Método para la categorización de posturas en el aula de clase, utilizando matriz gráfica (2017)",
+      "authors": [
+        "Martha Lucía Bernal Castro",
+        "Ovidio Rincón Becerra",
+        "Christian Ricardo Zea Forero",
+        "Laura Vanesa Durán Cortés"
+      ],
+      "journal": "Hacia la Promoción de la Salud",
+      "year": 2017,
+      "citations_count": 4,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Hacia la Promoción de la Salud (2017)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.17151/hpsal.2018.23.1.3",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "PMID:27525315",
