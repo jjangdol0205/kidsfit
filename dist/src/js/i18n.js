@@ -20,22 +20,22 @@
   const DICTIONARY = {
     ko: {
       // Header & Brand
-      'brand.title': 'KIDS-FIT AI STUDIO',
-      'brand.tagline': 'Make + Growth Difference = K:IDS-FIT AI · 독자 개발 성장 퍼포먼스 엔진',
+      'brand.title': 'KIDS-FIT AI',
+      'brand.tagline': '키 · 육체적 · 정신적 성장 & 맞춤 학습 가이드 플랫폼',
       'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용',
       'nav.auxology': '신체 성장 & 골연령 궤적',
       'nav.endocrinology': '호르몬·수면 & 임상 영양',
       'nav.biomechanics': '척추 감압 & 생체역학',
       'nav.neuro': '뇌인지 & 탐구 로드맵',
       'nav.tracker': '90일 트래커 & A4 리포트',
-      'theme.dark': '🌙 M:FFERENCE Dark',
-      'theme.light': '☀️ Clinical Light',
+      'theme.dark': '🌙 Dark Mode',
+      'theme.light': '☀️ Light Mode',
       'lang.toggle': '🇺🇸 EN',
 
       // Hero
-      'hero.badge': 'Make + Growth Difference = K:IDS-FIT AI',
-      'hero.headline': '정상까지 함께 오르는 성장 퍼포먼스의 차이,\n독자 개발 K:IDS-FIT AI가 숫자로 증명합니다',
-      'hero.subtitle': '1,173편의 국제 학술 논문과 누적 코호트 빅데이터를 학습한 자체 개발 K-GROWTH LAB 4대 솔루션으로, 생년월일 0.01개월 보정부터 만 N→N+3세 연속 성장주기 및 1:1 핀셋 처방까지 맞춤형 성장 가이드북을 발행합니다.',
+      'hero.badge': 'K-GROWTH AI™ · 학부모 & 초·중·고 학생 맞춤 성장·학습 플랫폼',
+      'hero.headline': '아이의 키·몸·마음 성장과 학습이 고민인 부모님,\n더 크고 싶은 학생이 찾던 해답이 여기 있습니다',
+      'hero.subtitle': '생년월일과 현재 상태만 입력하면, 독자 개발 AI가 숨은 잠재키 예측부터 시기별 정신·두뇌 발달, 맞춤 학습법, 꼭 필요한 영양제·교구·도서까지 한 권의 가이드북으로 정리해 드립니다.',
 
       // Presets
       'presets.badge': '연령대별 빠른 데모',
@@ -122,22 +122,22 @@
 
     en: {
       // Header & Brand
-      'brand.title': 'KIDS-FIT AI STUDIO',
-      'brand.tagline': 'Proprietary K-GROWTH AI™ Growth & Neuro-Developmental Atelier',
+      'brand.title': 'KIDS-FIT AI',
+      'brand.tagline': 'Height · Physical · Mental Growth & Personalized Learning Platform',
       'trust.badge': 'Built on Official Standards: US CDC 2000, WHO & KDCA Pediatric Auxology',
       'nav.auxology': 'Physical Growth & Auxology',
       'nav.endocrinology': 'Endocrinology & Bio-Nutrition',
       'nav.biomechanics': 'Biomechanics & Posture',
       'nav.neuro': 'Neuro-Cognitive Matrix',
       'nav.tracker': '90-Day Tracker & A4 PDF',
-      'theme.dark': '🌙 Atelier Mood',
-      'theme.light': '☀️ Boutique Light',
+      'theme.dark': '🌙 Dark Mode',
+      'theme.light': '☀️ Light Mode',
       'lang.toggle': '🇰🇷 한국어',
 
       // Hero
-      'hero.badge': 'PROPRIETARY K-GROWTH AI™ v4.0 · AI Growth Intelligence Atelier',
-      'hero.headline': 'Beyond Intuition: Designing Human Growth Potential with Proprietary AI',
-      'hero.subtitle': 'Powered by our proprietary K-GROWTH AI™ engine trained on 1,150+ clinical papers and a self-evolving cohort database, delivering a bespoke 5-chapter growth masterbook.',
+      'hero.badge': 'K-GROWTH AI™ · For Concerned Parents & Growing Students',
+      'hero.headline': 'For Parents Concerned About Growth & Learning,\nAnd Students Who Want to Grow Taller — Your Answer Is Here',
+      'hero.subtitle': 'Enter your birth date and current stats. Our proprietary AI builds a clear, personalized guidebook covering potential height, mental & brain development, age-fit learning, and pinpoint nutrition & books.',
 
       // Presets
       'presets.badge': 'Clinical Demo Presets',

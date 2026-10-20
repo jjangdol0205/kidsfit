@@ -336,7 +336,7 @@
           <!-- Box 2: How Input Data Drives Autonomous Self-Improvement -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem;">
             <div style="font-size: 0.75rem; font-weight: 800; color: #C4B5FD; margin-bottom: 0.35rem;">
-              🔄 입력 데이터 기반 K:IDS-FIT AI 자가개선(Self-Improvement) 작동 내역
+              🔄 입력 데이터 기반 K-GROWTH AI™ 자가개선(Self-Improvement) 작동 내역
             </div>
             <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.5;">
               • <strong>집중 학습 도메인 자동 가중치:</strong> <span style="color:#C4B5FD;font-weight:800;">${comp.activeDomainLabelKo} (×${comp.activeLearningWeight}배 증폭)</span><br>

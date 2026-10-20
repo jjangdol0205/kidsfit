@@ -378,10 +378,10 @@
         <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.9rem;">
           <div>
             <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(59, 130, 246, 0.15); color: #60A5FA; font-size: 0.76rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35); margin-bottom: 0.35rem;">
-              📘 ${isEn ? 'K:IDS-FIT AI STUDIO · BESPOKE GROWTH MASTER GUIDEBOOK' : guidebookEditionLabel}
+              📘 ${isEn ? 'KIDS-FIT AI · BESPOKE GROWTH & LEARNING GUIDEBOOK' : guidebookEditionLabel}
             </span>
             <h2 class="briefing-title" style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0.2rem 0;">
-              ${isEn ? 'Proprietary K:IDS-FIT AI Precision Diagnosis & Guidance' : '독자 개발 K:IDS-FIT AI (K-GROWTH AI™) 종합 정밀 진단 &amp; 단·중·장기 맞춤 성장 가이드북'}
+              ${isEn ? 'Proprietary K-GROWTH AI™ Precision Diagnosis & Guidance' : '키 · 육체적 · 정신적 성장 &amp; 단·중·장기 맞춤 학습 가이드북'}
             </h2>
             <p class="briefing-subtitle" style="font-size: 0.8rem; color: #94A3B8; margin: 0;">
               ${isEn ? `Directly synthesized from KDCA 2017, US CDC 2000, K-DST & ${totalDbPapers} peer-reviewed studies.` : `독자 개발 K-GROWTH AI™ v4.0 · 질병관리청(KDCA 2017) · US CDC 2000 &amp; 학습 학술 DB(${totalDbPapers}편) + 누적 코호트 DB 연동`}
@@ -398,7 +398,7 @@
             <!-- Left: Giant Editorial Height Reveal -->
             <div>
               <div style="font-size: 0.74rem; font-weight: 800; color: #60A5FA; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem;">
-                MAKE + GROWTH DIFFERENCE = K:IDS-FIT AI · OPTIMIZED POTENTIAL STATURE
+                K-GROWTH AI™ · 숨은 잠재키 &amp; 성장 잠재력 예측
               </div>
               <div style="display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap;">
                 <span class="taller-giant-height-number">${optimizedHeight.toFixed(1)} cm</span>

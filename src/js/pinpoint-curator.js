@@ -706,15 +706,15 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem;">
           <div>
             <span style="display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom: 0.3rem;">
-              🌱 K:IDS-FIT AI · AGE-BY-AGE LIFECYCLE MILESTONE ROADMAP
+              🌱 KIDS-FIT AI · AGE-BY-AGE LIFECYCLE MILESTONE ROADMAP
             </span>
             <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0;">
               ${isEn
                 ? `Year-by-Year Growth & Brain Focus: Age ${ageYears} → Age ${ageYears + 1} → Age ${ageYears + 2} → Age ${ageYears + 3}`
-                : `우리 아이 성장주기별 핵심 케어 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 1}세 → 만 ${ageYears + 2}세 → 만 ${ageYears + 3}세)`}
+                : `성장주기별 신체·정신 발달 &amp; 맞춤 학습 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 1}세 → 만 ${ageYears + 2}세 → 만 ${ageYears + 3}세)`}
             </h3>
             <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.25rem 0 0 0;">
-              ${dobText} (생후 ${exactMonths}개월 ${genderKo}) 아이가 자라면서 올해·내년·내후년에 부모님이 무엇을 가장 중요하게 신경써야 하는지 독자 개발 K:IDS-FIT AI가 정리했습니다.
+              ${dobText} (생후 ${exactMonths}개월 ${genderKo}) 기준, 올해·내년·내후년에 어떤 신체적·정신적 성장과 학습 방향을 가장 중요하게 챙겨야 하는지 정리했습니다.
             </p>
           </div>
           <span style="background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.76rem; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.35);">

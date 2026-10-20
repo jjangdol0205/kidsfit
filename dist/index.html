@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIDS-FIT AI STUDIO (K:IDS-FIT AI) — 숫자가 증명하는 성장 퍼포먼스의 차이 · 독자 개발 AI 성장 가이드북</title>
-  <meta name="description" content="KIDS-FIT AI STUDIO — 1,173편의 국제 학술 논문과 KDCA 2017, US CDC 2000, WHO 임상 표준 및 누적 코호트 DB를 학습한 독자 개발 K-GROWTH AI™ 엔진 기반 맞춤형 성장 가이드북.">
+  <title>KIDS-FIT AI — 아이의 키·신체·정신 성장 &amp; 맞춤 학습 가이드 플랫폼</title>
+  <meta name="description" content="아이의 키와 육체적·정신적 성장, 시기별 학습 방향이 고민인 학부모와 키가 더 크고 싶은 초·중·고 학생을 위한 맞춤형 성장 가이드북 플랫폼.">
 
   <!-- OpenGraph Metadata -->
-  <meta property="og:title" content="KIDS-FIT AI STUDIO (K:IDS-FIT AI) — 숫자가 증명하는 성장 퍼포먼스의 차이">
-  <meta property="og:description" content="1,173편의 학술 논문과 자가개선 코호트 DB를 결합한 독자 개발 K-GROWTH AI™ 기반 1:1 성장·발달 마스터 가이드북.">
+  <meta property="og:title" content="KIDS-FIT AI — 키·신체·정신 성장 &amp; 맞춤 학습 가이드북">
+  <meta property="og:description" content="아이의 키·몸·마음 성장과 학습 방향이 고민인 부모님, 더 크고 싶은 학생이 찾던 해답이 여기 있습니다.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://truthofmarket.com">
   <meta property="og:image" content="https://truthofmarket.com/samples/3_cardnews_sample/cardnews_01.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="KIDS-FIT AI STUDIO — 독자 개발 AI 성장 퍼포먼스 엔진">
-  <meta property="twitter:description" content="독자 개발 K-GROWTH AI™ 기반 생년월일 정밀 성장 궤적·호르몬·척추 생체역학·뇌인지 큐레이션.">
+  <meta property="twitter:title" content="KIDS-FIT AI — 키·신체·정신 성장 &amp; 맞춤 학습 가이드북">
+  <meta property="twitter:description" content="생년월일 하나로 확인하는 잠재키 예측, 나이별 두뇌·정서 성장, 시기별 맞춤 학습·영양제·도서 가이드.">
   <meta property="twitter:image" content="https://truthofmarket.com/samples/3_cardnews_sample/cardnews_01.png">
 
-  <!-- M:FFERENCE Style Monolith SVG Favicon -->
+  <!-- Minimalist SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
 
   <link rel="stylesheet" href="src/css/style.css">
@@ -33,35 +33,33 @@
 </head>
 <body data-theme="dark">
 
-  <!-- Top Trust Header (M:FFERENCE Floating Glass Style) -->
+  <!-- Minimal Floating Glass Header -->
   <header class="clinic-header">
-    <div class="header-trust-bar">
+    <!-- Hidden in visual layout to keep top header ultra-clean; preserved in DOM for standard compliance -->
+    <div class="header-trust-bar" style="display: none;">
       <div class="header-trust-badge" id="trust-badge">
         <span class="trust-badge-icon">🏛️</span>
         <span class="trust-badge-text" data-i18n="trust.badge">Built on Official Standards: 질병관리청 소아청소년 성장도표 &amp; 보건복지부 영유아 발달선별검사(K-DST) 기준 적용</span>
       </div>
     </div>
     <div class="header-inner">
-      <div class="brand-wrapper" id="brand-home-trigger" style="cursor: pointer;" title="브랜드 첫 화면으로 이동">
-        <div class="brand-logo-icon">K:</div>
+      <div class="brand-wrapper" id="brand-home-trigger" style="cursor: pointer;" title="첫 화면으로 이동">
+        <div class="brand-logo-icon">K</div>
         <div class="brand-titles">
           <span class="brand-title">
-            <span data-i18n="brand.title">KIDS-FIT AI STUDIO</span>
-            <span class="brand-badge">K:FFERENCE</span>
+            <span data-i18n="brand.title">KIDS-FIT AI</span>
           </span>
-          <span class="brand-tagline" data-i18n="brand.tagline">Make + Growth Difference = K:IDS-FIT AI · 독자 개발 성장 퍼포먼스 엔진</span>
+          <span class="brand-tagline" data-i18n="brand.tagline">키 · 육체적 · 정신적 성장 &amp; 맞춤 학습 가이드 플랫폼</span>
         </div>
       </div>
-      <div class="header-actions" style="display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap;">
-        <a href="#mf-cases" style="color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 700; text-decoration: none; padding: 0.35rem 0.6rem;">PERFORMANCE</a>
-        <a href="#mf-services" style="color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 700; text-decoration: none; padding: 0.35rem 0.6rem;">K-GROWTH LAB</a>
-        <a href="#mf-partners" style="color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 700; text-decoration: none; padding: 0.35rem 0.6rem;">STANDARDS</a>
-        <a href="#mf-faq" style="color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 700; text-decoration: none; padding: 0.35rem 0.6rem;">FAQ</a>
+      <div class="header-actions" style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+        <a href="#for-whom-section" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem;">대상 안내</a>
+        <a href="#taller-hero-showcase" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem;">제공 서비스</a>
         <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language">
-          🇺🇸 EN (CDC)
+          🇺🇸 EN
         </button>
-        <button type="button" class="header-control-btn" id="btn-theme-toggle" aria-label="Toggle theme">
-          <span class="theme-icon">🌙</span> <span class="theme-text">M:FFERENCE Dark</span>
+        <button type="button" class="header-control-btn" id="btn-theme-toggle" aria-label="Toggle theme" style="display: none;">
+          <span class="theme-icon">🌙</span> <span class="theme-text">Dark</span>
         </button>
       </div>
     </div>
@@ -70,529 +68,153 @@
   <main class="main-container">
 
     <!-- =========================================================================
-         FIRST SCREEN: M:FFERENCE STYLE PERFORMANCE AGENCY BRAND SHOWCASE
-         (Displayed on initial load; transitions smoothly to 6-Step Survey Studio)
+         FIRST SCREEN: ULTRA-CONCISE, BREATHABLE BRAND & SERVICE OVERVIEW
          ========================================================================= -->
-    <section class="hero-section compact-hero" id="hero-section" aria-label="K:IDS-FIT AI 브랜드 및 솔루션 쇼케이스">
+    <section class="hero-section compact-hero" id="hero-section" aria-label="키즈핏 AI 성장 및 학습 플랫폼 소개" style="padding: 4.5rem 1.5rem 3.5rem;">
 
-      <!-- Top Formula Pill Row -->
-      <div class="taller-social-proof-row" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);">
-        <span style="color: #38BDF8; font-weight: 900; letter-spacing: 0.08em;">Make + Growth Difference = K:IDS-FIT AI</span>
-        <span style="color: rgba(255,255,255,0.25);">|</span>
-        <span>1,173+ 국제 학술 논문 딥러닝 &amp; 실시간 코호트 자가학습</span>
-        <span style="color: rgba(255,255,255,0.25);">|</span>
-        <span style="color: #10B981; font-weight: 800;">📘 1:1 맞춤형 성장 마스터 가이드북</span>
+      <div class="hero-pill-badge" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: #38BDF8; margin-bottom: 1.4rem;">
+        <span data-i18n="hero.badge">K-GROWTH AI™ · 학부모 &amp; 초·중·고 학생 맞춤 성장·학습 플랫폼</span>
       </div>
 
-      <div class="hero-pill-badge" style="background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(59, 130, 246, 0.35); color: #60A5FA;">
-        <span>⚡</span> <span data-i18n="hero.badge">Make + Growth Difference = K:IDS-FIT AI</span>
-      </div>
-
-      <h1 class="hero-headline" data-i18n-html="hero.headline" style="font-size: clamp(2rem, 4.4vw, 3.35rem); font-weight: 900; letter-spacing: -0.035em; line-height: 1.18; color: #FFFFFF;">
-        정상까지 함께 오르는 성장 퍼포먼스의 차이,<br>
-        <span class="hero-headline-highlight" style="background: linear-gradient(90deg, #FFFFFF 0%, #38BDF8 52%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">독자 개발 K:IDS-FIT AI가 숫자로 증명합니다</span>
+      <h1 class="hero-headline" data-i18n-html="hero.headline" style="font-size: clamp(2rem, 4.4vw, 3.25rem); font-weight: 900; letter-spacing: -0.035em; line-height: 1.26; color: #FFFFFF; max-width: 860px; margin: 0 auto 1.25rem;">
+        아이의 키·몸·마음 성장과 학습이 고민인 부모님,<br>
+        <span class="hero-headline-highlight" style="background: linear-gradient(90deg, #FFFFFF 0%, #38BDF8 55%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">더 크고 싶은 학생이 찾던 해답이 여기 있습니다</span>
       </h1>
 
-      <p class="hero-subtitle" data-i18n="hero.subtitle" style="color: rgba(255,255,255,0.68); max-width: 760px; margin: 0.85rem auto 1.6rem; font-size: 0.98rem; line-height: 1.7;">
-        1,173편의 국제 학술 논문과 누적 코호트 빅데이터를 학습한 자체 개발 K-GROWTH LAB 4대 솔루션으로, 생년월일 0.01개월 보정부터 만 N→N+3세 연속 성장주기 및 1:1 핀셋 처방까지 맞춤형 성장 가이드북을 발행합니다.
+      <p class="hero-subtitle" data-i18n="hero.subtitle" style="color: rgba(255,255,255,0.68); max-width: 680px; margin: 0 auto 2.2rem; font-size: 1.02rem; line-height: 1.7;">
+        생년월일과 현재 상태만 입력하면, 독자 개발 AI가 숨은 잠재키 예측부터 시기별 정신·두뇌 발달, 맞춤 학습법, 꼭 필요한 영양제·교구·도서까지 한 권의 가이드북으로 정리해 드립니다.
       </p>
 
-      <!-- Primary High-Impact Action Bar (M:FFERENCE White Pill + Glass Pill) -->
-      <div class="editorial-cta-bar" style="display: flex; justify-content: center; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin: 0.5rem 0 2.5rem;">
+      <!-- Clean Dual Entry CTA Buttons -->
+      <div class="editorial-cta-bar" style="display: flex; justify-content: center; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin: 0 auto 3.8rem;">
         <button type="button" class="mf-btn-white" id="btn-enter-studio-top">
-          <span>✦ 무료 AI 맞춤 성장 가이드북 진단 시작하기</span>
-          <span style="font-size: 1.15rem;">→</span>
+          <span>👨‍👩‍👧 학부모용 · 우리 아이 진단 시작하기</span>
+          <span style="font-size: 1.1rem;">→</span>
         </button>
-        <a href="#mf-services" class="mf-btn-glass">
-          자체 개발 4대 AI 솔루션(K-GROWTH LAB) 보기 ↓
-        </a>
+        <button type="button" class="mf-btn-glass" id="btn-enter-studio-youth">
+          <span>🙋 초·중·고 학생용 · 내 잠재키 진단 시작하기</span>
+          <span style="font-size: 1.1rem;">→</span>
+        </button>
       </div>
 
       <!-- =====================================================================
-           M:FFERENCE FULL MULTI-SECTION AGENCY SHOWCASE (#brand-editorial-showcase)
+           CONCISE 2-PART PLATFORM OVERVIEW (#brand-editorial-showcase)
+           1) 누구를 위한 플랫폼인가요? (학부모 & 초등 이상 학생)
+           2) 우리가 제공하는 3가지 핵심 서비스
            ===================================================================== -->
-      <div id="brand-editorial-showcase" style="text-align: left; margin-top: 1rem;">
+      <div id="brand-editorial-showcase" style="text-align: left; max-width: 1020px; margin: 0 auto;">
 
-        <!-- ===================================================================
-             SECTION 1 (#mf-cases): PERFORMANCE STORIES — 숫자가 증명하는 퍼포먼스의 차이
-             =================================================================== -->
-        <div id="mf-cases" style="padding: 2.2rem 0 2.6rem; border-top: 1px solid rgba(255,255,255,0.08);">
+        <!-- PART 1: FOR WHOM — 누구의 어떤 고민을 해결하나요? -->
+        <div id="for-whom-section" style="padding: 2.8rem 0; border-top: 1px solid rgba(255,255,255,0.08);">
           <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="mf-kicker">PERFORMANCE STORIES</span>
-            <h2 class="mf-section-title">숫자가 증명하는 성장 퍼포먼스의 차이</h2>
-            <p class="mf-section-sub">
-              아이의 생년월일·유전 표적키·수면·자세·두뇌 발달 축에 맞춘 독자 개발 K-GROWTH AI™ 컨설팅과 자동화 코호트 시스템으로 실질적인 성장 격차를 만들어낸 대표 사례입니다.
+            <span class="mf-kicker">WHO IT'S FOR</span>
+            <h2 class="mf-section-title" style="font-size: clamp(1.55rem, 3vw, 2.2rem);">누구를 위한 플랫폼인가요?</h2>
+            <p class="mf-section-sub" style="margin-bottom: 0;">
+              막연한 정보 대신, 지금 내 아이와 학생 본인에게 꼭 필요한 성장과 학습의 기준을 제시합니다.
             </p>
           </div>
 
-          <!-- 2-Column Layout: Left (3 Case Cards) + Right (KPI Counters & 2023-2026 Growth Chart) -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; align-items: stretch;">
-
-            <!-- Left Column: 3 Case Cards (Exact mfference.com Case Card Structure) -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-              <!-- Case 1 -->
-              <div class="mf-glass-card" style="padding: 1.35rem 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.45rem;">
-                  <span style="font-size: 0.8rem; font-weight: 800; color: #38BDF8; letter-spacing: 0.04em;">CASE A · 만 10세 남아 코호트</span>
-                  <span style="font-size: 1.55rem; font-weight: 900; font-family: var(--font-mono); color: #FFFFFF;">
-                    숨은 잠재키 <span style="color: #10B981;">+7.2 cm</span> 달성
-                  </span>
-                </div>
-                <div style="font-size: 0.9rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  실시간 생년월일 0.01개월 보정 &amp; 서파수면 호르몬 복원 솔루션
-                </div>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.62); line-height: 1.55; margin: 0;">
-                  밤 10시 입면 교정 및 취침 3시간 전 혈당 스파이크 차단으로 성장호르몬 분비 억제율(-52% → 0%)을 정상화하고 부모 유전 표적키 대비 +7.2cm 상향 궤적을 달성했습니다.
-                </p>
-              </div>
-
-              <!-- Case 2 -->
-              <div class="mf-glass-card" style="padding: 1.35rem 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.45rem;">
-                  <span style="font-size: 0.8rem; font-weight: 800; color: #A78BFA; letter-spacing: 0.04em;">CASE B · 만 3~5세 영유아 코호트</span>
-                  <span style="font-size: 1.55rem; font-weight: 900; font-family: var(--font-mono); color: #FFFFFF;">
-                    불필요 교구비 <span style="color: #38BDF8;">68 %</span> 절감
-                  </span>
-                </div>
-                <div style="font-size: 0.9rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  K-DST 월령별 소근육·두뇌 민감기 핀셋 판정 솔루션
-                </div>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.62); line-height: 1.55; margin: 0;">
-                  월령에 맞지 않는 고가 전집·교구 중복 구매를 사전 차단하고, 현재 개월 수에 꼭 필요한 몬테소리 일상감각 교구·가베·황기추출물 영양제를 1:1 핀셋 매칭했습니다.
-                </p>
-              </div>
-
-              <!-- Case 3 -->
-              <div class="mf-glass-card" style="padding: 1.35rem 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.45rem;">
-                  <span style="font-size: 0.8rem; font-weight: 800; color: #F59E0B; letter-spacing: 0.04em;">CASE C · 만 13~16세 청소년 코호트</span>
-                  <span style="font-size: 1.55rem; font-weight: 900; font-family: var(--font-mono); color: #FFFFFF;">
-                    척추 숨은 키 <span style="color: #F59E0B;">+1.8 cm</span> 복원
-                  </span>
-                </div>
-                <div style="font-size: 0.9rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  척추 추간판 감압(Dead Hang) &amp; 볼프의 법칙 생체역학 솔루션
-                </div>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.62); line-height: 1.55; margin: 0;">
-                  하루 90초 패시브 데드행 및 흉추 신전 프로토콜로 학업 중 압박된 척추 디스크 수분을 78% 즉각 복원하고 배외측 전전두엽(DLPFC) 메타인지 집중력을 강화했습니다.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Column: KPI Counters & 2023-2026 Escalating Growth Chart (#taller-hero-showcase) -->
-            <div class="mf-glass-card" id="taller-hero-showcase" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.75rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;">
+            <!-- Target 1: Parents -->
+            <div class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.85rem;">
               <div>
-                <div style="font-size: 0.75rem; font-weight: 800; color: rgba(255,255,255,0.45); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.4rem;">
-                  OUR DATA &amp; AI TRAJECTORY
-                </div>
-                <h3 style="font-size: 1.35rem; font-weight: 900; color: #FFFFFF; margin: 0 0 1.2rem 0; letter-spacing: -0.02em;">
-                  아이와 청소년의 성장이 곧 <span style="color: #38BDF8;">K:IDS-FIT AI</span>의 성공입니다
+                <span style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #38BDF8; letter-spacing: 0.12em; margin-bottom: 0.6rem;">
+                  FOR PARENTS · 학부모님
+                </span>
+                <h3 style="font-size: 1.25rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin: 0 0 0.85rem 0;">
+                  “우리 아이 키와 육체적·정신적 성장,<br>그리고 시기별 학습을 어떻게 시켜야 할까요?”
                 </h3>
-
-                <!-- 3 KPI Blocks -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem;">
-                  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 0.9rem 0.75rem; text-align: center;">
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-bottom: 0.25rem;">학습 학술 논문</div>
-                    <div style="font-size: 1.45rem; font-weight: 900; font-family: var(--font-mono); color: #FFFFFF;">1,173<span style="color: #38BDF8; font-size: 0.95rem;">편+</span></div>
-                  </div>
-                  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 0.9rem 0.75rem; text-align: center;">
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-bottom: 0.25rem;">누적 코호트 DB</div>
-                    <div style="font-size: 1.45rem; font-weight: 900; font-family: var(--font-mono); color: #FFFFFF;">128<span style="color: #10B981; font-size: 0.95rem;">건+</span></div>
-                  </div>
-                  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 0.9rem 0.75rem; text-align: center;">
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-bottom: 0.25rem;">DB 자가확장률</div>
-                    <div style="font-size: 1.45rem; font-weight: 900; font-family: var(--font-mono); color: #10B981;">+312<span style="font-size: 0.95rem;">%</span></div>
-                  </div>
-                </div>
+                <ul style="margin: 0 0 1.4rem 0; padding-left: 1.15rem; font-size: 0.88rem; color: rgba(255,255,255,0.74); line-height: 1.75;">
+                  <li>현재 키가 또래 상위 몇 %인지, 최종 몇 cm까지 클 수 있는지 궁금한 부모님</li>
+                  <li>만 3세 → 4세 → 5세… 나이마다 어떤 신체·정서·두뇌 발달을 챙겨야 할지 고민인 분</li>
+                  <li>지금 시기에 꼭 필요한 영양제·놀이 교구·필독 도서를 명확히 추천받고 싶은 분</li>
+                </ul>
               </div>
-
-              <!-- 2023 -> 2024 -> 2025 -> 2026 Escalating Bar Graph (Exact mfference.com Right Chart Style) -->
-              <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 1.25rem 1.35rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
-                  <span style="font-size: 0.76rem; font-weight: 800; color: rgba(255,255,255,0.75);">K-GROWTH AI™ 학술 코퍼스 &amp; 정밀도 성장 추이</span>
-                  <span style="font-size: 0.7rem; font-weight: 800; color: #38BDF8; background: rgba(56,189,248,0.14); padding: 0.16rem 0.55rem; border-radius: 9999px;">30분 주기 자동 크롤링</span>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; align-items: flex-end; height: 128px; padding-top: 1rem; border-bottom: 1px solid rgba(255,255,255,0.12);">
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
-                    <span style="font-size: 0.7rem; color: rgba(255,255,255,0.5); font-family: var(--font-mono);">240편</span>
-                    <div style="width: 100%; max-width: 44px; height: 34px; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.16);"></div>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
-                    <span style="font-size: 0.7rem; color: rgba(255,255,255,0.65); font-family: var(--font-mono);">520편</span>
-                    <div style="width: 100%; max-width: 44px; height: 58px; border-radius: 8px 8px 0 0; background: rgba(59,130,246,0.45);"></div>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
-                    <span style="font-size: 0.72rem; color: #60A5FA; font-weight: 800; font-family: var(--font-mono);">890편</span>
-                    <div style="width: 100%; max-width: 44px; height: 84px; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, #3B82F6 0%, rgba(59,130,246,0.3) 100%);"></div>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
-                    <span style="font-size: 0.76rem; color: #10B981; font-weight: 900; font-family: var(--font-mono);">1,173편+</span>
-                    <div style="width: 100%; max-width: 48px; height: 108px; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, #10B981 0%, #38BDF8 100%); box-shadow: 0 0 20px rgba(16,185,129,0.45);"></div>
-                  </div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; text-align: center; padding-top: 0.45rem; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.55);">
-                  <span>2023</span>
-                  <span>2024</span>
-                  <span>2025</span>
-                  <span style="color: #FFFFFF; font-weight: 900;">2026 LIVE</span>
-                </div>
-              </div>
+              <button type="button" id="btn-enter-studio-parent" class="mf-btn-white" style="width: 100%; padding: 0.9rem 1.2rem; font-size: 0.9rem;">
+                학부모용 맞춤 가이드북 시작하기 →
+              </button>
             </div>
 
+            <!-- Target 2: Elementary+ Students & Youth -->
+            <div class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.85rem;">
+              <div>
+                <span style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #10B981; letter-spacing: 0.12em; margin-bottom: 0.6rem;">
+                  FOR STUDENTS · 초등학생 이상 학생·청소년
+                </span>
+                <h3 style="font-size: 1.25rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin: 0 0 0.85rem 0;">
+                  “키가 더 크고 싶은데,<br>내 몸 관리와 공부 습관을 어떻게 바꿔야 할까요?”
+                </h3>
+                <ul style="margin: 0 0 1.4rem 0; padding-left: 1.15rem; font-size: 0.88rem; color: rgba(255,255,255,0.74); line-height: 1.75;">
+                  <li>내 성장판 골든타임이 얼마나 남았는지, 숨은 잠재키가 몇 cm인지 알고 싶은 학생</li>
+                  <li>키가 크는 수면 시간, 거북목·척추 스트레칭, 식습관을 스스로 실천하고 싶은 학생</li>
+                  <li>두뇌 집중력과 자기주도 학습 효율을 높이는 구체적인 루틴이 필요한 학생</li>
+                </ul>
+              </div>
+              <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('self');" class="mf-btn-glass" style="width: 100%; padding: 0.9rem 1.2rem; font-size: 0.9rem; border-color: rgba(16,185,129,0.45); color: #FFFFFF;">
+                학생·본인용 맞춤 가이드북 시작하기 →
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- ===================================================================
-             SECTION 2 (#mf-services): K-GROWTH LAB — 키즈핏이 직접 만든 AI 성장 솔루션 네 가지
-             (Exact mfference.com DIFFERLAB 2x2 Bento Grid + "이럴 때 씁니다" Bullets)
-             =================================================================== -->
-        <div id="mf-services" style="padding: 2.6rem 0; border-top: 1px solid rgba(255,255,255,0.08);">
+        <!-- PART 2: OUR SERVICE — 우리가 제공하는 3가지 핵심 서비스 (#taller-hero-showcase) -->
+        <div id="taller-hero-showcase" style="padding: 2.8rem 0 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);">
           <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="mf-kicker">K-GROWTH LAB</span>
-            <h2 class="mf-section-title">키즈핏이 직접 만든<br>AI 성장 진단 솔루션 네 가지</h2>
-            <p class="mf-section-sub">
-              외부 템플릿 모방 없이 독자 개발한 자체 AI 바이오 솔루션입니다. 진단 시작 시 4가지 엔진이 동시에 가동됩니다.
-            </p>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem;">
-
-            <!-- Solution 1: AUXOLOGY AI (디퍼그로스) -->
-            <article class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                  <span style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: #38BDF8; text-transform: uppercase;">01 · AUXOLOGY AI</span>
-                  <span style="background: rgba(56,189,248,0.14); color: #38BDF8; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(56,189,248,0.3);">생년월일 일수 보정</span>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  디퍼그로스 (Differ-Growth) · 정밀 성장궤적 &amp; 골연령 자동 판독
-                </h3>
-                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1rem 0;">
-                  출생 연·월·일을 입력하면 0.01개월 단위로 1월생과 12월생의 키 편차(최대 4.8cm)를 보정하고, 나이와 최근 성장폭에 맞춰 사춘기·골연령 진행도를 자동으로 설정합니다.
-                </p>
-                <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 0.95rem 1.05rem; margin-bottom: 1rem;">
-                  <div style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.45); margin-bottom: 0.45rem;">이럴 때 씁니다</div>
-                  <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: rgba(255,255,255,0.82); line-height: 1.65;">
-                    <li>단순 만 나이 기준 백분위가 부정확해 아이의 진짜 또래 위치가 궁금할 때</li>
-                    <li>현재 성장단계와 골연령을 부모가 직접 고르기 어려워 자동 판독이 필요할 때</li>
-                    <li>유전키(MPH)·방치 시 예측키·최적화 잠재키 3단 비교를 한눈에 보고 싶을 때</li>
-                  </ul>
-                </div>
-              </div>
-              <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child');" class="mf-btn-glass" style="width: 100%; justify-content: space-between; padding: 0.8rem 1.15rem; font-size: 0.84rem;">
-                <span>디퍼그로스 엔진으로 진단 시작</span>
-                <span>→</span>
-              </button>
-            </article>
-
-            <!-- Solution 2: HORMONE GUARD (디퍼호르몬) -->
-            <article class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                  <span style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: #10B981; text-transform: uppercase;">02 · HORMONE GUARD</span>
-                  <span style="background: rgba(16,185,129,0.14); color: #10B981; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(16,185,129,0.3);">성장 저해요인 감지</span>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  디퍼호르몬 (Differ-Hormone) · 24시간 수면 내분비 &amp; 단·중·장기 지도
-                </h3>
-                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1rem 0;">
-                  늦은 취침과 야간 혈당 스파이크가 서파수면(SWS) 성장호르몬을 얼마나 억제(-52% max)하는지 실시간 시뮬레이션하고, 단기(1~4주)·중기(90일)·장기(성인기) 맞춤 지도 로드맵을 제시합니다.
-                </p>
-                <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 0.95rem 1.05rem; margin-bottom: 1rem;">
-                  <div style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.45); margin-bottom: 0.45rem;">이럴 때 씁니다</div>
-                  <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: rgba(255,255,255,0.82); line-height: 1.65;">
-                    <li>아이가 밤 10시 30분 이후에 자거나 취침 전 간식·과일을 자주 먹을 때</li>
-                    <li>거북목·구부정한 자세로 눌린 척추 숨은 키(+1.8cm)를 복원하고 싶을 때</li>
-                    <li>막연한 조언 대신 학술 논문(PMID/DOI)에 기반한 단·중·장기 지도가 필요할 때</li>
-                  </ul>
-                </div>
-              </div>
-              <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child');" class="mf-btn-glass" style="width: 100%; justify-content: space-between; padding: 0.8rem 1.15rem; font-size: 0.84rem;">
-                <span>디퍼호르몬 엔진으로 진단 시작</span>
-                <span>→</span>
-              </button>
-            </article>
-
-            <!-- Solution 3: LIFECYCLE LOG (디퍼로드맵) -->
-            <article class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                  <span style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: #A78BFA; text-transform: uppercase;">03 · LIFECYCLE &amp; PINPOINT</span>
-                  <span style="background: rgba(167,139,250,0.14); color: #C4B5FD; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(167,139,250,0.3);">만 N→N+3세 &amp; 핀셋 처방</span>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  디퍼로드맵 (Differ-Roadmap) · 연령별 연속 성장주기 &amp; 1:1 핀셋 큐레이션
-                </h3>
-                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1rem 0;">
-                  현재 나이(만 N세)부터 내년(만 N+1세)·내후년(만 N+2세)까지 시기별로 꼭 챙겨야 할 성장·두뇌 과제를 짚어주고, 황기추출물(HT042)·어골칼슘·소근육 교구·필독서를 핀셋 직결합니다.
-                </p>
-                <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 0.95rem 1.05rem; margin-bottom: 1rem;">
-                  <div style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.45); margin-bottom: 0.45rem;">이럴 때 씁니다</div>
-                  <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: rgba(255,255,255,0.82); line-height: 1.65;">
-                    <li>만 3세인 우리 아이가 만 4세, 만 5세 때 무엇을 신경써야 하는지 미리 알고 싶을 때</li>
-                    <li>황기추출물이나 연골·구연산 칼슘 중 우리 아이에게 필요한 영양제를 바로 찾고 싶을 때</li>
-                    <li>소근육 발달 장난감과 연령 맞춤 도서를 클릭 한 번에 바로 확인하고 싶을 때</li>
-                  </ul>
-                </div>
-              </div>
-              <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child');" class="mf-btn-glass" style="width: 100%; justify-content: space-between; padding: 0.8rem 1.15rem; font-size: 0.84rem;">
-                <span>디퍼로드맵 엔진으로 진단 시작</span>
-                <span>→</span>
-              </button>
-            </article>
-
-            <!-- Solution 4: COHORT SELF-EVOLVE (디퍼코호트) -->
-            <article class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                  <span style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: #F59E0B; text-transform: uppercase;">04 · COHORT SELF-EVOLVE</span>
-                  <span style="background: rgba(245,158,11,0.14); color: #FCD34D; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(245,158,11,0.3);">DB 자가학습 &amp; 기록장</span>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  디퍼코호트 (Differ-Cohort) · 입력 데이터 DB화 &amp; 자가개선 피드백 루프
-                </h3>
-                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1rem 0;">
-                  진단할 때마다 입력 데이터가 익명 코호트 DB로 축적되어 동일 연령 백분위 비교와 AI 추천 가중치를 스스로 진화시키며, 개인 성장 가이드북 기록장에 자동 보존됩니다.
-                </p>
-                <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 0.95rem 1.05rem; margin-bottom: 1rem;">
-                  <div style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.45); margin-bottom: 0.45rem;">이럴 때 씁니다</div>
-                  <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: rgba(255,255,255,0.82); line-height: 1.65;">
-                    <li>동일 연령대 또래 코호트에서 가장 많이 겪는 성장 병목과 검증 솔루션을 볼 때</li>
-                    <li>기다리는 60초 동안 햅틱 진동 타이핑과 맞춤형 육아 브리핑·O/X 퀴즈를 즐길 때</li>
-                    <li>대학병원 소아과 스타일의 2페이지 A4 정밀 결과지를 인쇄/PDF로 보관할 때</li>
-                  </ul>
-                </div>
-              </div>
-              <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('self');" class="mf-btn-glass" style="width: 100%; justify-content: space-between; padding: 0.8rem 1.15rem; font-size: 0.84rem;">
-                <span>디퍼코호트 엔진으로 진단 시작</span>
-                <span>→</span>
-              </button>
-            </article>
-
-          </div>
-        </div>
-
-        <!-- ===================================================================
-             SECTION 3 (#mf-partners): OFFICIAL STANDARDS (High-Contrast Gray-50 White Section)
-             (Exact mfference.com Section 5 Contrasting Light Section)
-             =================================================================== -->
-        <div id="mf-partners" class="mf-light-contrast-section">
-          <div style="text-align: center; max-width: 760px; margin: 0 auto 1.75rem;">
-            <span style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.42em; color: #6B7280; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
-              OFFICIAL CLINICAL STANDARDS
-            </span>
-            <h2 style="font-size: clamp(1.65rem, 3.2vw, 2.45rem); font-weight: 900; color: #111827; margin: 0 0 0.65rem 0; letter-spacing: -0.03em;">
-              Official Clinical Data with <span style="color: #000000; text-decoration: underline; text-decoration-color: #3B82F6; text-underline-offset: 6px;">K:IDS-FIT AI</span>
-            </h2>
-            <p style="font-size: 0.94rem; color: #4B5563; line-height: 1.65; margin: 0 0 1.15rem 0;">
-              키즈핏 AI 스튜디오는 대한민국 정부 기관 및 글로벌 보건 기구의 <strong style="color: #111827;">공식 임상 표준 데이터</strong>만을 기반으로 엔터프라이즈급 성장 예측 시스템을 운영합니다. 검증된 학술 시스템을 지금 경험하세요.
-            </p>
-            <!-- 3 Colored Trust Pills (Exact mfference.com Green/Blue/Purple Pill Trio) -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.65rem;">
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.95rem; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; color: #047857;">
-                <span style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></span> 질병관리청 KDCA 2017 표준
-              </span>
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.95rem; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; color: #1D4ED8;">
-                <span style="width: 8px; height: 8px; background: #3B82F6; border-radius: 50%;"></span> US CDC 2000 &amp; WHO LMS
-              </span>
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.95rem; background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; color: #6D28D9;">
-                <span style="width: 8px; height: 8px; background: #8B5CF6; border-radius: 50%;"></span> 보건복지부 K-DST 발달선별
-              </span>
-            </div>
-          </div>
-
-          <!-- 4 Official Authority Cards -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-            <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 1.25rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-              <div style="font-size: 0.72rem; font-weight: 800; color: #2563EB; margin-bottom: 0.25rem;">OFFICIAL 01</div>
-              <div style="font-size: 1.05rem; font-weight: 900; color: #111827; margin-bottom: 0.25rem;">질병관리청 (KDCA)</div>
-              <div style="font-size: 0.78rem; color: #6B7280;">소아청소년 성장도표 LMS 백분위 &amp; 체질량 표준</div>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 1.25rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-              <div style="font-size: 0.72rem; font-weight: 800; color: #059669; margin-bottom: 0.25rem;">OFFICIAL 02</div>
-              <div style="font-size: 1.05rem; font-weight: 900; color: #111827; margin-bottom: 0.25rem;">US CDC 2000 &amp; WHO</div>
-              <div style="font-size: 0.78rem; color: #6B7280;">글로벌 성장 곡선 &amp; Tanner 유전 표적키 공식</div>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 1.25rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-              <div style="font-size: 0.72rem; font-weight: 800; color: #7C3AED; margin-bottom: 0.25rem;">OFFICIAL 03</div>
-              <div style="font-size: 1.05rem; font-weight: 900; color: #111827; margin-bottom: 0.25rem;">보건복지부 K-DST</div>
-              <div style="font-size: 0.78rem; color: #6B7280;">영유아 발달선별검사 6대 영역 &amp; 2020 KDRIs 영양</div>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 1.25rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-              <div style="font-size: 0.72rem; font-weight: 800; color: #D97706; margin-bottom: 0.25rem;">OFFICIAL 04</div>
-              <div style="font-size: 1.05rem; font-weight: 900; color: #111827; margin-bottom: 0.25rem;">PubMed · Crossref</div>
-              <div style="font-size: 0.78rem; color: #6B7280;">1,173편 국제 학술 논문 실시간 크롤링 &amp; 팩트 검증</div>
-            </div>
-          </div>
-
-          <!-- Bottom 3 Metrics Row -->
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; border-top: 1px solid #E5E7EB; padding-top: 1.25rem; text-align: center;">
-            <div>
-              <div style="font-size: 1.5rem; font-weight: 900; color: #111827;">6+</div>
-              <div style="font-size: 0.76rem; font-weight: 700; color: #6B7280;">Official Authorities</div>
-            </div>
-            <div>
-              <div style="font-size: 1.5rem; font-weight: 900; color: #111827;">12개</div>
-              <div style="font-size: 0.76rem; font-weight: 700; color: #6B7280;">Specialized Sub-Domains</div>
-            </div>
-            <div>
-              <div style="font-size: 1.5rem; font-weight: 900; color: #111827;">24/7</div>
-              <div style="font-size: 0.76rem; font-weight: 700; color: #6B7280;">AI Self-Improvement</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===================================================================
-             SECTION 4 (#mf-team): EXPERT AI DIRECTORS — 파트별 전문 AI 디렉터들의 노하우
-             (Exact mfference.com Section 6 Team Cards Structure)
-             =================================================================== -->
-        <div id="mf-team" style="padding: 2.4rem 0; border-top: 1px solid rgba(255,255,255,0.08);">
-          <div style="text-align: center; margin-bottom: 1.85rem;">
-            <span class="mf-kicker">EXPERT AI DIRECTORS</span>
-            <h2 class="mf-section-title">파트별 전문 AI 디렉터들의 노하우</h2>
-            <p class="mf-section-sub">
-              K:IDS-FIT AI는 소아내분비, 뇌신경 발달, 척추 생체역학, 핀셋 커머스 큐레이션의 언어와 데이터를 동시에 이해하는 4대 전문 AI 에이전트 합의로 운영됩니다.
-            </p>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 1rem;">
-            <div class="mf-glass-card" style="text-align: center; padding: 1.4rem 1.2rem;">
-              <span style="display: inline-block; padding: 0.28rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; background: rgba(255,255,255,0.12); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.65rem;">
-                소아내분비·호르몬 수석 AI
-              </span>
-              <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">Auxo-Director AI</h3>
-              <div style="text-align: left; font-size: 0.78rem; color: rgba(255,255,255,0.72); line-height: 1.6;">
-                • KDCA·CDC LMS Z-Score 0.01개월 보정<br>
-                • 서파수면(SWS) 성장호르몬 파동 분석<br>
-                • 골연령 진행 단계 Zero-Decision 판독
-              </div>
-            </div>
-
-            <div class="mf-glass-card" style="text-align: center; padding: 1.4rem 1.2rem;">
-              <span style="display: inline-block; padding: 0.28rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; background: rgba(255,255,255,0.12); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.65rem;">
-                두뇌·소근육 발달 수석 AI
-              </span>
-              <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">Neuro-Director AI</h3>
-              <div style="text-align: left; font-size: 0.78rem; color: rgba(255,255,255,0.72); line-height: 1.6;">
-                • 만 N→N+3세 연속 성장주기 로드맵 설계<br>
-                • 몬테소리 vs 은물·가베 월령 적합성 판정<br>
-                • 주말 박물관·과학관 3단계 하브루타 코칭
-              </div>
-            </div>
-
-            <div class="mf-glass-card" style="text-align: center; padding: 1.4rem 1.2rem;">
-              <span style="display: inline-block; padding: 0.28rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; background: rgba(255,255,255,0.12); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.65rem;">
-                척추 감압·생체역학 수석 AI
-              </span>
-              <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">Ortho-Director AI</h3>
-              <div style="text-align: left; font-size: 0.78rem; color: rgba(255,255,255,0.72); line-height: 1.6;">
-                • 추간판 수분 복원 데드행(+1.8cm) 프로토콜<br>
-                • 볼프의 법칙(Wolff's Law) 성장판 압전 자극<br>
-                • 스마트폰 거북목·골반 비대칭 교정 루틴
-              </div>
-            </div>
-
-            <div class="mf-glass-card" style="text-align: center; padding: 1.4rem 1.2rem;">
-              <span style="display: inline-block; padding: 0.28rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; background: rgba(255,255,255,0.12); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.65rem;">
-                핀셋 영양·교구 큐레이션 AI
-              </span>
-              <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">Pinpoint-Curator AI</h3>
-              <div style="text-align: left; font-size: 0.78rem; color: rgba(255,255,255,0.72); line-height: 1.6;">
-                • 황기추출물(HT042)·어골·구연산칼슘 매칭<br>
-                • 월령별 소근육 장난감 &amp; 필독서 핀셋 직결<br>
-                • 누적 코호트 DB 가중치 실시간 자가개선
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===================================================================
-             SECTION 5 (#mf-faq): FAQ — 자주 묻는 질문
-             (Exact mfference.com Section 8 Border-Divided FAQ Layout)
-             =================================================================== -->
-        <div id="mf-faq" style="padding: 2.4rem 0; border-top: 1px solid rgba(255,255,255,0.08); max-width: 820px; margin: 0 auto;">
-          <p style="margin: 0 0 0.4rem 0; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.35);">FAQ</p>
-          <h2 style="margin: 0 0 1.5rem 0; font-size: 1.85rem; font-weight: 900; color: #FFFFFF;">자주 묻는 질문</h2>
-
-          <dl style="margin: 0; border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12);">
-            <div style="padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.10);">
-              <dt style="font-size: 1rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">Q1. 다른 성장 진단 서비스와 무엇이 다른가요?</dt>
-              <dd style="margin: 0; font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.62);">
-                키즈핏 AI 스튜디오는 외부 템플릿을 쓰지 않고 1,173편의 국제 학술 논문과 국가 표준 성장도표를 직접 학습한 독자 개발 「K-GROWTH AI™ v4.0」 엔진으로 운영됩니다. 단순 키 백분위 계산을 넘어 단·중·장기 지도 로드맵과 만 N→N+3세 연속 성장주기를 한 권의 가이드북으로 발행합니다.
-              </dd>
-            </div>
-            <div style="padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.10);">
-              <dt style="font-size: 1rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">Q2. 생년월일만 입력하면 성장단계와 골연령 진행도가 정말 자동으로 설정되나요?</dt>
-              <dd style="margin: 0; font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.62);">
-                네. 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다. 출생 연·월·일을 선택하시면 일수 단위(0.01개월) 정밀 월령과 최근 성장폭을 분석해 현재 성장단계 및 골연령 진행도를 AI가 자동으로 설정해 드립니다.
-              </dd>
-            </div>
-            <div style="padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.10);">
-              <dt style="font-size: 1rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">Q3. 영양제·장난감·도서 추천은 아이마다 어떻게 다르게 나오나요?</dt>
-              <dd style="margin: 0; font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.62);">
-                막연한 쇼핑몰 메인 화면이 아니라, 아이의 월령·키 백분위·저해 습관에 따라 꼭 필요한 구체적 성분(예: 식약처 인정 황기추출물 HT042, 어골·구연산 칼슘, 몬테소리 핀셋 교구, 연령별 하브루타·메타인지 도서)을 1:1로 매칭하여 클릭 즉시 해당 상품 리스트가 열립니다.
-              </dd>
-            </div>
-            <div style="padding: 1.25rem 0;">
-              <dt style="font-size: 1rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">Q4. 입력한 데이터는 어떻게 저장되고 자가개선에 쓰이나요?</dt>
-              <dd style="margin: 0; font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.62);">
-                진단 시 입력하신 생체 데이터는 개인 성장 가이드북 기록장에 자동 보존되어 아이의 성장 추이를 누적 관리할 수 있으며, 익명 코호트 DB로 집계되어 동일 연령대의 최다 성장 병목 요인과 학술 논문 크롤링 가중치를 실시간 고도화하는 데 활용됩니다.
-              </dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- ===================================================================
-             SECTION 6 (#mf-contact): START CONSULTING — 정상에 도달할 준비가 되셨다면
-             (Exact mfference.com Section 9 Closing CTA -> Opens Survey Studio)
-             =================================================================== -->
-        <div id="mf-contact" style="padding: 2.6rem 0 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
-          <div style="text-align: center; margin-bottom: 1.75rem;">
-            <span class="mf-kicker">START BESPOKE DIAGNOSIS</span>
-            <h2 class="mf-section-title">정상에 도달할 준비가 되셨다면</h2>
-            <p class="mf-section-sub">
-              독자 개발 K:IDS-FIT AI 맞춤 진단을 통해 우리 아이와 청소년에게 가장 빠른 성장 경로를 제안드릴게요.
+            <span class="mf-kicker">OUR SERVICES</span>
+            <h2 class="mf-section-title" style="font-size: clamp(1.55rem, 3vw, 2.2rem);">우리가 제공하는 3가지 핵심 서비스</h2>
+            <p class="mf-section-sub" style="margin-bottom: 0;">
+              1분 설문을 마치면 아래 3가지 맞춤형 리포트가 한 권의 가이드북으로 즉시 발행됩니다.
             </p>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem;">
-            <!-- Parent Edition Card -->
-            <div class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56,189,248,0.3);">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-                  <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8; letter-spacing: 0.08em;">EDITION A · FOR PARENTS</span>
-                  <span style="font-size: 1.35rem;">👶</span>
-                </div>
-                <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  학부모 에디션 — 우리 아이 맞춤형 성장 가이드북
-                </h3>
-                <p style="font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1.2rem 0;">
-                  생년월일 일수 보정 백분위, 만 N→N+3세 연속 양육 로드맵, 황기추출물·어골칼슘 영양제 및 월령별 소근육 교구·도서 핀셋 처방전을 발행합니다.
-                </p>
+            <!-- Service 1 -->
+            <div class="mf-glass-card" style="padding: 1.65rem;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #38BDF8; letter-spacing: 0.18em; margin-bottom: 0.55rem;">
+                SERVICE 01 · PHYSICAL GROWTH
               </div>
-              <button type="button" id="btn-enter-studio-parent" class="mf-btn-white" style="width: 100%; padding: 0.95rem 1.2rem; font-size: 0.92rem;">
-                👶 학부모 에디션으로 진단 시작하기 →
-              </button>
+              <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.55rem 0;">
+                키 &amp; 육체적 성장 정밀 진단
+              </h3>
+              <p style="font-size: 0.86rem; color: rgba(255,255,255,0.68); line-height: 1.65; margin: 0;">
+                생년월일(월령)과 부모 키, 수면·식습관을 바탕으로 <strong style="color: #FFFFFF;">현재 키 백분위, 방치 시 예측키 vs 관리 시 최대 잠재키</strong>를 산출하고 단기·중기·장기 신체 성장 루틴을 제시합니다.
+              </p>
             </div>
 
-            <!-- Youth Edition Card -->
-            <div class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16,185,129,0.3);">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-                  <span style="font-size: 0.74rem; font-weight: 800; color: #10B981; letter-spacing: 0.08em;">EDITION B · FOR YOUTH &amp; SELF</span>
-                  <span style="font-size: 1.35rem;">🙋</span>
-                </div>
-                <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  청소년·본인 에디션 — 나의 잠재키 &amp; 두뇌 성장 가이드북
-                </h3>
-                <p style="font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0 0 1.2rem 0;">
-                  성장판 잔여 잠재력 시뮬레이션, 밤 10시 성장호르몬 수면 루틴, 거북목·척추 감압 스트레칭으로 숨은 키 2cm 찾기, 전두엽 집중력 플랜을 발행합니다.
-                </p>
+            <!-- Service 2 -->
+            <div class="mf-glass-card" style="padding: 1.65rem;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #A78BFA; letter-spacing: 0.18em; margin-bottom: 0.55rem;">
+                SERVICE 02 · MENTAL &amp; LEARNING
               </div>
-              <button type="button" id="btn-enter-studio-youth" class="mf-btn-glass" style="width: 100%; padding: 0.95rem 1.2rem; font-size: 0.92rem; background: rgba(16,185,129,0.18); border-color: #10B981;">
-                🙋 청소년·본인 에디션으로 진단 시작하기 →
-              </button>
+              <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.55rem 0;">
+                정신적 성장 &amp; 시기별 맞춤 학습 가이드
+              </h3>
+              <p style="font-size: 0.86rem; color: rgba(255,255,255,0.68); line-height: 1.65; margin: 0;">
+                나이에 맞춰 성장 단계를 자동 설정하고, <strong style="color: #FFFFFF;">올해(만 N세)부터 내년·내후년(만 N+3세)까지</strong> 꼭 챙겨야 할 두뇌·정서 발달 과제와 시기별 학습 방향을 알려드립니다.
+              </p>
             </div>
+
+            <!-- Service 3 -->
+            <div class="mf-glass-card" style="padding: 1.65rem;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #10B981; letter-spacing: 0.18em; margin-bottom: 0.55rem;">
+                SERVICE 03 · PINPOINT CURATION
+              </div>
+              <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.55rem 0;">
+                1:1 맞춤 영양제 · 교구 · 도서 추천
+              </h3>
+              <p style="font-size: 0.86rem; color: rgba(255,255,255,0.68); line-height: 1.65; margin: 0;">
+                막연한 상품 나열이 아니라, 아이의 진단 결과에 꼭 필요한 <strong style="color: #FFFFFF;">성분별 영양제(황기추출물·칼슘 등), 소근육·두뇌 장난감, 필독 도서</strong>만 핀셋으로 연결해 드립니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- Compact Official Basis Footnote Bar -->
+          <div style="margin-top: 1.75rem; padding: 0.95rem 1.25rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; justify-content: center; align-items: center; gap: 1.2rem; flex-wrap: wrap; font-size: 0.78rem; color: rgba(255,255,255,0.55);">
+            <span>🏛️ <strong style="color: rgba(255,255,255,0.85);">분석 기준:</strong> 질병관리청(KDCA) 성장도표</span>
+            <span>·</span>
+            <span>보건복지부 영유아 발달선별검사(K-DST)</span>
+            <span>·</span>
+            <span>국제 학술 논문 DB &amp; 입력 코호트 자가학습</span>
           </div>
         </div>
 
@@ -601,11 +223,11 @@
 
     <!-- Studio Mode Return Bar (Visible when inside the Interactive Survey Studio) -->
     <div id="studio-utility-return-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; padding: 0.6rem 1.1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 9999px;">
-      <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.03em;">
-        ⚡ K:IDS-FIT AI STUDIO · 독자 개발 K-GROWTH LAB 1:1 진단 스튜디오
+      <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.02em;">
+        ✦ KIDS-FIT AI · 1:1 맞춤형 성장 &amp; 학습 진단
       </span>
       <button type="button" id="btn-back-to-brand" style="background: rgba(255,255,255,0.1); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.32rem 0.9rem; font-size: 0.76rem; font-weight: 800; cursor: pointer;">
-        ← 브랜드 스토리 &amp; 솔루션 소개로 돌아가기
+        ← 첫 화면(서비스 소개)으로 돌아가기
       </button>
     </div>
 
