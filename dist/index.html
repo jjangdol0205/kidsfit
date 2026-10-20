@@ -63,31 +63,10 @@
     </div>
   </header>
 
-  <!-- 4 Master Cores + Core 5 Capsule Navigation -->
-  <div class="capsule-nav-wrapper">
-    <nav class="capsule-nav" aria-label="임상 분석 탭 네비게이션" id="capsule-tabs">
-      <button type="button" class="capsule-tab active" data-tab="tab-auxology" id="tab-btn-auxology" role="tab" aria-selected="true" aria-controls="tab-pane-auxology">
-        <span>📏</span> <span data-i18n="nav.auxology">신체 성장 &amp; 골연령 궤적</span>
-      </button>
-      <button type="button" class="capsule-tab" data-tab="tab-endocrinology" id="tab-btn-endocrinology" role="tab" aria-selected="false" aria-controls="tab-pane-endocrinology">
-        <span>🧬</span> <span data-i18n="nav.endocrinology">호르몬·수면 &amp; 임상 영양</span>
-      </button>
-      <button type="button" class="capsule-tab" data-tab="tab-biomechanics" id="tab-btn-biomechanics" role="tab" aria-selected="false" aria-controls="tab-pane-biomechanics">
-        <span>🏃</span> <span data-i18n="nav.biomechanics">척추 감압 &amp; 생체역학</span>
-      </button>
-      <button type="button" class="capsule-tab" data-tab="tab-neuro" id="tab-btn-neuro" role="tab" aria-selected="false" aria-controls="tab-pane-neuro">
-        <span>🧠</span> <span data-i18n="nav.neuro">뇌인지 &amp; 탐구 로드맵</span>
-      </button>
-      <button type="button" class="capsule-tab" data-tab="tab-tracker" id="tab-btn-tracker" role="tab" aria-selected="false" aria-controls="tab-pane-tracker">
-        <span>📊</span> <span data-i18n="nav.tracker">90일 트래커 &amp; A4 리포트</span>
-      </button>
-    </nav>
-  </div>
-
   <main class="main-container">
 
-    <!-- Hero Section -->
-    <section class="hero-section" aria-label="서비스 소개">
+    <!-- Hero Section (Compact) -->
+    <section class="hero-section compact-hero" id="hero-section" aria-label="서비스 소개">
       <div class="hero-pill-badge">
         <span>🩺</span> <span data-i18n="hero.badge">임상 소아내분비 &amp; 생체역학 정밀 분석</span>
       </div>
@@ -100,274 +79,265 @@
       </p>
     </section>
 
-    <!-- 5 Clinical Age-Group Demo Presets Section -->
-    <section class="presets-section" aria-label="1초 임상 프리셋">
-      <div class="section-header-row">
-        <div class="section-label-group">
-          <span class="section-badge-pill" data-i18n="presets.badge">⚡ 빠른 데모</span>
-          <h2 class="section-title" data-i18n="presets.title">임상 케이스 1초 시뮬레이션 프리셋</h2>
-        </div>
-        <span class="section-hint" data-i18n="presets.hint">연령별 전형적인 성장·발달 임상 데이터를 즉시 로드하여 분석을 확인합니다.</span>
+    <!-- Compact Quick Presets Bar (Preserves preset-card-1 through 5 IDs & data-preset-id for compatibility) -->
+    <div class="quick-presets-wrapper" id="quick-presets-bar">
+      <div class="quick-presets-inner">
+        <span class="quick-presets-label">⚡ 1초 임상 프리셋:</span>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-1" id="preset-card-1">👶 영유아 3세</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-2" id="preset-card-2">🧒 아동기 7세</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-3" id="preset-card-3">👦 사춘기 10세</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-4" id="preset-card-4">⚡ 급성장 13세</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-5" id="preset-card-5">🌟 청소년 16세</button>
       </div>
-
-      <div class="presets-grid" id="presets-grid">
-        <!-- Preset 1: Toddler 3 Yrs -->
-        <button type="button" class="preset-card" data-preset-id="preset-1" id="preset-card-1">
-          <div class="preset-card-badge preset-badge-cyan" data-i18n="preset.1.badge">👶 영유아기 3세</div>
-          <h3 class="preset-card-title" data-i18n="preset.1.title">기초 성장기 &amp; 소근육 협응</h3>
-          <p class="preset-card-desc" data-i18n="preset.1.desc">성장판 개방률 90%+, 감각·예술 표현 골든타임</p>
-          <div class="preset-card-action">1초 임상 시뮬레이션 →</div>
-        </button>
-
-        <!-- Preset 2: Childhood 7 Yrs -->
-        <button type="button" class="preset-card" data-preset-id="preset-2" id="preset-card-2">
-          <div class="preset-card-badge preset-badge-indigo" data-i18n="preset.2.badge">🧒 아동기 7세</div>
-          <h3 class="preset-card-title" data-i18n="preset.2.title">수리·공간 논리 &amp; 바른 자세 정렬</h3>
-          <p class="preset-card-desc" data-i18n="preset.2.desc">안정적 성장속도 유지 및 척추 정렬 관리</p>
-          <div class="preset-card-action">1초 임상 시뮬레이션 →</div>
-        </button>
-
-        <!-- Preset 3: Early Puberty 10 Yrs -->
-        <button type="button" class="preset-card" data-preset-id="preset-3" id="preset-card-3">
-          <div class="preset-card-badge preset-badge-amber" data-i18n="preset.3.badge">👦 사춘기 진입 10세</div>
-          <h3 class="preset-card-title" data-i18n="preset.3.title">사춘기 초기 수면·호르몬 최적화</h3>
-          <p class="preset-card-desc" data-i18n="preset.3.desc">성장호르몬 분비 극대화 및 심야 혈당 스파이크 방어</p>
-          <div class="preset-card-action">1초 임상 시뮬레이션 →</div>
-        </button>
-
-        <!-- Preset 4: Peak Growth Spurt 13 Yrs -->
-        <button type="button" class="preset-card" data-preset-id="preset-4" id="preset-card-4">
-          <div class="preset-card-badge preset-badge-rose" data-i18n="preset.4.badge">⚡ 급성장기 13세</div>
-          <h3 class="preset-card-title" data-i18n="preset.4.title">PHV 급성장 피크 집중 처방</h3>
-          <p class="preset-card-desc" data-i18n="preset.4.desc">연 8~10cm 폭풍 성장 골든타임 &amp; 전두엽 실행기능 몰입</p>
-          <div class="preset-card-action">1초 임상 시뮬레이션 →</div>
-        </button>
-
-        <!-- Preset 5: Late Adolescent 16 Yrs -->
-        <button type="button" class="preset-card" data-preset-id="preset-5" id="preset-card-5">
-          <div class="preset-card-badge preset-badge-mint" data-i18n="preset.5.badge">🌟 후기 청소년 16세</div>
-          <h3 class="preset-card-title" data-i18n="preset.5.title">체형 완성기 척추 디스크 복원</h3>
-          <p class="preset-card-desc" data-i18n="preset.5.desc">성장판 폐쇄 전 척추 감압으로 숨은 키 1.5~2.5cm 복원</p>
-          <div class="preset-card-action">1초 임상 시뮬레이션 →</div>
-        </button>
-      </div>
-    </section>
+    </div>
 
     <!-- 5-Stage Guided Bio Onboarding Form Section -->
     <section class="quiz-section" id="quiz-section" aria-label="5단계 바이오 온보딩 진단">
       <div class="quiz-card bento-card">
         
-        <!-- Step Header & Progress Track -->
+        <!-- Step Header & Progress Track (6 Steps) -->
         <div class="quiz-header">
           <div class="quiz-meta-row">
-            <span class="quiz-step-tag" id="quiz-step-tag">Step 1 / 5</span>
-            <span class="quiz-progress-text" id="quiz-progress-text">20% 완료</span>
+            <span class="quiz-step-tag" id="quiz-step-tag">Step 1 / 6</span>
+            <span class="quiz-progress-text" id="quiz-progress-text">17% 완료</span>
           </div>
-          <h2 class="quiz-step-title" id="quiz-step-title" data-i18n="wizard.step1.title">기본 신체 계측 &amp; 유전 데이터</h2>
-          <p class="quiz-step-subtitle" id="quiz-step-subtitle" data-i18n="wizard.step1.sub">CDC 및 질병관리청 LMS 파라미터 백분위와 유전 표적키(MPH) 산출에 사용됩니다.</p>
+          <h2 class="quiz-step-title" id="quiz-step-title" data-i18n="wizard.step1.title">진단 대상 &amp; 성별·나이</h2>
+          <p class="quiz-step-subtitle" id="quiz-step-subtitle" data-i18n="wizard.step1.sub">소아청소년 성장도표 및 성인 초기 표준 데이터 매칭에 활용됩니다.</p>
           <div class="quiz-progress-track">
-            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 20%;"></div>
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 16.7%;"></div>
           </div>
         </div>
 
         <form id="diagnosis-form" novalidate>
+          <div class="slide-funnel-viewport" id="slide-funnel-viewport">
+            <div class="slide-funnel-track" id="slide-funnel-track">
 
-          <!-- Step 1: Biometrics & Genetics -->
-          <div class="quiz-step-content active" data-step="1" id="step-content-1">
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label class="form-label form-label-required" data-i18n="label.gender">아이 성별</label>
-                <div class="choice-chips-grid">
-                  <label class="chip-label">
-                    <input type="radio" name="child-gender" value="boy" class="chip-input" id="gender-boy" checked>
-                    <span class="chip-pill">👦 <span data-i18n="label.gender.boy">남아 (Boy)</span></span>
-                  </label>
-                  <label class="chip-label">
-                    <input type="radio" name="child-gender" value="girl" class="chip-input" id="gender-girl">
-                    <span class="chip-pill">👧 <span data-i18n="label.gender.girl">여아 (Girl)</span></span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <label for="child-age-slider" class="form-label form-label-required" data-i18n="label.age">만 나이 (연령)</label>
-                  <span id="child-age-display" style="font-size: 0.9rem; font-weight: 800; color: var(--theme-accent);">10세 (120개월)</span>
-                </div>
-                <input type="range" id="child-age-slider" min="1" max="20" step="1" value="10" class="form-input" style="padding: 0.4rem 0;">
-                <input type="hidden" id="child-age-months" name="child-age-months" value="120">
-              </div>
-            </div>
-
-            <div class="form-grid-3">
-              <div class="form-group">
-                <label for="child-height" class="form-label form-label-required" data-i18n="label.height">현재 신장</label>
-                <div class="input-suffix-wrapper">
-                  <input type="number" id="child-height" name="child-height" step="0.1" class="form-input" placeholder="137.0" min="45" max="230" value="137.0" required>
-                  <span class="input-suffix unit-label-height">cm</span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="child-weight" class="form-label form-label-required" data-i18n="label.weight">현재 체중</label>
-                <div class="input-suffix-wrapper">
-                  <input type="number" id="child-weight" name="child-weight" step="0.1" class="form-input" placeholder="35.5" min="2" max="160" value="35.5" required>
-                  <span class="input-suffix unit-label-weight">kg</span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="child-recent-gain" class="form-label form-label-required" data-i18n="label.recentGrowth">최근 6개월 성장폭</label>
-                <div class="input-suffix-wrapper">
-                  <input type="number" id="child-recent-gain" name="child-recent-gain" step="0.1" class="form-input" placeholder="3.2" min="0" max="20" value="3.2" required>
-                  <span class="input-suffix unit-label-height">cm</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="father-height" class="form-label form-label-required" data-i18n="label.fatherHeight">아버지 신장 (유전 표적키용)</label>
-                <div class="input-suffix-wrapper">
-                  <input type="number" id="father-height" name="father-height" step="0.1" class="form-input" placeholder="173.5" min="100" max="240" value="173.5" required>
-                  <span class="input-suffix unit-label-height">cm</span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="mother-height" class="form-label form-label-required" data-i18n="label.motherHeight">어머니 신장 (유전 표적키용)</label>
-                <div class="input-suffix-wrapper">
-                  <input type="number" id="mother-height" name="mother-height" step="0.1" class="form-input" placeholder="160.5" min="100" max="240" value="160.5" required>
-                  <span class="input-suffix unit-label-height">cm</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="user-region" class="form-label">거주 지역 (지역 환경 데이터 연동)</label>
-              <select id="user-region" name="user-region" class="form-select">
-                <option value="서울 강남·서초·송파">서울 강남·서초·송파</option>
-                <option value="서울 강북·마포·용산">서울 강북·마포·용산</option>
-                <option value="경기 남부(분당·수원·용인·동탄)">경기 남부(분당·수원·용인·동탄)</option>
-                <option value="경기 북부·인천">경기 북부·인천</option>
-                <option value="부산·경남">부산·경남</option>
-                <option value="대구·경북">대구·경북</option>
-                <option value="대전·충청">대전·충청</option>
-                <option value="광주·전라·기타">광주·전라·기타</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Step 2: Tanner Stage & Skeletal Maturation -->
-          <div class="quiz-step-content" data-step="2" id="step-content-2">
-            <div class="form-group">
-              <label class="form-label form-label-required">성장 단계 &amp; 골연령(Tanner Stage) 진행도</label>
-              <div class="bento-choice-grid">
-                <label class="bento-choice-label">
-                  <input type="radio" name="tanner-phase" value="phase_1" class="chip-input" id="phase-1">
-                  <div class="bento-choice-card">
-                    <span class="bento-choice-icon">🌱</span>
-                    <h4 class="bento-choice-title" data-i18n="phase.1.title">Phase 1. 기초 성장기</h4>
-                    <p class="bento-choice-desc" data-i18n="phase.1.desc">성장판 개방률 90%+, 연 5~6cm 꾸준한 성장 구간</p>
+              <!-- Slide 1: Target, Gender, Age -->
+              <div class="slide-funnel-card quiz-step-content active" data-step="1" id="step-content-1">
+                <div class="form-group">
+                  <label class="form-label form-label-required">진단 대상 선택</label>
+                  <div class="choice-chips-grid">
+                    <label class="chip-label">
+                      <input type="radio" name="target-subject" value="child" class="chip-input" checked id="target-child">
+                      <span class="chip-pill">👶 우리 아이 (영유아·아동·청소년)</span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="radio" name="target-subject" value="self" class="chip-input" id="target-self">
+                      <span class="chip-pill">🙋 본인 (청소년·만 20세까지)</span>
+                    </label>
                   </div>
-                </label>
+                </div>
 
-                <label class="bento-choice-label">
-                  <input type="radio" name="tanner-phase" value="phase_2" class="chip-input" id="phase-2" checked>
-                  <div class="bento-choice-card">
-                    <span class="bento-choice-icon">⚡</span>
-                    <h4 class="bento-choice-title" data-i18n="phase.2.title">Phase 2. 급성장 피크기 (PHV)</h4>
-                    <p class="bento-choice-desc" data-i18n="phase.2.desc">성장호르몬 및 IGF-1 분비 폭발, 골든타임 최대 가속 구간</p>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label form-label-required" data-i18n="label.gender">아이 성별</label>
+                    <div class="choice-chips-grid">
+                      <label class="chip-label">
+                        <input type="radio" name="child-gender" value="boy" class="chip-input" id="gender-boy" checked>
+                        <span class="chip-pill">👦 <span data-i18n="label.gender.boy">남아 (Boy)</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="radio" name="child-gender" value="girl" class="chip-input" id="gender-girl">
+                        <span class="chip-pill">👧 <span data-i18n="label.gender.girl">여아 (Girl)</span></span>
+                      </label>
+                    </div>
                   </div>
-                </label>
 
-                <label class="bento-choice-label">
-                  <input type="radio" name="tanner-phase" value="phase_3" class="chip-input" id="phase-3">
-                  <div class="bento-choice-card">
-                    <span class="bento-choice-icon">⏳</span>
-                    <h4 class="bento-choice-title" data-i18n="phase.3.title">Phase 3. 감속·성숙기</h4>
-                    <p class="bento-choice-desc" data-i18n="phase.3.desc">변성기·초경 이후, 성장판 닫히기 전 마지막 잔여 잠재력 4~7cm 구간</p>
+                  <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                      <label for="child-age-slider" class="form-label form-label-required" data-i18n="label.age">만 나이 (연령)</label>
+                      <span id="child-age-display" style="font-size: 0.95rem; font-weight: 800; color: var(--theme-accent);">10세 (120개월)</span>
+                    </div>
+                    <input type="range" id="child-age-slider" min="1" max="20" step="1" value="10" class="form-input" style="padding: 0.4rem 0;">
+                    <input type="hidden" id="child-age-months" name="child-age-months" value="120">
                   </div>
-                </label>
+                </div>
+              </div>
 
-                <label class="bento-choice-label">
-                  <input type="radio" name="tanner-phase" value="phase_4" class="chip-input" id="phase-4">
-                  <div class="bento-choice-card">
-                    <span class="bento-choice-icon">🧘</span>
-                    <h4 class="bento-choice-title" data-i18n="phase.4.title">Phase 4. 체형·자세 완성기</h4>
-                    <p class="bento-choice-desc" data-i18n="phase.4.desc">척추 디스크 감압 및 거북목·골반 교정으로 숨은 키 1.5~2.5cm 복원 구간</p>
+              <!-- Slide 2: Height, Weight, 6-Month Growth Gain -->
+              <div class="slide-funnel-card quiz-step-content" data-step="2" id="step-content-2">
+                <div class="form-grid-3">
+                  <div class="form-group">
+                    <label for="child-height" class="form-label form-label-required" data-i18n="label.height">현재 신장</label>
+                    <div class="input-suffix-wrapper">
+                      <input type="number" id="child-height" name="child-height" step="0.1" class="form-input" placeholder="137.0" min="45" max="230" value="137.0" required>
+                      <span class="input-suffix unit-label-height">cm</span>
+                    </div>
                   </div>
-                </label>
-              </div>
-            </div>
-          </div>
 
-          <!-- Step 3: Bio-Inhibition Factors (Multi-Select) -->
-          <div class="quiz-step-content" data-step="3" id="step-content-3">
-            <div class="form-group">
-              <label class="form-label form-label-required">라이프스타일 &amp; 생체 저해 요인 체크 (복수 선택 가능)</label>
-              <p class="section-hint" style="margin-bottom: 0.85rem;">해당되는 요인은 수면 중 성장호르몬 분비 억제율(-52% max) 및 예측키 손실치 계산에 반영됩니다.</p>
-              <div class="choice-chips-grid" id="habits-group">
-                <label class="chip-label">
-                  <input type="checkbox" name="growth-habits" value="late_sleep" class="chip-input" id="habit-late-sleep" checked>
-                  <span class="chip-pill">🌙 <span data-i18n="habit.late_sleep">수면 리듬 지연 (밤 10:30 이후 취침)</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="growth-habits" value="night_carbs" class="chip-input" id="habit-night-carbs">
-                  <span class="chip-pill">🍩 <span data-i18n="habit.night_carbs">야간 혈당 스파이크 (취침 전 단 음식)</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="growth-habits" value="poor_posture" class="chip-input" id="habit-poor-posture">
-                  <span class="chip-pill">📱 <span data-i18n="habit.poor_posture">자세 불균형 (거북목·굽은 등)</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="growth-habits" value="picky_eater" class="chip-input" id="habit-picky-eater">
-                  <span class="chip-pill">🥦 <span data-i18n="habit.picky_eater">영양 불균형 (단백질/채소 편식)</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="growth-habits" value="sedentary" class="chip-input" id="habit-sedentary">
-                  <span class="chip-pill">🪑 <span data-i18n="habit.sedentary">신체활동 부족 (하루 30분 점프 미만)</span></span>
-                </label>
-              </div>
-            </div>
-          </div>
+                  <div class="form-group">
+                    <label for="child-weight" class="form-label form-label-required" data-i18n="label.weight">현재 체중</label>
+                    <div class="input-suffix-wrapper">
+                      <input type="number" id="child-weight" name="child-weight" step="0.1" class="form-input" placeholder="35.5" min="2" max="160" value="35.5" required>
+                      <span class="input-suffix unit-label-weight">kg</span>
+                    </div>
+                  </div>
 
-          <!-- Step 4: Neuro-Cognitive Key Axes (5 Major Domains) -->
-          <div class="quiz-step-content" data-step="4" id="step-content-4">
-            <div class="form-group">
-              <label class="form-label form-label-required">연령별 두뇌·신경인지 핵심 관심 축 (5대 영역)</label>
-              <p class="section-hint" style="margin-bottom: 0.85rem;">신경가소성 골든타임 프로토콜과 주말 하브루타 탐구 테마를 생성합니다.</p>
-              <div class="choice-chips-grid">
-                <label class="chip-label">
-                  <input type="checkbox" name="cognitive-axes" value="math_logic" class="chip-input" id="cog-math">
-                  <span class="chip-pill">📐 <span data-i18n="cog.math_logic">수리·공간·논리적 사고력</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="cognitive-axes" value="language_reading" class="chip-input" id="cog-lang">
-                  <span class="chip-pill">📚 <span data-i18n="cog.language_reading">언어·문해력·비판적 독서</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="cognitive-axes" value="science_nature" class="chip-input" id="cog-science" checked>
-                  <span class="chip-pill">🔬 <span data-i18n="cog.science_nature">과학·자연·기술 탐구력</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="cognitive-axes" value="sensory_arts" class="chip-input" id="cog-arts">
-                  <span class="chip-pill">🎨 <span data-i18n="cog.sensory_arts">감각·예술·창의적 표현력</span></span>
-                </label>
-                <label class="chip-label">
-                  <input type="checkbox" name="cognitive-axes" value="executive_focus" class="chip-input" id="cog-exec">
-                  <span class="chip-pill">🎯 <span data-i18n="cog.executive_focus">전두엽 실행기능 &amp; 집중력</span></span>
-                </label>
+                  <div class="form-group">
+                    <label for="child-recent-gain" class="form-label form-label-required" data-i18n="label.recentGrowth">최근 6개월 성장폭</label>
+                    <div class="input-suffix-wrapper">
+                      <input type="number" id="child-recent-gain" name="child-recent-gain" step="0.1" class="form-input" placeholder="3.2" min="0" max="20" value="3.2" required>
+                      <span class="input-suffix unit-label-height">cm</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Step 5: Bio Computation Loader Container (Step 5 of 5) -->
-          <div class="quiz-step-content" data-step="5" id="step-content-5" style="display: none;">
-            <div style="text-align: center; padding: 2rem 1rem;">
-              <div class="analysis-spinner" style="margin: 0 auto 1.5rem auto;"></div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;" data-i18n="loader.step5">바이오 통계 연산 및 궤적 모델링</h3>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">CDC 2000 &amp; KDCA 2017 LMS 파라미터 매트릭스를 기반으로 임상 처방을 산출하고 있습니다.</p>
+              <!-- Slide 3: Parents' Height & Realtime MPH Badge & Region -->
+              <div class="slide-funnel-card quiz-step-content" data-step="3" id="step-content-3">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="father-height" class="form-label form-label-required" data-i18n="label.fatherHeight">아버지 신장 (유전 표적키용)</label>
+                    <div class="input-suffix-wrapper">
+                      <input type="number" id="father-height" name="father-height" step="0.1" class="form-input" placeholder="173.5" min="100" max="240" value="173.5" required>
+                      <span class="input-suffix unit-label-height">cm</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mother-height" class="form-label form-label-required" data-i18n="label.motherHeight">어머니 신장 (유전 표적키용)</label>
+                    <div class="input-suffix-wrapper">
+                      <input type="number" id="mother-height" name="mother-height" step="0.1" class="form-input" placeholder="160.5" min="100" max="240" value="160.5" required>
+                      <span class="input-suffix unit-label-height">cm</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real-time MPH Preview Badge -->
+                <div class="mph-preview-badge" id="mph-preview-badge">
+                  <div class="mph-badge-icon">🧬</div>
+                  <div class="mph-badge-content">
+                    <span class="mph-badge-label">실시간 부모 유전 표적키 (Tanner MPH)</span>
+                    <span class="mph-badge-value" id="mph-badge-value">173.5 cm <span class="mph-badge-range">(±8.5cm: 165.0cm ~ 182.0cm)</span></span>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 1rem;">
+                  <label for="user-region" class="form-label">거주 지역 (지역 환경 &amp; 탐구 코스 연동)</label>
+                  <select id="user-region" name="user-region" class="form-select">
+                    <option value="서울 강남·서초·송파">서울 강남·서초·송파</option>
+                    <option value="서울 강북·마포·용산">서울 강북·마포·용산</option>
+                    <option value="경기 남부(분당·수원·용인·동탄)">경기 남부(분당·수원·용인·동탄)</option>
+                    <option value="경기 북부·인천">경기 북부·인천</option>
+                    <option value="부산·경남">부산·경남</option>
+                    <option value="대구·경북">대구·경북</option>
+                    <option value="대전·충청">대전·충청</option>
+                    <option value="광주·전라·기타">광주·전라·기타</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Slide 4: Tanner Phase 1~4 Large Touch Cards -->
+              <div class="slide-funnel-card quiz-step-content" data-step="4" id="step-content-4">
+                <div class="form-group">
+                  <label class="form-label form-label-required">현재 성장 단계 &amp; 골연령(Tanner Stage) 진행도</label>
+                  <div class="bento-choice-grid">
+                    <label class="bento-choice-label">
+                      <input type="radio" name="tanner-phase" value="phase_1" class="chip-input" id="phase-1">
+                      <div class="bento-choice-card">
+                        <span class="bento-choice-icon">🌱</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.1.title">Phase 1. 기초 성장기</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.1.desc">성장판 개방률 90%+, 연 5~6cm 꾸준한 성장 구간</p>
+                      </div>
+                    </label>
+
+                    <label class="bento-choice-label">
+                      <input type="radio" name="tanner-phase" value="phase_2" class="chip-input" id="phase-2" checked>
+                      <div class="bento-choice-card">
+                        <span class="bento-choice-icon">⚡</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.2.title">Phase 2. 급성장 피크기 (PHV)</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.2.desc">성장호르몬 및 IGF-1 분비 폭발, 골든타임 최대 가속 구간</p>
+                      </div>
+                    </label>
+
+                    <label class="bento-choice-label">
+                      <input type="radio" name="tanner-phase" value="phase_3" class="chip-input" id="phase-3">
+                      <div class="bento-choice-card">
+                        <span class="bento-choice-icon">⏳</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.3.title">Phase 3. 감속·성숙기</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.3.desc">변성기·초경 이후, 성장판 닫히기 전 마지막 잔여 잠재력 4~7cm 구간</p>
+                      </div>
+                    </label>
+
+                    <label class="bento-choice-label">
+                      <input type="radio" name="tanner-phase" value="phase_4" class="chip-input" id="phase-4">
+                      <div class="bento-choice-card">
+                        <span class="bento-choice-icon">🧘</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.4.title">Phase 4. 체형·자세 완성기</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.4.desc">척추 디스크 감압 및 거북목·골반 교정으로 숨은 키 1.5~2.5cm 복원 구간</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5: Bio-Inhibition Factors (5 Habits) -->
+              <div class="slide-funnel-card quiz-step-content" data-step="5" id="step-content-5">
+                <div class="form-group">
+                  <label class="form-label form-label-required">수면·영양·자세 생체 저해 요인 체크 (복수 선택 가능)</label>
+                  <p class="section-hint" style="margin-bottom: 0.85rem;">해당되는 요인은 수면 중 성장호르몬 분비 억제율(-52% max) 및 예측키 손실치 계산에 반영됩니다.</p>
+                  <div class="choice-chips-grid" id="habits-group">
+                    <label class="chip-label">
+                      <input type="checkbox" name="growth-habits" value="late_sleep" class="chip-input" id="habit-late-sleep" checked>
+                      <span class="chip-pill">🌙 <span data-i18n="habit.late_sleep">수면 리듬 지연 (밤 10:30 이후 취침)</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="growth-habits" value="night_carbs" class="chip-input" id="habit-night-carbs">
+                      <span class="chip-pill">🍩 <span data-i18n="habit.night_carbs">야간 혈당 스파이크 (취침 전 단 음식)</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="growth-habits" value="poor_posture" class="chip-input" id="habit-poor-posture">
+                      <span class="chip-pill">📱 <span data-i18n="habit.poor_posture">자세 불균형 (거북목·굽은 등)</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="growth-habits" value="picky_eater" class="chip-input" id="habit-picky-eater">
+                      <span class="chip-pill">🥦 <span data-i18n="habit.picky_eater">영양 불균형 (단백질/채소 편식)</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="growth-habits" value="sedentary" class="chip-input" id="habit-sedentary">
+                      <span class="chip-pill">🪑 <span data-i18n="habit.sedentary">신체활동 부족 (하루 30분 점프 미만)</span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 6: Cognitive 5 Domains + Primary CTA -->
+              <div class="slide-funnel-card quiz-step-content" data-step="6" id="slide-step-6">
+                <div class="form-group">
+                  <label class="form-label form-label-required">연령별 두뇌·신경인지 핵심 관심 축 (5대 영역)</label>
+                  <p class="section-hint" style="margin-bottom: 0.85rem;">신경가소성 골든타임 프로토콜과 주말 하브루타 탐구 테마를 생성합니다.</p>
+                  <div class="choice-chips-grid">
+                    <label class="chip-label">
+                      <input type="checkbox" name="cognitive-axes" value="math_logic" class="chip-input" id="cog-math">
+                      <span class="chip-pill">📐 <span data-i18n="cog.math_logic">수리·공간·논리적 사고력</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="cognitive-axes" value="language_reading" class="chip-input" id="cog-lang">
+                      <span class="chip-pill">📚 <span data-i18n="cog.language_reading">언어·문해력·비판적 독서</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="cognitive-axes" value="science_nature" class="chip-input" id="cog-science" checked>
+                      <span class="chip-pill">🔬 <span data-i18n="cog.science_nature">과학·자연·기술 탐구력</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="cognitive-axes" value="sensory_arts" class="chip-input" id="cog-arts">
+                      <span class="chip-pill">🎨 <span data-i18n="cog.sensory_arts">감각·예술·창의적 표현력</span></span>
+                    </label>
+                    <label class="chip-label">
+                      <input type="checkbox" name="cognitive-axes" value="executive_focus" class="chip-input" id="cog-exec">
+                      <span class="chip-pill">🎯 <span data-i18n="cog.executive_focus">전두엽 실행기능 &amp; 집중력</span></span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Primary CTA Button -->
+                <div style="margin-top: 1.75rem; text-align: center;">
+                  <button type="submit" class="btn btn-submit btn-block-cta" id="btn-submit-quiz" style="width: 100%; max-width: 480px; padding: 1rem 1.75rem; font-size: 1.05rem; font-weight: 800; border-radius: var(--radius-capsule); background: linear-gradient(135deg, var(--cyan-pulse) 0%, var(--bio-emerald) 100%); color: #060911; border: none; cursor: pointer; box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);">
+                    🔬 학술 논문 &amp; 공신력 데이터 기반 맞춤 분석 시작
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -376,7 +346,6 @@
             <button type="button" class="btn btn-secondary" id="btn-prev-step" style="display: none;" data-i18n="label.prev">← 이전 단계</button>
             <div style="flex: 1;"></div>
             <button type="button" class="btn btn-primary" id="btn-next-step" data-i18n="label.next">다음 단계 →</button>
-            <button type="submit" class="btn btn-submit" id="btn-submit-quiz" style="display: none;" data-i18n="label.scan">🔬 3초 바이오 스캔 분석 시작</button>
           </div>
 
         </form>
@@ -396,10 +365,10 @@
       </div>
     </div>
 
-    <!-- Clinical Dashboard / Results Container (4 Master Cores + Core 5) -->
-    <section class="prescription-container" id="prescription-container" style="display: none;" aria-label="임상 분석 처방 결과">
+    <!-- Phase 2: Results Dashboard & Master Briefing (Hidden initially until scan completes) -->
+    <section class="results-dashboard prescription-container hidden" id="results-dashboard" data-alias="prescription-container" style="display: none;" aria-label="임상 분석 처방 결과">
       
-      <!-- Prescription Banner -->
+      <!-- Patient Summary Bar with Retest Button -->
       <div class="prescription-banner">
         <div class="prescription-banner-left">
           <div class="prescription-avatar" id="rx-avatar">🧬</div>
@@ -408,7 +377,31 @@
             <p id="rx-header-subtitle">US CDC 2000 &amp; 질병관리청(KDCA 2017) 소아청소년 성장도표 정밀 분석 완료</p>
           </div>
         </div>
-        <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 재문진 및 데이터 변경</button>
+        <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 정보 다시 입력하기</button>
+      </div>
+
+      <!-- Master Briefing Card (Top of Phase 2 Results) -->
+      <div class="bento-card master-briefing-card" id="master-briefing-card"></div>
+
+      <!-- 4 Master Cores + Core 5 Capsule Navigation (Inside Phase 2 Results) -->
+      <div class="capsule-nav-wrapper" id="capsule-nav-wrapper">
+        <nav class="capsule-nav" aria-label="임상 분석 탭 네비게이션" id="capsule-tabs">
+          <button type="button" class="capsule-tab active" data-tab="tab-auxology" id="tab-btn-auxology" role="tab" aria-selected="true" aria-controls="tab-pane-auxology">
+            <span>📏</span> <span data-i18n="nav.auxology">신체 성장 &amp; 골연령 궤적</span>
+          </button>
+          <button type="button" class="capsule-tab" data-tab="tab-endocrinology" id="tab-btn-endocrinology" role="tab" aria-selected="false" aria-controls="tab-pane-endocrinology">
+            <span>🧬</span> <span data-i18n="nav.endocrinology">호르몬·수면 &amp; 임상 영양</span>
+          </button>
+          <button type="button" class="capsule-tab" data-tab="tab-biomechanics" id="tab-btn-biomechanics" role="tab" aria-selected="false" aria-controls="tab-pane-biomechanics">
+            <span>🏃</span> <span data-i18n="nav.biomechanics">척추 감압 &amp; 생체역학</span>
+          </button>
+          <button type="button" class="capsule-tab" data-tab="tab-neuro" id="tab-btn-neuro" role="tab" aria-selected="false" aria-controls="tab-pane-neuro">
+            <span>🧠</span> <span data-i18n="nav.neuro">뇌인지 &amp; 탐구 로드맵</span>
+          </button>
+          <button type="button" class="capsule-tab" data-tab="tab-tracker" id="tab-btn-tracker" role="tab" aria-selected="false" aria-controls="tab-pane-tracker">
+            <span>📊</span> <span data-i18n="nav.tracker">90일 트래커 &amp; A4 리포트</span>
+          </button>
+        </nav>
       </div>
 
       <!-- Core 1 Pane: Physical Growth & Auxology -->
@@ -429,7 +422,7 @@
       </div>
 
       <!-- Core 2 Pane: Endocrinology & Bio-Nutrition -->
-      <div class="tab-pane" id="tab-pane-endocrinology" role="tabpanel" aria-labelledby="tab-btn-endocrinology">
+      <div class="tab-pane hidden" id="tab-pane-endocrinology" role="tabpanel" aria-labelledby="tab-btn-endocrinology">
         <div class="tab-section-intro">
           <span class="tab-badge tab-badge-amber">🧬 Core 2 · Endocrinology</span>
           <h3 class="tab-title">24시간 호르몬 궤적 &amp; 임상 영양 생체이용률</h3>
@@ -446,7 +439,7 @@
       </div>
 
       <!-- Core 3 Pane: Biomechanics & Posture Studio -->
-      <div class="tab-pane" id="tab-pane-biomechanics" role="tabpanel" aria-labelledby="tab-btn-biomechanics">
+      <div class="tab-pane hidden" id="tab-pane-biomechanics" role="tabpanel" aria-labelledby="tab-btn-biomechanics">
         <div class="tab-section-intro">
           <span class="tab-badge tab-badge-rose">🏃 Core 3 · Biomechanics</span>
           <h3 class="tab-title">척추 감압 &amp; 성장판 미세자극 스튜디오</h3>
@@ -463,7 +456,7 @@
       </div>
 
       <!-- Core 4 Pane: Neuro-Cognitive Architecture -->
-      <div class="tab-pane" id="tab-pane-neuro" role="tabpanel" aria-labelledby="tab-btn-neuro">
+      <div class="tab-pane hidden" id="tab-pane-neuro" role="tabpanel" aria-labelledby="tab-btn-neuro">
         <div class="tab-section-intro">
           <span class="tab-badge tab-badge-mint">🧠 Core 4 · Neuro-Cognitive</span>
           <h3 class="tab-title">연령별 뇌인지 발달 &amp; 주말 하브루타 탐구 로드맵</h3>
@@ -480,7 +473,7 @@
       </div>
 
       <!-- Core 5 Pane: 90-Day Tracker & Hospital Clinic A4 PDF -->
-      <div class="tab-pane" id="tab-pane-tracker" role="tabpanel" aria-labelledby="tab-btn-tracker">
+      <div class="tab-pane hidden" id="tab-pane-tracker" role="tabpanel" aria-labelledby="tab-btn-tracker">
         <div class="tab-section-intro">
           <span class="tab-badge tab-badge-indigo">📊 Core 5 · Tracker &amp; Hospital Report</span>
           <h3 class="tab-title">90일 성장·루틴 트래커 &amp; 대학병원 스타일 A4 정밀 리포트</h3>
@@ -588,6 +581,7 @@
   <script src="src/js/monetization.js"></script>
   <script src="src/js/admin-osmu.js"></script>
   <script src="src/js/admin-studio.js"></script>
+  <script src="src/js/master-briefing.js"></script>
   <script src="src/js/app.js"></script>
 
   <!-- Hospital Clinic Style 2-Page A4 PDF Print Container -->

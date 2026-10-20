@@ -106,45 +106,52 @@
   const WIZARD_STEPS = [
     {
       step: 1,
-      titleKo: '기본 신체 계측 & 유전 데이터',
-      titleEn: 'Basic Biometrics & Genetics',
-      subKo: 'CDC 2000 및 KDCA 2017 LMS 파라미터 백분위와 유전 표적키(MPH) 산출에 사용됩니다.',
-      subEn: 'Utilized for CDC/KDCA LMS Z-scores and Tanner Mid-Parental Height (MPH).'
+      titleKo: '진단 대상 & 기본 프로필 (성별·나이)',
+      titleEn: 'Target Child & Basic Demographics',
+      subKo: '소아청소년 성장도표 및 성인 초기 표준 데이터 매칭에 활용됩니다.',
+      subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
     },
     {
       step: 2,
+      titleKo: '정밀 신체 계측치 (키·체중·성장폭)',
+      titleEn: 'Accurate Biometrics (Height, Weight, Velocity)',
+      subKo: 'CDC 2000 및 KDCA 2017 LMS 파라미터 백분위와 성장 속도 산출에 사용됩니다.',
+      subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
+    },
+    {
+      step: 3,
+      titleKo: '부모 신장 & 실시간 유전 표적키 (Tanner MPH)',
+      titleEn: 'Mid-Parental Height (MPH) & Genetic Potential',
+      subKo: '부모 신장 기반 실시간 유전 표적키(MPH)와 예측 오차 범위를 확인합니다.',
+      subEn: 'Calculates Tanner Mid-Parental Target Height and clinical margin in real-time.'
+    },
+    {
+      step: 4,
       titleKo: '성장 단계 & 골연령 (Tanner Stage) 진행도',
       titleEn: 'Skeletal Maturation & Tanner Stage',
       subKo: '성장판 개방률과 급성장 피크기(PHV) 잔여 잠재력을 평가합니다.',
       subEn: 'Evaluates epiphyseal plate open ratio and Peak Height Velocity (PHV) runway.'
     },
     {
-      step: 3,
-      titleKo: '라이프스타일 & 생체 저해 요인 체크',
+      step: 5,
+      titleKo: '라이프스타일 & 생체 저해 요인 체크 (복수 선택)',
       titleEn: 'Lifestyle & Bio-Inhibition Factors',
       subKo: '성장호르몬 분비 억제 및 잠재키 손실 요인을 복수 진단합니다.',
       subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
     },
     {
-      step: 4,
-      titleKo: '두뇌·신경인지 핵심 관심 축 (5대 영역)',
-      titleEn: 'Neuro-Cognitive Key Axes (5 Major Domains)',
-      subKo: '연령별 대뇌 피질 재조직화 및 신경가소성 자극 프로토콜을 설정합니다.',
-      subEn: 'Configures age-specific cortical rewiring and developmental inquiry.'
-    },
-    {
-      step: 5,
-      titleKo: '바이오 통계 연산 및 궤적 모델링',
-      titleEn: 'Clinical Computation & Modeling',
-      subKo: 'LMS Z-Score, 24시간 호르몬 곡선 및 3단 성인 예측키를 산출 중입니다.',
-      subEn: 'Calculating LMS Z-scores, 24h hormone curves, and 3 adult trajectories.'
+      step: 6,
+      titleKo: '두뇌·신경인지 핵심 관심축 & 임상 분석 시작',
+      titleEn: 'Neuro-Cognitive Focus & Analysis Initiation',
+      subKo: '두뇌 인지 관심 영역을 선택하고 800편+ 학술 논문 매칭 분석을 시작하세요.',
+      subEn: 'Select cognitive domains and initiate matching against 800+ clinical studies.'
     }
   ];
 
   // 3. Wizard Internal State
   const wizardState = {
     currentStep: 1,
-    maxStep: 5,
+    maxStep: 6,
     activePresetId: null,
     isScanning: false,
     scanCompleted: false,
@@ -164,18 +171,53 @@
     }
   };
 
+  // Real-time Tanner MPH Preview
+  function updateMphPreview() {
+    if (typeof document === 'undefined') return;
+    const badgeVal = document.getElementById('mph-badge-value');
+    if (!badgeVal) return;
+
+    const fatherInput = document.getElementById('father-height');
+    const motherInput = document.getElementById('mother-height');
+    const boyRadio = document.getElementById('gender-boy');
+    const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+
+    let fh = fatherInput ? parseFloat(fatherInput.value) || 173.5 : 173.5;
+    let mh = motherInput ? parseFloat(motherInput.value) || 160.5 : 160.5;
+    if (isImperial) {
+      fh = fh * 2.54;
+      mh = mh * 2.54;
+    }
+    const isBoy = boyRadio ? boyRadio.checked : true;
+    const delta = isBoy ? 13.0 : -13.0;
+    const mph = (fh + mh + delta) / 2.0;
+    const roundedMph = Math.round(mph * 10) / 10;
+    const min = Math.round((mph - 8.5) * 10) / 10;
+    const max = Math.round((mph + 8.5) * 10) / 10;
+
+    badgeVal.innerHTML = `${roundedMph.toFixed(1)} cm <span class="mph-badge-range">(±8.5cm: ${min.toFixed(1)}cm ~ ${max.toFixed(1)}cm)</span>`;
+  }
+
   // 4. Stepper Navigation Functions
   function goToStep(stepNumber) {
+    const maxStep = wizardState.maxStep;
+
     if (stepNumber < 1) stepNumber = 1;
-    if (stepNumber > wizardState.maxStep) stepNumber = wizardState.maxStep;
+    if (stepNumber > maxStep) stepNumber = maxStep;
 
     wizardState.currentStep = stepNumber;
 
     if (typeof document === 'undefined') return;
 
+    // Slide track translation for smooth 100% immersive funnel
+    const track = document.getElementById('slide-funnel-track');
+    if (track) {
+      track.style.transform = `translateX(-${(stepNumber - 1) * 100}%)`;
+    }
+
     // Toggle step contents
     for (let i = 1; i <= wizardState.maxStep; i++) {
-      const stepEl = document.getElementById(`step-content-${i}`);
+      const stepEl = document.getElementById(`step-content-${i}`) || document.getElementById(`slide-step-${i}`);
       if (stepEl) {
         if (i === stepNumber) {
           stepEl.classList.add('active');
@@ -188,8 +230,10 @@
     // Update Progress Indicator
     const tagEl = document.getElementById('quiz-step-tag');
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
-    const stepWord = isEn ? 'Step' : 'Step';
-    if (tagEl) tagEl.textContent = `${stepWord} ${stepNumber} / ${wizardState.maxStep}`;
+    const stepWord = 'Step';
+    if (tagEl) {
+      tagEl.textContent = `${stepWord} ${stepNumber} / ${wizardState.maxStep}`;
+    }
 
     const info = WIZARD_STEPS[stepNumber - 1];
     const titleEl = document.getElementById('quiz-step-title');
@@ -203,10 +247,14 @@
 
     const percent = Math.round((stepNumber / wizardState.maxStep) * 100);
     const progressTextEl = document.getElementById('quiz-progress-text');
-    if (progressTextEl) progressTextEl.textContent = `${percent}% ${isEn ? 'Completed' : '완료'}`;
+    if (progressTextEl) {
+      progressTextEl.textContent = `${percent}% ${isEn ? 'Completed' : '완료'}`;
+    }
 
     const progressFillEl = document.getElementById('quiz-progress-fill');
-    if (progressFillEl) progressFillEl.style.width = `${percent}%`;
+    if (progressFillEl) {
+      progressFillEl.style.width = `${percent}%`;
+    }
 
     // Button controls
     const prevBtn = document.getElementById('btn-prev-step');
@@ -217,10 +265,10 @@
       prevBtn.style.display = stepNumber === 1 ? 'none' : 'inline-flex';
     }
     if (nextBtn) {
-      nextBtn.style.display = (stepNumber >= 4) ? 'none' : 'inline-flex';
+      nextBtn.style.display = (stepNumber >= wizardState.maxStep) ? 'none' : 'inline-flex';
     }
     if (submitBtn) {
-      submitBtn.style.display = (stepNumber === 4 || stepNumber === 5) ? 'inline-flex' : 'none';
+      submitBtn.style.display = (stepNumber === wizardState.maxStep) ? 'inline-flex' : 'none';
     }
   }
 
@@ -228,55 +276,72 @@
   function validateStep(stepNumber) {
     if (typeof document === 'undefined') return true;
 
-    if (stepNumber === 1) {
+    if (stepNumber === 1 || stepNumber === 2) {
       const heightInput = document.getElementById('child-height');
       const weightInput = document.getElementById('child-weight');
       const recentInput = document.getElementById('child-recent-gain');
       const fatherInput = document.getElementById('father-height');
       const motherInput = document.getElementById('mother-height');
 
-      let h = heightInput ? parseFloat(heightInput.value) : 137.0;
-      let w = weightInput ? parseFloat(weightInput.value) : 35.5;
-      let r = recentInput ? parseFloat(recentInput.value) : 3.0;
-      let fh = fatherInput ? parseFloat(fatherInput.value) : 173.5;
-      let mh = motherInput ? parseFloat(motherInput.value) : 160.5;
+      if (heightInput) {
+        let h = parseFloat(heightInput.value);
+        let w = weightInput ? parseFloat(weightInput.value) : 35.5;
+        let r = recentInput ? parseFloat(recentInput.value) : 3.0;
+        let fh = fatherInput ? parseFloat(fatherInput.value) : 173.5;
+        let mh = motherInput ? parseFloat(motherInput.value) : 160.5;
 
-      // Handle Imperial mode conversion if active
-      const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
-      if (isImperial) {
-        // User inputs are in inches (18~90 in) and lbs (5~350 lbs)
-        // Convert unconditionally to metric (cm, kg) for standardized clinical auxology validation
-        h = h * 2.54;
-        w = w / 2.20462262;
-        r = r * 2.54;
-        fh = fh * 2.54;
-        mh = mh * 2.54;
-      }
+        // Handle Imperial mode conversion if active
+        const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+        if (isImperial) {
+          h = h * 2.54;
+          w = w / 2.20462262;
+          r = r * 2.54;
+          fh = fh * 2.54;
+          mh = mh * 2.54;
+        }
 
-      // Bound checks against standard clinical metric ranges:
-      // Height: [45.0 cm, 230.0 cm] (corresponds to [17.72 in, 90.55 in])
-      // Weight: [2.0 kg, 160.0 kg] (corresponds to [4.41 lbs, 352.74 lbs])
-      // Recent growth: [0.0 cm, 20.0 cm] (corresponds to [0.0 in, 7.87 in])
-      if (isNaN(h) || h < 45 || h > 230) {
-        alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.');
-        if (heightInput) heightInput.focus();
-        return false;
+        // Bound checks against standard clinical metric ranges:
+        if (isNaN(h) || h < 45 || h > 230) {
+          alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.');
+          heightInput.focus();
+          return false;
+        }
+        if (isNaN(w) || w < 2 || w > 160) {
+          alert(isImperial ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.');
+          if (weightInput) weightInput.focus();
+          return false;
+        }
+        if (isNaN(r) || r < 0 || r > 20) {
+          alert(isImperial ? 'Please enter recent 6-month growth (0 to 8 inches).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
+          if (recentInput) recentInput.focus();
+          return false;
+        }
+        if (isNaN(fh) || fh < 100 || fh > 240) {
+          if (fatherInput) fatherInput.value = isImperial ? 68.3 : 173.5;
+        }
+        if (isNaN(mh) || mh < 100 || mh > 240) {
+          if (motherInput) motherInput.value = isImperial ? 63.2 : 160.5;
+        }
       }
-      if (isNaN(w) || w < 2 || w > 160) {
-        alert(isImperial ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.');
-        if (weightInput) weightInput.focus();
-        return false;
-      }
-      if (isNaN(r) || r < 0 || r > 20) {
-        alert(isImperial ? 'Please enter recent 6-month growth (0 to 8 inches).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
-        if (recentInput) recentInput.focus();
-        return false;
-      }
-      if (isNaN(fh) || fh < 100 || fh > 240) {
-        if (fatherInput) fatherInput.value = isImperial ? 68.3 : 173.5;
-      }
-      if (isNaN(mh) || mh < 100 || mh > 240) {
-        if (motherInput) motherInput.value = isImperial ? 63.2 : 160.5;
+    }
+
+    if (stepNumber === 3) {
+      const fatherInput = document.getElementById('father-height');
+      const motherInput = document.getElementById('mother-height');
+      if (fatherInput && motherInput) {
+        let fh = parseFloat(fatherInput.value);
+        let mh = parseFloat(motherInput.value);
+        const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+        if (isImperial) {
+          fh = fh * 2.54;
+          mh = mh * 2.54;
+        }
+        if (isNaN(fh) || fh < 100 || fh > 240) {
+          fatherInput.value = isImperial ? 68.3 : 173.5;
+        }
+        if (isNaN(mh) || mh < 100 || mh > 240) {
+          motherInput.value = isImperial ? 63.2 : 160.5;
+        }
       }
     }
 
@@ -300,12 +365,12 @@
 
     if (fillEl) fillEl.style.width = '0%';
 
-    const step1Msg = isEn ? 'Loading US CDC 2000 & KDCA 2017 LMS Parameter Matrices...' : 'CDC 2000 & KDCA 2017 LMS 파라미터 매트릭스 로딩 중...';
-    const step2Msg = isEn ? 'Computing LMS Z-Scores & 3-Tier Predicted Adult Trajectories...' : 'Z-Score 표준화 및 3단 성인 예측키 궤적 모델링 연산 중...';
-    const step3Msg = isEn ? 'Finalizing GH Suppression Ratio & 5-Axis Neuro-Cognitive Protocol!' : '호르몬 분비 억제율 및 5각 신경인지 밸런스 프로토콜 생성 완료!';
+    const step1Msg = isEn ? 'Matching KDCA & CDC Official Growth Parameter Matrices...' : '질병관리청 KDCA·CDC 표준 대조 중...';
+    const step2Msg = isEn ? 'Matching 800+ Pediatric Endocrinology & Neuroscience Papers...' : '800편+ 소아내분비·뇌과학 학술 논문 매칭 중...';
+    const step3Msg = isEn ? 'Synthesizing 90-Day Actionable Guidance Roadmap...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...';
 
     if (titleEl) titleEl.textContent = step1Msg;
-    if (descEl) descEl.textContent = isEn ? 'Standardizing patient biometrics against national normative data...' : '환자 생체 데이터를 임상 표본과 대조하여 백분위를 산출하고 있습니다.';
+    if (descEl) descEl.textContent = isEn ? 'Standardizing patient biometrics against national normative LMS tables...' : '환자 생체 데이터를 질병관리청 국가 임상 표본과 대조하고 있습니다.';
 
     // Progress pulse
     let start = Date.now();
@@ -319,10 +384,10 @@
 
       if (elapsed >= 1000 && elapsed < 2000) {
         if (titleEl) titleEl.textContent = step2Msg;
-        if (descEl) descEl.textContent = isEn ? 'Simulating Tanner MPH and deep sleep hormonal trajectories...' : '유전 표적키와 서파수면 호르몬 억제 시나리오를 연산하고 있습니다.';
+        if (descEl) descEl.textContent = isEn ? 'Filtering 803+ research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 학술 논문 근거를 추출하고 있습니다.';
       } else if (elapsed >= 2000 && elapsed < 3000) {
         if (titleEl) titleEl.textContent = step3Msg;
-        if (descEl) descEl.textContent = isEn ? 'Synthesizing spinal biomechanics and cognitive development roadmap...' : '척추 감압 루틴 및 신경인지 발달 처방전을 완성하고 있습니다.';
+        if (descEl) descEl.textContent = isEn ? 'Finalizing 90-day actionable roadmap and clinical prescription...' : '식습관, 척추 감압 루틴, 성장호르몬 골든타임 행동 지침을 도출하고 있습니다.';
       }
 
       if (elapsed >= 3000) {
@@ -353,10 +418,36 @@
       overlay.setAttribute('aria-hidden', 'true');
     }
 
-    const prescriptionContainer = document.getElementById('prescription-container');
-    if (prescriptionContainer) {
-      prescriptionContainer.style.display = 'block';
-      prescriptionContainer.scrollIntoView({ behavior: 'smooth' });
+    // Hide Phase 1 Funnel & Hero
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) quizSection.style.display = 'none';
+    const heroSection = document.getElementById('hero-section');
+    if (heroSection) heroSection.style.display = 'none';
+    const presetsBar = document.getElementById('quick-presets-bar');
+    if (presetsBar) presetsBar.style.display = 'none';
+
+    // Show Phase 2 Results Dashboard
+    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+    if (dashboard) {
+      dashboard.classList.remove('hidden');
+      dashboard.style.display = 'block';
+      dashboard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Render Master Briefing Card if present
+    if (typeof document !== 'undefined') {
+      const mbEl = document.getElementById('master-briefing-card');
+      const mbEngine = (typeof global !== 'undefined' && (global.MasterBriefingEngine || global.KidsFitMasterBriefing || global.TallerMasterBriefing)) ||
+                       (typeof window !== 'undefined' && (window.MasterBriefingEngine || window.KidsFitMasterBriefing || window.TallerMasterBriefing));
+      if (mbEl && mbEngine && (typeof mbEngine.renderMasterBriefingCard === 'function' || typeof mbEngine.render === 'function')) {
+        const renderFn = mbEngine.renderMasterBriefingCard || mbEngine.render;
+        mbEl.innerHTML = renderFn(wizardState.profile);
+        if (typeof mbEngine.attachRetestListener === 'function') {
+          mbEngine.attachRetestListener();
+        } else if (typeof mbEngine.attachRetestHandler === 'function') {
+          mbEngine.attachRetestHandler();
+        }
+      }
     }
 
     // Trigger onComplete callback
@@ -459,6 +550,9 @@
           }
         }
       }
+
+      // Update MPH preview badge
+      updateMphPreview();
     }
 
     // Launch the 3-second clinical scan directly when clicking preset
@@ -597,6 +691,20 @@
       });
     }
 
+    // Real-time MPH inputs sync
+    const fatherInput = document.getElementById('father-height');
+    const motherInput = document.getElementById('mother-height');
+    const boyRadio = document.getElementById('gender-boy');
+    const girlRadio = document.getElementById('gender-girl');
+
+    if (fatherInput) fatherInput.addEventListener('input', updateMphPreview);
+    if (motherInput) motherInput.addEventListener('input', updateMphPreview);
+    if (boyRadio) boyRadio.addEventListener('change', updateMphPreview);
+    if (girlRadio) girlRadio.addEventListener('change', updateMphPreview);
+
+    // Initial MPH preview calculation
+    updateMphPreview();
+
     // Preset cards
     for (let i = 1; i <= 5; i++) {
       const card = document.getElementById(`preset-card-${i}`);
@@ -611,10 +719,19 @@
     const retestBtn = document.getElementById('btn-retest');
     if (retestBtn) {
       retestBtn.addEventListener('click', () => {
-        const prescriptionContainer = document.getElementById('prescription-container');
-        if (prescriptionContainer) prescriptionContainer.style.display = 'none';
-        goToStep(1);
+        const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+        if (dashboard) {
+          dashboard.classList.add('hidden');
+          dashboard.style.display = 'none';
+        }
         const quizSection = document.getElementById('quiz-section');
+        if (quizSection) quizSection.style.display = 'block';
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) heroSection.style.display = 'block';
+        const presetsBar = document.getElementById('quick-presets-bar');
+        if (presetsBar) presetsBar.style.display = 'block';
+
+        goToStep(1);
         if (quizSection) quizSection.scrollIntoView({ behavior: 'smooth' });
       });
     }
@@ -627,6 +744,7 @@
     state: wizardState,
     goToStep,
     validateStep,
+    updateMphPreview,
     applyPreset,
     start3SecondScan,
     completeScan,

@@ -213,6 +213,52 @@ function runSuite() {
     assert.strictEqual(toys.length, 4);
   });
 
+  console.log('\n[Suite 4: Master Briefing Engine in Browser Sandbox]');
+
+  const srcMasterBriefing = fs.readFileSync(path.join(ROOT_DIR, 'src', 'js', 'master-briefing.js'), 'utf8');
+
+  it('runs master-briefing.js in browser sandbox and exports window.MasterBriefingEngine and window.KidsFitMasterBriefing', () => {
+    vm.runInContext(srcMasterBriefing, sandbox);
+    assert(sandbox.window.MasterBriefingEngine, 'window.MasterBriefingEngine must be defined');
+    assert(sandbox.window.KidsFitMasterBriefing, 'window.KidsFitMasterBriefing must be defined');
+    assert.strictEqual(typeof sandbox.window.MasterBriefingEngine.render, 'function', 'render alias must be function');
+    assert.strictEqual(typeof sandbox.window.MasterBriefingEngine.renderMasterBriefingCard, 'function');
+    assert.strictEqual(typeof sandbox.window.MasterBriefingEngine.attachRetestListener, 'function', 'attachRetestListener must be function');
+    assert.strictEqual(typeof sandbox.window.MasterBriefingEngine.attachRetestHandler, 'function');
+  });
+
+  it('renders master briefing card HTML in browser sandbox with all 3 clinical sections', () => {
+    const mockProfile = {
+      gender: 'boy',
+      ageYears: 10,
+      ageMonths: 120,
+      currentHeight: 137.0,
+      currentWeight: 35.5,
+      recentGrowth6m: 3.2,
+      fatherHeight: 173.5,
+      motherHeight: 160.5,
+      tannerPhase: 'phase_2',
+      habits: ['late_sleep', 'poor_posture'],
+      cognitiveAxes: ['science_nature']
+    };
+    const cardHtml = sandbox.window.MasterBriefingEngine.render(mockProfile);
+    assert(typeof cardHtml === 'string', 'render output must be string');
+    assert(cardHtml.length > 2000, `Expected HTML length > 2000, got ${cardHtml.length}`);
+    assert(cardHtml.includes('master-briefing-card'), 'Must contain master briefing card container');
+    assert(cardHtml.includes('KDCA') || cardHtml.includes('질병관리청'), 'Section 1 must include KDCA standard diagnosis');
+    assert(cardHtml.includes('PMID') || cardHtml.includes('DOI'), 'Section 2 must include dynamic academic citations');
+    assert(cardHtml.includes('지도 방향') || cardHtml.includes('Roadmap'), 'Section 3 must include actionable guidance roadmap');
+  });
+
+  it('verifies dist/src/js/master-briefing.js exports and functions in browser sandbox', () => {
+    const distMbPath = path.join(ROOT_DIR, 'dist', 'src', 'js', 'master-briefing.js');
+    assert(fs.existsSync(distMbPath), 'dist/src/js/master-briefing.js must exist');
+    const distMbCode = fs.readFileSync(distMbPath, 'utf8');
+    vm.runInContext(distMbCode, distSandbox);
+    assert(distSandbox.window.MasterBriefingEngine, 'dist window.MasterBriefingEngine must be defined');
+    assert.strictEqual(typeof distSandbox.window.MasterBriefingEngine.render, 'function');
+  });
+
   console.log('\n====================================================');
   console.log(`Summary: ${passedTests}/${totalTests} Browser Runtime Tests Passed.`);
   console.log('====================================================\n');

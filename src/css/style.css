@@ -124,6 +124,10 @@ body[data-theme="light"] {
   padding: 0;
 }
 
+.hidden {
+  display: none !important;
+}
+
 html {
   font-family: var(--font-family);
   font-size: 16px;
@@ -394,6 +398,57 @@ body {
   line-height: 1.65;
 }
 
+.compact-hero {
+  padding: 1.25rem 0 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Quick Presets Bar (Compact) */
+.quick-presets-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto 1.25rem;
+  padding: 0 1.25rem;
+}
+
+.quick-presets-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0.35rem 0;
+}
+
+.quick-presets-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-presets-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+  white-space: nowrap;
+}
+
+.preset-chip {
+  background: var(--theme-surface-sub);
+  border: 1px solid var(--theme-border);
+  color: var(--text-primary);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-capsule);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.preset-chip:hover, .preset-chip.active {
+  background: var(--theme-accent-sub);
+  border-color: var(--theme-accent);
+  color: var(--theme-accent);
+}
+
 /* Bento Cards (Glassmorphism & Clinic Surfaces) */
 .bento-card {
   background: var(--theme-surface);
@@ -596,19 +651,86 @@ body {
   transition: width 0.4s ease;
 }
 
-/* Form Elements */
+/* Form Elements & Slide Funnel Track (Horizontal translateX transitions) */
+.slide-funnel-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-inner);
+}
+
+.slide-funnel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.slide-funnel-card {
+  min-width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.25rem;
+  display: block !important;
+}
+
 .quiz-step-content {
-  display: none;
   animation: fadeInStep 0.3s ease-out;
 }
 
-.quiz-step-content.active {
+/* Fallback for steps without slide track */
+.quiz-step-content:not(.slide-funnel-card) {
+  display: none;
+}
+.quiz-step-content:not(.slide-funnel-card).active {
   display: block;
 }
 
 @keyframes fadeInStep {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Realtime MPH Preview Badge */
+.mph-preview-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--theme-surface-sub);
+  border: 1px solid var(--theme-border);
+  border-left: 4px solid var(--theme-accent);
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-inner);
+  margin-top: 0.75rem;
+}
+
+.mph-badge-icon {
+  font-size: 1.5rem;
+}
+
+.mph-badge-content {
+  flex: 1;
+}
+
+.mph-badge-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.mph-badge-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+}
+
+.mph-badge-range {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .form-grid-2 {
@@ -925,8 +1047,9 @@ body {
   text-decoration: underline;
 }
 
-/* Results Prescription Container */
-.prescription-container {
+/* Results Prescription Container & Dashboard */
+.prescription-container,
+.results-dashboard {
   margin: 2rem 0 3rem;
   animation: fadeInStep 0.4s ease-out;
 }
@@ -992,13 +1115,100 @@ body {
   border-color: var(--theme-accent);
 }
 
-/* Tab Panes */
+/* Master Briefing Card (Phase 2 Diagnostic Overview) */
+.master-briefing-card {
+  border-left: 5px solid var(--theme-accent, #38BDF8);
+  margin-bottom: 2rem;
+  background: var(--theme-surface);
+}
+
+.briefing-header {
+  margin-bottom: 1.5rem;
+}
+
+.briefing-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0.35rem 0;
+}
+
+.briefing-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.briefing-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.briefing-section {
+  background: var(--theme-surface-sub);
+  border: 1px solid var(--theme-border-subtle);
+  border-radius: var(--radius-inner);
+  padding: 1.25rem;
+}
+
+.briefing-section-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--theme-border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.briefing-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .briefing-metric-row {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+}
+
+.briefing-metric-row:last-child {
+  border-bottom: none;
+}
+
+.briefing-action-item {
+  margin-bottom: 0.85rem;
+}
+
+.action-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--theme-accent-sub);
+  color: var(--theme-accent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  margin-bottom: 0.25rem;
+}
+
+.action-desc {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Tab Panes (Strict Single Active Tab View) */
 .tab-pane {
-  display: none;
+  display: none !important;
 }
 
 .tab-pane.active {
-  display: block;
+  display: block !important;
+}
+
+.tab-pane.hidden {
+  display: none !important;
 }
 
 .tab-section-intro {
@@ -1222,12 +1432,19 @@ body {
   .clinic-header,
   .capsule-nav-wrapper,
   .hero-section,
+  .compact-hero,
   .presets-section,
+  .quick-presets-wrapper,
   .quiz-section,
   .analysis-overlay,
   .admin-modal-overlay,
   .header-actions,
   .prescription-retest-btn,
+  .prescription-banner,
+  .prescription-container,
+  .results-dashboard,
+  .master-briefing-card,
+  .tab-pane,
   .btn,
   .admin-modal,
   .theme-toggle,
@@ -1247,22 +1464,13 @@ body {
     padding: 0 !important;
   }
 
-  .bento-card {
-    background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
-    box-shadow: none !important;
-    padding: 12pt !important;
-    break-inside: avoid;
-  }
-
-  .tab-pane {
-    display: block !important;
-    margin-bottom: 18pt !important;
-  }
-
+  #clinic-print-report-container,
   #clinic-print-report,
   .clinic-print-report {
     display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .print-page,
@@ -1283,6 +1491,14 @@ body {
 
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
+  .briefing-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .slide-funnel-card {
+    padding: 0.25rem 0;
+  }
+
   .presets-grid {
     grid-template-columns: 1fr;
   }

@@ -3,7 +3,7 @@
  * Empirical Adversarial Challenger Harness for Milestone 1 (Taller Bio Labs Overhaul)
  * 
  * Tests:
- * 1. Traversing Steps 1 through 5 with #btn-next-step clicks.
+ * 1. Traversing Steps 1 through 6 with #btn-next-step clicks.
  *    Verifies zero alert popups, clean state progression, step class toggling, and boundary clamping.
  * 2. Language & Unit toggling with #btn-lang-toggle clicks.
  *    Verifies lang attribute, localStorage persistence, unit labels, and input value/bound conversions.
@@ -319,10 +319,10 @@ console.log('   Challenger M1-3: Live DOM, Stepper & Boundary Stress Suite  ');
 console.log('================================================================\n');
 
 // ============================================================================
-console.log('--- TEST 1: Traversing Steps 1 through 5 with #btn-next-step ---');
+console.log('--- TEST 1: Traversing Steps 1 through 6 with #btn-next-step ---');
 // ============================================================================
 
-check('Traversal Step 1 -> 2 -> 3 -> 4 -> 5 with #btn-next-step has 0 alerts and clean state progression', () => {
+check('Traversal Step 1 -> 2 -> 3 -> 4 -> 5 -> 6 with #btn-next-step has 0 alerts and clean state progression', () => {
   const dom = buildLiveDOM();
   const wizard = dom.win.TallerOnboardingWizard;
   const nextBtn = dom.elements['btn-next-step'];
@@ -342,8 +342,8 @@ check('Traversal Step 1 -> 2 -> 3 -> 4 -> 5 with #btn-next-step has 0 alerts and
   assert.strictEqual(wizard.state.currentStep, 2, 'Must advance to Step 2');
   assert(dom.elements['step-content-2'].classList.contains('active'), 'Step 2 container must be active');
   assert(!dom.elements['step-content-1'].classList.contains('active'), 'Step 1 container must be inactive');
-  assert.strictEqual(tagEl.textContent, 'Step 2 / 5');
-  assert.strictEqual(progressText.textContent, '40% 완료');
+  assert.strictEqual(tagEl.textContent, 'Step 2 / 6');
+  assert.strictEqual(progressText.textContent, '33% 완료');
   assert.strictEqual(prevBtn.style.display, 'inline-flex', 'Prev button visible on Step 2');
   assert.strictEqual(dom.alertLog.length, 0, 'No alerts after Step 1 -> 2');
 
@@ -351,32 +351,45 @@ check('Traversal Step 1 -> 2 -> 3 -> 4 -> 5 with #btn-next-step has 0 alerts and
   nextBtn.click();
   assert.strictEqual(wizard.state.currentStep, 3, 'Must advance to Step 3');
   assert(dom.elements['step-content-3'].classList.contains('active'), 'Step 3 container must be active');
-  assert.strictEqual(tagEl.textContent, 'Step 3 / 5');
-  assert.strictEqual(progressText.textContent, '60% 완료');
+  assert.strictEqual(tagEl.textContent, 'Step 3 / 6');
+  assert.strictEqual(progressText.textContent, '50% 완료');
   assert.strictEqual(dom.alertLog.length, 0, 'No alerts after Step 2 -> 3');
 
   // Click 3: Step 3 -> Step 4 (Critical: must NOT fire kdst alert!)
   nextBtn.click();
   assert.strictEqual(wizard.state.currentStep, 4, 'Must advance to Step 4 cleanly');
   assert(dom.elements['step-content-4'].classList.contains('active'), 'Step 4 container must be active');
-  assert.strictEqual(tagEl.textContent, 'Step 4 / 5');
-  assert.strictEqual(progressText.textContent, '80% 완료');
+  assert.strictEqual(tagEl.textContent, 'Step 4 / 6');
+  assert.strictEqual(progressText.textContent, '67% 완료');
   assert.strictEqual(dom.alertLog.length, 0, 'Zero alerts after Step 3 -> 4');
 
   // Click 4: Step 4 -> Step 5
   nextBtn.click();
   assert.strictEqual(wizard.state.currentStep, 5, 'Must advance to Step 5');
   assert(dom.elements['step-content-5'].classList.contains('active'), 'Step 5 container must be active');
-  assert.strictEqual(tagEl.textContent, 'Step 5 / 5');
-  assert.strictEqual(progressText.textContent, '100% 완료');
+  assert.strictEqual(tagEl.textContent, 'Step 5 / 6');
+  assert.strictEqual(progressText.textContent, '83% 완료');
   assert.strictEqual(dom.alertLog.length, 0, 'Zero alerts after Step 4 -> 5');
 
-  // Clamping check: Click Next on Step 5
+  // Click 5: Step 5 -> Step 6
   nextBtn.click();
-  assert.strictEqual(wizard.state.currentStep, 5, 'Must remain clamped at Step 5');
+  assert.strictEqual(wizard.state.currentStep, 6, 'Must advance to Step 6');
+  assert(dom.elements['slide-step-6'].classList.contains('active'), 'Step 6 container must be active');
+  assert(!dom.elements['step-content-5'].classList.contains('active'), 'Step 5 container must be inactive');
+  assert.strictEqual(tagEl.textContent, 'Step 6 / 6');
+  assert.strictEqual(progressText.textContent, '100% 완료');
+  assert.strictEqual(nextBtn.style.display, 'none', 'Next button hidden on Step 6');
+  assert.strictEqual(dom.elements['btn-submit-quiz'].style.display, 'inline-flex', 'Submit CTA visible on Step 6');
+  assert.strictEqual(dom.alertLog.length, 0, 'Zero alerts after Step 5 -> 6');
+
+  // Clamping check: Overflow click on Step 6
+  wizard.goToStep(wizard.state.currentStep + 1);
+  assert.strictEqual(wizard.state.currentStep, 6, 'Must remain clamped at Step 6');
   assert.strictEqual(dom.alertLog.length, 0, 'No alerts on overflow click');
 
-  // Traverse backwards: 5 -> 4 -> 3 -> 2 -> 1
+  // Traverse backwards: 6 -> 5 -> 4 -> 3 -> 2 -> 1
+  prevBtn.click();
+  assert.strictEqual(wizard.state.currentStep, 5, 'Must retreat to Step 5');
   prevBtn.click();
   assert.strictEqual(wizard.state.currentStep, 4, 'Must retreat to Step 4');
   prevBtn.click();
@@ -397,7 +410,7 @@ check('Rapid-fire clicking #btn-next-step (50 cycles) maintains integrity and st
   for (let i = 0; i < 50; i++) {
     nextBtn.click();
   }
-  assert.strictEqual(wizard.state.currentStep, 5, 'Must be clamped at 5');
+  assert.strictEqual(wizard.state.currentStep, 6, 'Must be clamped at 6');
   assert.strictEqual(dom.alertLog.length, 0, 'No alerts during rapid clicking');
 });
 

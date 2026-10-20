@@ -27,6 +27,7 @@
   let AdminOsmu = typeof require !== 'undefined' ? require('./admin-osmu') : (global.KidsFitAdminOsmu || null);
   let ReferenceChips = typeof require !== 'undefined' ? (function() { try { return require('./reference-chips'); } catch(e){ return null; } })() : (global.TallerReferenceChips || global.KidsFitReferenceChips || null);
   let AdminStudio = typeof require !== 'undefined' ? (function() { try { return require('./admin-studio'); } catch(e){ return null; } })() : (global.TallerAdminStudio || global.KidsFitAdminStudio || null);
+  let MasterBriefingEngine = typeof require !== 'undefined' ? (function() { try { return require('./master-briefing'); } catch(e){ return null; } })() : (global.MasterBriefingEngine || global.KidsFitMasterBriefing || global.TallerMasterBriefing || null);
 
   // 1. Definition of 5 Clinical Age-Group Presets
   const PRESETS = {
@@ -213,7 +214,10 @@
 
     // Update Step Indicators
     const tagEl = document.getElementById('quiz-step-tag');
-    if (tagEl) tagEl.textContent = `Step ${stepNumber} / ${state.maxStep}`;
+    if (tagEl) {
+      const totalSteps = (typeof document !== 'undefined' && (document.getElementById('slide-step-6') || document.getElementById('step-content-6'))) ? 6 : state.maxStep;
+      tagEl.textContent = `Step ${stepNumber} / ${totalSteps}`;
+    }
 
     const info = STEP_INFO[stepNumber - 1];
     const titleEl = document.getElementById('quiz-step-title');
@@ -516,17 +520,25 @@
 
       state.isPrescriptionIssued = true;
 
-      if (container) {
-        container.style.display = 'block';
+      const dashboard = document.getElementById('results-dashboard') || container;
+      if (dashboard) {
+        dashboard.classList.remove('hidden');
+        dashboard.style.display = 'block';
         if (headerTitle) {
           headerTitle.textContent = `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
         }
         if (avatarEl) {
           avatarEl.textContent = state.profile.gender === 'boy' ? '👦' : '👧';
         }
-
-        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+
+      const quizSection = document.getElementById('quiz-section');
+      if (quizSection) quizSection.style.display = 'none';
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) heroSection.style.display = 'none';
+      const presetsBar = document.getElementById('quick-presets-bar');
+      if (presetsBar) presetsBar.style.display = 'none';
 
       // Render Milestone 3 and Milestone 4 Reports & Monetization
       renderPrescriptionResults();
@@ -547,8 +559,9 @@
       Object.assign(state.profile, profile);
       state.isPrescriptionIssued = true;
       if (typeof document !== 'undefined') {
-        const container = document.getElementById('prescription-container');
+        const container = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
         if (container) {
+          container.classList.remove('hidden');
           container.style.display = 'block';
           const headerTitle = document.getElementById('rx-header-title');
           const avatarEl = document.getElementById('rx-avatar');
@@ -560,6 +573,12 @@
           }
           container.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        const quizSection = document.getElementById('quiz-section');
+        if (quizSection) quizSection.style.display = 'none';
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) heroSection.style.display = 'none';
+        const presetsBar = document.getElementById('quick-presets-bar');
+        if (presetsBar) presetsBar.style.display = 'none';
       }
     }
 
@@ -647,6 +666,23 @@
       const shareBtn = document.getElementById('btn-share-prescription');
       if (shareBtn) {
         shareBtn.addEventListener('click', handleSharePrescription);
+      }
+    }
+
+    // Render Master Briefing Card & Papers Matching
+    const masterCard = document.getElementById('master-briefing-card');
+    if (masterCard) {
+      if (!MasterBriefingEngine && (global.MasterBriefingEngine || global.KidsFitMasterBriefing || global.TallerMasterBriefing)) {
+        MasterBriefingEngine = global.MasterBriefingEngine || global.KidsFitMasterBriefing || global.TallerMasterBriefing;
+      }
+      if (MasterBriefingEngine && (typeof MasterBriefingEngine.renderMasterBriefingCard === 'function' || typeof MasterBriefingEngine.render === 'function')) {
+        const renderFn = MasterBriefingEngine.renderMasterBriefingCard || MasterBriefingEngine.render;
+        masterCard.innerHTML = renderFn(state.profile);
+        if (typeof MasterBriefingEngine.attachRetestListener === 'function') {
+          MasterBriefingEngine.attachRetestListener();
+        } else if (typeof MasterBriefingEngine.attachRetestHandler === 'function') {
+          MasterBriefingEngine.attachRetestHandler();
+        }
       }
     }
   }
@@ -772,7 +808,7 @@
       }
     });
 
-    // Panes
+    // Panes - Strict Single Active Tab View
     const panes = document.querySelectorAll('.tab-pane');
     panes.forEach(pane => {
       const paneId = pane.getAttribute('id');
@@ -784,8 +820,12 @@
         (paneId === 'tab-pane-neuro' && (cleanId === 'development' || cleanId === 'neuro'));
       if (isMatch) {
         pane.classList.add('active');
+        pane.classList.remove('hidden');
+        pane.style.display = 'block';
       } else {
         pane.classList.remove('active');
+        pane.classList.add('hidden');
+        pane.style.display = 'none';
       }
     });
 
@@ -1037,6 +1077,10 @@
 
     // Initialize to Step 1
     goToStep(1);
+    const initialStepTag = document.getElementById('quiz-step-tag');
+    if (initialStepTag) {
+      initialStepTag.textContent = 'Step 1 / 6';
+    }
     syncStateToForm(state.profile);
   }
 
