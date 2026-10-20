@@ -13,6 +13,9 @@
 (function (global) {
   'use strict';
 
+  let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
+  let HapticEngine = typeof require !== 'undefined' ? (function () { try { return require('./haptic-typewriter'); } catch (e) { return null; } })() : (global.TallerHapticEngine || global.KidsFitHapticEngine || null);
+
   // 1. Definition of 5 Authoritative Clinical Presets
   const PRESETS = {
     'preset-1': {
@@ -267,8 +270,83 @@
     if (nextBtn) {
       nextBtn.style.display = (stepNumber >= wizardState.maxStep) ? 'none' : 'inline-flex';
     }
-    if (submitBtn) {
-      submitBtn.style.display = (stepNumber === wizardState.maxStep) ? 'inline-flex' : 'none';
+    if (stepNumber === wizardState.maxStep) {
+      if (submitBtn) submitBtn.style.display = 'inline-flex';
+    } else {
+      if (submitBtn) submitBtn.style.display = 'none';
+    }
+
+    // Trigger tactile haptic feedback on step transition
+    if (!HapticEngine && (global.TallerHapticEngine || global.KidsFitHapticEngine)) {
+      HapticEngine = global.TallerHapticEngine || global.KidsFitHapticEngine;
+    }
+    if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
+      HapticEngine.triggerHaptic('tick', titleEl);
+    }
+  }
+
+  /**
+   * Synchronizes Date of Birth (Year/Month/Day) -> Exact Months/Days + Auto Growth Stage (Phase 1~4)
+   */
+  function syncDobAndAutoStage() {
+    if (typeof document === 'undefined') return;
+    if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
+      PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
+    }
+    if (!PinpointCurator) return;
+
+    const yearEl = document.getElementById('child-birth-year');
+    const monthEl = document.getElementById('child-birth-month');
+    const dayEl = document.getElementById('child-birth-day');
+    if (!yearEl || !monthEl || !dayEl) return;
+
+    const boyRadio = document.getElementById('gender-boy');
+    const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
+    const recentInput = document.getElementById('child-recent-gain');
+    const recent6m = recentInput ? parseFloat(recentInput.value) || 3.2 : 3.2;
+
+    const dobInfo = PinpointCurator.calculateExactAgeFromDob(yearEl.value, monthEl.value, dayEl.value);
+    const autoStage = PinpointCurator.autoDetectGrowthStage(dobInfo.exactMonths, gender, recent6m);
+
+    // Update profile state
+    wizardState.profile.birthYear = dobInfo.birthYear;
+    wizardState.profile.birthMonth = dobInfo.birthMonth;
+    wizardState.profile.birthDay = dobInfo.birthDay;
+    wizardState.profile.birthDateStr = dobInfo.birthDateStr;
+    wizardState.profile.birthDateKo = dobInfo.birthDateKo;
+    wizardState.profile.ageMonths = dobInfo.ageMonths;
+    wizardState.profile.exactMonths = dobInfo.exactMonths;
+    wizardState.profile.remainderDays = dobInfo.remainderDays;
+    wizardState.profile.ageYears = dobInfo.ageYears;
+    wizardState.profile.tannerPhase = autoStage.tannerPhase;
+
+    // Sync hidden & legacy inputs
+    const ageDisplay = document.getElementById('child-age-display');
+    const ageMonthsInput = document.getElementById('child-age-months');
+    const ageSlider = document.getElementById('child-age-slider');
+    if (ageDisplay) ageDisplay.textContent = dobInfo.displayBadgeKo;
+    if (ageMonthsInput) ageMonthsInput.value = dobInfo.ageMonths;
+    if (ageSlider) ageSlider.value = dobInfo.ageYears;
+
+    // Sync Auto-Detected Growth Stage Banner & Radio Buttons
+    const previewEl = document.getElementById('dob-auto-stage-preview');
+    if (previewEl) {
+      previewEl.textContent = `🤖 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
+    }
+    const stageTitleEl = document.getElementById('auto-growth-stage-title');
+    if (stageTitleEl) {
+      stageTitleEl.textContent = `${dobInfo.birthDateKo} (${dobInfo.displayBadgeKo}) → ${autoStage.stageNameKo}`;
+    }
+    const stageDescEl = document.getElementById('auto-growth-stage-desc');
+    if (stageDescEl) {
+      stageDescEl.innerHTML = `${autoStage.boneAgeNoteKo}<br><strong style="color:#10B981;">✓ 생년월일에 맞춰 자동 선택되었으므로 굳이 고민하실 필요 없이 바로 [다음 단계 →]로 이동하시면 됩니다.</strong>`;
+    }
+
+    const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
+    if (phaseRadios && phaseRadios.forEach) {
+      phaseRadios.forEach((r) => {
+        r.checked = (r.value === autoStage.tannerPhase);
+      });
     }
   }
 
@@ -348,9 +426,9 @@
     return true;
   }
 
-  // 6. 3-Second Bio Scan Loader
+  // 6. 60-Second Personalized Bio Scan & Parent Briefing Theatre Loader
   let scanTimer = null;
-  function start3SecondScan(onComplete) {
+  function start3SecondScan(onComplete, options = {}) {
     wizardState.isScanning = true;
     const overlay = document.getElementById('analysis-overlay');
     const titleEl = document.getElementById('analysis-title');
@@ -361,6 +439,21 @@
     if (overlay) {
       overlay.style.display = 'flex';
       overlay.setAttribute('aria-hidden', 'false');
+    }
+
+    if (!HapticEngine && (global.TallerHapticEngine || global.KidsFitHapticEngine)) {
+      HapticEngine = global.TallerHapticEngine || global.KidsFitHapticEngine;
+    }
+
+    // Use the 60-Second Personalized Analysis & Parent Content Theatre in live browser DOM
+    const isFullBrowserDom = typeof document !== 'undefined' && typeof document.createElement === 'function' && overlay && typeof overlay.querySelector === 'function';
+
+    if (isFullBrowserDom && HapticEngine && typeof HapticEngine.startPersonalizedAnalysisTheatre === 'function') {
+      const browserDurationMs = typeof options.durationMs === 'number' ? options.durationMs : 60000;
+      HapticEngine.startPersonalizedAnalysisTheatre(wizardState.profile, { durationMs: browserDurationMs, isEn }, () => {
+        completeScan(onComplete);
+      });
+      return;
     }
 
     if (fillEl) fillEl.style.width = '0%';
@@ -403,12 +496,22 @@
       skipBtn.onclick = () => {
         if (scanTimer) clearInterval(scanTimer);
         scanTimer = null;
+        if (HapticEngine && typeof HapticEngine.stopTheatre === 'function') {
+          HapticEngine.stopTheatre();
+        }
         completeScan(onComplete);
       };
     }
   }
 
   function completeScan(onComplete) {
+    if (scanTimer) {
+      clearInterval(scanTimer);
+      scanTimer = null;
+    }
+    if (HapticEngine && typeof HapticEngine.stopTheatre === 'function') {
+      HapticEngine.stopTheatre();
+    }
     wizardState.isScanning = false;
     wizardState.scanCompleted = true;
 
@@ -494,10 +597,31 @@
         girlRadio.checked = preset.gender === 'girl';
       }
 
-      // Age inputs
+      // Age & DOB inputs
       const ageYearsSlider = document.getElementById('child-age-slider');
       const ageYearsDisplay = document.getElementById('child-age-display');
       const ageMonthsInput = document.getElementById('child-age-months');
+      const yearEl = document.getElementById('child-birth-year');
+      const monthEl = document.getElementById('child-birth-month');
+      const dayEl = document.getElementById('child-birth-day');
+
+      if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
+        PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
+      }
+      if (PinpointCurator && typeof PinpointCurator.getDobFromAgeMonths === 'function') {
+        const dobInfo = PinpointCurator.getDobFromAgeMonths(preset.ageMonths);
+        if (yearEl) yearEl.value = String(dobInfo.birthYear);
+        if (monthEl) monthEl.value = String(dobInfo.birthMonth);
+        if (dayEl) dayEl.value = String(dobInfo.birthDay);
+        wizardState.profile.birthYear = dobInfo.birthYear;
+        wizardState.profile.birthMonth = dobInfo.birthMonth;
+        wizardState.profile.birthDay = dobInfo.birthDay;
+        wizardState.profile.birthDateStr = dobInfo.birthDateStr;
+        wizardState.profile.birthDateKo = dobInfo.birthDateKo;
+        wizardState.profile.exactMonths = dobInfo.exactMonths;
+        wizardState.profile.remainderDays = dobInfo.remainderDays;
+      }
+
       if (ageYearsSlider) ageYearsSlider.value = preset.ageYears;
       if (ageYearsDisplay) ageYearsDisplay.textContent = `${preset.ageYears}세 (${preset.ageMonths}개월)`;
       if (ageMonthsInput) ageMonthsInput.value = preset.ageMonths;
@@ -574,9 +698,18 @@
     const boyRadio = document.getElementById('gender-boy');
     const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
 
+    // Sync DOB -> exactMonths & Auto Growth Stage first
+    syncDobAndAutoStage();
+
     const ageSlider = document.getElementById('child-age-slider');
-    const ageYears = ageSlider ? parseInt(ageSlider.value, 10) : 10;
-    const ageMonths = ageYears * 12;
+    const ageMonthsEl = document.getElementById('child-age-months');
+    const ageMonths = ageMonthsEl && ageMonthsEl.value
+      ? parseInt(ageMonthsEl.value, 10)
+      : (ageSlider ? parseInt(ageSlider.value, 10) * 12 : 120);
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const exactMonths = wizardState.profile.exactMonths || ageMonths;
+    const birthDateStr = wizardState.profile.birthDateStr || '';
+    const birthDateKo = wizardState.profile.birthDateKo || '';
 
     const heightInput = document.getElementById('child-height');
     const weightInput = document.getElementById('child-weight');
@@ -623,6 +756,9 @@
       gender,
       ageYears,
       ageMonths,
+      exactMonths,
+      birthDateStr,
+      birthDateKo,
       currentHeight,
       currentWeight,
       recentGrowth6m,
@@ -678,7 +814,7 @@
       });
     }
 
-    // Age slider sync
+    // Age slider & DOB picker sync
     const ageSlider = document.getElementById('child-age-slider');
     const ageDisplay = document.getElementById('child-age-display');
     const ageMonthsInput = document.getElementById('child-age-months');
@@ -691,6 +827,21 @@
       });
     }
 
+    const birthYearEl = document.getElementById('child-birth-year');
+    const birthMonthEl = document.getElementById('child-birth-month');
+    const birthDayEl = document.getElementById('child-birth-day');
+    const recentGainEl = document.getElementById('child-recent-gain');
+    [birthYearEl, birthMonthEl, birthDayEl, recentGainEl].forEach((el) => {
+      if (el) {
+        el.addEventListener('change', () => {
+          syncDobAndAutoStage();
+          if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
+            HapticEngine.triggerHaptic('tick', el);
+          }
+        });
+      }
+    });
+
     // Real-time MPH inputs sync
     const fatherInput = document.getElementById('father-height');
     const motherInput = document.getElementById('mother-height');
@@ -699,11 +850,22 @@
 
     if (fatherInput) fatherInput.addEventListener('input', updateMphPreview);
     if (motherInput) motherInput.addEventListener('input', updateMphPreview);
-    if (boyRadio) boyRadio.addEventListener('change', updateMphPreview);
-    if (girlRadio) girlRadio.addEventListener('change', updateMphPreview);
+    if (boyRadio) {
+      boyRadio.addEventListener('change', () => {
+        updateMphPreview();
+        syncDobAndAutoStage();
+      });
+    }
+    if (girlRadio) {
+      girlRadio.addEventListener('change', () => {
+        updateMphPreview();
+        syncDobAndAutoStage();
+      });
+    }
 
-    // Initial MPH preview calculation
+    // Initial MPH & DOB auto-stage calculation
     updateMphPreview();
+    syncDobAndAutoStage();
 
     // Preset cards
     for (let i = 1; i <= 5; i++) {
@@ -745,6 +907,7 @@
     goToStep,
     validateStep,
     updateMphPreview,
+    syncDobAndAutoStage,
     applyPreset,
     start3SecondScan,
     completeScan,

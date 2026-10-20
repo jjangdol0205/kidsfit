@@ -27,73 +27,83 @@
 
   // Canonical Query Mappings for Clinical Categories
   const CATEGORY_SEARCH_QUERIES = {
-    // Nutrition / Micronutrients
+    // Nutrition / Micronutrients (Exact Pinpoint SKU Queries)
+    ht042: {
+      ko: '식약처 인정 키성장 황기추출물 HT042 어린이 영양제',
+      en: 'Astragalus root extract kids immune growth',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=어린이+키성장+영양'
+    },
+    cartilage_calcium: {
+      ko: '어린이 연골칼슘 어골칼슘 폴리감마글루탐산 비타민D3 츄어블',
+      en: 'ChildLife Liquid Calcium with Magnesium Orange',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아+칼슘+영양학'
+    },
     calcium: {
-      ko: '구연산 칼슘 마그네슘',
-      en: 'calcium citrate magnesium d3',
+      ko: '어린이 연골칼슘 어골칼슘 구연산 칼슘 마그네슘 비타민D3',
+      en: 'calcium citrate magnesium d3 kids',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=칼슘+영양학'
     },
     vitamind: {
-      ko: '비타민 D3 K2 드롭',
-      en: 'vitamin d3 k2 mk7 drops',
+      ko: '어린이 비타민 D3 1000IU K2 MK-7 드롭',
+      en: 'vitamin d3 k2 mk7 drops kids',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=비타민D'
     },
     zinc: {
-      ko: '피콜린산 아연 글리시네이트 마그네슘',
-      en: 'zinc picolinate magnesium glycinate',
+      ko: '어린이 글루콘산 피콜린산 아연 초유 글리시네이트 마그네슘',
+      en: 'zinc picolinate magnesium glycinate kids',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=미네랄+영양'
     },
     protein: {
-      ko: 'WPI 분리유청 단백질 아르기닌',
-      en: 'whey protein isolate l-arginine',
+      ko: '초유 분리유청 단백질 WPI 어린이 아르기닌 스틱',
+      en: 'whey protein isolate l-arginine colostrum',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=단백질+영양학'
     },
     nutrients: {
-      ko: '소아 성장 영양소 구연산칼슘 D3',
+      ko: '식약처 인정 키성장 황기추출물 HT042 구연산칼슘 D3',
       en: 'pediatric growth micronutrients calcium d3',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아영양학'
     },
 
     // Biomechanics & Posture Equipment
     deadhang: {
-      ko: '가정용 문틀 턱걸이봉 철봉 데드행',
+      ko: '무타공 안전 잠금 가정용 문틀 턱걸이봉 철봉 데드행',
       en: 'pull up bar doorway dead hang spinal decompression',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=척추교정+자세'
     },
     stretching: {
-      ko: '바른자세 경추 폼롤러 스트레칭 밴드',
+      ko: '바른자세 경추 EPP 폼롤러 스트레칭 밴드',
       en: 'thoracic spine foam roller posture stretching band',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=체형교정'
     },
     jumping: {
-      ko: '성장판 자극 무소음 실내 트램폴린 점핑매트',
+      ko: '성장판 자극 어린이 무소음 실내 트램폴린 점핑매트',
       en: 'plyometric jumping rebounder trampoline kids',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=줄넘기+운동'
     },
     biomechanics: {
-      ko: '소아 척추 감압 바른자세 교정 도구',
+      ko: '어린이 높이조절 원목 2단 독서대 거북목 바른자세 교정 도구',
       en: 'pediatric biomechanics posture spinal decompression tools',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아정형외과'
     },
 
     // Neuro-Cognitive & Havruta
     havruta: {
-      ko: '하브루타 과학 질문 생각력',
+      ko: '초등 하브루타 과학 질문 생각열기 독서 워크북',
       en: 'socratic inquiry science deduction book',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%ED%95%98%EB%B8%8C%EB%A3%A8%ED%83%80+%EA%B3%BC%ED%95%99'
     },
     montessori: {
-      ko: '몬테소리 감각 교구 원목 퍼즐',
+      ko: '몬테소리 원목 집게 구슬꿰기 유아 안전가위 소근육 감각 교구',
       en: 'montessori sensorial spatial wooden materials',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=몬테소리'
     },
     science: {
-      ko: '어린이 과학 실험 키트 광학 현미경',
+      ko: '초등학생 광학 현미경 프레파라트 어린이 과학 실험 키트',
       en: 'kids science experiment kit microscope optical',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=과학실험키트'
     },
     neuro: {
-      ko: '소아 두뇌 인지 발달 도서 교구',
+      ko: '유아 원목 가베 은물 자석블록 소근육 가위질 워크북 세트',
       en: 'pediatric cognitive neuroscience developmental tools',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=뇌과학+육아'
     }

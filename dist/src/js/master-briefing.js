@@ -9,6 +9,7 @@
 
   let GrowthEngine = typeof require !== 'undefined' ? (function () { try { return require('./growth-engine'); } catch (e) { return null; } })() : (global.KidsFitGrowthEngine || null);
   let NutritionEngine = typeof require !== 'undefined' ? (function () { try { return require('./nutrition-engine'); } catch (e) { return null; } })() : (global.KidsFitNutritionEngine || null);
+  let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
 
   /**
    * Retrieves knowledge base papers from runtime memory or CommonJS require
@@ -254,13 +255,17 @@
   function renderMasterBriefingCard(profile = {}) {
     if (!GrowthEngine && global.KidsFitGrowthEngine) GrowthEngine = global.KidsFitGrowthEngine;
     if (!NutritionEngine && global.KidsFitNutritionEngine) NutritionEngine = global.KidsFitNutritionEngine;
+    if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
+      PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
+    }
 
     const kb = getKnowledgeBase();
     const totalDbPapers = (kb && kb.metadata && kb.metadata.total_papers) || (kb && Array.isArray(kb.papers) ? kb.papers.length : 834);
 
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const ageMonths = profile.ageMonths || ((profile.ageYears || 10) * 12);
-    const ageYears = Math.max(1, Math.min(20, Math.round(ageMonths / 12)));
+    const exactMonths = Number(profile.exactMonths || ageMonths);
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const gender = profile.gender === 'girl' ? 'girl' : 'boy';
     const height = parseFloat(profile.currentHeight) || 137.0;
     const weight = parseFloat(profile.currentWeight) || 35.5;
@@ -268,16 +273,19 @@
     const fatherH = parseFloat(profile.fatherHeight) || 173.5;
     const motherH = parseFloat(profile.motherHeight) || 160.5;
     const habits = Array.isArray(profile.habits) ? profile.habits : ['late_sleep'];
-    const tanner = profile.tannerPhase || 'phase_2';
+    const autoStageObj = (PinpointCurator && typeof PinpointCurator.autoDetectGrowthStage === 'function')
+      ? PinpointCurator.autoDetectGrowthStage(exactMonths, gender, recentGain)
+      : { tannerPhase: 'phase_2', stageNameKo: 'Phase 2 · 급성장 피크기 (PHV)' };
+    const tanner = profile.tannerPhase || autoStageObj.tannerPhase || 'phase_2';
     const cognitiveAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
 
-    // Section 1: Public Clinical Standards Data (KDCA 2017 / US CDC 2000)
+    // Section 1: Public Clinical Standards Data (KDCA 2017 / US CDC 2000) using exact decimal months from DOB
     let kdcaTop = 50.0;
     let kdcaPct = 50.0;
     let kdcaZ = 0.0;
     let standardMean = 137.0;
     if (GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function' && typeof GrowthEngine.calculateKdcaPercentile === 'function') {
-      const lms = GrowthEngine.getLmsForMonth(gender, ageMonths);
+      const lms = GrowthEngine.getLmsForMonth(gender, exactMonths);
       standardMean = lms.M;
       const kdcaRes = GrowthEngine.calculateKdcaPercentile(height, lms.L, lms.M, lms.S);
       kdcaTop = kdcaRes.topPercent;
@@ -526,6 +534,10 @@
           </div>
 
         </div>
+
+        ${PinpointCurator && typeof PinpointCurator.renderPinpointAndLifecycleSection === 'function'
+          ? PinpointCurator.renderPinpointAndLifecycleSection(profile)
+          : ''}
 
       </div>
     `;

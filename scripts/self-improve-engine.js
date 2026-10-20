@@ -402,10 +402,45 @@ function auditStage7ScopeAndGuidance() {
     const hasShortMidLong = html.includes('id="horizon-short-term"') &&
                             html.includes('id="horizon-mid-term"') &&
                             html.includes('id="horizon-long-term"') &&
-                            html.includes('id="briefing-one-line-verdict"');
-    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance', hasShortMidLong, 'Horizon IDs verified');
+                            html.includes('id="briefing-one-line-verdict"') &&
+                            html.includes('id="child-lifecycle-roadmap-section"') &&
+                            html.includes('id="pinpoint-custom-prescription-section"');
+    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance + Lifecycle & Pinpoint Items', hasShortMidLong, 'Horizon, Lifecycle & Pinpoint IDs verified');
   } catch (err) {
-    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance', false, err.message);
+    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance + Lifecycle & Pinpoint Items', false, err.message);
+  }
+
+  // Verify DOB Precision, Auto Growth Stage, Age 3 -> 4 -> 5 Lifecycle & Pinpoint Curator
+  try {
+    const PinpointCurator = require('../src/js/pinpoint-curator');
+    const dob3 = PinpointCurator.calculateExactAgeFromDob(2023, 5, 15, new Date(2026, 9, 21));
+    const stage3 = PinpointCurator.autoDetectGrowthStage(dob3.exactMonths, 'boy', 3.5);
+    const roadmap3 = PinpointCurator.getSequentialLifecycleRoadmap(3);
+    const items3 = PinpointCurator.curatePinpointItems({ ageMonths: 36, gender: 'boy', currentHeight: 95.0, habits: ['picky_eater'] });
+    const items10 = PinpointCurator.curatePinpointItems({ ageMonths: 120, gender: 'boy', currentHeight: 135.0, habits: ['late_sleep'] });
+
+    const isDobValid = dob3.ageMonths === 41 && dob3.exactMonths >= 41.0 && stage3.tannerPhase === 'phase_1';
+    const isRoadmapValid = roadmap3.length === 4 && roadmap3[0].age === 3 && roadmap3[1].age === 4 && roadmap3[2].age === 5 && roadmap3[3].age === 6;
+    const isPinpointDistinct = items3.supplements[0].id !== items10.supplements[0].id &&
+                               items3.toys[0].id !== items10.toys[0].id &&
+                               items3.books[0].id !== items10.books[0].id &&
+                               items10.supplements.some(s => s.name.includes('황기추출물') || s.name.includes('연골칼슘'));
+
+    recordCheck('Stage 7: Scope & Guidance', 'DOB Precision Calculator & Auto Growth Stage Detector Active', isDobValid, `DOB 2023-05-15 -> ${dob3.exactMonths}mo, ${stage3.tannerPhase}`);
+    recordCheck('Stage 7: Scope & Guidance', 'Sequential Age Lifecycle Roadmap (e.g. Age 3 -> 4 -> 5 -> 6) Active', isRoadmapValid, '4 sequential years verified');
+    recordCheck('Stage 7: Scope & Guidance', 'Child-Specific Pinpoint Supplement/Toy/Book Curator Differentiates Profiles', isPinpointDistinct, 'HT042, Cartilage Calcium, Montessori & Books verified');
+  } catch (err) {
+    recordCheck('Stage 7: Scope & Guidance', 'Pinpoint Curator & Lifecycle Engine Verification', false, err.message);
+  }
+
+  // Verify 60s Haptic Typewriter & Waiting Content Theatre Engine
+  try {
+    const HapticEngine = require('../src/js/haptic-typewriter');
+    const cards = HapticEngine.buildChildWaitingCards({ ageMonths: 36, gender: 'boy', currentHeight: 96.5 });
+    const has6Stages = Array.isArray(HapticEngine.SIX_STAGES_60S) && HapticEngine.SIX_STAGES_60S.length === 6 && cards.length === 6;
+    recordCheck('Stage 7: Scope & Guidance', '60-Second Personalized Waiting Content & Haptic Typewriter Engine Active', has6Stages, '6 stages & 6 waiting briefing cards verified');
+  } catch (err) {
+    recordCheck('Stage 7: Scope & Guidance', '60-Second Personalized Waiting Content & Haptic Typewriter Engine Active', false, err.message);
   }
 
   // Verify Admin Visual DB Intelligence Dashboard
