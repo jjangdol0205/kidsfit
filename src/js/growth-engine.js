@@ -1,10 +1,11 @@
 /**
- * KidsFit Growth Studio - Growth Engine (src/js/growth-engine.js)
- * Implements:
- * - KDCA 2017 LMS Box-Cox Z-Score & erf normal CDF percentiles (Height + Weight + BMI)
- * - Tanner Mid-Parental Height (MPH), 3-tier height chart, and SVG growth curve rendering
- * - KSPENDO & NSF official growth velocity & red-flag clinical guidance
- * - MOHW & KNS 2020 KDRIs daily nutrient requirements & real home-cooked meal equivalents
+ * Taller Bio Labs - Auxology & Skeletal Maturation Engine (src/js/growth-engine.js)
+ * Implements Core 1:
+ * - US CDC 2000 & KDCA 2017 LMS Box-Cox Z-Score & erf normal CDF percentiles (Height, Weight, BMI)
+ * - Tanner Mid-Parental Height (MPH +/- 8.5cm)
+ * - Annualized Growth Velocity (cm/yr) with < 4.0 cm/yr pediatric red-flag alert
+ * - 3 Adult Predicted Height Trajectories (Genetic baseline, Unmanaged -5cm cap, Optimized +5~+9.2cm)
+ * - Interactive 3-curve SVG chart with tooltips, percentile bands (P3, P50, P97), and pulse dot
  */
 
 (function (global) {
@@ -13,12 +14,17 @@
   // 1. Data Loader (Node.js require or Browser global/embedded)
   let growthData = null;
   let authoritiesData = null;
+  let researchData = null;
+
   if (typeof require !== 'undefined') {
     try {
       growthData = require('../data/growth-standards.json');
     } catch (e) {}
     try {
       authoritiesData = require('../data/official-authorities.json');
+    } catch (e) {}
+    try {
+      researchData = require('../data/research-knowledge-base.json');
     } catch (e) {}
   }
   if (!growthData && typeof window !== 'undefined' && window.KIDSFIT_GROWTH_DATA) {
@@ -27,18 +33,17 @@
   if (!authoritiesData && typeof window !== 'undefined' && window.KIDSFIT_AUTHORITIES_DATA) {
     authoritiesData = window.KIDSFIT_AUTHORITIES_DATA;
   }
+  if (!researchData && typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
+    researchData = window.KIDSFIT_RESEARCH_DATA;
+  }
 
-  // Fallback representative tables if json not loaded
+  // Fallback table for standalone operation
   const FALLBACK_KDCA = {
     boy: [
       { m: 12, L: 1.0, M: 75.7, S: 0.0337, p3: 71.0, p50: 75.7, p97: 80.5, wM: 9.8, wS: 0.102, bmiP5: 14.5, bmiP50: 17.0, bmiP85: 18.8, bmiP95: 19.8 },
-      { m: 18, L: 1.0, M: 82.3, S: 0.0352, p3: 76.9, p50: 82.3, p97: 87.8, wM: 11.1, wS: 0.104, bmiP5: 14.2, bmiP50: 16.4, bmiP85: 18.1, bmiP95: 19.1 },
       { m: 24, L: 1.0, M: 87.1, S: 0.0371, p3: 81.0, p50: 87.1, p97: 93.2, wM: 12.3, wS: 0.107, bmiP5: 14.0, bmiP50: 16.2, bmiP85: 17.8, bmiP95: 18.8 },
-      { m: 30, L: 1.0, M: 91.9, S: 0.0385, p3: 85.3, p50: 91.9, p97: 98.6, wM: 13.5, wS: 0.111, bmiP5: 13.9, bmiP50: 16.0, bmiP85: 17.6, bmiP95: 18.6 },
       { m: 36, L: 1.0, M: 96.5, S: 0.0401, p3: 89.7, p50: 96.5, p97: 104.4, wM: 14.7, wS: 0.115, bmiP5: 13.8, bmiP50: 15.8, bmiP85: 17.4, bmiP95: 18.4 },
-      { m: 42, L: 1.0, M: 99.8, S: 0.0408, p3: 92.7, p50: 99.8, p97: 107.8, wM: 15.7, wS: 0.119, bmiP5: 13.7, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.4 },
       { m: 48, L: 1.0, M: 103.1, S: 0.0416, p3: 95.6, p50: 103.1, p97: 111.2, wM: 16.7, wS: 0.124, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.5 },
-      { m: 54, L: 1.0, M: 106.3, S: 0.0423, p3: 98.6, p50: 106.3, p97: 114.7, wM: 17.8, wS: 0.130, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.4, bmiP95: 18.7 },
       { m: 60, L: 1.0, M: 109.6, S: 0.0429, p3: 101.6, p50: 109.6, p97: 118.0, wM: 19.0, wS: 0.136, bmiP5: 13.6, bmiP50: 15.8, bmiP85: 17.6, bmiP95: 19.0 },
       { m: 72, L: 1.0, M: 115.5, S: 0.0441, p3: 106.7, p50: 115.5, p97: 124.5, wM: 21.5, wS: 0.149, bmiP5: 13.7, bmiP50: 16.0, bmiP85: 18.1, bmiP95: 19.8 },
       { m: 84, L: 1.0, M: 121.1, S: 0.0453, p3: 111.5, p50: 121.1, p97: 130.9, wM: 24.4, wS: 0.163, bmiP5: 13.9, bmiP50: 16.5, bmiP85: 19.0, bmiP95: 21.0 },
@@ -52,17 +57,14 @@
       { m: 180, L: 1.0, M: 167.4, S: 0.0489, p3: 151.3, p50: 167.4, p97: 182.2, wM: 61.0, wS: 0.168, bmiP5: 17.4, bmiP50: 21.7, bmiP85: 25.2, bmiP95: 27.9 },
       { m: 192, L: 1.0, M: 170.0, S: 0.0441, p3: 155.7, p50: 170.0, p97: 184.1, wM: 63.8, wS: 0.162, bmiP5: 17.8, bmiP50: 22.0, bmiP85: 25.4, bmiP95: 28.0 },
       { m: 204, L: 1.0, M: 171.4, S: 0.0436, p3: 157.9, p50: 171.4, p97: 185.5, wM: 65.3, wS: 0.158, bmiP5: 18.1, bmiP50: 22.2, bmiP85: 25.5, bmiP95: 28.1 },
-      { m: 216, L: 1.0, M: 172.0, S: 0.0430, p3: 158.6, p50: 172.0, p97: 185.8, wM: 66.2, wS: 0.155, bmiP5: 18.3, bmiP50: 22.4, bmiP85: 25.6, bmiP95: 28.2 }
+      { m: 216, L: 1.0, M: 172.0, S: 0.0430, p3: 158.6, p50: 172.0, p97: 185.8, wM: 66.2, wS: 0.155, bmiP5: 18.3, bmiP50: 22.4, bmiP85: 25.6, bmiP95: 28.2 },
+      { m: 240, L: 1.0, M: 172.0, S: 0.0430, p3: 158.8, p50: 172.0, p97: 186.0, wM: 67.2, wS: 0.152, bmiP5: 18.6, bmiP50: 22.6, bmiP85: 25.8, bmiP95: 28.4 }
     ],
     girl: [
       { m: 12, L: 1.0, M: 74.0, S: 0.0349, p3: 69.2, p50: 74.0, p97: 78.9, wM: 9.2, wS: 0.105, bmiP5: 14.1, bmiP50: 16.6, bmiP85: 18.4, bmiP95: 19.4 },
-      { m: 18, L: 1.0, M: 80.7, S: 0.0366, p3: 75.2, p50: 80.7, p97: 86.3, wM: 10.5, wS: 0.108, bmiP5: 13.8, bmiP50: 16.1, bmiP85: 17.8, bmiP95: 18.8 },
       { m: 24, L: 1.0, M: 85.7, S: 0.0384, p3: 79.3, p50: 85.7, p97: 92.1, wM: 11.7, wS: 0.111, bmiP5: 13.7, bmiP50: 15.9, bmiP85: 17.5, bmiP95: 18.5 },
-      { m: 30, L: 1.0, M: 90.7, S: 0.0396, p3: 84.0, p50: 90.7, p97: 97.4, wM: 12.9, wS: 0.115, bmiP5: 13.6, bmiP50: 15.7, bmiP85: 17.3, bmiP95: 18.3 },
       { m: 36, L: 1.0, M: 95.4, S: 0.0409, p3: 88.1, p50: 95.4, p97: 103.0, wM: 14.1, wS: 0.119, bmiP5: 13.5, bmiP50: 15.5, bmiP85: 17.2, bmiP95: 18.2 },
-      { m: 42, L: 1.0, M: 98.8, S: 0.0415, p3: 91.3, p50: 98.8, p97: 106.6, wM: 15.1, wS: 0.124, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.2, bmiP95: 18.3 },
       { m: 48, L: 1.0, M: 102.2, S: 0.0422, p3: 94.4, p50: 102.2, p97: 110.1, wM: 16.1, wS: 0.129, bmiP5: 13.4, bmiP50: 15.4, bmiP85: 17.2, bmiP95: 18.4 },
-      { m: 54, L: 1.0, M: 105.3, S: 0.0428, p3: 97.2, p50: 105.3, p97: 113.6, wM: 17.2, wS: 0.135, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.3, bmiP95: 18.6 },
       { m: 60, L: 1.0, M: 108.4, S: 0.0435, p3: 99.9, p50: 108.4, p97: 117.0, wM: 18.3, wS: 0.141, bmiP5: 13.4, bmiP50: 15.5, bmiP85: 17.4, bmiP95: 18.8 },
       { m: 72, L: 1.0, M: 114.7, S: 0.0445, p3: 106.6, p50: 114.7, p97: 123.3, wM: 20.8, wS: 0.153, bmiP5: 13.5, bmiP50: 15.7, bmiP85: 17.8, bmiP95: 19.4 },
       { m: 84, L: 1.0, M: 120.8, S: 0.0460, p3: 112.2, p50: 120.8, p97: 130.2, wM: 23.6, wS: 0.165, bmiP5: 13.6, bmiP50: 16.1, bmiP85: 18.5, bmiP95: 20.3 },
@@ -70,21 +72,36 @@
       { m: 108, L: 1.0, M: 132.6, S: 0.0501, p3: 122.8, p50: 132.6, p97: 144.1, wM: 30.5, wS: 0.183, bmiP5: 14.1, bmiP50: 17.2, bmiP85: 20.2, bmiP95: 22.3 },
       { m: 120, L: 1.0, M: 139.1, S: 0.0526, p3: 128.2, p50: 139.1, p97: 151.2, wM: 34.8, wS: 0.187, bmiP5: 14.5, bmiP50: 17.9, bmiP85: 21.1, bmiP95: 23.3 },
       { m: 132, L: 1.0, M: 145.8, S: 0.0532, p3: 133.8, p50: 145.8, p97: 157.6, wM: 39.7, wS: 0.186, bmiP5: 15.0, bmiP50: 18.6, bmiP85: 21.9, bmiP95: 24.2 },
-      { m: 144, L: 1.0, M: 151.7, S: 0.0494, p3: 139.5, p50: 143.4, p97: 162.6, wM: 44.5, wS: 0.180, bmiP5: 15.5, bmiP50: 19.3, bmiP85: 22.6, bmiP95: 24.9 },
+      { m: 144, L: 1.0, M: 151.7, S: 0.0494, p3: 139.5, p50: 151.7, p97: 162.6, wM: 44.5, wS: 0.180, bmiP5: 15.5, bmiP50: 19.3, bmiP85: 22.6, bmiP95: 24.9 },
       { m: 156, L: 1.0, M: 155.9, S: 0.0438, p3: 144.7, p50: 155.9, p97: 166.0, wM: 48.6, wS: 0.171, bmiP5: 16.1, bmiP50: 19.9, bmiP85: 23.2, bmiP95: 25.5 },
       { m: 168, L: 1.0, M: 158.3, S: 0.0416, p3: 147.9, p50: 158.3, p97: 168.1, wM: 51.5, wS: 0.162, bmiP5: 16.6, bmiP50: 20.4, bmiP85: 23.6, bmiP95: 25.9 },
       { m: 180, L: 1.0, M: 159.5, S: 0.0408, p3: 149.3, p50: 159.5, p97: 169.2, wM: 53.2, wS: 0.155, bmiP5: 17.0, bmiP50: 20.8, bmiP85: 23.9, bmiP95: 26.2 },
       { m: 192, L: 1.0, M: 160.0, S: 0.0403, p3: 150.3, p50: 160.0, p97: 169.8, wM: 54.1, wS: 0.150, bmiP5: 17.2, bmiP50: 21.0, bmiP85: 24.1, bmiP95: 26.3 },
       { m: 204, L: 1.0, M: 160.2, S: 0.0400, p3: 151.0, p50: 160.2, p97: 170.1, wM: 54.5, wS: 0.147, bmiP5: 17.4, bmiP50: 21.1, bmiP85: 24.2, bmiP95: 26.4 },
-      { m: 216, L: 1.0, M: 160.3, S: 0.0398, p3: 151.2, p50: 160.3, p97: 170.2, wM: 54.7, wS: 0.145, bmiP5: 17.5, bmiP50: 21.2, bmiP85: 24.3, bmiP95: 26.5 }
+      { m: 216, L: 1.0, M: 160.3, S: 0.0398, p3: 151.2, p50: 160.3, p97: 170.2, wM: 54.7, wS: 0.145, bmiP5: 17.5, bmiP50: 21.2, bmiP85: 24.3, bmiP95: 26.5 },
+      { m: 240, L: 1.0, M: 160.5, S: 0.0395, p3: 151.4, p50: 160.5, p97: 170.4, wM: 55.0, wS: 0.143, bmiP5: 17.7, bmiP50: 21.4, bmiP85: 24.5, bmiP95: 26.7 }
     ]
   };
 
-  function getStandardsTable(gender) {
-    if (growthData && growthData[gender]) {
-      return growthData[gender];
+  function normalizeSex(sex) {
+    if (!sex) return 'boy';
+    const s = String(sex).toLowerCase();
+    if (s.startsWith('g') || s.startsWith('f')) return 'girl';
+    return 'boy';
+  }
+
+  function getStandardsTable(sex, standard = 'KDCA') {
+    const s = normalizeSex(sex);
+    const isCdc = String(standard).toUpperCase().includes('CDC');
+
+    if (growthData) {
+      if (isCdc) {
+        if (growthData[`cdc_${s}`]) return growthData[`cdc_${s}`];
+        if (growthData.cdc && growthData.cdc[s]) return growthData.cdc[s];
+      }
+      if (growthData[s]) return growthData[s];
     }
-    return FALLBACK_KDCA[gender] || FALLBACK_KDCA.boy;
+    return FALLBACK_KDCA[s] || FALLBACK_KDCA.boy;
   }
 
   // 2. Numerical Approximation of Error Function erf(x) & Normal CDF
@@ -104,13 +121,15 @@
   }
 
   function normalCDF(z) {
+    if (z === Infinity) return 1.0;
+    if (z === -Infinity) return 0.0;
     return 0.5 * (1.0 + erf(z / Math.SQRT2));
   }
 
-  // 3. Interpolate LMS for any arbitrary month (12~216)
-  function getLmsForMonth(gender, months) {
-    const table = getStandardsTable(gender);
-    const clampedM = Math.max(12, Math.min(216, months));
+  // 3. Interpolate LMS for any arbitrary month (12~240)
+  function getLmsForMonth(sex, months, standard = 'KDCA') {
+    const table = getStandardsTable(sex, standard);
+    const clampedM = Math.max(12, Math.min(240, Number(months) || 120));
 
     if (clampedM <= table[0].m) return table[0];
     if (clampedM >= table[table.length - 1].m) return table[table.length - 1];
@@ -122,7 +141,7 @@
         const alpha = (clampedM - r1.m) / (r2.m - r1.m);
         return {
           m: clampedM,
-          L: (1 - alpha) * r1.L + alpha * r2.L,
+          L: (1 - alpha) * (r1.L !== undefined ? r1.L : 1.0) + alpha * (r2.L !== undefined ? r2.L : 1.0),
           M: (1 - alpha) * r1.M + alpha * r2.M,
           S: (1 - alpha) * r1.S + alpha * r2.S,
           p3: (1 - alpha) * r1.p3 + alpha * r2.p3,
@@ -140,18 +159,62 @@
     return table[0];
   }
 
-  // 4. KDCA LMS Percentile Calculator
-  function calculateKdcaPercentile(val, L, M, S) {
+  // 4. Box-Cox LMS Z-Score & Percentile Engine
+  function calculateLMSZScore(measure, ageMonths, sex, type = 'height', standard = 'KDCA') {
+    const val = Number(measure) || 0;
+    const stdName = String(standard).toUpperCase().includes('CDC') ? 'CDC 2000' : 'KDCA 2017';
+    if (val <= 0) {
+      return { zScore: 0.0, percentile: 50.0, standard: stdName };
+    }
+
+    const lms = getLmsForMonth(sex, ageMonths, standard);
+    let L = lms.L !== undefined ? lms.L : 1.0;
+    let M = lms.M;
+    let S = lms.S;
+
+    if (type === 'weight' || type === 'w') {
+      L = 1.0;
+      M = lms.wM || 16.5;
+      S = lms.wS || 0.13;
+    } else if (type === 'bmi') {
+      L = 1.0;
+      M = lms.bmiP50 || 16.0;
+      S = 0.11;
+    }
+
     let z;
-    if (Math.abs(L) < 0.0001) {
+    if (Math.abs(L) <= 0.0001) {
       z = Math.log(val / M) / S;
     } else {
       z = (Math.pow(val / M, L) - 1.0) / (L * S);
     }
-    const rawP = normalCDF(z) * 100;
+
+    const rawP = normalCDF(z) * 100.0;
     const percentile = Math.min(99.9, Math.max(0.1, Math.round(rawP * 10) / 10));
-    const topPercent = Math.round((100 - percentile) * 10) / 10;
-    const deltaMedian = Math.round((val - M) * 10) / 10;
+
+    return {
+      zScore: Math.round(z * 100) / 100,
+      percentile,
+      standard: stdName
+    };
+  }
+
+  // KDCA LMS Percentile Calculator (Backward compatible)
+  function calculateKdcaPercentile(val, L, M, S) {
+    const v = Number(val) || 0;
+    if (v <= 0 || !M || !S) {
+      return { zScore: 0, percentile: 50.0, topPercent: 50.0, deltaMedian: 0 };
+    }
+    let z;
+    if (Math.abs(L) <= 0.0001) {
+      z = Math.log(v / M) / S;
+    } else {
+      z = (Math.pow(v / M, L) - 1.0) / (L * S);
+    }
+    const rawP = normalCDF(z) * 100.0;
+    const percentile = Math.min(99.9, Math.max(0.1, Math.round(rawP * 10) / 10));
+    const topPercent = Math.round((100.0 - percentile) * 10) / 10;
+    const deltaMedian = Math.round((v - M) * 10) / 10;
     return {
       zScore: Math.round(z * 100) / 100,
       percentile,
@@ -196,27 +259,151 @@
   }
 
   // 5. Tanner Mid-Parental Height (MPH) Formula
-  function calculateMph(fatherHeight, motherHeight, gender) {
-    const f = (!fatherHeight || fatherHeight <= 0) ? 173.5 : fatherHeight;
-    const m = (!motherHeight || motherHeight <= 0) ? 161.0 : motherHeight;
+  function calculateMPH(fatherHeight, motherHeight, sex) {
+    const f = Number(fatherHeight) > 0 ? Number(fatherHeight) : 173.5;
+    const m = Number(motherHeight) > 0 ? Number(motherHeight) : 161.0;
+    const isBoy = normalizeSex(sex) === 'boy';
+    const delta = isBoy ? 13.0 : -13.0;
+    const mph = (f + m + delta) / 2.0;
+    const roundedMph = Math.round(mph * 10) / 10;
+    const min = Math.round((mph - 8.5) * 10) / 10;
+    const max = Math.round((mph + 8.5) * 10) / 10;
 
-    if (gender === 'boy') {
-      return Math.round(((f + m + 13.0) / 2.0) * 10) / 10;
-    } else {
-      return Math.round(((f + m - 13.0) / 2.0) * 10) / 10;
-    }
+    return {
+      mph: roundedMph,
+      min,
+      max,
+      margin: 8.5,
+      rangeStr: `${min}cm ~ ${max}cm`
+    };
   }
 
-  // 6. Growth Inhibiting Habits Penalty Map
+  function calculateMph(fatherHeight, motherHeight, gender) {
+    return calculateMPH(fatherHeight, motherHeight, gender).mph;
+  }
+
+  // 6. Annual Growth Velocity Engine
+  function calculateVelocity(currentHeight, previousHeightOrAge, monthsDiff = 6) {
+    let velocity;
+    let age = 7;
+
+    if (monthsDiff === 6 && typeof previousHeightOrAge === 'number' && previousHeightOrAge < 30) {
+      // (recentGain6m, ageYears) signature
+      velocity = Math.round(Number(currentHeight || 0) * 2 * 10) / 10;
+      age = previousHeightOrAge;
+    } else if (typeof previousHeightOrAge === 'number' && previousHeightOrAge > 30) {
+      // (currentHeight, previousHeight, monthsDiff) signature
+      const mDiff = monthsDiff > 0 ? monthsDiff : 6;
+      velocity = Math.round(((Number(currentHeight) - Number(previousHeightOrAge)) * (12.0 / mDiff)) * 10) / 10;
+    } else {
+      velocity = Math.round(Number(currentHeight || 0) * 2 * 10) / 10;
+    }
+
+    const isRedFlag = age >= 4 && age <= 9 && velocity < 4.0;
+    return {
+      velocityCmPerYear: velocity,
+      alert: isRedFlag,
+      isRedFlag: isRedFlag,
+      status: velocity >= 7.0 ? 'accelerated' : (isRedFlag ? 'red_flag' : 'normal')
+    };
+  }
+
+  // 7. Growth Inhibiting Habits Penalty Map
   const HABIT_LOSS_MAP = {
     late_sleep: 1.5,
+    night_carbs: 1.2,
     poor_posture: 1.2,
     picky_eater: 1.3,
+    sedentary: 1.0,
     milk_trouble: 0.8,
     obesity_risk: 1.7
   };
 
-  // 7. 3-Tier Predicted Height Bar Calculations
+  // 8. 3 Trajectories Prediction Engine
+  function predictAdultHeightTrajectories(childData, growthHistory, inhibitionFactors) {
+    let mph = 175.0;
+    let habits = [];
+    let tannerPhase = 'phase_1';
+    let curAgeYears = 10;
+    let curHeight = 137.0;
+
+    if (typeof childData === 'number') {
+      mph = childData;
+      habits = Array.isArray(growthHistory) ? growthHistory : (Array.isArray(inhibitionFactors) ? inhibitionFactors : []);
+      if (typeof inhibitionFactors === 'string') tannerPhase = inhibitionFactors;
+    } else if (childData && typeof childData === 'object') {
+      if (childData.fatherHeight && childData.motherHeight) {
+        mph = calculateMPH(childData.fatherHeight, childData.motherHeight, childData.gender).mph;
+      } else if (childData.mph) {
+        mph = childData.mph;
+      }
+      habits = childData.habits || inhibitionFactors || [];
+      tannerPhase = childData.tannerPhase || childData.pubertyStage || 'phase_1';
+      curAgeYears = childData.ageYears || (childData.ageMonths ? Math.round(childData.ageMonths / 12) : 10);
+      curHeight = childData.currentHeight || 137.0;
+    }
+
+    let totalPenalty = 0;
+    for (const h of habits) {
+      if (HABIT_LOSS_MAP[h]) totalPenalty += HABIT_LOSS_MAP[h];
+    }
+    const cappedPenalty = Math.min(5.0, Math.round(totalPenalty * 10) / 10);
+    const unmanaged = Math.round((mph - cappedPenalty) * 10) / 10;
+
+    let goldenBoost = 6.0;
+    if (tannerPhase === 'phase_2') goldenBoost = 5.0;
+    else if (tannerPhase === 'phase_3') goldenBoost = 4.0;
+    else if (tannerPhase === 'phase_4') goldenBoost = 1.8;
+
+    let optimizedGain;
+    if (tannerPhase === 'phase_4') {
+      optimizedGain = Math.min(2.5, Math.max(1.5, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+    } else {
+      optimizedGain = Math.min(9.2, Math.max(5.0, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+    }
+    const optimized = Math.round((unmanaged + optimizedGain) * 10) / 10;
+
+    // Generate curve points from current age to 20
+    const startAge = Math.max(1, Math.min(19, curAgeYears));
+    const ageArray = [];
+    const baselineCurve = [];
+    const unmanagedCurve = [];
+    const optimizedCurve = [];
+
+    const yearsRemaining = Math.max(1, 20 - startAge);
+    for (let a = startAge; a <= 20; a++) {
+      ageArray.push(a);
+      const frac = (a - startAge) / yearsRemaining;
+      baselineCurve.push(Math.round((curHeight + (mph - curHeight) * frac) * 10) / 10);
+      unmanagedCurve.push(Math.round((curHeight + (unmanaged - curHeight) * frac) * 10) / 10);
+      optimizedCurve.push(Math.round((curHeight + (optimized - curHeight) * frac) * 10) / 10);
+    }
+
+    return {
+      baselineMPH: {
+        height: mph,
+        range: [Math.round((mph - 8.5) * 10) / 10, Math.round((mph + 8.5) * 10) / 10]
+      },
+      unmanaged: {
+        height: unmanaged,
+        penalty: cappedPenalty,
+        lossPercent: Math.round((cappedPenalty / mph) * 1000) / 10
+      },
+      optimized: {
+        height: optimized,
+        gainOverUnmanaged: optimizedGain,
+        potentialGain: [5.0, 9.2]
+      },
+      curvePoints: {
+        ageArray,
+        baselineCurve,
+        unmanagedCurve,
+        optimizedCurve
+      }
+    };
+  }
+
+  // Legacy calculateHeightPrediction for compatibility
   function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none') {
     let loss = 0;
     habits.forEach((h) => {
@@ -227,12 +414,15 @@
 
     let goldenBoost = 5.0;
     let monthsRemaining = '약 36~48개월 (성장판 여유 / 기초체질 형성기)';
-    if (pubertyStage === 'growth_spurt') {
+    if (pubertyStage === 'growth_spurt' || pubertyStage === 'phase_2') {
       goldenBoost = 4.0;
       monthsRemaining = '약 18~24개월 (급성장기 / 1cm가 아쉬운 골든타임)';
-    } else if (pubertyStage === 'urgent_secondary_signs') {
+    } else if (pubertyStage === 'urgent_secondary_signs' || pubertyStage === 'phase_3') {
       goldenBoost = 2.5;
       monthsRemaining = '약 6~12개월 (성장판 폐쇄 직전 긴급 카운트다운!)';
+    } else if (pubertyStage === 'phase_4') {
+      goldenBoost = 1.8;
+      monthsRemaining = '체형 완성기 (척추 디스크 수분 복원 및 자세 교정 구간)';
     }
 
     const rawGain = Math.round((mph + goldenBoost + (unmanagedLoss * 0.5) - unmanagedHeight) * 10) / 10;
@@ -250,9 +440,9 @@
     };
   }
 
-  // 8. Growth Curve Points for Chart
-  function getGrowthCurveData(gender) {
-    const table = getStandardsTable(gender);
+  // 9. Normative Growth Curve Data
+  function getGrowthCurveData(sex, standard = 'KDCA') {
+    const table = getStandardsTable(sex, standard);
     return {
       months: table.map((r) => r.m),
       p3: table.map((r) => r.p3),
@@ -261,86 +451,159 @@
     };
   }
 
-  // 9. Generate SVG Growth Trajectory Curve
-  function renderSvgGrowthCurve(gender, currentAgeMonths, currentHeight) {
-    const data = getGrowthCurveData(gender);
-    const width = 500;
-    const height = 240;
-    const padding = { top: 20, right: 30, bottom: 35, left: 45 };
+  // 10. High-Resolution Interactive 3-Curve SVG Chart
+  function renderSvgGrowthCurve(sex, currentAgeMonths, currentHeight, options = {}) {
+    const width = 600;
+    const height = 320;
+    const padding = { top: 25, right: 45, bottom: 40, left: 50 };
 
+    const normData = getGrowthCurveData(sex, options.standard || 'KDCA');
     const minM = 12;
-    const maxM = 216;
+    const maxM = 240;
     const minH = 65;
-    const maxH = 190;
+    const maxH = 195;
 
     const scaleX = (m) => padding.left + ((m - minM) / (maxM - minM)) * (width - padding.left - padding.right);
     const scaleY = (h) => height - padding.bottom - ((h - minH) / (maxH - minH)) * (height - padding.top - padding.bottom);
 
-    const makePath = (values) => {
+    // Build normative reference paths (P3, P50, P97)
+    const makeNormPath = (values) => {
       return values.map((val, idx) => {
-        const x = scaleX(data.months[idx]);
+        const x = scaleX(normData.months[idx]);
         const y = scaleY(val);
         return `${idx === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
       }).join(' ');
     };
 
-    const pathP97 = makePath(data.p97);
-    const pathP50 = makePath(data.p50);
-    const pathP3 = makePath(data.p3);
+    const pathP97 = makeNormPath(normData.p97);
+    const pathP50 = makeNormPath(normData.p50);
+    const pathP3 = makeNormPath(normData.p3);
 
-    const curX = scaleX(Math.max(12, Math.min(216, currentAgeMonths)));
-    const curY = scaleY(Math.max(65, Math.min(190, currentHeight)));
+    // Trajectory curves from current age to 20 years (240m)
+    const curM = Math.max(12, Math.min(240, Number(currentAgeMonths) || 120));
+    const curH = Math.max(minH, Math.min(maxH, Number(currentHeight) || 137.0));
+    const curAgeYears = Math.round(curM / 12);
+
+    const traj = predictAdultHeightTrajectories({
+      mph: options.mph || 175.0,
+      habits: options.habits || [],
+      tannerPhase: options.tannerPhase || 'phase_2',
+      ageYears: curAgeYears,
+      currentHeight: curH
+    });
+
+    const cp = traj.curvePoints;
+    const makeTrajPath = (curveVals) => {
+      return cp.ageArray.map((ageYr, idx) => {
+        const x = scaleX(ageYr * 12);
+        const y = scaleY(curveVals[idx]);
+        return `${idx === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+    };
+
+    const pathOptimized = makeTrajPath(cp.optimizedCurve);
+    const pathBaseline = makeTrajPath(cp.baselineCurve);
+    const pathUnmanaged = makeTrajPath(cp.unmanagedCurve);
+
+    // Shaded target zone between unmanaged and optimized
+    let shadedAreaPath = '';
+    if (cp.ageArray.length > 1) {
+      const topPoints = cp.ageArray.map((ageYr, idx) => `${scaleX(ageYr * 12).toFixed(1)},${scaleY(cp.optimizedCurve[idx]).toFixed(1)}`);
+      const bottomPoints = cp.ageArray.map((ageYr, idx) => `${scaleX(ageYr * 12).toFixed(1)},${scaleY(cp.unmanagedCurve[idx]).toFixed(1)}`).reverse();
+      shadedAreaPath = `M${topPoints.join(' L')} L${bottomPoints.join(' L')} Z`;
+    }
+
+    const curX = scaleX(curM);
+    const curY = scaleY(curH);
+
+    // Current percentile
+    const curLms = getLmsForMonth(sex, curM, options.standard || 'KDCA');
+    const curZ = calculateKdcaPercentile(curH, curLms.L, curLms.M, curLms.S);
 
     return `
-      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 260px;" aria-label="질병관리청 성장 곡선">
+      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 340px;" aria-label="3중 인터랙티브 임상 성장 곡선 차트">
         <defs>
-          <linearGradient id="curveGridGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#5B4BFF" stop-opacity="0.08" />
-            <stop offset="100%" stop-color="#FAF8F5" stop-opacity="0.0" />
+          <linearGradient id="optZoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.05" />
           </linearGradient>
+          <filter id="glowPulse" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
         </defs>
 
-        <!-- Grid Lines -->
-        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(170)}" x2="${width - padding.right}" y2="${scaleY(170)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <!-- Grid Lines & Shaded Area -->
+        <line x1="${padding.left}" y1="${scaleY(80)}" x2="${width - padding.right}" y2="${scaleY(80)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(120)}" x2="${width - padding.right}" y2="${scaleY(120)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(160)}" x2="${width - padding.right}" y2="${scaleY(160)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(180)}" x2="${width - padding.right}" y2="${scaleY(180)}" stroke="#1E293B" stroke-dasharray="3,3" />
+
+        ${shadedAreaPath ? `<path d="${shadedAreaPath}" fill="url(#optZoneGrad)" class="trajectory-target-zone" />` : ''}
+
+        <!-- Normative Reference Background Curves (P3, P50, P97) -->
+        <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p97" />
+        <text x="${width - padding.right + 4}" y="${scaleY(normData.p97[normData.p97.length - 1]) + 3}" font-size="9" fill="#94A3B8" font-family="monospace">P97 (97%)</text>
+
+        <path d="${pathP50}" fill="none" stroke="#334155" stroke-width="1.8" id="curve-p50" />
+        <text x="${width - padding.right + 4}" y="${scaleY(normData.p50[normData.p50.length - 1]) + 3}" font-size="10" fill="#64748B" font-weight="700" font-family="monospace">P50 (50%)</text>
+
+        <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p3" />
+        <text x="${width - padding.right + 4}" y="${scaleY(normData.p3[normData.p3.length - 1]) + 3}" font-size="9" fill="#94A3B8" font-family="monospace">P3 (3%)</text>
+
+        <!-- 3 Color-Coded Trajectory Path Lines -->
+        <!-- 1. Optimized Intervention Trajectory (Cyan Blue #38BDF8) -->
+        <path d="${pathOptimized}" fill="none" stroke="#38BDF8" stroke-width="2.8" stroke-linecap="round" id="curve-optimized" />
+        <text x="${scaleX(240) + 4}" y="${scaleY(traj.optimized.height) - 4}" font-size="10" fill="#38BDF8" font-weight="800">최대 잠재 ${traj.optimized.height}cm</text>
+
+        <!-- 2. Genetic Baseline Trajectory (Amber #F59E0B) -->
+        <path d="${pathBaseline}" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
+        <text x="${scaleX(240) + 4}" y="${scaleY(traj.baselineMPH.height) + 3}" font-size="10" fill="#F59E0B" font-weight="700">유전 MPH ${traj.baselineMPH.height}cm</text>
+
+        <!-- 3. Current Unmanaged Trajectory (Coral/Rose #F43F5E) -->
+        <path d="${pathUnmanaged}" fill="none" stroke="#F43F5E" stroke-width="2.4" stroke-linecap="round" id="curve-unmanaged" />
+        <text x="${scaleX(240) + 4}" y="${scaleY(traj.unmanaged.height) + 10}" font-size="10" fill="#F43F5E" font-weight="700">방치 손실 ${traj.unmanaged.height}cm</text>
 
         <!-- Axes -->
-        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#CBD5E1" stroke-width="1.5" />
-        <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#CBD5E1" stroke-width="1.5" />
+        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
+        <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
 
-        <!-- Ticks -->
-        <text x="${scaleX(24)}" y="${height - 12}" font-size="10" fill="#64748B" text-anchor="middle">2세</text>
-        <text x="${scaleX(72)}" y="${height - 12}" font-size="10" fill="#64748B" text-anchor="middle">6세</text>
-        <text x="${scaleX(120)}" y="${height - 12}" font-size="10" fill="#64748B" text-anchor="middle">10세</text>
-        <text x="${scaleX(168)}" y="${height - 12}" font-size="10" fill="#64748B" text-anchor="middle">14세</text>
-        <text x="${scaleX(216)}" y="${height - 12}" font-size="10" fill="#64748B" text-anchor="middle">18세</text>
+        <!-- X-Axis Age Ticks (1 to 20 yrs) -->
+        <text x="${scaleX(24)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">2세</text>
+        <text x="${scaleX(72)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">6세</text>
+        <text x="${scaleX(120)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">10세</text>
+        <text x="${scaleX(168)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">14세</text>
+        <text x="${scaleX(216)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">18세</text>
+        <text x="${scaleX(240)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">20세</text>
 
-        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10" fill="#64748B" text-anchor="end">100cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10" fill="#64748B" text-anchor="end">140cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(170) + 4}" font-size="10" fill="#64748B" text-anchor="end">170cm</text>
+        <!-- Y-Axis Height Ticks -->
+        <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">80cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">100cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(120) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">120cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">140cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(160) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">160cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(180) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">180cm</text>
 
-        <!-- Percentile Curves -->
-        <path d="${pathP97}" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" />
-        <text x="${width - padding.right + 4}" y="${scaleY(data.p97[data.p97.length - 1]) + 3}" font-size="9" fill="#94A3B8">97%</text>
-
-        <path d="${pathP50}" fill="none" stroke="#5B4BFF" stroke-width="2.5" />
-        <text x="${width - padding.right + 4}" y="${scaleY(data.p50[data.p50.length - 1]) + 3}" font-size="10" fill="#5B4BFF" font-weight="700">50%</text>
-
-        <path d="${pathP3}" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4,3" />
-        <text x="${width - padding.right + 4}" y="${scaleY(data.p3[data.p3.length - 1]) + 3}" font-size="9" fill="#94A3B8">3%</text>
-
-        <!-- Current Child Coordinate -->
-        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="7" fill="#10B981" stroke="#FFFFFF" stroke-width="2.5" />
-        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="12" fill="#10B981" fill-opacity="0.25">
-          <animate attributeName="r" values="7;13;7" dur="2s" repeatCount="indefinite" />
+        <!-- Current Child Coordinate: Pulsing Bio-Emerald Point (#10B981) -->
+        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="14" fill="#10B981" fill-opacity="0.25">
+          <animate attributeName="r" values="7;15;7" dur="2s" repeatCount="indefinite" />
         </circle>
-        <text x="${curX.toFixed(1)}" y="${(curY - 12).toFixed(1)}" font-size="11" font-weight="800" fill="#047857" text-anchor="middle">현재 ${currentHeight}cm</text>
+        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2.5" filter="url(#glowPulse)" />
+
+        <!-- Tooltip Badge -->
+        <g transform="translate(${Math.max(padding.left + 5, Math.min(width - padding.right - 130, curX - 60))}, ${Math.max(padding.top + 5, curY - 38)})">
+          <rect x="0" y="0" width="125" height="26" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.2" opacity="0.95" />
+          <text x="62" y="17" font-size="10.5" font-weight="800" fill="#10B981" text-anchor="middle">
+            현재 ${curH}cm (${curZ.percentile}th Pct)
+          </text>
+        </g>
       </svg>
     `;
   }
 
-  // 10. Generate 3-Tier Predicted Height Bar Chart HTML
+  // 11. Generate 3-Tier Predicted Height Bar Chart HTML
   function render3TierBarChart(pred) {
     const minScale = 140;
     const maxScale = 190;
@@ -361,93 +624,89 @@
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-mph" style="width: ${wMph}%;"></div>
           </div>
-          <div class="predicted-bar-caption">부모 키 표준 의학식 기반 기대 유전 잠재력</div>
+          <div class="predicted-bar-caption">부모 키 표준 의학식 기반 기대 유전 잠재력 (±8.5cm 신뢰구간)</div>
         </div>
 
         <!-- Bar 2: Unmanaged Loss -->
         <div class="predicted-bar-row" style="margin-top: 1rem;">
           <div class="predicted-bar-header">
             <span class="bar-title">② 방해 습관 방치 시 예측키</span>
-            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--coral-alert); font-size: 0.85rem;">(-${pred.unmanagedLoss}cm 손실)</small></span>
+            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--rose-alert, #F43F5E); font-size: 0.85rem;">(-${pred.unmanagedLoss}cm 손실)</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-alert" style="width: ${wUnmanaged}%;"></div>
           </div>
-          <div class="predicted-bar-caption">늦은 취침·구부정한 자세 등 방해 습관 방치 시 최종 손실 위험치</div>
+          <div class="predicted-bar-caption">늦은 취침·심야 혈당 스파이크·자세 불균형 지속 시 누적 손실치 (최대 -5cm 캡)</div>
         </div>
 
         <!-- Bar 3: Golden Time Max Potential -->
         <div class="predicted-bar-row" style="margin-top: 1rem;">
           <div class="predicted-bar-header">
             <span class="bar-title">③ 골든타임 밀착 관리 시 최대 잠재키</span>
-            <span class="bar-val bar-val-mint">${pred.potentialHeight}cm <small style="color: var(--growth-mint-hover); font-size: 0.9rem; font-weight: 800;">(+${pred.goldenTimeGain}cm 잠재력)</small></span>
+            <span class="bar-val bar-val-mint">${pred.potentialHeight}cm <small style="color: var(--cyan-pulse, #38BDF8); font-size: 0.9rem; font-weight: 800;">(+${pred.goldenTimeGain}cm 잠재력)</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-mint" style="width: ${wPotential}%;"></div>
           </div>
-          <div class="predicted-bar-caption">성장판 닫히기 전 영양·수면·바른 자세 집중 교정 시 도달 가능한 최상위 키</div>
+          <div class="predicted-bar-caption">서파수면 GH 회복·척추 감압(+1.8cm)·흡수율 45% 칼슘 처방 시 도달 가능한 최적 궤적</div>
         </div>
       </div>
     `;
   }
 
-  // 11. Render 3 Habit Coaching Cards
-  function renderCoachingCards(habits) {
-    const hasMilk = habits.includes('milk_trouble');
-    const hasPicky = habits.includes('picky_eater');
+  // 12. Render 3 Habit Coaching Cards
+  function renderCoachingCards(habits = []) {
+    const hasMilk = habits.includes('milk_trouble') || habits.includes('picky_eater');
     const hasLateSleep = habits.includes('late_sleep');
     const hasPosture = habits.includes('poor_posture');
 
     return `
       <div class="coaching-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
         <!-- Card 1: Nutrition -->
-        <div class="bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.35rem;">
+        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
             <span style="font-size: 1.4rem;">🥛</span>
             <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">식단 &amp; 뼈성장 영양소 처방</h4>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
             ${hasMilk 
-              ? '<strong>유당불내증 배앓이 안심 포뮬러:</strong> 우유 소화가 어려운 아이는 일반 탄산칼슘 대신 위산 분비 없이 흡수되는 <em>구연산 칼슘 + 비타민D3</em> 시럽을 처방합니다.' 
-              : '<strong>골아세포 분열 촉진:</strong> 성장판 연골세포 분열을 돕는 필수 아미노산(L-아르기닌), 흡수율 높은 활성형 비타민D3와 아연 복합 공급이 필수적입니다.'}
+              ? '<strong>소화 흡수 최적화 포뮬러:</strong> 우유·유제품 소화가 불편하거나 편식이 있는 경우, 일반 탄산칼슘(~22%) 대신 위산 무관 흡수되는 <em>구연산 칼슘(구연산칼슘) / 어골칼슘(MCHA, 흡수율 ~45%)</em>과 비타민 D3+K2를 처방합니다.' 
+              : '<strong>골아세포 분열 촉진:</strong> 성장판 연골 기질 결합을 위해 활성형 비타민 D3(1,000~2,500 IU)와 오스테오칼신 활성화 인자 K2(MK-7 45~90 mcg), 피콜린산 아연 복합 공급이 필수적입니다.'}
           </p>
         </div>
 
         <!-- Card 2: Sleep -->
-        <div class="bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.35rem;">
+        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
             <span style="font-size: 1.4rem;">🌙</span>
             <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">밤 10시 수면 골든타임 루틴</h4>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
             ${hasLateSleep 
-              ? '<strong>성장호르몬 분비 피크 사수:</strong> 늦은 취침은 하루 분비량의 65%에 달하는 서파 수면 피크를 절단합니다. 밤 9시 30분 암막 환경 조성과 스마트폰 차단이 급선무입니다.' 
-              : '<strong>깊은 서파 수면 3~4단계:</strong> 취침 후 1~2시간 사이 숙면 시 맥동성 성장호르몬이 가장 왕성하게 분비됩니다. 규칙적인 취침 루틴을 지속해주세요.'}
+              ? '<strong>성장호르몬(GH) 서파수면 피크 사수:</strong> 늦은 취침은 하루 분비량의 65%에 달하는 NREM Stage 3-4 델타파 성장호르몬 피크를 절단합니다(최대 -52% 손실). 밤 10시 이전 입면 환경 조성이 급선무입니다.' 
+              : '<strong>깊은 서파수면(SWS) 3~4단계:</strong> 취침 후 60~90분 사이 맥동성 성장호르몬이 가장 폭발적으로 분비됩니다. 규칙적인 서파수면 리듬을 유지해 주세요.'}
           </p>
         </div>
 
         <!-- Card 3: Posture -->
-        <div class="bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.35rem;">
+        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
             <span style="font-size: 1.4rem;">🧘</span>
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">숨은 키 2cm 자세 &amp; 점프 교정</h4>
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">숨은 키 2cm 척추 감압 &amp; 점핑</h4>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
             ${hasPosture 
-              ? '<strong>척추 정렬 복원:</strong> 거북목과 구부정한 자세로 압박받은 추간판을 펴주면 숨은 키 1.5~2cm가 즉시 복원됩니다. 바른 각도의 독서대와 인체공학 의자가 효과적입니다.' 
-              : '<strong>성장판 수직 견인 운동:</strong> 매일 10분 실내 트램폴린 점핑 및 스트레칭은 무릎·발목 성장판 연골에 적절한 물리적 압력과 이완 자극을 전달합니다.'}
+              ? '<strong>추간판 수분 복원:</strong> 거북목과 굽은 등으로 압박받은 추간판 공간을 패시브 데드행(30초×3)으로 감압하면 숨은 키 1.5~2.2cm가 즉시 복원됩니다.' 
+              : '<strong>볼프의 법칙(Wolff\'s Law) 성장판 자극:</strong> 줄넘기·점핑 등 수직 미세 하중(체중의 1.5~2.5배)은 성장판 연골세포 Runx2/Sox9 발현을 촉진하여 종적 골 성장을 가속합니다.'}
           </p>
         </div>
       </div>
     `;
   }
 
-  // 11-1. Render Official Authority Clinical & Nutritional Guidance (Parenting Help First)
+  // 13. Official Clinical Velocity, Sleep & Nutrition Box
   function renderOfficialClinicalAndNutritionBox(ageMonths, bmiInfo) {
-    if (!authoritiesData && typeof window !== 'undefined' && window.KIDSFIT_AUTHORITIES_DATA) {
-      authoritiesData = window.KIDSFIT_AUTHORITIES_DATA;
-    }
-    const clampedM = Math.max(12, Math.min(216, ageMonths || 48));
+    const clampedM = Math.max(12, Math.min(240, ageMonths || 120));
 
     const velocityList = (authoritiesData && authoritiesData.growthVelocityAndRedFlags) || [];
     const velocityGuide = velocityList.find((v) => clampedM >= v.minMonths && clampedM <= v.maxMonths) || {
@@ -464,11 +723,11 @@
     const kdriList = (authoritiesData && authoritiesData.kdriNutritionByAge) || [];
     const kdriGuide = kdriList.find((k) => clampedM >= k.minMonths && clampedM <= k.maxMonths) || {
       label: '보건복지부 한국인 영양소 섭취기준(KDRIs)',
-      calciumMg: 600,
-      vitaminDIu: 400,
-      proteinG: 25,
-      zincMg: 4.5,
-      ironMg: 7.5,
+      calciumMg: 800,
+      vitaminDIu: 1000,
+      proteinG: 35,
+      zincMg: 8,
+      ironMg: 9,
       foodEquivalents: [
         '칼슘 = 우유/두유 2컵 + 두부 반 모 + 잔멸치 한 줌',
         '단백질 = 달걀 1개 + 살코기/생선 1토막',
@@ -477,182 +736,58 @@
     };
 
     return `
-      <!-- Official KSPENDO & NSF Clinical Direction Card -->
-      <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+      <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="font-size: 1.35rem;">🏛️</span>
-            <h4 style="font-size: 1.08rem; font-weight: 800; color: #0F172A; margin: 0;">
-              [공신력 검증 ①] 대한소아내분비학회 · 미국수면재단(NSF) 연령별 양육 방향 가이드
+            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+              [공신력 검증] 대한소아내분비학회 · 미국수면재단(NSF) 성장속도 &amp; 수면 지침
             </h4>
           </div>
-          <span style="background: #EEF2FF; color: #4F46E5; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+          <span style="background: rgba(56, 189, 248, 0.15); color: var(--cyan-pulse, #38BDF8); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
             ${velocityGuide.ageRangeLabel}
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
-          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">정상 연간 성장속도 기준</div>
-            <div style="font-size: 1.02rem; font-weight: 800; color: #059669; margin-top: 0.25rem;">${velocityGuide.normalVelocityCmPerYear}</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">정상 연간 성장속도 기준</div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: var(--growth-mint, #10B981); margin-top: 0.25rem;">${velocityGuide.normalVelocityCmPerYear}</div>
           </div>
-          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">미국수면재단(NSF) 권장 수면</div>
-            <div style="font-size: 0.92rem; font-weight: 800; color: #4F46E5; margin-top: 0.25rem;">${velocityGuide.sleepRecommendation}</div>
+          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">미국수면재단(NSF) 권장 수면</div>
+            <div style="font-size: 0.95rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin-top: 0.25rem;">${velocityGuide.sleepRecommendation}</div>
           </div>
-          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: #64748B; font-weight: 700;">KDCA 체질량지수(BMI ${bmiInfo.bmi}) 판정</div>
-            <div style="font-size: 0.92rem; font-weight: 800; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.25rem;">${bmiInfo.bmiStatus}</div>
+          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
+            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">체질량지수(BMI ${bmiInfo.bmi}) 판정</div>
+            <div style="font-size: 0.95rem; font-weight: 800; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.25rem;">${bmiInfo.bmiStatus}</div>
           </div>
         </div>
 
-        <p style="font-size: 0.9rem; color: #334155; line-height: 1.65; margin: 0 0 0.9rem 0; background: #FFFFFF; padding: 0.95rem 1.1rem; border-radius: 14px; border-left: 4px solid #5B4BFF;">
-          <strong>👩‍⚕️ 지금 시기 부모님이 가장 먼저 챙겨주실 양육 방향:</strong><br>
+        <p style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.6; margin: 0 0 0.9rem 0; background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); padding: 0.95rem 1.1rem; border-radius: 14px; border-left: 4px solid var(--cyan-pulse, #38BDF8);">
+          <strong>👩‍⚕️ 임상 권고 가이드:</strong><br>
           ${velocityGuide.clinicalAdvice}<br>
-          <span style="color: #475569; font-size: 0.85rem;">• 체형 코칭: ${bmiInfo.bmiNote}</span>
+          <span style="color: var(--text-secondary); font-size: 0.82rem;">• 체형 판정: ${bmiInfo.bmiNote}</span>
         </p>
 
-        <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 14px; padding: 0.85rem 1.1rem;">
-          <div style="font-size: 0.84rem; font-weight: 800; color: #BE123C; margin-bottom: 0.35rem;">
-            🚨 소아청소년과(소아내분비과) 진료·골연령 검사를 권장하는 의학적 신호 (Red Flags)
+        <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 14px; padding: 0.85rem 1.1rem;">
+          <div style="font-size: 0.84rem; font-weight: 800; color: #FDA4AF; margin-bottom: 0.35rem;">
+            🚨 소아내분비 전문의 진료를 권장하는 임상 적신호 (Red Flags)
           </div>
-          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #881337; line-height: 1.55;">
+          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #FECDD3; line-height: 1.55;">
             ${velocityGuide.redFlags.map((rf) => `<li>${rf}</li>`).join('')}
           </ul>
         </div>
       </div>
-
-      <!-- Official MOHW KDRIs 2020 Daily Nutrition & Real Home Meal Table -->
-      <div style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 24px; padding: 1.5rem; margin-top: 1.25rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🥗</span>
-            <h4 style="font-size: 1.05rem; font-weight: 800; color: #064E3B; margin: 0;">
-              [공신력 검증 ②] 보건복지부 『한국인 영양소 섭취기준(KDRIs)』 일일 권장량 &amp; 자연식 식탁 환산표
-            </h4>
-          </div>
-          <span style="background: #DCFCE7; color: #065F46; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
-            ${kdriGuide.label}
-          </span>
-        </div>
-        <p style="font-size: 0.85rem; color: #166534; margin: 0 0 0.85rem 0;">
-          영양제보다 중요한 것은 매일 먹는 세 끼 식탁입니다. 아래 일일 권장량을 <strong>가정 내 자연식 식단</strong>으로 먼저 채워주세요.
-        </p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.65rem; margin-bottom: 1rem; text-align: center;">
-          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
-            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 칼슘 권장량</div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.calciumMg}mg</div>
-          </div>
-          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
-            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 비타민D</div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.vitaminDIu}IU</div>
-          </div>
-          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
-            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 단백질</div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.proteinG}g</div>
-          </div>
-          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
-            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 아연(면역·입맛)</div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.zincMg}mg</div>
-          </div>
-          <div style="background: #FFFFFF; border-radius: 12px; padding: 0.7rem 0.5rem; border: 1px solid #A7F3D0;">
-            <div style="font-size: 0.75rem; color: #047857; font-weight: 700;">일일 철분(조혈·집중)</div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: #064E3B;">${kdriGuide.ironMg}mg</div>
-          </div>
-        </div>
-
-        <div style="background: #FFFFFF; border-radius: 14px; padding: 0.9rem 1.1rem; border: 1px solid #BBF7D0;">
-          <div style="font-size: 0.85rem; font-weight: 800; color: #065F46; margin-bottom: 0.4rem;">🍽️ 오늘 저녁 식탁에서 바로 실천하는 자연식 반찬 환산법</div>
-          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.84rem; color: #14532D; line-height: 1.6;">
-            ${kdriGuide.foodEquivalents.map((fe) => `<li>${fe}</li>`).join('')}
-          </ul>
-        </div>
-      </div>
     `;
   }
 
-  // 12. Full Report Renderer for Tab 1
-  function renderTab1Report(profile) {
-    const lms = getLmsForMonth(profile.gender, profile.ageMonths);
-    const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);
-    const bmiInfo = evaluateWeightAndBmi(profile.currentHeight, profile.currentWeight, lms);
-    const mph = calculateMph(profile.fatherHeight, profile.motherHeight, profile.gender);
-    const pred = calculateHeightPrediction(mph, profile.habits, profile.pubertyStage);
-
-    const deltaSign = kdca.deltaMedian >= 0 ? `+${kdca.deltaMedian}` : `${kdca.deltaMedian}`;
-    const genderKorean = profile.gender === 'boy' ? '남아' : '여아';
-
-    return `
-      <!-- Big Stats Bento Header -->
-      <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <div class="stat-card" style="background: var(--primary-indigo-sub); border: 1px solid #D7DDFD; border-radius: 20px; padding: 1.25rem; text-align: center;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary-indigo);">또래 100명 중 신체 백분위</span>
-          <div style="font-size: 2rem; font-weight: 800; color: var(--primary-indigo); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>
-          <span style="font-size: 0.82rem; color: #475569;">신장 ${kdca.percentile}백분위 · 체중 ${bmiInfo.weightPercentile}백분위</span>
-        </div>
-
-        <div class="stat-card" style="background: var(--growth-mint-sub); border: 1px solid #C4F3DE; border-radius: 20px; padding: 1.25rem; text-align: center;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: var(--growth-mint-hover);">표준 평균키 대비 차이</span>
-          <div style="font-size: 2rem; font-weight: 800; color: var(--growth-mint-hover); margin: 0.35rem 0;">${deltaSign}cm</div>
-          <span style="font-size: 0.82rem; color: #475569;">동일 월령 표준키 ${lms.M.toFixed(1)}cm · 표준체중 ${(lms.wM || 16.5).toFixed(1)}kg</span>
-        </div>
-
-        <div class="stat-card" style="background: var(--coral-alert-sub); border: 1px solid #FEE0E0; border-radius: 20px; padding: 1.25rem; text-align: center;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: var(--coral-alert);">사춘기 골든타임 신호</span>
-          <div style="font-size: 1.15rem; font-weight: 800; color: var(--coral-alert); margin: 0.65rem 0;">${pred.monthsRemaining.split('(')[0].trim()}</div>
-          <span style="font-size: 0.82rem; color: #475569;">${pred.monthsRemaining}</span>
-        </div>
-      </div>
-
-      <!-- Growth Curve Visualization -->
-      <div style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-primary);">📈 질병관리청(KDCA) 2017 소아 성장 곡선 대조</h4>
-          <span style="font-size: 0.82rem; color: var(--text-secondary);">만 ${Math.floor(profile.ageMonths / 12)}세 (${profile.ageMonths}개월) ${genderKorean}</span>
-        </div>
-        ${renderSvgGrowthCurve(profile.gender, profile.ageMonths, profile.currentHeight)}
-      </div>
-
-      <!-- 3-Tier Predicted Height Bar Chart -->
-      <div style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
-        <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem 0; color: var(--text-primary);">📊 3단 예상키 진단 (유전 MPH vs 방치 손실 vs 최대 잠재키)</h4>
-        ${render3TierBarChart(pred)}
-      </div>
-
-      <!-- Official Clinical Velocity, Sleep & KDRIs Nutrition Guidance (Parenting Help First!) -->
-      ${renderOfficialClinicalAndNutritionBox(profile.ageMonths, bmiInfo)}
-
-      <!-- 3 Prescriptive Habit Coaching Cards -->
-      <div style="margin-top: 1.5rem;">
-        <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem 0; color: var(--text-primary);">🩺 성장 방해 습관별 맞춤 홈케어 코칭 솔루션</h4>
-        ${renderCoachingCards(profile.habits)}
-      </div>
-
-      ${renderAcademicEvidenceSection()}
-    `;
-  }
-
-  function loadResearchData() {
-    if (typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
-      return window.KIDSFIT_RESEARCH_DATA;
-    }
-    if (typeof global !== 'undefined' && global.KIDSFIT_RESEARCH_DATA) {
-      return global.KIDSFIT_RESEARCH_DATA;
-    }
-    if (typeof require === 'function') {
-      try {
-        const fs = require('fs');
-        const path = require('path');
-        const p = path.resolve(__dirname, '../data/research-knowledge-base.json');
-        if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
-      } catch (e) {}
-    }
-    return null;
-  }
-
+  // 14. Academic Research Evidences
   function renderAcademicEvidenceSection() {
-    const kb = loadResearchData();
+    let kb = researchData;
+    if (!kb && typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
+      kb = window.KIDSFIT_RESEARCH_DATA;
+    }
     if (!kb || !Array.isArray(kb.papers)) return '';
     const papers = kb.papers
       .filter((p) => p.pillar === 'growth_endocrinology' || p.pillar === 'posture_biomechanics_exercise')
@@ -661,64 +796,194 @@
     const totalCount = (kb.metadata && kb.metadata.total_papers) || kb.papers.length;
 
     return `
-      <div style="background: #F8FAFC; border: 1.5px solid #C7D2FE; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+      <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="font-size: 1.35rem;">🔬</span>
-            <h4 style="font-size: 1.05rem; font-weight: 800; color: #1E1B4B; margin: 0;">
-              소아 내분비·수면·척추 생체역학 동료심사(Peer-Reviewed) 논문 임상 근거
+            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+              동료심사(Peer-Reviewed) 학술 논문 임상 근거
             </h4>
           </div>
-          <span style="background: #EEF2FF; color: #4338CA; font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+          <span style="background: rgba(56, 189, 248, 0.15); color: var(--cyan-pulse, #38BDF8); font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
             PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동
           </span>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.9rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
           ${papers.map((p) => `
-            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.74rem; font-weight: 800; color: #4F46E5; background: #EEF2FF; padding: 0.15rem 0.5rem; border-radius: 999px;">
+            <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 16px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem; flex-wrap: wrap;">
+                <span style="font-size: 0.74rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); background: rgba(56, 189, 248, 0.15); padding: 0.15rem 0.5rem; border-radius: 999px;">
                   ${p.journal} (${p.year})
                 </span>
-                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #059669; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
+                <div style="display: flex; gap: 0.35rem; align-items: center;">
+                  ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; color: #38BDF8; font-weight: 700; text-decoration: none; background: rgba(56, 189, 248, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
+                  ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; color: #10B981; font-weight: 700; text-decoration: none; background: rgba(16, 185, 129, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px;">DOI ↗</a>` : ''}
+                  ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: var(--growth-mint, #10B981); font-weight: 700; text-decoration: none;">원문 ↗</a>` : ''}
+                </div>
               </div>
-              <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-primary); line-height: 1.4; margin-bottom: 0.45rem;">
                 ${p.title_ko || p.title}
               </div>
-              <p style="font-size: 0.8rem; color: #334155; line-height: 1.5; margin: 0 0 0.45rem 0;">
+              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin: 0 0 0.45rem 0;">
                 <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
               </p>
-              <div style="font-size: 0.79rem; color: #065F46; background: #F0FDF4; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
-                <strong>💡 양육 적용:</strong> ${p.parenting_prescription_ko || ''}
+              <div style="font-size: 0.78rem; color: #A7F3D0; background: rgba(16, 185, 129, 0.12); padding: 0.5rem 0.65rem; border-radius: 10px; line-height: 1.45;">
+                <strong>💡 임상 적용:</strong> ${p.parenting_prescription_ko || ''}
               </div>
             </div>
           `).join('')}
+        </div>
+        <!-- Quiet 12px Academic Reference Chip -->
+        <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+          <a href="https://www.coupang.com/np/search?q=%EC%86%8C%EC%95%84+%EC%84%B1%EC%9E%A5%ED%8C%90+%EC%98%81%EC%96%91%EC%A0%9C&channel=user&lptag=AF7865143" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="reference-chip" 
+             id="ref-chip-growth"
+             style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
+            <span>📦</span>
+            <span>[도구·도서 아카이브 (Coupang) ↗]</span>
+          </a>
         </div>
       </div>
     `;
   }
 
-  // Export
+  // 15. Master Tab 1 Report Renderer
+  function renderTab1Report(profile) {
+    const ageMonths = profile.ageMonths || ((profile.ageYears || 10) * 12);
+    const gender = normalizeSex(profile.gender);
+    const standard = (typeof document !== 'undefined' && document.documentElement.lang === 'en') ? 'CDC' : 'KDCA';
+
+    const lms = getLmsForMonth(gender, ageMonths, standard);
+    const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);
+    const bmiInfo = evaluateWeightAndBmi(profile.currentHeight, profile.currentWeight, lms);
+    const mphObj = calculateMPH(profile.fatherHeight, profile.motherHeight, gender);
+    const pred = calculateHeightPrediction(mphObj.mph, profile.habits, profile.tannerPhase || profile.pubertyStage);
+
+    const deltaSign = kdca.deltaMedian >= 0 ? `+${kdca.deltaMedian}` : `${kdca.deltaMedian}`;
+    const genderKorean = gender === 'boy' ? '남아' : '여아';
+    const vel = calculateVelocity(profile.recentGrowth6m || 3.0, Math.round(ageMonths / 12));
+
+    return `
+      <!-- Core 1 Container -->
+      <div id="core-1-container" class="core-module-container">
+
+        <!-- Big Stats Bento Header -->
+        <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--cyan-pulse, #38BDF8);">소아 신체 백분위 &amp; Z-Score</span>
+            <div style="font-size: 1.9rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>
+            <span style="font-size: 0.82rem; color: var(--text-secondary);">${kdca.percentile}th Pct (Z: ${kdca.zScore >= 0 ? `+${kdca.zScore}` : kdca.zScore} SD)</span>
+          </div>
+
+          <div class="stat-card" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--growth-mint, #10B981);">연간 성장속도 (Velocity)</span>
+            <div style="font-size: 1.9rem; font-weight: 800; color: ${vel.alert ? '#F43F5E' : 'var(--growth-mint, #10B981)'}; margin: 0.35rem 0;">
+              ${vel.velocityCmPerYear} cm/yr
+            </div>
+            <span style="font-size: 0.82rem; color: ${vel.alert ? '#FDA4AF' : 'var(--text-secondary)'};">
+              ${vel.alert ? '🚨 저신장 적신호 (<4.0cm/yr)' : vel.status === 'accelerated' ? '⚡ 급성장 가속 피크' : '정상 성장 궤도'}
+            </span>
+          </div>
+
+          <div class="stat-card" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--amber-caution, #F59E0B);">유전 표적키 (Tanner MPH)</span>
+            <div style="font-size: 1.9rem; font-weight: 800; color: var(--amber-caution, #F59E0B); margin: 0.35rem 0;">${mphObj.mph}cm</div>
+            <span style="font-size: 0.82rem; color: var(--text-secondary);">${mphObj.rangeStr} (±8.5cm)</span>
+          </div>
+
+          <div class="stat-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--rose-alert, #F43F5E);">골든타임 성장판 잔여 기간</span>
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--rose-alert, #F43F5E); margin: 0.65rem 0;">
+              ${pred.monthsRemaining.split('(')[0].trim()}
+            </div>
+            <span style="font-size: 0.82rem; color: var(--text-secondary);">${pred.monthsRemaining}</span>
+          </div>
+        </div>
+
+        <!-- High-Resolution Interactive 3-Curve SVG Chart Card -->
+        <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0; color: var(--text-primary);">
+                📈 3중 성인 예측키 성장 궤적 곡선 (Auxology Trajectory)
+              </h4>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
+                현재 나이(${Math.round(ageMonths / 12)}세)부터 만 20세까지 3가지 성장 경로 시뮬레이션
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.85rem; font-size: 0.78rem; font-weight: 700;">
+              <span style="color: #38BDF8;">● 최대 잠재 궤적</span>
+              <span style="color: #F59E0B;">● 유전 기준(MPH)</span>
+              <span style="color: #F43F5E;">● 방치 손실 궤적</span>
+            </div>
+          </div>
+          ${renderSvgGrowthCurve(gender, ageMonths, profile.currentHeight, {
+            mph: mphObj.mph,
+            habits: profile.habits,
+            tannerPhase: profile.tannerPhase || profile.pubertyStage,
+            standard
+          })}
+        </div>
+
+        <!-- 3-Tier Predicted Height Bar Chart -->
+        <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 1rem 0; color: var(--text-primary);">
+            📊 성인 예측키 3단 비교 (유전 MPH vs 현재 습관 유지 vs 골든타임 최적화)
+          </h4>
+          ${render3TierBarChart(pred)}
+        </div>
+
+        <!-- Official Pediatric Authority Guidance -->
+        ${renderOfficialClinicalAndNutritionBox(ageMonths, bmiInfo)}
+
+        <!-- 3 Habit Prescriptive Coaching Cards -->
+        <div style="margin-top: 1.5rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: var(--text-primary);">
+            🩺 성장 방해 생체 요인별 임상 프로토콜
+          </h4>
+          ${renderCoachingCards(profile.habits)}
+        </div>
+
+        ${renderAcademicEvidenceSection()}
+
+      </div>
+    `;
+  }
+
+  // Master Export Interface
   const GrowthEngine = {
     erf,
     normalCDF,
     getLmsForMonth,
+    calculateLMSZScore,
     calculateKdcaPercentile,
     evaluateWeightAndBmi,
+    calculateMPH,
     calculateMph,
+    calculateVelocity,
+    predictAdultHeightTrajectories,
     calculateHeightPrediction,
     getGrowthCurveData,
     renderSvgGrowthCurve,
     render3TierBarChart,
     renderCoachingCards,
     renderOfficialClinicalAndNutritionBox,
+    renderAcademicEvidenceSection,
     renderTab1Report
   };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = GrowthEngine;
-  } else {
+  }
+  if (typeof window !== 'undefined') {
+    window.KidsFitGrowthEngine = GrowthEngine;
+    window.TallerGrowthEngine = GrowthEngine;
+  }
+  if (typeof global !== 'undefined' && typeof window === 'undefined') {
     global.KidsFitGrowthEngine = GrowthEngine;
+    global.TallerGrowthEngine = GrowthEngine;
   }
 
-})(typeof window !== 'undefined' ? window : global);
+})(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));

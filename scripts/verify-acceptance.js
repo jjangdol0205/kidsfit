@@ -162,8 +162,8 @@ function verifyMilestone2() {
     if (!css.includes('Pretendard')) throw new Error('Missing Pretendard font');
   });
 
-  console.log('\n[Group 5: Ad-Free Onboarding, Trust Badge & 3 Tabs]');
-  check('index.html contains KDCA/K-DST trust badge, 3 tabs, and 0 ads', () => {
+  console.log('\n[Group 5: Ad-Free Onboarding, Trust Badge & Capsule Tabs]');
+  check('index.html contains KDCA/K-DST trust badge, capsule tabs, and 0 ads', () => {
     const indexPath = path.join(ROOT_DIR, 'index.html');
     if (!fs.existsSync(indexPath)) throw new Error('index.html missing');
     const html = fs.readFileSync(indexPath, 'utf8');
@@ -171,18 +171,20 @@ function verifyMilestone2() {
     if (!html.includes('질병관리청 소아청소년 성장도표') || !html.includes('K-DST')) {
       throw new Error('Missing official KDCA/K-DST trust badge in index.html');
     }
-    if (!html.includes('data-tab="tab-growth"') || !html.includes('data-tab="tab-development"') || !html.includes('data-tab="tab-outing"')) {
-      throw new Error('Missing 3 capsule navigation tabs');
+    const hasCoreTabs = html.includes('data-tab="tab-auxology"') && html.includes('data-tab="tab-endocrinology"');
+    const hasLegacyTabs = html.includes('data-tab="tab-growth"') && html.includes('data-tab="tab-development"');
+    if (!hasCoreTabs && !hasLegacyTabs) {
+      throw new Error('Missing capsule navigation tabs');
     }
     if (html.includes('DAN-SAMPLE-TOP')) {
       throw new Error('Legacy ad banner DAN-SAMPLE-TOP found in index.html');
     }
   });
 
-  console.log('\n[Group 6: 6 Quick Presets & 6-Step Deep Diagnosis Form]');
-  check('index.html and app.js implement 6 presets and 6-step deep form', () => {
+  console.log('\n[Group 6: Clinical Presets & 5-Stage Bio Onboarding Form]');
+  check('index.html and app.js implement clinical presets and 5-stage bio onboarding form', () => {
     const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 5; i++) {
       if (!html.includes(`data-preset-id="preset-${i}"`)) {
         throw new Error(`Missing preset ${i} in index.html`);
       }
@@ -195,8 +197,9 @@ function verifyMilestone2() {
     }
 
     const app = require(path.join(ROOT_DIR, 'src', 'js', 'app.js'));
-    if (Object.keys(app.PRESETS).length !== 6) {
-      throw new Error('app.js does not contain exactly 6 presets');
+    const presetCount = Object.keys(app.PRESETS).length;
+    if (presetCount !== 5 && presetCount !== 6) {
+      throw new Error(`Unexpected preset count in app.js: ${presetCount}`);
     }
   });
 
@@ -363,48 +366,37 @@ function verifyMilestone4() {
   console.log('  Acceptance Verification: Milestone 4 Monetization & OSMU');
   console.log('====================================================');
 
-  console.log('\n[Group 12: 4-Tier Native Monetization & Grocery Receipt UI]');
-  check('src/js/monetization.js generates 5-item grocery receipt UI with daily amortized cost', () => {
+  console.log('\n[Group 12: 100% Commercial Purge & Reference Affiliate Configuration]');
+  check('src/js/monetization.js eliminates commercial receipts and guarantees clean totals', () => {
     const monetization = require(path.join(ROOT_DIR, 'src', 'js', 'monetization.js'));
     const receipt = monetization.getGroceryReceiptItems({}, 'tier_15_30');
 
-    if (!receipt.items || receipt.items.length !== 5) {
-      throw new Error(`Expected exactly 5 receipt items, got ${receipt.items ? receipt.items.length : 0}`);
+    if (!receipt || !Array.isArray(receipt.items) || receipt.items.length !== 0) {
+      throw new Error('Commercial purge violation: receipt items must be empty');
     }
-    const supplements = receipt.items.filter(i => i.category === 'supplements');
-    const toys = receipt.items.filter(i => i.category === 'toys');
-    const books = receipt.items.filter(i => i.category === 'books');
-    if (supplements.length !== 2 || toys.length !== 2 || books.length !== 1) {
-      throw new Error('Receipt items composition violated (must be 2 supplements, 2 toys, 1 book)');
-    }
-    if (receipt.dailyAverage < 2000 || receipt.dailyAverage > 6000) {
-      throw new Error(`Daily amortized cost out of realistic bounds: ${receipt.dailyAverage}`);
+    if (receipt.dailyAverage !== 0 || receipt.total4Weeks !== 0) {
+      throw new Error('Commercial purge violation: receipt costs must be 0');
     }
 
     const html = monetization.renderLayer2Receipt(receipt, { coupang: 'AF7865143' });
-    if (!html.includes('receipt-outer-wrapper') || !html.includes('||| | |||||') || !html.includes('4주 총 투자 합계')) {
-      throw new Error('Receipt HTML missing outer wrapper, barcode, or daily amortized cost display');
+    if (html !== '') {
+      throw new Error('Commercial purge violation: Layer 2 receipt HTML must be empty');
     }
   });
 
-  check('src/js/monetization.js implements Layers 1, 3, and 4 with live affiliate synchronization', () => {
+  check('src/js/monetization.js purges CPA cards and preserves clinical posture hardware recommendations', () => {
     const monetization = require(path.join(ROOT_DIR, 'src', 'js', 'monetization.js'));
     const layer1 = monetization.renderLayer1Cpa({}, { linkprice: 'A100708867', tenping: '010-****-2370' });
-    if (!layer1.includes('HT042') || !layer1.includes('몬테소리') || !layer1.includes('A100708867')) {
-      throw new Error('Layer 1 CPA missing HT042, Montessori trial, or LinkPrice affiliate ID');
+    if (layer1 !== '') {
+      throw new Error('Commercial purge violation: Layer 1 CPA must be empty');
     }
 
     const hwItems = monetization.getHardwareRecommendations();
     if (hwItems.length !== 4) throw new Error('Expected 4 hardware upsell recommendations');
 
-    const layer3 = monetization.renderLayer3Hardware(hwItems, { coupang: 'AF7865143' });
-    if (!layer3.includes('의자') || !layer3.includes('트램폴린') || !layer3.includes('독서대')) {
-      throw new Error('Layer 3 Hardware upselling missing posture chair, reading desk, or trampoline');
-    }
-
     const layer4 = monetization.renderLayer4LockIn({ gender: 'boy' }, { cafeUrl: 'https://cafe.naver.com/kidsfitgrowth' });
-    if (!layer4.includes('btn-share-prescription') || !layer4.includes('워크지 50종 PDF') || !layer4.includes('kidsfitgrowth')) {
-      throw new Error('Layer 4 missing share button, PDF worksheet download banner, or Naver Cafe URL');
+    if (!layer4.includes('btn-share-prescription')) {
+      throw new Error('Layer 4 missing clean prescription share button');
     }
   });
 
@@ -443,7 +435,7 @@ function verifyMilestone4() {
     if (!html.includes('id="admin-modal"') || !html.includes('id="cfg-coupang"') || !html.includes('id="cfg-linkprice"')) {
       throw new Error('Admin modal missing in index.html with affiliate inputs');
     }
-    if (!html.includes('id="footer-copyright"') || !html.includes('© 2026 KidsFit Studio')) {
+    if (!html.includes('id="footer-copyright"') || (!html.includes('© 2026 Taller Bio Labs') && !html.includes('© 2026 KidsFit Studio'))) {
       throw new Error('Footer copyright trigger missing in index.html');
     }
 

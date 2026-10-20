@@ -16,118 +16,123 @@
 
   // Domain & Monetization Engine References
   let GrowthEngine = typeof require !== 'undefined' ? require('./growth-engine') : (global.KidsFitGrowthEngine || null);
+  let EndocrinologyEngine = typeof require !== 'undefined' ? require('./endocrinology-engine') : (global.KidsFitEndocrinologyEngine || null);
+  let NutritionEngine = typeof require !== 'undefined' ? require('./nutrition-engine') : (global.KidsFitNutritionEngine || null);
+  let BiomechanicsStudio = typeof require !== 'undefined' ? require('./biomechanics-studio') : (global.KidsFitBiomechanicsStudio || null);
+  let NeuroCognitiveMatrix = typeof require !== 'undefined' ? require('./neuro-cognitive-matrix') : (global.KidsFitNeuroCognitiveMatrix || null);
+  let GrowthTracker = typeof require !== 'undefined' ? require('./growth-tracker') : (global.KidsFitGrowthTracker || null);
   let DevelopmentEngine = typeof require !== 'undefined' ? require('./development-engine') : (global.KidsFitDevelopmentEngine || null);
   let WeekendCurator = typeof require !== 'undefined' ? require('./weekend-curator') : (global.KidsFitWeekendCurator || null);
   let Monetization = typeof require !== 'undefined' ? require('./monetization') : (global.KidsFitMonetization || null);
   let AdminOsmu = typeof require !== 'undefined' ? require('./admin-osmu') : (global.KidsFitAdminOsmu || null);
+  let ReferenceChips = typeof require !== 'undefined' ? (function() { try { return require('./reference-chips'); } catch(e){ return null; } })() : (global.TallerReferenceChips || global.KidsFitReferenceChips || null);
+  let AdminStudio = typeof require !== 'undefined' ? (function() { try { return require('./admin-studio'); } catch(e){ return null; } })() : (global.TallerAdminStudio || global.KidsFitAdminStudio || null);
 
-  // 1. Definition of 6 Quick 1-Second Presets
+  // 1. Definition of 5 Clinical Age-Group Presets
   const PRESETS = {
     'preset-1': {
       id: 'preset-1',
-      label: '만 2~3세 소근육·감각 골든타임 (몬테소리 입문 & 촉각 미술관 코스)',
-      gender: 'girl',
+      label: '영유아기 3세 (36개월) — 기초 성장기 & 소근육 감각 협응',
+      gender: 'boy',
+      ageYears: 3,
       ageMonths: 36,
-      currentHeight: 95.0,
-      currentWeight: 14.2,
+      currentHeight: 96.5,
+      currentWeight: 14.7,
+      recentGrowth6m: 3.5,
       fatherHeight: 175.0,
       motherHeight: 162.0,
       region: '서울 강남·서초·송파',
-      pubertyStage: 'none',
-      habits: ['milk_trouble', 'picky_eater'],
+      pubertyStage: 'phase_1',
+      tannerPhase: 'phase_1',
+      habits: ['picky_eater'],
       developmentConcerns: ['fine_motor', 'emotion_art'],
+      cognitiveAxes: ['sensory_arts'],
       philosophy: 'montessori',
-      interest: 'art_making',
-      budgetTier: 'tier_15_30'
+      interest: 'art_making'
     },
     'preset-2': {
       id: 'preset-2',
-      label: '만 4~5세 수리·공간 창의력 & 편식 아이 폭풍 성장 플랜 (은물·가베·자석교구 & 공룡·과학 코스)',
-      gender: 'boy',
-      ageMonths: 60,
-      currentHeight: 109.0,
-      currentWeight: 18.5,
-      fatherHeight: 173.0,
-      motherHeight: 160.0,
+      label: '아동기 7세 (84개월) — 수리·공간 논리 & 척추 정렬 플랜',
+      gender: 'girl',
+      ageYears: 7,
+      ageMonths: 84,
+      currentHeight: 120.8,
+      currentWeight: 23.6,
+      recentGrowth6m: 2.8,
+      fatherHeight: 176.0,
+      motherHeight: 163.0,
       region: '경기 남부(분당·수원·용인·동탄)',
-      pubertyStage: 'none',
-      habits: ['picky_eater', 'late_sleep'],
+      pubertyStage: 'phase_1',
+      tannerPhase: 'phase_1',
+      habits: ['poor_posture'],
       developmentConcerns: ['math_space'],
+      cognitiveAxes: ['math_logic'],
       philosophy: 'froebel_gabe',
-      interest: 'dino_nature',
-      budgetTier: 'tier_15_30'
+      interest: 'dino_nature'
     },
     'preset-3': {
       id: 'preset-3',
-      label: '초등 저학년 역사·예술 흥미 유발 & 또래 키 상위 20% 도약 플랜 (박물관 역사 코스 & 바른 자세 교정)',
-      gender: 'girl',
-      ageMonths: 96,
-      currentHeight: 126.5,
-      currentWeight: 25.0,
-      fatherHeight: 171.0,
-      motherHeight: 158.0,
+      label: '사춘기 진입 10세 (120개월) — 사춘기 초기 수면·호르몬 최적화',
+      gender: 'boy',
+      ageYears: 10,
+      ageMonths: 120,
+      currentHeight: 137.0,
+      currentWeight: 35.5,
+      recentGrowth6m: 3.2,
+      fatherHeight: 173.5,
+      motherHeight: 160.5,
       region: '서울 강북·마포·용산',
-      pubertyStage: 'growth_spurt',
-      habits: ['poor_posture'],
+      pubertyStage: 'phase_2',
+      tannerPhase: 'phase_2',
+      habits: ['late_sleep'],
       developmentConcerns: ['language_reading', 'math_space'],
-      philosophy: 'waldorf_art',
-      interest: 'history_tradition',
-      budgetTier: 'tier_15_30'
+      cognitiveAxes: ['science_nature'],
+      philosophy: 'science_coding',
+      interest: 'space_science'
     },
     'preset-4': {
       id: 'preset-4',
-      label: '초등 고학년 사춘기 신호 시작! 성장판 닫히기 전 마지막 숨은 키 7cm 집중 플랜',
+      label: '급성장기 13세 (156개월) — PHV 급성장 피크 & 골든타임 집중',
       gender: 'boy',
-      ageMonths: 132,
-      currentHeight: 144.0,
-      currentWeight: 38.0,
-      fatherHeight: 172.0,
-      motherHeight: 160.0,
+      ageYears: 13,
+      ageMonths: 156,
+      currentHeight: 155.6,
+      currentWeight: 51.0,
+      recentGrowth6m: 4.5,
+      fatherHeight: 174.0,
+      motherHeight: 161.0,
       region: '경기 북부·인천',
-      pubertyStage: 'urgent_secondary_signs',
-      habits: ['late_sleep', 'poor_posture'],
+      pubertyStage: 'phase_2',
+      tannerPhase: 'phase_2',
+      habits: ['late_sleep', 'night_carbs'],
       developmentConcerns: ['gross_motor'],
+      cognitiveAxes: ['executive_focus'],
       philosophy: 'science_coding',
-      interest: 'space_science',
-      budgetTier: 'tier_unlimited'
+      interest: 'space_science'
     },
     'preset-5': {
       id: 'preset-5',
-      label: '영아기(만 12~23개월) 대근육·오감 자극 & 우유 배앓이 없는 기초 뼈성장 루틴',
-      gender: 'boy',
-      ageMonths: 18,
-      currentHeight: 82.0,
-      currentWeight: 11.5,
-      fatherHeight: 176.0,
-      motherHeight: 163.0,
-      region: '부산·경남',
-      pubertyStage: 'none',
-      habits: ['milk_trouble'],
-      developmentConcerns: ['gross_motor', 'fine_motor'],
-      philosophy: 'montessori',
-      interest: 'music_musical',
-      budgetTier: 'tier_5_10'
-    },
-    'preset-6': {
-      id: 'preset-6',
-      label: '바쁜 워킹맘 전용 주말 3시간 고효율 육아 (실패 없는 발달 장난감 TOP 3 + 집 근처 예약 필수 전시 코스)',
+      label: '후기 청소년 16세 (192개월) — 체형 완성기 척추 디스크 복원',
       gender: 'girl',
-      ageMonths: 48,
-      currentHeight: 102.5,
-      currentWeight: 16.0,
-      fatherHeight: 174.0,
-      motherHeight: 161.0,
-      region: '서울 강남·서초·송파',
-      pubertyStage: 'none',
+      ageYears: 16,
+      ageMonths: 192,
+      currentHeight: 160.0,
+      currentWeight: 54.1,
+      recentGrowth6m: 0.8,
+      fatherHeight: 177.0,
+      motherHeight: 164.0,
+      region: '대구·경북',
+      pubertyStage: 'phase_4',
+      tannerPhase: 'phase_4',
       habits: ['poor_posture', 'late_sleep'],
-      developmentConcerns: ['fine_motor', 'language_reading'],
+      developmentConcerns: ['language_reading'],
+      cognitiveAxes: ['language_reading'],
       philosophy: 'montessori',
-      interest: 'art_making',
-      budgetTier: 'tier_15_30'
+      interest: 'history_tradition'
     }
   };
 
-  // 2. Stepper Meta Information
+  // 2. Stepper Meta Information (5-Stage Bio Funnel)
   const STEP_INFO = [
     {
       step: 1,
@@ -136,54 +141,52 @@
     },
     {
       step: 2,
-      title: '신체 성장 & 사춘기 골든타임 체크',
-      subtitle: '사춘기 신호와 성장 방해 습관에 따른 잠재키 손실치를 진단합니다.'
+      title: '성장 단계 & 골연령 (Tanner Stage) 진행도',
+      subtitle: '성장판 개방률과 급성장 피크기(PHV) 잔여 잠재력을 평가합니다.'
     },
     {
       step: 3,
-      title: '두뇌 & 소근육 발달 고민 체크',
-      subtitle: '보건복지부 K-DST 6대 영역 기준 맞춤 발달 밸런스를 측정합니다.'
+      title: '라이프스타일 & 생체 저해 요인 체크',
+      subtitle: '수면 중 성장호르몬 분비 억제 및 예측키 손실 요인을 진단합니다.'
     },
     {
       step: 4,
-      title: '선호 교육철학 & 교구 성향',
-      subtitle: '아이 성향과 부모님의 교육 방향에 부합하는 교구를 판정합니다.'
+      title: '두뇌·신경인지 핵심 관심 축 (5대 영역)',
+      subtitle: '연령별 대뇌 피질 재조직화 및 신경가소성 자극 프로토콜을 설정합니다.'
     },
     {
       step: 5,
-      title: '아이 관심사 테마 선택',
-      subtitle: '이번 주말 아이가 가장 즐겁게 몰입할 나들이 코스를 연결합니다.'
-    },
-    {
-      step: 6,
-      title: '월 성장·교육 투자 예산 티어',
-      subtitle: '가계 부담 없이 지속 가능한 최적의 홈케어 솔루션을 제안합니다.'
+      title: '바이오 통계 연산 및 궤적 모델링',
+      subtitle: 'LMS Z-Score, 24시간 호르몬 곡선 및 3단 성인 예측키를 산출 중입니다.'
     }
   ];
 
   // 3. Application State
   const state = {
     currentStep: 1,
-    maxStep: 6,
-    activeTab: 'tab-growth',
+    maxStep: 5,
+    activeTab: 'tab-auxology',
     activePresetId: null,
     isPrescriptionIssued: false,
     adminClickCount: 0,
     adminTimer: null,
     profile: {
       gender: 'boy',
-      ageMonths: 48,
-      currentHeight: 104.5,
-      currentWeight: 17.2,
-      fatherHeight: 175.0,
-      motherHeight: 162.0,
+      ageYears: 10,
+      ageMonths: 120,
+      currentHeight: 137.0,
+      currentWeight: 35.5,
+      recentGrowth6m: 3.2,
+      fatherHeight: 173.5,
+      motherHeight: 160.5,
       region: '서울 강남·서초·송파',
-      pubertyStage: 'none',
-      habits: [],
-      developmentConcerns: ['fine_motor'],
-      philosophy: 'montessori',
-      interest: 'art_making',
-      budgetTier: 'tier_15_30'
+      pubertyStage: 'phase_2',
+      tannerPhase: 'phase_2',
+      habits: ['late_sleep'],
+      developmentConcerns: ['math_space'],
+      cognitiveAxes: ['science_nature'],
+      philosophy: 'science_coding',
+      interest: 'space_science'
     }
   };
 
@@ -252,43 +255,45 @@
       const fatherInput = document.getElementById('father-height');
       const motherInput = document.getElementById('mother-height');
 
-      const age = ageInput ? parseFloat(ageInput.value) : state.profile.ageMonths;
-      const height = heightInput ? parseFloat(heightInput.value) : state.profile.currentHeight;
-      const weight = weightInput ? parseFloat(weightInput.value) : state.profile.currentWeight;
-      const father = fatherInput ? parseFloat(fatherInput.value) : state.profile.fatherHeight;
-      const mother = motherInput ? parseFloat(motherInput.value) : state.profile.motherHeight;
+      let age = ageInput ? parseFloat(ageInput.value) : state.profile.ageMonths;
+      let height = heightInput ? parseFloat(heightInput.value) : state.profile.currentHeight;
+      let weight = weightInput ? parseFloat(weightInput.value) : state.profile.currentWeight;
+      let father = fatherInput ? parseFloat(fatherInput.value) : state.profile.fatherHeight;
+      let mother = motherInput ? parseFloat(motherInput.value) : state.profile.motherHeight;
 
-      if (isNaN(age) || age < 12 || age > 216) {
-        alert('아이의 현재 월령을 12~216개월 사이로 입력해주세요.');
+      const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+      if (isImperial) {
+        height = height * 2.54;
+        weight = weight / 2.20462262;
+        father = father * 2.54;
+        mother = mother * 2.54;
+      }
+
+      if (isNaN(age) || age < 12 || age > 240) {
+        alert('아이의 현재 월령을 12~240개월(1~20세) 사이로 입력해주세요.');
         if (ageInput) ageInput.focus();
         return false;
       }
-      if (isNaN(height) || height < 50 || height > 210) {
-        alert('아이의 현재 키를 50~210cm 사이로 입력해주세요.');
+      if (isNaN(height) || height < 45 || height > 230) {
+        alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이의 현재 키를 45~230cm 사이로 입력해주세요.');
         if (heightInput) heightInput.focus();
         return false;
       }
-      if (isNaN(weight) || weight < 5 || weight > 120) {
-        alert('아이의 현재 몸무게를 5~120kg 사이로 입력해주세요.');
+      if (isNaN(weight) || weight < 2 || weight > 160) {
+        alert(isImperial ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이의 현재 몸무게를 2~160kg 사이로 입력해주세요.');
         if (weightInput) weightInput.focus();
         return false;
       }
-      if (isNaN(father) || father < 130 || father > 220) {
-        alert('아빠 키를 130~220cm 사이로 입력해주세요.');
-        if (fatherInput) fatherInput.focus();
-        return false;
+      if (isNaN(father) || father < 100 || father > 240) {
+        if (fatherInput) fatherInput.value = isImperial ? 68.3 : 173.5;
       }
-      if (isNaN(mother) || mother < 120 || mother > 210) {
-        alert('엄마 키를 120~210cm 사이로 입력해주세요.');
-        if (motherInput) motherInput.focus();
-        return false;
+      if (isNaN(mother) || mother < 100 || mother > 240) {
+        if (motherInput) motherInput.value = isImperial ? 63.2 : 160.5;
       }
     } else if (stepNumber === 3) {
-      const checkedConcerns = document.querySelectorAll('input[name="kdst-concerns"]:checked');
-      if (checkedConcerns.length === 0) {
-        alert('보건복지부 K-DST 발달 고민 중 최소 1개 이상 항목을 선택해주세요.');
-        return false;
-      }
+      // Step 3 in Taller Bio Labs contains bio-inhibition habits (name="growth-habits").
+      // Removed kdst-concerns check. Multi-select habits are optional.
+      return true;
     }
     return true;
   }
@@ -314,43 +319,62 @@
     const ageInput = document.getElementById('child-age-months');
     if (ageInput && ageInput.value) state.profile.ageMonths = parseInt(ageInput.value, 10);
 
+    const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+
     const heightInput = document.getElementById('child-height');
-    if (heightInput && heightInput.value) state.profile.currentHeight = parseFloat(heightInput.value);
+    if (heightInput && heightInput.value) {
+      const v = parseFloat(heightInput.value);
+      state.profile.currentHeight = isImperial ? Math.round(v * 2.54 * 10) / 10 : v;
+    }
 
     const weightInput = document.getElementById('child-weight');
-    if (weightInput && weightInput.value) state.profile.currentWeight = parseFloat(weightInput.value);
+    if (weightInput && weightInput.value) {
+      const v = parseFloat(weightInput.value);
+      state.profile.currentWeight = isImperial ? Math.round((v / 2.20462262) * 10) / 10 : v;
+    }
 
     const fatherInput = document.getElementById('father-height');
-    if (fatherInput && fatherInput.value) state.profile.fatherHeight = parseFloat(fatherInput.value);
+    if (fatherInput && fatherInput.value) {
+      const v = parseFloat(fatherInput.value);
+      state.profile.fatherHeight = isImperial ? Math.round(v * 2.54 * 10) / 10 : v;
+    }
 
     const motherInput = document.getElementById('mother-height');
-    if (motherInput && motherInput.value) state.profile.motherHeight = parseFloat(motherInput.value);
+    if (motherInput && motherInput.value) {
+      const v = parseFloat(motherInput.value);
+      state.profile.motherHeight = isImperial ? Math.round(v * 2.54 * 10) / 10 : v;
+    }
+
+    const recentInput = document.getElementById('child-recent-gain');
+    if (recentInput && recentInput.value) {
+      const v = parseFloat(recentInput.value);
+      state.profile.recentGrowth6m = isImperial ? Math.round(v * 2.54 * 10) / 10 : v;
+    }
 
     const regionSelect = document.getElementById('user-region');
     if (regionSelect) state.profile.region = regionSelect.value;
 
-    // Step 2
-    const pubertyChecked = document.querySelector('input[name="puberty-stage"]:checked');
-    if (pubertyChecked) state.profile.pubertyStage = pubertyChecked.value;
+    // Step 2: Tanner Phase
+    const tannerChecked = document.querySelector('input[name="tanner-phase"]:checked') || document.querySelector('input[name="puberty-stage"]:checked');
+    if (tannerChecked) {
+      state.profile.tannerPhase = tannerChecked.value;
+      state.profile.pubertyStage = tannerChecked.value;
+    }
 
+    // Step 3: Habits
     const habitsChecked = document.querySelectorAll('input[name="growth-habits"]:checked');
     state.profile.habits = Array.from(habitsChecked).map(el => el.value);
 
-    // Step 3
+    // Step 4: Cognitive Axes
+    const cogChecked = document.querySelectorAll('input[name="cognitive-axes"]:checked');
+    if (cogChecked.length > 0) {
+      state.profile.cognitiveAxes = Array.from(cogChecked).map(el => el.value);
+    }
+
     const kdstChecked = document.querySelectorAll('input[name="kdst-concerns"]:checked');
-    state.profile.developmentConcerns = Array.from(kdstChecked).map(el => el.value);
-
-    // Step 4
-    const philChecked = document.querySelector('input[name="teaching-philosophy"]:checked');
-    if (philChecked) state.profile.philosophy = philChecked.value;
-
-    // Step 5
-    const interestChecked = document.querySelector('input[name="child-interest"]:checked');
-    if (interestChecked) state.profile.interest = interestChecked.value;
-
-    // Step 6
-    const budgetChecked = document.querySelector('input[name="budget-tier"]:checked');
-    if (budgetChecked) state.profile.budgetTier = budgetChecked.value;
+    if (kdstChecked.length > 0) {
+      state.profile.developmentConcerns = Array.from(kdstChecked).map(el => el.value);
+    }
 
     return state.profile;
   }
@@ -369,8 +393,10 @@
       if (el && val !== undefined) el.value = val;
     };
     setVal('child-age-months', profile.ageMonths);
+    setVal('child-age-slider', profile.ageYears || Math.round(profile.ageMonths / 12));
     setVal('child-height', profile.currentHeight);
     setVal('child-weight', profile.currentWeight);
+    setVal('child-recent-gain', profile.recentGrowth6m || 3.0);
     setVal('father-height', profile.fatherHeight);
     setVal('mother-height', profile.motherHeight);
 
@@ -378,9 +404,11 @@
     const regionSelect = document.getElementById('user-region');
     if (regionSelect && profile.region) regionSelect.value = profile.region;
 
-    // Puberty
-    const pubertyRadio = document.querySelector(`input[name="puberty-stage"][value="${profile.pubertyStage}"]`);
-    if (pubertyRadio) pubertyRadio.checked = true;
+    // Tanner Phase
+    const phaseValue = profile.tannerPhase || profile.pubertyStage || 'phase_2';
+    const phaseRadio = document.querySelector(`input[name="tanner-phase"][value="${phaseValue}"]`) ||
+                       document.querySelector(`input[name="puberty-stage"][value="${phaseValue}"]`);
+    if (phaseRadio) phaseRadio.checked = true;
 
     // Habits (multi-select)
     const habitInputs = document.querySelectorAll('input[name="growth-habits"]');
@@ -388,23 +416,11 @@
       input.checked = profile.habits.includes(input.value);
     });
 
-    // KDST (multi-select)
-    const kdstInputs = document.querySelectorAll('input[name="kdst-concerns"]');
-    kdstInputs.forEach(input => {
-      input.checked = profile.developmentConcerns.includes(input.value);
+    // Cognitive Axes (multi-select)
+    const cogInputs = document.querySelectorAll('input[name="cognitive-axes"]');
+    cogInputs.forEach(input => {
+      input.checked = (profile.cognitiveAxes || []).includes(input.value);
     });
-
-    // Philosophy
-    const philRadio = document.querySelector(`input[name="teaching-philosophy"][value="${profile.philosophy}"]`);
-    if (philRadio) philRadio.checked = true;
-
-    // Interest
-    const interestRadio = document.querySelector(`input[name="child-interest"][value="${profile.interest}"]`);
-    if (interestRadio) interestRadio.checked = true;
-
-    // Budget
-    const budgetRadio = document.querySelector(`input[name="budget-tier"][value="${profile.budgetTier}"]`);
-    if (budgetRadio) budgetRadio.checked = true;
   }
 
   // 6. Preset Application
@@ -526,8 +542,33 @@
   }
 
   // 7-1. Render Results for Tab 1, Tab 2, Tab 3 & Monetization
-  function renderPrescriptionResults() {
+  function renderPrescriptionResults(profile) {
+    if (profile && typeof profile === 'object') {
+      Object.assign(state.profile, profile);
+      state.isPrescriptionIssued = true;
+      if (typeof document !== 'undefined') {
+        const container = document.getElementById('prescription-container');
+        if (container) {
+          container.style.display = 'block';
+          const headerTitle = document.getElementById('rx-header-title');
+          const avatarEl = document.getElementById('rx-avatar');
+          if (headerTitle) {
+            headerTitle.textContent = `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+          }
+          if (avatarEl) {
+            avatarEl.textContent = state.profile.gender === 'boy' ? '👦' : '👧';
+          }
+          container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
     if (!GrowthEngine && global.KidsFitGrowthEngine) GrowthEngine = global.KidsFitGrowthEngine;
+    if (!EndocrinologyEngine && global.KidsFitEndocrinologyEngine) EndocrinologyEngine = global.KidsFitEndocrinologyEngine;
+    if (!NutritionEngine && global.KidsFitNutritionEngine) NutritionEngine = global.KidsFitNutritionEngine;
+    if (!BiomechanicsStudio && global.KidsFitBiomechanicsStudio) BiomechanicsStudio = global.KidsFitBiomechanicsStudio;
+    if (!NeuroCognitiveMatrix && global.KidsFitNeuroCognitiveMatrix) NeuroCognitiveMatrix = global.KidsFitNeuroCognitiveMatrix;
+    if (!GrowthTracker && global.KidsFitGrowthTracker) GrowthTracker = global.KidsFitGrowthTracker;
     if (!DevelopmentEngine && global.KidsFitDevelopmentEngine) DevelopmentEngine = global.KidsFitDevelopmentEngine;
     if (!WeekendCurator && global.KidsFitWeekendCurator) WeekendCurator = global.KidsFitWeekendCurator;
     if (!Monetization && global.KidsFitMonetization) Monetization = global.KidsFitMonetization;
@@ -537,13 +578,56 @@
 
     const affConfig = getAffiliateConfig();
 
-    // Render Tab 1
+    // Render Tab 1: Core 1 Auxology & Growth Trajectories
     const growthCard = document.getElementById('growth-report-card');
-    if (growthCard && GrowthEngine) {
+    if (growthCard && GrowthEngine && GrowthEngine.renderTab1Report) {
       growthCard.innerHTML = GrowthEngine.renderTab1Report(state.profile);
     }
 
-    // Render Tab 2
+    // Render Tab 2: Core 2 Endocrinology & Bio-Nutrition
+    const endoCard = document.getElementById('endocrinology-report-card');
+    if (endoCard) {
+      if (NutritionEngine && NutritionEngine.renderTab2Report) {
+        endoCard.innerHTML = NutritionEngine.renderTab2Report(state.profile, affConfig);
+      } else if (EndocrinologyEngine && EndocrinologyEngine.renderEndocrinologySection) {
+        endoCard.innerHTML = `
+          <div id="core-2-container" class="core-module-container">
+            ${EndocrinologyEngine.renderEndocrinologySection(state.profile)}
+            ${NutritionEngine && NutritionEngine.renderNutritionSection ? NutritionEngine.renderNutritionSection(state.profile, affConfig) : ''}
+          </div>
+        `;
+      }
+      attachHormoneSliderListeners();
+    }
+
+    // Render Core 3: Biomechanics & Posture Studio
+    const biomechanicsCard = document.getElementById('core-3-container') || document.getElementById('biomechanics-report-card');
+    if (biomechanicsCard && BiomechanicsStudio && BiomechanicsStudio.renderBiomechanicsSection) {
+      biomechanicsCard.innerHTML = BiomechanicsStudio.renderBiomechanicsSection(state.profile, affConfig);
+      if (typeof BiomechanicsStudio.initRoutineTimers === 'function') {
+        BiomechanicsStudio.initRoutineTimers();
+      }
+    }
+
+    // Render Core 4: Neuro-Cognitive Matrix
+    const neuroCard = document.getElementById('core-4-container') || document.getElementById('neuro-report-card');
+    if (neuroCard && NeuroCognitiveMatrix && NeuroCognitiveMatrix.renderNeuroSection) {
+      neuroCard.innerHTML = NeuroCognitiveMatrix.renderNeuroSection(state.profile, affConfig);
+    }
+
+    // Render Core 5: 90-Day Tracker & Hospital Clinic A4 PDF
+    const trackerCard = document.getElementById('core-5-container') || document.getElementById('tracker-report-card');
+    if (trackerCard && GrowthTracker && GrowthTracker.renderTrackerSection) {
+      trackerCard.innerHTML = GrowthTracker.renderTrackerSection(state.profile);
+      if (typeof GrowthTracker.initTrackerControls === 'function') {
+        GrowthTracker.initTrackerControls(state.profile);
+      }
+    }
+    if (GrowthTracker && typeof GrowthTracker.preparePrintReport === 'function') {
+      GrowthTracker.preparePrintReport(state.profile);
+    }
+
+    // Render Tab 2 (Legacy Dev Card if present)
     const devCard = document.getElementById('dev-report-card');
     if (devCard && DevelopmentEngine) {
       devCard.innerHTML = DevelopmentEngine.renderTab2Report(state.profile, affConfig);
@@ -564,6 +648,80 @@
       if (shareBtn) {
         shareBtn.addEventListener('click', handleSharePrescription);
       }
+    }
+  }
+
+  // 7-1B. Interactive 24h Hormone Slider Listeners
+  function attachHormoneSliderListeners() {
+    if (typeof document === 'undefined') return;
+    const bedtimeSlider = document.getElementById('hormone-bedtime-slider');
+    const mealSlider = document.getElementById('hormone-meal-slider');
+    if (!bedtimeSlider || !mealSlider) return;
+
+    const bedtimeDisplay = document.getElementById('hormone-bedtime-display');
+    const mealDisplay = document.getElementById('hormone-meal-display');
+    const gapDisplay = document.getElementById('hormone-gap-display');
+    const delayPenaltyEl = document.getElementById('hormone-delay-penalty');
+    const carbPenaltyEl = document.getElementById('hormone-carb-penalty');
+    const svgContainer = document.getElementById('hormone-svg-container');
+    const lossBadge = document.getElementById('hormone-loss-badge');
+    const adviceText = document.getElementById('hormone-advice-text');
+    const adviceCard = document.getElementById('hormone-advice-card');
+
+    function updateHormoneView() {
+      const bMin = Number(bedtimeSlider.value) || 1320;
+      const mMin = Number(mealSlider.value) || 1140;
+
+      if (!EndocrinologyEngine) return;
+
+      const sim = EndocrinologyEngine.simulateHormoneCurve(bMin, mMin);
+
+      if (bedtimeDisplay) bedtimeDisplay.textContent = sim.bedtimeStr;
+      if (mealDisplay) mealDisplay.textContent = sim.mealStr;
+      if (gapDisplay) {
+        gapDisplay.textContent = `${sim.gapHours}시간`;
+        gapDisplay.style.color = sim.gapHours >= 3.0 ? '#10B981' : '#F59E0B';
+      }
+      if (delayPenaltyEl) delayPenaltyEl.textContent = `-${sim.delayPenalty}%`;
+      if (carbPenaltyEl) carbPenaltyEl.textContent = `-${sim.carbPenalty}%`;
+
+      if (lossBadge) {
+        const badgeColor = sim.ghLossPercent >= 40.0 ? '#F43F5E' : (sim.ghLossPercent > 0 ? '#F59E0B' : '#10B981');
+        const badgeBg = sim.ghLossPercent >= 40.0 ? 'rgba(244, 63, 94, 0.15)' : (sim.ghLossPercent > 0 ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)');
+        lossBadge.style.border = `1.5px solid ${badgeColor}`;
+        lossBadge.style.background = badgeBg;
+        lossBadge.innerHTML = `
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">성장호르몬 분비 손실률</span>
+          <span style="font-size: 1.25rem; font-weight: 800; color: ${badgeColor};">
+            -${sim.ghLossPercent}% <span style="font-size: 0.75rem; font-weight: 600;">(최대 -52% 억제)</span>
+          </span>
+        `;
+      }
+
+      if (svgContainer) {
+        svgContainer.innerHTML = EndocrinologyEngine.renderHormoneSvg(bMin, mMin);
+      }
+
+      if (adviceText) {
+        adviceText.innerHTML = sim.clinicalAdvice;
+      }
+      if (adviceCard) {
+        const badgeColor = sim.ghLossPercent >= 40.0 ? '#F43F5E' : (sim.ghLossPercent > 0 ? '#F59E0B' : '#10B981');
+        adviceCard.style.borderLeft = `4px solid ${badgeColor}`;
+      }
+    }
+
+    if (typeof bedtimeSlider.removeEventListener === 'function') {
+      bedtimeSlider.removeEventListener('input', updateHormoneView);
+    }
+    if (typeof bedtimeSlider.addEventListener === 'function') {
+      bedtimeSlider.addEventListener('input', updateHormoneView);
+    }
+    if (typeof mealSlider.removeEventListener === 'function') {
+      mealSlider.removeEventListener('input', updateHormoneView);
+    }
+    if (typeof mealSlider.addEventListener === 'function') {
+      mealSlider.addEventListener('input', updateHormoneView);
     }
   }
 
@@ -597,9 +755,15 @@
 
     // Tabs
     const tabs = document.querySelectorAll('.capsule-tab');
+    // Update tabs
     tabs.forEach(tab => {
-      const match = tab.getAttribute('data-tab') === tabId;
-      if (match) {
+      const target = tab.getAttribute('data-tab');
+      const isMatch = target === tabId ||
+        (target === 'tab-growth' && (tabId === 'tab-auxology' || tabId === 'tab-growth')) ||
+        (target === 'tab-auxology' && (tabId === 'tab-growth' || tabId === 'tab-auxology')) ||
+        (target === 'tab-development' && (tabId === 'tab-neuro' || tabId === 'tab-development')) ||
+        (target === 'tab-neuro' && (tabId === 'tab-development' || tabId === 'tab-neuro'));
+      if (isMatch) {
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
       } else {
@@ -611,8 +775,14 @@
     // Panes
     const panes = document.querySelectorAll('.tab-pane');
     panes.forEach(pane => {
-      const match = pane.getAttribute('id') === `tab-pane-${tabId.replace('tab-', '')}`;
-      if (match) {
+      const paneId = pane.getAttribute('id');
+      const cleanId = tabId.replace('tab-', '');
+      const isMatch = paneId === `tab-pane-${cleanId}` ||
+        (paneId === 'tab-pane-growth' && (cleanId === 'auxology' || cleanId === 'growth')) ||
+        (paneId === 'tab-pane-auxology' && (cleanId === 'growth' || cleanId === 'auxology')) ||
+        (paneId === 'tab-pane-development' && (cleanId === 'neuro' || cleanId === 'development')) ||
+        (paneId === 'tab-pane-neuro' && (cleanId === 'development' || cleanId === 'neuro'));
+      if (isMatch) {
         pane.classList.add('active');
       } else {
         pane.classList.remove('active');
@@ -629,8 +799,11 @@
 
   // 9. Secret Admin Studio Logic
   const DEFAULT_AFFILIATE_CONFIG = {
+    chipsEnabled: true,
     coupang: 'AF7865143',
     linkprice: 'A100708867',
+    iherb: 'KIDSBIO',
+    amazon: 'tallerbiolab-20',
     tenping: '010-****-2370',
     cafeUrl: 'https://cafe.naver.com/kidsfitgrowth',
     blogUrl: 'https://blog.naver.com/kidsfit_studio'
@@ -728,15 +901,21 @@
       const cfg = getAffiliateConfig();
       const coupangEl = document.getElementById('cfg-coupang');
       const linkpriceEl = document.getElementById('cfg-linkprice');
+      const iherbEl = document.getElementById('cfg-iherb');
+      const amazonEl = document.getElementById('cfg-amazon');
       const tenpingEl = document.getElementById('cfg-tenping');
+      const chipsToggleEl = document.getElementById('cfg-chips-toggle');
       const cafeEl = document.getElementById('cfg-cafe');
       const blogEl = document.getElementById('cfg-blog');
 
-      if (coupangEl) coupangEl.value = cfg.coupang;
-      if (linkpriceEl) linkpriceEl.value = cfg.linkprice;
-      if (tenpingEl) tenpingEl.value = cfg.tenping;
-      if (cafeEl) cafeEl.value = cfg.cafeUrl;
-      if (blogEl) blogEl.value = cfg.blogUrl;
+      if (coupangEl) coupangEl.value = cfg.coupang || DEFAULT_AFFILIATE_CONFIG.coupang;
+      if (linkpriceEl) linkpriceEl.value = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
+      if (iherbEl) iherbEl.value = cfg.iherb || DEFAULT_AFFILIATE_CONFIG.iherb;
+      if (amazonEl) amazonEl.value = cfg.amazon || DEFAULT_AFFILIATE_CONFIG.amazon;
+      if (tenpingEl) tenpingEl.value = cfg.tenping || DEFAULT_AFFILIATE_CONFIG.tenping;
+      if (chipsToggleEl) chipsToggleEl.checked = (cfg.chipsEnabled !== false);
+      if (cafeEl) cafeEl.value = cfg.cafeUrl || DEFAULT_AFFILIATE_CONFIG.cafeUrl;
+      if (blogEl) blogEl.value = cfg.blogUrl || DEFAULT_AFFILIATE_CONFIG.blogUrl;
 
       // Render live OSMU studio inside modal
       renderAdminOsmuStudio();
@@ -778,41 +957,10 @@
       });
     });
 
-    // Preset cards click
-    const presetCards = document.querySelectorAll('.preset-card');
-    presetCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const presetId = card.getAttribute('data-preset-id');
-        if (presetId) applyPreset(presetId);
-      });
-    });
-
-    // Stepper navigation buttons
-    const nextBtn = document.getElementById('btn-next-step');
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        nextStep();
-      });
-    }
-
-    const prevBtn = document.getElementById('btn-prev-step');
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        prevStep();
-      });
-    }
-
-    const form = document.getElementById('diagnosis-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (validateStep(state.currentStep)) {
-          issuePrescription();
-        }
-      });
-    }
+    // NOTE: Onboarding stepper navigation (#btn-next-step, #btn-prev-step), preset cards (.preset-card),
+    // and form submission (#diagnosis-form) are authoritatively managed by src/js/onboarding-wizard.js
+    // to prevent dual-controller race conditions and state desynchronization.
+    // app.js retains nextStep, prevStep, applyPreset, and validateStep for testing and programmatic use.
 
     const retestBtn = document.getElementById('btn-retest');
     if (retestBtn) {
@@ -868,9 +1016,13 @@
     const saveAdminBtn = document.getElementById('btn-save-admin');
     if (saveAdminBtn) {
       saveAdminBtn.addEventListener('click', () => {
+        const chipsToggle = document.getElementById('cfg-chips-toggle');
         const cfg = {
+          chipsEnabled: chipsToggle ? chipsToggle.checked : true,
           coupang: document.getElementById('cfg-coupang') ? document.getElementById('cfg-coupang').value : DEFAULT_AFFILIATE_CONFIG.coupang,
           linkprice: document.getElementById('cfg-linkprice') ? document.getElementById('cfg-linkprice').value : DEFAULT_AFFILIATE_CONFIG.linkprice,
+          iherb: document.getElementById('cfg-iherb') ? document.getElementById('cfg-iherb').value : DEFAULT_AFFILIATE_CONFIG.iherb,
+          amazon: document.getElementById('cfg-amazon') ? document.getElementById('cfg-amazon').value : DEFAULT_AFFILIATE_CONFIG.amazon,
           tenping: document.getElementById('cfg-tenping') ? document.getElementById('cfg-tenping').value : DEFAULT_AFFILIATE_CONFIG.tenping,
           cafeUrl: document.getElementById('cfg-cafe') ? document.getElementById('cfg-cafe').value : DEFAULT_AFFILIATE_CONFIG.cafeUrl,
           blogUrl: document.getElementById('cfg-blog') ? document.getElementById('cfg-blog').value : DEFAULT_AFFILIATE_CONFIG.blogUrl
@@ -911,6 +1063,7 @@
     applyPreset,
     issuePrescription,
     renderPrescriptionResults,
+    renderPrescriptionReport: renderPrescriptionResults, // Alias for backward compatibility
     switchTab,
     openAdminModal,
     closeAdminModal,
@@ -921,16 +1074,26 @@
     handleSharePrescription,
     initApp,
     GrowthEngine,
+    EndocrinologyEngine,
+    NutritionEngine,
     DevelopmentEngine,
     WeekendCurator,
     Monetization,
-    AdminOsmu
+    AdminOsmu,
+    ReferenceChips,
+    AdminStudio
   };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = KidsFitApp;
-  } else {
+  }
+  if (typeof window !== 'undefined') {
+    window.KidsFitApp = KidsFitApp;
+    window.TallerApp = KidsFitApp;
+  }
+  if (typeof global !== 'undefined' && typeof window === 'undefined') {
     global.KidsFitApp = KidsFitApp;
+    global.TallerApp = KidsFitApp;
   }
 
-})(typeof window !== 'undefined' ? window : global);
+})(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));

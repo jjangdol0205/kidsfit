@@ -176,7 +176,8 @@ function runTier5HardeningSuite() {
     assert(html.includes('AF_ADVERSARIAL_TEST_999'), 'Rendered HTML must include custom Coupang subId');
     assert(html.includes(sampleCourse.destination), 'Rendered HTML must include destination title');
     assert(html.includes(sampleCourse.route), 'Rendered HTML must include route');
-    assert(html.includes(sampleCourse.linkedPackage.price.toLocaleString()), 'Rendered HTML must format price in KRW');
+    assert(html.includes(sampleCourse.linkedPackage.title), 'Rendered HTML must include linked package title');
+    assert(!html.includes(sampleCourse.linkedPackage.price.toLocaleString()), 'Rendered HTML must eliminate commercial price tags');
 
     // Tab 3 report wrapper
     const tab3Html = WeekendCurator.renderTab3Report({ region: '부산·경남', interest: 'dino_nature' }, customConfig);

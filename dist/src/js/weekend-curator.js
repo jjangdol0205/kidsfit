@@ -194,9 +194,6 @@
                 <span>📚</span> 전시 전후 활용 연계 도서·교구 패키지
               </div>
             </div>
-            <span style="font-size: 1.05rem; font-weight: 800; color: var(--primary-indigo);">
-              ${pkg.price.toLocaleString()}원
-            </span>
           </div>
 
           <p style="font-size: 0.86rem; color: #3730A3; line-height: 1.55; margin: 0 0 0.85rem 0;">
@@ -204,7 +201,7 @@
           </p>
 
           <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; text-decoration: none; font-size: 0.9rem; padding: 0.7rem 1rem; box-sizing: border-box;">
-            📖 전시 전후 활용 연계 도서 세트 보기 (로켓배송)
+            📖 전시 전후 활용 연계 도서 세트 보기
           </a>
         </div>
       </div>

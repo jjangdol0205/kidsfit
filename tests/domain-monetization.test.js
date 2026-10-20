@@ -278,46 +278,25 @@ it('renders outing card HTML with viewing points, tips, and Coupang linked packa
 });
 
 // -----------------------------------------------------------------------------
-// Suite 4: 4-Tier Monetization & Receipt UI
+// Suite 4: 100% Commercial Purge & Reference Affiliate Configuration
 // -----------------------------------------------------------------------------
-console.log('\n[Suite 4: 4-Tier Monetization & Grocery Receipt UI]');
+console.log('\n[Suite 4: 100% Commercial Purge & Reference Affiliate Configuration]');
 
-it('generates 5-item grocery receipt UI: exactly 2 supplements + 2 toys + 1 book', () => {
+it('guarantees 100% commercial elimination: getGroceryReceiptItems returns empty items and zero totals', () => {
   const receipt = Monetization.getGroceryReceiptItems({}, 'tier_15_30');
-  assert.strictEqual(receipt.items.length, 5);
-  const supps = receipt.items.filter((i) => i.category === 'supplements');
-  const toys = receipt.items.filter((i) => i.category === 'toys');
-  const books = receipt.items.filter((i) => i.category === 'books');
-  assert.strictEqual(supps.length, 2);
-  assert.strictEqual(toys.length, 2);
-  assert.strictEqual(books.length, 1);
+  assert.strictEqual(receipt.items.length, 0);
+  assert.strictEqual(receipt.total4Weeks, 0);
+  assert.strictEqual(receipt.dailyAverage, 0);
 });
 
-it('verifies receipt sum and daily average cost: total4Weeks and dailyAverage = round(total / 30)', () => {
-  const receipt = Monetization.getGroceryReceiptItems({}, 'tier_15_30');
-  const sum = receipt.items.reduce((acc, i) => acc + i.price, 0);
-  assert.strictEqual(receipt.total4Weeks, sum);
-  assert.strictEqual(receipt.dailyAverage, Math.round(sum / 30));
+it('verifies 100% purge of CPA cards, receipt HTML, and legacy monetization layers', () => {
+  assert.strictEqual(Monetization.renderLayer1Cpa(), '');
+  assert.strictEqual(Monetization.renderLayer2Receipt(), '');
+  assert.strictEqual(Monetization.renderLayer3Hardware(), '');
+  assert.strictEqual(Monetization.renderAllMonetizationLayers(), '');
 });
 
-it('enforces budget tier 5~10만 constraints: total <= 100,000 KRW', () => {
-  const receipt = Monetization.getGroceryReceiptItems({}, 'tier_5_10');
-  assert.ok(receipt.total4Weeks <= 100000);
-  assert.ok(receipt.dailyAverage <= 3500);
-});
-
-it('enforces budget tier Unlimited: total >= 200,000 KRW', () => {
-  const receipt = Monetization.getGroceryReceiptItems({}, 'tier_unlimited');
-  assert.ok(receipt.total4Weeks >= 200000);
-});
-
-it('replaces standard calcium with citrate calcium when milk_trouble habit is selected', () => {
-  const receipt = Monetization.getGroceryReceiptItems({ habits: ['milk_trouble'] }, 'tier_15_30');
-  const hasCitrate = receipt.items.some((i) => i.name.includes('구연산 칼슘'));
-  assert.ok(hasCitrate, 'Citrate calcium should be prescribed for milk_trouble');
-});
-
-it('returns 4 posture and hardware upselling items', () => {
+it('returns 4 clinical biomechanics and posture recommendations without commercial pricing', () => {
   const hw = Monetization.getHardwareRecommendations();
   assert.strictEqual(hw.length, 4);
   const chair = hw.find((i) => i.name.includes('의자'));
@@ -325,28 +304,25 @@ it('returns 4 posture and hardware upselling items', () => {
   const tramp = hw.find((i) => i.name.includes('트램폴린'));
   const book = hw.find((i) => i.name.includes('교구장'));
   assert.ok(chair && desk && tramp && book);
+  assert.strictEqual(chair.price, undefined, 'Hardware items must not expose commercial price attributes');
+  assert.ok(chair.benefit.includes('골반') || chair.benefit.includes('척추'));
 });
 
-it('renders full receipt UI with dotted borders, barcode, and daily amortized cost', () => {
-  const receipt = Monetization.getGroceryReceiptItems({}, 'tier_15_30');
-  const html = Monetization.renderLayer2Receipt(receipt, { coupang: 'AF7865143' });
-  assert.ok(html.includes('receipt-outer-wrapper'));
-  assert.ok(html.includes('||| | |||||'));
-  assert.ok(html.includes('4주 총 투자 합계'));
-  assert.ok(html.includes('AF7865143'));
+it('verifies clinical affiliate configuration integrity and multi-channel parameters', () => {
+  const cfg = Monetization.getAffiliateConfig();
+  assert.strictEqual(cfg.coupang, 'AF7865143');
+  assert.strictEqual(cfg.linkprice, 'A100708867');
+  assert.strictEqual(cfg.iherb, 'KIDSBIO');
+  assert.strictEqual(cfg.amazon, 'tallerbiolab-20');
+  assert.strictEqual(cfg.chipsEnabled, true);
 });
 
-it('renders Layer 1 CPA cards with HT042 and Montessori trial links', () => {
-  const html = Monetization.renderLayer1Cpa({}, { linkprice: 'A100708867', tenping: '010-****-2370' });
-  assert.ok(html.includes('HT042'));
-  assert.ok(html.includes('A100708867'));
-});
-
-it('renders Layer 4 with prescription share button and Naver Cafe worksheet download banner', () => {
+it('renders clean clinical prescription share button without commercial marketing', () => {
   const html = Monetization.renderLayer4LockIn({ gender: 'boy' }, { cafeUrl: 'https://cafe.naver.com/kidsfitgrowth' });
   assert.ok(html.includes('btn-share-prescription'));
-  assert.ok(html.includes('워크지 50종 PDF'));
-  assert.ok(html.includes('https://cafe.naver.com/kidsfitgrowth'));
+  assert.ok(html.includes('임상 처방전'));
+  assert.ok(!html.includes('최저가'));
+  assert.ok(!html.includes('특가'));
 });
 
 // -----------------------------------------------------------------------------

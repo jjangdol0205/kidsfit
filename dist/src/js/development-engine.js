@@ -425,14 +425,8 @@
                 </div>
 
                 <div>
-                  <div style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem;">
-                    ${t.price.toLocaleString()}원
-                  </div>
-                  <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.84rem; padding: 0.55rem 0.75rem; margin-bottom: 0.45rem; display: block; box-sizing: border-box;">
-                    📋 이 성장단계 맞춤 교구·상세 스펙 확인하기 (로켓배송)
-                  </a>
-                  <a href="#layer1-cpa-section" class="btn-text-cpa" style="display: block; text-align: center; font-size: 0.78rem; color: var(--primary-indigo); text-decoration: none; font-weight: 600;">
-                    👩‍⚕️ 1:1 방문 체험수업 신청 혜택 보기 →
+                  <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.84rem; padding: 0.55rem 0.75rem; display: block; box-sizing: border-box;">
+                    📋 이 성장단계 맞춤 교구·상세 스펙 확인하기
                   </a>
                 </div>
               </div>

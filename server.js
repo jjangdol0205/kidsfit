@@ -77,8 +77,8 @@ const server = http.createServer((req, res) => {
     if (pathname === '/healthz' || pathname === '/api/health' || pathname === '/api/stats') {
       const payload = JSON.stringify({
         ok: true,
-        service: 'KidsFit Growth Studio (truthofmarket.com)',
-        version: '1.0.0',
+        service: 'Taller Bio Labs (truthofmarket.com)',
+        version: '2.0.0',
         timestamp: new Date().toISOString()
       });
       res.writeHead(200, {
@@ -86,6 +86,44 @@ const server = http.createServer((req, res) => {
         ...NO_CACHE_HEADERS
       });
       res.end(payload);
+      return;
+    }
+
+    // 1-B. Coupang Partners Redirect & Search Proxy Route
+    if (pathname === '/api/coupang') {
+      const q = parsedUrl.searchParams.get('q') || 
+                parsedUrl.searchParams.get('kw') || 
+                parsedUrl.searchParams.get('keyword') || '';
+      const lptag = parsedUrl.searchParams.get('lptag') || 
+                    parsedUrl.searchParams.get('subId') || 
+                    'AF7865143';
+      const redirectUrl = q 
+        ? `https://www.coupang.com/np/search?q=${encodeURIComponent(q)}&channel=user&lptag=${encodeURIComponent(lptag)}`
+        : `https://www.coupang.com/?lptag=${encodeURIComponent(lptag)}`;
+
+      const format = parsedUrl.searchParams.get('format');
+      const acceptHeader = req.headers['accept'] || '';
+
+      if (format === 'json' || acceptHeader.includes('application/json')) {
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=utf-8',
+          ...NO_CACHE_HEADERS
+        });
+        res.end(JSON.stringify({
+          ok: true,
+          redirectUrl,
+          query: q,
+          lptag
+        }));
+        return;
+      }
+
+      // HTTP 302 Found Redirect
+      res.writeHead(302, {
+        'Location': redirectUrl,
+        ...NO_CACHE_HEADERS
+      });
+      res.end(`Redirecting to Coupang Partners: ${redirectUrl}`);
       return;
     }
 
