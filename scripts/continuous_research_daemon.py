@@ -215,6 +215,7 @@ def crawl_openalex_live(
     url = (
         f"https://api.openalex.org/works?search={encoded_q}"
         f"&filter=has_doi:true,type:article&per-page={per_page}&page={page}&sort=cited_by_count:desc"
+        f"&mailto=research@truthofmarket.com"
     )
     data = http_get_json(url, timeout=15)
     if not data or "results" not in data:
