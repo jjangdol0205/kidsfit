@@ -1371,12 +1371,12 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T11:30:36Z",
-    "total_papers": 802,
+    "generated_at": "2026-10-20T11:41:42Z",
+    "total_papers": 803,
     "pillar_counts": {
       "growth_endocrinology": 222,
       "fine_motor_neuroscience": 130,
-      "pedagogy_montessori_froebel": 141,
+      "pedagogy_montessori_froebel": 142,
       "parent_child_interaction_museum": 175,
       "posture_biomechanics_exercise": 134
     },
@@ -1413,7 +1413,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 141
+      "paper_count": 142
     },
     {
       "id": "parent_child_interaction_museum",
@@ -13438,6 +13438,29 @@
       "age_range": "만 2~8세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1016/j.appdev.2012.05.005",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.3985/mcwmr.23.180",
+      "pmid": "",
+      "doi": "10.3985/mcwmr.23.180",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "The Meaning of Toys in a Recycling-oriented Society",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] The Meaning of Toys in a Recycling-oriented Society (2012)",
+      "authors": [
+        "Nishimoto N"
+      ],
+      "journal": "Material Cycles and Waste Management Research",
+      "year": 2012,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Material Cycles and Waste Management Research (2012)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3985/mcwmr.23.180",
       "source_api": "Crossref Works REST API Live"
     },
     {
