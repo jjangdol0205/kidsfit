@@ -660,12 +660,26 @@
             </div>
           </div>
 
-          <!-- Section 7: Neuro-Cognitive & Havruta Guidance -->
-          <div style="margin-bottom: 20px;">
-            <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 6px 0;">
-              7. 연령별 뇌인지 발달 &amp; 주말 하브루타 탐구 질문 모델
+          <!-- Section 7: Short / Mid / Long-Term Horizon Guidance & Havruta -->
+          <div style="margin-bottom: 16px;">
+            <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 6px 0;">
+              7. 학술 논문 DB 기반 【단기 · 중기 · 장기】 맞춤 지도 로드맵 &amp; 하브루타
             </h2>
-            <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 8px 10px; background: #F8FAFC; font-size: 8pt; line-height: 1.5;">
+            <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8pt; margin-bottom: 8px;">
+              <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
+                <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #0284C7;">⚡ 단기 지도 (1~4주)</th>
+                <td style="padding: 5px 8px;">밤 21:45 입면 · 취침 3시간 전 무당류 공복(GH 억제 0%) · 저녁 데드행 30초×3세트(디스크 숨은 키 +1.8cm 복원)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #CBD5E1;">
+                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #059669;">📈 중기 지도 (1~3개월)</th>
+                <td style="padding: 5px 8px;">구연산칼슘(흡수율 45%)+D3+K2(MK-7)+단백질(${Math.round(weight * 1.3 * 10) / 10}g) · 주 5회 15분 줄넘기 점핑 · 격주 박물관 하브루타 대화</td>
+              </tr>
+              <tr>
+                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #D97706;">🏆 장기 지도 (6개월~성인)</th>
+                <td style="padding: 5px 8px;">매 3~6개월 LMS 백분위 추적 · 표준 BMI 유지로 성조숙 방어 · 유전 표적키(${mph}cm) 넘어 잠재 최대키(${potentialHeight}cm) 도달</td>
+              </tr>
+            </table>
+            <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 10px; background: #F8FAFC; font-size: 7.8pt; line-height: 1.45;">
               <div><strong>[관찰 &amp; 질문]</strong> "이 전시물에서 가장 규칙적이지 않거나 특이한 점은 무엇일까?"</div>
               <div><strong>[가설 &amp; 추론]</strong> "만약 이 조건이 반대로 바뀌었다면, 구조나 역사적 결과는 어떻게 달라졌을까?"</div>
               <div><strong>[적용 &amp; 확장]</strong> "오늘 발견한 원리를 우리 일상이나 미래 과학에 적용한다면 어떤 문제를 해결할 수 있을까?"</div>

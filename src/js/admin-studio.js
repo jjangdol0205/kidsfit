@@ -366,6 +366,9 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
       if (amazonEl) amazonEl.value = cfg.amazon || DEFAULT_AFFILIATE_CONFIG.amazon;
       if (chipsToggleEl) chipsToggleEl.checked = (cfg.chipsEnabled !== false);
 
+      if (global.TallerAdminDbDashboard && typeof global.TallerAdminDbDashboard.mountAdminDbDashboard === 'function') {
+        global.TallerAdminDbDashboard.mountAdminDbDashboard('admin-db-dashboard-container');
+      }
       renderOsmuContainer();
     }
   }

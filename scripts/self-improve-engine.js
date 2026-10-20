@@ -353,6 +353,76 @@ function auditStage5AffiliateLinks() {
 }
 
 // ============================================================================
+// STAGE 7: Autonomous DB Scope Expansion, Horizon Guidance & Admin Dashboard Audit
+// ============================================================================
+function auditStage7ScopeAndGuidance() {
+  console.log('\n------------------------------------------------------------');
+  console.log('Stage 7: DB Scope Expansion, Short/Mid/Long Guidance & Admin Dashboard');
+  console.log('------------------------------------------------------------');
+
+  const kbPath = path.join(ROOT_DIR, 'src/data/research-knowledge-base.json');
+  let kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));
+  let papers = kb.papers || [];
+
+  // Auto-heal enrichment if any paper is missing sub_domain or horizon
+  const unenrichedCount = papers.filter(p => !p.sub_domain || !p.horizon || !p.plain_fact_ko).length;
+  if (unenrichedCount > 0 || !kb.metadata || !kb.metadata.learning_analytics) {
+    try {
+      execSync('python scripts/expand_and_enrich_db.py', { cwd: ROOT_DIR, stdio: 'pipe' });
+      kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));
+      papers = kb.papers || [];
+    } catch (e) {
+      // continue check
+    }
+  }
+
+  const analytics = (kb.metadata && kb.metadata.learning_analytics) || {};
+  const subDomains = analytics.sub_domain_distribution || [];
+  const laws = analytics.core_empirical_laws || [];
+
+  recordCheck('Stage 7: Scope & Guidance', 'Expanded 12 Specialized Sub-Domains Active', subDomains.length === 12, `Sub-domains: ${subDomains.length}`);
+  recordCheck('Stage 7: Scope & Guidance', '100% Papers Enriched with Short/Mid/Long Horizon & Plain Fact', papers.every(p => p.sub_domain && p.horizon && p.plain_fact_ko), `Checked ${papers.length} papers`);
+  recordCheck('Stage 7: Scope & Guidance', '12 Core Empirical Laws Synthesized in DB Analytics', laws.length >= 12, `Laws: ${laws.length}`);
+
+  // Verify MasterBriefing Short/Mid/Long-Term Guidance Roadmap
+  try {
+    const MasterBriefing = require('../src/js/master-briefing');
+    const html = MasterBriefing.renderMasterBriefingCard({
+      gender: 'boy',
+      ageYears: 10,
+      ageMonths: 120,
+      currentHeight: 137.0,
+      currentWeight: 35.5,
+      recentGrowth6m: 3.2,
+      fatherHeight: 173.5,
+      motherHeight: 160.5,
+      habits: ['late_sleep', 'poor_posture'],
+      tannerPhase: 'phase_2'
+    });
+    const hasShortMidLong = html.includes('id="horizon-short-term"') &&
+                            html.includes('id="horizon-mid-term"') &&
+                            html.includes('id="horizon-long-term"') &&
+                            html.includes('id="briefing-one-line-verdict"');
+    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance', hasShortMidLong, 'Horizon IDs verified');
+  } catch (err) {
+    recordCheck('Stage 7: Scope & Guidance', 'Master Briefing Renders Fact Verdict + Short/Mid/Long-Term Guidance', false, err.message);
+  }
+
+  // Verify Admin Visual DB Intelligence Dashboard
+  try {
+    const AdminDbDashboard = require('../src/js/admin-db-dashboard');
+    const dashHtml = AdminDbDashboard.renderDashboardHtml();
+    const hasVisuals = dashHtml.includes('id="admin-db-subdomain-chart"') &&
+                       dashHtml.includes('id="admin-db-heatmap-container"') &&
+                       dashHtml.includes('id="admin-db-laws-grid"') &&
+                       dashHtml.includes('id="admin-db-explorer-results"');
+    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws & Explorer', hasVisuals, 'Admin visuals verified');
+  } catch (err) {
+    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws & Explorer', false, err.message);
+  }
+}
+
+// ============================================================================
 // STAGE 6: Automated Diagnostic Quality Health Report & Self-Healing
 // ============================================================================
 function auditStage6ReportAndFix() {
@@ -419,6 +489,7 @@ function main() {
   auditStage3Translations();
   auditStage4SvgCharts();
   auditStage5AffiliateLinks();
+  auditStage7ScopeAndGuidance();
   auditStage6ReportAndFix();
 
   console.log('\n================================================================');

@@ -201,6 +201,37 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "crossref",
         "query": "trampoline balance training proprioception gross motor coordination children",
     },
+    # Expanded Autonomous Scope: Chronobiology, Gut-Bone Nutrigenomics, Longitudinal EF, Spinal Decompression
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"blue light\"[Title/Abstract] OR \"evening light\"[Title/Abstract]) AND (\"melatonin\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"adolescents\"[Title/Abstract])",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "crossref",
+        "query": "vitamin K2 menaquinone-7 osteocalcin bone mineral density children supplementation",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"gut microbiota\"[Title/Abstract] OR \"short-chain fatty acids\"[Title/Abstract]) AND (\"IGF-1\"[Title/Abstract] OR \"bone growth\"[Title/Abstract])",
+    },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "crossref",
+        "query": "childhood self-control executive function longitudinal cohort academic achievement",
+    },
+    {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "pubmed",
+        "query": "(\"conversational turns\"[Title/Abstract] OR \"parent-child interaction\"[Title/Abstract]) AND (\"Broca\"[Title/Abstract] OR \"language development\"[Title/Abstract])",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "diurnal stature variation intervertebral disc hydration spinal decompression adolescents",
+    },
 ]
 
 
@@ -388,6 +419,15 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
 
     with open(DATA_OUT, "w", encoding="utf-8") as f:
         json.dump(kb_data, f, ensure_ascii=False, indent=2)
+
+    try:
+        from expand_and_enrich_db import run_expansion_and_enrichment
+        run_expansion_and_enrichment()
+        with open(DATA_OUT, "r", encoding="utf-8") as f:
+            kb_data = json.load(f)
+            existing_papers = kb_data.get("papers", existing_papers)
+    except Exception as enrich_err:
+        print(f"[DAEMON WARN] Enrichment step warning: {enrich_err}", file=sys.stderr)
 
     md_content = build_markdown_encyclopedia(kb_data)
     with open(DOC_OUT, "w", encoding="utf-8") as f:

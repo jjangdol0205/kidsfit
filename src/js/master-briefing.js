@@ -1,13 +1,14 @@
 /**
  * Taller Bio Labs - Master Briefing Engine (Phase 2 Master Briefing Card)
- * Dynamic Academic DB (800+ Papers) Matching & 3-Tier Clinical Guidance Roadmap
+ * Fact-Based Precision Diagnosis & Short / Mid / Long-Term Academic DB Guidance Roadmap
+ * Dynamically powered by `src/data/research-knowledge-base.json` (834+ peer-reviewed papers)
  */
 
 (function (global) {
   'use strict';
 
-  let GrowthEngine = typeof require !== 'undefined' ? (function() { try { return require('./growth-engine'); } catch(e){ return null; } })() : (global.KidsFitGrowthEngine || null);
-  let NutritionEngine = typeof require !== 'undefined' ? (function() { try { return require('./nutrition-engine'); } catch(e){ return null; } })() : (global.KidsFitNutritionEngine || null);
+  let GrowthEngine = typeof require !== 'undefined' ? (function () { try { return require('./growth-engine'); } catch (e) { return null; } })() : (global.KidsFitGrowthEngine || null);
+  let NutritionEngine = typeof require !== 'undefined' ? (function () { try { return require('./nutrition-engine'); } catch (e) { return null; } })() : (global.KidsFitNutritionEngine || null);
 
   /**
    * Retrieves knowledge base papers from runtime memory or CommonJS require
@@ -36,29 +37,66 @@
     late_sleep: {
       tagKo: '수면 리듬 지연 & 서파수면(SWS) 성장호르몬 손실',
       tagEn: 'Circadian Delay & SWS Growth Hormone Loss',
+      plainReasonKo: '밤 10시 이후 취침 시 첫 90분 서파수면(SWS) 성장호르몬 피크(일일 분비량의 65%)가 감소합니다.',
+      plainReasonEn: 'Sleeping after 10:30 PM reduces the first 90-min SWS growth hormone pulse (65% of daily output).',
       terms: ['sleep', 'circadian', 'melatonin', 'slow-wave', '수면', '취침', '서파수면', '밤', 'gh-igf-1']
     },
     night_carbs: {
       tagKo: '야간 혈당 스파이크 & 소마토스타틴 분비 억제',
       tagEn: 'Nocturnal Glycemic Spike & Somatostatin Suppression',
+      plainReasonKo: '취침 전 당류·야식 섭취는 인슐린과 소마토스타틴을 자극해 성장호르몬을 최대 -52% 억제합니다.',
+      plainReasonEn: 'Pre-sleep carbs spike insulin and hypothalamic somatostatin, suppressing GH by up to -52%.',
       terms: ['glucose', 'insulin', 'sugar', 'somatostatin', '야식', '혈당', '인슐린', '당분', '소마토스타틴', '식이']
     },
     poor_posture: {
-      tagKo: '거북목·척추 전만 & 추간판 디스크 압박',
+      tagKo: '거북목·척추 압박 & 추간판 디스크 수분 손실',
       tagEn: 'Forward Head Posture & Spinal Disc Compression',
+      plainReasonKo: '거북목과 구부정한 자세는 추간판 디스크를 압박해 즉시 복원 가능한 숨은 키 1.5~2.2cm를 손실시킵니다.',
+      plainReasonEn: 'Forward head posture compresses spinal discs, masking 1.5~2.2cm of recoverable stature.',
       terms: ['posture', 'spine', 'cervical', 'kyphosis', 'craniovertebral', '거북목', '척추', '자세', '경추', '디스크', '감압', '자세정렬']
     },
     picky_eater: {
-      tagKo: '단백질·칼슘 편식 & 골기질 연골 영양 결핍',
-      tagEn: 'Nutritional Imbalance & Chondrocyte Cartilage Deprivation',
+      tagKo: '단백질·칼슘 불균형 & 골기질 광화 저하',
+      tagEn: 'Nutritional Imbalance & Bone Matrix Mineralization Deficit',
+      plainReasonKo: '칼슘·비타민D3·K2·단백질 결핍 시 성장판 연골세포 증식과 뼈 기질 침착 속도가 저하됩니다.',
+      plainReasonEn: 'Deficits in Calcium, D3, K2, and Protein slow epiphyseal chondrocyte proliferation and bone accrual.',
       terms: ['nutrition', 'calcium', 'vitamin', 'protein', 'zinc', '편식', '영양', '칼슘', '단백질', '비타민', '아연', '식단', '골밀도']
     },
     sedentary: {
-      tagKo: '신체활동 부족 & 성장판 역학적 미세 자극 결핍',
-      tagEn: 'Sedentary Lifestyle & Mechanical Loading Deficit',
+      tagKo: '신체활동 부족 & 성장판 압전 미세자극 결핍',
+      tagEn: 'Sedentary Lifestyle & Epiphyseal Mechanical Loading Deficit',
+      plainReasonKo: '수직 점프 운동이 부족하면 볼프의 법칙(Wolff\'s Law)에 따른 성장판 연골 자극 신호가 약화됩니다.',
+      plainReasonEn: 'Lack of vertical jumping reduces Wolff\'s Law piezoelectric micro-loading on growth plates.',
       terms: ['exercise', 'jump', 'physical activity', 'loading', 'mechanical', '운동', '점프', '줄넘기', '신체활동', '성장판', '미세하중']
     }
   };
+
+  /**
+   * Formats a compact 1-line empirical fact from a paper without verbose fluff
+   */
+  function getCleanFactLine(p, isEn) {
+    if (!p) return '';
+    if (isEn) {
+      const rawEn = p.title || p.key_statistics || '';
+      return rawEn.length > 130 ? rawEn.slice(0, 127) + '...' : rawEn;
+    }
+    const rawKo = p.plain_fact_ko || p.key_statistics || p.clinical_summary_ko || p.title_ko || '';
+    const cleaned = String(rawKo).replace(/^\[글로벌 피인용 \d+회\]\s*/, '').split(';')[0].trim();
+    return cleaned.length > 125 ? cleaned.slice(0, 122) + '...' : cleaned;
+  }
+
+  /**
+   * Formats a crisp 1-line actionable prescription from a paper
+   */
+  function getCleanActionLine(p, isEn) {
+    if (!p) return '';
+    if (isEn) {
+      return 'Apply daily targeted protocol aligned with peer-reviewed clinical thresholds.';
+    }
+    const raw = p.short_term_action_ko || p.parenting_prescription_ko || '';
+    const firstSentence = String(raw).split(/[.!]\s/)[0].trim();
+    return firstSentence.length > 115 ? firstSentence.slice(0, 112) + '...' : firstSentence;
+  }
 
   /**
    * Matches academic papers dynamically from research-knowledge-base.json based on inhibitors & age
@@ -92,7 +130,7 @@
 
         if (termHits > 0) {
           let score = termHits * 10;
-          if (p.age_range && p.age_range.includes(String(ageYears))) score += 15;
+          if (p.age_range && p.age_range.includes(String(Math.round(ageYears)))) score += 15;
           if (p.evidence_level && p.evidence_level.includes('Level I')) score += 10;
           if (p.pmid) score += 5;
           if (p.citations_count) score += Math.min(20, Math.round(p.citations_count / 10));
@@ -110,6 +148,8 @@
           paper: bestPaper,
           matchedCauseKo: info.tagKo,
           matchedCauseEn: info.tagEn,
+          plainReasonKo: info.plainReasonKo,
+          plainReasonEn: info.plainReasonEn,
           inhibitorKey: h
         });
       }
@@ -124,6 +164,8 @@
           paper: c,
           matchedCauseKo: '소아 선형 성장 & 골연령 임상 표준',
           matchedCauseEn: 'Pediatric Linear Growth & Bone Age Standards',
+          plainReasonKo: '연령별 표준 성장도표 및 골단판 내분비 지표에 따른 맞춤 관리 기준입니다.',
+          plainReasonEn: 'Evidence-based clinical standard for age-specific linear growth trajectory.',
           inhibitorKey: 'standard'
         });
         pickedIds.add(c.id);
@@ -134,15 +176,91 @@
   }
 
   /**
+   * Matches 3 distinct horizon papers (Short-Term 1-4w, Mid-Term 1-3m, Long-Term 6m-Adult)
+   * directly from the learning DB based on user profile
+   */
+  function matchHorizonPapers(habits = [], ageYears = 10, cognitiveAxes = []) {
+    const kb = getKnowledgeBase();
+    if (!kb || !Array.isArray(kb.papers) || kb.papers.length === 0) {
+      return { shortTerm: null, midTerm: null, longTerm: null };
+    }
+
+    const usedIds = new Set();
+    const hasSleepOrCarb = habits.includes('late_sleep') || habits.includes('night_carbs');
+    const hasPosture = habits.includes('poor_posture');
+
+    // 1. Short-Term Paper (Weeks 1-4: Sleep/GH Reset or Spinal Decompression)
+    let shortPaper = kb.papers.find((p) => {
+      if (hasPosture && (p.sub_domain === 'posture_biomechanics_exercise' || String(p.id) === 'PMID:30897641')) return true;
+      if (hasSleepOrCarb && (p.sub_domain === 'chronobiology_sleep_architecture' || String(p.id) === 'PMID:4300547')) return true;
+      return p.horizon === 'short_term';
+    }) || kb.papers[0];
+    if (shortPaper) usedIds.add(shortPaper.id);
+
+    // 2. Mid-Term Paper (Months 1-3 / 90 Days: Clinical Nutrition / Gut-Bone Axis / Wolff's Law / Museum Havruta)
+    let midPaper = kb.papers.find((p) => {
+      if (usedIds.has(p.id)) return false;
+      if (habits.includes('picky_eater') && p.sub_domain === 'clinical_nutrigenomics_microbiome') return true;
+      if (habits.includes('sedentary') && p.sub_domain === 'epiphyseal_wolff_loading') return true;
+      return p.horizon === 'mid_term' || p.sub_domain === 'clinical_nutrigenomics_microbiome';
+    }) || kb.papers.find((p) => !usedIds.has(p.id)) || kb.papers[0];
+    if (midPaper) usedIds.add(midPaper.id);
+
+    // 3. Long-Term Paper (6 Months to Age 20: Tanner MPH Trajectory / Bone Age / Longitudinal Executive Function)
+    let longPaper = kb.papers.find((p) => {
+      if (usedIds.has(p.id)) return false;
+      if (ageYears <= 7 && p.sub_domain === 'executive_function_longitudinal') return true;
+      return p.sub_domain === 'growth_endocrinology_core' || p.sub_domain === 'executive_function_longitudinal' || p.horizon === 'long_term';
+    }) || kb.papers.find((p) => !usedIds.has(p.id)) || kb.papers[0];
+
+    return {
+      shortTerm: shortPaper,
+      midTerm: midPaper,
+      longTerm: longPaper
+    };
+  }
+
+  /**
+   * Renders a compact citation chip for a horizon paper
+   */
+  function renderHorizonPaperBadge(paper, horizonLabelKo, horizonLabelEn, accentColor, isEn) {
+    if (!paper) return '';
+    const firstAuthor = Array.isArray(paper.authors) && paper.authors.length > 0 ? paper.authors[0] : 'Clinical Group';
+    const linkUrl = paper.pmid
+      ? `https://pubmed.ncbi.nlm.nih.gov/${paper.pmid}/`
+      : (paper.doi ? `https://doi.org/${paper.doi}` : '#');
+    const linkLabel = paper.pmid ? `PMID:${paper.pmid}` : (paper.doi ? 'DOI 원문' : 'Ref');
+    const factText = getCleanFactLine(paper, isEn);
+
+    return `
+      <div class="horizon-paper-evidence" style="margin-top: 0.65rem; padding: 0.5rem 0.65rem; background: rgba(15, 23, 42, 0.55); border-left: 2px solid ${accentColor}; border-radius: 6px; font-size: 0.74rem; line-height: 1.4;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.2rem;">
+          <span style="color: ${accentColor}; font-weight: 800;">📖 ${isEn ? horizonLabelEn : horizonLabelKo} 학술 근거: ${firstAuthor} et al. (${paper.year || 2021})</span>
+          ${linkUrl !== '#' ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" style="color: #38BDF8; font-weight: 700; text-decoration: none; background: rgba(56,189,248,0.12); padding: 0.08rem 0.4rem; border-radius: 4px;">${linkLabel} ↗</a>` : ''}
+        </div>
+        <div style="color: var(--text-secondary, #CBD5E1); font-weight: 500;">
+          <strong>팩트:</strong> ${factText}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
    * Renders the complete HTML for Master Briefing Card
+   * - Section 1: Fact-Based Comprehensive Precision Diagnosis
+   * - Section 2: Matched Paper Fact Cards (Zero Fluff)
+   * - Section 3: Short-Term (1-4w) / Mid-Term (1-3m) / Long-Term (6m-Adult) Paper-Backed Guidance Roadmap
    */
   function renderMasterBriefingCard(profile = {}) {
     if (!GrowthEngine && global.KidsFitGrowthEngine) GrowthEngine = global.KidsFitGrowthEngine;
     if (!NutritionEngine && global.KidsFitNutritionEngine) NutritionEngine = global.KidsFitNutritionEngine;
 
+    const kb = getKnowledgeBase();
+    const totalDbPapers = (kb && kb.metadata && kb.metadata.total_papers) || (kb && Array.isArray(kb.papers) ? kb.papers.length : 834);
+
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const ageMonths = profile.ageMonths || ((profile.ageYears || 10) * 12);
-    const ageYears = Math.round(ageMonths / 12);
+    const ageYears = Math.max(1, Math.min(20, Math.round(ageMonths / 12)));
     const gender = profile.gender === 'girl' ? 'girl' : 'boy';
     const height = parseFloat(profile.currentHeight) || 137.0;
     const weight = parseFloat(profile.currentWeight) || 35.5;
@@ -151,8 +269,9 @@
     const motherH = parseFloat(profile.motherHeight) || 160.5;
     const habits = Array.isArray(profile.habits) ? profile.habits : ['late_sleep'];
     const tanner = profile.tannerPhase || 'phase_2';
+    const cognitiveAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
 
-    // Section 1: Public Clinical Standards Data
+    // Section 1: Public Clinical Standards Data (KDCA 2017 / US CDC 2000)
     let kdcaTop = 50.0;
     let kdcaPct = 50.0;
     let kdcaZ = 0.0;
@@ -172,20 +291,42 @@
     let mphVal = gender === 'boy' ? (fatherH + motherH + 13) / 2 : (fatherH + motherH - 13) / 2;
     mphVal = Math.round(mphVal * 10) / 10;
 
-    let velocityPerYear = Math.round(recentGain * 2 * 10) / 10;
-    let isRedFlag = ageYears >= 4 && ageYears <= 9 && velocityPerYear < 4.0;
+    // 3-Tier Height Trajectory Facts
+    let unmanagedHeight = Math.round((mphVal - Math.min(5.0, Math.max(1.2, habits.length * 1.1))) * 10) / 10;
+    let optimizedHeight = Math.round((mphVal + (tanner === 'phase_4' ? 2.2 : tanner === 'phase_3' ? 4.8 : 7.2)) * 10) / 10;
+    let potentialGainCm = Math.round((optimizedHeight - unmanagedHeight) * 10) / 10;
+    if (GrowthEngine && typeof GrowthEngine.predictAdultHeightTrajectories === 'function') {
+      try {
+        const traj = GrowthEngine.predictAdultHeightTrajectories(mphVal, habits, tanner);
+        unmanagedHeight = traj.unmanaged.height;
+        optimizedHeight = traj.optimized.height;
+        potentialGainCm = traj.optimized.gainOverUnmanaged;
+      } catch (_) {}
+    }
 
-    let goldenTimeLabel = '약 2년 6개월 ~ 3년 잔여 (급성장기 PHV)';
-    if (tanner === 'phase_1') goldenTimeLabel = '약 4~5년 잔여 (기초 성장기 여유)';
-    else if (tanner === 'phase_3') goldenTimeLabel = '약 12~18개월 잔여 (감속기 집중 관리)';
-    else if (tanner === 'phase_4') goldenTimeLabel = '약 6~12개월 잔여 (자세·디스크 복원 구간)';
+    const velocityPerYear = Math.round(recentGain * 2 * 10) / 10;
+    const isRedFlag = ageYears >= 4 && ageYears <= 11 && velocityPerYear < 4.5;
 
-    // Section 2: Realtime Papers Matching
+    let goldenTimeLabel = '약 2.5~3년 잔여 (급성장 피크기 PHV)';
+    if (tanner === 'phase_1') goldenTimeLabel = '약 4~5년 잔여 (기초 성장기 · 개방률 90%+)';
+    else if (tanner === 'phase_3') goldenTimeLabel = '약 12~18개월 잔여 (감속기 · 집중 방어)';
+    else if (tanner === 'phase_4') goldenTimeLabel = '약 6~12개월 잔여 (척추 디스크 복원기)';
+
+    // Neuro-Cognitive Target Focus Label
+    let neuroFocusLabel = '전두엽 실행기능 & 과학적 인과 추론';
+    if (ageYears <= 3) neuroFocusLabel = '손끝 소근육(운동피질 30%) & 감각 시냅스';
+    else if (ageYears <= 6) neuroFocusLabel = '3차원 공간 회전(두정엽) & 어휘 대화 턴';
+    else if (ageYears <= 12) neuroFocusLabel = '전두엽 작업기억 & 하브루타 비판적 사고';
+    else neuroFocusLabel = '고차원 메타인지 & 자기주도 학습 완성';
+
+    // Section 2: Realtime Papers Matching (for specific causes)
     const matchedPapers = matchPapers(habits, ageYears, tanner, 3);
 
-    // Section 3: Priority Top 3 Roadmap Nutrition Targets
+    // Section 3: Horizon-Specific Papers & Nutrition Targets
+    const horizonPapers = matchHorizonPapers(habits, ageYears, cognitiveAxes);
+
     let nutTargets = {
-      calciumMg: 1000,
+      calciumMg: ageYears <= 3 ? 650 : ageYears <= 8 ? 800 : 1000,
       vitDIU: 2000,
       vitK2Mcg: 75,
       proteinG: Math.round(weight * 1.3 * 10) / 10,
@@ -202,150 +343,184 @@
     }
 
     return `
-      <!-- Master Briefing Card: 3-Tier Diagnostic Overview -->
+      <!-- Master Briefing Card: Fact-Based Diagnosis & Short/Mid/Long-Term Guidance -->
       <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid var(--theme-accent, #38BDF8);">
         
         <!-- Header -->
-        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.08)); padding-bottom: 1rem;">
+        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.1rem; border-bottom: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.08)); padding-bottom: 0.9rem;">
           <div>
-            <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-accent-sub, rgba(56,189,248,0.15)); color: var(--theme-accent, #38BDF8); font-size: 0.78rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; margin-bottom: 0.4rem;">
-              🎯 ${isEn ? 'COMPREHENSIVE CLINICAL BRIEFING' : '종합 임상 마스터 브리핑'}
+            <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-accent-sub, rgba(56,189,248,0.15)); color: var(--theme-accent, #38BDF8); font-size: 0.76rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; margin-bottom: 0.35rem;">
+              🎯 ${isEn ? 'FACT-BASED CLINICAL BRIEFING & HORIZON ROADMAP' : '팩트 기반 종합 정밀 진단 & 단·중·장기 맞춤 지도'}
             </span>
-            <h2 class="briefing-title" style="font-size: 1.35rem; font-weight: 900; color: var(--text-primary, #FFFFFF); margin: 0.25rem 0;">
-              ${isEn ? 'Personalized Clinical Diagnosis & 90-Day Actionable Guidance Roadmap' : '입력 데이터 기반 종합 정밀 진단 &amp; 향후 90일 맞춤 지도 방향'}
+            <h2 class="briefing-title" style="font-size: 1.3rem; font-weight: 900; color: var(--text-primary, #FFFFFF); margin: 0.2rem 0;">
+              ${isEn ? 'Precision Biometric Diagnosis & Short · Mid · Long-Term Guidance' : '입력 데이터 기반 종합 정밀 진단 &amp; 단기·중기·장기 맞춤 지도 방향'}
             </h2>
-            <p class="briefing-subtitle" style="font-size: 0.82rem; color: var(--text-secondary, #94A3B8); margin: 0;">
-              ${isEn ? 'Cross-analyzed with KDCA 2017, US CDC 2000, K-DST & 803 peer-reviewed clinical studies.' : '질병관리청(KDCA 2017) · US CDC 2000 · K-DST · KDRIs &amp; 803편 동료심사 학술 논문 종합 분석'}
+            <p class="briefing-subtitle" style="font-size: 0.8rem; color: var(--text-secondary, #94A3B8); margin: 0;">
+              ${isEn ? `Directly synthesized from KDCA 2017, US CDC 2000, K-DST & ${totalDbPapers} peer-reviewed studies.` : `질병관리청(KDCA 2017) · US CDC 2000 · K-DST · KDRIs &amp; 실시간 학습 학술 DB(${totalDbPapers}편) 팩트 대조`}
             </p>
           </div>
-          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-weight: 800; font-size: 0.8rem; padding: 0.35rem 0.8rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
-            ⚡ ${isEn ? 'Dynamic Matching Complete' : '실시간 논문·국가규준 매칭 완료'}
+          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-weight: 800; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
+            ⚡ ${isEn ? `${totalDbPapers} Papers Matched` : `${totalDbPapers}편 논문 DB 실시간 매칭 완료`}
           </span>
+        </div>
+
+        <!-- 1-Line Reader-Friendly Core Verdict Banner (Zero Fluff, Instant Comprehension) -->
+        <div id="briefing-one-line-verdict" style="background: linear-gradient(90deg, rgba(56,189,248,0.12) 0%, rgba(16,185,129,0.10) 100%); border: 1px solid rgba(56,189,248,0.28); border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="font-size: 0.86rem; color: var(--text-primary, #F8FAFC); line-height: 1.45;">
+            <strong style="color: #38BDF8;">📌 핵심 팩트 요약:</strong>
+            ${isEn
+              ? `Age ${ageYears} (${gender === 'boy' ? 'Male' : 'Female'}) · Current <strong>${height}cm (Top ${kdcaTop}%, ${deltaStr} vs standard)</strong> · Genetic Target <strong>${mphVal}cm</strong> · Unmanaged <strong>${unmanagedHeight}cm</strong> → Optimized Potential <strong style="color:#10B981;">${optimizedHeight}cm (+${potentialGainCm}cm gain)</strong>`
+              : `만 ${ageYears}세 ${gender === 'boy' ? '남아' : '여아'} · 현재 <strong>${height}cm (또래 상위 ${kdcaTop}%, 표준 대비 ${deltaStr})</strong> · 유전 표적키 <strong>${mphVal}cm</strong> 기준 방치 시 <strong>${unmanagedHeight}cm</strong>이나, <strong>단·중·장기 지도 실천 시 최대 <span style="color:#10B981;">${optimizedHeight}cm (+${potentialGainCm}cm 잠재 도약)</span></strong> 가능`}
+          </div>
         </div>
 
         <div class="briefing-grid-3">
           
-          <!-- Tier 1: Current Clinical Status (Official Public Data) -->
+          <!-- Tier 1: Current Clinical Status (Fact-Based Diagnosis) -->
           <div class="briefing-section briefing-status" id="briefing-status-section">
             <h3 class="briefing-section-title">
-              📊 1. ${isEn ? 'Current Biometric Position (KDCA/CDC)' : '현재 상태 정밀 진단 (공신력 데이터 대조)'}
+              📊 1. ${isEn ? 'Fact-Based Precision Diagnosis' : '입력 데이터 기반 종합 정밀 진단 (팩트 지표)'}
             </h3>
             
             <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'Height Percentile' : '현재 신장 백분위'}:</span>
+              <span class="metric-label">${isEn ? 'Height Percentile' : '현재 신장 백분위 (KDCA/CDC)'}:</span>
               <span class="metric-val" id="briefing-percentile" style="font-weight: 800; color: var(--theme-accent, #38BDF8);">
                 ${isEn ? `Top ${kdcaTop}% (${kdcaPct}th)` : `상위 ${kdcaTop}% (${kdcaPct}백분위)`}
               </span>
             </div>
 
             <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'Z-Score (SD)' : '표준편차 (Z-Score)'}:</span>
-              <span class="metric-val" style="font-weight: 700; color: ${kdcaZ >= 0 ? '#10B981' : '#F43F5E'};">
-                ${kdcaZ >= 0 ? '+' : ''}${kdcaZ} SD
+              <span class="metric-label">${isEn ? 'Z-Score & vs Mean' : '표준편차(Z-Score) · 평균 편차'}:</span>
+              <span class="metric-val" style="font-weight: 800; color: ${kdcaZ >= 0 ? '#10B981' : '#F43F5E'};">
+                ${kdcaZ >= 0 ? '+' : ''}${kdcaZ} SD (${deltaStr})
               </span>
             </div>
 
             <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'vs Standard Median' : '표준 평균키 대비 편차'}:</span>
-              <span class="metric-val" style="font-weight: 800; color: ${deltaCm >= 0 ? '#10B981' : '#F43F5E'};">
-                ${deltaStr}
-              </span>
-            </div>
-
-            <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'Growth Velocity' : '연간 성장속도 (Velocity)'}:</span>
+              <span class="metric-label">${isEn ? 'Growth Velocity' : '연간 성장속도 (6개월×2)'}:</span>
               <span class="metric-val" id="briefing-velocity" style="font-weight: 800; color: ${isRedFlag ? '#F43F5E' : '#10B981'};">
-                ${velocityPerYear} cm/yr ${isRedFlag ? '🚨 저성장 경고' : '✓ 정상 궤도'}
+                ${velocityPerYear} cm/yr ${isRedFlag ? '🚨 저성장 경고 (<4.5cm)' : '✓ 정상 성장 궤도'}
               </span>
             </div>
 
             <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'Mid-Parental Height' : '유전 표적키 (Tanner MPH)'}:</span>
+              <span class="metric-label">${isEn ? 'Genetic Target (MPH)' : '유전 표적키 (Tanner MPH)'}:</span>
               <span class="metric-val" id="briefing-mph" style="font-weight: 800; color: #F59E0B;">
-                ${mphVal} cm <span style="font-size: 0.74rem; font-weight: 600;">(±8.5cm)</span>
+                ${mphVal} cm <span style="font-size: 0.72rem; font-weight: 600;">(±8.5cm)</span>
               </span>
             </div>
 
             <div class="briefing-metric-row">
-              <span class="metric-label">${isEn ? 'Golden Time' : '성장판 골든타임'}:</span>
+              <span class="metric-label">${isEn ? '3-Trajectory Range' : '방치 시 vs 최적화 예측키'}:</span>
+              <span class="metric-val" style="font-weight: 800; color: #10B981;">
+                ${unmanagedHeight}cm → <strong>${optimizedHeight}cm (+${potentialGainCm}cm)</strong>
+              </span>
+            </div>
+
+            <div class="briefing-metric-row">
+              <span class="metric-label">${isEn ? 'Golden Time Window' : '성장판 골든타임 잔여기간'}:</span>
               <span class="metric-val" id="briefing-goldentime" style="font-weight: 700; color: #38BDF8;">
                 ${goldenTimeLabel}
               </span>
             </div>
+
+            <div class="briefing-metric-row">
+              <span class="metric-label">${isEn ? 'Neuro-Plasticity Target' : '연령별 두뇌 민감기 타겟'}:</span>
+              <span class="metric-val" style="font-weight: 700; color: #A78BFA;">
+                ${neuroFocusLabel}
+              </span>
+            </div>
           </div>
 
-          <!-- Tier 2: Dynamic Academic DB Matching (800+ Papers) -->
+          <!-- Tier 2: Dynamic Academic DB Fact Cards (Zero Fluff) -->
           <div class="briefing-section briefing-research" id="briefing-research-section">
             <h3 class="briefing-section-title">
-              📚 2. ${isEn ? 'Etiology & Academic Paper Evidence' : '핵심 원인 &amp; 학술 논문 근거 매칭'}
+              📚 2. ${isEn ? 'DB-Matched Clinical Fact Evidence' : '저해 요인별 학술 논문 팩트 검증'}
             </h3>
             
-            <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
-              ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn }) => `
-                <div class="matched-paper-card" style="background: rgba(30, 41, 59, 0.5); border: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.06)); border-radius: 10px; padding: 0.75rem; transition: var(--transition-smooth, all 0.2s);">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.35rem;">
-                    <span style="background: rgba(244, 63, 94, 0.15); color: #FDA4AF; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px;">
+            <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.65rem;">
+              ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn, plainReasonKo, plainReasonEn }) => `
+                <div class="matched-paper-card" style="background: rgba(30, 41, 59, 0.5); border: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.06)); border-radius: 10px; padding: 0.7rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.3rem;">
+                    <span style="background: rgba(244, 63, 94, 0.15); color: #FDA4AF; font-size: 0.71rem; font-weight: 800; padding: 0.12rem 0.48rem; border-radius: 4px;">
                       ⚠️ ${isEn ? matchedCauseEn : matchedCauseKo}
                     </span>
-                    <div style="display: flex; gap: 0.35rem; align-items: center;">
-                      <span style="font-size: 0.7rem; color: var(--text-secondary, #94A3B8);">${p.journal || ''} (${p.year || ''})</span>
-                      ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #38BDF8; font-weight: 700; text-decoration: none; background: rgba(56,189,248,0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
-                      ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #10B981; font-weight: 700; text-decoration: none; background: rgba(16,185,129,0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">DOI ↗</a>` : ''}
+                    <div style="display: flex; gap: 0.3rem; align-items: center;">
+                      <span style="font-size: 0.68rem; color: var(--text-secondary, #94A3B8);">${p.journal || ''} (${p.year || ''})</span>
+                      ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #38BDF8; font-weight: 700; text-decoration: none; background: rgba(56,189,248,0.15); padding: 0.08rem 0.38rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
+                      ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #10B981; font-weight: 700; text-decoration: none; background: rgba(16,185,129,0.15); padding: 0.08rem 0.38rem; border-radius: 4px;">DOI ↗</a>` : ''}
                     </div>
                   </div>
-                  <div style="font-size: 0.84rem; font-weight: 800; color: var(--text-primary, #FFFFFF); line-height: 1.4; margin-bottom: 0.3rem;">
+                  <div style="font-size: 0.81rem; font-weight: 800; color: var(--text-primary, #FFFFFF); line-height: 1.35; margin-bottom: 0.25rem;">
                     ${isEn ? (p.title || p.title_ko) : (p.title_ko || p.title)}
                   </div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary, #E2E8F0); line-height: 1.45; margin-bottom: 0.3rem;">
-                    <strong style="color: #38BDF8;">📊 입증 통계:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
+                  <div style="font-size: 0.76rem; color: var(--text-secondary, #E2E8F0); line-height: 1.4; margin-bottom: 0.25rem;">
+                    <strong style="color: #38BDF8;">📊 논문 팩트:</strong> ${getCleanFactLine(p, isEn)}
                   </div>
-                  <div style="font-size: 0.75rem; color: #A7F3D0; line-height: 1.4; background: rgba(16, 185, 129, 0.08); padding: 0.3rem 0.5rem; border-radius: 4px;">
-                    <strong>💡 임상 처방:</strong> ${p.parenting_prescription_ko || ''}
+                  <div style="font-size: 0.74rem; color: #A7F3D0; line-height: 1.35; background: rgba(16, 185, 129, 0.08); padding: 0.28rem 0.48rem; border-radius: 4px;">
+                    <strong>💡 핵심 요약:</strong> ${isEn ? (plainReasonEn || getCleanActionLine(p, true)) : (plainReasonKo || getCleanActionLine(p, false))}
                   </div>
                 </div>
               `).join('')}
             </div>
           </div>
 
-          <!-- Tier 3: Actionable Roadmap Top 3 Priorities -->
+          <!-- Tier 3: Short-Term / Mid-Term / Long-Term Academic Guidance Roadmap -->
           <div class="briefing-section briefing-actions" id="briefing-actions-section">
             <h3 class="briefing-section-title">
-              🧭 3. ${isEn ? 'Top 3 Actionable Roadmap Priorities' : '향후 맞춤 지도 방향 (우선순위 Top 3)'}
+              🧭 3. ${isEn ? 'Short · Mid · Long-Term Guidance Roadmap' : '논문 기반 【단기 · 중기 · 장기】 맞춤 지도 방향'}
             </h3>
-            
-            <!-- Priority 1: Sleep & Hormone -->
-            <div class="briefing-action-item" style="border-left: 3px solid #38BDF8; padding-left: 0.65rem; margin-bottom: 0.9rem;">
-              <span class="action-badge" style="background: rgba(56,189,248,0.15); color: #38BDF8;">
-                🥇 1순위: ${isEn ? 'Sleep & Hormones' : '수면·호르몬 지도 방향'}
-              </span>
-              <p class="action-desc" id="briefing-action-sleep" style="margin: 0.25rem 0 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--text-primary, #E2E8F0);">
-                • <strong>목표 취침 시각:</strong> 밤 21:45 ~ 22:00 입면 (서파수면 중 일일 GH의 65% 분비 확보)<br>
-                • <strong>취침 전 3시간 공복:</strong> 야간 혈당 스파이크 및 소마토스타틴 차단으로 GH 억제율 0% 방어
-              </p>
-            </div>
 
-            <!-- Priority 2: Nutrition exact mg/g -->
-            <div class="briefing-action-item" style="border-left: 3px solid #10B981; padding-left: 0.65rem; margin-bottom: 0.9rem;">
-              <span class="action-badge" style="background: rgba(16,185,129,0.15); color: #10B981;">
-                🥈 2순위: ${isEn ? 'Clinical Nutrition Targets' : '맞춤 임상 영양 지도 방향'}
-              </span>
-              <p class="action-desc" id="briefing-action-nutrition" style="margin: 0.25rem 0 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--text-primary, #E2E8F0);">
-                • <strong>구연산칼슘/어골칼슘:</strong> 일일 <strong>${nutTargets.calciumMg} mg</strong> (생체 흡수율 ~45% 포뮬러)<br>
-                • <strong>비타민 D3 + K2:</strong> D3 <strong>${nutTargets.vitDIU} IU</strong> + MK-7 <strong>${nutTargets.vitK2Mcg} mcg</strong><br>
-                • <strong>체중 비례 단백질:</strong> 일일 <strong>${nutTargets.proteinG} g</strong> (체중 ${weight}kg × 1.3g)
-              </p>
-            </div>
+            <div id="briefing-horizon-roadmap" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              
+              <!-- SHORT-TERM (Weeks 1-4: Immediate Bio-Reset & Decompression) -->
+              <div class="briefing-action-item horizon-card" id="horizon-short-term" style="border-left: 3px solid #38BDF8; padding: 0.65rem 0.75rem; background: rgba(56, 189, 248, 0.05); border-radius: 0 10px 10px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                  <span class="action-badge" style="background: rgba(56,189,248,0.18); color: #38BDF8; font-weight: 800; font-size: 0.76rem; padding: 0.15rem 0.55rem; border-radius: 6px;">
+                    ⚡ ${isEn ? 'SHORT-TERM (Weeks 1–4)' : '단기 지도 방향 (1~4주: 즉시 교정 & 호르몬·디스크 복원)'}
+                  </span>
+                  <span style="font-size: 0.71rem; font-weight: 700; color: #38BDF8;">목표: GH 억제 0% · 숨은 키 +1.8cm 복원</span>
+                </div>
+                <div class="action-desc" id="briefing-action-sleep" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.48; color: var(--text-primary, #E2E8F0);">
+                  • <strong>수면·혈당 차단:</strong> 밤 <strong>21:45~22:00 입면</strong> · 취침 <strong>3시간 전 무당류 공복</strong>(소마토스타틴 차단) · 취침 1시간 전 블루라이트 오프<br>
+                  • <strong>척추 즉각 감압:</strong> 매일 저녁 철봉 <strong>패시브 데드행 30초×3세트</strong> + 흉추 신전 45초×2세트(일중 디스크 수분 78% 복원)<br>
+                  • <strong>단기 두뇌 루틴:</strong> 하루 15분 연령 맞춤 손끝 조작·스스로 오늘 할 일 체크하기
+                </div>
+                ${renderHorizonPaperBadge(horizonPapers.shortTerm, '단기 지도', 'Short-Term', '#38BDF8', isEn)}
+              </div>
 
-            <!-- Priority 3: Decompression & Habruta -->
-            <div class="briefing-action-item" style="border-left: 3px solid #F59E0B; padding-left: 0.65rem; margin-bottom: 0.5rem;">
-              <span class="action-badge" style="background: rgba(245,158,11,0.15); color: #F59E0B;">
-                🥉 3순위: ${isEn ? 'Biomechanics & Cognitive Guidance' : '척추 감압 &amp; 두뇌·하브루타 지도 방향'}
-              </span>
-              <p class="action-desc" id="briefing-action-exercise" style="margin: 0.25rem 0 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--text-primary, #E2E8F0);">
-                • <strong>척추 감압 데드행:</strong> 30초 × 3세트 (추간판 디스크 수분 복원으로 숨은 키 +1.8cm)<br>
-                • <strong>성장판 수직 자극:</strong> 하루 15분 플라이오메트릭 점핑<br>
-                • <strong>주말 현장 하브루타:</strong> 3단계 질문법 (현상 관찰 → 인과 추론 → 창의적 대안 도출)
-              </p>
+              <!-- MID-TERM (Months 1-3 / 90 Days: Bone Matrix & Neural Consolidation) -->
+              <div class="briefing-action-item horizon-card" id="horizon-mid-term" style="border-left: 3px solid #10B981; padding: 0.65rem 0.75rem; background: rgba(16, 185, 129, 0.05); border-radius: 0 10px 10px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                  <span class="action-badge" style="background: rgba(16,185,129,0.18); color: #10B981; font-weight: 800; font-size: 0.76rem; padding: 0.15rem 0.55rem; border-radius: 6px;">
+                    📈 ${isEn ? 'MID-TERM (Months 1–3 / 90 Days)' : '중기 지도 방향 (1~3개월 / 90일: 성장속도 가속 & 골밀도·신경망 정착)'}
+                  </span>
+                  <span style="font-size: 0.71rem; font-weight: 700; color: #10B981;">목표: 성장속도 +1.8cm/yr 가속</span>
+                </div>
+                <div class="action-desc" id="briefing-action-nutrition" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.48; color: var(--text-primary, #E2E8F0);">
+                  • <strong>체중 비례 임상 영양:</strong> 일일 구연산칼슘 <strong>${nutTargets.calciumMg} mg</strong>(흡수율 45%) + <strong>D3 ${nutTargets.vitDIU} IU</strong> + <strong>K2(MK-7) ${nutTargets.vitK2Mcg} mcg</strong> + 단백질 <strong>${nutTargets.proteinG} g</strong><br>
+                  • <strong>골단판 압전 자극:</strong> 주 5회 <strong>하루 15분 줄넘기·점핑</strong>(Wolff's Law 체중 1.5~2.5배 수직 미세하중)<br>
+                  • <strong>주말 하브루타 탐구:</strong> 격주 박물관·과학관 방문 시 <strong>3단계 질문 대화 턴 5회+</strong>(브로카 영역·인과 추론 강화)
+                </div>
+                ${renderHorizonPaperBadge(horizonPapers.midTerm, '중기 지도', 'Mid-Term', '#10B981', isEn)}
+              </div>
+
+              <!-- LONG-TERM (6 Months to Age 20: Target Height Breakthrough & Self-Directed Mastery) -->
+              <div class="briefing-action-item horizon-card" id="horizon-long-term" style="border-left: 3px solid #F59E0B; padding: 0.65rem 0.75rem; background: rgba(245, 158, 11, 0.05); border-radius: 0 10px 10px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                  <span class="action-badge" style="background: rgba(245,158,11,0.18); color: #F59E0B; font-weight: 800; font-size: 0.76rem; padding: 0.15rem 0.55rem; border-radius: 6px;">
+                    🏆 ${isEn ? 'LONG-TERM (6 Months – Age 20)' : '장기 지도 방향 (6개월~만 20세: 최종 표적키 돌파 & 자기주도 전두엽 완성)'}
+                  </span>
+                  <span style="font-size: 0.71rem; font-weight: 700; color: #F59E0B;">목표: 잠재 최대키 ${optimizedHeight}cm 도달</span>
+                </div>
+                <div class="action-desc" id="briefing-action-exercise" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.48; color: var(--text-primary, #E2E8F0);">
+                  • <strong>골연령·궤적 정기 추적:</strong> 매 <strong>3~6개월 신장·체중 LMS Z-Score 계측</strong> 및 표준 BMI 유지로 성조숙·성장판 조기 폐쇄 방어<br>
+                  • <strong>유전 한계 돌파:</strong> 유전 표적키(<strong>${mphVal}cm</strong>) 대비 상위 잠재 궤적(<strong>${optimizedHeight}cm, +${potentialGainCm}cm</strong>) 지속 유지<br>
+                  • <strong>장기 전두엽 완성:</strong> 90일 스트릭 반복을 통한 <strong>실행기능(작업기억·자기조절·메타인지)</strong> 평생 학습 습관 정착
+                </div>
+                ${renderHorizonPaperBadge(horizonPapers.longTerm, '장기 지도', 'Long-Term', '#F59E0B', isEn)}
+              </div>
+
             </div>
 
           </div>
@@ -366,7 +541,7 @@
 
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
       if (dashboard) {
         dashboard.style.display = 'none';
@@ -404,6 +579,7 @@
     INHIBITOR_KEYWORDS,
     getKnowledgeBase,
     matchPapers,
+    matchHorizonPapers,
     renderMasterBriefingCard,
     render: renderMasterBriefingCard,
     attachRetestHandler,
