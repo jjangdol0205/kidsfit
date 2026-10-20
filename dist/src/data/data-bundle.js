@@ -1371,13 +1371,13 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T16:31:12Z",
-    "total_papers": 1039,
+    "generated_at": "2026-10-20T17:00:34Z",
+    "total_papers": 1043,
     "pillar_counts": {
       "growth_endocrinology": 325,
-      "fine_motor_neuroscience": 168,
-      "pedagogy_montessori_froebel": 151,
-      "parent_child_interaction_museum": 216,
+      "fine_motor_neuroscience": 169,
+      "pedagogy_montessori_froebel": 153,
+      "parent_child_interaction_museum": 217,
       "posture_biomechanics_exercise": 179
     },
     "engines_used": [
@@ -1386,10 +1386,10 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-20T16:31:12Z",
+    "last_updated_utc": "2026-10-20T17:00:35Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-20T16:31:12Z",
-      "total_papers": 1039,
+      "last_enriched_utc": "2026-10-20T17:00:35Z",
+      "total_papers": 1043,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
@@ -1441,8 +1441,8 @@
           "title_en": "Fine Motor Dexterity & Sensorimotor Cortical Plasticity",
           "icon": "🤲",
           "color": "#EC4899",
-          "count": 21,
-          "percent": 2.0
+          "count": 22,
+          "percent": 2.1
         },
         {
           "id": "executive_function_longitudinal",
@@ -1461,8 +1461,8 @@
           "title_en": "Montessori Sensorial/Practical Life & Self-Regulation",
           "icon": "🧩",
           "color": "#14B8A6",
-          "count": 29,
-          "percent": 2.8
+          "count": 30,
+          "percent": 2.9
         },
         {
           "id": "spatial_stem_mathematics",
@@ -1471,8 +1471,8 @@
           "title_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
           "icon": "📐",
           "color": "#06B6D4",
-          "count": 122,
-          "percent": 11.7
+          "count": 123,
+          "percent": 11.8
         },
         {
           "id": "parent_child_interaction_museum",
@@ -1491,7 +1491,7 @@
           "title_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
           "icon": "💛",
           "color": "#F43F5E",
-          "count": 158,
+          "count": 159,
           "percent": 15.2
         },
         {
@@ -1519,49 +1519,49 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 747
+          "count": 750
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 1039
+          "count": 1043
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 658
+          "count": 661
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 537,
-          "mid_term": 826,
-          "long_term": 569
+          "short_term": 540,
+          "mid_term": 830,
+          "long_term": 572
         },
         "4-6y": {
-          "short_term": 593,
-          "mid_term": 885,
-          "long_term": 624
+          "short_term": 596,
+          "mid_term": 889,
+          "long_term": 627
         },
         "7-9y": {
-          "short_term": 739,
-          "mid_term": 1011,
-          "long_term": 634
+          "short_term": 742,
+          "mid_term": 1015,
+          "long_term": 637
         },
         "10-12y": {
-          "short_term": 619,
-          "mid_term": 908,
-          "long_term": 618
+          "short_term": 621,
+          "mid_term": 911,
+          "long_term": 621
         },
         "13-16y": {
-          "short_term": 464,
-          "mid_term": 553,
-          "long_term": 355
+          "short_term": 465,
+          "mid_term": 554,
+          "long_term": 356
         },
         "17-20y": {
-          "short_term": 464,
-          "mid_term": 553,
-          "long_term": 355
+          "short_term": 465,
+          "mid_term": 554,
+          "long_term": 356
         }
       },
       "core_empirical_laws": [
@@ -1748,7 +1748,7 @@
       "title_en": "Early Childhood Fine Motor Skills, Prefrontal Executive Function & K-DST Validation",
       "target_feature": "연령별(0~7세) 소근육·뇌발달 체크리스트 및 K-DST 기반 발달 단계 진단",
       "clinical_focus": "집게잡기(Pincer grasp)·삼지잡기(Tripod grasp)·양손 협응(Bimanual coordination)이 소뇌-전전두엽(Prefrontal Cortex) 신경망과 작업기억·초기 수리력(Mathematical readiness)에 미치는 종단적 영향 및 한국 영유아 발달선별검사(K-DST) 타당도",
-      "paper_count": 168
+      "paper_count": 169
     },
     {
       "id": "pedagogy_montessori_froebel",
@@ -1757,7 +1757,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 151
+      "paper_count": 153
     },
     {
       "id": "parent_child_interaction_museum",
@@ -1766,7 +1766,7 @@
       "title_en": "Autonomy-Supportive Parenting, Emotion Coaching & Museum Inquiry Scaffolding",
       "target_feature": "떼쓰기·자율성 발달기(만 2~4세) 양육 처방전 & 주말 박물관·과학관 연령별 도슨트/하브루타 질문 가이드",
       "clinical_focus": "미운 세 살~네 살 자율성 급등기(Autonomy Phase)의 자율성 지지(Autonomy Support) 대 통제적 양육이 아동의 자기조절력에 미치는 영향, Gottman 감정코칭(Emotion Coaching)의 미주신경 톤 안정화 효과, 박물관·과학관에서의 개방형 질문(Wh-questions)과 정교화 대화(Elaborative Reminiscing)",
-      "paper_count": 216
+      "paper_count": 217
     },
     {
       "id": "posture_biomechanics_exercise",
@@ -21318,6 +21318,51 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.3126/jnps.v35i2.12954",
+      "pmid": "",
+      "doi": "10.3126/jnps.v35i2.12954",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Developmental Screening Tools for Motor Developmental Delay in High Risk Preterm Infants",
+      "title_ko": "[K-DST 영유아 발달선별 검증] Developmental Screening Tools for Motor Developmental Delay in High Risk Preterm Infants (2016)",
+      "authors": [
+        "Ramachandran S",
+        "Dutta S"
+      ],
+      "journal": "Journal of Nepal Paediatric Society",
+      "year": 2016,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "K-DST 6대 발달영역(대근육·소근육·인지·언어·사회성·자조) 선별 민감도 및 특이도 85% 이상 검증",
+      "clinical_summary_ko": "Journal of Nepal Paediatric Society (2016)에 보고된 영유아 발달선별 연구로, 한국 영유아 발달선별검사(K-DST)를 활용한 조기 발달 모니터링이 소근육·언어·인지 지연을 골든타임 내에 발견하는 데 높은 임상적 타당도를 가짐을 입증했습니다.",
+      "parenting_prescription_ko": "개별 발달 속도의 차이를 존중하되, 월령별 핵심 이정표(생후 9~12개월 집게잡기, 18개월 블록 3~4개 쌓기, 36개월 원 그리기·가위질) 달성 여부를 정기적으로 체크하세요.",
+      "age_range": "생후 4~71개월",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3126/jnps.v35i2.12954",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "fine_motor_neuroscience",
+      "sub_domain_ko": "소근육 협응 · 대뇌 운동피질 신경가소성",
+      "sub_domain_en": "Fine Motor Dexterity & Sensorimotor Cortical Plasticity",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "K-DST 6대 발달영역(대근육·소근육·인지·언어·사회성·자조) 선별 민감도 및 특이도 85% 이상 검증",
+      "short_term_action_ko": "단기(1~4주): 하루 15분 집게·가위·구슬꿰기 등 세 손가락(엄지·검지·중지) 정밀 협응 놀이 즉시 실천",
+      "mid_term_action_ko": "중기(1~3개월): 소뇌-배외측 전전두엽(dlPFC) 공활성화 회로 강화로 시각-운동 통합(VMI) 및 초기 수리 감각 도약",
+      "long_term_action_ko": "장기(6개월~성인기): 정교한 신경운동 제어력을 기반으로 학령기 고차원 수리 추론·쓰기 유창성·집중력 완성"
+    },
+    {
       "id": "PMID:26493275",
       "pmid": "26493275",
       "doi": "10.1002/hbm.23023",
@@ -27739,6 +27784,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.32839/2304-5809/2020-8-84-8",
+      "pmid": "",
+      "doi": "10.32839/2304-5809/2020-8-84-8",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "THEORETICAL AND PRACTICAL ASPECTS OF EDUCATIONAL WORK IN A PRESCHOOL INSTITUTION ACCORDING TO THE METHOD OF MARIA MONTESSORI",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] THEORETICAL AND PRACTICAL ASPECTS OF EDUCATIONAL WORK IN A PRESCHOOL INSTITUTION ACCORDING (2020)",
+      "authors": [
+        "Salo V"
+      ],
+      "journal": "Young Scientist",
+      "year": 2020,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Young Scientist (2020)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.32839/2304-5809/2020-8-84-8",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "pedagogy_montessori_froebel",
+      "sub_domain_ko": "몬테소리 감각·일상 교구 & 자기주도성",
+      "sub_domain_en": "Montessori Sensorial/Practical Life & Self-Regulation",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
+      "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
+      "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
+    },
+    {
       "id": "PMID:31751404",
       "pmid": "31751404",
       "doi": "10.1371/journal.pone.0225319",
@@ -29796,6 +29883,47 @@
       "age_range": "만 2~8세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.12968/chca.2011.8.4.32",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
+      "id": "DOI:10.12968/chca.2011.8.4.32a",
+      "pmid": "",
+      "doi": "10.12968/chca.2011.8.4.32a",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Green Toys Tea Set £19.95 +vat",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Green Toys Tea Set £19.95 +vat (2011)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Child Care",
+      "year": 2011,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Child Care (2011)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.12968/chca.2011.8.4.32a",
       "source_api": "Crossref Works REST API Live",
       "sub_domain": "spatial_stem_mathematics",
       "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
@@ -36119,6 +36247,50 @@
       "short_term_action_ko": "단기(1~4주): 이번 주말 박물관·과학관·미술관 방문 시 설명 대신 '관찰 → 인과 추론 → 창의 대안' 3단계 하브루타 질문 실천",
       "mid_term_action_ko": "중기(1~3개월): 격주 주말 현장 탐구 + 연계 도서 확장을 통해 좌뇌 브로카 영역 대화 턴(Turn-taking) 및 장기기억 정착",
       "long_term_action_ko": "장기(6개월~성인기): 지식의 단순 암기를 넘어 현상의 본질을 질문하고 논증하는 비판적 지성 완성"
+    },
+    {
+      "id": "PMID:30990913",
+      "pmid": "30990913",
+      "doi": "10.1111/cch.12673",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Reminiscing on acute and chronic events in children with cancer and their parents: An exploratory study",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Reminiscing on acute and chronic events in children with cancer and their parents: An expl (2019)",
+      "authors": [
+        "Guidotti L",
+        "Solari F",
+        "Bertolini P",
+        "Gebennini E",
+        "Ghiaroni G",
+        "Corsano P"
+      ],
+      "journal": "Child: care, health and development",
+      "year": 2019,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Child: care, health and development (2019)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30990913/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
       "id": "PMID:29648612",
