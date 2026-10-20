@@ -235,12 +235,12 @@
     const factText = getCleanFactLine(paper, isEn);
 
     return `
-      <div class="horizon-paper-evidence" style="margin-top: 0.65rem; padding: 0.52rem 0.68rem; background: #F4EFE6; border-left: 2.5px solid ${accentColor}; border-radius: 6px; font-size: 0.74rem; line-height: 1.4;">
+      <div class="horizon-paper-evidence" style="margin-top: 0.65rem; padding: 0.52rem 0.68rem; background: rgba(15, 23, 42, 0.72); border-left: 2.5px solid ${accentColor}; border-radius: 6px; font-size: 0.74rem; line-height: 1.4;">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.2rem;">
           <span style="color: ${accentColor}; font-weight: 800;">📖 ${isEn ? horizonLabelEn : horizonLabelKo} 학술 근거: ${firstAuthor} et al. (${paper.year || 2021})</span>
-          ${linkUrl !== '#' ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" style="color: #C86D51; font-weight: 800; text-decoration: none; background: #FDF3F0; padding: 0.08rem 0.4rem; border-radius: 4px;">${linkLabel} ↗</a>` : ''}
+          ${linkUrl !== '#' ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; font-weight: 800; text-decoration: none; background: rgba(59, 130, 246, 0.14); padding: 0.08rem 0.4rem; border-radius: 4px;">${linkLabel} ↗</a>` : ''}
         </div>
-        <div style="color: #44403C; font-weight: 500;">
+        <div style="color: #CBD5E1; font-weight: 500;">
           <strong>팩트:</strong> ${factText}
         </div>
       </div>
@@ -372,62 +372,62 @@
 
     return `
       <!-- Master Briefing Card: K-GROWTH AI™ Potential Height Reveal & 5-Chapter Growth Guidebook -->
-      <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid var(--theme-accent, #C86D51);">
+      <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid #3B82F6;">
         
         <!-- Header -->
-        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid #E6DFD5; padding-bottom: 0.9rem;">
+        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.9rem;">
           <div>
-            <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: #FDF3F0; color: #C86D51; font-size: 0.76rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(200, 109, 81, 0.28); margin-bottom: 0.35rem;">
-              📘 ${isEn ? 'KIDS-FIT AI STUDIO · BESPOKE GROWTH MASTER GUIDEBOOK' : guidebookEditionLabel}
+            <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(59, 130, 246, 0.15); color: #60A5FA; font-size: 0.76rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35); margin-bottom: 0.35rem;">
+              📘 ${isEn ? 'K:IDS-FIT AI STUDIO · BESPOKE GROWTH MASTER GUIDEBOOK' : guidebookEditionLabel}
             </span>
-            <h2 class="briefing-title" style="font-size: 1.32rem; font-weight: 900; color: #181512; margin: 0.2rem 0;">
-              ${isEn ? 'Proprietary K-GROWTH AI™ Precision Diagnosis & Guidance' : '독자 개발 K-GROWTH AI™ 종합 정밀 진단 &amp; 단·중·장기 맞춤 성장 가이드북'}
+            <h2 class="briefing-title" style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0.2rem 0;">
+              ${isEn ? 'Proprietary K:IDS-FIT AI Precision Diagnosis & Guidance' : '독자 개발 K:IDS-FIT AI (K-GROWTH AI™) 종합 정밀 진단 &amp; 단·중·장기 맞춤 성장 가이드북'}
             </h2>
-            <p class="briefing-subtitle" style="font-size: 0.8rem; color: #57534E; margin: 0;">
+            <p class="briefing-subtitle" style="font-size: 0.8rem; color: #94A3B8; margin: 0;">
               ${isEn ? `Directly synthesized from KDCA 2017, US CDC 2000, K-DST & ${totalDbPapers} peer-reviewed studies.` : `독자 개발 K-GROWTH AI™ v4.0 · 질병관리청(KDCA 2017) · US CDC 2000 &amp; 학습 학술 DB(${totalDbPapers}편) + 누적 코호트 DB 연동`}
             </p>
           </div>
-          <span style="background: #ECFDF5; color: #059669; font-weight: 800; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(5, 150, 105, 0.3);">
+          <span style="background: rgba(16, 185, 129, 0.15); color: #34D399; font-weight: 800; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
             ✦ ${isEn ? `${totalDbPapers} Papers Matched` : `${totalDbPapers}편 논문 DB & 코호트 매칭 완료`}
           </span>
         </div>
 
-        <!-- Boutique Editorial Giant Potential Height Reveal Hero Card -->
+        <!-- M:FFERENCE Dark Glass Giant Potential Height Reveal Hero Card -->
         <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.15rem; align-items: center;">
             <!-- Left: Giant Editorial Height Reveal -->
             <div>
-              <div style="font-size: 0.74rem; font-weight: 800; color: #C86D51; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.2rem;">
-                PROPRIETARY K-GROWTH AI™ v4.0 · OPTIMIZED POTENTIAL STATURE
+              <div style="font-size: 0.74rem; font-weight: 800; color: #60A5FA; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem;">
+                MAKE + GROWTH DIFFERENCE = K:IDS-FIT AI · OPTIMIZED POTENTIAL STATURE
               </div>
               <div style="display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap;">
                 <span class="taller-giant-height-number">${optimizedHeight.toFixed(1)} cm</span>
-                <span style="background: #ECFDF5; border: 1px solid #059669; color: #059669; font-size: 0.86rem; font-weight: 900; padding: 0.22rem 0.7rem; border-radius: 9999px;">
+                <span style="background: rgba(16, 185, 129, 0.18); border: 1px solid #10B981; color: #34D399; font-size: 0.86rem; font-weight: 900; padding: 0.22rem 0.7rem; border-radius: 9999px;">
                   ▲ +${potentialGainCm.toFixed(1)} cm 잠재 도약 가능
                 </span>
               </div>
-              <div style="font-size: 0.82rem; color: #57534E; margin-top: 0.45rem; line-height: 1.52;">
+              <div style="font-size: 0.82rem; color: #CBD5E1; margin-top: 0.45rem; line-height: 1.52;">
                 현재 <strong>${height}cm (상위 ${kdcaTop}%, ${kdcaZ >= 0 ? '+' : ''}${kdcaZ} SD)</strong> · 부모 유전 표적키(MPH) <strong>${mphVal}cm</strong> 기준, 저해 습관 방치 시 <strong>${unmanagedHeight}cm</strong>에 머물 수 있으나 가이드북 로드맵 실천 시 <strong>최대 ${optimizedHeight}cm</strong>까지 도약 가능합니다.
               </div>
             </div>
 
-            <!-- Right: Editorial Noir 3-Pillar Vertical Stature Ruler Comparison -->
-            <div style="background: #181512; border: 1px solid #2E2924; border-radius: 18px; padding: 0.9rem 1.1rem; display: flex; justify-content: space-around; align-items: flex-end; height: 132px; box-shadow: 0 12px 28px rgba(24, 21, 18, 0.12);">
+            <!-- Right: M:FFERENCE 3-Pillar Vertical Stature Ruler Comparison -->
+            <div style="background: rgba(0, 0, 0, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 0.9rem 1.1rem; display: flex; justify-content: space-around; align-items: flex-end; height: 132px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);">
               <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
                 <span style="font-size: 0.75rem; font-weight: 800; color: #FDA4AF; font-family: var(--font-mono);">${unmanagedHeight}cm</span>
                 <div style="width: 34px; height: 50px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, rgba(244,63,94,0.85) 0%, rgba(244,63,94,0.35) 100%); border: 1px solid rgba(244,63,94,0.6);"></div>
-                <span style="font-size: 0.7rem; color: #D5CBBF; font-weight: 700;">방치 시 예측</span>
+                <span style="font-size: 0.7rem; color: #94A3B8; font-weight: 700;">방치 시 예측</span>
               </div>
 
               <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
-                <span style="font-size: 0.75rem; font-weight: 800; color: #F5B5A1; font-family: var(--font-mono);">${mphVal}cm</span>
-                <div style="width: 34px; height: 68px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #C86D51 0%, rgba(200,109,81,0.35) 100%); border: 1px solid #C86D51;"></div>
-                <span style="font-size: 0.7rem; color: #F5B5A1; font-weight: 700;">유전 표적(MPH)</span>
+                <span style="font-size: 0.75rem; font-weight: 800; color: #93C5FD; font-family: var(--font-mono);">${mphVal}cm</span>
+                <div style="width: 34px; height: 68px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #3B82F6 0%, rgba(59,130,246,0.35) 100%); border: 1px solid #60A5FA;"></div>
+                <span style="font-size: 0.7rem; color: #93C5FD; font-weight: 700;">유전 표적(MPH)</span>
               </div>
 
               <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
                 <span style="font-size: 0.82rem; font-weight: 900; color: #6EE7B7; font-family: var(--font-mono);">${optimizedHeight}cm</span>
-                <div style="width: 38px; height: 88px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #10B981 0%, #C86D51 100%); border: 1px solid #A7F3D0;"></div>
+                <div style="width: 38px; height: 88px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #10B981 0%, #3B82F6 100%); border: 1px solid #A7F3D0;"></div>
                 <span style="font-size: 0.72rem; color: #6EE7B7; font-weight: 900;">AI 가이드북 최적화</span>
               </div>
             </div>
@@ -444,12 +444,12 @@
         </div>
 
         <!-- 1-Line Reader-Friendly Core Verdict Banner (Zero Fluff, Instant Comprehension) -->
-        <div id="briefing-one-line-verdict" style="background: #F4EFE6; border: 1px solid #E6DFD5; border-radius: 14px; padding: 0.85rem 1.05rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-          <div style="font-size: 0.86rem; color: #181512; line-height: 1.5;">
-            <strong style="color: #C86D51;">📌 핵심 팩트 요약:</strong>
+        <div id="briefing-one-line-verdict" style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.28); border-radius: 14px; padding: 0.85rem 1.05rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5;">
+            <strong style="color: #60A5FA;">📌 핵심 팩트 요약:</strong>
             ${isEn
-              ? `Age ${ageYears} (${gender === 'boy' ? 'Male' : 'Female'}) · Current <strong>${height}cm (Top ${kdcaTop}%, ${deltaStr} vs standard)</strong> · Genetic Target <strong>${mphVal}cm</strong> · Unmanaged <strong>${unmanagedHeight}cm</strong> → Optimized Potential <strong style="color:#059669;">${optimizedHeight}cm (+${potentialGainCm}cm gain)</strong>`
-              : `만 ${ageYears}세 ${genderKo} · 현재 <strong>${height}cm (또래 상위 ${kdcaTop}%, 표준 대비 ${deltaStr})</strong> · 유전 표적키 <strong>${mphVal}cm</strong> 기준 방치 시 <strong>${unmanagedHeight}cm</strong>이나, <strong>단·중·장기 지도 실천 시 최대 <span style="color:#059669;">${optimizedHeight}cm (+${potentialGainCm}cm 잠재 도약)</span></strong> 가능`}
+              ? `Age ${ageYears} (${gender === 'boy' ? 'Male' : 'Female'}) · Current <strong>${height}cm (Top ${kdcaTop}%, ${deltaStr} vs standard)</strong> · Genetic Target <strong>${mphVal}cm</strong> · Unmanaged <strong>${unmanagedHeight}cm</strong> → Optimized Potential <strong style="color:#34D399;">${optimizedHeight}cm (+${potentialGainCm}cm gain)</strong>`
+              : `만 ${ageYears}세 ${genderKo} · 현재 <strong>${height}cm (또래 상위 ${kdcaTop}%, 표준 대비 ${deltaStr})</strong> · 유전 표적키 <strong>${mphVal}cm</strong> 기준 방치 시 <strong>${unmanagedHeight}cm</strong>이나, <strong>단·중·장기 지도 실천 시 최대 <span style="color:#34D399;">${optimizedHeight}cm (+${potentialGainCm}cm 잠재 도약)</span></strong> 가능`}
           </div>
         </div>
 
@@ -463,49 +463,49 @@
             
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Height Percentile' : '현재 신장 백분위 (KDCA/CDC)'}:</span>
-              <span class="metric-val" id="briefing-percentile" style="font-weight: 800; color: #C86D51;">
+              <span class="metric-val" id="briefing-percentile" style="font-weight: 800; color: #60A5FA;">
                 ${isEn ? `Top ${kdcaTop}% (${kdcaPct}th)` : `상위 ${kdcaTop}% (${kdcaPct}백분위)`}
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Z-Score & vs Mean' : '표준편차(Z-Score) · 평균 편차'}:</span>
-              <span class="metric-val" style="font-weight: 800; color: ${kdcaZ >= 0 ? '#059669' : '#E11D48'};">
+              <span class="metric-val" style="font-weight: 800; color: ${kdcaZ >= 0 ? '#34D399' : '#FB7185'};">
                 ${kdcaZ >= 0 ? '+' : ''}${kdcaZ} SD (${deltaStr})
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Growth Velocity' : '연간 성장속도 (6개월×2)'}:</span>
-              <span class="metric-val" id="briefing-velocity" style="font-weight: 800; color: ${isRedFlag ? '#E11D48' : '#059669'};">
+              <span class="metric-val" id="briefing-velocity" style="font-weight: 800; color: ${isRedFlag ? '#FB7185' : '#34D399'};">
                 ${velocityPerYear} cm/yr ${isRedFlag ? '🚨 저성장 경고 (<4.5cm)' : '✓ 정상 성장 궤도'}
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Genetic Target (MPH)' : '유전 표적키 (Tanner MPH)'}:</span>
-              <span class="metric-val" id="briefing-mph" style="font-weight: 800; color: #D97706;">
+              <span class="metric-val" id="briefing-mph" style="font-weight: 800; color: #FBBF24;">
                 ${mphVal} cm <span style="font-size: 0.72rem; font-weight: 600;">(±8.5cm)</span>
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? '3-Trajectory Range' : '방치 시 vs 최적화 예측키'}:</span>
-              <span class="metric-val" style="font-weight: 800; color: #059669;">
+              <span class="metric-val" style="font-weight: 800; color: #34D399;">
                 ${unmanagedHeight}cm → <strong>${optimizedHeight}cm (+${potentialGainCm}cm)</strong>
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Golden Time Window' : '성장판 골든타임 잔여기간'}:</span>
-              <span class="metric-val" id="briefing-goldentime" style="font-weight: 700; color: #C86D51;">
+              <span class="metric-val" id="briefing-goldentime" style="font-weight: 700; color: #60A5FA;">
                 ${goldenTimeLabel}
               </span>
             </div>
 
             <div class="briefing-metric-row">
               <span class="metric-label">${isEn ? 'Neuro-Plasticity Target' : '연령별 두뇌 민감기 타겟'}:</span>
-              <span class="metric-val" style="font-weight: 700; color: #4F46E5;">
+              <span class="metric-val" style="font-weight: 700; color: #C4B5FD;">
                 ${neuroFocusLabel}
               </span>
             </div>
@@ -519,24 +519,24 @@
             
             <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.65rem;">
               ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn, plainReasonKo, plainReasonEn }) => `
-                <div class="matched-paper-card" style="background: #FAF8F5; border: 1px solid #E6DFD5; border-radius: 12px; padding: 0.75rem;">
+                <div class="matched-paper-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.75rem;">
                   <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.3rem;">
-                    <span style="background: #FDF3F0; color: #C86D51; font-size: 0.71rem; font-weight: 800; padding: 0.14rem 0.5rem; border-radius: 6px; border: 1px solid rgba(200,109,81,0.25);">
+                    <span style="background: rgba(244, 63, 94, 0.16); color: #FB7185; font-size: 0.71rem; font-weight: 800; padding: 0.14rem 0.5rem; border-radius: 6px; border: 1px solid rgba(244, 63, 94, 0.3);">
                       ⚠️ ${isEn ? matchedCauseEn : matchedCauseKo}
                     </span>
                     <div style="display: flex; gap: 0.3rem; align-items: center;">
-                      <span style="font-size: 0.68rem; color: #57534E;">${p.journal || ''} (${p.year || ''})</span>
-                      ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #C86D51; font-weight: 800; text-decoration: none; background: #FDF3F0; padding: 0.1rem 0.42rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
-                      ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #059669; font-weight: 800; text-decoration: none; background: #ECFDF5; padding: 0.1rem 0.42rem; border-radius: 4px;">DOI ↗</a>` : ''}
+                      <span style="font-size: 0.68rem; color: #94A3B8;">${p.journal || ''} (${p.year || ''})</span>
+                      ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #60A5FA; font-weight: 800; text-decoration: none; background: rgba(59, 130, 246, 0.15); padding: 0.1rem 0.42rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
+                      ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #34D399; font-weight: 800; text-decoration: none; background: rgba(16, 185, 129, 0.15); padding: 0.1rem 0.42rem; border-radius: 4px;">DOI ↗</a>` : ''}
                     </div>
                   </div>
-                  <div style="font-size: 0.81rem; font-weight: 800; color: #181512; line-height: 1.35; margin-bottom: 0.25rem;">
+                  <div style="font-size: 0.81rem; font-weight: 800; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
                     ${isEn ? (p.title || p.title_ko) : (p.title_ko || p.title)}
                   </div>
-                  <div style="font-size: 0.76rem; color: #44403C; line-height: 1.42; margin-bottom: 0.28rem;">
-                    <strong style="color: #C86D51;">📊 논문 팩트:</strong> ${getCleanFactLine(p, isEn)}
+                  <div style="font-size: 0.76rem; color: #CBD5E1; line-height: 1.42; margin-bottom: 0.28rem;">
+                    <strong style="color: #60A5FA;">📊 논문 팩트:</strong> ${getCleanFactLine(p, isEn)}
                   </div>
-                  <div style="font-size: 0.74rem; color: #065F46; line-height: 1.38; background: #ECFDF5; border: 1px solid rgba(5,150,105,0.2); padding: 0.32rem 0.52rem; border-radius: 6px;">
+                  <div style="font-size: 0.74rem; color: #6EE7B7; line-height: 1.38; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.28); padding: 0.32rem 0.52rem; border-radius: 6px;">
                     <strong>💡 핵심 요약:</strong> ${isEn ? (plainReasonEn || getCleanActionLine(p, true)) : (plainReasonKo || getCleanActionLine(p, false))}
                   </div>
                 </div>
@@ -553,51 +553,51 @@
             <div id="briefing-horizon-roadmap" style="display: flex; flex-direction: column; gap: 0.75rem;">
               
               <!-- SHORT-TERM (Weeks 1-4: Immediate Bio-Reset & Decompression) -->
-              <div class="briefing-action-item horizon-card" id="horizon-short-term" style="border-left: 3.5px solid #C86D51; padding: 0.7rem 0.8rem; background: #FAF8F5; border-top: 1px solid #E6DFD5; border-right: 1px solid #E6DFD5; border-bottom: 1px solid #E6DFD5; border-radius: 0 12px 12px 0;">
+              <div class="briefing-action-item horizon-card" id="horizon-short-term" style="border-left: 3.5px solid #3B82F6; padding: 0.7rem 0.8rem; background: rgba(255, 255, 255, 0.04); border-top: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 12px 12px 0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-                  <span class="action-badge" style="background: #FDF3F0; color: #C86D51; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
+                  <span class="action-badge" style="background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
                     ⚡ ${isEn ? 'SHORT-TERM (Weeks 1–4)' : '단기 지도 방향 (1~4주: 즉시 교정 & 호르몬·디스크 복원)'}
                   </span>
-                  <span style="font-size: 0.71rem; font-weight: 800; color: #C86D51;">목표: GH 억제 0% · 숨은 키 +1.8cm 복원</span>
+                  <span style="font-size: 0.71rem; font-weight: 800; color: #60A5FA;">목표: GH 억제 0% · 숨은 키 +1.8cm 복원</span>
                 </div>
-                <div class="action-desc" id="briefing-action-sleep" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #181512;">
+                <div class="action-desc" id="briefing-action-sleep" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #E2E8F0;">
                   • <strong>수면·혈당 차단:</strong> 밤 <strong>21:45~22:00 입면</strong> · 취침 <strong>3시간 전 무당류 공복</strong>(소마토스타틴 차단) · 취침 1시간 전 블루라이트 오프<br>
                   • <strong>척추 즉각 감압:</strong> 매일 저녁 철봉 <strong>패시브 데드행 30초×3세트</strong> + 흉추 신전 45초×2세트(일중 디스크 수분 78% 복원)<br>
                   • <strong>단기 두뇌 루틴:</strong> 하루 15분 연령 맞춤 손끝 조작·스스로 오늘 할 일 체크하기
                 </div>
-                ${renderHorizonPaperBadge(horizonPapers.shortTerm, '단기 지도', 'Short-Term', '#C86D51', isEn)}
+                ${renderHorizonPaperBadge(horizonPapers.shortTerm, '단기 지도', 'Short-Term', '#60A5FA', isEn)}
               </div>
 
               <!-- MID-TERM (Months 1-3 / 90 Days: Bone Matrix & Neural Consolidation) -->
-              <div class="briefing-action-item horizon-card" id="horizon-mid-term" style="border-left: 3.5px solid #059669; padding: 0.7rem 0.8rem; background: #FAF8F5; border-top: 1px solid #E6DFD5; border-right: 1px solid #E6DFD5; border-bottom: 1px solid #E6DFD5; border-radius: 0 12px 12px 0;">
+              <div class="briefing-action-item horizon-card" id="horizon-mid-term" style="border-left: 3.5px solid #10B981; padding: 0.7rem 0.8rem; background: rgba(255, 255, 255, 0.04); border-top: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 12px 12px 0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-                  <span class="action-badge" style="background: #ECFDF5; color: #059669; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
+                  <span class="action-badge" style="background: rgba(16, 185, 129, 0.16); color: #34D399; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
                     📈 ${isEn ? 'MID-TERM (Months 1–3 / 90 Days)' : '중기 지도 방향 (1~3개월 / 90일: 성장속도 가속 & 골밀도·신경망 정착)'}
                   </span>
-                  <span style="font-size: 0.71rem; font-weight: 800; color: #059669;">목표: 성장속도 +1.8cm/yr 가속</span>
+                  <span style="font-size: 0.71rem; font-weight: 800; color: #34D399;">목표: 성장속도 +1.8cm/yr 가속</span>
                 </div>
-                <div class="action-desc" id="briefing-action-nutrition" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #181512;">
+                <div class="action-desc" id="briefing-action-nutrition" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #E2E8F0;">
                   • <strong>체중 비례 임상 영양:</strong> 일일 구연산칼슘 <strong>${nutTargets.calciumMg} mg</strong>(흡수율 45%) + <strong>D3 ${nutTargets.vitDIU} IU</strong> + <strong>K2(MK-7) ${nutTargets.vitK2Mcg} mcg</strong> + 단백질 <strong>${nutTargets.proteinG} g</strong><br>
                   • <strong>골단판 압전 자극:</strong> 주 5회 <strong>하루 15분 줄넘기·점핑</strong>(Wolff's Law 체중 1.5~2.5배 수직 미세하중)<br>
                   • <strong>주말 하브루타 탐구:</strong> 격주 박물관·과학관 방문 시 <strong>3단계 질문 대화 턴 5회+</strong>(브로카 영역·인과 추론 강화)
                 </div>
-                ${renderHorizonPaperBadge(horizonPapers.midTerm, '중기 지도', 'Mid-Term', '#059669', isEn)}
+                ${renderHorizonPaperBadge(horizonPapers.midTerm, '중기 지도', 'Mid-Term', '#34D399', isEn)}
               </div>
 
               <!-- LONG-TERM (6 Months to Age 20: Target Height Breakthrough & Self-Directed Mastery) -->
-              <div class="briefing-action-item horizon-card" id="horizon-long-term" style="border-left: 3.5px solid #4F46E5; padding: 0.7rem 0.8rem; background: #FAF8F5; border-top: 1px solid #E6DFD5; border-right: 1px solid #E6DFD5; border-bottom: 1px solid #E6DFD5; border-radius: 0 12px 12px 0;">
+              <div class="briefing-action-item horizon-card" id="horizon-long-term" style="border-left: 3.5px solid #8B5CF6; padding: 0.7rem 0.8rem; background: rgba(255, 255, 255, 0.04); border-top: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 12px 12px 0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-                  <span class="action-badge" style="background: #EEF2FF; color: #4F46E5; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
+                  <span class="action-badge" style="background: rgba(139, 92, 246, 0.16); color: #C4B5FD; font-weight: 800; font-size: 0.76rem; padding: 0.16rem 0.58rem; border-radius: 6px;">
                     🏆 ${isEn ? 'LONG-TERM (6 Months – Age 20)' : '장기 지도 방향 (6개월~만 20세: 최종 표적키 돌파 & 자기주도 전두엽 완성)'}
                   </span>
-                  <span style="font-size: 0.71rem; font-weight: 800; color: #4F46E5;">목표: 잠재 최대키 ${optimizedHeight}cm 도달</span>
+                  <span style="font-size: 0.71rem; font-weight: 800; color: #C4B5FD;">목표: 잠재 최대키 ${optimizedHeight}cm 도달</span>
                 </div>
-                <div class="action-desc" id="briefing-action-exercise" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #181512;">
+                <div class="action-desc" id="briefing-action-exercise" style="margin: 0.4rem 0 0 0; font-size: 0.79rem; line-height: 1.5; color: #E2E8F0;">
                   • <strong>골연령·궤적 정기 추적:</strong> 매 <strong>3~6개월 신장·체중 LMS Z-Score 계측</strong> 및 표준 BMI 유지로 성조숙·성장판 조기 폐쇄 방어<br>
                   • <strong>유전 한계 돌파:</strong> 유전 표적키(<strong>${mphVal}cm</strong>) 대비 상위 잠재 궤적(<strong>${optimizedHeight}cm, +${potentialGainCm}cm</strong>) 지속 유지<br>
                   • <strong>장기 전두엽 완성:</strong> 90일 스트릭 반복을 통한 <strong>실행기능(작업기억·자기조절·메타인지)</strong> 평생 학습 습관 정착
                 </div>
-                ${renderHorizonPaperBadge(horizonPapers.longTerm, '장기 지도', 'Long-Term', '#4F46E5', isEn)}
+                ${renderHorizonPaperBadge(horizonPapers.longTerm, '장기 지도', 'Long-Term', '#C4B5FD', isEn)}
               </div>
 
             </div>

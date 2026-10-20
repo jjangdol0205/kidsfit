@@ -296,50 +296,50 @@
     const subjectLabel = isYouthSelf ? '청소년·본인' : '학부모(우리 아이)';
 
     const historyRowsHtml = comp.localHistory.map((h, idx) => `
-      <tr style="border-bottom: 1px solid #E6DFD5;">
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #C86D51; font-weight: 800;">#${idx + 1} ${idx === 0 ? '<span style="background:#ECFDF5;color:#059669;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">방금 저장됨</span>' : ''}</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #57534E; font-weight: 700;">${h.birthDateStr || `만 ${h.ageYears}세`} (${h.exactMonths}개월)</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #181512; font-weight: 800;">${h.currentHeight}cm / ${h.currentWeight}kg</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #059669; font-weight: 800;">${h.optimizedHeight}cm (+${h.potentialGainCm}cm)</td>
+      <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #60A5FA; font-weight: 800;">#${idx + 1} ${idx === 0 ? '<span style="background:rgba(16,185,129,0.2);color:#34D399;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">방금 저장됨</span>' : ''}</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #CBD5E1; font-weight: 700;">${h.birthDateStr || `만 ${h.ageYears}세`} (${h.exactMonths}개월)</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #FFFFFF; font-weight: 800;">${h.currentHeight}cm / ${h.currentWeight}kg</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #34D399; font-weight: 800;">${h.optimizedHeight}cm (+${h.potentialGainCm}cm)</td>
       </tr>
     `).join('');
 
     return `
-      <div id="user-cohort-self-improve-section" class="guidebook-chapter-block" style="margin-top: 1.4rem; padding-top: 1.25rem; border-top: 1px solid #E6DFD5;">
+      <div id="user-cohort-self-improve-section" class="guidebook-chapter-block" style="margin-top: 1.4rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <div>
-            <span style="display: inline-block; background: #ECFDF5; color: #059669; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(5,150,105,0.28); margin-bottom: 0.25rem;">
+            <span style="display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom: 0.25rem;">
               CHAPTER 05 · REALTIME COHORT DB &amp; SELF-IMPROVEMENT LOOP
             </span>
-            <h3 style="font-size: 1.08rem; font-weight: 900; color: #181512; margin: 0;">
+            <h3 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
               🗄️ 5. 입력 데이터 DB 코호트 비교 &amp; 독자 AI 자가개선 피드백 루프
             </h3>
           </div>
-          <span style="font-size: 0.74rem; color: #059669; font-weight: 800; background: #ECFDF5; padding: 0.28rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(5, 150, 105, 0.35);">
+          <span style="font-size: 0.74rem; color: #34D399; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 0.28rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
             ✓ 입력 데이터 DB 저장 완료 (누적 ${comp.totalCohortRecords}건 코호트 연동)
           </span>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin-bottom: 0.9rem;">
           <!-- Box 1: Age-Band Cohort Comparison -->
-          <div style="background: #FAF8F5; border: 1px solid #E6DFD5; border-radius: 14px; padding: 0.95rem;">
-            <div style="font-size: 0.75rem; font-weight: 800; color: #C86D51; margin-bottom: 0.35rem;">
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem;">
+            <div style="font-size: 0.75rem; font-weight: 800; color: #60A5FA; margin-bottom: 0.35rem;">
               📊 동일 연령대(${comp.benchmark.label_ko}, n=${comp.bandSampleSize}) 누적 입력 DB 대조
             </div>
-            <div style="font-size: 0.81rem; color: #181512; line-height: 1.5; margin-bottom: 0.45rem;">
-              • <strong>코호트 평균 잠재 도약폭:</strong> <span style="color:#C86D51;font-weight:800;">+${comp.benchmark.avg_potential_gain_cm}cm</span> vs <strong>현재 ${subjectLabel} 잠재 도약폭:</strong> <span style="color:#059669;font-weight:900;">+${comp.userPotentialGainCm}cm</span><br>
+            <div style="font-size: 0.81rem; color: #E2E8F0; line-height: 1.5; margin-bottom: 0.45rem;">
+              • <strong>코호트 평균 잠재 도약폭:</strong> <span style="color:#60A5FA;font-weight:800;">+${comp.benchmark.avg_potential_gain_cm}cm</span> vs <strong>현재 ${subjectLabel} 잠재 도약폭:</strong> <span style="color:#34D399;font-weight:900;">+${comp.userPotentialGainCm}cm</span><br>
               • <strong>이 연령대 최다 병목 요인:</strong> ${comp.benchmark.top_habit_ko}<br>
-              • <strong>코호트 검증 1순위 솔루션:</strong> <span style="color:#92400E;font-weight:700;">${comp.benchmark.top_pinpoint_rx_ko}</span>
+              • <strong>코호트 검증 1순위 솔루션:</strong> <span style="color:#FDE68A;font-weight:700;">${comp.benchmark.top_pinpoint_rx_ko}</span>
             </div>
           </div>
 
           <!-- Box 2: How Input Data Drives Autonomous Self-Improvement -->
-          <div style="background: #FAF8F5; border: 1px solid #E6DFD5; border-radius: 14px; padding: 0.95rem;">
-            <div style="font-size: 0.75rem; font-weight: 800; color: #4F46E5; margin-bottom: 0.35rem;">
-              🔄 입력 데이터 기반 K-GROWTH AI™ 자가개선(Self-Improvement) 작동 내역
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem;">
+            <div style="font-size: 0.75rem; font-weight: 800; color: #C4B5FD; margin-bottom: 0.35rem;">
+              🔄 입력 데이터 기반 K:IDS-FIT AI 자가개선(Self-Improvement) 작동 내역
             </div>
-            <div style="font-size: 0.8rem; color: #181512; line-height: 1.5;">
-              • <strong>집중 학습 도메인 자동 가중치:</strong> <span style="color:#4F46E5;font-weight:800;">${comp.activeDomainLabelKo} (×${comp.activeLearningWeight}배 증폭)</span><br>
+            <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.5;">
+              • <strong>집중 학습 도메인 자동 가중치:</strong> <span style="color:#C4B5FD;font-weight:800;">${comp.activeDomainLabelKo} (×${comp.activeLearningWeight}배 증폭)</span><br>
               • <strong>자가개선 엔진 조치:</strong> ${comp.activeDomainActionKo}<br>
               • <strong>가이드북 정밀화:</strong> 입력된 생년월일·저해요인 패턴이 30분 주기 학술 크롤러 및 핀셋 추천 알고리즘을 자동 교정합니다.
             </div>
@@ -347,15 +347,15 @@
         </div>
 
         <!-- Personal Growth Guidebook Log Table -->
-        <div style="background: #FAF8F5; border: 1px solid #E6DFD5; border-radius: 12px; padding: 0.85rem;">
+        <div style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.85rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-            <span style="font-size: 0.78rem; font-weight: 800; color: #181512;">📒 나의 성장 가이드북 누적 진단 기록장 (자동 저장됨)</span>
-            <span style="font-size: 0.7rem; color: #57534E;">입력할 때마다 성장 궤적 변화가 자동 축적됩니다</span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">📒 나의 성장 가이드북 누적 진단 기록장 (자동 저장됨)</span>
+            <span style="font-size: 0.7rem; color: #94A3B8;">입력할 때마다 성장 궤적 변화가 자동 축적됩니다</span>
           </div>
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
               <thead>
-                <tr style="border-bottom: 1px solid #E6DFD5; font-size: 0.72rem; color: #57534E;">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.72rem; color: #94A3B8;">
                   <th style="padding: 0.35rem 0.5rem;">회차</th>
                   <th style="padding: 0.35rem 0.5rem;">생년월일 (정밀 월령)</th>
                   <th style="padding: 0.35rem 0.5rem;">계측 키 / 체중</th>

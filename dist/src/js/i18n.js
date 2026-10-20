@@ -21,21 +21,21 @@
     ko: {
       // Header & Brand
       'brand.title': 'KIDS-FIT AI STUDIO',
-      'brand.tagline': '독자 개발 K-GROWTH AI™ 기반 맞춤형 성장·발달 큐레이션 아틀리에',
+      'brand.tagline': 'Make + Growth Difference = K:IDS-FIT AI · 독자 개발 성장 퍼포먼스 엔진',
       'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용',
       'nav.auxology': '신체 성장 & 골연령 궤적',
       'nav.endocrinology': '호르몬·수면 & 임상 영양',
       'nav.biomechanics': '척추 감압 & 생체역학',
       'nav.neuro': '뇌인지 & 탐구 로드맵',
       'nav.tracker': '90일 트래커 & A4 리포트',
-      'theme.dark': '🌙 아틀리에 무드',
-      'theme.light': '☀️ 부티크 에디토리얼',
+      'theme.dark': '🌙 M:FFERENCE Dark',
+      'theme.light': '☀️ Clinical Light',
       'lang.toggle': '🇺🇸 EN',
 
       // Hero
-      'hero.badge': 'PROPRIETARY K-GROWTH AI™ v4.0 · 독자 개발 인공지능 성장 연구소',
-      'hero.headline': '감(感)에 의존하던 성장 관리를 넘어,\n독자 개발 AI 인텔리전스로 잠재력을 디자인합니다',
-      'hero.subtitle': '1,150+편 글로벌 소아내분비·뇌과학 논문과 실시간 코호트 DB를 자가학습하는 독자 개발 인공지능 「K-GROWTH AI™」가 학부모와 청소년을 위한 세상에 단 하나뿐인 성장 마스터북을 발행합니다.',
+      'hero.badge': 'Make + Growth Difference = K:IDS-FIT AI',
+      'hero.headline': '정상까지 함께 오르는 성장 퍼포먼스의 차이,\n독자 개발 K:IDS-FIT AI가 숫자로 증명합니다',
+      'hero.subtitle': '1,173편의 국제 학술 논문과 누적 코호트 빅데이터를 학습한 자체 개발 K-GROWTH LAB 4대 솔루션으로, 생년월일 0.01개월 보정부터 만 N→N+3세 연속 성장주기 및 1:1 핀셋 처방까지 맞춤형 성장 가이드북을 발행합니다.',
 
       // Presets
       'presets.badge': '연령대별 빠른 데모',
