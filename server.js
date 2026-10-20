@@ -78,7 +78,7 @@ const server = http.createServer((req, res) => {
       const payload = JSON.stringify({
         ok: true,
         service: 'Taller Bio Labs (truthofmarket.com)',
-        version: '2.0.0',
+        version: '2.4.0',
         timestamp: new Date().toISOString()
       });
       res.writeHead(200, {
@@ -87,6 +87,96 @@ const server = http.createServer((req, res) => {
       });
       res.end(payload);
       return;
+    }
+
+    // 1-A. User Input Cohort DB & Self-Improvement API (/api/user-cohort)
+    if (pathname === '/api/user-cohort') {
+      const cohortDbPath = path.join(ROOT_DIR, 'src', 'data', 'user-cohort-db.json');
+      let cohortDb = { metadata: { total_records: 0, subject_mode_counts: { child: 0, self: 0 }, age_band_distribution: {}, bottleneck_habit_frequencies: {}, auto_learning_weights: {} }, records: [] };
+      if (fs.existsSync(cohortDbPath)) {
+        try {
+          cohortDb = JSON.parse(fs.readFileSync(cohortDbPath, 'utf8'));
+        } catch (_) {}
+      }
+
+      if (req.method === 'GET') {
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=utf-8',
+          ...NO_CACHE_HEADERS
+        });
+        res.end(JSON.stringify({ ok: true, cohortDb }));
+        return;
+      }
+
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', (chunk) => {
+          if (body.length < 32768) body += chunk.toString('utf8');
+        });
+        req.on('end', () => {
+          try {
+            const incoming = JSON.parse(body || '{}');
+            const ageYears = Math.max(1, Math.min(20, Number(incoming.ageYears) || 10));
+            const bandKey = ageYears <= 3 ? '1-3y' : ageYears <= 6 ? '4-6y' : ageYears <= 9 ? '7-9y' : ageYears <= 12 ? '10-12y' : ageYears <= 16 ? '13-16y' : '17-20y';
+            const record = {
+              id: incoming.id || `USR-${Date.now().toString(36).toUpperCase()}`,
+              timestamp: new Date().toISOString(),
+              targetSubject: incoming.targetSubject === 'self' ? 'self' : 'child',
+              gender: incoming.gender === 'girl' ? 'girl' : 'boy',
+              birthDateStr: String(incoming.birthDateStr || ''),
+              exactMonths: Number(incoming.exactMonths) || (ageYears * 12),
+              ageYears,
+              currentHeight: Number(incoming.currentHeight) || 137.0,
+              currentWeight: Number(incoming.currentWeight) || 35.5,
+              recentGrowth6m: Number(incoming.recentGrowth6m) || 3.2,
+              fatherHeight: Number(incoming.fatherHeight) || 173.5,
+              motherHeight: Number(incoming.motherHeight) || 160.5,
+              tannerPhase: String(incoming.tannerPhase || 'phase_2'),
+              habits: Array.isArray(incoming.habits) ? incoming.habits.slice(0, 5) : ['late_sleep'],
+              cognitiveAxes: Array.isArray(incoming.cognitiveAxes) ? incoming.cognitiveAxes.slice(0, 5) : ['science_nature'],
+              region: String(incoming.region || '서울 강남·서초·송파'),
+              kdcaPercentile: Number(incoming.kdcaPercentile) || 50.0,
+              zScore: Number(incoming.zScore) || 0.0,
+              mph: Number(incoming.mph) || 173.5,
+              unmanagedHeight: Number(incoming.unmanagedHeight) || 171.2,
+              optimizedHeight: Number(incoming.optimizedHeight) || 180.5,
+              potentialGainCm: Number(incoming.potentialGainCm) || 7.2
+            };
+
+            if (!cohortDb.metadata) cohortDb.metadata = {};
+            cohortDb.metadata.last_updated_utc = record.timestamp;
+            cohortDb.metadata.total_records = (Number(cohortDb.metadata.total_records) || 128) + 1;
+            if (!cohortDb.metadata.subject_mode_counts) cohortDb.metadata.subject_mode_counts = { child: 89, self: 39 };
+            cohortDb.metadata.subject_mode_counts[record.targetSubject] = (cohortDb.metadata.subject_mode_counts[record.targetSubject] || 0) + 1;
+
+            if (!cohortDb.metadata.age_band_distribution) cohortDb.metadata.age_band_distribution = {};
+            cohortDb.metadata.age_band_distribution[bandKey] = (cohortDb.metadata.age_band_distribution[bandKey] || 0) + 1;
+
+            if (!cohortDb.metadata.bottleneck_habit_frequencies) cohortDb.metadata.bottleneck_habit_frequencies = {};
+            record.habits.forEach((h) => {
+              cohortDb.metadata.bottleneck_habit_frequencies[h] = (cohortDb.metadata.bottleneck_habit_frequencies[h] || 0) + 1;
+            });
+
+            if (!Array.isArray(cohortDb.records)) cohortDb.records = [];
+            cohortDb.records.unshift(record);
+            if (cohortDb.records.length > 200) cohortDb.records = cohortDb.records.slice(0, 200);
+
+            try {
+              fs.writeFileSync(cohortDbPath, JSON.stringify(cohortDb, null, 2), 'utf8');
+            } catch (_) {}
+
+            res.writeHead(200, {
+              'Content-Type': 'application/json; charset=utf-8',
+              ...NO_CACHE_HEADERS
+            });
+            res.end(JSON.stringify({ ok: true, saved: record, total_records: cohortDb.metadata.total_records }));
+          } catch (e) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false, error: 'Invalid JSON payload' }));
+          }
+        });
+        return;
+      }
     }
 
     // 1-B. Coupang Partners Redirect & Search Proxy Route

@@ -15,6 +15,7 @@
 
   let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
   let HapticEngine = typeof require !== 'undefined' ? (function () { try { return require('./haptic-typewriter'); } catch (e) { return null; } })() : (global.TallerHapticEngine || global.KidsFitHapticEngine || null);
+  let UserCohortDB = typeof require !== 'undefined' ? (function () { try { return require('./user-cohort-db'); } catch (e) { return null; } })() : (global.TallerUserCohortDB || global.KidsFitUserCohortDB || null);
 
   // 1. Definition of 5 Authoritative Clinical Presets
   const PRESETS = {
@@ -257,6 +258,23 @@
     const progressFillEl = document.getElementById('quiz-progress-fill');
     if (progressFillEl) {
       progressFillEl.style.width = `${percent}%`;
+    }
+
+    // Update Taller.xyz 6-Segment Glowing Progress Bar
+    const segBar = document.getElementById('quiz-segmented-bar');
+    if (segBar && typeof segBar.querySelectorAll === 'function') {
+      const pills = segBar.querySelectorAll('.taller-seg-pill');
+      if (pills && pills.forEach) {
+        pills.forEach((pill, idx) => {
+          const segStep = idx + 1;
+          pill.classList.remove('active', 'completed');
+          if (segStep < stepNumber) {
+            pill.classList.add('completed');
+          } else if (segStep === stepNumber) {
+            pill.classList.add('active');
+          }
+        });
+      }
     }
 
     // Button controls
@@ -537,6 +555,16 @@
       dashboard.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Record user input into Cohort DB for autonomous self-improvement
+    if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
+      UserCohortDB = global.TallerUserCohortDB || global.KidsFitUserCohortDB;
+    }
+    if (UserCohortDB && typeof UserCohortDB.recordUserDiagnosis === 'function') {
+      try {
+        UserCohortDB.recordUserDiagnosis(wizardState.profile);
+      } catch (_) {}
+    }
+
     // Render Master Briefing Card if present
     if (typeof document !== 'undefined') {
       const mbEl = document.getElementById('master-briefing-card');
@@ -695,6 +723,9 @@
   function readProfileFromForm() {
     if (typeof document === 'undefined') return wizardState.profile;
 
+    const selfRadio = document.getElementById('target-self');
+    const targetSubject = (selfRadio && selfRadio.checked) ? 'self' : 'child';
+
     const boyRadio = document.getElementById('gender-boy');
     const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
 
@@ -753,6 +784,7 @@
     const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
 
     wizardState.profile = {
+      targetSubject,
       gender,
       ageYears,
       ageMonths,
@@ -771,6 +803,28 @@
     };
 
     return wizardState.profile;
+  }
+
+  function syncTargetSubjectMode() {
+    if (typeof document === 'undefined') return;
+    const selfRadio = document.getElementById('target-self');
+    const isSelf = Boolean(selfRadio && selfRadio.checked);
+    wizardState.profile.targetSubject = isSelf ? 'self' : 'child';
+
+    const bannerEl = document.getElementById('guidebook-mode-banner');
+    if (bannerEl) {
+      if (isSelf) {
+        bannerEl.style.color = '#E9D5FF';
+        bannerEl.style.background = 'rgba(168, 85, 247, 0.12)';
+        bannerEl.style.borderColor = 'rgba(168, 85, 247, 0.35)';
+        bannerEl.innerHTML = '🙋 <strong>[청소년·본인 맞춤형 성장 가이드북 모드]</strong> 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원(+1.8~7.2cm) 루틴, 전두엽 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
+      } else {
+        bannerEl.style.color = '#A7F3D0';
+        bannerEl.style.background = 'rgba(16, 185, 129, 0.08)';
+        bannerEl.style.borderColor = 'rgba(16, 185, 129, 0.25)';
+        bannerEl.innerHTML = '📘 <strong>[학부모 맞춤형 성장 가이드북 모드]</strong> 아이의 생년월일과 신체 계측치를 바탕으로 <strong>만 N세→N+1세→N+2세 연속 양육 로드맵</strong>과 <strong>1:1 핀셋 영양제·교구·도서 처방전</strong>을 생성합니다.';
+      }
+    }
   }
 
   // 9. Initialize Event Listeners
@@ -863,9 +917,23 @@
       });
     }
 
+    const targetChildRadio = document.getElementById('target-child');
+    const targetSelfRadio = document.getElementById('target-self');
+    [targetChildRadio, targetSelfRadio].forEach((el) => {
+      if (el) {
+        el.addEventListener('change', () => {
+          syncTargetSubjectMode();
+          if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
+            HapticEngine.triggerHaptic('tick', el);
+          }
+        });
+      }
+    });
+
     // Initial MPH & DOB auto-stage calculation
     updateMphPreview();
     syncDobAndAutoStage();
+    syncTargetSubjectMode();
 
     // Preset cards
     for (let i = 1; i <= 5; i++) {

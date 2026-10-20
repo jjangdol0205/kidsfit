@@ -10,6 +10,7 @@
   let GrowthEngine = typeof require !== 'undefined' ? (function () { try { return require('./growth-engine'); } catch (e) { return null; } })() : (global.KidsFitGrowthEngine || null);
   let NutritionEngine = typeof require !== 'undefined' ? (function () { try { return require('./nutrition-engine'); } catch (e) { return null; } })() : (global.KidsFitNutritionEngine || null);
   let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
+  let UserCohortDB = typeof require !== 'undefined' ? (function () { try { return require('./user-cohort-db'); } catch (e) { return null; } })() : (global.TallerUserCohortDB || global.KidsFitUserCohortDB || null);
 
   /**
    * Retrieves knowledge base papers from runtime memory or CommonJS require
@@ -258,15 +259,20 @@
     if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
       PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
     }
+    if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
+      UserCohortDB = global.TallerUserCohortDB || global.KidsFitUserCohortDB;
+    }
 
     const kb = getKnowledgeBase();
     const totalDbPapers = (kb && kb.metadata && kb.metadata.total_papers) || (kb && Array.isArray(kb.papers) ? kb.papers.length : 834);
 
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
     const ageMonths = profile.ageMonths || ((profile.ageYears || 10) * 12);
     const exactMonths = Number(profile.exactMonths || ageMonths);
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const gender = profile.gender === 'girl' ? 'girl' : 'boy';
+    const genderKo = gender === 'boy' ? (isYouthSelf ? '남성(청소년)' : '남아') : (isYouthSelf ? '여성(청소년)' : '여아');
     const height = parseFloat(profile.currentHeight) || 137.0;
     const weight = parseFloat(profile.currentWeight) || 35.5;
     const recentGain = parseFloat(profile.recentGrowth6m) || 3.2;
@@ -350,26 +356,91 @@
       }
     }
 
+    const computedMetrics = {
+      kdcaPercentile: kdcaPct,
+      topPercent: kdcaTop,
+      zScore: kdcaZ,
+      mph: mphVal,
+      unmanagedHeight,
+      optimizedHeight,
+      potentialGainCm
+    };
+
+    const guidebookEditionLabel = isYouthSelf
+      ? `🙋 [청소년·본인 전용] 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 나의 잠재키 & 두뇌 성장 마스터 가이드북`
+      : `👶 [학부모 전용] 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 우리 아이 맞춤형 성장 마스터 가이드북`;
+
     return `
-      <!-- Master Briefing Card: Fact-Based Diagnosis & Short/Mid/Long-Term Guidance -->
+      <!-- Master Briefing Card: Taller.xyz Potential Height Reveal & 5-Chapter Growth Guidebook -->
       <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid var(--theme-accent, #38BDF8);">
         
         <!-- Header -->
-        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.1rem; border-bottom: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.08)); padding-bottom: 0.9rem;">
+        <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid var(--theme-border-subtle, rgba(255,255,255,0.08)); padding-bottom: 0.9rem;">
           <div>
             <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-accent-sub, rgba(56,189,248,0.15)); color: var(--theme-accent, #38BDF8); font-size: 0.76rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; margin-bottom: 0.35rem;">
-              🎯 ${isEn ? 'FACT-BASED CLINICAL BRIEFING & HORIZON ROADMAP' : '팩트 기반 종합 정밀 진단 & 단·중·장기 맞춤 지도'}
+              📘 ${isEn ? 'TALLER.XYZ PERSONALIZED GROWTH MASTER GUIDEBOOK' : guidebookEditionLabel}
             </span>
-            <h2 class="briefing-title" style="font-size: 1.3rem; font-weight: 900; color: var(--text-primary, #FFFFFF); margin: 0.2rem 0;">
-              ${isEn ? 'Precision Biometric Diagnosis & Short · Mid · Long-Term Guidance' : '입력 데이터 기반 종합 정밀 진단 &amp; 단기·중기·장기 맞춤 지도 방향'}
+            <h2 class="briefing-title" style="font-size: 1.32rem; font-weight: 900; color: var(--text-primary, #FFFFFF); margin: 0.2rem 0;">
+              ${isEn ? 'Precision Biometric Diagnosis & Short · Mid · Long-Term Guidance' : '입력 데이터 기반 종합 정밀 진단 &amp; 단기·중기·장기 맞춤 성장 가이드북'}
             </h2>
             <p class="briefing-subtitle" style="font-size: 0.8rem; color: var(--text-secondary, #94A3B8); margin: 0;">
-              ${isEn ? `Directly synthesized from KDCA 2017, US CDC 2000, K-DST & ${totalDbPapers} peer-reviewed studies.` : `질병관리청(KDCA 2017) · US CDC 2000 · K-DST · KDRIs &amp; 실시간 학습 학술 DB(${totalDbPapers}편) 팩트 대조`}
+              ${isEn ? `Directly synthesized from KDCA 2017, US CDC 2000, K-DST & ${totalDbPapers} peer-reviewed studies.` : `질병관리청(KDCA 2017) · US CDC 2000 · K-DST &amp; 실시간 학습 학술 DB(${totalDbPapers}편) + 누적 코호트 DB 자가개선 연동`}
             </p>
           </div>
           <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-weight: 800; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
-            ⚡ ${isEn ? `${totalDbPapers} Papers Matched` : `${totalDbPapers}편 논문 DB 실시간 매칭 완료`}
+            ⚡ ${isEn ? `${totalDbPapers} Papers Matched` : `${totalDbPapers}편 논문 DB & 코호트 매칭 완료`}
           </span>
+        </div>
+
+        <!-- Taller.xyz Signature Giant Potential Height Reveal Hero Card -->
+        <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.15rem; align-items: center;">
+            <!-- Left: Giant Gradient Height Reveal -->
+            <div>
+              <div style="font-size: 0.74rem; font-weight: 800; color: #38BDF8; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.2rem;">
+                TALLER BIO-SCANNER · OPTIMIZED POTENTIAL STATURE
+              </div>
+              <div style="display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap;">
+                <span class="taller-giant-height-number">${optimizedHeight.toFixed(1)} cm</span>
+                <span style="background: linear-gradient(135deg, rgba(16,185,129,0.24) 0%, rgba(56,189,248,0.2) 100%); border: 1px solid #10B981; color: #10B981; font-size: 0.86rem; font-weight: 900; padding: 0.22rem 0.7rem; border-radius: 9999px;">
+                  ▲ +${potentialGainCm.toFixed(1)} cm 잠재 도약 가능
+                </span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-secondary, #CBD5E1); margin-top: 0.45rem; line-height: 1.48;">
+                현재 <strong>${height}cm (상위 ${kdcaTop}%, ${kdcaZ >= 0 ? '+' : ''}${kdcaZ} SD)</strong> · 부모 유전 표적키(MPH) <strong>${mphVal}cm</strong> 기준, 저해 습관 방치 시 <strong>${unmanagedHeight}cm</strong>에 머물 수 있으나 가이드북 로드맵 실천 시 <strong>최대 ${optimizedHeight}cm</strong>까지 도약 가능합니다.
+              </div>
+            </div>
+
+            <!-- Right: Taller.xyz 3-Pillar Vertical Stature Ruler Comparison -->
+            <div style="background: rgba(6, 9, 17, 0.72); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 0.9rem 1.1rem; display: flex; justify-content: space-around; align-items: flex-end; height: 132px;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
+                <span style="font-size: 0.75rem; font-weight: 800; color: #FDA4AF; font-family: var(--font-mono);">${unmanagedHeight}cm</span>
+                <div style="width: 34px; height: 50px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, rgba(244,63,94,0.75) 0%, rgba(244,63,94,0.25) 100%); border: 1px solid rgba(244,63,94,0.5);"></div>
+                <span style="font-size: 0.7rem; color: #94A3B8; font-weight: 700;">방치 시 예측</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
+                <span style="font-size: 0.75rem; font-weight: 800; color: #38BDF8; font-family: var(--font-mono);">${mphVal}cm</span>
+                <div style="width: 34px; height: 68px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, rgba(56,189,248,0.8) 0%, rgba(56,189,248,0.25) 100%); border: 1px solid rgba(56,189,248,0.55);"></div>
+                <span style="font-size: 0.7rem; color: #38BDF8; font-weight: 700;">유전 표적(MPH)</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
+                <span style="font-size: 0.82rem; font-weight: 900; color: #10B981; font-family: var(--font-mono);">${optimizedHeight}cm</span>
+                <div style="width: 38px; height: 88px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #10B981 0%, #38BDF8 100%); border: 1px solid #A7F3D0; box-shadow: 0 0 18px rgba(16,185,129,0.45);"></div>
+                <span style="font-size: 0.72rem; color: #10B981; font-weight: 900;">가이드북 최적화</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-Chapter Personalized Growth Guidebook Quick-Jump Navigation -->
+        <div class="guidebook-chapter-nav" aria-label="가이드북 챕터 바로가기">
+          <a href="#briefing-status-section" class="guidebook-chapter-pill">📊 Ch.01 정밀 진단 &amp; 논문 팩트</a>
+          <a href="#briefing-actions-section" class="guidebook-chapter-pill">🧭 Ch.02 단·중·장기 맞춤 지도</a>
+          <a href="#child-lifecycle-roadmap-section" class="guidebook-chapter-pill">🗓️ Ch.03 나이별 연속 성장주기 (만 ${ageYears}→${ageYears + 3}세)</a>
+          <a href="#pinpoint-custom-prescription-section" class="guidebook-chapter-pill">🎯 Ch.04 1:1 핀셋 영양제·교구·도서</a>
+          <a href="#user-cohort-self-improve-section" class="guidebook-chapter-pill">🗄️ Ch.05 입력 코호트 DB &amp; 기록장</a>
         </div>
 
         <!-- 1-Line Reader-Friendly Core Verdict Banner (Zero Fluff, Instant Comprehension) -->
@@ -378,7 +449,7 @@
             <strong style="color: #38BDF8;">📌 핵심 팩트 요약:</strong>
             ${isEn
               ? `Age ${ageYears} (${gender === 'boy' ? 'Male' : 'Female'}) · Current <strong>${height}cm (Top ${kdcaTop}%, ${deltaStr} vs standard)</strong> · Genetic Target <strong>${mphVal}cm</strong> · Unmanaged <strong>${unmanagedHeight}cm</strong> → Optimized Potential <strong style="color:#10B981;">${optimizedHeight}cm (+${potentialGainCm}cm gain)</strong>`
-              : `만 ${ageYears}세 ${gender === 'boy' ? '남아' : '여아'} · 현재 <strong>${height}cm (또래 상위 ${kdcaTop}%, 표준 대비 ${deltaStr})</strong> · 유전 표적키 <strong>${mphVal}cm</strong> 기준 방치 시 <strong>${unmanagedHeight}cm</strong>이나, <strong>단·중·장기 지도 실천 시 최대 <span style="color:#10B981;">${optimizedHeight}cm (+${potentialGainCm}cm 잠재 도약)</span></strong> 가능`}
+              : `만 ${ageYears}세 ${genderKo} · 현재 <strong>${height}cm (또래 상위 ${kdcaTop}%, 표준 대비 ${deltaStr})</strong> · 유전 표적키 <strong>${mphVal}cm</strong> 기준 방치 시 <strong>${unmanagedHeight}cm</strong>이나, <strong>단·중·장기 지도 실천 시 최대 <span style="color:#10B981;">${optimizedHeight}cm (+${potentialGainCm}cm 잠재 도약)</span></strong> 가능`}
           </div>
         </div>
 
@@ -537,6 +608,10 @@
 
         ${PinpointCurator && typeof PinpointCurator.renderPinpointAndLifecycleSection === 'function'
           ? PinpointCurator.renderPinpointAndLifecycleSection(profile)
+          : ''}
+
+        ${UserCohortDB && typeof UserCohortDB.renderGuidebookCohortSection === 'function'
+          ? UserCohortDB.renderGuidebookCohortSection(profile, computedMetrics)
           : ''}
 
       </div>

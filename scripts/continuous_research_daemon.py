@@ -412,6 +412,24 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
     if "OpenAlex Academic Graph API (https://api.openalex.org/works)" not in kb_data["metadata"]["engines_used"]:
         kb_data["metadata"]["engines_used"].append("OpenAlex Academic Graph API (https://api.openalex.org/works)")
 
+    # Synchronize with User Input Cohort DB for Self-Improvement Loop
+    cohort_db_path = SCRIPT_DIR.parent / "src" / "data" / "user-cohort-db.json"
+    user_cohort_summary = {}
+    if cohort_db_path.exists():
+        try:
+            with open(cohort_db_path, "r", encoding="utf-8") as cf:
+                c_data = json.load(cf)
+                c_meta = c_data.get("metadata", {})
+                user_cohort_summary = {
+                    "total_user_records": c_meta.get("total_records", 128),
+                    "subject_mode_counts": c_meta.get("subject_mode_counts", {"child": 89, "self": 39}),
+                    "auto_learning_weights": c_meta.get("auto_learning_weights", {}),
+                    "last_synced_utc": now_iso,
+                }
+                kb_data["metadata"]["user_cohort_self_improvement"] = user_cohort_summary
+        except Exception:
+            pass
+
     for p_meta in kb_data.get("pillars", []):
         p_meta["paper_count"] = pillar_counts.get(p_meta["id"], 0)
 

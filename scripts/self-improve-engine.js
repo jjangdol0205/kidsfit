@@ -450,10 +450,45 @@ function auditStage7ScopeAndGuidance() {
     const hasVisuals = dashHtml.includes('id="admin-db-subdomain-chart"') &&
                        dashHtml.includes('id="admin-db-heatmap-container"') &&
                        dashHtml.includes('id="admin-db-laws-grid"') &&
-                       dashHtml.includes('id="admin-db-explorer-results"');
-    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws & Explorer', hasVisuals, 'Admin visuals verified');
+                       dashHtml.includes('id="admin-db-explorer-results"') &&
+                       dashHtml.includes('id="admin-user-cohort-self-improve-panel"');
+    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws, Explorer & User Cohort DB', hasVisuals, 'Admin visuals & User Cohort DB verified');
   } catch (err) {
-    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws & Explorer', false, err.message);
+    recordCheck('Stage 7: Scope & Guidance', 'Admin DB Intelligence Dashboard Renders SVG Chart, Heatmap, Laws, Explorer & User Cohort DB', false, err.message);
+  }
+
+  // Verify User Input Cohort DB & Taller.xyz Growth Guidebook Hero
+  try {
+    const UserCohortDB = require('../src/js/user-cohort-db');
+    const MasterBriefing = require('../src/js/master-briefing');
+    const rec = UserCohortDB.recordUserDiagnosis({
+      targetSubject: 'self',
+      gender: 'boy',
+      ageYears: 15,
+      exactMonths: 182.5,
+      currentHeight: 168.2,
+      currentWeight: 58.0,
+      habits: ['late_sleep', 'poor_posture']
+    }, { kdcaPercentile: 52.4, zScore: 0.06, mph: 174.5, unmanagedHeight: 172.0, optimizedHeight: 179.4, potentialGainCm: 7.4 });
+    const cohortAnalytics = UserCohortDB.getAggregatedCohortAnalytics();
+    const youthGuidebookHtml = MasterBriefing.renderMasterBriefingCard({
+      targetSubject: 'self',
+      gender: 'boy',
+      ageYears: 15,
+      ageMonths: 180,
+      exactMonths: 182.5,
+      currentHeight: 168.2,
+      currentWeight: 58.0,
+      habits: ['late_sleep', 'poor_posture']
+    });
+    const isCohortValid = Boolean(rec && rec.id && cohortAnalytics.totalRecords >= 128 && cohortAnalytics.autoLearningWeights.chronobiology_sleep_architecture > 1.0);
+    const isTallerGuidebookValid = youthGuidebookHtml.includes('id="taller-potential-reveal-hero"') &&
+                                   youthGuidebookHtml.includes('id="user-cohort-self-improve-section"') &&
+                                   youthGuidebookHtml.includes('청소년·본인 전용');
+    recordCheck('Stage 7: Scope & Guidance', 'User Input Cohort DB Persists Inputs & Computes Dynamic Self-Improvement Weights', isCohortValid, `Total cohort records: ${cohortAnalytics.totalRecords}`);
+    recordCheck('Stage 7: Scope & Guidance', 'Taller.xyz Giant Potential Height Hero & Parent/Youth Personalized Growth Guidebook Active', isTallerGuidebookValid, 'Taller.xyz Hero & 5-Chapter Guidebook verified');
+  } catch (err) {
+    recordCheck('Stage 7: Scope & Guidance', 'User Input Cohort DB & Taller.xyz Growth Guidebook Verification', false, err.message);
   }
 }
 
