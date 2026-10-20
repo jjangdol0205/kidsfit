@@ -339,25 +339,32 @@
     wizardState.profile.tannerPhase = autoStage.tannerPhase;
 
     // Sync hidden & legacy inputs
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const ageDisplay = document.getElementById('child-age-display');
     const ageMonthsInput = document.getElementById('child-age-months');
     const ageSlider = document.getElementById('child-age-slider');
-    if (ageDisplay) ageDisplay.textContent = dobInfo.displayBadgeKo;
+    if (ageDisplay) ageDisplay.textContent = isEn ? dobInfo.displayBadgeEn : dobInfo.displayBadgeKo;
     if (ageMonthsInput) ageMonthsInput.value = dobInfo.ageMonths;
     if (ageSlider) ageSlider.value = dobInfo.ageYears;
 
     // Sync Auto-Detected Growth Stage Banner & Radio Buttons
     const previewEl = document.getElementById('dob-auto-stage-preview');
     if (previewEl) {
-      previewEl.textContent = `🤖 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
+      previewEl.textContent = isEn
+        ? `🤖 Auto-Detected Growth Stage & Bone Age: ${autoStage.stageNameEn} (Expected Velocity: ${autoStage.expectedVelStrEn || autoStage.expectedVelStr})`
+        : `🤖 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
     }
     const stageTitleEl = document.getElementById('auto-growth-stage-title');
     if (stageTitleEl) {
-      stageTitleEl.textContent = `${dobInfo.birthDateKo} (${dobInfo.displayBadgeKo}) → ${autoStage.stageNameKo}`;
+      stageTitleEl.textContent = isEn
+        ? `${dobInfo.birthDateEn || dobInfo.birthDateStr} (${dobInfo.displayBadgeEn}) → ${autoStage.stageNameEn}`
+        : `${dobInfo.birthDateKo} (${dobInfo.displayBadgeKo}) → ${autoStage.stageNameKo}`;
     }
     const stageDescEl = document.getElementById('auto-growth-stage-desc');
     if (stageDescEl) {
-      stageDescEl.innerHTML = `${autoStage.boneAgeNoteKo}<br><strong style="color:#10B981;">✓ 생년월일에 맞춰 자동 선택되었으므로 굳이 고민하실 필요 없이 바로 [다음 단계 →]로 이동하시면 됩니다.</strong>`;
+      stageDescEl.innerHTML = isEn
+        ? `${autoStage.boneAgeNoteEn || autoStage.stageNameEn}<br><strong style="color:#10B981;">✓ Automatically selected based on Date of Birth — proceed directly to [Next Step →] or adjust below if needed.</strong>`
+        : `${autoStage.boneAgeNoteKo}<br><strong style="color:#10B981;">✓ 생년월일에 맞춰 자동 선택되었으므로 굳이 고민하실 필요 없이 바로 [다음 단계 →]로 이동하시면 됩니다.</strong>`;
     }
 
     const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
@@ -807,6 +814,7 @@
 
   function syncTargetSubjectMode() {
     if (typeof document === 'undefined') return;
+    const isEn = document.documentElement.lang === 'en';
     const selfRadio = document.getElementById('target-self');
     const isSelf = Boolean(selfRadio && selfRadio.checked);
     wizardState.profile.targetSubject = isSelf ? 'self' : 'child';
@@ -817,12 +825,16 @@
         bannerEl.style.color = '#E2E8F0';
         bannerEl.style.background = 'rgba(139, 92, 246, 0.12)';
         bannerEl.style.borderColor = 'rgba(139, 92, 246, 0.35)';
-        bannerEl.innerHTML = '🙋 <strong>[초·중·고 학생·청소년 본인용 가이드북]</strong> 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원 루틴, 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
+        bannerEl.innerHTML = isEn
+          ? '🙋 <strong>[Youth & Student Self-Coaching Guidebook]</strong> Analyzes your Date of Birth, sleep, posture, and nutrition to generate a <strong>Hidden Height Recovery Routine, Self-Directed Study Strategy, and Supplement & Book Guidebook</strong>.'
+          : '🙋 <strong>[초·중·고 학생·청소년 본인용 가이드북]</strong> 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원 루틴, 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
       } else {
         bannerEl.style.color = '#E2E8F0';
         bannerEl.style.background = 'rgba(59, 130, 246, 0.1)';
         bannerEl.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-        bannerEl.innerHTML = '📘 <strong>[학부모용 우리 아이 성장·학습 가이드북]</strong> 아이의 생년월일과 신체 계측치를 바탕으로 <strong>키·육체적 성장, 만 N→N+3세 정신·두뇌 발달 및 시기별 학습 로드맵, 맞춤 영양제·교구·도서</strong>를 안내합니다.';
+        bannerEl.innerHTML = isEn
+          ? '📘 <strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Analyzes your child\'s Date of Birth and biometrics to prescribe <strong>Physical Height Growth, Age N→N+3 Brain & Learning Roadmap, and Pinpoint Supplements, Toys & Books</strong>.'
+          : '📘 <strong>[학부모용 우리 아이 성장·학습 가이드북]</strong> 아이의 생년월일과 신체 계측치를 바탕으로 <strong>키·육체적 성장, 만 N→N+3세 정신·두뇌 발달 및 시기별 학습 로드맵, 맞춤 영양제·교구·도서</strong>를 안내합니다.';
       }
     }
   }
@@ -991,6 +1003,16 @@
     updateMphPreview();
     syncDobAndAutoStage();
     syncTargetSubjectMode();
+
+    // Listen to language switch events so dynamic wizard labels update immediately
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('taller-language-change', () => {
+        goToStep(wizardState.currentStep);
+        syncDobAndAutoStage();
+        syncTargetSubjectMode();
+        updateMphPreview();
+      });
+    }
 
     // Brand Showcase -> Studio Mode Entry & Return Buttons
     const btnEnterTop = document.getElementById('btn-enter-studio-top');

@@ -291,14 +291,15 @@
     // Ensure this diagnosis is recorded into the DB
     recordUserDiagnosis(profile, computedMetrics);
 
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const comp = getCohortComparisonForProfile(profile, computedMetrics);
     const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
-    const subjectLabel = isYouthSelf ? '청소년·본인' : '학부모(우리 아이)';
+    const subjectLabel = isYouthSelf ? (isEn ? 'Your' : '청소년·본인') : (isEn ? 'Child' : '학부모(우리 아이)');
 
     const historyRowsHtml = comp.localHistory.map((h, idx) => `
       <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #60A5FA; font-weight: 800;">#${idx + 1} ${idx === 0 ? '<span style="background:rgba(16,185,129,0.2);color:#34D399;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">방금 저장됨</span>' : ''}</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #CBD5E1; font-weight: 700;">${h.birthDateStr || `만 ${h.ageYears}세`} (${h.exactMonths}개월)</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #60A5FA; font-weight: 800;">#${idx + 1} ${idx === 0 ? `<span style="background:rgba(16,185,129,0.2);color:#34D399;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">${isEn ? 'Saved Now' : '방금 저장됨'}</span>` : ''}</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #CBD5E1; font-weight: 700;">${h.birthDateStr || (isEn ? `Age ${h.ageYears}` : `만 ${h.ageYears}세`)} (${h.exactMonths} ${isEn ? 'mos' : '개월'})</td>
         <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #FFFFFF; font-weight: 800;">${h.currentHeight}cm / ${h.currentWeight}kg</td>
         <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #34D399; font-weight: 800;">${h.optimizedHeight}cm (+${h.potentialGainCm}cm)</td>
       </tr>
@@ -312,11 +313,11 @@
               CHAPTER 05 · REALTIME COHORT DB &amp; SELF-IMPROVEMENT LOOP
             </span>
             <h3 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
-              🗄️ 5. 입력 데이터 DB 코호트 비교 &amp; 독자 AI 자가개선 피드백 루프
+              🗄️ 5. ${isEn ? 'User Cohort DB Benchmark & Autonomous AI Self-Improvement Loop' : '입력 데이터 DB 코호트 비교 &amp; 독자 AI 자가개선 피드백 루프'}
             </h3>
           </div>
           <span style="font-size: 0.74rem; color: #34D399; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 0.28rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
-            ✓ 입력 데이터 DB 저장 완료 (누적 ${comp.totalCohortRecords}건 코호트 연동)
+            ✓ ${isEn ? `Saved to Cohort DB (${comp.totalCohortRecords} Records Linked)` : `입력 데이터 DB 저장 완료 (누적 ${comp.totalCohortRecords}건 코호트 연동)`}
           </span>
         </div>
 
@@ -324,24 +325,24 @@
           <!-- Box 1: Age-Band Cohort Comparison -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem;">
             <div style="font-size: 0.75rem; font-weight: 800; color: #60A5FA; margin-bottom: 0.35rem;">
-              📊 동일 연령대(${comp.benchmark.label_ko}, n=${comp.bandSampleSize}) 누적 입력 DB 대조
+              📊 ${isEn ? `Same-Age Cohort Benchmark (n=${comp.bandSampleSize})` : `동일 연령대(${comp.benchmark.label_ko}, n=${comp.bandSampleSize}) 누적 입력 DB 대조`}
             </div>
             <div style="font-size: 0.81rem; color: #E2E8F0; line-height: 1.5; margin-bottom: 0.45rem;">
-              • <strong>코호트 평균 잠재 도약폭:</strong> <span style="color:#60A5FA;font-weight:800;">+${comp.benchmark.avg_potential_gain_cm}cm</span> vs <strong>현재 ${subjectLabel} 잠재 도약폭:</strong> <span style="color:#34D399;font-weight:900;">+${comp.userPotentialGainCm}cm</span><br>
-              • <strong>이 연령대 최다 병목 요인:</strong> ${comp.benchmark.top_habit_ko}<br>
-              • <strong>코호트 검증 1순위 솔루션:</strong> <span style="color:#FDE68A;font-weight:700;">${comp.benchmark.top_pinpoint_rx_ko}</span>
+              • <strong>${isEn ? 'Cohort Avg Potential Gain:' : '코호트 평균 잠재 도약폭:'}</strong> <span style="color:#60A5FA;font-weight:800;">+${comp.benchmark.avg_potential_gain_cm}cm</span> vs <strong>${isEn ? `${subjectLabel} Potential Gain:` : `현재 ${subjectLabel} 잠재 도약폭:`}</strong> <span style="color:#34D399;font-weight:900;">+${comp.userPotentialGainCm}cm</span><br>
+              • <strong>${isEn ? 'Top Cohort Bottleneck:' : '이 연령대 최다 병목 요인:'}</strong> ${comp.benchmark.top_habit_ko}<br>
+              • <strong>${isEn ? 'Top Validated Solution:' : '코호트 검증 1순위 솔루션:'}</strong> <span style="color:#FDE68A;font-weight:700;">${comp.benchmark.top_pinpoint_rx_ko}</span>
             </div>
           </div>
 
           <!-- Box 2: How Input Data Drives Autonomous Self-Improvement -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem;">
             <div style="font-size: 0.75rem; font-weight: 800; color: #C4B5FD; margin-bottom: 0.35rem;">
-              🔄 입력 데이터 기반 K-GROWTH AI™ 자가개선(Self-Improvement) 작동 내역
+              🔄 ${isEn ? 'K-GROWTH AI™ Autonomous Self-Improvement Status' : '입력 데이터 기반 K-GROWTH AI™ 자가개선(Self-Improvement) 작동 내역'}
             </div>
             <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.5;">
-              • <strong>집중 학습 도메인 자동 가중치:</strong> <span style="color:#C4B5FD;font-weight:800;">${comp.activeDomainLabelKo} (×${comp.activeLearningWeight}배 증폭)</span><br>
-              • <strong>자가개선 엔진 조치:</strong> ${comp.activeDomainActionKo}<br>
-              • <strong>가이드북 정밀화:</strong> 입력된 생년월일·저해요인 패턴이 30분 주기 학술 크롤러 및 핀셋 추천 알고리즘을 자동 교정합니다.
+              • <strong>${isEn ? 'Auto-Learning Domain Weight:' : '집중 학습 도메인 자동 가중치:'}</strong> <span style="color:#C4B5FD;font-weight:800;">${comp.activeDomainLabelKo} (×${comp.activeLearningWeight}x)</span><br>
+              • <strong>${isEn ? 'Self-Improvement Action:' : '자가개선 엔진 조치:'}</strong> ${comp.activeDomainActionKo}<br>
+              • <strong>${isEn ? 'Continuous Refinement:' : '가이드북 정밀화:'}</strong> ${isEn ? 'Your DOB and habit patterns automatically calibrate our 30-minute academic crawler and pinpoint curator.' : '입력된 생년월일·저해요인 패턴이 30분 주기 학술 크롤러 및 핀셋 추천 알고리즘을 자동 교정합니다.'}
             </div>
           </div>
         </div>
@@ -349,17 +350,17 @@
         <!-- Personal Growth Guidebook Log Table -->
         <div style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.85rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-            <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">📒 나의 성장 가이드북 누적 진단 기록장 (자동 저장됨)</span>
-            <span style="font-size: 0.7rem; color: #94A3B8;">입력할 때마다 성장 궤적 변화가 자동 축적됩니다</span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">📒 ${isEn ? 'My Cumulative Growth Guidebook Log (Auto-Saved)' : '나의 성장 가이드북 누적 진단 기록장 (자동 저장됨)'}</span>
+            <span style="font-size: 0.7rem; color: #94A3B8;">${isEn ? 'Automatically tracks longitudinal trajectory changes' : '입력할 때마다 성장 궤적 변화가 자동 축적됩니다'}</span>
           </div>
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
               <thead>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.72rem; color: #94A3B8;">
-                  <th style="padding: 0.35rem 0.5rem;">회차</th>
-                  <th style="padding: 0.35rem 0.5rem;">생년월일 (정밀 월령)</th>
-                  <th style="padding: 0.35rem 0.5rem;">계측 키 / 체중</th>
-                  <th style="padding: 0.35rem 0.5rem;">최적화 잠재키</th>
+                  <th style="padding: 0.35rem 0.5rem;">${isEn ? 'Entry' : '회차'}</th>
+                  <th style="padding: 0.35rem 0.5rem;">${isEn ? 'DOB (Exact Age)' : '생년월일 (정밀 월령)'}</th>
+                  <th style="padding: 0.35rem 0.5rem;">${isEn ? 'Height / Weight' : '계측 키 / 체중'}</th>
+                  <th style="padding: 0.35rem 0.5rem;">${isEn ? 'Optimized Potential' : '최적화 잠재키'}</th>
                 </tr>
               </thead>
               <tbody>

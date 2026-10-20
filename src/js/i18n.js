@@ -34,8 +34,76 @@
 
       // Hero
       'hero.badge': 'K-GROWTH AI™ · 학부모 & 초·중·고 학생 맞춤 성장·학습 플랫폼',
-      'hero.headline': '아이의 키·몸·마음 성장과 학습이 고민인 부모님,\n더 크고 싶은 학생이 찾던 해답이 여기 있습니다',
+      'hero.headline': '아이의 성장과 학습이 고민인 부모님,\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #FFFFFF 0%, #38BDF8 55%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">더 크고 싶은 학생의 해답이 여기 있습니다</span>',
       'hero.subtitle': '생년월일과 현재 상태만 입력하면, 독자 개발 AI가 숨은 잠재키 예측부터 시기별 정신·두뇌 발달, 맞춤 학습법, 꼭 필요한 영양제·교구·도서까지 한 권의 가이드북으로 정리해 드립니다.',
+      'nav.forWhom': '대상 안내',
+      'nav.services': '제공 서비스',
+      'hero.cta.parent': '👨‍👩‍👧 학부모용 · 우리 아이 진단 시작하기 →',
+      'hero.cta.youth': '🙋 초·중·고 학생용 · 내 잠재키 진단 시작하기 →',
+
+      // For Whom Section
+      'forWhom.kicker': 'WHO IT\'S FOR',
+      'forWhom.title': '누구를 위한 플랫폼인가요?',
+      'forWhom.sub': '막연한 정보 대신, 지금 내 아이와 학생 본인에게 꼭 필요한 성장과 학습의 기준을 제시합니다.',
+      'forWhom.parent.badge': 'FOR PARENTS · 학부모님',
+      'forWhom.parent.title': '아이의 키·몸·마음 성장과 시기별 학습법',
+      'forWhom.parent.b1': '현재 키 백분위와 최종 몇 cm까지 클 수 있는지 궁금한 부모님',
+      'forWhom.parent.b2': '만 3세→4세→5세… 나이별 신체·정서·두뇌 발달과 학습 방향이 고민인 분',
+      'forWhom.parent.b3': '지금 꼭 필요한 영양제·놀이 교구·필독 도서를 명확히 추천받고 싶은 분',
+      'forWhom.parent.btn': '학부모용 맞춤 가이드북 시작하기 →',
+      'forWhom.student.badge': 'FOR STUDENTS · 초등학생 이상 학생·청소년',
+      'forWhom.student.title': '더 크고 싶은 학생의 몸 관리와 공부 습관',
+      'forWhom.student.b1': '내 성장판 골든타임 잔여 기간과 숨은 잠재키를 알고 싶은 학생',
+      'forWhom.student.b2': '키가 크는 수면 시간, 거북목·척추 스트레칭, 식습관을 실천하고 싶은 학생',
+      'forWhom.student.b3': '두뇌 집중력과 자기주도 학습 효율을 높이는 구체적 루틴이 필요한 학생',
+      'forWhom.student.btn': '학생·본인용 맞춤 가이드북 시작하기 →',
+
+      // Services Section
+      'services.kicker': 'OUR SERVICES',
+      'services.title': '우리가 제공하는 3가지 핵심 서비스',
+      'services.sub': '1분 설문을 마치면 아래 3가지 맞춤형 리포트가 한 권의 가이드북으로 즉시 발행됩니다.',
+      'services.s1.title': '키 & 육체적 성장 정밀 진단',
+      'services.s1.desc': '생년월일과 부모 키, 수면·식습관을 바탕으로 현재 키 백분위, 방치 시 예측키 vs 관리 시 최대 잠재키를 산출하고 단·중·장기 신체 성장 루틴을 제시합니다.',
+      'services.s2.title': '정신적 성장 & 시기별 맞춤 학습 가이드',
+      'services.s2.desc': '나이에 맞춰 성장 단계를 자동 설정하고, 올해(만 N세)부터 내년·내후년(만 N+3세)까지 꼭 챙겨야 할 두뇌·정서 발달 과제와 시기별 학습 방향을 알려드립니다.',
+      'services.s3.title': '1:1 맞춤 영양제 · 교구 · 도서 추천',
+      'services.s3.desc': '막연한 상품 나열이 아니라, 진단 결과에 꼭 필요한 성분별 영양제(황기추출물·칼슘 등), 소근육·두뇌 장난감, 필독 도서만 핀셋으로 연결해 드립니다.',
+      'services.basis': '🏛️ 분석 기준: 질병관리청(KDCA) 성장도표 · 보건복지부 영유아 발달선별검사(K-DST) · 국제 학술 논문 DB & 입력 코호트 자가학습',
+
+      // Studio & Quiz Extra Keys
+      'studio.bar.title': '✦ KIDS-FIT AI · 1:1 맞춤형 성장 & 학습 진단',
+      'studio.bar.back': '← 첫 화면(서비스 소개)으로 돌아가기',
+      'presets.bar.label': '⚡ 1초 임상 프리셋:',
+      'preset.chip.1': '👶 영유아 3세',
+      'preset.chip.2': '🧒 아동기 7세',
+      'preset.chip.3': '👦 사춘기 10세',
+      'preset.chip.4': '⚡ 급성장 13세',
+      'preset.chip.5': '🌟 청소년 16세',
+      'quiz.edition.label': '📘 맞춤형 성장 가이드북 에디션 선택',
+      'quiz.edition.child': '👶 학부모 모드 — 우리 아이 성장 가이드북 (영유아·아동·청소년)',
+      'quiz.edition.self': '🙋 청소년·본인 모드 — 나의 잠재키 & 두뇌 성장 가이드북',
+      'quiz.dob.hint1': '✨ 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다 (일수 단위 AI 보정 완료)',
+      'quiz.mph.label': '실시간 부모 유전 표적키 (Tanner MPH)',
+      'quiz.region.label': '거주 지역 (지역 환경 & 탐구 코스 연동)',
+      'quiz.autostage.badge': '🤖 독자 개발 K-GROWTH AI™ 기반 【성장단계 & 골연령 진행도】 자동 설정 완료!',
+      'quiz.autostage.manualLabel': '자동 매핑된 성장 단계 확인 (필요 시 터치하여 수동 변경 가능)',
+      'quiz.habits.label': '수면·영양·자세 생체 저해 요인 체크 (복수 선택 가능)',
+      'quiz.habits.hint': '해당되는 요인은 수면 중 성장호르몬 분비 억제율(-52% max) 및 예측키 손실치 계산에 반영됩니다.',
+      'quiz.cog.label': '연령별 두뇌·신경인지 핵심 관심 축 (5대 영역)',
+      'quiz.cog.hint': '신경가소성 골든타임 프로토콜과 주말 하브루타 탐구 테마를 생성합니다.',
+      'quiz.submit.btn': '✦ 맞춤형 성장·학습 가이드북 발행하기 →',
+      'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 코퍼스를 대조하여 맞춤 가이드북을 편찬하고 있습니다.',
+      'results.tab1.title': '신체 성장 백분위 & 골연령 예측 궤적 (Auxology)',
+      'results.tab1.desc': '독자 개발 K-GROWTH AI™ 기반 Z-Score, 연간 성장속도(cm/yr), 부모 유전 표적키(MPH ±8.5cm) 및 3단 성인 예측키 시뮬레이션입니다.',
+      'results.tab2.title': '24시간 호르몬 궤적 & 임상 영양 생체이용률',
+      'results.tab2.desc': '취침 시각 및 야식 시간에 따른 서파수면(SWS) 성장호르몬 분비 억제율(-52% max)과 체중 비례 영양소 흡수율 게이지입니다.',
+      'results.tab3.title': '척추 감압 & 성장판 미세자극 스튜디오',
+      'results.tab3.desc': '추간판 수분 복원(+1.8cm) 및 볼프의 법칙(Wolff\'s Law)에 기반한 3대 임상 운동 루틴과 실시간 카운트다운 스톱워치입니다.',
+      'results.tab4.title': '연령별 뇌인지 발달 & 주말 하브루타 탐구 로드맵',
+      'results.tab4.desc': '5각 뇌인지 밸런스 레이더 SVG 차트, 연령대별 대뇌 피질 재조직화 가이드 및 주말 탐구 3단계 하브루타 질문 세트입니다.',
+      'results.tab5.title': '90일 성장·루틴 트래커 & 대학병원 스타일 A4 정밀 리포트',
+      'results.tab5.desc': '신장·체중 연속 기록 트래커와 클릭 한 번으로 인쇄/PDF 저장 가능한 2페이지 정밀 임상 결과지입니다.',
+      'footer.disclaimer': '본 서비스는 KIDS-FIT AI가 독자 개발한 K-GROWTH AI™ 알고리즘 및 US CDC 2000, WHO Growth Standards, 질병관리청(KDCA 2017) 소아청소년 성장도표, 보건복지부 한국 영유아 발달선별검사(K-DST) 학술 지표를 기반으로 산출된 맞춤형 가이드북이며, 전문의의 진료를 대신하지 않습니다.',
 
       // Presets
       'presets.badge': '연령대별 빠른 데모',
@@ -136,8 +204,76 @@
 
       // Hero
       'hero.badge': 'K-GROWTH AI™ · For Concerned Parents & Growing Students',
-      'hero.headline': 'For Parents Concerned About Growth & Learning,\nAnd Students Who Want to Grow Taller — Your Answer Is Here',
+      'hero.headline': 'For Parents Guiding Growth & Learning,\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #FFFFFF 0%, #38BDF8 55%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">And Students Who Want to Grow Taller</span>',
       'hero.subtitle': 'Enter your birth date and current stats. Our proprietary AI builds a clear, personalized guidebook covering potential height, mental & brain development, age-fit learning, and pinpoint nutrition & books.',
+      'nav.forWhom': 'Who It\'s For',
+      'nav.services': 'Our Services',
+      'hero.cta.parent': '👨‍👩‍👧 For Parents · Start Child Diagnosis →',
+      'hero.cta.youth': '🙋 For Students · Start My Height Diagnosis →',
+
+      // For Whom Section
+      'forWhom.kicker': 'WHO IT\'S FOR',
+      'forWhom.title': 'Who Is This Platform For?',
+      'forWhom.sub': 'Clear, science-backed growth and learning roadmaps tailored for parents and students.',
+      'forWhom.parent.badge': 'FOR PARENTS',
+      'forWhom.parent.title': 'Your Child\'s Physical, Mental Growth & Age-Fit Learning',
+      'forWhom.parent.b1': 'Parents curious about current height percentile and maximum predicted adult height',
+      'forWhom.parent.b2': 'Parents seeking year-by-year (Age N to N+3) physical, emotional & brain learning milestones',
+      'forWhom.parent.b3': 'Parents looking for pinpoint supplements, developmental toys & essential books',
+      'forWhom.parent.btn': 'Start Parent Edition Guidebook →',
+      'forWhom.student.badge': 'FOR ELEMENTARY, MIDDLE & HIGH SCHOOL STUDENTS',
+      'forWhom.student.title': 'Grow Taller & Build Self-Directed Study Habits',
+      'forWhom.student.b1': 'Students wanting to know their remaining growth plate window and hidden height potential',
+      'forWhom.student.b2': 'Students ready to practice optimal sleep timing, posture stretching & nutrition routines',
+      'forWhom.student.b3': 'Students aiming to boost prefrontal focus and self-directed academic performance',
+      'forWhom.student.btn': 'Start Student Edition Guidebook →',
+
+      // Services Section
+      'services.kicker': 'OUR SERVICES',
+      'services.title': 'Three Core Services We Provide',
+      'services.sub': 'Complete a 1-minute survey to receive all three personalized reports in one guidebook.',
+      'services.s1.title': 'Height & Physical Growth Diagnosis',
+      'services.s1.desc': 'Analyzes birth date, parental height, sleep, and diet to predict adult height potential and actionable short, mid, and long-term physical growth routines.',
+      'services.s2.title': 'Mental Growth & Age-Fit Learning Guide',
+      'services.s2.desc': 'Auto-detects growth stage by age and maps out year-by-year (Age N to N+3) brain, emotional development, and age-appropriate learning strategies.',
+      'services.s3.title': '1:1 Pinpoint Supplements, Toys & Books',
+      'services.s3.desc': 'Curates exact active-ingredient supplements, fine-motor/brain tools, and essential reading matched directly to your diagnosis.',
+      'services.basis': '🏛️ Clinical Basis: US CDC 2000 · WHO Growth Standards · KDCA National Charts · K-DST Milestones · Peer-Reviewed DB',
+
+      // Studio & Quiz Extra Keys
+      'studio.bar.title': '✦ KIDS-FIT AI · 1:1 Personalized Growth & Learning Diagnosis',
+      'studio.bar.back': '← Back to Service Overview',
+      'presets.bar.label': '⚡ 1-Sec Demo Presets:',
+      'preset.chip.1': '👶 Age 3',
+      'preset.chip.2': '🧒 Age 7',
+      'preset.chip.3': '👦 Age 10',
+      'preset.chip.4': '⚡ Age 13',
+      'preset.chip.5': '🌟 Age 16',
+      'quiz.edition.label': '📘 Select Personalized Guidebook Edition',
+      'quiz.edition.child': '👶 Parent Mode — Child Growth & Learning Guidebook',
+      'quiz.edition.self': '🙋 Student Mode — My Potential Height & Learning Guidebook',
+      'quiz.dob.hint1': '✨ Even in the same birth year, Jan vs. Dec births differ by up to 4.8 cm (AI day-level calibration active)',
+      'quiz.mph.label': 'Real-Time Mid-Parental Target Height (Tanner MPH)',
+      'quiz.region.label': 'Region (For Local Museum & Inquiry Courses)',
+      'quiz.autostage.badge': '🤖 K-GROWTH AI™ Auto-Detected Growth Stage & Bone Maturation!',
+      'quiz.autostage.manualLabel': 'Auto-Selected Growth Stage (Click below only if you wish to override)',
+      'quiz.habits.label': 'Sleep, Nutrition & Posture Inhibition Factors (Select all that apply)',
+      'quiz.habits.hint': 'Selected factors are used to compute nocturnal GH suppression (-52% max) and height loss penalties.',
+      'quiz.cog.label': 'Core Brain & Learning Focus Domains (Select all that apply)',
+      'quiz.cog.hint': 'Generates age-specific neuroplasticity and inquiry learning protocols.',
+      'quiz.submit.btn': '✦ Generate My Growth & Learning Guidebook →',
+      'loader.desc': 'Cross-referencing day-calibrated birth data with 1,200+ peer-reviewed studies to compile your guidebook.',
+      'results.tab1.title': 'Physical Growth Percentile & Bone Age Trajectory (Auxology)',
+      'results.tab1.desc': 'K-GROWTH AI™ Z-Score, annual growth velocity, Tanner Mid-Parental Height (MPH ±8.5 cm), and 3-tier adult height simulation.',
+      'results.tab2.title': '24-Hour Hormone Curve & Clinical Bio-Nutrition',
+      'results.tab2.desc': 'Slow-wave sleep (SWS) GH suppression simulation (-52% max) and weight-proportional nutrient bioavailability gauges.',
+      'results.tab3.title': 'Spinal Decompression & Epiphyseal Biomechanics Studio',
+      'results.tab3.desc': 'Intervertebral disc rehydration (+1.8 cm) and Wolff\'s Law mechanical loading routines with interactive countdown timers.',
+      'results.tab4.title': 'Neuro-Cognitive Matrix & Weekend Havruta Inquiry Roadmap',
+      'results.tab4.desc': '5-axis neuro-cognitive balance radar chart, age-specific cortical development guide, and 3-step inquiry dialogue prompts.',
+      'results.tab5.title': '90-Day Growth Tracker & Hospital-Style A4 Clinical Report',
+      'results.tab5.desc': 'Continuous height/weight streak tracker and 1-click printable 2-page A4 clinical report.',
+      'footer.disclaimer': 'Powered by proprietary K-GROWTH AI™ algorithms and official US CDC 2000, WHO Growth Standards, KDCA 2017 Growth Charts, and K-DST developmental milestones. This guidebook is for educational and wellness guidance and does not replace medical diagnosis.',
 
       // Presets
       'presets.badge': 'Clinical Demo Presets',
@@ -390,6 +526,44 @@
     if (langBtn) {
       langBtn.textContent = currentLang === 'ko' ? '🇺🇸 EN (CDC)' : '🇰🇷 KO (KDCA)';
       langBtn.title = currentLang === 'ko' ? 'Switch to Global Mode (EN / CDC / Imperial)' : '한국어 모드로 전환 (KDCA / Metric)';
+    }
+
+    // 3b. Translate DOB & Region select option labels
+    const yearSel = document.getElementById('child-birth-year');
+    if (yearSel && yearSel.options) {
+      Array.from(yearSel.options).forEach((opt) => {
+        opt.textContent = currentLang === 'en' ? `Born ${opt.value}` : `${opt.value}년생`;
+      });
+    }
+    const monthNamesEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthSel = document.getElementById('child-birth-month');
+    if (monthSel && monthSel.options) {
+      Array.from(monthSel.options).forEach((opt) => {
+        const mIdx = (parseInt(opt.value, 10) || 1) - 1;
+        opt.textContent = currentLang === 'en' ? (monthNamesEn[mIdx] || `Month ${opt.value}`) : `${opt.value}월`;
+      });
+    }
+    const daySel = document.getElementById('child-birth-day');
+    if (daySel && daySel.options) {
+      Array.from(daySel.options).forEach((opt) => {
+        opt.textContent = currentLang === 'en' ? `Day ${opt.value}` : `${opt.value}일`;
+      });
+    }
+    const regionMapEn = {
+      '서울 강남·서초·송파': 'Seoul South (Gangnam · Seocho · Songpa)',
+      '서울 강북·마포·용산': 'Seoul Central/North (Mapo · Yongsan)',
+      '경기 남부(분당·수원·용인·동탄)': 'Gyeonggi South (Bundang · Suwon · Yongin)',
+      '경기 북부·인천': 'Gyeonggi North & Incheon',
+      '부산·경남': 'Busan & Gyeongnam',
+      '대구·경북': 'Daegu & Gyeongbuk',
+      '대전·충청': 'Daejeon & Chungcheong',
+      '광주·전라·기타': 'Gwangju · Jeolla & Other Regions'
+    };
+    const regionSel = document.getElementById('user-region');
+    if (regionSel && regionSel.options) {
+      Array.from(regionSel.options).forEach((opt) => {
+        opt.textContent = currentLang === 'en' ? (regionMapEn[opt.value] || opt.value) : opt.value;
+      });
     }
 
     // 4. Update unit labels in inputs

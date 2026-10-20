@@ -525,7 +525,10 @@
         dashboard.classList.remove('hidden');
         dashboard.style.display = 'block';
         if (headerTitle) {
-          headerTitle.textContent = `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+          headerTitle.textContent = isEn
+            ? `Custom Growth & Learning Guidebook (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`
+            : `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
         }
         if (avatarEl) {
           avatarEl.textContent = state.profile.gender === 'boy' ? '👦' : '👧';
@@ -594,6 +597,14 @@
     if (!AdminOsmu && global.KidsFitAdminOsmu) AdminOsmu = global.KidsFitAdminOsmu;
 
     if (typeof document === 'undefined') return;
+
+    const headerTitleEl = document.getElementById('rx-header-title');
+    if (headerTitleEl) {
+      const isEn = document.documentElement.lang === 'en';
+      headerTitleEl.textContent = isEn
+        ? `Custom Growth & Learning Guidebook (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`
+        : `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+    }
 
     const affConfig = getAffiliateConfig();
 
@@ -1082,6 +1093,15 @@
       initialStepTag.textContent = 'Step 1 / 6';
     }
     syncStateToForm(state.profile);
+
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('taller-language-change', () => {
+        const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+        if (state.isPrescriptionIssued || (dashboard && !dashboard.classList.contains('hidden'))) {
+          renderPrescriptionResults();
+        }
+      });
+    }
   }
 
   // Auto-init in browser

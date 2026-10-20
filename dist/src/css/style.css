@@ -1907,3 +1907,30 @@ body[data-theme="dark"] .quiz-card,
   color: #FFFFFF;
   transform: translateY(-1px);
 }
+
+/* Strict Single-Line Cadence & Word-Break Prevention */
+body,
+h1, h2, h3, h4,
+p, li, dt, dd,
+.hero-headline,
+.hero-subtitle,
+.mf-section-title,
+.mf-section-sub,
+.mf-glass-card h3,
+.quiz-step-title,
+.briefing-title {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.hero-headline {
+  font-size: clamp(1.45rem, 3.3vw, 2.75rem) !important;
+  line-height: 1.32 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mf-glass-card h3 {
+  font-size: clamp(1.05rem, 2vw, 1.22rem) !important;
+  line-height: 1.38 !important;
+}
+

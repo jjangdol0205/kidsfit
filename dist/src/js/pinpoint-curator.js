@@ -53,6 +53,7 @@
     const ddStr = String(d).padStart(2, '0');
     const birthDateStr = `${y}-${mmStr}-${ddStr}`;
     const birthDateKo = `${y}년 ${mmStr}월 ${ddStr}일생`;
+    const birthDateEn = `Born ${y}-${mmStr}-${ddStr}`;
 
     return {
       birthYear: y,
@@ -60,6 +61,7 @@
       birthDay: d,
       birthDateStr,
       birthDateKo,
+      birthDateEn,
       totalDays,
       ageMonths: clampedMonths,
       exactMonths,
@@ -67,7 +69,7 @@
       ageYears,
       subMonths,
       displayBadgeKo: `생후 ${clampedMonths}개월 ${Math.max(0, remainderDays)}일 (정밀 ${exactMonths}개월 · 만 ${ageYears}세 ${subMonths}개월)`,
-      displayBadgeEn: `${clampedMonths} mos ${Math.max(0, remainderDays)} days (${exactMonths} mos · Age ${ageYears})`
+      displayBadgeEn: `${clampedMonths} mos ${Math.max(0, remainderDays)} days (${exactMonths} mos · Age ${ageYears}y ${subMonths}m)`
     };
   }
 
@@ -104,26 +106,34 @@
     let stageNameKo = 'Phase 1 · 유아·아동 기초 성장기 (성장판 개방률 90%+)';
     let stageNameEn = 'Phase 1 · Foundation Linear Growth Stage (Open Plate 90%+)';
     let boneAgeNoteKo = '골단연골 증식 예비력이 가장 풍부한 시기로, 기초 골밀도와 소근육·전두엽 신경망을 동시에 다지는 구간입니다.';
+    let boneAgeNoteEn = 'Epiphyseal cartilage reserve is at its peak; focus on baseline bone mineral density, fine motor skills, and prefrontal neural pathways.';
     let expectedVelStr = m < 48 ? '연 7.0~9.5cm' : '연 5.5~6.5cm';
+    let expectedVelStrEn = m < 48 ? '7.0–9.5 cm/yr' : '5.5–6.5 cm/yr';
 
     if (m >= phase4Start) {
       tannerPhase = 'phase_4';
       stageNameKo = 'Phase 4 · 후기 체형·척추 디스크 완성기 (숨은 키 1.5~2.5cm 복원)';
       stageNameEn = 'Phase 4 · Late Skeletal Consolidation & Spinal Decompression';
       boneAgeNoteKo = '장관골 골단 유합 후반부로 척추 추체 성장과 거북목·추간판 감압을 통한 실측 숨은 키 복원이 핵심인 구간입니다.';
+      boneAgeNoteEn = 'Late epiphyseal consolidation phase; focus on vertebral alignment and cervical/spinal disc decompression to recover 1.5–2.5 cm of hidden height.';
       expectedVelStr = '연 1.0~2.5cm (+숨은 키 2cm)';
+      expectedVelStrEn = '1.0–2.5 cm/yr (+2 cm posture)';
     } else if (m >= phase3Start) {
       tannerPhase = 'phase_3';
       stageNameKo = 'Phase 3 · 사춘기 후기 감속·성숙 방어기 (잔여 잠재력 4~7cm 집중)';
       stageNameEn = 'Phase 3 · Post-PHV Deceleration & Epiphyseal Defense';
       boneAgeNoteKo = '급성장 정점 이후 성장판이 서서히 닫히기 전 마지막 4~7cm를 사수해야 하는 초긴급 방어 골든타임입니다.';
+      boneAgeNoteEn = 'Post-peak growth window; urgent golden time to defend the remaining 4–7 cm of height potential before growth plate closure.';
       expectedVelStr = '연 4.0~6.0cm';
+      expectedVelStrEn = '4.0–6.0 cm/yr';
     } else if (m >= phase2Start || (m >= 96 && velocityYr >= 7.2)) {
       tannerPhase = 'phase_2';
       stageNameKo = 'Phase 2 · 사춘기 진입 & 제2급성장 피크기 (PHV 골든타임)';
       stageNameEn = 'Phase 2 · Pubertal Onset & Peak Height Velocity (PHV)';
       boneAgeNoteKo = '성장호르몬(GH)과 IGF-1 분비가 폭발하며 일생 중 키가 가장 많이 자라는 급성장 골든타임(연 7~10cm)입니다.';
+      boneAgeNoteEn = 'Peak Height Velocity (PHV) golden window with surging GH & IGF-1 secretion (7.0–10.0 cm/yr).';
       expectedVelStr = '연 7.0~10.0cm';
+      expectedVelStrEn = '7.0–10.0 cm/yr';
     }
 
     return {
@@ -131,7 +141,9 @@
       stageNameKo,
       stageNameEn,
       boneAgeNoteKo,
-      expectedVelStr
+      boneAgeNoteEn,
+      expectedVelStr,
+      expectedVelStrEn
     };
   }
 
@@ -714,11 +726,13 @@
                 : `성장주기별 신체·정신 발달 &amp; 맞춤 학습 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 1}세 → 만 ${ageYears + 2}세 → 만 ${ageYears + 3}세)`}
             </h3>
             <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.25rem 0 0 0;">
-              ${dobText} (생후 ${exactMonths}개월 ${genderKo}) 기준, 올해·내년·내후년에 어떤 신체적·정신적 성장과 학습 방향을 가장 중요하게 챙겨야 하는지 정리했습니다.
+              ${isEn
+                ? `Based on ${profile.birthDateStr || `Age ${ageYears}`} (${exactMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}), here is your sequential physical, cognitive, and learning roadmap for this year and the next 3 years.`
+                : `${dobText} (생후 ${exactMonths}개월 ${genderKo}) 기준, 올해·내년·내후년에 어떤 신체적·정신적 성장과 학습 방향을 가장 중요하게 챙겨야 하는지 정리했습니다.`}
             </p>
           </div>
           <span style="background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.76rem; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.35);">
-            🤖 AI 자동 판정 단계: ${data.autoStage.stageNameKo}
+            🤖 ${isEn ? `AI Stage: ${data.autoStage.stageNameEn}` : `AI 자동 판정 단계: ${data.autoStage.stageNameKo}`}
           </span>
         </div>
 
@@ -728,25 +742,25 @@
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem;">
                   <span style="background: rgba(59, 130, 246, 0.18); color: #60A5FA; font-size: 0.73rem; font-weight: 800; padding: 0.18rem 0.55rem; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.3);">
-                    ${step.stageBadge}
+                    ${isEn ? `Age ${step.age}` : step.stageBadge}
                   </span>
-                  <span style="font-size: 0.72rem; font-weight: 800; color: #34D399;">목표: ${step.expectedVelocity}</span>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #34D399;">${isEn ? `Target: ${step.expectedVelocity}` : `목표: ${step.expectedVelocity}`}</span>
                 </div>
                 <h4 style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0;">
                   ${step.bandLabel}
                 </h4>
                 <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.48; margin-bottom: 0.45rem;">
-                  <strong style="color: #60A5FA;">📏 신체·골격 핵심:</strong> ${step.physicalFocus}
+                  <strong style="color: #60A5FA;">📏 ${isEn ? 'Physical Focus:' : '신체·골격 핵심:'}</strong> ${step.physicalFocus}
                 </div>
                 <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.48; margin-bottom: 0.45rem;">
-                  <strong style="color: #C4B5FD;">🧠 두뇌·발달 핵심:</strong> ${step.brainFocus}
+                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Learning:' : '두뇌·발달 핵심:'}</strong> ${step.brainFocus}
                 </div>
                 <div style="font-size: 0.75rem; color: #FDE68A; line-height: 1.42; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.42rem 0.58rem; border-radius: 8px; margin-bottom: 0.5rem;">
-                  <strong>⚠️ 학부모 주의점:</strong> ${step.parentWarning}
+                  <strong>⚠️ ${isEn ? 'Parent Note:' : '학부모 주의점:'}</strong> ${step.parentWarning}
                 </div>
               </div>
               <div style="font-size: 0.74rem; color: #6EE7B7; font-weight: 700; border-top: 1px dashed rgba(255, 255, 255, 0.12); padding-top: 0.45rem;">
-                🎁 <strong>이 시기 필수 준비물:</strong> ${step.mustHaveSummary}
+                🎁 <strong>${isEn ? 'Key Essentials:' : '이 시기 필수 준비물:'}</strong> ${step.mustHaveSummary}
               </div>
             </div>
           `).join('')}
@@ -757,7 +771,7 @@
       <div id="pinpoint-custom-prescription-section" style="margin-top: 1.5rem; padding-top: 1.35rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div style="margin-bottom: 1rem;">
           <span style="display: inline-block; background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35); margin-bottom: 0.3rem;">
-            🎯 1:1 BESPOKE PINPOINT PRESCRIPTION (영양제 · 놀이 장난감 · 필독 도서)
+            🎯 1:1 BESPOKE PINPOINT PRESCRIPTION ${isEn ? '(Supplements · Toys · Books)' : '(영양제 · 놀이 장난감 · 필독 도서)'}
           </span>
           <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0;">
             ${isEn
@@ -765,7 +779,9 @@
               : `우리 아이(생후 ${exactMonths}개월 ${genderKo}) 맞춤 【영양제 · 놀이 장난감 · 필독 도서】 핀셋 처방`}
           </h3>
           <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.25rem 0 0 0;">
-            막연한 전체 목록이 아니라, 현재 월령·신장·선택 습관에 꼭 필요한 <strong>구체적 성분과 교구·도서</strong>만 엄선했습니다. 버튼을 누르면 해당 상품이 바로 표시됩니다.
+            ${isEn
+              ? 'Curated active ingredients, developmental manipulatives, and age-matched books tailored to your exact age and habits.'
+              : '막연한 전체 목록이 아니라, 현재 월령·신장·선택 습관에 꼭 필요한 <strong>구체적 성분과 교구·도서</strong>만 엄선했습니다. 버튼을 누르면 해당 상품이 바로 표시됩니다.'}
           </p>
         </div>
 
@@ -774,7 +790,7 @@
           <!-- Column 1: Pinpoint Supplements -->
           <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
             <h4 style="font-size: 0.98rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              💊 1. 우리 아이 맞춤 핵심 영양제 처방
+              💊 ${isEn ? '1. Custom Growth Supplements' : '1. 우리 아이 맞춤 핵심 영양제 처방'}
             </h4>
             <div style="display: flex; flex-direction: column; gap: 0.8rem;">
               ${data.supplements.map((item) => `
@@ -786,7 +802,7 @@
                     ${item.name}
                   </div>
                   <div style="font-size: 0.74rem; color: #34D399; font-weight: 800; margin-bottom: 0.35rem;">
-                    🧪 핵심 규격: ${item.activeSpec}
+                    🧪 ${isEn ? 'Spec:' : '핵심 규격:'} ${item.activeSpec}
                   </div>
                   <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
                     ${item.whyNeeded}
@@ -807,7 +823,7 @@
           <!-- Column 2: Pinpoint Developmental Play & Toys -->
           <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
             <h4 style="font-size: 0.98rem; font-weight: 900; color: #34D399; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              🧩 2. 소근육·두뇌·성장판 맞춤 놀이 장난감 &amp; 교구
+              🧩 ${isEn ? '2. Fine-Motor & Cognitive Play Toys' : '2. 소근육·두뇌·성장판 맞춤 놀이 장난감 &amp; 교구'}
             </h4>
             <div style="display: flex; flex-direction: column; gap: 0.8rem;">
               ${data.toys.map((item) => `
@@ -819,7 +835,7 @@
                     ${item.name}
                   </div>
                   <div style="font-size: 0.74rem; color: #60A5FA; font-weight: 800; margin-bottom: 0.35rem;">
-                    🎯 발달 타겟: ${item.activeSpec}
+                    🎯 ${isEn ? 'Target:' : '발달 타겟:'} ${item.activeSpec}
                   </div>
                   <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
                     ${item.whyNeeded}
@@ -835,7 +851,7 @@
           <!-- Column 3: Pinpoint Books & Workbooks -->
           <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
             <h4 style="font-size: 0.98rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              📚 3. 월령·인지축 맞춤 필독 도서 &amp; 워크북
+              📚 ${isEn ? '3. Age-Matched Books & Workbooks' : '3. 월령·인지축 맞춤 필독 도서 &amp; 워크북'}
             </h4>
             <div style="display: flex; flex-direction: column; gap: 0.8rem;">
               ${data.books.map((item) => `
@@ -847,7 +863,7 @@
                     ${item.name}
                   </div>
                   <div style="font-size: 0.74rem; color: #C4B5FD; font-weight: 800; margin-bottom: 0.35rem;">
-                    📖 두뇌 자극: ${item.activeSpec}
+                    📖 ${isEn ? 'Focus:' : '두뇌 자극:'} ${item.activeSpec}
                   </div>
                   <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
                     ${item.whyNeeded}
