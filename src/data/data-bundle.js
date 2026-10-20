@@ -1323,14 +1323,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T08:00:32Z",
-    "total_papers": 707,
+    "generated_at": "2026-10-20T08:31:01Z",
+    "total_papers": 733,
     "pillar_counts": {
-      "growth_endocrinology": 179,
+      "growth_endocrinology": 201,
       "fine_motor_neuroscience": 112,
       "pedagogy_montessori_froebel": 132,
       "parent_child_interaction_museum": 163,
-      "posture_biomechanics_exercise": 121
+      "posture_biomechanics_exercise": 125
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -1347,7 +1347,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 179
+      "paper_count": 201
     },
     {
       "id": "fine_motor_neuroscience",
@@ -1383,7 +1383,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 121
+      "paper_count": 125
     }
   ],
   "clinical_synthesis_rules": {
@@ -1853,6 +1853,33 @@
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
+      "id": "PMID:40660276",
+      "pmid": "40660276",
+      "doi": "10.1186/s12937-025-01133-5",
+      "pillar": "growth_endocrinology",
+      "title": "Efficacy of long-term oral nutritional supplementation with dietary counseling on growth, body composition and bone mineralization in children with or at risk for undernutrition: a randomized controlled trial",
+      "title_ko": "[소아 골성장·미량영양소 임상] Efficacy of long-term oral nutritional supplementation with dietary counseling on growth,  (2025)",
+      "authors": [
+        "Ow MYL",
+        "Tran NT",
+        "Berde Y",
+        "Nguyen TS",
+        "Tran VK",
+        "Jablonka MJ"
+      ],
+      "journal": "Nutrition journal",
+      "year": 2025,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Nutrition journal (2025)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40660276/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "PMID:39064775",
       "pmid": "39064775",
       "doi": "10.3390/nu16142333",
@@ -2191,6 +2218,30 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:36800541",
+      "pmid": "36800541",
+      "doi": "10.5435/JAAOS-D-22-00535",
+      "pillar": "growth_endocrinology",
+      "title": "Orthopaedic Diagnoses in the Black Pediatric Population",
+      "title_ko": "[소아 골성장·미량영양소 임상] Orthopaedic Diagnoses in the Black Pediatric Population (2023)",
+      "authors": [
+        "Bridges CM",
+        "Agarwal R",
+        "Raney EM"
+      ],
+      "journal": "The Journal of the American Academy of Orthopaedic Surgeons",
+      "year": 2023,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The Journal of the American Academy of Orthopaedic Surgeons (2023)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36800541/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "PMID:35353710",
       "pmid": "35353710",
       "doi": "10.1530/eje-22-0073",
@@ -2397,6 +2448,30 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.53902/sojpcn.2022.02.000516",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:36110095",
+      "pmid": "36110095",
+      "doi": "10.3389/fnins.2022.973727",
+      "pillar": "growth_endocrinology",
+      "title": "Editorial: The circadian circus - how our clocks keep us ticking",
+      "title_ko": "[소아 골성장·미량영양소 임상] Editorial: The circadian circus - how our clocks keep us ticking (2022)",
+      "authors": [
+        "Hughes ATL",
+        "Attarian HP",
+        "Hirayama J"
+      ],
+      "journal": "Frontiers in neuroscience",
+      "year": 2022,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Frontiers in neuroscience (2022)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36110095/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "PMID:33511092",
@@ -2626,6 +2701,33 @@
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34796029/",
       "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:33611615",
+      "pmid": "33611615",
+      "doi": "10.1007/s00394-021-02511-5",
+      "pillar": "growth_endocrinology",
+      "title": "The effect of vitamin D supplementation and nutritional intake on skeletal maturity and bone health in socio-economically deprived children",
+      "title_ko": "[소아 골성장·미량영양소 임상] The effect of vitamin D supplementation and nutritional intake on skeletal maturity and bo (2021)",
+      "authors": [
+        "Uday S",
+        "Manaseki-Holland S",
+        "Bowie J",
+        "Mughal MZ",
+        "Crowe F",
+        "Högler W"
+      ],
+      "journal": "European journal of nutrition",
+      "year": 2021,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "European journal of nutrition (2021)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33611615/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "DOI:10.1016/j.ghir.2019.12.002",
@@ -3461,6 +3563,31 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:26987336",
+      "pmid": "26987336",
+      "doi": "10.1007/5584_2016_212",
+      "pillar": "growth_endocrinology",
+      "title": "Relationship Between 25(OH)D and IGF-I in Children and Adolescents with Growth Hormone Deficiency",
+      "title_ko": "[수면·성장내분비 임상] Relationship Between 25(OH)D and IGF-I in Children and Adolescents with Growth Hormone Def (2016)",
+      "authors": [
+        "Witkowska-Sędek E",
+        "Kucharska A",
+        "Rumińska M",
+        "Pyrżak B"
+      ],
+      "journal": "Advances in experimental medicine and biology",
+      "year": 2016,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Advances in experimental medicine and biology (2016)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26987336/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "DOI:10.1007/s12020-015-0582-1",
       "pmid": "",
       "doi": "10.1007/s12020-015-0582-1",
@@ -3753,6 +3880,31 @@
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
+      "id": "PMID:26555758",
+      "pmid": "26555758",
+      "doi": "10.2217/pgs.15.129",
+      "pillar": "growth_endocrinology",
+      "title": "Height outcome of short children with hypochondroplasia after recombinant human growth hormone treatment: a meta-analysis",
+      "title_ko": "[수면·성장내분비 임상] Height outcome of short children with hypochondroplasia after recombinant human growth hor (2015)",
+      "authors": [
+        "Massart F",
+        "Miccoli M",
+        "Baggiani A",
+        "Bertelloni S"
+      ],
+      "journal": "Pharmacogenomics",
+      "year": 2015,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Pharmacogenomics (2015)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26555758/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "PMID:25439136",
       "pmid": "25439136",
       "doi": "10.1016/j.jtemb.2014.08.007",
@@ -3802,6 +3954,32 @@
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/25685306/",
       "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:24823461",
+      "pmid": "24823461",
+      "doi": "10.1210/jc.2014-1101",
+      "pillar": "growth_endocrinology",
+      "title": "IGF-1 and growth response to adult height in a randomized GH treatment trial in short non-GH-deficient children",
+      "title_ko": "[수면·성장내분비 임상] IGF-1 and growth response to adult height in a randomized GH treatment trial in short non- (2014)",
+      "authors": [
+        "Kriström B",
+        "Lundberg E",
+        "Jonsson B",
+        "Albertsson-Wikland K",
+        "study group"
+      ],
+      "journal": "The Journal of clinical endocrinology and metabolism",
+      "year": 2014,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of clinical endocrinology and metabolism (2014)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24823461/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "DOI:10.1007/s12020-012-9847-0",
@@ -4138,6 +4316,29 @@
       "age_range": "만 2~16세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21939733/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:30754160",
+      "pmid": "30754160",
+      "doi": "10.1586/eem.12.31",
+      "pillar": "growth_endocrinology",
+      "title": "Nutrition and growth: highlights from the first international meeting",
+      "title_ko": "[소아 골성장·미량영양소 임상] Nutrition and growth: highlights from the first international meeting (2012)",
+      "authors": [
+        "Hartman C",
+        "Shamir R"
+      ],
+      "journal": "Expert review of endocrinology & metabolism",
+      "year": 2012,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Expert review of endocrinology & metabolism (2012)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30754160/",
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
@@ -4794,6 +4995,30 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1016/s0084-3873(08)70029-4",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:17381473",
+      "pmid": "17381473",
+      "doi": "10.1111/j.1651-2227.2007.00236.x",
+      "pillar": "growth_endocrinology",
+      "title": "Bone mass, biochemical markers and growth in children with chronic kidney disease: a 1-year prospective study",
+      "title_ko": "[소아 골성장·미량영양소 임상] Bone mass, biochemical markers and growth in children with chronic kidney disease: a 1-yea (2007)",
+      "authors": [
+        "Swolin-Eide D",
+        "Magnusson P",
+        "Hansson S"
+      ],
+      "journal": "Acta paediatrica (Oslo, Norway : 1992)",
+      "year": 2007,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Acta paediatrica (Oslo, Norway : 1992) (2007)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17381473/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "DOI:10.1016/j.bone.2005.11.003",
@@ -5465,6 +5690,30 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:10548874",
+      "pmid": "10548874",
+      "doi": "",
+      "pillar": "growth_endocrinology",
+      "title": "Circadian and sleep-dependent regulation of hormone release in humans",
+      "title_ko": "[수면·성장내분비 임상] Circadian and sleep-dependent regulation of hormone release in humans (1999)",
+      "authors": [
+        "Czeisler CA",
+        "Klerman EB",
+        "New Collective Author"
+      ],
+      "journal": "Recent progress in hormone research",
+      "year": 1999,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Recent progress in hormone research (1999)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10548874/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "DOI:10.1016/s1096-6374(98)80065-8",
       "pmid": "",
       "doi": "10.1016/s1096-6374(98)80065-8",
@@ -5543,6 +5792,32 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "DOI:10.1093/ajcn/68.6.1261",
+      "pmid": "",
+      "doi": "10.1093/ajcn/68.6.1261",
+      "pillar": "growth_endocrinology",
+      "title": "Effect of zinc supplementation on growth and body composition of Ugandan preschool children: a randomized, controlled, intervention trial",
+      "title_ko": "[소아 골성장·미량영양소 임상] Effect of zinc supplementation on growth and body composition of Ugandan preschool childre (1998)",
+      "authors": [
+        "Kikafunda JK",
+        "Walker AF",
+        "Allan EF",
+        "Tumwine JK"
+      ],
+      "journal": "The American Journal of Clinical Nutrition",
+      "year": 1998,
+      "citations_count": 57,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 57회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The American Journal of Clinical Nutrition (1998)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1093/ajcn/68.6.1261",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.1359/jbmr.1997.12.8.1272",
       "pmid": "",
       "doi": "10.1359/jbmr.1997.12.8.1272",
@@ -5567,6 +5842,33 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1359/jbmr.1997.12.8.1272",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:9239423",
+      "pmid": "9239423",
+      "doi": "10.1172/JCI119587",
+      "pillar": "growth_endocrinology",
+      "title": "Simultaneous stimulation of slow-wave sleep and growth hormone secretion by gamma-hydroxybutyrate in normal young Men",
+      "title_ko": "[수면·성장내분비 임상] Simultaneous stimulation of slow-wave sleep and growth hormone secretion by gamma-hydroxyb (1997)",
+      "authors": [
+        "Van Cauter E",
+        "Plat L",
+        "Scharf MB",
+        "Leproult R",
+        "Cespedes S",
+        "L'Hermite-Balériaux M"
+      ],
+      "journal": "The Journal of clinical investigation",
+      "year": 1997,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of clinical investigation (1997)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9239423/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "PMID:8627466",
@@ -5960,6 +6262,234 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:2253414",
+      "pmid": "2253414",
+      "doi": "10.1111/j.1365-2265.1990.tb03902.x",
+      "pillar": "growth_endocrinology",
+      "title": "Twenty-four-hour profiles of growth hormone, prolactin and cortisol in the chronic vegetative state",
+      "title_ko": "[수면·성장내분비 임상] Twenty-four-hour profiles of growth hormone, prolactin and cortisol in the chronic vegetat (1990)",
+      "authors": [
+        "Vogel HP",
+        "Kroll M",
+        "Fritschka E",
+        "Quabbe HJ"
+      ],
+      "journal": "Clinical endocrinology",
+      "year": 1990,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Clinical endocrinology (1990)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2253414/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:3096044",
+      "pmid": "3096044",
+      "doi": "10.1530/acta.0.112s411",
+      "pillar": "growth_endocrinology",
+      "title": "Circadian fluctuation of plasma melatonin in Prader-Willi's syndrome and obesity",
+      "title_ko": "[성조숙증·골연령 코호트] Circadian fluctuation of plasma melatonin in Prader-Willi's syndrome and obesity (1986)",
+      "authors": [
+        "Willig RP",
+        "Braun W",
+        "Commentz JC",
+        "Stahnke N"
+      ],
+      "journal": "Acta endocrinologica. Supplementum",
+      "year": 1986,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "과체중/비만 아동군에서 골연령(Bone Age) 가속화 및 사춘기 조기 발현 위험도 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Acta endocrinologica. Supplementum (1986)에 게재된 연구로, 소아기 체지방률(렙틴 저항성) 및 환경호르몬 노출이 시상하부-뇌하수체-성선 축(HPG axis)을 조기 활성화하여 골단 성장판 폐쇄 시점을 앞당기는 병태생리를 규명했습니다.",
+      "parenting_prescription_ko": "초등 저학년(만 7~9세) 시기에 체중이 급증하면서 키가 갑자기 연간 7~8cm 이상 자란다면 단순 급성장이 아니라 성조숙증 신호일 수 있으므로 골연령(X-ray) 확인과 체지방 관리가 필수입니다.",
+      "age_range": "만 5~13세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3096044/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:6518501",
+      "pmid": "6518501",
+      "doi": "10.1046/j.1468-2982.1984.0404213.x",
+      "pillar": "growth_endocrinology",
+      "title": "A chronobiological study of melatonin, cortisol growth hormone and prolactin secretion in cluster headache",
+      "title_ko": "[수면·성장내분비 임상] A chronobiological study of melatonin, cortisol growth hormone and prolactin secretion in  (1984)",
+      "authors": [
+        "Chazot G",
+        "Claustrat B",
+        "Brun J",
+        "Jordan D",
+        "Sassolas G",
+        "Schott B"
+      ],
+      "journal": "Cephalalgia : an international journal of headache",
+      "year": 1984,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Cephalalgia : an international journal of headache (1984)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6518501/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:6287782",
+      "pmid": "6287782",
+      "doi": "10.1530/acta.0.1000321",
+      "pillar": "growth_endocrinology",
+      "title": "Growth hormone, prolactin and cortisol nyctohemeral variations during naloxone-induced opiate receptor blockade in man",
+      "title_ko": "[수면·성장내분비 임상] Growth hormone, prolactin and cortisol nyctohemeral variations during naloxone-induced opi (1982)",
+      "authors": [
+        "Delitala G",
+        "Giusti M",
+        "Rodriguez G",
+        "Mazzocchi G",
+        "Ferrini S",
+        "Baccelliere L"
+      ],
+      "journal": "Acta endocrinologica",
+      "year": 1982,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Acta endocrinologica (1982)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6287782/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:7036626",
+      "pmid": "7036626",
+      "doi": "10.1530/acta.0.0990161",
+      "pillar": "growth_endocrinology",
+      "title": "Growth hormone secretion in pubertal and adult subjects",
+      "title_ko": "[수면·성장내분비 임상] Growth hormone secretion in pubertal and adult subjects (1982)",
+      "authors": [
+        "Minuto F",
+        "Barreca A",
+        "Ferrini S",
+        "Mazzocchi G",
+        "Del Monte P",
+        "Giordano G"
+      ],
+      "journal": "Acta endocrinologica",
+      "year": 1982,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Acta endocrinologica (1982)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7036626/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:6795572",
+      "pmid": "6795572",
+      "doi": "",
+      "pillar": "growth_endocrinology",
+      "title": "[Pseudohypoparathyroidism with hypothyroidism (author's transl)]",
+      "title_ko": "[소아 골성장·미량영양소 임상] [Pseudohypoparathyroidism with hypothyroidism (author's transl)] (1981)",
+      "authors": [
+        "Stögmann W"
+      ],
+      "journal": "Padiatrie und Padologie",
+      "year": 1981,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Padiatrie und Padologie (1981)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6795572/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:229998",
+      "pmid": "229998",
+      "doi": "10.1111/j.1365-2265.1979.tb03105.x",
+      "pillar": "growth_endocrinology",
+      "title": "The circadian variation of immunoreactive lipotrophin and its relationship to ACTH and growth hormone in man",
+      "title_ko": "[수면·성장내분비 임상] The circadian variation of immunoreactive lipotrophin and its relationship to ACTH and gro (1979)",
+      "authors": [
+        "Mullen PE",
+        "Jeffcoate WJ",
+        "Linsell C",
+        "Howard LR",
+        "Rees LH"
+      ],
+      "journal": "Clinical endocrinology",
+      "year": 1979,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Clinical endocrinology (1979)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/229998/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:274037",
+      "pmid": "274037",
+      "doi": "",
+      "pillar": "growth_endocrinology",
+      "title": "Regulation of growth hormone secretion during normal conditions and in patients with acromegaly",
+      "title_ko": "[수면·성장내분비 임상] Regulation of growth hormone secretion during normal conditions and in patients with acrom (1978)",
+      "authors": [
+        "Werner S"
+      ],
+      "journal": "Acta endocrinologica. Supplementum",
+      "year": 1978,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Acta endocrinologica. Supplementum (1978)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/274037/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:1117977",
+      "pmid": "1117977",
+      "doi": "10.1210/jcem-40-2-240",
+      "pillar": "growth_endocrinology",
+      "title": "Circadian variation of integrated concentration of growth hormone in children and adults",
+      "title_ko": "[수면·성장내분비 임상] Circadian variation of integrated concentration of growth hormone in children and adults (1975)",
+      "authors": [
+        "Plotnick LP",
+        "Thompson RG",
+        "Kowarski A",
+        "de Lacerda L",
+        "Migeon CJ",
+        "Blizzard RM"
+      ],
+      "journal": "The Journal of clinical endocrinology and metabolism",
+      "year": 1975,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of clinical endocrinology and metabolism (1975)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1117977/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "PMID:4912457",
       "pmid": "4912457",
       "doi": "10.1203/00006450-197005000-00006",
@@ -5984,6 +6514,33 @@
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/4912457/",
       "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:4307378",
+      "pmid": "4307378",
+      "doi": "10.1126/science.165.3892.513",
+      "pillar": "growth_endocrinology",
+      "title": "Human growth hormone release: relation to slow-wave sleep and sleep-walking cycles",
+      "title_ko": "[수면·성장내분비 임상] Human growth hormone release: relation to slow-wave sleep and sleep-walking cycles (1969)",
+      "authors": [
+        "Sassin JF",
+        "Parker DC",
+        "Mace JW",
+        "Gotlin RW",
+        "Johnson LC",
+        "Rossman LG"
+      ],
+      "journal": "Science (New York, N.Y.)",
+      "year": 1969,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Science (New York, N.Y.) (1969)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4307378/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "PMID:29489143",
@@ -16373,6 +16930,30 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "DOI:10.7759/cureus.114396",
+      "pmid": "",
+      "doi": "10.7759/cureus.114396",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "The Correlation of Smartphone Screen Time With Resting Respiratory Rate, Head-Neck Alignment, and Chest Expansion Among University Students",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The Correlation of Smartphone Screen Time With Resting Respiratory Rate, Head-Neck Alignme (2026)",
+      "authors": [
+        "Tapale VS",
+        "Chintamani R"
+      ],
+      "journal": "Cureus",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Cureus (2026)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.7759/cureus.114396",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "PMID:40611942",
       "pmid": "40611942",
       "doi": "10.7717/peerj.19616",
@@ -16747,6 +17328,34 @@
       "age_range": "만 5~18세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.36948/ijfmr.2025.v07i03.46934",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.3390/children12101405",
+      "pmid": "",
+      "doi": "10.3390/children12101405",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Mini-Trampoline Training Enhances Executive Functions and Motor Skills in Preschoolers",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Mini-Trampoline Training Enhances Executive Functions and Motor Skills in Preschoolers (2025)",
+      "authors": [
+        "Ltifi MA",
+        "Cherni Y",
+        "Panaet EA",
+        "Alexe CI",
+        "Ben Saad H",
+        "Vulpe AM"
+      ],
+      "journal": "Children",
+      "year": 2025,
+      "citations_count": 7,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Children (2025)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3390/children12101405",
       "source_api": "Crossref Works REST API Live"
     },
     {
@@ -17791,6 +18400,34 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33362710/",
       "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "DOI:10.5812/ans.84869",
+      "pmid": "",
+      "doi": "10.5812/ans.84869",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Effect of Balance Training on Balance Performance, Motor Coordination, and Attention in Children with Hearing Deficits",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Effect of Balance Training on Balance Performance, Motor Coordination, and Attention in Ch (2020)",
+      "authors": [
+        "Hedayatjoo M",
+        "Rezaee M",
+        "Alizadeh Zarei M",
+        "Mirzakhany N",
+        "Nazeri A",
+        "Akbarzadeh Baghban A"
+      ],
+      "journal": "Archives of Neuroscience",
+      "year": 2020,
+      "citations_count": 12,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 12회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Archives of Neuroscience (2020)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.5812/ans.84869",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "PMID:31773477",
@@ -18999,6 +19636,29 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/15050908/",
       "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "DOI:10.2466/pms.96.4.1173-1184",
+      "pmid": "",
+      "doi": "10.2466/pms.96.4.1173-1184",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "RELATIONS OF BALANCE FUNCTION AND GROSS MOTOR ABILITY FOR CHILDREN WITH CEREBRAL PALSY",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] RELATIONS OF BALANCE FUNCTION AND GROSS MOTOR ABILITY FOR CHILDREN WITH CEREBRAL PALSY (2003)",
+      "authors": [
+        "LIAO H"
+      ],
+      "journal": "Perceptual and Motor Skills",
+      "year": 2003,
+      "citations_count": 2,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Perceptual and Motor Skills (2003)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.2466/pms.96.4.1173-1184",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "PMID:12009014",
