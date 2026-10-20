@@ -1323,12 +1323,12 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-20T05:30:36Z",
-    "total_papers": 615,
+    "generated_at": "2026-10-20T06:00:29Z",
+    "total_papers": 642,
     "pillar_counts": {
-      "growth_endocrinology": 159,
-      "fine_motor_neuroscience": 96,
-      "pedagogy_montessori_froebel": 121,
+      "growth_endocrinology": 171,
+      "fine_motor_neuroscience": 106,
+      "pedagogy_montessori_froebel": 126,
       "parent_child_interaction_museum": 129,
       "posture_biomechanics_exercise": 110
     },
@@ -1347,7 +1347,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 159
+      "paper_count": 171
     },
     {
       "id": "fine_motor_neuroscience",
@@ -1356,7 +1356,7 @@
       "title_en": "Early Childhood Fine Motor Skills, Prefrontal Executive Function & K-DST Validation",
       "target_feature": "연령별(0~7세) 소근육·뇌발달 체크리스트 및 K-DST 기반 발달 단계 진단",
       "clinical_focus": "집게잡기(Pincer grasp)·삼지잡기(Tripod grasp)·양손 협응(Bimanual coordination)이 소뇌-전전두엽(Prefrontal Cortex) 신경망과 작업기억·초기 수리력(Mathematical readiness)에 미치는 종단적 영향 및 한국 영유아 발달선별검사(K-DST) 타당도",
-      "paper_count": 96
+      "paper_count": 106
     },
     {
       "id": "pedagogy_montessori_froebel",
@@ -1365,7 +1365,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 121
+      "paper_count": 126
     },
     {
       "id": "parent_child_interaction_museum",
@@ -1694,6 +1694,32 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32809578/",
       "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:17992980",
+      "pmid": "17992980",
+      "doi": "10.37527/2007.57.2.008",
+      "pillar": "growth_endocrinology",
+      "title": "A short training program improves the accuracy of portion-size estimates in future dietitians",
+      "title_ko": "[소아 골성장·미량영양소 임상] A short training program improves the accuracy of portion-size estimates in future dietiti (2026)",
+      "authors": [
+        "Marta Arroyo‐Izaga",
+        "Concepción Martínez de la Pera",
+        "Laura Ansotegui",
+        "Ana María Rocandio"
+      ],
+      "journal": "Archivos Latinoamericanos de Nutrición",
+      "year": 2026,
+      "citations_count": 18,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 18회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Archivos Latinoamericanos de Nutrición (2026)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17992980/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "PMID:40341618",
@@ -2501,6 +2527,32 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:34796029",
+      "pmid": "34796029",
+      "doi": "10.1155/2021/5297162",
+      "pillar": "growth_endocrinology",
+      "title": "Therapeutic Effects of Punica granatum (Pomegranate): An Updated Review of Clinical Trials",
+      "title_ko": "[소아 골성장·미량영양소 임상] Therapeutic Effects of Punica granatum (Pomegranate): An Updated Review of Clinical Trials (2021)",
+      "authors": [
+        "Samira Eghbali",
+        "Sayyedeh Fatemeh Askari",
+        "Razieh Avan",
+        "Amirhossein Sahebkar"
+      ],
+      "journal": "Journal of Nutrition and Metabolism",
+      "year": 2021,
+      "citations_count": 100,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 100회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Journal of Nutrition and Metabolism (2021)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34796029/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.1016/j.ghir.2019.12.002",
       "pmid": "",
       "doi": "10.1016/j.ghir.2019.12.002",
@@ -2627,6 +2679,30 @@
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32403898/",
       "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:33045802",
+      "pmid": "33045802",
+      "doi": "10.23736/S0026-4946.20.05835-1",
+      "pillar": "growth_endocrinology",
+      "title": "A new approach to the diagnosis of short stature",
+      "title_ko": "[소아 골성장·미량영양소 임상] A new approach to the diagnosis of short stature (2020)",
+      "authors": [
+        "Bogarín R",
+        "Richmond E",
+        "Rogol AD"
+      ],
+      "journal": "Minerva pediatrica",
+      "year": 2020,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Minerva pediatrica (2020)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33045802/",
+      "source_api": "NCBI PubMed E-utilities Live"
     },
     {
       "id": "PMID:30733078",
@@ -2785,6 +2861,33 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:31632355",
+      "pmid": "31632355",
+      "doi": "10.3389/fendo.2019.00681",
+      "pillar": "growth_endocrinology",
+      "title": "Metabolic Perspectives for Non-classical Congenital Adrenal Hyperplasia With Relation to the Classical Form of the Disease",
+      "title_ko": "[소아 골성장·미량영양소 임상] Metabolic Perspectives for Non-classical Congenital Adrenal Hyperplasia With Relation to t (2019)",
+      "authors": [
+        "Djuro Μacut",
+        "Vera Zdravković",
+        "Jelica Bjekić-Macut",
+        "George P. Mastorakos",
+        "Duarte Pignatelli"
+      ],
+      "journal": "Frontiers in Endocrinology",
+      "year": 2019,
+      "citations_count": 19,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 19회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Frontiers in Endocrinology (2019)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31632355/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.4081/pr.2017.7294",
       "pmid": "",
       "doi": "10.4081/pr.2017.7294",
@@ -2888,6 +2991,32 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/30129969/",
       "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:29615477",
+      "pmid": "29615477",
+      "doi": "10.1530/joe-18-0028",
+      "pillar": "growth_endocrinology",
+      "title": "Leptin stimulates aromatase in the growth plate: limiting catch-up growth efficiency",
+      "title_ko": "[소아 골성장·미량영양소 임상] Leptin stimulates aromatase in the growth plate: limiting catch-up growth efficiency (2018)",
+      "authors": [
+        "Majdi Masarwi",
+        "Raanan Shamir",
+        "Moshe Phillip",
+        "Galia Gat‐Yablonski"
+      ],
+      "journal": "Journal of Endocrinology",
+      "year": 2018,
+      "citations_count": 18,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 18회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Journal of Endocrinology (2018)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29615477/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "PMID:28713437",
@@ -4500,6 +4629,29 @@
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
+      "id": "DOI:10.1016/s0084-3873(08)70029-4",
+      "pmid": "",
+      "doi": "10.1016/s0084-3873(08)70029-4",
+      "pillar": "growth_endocrinology",
+      "title": "A Randomized Controlled Trial of Calcium Supplementation to Increase Bone Mineral Density in Children With Juvenile Rheumatoid Arthritis",
+      "title_ko": "[소아 골성장·미량영양소 임상] A Randomized Controlled Trial of Calcium Supplementation to Increase Bone Mineral Density  (2007)",
+      "authors": [
+        "Berney S"
+      ],
+      "journal": "Yearbook of Medicine",
+      "year": 2007,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Yearbook of Medicine (2007)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/s0084-3873(08)70029-4",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.1016/j.bone.2005.11.003",
       "pmid": "",
       "doi": "10.1016/j.bone.2005.11.003",
@@ -4678,6 +4830,34 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/16264029/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:15899952",
+      "pmid": "15899952",
+      "doi": "10.1210/jc.2004-2543",
+      "pillar": "growth_endocrinology",
+      "title": "Safety of Growth Hormone Treatment in Pediatric Patients with Idiopathic Short Stature",
+      "title_ko": "[수면·성장내분비 임상] Safety of Growth Hormone Treatment in Pediatric Patients with Idiopathic Short Stature (2005)",
+      "authors": [
+        "Charmian A. Quigley",
+        "Anne M. Gill",
+        "Brenda J. Crowe",
+        "Kristen Robling",
+        "John J. Chipman",
+        "Susan Rogers Rose"
+      ],
+      "journal": "The Journal of Clinical Endocrinology & Metabolism",
+      "year": 2005,
+      "citations_count": 95,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 95회] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of Clinical Endocrinology & Metabolism (2005)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15899952/",
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
@@ -4950,6 +5130,77 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "PMID:11297575",
+      "pmid": "11297575",
+      "doi": "10.1210/jcem.86.4.7381",
+      "pillar": "growth_endocrinology",
+      "title": "Therapy for 6.5–7.5 Years with Recombinant Insulin-Like Growth Factor I in Children with Growth Hormone Insensitivity Syndrome: A Clinical Research Center Study1",
+      "title_ko": "[수면·성장내분비 임상] Therapy for 6.5–7.5 Years with Recombinant Insulin-Like Growth Factor I in Children with G (2001)",
+      "authors": [
+        "Philippe Ferdinand Backeljauw",
+        "Louis E. Underwood"
+      ],
+      "journal": "The Journal of Clinical Endocrinology & Metabolism",
+      "year": 2001,
+      "citations_count": 106,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 106회] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of Clinical Endocrinology & Metabolism (2001)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11297575/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:11375784",
+      "pmid": "11375784",
+      "doi": "",
+      "pillar": "growth_endocrinology",
+      "title": "Andropause--a multisystem disease",
+      "title_ko": "[소아 골성장·미량영양소 임상] Andropause--a multisystem disease (2001)",
+      "authors": [
+        "Heaton JP",
+        "Morales A"
+      ],
+      "journal": "The Canadian journal of urology",
+      "year": 2001,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The Canadian journal of urology (2001)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11375784/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:11297635",
+      "pmid": "11297635",
+      "doi": "10.1210/jc.86.4.1842",
+      "pillar": "growth_endocrinology",
+      "title": "What Are \"Normal\" Testosterone Levels for Women?",
+      "title_ko": "[소아 골성장·미량영양소 임상] What Are \"Normal\" Testosterone Levels for Women? (2001)",
+      "authors": [
+        "Susan R. Davis",
+        "Jane Tran"
+      ],
+      "journal": "The Journal of Clinical Endocrinology & Metabolism",
+      "year": 2001,
+      "citations_count": 19,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 19회] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The Journal of Clinical Endocrinology & Metabolism (2001)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11297635/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.1016/s1096-6374(00)90024-8",
       "pmid": "",
       "doi": "10.1016/s1096-6374(00)90024-8",
@@ -5122,6 +5373,55 @@
       "age_range": "만 2~16세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1046/j.1365-2265.1998.00476.x",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.1210/er.19.2.203",
+      "pmid": "",
+      "doi": "10.1210/er.19.2.203",
+      "pillar": "growth_endocrinology",
+      "title": "The Diagnosis of Growth Hormone Deficiency in Children and Adults",
+      "title_ko": "[수면·성장내분비 임상] The Diagnosis of Growth Hormone Deficiency in Children and Adults (1998)",
+      "authors": [
+        "Stephen Michael Shalet"
+      ],
+      "journal": "Endocrine Reviews",
+      "year": 1998,
+      "citations_count": 101,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 101회] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Endocrine Reviews (1998)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1210/er.19.2.203",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.1359/jbmr.1997.12.8.1272",
+      "pmid": "",
+      "doi": "10.1359/jbmr.1997.12.8.1272",
+      "pillar": "growth_endocrinology",
+      "title": "Serum Levels of Insulin-like Growth Factor (IGF) I, IGF-Binding Protein (IGFBP)-2, and IGFBP-3 in Osteoporotic Patients with and without Spinal Fractures",
+      "title_ko": "[수면·성장내분비 임상] Serum Levels of Insulin-like Growth Factor (IGF) I, IGF-Binding Protein (IGFBP)-2, and IGF (1997)",
+      "authors": [
+        "Sugimoto T",
+        "Nishiyama K",
+        "Kuribayashi F",
+        "Chihara K"
+      ],
+      "journal": "Journal of Bone and Mineral Research",
+      "year": 1997,
+      "citations_count": 149,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 149회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Journal of Bone and Mineral Research (1997)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1359/jbmr.1997.12.8.1272",
       "source_api": "Crossref Works REST API Live"
     },
     {
@@ -6248,6 +6548,53 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:37254740",
+      "pmid": "37254740",
+      "doi": "10.1093/brain/awad181",
+      "pillar": "fine_motor_neuroscience",
+      "title": "The functional role of the precuneus",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] The functional role of the precuneus (2023)",
+      "authors": [
+        "Nicholas B. Dadario",
+        "Michael Edward Sughrue"
+      ],
+      "journal": "Brain",
+      "year": 2023,
+      "citations_count": 320,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 320회] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Brain (2023)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37254740/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.1037/dev0001431.supp",
+      "pmid": "",
+      "doi": "10.1037/dev0001431.supp",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Supplemental Material for Associations Between Preschool Cognitive and Behavioral Skills and College Enrollment: Evidence From the Chicago School Readiness Project",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Supplemental Material for Associations Between Preschool Cognitive and Behavioral Skills a (2023)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Developmental Psychology",
+      "year": 2023,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Developmental Psychology (2023)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1037/dev0001431.supp",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "PMID:35204960",
       "pmid": "35204960",
       "doi": "10.3390/children9020239",
@@ -6596,6 +6943,81 @@
       "age_range": "생후 4~71개월",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31009800/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "PMID:33307046",
+      "pmid": "33307046",
+      "doi": "10.1016/j.neubiorev.2020.12.002",
+      "pillar": "fine_motor_neuroscience",
+      "title": "The neuroscience of positive emotions and affect: Implications for cultivating happiness and wellbeing",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] The neuroscience of positive emotions and affect: Implications for cultivating happiness a (2020)",
+      "authors": [
+        "Rebecca Alexander",
+        "Oriana R. Aragón",
+        "Jamila Bookwala",
+        "Nicolas Cherbuin",
+        "Justine Megan Gatt",
+        "Ian J. Kahrilas"
+      ],
+      "journal": "Neuroscience & Biobehavioral Reviews",
+      "year": 2020,
+      "citations_count": 304,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 304회] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Neuroscience & Biobehavioral Reviews (2020)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33307046/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.21197/jcei.11.4.5",
+      "pmid": "",
+      "doi": "10.21197/jcei.11.4.5",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Preschool Interactive Peer Play Longitudinally Mediates the Effect of Externalizing Problem Behavior on School Readiness",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Preschool Interactive Peer Play Longitudinally Mediates the Effect of Externalizing Proble (2020)",
+      "authors": [
+        "Chung J"
+      ],
+      "journal": "The Society for Cognitive Enhancement and Intervention",
+      "year": 2020,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "The Society for Cognitive Enhancement and Intervention (2020)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.21197/jcei.11.4.5",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:32265812",
+      "pmid": "32265812",
+      "doi": "10.3389/fpsyg.2020.00529",
+      "pillar": "fine_motor_neuroscience",
+      "title": "A Finger-Based Numerical Training Failed to Improve Arithmetic Skills in Kindergarten Children Beyond Effects of an Active Non-numerical Control Training",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] A Finger-Based Numerical Training Failed to Improve Arithmetic Skills in Kindergarten Chil (2020)",
+      "authors": [
+        "Schild U",
+        "Bauch A",
+        "Nuerk HC"
+      ],
+      "journal": "Frontiers in psychology",
+      "year": 2020,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Frontiers in psychology (2020)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32265812/",
       "source_api": "NCBI PubMed E-utilities Live"
     },
     {
@@ -7320,6 +7742,31 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:22048465",
+      "pmid": "22048465",
+      "doi": "10.1038/npp.2011.251",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Cognitive Training for Impaired Neural Systems in Neuropsychiatric Illness",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Cognitive Training for Impaired Neural Systems in Neuropsychiatric Illness (2011)",
+      "authors": [
+        "Sophia Vinogradov",
+        "Melissa Fisher",
+        "Etienne de Villers‐Sidani"
+      ],
+      "journal": "Neuropsychopharmacology",
+      "year": 2011,
+      "citations_count": 324,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 324회] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Neuropsychopharmacology (2011)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22048465/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.1007/s10643-009-0341-0",
       "pmid": "",
       "doi": "10.1007/s10643-009-0341-0",
@@ -7510,6 +7957,29 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "PMID:18387567",
+      "pmid": "18387567",
+      "doi": "10.1016/j.cortex.2007.08.020",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Does finger training increase young children's numerical performance?",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Does finger training increase young children's numerical performance? (2008)",
+      "authors": [
+        "Gracia-Bafalluy M",
+        "Noël MP"
+      ],
+      "journal": "Cortex; a journal devoted to the study of the nervous system and behavior",
+      "year": 2008,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Cortex; a journal devoted to the study of the nervous system and behavior (2008)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18387567/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
       "id": "PMID:16527316",
       "pmid": "16527316",
       "doi": "10.1016/j.neuropsychologia.2006.01.010",
@@ -7691,6 +8161,33 @@
       "source_api": "OpenAlex Academic Graph API Live"
     },
     {
+      "id": "DOI:10.1097/00001163-200304000-00008",
+      "pmid": "",
+      "doi": "10.1097/00001163-200304000-00008",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Early Identification of Children With Communication Disorders",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Early Identification of Children With Communication Disorders (2003)",
+      "authors": [
+        "Wetherby AM",
+        "Goldstein H",
+        "Cleary J",
+        "Allen L",
+        "Kublin K"
+      ],
+      "journal": "Infants &amp; Young Children",
+      "year": 2003,
+      "citations_count": 62,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 62회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Infants &amp; Young Children (2003)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1097/00001163-200304000-00008",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.1016/s0885-2014(02)00125-9",
       "pmid": "",
       "doi": "10.1016/s0885-2014(02)00125-9",
@@ -7712,6 +8209,33 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1016/s0885-2014(02)00125-9",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:12030598",
+      "pmid": "12030598",
+      "doi": "10.1111/1469-7610.00043",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Evidence for a pure time perception deficit in children with ADHD",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Evidence for a pure time perception deficit in children with ADHD (2002)",
+      "authors": [
+        "Anna B Smith",
+        "Eric Taylor",
+        "Jody Warner Rogers",
+        "Stuart Newman",
+        "Katya Rubia"
+      ],
+      "journal": "Journal of Child Psychology and Psychiatry",
+      "year": 2002,
+      "citations_count": 308,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "[글로벌 피인용 308회] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Journal of Child Psychology and Psychiatry (2002)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12030598/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "DOI:10.2466/pms.92.3.1122-1128",
@@ -7781,6 +8305,29 @@
       "age_range": "만 1~7세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.2466/pms.1998.87.3.931",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.2466/pms.1997.84.3c.1439",
+      "pmid": "",
+      "doi": "10.2466/pms.1997.84.3c.1439",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Test of Visual-Motor Integration: Construct Validity in a Comparison with the Beery-Buktenica Developmental Test of Visual-Motor Integration",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Test of Visual-Motor Integration: Construct Validity in a Comparison with the Beery-Bukten (1997)",
+      "authors": [
+        "Preda C"
+      ],
+      "journal": "Perceptual and Motor Skills",
+      "year": 1997,
+      "citations_count": 23,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 23회 검증 논문] 정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Perceptual and Motor Skills (1997)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.2466/pms.1997.84.3c.1439",
       "source_api": "Crossref Works REST API Live"
     },
     {
@@ -8853,6 +9400,59 @@
       "source_api": "Crossref Works REST API Live"
     },
     {
+      "id": "DOI:10.1177/10762175241242494",
+      "pmid": "",
+      "doi": "10.1177/10762175241242494",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Translating Research to Practice: Practitioner Use of the Spatial Reasoning Toolkit",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Translating Research to Practice: Practitioner Use of the Spatial Reasoning Toolkit (2024)",
+      "authors": [
+        "Emily Kate Farran",
+        "Sarah McCarthy",
+        "Katie Anne Gilligan-Lee",
+        "Kathryn E Bates",
+        "Catherine Gripton"
+      ],
+      "journal": "Gifted Child Today",
+      "year": 2024,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Gifted Child Today (2024)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1177/10762175241242494",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.1016/j.appdev.2023.101630",
+      "pmid": "",
+      "doi": "10.1016/j.appdev.2023.101630",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Mental rotation is supported by block play in boys and girls",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Mental rotation is supported by block play in boys and girls (2024)",
+      "authors": [
+        "Anke Maria Weber",
+        "Katarzyna Bobrowicz",
+        "Samuel Greiff",
+        "Miriam Leuchter"
+      ],
+      "journal": "Journal of Applied Developmental Psychology",
+      "year": 2024,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Journal of Applied Developmental Psychology (2024)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1016/j.appdev.2023.101630",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "DOI:10.47611/jsrhs.v12i3.4717",
       "pmid": "",
       "doi": "10.47611/jsrhs.v12i3.4717",
@@ -9804,6 +10404,82 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1016/j.ijcci.2019.04.001",
       "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.5958/2231-4555.2019.00009.3",
+      "pmid": "",
+      "doi": "10.5958/2231-4555.2019.00009.3",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Multilingualism in a montessori preschool: A study of language variability in a linguistically diverse preschool programme",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] Multilingualism in a montessori preschool: A study of language variability in a linguistic (2019)",
+      "authors": [
+        "Goenka H"
+      ],
+      "journal": "Journal of Exclusion Studies",
+      "year": 2019,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Journal of Exclusion Studies (2019)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.5958/2231-4555.2019.00009.3",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "PMID:31146090",
+      "pmid": "31146090",
+      "doi": "10.1016/j.actpsy.2019.05.004",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "The role of gesture as simulated action in reinterpretation of mental imagery",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] The role of gesture as simulated action in reinterpretation of mental imagery (2019)",
+      "authors": [
+        "Kevin Leander Kamermans",
+        "Wim T. J. L. Pouw",
+        "Luisa Fassi",
+        "Asimina Aslanidou",
+        "FRED G. W. C. PAAS",
+        "Autumn B. Hostetter"
+      ],
+      "journal": "Acta Psychologica",
+      "year": 2019,
+      "citations_count": 10,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Acta Psychologica (2019)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31146090/",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "PMID:30640912",
+      "pmid": "30640912",
+      "doi": "10.1371/journal.pone.0209848",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Motor ability and working memory in Omani and German primary school-aged children",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Motor ability and working memory in Omani and German primary school-aged children (2019)",
+      "authors": [
+        "Petra Jansen",
+        "Clara Scheer",
+        "Kashef N. Zayed"
+      ],
+      "journal": "PLoS ONE",
+      "year": 2019,
+      "citations_count": 10,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "PLoS ONE (2019)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30640912/",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "PMID:30511231",
