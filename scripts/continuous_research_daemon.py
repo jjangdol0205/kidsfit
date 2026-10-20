@@ -392,12 +392,28 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
     with open(DOC_OUT, "w", encoding="utf-8") as f:
         f.write(md_content)
 
-    # Auto-rebuild dist/ when new papers are learned so the web app reflects the latest count
+    # Auto-rebuild dist/ and notify Telegram when new papers are learned
     if newly_added > 0:
         try:
             import subprocess
             subprocess.run(
                 ["node", str(SCRIPT_DIR / "build.js")],
+                cwd=str(SCRIPT_DIR.parent),
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            tg_msg = (
+                f"📚 [Cycle #{cycle_index} 학술 논문 자동 학습 완료]\n"
+                f"• 신규 추가: +{newly_added}편 (누적 총 {len(existing_papers)}편)\n"
+                f"• 내분비·키성장({pillar_counts.get('growth_endocrinology', 0)}) | "
+                f"소근육·두뇌({pillar_counts.get('fine_motor_neuroscience', 0)}) | "
+                f"몬테소리·가베({pillar_counts.get('pedagogy_montessori_froebel', 0)}) | "
+                f"부모자녀·박물관({pillar_counts.get('parent_child_interaction_museum', 0)}) | "
+                f"자세·점프역학({pillar_counts.get('posture_biomechanics_exercise', 0)})"
+            )
+            subprocess.run(
+                ["node", str(SCRIPT_DIR / "telegram-notify.js"), "--message", tg_msg],
                 cwd=str(SCRIPT_DIR.parent),
                 check=False,
                 stdout=subprocess.DEVNULL,
