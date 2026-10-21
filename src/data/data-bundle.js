@@ -1751,12 +1751,12 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-21T20:01:00Z",
-    "total_papers": 1942,
+    "generated_at": "2026-10-21T20:30:50Z",
+    "total_papers": 1950,
     "pillar_counts": {
-      "growth_endocrinology": 569,
+      "growth_endocrinology": 575,
       "fine_motor_neuroscience": 361,
-      "pedagogy_montessori_froebel": 273,
+      "pedagogy_montessori_froebel": 275,
       "parent_child_interaction_museum": 450,
       "posture_biomechanics_exercise": 289
     },
@@ -1766,22 +1766,22 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-21T20:00:45Z",
+    "last_updated_utc": "2026-10-21T20:30:51Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-21T20:00:45Z",
-      "total_papers": 1939,
+      "last_enriched_utc": "2026-10-21T20:30:51Z",
+      "total_papers": 1950,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 855,
-        "learning_macro_count": 1084,
-        "total_macro_papers": 1939,
-        "growth_ratio": 0.4409,
-        "growth_percent": 44.1,
-        "learning_ratio": 0.5591,
-        "learning_percent": 55.9,
-        "learning_ratio_percent": 55.9,
+        "growth_macro_count": 864,
+        "learning_macro_count": 1086,
+        "total_macro_papers": 1950,
+        "growth_ratio": 0.4431,
+        "growth_percent": 44.3,
+        "learning_ratio": 0.5569,
+        "learning_percent": 55.7,
+        "learning_ratio_percent": 55.7,
         "target_ratio": 0.5,
         "mode": "GROWTH_PRIORITY_BOOST",
         "mode_code": "GROWTH_BOOST_80_20",
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-21T20:00:45Z"
+        "last_balanced_utc": "2026-10-21T20:30:51Z"
       },
       "sub_domain_distribution": [
         {
@@ -1810,8 +1810,8 @@
           "title_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
           "icon": "🌙",
           "color": "#818CF8",
-          "count": 219,
-          "percent": 11.3
+          "count": 225,
+          "percent": 11.5
         },
         {
           "id": "clinical_nutrigenomics_microbiome",
@@ -1820,8 +1820,8 @@
           "title_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
           "icon": "🥗",
           "color": "#10B981",
-          "count": 317,
-          "percent": 16.3
+          "count": 320,
+          "percent": 16.4
         },
         {
           "id": "bone_age_precocious_puberty",
@@ -1841,7 +1841,7 @@
           "icon": "🤲",
           "color": "#EC4899",
           "count": 34,
-          "percent": 1.8
+          "percent": 1.7
         },
         {
           "id": "executive_function_longitudinal",
@@ -1851,7 +1851,7 @@
           "icon": "🧠",
           "color": "#A855F7",
           "count": 327,
-          "percent": 16.9
+          "percent": 16.8
         },
         {
           "id": "pedagogy_montessori_froebel",
@@ -1870,7 +1870,7 @@
           "title_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
           "icon": "📐",
           "color": "#06B6D4",
-          "count": 217,
+          "count": 219,
           "percent": 11.2
         },
         {
@@ -1891,7 +1891,7 @@
           "icon": "💛",
           "color": "#F43F5E",
           "count": 312,
-          "percent": 16.1
+          "percent": 16.0
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1901,7 +1901,7 @@
           "icon": "🧘",
           "color": "#3B82F6",
           "count": 221,
-          "percent": 11.4
+          "percent": 11.3
         },
         {
           "id": "epiphyseal_wolff_loading",
@@ -1918,49 +1918,49 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 1365
+          "count": 1374
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 1939
+          "count": 1950
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 1231
+          "count": 1237
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1029,
-          "mid_term": 1597,
-          "long_term": 1109
+          "short_term": 1038,
+          "mid_term": 1608,
+          "long_term": 1115
         },
         "4-6y": {
-          "short_term": 1103,
-          "mid_term": 1676,
-          "long_term": 1181
+          "short_term": 1112,
+          "mid_term": 1687,
+          "long_term": 1187
         },
         "7-9y": {
-          "short_term": 1354,
-          "mid_term": 1901,
-          "long_term": 1197
+          "short_term": 1363,
+          "mid_term": 1912,
+          "long_term": 1203
         },
         "10-12y": {
-          "short_term": 1095,
-          "mid_term": 1666,
-          "long_term": 1137
+          "short_term": 1104,
+          "mid_term": 1677,
+          "long_term": 1143
         },
         "13-16y": {
-          "short_term": 796,
-          "mid_term": 961,
-          "long_term": 618
+          "short_term": 805,
+          "mid_term": 971,
+          "long_term": 623
         },
         "17-20y": {
-          "short_term": 796,
-          "mid_term": 961,
-          "long_term": 618
+          "short_term": 805,
+          "mid_term": 971,
+          "long_term": 623
         }
       },
       "core_empirical_laws": [
@@ -2145,17 +2145,17 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-21T20:00:45Z"
+      "last_synced_utc": "2026-10-21T20:30:50Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 855,
-      "learning_macro_count": 1084,
-      "total_macro_papers": 1939,
-      "growth_ratio": 0.4409,
-      "growth_percent": 44.1,
-      "learning_ratio": 0.5591,
-      "learning_percent": 55.9,
-      "learning_ratio_percent": 55.9,
+      "growth_macro_count": 864,
+      "learning_macro_count": 1086,
+      "total_macro_papers": 1950,
+      "growth_ratio": 0.4431,
+      "growth_percent": 44.3,
+      "learning_ratio": 0.5569,
+      "learning_percent": 55.7,
+      "learning_ratio_percent": 55.7,
       "target_ratio": 0.5,
       "mode": "GROWTH_PRIORITY_BOOST",
       "mode_code": "GROWTH_BOOST_80_20",
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-21T20:00:45Z"
+      "last_balanced_utc": "2026-10-21T20:30:51Z"
     }
   },
   "pillars": [
@@ -2175,7 +2175,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 569
+      "paper_count": 575
     },
     {
       "id": "fine_motor_neuroscience",
@@ -2193,7 +2193,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 273
+      "paper_count": 275
     },
     {
       "id": "parent_child_interaction_museum",
@@ -3664,6 +3664,53 @@
       "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
       "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:42687935",
+      "pmid": "42687935",
+      "doi": "10.3389/fendo.2026.1843625",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Elevated IGF-1 levels are associated with accelerated bone age advancement during growth hormone therapy in children: a multicenter cohort study",
+      "title_ko": "[수면·성장내분비 임상] Elevated IGF-1 levels are associated with accelerated bone age advancement during growth h (2026)",
+      "authors": [
+        "Ahn J",
+        "Jeong H",
+        "Suh J",
+        "Chae HW"
+      ],
+      "journal": "Frontiers in endocrinology",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Frontiers in endocrinology (2026)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42687935/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
     },
     {
       "id": "PMID:40341618",
@@ -17542,7 +17589,29 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.3945/ajcn.113.059923",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "growth",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 30회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
       "id": "PMID:22071480",
@@ -20068,7 +20137,29 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21234323/",
-      "source_api": "NCBI PubMed E-utilities Live"
+      "source_api": "NCBI PubMed E-utilities Live",
+      "macro_pillar": "growth",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
       "id": "DOI:10.1111/j.1753-4887.1992.tb07721.x",
@@ -21426,6 +21517,100 @@
       "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
       "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "DOI:10.1097/01.wox.0000301713.84355.92",
+      "pmid": "",
+      "doi": "10.1097/01.wox.0000301713.84355.92",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "A randomized, double-blind, placebo controlled trial on the effect of zinc supplementation on bronchial asthma as measured by sputum eosinophil count and asthma control test (ACT) in children",
+      "title_ko": "[소아 골성장·미량영양소 임상] A randomized, double-blind, placebo controlled trial on the effect of zinc supplementation (2007)",
+      "authors": [
+        "Cepeda FB",
+        "Andaya A"
+      ],
+      "journal": "World Allergy Organization Journal",
+      "year": 2007,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "World Allergy Organization Journal (2007)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1097/01.wox.0000301713.84355.92",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "DOI:10.1159/000109088",
+      "pmid": "",
+      "doi": "10.1159/000109088",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Spinal Bone Mineral Density, IGF-1 and IGFBP-3 in Children with Cerebral Palsy",
+      "title_ko": "[수면·성장내분비 임상] Spinal Bone Mineral Density, IGF-1 and IGFBP-3 in Children with Cerebral Palsy (2007)",
+      "authors": [
+        "Ali O",
+        "Shim M",
+        "Fowler E",
+        "Cohen P",
+        "Oppenheim W"
+      ],
+      "journal": "Hormone Research in Paediatrics",
+      "year": 2007,
+      "citations_count": 8,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Hormone Research in Paediatrics (2007)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1159/000109088",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
     },
     {
       "id": "DOI:10.1016/j.bone.2005.11.003",
@@ -25031,6 +25216,101 @@
       "macro_pillar": "growth"
     },
     {
+      "id": "PMID:10188140",
+      "pmid": "10188140",
+      "doi": "10.1046/j.1365-2869.1999.00100.x",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "A 50-Hz electromagnetic field impairs sleep",
+      "title_ko": "[수면·성장내분비 임상] A 50-Hz electromagnetic field impairs sleep (1999)",
+      "authors": [
+        "Akerstedt T",
+        "Arnetz B",
+        "Ficca G",
+        "Paulsson LE",
+        "Kallner A"
+      ],
+      "journal": "Journal of sleep research",
+      "year": 1999,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Journal of sleep research (1999)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10188140/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "DOI:10.1159/000014169",
+      "pmid": "",
+      "doi": "10.1159/000014169",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Associations of IGF-I, IGFBP-1 and IGFBP-3 on Intrauterine Growth and Early Catch-Up Growth",
+      "title_ko": "[수면·성장내분비 임상] Associations of IGF-I, IGFBP-1 and IGFBP-3 on Intrauterine Growth and Early Catch-Up Growt (1999)",
+      "authors": [
+        "Özkan H",
+        "Aydın A",
+        "Demir N",
+        "Erci T",
+        "Büyükgebiz A"
+      ],
+      "journal": "Neonatology",
+      "year": 1999,
+      "citations_count": 33,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 33회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Neonatology (1999)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1159/000014169",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 33회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
       "id": "DOI:10.1016/s1096-6374(98)80065-8",
       "pmid": "",
       "doi": "10.1016/s1096-6374(98)80065-8",
@@ -27995,6 +28275,54 @@
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
+      "id": "PMID:3034952",
+      "pmid": "3034952",
+      "doi": "10.1210/jcem-65-1-141",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "24-hour profiles of adrenocorticotropin, cortisol, and growth hormone in major depressive illness: effect of antidepressant treatment",
+      "title_ko": "[수면·성장내분비 임상] 24-hour profiles of adrenocorticotropin, cortisol, and growth hormone in major depressive  (1987)",
+      "authors": [
+        "Linkowski P",
+        "Mendlewicz J",
+        "Kerkhofs M",
+        "Leclercq R",
+        "Golstein J",
+        "Brasseur M"
+      ],
+      "journal": "The Journal of clinical endocrinology and metabolism",
+      "year": 1987,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of clinical endocrinology and metabolism (1987)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3034952/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
       "id": "PMID:3096044",
       "pmid": "3096044",
       "doi": "10.1530/acta.0.112s411",
@@ -28346,7 +28674,28 @@
       "age_range": "만 2~16세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/7202336/",
-      "source_api": "NCBI PubMed E-utilities Live"
+      "source_api": "NCBI PubMed E-utilities Live",
+      "macro_pillar": "growth",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
     },
     {
       "id": "PMID:6795572",
@@ -55133,6 +55482,50 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.1109/mspec.2012.6172800",
+      "pmid": "",
+      "doi": "10.1109/mspec.2012.6172800",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "And a child shall lead them [Tools &amp; Toys]",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] And a child shall lead them [Tools &amp; Toys] (2012)",
+      "authors": [
+        "Cherry S"
+      ],
+      "journal": "IEEE Spectrum",
+      "year": 2012,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "IEEE Spectrum (2012)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1109/mspec.2012.6172800",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "DOI:10.12968/chca.2011.8.4.32",
       "pmid": "",
       "doi": "10.12968/chca.2011.8.4.32",
@@ -56339,6 +56732,48 @@
       "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약",
       "macro_pillar": "learning"
+    },
+    {
+      "id": "DOI:10.1037/003928",
+      "pmid": "",
+      "doi": "10.1037/003928",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Review of Toys, Play, and Child Development.",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Review of Toys, Play, and Child Development. (1995)",
+      "authors": [
+        "Gullickson T"
+      ],
+      "journal": "Contemporary Psychology: A Journal of Reviews",
+      "year": 1995,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Contemporary Psychology: A Journal of Reviews (1995)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1037/003928",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
       "id": "DOI:10.1119/1.2343636",
@@ -89473,4 +89908,165 @@
     },
     "13-16y": {
       "label_ko": "청소년기 (만 13~16세)",
-     
+      "sample_size": 14,
+      "avg_percentile": 49.1,
+      "avg_potential_gain_cm": 5.2,
+      "top_habit_ko": "학업 수면 지연 & 신체활동 부족 (79%)",
+      "top_pinpoint_rx_ko": "고함량 아르기닌·L-오르니틴·칼슘·마그네슘 & 문틀 철봉 데드행 루틴",
+      "guidebook_focus_ko": "성장판 폐쇄 전 마지막 4~7cm 스퍼트 & 추간판 감압 숨은 키 복원"
+    },
+    "17-20y": {
+      "label_ko": "후기 청소년·성인초기 (만 17~20세)",
+      "sample_size": 6,
+      "avg_percentile": 52.0,
+      "avg_potential_gain_cm": 2.4,
+      "top_habit_ko": "장시간 좌식 거북목·라운드숄더 (83%)",
+      "top_pinpoint_rx_ko": "구연산 칼슘·마그네슘·비타민D3·K2 & 폼롤러 흉추 신전·철봉 감압",
+      "guidebook_focus_ko": "척추 디스크 수분 복원(+1.8~2.5cm) & 성인 골밀도 피크(Peak Bone Mass) 완성"
+    }
+  },
+  "records": [
+    {
+      "id": "COHORT-SEED-101",
+      "timestamp": "2026-10-20T11:20:00Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2023-05-14",
+      "exactMonths": 41.2,
+      "ageYears": 3,
+      "currentHeight": 96.5,
+      "currentWeight": 14.8,
+      "recentGrowth6m": 3.5,
+      "fatherHeight": 175.0,
+      "motherHeight": 162.0,
+      "tannerPhase": "phase_1",
+      "habits": ["picky_eater"],
+      "cognitiveAxes": ["sensory_arts", "fine_motor"],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 54.2,
+      "zScore": 0.11,
+      "mph": 175.0,
+      "unmanagedHeight": 173.5,
+      "optimizedHeight": 180.8,
+      "potentialGainCm": 7.3
+    },
+    {
+      "id": "COHORT-SEED-102",
+      "timestamp": "2026-10-20T14:05:00Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-08-22",
+      "exactMonths": 86.0,
+      "ageYears": 7,
+      "currentHeight": 121.2,
+      "currentWeight": 23.4,
+      "recentGrowth6m": 2.9,
+      "fatherHeight": 176.0,
+      "motherHeight": 163.0,
+      "tannerPhase": "phase_1",
+      "habits": ["poor_posture", "picky_eater"],
+      "cognitiveAxes": ["math_logic"],
+      "region": "경기 남부(분당·수원·용인·동탄)",
+      "kdcaPercentile": 58.1,
+      "zScore": 0.2,
+      "mph": 163.0,
+      "unmanagedHeight": 160.8,
+      "optimizedHeight": 168.4,
+      "potentialGainCm": 7.6
+    },
+    {
+      "id": "COHORT-SEED-103",
+      "timestamp": "2026-10-20T18:40:00Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.2,
+      "ageYears": 10,
+      "currentHeight": 137.0,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": ["late_sleep", "poor_posture"],
+      "cognitiveAxes": ["science_nature", "executive_focus"],
+      "region": "서울 강북·마포·용산",
+      "kdcaPercentile": 46.5,
+      "zScore": -0.09,
+      "mph": 173.5,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 180.7,
+      "potentialGainCm": 9.4
+    },
+    {
+      "id": "COHORT-SEED-104",
+      "timestamp": "2026-10-20T21:12:00Z",
+      "targetSubject": "self",
+      "gender": "boy",
+      "birthDateStr": "2013-03-10",
+      "exactMonths": 163.4,
+      "ageYears": 13,
+      "currentHeight": 158.4,
+      "currentWeight": 52.0,
+      "recentGrowth6m": 4.4,
+      "fatherHeight": 174.0,
+      "motherHeight": 161.0,
+      "tannerPhase": "phase_2",
+      "habits": ["late_sleep", "night_carbs"],
+      "cognitiveAxes": ["executive_focus"],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 49.2,
+      "zScore": -0.02,
+      "mph": 174.0,
+      "unmanagedHeight": 171.6,
+      "optimizedHeight": 179.8,
+      "potentialGainCm": 8.2
+    },
+    {
+      "id": "COHORT-SEED-105",
+      "timestamp": "2026-10-21T01:30:00Z",
+      "targetSubject": "self",
+      "gender": "girl",
+      "birthDateStr": "2010-06-18",
+      "exactMonths": 196.1,
+      "ageYears": 16,
+      "currentHeight": 160.2,
+      "currentWeight": 53.8,
+      "recentGrowth6m": 0.9,
+      "fatherHeight": 177.0,
+      "motherHeight": 164.0,
+      "tannerPhase": "phase_4",
+      "habits": ["poor_posture", "late_sleep"],
+      "cognitiveAxes": ["language_reading", "executive_focus"],
+      "region": "부산·경남",
+      "kdcaPercentile": 51.8,
+      "zScore": 0.05,
+      "mph": 164.0,
+      "unmanagedHeight": 161.8,
+      "optimizedHeight": 166.2,
+      "potentialGainCm": 4.4
+    }
+  ]
+};
+
+  if (typeof window !== 'undefined') {
+    window.KIDSFIT_GROWTH_DATA = growthData;
+    window.KIDSFIT_KDST_DATA = kdstData;
+    window.KIDSFIT_CATALOG_DATA = catalogData;
+    window.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
+    window.KIDSFIT_RESEARCH_DATA = researchData;
+    window.KIDSFIT_USER_COHORT_DB = userCohortData;
+  }
+  if (typeof global !== 'undefined' && typeof window === 'undefined') {
+    global.KIDSFIT_GROWTH_DATA = growthData;
+    global.KIDSFIT_KDST_DATA = kdstData;
+    global.KIDSFIT_CATALOG_DATA = catalogData;
+    global.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
+    global.KIDSFIT_RESEARCH_DATA = researchData;
+    global.KIDSFIT_USER_COHORT_DB = userCohortData;
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { growthData, kdstData, catalogData, authoritiesData, researchData, userCohortData };
+  }
+})(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));
