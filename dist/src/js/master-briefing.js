@@ -370,41 +370,65 @@
       ? `🙋 [청소년·본인 전용] 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 맞춤 성장·학습 리포트`
       : `👶 [학부모 전용] 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 우리 아이 맞춤 성장·학습 리포트`;
 
-    // Child-specific deep trait labels & individualized routines
-    const traitSleep = profile.traitSleep || 'late_bedtime';
-    const traitDiet = profile.traitDiet || 'small_appetite';
-    const traitPosture = profile.traitPosture || 'turtle_slouch';
-    const traitExercise = profile.traitExercise || 'low_indoor';
-    const traitTemp = profile.traitTemperament || 'explorer';
+    // Child-specific deep trait labels & individualized routines (supports multi-select lists)
+    const traitSleepList = Array.isArray(profile.traitSleepList) && profile.traitSleepList.length
+      ? profile.traitSleepList
+      : [profile.traitSleep || 'late_bedtime'];
+    const traitDietList = Array.isArray(profile.traitDietList) && profile.traitDietList.length
+      ? profile.traitDietList
+      : [profile.traitDiet || 'small_appetite'];
+    const traitPostureList = Array.isArray(profile.traitPostureList) && profile.traitPostureList.length
+      ? profile.traitPostureList
+      : [profile.traitPosture || 'turtle_slouch'];
+    const traitTempList = Array.isArray(profile.traitTemperamentList) && profile.traitTemperamentList.length
+      ? profile.traitTemperamentList
+      : [profile.traitTemperament || 'explorer'];
     const traitFocus = profile.traitFocusSpan || '15_20m';
 
-    const sleepTraitLabelKo = {
+    const sleepLabelMapKo = {
       deep_early: '21:30 이전 숙면형',
-      late_bedtime: '22:30 이후 늦은 취침형',
-      toss_mouth: '입호흡·자주 뒤척이는 수면형',
-      night_snack: '취침 직전 야식·우유 섭취형'
-    }[traitSleep] || '늦은 취침형';
+      late_bedtime: '22:30 이후 늦은 취침',
+      toss_mouth: '입호흡·코골이·뒤척임',
+      night_snack: '취침 직전 야식·우유',
+      morning_fatigue: '아침 기상곤란·피로',
+      wake_middle: '새벽 중도각성·잠투정',
+      bedtime_screen: '취침 전 스마트폰·영상',
+      weekend_oversleep: '주말 늦잠·수면리듬 불균형'
+    };
 
-    const dietTraitLabelKo = {
-      small_appetite: '입이 짧은 소식 체질',
-      meat_veggie_picky: '고기·채소 편식 체질',
-      dairy_sensitive: '우유·유제품 배앓이 체질',
-      balanced_good: '균형 식습관 체질'
-    }[traitDiet] || '입이 짧은 소식 체질';
+    const dietLabelMapKo = {
+      small_appetite: '입 짧은 소식형',
+      meat_veggie_picky: '고기·채소 편식',
+      dairy_sensitive: '우유·유제품 배앓이',
+      fast_carb_sweet: '탄수화물·간식·단맛 선호',
+      slow_hold_mouth: '식사 지연·입에 물고 있음',
+      weak_stomach: '잦은 복통·변비·묽은변',
+      skip_breakfast: '아침 결식·불규칙 식사',
+      balanced_good: '균형 식습관'
+    };
 
-    const postureTraitLabelKo = {
-      turtle_slouch: '책상·스마트폰 거북목 체형',
-      leg_cross_pelvis: '다리 꼬기·골반 비대칭 체형',
-      growing_pains: '저녁 다리 성장통 호소형',
-      upright_good: '바른 자세 체형'
-    }[traitPosture] || '거북목 체형';
+    const postureLabelMapKo = {
+      turtle_slouch: '책상·스마트폰 거북목',
+      leg_cross_pelvis: '다리 꼬기·짝다리 비대칭',
+      growing_pains: '저녁 다리·무릎 성장통',
+      w_sit_flat_foot: 'W자 앉기·안짱걸음·평발',
+      round_shoulder: '말린 어깨·가슴 움츠림',
+      upright_good: '바른 체형'
+    };
 
-    const tempTraitLabelKo = {
-      explorer: '활동·체험 탐구형 기질',
-      builder: '손끝 조립·만들기 몰입형 기질',
-      questioner: '질문·언어 사고형 기질',
-      cautious: '섬세·완벽주의 관찰형 기질'
-    }[traitTemp] || '활동·탐구형 기질';
+    const tempLabelMapKo = {
+      explorer: '활동·체험 탐구형',
+      builder: '손끝 조립·만들기 몰입형',
+      questioner: '질문·언어 사고형',
+      cautious: '섬세·완벽주의 관찰형',
+      art_story: '감성·예술·스토리 공감형',
+      competitive_game: '승부욕·퀴즈·보드게임형'
+    };
+
+    const sleepTraitLabelKo = traitSleepList.map(k => sleepLabelMapKo[k] || '늦은 취침').join(' · ');
+    const dietTraitLabelKo = traitDietList.map(k => dietLabelMapKo[k] || '입 짧은 소식형').join(' · ');
+    const postureTraitLabelKo = traitPostureList.map(k => postureLabelMapKo[k] || '거북목 체형').join(' · ');
+    const tempTraitLabelKo = traitTempList.map(k => tempLabelMapKo[k] || '활동·탐구형').join(' · ');
 
     const focusTraitLabelKo = {
       under_10m: '10분 미만 단기 집중',
@@ -412,20 +436,35 @@
       '30m_plus': '30분+ 심화 몰입'
     }[traitFocus] || '15~20분 집중';
 
-    // Trait-specific custom routine lines
-    const customSleepRoutineKo = traitSleep === 'toss_mouth'
-      ? '취침 전 비강 세척·가습 및 베개 높이 조절로 입호흡을 줄이고 밤 22:00 이전 깊은 서파수면 유도'
-      : traitSleep === 'night_snack'
-      ? '취침 3시간 전 우유·간식 완전 중단(인슐린에 의한 성장호르몬 억제 차단) 및 밤 22:00 입면 고정'
-      : '매일 밤 21:45 소등 · 취침 1시간 전 스마트폰 차단으로 밤 10시~2시 성장호르몬 피크 확보';
+    // Trait-specific custom routine lines (combining multi-selected traits)
+    const sleepRoutines = [];
+    if (traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle')) {
+      sleepRoutines.push('취침 전 비강 세척·습도 50% 유지로 입호흡·새벽 각성을 줄이고 깊은 서파수면 유도');
+    }
+    if (traitSleepList.includes('night_snack')) {
+      sleepRoutines.push('취침 2~3시간 전 야식·우유 중단(인슐린에 의한 성장호르몬 억제 차단)');
+    }
+    if (traitSleepList.includes('morning_fatigue') || traitSleepList.includes('weekend_oversleep')) {
+      sleepRoutines.push('아침 기상 즉시 햇빛 노출 및 주말 기상 시간 편차 1시간 이내 고정');
+    }
+    if (sleepRoutines.length === 0 || traitSleepList.includes('late_bedtime') || traitSleepList.includes('bedtime_screen')) {
+      sleepRoutines.push('매일 밤 21:45 소등 · 취침 1시간 전 스마트폰 차단으로 밤 10시~2시 성장호르몬 피크 확보');
+    }
+    const customSleepRoutineKo = sleepRoutines.slice(0, 2).join(' + ');
 
-    const customDietRoutineKo = traitDiet === 'dairy_sensitive'
-      ? `우유 대신 두부·잔멸치·유당제거 치즈 및 구연산·연골칼슘(${nutTargets.calciumMg}mg) + 비타민D3(${nutTargets.vitDIU}IU) 보충`
-      : traitDiet === 'meat_veggie_picky'
-      ? `다진 소고기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 세포를 깨우는 아연·초유·연골칼슘 집중 보충`
-      : `입이 짧은 아이를 위해 적은 양으로도 흡수율이 높은 황기추출물(HT042)·구연산칼슘(${nutTargets.calciumMg}mg) 보충`;
+    const dietRoutines = [];
+    if (traitDietList.includes('dairy_sensitive') || traitDietList.includes('weak_stomach')) {
+      dietRoutines.push(`우유 배앓이·장 민감도를 고려해 두부·잔멸치 및 무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU) 보충`);
+    }
+    if (traitDietList.includes('meat_veggie_picky') || traitDietList.includes('fast_carb_sweet')) {
+      dietRoutines.push(`단맛·간식을 줄이고 소고기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 세포를 깨우는 아연·초유 보충`);
+    }
+    if (dietRoutines.length === 0 || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth')) {
+      dietRoutines.push(`입이 짧은 아이를 위해 적은 양으로도 흡수율이 높은 황기추출물(HT042)·고밀도 칼슘(${nutTargets.calciumMg}mg) 보충`);
+    }
+    const customDietRoutineKo = dietRoutines.slice(0, 2).join(' + ');
 
-    const customPostureStudyRoutineKo = `${traitPosture === 'growing_pains' ? '저녁 온찜질·종아리 스트레칭 및' : '높이조절 독서대로 거북목을 예방하고'} 매일 저녁 철봉 매달리기 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}]에 맞춘 하루 20분 자기주도 탐구`;
+    const customPostureStudyRoutineKo = `${traitPostureList.includes('growing_pains') ? '저녁 온찜질·종아리 스트레칭 및' : '높이조절 독서대·바른 착석으로 거북목·골반 틀어짐을 예방하고'} 매일 저녁 철봉·점프 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}] 맞춤 하루 20분 자기주도 탐구`;
 
     return `
       <!-- Master Briefing Card: Clean 4-Step Aligned Report -->

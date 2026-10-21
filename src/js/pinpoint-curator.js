@@ -866,10 +866,14 @@
     const habits = Array.isArray(profile.habits) ? profile.habits : ['late_sleep'];
     const cogAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
 
+    const traitSleepList = Array.isArray(profile.traitSleepList) ? profile.traitSleepList : [profile.traitSleep || 'late_bedtime'];
+    const traitDietList = Array.isArray(profile.traitDietList) ? profile.traitDietList : [profile.traitDiet || 'small_appetite'];
+    const traitPostureList = Array.isArray(profile.traitPostureList) ? profile.traitPostureList : [profile.traitPosture || 'turtle_slouch'];
+
     // Determine if height is below median or velocity needs catch-up
-    const isPicky = habits.includes('picky_eater');
-    const isLateSleep = habits.includes('late_sleep') || habits.includes('night_carbs');
-    const isPoorPosture = habits.includes('poor_posture');
+    const isPicky = habits.includes('picky_eater') || traitDietList.includes('meat_veggie_picky') || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth');
+    const isLateSleep = habits.includes('late_sleep') || habits.includes('night_carbs') || traitSleepList.includes('late_bedtime') || traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle');
+    const isPoorPosture = habits.includes('poor_posture') || traitPostureList.includes('turtle_slouch') || traitPostureList.includes('leg_cross_pelvis');
     const isSedentary = habits.includes('sedentary');
 
     // =========================================================================
@@ -1237,24 +1241,24 @@
    * Helper to summarize child-specific trait reasons concisely
    */
   function getTraitSpecificNote(profile = {}, category = 'supplement', isEn = false) {
-    const diet = profile.traitDiet || 'small_appetite';
-    const sleep = profile.traitSleep || 'late_bedtime';
-    const posture = profile.traitPosture || 'turtle_slouch';
-    const temp = profile.traitTemperament || 'explorer';
+    const dietList = Array.isArray(profile.traitDietList) && profile.traitDietList.length ? profile.traitDietList : [profile.traitDiet || 'small_appetite'];
+    const sleepList = Array.isArray(profile.traitSleepList) && profile.traitSleepList.length ? profile.traitSleepList : [profile.traitSleep || 'late_bedtime'];
+    const postureList = Array.isArray(profile.traitPostureList) && profile.traitPostureList.length ? profile.traitPostureList : [profile.traitPosture || 'turtle_slouch'];
+    const tempList = Array.isArray(profile.traitTemperamentList) && profile.traitTemperamentList.length ? profile.traitTemperamentList : [profile.traitTemperament || 'explorer'];
     const focus = profile.traitFocusSpan || '15_20m';
 
     if (category === 'supplement') {
-      if (diet === 'dairy_sensitive') {
+      if (dietList.includes('dairy_sensitive') || dietList.includes('weak_stomach')) {
         return isEn
           ? 'Tailored for dairy-sensitive digestion: non-lactose calcium citrate & cartilage matrix.'
-          : '[우유·유제품 배앓이 체질 맞춤] 유당 부담 없이 흡수되는 구연산·연골칼슘 및 장 면역 배합이 필요합니다.';
+          : '[우유·유제품 배앓이·장 민감 맞춤] 유당 부담 없이 흡수되는 구연산·연골칼슘 및 장 면역 배합이 필요합니다.';
       }
-      if (diet === 'meat_veggie_picky') {
+      if (dietList.includes('meat_veggie_picky') || dietList.includes('fast_carb_sweet')) {
         return isEn
           ? 'Tailored for meat/veggie picky eaters: zinc, colostrum protein & amino acid support.'
-          : '[고기·채소 편식 체질 맞춤] 부족한 단백질 기질과 미각 세포를 깨우는 아연·초유·아르기닌 보충이 핵심입니다.';
+          : '[고기·채소 편식·단맛 선호 맞춤] 부족한 단백질 기질과 미각 세포를 깨우는 아연·초유·아르기닌 보충이 핵심입니다.';
       }
-      if (sleep === 'toss_mouth' || sleep === 'late_bedtime' || posture === 'growing_pains') {
+      if (sleepList.includes('toss_mouth') || sleepList.includes('late_bedtime') || sleepList.includes('wake_middle') || postureList.includes('growing_pains')) {
         return isEn
           ? 'Tailored for late/restless sleep & growing pains: chelated magnesium & cartilage calcium.'
           : '[얕은 수면·늦은 취침·성장통 맞춤] 밤 10시 깊은 서파수면 유도 및 저녁 다리 피로 완화를 돕는 배합입니다.';
@@ -1265,20 +1269,20 @@
     }
 
     if (category === 'toy') {
-      if (temp === 'builder') {
+      if (tempList.includes('builder')) {
         return isEn
           ? 'Matched to Focused Builder temperament: 3D spatial block construction & posture tools.'
           : '[손끝 조립 몰입형 기질 맞춤] 아이가 좋아하는 입체 조립 교구와 앉은 자세 교정 도구를 결합했습니다.';
       }
-      if (temp === 'questioner') {
+      if (tempList.includes('questioner') || tempList.includes('competitive_game')) {
         return isEn
           ? 'Matched to Verbal Questioner temperament: cause-and-effect science kits & spinal decompression.'
-          : '[질문·언어 사고형 기질 맞춤] 원리를 실험하며 대화할 수 있는 과학 탐구 교구와 척추 감압 기구입니다.';
+          : '[질문·언어 사고·퀴즈형 기질 맞춤] 원리를 실험하며 대화할 수 있는 과학 탐구 교구와 척추 감압 기구입니다.';
       }
-      if (temp === 'cautious') {
+      if (tempList.includes('cautious') || tempList.includes('art_story')) {
         return isEn
           ? 'Matched to Careful Observer temperament: step-by-step precision puzzles & safe indoor exercise.'
-          : '[섬세·완벽주의 관찰형 맞춤] 실패 부담 없이 단계별로 완성하는 정밀 교구와 안전한 실내 점핑 기구입니다.';
+          : '[섬세·감성 관찰형 맞춤] 실패 부담 없이 단계별로 완성하는 정밀 교구와 안전한 실내 점핑 기구입니다.';
       }
       return isEn
         ? 'Matched to Active Explorer temperament: hands-on physical play & epiphyseal loading.'
@@ -1378,53 +1382,55 @@
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.9rem; align-items: stretch;">
+        <div class="pinpoint-3col-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.95rem; align-items: stretch;">
           
           <!-- Column 1: Required Supplements -->
-          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
-              <h4 style="font-size: 0.95rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.35rem 0;">
-                💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 꾸준히 보충할 맞춤 영양제 (엄선 세부 상품)'}
+              <h4 style="font-size: 1rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.35rem 0;">
+                💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 맞춤 영양제 (엄선 세부 상품)'}
               </h4>
-              <p style="font-size: 0.76rem; color: #93C5FD; margin: 0 0 0.7rem 0; line-height: 1.42;">
+              <p style="font-size: 0.82rem; color: #93C5FD; margin: 0 0 0.75rem 0; line-height: 1.48;">
                 ${suppTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
                 ${data.supplements.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
-                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
+                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.73rem; color: #34D399; font-weight: 700; margin-bottom: 0.35rem;">
+                    <div style="font-size: 0.78rem; color: #34D399; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
                       ✓ ${isEn ? 'Key Spec:' : '성분 기준:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
-                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
                     </div>
 
-                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
-                      <div style="font-size: 0.7rem; font-weight: 900; color: #60A5FA;">
-                        ✨ ${isEn ? 'Strictly Curated Specific Products (Click to Open Exact Product):' : 'K-GROWTH AI™ 엄선 세부 상품 바로가기 (클릭 시 해당 세부 상품 직결):'}
+                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2 — Mobile Thumb-Friendly Buttons) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
+                      <div style="font-size: 0.76rem; font-weight: 900; color: #60A5FA;">
+                        ✨ ${isEn ? 'Tap a Curated Product to View Directly:' : '엄선 세부 상품 터치 시 바로 이동:'}
                       </div>
                       ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(59,130,246,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
-                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
-                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(59,130,246,0.28); border-radius: 12px; padding: 0.7rem;">
+                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
+                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
                           </div>
-                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
                             • ${isEn ? sub.specEn : sub.specKo}
                           </div>
-                          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Coupang ↗' : '쿠팡 세부상품 ↗'}
+                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                              📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
                             </a>
-                            <a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.38); color: #34D399; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'iHerb ↗' : 'iHerb 세부상품 ↗'}
-                            </a>
-                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(59, 130, 246, 0.38); color: #93C5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Naver ↗' : '네이버 브랜드관 ↗'}
-                            </a>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                              <a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="iherb" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.45); color: #34D399; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
+                                🌿 ${isEn ? 'iHerb Direct ↗' : 'iHerb 직구 보기 ↗'}
+                              </a>
+                              <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.18); border: 1px solid rgba(59, 130, 246, 0.45); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
+                                🛍️ ${isEn ? 'Naver Store ↗' : '네이버 브랜드관 ↗'}
+                              </a>
+                            </div>
                           </div>
                         </div>
                       `).join('')}
@@ -1436,46 +1442,46 @@
           </div>
 
           <!-- Column 2: Required Play & Posture Tools -->
-          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
-              <h4 style="font-size: 0.95rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
-                🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 기질·자세 맞춤 교구 & 운동기구 (엄선 세부 상품)'}
+              <h4 style="font-size: 1rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
+                🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 맞춤 교구 & 운동기구 (엄선 세부 상품)'}
               </h4>
-              <p style="font-size: 0.76rem; color: #6EE7B7; margin: 0 0 0.7rem 0; line-height: 1.42;">
+              <p style="font-size: 0.82rem; color: #6EE7B7; margin: 0 0 0.75rem 0; line-height: 1.48;">
                 ${toyTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
                 ${data.toys.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
-                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
+                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.73rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.35rem;">
+                    <div style="font-size: 0.78rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
                       ✓ ${isEn ? 'Purpose:' : '활용 목적:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
-                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
                     </div>
 
-                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
-                      <div style="font-size: 0.7rem; font-weight: 900; color: #34D399;">
-                        ✨ ${isEn ? 'Strictly Curated Specific Products (Click to Open Exact Product):' : 'K-GROWTH AI™ 엄선 세부 상품 바로가기 (클릭 시 해당 세부 상품 직결):'}
+                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2 — Mobile Thumb-Friendly Buttons) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
+                      <div style="font-size: 0.76rem; font-weight: 900; color: #34D399;">
+                        ✨ ${isEn ? 'Tap a Curated Product to View Directly:' : '엄선 세부 상품 터치 시 바로 이동:'}
                       </div>
                       ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(16,185,129,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
-                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
-                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.28); border-radius: 12px; padding: 0.7rem;">
+                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
+                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
                           </div>
-                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
                             • ${isEn ? sub.specEn : sub.specKo}
                           </div>
-                          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.35rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Coupang Exact Item ↗' : '쿠팡 세부상품 보기 ↗'}
+                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                              📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
                             </a>
-                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.38); color: #34D399; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.35rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Naver Store ↗' : '네이버 브랜드/공식몰 ↗'}
+                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; width: 100%; box-sizing: border-box; min-height: 40px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.45); color: #34D399; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
+                              🛍️ ${isEn ? 'View on Naver Brand Store ↗' : '네이버 브랜드/공식몰에서 보기 ↗'}
                             </a>
                           </div>
                         </div>
@@ -1488,50 +1494,52 @@
           </div>
 
           <!-- Column 3: Required Books & Workbooks -->
-          <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+          <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
-              <h4 style="font-size: 0.95rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
-                📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 집중시간·연령 맞춤 필독 도서 (엄선 세부 도서)'}
+              <h4 style="font-size: 1rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
+                📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 맞춤 필독 도서 (엄선 세부 도서)'}
               </h4>
-              <p style="font-size: 0.76rem; color: #DDD6FE; margin: 0 0 0.7rem 0; line-height: 1.42;">
+              <p style="font-size: 0.82rem; color: #DDD6FE; margin: 0 0 0.75rem 0; line-height: 1.48;">
                 ${bookTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
                 ${data.books.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
-                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
+                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.73rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.35rem;">
+                    <div style="font-size: 0.78rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
                       ✓ ${isEn ? 'Focus:' : '핵심 훈련:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
-                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
                     </div>
 
-                    <!-- Curated Specific Sub-Products (엄선 세부 도서 TOP 2) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
-                      <div style="font-size: 0.7rem; font-weight: 900; color: #C4B5FD;">
-                        ✨ ${isEn ? 'Strictly Curated Specific Books (Click to Open Exact Book):' : 'K-GROWTH AI™ 엄선 세부 도서 바로가기 (클릭 시 해당 세부 도서 직결):'}
+                    <!-- Curated Specific Sub-Products (엄선 세부 도서 TOP 2 — Mobile Thumb-Friendly Buttons) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
+                      <div style="font-size: 0.76rem; font-weight: 900; color: #C4B5FD;">
+                        ✨ ${isEn ? 'Tap a Curated Book to View Directly:' : '엄선 세부 도서 터치 시 바로 이동:'}
                       </div>
                       ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(139,92,246,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
-                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
-                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(139,92,246,0.28); border-radius: 12px; padding: 0.7rem;">
+                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
+                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
                           </div>
-                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
                             • ${isEn ? sub.specEn : sub.specKo}
                           </div>
-                          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Coupang ↗' : '쿠팡 세부도서 ↗'}
+                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                              📦 ${isEn ? 'View Exact Book on Coupang ↗' : '쿠팡 로켓배송으로 이 책 보기 ↗'}
                             </a>
-                            <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(139, 92, 246, 0.38); color: #C4B5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'YES24 ↗' : '예스24 도서 ↗'}
-                            </a>
-                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(59, 130, 246, 0.38); color: #93C5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
-                              ${isEn ? 'Naver Book ↗' : '네이버 도서 ↗'}
-                            </a>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                              <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.45); color: #DDD6FE; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
+                                📚 ${isEn ? 'YES24 Book ↗' : '예스24 도서 보기 ↗'}
+                              </a>
+                              <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.18); border: 1px solid rgba(59, 130, 246, 0.45); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
+                                🛍️ ${isEn ? 'Naver Book ↗' : '네이버 도서 보기 ↗'}
+                              </a>
+                            </div>
                           </div>
                         </div>
                       `).join('')}

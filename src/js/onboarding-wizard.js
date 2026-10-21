@@ -790,19 +790,33 @@
     const regionSelect = document.getElementById('user-region');
     const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
 
-    // Child-Specific Deep Traits (Sleep, Diet/Digestion, Posture, Exercise, Temperament, Focus Span)
-    const sleepTraitEl = document.getElementById('trait-sleep-quality');
-    const dietTraitEl = document.getElementById('trait-diet-digestion');
-    const postureTraitEl = document.getElementById('trait-posture-type');
+    // Child-Specific Deep Traits (Multi-Select Checkboxes + Fallback Select)
+    const readMultiTrait = (name, idFallback, defaultVal) => {
+      const checked = [];
+      const boxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+      if (boxes && boxes.length > 0) {
+        boxes.forEach((cb) => checked.push(cb.value));
+      } else {
+        const el = document.getElementById(idFallback);
+        if (el && el.value) checked.push(el.value);
+      }
+      if (checked.length === 0) checked.push(defaultVal);
+      return checked;
+    };
+
+    const traitSleepList = readMultiTrait('trait-sleep-quality', 'trait-sleep-quality', 'late_bedtime');
+    const traitDietList = readMultiTrait('trait-diet-digestion', 'trait-diet-digestion', 'small_appetite');
+    const traitPostureList = readMultiTrait('trait-posture-type', 'trait-posture-type', 'turtle_slouch');
+    const traitTemperamentList = readMultiTrait('trait-temperament', 'trait-temperament', 'explorer');
+
     const exerciseTraitEl = document.getElementById('trait-exercise-freq');
-    const tempTraitEl = document.getElementById('trait-temperament');
     const focusTraitEl = document.getElementById('trait-focus-span');
 
-    const traitSleep = sleepTraitEl && sleepTraitEl.value ? sleepTraitEl.value : 'late_bedtime';
-    const traitDiet = dietTraitEl && dietTraitEl.value ? dietTraitEl.value : 'small_appetite';
-    const traitPosture = postureTraitEl && postureTraitEl.value ? postureTraitEl.value : 'turtle_slouch';
+    const traitSleep = traitSleepList[0] || 'late_bedtime';
+    const traitDiet = traitDietList[0] || 'small_appetite';
+    const traitPosture = traitPostureList[0] || 'turtle_slouch';
     const traitExercise = exerciseTraitEl && exerciseTraitEl.value ? exerciseTraitEl.value : 'low_indoor';
-    const traitTemperament = tempTraitEl && tempTraitEl.value ? tempTraitEl.value : 'explorer';
+    const traitTemperament = traitTemperamentList[0] || 'explorer';
     const traitFocusSpan = focusTraitEl && focusTraitEl.value ? focusTraitEl.value : '15_20m';
 
     wizardState.profile = {
@@ -823,10 +837,14 @@
       cognitiveAxes,
       region,
       traitSleep,
+      traitSleepList,
       traitDiet,
+      traitDietList,
       traitPosture,
+      traitPostureList,
       traitExercise,
       traitTemperament,
+      traitTemperamentList,
       traitFocusSpan
     };
 

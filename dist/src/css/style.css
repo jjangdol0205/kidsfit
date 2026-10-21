@@ -1934,3 +1934,186 @@ p, li, dt, dd,
   line-height: 1.38 !important;
 }
 
+/* ==========================================================================
+   21. SMARTPHONE MOBILE-FIRST TOUCH & READABILITY OVERHAUL (360px ~ 768px)
+   ========================================================================== */
+.trait-multi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+}
+
+.trait-multi-grid .chip-checkbox .chip-pill {
+  min-height: 46px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.trait-multi-grid .chip-checkbox input:checked + .chip-pill::before {
+  content: '✓ ';
+  color: #34D399;
+  font-weight: 900;
+  margin-right: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 0.65rem 0.75rem 3.5rem !important;
+  }
+
+  /* 1. Prevent mobile input zoom & enlarge tap targets */
+  .form-input,
+  .form-select {
+    font-size: 16px !important;
+    min-height: 48px !important;
+    padding: 0.65rem 0.85rem !important;
+    border-radius: 12px !important;
+  }
+
+  /* 2. Single-column thumb-friendly multi-select chips on smartphones */
+  .trait-multi-grid,
+  .choice-chips-grid,
+  .budget-tier-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .chip-checkbox .chip-pill,
+  .trait-multi-grid .chip-checkbox .chip-pill,
+  .radio-card-content {
+    min-height: 48px !important;
+    padding: 0.75rem 0.95rem !important;
+    font-size: 0.9rem !important;
+    line-height: 1.38 !important;
+    border-radius: 12px !important;
+  }
+
+  /* 3. Wizard Slide Card & Sticky Bottom Navigation on Mobile */
+  .onboarding-card {
+    padding: 1.1rem 0.9rem !important;
+    border-radius: 18px !important;
+  }
+
+  .quiz-step-header {
+    margin-bottom: 0.85rem !important;
+  }
+
+  .quiz-step-title {
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .wizard-nav-bar {
+    gap: 0.55rem !important;
+    padding-top: 0.9rem !important;
+  }
+
+  .wizard-btn-prev,
+  .wizard-btn-next,
+  .btn-submit-diagnosis {
+    min-height: 52px !important;
+    font-size: 0.96rem !important;
+    border-radius: 14px !important;
+  }
+
+  /* 4. Results Section & Master Briefing Card Mobile Readability */
+  #master-briefing-card-content,
+  .bento-card {
+    padding: 1.05rem 0.85rem !important;
+    border-radius: 18px !important;
+  }
+
+  .taller-height-reveal-hero {
+    padding: 1.1rem 0.95rem !important;
+    border-radius: 16px !important;
+  }
+
+  .taller-giant-height-number {
+    font-size: 2.35rem !important;
+  }
+
+  .briefing-title {
+    font-size: 1.08rem !important;
+    line-height: 1.38 !important;
+  }
+
+  /* 5. Guidebook STEP 1~4 Quick-Jump Pills: 2x2 Grid on Mobile for easy tapping */
+  .guidebook-chapter-nav {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.45rem !important;
+    overflow-x: visible !important;
+  }
+
+  .guidebook-chapter-pill {
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.6rem 0.5rem !important;
+    font-size: 0.76rem !important;
+    min-height: 42px !important;
+    border-radius: 10px !important;
+    white-space: normal !important;
+  }
+
+  /* 6. Results Category Tabs: Clean 2-Column Touch Grid on Smartphones */
+  .capsule-tabs-wrapper {
+    padding: 0.4rem !important;
+    border-radius: 16px !important;
+  }
+
+  .capsule-tabs {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem !important;
+    width: 100% !important;
+  }
+
+  .capsule-tab {
+    min-height: 46px !important;
+    padding: 0.55rem 0.5rem !important;
+    font-size: 0.8rem !important;
+    border-radius: 12px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .capsule-tab:last-child {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* 7. STEP 04 Curated Product Cards & Touch Buttons on Smartphones */
+  .pinpoint-3col-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .pinpoint-category-box {
+    padding: 0.9rem 0.8rem !important;
+  }
+
+  .pinpoint-item-card {
+    padding: 0.85rem 0.75rem !important;
+  }
+
+  .mobile-touch-btn-primary {
+    min-height: 48px !important;
+    font-size: 0.88rem !important;
+    padding: 0.7rem 0.85rem !important;
+  }
+
+  .mobile-touch-btn-secondary {
+    min-height: 44px !important;
+    font-size: 0.8rem !important;
+    padding: 0.55rem 0.5rem !important;
+  }
+}
+
+
