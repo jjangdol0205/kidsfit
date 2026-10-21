@@ -405,7 +405,7 @@
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.15rem;">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
           <!-- Massage Card 1: Knee Acupressure Points (Dokbi & Zusanli) -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.15rem;">
             <div style="font-size: 1.02rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.65rem;">
@@ -518,8 +518,8 @@
         <!-- NEW: Illustrated Bedtime Growth Plate Massage Guide -->
         ${renderIllustratedMassageSection(isGlobal)}
 
-        <!-- 3 Illustrated Exercise Routine Cards (No Visible Timers) -->
-        <div class="routines-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+        <!-- 3 Illustrated Exercise Routine Cards (1-Card-Per-Row Sequential Layout) -->
+        <div class="routines-grid" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.35rem;">
     `;
 
     ROUTINES.forEach((r, idx) => {
@@ -607,7 +607,7 @@
               Core 3 맞춤 큐레이션
             </span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
                 <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8;">🏆 엄선 1위 · 운동 1단계 필수템</span>

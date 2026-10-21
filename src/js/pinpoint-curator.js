@@ -2388,7 +2388,7 @@
     }
 
     return `
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+      <div style="display: flex; flex-direction: column; gap: 0.85rem;">
         ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
           <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid ${accentColor}; border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
@@ -2513,9 +2513,9 @@
         focus: '15분 몬테소리 손끝 조작 및 자기주도 장난감 정리'
       },
       3: {
-        kor: '스토리텔링 문맥 이해 & "왜 그럴까?" 인과 질문',
-        math: '직관적 양감(Subitizing) & 가베 1단계 입체 구성',
-        focus: '15분 무소음 타이머 세팅 후 미션 완수 루틴'
+        kor: '그림책 상황 이야기 나누기 & 의성어·의태어 말놀이',
+        math: '직관적 양감(Subitizing) & 원목 블록·모양 맞추기 입체 놀이',
+        focus: '15분 손끝 촉각·집게 놀이 후 스스로 정리하기 루틴'
       },
       4: {
         kor: '한글 자모음 결합 & 그림책 3문장 생각 말하기',
@@ -2920,41 +2920,51 @@
         product: Object.assign({
           badgeKo: '🏆 문해력·독해 1순위 맞춤 처방',
           categoryKo: '📖 하루 15분 문단 구조화 & 비문학·문장제 문해력 돌파 워크북',
-          titleKo: ageYears <= 6
-            ? '길벗스쿨 기적의 한글·유아 독해 & 어스본 그림책 생각열기 워크북 세트'
-            : (ageYears <= 9
-              ? '천재교육 하루 한장 독해 · 길벗스쿨 기적의 독서 논술 (초등 문해력·어휘 마인드맵)'
-              : '디딤돌 초등·중등 비문학 독해력 & 수능형 문단 요약·어휘 스키마 워크북 세트'),
-          specKo: '하루 15분 1지문 핵심어 찾기 + 시각 마인드맵 구조화로 국어·수학 문장제 문해력 동시 강화',
-          whyKo: '눈으로만 흘려 읽는 습관을 교정하고 문단의 중심 문장과 인과관계를 손으로 구조화하게 해줍니다.'
+          titleKo: ageYears <= 3
+            ? '유아 첫 오감 플랩북 · 의성어 말놀이 그림책 & 부모 상호작용 가이드 세트'
+            : (ageYears <= 6
+              ? '길벗스쿨 기적의 한글·유아 독해 & 어스본 그림책 생각열기 놀이북 세트'
+              : (ageYears <= 9
+                ? '천재교육 하루 한장 독해 · 길벗스쿨 기적의 독서 논술 (초등 문해력·어휘 마인드맵)'
+                : '디딤돌 초등·중등 비문학 독해력 & 수능형 문단 요약·어휘 스키마 워크북 세트')),
+          specKo: ageYears <= 3
+            ? '하루 15분 입체 플랩북 만지기 + 부모와 눈 맞추며 의성어·의태어 주고받기'
+            : '하루 15분 1지문 핵심어 찾기 + 시각 마인드맵 구조화로 국어·수학 문장제 문해력 동시 강화',
+          whyKo: ageYears <= 3
+            ? '복잡한 글자 읽기 대신 오감 그림책과 부모의 따뜻한 목소리로 언어 뇌(브로카 영역)를 깨워줍니다.'
+            : '눈으로만 흘려 읽는 습관을 교정하고 문단의 중심 문장과 인과관계를 손으로 구조화하게 해줍니다.'
         }, buildPinpointUrls(
-          ageYears <= 6 ? '기적의 유아 독해 한글 어휘 워크북 세트' : (ageYears <= 9 ? '천재교육 하루 한장 독해 기적의 독서 논술 초등 문해력 워크북' : '디딤돌 초등 고학년 중등 비문학 독해력 어휘력 워크북'),
+          ageYears <= 3 ? '유아 첫 오감 플랩북 말놀이 그림책 세트' : (ageYears <= 6 ? '기적의 유아 독해 한글 어휘 그림책 세트' : (ageYears <= 9 ? '천재교육 하루 한장 독해 기적의 독서 논술 초등 문해력 워크북' : '디딤돌 초등 고학년 중등 비문학 독해력 어휘력 워크북')),
           'Scholastic Reading Comprehension Graphic Organizers Workbook',
-          ageYears <= 6 ? '기적의 유아 독해' : (ageYears <= 9 ? '하루 한장 독해 초등 문해력' : '디딤돌 비문학 독해력'),
+          ageYears <= 3 ? '유아 오감 말놀이 그림책' : (ageYears <= 6 ? '기적의 유아 독해' : (ageYears <= 9 ? '하루 한장 독해 초등 문해력' : '디딤돌 비문학 독해력')),
           affConfig
         ))
       },
       math_concept: {
         key: 'math_concept',
         badgeKo: '📐 수리 · 사고력 수학 병목 진단',
-        titleKo: '단순 연산은 해도 도형·응용·사고력 수학에서 막혀할 때',
+        titleKo: ageYears <= 4 ? '크기·모양·숫자 세기 등 기초 수 감각을 놀이로 깨우치고 싶을 때' : '단순 연산은 해도 도형·응용·사고력 수학에서 막혀할 때',
         rootCauseKo: '기계적 계산 절차만 암기했을 뿐, 두정엽의 3차원 정신적 도형 회전(Mental Rotation) 경험이 부족하고 긴 문장제 조건을 머릿속에 유지하는 전두엽 작업기억(Working Memory)에 과부하가 걸리기 때문입니다.',
-        prescriptionKo: '연산 문제집 비중을 30%로 줄이세요! 문장제·응용 문제를 풀 때는 암산을 멈추고 ① 구하려는 것에 밑줄 긋기, ② 조건을 여백에 그림·수직선·표로 직접 그리기(작업기억 외부화), ③ 칠교·소마큐브·창의사고력 도형 워크북을 손으로 조작하며 풀게 해주세요.',
+        prescriptionKo: ageYears <= 3
+          ? '만 3세 이하 영유아에게는 학습지나 복잡한 수식이 아닌 【원목 도형 끼우기·크기 비교 블록 놀이】가 수리 두뇌의 출발점입니다. "어떤 블록이 더 클까?" 대화하며 손으로 직접 만지게 해주세요.'
+          : '연산 문제집 비중을 30%로 줄이세요! 문장제·응용 문제를 풀 때는 암산을 멈추고 ① 구하려는 것에 밑줄 긋기, ② 조건을 여백에 그림·수직선·표로 직접 그리기(작업기억 외부화), ③ 칠교·소마큐브·창의사고력 도형 워크북을 손으로 조작하며 풀게 해주세요.',
         paperCitationKo: '📚 학술 근거: Mix et al. (2016, J Educ Psychol · 공간회전력과 수학 응용력 상관 r=0.54 · DOI:10.1037/edu0000105) & Gathercole et al. (2004, 작업기억과 수학 성취 · PMID:14979759)',
         product: Object.assign({
           badgeKo: '🏆 사고력·도형 수학 1순위 처방',
           categoryKo: '📐 두정엽 시공간 회전 & 문장제 조건 시각화 사고력 수학 세트',
-          titleKo: ageYears <= 6
-            ? '소마셈 K·P단계 창의연산 + 원목 칠교놀이·소마큐브·패턴블록 도형 워크북 세트'
-            : (ageYears <= 9
-              ? '팩토(FACTO) / 필즈수학 초등 창의사고력 수학 & 플라토 입체도형 공간지각 워크북'
-              : '디딤돌 최상위연산·문장제 조건 시각화 노트 & 중등 기하·함수 개념 구조화 워크북'),
+          titleKo: ageYears <= 3
+            ? '몬테소리 원목 도형 맞추기 퍼즐 & 크기·색깔 분류 수감각 블록 세트'
+            : (ageYears <= 6
+              ? '소마셈 K·P단계 창의연산 + 원목 칠교놀이·소마큐브·패턴블록 도형 놀이 세트'
+              : (ageYears <= 9
+                ? '팩토(FACTO) / 필즈수학 초등 창의사고력 수학 & 플라토 입체도형 공간지각 워크북'
+                : '디딤돌 최상위연산·문장제 조건 시각화 노트 & 중등 기하·함수 개념 구조화 워크북')),
           specKo: '구체물 도형 회전 조작 + 문장제 조건을 그림·식으로 바꾸는 단계별 사고력 훈련',
           whyKo: '단순 계산기식 암산에서 벗어나 도형 감각과 응용 문제 해결 자신감을 근본적으로 끌어올립니다.'
         }, buildPinpointUrls(
-          ageYears <= 6 ? '소마셈 유아 창의사고력 수학 칠교놀이 소마큐브 워크북' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토 도형 문장제 워크북' : '디딤돌 초등 사고력 수학 문장제 기하 도형 워크북'),
+          ageYears <= 3 ? '몬테소리 원목 도형 맞추기 퍼즐 수감각 블록' : (ageYears <= 6 ? '소마셈 유아 창의사고력 수학 칠교놀이 소마큐브 워크북' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토 도형 문장제 워크북' : '디딤돌 초등 사고력 수학 문장제 기하 도형 워크북')),
           'Singapore Math Challenging Word Problems Spatial Geometry Workbook',
-          ageYears <= 6 ? '소마셈 창의사고력 수학' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토' : '디딤돌 사고력 수학 문장제'),
+          ageYears <= 3 ? '유아 원목 도형 퍼즐' : (ageYears <= 6 ? '소마셈 창의사고력 수학' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토' : '디딤돌 사고력 수학 문장제')),
           affConfig
         ))
       },
@@ -3048,7 +3058,11 @@
       },
       play_manipulative: {
         badgeKo: '🧩 손끝 조작·체험·교구형 (구체물 몰입 스타일)',
-        coachingKo: '눈으로만 개념을 읽게 하지 마시고, <strong>입체 도형 블록(가베·칠교·소마큐브)·과학 실험 키트·보드게임으로 손끝 감각을 먼저 깨워준 뒤</strong> 개념 워크북으로 연결해 주세요. 소근육 조작이 전두엽 실행기능을 깨워 집중력이 3배 깊어집니다.',
+        coachingKo: ageYears <= 3
+          ? '만 3세 영유아기에는 글자 학습지 대신 <strong>원목 집게·구슬꿰기·도형 맞추기 블록으로 손끝 소근육을 먼저 깨워준 뒤</strong> 오감 그림책 놀이로 연결해 주세요. 손끝 조작이 전두엽 실행기능을 깨워 집중력이 3배 깊어집니다.'
+          : (ageYears <= 6
+            ? '눈으로만 개념을 읽게 하지 마시고, <strong>만 4~6세 시기에 맞는 입체 도형 블록(은물·가베·자석블록·칠교)으로 손끝 감각을 먼저 깨워준 뒤</strong> 놀이북으로 연결해 주세요. 소근육 조작이 전두엽 실행기능을 깨워 집중력이 3배 깊어집니다.'
+            : '눈으로만 개념을 읽게 하지 마시고, <strong>초등·청소년 눈높이에 맞는 입체 기하 퍼즐(소마큐브·그래비트랙스)·과학 실험 키트·조건 그림 그리기로 손끝과 시각을 먼저 깨워준 뒤</strong> 개념서로 연결해 주세요.'),
         styleProduct: CONCERN_DB.math_concept.product
       },
       visual_story: {
@@ -3208,18 +3222,18 @@
             ${eduWhyNeeded}
           </div>
 
-          <!-- 3-Priority Educational Methods Grid -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 0.95rem;">
+          <!-- 3-Priority Educational Methods Sequential List (1위 → 2위 → 3위) -->
+          <div style="display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 0.95rem;">
             ${eduMethodComparison.map(m => `
-              <div style="background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(196, 181, 253, 0.25); border-radius: 12px; padding: 0.9rem;">
-                <div style="font-size: 0.9rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.35rem;">${m.title}</div>
-                <p style="font-size: 0.83rem; color: #CBD5E1; line-height: 1.52; margin: 0;">${m.desc}</p>
+              <div style="background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(196, 181, 253, 0.25); border-radius: 12px; padding: 0.9rem 1.05rem;">
+                <div style="font-size: 0.92rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.3rem;">${m.title}</div>
+                <p style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.52; margin: 0;">${m.desc}</p>
               </div>
             `).join('')}
           </div>
 
-          <!-- Focus Span & Pitfall Alert Row -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem;">
+          <!-- Focus Span & Pitfall Alert Sequential Column -->
+          <div style="display: flex; flex-direction: column; gap: 0.7rem;">
             <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.32); border-radius: 12px; padding: 0.8rem 0.95rem; font-size: 0.84rem; color: #E2E8F0; line-height: 1.55;">
               <strong style="color: #34D399; display: block; margin-bottom: 0.2rem;">⏱️ 우리 아이 집중시간 맞춤 홈 코칭법</strong>
               ${focusCoachingKo}
@@ -3271,8 +3285,8 @@
             `).join('')}
           </div>
 
-          <!-- Child's Best Learning Style + Sleep-Memory Consolidation Golden Rule -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem;">
+          <!-- Child's Best Learning Style + Sleep-Memory Consolidation Golden Rule (1 Card Per Row) -->
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <div style="background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(167, 139, 250, 0.38); border-radius: 12px; padding: 0.85rem 1rem; font-size: 0.84rem; color: #F8FAFC; line-height: 1.55;">
               <strong style="color: #DDD6FE; display: block; margin-bottom: 0.25rem;">✍️ 우리 아이 학습 스타일 맞춤 코칭 (${learningPlan.activeStyle.badgeKo})</strong>
               ${learningPlan.activeStyle.coachingKo}
@@ -3300,7 +3314,7 @@
           <p style="font-size: 0.86rem; color: #CBD5E1; margin: 0 0 0.85rem 0; line-height: 1.52;">
             아이의 학습 병목(${learningPlan.diagnosedConcerns.map(c => c.badgeKo).join(', ')})과 학습 흡수 스타일(${learningPlan.activeStyle.badgeKo})에 정확히 매칭된 도서·워크북·집중 도구입니다.
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             ${learningPlan.learningItems.map((item) => `
               <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
@@ -3395,7 +3409,7 @@
           <p style="font-size: 0.86rem; color: #CBD5E1; margin: 0 0 0.9rem 0; line-height: 1.55;">
             8대 거주 권역 × 5단계 연령대(만 1~3세 / 4~6세 / 7~9세 / 10~13세 / 14세+) 매트릭스를 기반으로, 우리 아이 나이에 딱 맞는 관람 포인트와 사전 예약·할인 티켓을 매칭했습니다.
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             ${regionalTickets.map((tk) => `
               <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
@@ -3457,7 +3471,7 @@
               ? `Mapped to Age ${ageYears} developmental windows: combines outdoor vitamin D synthesis, active growth plate walking, and parent-child Havruta inquiry.`
               : `아이의 해마 장기기억과 전두엽 호기심을 깨우는 연령별 대표 도슨트 투어·과학관·테마파크 티켓(마이리얼트립·클룩·KKday) 및 사전답사 도서·키트입니다.`}
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             ${(data.eduTours || []).map((tour) => `
               <div class="pinpoint-item-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>

@@ -666,7 +666,7 @@
     const hasPosture = habits.includes('poor_posture');
 
     return `
-      <div class="coaching-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin-top: 1rem;">
+      <div class="coaching-cards-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
         <!-- Card 1: Nutrition -->
         <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem;">
           <div style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">🥛 ① 식단 &amp; 뼈성장 영양 핵심</div>
@@ -722,18 +722,18 @@
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
-            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">📏 정상 성장속도</div>
-            <div style="font-size: 1.0rem; font-weight: 900; color: #34D399; margin-top: 0.2rem;">${velocityGuide.normalVelocityCmPerYear}</div>
+        <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">📏 정상 성장속도 기준</span>
+            <span style="font-size: 0.98rem; font-weight: 900; color: #34D399;">${velocityGuide.normalVelocityCmPerYear}</span>
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
-            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">🌙 권장 수면시간</div>
-            <div style="font-size: 0.95rem; font-weight: 900; color: #38BDF8; margin-top: 0.2rem;">${velocityGuide.sleepRecommendation}</div>
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">🌙 연령 권장 수면시간</span>
+            <span style="font-size: 0.95rem; font-weight: 900; color: #38BDF8;">${velocityGuide.sleepRecommendation}</span>
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
-            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">⚖️ 체질량지수 (BMI ${bmiInfo.bmi})</div>
-            <div style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.2rem;">${bmiInfo.bmiStatus} (연 4cm 미만 시 진료 권장)</div>
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">⚖️ 체질량지수 (BMI ${bmiInfo.bmi})</span>
+            <span style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor};">${bmiInfo.bmiStatus} (연 4cm 미만 시 진료 권장)</span>
           </div>
         </div>
       </div>
@@ -757,7 +757,7 @@
           <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 800;">아침·저녁 6개월 이상 꾸준히 챙기는 핵심 구비템</span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
           <!-- Product 1: HT042 -->
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
@@ -818,8 +818,8 @@
       <!-- Core 1 Container -->
       <div id="core-1-container" class="core-module-container">
 
-        <!-- Big Stats Bento Header -->
-        <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        <!-- Big Stats Bento Header (Clean Symmetric 2×2 Grid) -->
+        <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 1.35rem;">
           <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
             <span style="font-size: 0.85rem; font-weight: 700; color: var(--cyan-pulse, #38BDF8);">소아 신체 백분위 &amp; Z-Score</span>
             <div style="font-size: 1.9rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>

@@ -155,9 +155,9 @@
     },
     {
       step: 6,
-      titleKo: '성장 고민 & Antigravity AI 맞춤 처방',
-      titleEn: 'Growth Concerns & Antigravity Bespoke Synthesis',
-      subKo: '고민을 적어주시면 안티그래비티 AI가 설문 기반 1:1 신체 성장 처방전을 발행합니다.',
+      titleKo: '성장·체질 세부 체크 & 맞춤 보고서 발행',
+      titleEn: 'Growth Details & Personalized Report',
+      subKo: '우리 아이에게 해당하는 항목을 클릭하면 1:1 신체 성장 보고서를 즉시 발행합니다.',
       subEn: 'Generates tailored clinical growth guidance and supplement/exercise prescriptions.'
     }
   ];
@@ -167,42 +167,42 @@
       step: 1,
       titleKo: '기본 정보 (성별 · 생년월일)',
       titleEn: 'Basic Demographics (Sex · Date of Birth)',
-      subKo: '연령 및 학년에 따른 뇌인지 발달 단계를 자동 판별합니다.',
+      subKo: '연령 및 발달 단계에 맞춰 질문과 추천 기준을 자동으로 세팅합니다.',
       subEn: 'Classifies neuro-developmental stage and cognitive baseline.'
     },
     {
       step: 2,
-      titleKo: '📖 평소 독서 습관 & 문해력 이해 패턴',
+      titleKo: '📖 평소 독서 습관 & 언어·문해력 패턴',
       titleEn: 'Reading Habits & Literacy Comprehension',
-      subKo: '긴 글 읽기, 문장제 문제 이해, 어휘력 뇌인지 병목을 진단합니다.',
+      subKo: '아이 나이에 맞춘 그림책·줄글 읽기 및 언어 이해 패턴을 진단합니다.',
       subEn: 'Pinpoints language cognitive processing and reading comprehension gaps.'
     },
     {
       step: 3,
-      titleKo: '📐 수학·수리사고 & 도형 추론 패턴',
+      titleKo: '📐 수리·공간 감각 & 도형 추론 패턴',
       titleEn: 'Mathematical Logic & Spatial Reasoning',
-      subKo: '단순 연산에서 응용·사고력 수학으로 넘어가는 뇌인지 전환점을 진단합니다.',
+      subKo: '아이 연령에 맞는 수 감각, 도형·공간 지각, 응용 사고력을 진단합니다.',
       subEn: 'Evaluates conceptual mathematics transfer and spatial logic capacity.'
     },
     {
       step: 4,
-      titleKo: '⏱️ 책상 앞 집중 시간 & 스마트폰 습관',
+      titleKo: '⏱️ 놀이·학습 집중 시간 & 미디어 습관',
       titleEn: 'Executive Focus & Dopamine Regulation',
-      subKo: '전두엽 실행기능(작업기억, 충동억제)과 책상 몰입 습관을 진단합니다.',
+      subKo: '전두엽 자기조절력, 착석 몰입 시간, 미디어 노출 습관을 진단합니다.',
       subEn: 'Measures prefrontal executive function and digital distraction resilience.'
     },
     {
       step: 5,
-      titleKo: '🧠 자기주도 복습 & 메타인지 기억 패턴',
+      titleKo: '🧠 기억·표현 습관 & 자기주도 패턴',
       titleEn: 'Metacognition & SWS Memory Consolidation',
-      subKo: '해마 수면 기억공고화 및 혼자 힘으로 설명하는 백지복습 능력을 진단합니다.',
+      subKo: '배운 내용을 기억하고 스스로 말·행동으로 표현하는 습관을 진단합니다.',
       subEn: 'Assesses hippocampal long-term consolidation and self-explanation mastery.'
     },
     {
       step: 6,
-      titleKo: '🧩 학습 성향 & Antigravity AI 맞춤 처방',
-      titleEn: 'Study Temperament & Antigravity Bespoke Synthesis',
-      subKo: '학습 고민을 적어주시면 안티그래비티 AI가 설문 기반 1:1 두뇌·학습 처방전을 발행합니다.',
+      titleKo: '🧩 아이 성향·병목 클릭 & 맞춤 보고서 발행',
+      titleEn: 'Study Temperament & Personalized Report',
+      subKo: '해당하는 성향과 고민을 클릭하면 아이 나이에 맞춘 1:1 두뇌·학습 보고서를 발행합니다.',
       subEn: 'Synthesizes personalized learning roadmap, study methodology, and workbook curation.'
     }
   ];
@@ -440,8 +440,8 @@
     const previewEl = document.getElementById('dob-auto-stage-preview');
     if (previewEl) {
       previewEl.textContent = isEn
-        ? `🤖 Auto-Detected Growth Stage & Bone Age: ${autoStage.stageNameEn} (Expected Velocity: ${autoStage.expectedVelStrEn || autoStage.expectedVelStr})`
-        : `🤖 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
+        ? `✓ Auto-Detected Growth Stage & Bone Age: ${autoStage.stageNameEn} (Expected Velocity: ${autoStage.expectedVelStrEn || autoStage.expectedVelStr})`
+        : `✓ 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
     }
     const stageTitleEl = document.getElementById('auto-growth-stage-title');
     if (stageTitleEl) {
@@ -461,6 +461,124 @@
       phaseRadios.forEach((r) => {
         r.checked = (r.value === autoStage.tannerPhase);
       });
+    }
+
+    syncAgeAppropriateQuizOptions(dobInfo.ageYears);
+  }
+
+  /**
+   * Adapts survey option text to match the child's age (e.g., 3yo toddler vs 5~6yo vs 7~9yo vs 10+yo)
+   * so a 3yo parent never sees "시험 전날 벼락치기" or "복잡한 줄글 책읽기", and an 11yo never sees infant wording.
+   */
+  function syncAgeAppropriateQuizOptions(ageYears) {
+    if (typeof document === 'undefined') return;
+    const isEn = document.documentElement.lang === 'en';
+    if (isEn) return;
+
+    const age = Number(ageYears) || 10;
+    const isToddler = age <= 4;
+    const isKinder = age >= 5 && age <= 6;
+
+    const setCheckboxLabel = (name, value, text) => {
+      const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+      if (!input || !input.parentElement) return;
+      const pill = input.parentElement.querySelector('.chip-pill');
+      if (!pill) return;
+      const spans = pill.querySelectorAll('span');
+      const targetSpan = spans.length > 0 ? spans[spans.length - 1] : pill;
+      if (targetSpan) targetSpan.textContent = text;
+    };
+
+    if (isToddler) {
+      // Ages 1~4: Play, Picture Books, Sensory & Autonomy
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', '그림책을 읽어줄 때 끝까지 집중하지 못하고 금방 다른 장난감을 찾아요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', '또래보다 새로운 단어를 따라 말하거나 뜻을 이해하는 속도가 느린 편이에요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', '말소리를 정확하게 발음하거나 두세 문장으로 이어 말하는 게 아직 서툴러요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', '자기가 원하는 것이나 감정을 말 대신 떼쓰기·울음·행동으로 먼저 표현해요');
+      setCheckboxLabel('learning-literacy', 'active_reader', '그림책 보는 것을 좋아하고 그림 속 사물 이름을 손가락으로 짚으며 잘 말해요');
+
+      setCheckboxLabel('learning-math', 'applied_math_block', '하나·둘·셋 숫자 이름은 말하지만 실제 사물 개수와 일대일로 짝짓기 어려워해요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '모양 맞추기 퍼즐이나 블록을 위아래·앞뒤로 쌓고 조립하는 걸 힘들어해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', '크다·작다, 길다·짧다, 많다·적다 같은 기초 비교 개념을 헷갈려해요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', '장난감 정리나 색깔·모양별로 끼리끼리 분류하는 놀이를 혼자 하기 어려워해요');
+      setCheckboxLabel('learning-math', 'math_explorer', '블록 쌓기나 모양 맞추기, 규칙적인 배열 놀이에 큰 흥미를 보여요');
+
+      setCheckboxLabel('learning-focus', 'distracted_desk', '한 가지 놀잇감에 5~10분 이상 머무르지 못하고 이리저리 자주 옮겨 다녀요');
+      setCheckboxLabel('learning-focus', 'dopamine_media', '식사할 때나 이동할 때 스마트폰·태블릿 영상을 봐야만 가만히 있어요');
+      setCheckboxLabel('learning-focus', 'procrastination', '손끝을 써야 하는 단추 끼우기·집게 집기·가위질 놀이를 답답해하며 피하려 해요');
+      setCheckboxLabel('learning-focus', 'impulsive_mistakes', '기다리는 것을 힘들어하고 마음이 급해 장난감을 던지거나 먼저 손이 나가요');
+      setCheckboxLabel('learning-focus', 'deep_focus', '좋아하는 블록이나 촉감·역할 놀이를 할 때는 15분 이상 깊게 빠져들어요');
+
+      setCheckboxLabel('learning-meta', 'passive_illusion', '엄마·아빠가 옆에서 같이 해줄 때만 놀고 혼자서는 놀이를 이어가지 못해요');
+      setCheckboxLabel('learning-meta', 'metacognition_lack', '낮에 다녀온 곳이나 방금 읽은 그림책 이야기를 물어보면 대답하기 어려워해요');
+      setCheckboxLabel('learning-meta', 'cramming_forget', '어제 배운 단어나 생활 약속(장난감 정리 등)을 다음 날이면 금방 잊어버려요');
+      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', '낮잠 시간이 불규칙하거나 밤 10시 넘어 늦게 자서 낮에 짜증·피로가 많아요');
+      setCheckboxLabel('learning-meta', 'daily_retrieval_active', '"이거 왜 그래요?" 질문을 자주 하고 배운 단어를 일상에서 바로 써먹어요');
+
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '그림책에 집중하는 시간이 짧고 이야기 흐름을 따라가기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', '수 세기, 모양 맞추기, 블록 조립 같은 기초 공간·수 감각 놀이를 어색해해요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', '엄마가 도와주지 않으면 혼자 스스로 해보려는 자율성이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '스마트폰·영상 자극에 익숙해져서 손으로 만지는 놀이를 심심해해요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '자리에 앉아 손끝 소근육 놀이(집게·구슬·퍼즐)에 집중하기 힘들어해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '단어 표현력이 부족하거나 자기 생각을 말로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '낯선 환경이나 새로운 놀이를 만났을 때 실패할까 봐 쉽게 위축돼요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '매일 정해진 시간에 그림책을 보거나 스스로 정리하는 생활 루틴이 부족해요');
+    } else if (isKinder) {
+      // Ages 5~6: Kindergarten / Preschool Readiness
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', '한글 낱글자는 읽지만 문장 단위로 뜻을 이해하는 속도가 느려요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', '모르는 단어가 나오면 앞뒤 그림·이야기 맥락으로 유추하기 어려워해요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', '글자보다 그림만 대충 넘겨 보거나 소리 내어 읽기를 부담스러워해요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', '동화책을 읽고 난 뒤 "왜 그랬을까?" 질문에 자기 생각을 말하기 힘들어해요');
+      setCheckboxLabel('learning-literacy', 'active_reader', '이야기책을 즐겨 보고 등장인물의 마음이나 줄거리를 말로 잘 표현해요');
+
+      setCheckboxLabel('learning-math', 'applied_math_block', '손가락으로 숫자는 더하지만 이야기 속 수 놀이(가르기·모으기)를 어려워해요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '칠교놀이·가베·자석블록으로 입체 모양을 똑같이 만드는 공간 놀이를 힘들어해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', '10 만들기나 수의 크기 비교를 원리보다 단순 순서 외우기로만 해결하려 해요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', '조금만 문제 모양이 바뀌어도 "모르겠어요" 하고 먼저 도움을 요청해요');
+      setCheckboxLabel('learning-math', 'math_explorer', '퍼즐 맞추기, 규칙 찾기, 입체 블록 구조물 만들기를 스스로 즐겨요');
+
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '한글 읽기 유창성과 짧은 동화책 내용 이해력을 키워주고 싶어요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', '수 가르기·모으기와 도형·공간 감각(칠교·은물·블록)을 탄탄히 잡아주고 싶어요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', '배운 내용을 엄마에게 말로 설명해 보는 표현·기억 습관이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '영상·미디어 자극에 익숙해져 종이책이나 보드게임에 흥미가 덜해요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '초등학교 입학 전 15~20분 바른 자세로 앉아 집중하는 연습이 필요해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '어휘력이 부족하거나 자기 생각을 조리 있게 말로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '조금만 어려운 퍼즐이나 활동지가 나오면 틀릴까 봐 시도를 피하려 해요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '매일 15분씩 스스로 책 읽고 활동지를 끝내는 성취 습관을 길러주고 싶어요');
+    } else {
+      // Ages 7+: Elementary / Middle / High School
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', '긴 글이나 서술형 문장제 문제를 읽고 핵심 파악을 어려워해요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', '모르는 어휘가 나오면 앞뒤 문맥 유추를 못 하고 글 전체를 놓쳐요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', '책을 읽는 속도가 지나치게 느리거나 눈으로만 대충 훑어 읽어요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', '책을 다 읽은 후 줄거리 요약이나 느낀 점을 말·서술형 글로 표현하기 힘들어요');
+      setCheckboxLabel('learning-literacy', 'active_reader', '스스로 책을 찾아 읽고 글의 행간이나 핵심 문맥을 잘 파악해요');
+
+      setCheckboxLabel('learning-math', 'applied_math_block', '단순 계산·연산은 빠르지만, 문장제 응용문제에서 식을 못 세워요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '도형 돌리기, 입체 전개도, 기하·공간 추론 문제를 유독 어려워해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', '원리나 개념 이해보다 공식 암기에만 의존해 조금만 변형되어도 틀려요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', '틀린 문제를 설명해줘도 비슷한 유형의 문제에서 똑같이 반복 오답이 나와요');
+      setCheckboxLabel('learning-math', 'math_explorer', '규칙 찾기나 논리 추론, 새로운 수학 원리를 스스로 탐구하는 편이에요');
+
+      setCheckboxLabel('learning-focus', 'distracted_desk', '책상에 15~20분 이상 앉아 있기 힘들고 주변 작은 소리나 물건에 산만해져요');
+      setCheckboxLabel('learning-focus', 'dopamine_media', '스마트폰 숏폼·유튜브·게임 자극에 익숙해 글자나 공부에 쉽게 지루해해요');
+      setCheckboxLabel('learning-focus', 'procrastination', '숙제나 공부를 해야 할 때 자꾸 뒤로 미루고 시작하기까지 딴짓이 많아요');
+      setCheckboxLabel('learning-focus', 'impulsive_mistakes', '문제를 꼼꼼히 끝까지 안 읽고 건너뛰거나 계산 부호를 잘못 보는 실수가 잦아요');
+      setCheckboxLabel('learning-focus', 'deep_focus', '흥미 있는 분야나 문제에 30~40분 이상 스스로 깊이 몰입해요');
+
+      setCheckboxLabel('learning-meta', 'passive_illusion', '학원·선생님 설명을 들을 땐 알겠는데 혼자 풀면 백지 상태가 돼요');
+      setCheckboxLabel('learning-meta', 'metacognition_lack', '배운 내용을 책을 덮고 내 말로 설명하거나 정리(백지복습)하지 못해요');
+      setCheckboxLabel('learning-meta', 'cramming_forget', '시험 전날 벼락치기로 외우고, 시험이 끝나면 배운 내용을 금방 잊어버려요');
+      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', '밤늦게까지 공부하거나 늦게 자서 아침에 멍하고 낮에 뇌 피로감이 커요');
+      setCheckboxLabel('learning-meta', 'daily_retrieval_active', '그날 배운 핵심 내용을 15분 스스로 정리하고 질문하는 습관이 있어요');
+
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', '단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', '학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '책상에 20분 이상 바른 자세로 앉아 있기 힘들고 산만해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '아는 문제도 문제집·시험에서 덤벙대며 실수하거나 긴장해서 틀려요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '스스로 분량을 정해 매일 꾸준히 실천하는 자기주도 습관이 부족해요');
     }
   }
 
@@ -961,6 +1079,7 @@
     const learningMath = getCheckedValues('learning-math');
     const learningFocus = getCheckedValues('learning-focus');
     const learningMeta = getCheckedValues('learning-meta');
+    const traitGrowthDetails = getCheckedValues('trait-growth-detail');
 
     if (learningLiteracy.length || learningMath.length || learningFocus.length || learningMeta.length) {
       const mappedConcerns = [...traitLearningConcerns];
@@ -1016,6 +1135,7 @@
       learningMath,
       learningFocus,
       learningMeta,
+      traitGrowthDetails,
       traitStudyStyle,
       parentFreeNote,
       preferredReportMode: wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'growth'
@@ -1098,8 +1218,8 @@
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
       submitBtnEl.textContent = (activeMode === 'learning')
-        ? '✦ 진단 6단계 + 아이 특징 합산 두뇌·학습 보고서 보기 →'
-        : '✦ 진단 6단계 + 아이 특징 합산 신체 성장 보고서 보기 →';
+        ? '✦ 선택한 설문 항목 기반 두뇌·학습 보고서 보기 →'
+        : '✦ 선택한 설문 항목 기반 신체 성장 보고서 보기 →';
     }
 
     if (document.body && document.body.classList) {

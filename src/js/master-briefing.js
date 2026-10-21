@@ -275,13 +275,37 @@
           if (h === 'sedentary') surveyClues.push('운동 부족 줄넘기 싫어해요');
         });
       }
+      if (profile.traitGrowthDetails && Array.isArray(profile.traitGrowthDetails)) {
+        profile.traitGrowthDetails.forEach(g => {
+          if (g === 'growing_pain_night') surveyClues.push('밤에 다리 무릎 종아리 성장통으로 깨요');
+          if (g === 'rhinitis_mouth') surveyClues.push('비염 코막힘 입 벌리고 구강호흡 잠');
+          if (g === 'early_puberty_worry') surveyClues.push('사춘기 가슴 멍울 골연령 뼈나이 걱정');
+          if (g === 'bone_age_delay') surveyClues.push('엄마 아빠 유전키 또래보다 키가 작아 걱정');
+          if (g === 'dairy_calcium_lack') surveyClues.push('우유 배앓이 편식 소화 흡수 걱정');
+          if (g === 'slouch_disc_loss') surveyClues.push('거북목 구부정한 자세 척추 책상');
+        });
+      }
+      if (profile.traitPostureList && Array.isArray(profile.traitPostureList)) {
+        if (profile.traitPostureList.includes('growing_pains')) surveyClues.push('밤마다 무릎 종아리 성장통');
+        if (profile.traitPostureList.includes('turtle_slouch')) surveyClues.push('거북목 구부정한 자세');
+      }
+      if (profile.traitSleepList && Array.isArray(profile.traitSleepList)) {
+        if (profile.traitSleepList.includes('toss_mouth')) surveyClues.push('비염 입 벌리고 구강호흡');
+      }
+      if (profile.traitDietList && Array.isArray(profile.traitDietList)) {
+        if (profile.traitDietList.includes('dairy_sensitive')) surveyClues.push('우유 배앓이 설사');
+        if (profile.traitDietList.includes('constipation_hard')) surveyClues.push('변비 소화 장 면역');
+      }
       if (profile.traitLearningConcerns && Array.isArray(profile.traitLearningConcerns)) {
         profile.traitLearningConcerns.forEach(c => {
           if (c === 'reading_literacy' || c === 'reading_comprehension') surveyClues.push('긴 글 문장제 독해 문해력이 부족해요');
+          if (c === 'vocab_expression') surveyClues.push('어휘력 서술형 표현 문해력이 부족해요');
           if (c === 'math_concept' || c === 'applied_math_block') surveyClues.push('연산은 해도 응용 도형 사고력 수학에서 막혀해요');
           if (c === 'passive_forget' || c === 'metacognition_lack') surveyClues.push('설명 들어도 금방 잊고 백지복습 자기주도 복습이 안 돼요');
           if (c === 'screen_dopamine' || c === 'dopamine_media') surveyClues.push('스마트폰 유튜브 숏폼 자극에 익숙해 산만해요');
           if (c === 'desk_endurance' || c === 'distracted_desk') surveyClues.push('책상에 15분 이상 앉아 있기 힘들고 집중이 짧아요');
+          if (c === 'test_mistake_anxiety') surveyClues.push('실수 자신감 위축 예민');
+          if (c === 'habit_self_directed') surveyClues.push('자기주도 복습 숙제 습관');
         });
       }
       effectiveRaw = surveyClues.length > 0
@@ -498,40 +522,50 @@
       }
     }
 
-    // Calculate Narrative Detail Precision Level (Rewards parents who write more detailed notes!)
+    // Calculate Survey Selection Precision Level
     const charLen = raw.length;
     const clusterCount = insights.length;
-    let precisionPercent = 78;
-    let precisionLevelKo = 'Level 1 · 기본 설문 프로필 분석 (글을 더 자세히 적으실수록 정밀도가 99%까지 올라갑니다)';
+    let precisionPercent = 92;
+    let precisionLevelKo = 'Level 4 · 설문 클릭 항목 다중 교차 반영 (정밀도 92%)';
     if (charLen >= 80 || clusterCount >= 4) {
       precisionPercent = 99;
-      precisionLevelKo = 'Level 5 · 최고 정밀 초개인화 처방 완료 (서술형 심층 반영 99%)';
+      precisionLevelKo = 'Level 5 · 다중 클릭 항목 정밀 교차 처방 완료 (반영도 99%)';
     } else if (charLen >= 45 || clusterCount >= 3) {
-      precisionPercent = 95;
-      precisionLevelKo = 'Level 4 · 다중 특성 정밀 처방 완료 (서술형 반영 95%)';
+      precisionPercent = 96;
+      precisionLevelKo = 'Level 4 · 다중 특성 정밀 처방 완료 (반영도 96%)';
     } else if (charLen >= 20 || clusterCount >= 2) {
-      precisionPercent = 90;
-      precisionLevelKo = 'Level 3 · 맞춤 서술형 정밀 처방 (서술형 반영 90%)';
+      precisionPercent = 92;
+      precisionLevelKo = 'Level 3 · 맞춤 설문 정밀 처방 (반영도 92%)';
     } else if (charLen >= 1) {
-      precisionPercent = 85;
-      precisionLevelKo = 'Level 2 · 고민 키워드 반영 처방 (서술형 반영 85%)';
+      precisionPercent = 88;
+      precisionLevelKo = 'Level 2 · 핵심 항목 반영 처방 (반영도 88%)';
     }
 
     // Physical Growth Daily Routine
     const physicalDailyRoutine = {
-      morning: `🌅 아침 기상 직후 (07:30): 커튼을 열어 햇빛으로 뇌 세로토닌을 깨우고, 미온수 반 컵 후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 비타민D3 ${nutTargets.vitDIU}IU + 초유 단백질] 아침 1회분 섭취`,
-      afterSchool: `🏃 방과 후·오후 (16:30): 성장판 자극 점핑 운동 [${/운동|줄넘기|싫어/.test(raw) ? '실내 무소음 트램폴린 10분 점핑' : '줄넘기·점핑 15분'}] 및 하체 스트레칭`,
-      dinner: `🍽️ 저녁 식탁 (18:30): 취침 3시간 전 식사 완료 (살코기·두부·계란 단백질 ${nutTargets.proteinG}g/일 목표) + 저녁 식후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 마그네슘 ${nutTargets.magnesiumMg}mg + 아연 ${nutTargets.zincMg}mg + HT042] 섭취`,
-      bedtime: `🌙 취침 골든타임 (21:30~22:00): 스마트폰 화면 차단 후 ${/비염|코|입 벌/.test(raw) ? '생리식염수 코 세척 · 침실 습도 50% 세팅 + ' : ''}문틀 철봉 30초 매달리기 및 무릎·종아리 5분 온찜질 마사지로 밤 10시 성장호르몬 피크 진입`
+      morning: `🌅 아침 기상 직후 (07:30): 커튼을 열어 햇빛으로 생체시계를 깨우고, 미온수 반 컵 후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 비타민D3 ${nutTargets.vitDIU}IU + 초유 단백질] 아침 1회분 섭취`,
+      afterSchool: `🏃 방과 후·오후 (16:30): 성장판 자극 운동 [${ageYears <= 4 ? '실내 트램폴린·공놀이 15분' : (/운동|줄넘기|싫어/.test(effectiveRaw) ? '실내 무소음 트램폴린 10분 점핑' : '줄넘기·점핑 15분')}] 및 하체 스트레칭`,
+      dinner: `🍽️ 저녁 식탁 (18:30): 취침 3시간 전 식사 완료 (살코기·두부·계란 단백질 ${nutTargets.proteinG}g/일 목표) + 저녁 식후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 마그네슘 ${nutTargets.magnesiumMg}mg + 아연 ${nutTargets.zincMg}mg] 섭취`,
+      bedtime: `🌙 취침 골든타임 (${ageYears <= 5 ? '21:00~21:30' : '21:30~22:00'}): 미디어 화면 차단 후 ${/비염|코|입 벌/.test(effectiveRaw) ? '미온수 코 세척 · 침실 습도 50% 유지 + ' : ''}${ageYears <= 4 ? '무릎·종아리 5분 성장판 마사지' : '문틀 철봉 30초 매달리기 및 무릎·종아리 5분 마사지'}로 깊은 숙면 진입`
     };
 
-    // 4-Stage Self-Directed Study Daily Routine
-    const learningDailyRoutine = {
-      stage1: `🌅 07:30 아침 기상 5분 비주얼 마인드맵: 오늘 공부할 핵심 개념 1가지 시각화 및 전두엽 각성`,
-      stage2: `🏃 16:30 방과 후 두뇌 산소 공급 & 몰입: 15분 신체활동(점핑·산책) 후 무소음 시각 타이머(Visual Timer) 20분 단일과제 집중`,
-      stage3: `🍽️ 18:30 저녁 식탁 1분 파인만 하브루타: 엄마에게 오늘 배운 핵심 개념을 일일 선생님처럼 1분간 쉽게 설명하기 (프로테제 효과)`,
-      stage4: `🌙 21:30 취침 전 5분 코넬 백지복습(Active Recall): 핵심 키워드 3가지 인출 후 밤 10시 전 서파수면(SWS) 진입으로 대뇌 장기기억 공고화 (+40%)`
-    };
+    // 4-Stage Age-Appropriate Daily Learning Routine
+    const learningDailyRoutine = ageYears <= 3 ? {
+      stage1: `🌅 09:00 아침 오감·손끝 놀이 (10분): 나무 집게로 폼폼이 옮기기·구슬 꿰기 등 소근육 감각 놀이로 두뇌 운동피질 깨우기`,
+      stage2: `🏃 15:30 오후 대근육 신체 놀이 (20분): 산책·공놀이로 에너지를 발산한 뒤, 거실 매트에서 원목 블록·모양 맞추기 10분 몰입`,
+      stage3: `🍽️ 18:30 저녁 식사 후 그림책 상호작용 (10분): 글자를 읽히기보다 그림 속 동물·사물을 손가락으로 짚으며 "누가 숨었지?" 대화 주고받기`,
+      stage4: `🌙 21:00 밤 9시 수면 루틴: 잔잔한 자장가·애착 인형과 함께 일찍 잠들어 낮에 경험한 감각·어휘를 해마 장기기억으로 저장`
+    } : (ageYears <= 6 ? {
+      stage1: `🌅 08:30 아침 두뇌 워밍업 (10분): 오늘 유치원·집에서 해볼 재미있는 놀이 1가지를 그림 달력에서 함께 고르기`,
+      stage2: `🧩 16:30 오후 손끝 입체 교구 놀이 (15분): 칠교·은물(가베)·자석블록으로 대칭·입체 모양을 만들며 시공간 감각 깨우기`,
+      stage3: `🗣️ 19:00 저녁 그림책 하브루타 문답 (15분): 동화책을 함께 읽고 "만약 네가 주인공이라면 어떻게 했을까?" 열린 질문 2가지 나누기`,
+      stage4: `🌙 21:30 취침 전 3분 오늘 이야기 나누기: 오늘 가장 재미있었던 일 1가지를 엄마에게 말로 설명한 뒤 깊은 수면 진입`
+    } : {
+      stage1: `🌅 07:30 아침 기상 5분 핵심 훑기: 오늘 배울 핵심 단원 제목과 키워드 1가지를 눈으로 확인하며 전두엽 깨우기`,
+      stage2: `⏱️ 16:30 방과 후 타이머 단일 몰입 (20분): 스마트폰을 거실에 두고 무소음 시각 타이머로 딱 20분간 독해·사고력 수학 집중 풀이`,
+      stage3: `🗣️ 18:30 저녁 식탁 1분 설명하기 (하브루타): 오늘 배운 개념 1가지를 부모님께 일일 선생님처럼 내 말로 쉽게 설명하기`,
+      stage4: `🌙 21:30 취침 전 5분 백지복습 & 숙면: 책을 덮고 오늘 배운 핵심 키워드 3가지를 노트에 떠올려 적은 뒤 밤 10시 전 숙면 진입`
+    });
 
     const dailyScheduleKo = physicalDailyRoutine;
 
@@ -851,88 +885,151 @@
     const concernsArr = Array.isArray(profile.traitLearningConcerns) ? profile.traitLearningConcerns : ['reading_literacy'];
     const rawNoteLower = String((profile && profile.parentFreeNote) || '').toLowerCase();
 
+    // Age-tier flags for strict age-appropriate setting (3yo never gets complex reading/academies; 11yo never gets Gabe/Froebel)
+    const isToddlerAge = ageYears <= 3;
+    const isKinderAge = ageYears >= 4 && ageYears <= 6;
+    const isElemLowAge = ageYears >= 7 && ageYears <= 9;
+    const isUpperAge = ageYears >= 10;
+
     const styleProfileMap = {
       dialogue_question: {
-        badge: '🗣️ 문답·하브루타 설명형 두뇌',
-        title: '질문하고 내 말로 설명할 때 시냅스가 2배 활성화되는 【대화·원리 탐색형】',
-        summary: '눈으로만 조용히 읽거나 일방적인 강의를 들을 때보다, 부모님·선생님과 "왜 그럴까?" 질문을 주고받고 배운 내용을 자기 입으로 다시 설명해 볼 때 장기기억으로 가장 빠르고 깊게 흡수하는 성향입니다.',
-        detail: '좌뇌 브로카 영역과 전두엽 추론 회로가 대화 자극에 민감하게 반응하여, 생각의 꼬리를 물고 말로 표현할 때 이해도와 기억력이 폭발적으로 상승합니다.',
-        boostAction: '오늘 배운 내용을 엄마·아빠에게 일일 선생님처럼 3분 동안 설명해 보는 【식탁 위 3분 파인만 설명 루틴】을 실천해 주세요.',
-        fixAction: '혼자 조용히 깜지를 쓰거나 단순 반복 문제집만 풀게 하면 금방 지루해하므로, 공부 시작 전 "오늘 배울 핵심 질문 1가지"를 먼저 던져주세요.'
+        badge: isToddlerAge ? '🗣️ 상호작용·말문 트이기형 두뇌' : '🗣️ 문답·하브루타 설명형 두뇌',
+        title: isToddlerAge
+          ? '엄마·아빠와 눈을 맞추고 주고받는 말놀이에서 언어가 폭발하는 【상호작용 소통형】'
+          : '질문하고 내 말로 설명할 때 이해도가 2배 높아지는 【대화·원리 탐색형】',
+        summary: isToddlerAge
+          ? '혼자 조용히 장난감만 만질 때보다, 부모님이 다정하게 사물 이름을 불러주고 "우와, 이건 뭘까?" 질문을 주고받을 때 어휘와 두뇌 시냅스가 가장 빠르게 자라는 성향입니다.'
+          : '눈으로만 조용히 읽거나 일방적인 설명을 들을 때보다, 부모님·선생님과 "왜 그럴까?" 질문을 주고받고 배운 내용을 자기 입으로 다시 설명해 볼 때 가장 깊게 흡수하는 성향입니다.',
+        detail: '좌뇌 브로카 영역과 전두엽 추론 회로가 대화 자극에 민감하게 반응하여, 생각의 꼬리를 물고 말로 표현할 때 이해도와 기억력이 크게 상승합니다.',
+        boostAction: isToddlerAge
+          ? '그림책을 볼 때 글자를 다 읽으려 하지 마시고, 그림 속 동물·사물을 손가락으로 짚으며 "멍멍이는 어디 있지?" 주고받는 말놀이를 하루 10분 실천해 주세요.'
+          : (isKinderAge
+            ? '동화책을 읽거나 놀이를 한 뒤 "오늘 제일 재미있었던 장면이 뭐야?" 물어보고 아이가 자기 말로 이야기해 보는 【3분 꼬마 이야기꾼 루틴】을 실천해 주세요.'
+            : '오늘 배운 핵심 개념 1가지를 엄마·아빠에게 일일 선생님처럼 2분 동안 설명해 보는 【식탁 위 파인만 설명 루틴】을 실천해 주세요.'),
+        fixAction: isToddlerAge
+          ? '어려운 단어를 일방적으로 가르치거나 긴 책을 끝까지 읽히려 하면 흥미를 잃으므로, 아이가 손가락으로 가리키는 대상에 즉시 반응해 주세요.'
+          : '혼자 조용히 단순 반복 문제집만 풀게 하면 금방 지루해하므로, 시작 전 "오늘 알아볼 핵심 질문 1가지"를 먼저 건네주세요.'
       },
       play_manipulative: {
         badge: '🧩 손끝 입체 조작·체험형 두뇌',
-        title: '손으로 직접 만지고 조립·실험할 때 개념이 열리는 【입체 조작·설계형】',
-        summary: '추상적인 글자나 2D 문제집만 보면 쉽게 지루해하지만, 손끝으로 블록·도형 교구를 만지거나 직접 실험·조작해 보면 복잡한 원리도 단숨에 직관적으로 깨우치는 성향입니다.',
-        detail: '대뇌 운동피질의 30%를 차지하는 손끝 감각과 두정엽 공간추론 회로가 강하게 연결되어 있어, 몸과 손으로 부딪히며 배울 때 최고 효율을 냅니다.',
-        boostAction: '수학·과학 개념을 배울 때 3D 입체 교구(소마큐브·칠교·자석블록)나 실험 키트로 10분간 먼저 손으로 만들어보게 해주세요.',
-        fixAction: '처음부터 책상 앞에 오래 앉혀 줄글 문제집만 풀게 하면 거부감이 생기므로, 손으로 직접 그림·도형을 그리며 푸는 습관을 길러주세요.'
+        title: isToddlerAge
+          ? '손끝으로 집고 끼우고 만질 때 소근육과 두뇌가 함께 깨어나는 【오감·손끝 탐색형】'
+          : '손으로 직접 만지고 조립·실험할 때 개념이 열리는 【입체 조작·설계형】',
+        summary: isToddlerAge
+          ? '가만히 앉아 그림만 보기보다 손가락으로 직접 집게를 집고, 구슬을 꿰고, 블록을 쌓아 올릴 때 두뇌 운동피질과 눈-손 협응력이 가장 활발하게 발달하는 성향입니다.'
+          : '추상적인 글자나 2D 문제집만 보면 쉽게 지루해하지만, 손끝으로 입체 교구를 만지거나 직접 실험·조작해 보면 원리를 단숨에 직관적으로 깨우치는 성향입니다.',
+        detail: '대뇌 운동피질의 30%를 차지하는 손끝 감각과 두정엽 공간추론 회로가 강하게 연결되어 있어, 직접 만지고 조작할 때 최고 효율을 냅니다.',
+        boostAction: isToddlerAge
+          ? '하루 15분 나무 집게로 폼폼이 옮기기, 굵은 원목 구슬 꿰기, 안전가위 오리기 등 【몬테소리 일상 손끝 놀이】를 충분히 경험하게 해주세요.'
+          : (isKinderAge
+            ? '수를 세거나 모양을 배울 때 칠교·은물(가베)·자석블록으로 10분간 먼저 손으로 입체 모양을 만들어보게 해주세요.'
+            : '도형·기하·과학 원리를 배울 때 3D 입체 퍼즐(소마큐브·기하 교구)이나 과학 실험 키트·그래비트랙스로 먼저 구조를 체험하게 해주세요.'),
+        fixAction: isToddlerAge
+          ? '아직 손끝 악력이 자라는 시기이므로 작은 레고나 복잡한 학습지 대신 아이 손 크기에 맞는 원목 감각 교구부터 시작해 주세요.'
+          : '처음부터 책상 앞에 오래 앉혀 줄글 문제집만 풀게 하면 거부감이 생기므로, 손으로 직접 그림·도식을 그리며 푸는 습관을 길러주세요.'
       },
       visual_story: {
         badge: '🎨 시각 이미지·스토리텔링형 두뇌',
-        title: '그림·도표·마인드맵과 이야기로 연결할 때 한눈에 이해하는 【시각 스토리 몰입형】',
-        summary: '빽빽한 흑백 줄글보다 색깔, 다이어그램, 만화적 흐름, 배경 스토리와 함께 볼 때 머릿속에 사진 찍듯 전체 구조를 그려내며 기억하는 우뇌·시각 강점 성향입니다.',
-        detail: '후두엽 시각 피질과 해마의 에피소드 기억 회로가 뛰어나, 단편적 암기보다 전체 줄거리와 시각적 구조도로 정리할 때 오랫동안 기억합니다.',
-        boostAction: '긴 줄글이나 복잡한 개념을 읽은 뒤 3색 펜으로 핵심 단어에 동그라미를 치고 화살표 마인드맵으로 한 장에 그려보게 해주세요.',
-        fixAction: '글자만 가득한 요약본을 외우게 하기보다, 역사·과학 배경 스토리가 담긴 도서와 시각 다이어그램 노트를 함께 활용해 주세요.'
+        title: '그림·도표·이야기 흐름으로 연결할 때 한눈에 이해하는 【시각 스토리 몰입형】',
+        summary: isToddlerAge
+          ? '선명한 색감의 그림책, 표정이 살아있는 일러스트, 짧은 역할극 이야기와 함께할 때 집중력과 감정 표현력이 가장 밝게 피어나는 성향입니다.'
+          : '빽빽한 흑백 줄글보다 색깔, 다이어그램, 만화적 흐름, 배경 스토리와 함께 볼 때 머릿속에 전체 구조를 그려내며 기억하는 시각 강점 성향입니다.',
+        detail: '시각 피질과 해마의 에피소드 기억 회로가 뛰어나, 단편적 암기보다 전체 줄거리와 시각적 구조도로 정리할 때 오랫동안 기억합니다.',
+        boostAction: isToddlerAge
+          ? '다양한 색감의 그림책과 클레이·핑거페인팅 미술 놀이로 아이가 본 것을 자유롭게 표현하게 해주세요.'
+          : '긴 지문이나 개념을 읽은 뒤 3색 펜으로 핵심 단어에 동그라미를 치고 화살표 마인드맵으로 한 장에 그려보게 해주세요.',
+        fixAction: isToddlerAge
+          ? '글자 위주의 학습보다 그림을 보며 이야기를 상상하는 시간을 충분히 주세요.'
+          : '글자만 가득한 요약본을 외우게 하기보다, 역사·과학 배경 스토리가 담긴 도서와 시각 다이어그램 노트를 함께 활용해 주세요.'
       },
       goal_workbook: {
         badge: '🏆 미션 완수·목표 성취형 두뇌',
-        title: '명확한 분량과 시간 목표가 주어질 때 도파민이 폭발하는 【목표 달성 주도형】',
-        summary: '막연하게 "공부해라"라고 하면 시작을 힘들어하지만, "딱 20분 동안 이 워크북 2쪽만 끝내고 스티커 붙이자!"처럼 명확한 목표와 즉각적인 성취 피드백이 있을 때 놀라운 집중력을 발휘하는 성향입니다.',
-        detail: '전두엽 목표 실행 회로와 선조체 성취 보상 시스템이 잘 발달해 있어, 눈에 보이는 진도표와 시간 타이머가 있을 때 자기주도성이 가장 빠르게 자랍니다.',
-        boostAction: '무소음 시각 타이머로 20분을 맞추고 오늘 끝낼 분량(2~3쪽)을 아이가 직접 체크리스트에 지워나가는 【작은 승리 누적 루틴】을 만들어 주세요.',
-        fixAction: '한 번에 너무 많은 분량을 주거나 끝나는 시간이 불투명하면 쉽게 지치므로, 학습 단위를 15~20분 블록으로 짧고 명확하게 쪼개주세요.'
+        title: '명확한 작은 목표와 칭찬이 주어질 때 집중력이 살아나는 【성취 주도형】',
+        summary: isToddlerAge
+          ? '"장난감 바구니에 블록 5개 골인시키자!"처럼 짧고 분명한 놀이 미션과 부모님의 손뼉 칭찬이 있을 때 스스로 해내려는 자율성이 쑥쑥 자라는 성향입니다.'
+          : '"딱 20분 동안 이 워크북 2쪽만 끝내고 스티커 붙이자!"처럼 명확한 목표와 즉각적인 성취 피드백이 있을 때 높은 집중력을 발휘하는 성향입니다.',
+        detail: '전두엽 목표 실행 회로와 성취 보상 시스템이 잘 발달해 있어, 눈에 보이는 진도표와 시간 타이머가 있을 때 자기주도성이 빠르게 자랍니다.',
+        boostAction: isToddlerAge
+          ? '혼자 신발 정리하기, 블록 5개 쌓기처럼 5분 안에 성공할 수 있는 작은 생활 미션을 주고 완료할 때마다 칭찬 스티커를 붙여주세요.'
+          : '무소음 시각 타이머로 15~20분을 맞추고 오늘 끝낼 분량(2~3쪽)을 아이가 직접 체크리스트에 지워나가는 【작은 승리 누적 루틴】을 만들어 주세요.',
+        fixAction: '한 번에 너무 많은 분량을 주면 쉽게 지치므로, 연령에 맞게 10~20분 단위로 짧고 명확하게 쪼개주세요.'
       }
     };
     const activeStyleInfo = styleProfileMap[studyStyleKey] || styleProfileMap.dialogue_question;
 
-    // Step 2: Strengths (아이가 잘하는 성향 TOP 3)
+    // Age-appropriate tool label helper (Strict: 3yo -> Montessori/PictureBook; 4~6yo -> Gabe/PatternBlock; 7+yo -> SomaCube/GraviTrax/Workbook, NEVER Gabe for 7+)
+    const ageMathToolLabel = isToddlerAge
+      ? '몬테소리 원목 도형 끼우기 · 크기 분류 교구'
+      : (isKinderAge ? '프뢰벨 은물·가베 입체 교구 · 칠교 자석블록' : '3D 소마큐브·기하 퍼즐 · 그래비트랙스 · 사고력 수학 워크북');
+    const ageLangToolLabel = isToddlerAge
+      ? '의성어·의태어 촉감 그림책 · 낱말 놀이 카드'
+      : (isKinderAge ? '창작 그림책 · 이야기 순서 맞추기 하브루타 카드' : '비문학 하루 한장 독해 워크북 · 코넬식 요약 노트');
+    const ageBuilderToolLabel = isToddlerAge
+      ? '몬테소리 원목 집게·구슬 꿰기 · 빅블록 교구'
+      : (isKinderAge ? '자석블록 · 프뢰벨 은물·가베 · 창의 조립 교구' : '그래비트랙스 트랙 설계 키트 · 과학 조립·코딩 교구');
+
+    // Step 2: Strengths (아이가 잘하는 성향 TOP 3 — 1위 → 2위 → 3위 순차 서술용)
     const strengthsList = [];
     if (cogAxisPrimary === 'math_logic' || /연산|계산|퍼즐|규칙|블록|레고/.test(rawNoteLower)) {
       strengthsList.push({
         icon: '📐',
         score: Math.max(84, (lqData.scores && lqData.scores.math_spatial) || 86),
-        title: '수리적 규칙 발견 & 입체 구조 파악 성향',
-        goodTrait: '숫자의 규칙성이나 퍼즐·블록의 구조적 원리를 빠르게 찾아내는 두정엽 수리·공간 감각이 뛰어납니다.',
-        howToBoost: '단순 연산 반복 대신 하루 1문제라도 다양한 풀이법을 찾아보는 사고력 퍼즐·입체 도형 미션을 주면 수리 자신감이 2배로 자랍니다.',
-        helpfulTools: '3D 소마큐브·칠교 입체 교구, 사고력 수학 퍼즐북'
+        title: isToddlerAge ? '모양·크기 비교 & 블록 구조 탐색 강점' : '수리적 규칙 발견 & 입체 공간 구조 파악 강점',
+        goodTrait: isToddlerAge
+          ? '사물의 모양·크기 차이를 눈여겨보고 블록을 쌓거나 짝맞추기 퍼즐을 맞출 때 눈-손 협응력과 공간 감각이 빠르게 깨어납니다.'
+          : '숫자의 규칙성이나 퍼즐·입체 도형의 구조적 원리를 빠르게 찾아내는 두정엽 수리·공간 감각이 뛰어납니다.',
+        howToBoost: isToddlerAge
+          ? '숫자를 억지로 외우게 하기보다 큰 블록·작은 블록 분류하기, 모양 끼우기 상자 놀이로 수·도형 감각을 즐겁게 자극해 주세요.'
+          : '단순 연산 반복 대신 하루 1~2문제라도 손으로 도형을 돌리고 조건을 그려보는 입체 도형·사고력 퍼즐 미션을 주면 수리 자신감이 2배로 자랍니다.',
+        helpfulTools: ageMathToolLabel
       });
     } else if (cogAxisPrimary === 'language_reading' || /질문|말|이야기|단어/.test(rawNoteLower)) {
       strengthsList.push({
         icon: '📚',
         score: Math.max(84, (lqData.scores && lqData.scores.literacy_vocab) || 86),
-        title: '이야기 맥락 공감 & 질문·언어 소통 성향',
-        goodTrait: '관심 있는 주제의 이야기를 듣거나 대화할 때 맥락을 빠르게 이해하고 질문으로 생각을 넓혀가는 언어 잠재력이 높습니다.',
-        howToBoost: '책을 읽은 뒤 줄거리를 묻기보다 "네가 주인공이라면 어떻게 했을까?" 열린 질문을 던져주면 어휘력과 논리적 표현력이 폭발적으로 성장합니다.',
-        helpfulTools: '하브루타 질문 카드, 연령별 문해력·어휘 확장 도서'
+        title: isToddlerAge ? '말소리 모방 & 그림책 이야기 공감 강점' : '이야기 맥락 파악 & 질문·언어 소통 강점',
+        goodTrait: isToddlerAge
+          ? '부모님의 억양과 표정에 귀를 기울이고 그림책 속 상황과 말소리를 빠르게 흡수하는 초기 언어 감수성이 풍부합니다.'
+          : '관심 있는 주제의 이야기를 듣거나 읽을 때 맥락을 빠르게 이해하고 질문으로 생각을 넓혀가는 언어 잠재력이 높습니다.',
+        howToBoost: isToddlerAge
+          ? '복잡한 줄글 읽기 대신 의성어·의태어가 풍부한 그림책을 하루 2권 함께 보며 손가락으로 사물을 짚고 말놀이를 주고받아 주세요.'
+          : '책을 읽은 뒤 단답형 확인 대신 "네가 주인공이라면 어떻게 했을까?" 열린 질문을 건네주면 어휘력과 논리적 표현력이 크게 자랍니다.',
+        helpfulTools: ageLangToolLabel
       });
     } else if (cogAxisPrimary === 'sensory_arts' || /그림|만들|미술|음악|상상/.test(rawNoteLower)) {
       strengthsList.push({
         icon: '🎨',
         score: Math.max(85, (lqData.scores && lqData.scores.inquiry_creative) || 87),
-        title: '풍부한 시각 상상력 & 손끝 창의 표현 성향',
-        goodTrait: '머릿속에 떠오른 아이디어를 그림, 만들기, 역할극 등 창의적인 형태로 표현할 때 두뇌 몰입도가 최고조에 달합니다.',
-        howToBoost: '배운 개념을 글자로만 정리하게 하지 말고 그림 노트나 마인드맵, 스토리 만화로 그려보게 하면 장기기억 보존율이 2배 높아집니다.',
-        helpfulTools: '비주얼 마인드맵 스케치북, 창의 조형·미술 교구'
+        title: '풍부한 시각 상상력 & 손끝 창의 표현 강점',
+        goodTrait: '머릿속에 떠오른 느낌과 아이디어를 그림, 만들기, 역할극 등 창의적인 형태로 표현할 때 두뇌 몰입도가 최고조에 달합니다.',
+        howToBoost: isToddlerAge
+          ? '안전한 점토(클레이), 핑거페인팅, 굵은 크레용 낙서 놀이로 손끝 감각과 색채 상상력을 마음껏 펼치게 해주세요.'
+          : '배운 개념을 글자로만 정리하게 하지 말고 그림 노트나 마인드맵, 4컷 스토리 만화로 그려보게 하면 장기기억 보존율이 2배 높아집니다.',
+        helpfulTools: isToddlerAge ? '무독성 쌀점토·핑거페인트 · 촉감 미술 키트' : '비주얼 마인드맵 스케치북 · 창의 조형 교구'
       });
     } else if (cogAxisPrimary === 'executive_focus') {
       strengthsList.push({
         icon: '🎯',
         score: Math.max(84, (lqData.scores && lqData.scores.working_memory_focus) || 85),
-        title: '좋아하는 대상에 빠져드는 고밀도 몰입 성향',
-        goodTrait: '자신이 진짜 흥미를 느낀 주제나 미션이 주어지면 주변 소음을 잊을 만큼 깊게 파고드는 전두엽 집중 에너지를 가지고 있습니다.',
-        howToBoost: '아이가 좋아하는 관심사(우주·공룡·역사·코딩 등)를 국어 독해·수학 문제와 연결해 주면 공부 지구력으로 자연스럽게 전이됩니다.',
-        helpfulTools: '무소음 시각 타이머, 관심사 연계 심화 탐구 도서'
+        title: '좋아하는 대상에 깊게 빠져드는 몰입 에너지 강점',
+        goodTrait: '자신이 흥미를 느낀 놀이나 주제가 주어지면 주변 소음을 잊을 만큼 깊게 파고드는 전두엽 집중 에너지를 가지고 있습니다.',
+        howToBoost: isToddlerAge
+          ? '아이가 한 가지 놀잇감에 집중하고 있을 때는 중간에 말을 걸거나 개입하지 말고 10~15분간 끝까지 몰입을 마칠 때까지 지켜봐 주세요.'
+          : '아이가 좋아하는 관심사(우주·공룡·역사·코딩 등)를 독서·탐구 주제와 연결해 주면 학습 지구력으로 자연스럽게 이어집니다.',
+        helpfulTools: isToddlerAge ? '몬테소리 집중 일상교구 · 원목 퍼즐' : '무소음 시각 타이머 · 관심사 연계 탐구 도서'
       });
     } else {
       strengthsList.push({
         icon: '🔬',
         score: Math.max(85, (lqData.scores && lqData.scores.inquiry_creative) || 86),
-        title: '"왜 그럴까?" 원리를 파고드는 과학적 호기심 성향',
-        goodTrait: '새로운 현상이나 자연·과학 주제를 접했을 때 그냥 넘기지 않고 원인과 결과를 스스로 탐구하려는 호기심이 매우 뛰어납니다.',
-        howToBoost: '아이의 질문에 바로 정답을 알려주기보다 과학관·박물관 현장 체험과 백과사전·실험 키트로 직접 답을 찾는 즐거움을 경험하게 해주세요.',
-        helpfulTools: '어린이 현미경·과학 실험 키트, 주말 과학관·박물관 투어'
+        title: isToddlerAge ? '호기심으로 세상을 만지고 탐색하는 오감 탐구 강점' : '"왜 그럴까?" 원리를 파고드는 과학적 탐구 강점',
+        goodTrait: isToddlerAge
+          ? '새로운 사물이나 자연물을 보면 직접 만져보고 움직여보며 원인과 결과를 몸으로 배우려는 탐색 본능이 뛰어납니다.'
+          : '새로운 현상이나 자연·과학 주제를 접했을 때 그냥 넘기지 않고 원인과 원리를 스스로 탐구하려는 호기심이 매우 뛰어납니다.',
+        howToBoost: isToddlerAge
+          ? '주말마다 자연 생태공원·어린이 체험관에서 나뭇잎·물·모래를 직접 만져보게 하고 그림책과 연결해 주세요.'
+          : '질문에 바로 정답을 알려주기보다 과학관·박물관 현장 체험과 실험 키트·도감으로 직접 답을 찾는 즐거움을 경험하게 해주세요.',
+        helpfulTools: isToddlerAge ? '자연 관찰 돋보기 · 오감 촉각 그림책' : '어린이 현미경·과학 실험 키트 · 주말 과학관 투어'
       });
     }
 
@@ -940,110 +1037,152 @@
       strengthsList.push({
         icon: '🧱',
         score: 86,
-        title: '손끝으로 조립·완성하며 배우는 행동 몰입 강점',
+        title: '손끝으로 직접 조립·완성하며 배우는 행동 몰입 강점',
         goodTrait: '가만히 앉아 듣기보다 손을 움직여 직접 결과물을 만들어낼 때 성취감과 두뇌 회전율이 급상승합니다.',
-        howToBoost: '공부 시작 전 10분간 손끝 조립 교구로 두뇌 워밍업을 하면 전두엽 각성도가 올라가 이후 책상 집중력이 훨씬 좋아집니다.',
-        helpfulTools: '자석블록·그래비트랙스·가베 입체 교구'
+        howToBoost: isToddlerAge
+          ? '하루 10분 손가락 힘을 기르는 원목 집게·구슬 꿰기·큰 블록 쌓기 놀이를 해주면 소근육과 언어 발달이 함께 빨라집니다.'
+          : '공부나 독서 시작 전 10분간 손끝 조립 교구로 두뇌 워밍업을 하면 전두엽 각성도가 올라가 이후 착석 집중력이 좋아집니다.',
+        helpfulTools: ageBuilderToolLabel
       });
     } else if (tempKey === 'questioner') {
       strengthsList.push({
         icon: '💬',
         score: 87,
-        title: '끊임없는 질문과 대화로 사고를 확장하는 강점',
-        goodTrait: '일방적 암기보다 대화를 통해 원리를 납득했을 때 한번 배운 내용을 오랫동안 자기 지식으로 만드는 힘이 있습니다.',
-        howToBoost: '하루 10분 부모님과 "오늘 가장 신기했던 것 1가지"를 문답으로 나누는 하브루타 대화 시간을 고정 루틴으로 만들어 주세요.',
-        helpfulTools: '코넬식 질문·요약 노트, 하브루타 대화 가이드'
+        title: '질문과 대화로 생각을 넓혀가는 문답형 사고 강점',
+        goodTrait: '일방적 지시보다 대화를 통해 납득했을 때 한번 배운 내용을 오랫동안 자기 지식으로 만드는 힘이 있습니다.',
+        howToBoost: '하루 10분 부모님과 "오늘 가장 신기했던 것 1가지"를 문답으로 나누는 대화 시간을 고정 루틴으로 만들어 주세요.',
+        helpfulTools: isToddlerAge ? '그림책 질문 카드 · 감정 표현 그림책' : '코넬식 질문·요약 노트 · 하브루타 대화 카드'
       });
     } else if (tempKey === 'reward_goal') {
       strengthsList.push({
         icon: '🏆',
         score: 86,
         title: '칭찬과 미션 달성에 강하게 동기부여되는 성취 강점',
-        goodTrait: '작은 성공 경험과 과정 칭찬이 주어지면 스스로 더 어려운 과제에 도전하려는 자기효능감이 빠르게 자랍니다.',
-        howToBoost: '일일 목표 분량을 작게 나누고 완수할 때마다 성취 스티커와 구체적인 과정 칭찬("끝까지 손으로 풀었네!")을 즉시 해주세요.',
-        helpfulTools: '무소음 시각 타이머, 일일 성취 플래너'
+        goodTrait: '작은 성공 경험과 과정 칭찬이 주어지면 스스로 다음 과제에 도전하려는 자기효능감이 빠르게 자랍니다.',
+        howToBoost: '목표 분량을 작게 나누고 완수할 때마다 성취 스티커와 구체적인 과정 칭찬("끝까지 스스로 해냈네!")을 즉시 해주세요.',
+        helpfulTools: '무소음 시각 타이머 · 일일 성취 칭찬 보드'
       });
     } else {
       strengthsList.push({
         icon: '🚀',
         score: 85,
-        title: '직접 보고 부딪히며 빠르게 흡수하는 현장 경험 강점',
-        goodTrait: '책상 위 글자보다 박물관·과학관 체험이나 실물 관찰처럼 오감이 깨어나는 환경에서 학습 흡수율이 2배 이상 높아집니다.',
-        howToBoost: '주말마다 교과 연계 박물관·과학관·역사 현장을 방문하고, 다녀온 뒤 관련 도서를 읽히면 배경지식(스키마)이 폭발적으로 확장됩니다.',
-        helpfulTools: '주말 박물관·과학관 도슨트 투어, 연계 배경지식 도서'
+        title: '직접 보고 부딪히며 빠르게 흡수하는 현장 체험 강점',
+        goodTrait: '실내에서만 머무를 때보다 박물관·과학관·미술관 체험이나 실물 관찰처럼 오감이 깨어나는 환경에서 흡수율이 2배 이상 높아집니다.',
+        howToBoost: '주말마다 연령 맞춤 박물관·과학관·전시 현장을 방문하고, 다녀온 뒤 관련 도서를 함께 보면 배경지식이 크게 확장됩니다.',
+        helpfulTools: '주말 어린이박물관·과학관 체험 · 연계 도서'
       });
     }
 
     strengthsList.push({
       icon: '✨',
       score: Math.max(83, Math.round(lqData.overallLQ || 83)),
-      title: `${activeStyleInfo.badge} 기반의 빠른 직관 흡수력`,
+      title: `${activeStyleInfo.badge} 기반의 직관 흡수력`,
       goodTrait: activeStyleInfo.summary,
       howToBoost: activeStyleInfo.boostAction,
-      helpfulTools: '각도조절 눈높이 원목 독서대, 코넬 백지복습 노트'
+      helpfulTools: isToddlerAge ? '유아 전면 책꽂이 · 감각 그림책' : '각도조절 눈높이 원목 독서대 · 요약 정리 노트'
     });
 
-    // Step 3: Weaknesses (아이가 못하는·힘들어하는 성향 TOP 3)
+    // Step 3: Weaknesses (아이가 못하는·힘들어하는 성향 TOP 3 — 연령별 맞춤 세팅 & 1위→2위→3위 순차 서술)
     const weaknessesList = [];
-    if (concernsArr.includes('reading_literacy') || concernsArr.includes('vocab_expression') || /문해력|독해|긴 글|책|줄글|어휘|문장제/.test(rawNoteLower)) {
+    if (isToddlerAge) {
+      // 만 1~3세 영유아 전용 보완 포인트 (복잡한 줄글/학원/시험 표현 완전 배제)
       weaknessesList.push({
         icon: '📖',
-        score: Math.min(72, (lqData.scores && lqData.scores.literacy_vocab) || 68),
-        title: '긴 줄글 정독 거부 & 서술형 문장제 핵심 파악 부족',
-        weakTrait: '글자 수가 길어지거나 낯선 어휘가 나오면 끝까지 차분하게 읽지 않고 대충 건너뛰며 읽어, 국어 독해와 수학 문장제에서 아는 문제도 틀리는 성향이 있습니다.',
-        howToFix: '처음부터 긴 줄글 책을 강요하지 마시고, 하루 15분 짧은 비문학 지문에서 【핵심 주어·조건에 동그라미 치며 소리 내어 읽기 + 3문장 요약】 루틴을 시작하세요.',
-        helpfulTools: '연령별 문해력 독해 워크북, 눈높이 원목 독서대'
+        score: Math.min(72, (lqData.scores && lqData.scores.literacy_vocab) || 70),
+        title: '보완 1순위: 그림책을 끝까지 보기보다 빠르게 넘기거나 다른 놀잇감으로 옮겨가는 경향',
+        weakTrait: '만 1~3세는 아직 전두엽 주의집중 회로가 자라는 시기여서, 글자가 많거나 설명이 길어지면 금방 자리에서 일어나 다른 자극을 찾으려 합니다.',
+        howToFix: '만 3세 아이에게 복잡한 줄글 책읽기는 맞지 않습니다. 글자를 읽어주려 하지 마시고, 하루 10분 의성어·의태어 플랩북(들춰보기 그림책)으로 그림 속 사물을 손가락으로 짚는 놀이부터 시작하세요.',
+        helpfulTools: '조작 플랩 그림책 · 유아 전면 책꽂이'
       });
-    }
-    if (concernsArr.includes('math_concept') || /수학|응용|도형|사고력|연산/.test(rawNoteLower)) {
       weaknessesList.push({
-        icon: '📐',
-        score: Math.min(72, (lqData.scores && lqData.scores.math_spatial) || 69),
-        title: '단순 연산은 풀지만 응용·도형·사고력 문제에서 막힘',
-        weakTrait: '공식 암기나 머릿속 암산에만 의존해 풀다 보니, 조건이 2개 이상 섞인 응용문제나 입체 도형 회전 문제가 나오면 손으로 식·그림을 그리지 못하고 쉽게 포기하려 합니다.',
-        howToFix: '문제집 여백에 문제 조건을 수직선·표·도형으로 직접 그리며 푸는 【작업기억 외부화(시각화) 노트】 습관과 하루 10분 입체 교구 조작을 병행해 주세요.',
-        helpfulTools: '3D 입체 도형 교구(소마큐브·칠교), 도형·문장제 수학 워크북'
+        icon: '🤲',
+        score: Math.min(71, (lqData.scores && lqData.scores.working_memory_focus) || 69),
+        title: '보완 2순위: 손끝 소근육 조절(단추·집게·정교한 블록)이 마음처럼 안 될 때 답답해하는 경향',
+        weakTrait: '"내가 혼자 할 거야!" 자율성은 크지만 아직 엄지·검지·중지 세 손가락 협응력이 발달 중이어서 뜻대로 안 되면 짜증을 내거나 던지기 쉽습니다.',
+        howToFix: '부모님이 대신 빨리 해주기보다, 아이 손 크기에 맞는 원목 집게로 폼폼이 옮기기·물티슈 캡에 병뚜껑 넣기처럼 손끝 악력을 키워주는 0원 놀이로 성공 경험을 쌓아주세요.',
+        helpfulTools: '몬테소리 원목 집게·구슬 꿰기 교구 · 안전가위 워크북'
       });
-    }
-    if (concernsArr.includes('passive_forget') || /학원|까먹|잊어|복습|백지|기억/.test(rawNoteLower)) {
-      weaknessesList.push({
-        icon: '🧠',
-        score: Math.min(71, (lqData.scores && lqData.scores.metacognition_retrieval) || 67),
-        title: '설명을 들을 땐 알 것 같지만 혼자 풀면 잊어버리는 망각 성향',
-        weakTrait: '학원 수업이나 설명을 들을 때는 이해했다고 착각하지만, 책을 덮고 스스로 인출(백지복습)하는 습관이 없어 1주일 안에 배운 내용의 50% 이상을 잊어버립니다.',
-        howToFix: '수업 직후 책을 덮고 백지에 오늘 배운 핵심 키워드 3개만 스스로 떠올려 적어보는 【5분 백지복습(Active Recall)】과 밤 10시 전 숙면(기억 공고화)을 실천하세요.',
-        helpfulTools: '코넬 백지복습 노트, 무소음 시각 타이머'
-      });
-    }
-    if (concernsArr.includes('screen_dopamine') || concernsArr.includes('desk_endurance') || /스마트폰|유튜브|집중|산만|책상|미디어|게임/.test(rawNoteLower)) {
       weaknessesList.push({
         icon: '📱',
-        score: Math.min(70, (lqData.scores && lqData.scores.working_memory_focus) || 66),
-        title: '미디어 자극에는 빠지지만 책상 앞 15~20분 이상 착석 지구력 부족',
-        weakTrait: '빠른 영상·게임 도파민에는 익숙한 반면, 조용히 책상에 앉아 단일 과제를 끝까지 완수하는 전두엽 작업기억 지구력이 쉽게 피로해집니다.',
-        howToFix: '공부 시작 전 스마트폰을 거실 보관함에 두고, 무소음 시각 타이머로 딱 15분만 집중해 목표를 끝낸 뒤 휴식하는 【뽀모도로 몰입 루틴】으로 전두엽 지구력을 길러주세요.',
-        helpfulTools: '무소음 시각 타이머(타임타이머), 각도조절 원목 독서대'
+        score: Math.min(70, (lqData.scores && lqData.scores.metacognition_retrieval) || 68),
+        title: '보완 3순위: 영상 자극이나 즉각적인 반응이 없으면 쉽게 지루해하는 경향',
+        weakTrait: '빠르게 화면이 바뀌는 영상 자극에 노출되면 손으로 천천히 만지고 탐색하는 놀이를 심심해할 수 있습니다.',
+        howToFix: '식사 시간과 잠들기 1시간 전에는 영상을 끄고, 엄마·아빠와 눈을 맞추며 블록 쌓기·촉감 놀이·손유희를 15분간 함께해 주세요.',
+        helpfulTools: '무소음 시각 타이머 · 오감 촉각 놀이 키트'
       });
-    }
-    while (weaknessesList.length < 3) {
-      if (weaknessesList.length === 1) {
+    } else {
+      if (concernsArr.includes('reading_literacy') || concernsArr.includes('vocab_expression') || /문해력|독해|긴 글|책|줄글|어휘|문장제/.test(rawNoteLower)) {
+        weaknessesList.push({
+          icon: '📖',
+          score: Math.min(72, (lqData.scores && lqData.scores.literacy_vocab) || 68),
+          title: isKinderAge
+            ? '그림만 빠르게 넘겨 보고 글자·문장 의미를 차분히 이해하기 어려워하는 성향'
+            : '긴 줄글 정독을 피하고 서술형·문장제 문제의 핵심 조건 파악을 놓치는 성향',
+          weakTrait: isKinderAge
+            ? '익숙한 그림 위주로만 책을 보려 하고 새로운 어휘나 문장이 나오면 내용을 대충 짐작하고 넘어가려는 경향이 있습니다.'
+            : '글자 수가 길어지거나 낯선 어휘가 나오면 끝까지 차분하게 읽지 않고 건너뛰며 읽어, 국어 독해와 수학 문장제에서 아는 문제도 틀리기 쉽습니다.',
+          howToFix: isKinderAge
+            ? '하루 15분 짧은 그림동화를 함께 읽고 "왜 그랬을까?" 핵심 단어 2개를 짚어 말해보는 문답 루틴으로 어휘 그물을 넓혀주세요.'
+            : '하루 15분 짧은 비문학·독해 지문에서 【핵심 주어·조건에 동그라미 치며 읽기 + 3문장 요약】 루틴을 실천해 주세요.',
+          helpfulTools: ageLangToolLabel + ', 눈높이 원목 독서대'
+        });
+      }
+      if (concernsArr.includes('math_concept') || /수학|응용|도형|사고력|연산/.test(rawNoteLower)) {
         weaknessesList.push({
           icon: '📐',
-          score: 70,
-          title: '조건이 복잡한 응용·도형 문제에서 손으로 풀어쓰기보다 암산에 의존하는 성향',
-          weakTrait: '문제가 조금만 길어지거나 도형·공간 추론이 필요할 때 여백에 조건을 그림·식으로 정리하는 습관이 아직 부족합니다.',
-          howToFix: '문제를 읽을 때 구해야 하는 것에 밑줄을 긋고, 손으로 간단한 그림이나 도식을 먼저 그린 뒤 식을 세우는 습관을 잡아주세요.',
-          helpfulTools: '입체 사고력 교구, 서술형 단계별 연습 노트'
+          score: Math.min(72, (lqData.scores && lqData.scores.math_spatial) || 69),
+          title: isKinderAge
+            ? '숫자 세기는 하지만 수 가르기·모으기와 입체 도형 돌리기를 헷갈려하는 성향'
+            : '단순 연산은 풀지만 응용·도형·서술형 사고력 문제에서 막히는 성향',
+          weakTrait: isKinderAge
+            ? '눈에 보이는 구체물 없이 머릿속으로만 수를 더하거나 도형을 회전시키는 공간 지각 경험이 더 필요한 단계입니다.'
+            : '공식 암기나 머릿속 암산에만 의존해 풀다 보니, 조건이 2개 이상 섞인 응용문제나 입체 도형 문제가 나오면 손으로 식·그림을 그리지 못하고 막힙니다.',
+          howToFix: isKinderAge
+            ? '학습지로만 풀게 하지 마시고 칠교·은물(가베)·수 모형 블록을 손으로 직접 쪼개고 합쳐보는 구체물 놀이를 하루 10분 병행해 주세요.'
+            : '문제집 여백에 조건을 수직선·표·도형으로 직접 그리며 푸는 【작업기억 시각화 풀이 노트】 습관과 입체 기하 퍼즐(소마큐브 등)을 병행해 주세요.',
+          helpfulTools: ageMathToolLabel
         });
-      } else {
+      }
+      if (concernsArr.includes('passive_forget') || concernsArr.includes('habit_self_directed') || /학원|까먹|잊어|복습|백지|기억/.test(rawNoteLower)) {
         weaknessesList.push({
           icon: '🧠',
-          score: 69,
-          title: '배운 내용을 그날 스스로 정리·설명하는 자기주도 백지복습 습관 부족',
-          weakTrait: '눈으로만 다시 읽는 복습에 그쳐, 시험이나 응용문제에서 스스로 개념을 꺼내 쓰는 인출 연습이 더 필요합니다.',
-          howToFix: '공부를 마친 뒤 마지막 3분 동안 책을 덮고 오늘 배운 핵심 개념 3가지를 백지에 적거나 부모님께 말로 설명하게 해주세요.',
-          helpfulTools: '코넬식 백지복습 노트, 20분 시각 타이머'
+          score: Math.min(71, (lqData.scores && lqData.scores.metacognition_retrieval) || 67),
+          title: '설명을 들을 땐 알 것 같지만 혼자 풀거나 설명하려 하면 막히는 망각 성향',
+          weakTrait: '수업이나 설명을 들을 때는 이해했다고 느끼지만, 책을 덮고 스스로 떠올려 보는 인출 습관이 부족해 배운 내용을 빠르게 잊어버립니다.',
+          howToFix: '공부 직후 책을 덮고 오늘 배운 핵심 키워드 3가지를 스스로 적거나 부모님께 1분간 설명해 보는 【백지복습(Active Recall)】과 밤 10시 전 숙면을 실천하세요.',
+          helpfulTools: isKinderAge ? '이야기 순서 말하기 카드 · 시각 타이머' : '코넬 백지복습 노트 · 무소음 시각 타이머'
         });
+      }
+      if (concernsArr.includes('screen_dopamine') || concernsArr.includes('desk_endurance') || concernsArr.includes('test_mistake_anxiety') || /스마트폰|유튜브|집중|산만|책상|미디어|게임/.test(rawNoteLower)) {
+        weaknessesList.push({
+          icon: '📱',
+          score: Math.min(70, (lqData.scores && lqData.scores.working_memory_focus) || 66),
+          title: '미디어 자극에는 빠지지만 책상 앞 15~20분 이상 차분한 착석 집중이 짧은 성향',
+          weakTrait: '빠른 영상 자극에는 익숙한 반면, 조용히 책상에 앉아 단일 과제를 끝까지 완수하거나 문제를 끝까지 읽는 전두엽 지구력이 쉽게 피로해집니다.',
+          howToFix: '공부 시작 전 스마트폰을 거실에 두고, 무소음 시각 타이머로 딱 15~20분만 집중해 작은 분량을 끝낸 뒤 쉬는 【짧은 몰입 루틴】으로 지구력을 길러주세요.',
+          helpfulTools: '무소음 시각 타이머(타임타이머) · 각도조절 원목 독서대'
+        });
+      }
+      while (weaknessesList.length < 3) {
+        if (weaknessesList.length === 1) {
+          weaknessesList.push({
+            icon: '📐',
+            score: 70,
+            title: '조건이 복잡한 문제에서 손으로 그림·식을 쓰기보다 머릿속 암산에 의존하는 성향',
+            weakTrait: '문제가 길어지거나 도형·공간 추론이 필요할 때 여백에 조건을 그림·도식으로 정리하는 습관이 아직 부족합니다.',
+            howToFix: '문제를 읽을 때 구해야 하는 것에 밑줄을 긋고, 손으로 간단한 그림이나 수직선을 먼저 그린 뒤 식을 세우는 습관을 잡아주세요.',
+            helpfulTools: ageMathToolLabel
+          });
+        } else {
+          weaknessesList.push({
+            icon: '🧠',
+            score: 69,
+            title: '배운 내용을 그날 스스로 정리·설명하는 자기주도 복습 습관 부족',
+            weakTrait: '눈으로만 다시 읽는 복습에 그쳐, 응용문제에서 스스로 개념을 꺼내 쓰는 인출 연습이 더 필요합니다.',
+            howToFix: '공부를 마친 뒤 마지막 3분 동안 책을 덮고 오늘 배운 핵심 개념 3가지를 적거나 부모님께 말로 설명하게 해주세요.',
+            helpfulTools: isKinderAge ? '하브루타 질문 카드 · 15분 시각 타이머' : '코넬식 백지복습 노트 · 20분 시각 타이머'
+          });
+        }
       }
     }
 
@@ -1093,12 +1232,12 @@
         <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.14); padding-bottom: 0.9rem;">
           <div>
             <span class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: ${isLearningDefault ? 'rgba(168, 85, 247, 0.2)' : 'rgba(59, 130, 246, 0.18)'}; color: ${isLearningDefault ? '#DDD6FE' : '#93C5FD'}; font-size: 0.82rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid ${isLearningDefault ? 'rgba(168, 85, 247, 0.45)' : 'rgba(59, 130, 246, 0.4)'}; margin-bottom: 0.35rem;">
-              📋 ${isEn ? 'KIDS-FIT AI · PRECISION REPORT' : (isLearningDefault ? 'KIDS-FIT AI · 우리 아이 두뇌·학습 성향 & 진로 단독 진단서' : guidebookEditionLabel)}
+              📋 ${isEn ? 'KIDS-FIT · PRECISION REPORT' : (isLearningDefault ? `KIDS-FIT · 만 ${ageYears}세 맞춤 두뇌·학습 성향 & 진로 진단서` : guidebookEditionLabel)}
             </span>
             <h2 class="briefing-title" style="font-size: 1.38rem; font-weight: 900; color: #FFFFFF; margin: 0.15rem 0;">
               ${isEn
                 ? 'At-a-Glance Precision Diagnosis & Daily Prescription'
-                : (isLearningDefault ? '한눈에 보는 우리 아이 학습 성향·장단점·적성 직업 & 맞춤 보완 보고서' : '한눈에 보는 우리 아이 맞춤 신체 성장 진단서 & 아침·저녁 처방전')}
+                : (isLearningDefault ? `만 ${ageYears}세 눈높이 맞춤 학습 성향 · 강약점(1위→3위) · 진로 & 보완 보고서` : `만 ${ageYears}세 맞춤 신체 성장 진단서 & 산출 근거 · 하루 처방전`)}
             </h2>
           </div>
           <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
@@ -1111,85 +1250,32 @@
               🖨️ ${isEn ? 'Print / Save A4 PDF' : '보고서 출력 (인쇄 / PDF 저장)'}
             </button>
             <span style="background: rgba(16, 185, 129, 0.18); color: #6EE7B7; font-weight: 800; font-size: 0.8rem; padding: 0.38rem 0.8rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.4);">
-              📚 ${isEn ? `KDCA 2017 · CDC 2000 · ${totalDbPapers} Papers` : `진단 6단계 + 아이 특징 합산 · 논문 ${totalDbPapers}편 검증`}
+              📚 ${isEn ? `KDCA 2017 · CDC 2000 · ${totalDbPapers} Papers` : `질병관리청 성장도표 · 논문 ${totalDbPapers}편 근거`}
             </span>
           </div>
         </div>
 
-        <!-- ====================================================================== -->
-        <!-- 【🤖 Antigravity AI 실시간 아이 특징 입력 & 1:1 맞춤 보고서 즉시 생성 스튜디오】 -->
-        <!-- ====================================================================== -->
-        <div id="antigravity-live-custom-generator-box" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.96) 100%); border: 2px solid #10B981; border-radius: 20px; padding: 1.15rem 1.25rem; margin-bottom: 1.35rem; box-shadow: 0 12px 28px rgba(16, 185, 129, 0.18);">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
-            <div style="display: flex; align-items: center; gap: 0.45rem;">
-              <span style="font-size: 1.15rem;">🤖</span>
-              <span style="font-size: 0.96rem; font-weight: 900; color: #6EE7B7;">
-                Antigravity AI 실시간 아이 특징 입력 &amp; 1:1 맞춤 보고서 즉시 생성 스튜디오
-              </span>
-            </div>
-            <span style="font-size: 0.76rem; font-weight: 800; color: #38BDF8; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              ⚡ 학술 논문 2,005편 실시간 매칭 · ${bespokeNote.precisionLevelKo}
-            </span>
-          </div>
-
-          ${(profile && profile.parentFreeNote && String(profile.parentFreeNote).trim().length > 0) ? `
-            <div id="antigravity-echo-input-banner" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.45); border-radius: 12px; padding: 0.75rem 0.95rem; margin-bottom: 0.75rem; font-size: 0.86rem; color: #F8FAFC; line-height: 1.55;">
-              <div style="font-weight: 900; color: #6EE7B7; margin-bottom: 0.25rem;">
-                📌 학부모님이 입력하신 우리 아이 상세 특징 (보고서 전체 실시간 반영 완료):
-              </div>
-              <div style="color: #FFFFFF; font-weight: 700; margin-bottom: 0.35rem;">
-                "${String(profile.parentFreeNote).replace(/</g, '&lt;').replace(/>/g, '&gt;')}"
-              </div>
-              <div style="font-size: 0.78rem; color: #93C5FD;">
-                ✓ Antigravity 문장 파싱 완료: 신체성장 핵심단서 <strong>${bespokeNote.growthKeywords.length}건</strong> · 두뇌학습 핵심단서 <strong>${bespokeNote.learningKeywords.length}건</strong> 맞춤 처방 산출됨
-              </div>
-            </div>
-          ` : `
-            <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0 0 0.65rem 0; line-height: 1.5;">
-              아이의 평소 수면 시각, 식습관·편식, 성장통, 집중 시간, 독서·수학 고민 등을 자유롭게 적어주시고 아래 버튼을 누르시면 <strong>Antigravity AI 엔진이 문장을 실시간 분석하여 1:1 맞춤 보고서를 즉시 새로 산출</strong>합니다.
-            </p>
-          `}
-
-          <div style="display: flex; flex-wrap: wrap; gap: 0.38rem; margin-bottom: 0.6rem;">
-            <button type="button" class="antigravity-top-chip" data-snippet="밤 11시 넘어 자고 무릎·종아리 성장통으로 자주 깨요." style="background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #E0F2FE; border-radius: 9999px; padding: 0.32rem 0.7rem; font-size: 0.78rem; font-weight: 800; cursor: pointer;">+ 🦵 늦은 취침·야간 성장통</button>
-            <button type="button" class="antigravity-top-chip" data-snippet="우유를 안 마시고 고기·채소 편식이 심해 키가 작을까 봐 걱정돼요." style="background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #E0F2FE; border-radius: 9999px; padding: 0.32rem 0.7rem; font-size: 0.78rem; font-weight: 800; cursor: pointer;">+ 🥛 우유 거부·편식</button>
-            <button type="button" class="antigravity-top-chip" data-snippet="비염·코막힘으로 입을 벌리고 자고 아침에 일어나기 힘들어해요." style="background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #E0F2FE; border-radius: 9999px; padding: 0.32rem 0.7rem; font-size: 0.78rem; font-weight: 800; cursor: pointer;">+ 😮 비염·구강호흡</button>
-            <button type="button" class="antigravity-top-chip" data-snippet="긴 줄글 독서를 싫어하고 수학 문장제·도형 응용 문제에서 막혀해요." style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(192, 132, 252, 0.45); color: #F3E8FF; border-radius: 9999px; padding: 0.32rem 0.7rem; font-size: 0.78rem; font-weight: 800; cursor: pointer;">+ 📚 문해력·수학 문장제 고민</button>
-            <button type="button" class="antigravity-top-chip" data-snippet="스마트폰·유튜브에 빠져 책상에 15분 이상 집중하기 힘들어하고 학원 내용을 금방 잊어버려요." style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(192, 132, 252, 0.45); color: #F3E8FF; border-radius: 9999px; padding: 0.32rem 0.7rem; font-size: 0.78rem; font-weight: 800; cursor: pointer;">+ 🧠 집중력·학원 복습 망각</button>
-          </div>
-
-          <div style="display: flex; gap: 0.55rem; flex-wrap: wrap; align-items: stretch;">
-            <textarea
-              id="antigravity-live-characteristic-input"
-              rows="2"
-              placeholder="우리 아이의 특징·생활습관·학습 고민을 상세히 적어주세요 (예: 만 9세 남아인데 밤 11시에 자고 우유를 싫어해요. 연산은 잘하는데 수학 문장제와 긴 글 읽기를 힘들어해요)"
-              style="flex: 1 1 280px; min-height: 58px; font-size: 0.9rem; line-height: 1.45; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(16, 185, 129, 0.55); color: #FFFFFF; padding: 0.6rem 0.85rem; border-radius: 12px; resize: vertical;"
-            >${(bespokeNote.rawNote || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
-            <button
-              type="button"
-              id="btn-antigravity-live-generate"
-              style="background: linear-gradient(135deg, #059669 0%, #2563EB 100%); color: #FFFFFF; border: 1.5px solid #6EE7B7; border-radius: 12px; padding: 0.7rem 1.2rem; font-size: 0.92rem; font-weight: 900; cursor: pointer; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3); white-space: nowrap;"
-            >
-              🤖 아이 특징 기반 Antigravity 보고서 즉시 생성 →
-            </button>
-          </div>
-          <div id="antigravity-live-api-status" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0.9rem; background: rgba(37, 99, 235, 0.18); border: 1px solid #38BDF8; border-radius: 10px; font-size: 0.82rem; color: #E0F2FE; line-height: 1.5;"></div>
+        <!-- Hidden Legacy Free-Text Generator Box (Hidden per user request to remove free-text input & AI branding) -->
+        <div id="antigravity-live-custom-generator-box" style="display: none;">
+          <textarea id="antigravity-live-characteristic-input" rows="1">${(bespokeNote.rawNote || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+          <button type="button" id="btn-antigravity-live-generate">생성</button>
+          <div id="antigravity-live-api-status" style="display: none;"></div>
         </div>
 
         <!-- ====================================================================== -->
         <!-- 【축 1: 📏 아이 신체 성장 마스터 분석 보고서 (Chapters 1~4)】              -->
         <!-- ====================================================================== -->
         <div id="pillar-1-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'none' : 'block'}; background: rgba(15, 23, 42, 0.65); border: 2px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 1.4rem; margin-bottom: 2rem;">
-          <!-- Antigravity AI Real-time Engine Verification Banner -->
+          <!-- Official Standards Verification Banner -->
           <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, rgba(16, 185, 129, 0.18) 100%); border: 1.5px solid #38BDF8; border-radius: 14px; padding: 0.75rem 1rem; margin-bottom: 1.15rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.1rem;">🤖</span>
+              <span style="font-size: 1.1rem;">📏</span>
               <span style="font-size: 0.86rem; font-weight: 800; color: #FFFFFF;">
-                Google Antigravity AI™ 설문 기반 실시간 신체 성장 정밀 합성 보고서
+                질병관리청(KDCA) 성장도표 &amp; 소아내분비 논문 기반 1:1 신체 성장 정밀 보고서
               </span>
             </div>
             <span style="font-size: 0.76rem; font-weight: 800; color: #38BDF8; background: rgba(56, 189, 248, 0.16); padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
-              ✓ 검증 번호 #AGY-G${Math.abs(Math.sin((profile.ageMonths || 120) * 31) * 100000).toString(36).toUpperCase().slice(0, 5)} · 논문 2,005편 대조 완료
+              ✓ 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 기준 · 논문 ${totalDbPapers}편 대조 완료
             </span>
           </div>
 
@@ -1275,7 +1361,7 @@
             </span>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
             <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">📏 ${isEn ? 'Height Percentile' : '현재 키 백분위'}</span>
               <span id="briefing-percentile" style="font-size: 1.04rem; font-weight: 900; color: #38BDF8;">
@@ -1304,95 +1390,69 @@
               </span>
             </div>
           </div>
+
+          <!-- Transparent Growth Score & 3-Tier Height Calculation Formula Box -->
+          <div id="growth-score-formula-box" style="margin-top: 0.85rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.38); border-radius: 14px; padding: 0.95rem 1.1rem; font-size: 0.86rem; color: #E2E8F0; line-height: 1.65;">
+            <div style="font-size: 0.92rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.4rem;">
+              📐 [점수·예측키 산출 공식 안내] 위 수치는 어떻게 계산되었나요?
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+              <div>• <strong>① 현재 키 백분위 (상위 ${kdcaTop}%):</strong> 질병관리청(KDCA 2017) 표준 성장도표에서 동성·동월령(${exactMonths.toFixed(1)}개월) 표준 정규분포(LMS Z-Score) 공식을 적용해 또래 100명 중 위치(${deltaStr})를 산출했습니다.</div>
+              <div>• <strong>② 부모 유전 표적키 (${mphVal}cm):</strong> 소아내분비학 국제 표준 Tanner 공식 <code>(${profile.gender === 'girl' ? '아빠키 + 엄마키 - 13cm' : '아빠키 + 엄마키 + 13cm'}) ÷ 2</code>로 계산된 유전 기준값입니다.</div>
+              <div>• <strong>③ 방치 시 예측키 (${unmanagedHeight}cm) vs 맞춤 관리 잠재키 (${optimizedHeight}cm):</strong> 유전키(${mphVal}cm)와 현재 골연령 성장궤적에 설문에서 선택하신 방해습관(${Math.max(1, (profile.habits || []).length)}개 항목 감점)을 반영하면 <strong>${unmanagedHeight}cm</strong>로 예측되며, 밤 10시 수면·체중비례 영양·척추 감압(+1.8cm) 실천 시 후천적 환경 가산점(<strong>+${potentialGainCm}cm</strong>)이 더해져 <strong>${optimizedHeight}cm</strong>까지 도약할 수 있습니다.</div>
+            </div>
+          </div>
         </div>
 
         <!-- ================================================================== -->
-        <!-- BESPOKE 1:1 PARENT Q&A (More Detailed Narrative = Richer Output)    -->
+        <!-- BESPOKE 1:1 SURVEY CLICK-BASED PRESCRIPTION (Concise 1-Per-Row)     -->
         <!-- ================================================================== -->
         <div id="bespoke-parent-note-section" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; text-align: left;">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <span style="font-size: 1.04rem; font-weight: 900; color: #6EE7B7;">
-              💬 ${isEn ? '1:1 Bespoke Parent Narrative AI Prescription' : '부모 직접 서술형 고민 기반 1:1 정밀 맞춤 처방'}
+              💬 ${isEn ? '1:1 Survey-Based Custom Growth Prescription' : '설문 클릭 항목 기반 1:1 맞춤 신체 성장 처방 (핵심 순서대로 1줄씩 정리)'}
             </span>
             <span style="font-size: 0.78rem; font-weight: 800; color: #38BDF8; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.35); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              🎯 AI 서술형 정밀도: ${bespokeNote.precisionLevelKo}
+              🎯 ${bespokeNote.precisionLevelKo}
             </span>
           </div>
 
           ${bespokeNote.hasNote ? `
             <div style="margin-bottom: 0.75rem; font-size: 0.82rem; color: #CBD5E1; background: rgba(255,255,255,0.03); border-radius: 10px; padding: 0.55rem 0.85rem;">
-              <strong style="color: #93C5FD;">🔍 감지된 우리 아이 신체 성장 핵심 단서 (${bespokeNote.growthKeywords.length}건):</strong> ${bespokeNote.growthKeywords.join(' · ')}
+              <strong style="color: #93C5FD;">🔍 설문 클릭으로 선택된 신체 성장 핵심 포인트 (${bespokeNote.growthKeywords.length}건):</strong> ${bespokeNote.growthKeywords.join(' · ')}
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.9rem;">
               ${bespokeNote.growthInsights.map((ins, idx) => `
                 <div class="bespoke-single-insight-card" style="display: block; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem;">
                   <div style="font-size: 1.02rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">
-                    ${idx + 1}. ${isEn ? ins.badgeEn : ins.badgeKo}
+                    처방 ${idx + 1}순위 · ${isEn ? ins.badgeEn : ins.badgeKo}
                   </div>
-                  <div style="font-size: 0.96rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.45rem;">
+                  <div style="font-size: 0.95rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.35rem;">
                     ${isEn ? ins.answerEn : ins.answerKo}
                   </div>
-                  <details class="clinical-source-details" style="font-size: 0.8rem; color: #93C5FD;">
-                    <summary style="cursor: pointer; font-weight: 700; color: #93C5FD;">📚 임상·학술 출처 보기 (클릭 시 펼침 ▼)</summary>
-                    <div style="margin-top: 0.3rem; padding: 0.4rem 0.6rem; background: rgba(15, 23, 42, 0.75); border-radius: 8px; color: #CBD5E1;">
-                      ${ins.sourceKo}
-                    </div>
-                  </details>
+                  <div style="font-size: 0.78rem; color: #93C5FD;">📚 ${ins.sourceKo}</div>
                 </div>
               `).join('')}
             </div>
 
-            <!-- 4-Slot Hyper-Personalized Daily Timetable Generated from Parent's Detailed Text -->
-            <div id="bespoke-daily-timetable-box" style="background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 0.85rem;">
+            <!-- 4-Slot Hyper-Personalized Daily Timetable -->
+            <div id="bespoke-daily-timetable-box" style="background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; padding: 0.95rem 1.1rem;">
               <div style="font-size: 0.92rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.5rem;">
-                ⏰ [신체 성장 4단계 루틴] 적어주신 아이 특성에 맞춘 하루 밀착 스케줄
+                ⏰ [신체 성장 4단계 루틴] 만 ${ageYears}세 맞춤 하루 밀착 스케줄
               </div>
-              <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.86rem; color: #F8FAFC; line-height: 1.55;">
+              <div style="display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.86rem; color: #F8FAFC; line-height: 1.55;">
                 <div>${bespokeNote.physicalDailyRoutine.morning}</div>
                 <div>${bespokeNote.physicalDailyRoutine.afterSchool}</div>
                 <div>${bespokeNote.physicalDailyRoutine.dinner}</div>
                 <div>${bespokeNote.physicalDailyRoutine.bedtime}</div>
               </div>
             </div>
-          ` : `
-            <div style="font-size: 0.88rem; color: #CBD5E1; background: rgba(255,255,255,0.04); border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 0.75rem; line-height: 1.55;">
-              💡 <strong>팁:</strong> 아래 입력칸에 우리 아이의 평소 수면 시각, 잘 안 먹는 음식, 좋아하는 놀이, 다리 성장통이나 비염 여부 등을 <strong>자세히 적어주실수록 AI 맞춤 정밀도가 최대 99%(Level 5)까지 올라가며 시간대별 밀착 스케줄이 자동 생성</strong>됩니다.
-            </div>
-          `}
+          ` : ''}
 
-          <!-- Live Update Input (Always Visible, Never Hidden) -->
-          <div style="margin-top: 0.85rem; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 0.9rem;">
-            <div style="font-size: 0.88rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.45rem;">
-              ✍️ ${isEn ? 'Write More Details About Your Child for Deeper AI Customization' : '아이의 평소 습관·고민을 자세히 적을수록 훨씬 디테일한 1:1 처방이 나옵니다 (버튼 클릭 또는 직접 입력)'}
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
-              <button type="button" class="live-bespoke-chip" data-snippet="밤에 다리·무릎 성장통으로 자주 깨요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 🦵 야간 성장통</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="운동·줄넘기를 싫어하고 집에만 있으려 해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 🏃 운동·줄넘기 거부</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="엄마·아빠 키가 작아 유전키 한계가 걱정돼요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 🧬 부모 유전키 걱정</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="우유는 안 마시고 입이 너무 짧아 살이 안 쪄요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 🥛 우유 거부·편식</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="비염·코막힘으로 입을 벌리고 자고 아침에 피곤해해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 😮 비염·구강호흡</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="책상에서 거북목으로 앉아 있고 유튜브·게임을 오래 봐요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 📐 거북목·미디어 과몰입</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="책 읽기를 싫어하고 긴 문장제 문제를 이해하는 문해력이 부족해요." style="background: rgba(139,92,246,0.2); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 📚 문해력·독해 고민</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="단순 연산은 푸는데 응용·도형·사고력 수학 문제에서 막혀해요." style="background: rgba(139,92,246,0.2); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 📐 응용·사고력 수학</button>
-              <button type="button" class="live-bespoke-chip" data-snippet="학원은 다니는데 배운 내용을 금방 잊어버리고 자기주도 복습 습관이 안 잡혀 있어요." style="background: rgba(139,92,246,0.2); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.8rem; font-weight: 800; cursor: pointer;">+ 🧠 학원 복습·메타인지</button>
-            </div>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <input
-                type="text"
-                id="live-bespoke-note-input"
-                class="form-input"
-                value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}"
-                placeholder="${isEn ? 'Type your child\'s traits or concerns...' : '예: 밤 11시에 자고 종아리가 아프다고 깨요. 고기·채소를 안 먹고 줄넘기를 싫어해요...'}"
-                style="flex: 1 1 240px; min-height: 46px; font-size: 0.92rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; padding: 0.55rem 0.85rem; border-radius: 10px;"
-              />
-              <button
-                type="button"
-                id="btn-live-bespoke-update"
-                style="background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; border: 1px solid #6EE7B7; border-radius: 10px; padding: 0.6rem 1.15rem; min-height: 46px; font-size: 0.9rem; font-weight: 900; cursor: pointer;"
-              >
-                🤖 ${isEn ? 'Update AI Prescription' : '정밀 처방 즉시 반영'}
-              </button>
-            </div>
+          <!-- Hidden legacy live free-text input preserved in DOM for script safety -->
+          <div style="display: none;">
+            <input type="text" id="live-bespoke-note-input" value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}" />
+            <button type="button" id="btn-live-bespoke-update">반영</button>
           </div>
         </div>
 
@@ -1577,16 +1637,16 @@
       <!-- 【축 2: 🧠 아이 두뇌·학습 마스터 분석 보고서 (8단계 스토리 플로우)】       -->
       <!-- ====================================================================== -->
       <div id="pillar-2-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.78); border: 2px solid rgba(168, 85, 247, 0.45); border-radius: 24px; padding: 1.5rem; margin-top: 1.25rem; margin-bottom: 2rem;">
-        <!-- Antigravity AI Real-time Engine Verification Banner -->
+        <!-- Official Brain & Learning Standards Verification Banner -->
         <div style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.28) 0%, rgba(236, 72, 153, 0.2) 100%); border: 1.5px solid #C084FC; border-radius: 16px; padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <div style="display: flex; align-items: center; gap: 0.55rem;">
             <span style="font-size: 1.2rem;">🧠</span>
             <span style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF;">
-              Google Antigravity AI™ 진단 6단계 + 우리 아이 특징 통합 학습 성향·진로 분석 보고서
+              보건복지부 K-DST 발달기준 &amp; 뇌인지 학술논문 기반 【만 ${ageYears}세 맞춤 학습 성향·진로 분석 보고서】
             </span>
           </div>
           <span style="font-size: 0.78rem; font-weight: 800; color: #DDD6FE; background: rgba(168, 85, 247, 0.25); padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(168, 85, 247, 0.45);">
-            ✓ 검증 번호 #AGY-L${Math.abs(Math.sin((profile.ageMonths || 120) * 47) * 100000).toString(36).toUpperCase().slice(0, 5)} · 두뇌·학습 단독 리포트
+            ✓ 만 ${ageYears}세 발달 단계 맞춤 세팅 · 1위→2위→3위 순차 정리
           </span>
         </div>
 
@@ -1595,14 +1655,14 @@
           <div style="font-size: 0.86rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.65rem;">
             🧭 한눈에 들어오는 우리 아이 맞춤 학습보고서 8단계 흐름 (클릭 시 해당 단계로 바로 이동)
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 0.5rem;">
-            <a href="#learning-step-1-style" style="text-decoration: none; background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(192, 132, 252, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #F3E8FF; font-size: 0.82rem; font-weight: 800;">① 아이의 학습 성향 분석</a>
-            <a href="#learning-step-2-strengths" style="text-decoration: none; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #A7F3D0; font-size: 0.82rem; font-weight: 800;">② 아이가 잘하는 성향</a>
-            <a href="#learning-step-3-weaknesses" style="text-decoration: none; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(251, 113, 133, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #FECDD3; font-size: 0.82rem; font-weight: 800;">③ 아이가 못하는 성향</a>
-            <a href="#learning-step-4-careers" style="text-decoration: none; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #BFDBFE; font-size: 0.82rem; font-weight: 800;">④ 어울리는 미래 직업</a>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+            <a href="#learning-step-1-style" style="text-decoration: none; background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(192, 132, 252, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #F3E8FF; font-size: 0.82rem; font-weight: 800;">① 아이의 학습 성향 &amp; 점수 산출근거</a>
+            <a href="#learning-step-2-strengths" style="text-decoration: none; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #A7F3D0; font-size: 0.82rem; font-weight: 800;">② 잘하는 성향 (1위→2위→3위)</a>
+            <a href="#learning-step-3-weaknesses" style="text-decoration: none; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(251, 113, 133, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #FECDD3; font-size: 0.82rem; font-weight: 800;">③ 보완할 성향 (1위→2위→3위)</a>
+            <a href="#learning-step-4-careers" style="text-decoration: none; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #BFDBFE; font-size: 0.82rem; font-weight: 800;">④ 어울리는 미래 직업 (1위→3위)</a>
             <a href="#learning-step-5-boost" style="text-decoration: none; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #A7F3D0; font-size: 0.82rem; font-weight: 800;">⑤ 잘하는 성향 강화법</a>
             <a href="#learning-step-6-remedy" style="text-decoration: none; background: rgba(245, 158, 11, 0.16); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #FDE68A; font-size: 0.82rem; font-weight: 800;">⑥ 못하는 성향 보완법</a>
-            <a href="#learning-step-7-items" style="text-decoration: none; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(167, 139, 250, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #DDD6FE; font-size: 0.82rem; font-weight: 800;">⑦ 도움이 되는 것들</a>
+            <a href="#learning-step-7-items" style="text-decoration: none; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(167, 139, 250, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #DDD6FE; font-size: 0.82rem; font-weight: 800;">⑦ 연령 맞춤 도움 도구</a>
             <a href="#learning-step-8-links" style="text-decoration: none; background: rgba(236, 72, 153, 0.2); border: 1px solid rgba(244, 114, 182, 0.5); border-radius: 10px; padding: 0.5rem 0.7rem; color: #FBCFE8; font-size: 0.82rem; font-weight: 900;">⑧ 바로가기 링크 모음</a>
           </div>
         </div>
@@ -1624,7 +1684,7 @@
             </div>
 
             <h3 style="font-size: 1.35rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0; line-height: 1.4;">
-              🧠 1. 우리 아이 학습 성향 분석: <span style="color: #E9D5FF;">“${activeStyleInfo.title}”</span>
+              🧠 1. 우리 아이(만 ${ageYears}세) 학습 성향: <span style="color: #E9D5FF;">“${activeStyleInfo.title}”</span>
             </h3>
             <div style="display: inline-block; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(233, 213, 255, 0.35); color: #F3E8FF; font-size: 0.84rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; margin-bottom: 0.75rem;">
               ${activeStyleInfo.badge}
@@ -1632,38 +1692,50 @@
             <p style="font-size: 1.02rem; font-weight: 800; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.55rem 0;">
               ${activeStyleInfo.summary}
             </p>
-            <p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.65; margin: 0 0 1rem 0;">
+            <p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.65; margin: 0 0 0.95rem 0;">
               ${activeStyleInfo.detail}
             </p>
 
+            <!-- Transparent Learning LQ Score Calculation Formula Box -->
+            <div id="learning-score-formula-box" style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 0.9rem; font-size: 0.86rem; color: #F3E8FF; line-height: 1.65;">
+              <div style="font-size: 0.92rem; font-weight: 900; color: #E9D5FF; margin-bottom: 0.35rem;">
+                📊 [학습 점수(LQ ${lqData.overallLQ.toFixed(1)}점) 산출 공식 안내] 점수는 어떻게 계산되었나요?
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.28rem; color: #E2E8F0;">
+                <div>• <strong>5대 두뇌·학습 영역별 산출 점수:</strong> ① 문해력·어휘 <strong>${(lqData.scores && lqData.scores.literacy_vocab) || 78}점</strong> · ② 수리·공간추론 <strong>${(lqData.scores && lqData.scores.math_spatial) || 80}점</strong> · ③ 작업기억·집중력 <strong>${(lqData.scores && lqData.scores.working_memory_focus) || 76}점</strong> · ④ 메타인지·인출 <strong>${(lqData.scores && lqData.scores.metacognition_retrieval) || 74}점</strong> · ⑤ 탐구·창의력 <strong>${(lqData.scores && lqData.scores.inquiry_creative) || 82}점</strong></div>
+                <div>• <strong>산출 방식:</strong> 만 ${ageYears}세 연령 기준점(78점)에서 설문에서 선택하신 <strong>관심 강점 영역·기질·집중 시간은 가산(+6~+12점)</strong>하고, 현재 겪고 있는 <strong>학습 병목 체크 항목은 감점(-4~-10점)</strong>하여 5대 영역 평균값(<strong>LQ ${lqData.overallLQ.toFixed(1)}점 · 상위 ${lqData.topPercent}%</strong>)을 산출했습니다.</div>
+                <div>• <strong>강점 점수(83~87점) vs 보완 필요 점수(66~72점):</strong> 80점 이상은 아이가 이미 시냅스 우위를 보이는 강점 영역이며, 72점 이하는 의지 부족이 아니라 지금 맞춤 학습법으로 길을 열어주어야 할 보완 대상 영역입니다.</div>
+              </div>
+            </div>
+
             <!-- 6-Month Trajectory Summary Strip -->
             <div id="briefing-learning-one-line-verdict" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(192, 132, 252, 0.35); border-radius: 14px; padding: 0.85rem 1.1rem; font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
-              📈 <strong>6개월 학습 성장 예측:</strong> 현재 <strong>LQ ${lqData.overallLQ}점(상위 ${lqData.topPercent}%)</strong> · 기존 습관 방치 시 <strong>집중 12분 / 망각률 52%</strong> → 아래 맞춤 루틴 실천 시 <strong style="color: #6EE7B7;">LQ ${lqData.trajectory.coached.lqScore}점(+${lqData.trajectory.coached.gainLq}점 상승) · 1회 몰입 35분(+23분) · 장기기억 보존율 92%</strong> 도달 가능
+              📈 <strong>6개월 학습 성장 예측:</strong> 현재 <strong>LQ ${lqData.overallLQ}점(상위 ${lqData.topPercent}%)</strong> → 아래 맞춤 루틴 6개월 실천 시 <strong style="color: #6EE7B7;">LQ ${lqData.trajectory.coached.lqScore}점(+${lqData.trajectory.coached.gainLq}점 상승) · 1회 몰입 ${isToddlerAge ? '20분' : '35분'} · 장기기억 보존율 92%</strong> 도달 가능
             </div>
           </div>
 
-          <!-- Bespoke Learning Q&A Section (#bespoke-learning-note-section: 진단 6단계 + 아이 특징 서술 통합) -->
+          <!-- Bespoke Learning Q&A Section (#bespoke-learning-note-section: 설문 클릭 항목 통합) -->
           <div id="bespoke-learning-note-section" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               <span style="font-size: 1.04rem; font-weight: 900; color: #C084FC;">
-                💬 [진단 6단계 + 우리 아이 특징 입력] 통합 AI 심층 성향 판독
+                💬 설문 클릭 항목 기반 1:1 심층 학습 처방 (순서대로 1줄씩 정리)
               </span>
               <span style="font-size: 0.78rem; font-weight: 800; color: #A855F7; background: rgba(168, 85, 247, 0.14); border: 1px solid rgba(168, 85, 247, 0.35); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-                🎯 서술형 특징 반영 정밀도: ${bespokeNote.precisionLevelKo}
+                🎯 ${bespokeNote.precisionLevelKo}
               </span>
             </div>
 
             ${bespokeNote.hasNote ? `
               ${bespokeNote.learningKeywords.length > 0 ? `
                 <div style="margin-bottom: 0.75rem; font-size: 0.84rem; color: #CBD5E1; background: rgba(255,255,255,0.04); border-radius: 10px; padding: 0.6rem 0.9rem;">
-                  <strong style="color: #C084FC;">🔍 부모님이 입력하신 아이 특징에서 추출한 핵심 단서 (${bespokeNote.learningKeywords.length}건):</strong> ${bespokeNote.learningKeywords.join(' · ')}
+                  <strong style="color: #C084FC;">🔍 설문에서 선택된 핵심 학습 단서 (${bespokeNote.learningKeywords.length}건):</strong> ${bespokeNote.learningKeywords.join(' · ')}
                 </div>
               ` : ''}
               <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${bespokeNote.learningInsights.map((ins, idx) => `
                   <div class="bespoke-single-insight-card" style="display: block; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #A855F7; border-radius: 14px; padding: 1rem 1.15rem;">
                     <div style="font-size: 1rem; font-weight: 900; color: #C084FC; margin-bottom: 0.3rem;">
-                      ${idx + 1}. ${isEn ? ins.badgeEn : ins.badgeKo}
+                      핵심 처방 ${idx + 1}순위 · ${isEn ? ins.badgeEn : ins.badgeKo}
                     </div>
                     <div style="font-size: 0.94rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.35rem;">
                       ${isEn ? ins.answerEn : ins.answerKo}
@@ -1672,41 +1744,37 @@
                   </div>
                 `).join('')}
               </div>
-            ` : `
-              <div style="font-size: 0.88rem; color: #CBD5E1; background: rgba(255,255,255,0.04); border-radius: 12px; padding: 0.85rem 1rem; line-height: 1.55;">
-                💡 <strong>아이 특징 기반 맞춤 판독:</strong> 진단 6단계 선택값(연령 만 ${ageYears}세, 집중 시간, 학습 고민)을 바탕으로 아래 강점·약점·추천 직업이 자동 도출되었습니다. 상단 입력창이나 추가 단계에서 아이 특징을 더 길게 적어주시면 즉시 추가 반영됩니다!
-              </div>
-            `}
+            ` : ''}
           </div>
 
-          <!-- ==================== STEP 2: 아이가 잘하는 성향이 이거다 ==================== -->
+          <!-- ==================== STEP 2: 아이가 잘하는 성향 (1위 → 2위 → 3위 세로 순차 서술) ==================== -->
           <div id="learning-step-2-strengths" style="background: linear-gradient(145deg, rgba(6, 78, 59, 0.38) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #10B981; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #10B981; color: #052E16; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 2 · 아이가 잘하는 성향
+                STEP 2 · 아이가 잘하는 성향 (강점 1위 → 2위 → 3위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #6EE7B7;">
-                칭찬할수록 시냅스가 폭발적으로 자라나는 상위 강점 3가지
+                강점 1위부터 3위까지 한 줄에 하나씩 순서대로 확인하세요
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.9rem 0;">
-              🌟 2. 우리 아이가 잘하는 성향은 바로 이겁니다! (강점 TOP 3)
+              🌟 2. 우리 아이가 잘하는 성향 (강점 1위 → 2위 → 3위 순차 진단)
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${strengthsList.map((s, idx) => `
-                <div style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(16, 185, 129, 0.5); border-radius: 16px; padding: 1.1rem 1.15rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-                    <span style="font-size: 0.78rem; font-weight: 900; color: #052E16; background: #34D399; padding: 0.18rem 0.6rem; border-radius: 9999px;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.5); border-left: 5px solid #10B981; border-radius: 16px; padding: 1.1rem 1.25rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #052E16; background: #34D399; padding: 0.2rem 0.7rem; border-radius: 9999px;">
                       강점 ${idx + 1}위
                     </span>
-                    <span style="font-size: 1.05rem; font-weight: 900; color: #6EE7B7;">
-                      ${s.score}점
+                    <span style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7;">
+                      역량 점수 ${s.score}점 (상위 강점)
                     </span>
                   </div>
-                  <div style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.45rem;">
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
                     ${s.icon} ${s.title}
                   </div>
-                  <p style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
+                  <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
                     ${s.goodTrait}
                   </p>
                 </div>
@@ -1714,34 +1782,34 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 3: 아이가 못하는 성향이 이거다 ==================== -->
+          <!-- ==================== STEP 3: 아이가 못하는 성향 (1위 → 2위 → 3위 세로 순차 서술) ==================== -->
           <div id="learning-step-3-weaknesses" style="background: linear-gradient(145deg, rgba(136, 19, 55, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #F43F5E; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #F43F5E; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 3 · 아이가 못하는·힘들어하는 성향
+                STEP 3 · 보완이 필요한 성향 (1순위 → 2순위 → 3순위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #FDA4AF;">
-                의지 부족이 아니라 두뇌 발달 과정상 지금 막혀 있는 병목 3가지
+                만 ${ageYears}세 발달 단계에서 우선 보완할 병목 순서
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.9rem 0;">
-              🚨 3. 반대로 우리 아이가 지금 못하는·힘들어하는 성향은 이겁니다
+              🚨 3. 지금 보완해주면 좋은 성향 (1순위 → 2순위 → 3순위 순차 진단)
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${weaknessesList.map((w, idx) => `
-                <div style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(244, 63, 94, 0.5); border-radius: 16px; padding: 1.1rem 1.15rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-                    <span style="font-size: 0.78rem; font-weight: 900; color: #FFFFFF; background: #E11D48; padding: 0.18rem 0.6rem; border-radius: 9999px;">
-                      보완 필요 ${idx + 1}순위
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.5); border-left: 5px solid #F43F5E; border-radius: 16px; padding: 1.1rem 1.25rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #FFFFFF; background: #E11D48; padding: 0.2rem 0.7rem; border-radius: 9999px;">
+                      보완 ${idx + 1}순위
                     </span>
-                    <span style="font-size: 0.95rem; font-weight: 900; color: #FDA4AF;">
-                      현재 ${w.score}점 (집중 코칭 대상)
+                    <span style="font-size: 0.94rem; font-weight: 900; color: #FDA4AF;">
+                      현재 ${w.score}점 (우선 코칭 대상)
                     </span>
                   </div>
-                  <div style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.45rem;">
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
                     ${w.icon} ${w.title}
                   </div>
-                  <p style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
+                  <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
                     ${w.weakTrait}
                   </p>
                 </div>
@@ -1751,7 +1819,7 @@
         </div><!-- /#report-ch-5 -->
 
         <!-- ================================================================== -->
-        <!-- CHAPTER 6: [STEP 4] 아이는 어떤 직업이 어울릴 거 같다 + 5각 레이더 상세 -->
+        <!-- CHAPTER 6: [STEP 4] 어울리는 직업 (1순위 → 2순위 → 3순위 세로 순차)  -->
         <!-- ================================================================== -->
         <div id="report-ch-6" style="scroll-margin-top: 5.5rem; margin-top: 1.5rem;">
 
@@ -1759,34 +1827,33 @@
           <div id="learning-step-4-careers" style="background: linear-gradient(145deg, rgba(30, 58, 138, 0.45) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #60A5FA; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.35rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #3B82F6; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 4 · 아이에게 어울리는 미래 직업 &amp; 진로
+                STEP 4 · 어울리는 미래 직업 &amp; 진로 (1순위 → 2순위 → 3순위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #93C5FD;">
-                강점 성향과 학습 스타일을 결합한 맞춤형 적성·직업군 매칭
+                강점 성향과 학습 스타일을 결합한 적성 진로
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.4rem 0;">
-              🎓 4. 우리 아이는 앞으로 이런 직업이 정말 잘 어울릴 것 같습니다!
+              🎓 4. 우리 아이에게 잘 어울리는 미래 진로 (1순위 → 2순위 → 3순위)
             </h3>
-            <p style="font-size: 0.9rem; color: #CBD5E1; margin: 0 0 1rem 0; line-height: 1.55;">
-              아이가 타고난 상위 강점(<strong>${strengthsList.map(s => s.title).join(', ')}</strong>)과 흡수력이 가장 높은 공부 성향(<strong>${activeStyleInfo.title}</strong>)을 살렸을 때 가장 빛을 발할 미래 유망 직업 &amp; 추천 전공 TOP 3입니다.
+            <p style="font-size: 0.9rem; color: #CBD5E1; margin: 0 0 0.95rem 0; line-height: 1.55;">
+              상위 강점(<strong>${strengthsList[0].title}</strong>)과 공부 성향(<strong>${activeStyleInfo.title}</strong>)을 살렸을 때 가장 빛을 발할 추천 진로입니다.
             </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 0.95rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${recommendedCareers.map((c, idx) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.5); border-radius: 16px; padding: 1.15rem 1.2rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-                    <span style="font-size: 0.78rem; font-weight: 900; color: #FFFFFF; background: #2563EB; padding: 0.2rem 0.65rem; border-radius: 9999px;">
-                      추천 진로 ${idx + 1}순위 · ${c.group}
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.5); border-left: 5px solid #3B82F6; border-radius: 16px; padding: 1.1rem 1.25rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #FFFFFF; background: #2563EB; padding: 0.2rem 0.7rem; border-radius: 9999px;">
+                      추천 진로 ${idx + 1}위 · ${c.group}
                     </span>
-                    <span style="font-size: 1.3rem;">${c.icon}</span>
+                    <span style="font-size: 0.82rem; font-weight: 800; color: #93C5FD;">
+                      🎯 연계 전공: ${c.majors}
+                    </span>
                   </div>
-                  <div style="font-size: 1.08rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.4rem; line-height: 1.4;">
-                    ${c.jobs}
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.35rem; line-height: 1.4;">
+                    ${c.icon} ${c.jobs}
                   </div>
-                  <div style="font-size: 0.82rem; font-weight: 800; color: #93C5FD; background: rgba(59, 130, 246, 0.14); border-radius: 8px; padding: 0.35rem 0.65rem; margin-bottom: 0.55rem;">
-                    🎯 연계 전공: ${c.majors}
-                  </div>
-                  <p style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.55; margin: 0;">
+                  <p style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.55; margin: 0;">
                     ${c.reason}
                   </p>
                 </div>
@@ -1840,58 +1907,58 @@
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${strengthsList.map((s, idx) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 1.05rem 1.15rem;">
-                  <div style="font-size: 0.95rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.4rem;">
-                    ✅ [강점 ${idx + 1}] ${s.title} 강화 실천법
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(52, 211, 153, 0.45); border-left: 5px solid #10B981; border-radius: 16px; padding: 1.05rem 1.2rem;">
+                  <div style="font-size: 0.96rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">
+                    ✅ [강점 ${idx + 1}위 강화법] ${s.title}
                   </div>
-                  <p style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.45rem 0;">
+                  <p style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.4rem 0;">
                     ${s.howToBoost}
                   </p>
-                  <div style="font-size: 0.78rem; color: #A7F3D0; font-weight: 700;">
-                    🛠️ 활용 도구: ${s.helpfulTools}
+                  <div style="font-size: 0.8rem; color: #A7F3D0; font-weight: 700;">
+                    🛠️ 만 ${ageYears}세 맞춤 활용 도구: ${s.helpfulTools}
                   </div>
                 </div>
               `).join('')}
             </div>
           </div>
 
-          <!-- ==================== STEP 6: 못하는 성향을 보완하려면 이걸 해야 한다 ==================== -->
+          <!-- ==================== STEP 6: 못하는 성향을 보완하려면 이걸 해야 한다 (1위→2위→3위 순차) ==================== -->
           <div id="learning-step-6-remedy" style="background: linear-gradient(145deg, rgba(120, 53, 15, 0.38) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #FBBF24; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #F59E0B; color: #000000; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 6 · 못하는 성향 맞춤 보완 솔루션
+                STEP 6 · 보완할 성향 맞춤 솔루션 (1순위 → 2순위 → 3순위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #FDE68A;">
-                혼내지 않고 뇌신경 회로를 부드럽게 열어주는 1:1 약점 처방전
+                만 ${ageYears}세 눈높이에 맞춘 1:1 보완 처방전
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0;">
-              🛠️ 6. 아이가 못하는·힘들어하는 성향을 보완하려면 이걸 해야 합니다!
+              🛠️ 6. 보완이 필요한 성향은 순서대로 이렇게 지도해 주세요!
             </h3>
 
             <!-- Primary Style Fix Banner -->
             <div style="background: rgba(245, 158, 11, 0.14); border: 1.5px solid #FBBF24; border-radius: 14px; padding: 0.95rem 1.15rem; margin-bottom: 0.95rem;">
               <div style="font-size: 0.86rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.25rem;">
-                💡 [${activeStyleInfo.title}] 학습 시 가장 주의할 점 &amp; 보완 핵심
+                💡 [${activeStyleInfo.title}] 지도 시 가장 주의할 점 &amp; 보완 핵심
               </div>
               <div style="font-size: 0.95rem; font-weight: 800; color: #FFFFFF; line-height: 1.55;">
                 ${activeStyleInfo.fixAction}
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; margin-bottom: 1rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1rem;">
               ${weaknessesList.map((w, idx) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1.05rem 1.15rem;">
-                  <div style="font-size: 0.95rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.4rem;">
-                    🔧 [약점 ${idx + 1}] ${w.title} 보완 실천법
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(251, 191, 36, 0.45); border-left: 5px solid #F59E0B; border-radius: 16px; padding: 1.05rem 1.2rem;">
+                  <div style="font-size: 0.96rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.35rem;">
+                    🔧 [보완 ${idx + 1}순위 해결법] ${w.title}
                   </div>
-                  <p style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.45rem 0;">
+                  <p style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.4rem 0;">
                     ${w.howToFix}
                   </p>
-                  <div style="font-size: 0.78rem; color: #FCD34D; font-weight: 700;">
-                    🛠️ 보완 도구: ${w.helpfulTools}
+                  <div style="font-size: 0.8rem; color: #FCD34D; font-weight: 700;">
+                    🛠️ 만 ${ageYears}세 맞춤 보완 도구: ${w.helpfulTools}
                   </div>
                 </div>
               `).join('')}
@@ -1900,13 +1967,13 @@
             <!-- 4-Stage Self-Directed Study Timetable (#bespoke-learning-timetable-box) -->
             <div id="bespoke-learning-timetable-box" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 16px; padding: 1.05rem 1.2rem;">
               <div style="font-size: 0.95rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.55rem;">
-                ⏰ 오늘 저녁부터 바로 실천하는 [하루 4단계 자기주도 학습 &amp; 밤 10시 기억 공고화 시간표]
+                ⏰ 오늘부터 바로 실천하는 [만 ${ageYears}세 맞춤 하루 4단계 학습·기억 루틴]
               </div>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.6rem; font-size: 0.86rem; color: #F8FAFC; line-height: 1.55;">
-                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.8rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage1}</div>
-                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.8rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage2}</div>
-                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.8rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage3}</div>
-                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.8rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage4}</div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; color: #F8FAFC; line-height: 1.55;">
+                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.85rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage1}</div>
+                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.85rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage2}</div>
+                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.85rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage3}</div>
+                <div style="background: rgba(255,255,255,0.04); padding: 0.65rem 0.85rem; border-radius: 10px;">${bespokeNote.learningDailyRoutine.stage4}</div>
               </div>
             </div>
           </div>
@@ -1917,45 +1984,45 @@
         <!-- ================================================================== -->
         <div id="report-ch-8" style="scroll-margin-top: 5.5rem; margin-top: 1.5rem;">
 
-          <!-- ==================== STEP 7: 그거에 도움이 되는 것들이 이런 거다 ==================== -->
+          <!-- ==================== STEP 7: 그거에 도움이 되는 것들이 이런 거다 (1순위→2순위→3순위 순차) ==================== -->
           <div id="learning-step-7-items" style="background: linear-gradient(145deg, rgba(76, 29, 149, 0.4) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #A78BFA; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #8B5CF6; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 7 · 강점 강화 &amp; 약점 보완에 도움이 되는 것들
+                STEP 7 · 만 ${ageYears}세 맞춤 도움이 되는 것들 (1순위 → 2순위 → 3순위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #DDD6FE;">
-                왜 이 교구·교재·주말 체험이 우리 아이에게 꼭 필요한지 한눈에 정리
+                아이 연령(만 ${ageYears}세)에 맞지 않는 교구·도서는 제외했습니다
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0;">
-              🎒 7. 강점을 키우고 약점을 보완하는 데 직접 도움이 되는 것들이 이런 겁니다!
+              🎒 7. 만 ${ageYears}세 우리 아이에게 직접 도움이 되는 교구·도서·주말 체험
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); gap: 0.9rem;">
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(167, 139, 250, 0.45); border-radius: 16px; padding: 1.1rem 1.15rem;">
-                <div style="font-size: 0.8rem; font-weight: 900; color: #C084FC; margin-bottom: 0.3rem;">① 두뇌 사고력 교구 &amp; 집중 환경 도구</div>
-                <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.45rem;">
-                  ${quickTools.length > 0 ? quickTools.map(t => t.name).join(' · ') : '무소음 시각 타이머 · 눈높이 원목 독서대 · 3D 입체 교구'}
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(167, 139, 250, 0.45); border-left: 5px solid #A855F7; border-radius: 16px; padding: 1.05rem 1.2rem;">
+                <div style="font-size: 0.82rem; font-weight: 900; color: #C084FC; margin-bottom: 0.3rem;">① [만 ${ageYears}세 맞춤] 두뇌 발달 교구 &amp; 집중 환경 도구</div>
+                <div style="font-size: 1.04rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
+                  ${quickTools.length > 0 ? quickTools.map(t => t.name).join(' · ') : '무소음 시각 타이머 · 눈높이 원목 독서대 · 입체 사고력 교구'}
                 </div>
                 <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.55; margin: 0;">
-                  손끝 조작으로 두정엽 공간추론 회로를 깨우고, 무소음 타이머와 눈높이 독서대로 책상 앞 착석 지구력을 2배 이상 늘려줍니다.
+                  만 ${ageYears}세 발달 단계에 꼭 맞는 조작 자극과 집중 환경을 만들어 줍니다.
                 </p>
               </div>
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 1.1rem 1.15rem;">
-                <div style="font-size: 0.8rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.3rem;">② 성향 맞춤 필독서 &amp; 사고력 워크북</div>
-                <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.45rem;">
-                  ${quickBooks.length > 0 ? quickBooks.map(b => b.name).join(' · ') : '연령별 문해력 독해 워크북 · 창의 수학 퍼즐북 · 백지복습 노트'}
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-left: 5px solid #38BDF8; border-radius: 16px; padding: 1.05rem 1.2rem;">
+                <div style="font-size: 0.82rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.3rem;">② [만 ${ageYears}세 맞춤] 필독서 &amp; 단계별 워크북</div>
+                <div style="font-size: 1.04rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
+                  ${quickBooks.length > 0 ? quickBooks.map(b => b.name).join(' · ') : '연령별 맞춤 도서 · 단계별 사고력 워크북'}
                 </div>
                 <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.55; margin: 0;">
-                  아이의 현재 어휘·수리 수준에서 좌절하지 않고 하루 2쪽씩 성취감을 쌓으며 메타인지 인출력을 길러주는 맞춤 교재입니다.
+                  아이 나이에 비해 너무 어렵거나 유치하지 않도록 만 ${ageYears}세 수준에 딱 맞춘 도서·교재입니다.
                 </p>
               </div>
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 1.1rem 1.15rem;">
-                <div style="font-size: 0.8rem; font-weight: 900; color: #34D399; margin-bottom: 0.3rem;">③ 배경지식(스키마) 확장 주말 체험 코스</div>
-                <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.45rem;">
-                  ${quickTours.length > 0 ? quickTours.map(t => t.name).join(' · ') : '국립과천과학관 · 국립중앙박물관 어린이박물관 도슨트 투어'}
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.45); border-left: 5px solid #10B981; border-radius: 16px; padding: 1.05rem 1.2rem;">
+                <div style="font-size: 0.82rem; font-weight: 900; color: #34D399; margin-bottom: 0.3rem;">③ [만 ${ageYears}세 × ${profile.region || '수도권'}] 주말 체험·박물관·과학관 코스</div>
+                <div style="font-size: 1.04rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
+                  ${quickTours.length > 0 ? quickTours.map(t => t.name).join(' · ') : '국립과천과학관 · 국립중앙박물관 어린이박물관 투어'}
                 </div>
                 <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.55; margin: 0;">
-                  책에서만 보던 과학·역사·예술 개념을 주말에 직접 눈으로 보고 부모님과 대화하며 장기기억 스키마로 각인시키는 코스입니다.
+                  주말에 직접 눈으로 보고 부모님과 대화하며 배경지식(스키마)을 넓히는 연령 맞춤 나들이 코스입니다.
                 </p>
               </div>
             </div>
@@ -1996,37 +2063,37 @@
                 🔗 8. 도움이 되는 교구·도서·주말 체험은 모두 여기 링크에 있습니다!
               </h3>
 
-              <!-- Quick One-Look Direct Link Table -->
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
-                ${quickTools.map(item => `
-                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(244, 114, 182, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+              <!-- Quick One-Look Direct Link List (1 Item Per Row Sequential Layout) -->
+              <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.25rem;">
+                ${quickTools.map((item, idx) => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(244, 114, 182, 0.45); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
                     <div>
-                      <span style="font-size: 0.74rem; font-weight: 900; color: #F472B6;">🧩 맞춤 학습교구·환경도구</span>
-                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${item.name}</div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #F472B6;">🧩 추천 교구·도구 ${idx + 1}순위</span>
+                      <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${item.name}</div>
                     </div>
-                    <a href="${item.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                    <a href="${item.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
                       🔗 ${item.buttonLabelCoupang || '쿠팡 로켓배송 바로가기'} ↗
                     </a>
                   </div>
                 `).join('')}
-                ${quickBooks.map(book => `
-                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+                ${quickBooks.map((book, idx) => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
                     <div>
-                      <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">📚 맞춤 필독서·워크북</span>
-                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${book.name}</div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">📚 추천 도서·워크북 ${idx + 1}순위</span>
+                      <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${book.name}</div>
                     </div>
-                    <a href="${book.yes24Url || book.coupangUrl || 'https://www.yes24.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #0284C7 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                    <a href="${book.yes24Url || book.coupangUrl || 'https://www.yes24.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #0284C7 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
                       🔗 도서·교재 상세 바로가기 ↗
                     </a>
                   </div>
                 `).join('')}
-                ${quickTours.map(tour => `
-                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+                ${quickTours.map((tour, idx) => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
                     <div>
-                      <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏛️ 주말 현장 체험·투어</span>
-                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${tour.name}</div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏛️ 주말 체험·투어 ${idx + 1}순위</span>
+                      <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${tour.name}</div>
                     </div>
-                    <a href="${tour.mrtUrl || tour.klookUrl || 'https://www.myrealtrip.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #059669 0%, #0D9488 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                    <a href="${tour.mrtUrl || tour.klookUrl || 'https://www.myrealtrip.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #059669 0%, #0D9488 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
                       🔗 주말 체험·티켓 바로가기 ↗
                     </a>
                   </div>
@@ -2275,20 +2342,20 @@
               </span>
             </div>
             <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.75rem 0; line-height: 1.4;">
-              📅 신체에 맞는 정기 재점검 루틴 3단계 (키·성장판·수면·영양 골든타임)
+              📅 신체에 맞는 정기 재점검 루틴 3단계 (1단계 → 2단계 → 3단계 순차 체크)
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 0.95rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.95rem;">
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #38BDF8; border-radius: 12px; padding: 0.9rem 1rem;">
                 <div style="font-size: 0.94rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.3rem;">① 매월 1일 아침: 월간 키 성장속도(cm/년) 재측정</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이 키는 계절·수면주기에 따라 매달 달라집니다. 매월 1일 기상 직후 키·체중을 재서 입력하면 <strong>연환산 성장속도(5~6cm/년 이상 유지 여부)와 백분위 상승폭</strong>을 바로 비교해 드립니다.</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">매월 1일 기상 직후 키·체중을 재서 입력하면 <strong>연환산 성장속도(5~6cm/년 이상 유지 여부)와 백분위 상승폭</strong>을 바로 비교해 드립니다.</div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #10B981; border-radius: 12px; padding: 0.9rem 1rem;">
-                <div style="font-size: 0.94rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.3rem;">② 매주 일요일 밤: 밤 10시 숙면 &amp; 데드행·점프 점검</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">이번 주에 <strong>밤 10시 전 입면(성장호르몬 310% 분비)</strong>과 <strong>실내 철봉 매달리기(척추 감압)·트램폴린 점프</strong>를 주 5회 이상 실천했는지 주말마다 체크하세요.</div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.3rem;">② 매주 일요일 밤: 밤 10시 숙면 &amp; 스트레칭·점프 점검</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">이번 주에 <strong>밤 10시 전 입면(성장호르몬 피크)</strong>과 <strong>척추 스트레칭·트램폴린 점프</strong>를 주 5회 이상 실천했는지 주말마다 체크하세요.</div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #F59E0B; border-radius: 12px; padding: 0.9rem 1rem;">
                 <div style="font-size: 0.94rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.3rem;">③ 3개월(계절) 주기: 체중 비례 영양 용량 &amp; 골연령 신호 재조정</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이가 3개월 자라 체중이 늘 때마다 <strong>하루 칼슘·비타민D3·아연·단백질 필요량</strong>과 <strong>사춘기 골연령 신호</strong>가 바뀝니다. 분기마다 신체 처방전을 새로 업데이트하세요!</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이가 자라 체중이 늘 때마다 <strong>하루 칼슘·비타민D3·아연·단백질 필요량</strong>이 바뀝니다. 분기마다 신체 처방전을 새로 업데이트하세요!</div>
               </div>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
@@ -2313,26 +2380,26 @@
               </span>
             </div>
             <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.75rem 0; line-height: 1.4;">
-              📅 학습에 맞는 정기 재점검 루틴 3단계 (학습성향·백지복습·문해력·교구 골든타임)
+              📅 학습에 맞는 정기 재점검 루틴 3단계 (1단계 → 2단계 → 3단계 순차 체크)
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 0.95rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.95rem;">
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #C084FC; border-radius: 12px; padding: 0.9rem 1rem;">
-                <div style="font-size: 0.94rem; font-weight: 900; color: #E9D5FF; margin-bottom: 0.3rem;">① 매주 금요일 저녁: 주간 백지복습(Active Recall) &amp; 몰입 시간 점검</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">이번 주 배운 핵심 개념을 책을 덮고 <strong>엄마·아빠에게 3문장으로 설명(하브루타 인출)</strong>할 수 있는지, 무소음 타이머 착석 몰입 시간이 몇 분 늘었는지 매주 금요일 점검하세요.</div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #E9D5FF; margin-bottom: 0.3rem;">① 매주 금요일 저녁: 주간 ${isToddlerAge ? '그림책·손끝 놀이' : '백지복습 & 몰입 시간'} 점검</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">이번 주 아이와 나눈 대화·놀이와 집중 시간이 얼마나 늘어났는지 매주 금요일 가볍게 점검하세요.</div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #34D399; border-radius: 12px; padding: 0.9rem 1rem;">
-                <div style="font-size: 0.94rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.3rem;">② 매월 1일: 잘하는 성향 강화도 &amp; 못하는 성향 보완도 재진단</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">한 달 동안 실천한 맞춤 루틴으로 <strong>강점(${strengthsList[0].title})이 얼마나 더 깊어졌는지</strong>, <strong>약점(${weaknessesList[0].title}) 병목이 얼마나 해소되었는지</strong> 매월 1일 재진단하여 LQ 점수 변화를 확인하세요.</div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.3rem;">② 매월 1일: 강점 1위 강화도 &amp; 보완 1위 해소도 재진단</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">한 달 동안 실천한 맞춤 루틴으로 <strong>강점(${strengthsList[0].title})과 보완점(${weaknessesList[0].title})</strong>이 어떻게 달라졌는지 매월 1일 재진단하여 LQ 점수 변화를 확인하세요.</div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.85); border-left: 4px solid #F472B6; border-radius: 12px; padding: 0.9rem 1rem;">
-                <div style="font-size: 0.94rem; font-weight: 900; color: #FBCFE8; margin-bottom: 0.3rem;">③ 방학·새 학기(3개월) 주기: 맞춤 교재·교구 &amp; 주말 체험 코스 교체</div>
-                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이의 어휘력·수리 공간추론이 한 단계 올라갈 때마다 <strong>다음 난이도의 워크북·사고력 교구와 새로운 주말 박물관·과학관 체험 코스</strong>로 업그레이드해 주세요!</div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FBCFE8; margin-bottom: 0.3rem;">③ 3개월 주기: 연령 발달 단계에 맞춘 도서·교구 &amp; 주말 체험 업그레이드</div>
+                <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이의 어휘력·공간추론이 한 단계 자랄 때마다 <strong>다음 단계의 도서·교구와 새로운 주말 박물관·과학관 체험 코스</strong>로 교체해 주세요!</div>
               </div>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
               <button
                 type="button"
-                onclick="(function(btn){ var text = '[두뇌·학습 정기 재점검 알림장] 우리 아이(' + '${ageYears}세, ${activeStyleInfo.title}' + ') LQ ' + '${lqData.overallLQ.toFixed(1)}점 → 목표 ${lqData.trajectory.coached.lqScore}점' + ' 달성 루틴! ①매주 금요일 백지복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 👉 https://truthofmarket.com'; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text); } btn.textContent = '✅ 카톡 나에게 보내기용 [학습 정기 재점검 알림]이 복사되었습니다!'; btn.style.background = '#7C3AED'; })(this)"
+                onclick="(function(btn){ var text = '[두뇌·학습 정기 재점검 알림장] 우리 아이(' + '${ageYears}세, ${activeStyleInfo.title}' + ') LQ ' + '${lqData.overallLQ.toFixed(1)}점 → 목표 ${lqData.trajectory.coached.lqScore}점' + ' 달성 루틴! ①매주 금요일 복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 👉 https://truthofmarket.com'; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text); } btn.textContent = '✅ 카톡 나에게 보내기용 [학습 정기 재점검 알림]이 복사되었습니다!'; btn.style.background = '#7C3AED'; })(this)"
                 style="flex: 1 1 240px; min-height: 46px; background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%); color: #FFFFFF; border: none; border-radius: 12px; padding: 0.65rem 1rem; font-size: 0.9rem; font-weight: 900; cursor: pointer;"
               >
                 📲 내 카톡에 '학습에 맞는 정기 재점검 루틴 알림' 복사해 두기
@@ -2342,35 +2409,35 @@
         </div>
 
         <!-- ================================================================== -->
-        <!-- GOLDEN ZONE 4-CHANNEL OWNED MEDIA HUB (블로그 · 카페 · 인스타 · 쓰레드) -->
+        <!-- GOLDEN ZONE 4-CHANNEL OWNED MEDIA HUB (블로그·카페 심층글 / 인스타·쓰레드 4칸 웹툰) -->
         <!-- ================================================================== -->
         <div id="official-4channel-community-hub" style="margin-top: 1.35rem; margin-bottom: 1.35rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.94) 100%); border: 1.5px solid rgba(148, 163, 184, 0.35); border-radius: 20px; padding: 1.35rem 1.4rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
             <span style="background: rgba(56, 189, 248, 0.16); color: #38BDF8; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
-              📣 KIDS-FIT 공식 성장·학습 4대 소통 채널
+              📣 KIDS-FIT 공식 성장·학습 4대 채널 (블로그·카페 심층글 / 인스타·쓰레드 4칸 웹툰)
             </span>
             <span style="font-size: 0.78rem; color: #94A3B8; font-weight: 800;">
-              매일 업데이트되는 논문 칼럼 · 무료 워크지 PDF · 6컷 육아툰 · 3줄 핵심 팁
+              블로그·카페: 순수 성장·학습 칼럼 | 인스타·쓰레드: 공감 4칸 웹툰 동시 업로드
             </span>
           </div>
           <h3 id="channel-hub-dynamic-title" style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0; line-height: 1.45;">
             ${isLearningDefault
-              ? '🧠 혼자 챙기기 막막한 우리 아이 공부 습관·문해력, 공식 4대 채널에서 매일 무료 자료와 코칭을 받아보세요!'
-              : '📏 혼자 챙기기 막막한 우리 아이 숨은 키 7cm·수면·식단, 공식 4대 채널에서 매일 무료 자료와 코칭을 받아보세요!'}
+              ? '🧠 네이버 블로그·카페의 순수 아이 성장·학습 심층 글과 인스타그램·쓰레드의 공감 4칸 웹툰을 만나보세요!'
+              : '📏 네이버 블로그·카페의 순수 아이 성장·학습 심층 글과 인스타그램·쓰레드의 공감 4칸 웹툰을 만나보세요!'}
           </h3>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 0.75rem;">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
             <!-- 1. Naver Blog -->
             <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #4ADE80;">📝 공식 네이버 블로그</span>
-                  <span style="font-size: 0.72rem; color: #86EFAC; font-weight: 800;">심층 칼럼 ↗</span>
+                  <span style="font-size: 0.72rem; color: #86EFAC; font-weight: 800;">순수 성장·학습 칼럼 ↗</span>
                 </div>
                 <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  ${isLearningDefault ? '연령별 문해력·수학·백지복습 논문 칼럼' : '소아 키 성장·성조숙증·영양 논문 칼럼'}
+                  순수 아이 신체 성장 &amp; 연령별 두뇌·학습 심층 칼럼
                 </div>
                 <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
-                  진단 결과지를 200% 활용하는 연령별 심층 가이드와 교구·영양 비교 분석글을 정독하세요.
+                  광고 없이 순수하게 아이 키 성장(수면·영양·자세)과 나이별 공부법·문해력을 깊이 있게 다룬 칼럼을 연재합니다.
                 </p>
               </div>
             </a>
@@ -2380,45 +2447,45 @@
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #34D399;">☕ 공식 네이버 카페</span>
-                  <span style="font-size: 0.72rem; color: #6EE7B7; font-weight: 800;">무료 PDF 나눔 ↗</span>
+                  <span style="font-size: 0.72rem; color: #6EE7B7; font-weight: 800;">성장·학습 심층글 &amp; 워크지 ↗</span>
                 </div>
                 <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  ${isLearningDefault ? '백지복습 노트·하브루타 질문지 PDF 무료 받기' : '월간 키 성장 기록표·주간 식단표 PDF 무료 받기'}
+                  아이 성장·학습 정보 나눔 &amp; 연령별 무료 워크지 PDF
                 </div>
                 <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
-                  같은 개월 수 학부모님들과 매달 성장·학습 챌린지를 함께하고 무료 워크지를 다운받으세요.
+                  같은 나이대 학부모님들과 순수 아이 성장·학습 노하우 글을 나누고 월령별 워크지를 무료로 받아보세요.
                 </p>
               </div>
             </a>
 
-            <!-- 3. Instagram -->
+            <!-- 3. Instagram (4-Panel Webtoon) -->
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #F472B6;">📸 공식 인스타그램</span>
-                  <span style="font-size: 0.72rem; color: #FBCFE8; font-weight: 800;">6컷 웹툰·카드뉴스 ↗</span>
+                  <span style="font-size: 0.72rem; color: #FBCFE8; font-weight: 800;">성장·학습 4칸 웹툰 ↗</span>
                 </div>
                 <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  1분 공감 육아·공부 웹툰 &amp; 주말 나들이 코스
+                  아이 성장 &amp; 학습 공감 4칸 웹툰 (인스타·쓰레드 동시 연재)
                 </div>
                 <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
-                  바쁜 출퇴근길에 저장해 두고 보는 6컷 핵심 카드뉴스와 이번 주말 박물관·과학관 추천!
+                  기승전결이 한눈에 들어오는 따뜻한 4칸 육아·학습 웹툰으로 우리 아이 성장·공부 해법을 만나보세요.
                 </p>
               </div>
             </a>
 
-            <!-- 4. Threads -->
+            <!-- 4. Threads (4-Panel Webtoon Simultaneous Upload) -->
             <a href="https://www.threads.net" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #C084FC;">🧵 공식 쓰레드 (Threads)</span>
-                  <span style="font-size: 0.72rem; color: #E9D5FF; font-weight: 800;">하루 3줄 핵심팁 ↗</span>
+                  <span style="font-size: 0.72rem; color: #E9D5FF; font-weight: 800;">4칸 웹툰 동시 업로드 ↗</span>
                 </div>
                 <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
-                  매일 아침 '오늘의 3줄 성장·공부 뇌과학 팁'
+                  아이 성장·학습 4칸 웹툰 &amp; 핵심 요약 스레드
                 </div>
                 <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
-                  짧고 강렬한 최신 논문 팩트 요약과 우리 아이 키·공부 고민 실시간 댓글 Q&amp;A 소통!
+                  인스타그램과 동시에 업로드되는 아이 성장·학습 4칸 웹툰과 한 줄 핵심 팁을 스레드에서 바로 확인하세요!
                 </p>
               </div>
             </a>

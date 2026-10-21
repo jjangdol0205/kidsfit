@@ -20,7 +20,7 @@
   const DICTIONARY = {
     ko: {
       // Header & Brand
-      'brand.title': 'KIDS-FIT AI',
+      'brand.title': 'KIDS-FIT',
       'brand.tagline': '키 · 육체적 · 정신적 성장 & 맞춤 학습 가이드 플랫폼',
       'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용',
       'nav.auxology': '신체 성장 & 골연령 궤적',
@@ -33,11 +33,11 @@
       'lang.toggle': '🇺🇸 EN',
 
       // Hero (Ultra-Concise & Unified — No Parent/Student Split)
-      'hero.badge': '🌱 질병관리청(KDCA) · K-DST · 학술논문 1,857편 기반 AI 맞춤 진단',
-      'hero.headline': '<span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">설문 기반 1:1 정밀 보고서로 확인하세요</span>',
-      'hero.subtitle': '필요한 진단을 선택하면 맞춤 설문 후 안티그래비티 AI가 전용 보고서를 즉시 생성합니다.',
-      'nav.forWhom': '보고서 안내',
-      'nav.services': '핵심 분석',
+      'hero.badge': '🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 정밀 진단',
+      'hero.headline': '<span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">클릭 설문 기반 1:1 정밀 보고서로 확인하세요</span>',
+      'hero.subtitle': '원하는 진단을 선택하고 객관식 항목만 클릭하면 아이 나이에 맞춘 전용 보고서를 즉시 발행합니다.',
+      'nav.forWhom': '신체 성장 보고서',
+      'nav.services': '두뇌·학습 보고서',
       'hero.cta.parent': '📏 신체 성장 진단 시작 →',
       'hero.cta.learning': '🧠 두뇌·학습 진단 시작 →',
       'hero.cta.youth': '⚡ 1분 맞춤 진단 시작 →',
@@ -83,19 +83,19 @@
       'quiz.edition.label': '📘 맞춤 진단 유형',
       'quiz.edition.child': '👶 1:1 맞춤 성장·학습 정밀 진단',
       'quiz.edition.self': '🙋 1:1 맞춤 성장·학습 정밀 진단',
-      'quiz.dob.hint1': '✨ 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다 (일수 단위 AI 보정 완료)',
+      'quiz.dob.hint1': '✨ 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다 (생년월일 일수 정밀 보정 완료)',
       'quiz.mph.label': '실시간 부모 유전 표적키 (Tanner MPH)',
       'quiz.region.label': '거주 지역 (지역 환경 & 탐구 코스 연동)',
-      'quiz.autostage.badge': '🤖 독자 개발 K-GROWTH AI™ 기반 【성장단계 & 골연령 진행도】 자동 설정 완료',
+      'quiz.autostage.badge': '✓ 질병관리청 성장도표 기반 【성장단계 & 골연령 진행도】 자동 설정 완료',
       'quiz.autostage.manualLabel': '자동 매핑된 성장 단계 확인 (필요 시 터치하여 수동 변경 가능)',
       'quiz.habits.label': '키 성장을 방해하는 생활 습관 체크 (복수 선택)',
       'quiz.habits.hint': '해당하는 습관을 고쳐주면 숨은 키를 최대 5cm 더 찾을 수 있습니다.',
       'quiz.cog.label': '키워주고 싶은 두뇌·학습 영역 (복수 선택)',
       'quiz.cog.hint': '아이 나이에 딱 맞는 교구와 도서를 추천해 드립니다.',
-      'quiz.submit.btn': '✦ 우리 아이 맞춤 성장·학습 보고서 보기 →',
+      'quiz.submit.btn': '✦ 선택한 설문 항목 기반 맞춤 보고서 즉시 보기 →',
       'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 1,376편 코퍼스를 대조하여 맞춤 가이드북을 편찬하고 있습니다.',
       'results.tab1.title': '신체 성장 백분위 & 골연령 예측 궤적 (Auxology)',
-      'results.tab1.desc': '독자 개발 K-GROWTH AI™ 기반 Z-Score, 연간 성장속도(cm/yr), 부모 유전 표적키(MPH ±8.5cm) 및 3단 성인 예측키 시뮬레이션입니다.',
+      'results.tab1.desc': '질병관리청(KDCA) 성장도표 기반 Z-Score, 연간 성장속도(cm/yr), 부모 유전 표적키(MPH ±8.5cm) 및 3단 성인 예측키 시뮬레이션입니다.',
       'results.tab2.title': '24시간 호르몬 궤적 & 임상 영양 생체이용률',
       'results.tab2.desc': '취침 시각 및 야식 시간에 따른 서파수면(SWS) 성장호르몬 분비 억제율(-52% max)과 체중 비례 영양소 흡수율 게이지입니다.',
       'results.tab3.title': '척추 감압 & 성장판 미세자극 스튜디오',
@@ -104,7 +104,7 @@
       'results.tab4.desc': '5각 뇌인지 밸런스 레이더 SVG 차트, 연령대별 대뇌 피질 재조직화 가이드 및 주말 탐구 3단계 하브루타 질문 세트입니다.',
       'results.tab5.title': '90일 성장·루틴 트래커 & 대학병원 스타일 A4 정밀 리포트',
       'results.tab5.desc': '신장·체중 연속 기록 트래커와 클릭 한 번으로 인쇄/PDF 저장 가능한 2페이지 정밀 임상 결과지입니다.',
-      'footer.disclaimer': '본 서비스는 KIDS-FIT AI가 독자 개발한 K-GROWTH AI™ 알고리즘 및 US CDC 2000, WHO Growth Standards, 질병관리청(KDCA 2017) 소아청소년 성장도표, 보건복지부 한국 영유아 발달선별검사(K-DST) 학술 지표(논문 1,376편)를 기반으로 산출된 맞춤형 가이드북이며, 전문의의 진료를 대신하지 않습니다. 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.',
+      'footer.disclaimer': '본 서비스는 질병관리청(KDCA 2017) 소아청소년 성장도표, 보건복지부 한국 영유아 발달선별검사(K-DST), US CDC 2000 및 WHO Growth Standards 학술 지표를 기반으로 산출된 맞춤형 가이드북이며, 전문의의 진료를 대신하지 않습니다. 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.',
 
       // Presets
       'presets.badge': '연령대별 빠른 데모',
@@ -180,14 +180,14 @@
       'cog.executive_focus': '전두엽 집중력·자기조절',
 
       // Loader
-      'loader.step1': '독자 개발 K-GROWTH AI™ 파라미터 매트릭스 로딩 중...',
+      'loader.step1': '질병관리청 성장도표 & 발달 파라미터 매트릭스 대조 중...',
       'loader.step2': 'Z-Score 표준화 및 3단 성인 예측키 궤적 모델링 연산 중...',
       'loader.step3': '호르몬 분비 억제율 및 5각 신경인지 밸런스 프로토콜 생성 완료.',
       'loader.skip': '⚡ 기다리지 않고 분석 결과 즉시 보기 ↗',
 
       // Results
       'rx.retest': '🔄 정보 다시 입력하기',
-      'rx.standard.kdca': '독자 개발 K-GROWTH AI™ · 질병관리청(KDCA 2017) & US CDC 2000 정밀 분석 완료',
+      'rx.standard.kdca': '질병관리청(KDCA 2017) 소아청소년 성장도표 & K-DST 발달기준 정밀 분석 완료',
       'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied',
 
       // Deep Child Trait Questions (100% synced with index.html checkbox values)
@@ -241,19 +241,21 @@
       'quiz.trait.learning.opt4': '스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요',
       'quiz.trait.learning.opt5': '책상에 15~20분 이상 바른 자세로 앉아 있기 힘들고 산만해요',
       'quiz.trait.learning.opt6': '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요',
+      'quiz.trait.learning.opt7': '아는 문제도 문제집·시험에서 덤벙대며 실수하거나 긴장해서 틀려요',
+      'quiz.trait.learning.opt8': '스스로 분량을 정해 매일 꾸준히 실천하는 자기주도 습관이 부족해요',
       'quiz.trait.studystyle.label': '🎯 가장 잘 맞는 학습 흡수 스타일',
       'quiz.trait.studystyle.opt1': '🗣️ 질문·대화형 — 부모님과 문답하고 말로 설명할 때 가장 잘 이해해요 (하브루타형)',
       'quiz.trait.studystyle.opt2': '🧩 교구·조작형 — 손으로 블록·입체도형·실험키트를 직접 만질 때 눈이 반짝여요 (체험형)',
       'quiz.trait.studystyle.opt3': '🎨 비주얼·마인드맵형 — 그림·도표·만화·인포그래픽으로 정리할 때 오래 기억해요 (시각형)',
       'quiz.trait.studystyle.opt4': '🏆 일일 미션·성취형 — 하루 2쪽 워크북 완수와 칭찬 스티커가 있을 때 집중해요 (목표형)',
-      'quiz.freenote.label': '💬 고민을 편하게 적어주세요 (안티그래비티 AI 1:1 실시간 반영)',
-      'quiz.freenote.hint': '평소 걱정되는 점을 적어주시면 안티그래비티 AI가 설문 응답과 학술 논문을 교차 분석해 1:1 맞춤 처방을 담아드립니다. (아래 버튼을 누르면 자동 입력됩니다)',
-      'quiz.freenote.placeholder': '예: 밤에 늦게 자고 입이 짧아서 키 성장이 걱정돼요 / 긴 줄글 독서를 싫어하고 응용 수학 문제에서 자주 막혀요.'
+      'quiz.freenote.label': '💬 추가 특징 메모',
+      'quiz.freenote.hint': '선택하신 객관식 설문 항목을 바탕으로 1:1 맞춤 처방을 담아드립니다.',
+      'quiz.freenote.placeholder': '예: 밤에 늦게 자고 입이 짧아서 키 성장이 걱정돼요.'
     },
 
     en: {
       // Header & Brand
-      'brand.title': 'KIDS-FIT AI',
+      'brand.title': 'KIDS-FIT',
       'brand.tagline': 'Height · Physical · Mental Growth & Personalized Learning Platform',
       'trust.badge': 'Built on Official Standards: US CDC 2000, WHO & KDCA Pediatric Auxology',
       'nav.auxology': 'Physical Growth & Auxology',
@@ -474,6 +476,8 @@
       'quiz.trait.learning.opt4': 'Used to smartphone/YouTube stimuli & lacks interest in books',
       'quiz.trait.learning.opt5': 'Cannot sit upright at desk for 15-20 mins & easily distracted',
       'quiz.trait.learning.opt6': 'Limited vocabulary or struggles to express ideas in writing',
+      'quiz.trait.learning.opt7': 'Knows concepts but makes careless calculation or reading mistakes on tests',
+      'quiz.trait.learning.opt8': 'Struggles to plan daily study volume and schedule independently',
       'quiz.trait.studystyle.label': '🎯 Preferred Learning & Study Absorption Style',
       'quiz.trait.studystyle.opt1': '🗣️ Dialogue & Inquiry — Understands best when asking and explaining aloud (Havruta)',
       'quiz.trait.studystyle.opt2': '🧩 Hands-On Manipulative — Thrives when touching blocks, 3D shapes & experiment kits',
