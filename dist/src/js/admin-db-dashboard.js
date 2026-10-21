@@ -73,11 +73,55 @@
     const papers = Array.isArray(kb.papers) ? kb.papers : [];
     const analytics = (kb.metadata && kb.metadata.learning_analytics) ? kb.metadata.learning_analytics : {};
 
+    const macro_pillar_balance = analytics.macro_pillar_balance || (kb.metadata && kb.metadata.macro_pillar_balance) || (function () {
+      const growthPillars = new Set(['growth_endocrinology', 'posture_biomechanics_exercise']);
+      const learningPillars = new Set(['fine_motor_neuroscience', 'pedagogy_montessori_froebel', 'parent_child_interaction_museum']);
+      const gCount = papers.filter(p => p.macro_pillar === 'growth' || growthPillars.has(p.pillar)).length;
+      const lCount = papers.filter(p => p.macro_pillar === 'learning' || learningPillars.has(p.pillar)).length;
+      const total = gCount + lCount;
+      const lRatio = total > 0 ? (lCount / total) : 0.5;
+      const gRatio = total > 0 ? (gCount / total) : 0.5;
+      const lPct = Math.round(lRatio * 1000) / 10;
+      const gPct = Math.round(gRatio * 1000) / 10;
+      let mode = 'BALANCED_50_50';
+      let modeCode = 'BALANCED_50_50_MODE';
+      let modeLabel = '50:50 균형 모드';
+      let alloc = { growth_percent: 50, learning_percent: 50 };
+      if (lRatio < 0.48) {
+        mode = 'LEARNING_PRIORITY_BOOST';
+        modeCode = 'LEARNING_BOOST_80_20';
+        modeLabel = '학습 집중 가속 모드';
+        alloc = { growth_percent: 20, learning_percent: 80 };
+      } else if (lRatio > 0.52) {
+        mode = 'GROWTH_PRIORITY_BOOST';
+        modeCode = 'GROWTH_BOOST_80_20';
+        modeLabel = '성장 집중 가속 모드';
+        alloc = { growth_percent: 80, learning_percent: 20 };
+      }
+      return {
+        growth_macro_count: gCount,
+        learning_macro_count: lCount,
+        total_macro_papers: total,
+        growth_ratio: Math.round(gRatio * 10000) / 10000,
+        growth_percent: gPct,
+        learning_ratio: Math.round(lRatio * 10000) / 10000,
+        learning_percent: lPct,
+        learning_ratio_percent: lPct,
+        target_ratio: 0.50,
+        mode: mode,
+        mode_code: modeCode,
+        mode_label_ko: modeLabel,
+        query_allocation: alloc,
+        last_balanced_utc: new Date().toISOString()
+      };
+    })();
+
     return {
       total_papers: papers.length,
       last_updated_utc: (kb.metadata && kb.metadata.last_updated_utc) || analytics.last_enriched_utc || new Date().toISOString(),
       total_pillars: analytics.total_pillars || 5,
       total_sub_domains: analytics.total_sub_domains || 12,
+      macro_pillar_balance: macro_pillar_balance,
       sub_domain_distribution: Array.isArray(analytics.sub_domain_distribution) ? analytics.sub_domain_distribution : [],
       horizon_distribution: analytics.horizon_distribution || {
         short_term: { label_ko: '단기 지도 (1~4주 즉시 교정)', count: papers.filter(p => p.horizon === 'short_term' || (p.horizons && p.horizons.includes('short_term'))).length },
@@ -277,6 +321,116 @@
   }
 
   /**
+   * Renders Macro Pillar Balance Card (Requirement R3)
+   * Displays growth count & percent vs learning count & percent, current ratio, and active mode badge
+   */
+  function renderMacroPillarBalanceCard(balance) {
+    const b = balance || {
+      growth_macro_count: 732,
+      learning_macro_count: 784,
+      total_macro_papers: 1516,
+      growth_percent: 48.3,
+      learning_percent: 51.7,
+      learning_ratio: 0.5172,
+      mode: 'BALANCED_50_50',
+      mode_code: 'BALANCED_50_50_MODE',
+      mode_label_ko: '50:50 균형 모드',
+      query_allocation: { growth_percent: 50, learning_percent: 50 }
+    };
+
+    const isLearningBoost = b.mode === 'LEARNING_PRIORITY_BOOST' || (b.learning_ratio < 0.48);
+    const isGrowthBoost = b.mode === 'GROWTH_PRIORITY_BOOST' || (b.learning_ratio > 0.52);
+
+    let badgeLabel = '50:50 균형 모드';
+    let badgeBg = 'rgba(16, 185, 129, 0.2)';
+    let badgeBorder = 'rgba(16, 185, 129, 0.45)';
+    let badgeColor = '#10B981';
+    let badgeIcon = '⚖️';
+
+    if (isLearningBoost) {
+      badgeLabel = '학습 집중 가속 모드 (80:20)';
+      badgeBg = 'rgba(168, 85, 247, 0.22)';
+      badgeBorder = 'rgba(168, 85, 247, 0.5)';
+      badgeColor = '#C084FC';
+      badgeIcon = '🚀';
+    } else if (isGrowthBoost) {
+      badgeLabel = '성장 집중 가속 모드 (80:20)';
+      badgeBg = 'rgba(56, 189, 248, 0.22)';
+      badgeBorder = 'rgba(56, 189, 248, 0.5)';
+      badgeColor = '#38BDF8';
+      badgeIcon = '⚡';
+    }
+
+    const growthW = Math.max(10, Math.min(90, Math.round(b.growth_percent || 48)));
+    const learningW = 100 - growthW;
+
+    return `
+      <div id="admin-db-macro-balance-panel" class="admin-macro-balance-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 1rem 1.15rem; margin-bottom: 1.25rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.25rem;">⚖️</span>
+            <div>
+              <h5 style="font-size: 0.95rem; font-weight: 900; color: #F8FAFC; margin: 0; display: flex; align-items: center; gap: 0.45rem;">
+                양대 매크로 축(Dual-Pillar) 논문 균형 &amp; AI 자가학습 가중치 제어
+              </h5>
+              <div style="font-size: 0.72rem; color: #94A3B8; margin-top: 0.15rem;">
+                신체 성장(Growth) 축 vs 두뇌·학습(Learning) 축 50:50 동적 자동 균형(Auto-Balancing) 엔진
+              </div>
+            </div>
+          </div>
+          <div id="admin-macro-mode-badge" style="background: ${badgeBg}; border: 1px solid ${badgeBorder}; color: ${badgeColor}; font-size: 0.76rem; font-weight: 800; padding: 0.28rem 0.75rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.35rem;">
+            <span>${badgeIcon}</span>
+            <span id="admin-macro-mode-text">${badgeLabel}</span>
+          </div>
+        </div>
+
+        <!-- 3-Column Metrics Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 0.85rem;">
+          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 0.65rem 0.8rem;">
+            <div style="font-size: 0.72rem; color: #7DD3FC; font-weight: 700; margin-bottom: 0.2rem;">📏 신체 성장 축 (Growth)</div>
+            <div id="admin-macro-growth-stat" style="font-size: 1.25rem; font-weight: 900; color: #38BDF8;">${b.growth_macro_count}편 <span style="font-size: 0.82rem; font-weight: 700; color: #94A3B8;">(${b.growth_percent}%)</span></div>
+            <div style="font-size: 0.68rem; color: #64748B;">소아내분비 · 척추/운동역학</div>
+          </div>
+
+          <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 8px; padding: 0.65rem 0.8rem;">
+            <div style="font-size: 0.72rem; color: #C084FC; font-weight: 700; margin-bottom: 0.2rem;">🧠 두뇌·학습 축 (Learning)</div>
+            <div id="admin-macro-learning-stat" style="font-size: 1.25rem; font-weight: 900; color: #C084FC;">${b.learning_macro_count}편 <span style="font-size: 0.82rem; font-weight: 700; color: #94A3B8;">(${b.learning_percent}%)</span></div>
+            <div style="font-size: 0.68rem; color: #64748B;">소근육 · 몬테소리/가베 · 탐구하브루타</div>
+          </div>
+
+          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 0.65rem 0.8rem;">
+            <div style="font-size: 0.72rem; color: #6EE7B7; font-weight: 700; margin-bottom: 0.2rem;">🎯 목표 비율 &amp; 쿼리 배분</div>
+            <div id="admin-macro-ratio-stat" style="font-size: 1.05rem; font-weight: 900; color: #10B981; margin-top: 0.15rem;">
+              현재 비중: 성장 ${b.growth_percent}% vs 학습 ${b.learning_percent}%
+            </div>
+            <div style="font-size: 0.68rem; color: #64748B; margin-top: 0.15rem;">
+              크롤링 쿼리 배분: 성장 ${b.query_allocation?.growth_percent || 50}% : 학습 ${b.query_allocation?.learning_percent || 50}%
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Proportion Balance Bar -->
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid rgba(148, 163, 184, 0.15);">
+          <div style="display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 800; margin-bottom: 0.35rem;">
+            <span style="color: #38BDF8;">성장 축 ${b.growth_macro_count}편 (${b.growth_percent}%)</span>
+            <span style="color: #10B981;">기준 균형대 (48% ~ 52%) · 현재 비율 ${b.learning_percent}%</span>
+            <span style="color: #C084FC;">학습 축 ${b.learning_macro_count}편 (${b.learning_percent}%)</span>
+          </div>
+          <div style="position: relative; height: 14px; background: rgba(255, 255, 255, 0.08); border-radius: 7px; overflow: hidden; display: flex;">
+            <div style="width: ${growthW}%; background: linear-gradient(90deg, #0284C7, #38BDF8); height: 100%; transition: width 0.3s ease;"></div>
+            <div style="width: ${learningW}%; background: linear-gradient(90deg, #A855F7, #EC4899); height: 100%; transition: width 0.3s ease;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.66rem; color: #64748B; margin-top: 0.25rem;">
+            <span>← 성장 가속 구간 (&lt;48% 성장 부족 시 80:20 성장 크롤링)</span>
+            <span style="color: #10B981; font-weight: 700;">★ ${b.mode_label_ko || badgeLabel}</span>
+            <span>학습 가속 구간 (&lt;48% 학습 부족 시 80:20 학습 크롤링) →</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /**
    * Renders the complete Admin Visual DB Learning Intelligence Dashboard HTML
    */
   function renderDashboardHtml() {
@@ -391,7 +545,10 @@
           </div>
         </div>
 
-        <!-- 1-B. User Input Cohort DB -> Autonomous Self-Improvement Feedback Panel -->
+        <!-- 1-B. Macro Pillar Balance & Dynamic Weight Balancing Card (Requirement R3) -->
+        ${renderMacroPillarBalanceCard(analytics.macro_pillar_balance)}
+
+        <!-- 1-C. User Input Cohort DB -> Autonomous Self-Improvement Feedback Panel -->
         <div id="admin-user-cohort-self-improve-panel" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(56, 189, 248, 0.08) 100%); border: 1px solid rgba(16, 185, 129, 0.32); border-radius: 12px; padding: 0.95rem; margin-bottom: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem;">
             <h5 style="font-size: 0.88rem; font-weight: 900; color: #34D399; margin: 0;">
@@ -528,9 +685,11 @@
     getLearningAnalytics,
     renderSubDomainSvgChart,
     renderAgeHorizonHeatmap,
+    renderMacroPillarBalanceCard,
     filterKnowledgeBasePapers,
     renderExplorerPaperListHtml,
     renderDashboardHtml,
+    renderAdminDbIntelligenceDashboard: renderDashboardHtml,
     mountAdminDbDashboard
   };
 

@@ -2345,5 +2345,68 @@ svg {
   user-drag: none;
 }
 
+/* ==========================================================================
+   23. DUAL-PILLAR 50:50 REPORT STYLING & SWS CONSOLIDATION
+   ========================================================================== */
+.master-pillar-container {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
 
+.pillar-section-header {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.pillar-section-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.taller-learning-reveal-hero {
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.taller-learning-reveal-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.sws-memory-consolidation-box {
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+.live-bespoke-chip {
+  transition: all 0.2s ease;
+}
+
+.live-bespoke-chip:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
+}
+
+@media (max-width: 640px) {
+  .master-pillar-container {
+    margin-bottom: 1.8rem;
+  }
+
+  .pillar-section-header {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .pillar-section-header h3 {
+    font-size: 1.05rem !important;
+  }
+}

@@ -522,6 +522,126 @@
         yesQuery: '유아 감각통합 놀이'
       }
     ],
+    balance_stones_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '위플레이(Weplay) 하천 돌다리 유아 논슬립 밸런스 징검다리 스톤 6p 세트',
+        titleEn: 'Weplay Non-Slip River Stones Tactile Balance Stepping Stones Set',
+        specKo: '소뇌 평형감각(전정기관) 발달 + 발바닥 고유수용성 감각 자극 실내 징검다리',
+        specEn: 'Develops cerebellar balance, coordination, and foot proprioception',
+        cpQuery: '위플레이 유아 밸런스 징검다리 스톤 실내 신체놀이',
+        ihQuery: 'GonGe River Stones Balance Stepping Stones for Kids',
+        yesQuery: '유아 감각통합 징검다리 놀이'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '원더볼즈 유아 논슬립 밸런스 징검다리 스톤 점핑 블록 11p 세트',
+        titleEn: 'Wonderballs Non-Slip Balance Stepping Stones 11-Piece Set',
+        specKo: '미끄럼 방지 고무 테두리 + 높낮이가 다른 스톤으로 공간지각력 및 대근육 협응 발달',
+        specEn: 'Rubber non-slip edge with varied heights building spatial balance',
+        cpQuery: '유아 밸런스 징검다리 스톤 논슬립 실내 대근육 교구',
+        ihQuery: 'National Geographic Stepping Stones Kids Balance Game',
+        yesQuery: '영유아 대근육 신체발달'
+      }
+    ],
+    toddler_trampoline_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 (층간소음 제로)',
+        titleEn: 'Melkin Toddler Silent Elastic-Band Mini Trampoline with Padded Bar',
+        specKo: '영유아 맞춤 부드러운 탄성 밴드 + 폼패딩 안전 핸들바 · 성장판 미세자극',
+        specEn: 'Gentle elastic bands with padded handlebar for toddler safe bouncing',
+        cpQuery: '멜킨스포츠 유아 안전 손잡이 무소음 실내 트램폴린',
+        ihQuery: 'Little Tikes 3-Foot Trampoline with Padded Handlebar',
+        yesQuery: '유아 신체발달 점핑놀이'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '스마트라이크(smarTrike) 3-in-1 유아 트램폴린 & 볼풀장 겸용 세트',
+        titleEn: 'smarTrike 3-in-1 Activity Center Trampoline and Ball Pit',
+        specKo: '손잡이 잡고 뛰기부터 볼풀 놀이까지 영유아 신체 성장 3단계 멀티 플레이',
+        specEn: 'Multi-stage active bouncing from handle-supported jumping to ball pit',
+        cpQuery: '스마트라이크 3in1 유아 트램폴린 볼풀장',
+        ihQuery: 'smarTrike 3-in-1 Folding Trampoline with Handlebar',
+        yesQuery: '돌아기 실내 대근육 놀이'
+      }
+    ],
+    sponge_jumprope_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '소프트 스펀지 그립 유아 안전 구슬 줄넘기 (맞춤 길이조절 마디형)',
+        titleEn: 'Soft Sponge Foam Grip Kids Segmented Safety Jump Rope',
+        specKo: '아프지 않은 부드러운 스펀지 손잡이 + 바닥 닿을 때 리듬감을 주는 마디형 비즈',
+        specEn: 'Pain-free soft sponge foam handles with rhythmic segmented beads',
+        cpQuery: '유아 스펀지 손잡이 안전 구슬 줄넘기 마디형',
+        ihQuery: 'Just Jump It Lacing Beaded Jump Rope Kids Soft',
+        yesQuery: '유아 첫 줄넘기 놀이'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '아이워너 유아 소프트 EVA 폼 그립 길이조절 안전 줄넘기',
+        titleEn: 'IWanna Toddler Soft EVA Foam Grip Adjustable Safety Jump Rope',
+        specKo: '가볍고 유연한 무독성 줄 + 폭신한 EVA 그립으로 초기 점핑 협응력 발달',
+        specEn: 'Lightweight non-toxic flexible rope with cushioned EVA grip',
+        cpQuery: '어린이 소프트 EVA 줄넘기 길이조절 유아용',
+        ihQuery: 'Kids Soft Foam Handle Skipping Rope Lightweight',
+        yesQuery: '유아 대근육 점프 놀이'
+      }
+    ],
+    doorway_bar_foamroller_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '무타공 안전 이중잠금 실내 문틀 철봉 (저상형 데드행 바) & 소프트 폼롤러',
+        titleEn: 'Toddler Low-Mount No-Screw Doorway Pull-Up Bar with Soft Roller',
+        specKo: '저녁 20초 매달리기 척추 추간판 감압 + 흉추 C자 정렬 스트레칭',
+        specEn: 'Low doorway mount for toddler gentle 20s hangs and thoracic alignment',
+        cpQuery: '무타공 안전 문틀 철봉 실내 턱걸이봉 소프트 폼롤러',
+        ihQuery: 'Toddler Low Doorway Pull Up Bar Foam Roller',
+        yesQuery: '영유아 척추 스트레칭'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '멜킨 세이프락 어린이 저상형 문틀 철봉 / 멜킨 마일드 EVA 폼롤러',
+        titleEn: 'Melkin Safe-Lock Low Doorway Bar & Mild EVA Roller',
+        specKo: '아이 손높이에 맞춰 낮게 설치하는 안전 매달리기 바 + 성장통 이완 마사지',
+        specEn: 'Adjustable low height for child-safe hanging and leg muscle relief',
+        cpQuery: '멜킨 어린이 문틀 철봉 저상형 데드행 바',
+        ihQuery: 'Kids Doorway Pull Up Bar Safety Lock Low Mount',
+        yesQuery: '유아 바른 체형 스트레칭'
+      }
+    ],
+    soft_roller_mat_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '어린이 척추·종아리 신전 고밀도 폼롤러 & 충격흡수 롤매트',
+        titleEn: 'Kids Spine Extension EPP Roller & Shock Absorbing Mat',
+        specKo: '취침 전 3분 종아리·대퇴근 근막 마사지로 야간 성장통 완화 및 숙면 유도',
+        specEn: 'Nightly 3-min calf/quad fascia massage relieving growing pains',
+        cpQuery: '어린이 척추 신전 폼롤러 성장통 마사지 롤매트',
+        ihQuery: 'Kids Soft Foam Roller Growth Massage Mat',
+        yesQuery: '성장통 마사지 가이드'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '트라택 키즈 소프트 롤러 & 두꺼운 무소음 충격흡수 TPE 놀이매트',
+        titleEn: 'Tratac Kids Soft Roller with Thick TPE Impact Mat',
+        specKo: '다리 피로를 풀어주는 소프트 자극 + 쿵쿵 뛰어도 안전한 층간소음 방어 매트',
+        specEn: 'Soft muscle relaxation combined with thick soundproofing floor mat',
+        cpQuery: '어린이 소프트 마사지 폼롤러 두꺼운 TPE 매트',
+        ihQuery: 'Kids Myofascial Release Roller Foam Mat',
+        yesQuery: '유아 성장통 완화 마사지'
+      }
+    ],
     froebel_gabe_4_5: [
       {
         rankKo: '🏆 엄선 1위',
@@ -561,13 +681,109 @@
       {
         rankKo: '✨ 엄선 2위',
         rankEn: '✨ Pick #2',
-        titleKo: '스마트게임즈(SmartGames) 캐슬 로지크 / 원목 칠교놀이·소마큐브 도형 퍼즐',
-        titleEn: 'SmartGames Castle Logix 3D Wooden Spatial Puzzle & Tangram Set',
-        specKo: '단계별 미션 카드를 보고 3D 원목 블록을 조립하는 전두엽·두정엽 사고력 교구',
-        specEn: '48 step-by-step 3D spatial logic challenges for ages 4–7',
-        cpQuery: '스마트게임즈 캐슬로지크 원목 칠교놀이 소마큐브 퍼즐',
-        ihQuery: 'SmartGames Castle Logix Wooden 3D Logic Puzzle',
-        yesQuery: '칠교놀이 소마큐브 워크북'
+        titleKo: '아이워너 / 멜킨 친환경 무소음 실내 점핑 트램폴린 쿠션 매트',
+        titleEn: 'IWanna High-Density Silent Indoor Jumping Trampoline Cushion Mat',
+        specKo: '다층 고밀도 PU 폼으로 층간소음 0dB 완벽 흡수 + 성장판 무리 없는 수직 반발탄성',
+        specEn: 'Multi-layer high-density PU foam absorbing 100% floor impact for safe joint rebounding',
+        cpQuery: '어린이 실내 무소음 트램폴린 점핑 쿠션 매트',
+        ihQuery: 'Kids Indoor Jumping Cushion Silent Trampoline Mat',
+        yesQuery: '아이 키 크는 점프 스트레칭'
+      }
+    ],
+    trampoline_rebounder_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 대형 육각 무소음 어린이 실내 점핑 트램폴린 (손잡이형)',
+        titleEn: 'Melkin Hexagonal Silent Rebounder Trampoline for Kids Growth Plate',
+        specKo: '볼프의 법칙(Wolff\'s Law) 기반 하루 15분 하지 성장판 압전 미세자극',
+        specEn: 'Delivers 1.8x bodyweight cyclic micro-loading to femur/tibia growth plates',
+        cpQuery: '멜킨스포츠 어린이 무소음 실내 트램폴린 점핑매트 손잡이형',
+        ihQuery: 'BCAN 38 Inch Kids Mini Trampoline with Handle',
+        yesQuery: '키 크는 점프 운동법'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '아이워너 / 멜킨 친환경 무소음 실내 점핑 트램폴린 쿠션 매트',
+        titleEn: 'IWanna High-Density Silent Indoor Jumping Trampoline Cushion Mat',
+        specKo: '다층 고밀도 PU 폼으로 층간소음 0dB 완벽 흡수 + 성장판 무리 없는 수직 반발탄성',
+        specEn: 'Multi-layer high-density PU foam absorbing 100% floor impact for safe joint rebounding',
+        cpQuery: '어린이 실내 무소음 트램폴린 점핑 쿠션 매트',
+        ihQuery: 'Kids Indoor Jumping Cushion Silent Trampoline Mat',
+        yesQuery: '아이 키 크는 점프 스트레칭'
+      }
+    ],
+    doorway_bar_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 스파이더 철봉 / 세이프락 무타공 안전 문틀 철봉 (유아·어린이 저상형 데드행 바)',
+        titleEn: 'Melkin Safe-Lock No-Screw Kids Doorway Pull-Up & Dead Hang Bar',
+        specKo: '무타공 안전 이중 락킹 시스템 + 미끄럼 방지 루버 패드 · 저녁 30초 데드행 척추 추간판 감압',
+        specEn: 'No-screw dual-locking safety bar with non-slip pads for daily 30s spinal decompression',
+        cpQuery: '멜킨스포츠 무타공 안전 문틀 철봉 어린이 실내 풀업바',
+        ihQuery: 'Doorway Pull Up Bar Kids Dead Hang Bar Safety Lock',
+        yesQuery: '어린이 척추 감압 스트레칭'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '코멧 스포츠 무타공 수평계 이중 안전잠금 문틀 철봉 (가정용 턱걸이봉)',
+        titleEn: 'Comet Sports Level-Indicator No-Screw Doorway Chin-Up Bar',
+        specKo: '자체 수평계 내장으로 기울어짐 없는 완벽 수평 설치 · 200kg 하중 지지 안전 설계',
+        specEn: 'Built-in bubble level indicator with 200kg heavy-duty load support',
+        cpQuery: '코멧 스포츠 무타공 수평계 안전 문틀 철봉',
+        ihQuery: 'Iron Gym Total Upper Body Workout Bar Doorway',
+        yesQuery: '바른 자세 성장 스트레칭'
+      }
+    ],
+    jumprope_digital_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '아이워너 줄 꼬임 방지 어린이 디지털 카운터 줄넘기 (무소음 노라인 에어볼 겸용)',
+        titleEn: 'IWanna Kids Tangle-Free Digital Counting Jump Rope (Cord & Cordless)',
+        specKo: '실내 층간소음 없는 노라인 실리콘 볼 + 야외 와이어 줄 2-in-1 · 발목 성장판 자극',
+        specEn: '2-in-1 cordless air balls and outdoor rope with HD digital jump counter',
+        cpQuery: '어린이 디지털 카운터 줄넘기 무소음 노라인 에어볼',
+        ihQuery: 'Cordless Digital Jump Rope Kids Counting Ropeless',
+        yesQuery: '유아 줄넘기 시작하기'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '김수열 어린이 줄넘기 / 프로스펙스 주니어 디지털 스마트 줄넘기',
+        titleEn: 'Kim Soo-Yeol Junior Digital Smart Counting Jump Rope',
+        specKo: '미끄럼 방지 실리콘 그립 + 자동 회전수 카운팅으로 유아 성취감과 점핑 습관 형성',
+        specEn: 'Ergonomic silicone grip with auto-counting building daily jumping habits',
+        cpQuery: '김수열 어린이 스마트 디지털 카운터 줄넘기',
+        ihQuery: 'Kids Digital Counting Skipping Rope Weighted Handle',
+        yesQuery: '어린이 성장 줄넘기 운동법'
+      }
+    ],
+    foamroller_spine_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 어린이 척추 신전 스트레칭 EPP 폼롤러 (원형 60cm 마일드)',
+        titleEn: 'Melkin Kids EPP Foam Roller for Spine Extension (60cm Round)',
+        specKo: '친환경 무독성 고밀도 EPP 소재 · 취침 전 3분 흉추 펴기 및 척추 C자 정렬 스트레칭',
+        specEn: 'Non-toxic high-density EPP foam for gentle nightly thoracic extension',
+        cpQuery: '멜킨스포츠 어린이 척추 신전 스트레칭 EPP 폼롤러 60cm',
+        ihQuery: 'OPTP Pro-Roller Soft Foam Roller 36 Inch',
+        yesQuery: '어린이 바른 자세 폼롤러'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '트라택(Tratac) 액티브 폼롤러 EVA 마일드 / 키즈 척추 기립근 이완 롤러',
+        titleEn: 'Tratac Active EVA Mild Kids Spine Alignment Roller',
+        specKo: '부드러운 쿠션감으로 통증 없는 척추 기립근 마사지 및 골반 비대칭 교정',
+        specEn: 'Soft cushioned EVA surface for painless spinal muscle relaxation',
+        cpQuery: '트라택 액티브 폼롤러 EVA 마일드 어린이 척추 교정',
+        ihQuery: 'TriggerPoint CORE Foam Roller Multi-Density',
+        yesQuery: '척추 바른자세 스트레칭'
       }
     ],
     gravitrax_stem_6_8: [
@@ -664,6 +880,222 @@
         cpQuery: '멜킨스포츠 고밀도 EPP 폼롤러 90cm 체형교정 스트레칭',
         ihQuery: 'TriggerPoint GRID Foam Roller Thoracic Spine Mobility',
         yesQuery: '폼롤러 스트레칭 백과'
+      }
+    ],
+    doorway_bar_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 프리미엄 포스 세이프락 무타공 문틀 철봉 (초등 척추 감압 턱걸이봉)',
+        titleEn: 'Melkin Force Safe-Lock No-Screw Kids Doorway Pull-Up Bar',
+        specKo: '양방향 회전 방지 세이프 락킹 + 고밀도 네오프렌 풀 그립 · 초등 척추 디스크 수분 복원',
+        specEn: 'Dual-locking mechanism with full neoprene grip for spinal disc hydration',
+        cpQuery: '멜킨스포츠 무타공 세이프락 문틀 철봉 초등 턱걸이봉',
+        ihQuery: 'Doorway Pull Up Bar Kids Dead Hang Bar Safe Lock',
+        yesQuery: '초등 척추 감압 교정'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '반석스포츠 비스펙 무타공 안전 문틀 철봉 (초등학생 데드행 매달리기봉)',
+        titleEn: 'Bansuk Sports B-Spec No-Screw Doorway Chin-Up Bar',
+        specKo: '초밀착 고탄성 실리콘 와이드 패드로 문틀 손상 제로 · 매일 30초 3세트 데드행',
+        specEn: 'Wide silicone wall-protection pads with zero doorframe damage',
+        cpQuery: '반석스포츠 무타공 안전 문틀 철봉 어린이 매달리기',
+        ihQuery: 'Kids Doorway Pull Up Bar Hanging Spinal Decompression',
+        yesQuery: '초등 키성장 스트레칭'
+      }
+    ],
+    trampoline_rebounder_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 48인치 대형 무소음 피트니스 트램폴린 (초등 점핑 성장판 자극)',
+        titleEn: 'Melkin 48-Inch Silent Elastic-Rope Fitness Rebounder Trampoline',
+        specKo: '스프링 없는 고탄성 라텍스 로프 방식 · 관절 충격 없이 성장판 수직 미세하중 전달',
+        specEn: 'Spring-free latex rope design delivering zero-impact cyclic micro-loads to growth plates',
+        cpQuery: '멜킨스포츠 48인치 무소음 트램폴린 실내 점핑 다이어트 키성장',
+        ihQuery: '48 Inch Silent Fitness Mini Trampoline Rebounder with Handle',
+        yesQuery: '초등 키성장 점핑 트레이닝'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '방방이 키즈 점핑보드 / 무소음 스프링리스 실내 트램폴린 매트',
+        titleEn: 'Kids Springless Silent Rebounder Jumping Board & Mat',
+        specKo: '초등학생 층간소음 민원 걱정 없이 실내에서 매일 1,000회 점핑 루틴 완성',
+        specEn: 'Allows daily 1,000 jumps indoors with zero downstairs noise complaints',
+        cpQuery: '초등학생 무소음 점핑보드 실내 트램폴린 층간소음 방지',
+        ihQuery: 'Indoor Kids Trampoline Fitness Rebounder Heavy Duty',
+        yesQuery: '초등학생 성장판 자극 홈트'
+      }
+    ],
+    jumprope_digital_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '김수열줄넘기 초등 속도조절 디지털 카운터 줄넘기 (노라인 추 & 로프 겸용)',
+        titleEn: 'Kim Soo-Yeol Elementary Digital Speed Jump Rope (Cord & Weight Ball)',
+        specKo: '학교 줄넘기 급수제 완벽 대비 · 정밀 베어링 360도 회전 + 일일 500회 목표 달성 카운터',
+        specEn: 'Smooth 360° bearing rotation for elementary school jump rope grade tests',
+        cpQuery: '김수열줄넘기 초등학생 디지털 카운터 줄넘기 노라인 호환',
+        ihQuery: 'Digital Counting Jump Rope Kids Cordless High Speed',
+        yesQuery: '초등 줄넘기 급수제 완전정복'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '프로스펙스 스피드 디지털 카운팅 스마트 줄넘기 (초등 성장판 자극 에어로프)',
+        titleEn: 'Prospecs Speed Digital Smart Jump Rope for Kids',
+        specKo: '무소음 실내 노라인 볼 내장으로 거실에서도 매일 500회 점핑 루틴 완벽 실천',
+        specEn: 'Silent indoor cordless balls enabling daily 500-jump routine in the living room',
+        cpQuery: '프로스펙스 어린이 디지털 카운터 스마트 줄넘기',
+        ihQuery: 'Smart Skipping Rope Digital Counter Kids Speed Rope',
+        yesQuery: '초등학생 바른 줄넘기 자세'
+      }
+    ],
+    foamroller_spine_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 고밀도 EPP 척추 신전 & 흉추 교정 폼롤러 90cm (거북목·굽은 등 방어)',
+        titleEn: 'Melkin High-Density EPP Foam Roller 90cm Spine Alignment',
+        specKo: '초등학생 착석 구부정한 자세 교정 · 취침 전 흉추 신전으로 눌린 척추 디스크 수분 복원',
+        specEn: '90cm full-spine EPP roller restoring intervertebral hydration before sleep',
+        cpQuery: '멜킨스포츠 고밀도 EPP 폼롤러 90cm 척추 스트레칭 거북목',
+        ihQuery: 'High Density Round Foam Roller 36 Inch Physical Therapy',
+        yesQuery: '초등 바른 자세 폼롤러 스트레칭'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '코멧 스포츠 고밀도 EPP 폼롤러 90cm + 바른 자세 척추 스트레칭 가이드 포스터',
+        titleEn: 'Comet Sports High-Density EPP 90cm Spine Alignment Roller with Poster',
+        specKo: '변형 없는 고내구성 압축 EPP · 종아리·대퇴사두근 근막 이완으로 야간 성장통 완화',
+        specEn: 'Durable molded EPP relieving calf/quad fascia tension and growing pains',
+        cpQuery: '코멧 스포츠 고밀도 EPP 폼롤러 90cm 스트레칭 포스터',
+        ihQuery: 'Amazon Basics High-Density Round Foam Roller 36-Inch',
+        yesQuery: '초등학생 성장통 마사지법'
+      }
+    ],
+    doorway_bar_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 옥타곤 프리미엄 무타공 문틀 철봉 풀업바 (청소년 고중량 지지 데드행 바)',
+        titleEn: 'Melkin Octagon Heavy-Duty No-Screw Doorway Pull-Up Bar',
+        specKo: '8각 안전 락킹 구조 + 300kg 한계 하중 · 청소년기 척추 측만 방어 및 흉추 신전',
+        specEn: '8-angle safety lock supporting up to 300kg for adolescent thoracic extension',
+        cpQuery: '멜킨스포츠 옥타곤 무타공 문틀 철봉 풀업바 턱걸이봉',
+        ihQuery: 'Heavy Duty Doorway Pull Up Bar Chin Up Bar 300kg',
+        yesQuery: '청소년 척추 디스크와 성장'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '힘콩 재미어트 문틀 철봉 / 프로스펙스 세이프락 무타공 풀업바',
+        titleEn: 'Himkong Jamiet No-Screw Safety Doorway Pull-Up Bar',
+        specKo: '와이드 그립 데드행으로 광배근 이완 및 척추 추간판 압력 -40% 즉시 경감',
+        specEn: 'Wide-grip dead hang relieving -40% intervertebral disc pressure',
+        cpQuery: '재미어트 힘콩 무타공 문틀 철봉 세이프락 풀업바',
+        ihQuery: 'Prospec Safe Doorway Pull Up Bar Chinning Bar',
+        yesQuery: '청소년 바른 체형 교정 운동'
+      }
+    ],
+    trampoline_heavy_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 고중량 지지 50인치 대형 8각형 무소음 피트니스 리바운더 트램폴린',
+        titleEn: 'Melkin 50-Inch Heavy-Duty Octagonal Silent Fitness Rebounder',
+        specKo: '최대 150kg 고하중 지지 + 3단 높이조절 핸들바 · 사춘기 PHV 급성장기 인터벌 점핑',
+        specEn: 'Supports up to 150kg with 3-tier adjustable T-handlebar for adolescent PHV interval jumps',
+        cpQuery: '멜킨스포츠 대형 8각 무소음 피트니스 트램폴린 리바운더',
+        ihQuery: 'Heavy Duty 50 Inch Fitness Trampoline Rebounder 330 lbs',
+        yesQuery: '청소년 성장호르몬 분비 운동'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '점핑하이 오리지널 점핑 트램폴린 / 홈트 무소음 프로 리바운더',
+        titleEn: 'Jumping High Professional Silent Fitness Rebounder',
+        specKo: '고강도 독일 규격 탄성 고무줄 장착으로 무릎·발목 관절을 보호하며 체지방 감량 및 성장 자극',
+        specEn: 'High-tensile elastic cords protecting knee/ankle joints while promoting GH secretion',
+        cpQuery: '점핑하이 정품 무소음 피트니스 트램폴린 리바운더',
+        ihQuery: 'Maximus Pro Bungee Rebounder 40 Inch Silent Trampoline',
+        yesQuery: '사춘기 키성장과 홈트레이닝'
+      }
+    ],
+    trampoline_rebounder_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 고중량 지지 50인치 대형 8각형 무소음 피트니스 리바운더 트램폴린',
+        titleEn: 'Melkin 50-Inch Heavy-Duty Octagonal Silent Fitness Rebounder',
+        specKo: '최대 150kg 고하중 지지 + 3단 높이조절 핸들바 · 사춘기 PHV 급성장기 인터벌 점핑',
+        specEn: 'Supports up to 150kg with 3-tier adjustable T-handlebar for adolescent PHV interval jumps',
+        cpQuery: '멜킨스포츠 대형 8각 무소음 피트니스 트램폴린 리바운더',
+        ihQuery: 'Heavy Duty 50 Inch Fitness Trampoline Rebounder 330 lbs',
+        yesQuery: '청소년 성장호르몬 분비 운동'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '점핑하이 오리지널 점핑 트램폴린 / 홈트 무소음 프로 리바운더',
+        titleEn: 'Jumping High Professional Silent Fitness Rebounder',
+        specKo: '고강도 독일 규격 탄성 고무줄 장착으로 무릎·발목 관절을 보호하며 체지방 감량 및 성장 자극',
+        specEn: 'High-tensile elastic cords protecting knee/ankle joints while promoting GH secretion',
+        cpQuery: '점핑하이 정품 무소음 피트니스 트램폴린 리바운더',
+        ihQuery: 'Maximus Pro Bungee Rebounder 40 Inch Silent Trampoline',
+        yesQuery: '사춘기 키성장과 홈트레이닝'
+      }
+    ],
+    jumprope_digital_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '청소년 고속 베어링 디지털 카운터 줄넘기 (급성장기 PHV 성장판 폭발 자극)',
+        titleEn: 'Youth High-Speed Dual-Bearing Digital Counting Jump Rope',
+        specKo: '더블 볼베어링 초고속 회전 + 칼로리·점프 횟수 LCD 디스플레이 · 매일 1,000회 수직 점프',
+        specEn: 'Double ball-bearing rotation with backlit LCD counter for daily 1,000 jumps',
+        cpQuery: '청소년 고속 베어링 디지털 카운터 줄넘기 실내 점핑매트',
+        ihQuery: 'High Speed Bearing Digital Jump Rope Weighted Cordless',
+        yesQuery: '사춘기 성장판 점프 운동'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '김수열 명품 스피드 줄넘기 / 프로스펙스 메탈 스마트 베어링 줄넘기',
+        titleEn: 'Kim Soo-Yeol Pro Speed Jump Rope with Precision Bearings',
+        specKo: '2단 뛰기(이단뛰기) 최적화 스피드 와이어 로프 + 손목 피로 없는 인체공학 그립',
+        specEn: 'Optimized for double-unders and explosive vertical growth stimulation',
+        cpQuery: '김수열 명품 스피드 줄넘기 2단뛰기 스마트 카운터',
+        ihQuery: 'Crossrope Get Lean Weighted Jump Rope Speed',
+        yesQuery: '청소년 급성장기 운동 처방'
+      }
+    ],
+    foamroller_spine_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 프리미엄 리셋 EPP 폼롤러 90cm (청소년 척추 추간판 감압 & 흉추 신전)',
+        titleEn: 'Melkin Reset Premium 90cm EPP Full Spine Roller',
+        specKo: '청소년 장시간 착석 학습으로 굽은 등(Kyphosis)과 일자목을 펴주는 고경도 척추 롤러',
+        specEn: 'High-firmness 90cm roller reversing adolescent studying kyphosis and text-neck',
+        cpQuery: '멜킨스포츠 리셋 EPP 폼롤러 90cm 청소년 척추 디스크 교정',
+        ihQuery: 'OPTP Original High Density Foam Roller 36x6',
+        yesQuery: '청소년 척추 디스크와 바른 자세'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '트라택 릴리즈 롤러 프로 / 그리드 트리거포인트 폼롤러 (근막 딥티슈 이완)',
+        titleEn: 'TriggerPoint GRID Foam Roller Deep Tissue Myofascial Release',
+        specKo: '3차원 그리드 표면으로 척추 기립근 및 골반 장요근 심부 근막을 정밀 이완',
+        specEn: 'Multi-density grid pattern for deep thoracic and iliopsoas myofascial release',
+        cpQuery: '트리거포인트 그리드 폼롤러 근막이완 척추 신전',
+        ihQuery: 'TriggerPoint GRID Foam Roller for Exercise Muscle Recovery',
+        yesQuery: '청소년 척추 자세 교정 운동'
       }
     ],
     workbook_scissors_1_3: [
@@ -861,7 +1293,10 @@
   };
 
   function getCuratedSubProducts(itemId, affConfig = {}) {
-    const rawList = CURATED_SPECIFIC_PRODUCTS_DB[itemId] || CURATED_SPECIFIC_PRODUCTS_DB.ht042_growth;
+    const rawList = CURATED_SPECIFIC_PRODUCTS_DB[itemId];
+    if (!rawList || !Array.isArray(rawList)) {
+      return [];
+    }
     return rawList.map((sub) => {
       const urls = buildPinpointUrls(sub.cpQuery, sub.ihQuery, sub.yesQuery, affConfig);
       return Object.assign({}, sub, urls);
@@ -873,19 +1308,33 @@
    * Selects exact Supplements (2), Toys/Play Tools (2), and Books/Workbooks (2)
    * dynamically tailored to the child's exact profile so every child gets a customized prescription!
    */
-  function curatePinpointItems(profile = {}, affConfig = {}) {
-    const ageMonths = Number(profile.ageMonths) || 120;
-    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
-    const genderKo = profile.gender === 'girl' ? '여아' : '남아';
-    const height = Number(profile.currentHeight) || 137.0;
-    const weight = Number(profile.currentWeight) || 35.5;
-    const recent6m = Number(profile.recentGrowth6m) || 3.2;
-    const habits = Array.isArray(profile.habits) ? profile.habits : ['late_sleep'];
-    const cogAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
+  function curatePinpointItems(profile = {}, affConfig = {}, thirdArg = {}) {
+    let p = {};
+    let safeAffConfig = affConfig;
+    if (typeof profile === 'number') {
+      p = { ageMonths: profile };
+      if (Array.isArray(affConfig)) {
+        p.habits = affConfig;
+      }
+      safeAffConfig = (thirdArg && typeof thirdArg === 'object' && !Array.isArray(thirdArg)) ? thirdArg : {};
+    } else if (profile && typeof profile === 'object') {
+      p = profile;
+      safeAffConfig = (affConfig && typeof affConfig === 'object' && !Array.isArray(affConfig)) ? affConfig : {};
+    }
+    affConfig = safeAffConfig;
 
-    const traitSleepList = Array.isArray(profile.traitSleepList) ? profile.traitSleepList : [profile.traitSleep || 'late_bedtime'];
-    const traitDietList = Array.isArray(profile.traitDietList) ? profile.traitDietList : [profile.traitDiet || 'small_appetite'];
-    const traitPostureList = Array.isArray(profile.traitPostureList) ? profile.traitPostureList : [profile.traitPosture || 'turtle_slouch'];
+    const ageMonths = Number(p.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const genderKo = p.gender === 'girl' ? '여아' : '남아';
+    const height = Number(p.currentHeight) || 137.0;
+    const weight = Number(p.currentWeight) || 35.5;
+    const recent6m = Number(p.recentGrowth6m) || 3.2;
+    const habits = Array.isArray(p.habits) ? p.habits : ['late_sleep'];
+    const cogAxes = Array.isArray(p.cognitiveAxes) ? p.cognitiveAxes : ['science_nature'];
+
+    const traitSleepList = Array.isArray(p.traitSleepList) ? p.traitSleepList : [p.traitSleep || 'late_bedtime'];
+    const traitDietList = Array.isArray(p.traitDietList) ? p.traitDietList : [p.traitDiet || 'small_appetite'];
+    const traitPostureList = Array.isArray(p.traitPostureList) ? p.traitPostureList : [p.traitPosture || 'turtle_slouch'];
 
     // Determine if height is below median or velocity needs catch-up
     const isPicky = habits.includes('picky_eater') || traitDietList.includes('meat_veggie_picky') || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth') || traitDietList.includes('fast_indigestion') || traitDietList.includes('sweet_carb') || traitDietList.includes('fast_carb_sweet');
@@ -983,118 +1432,170 @@
     }
 
     // =========================================================================
-    // B. PINPOINT PLAY & DEVELOPMENTAL TOYS (2 Exact Target Products per Child)
+    // B. PINPOINT PURE PHYSICAL GROWTH & BIOMECHANICS EQUIPMENT (Pure Growth Only)
     // =========================================================================
     const toys = [];
 
     if (ageYears <= 3) {
       toys.push(Object.assign({
-        id: 'montessori_pincer_1_3',
-        categoryBadge: '🖐️ 만 1~3세 대뇌 운동피질 30% 손끝 소근육 1순위 교구',
-        name: '몬테소리 원목 악어집게 폼폼이 분류 & 구슬꿰기·안전가위 소근육 세트',
-        activeSpec: '엄지·검지·중지 삼지집기(Tripod Grasp) & 양손 눈-손 협응 정밀 훈련',
-        whyNeeded: `생후 ${ageMonths}개월은 손끝 신경이 전두엽과 가장 활발히 연결되는 '소근육 민감기'입니다. 원목 집게로 폼폼이를 옮기고 구슬을 꿰는 놀이가 소근육 악력과 집중력을 동시에 폭발시킵니다 (PMID:20822219).`,
-        buttonLabelCoupang: `쿠팡에서 '몬테소리 원목 집게 구슬꿰기 유아 안전가위 소근육 교구' 바로 보기 ↗`
-      }, buildPinpointUrls(
-        '몬테소리 소근육 교구 원목 집게 구슬꿰기 유아 안전가위 세트',
-        'Montessori Wooden Pincer Grasp Fine Motor Beads Toy',
-        '몬테소리 소근육 놀이 교구',
-        affConfig
-      )));
-
-      toys.push(Object.assign({
         id: 'balance_trampoline_1_3',
         categoryBadge: '🏃 영유아 전정감각 & 초기 성장판 미세자극 놀이기구',
-        name: '유아 실내 밸런스 징검다리 & 손잡이형 무소음 점핑 트램폴린',
+        name: '유아 실내 밸런스 징검다리 스톤 & 손잡이형 무소음 실내 트램폴린 점핑매트',
         activeSpec: '소뇌 평형감각(전정기관) 발달 + 하지 성장판 수직 압전 자극',
-        whyNeeded: `실내에서도 매일 15분씩 안전하게 뛰고 균형을 잡으며 대근육 협응력과 밤 9시 꿀잠(서파수면)을 유도하는 영유아 필수 신체 놀잇감입니다.`,
-        buttonLabelCoupang: `쿠팡에서 '유아 밸런스 징검다리 손잡이 실내 트램폴린' 바로 보기 ↗`
+        whyNeeded: `생후 ${ageMonths}개월 유아가 실내에서 안전하게 뛰고 균형을 잡으며 대근육 협응력과 밤 9시 깊은 서파수면(SWS)을 유도하는 영유아 필수 신체 성장 놀잇감입니다.`,
+        buttonLabelCoupang: `쿠팡에서 '유아 실내 밸런스 징검다리 스톤 손잡이 트램폴린' 바로 보기 ↗`
       }, buildPinpointUrls(
-        '유아 밸런스 징검다리 어린이 손잡이 실내 트램폴린',
+        '유아 실내 밸런스 징검다리 스톤 손잡이 트램폴린',
         'Toddler Balance Stepping Stones Indoor Trampoline',
         '영유아 대근육 신체놀이',
         affConfig
       )));
+
+      toys.push(Object.assign({
+        id: 'doorway_bar_foamroller_1_3',
+        categoryBadge: '🦴 영유아 척추 감압 & 바른 관절 스트레칭 기구',
+        name: '무타공 안전 이중잠금 실내 문틀 철봉 (저상형 데드행 바) & 소프트 폼롤러',
+        activeSpec: '저녁 20초 매달리기 척추 추간판 감압 + 흉추 C자 정렬 스트레칭',
+        whyNeeded: `걸음마를 시작하며 체중 부하를 받는 척추와 고관절을 매달리기로 부드럽게 늘려주어 숨은 키와 균형 잡힌 골격 형성을 돕습니다.`,
+        buttonLabelCoupang: `쿠팡에서 '무타공 안전 문틀 철봉 실내 턱걸이봉 소프트 폼롤러' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '무타공 안전 문틀 철봉 실내 턱걸이봉 소프트 폼롤러',
+        'Toddler Low Doorway Pull Up Bar Foam Roller',
+        '영유아 척추 스트레칭',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'soft_roller_mat_1_3',
+        categoryBadge: '🦶 성장통 케어 & 하지 근막 이완 마사지 도구',
+        name: '어린이 척추·종아리 신전 고밀도 폼롤러 & 충격흡수 롤매트',
+        activeSpec: '취침 전 3분 종아리·대퇴근 근막 마사지로 야간 성장통 완화',
+        whyNeeded: `낮 동안 활발히 움직이며 긴장된 다리 근육과 성장판 주변 근막을 잠들기 전 이완시켜 성장통으로 밤에 깨는 것을 예방합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '어린이 척추 신전 폼롤러 성장통 마사지 롤매트' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '어린이 척추 신전 폼롤러 성장통 마사지 롤매트',
+        'Kids Soft Foam Roller Growth Massage Mat',
+        '성장통 마사지 가이드',
+        affConfig
+      )));
     } else if (ageYears <= 5) {
       toys.push(Object.assign({
-        id: 'froebel_gabe_4_5',
-        categoryBadge: '🧩 만 4~5세 두정엽 3D 공간지각·수리 민감기 1순위 교구',
-        name: '프뢰벨식 원목 은물·가베 풀세트 & 3D 입체 자석블록(마그넷 타일) 교구',
-        activeSpec: '점·선·면 입체 기하학 구성 + 멘탈 로테이션(심상 회전) 두뇌 자극',
-        whyNeeded: `만 ${ageYears}세(${ageMonths}개월)는 평면 시각에서 3차원 입체 공간 추론으로 두뇌 회로가 도약하는 시기입니다. 원목 가베와 자석블록 조형 놀이가 초등 기하학·수학적 사고력의 뿌리가 됩니다 (Verdine et al., 2014).`,
-        buttonLabelCoupang: `쿠팡에서 '유아 원목 가베 은물 세트 자석블록 입체도형 교구' 바로 보기 ↗`
+        id: 'doorway_bar_4_5',
+        categoryBadge: '🦴 척추 추간판 감압(+1.8cm 복원) 1순위 운동 기구',
+        name: '무타공 안전 이중잠금 실내 문틀 철봉 (어린이 데드행 바)',
+        activeSpec: '저녁 30초×3세트 패시브 데드행 척추 견인 + 숨은 키 복원',
+        whyNeeded: `만 ${ageYears}세(${ageMonths}개월) 성장기 아이가 중력에 의해 눌린 척추 디스크 수분을 매달리기로 즉시 복원해 숨은 키 1.8cm를 되찾아줍니다 (PMID:30897641).`,
+        buttonLabelCoupang: `쿠팡에서 '무타공 안전 문틀 철봉 실내 데드행 턱걸이봉' 바로 보기 ↗`
       }, buildPinpointUrls(
-        '유아 원목 가베 세트 자석블록 입체도형 공간지각 교구',
-        'Wooden Froebel Gifts Magnetic Tiles 3D Building Blocks',
-        '프뢰벨 가베 은물 활용 가이드북',
+        '무타공 안전 문틀 철봉 실내 데드행 턱걸이봉',
+        'Doorway Pull Up Bar Kids Dead Hang',
+        '어린이 척추 감압 운동',
         affConfig
       )));
 
       toys.push(Object.assign({
         id: 'indoor_trampoline_4_5',
         categoryBadge: '⚡ 성장판 볼프의 법칙(Wolff\'s Law) 점핑 운동 기구',
-        name: '층간소음 방어 어린이 무소음 실내 트램폴린 점핑매트 & 원목 칠교놀이',
-        activeSpec: '체중 1.8배 수직 미세하중 성장판 자극 + 도형 분할 수리 퍼즐',
+        name: '층간소음 방어 어린이 무소음 실내 트램폴린 점핑매트 (고탄성 리바운더)',
+        activeSpec: '체중 1.8배 수직 미세하중 성장판 자극 (볼프의 법칙)',
         whyNeeded: `하루 15분 규칙적인 수직 점핑은 대퇴골·경골 성장판 연골세포에 압전 신호를 전달해 골 성장 속도를 약 +1.5cm/yr 가속합니다 (PMID:19734332).`,
-        buttonLabelCoupang: `쿠팡에서 '어린이 무소음 실내 트램폴린 점핑매트 칠교놀이' 바로 보기 ↗`
+        buttonLabelCoupang: `쿠팡에서 '어린이 무소음 실내 트램폴린 점핑매트 손잡이형' 바로 보기 ↗`
       }, buildPinpointUrls(
         '어린이 무소음 실내 트램폴린 점핑매트 손잡이형',
-        'Kids Indoor Fitness Rebounder Trampoline Tangram',
+        'Kids Indoor Fitness Rebounder Trampoline Silent',
         '아이 키 크는 점프 스트레칭',
-        affConfig
-      )));
-    } else if (ageYears <= 8) {
-      toys.push(Object.assign({
-        id: 'gravitrax_stem_6_8',
-        categoryBadge: '🔬 만 6~8세 전두엽 인과추론 & 소근육 정밀조립 교구',
-        name: '그래비트랙스(GraviTrax) 중력 코딩 마블런 스타터 세트 & 원목 칠교 소마큐브',
-        activeSpec: '중력·위치에너지 가설 실험 + 3차원 트랙 설계 전두엽 계획 회로 강화',
-        whyNeeded: `초등 입학 전후 만 ${ageYears}세 아이가 스마트폰 대신 손끝으로 트랙 높이와 각도를 조절하며 물리적 인과관계와 공간 논리를 스스로 깨우치는 최고급 STEM 탐구 교구입니다.`,
-        buttonLabelCoupang: `쿠팡에서 '그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이' 바로 보기 ↗`
-      }, buildPinpointUrls(
-        '그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이',
-        'Ravensburger GraviTrax Marble Run STEM Toy',
-        '초등 과학 탐구 도형 퍼즐',
         affConfig
       )));
 
       toys.push(Object.assign({
-        id: 'posture_stand_jumprope_6_8',
-        categoryBadge: '📏 숨은 키 1.8cm 거북목 방어 & 성장판 점프 기구',
-        name: '초등 거북목 예방 원목 높이·각도조절 2단 독서대 & 디지털 카운터 줄넘기',
-        activeSpec: '경추 C자 커브 유지(추간판 압박 차단) + 주 5회 수직 점프 카운팅',
-        whyNeeded: `초등 시기 책상 앞에서 고개를 숙이면 경추 하중이 15kg 이상 증가해 숨은 키 1.8cm가 손실됩니다. 눈높이 2단 독서대와 하루 500회 카운터 줄넘기가 필수입니다.`,
-        buttonLabelCoupang: `쿠팡에서 '어린이 높이조절 원목 2단 독서대 카운터 줄넘기' 바로 보기 ↗`
+        id: 'foamroller_spine_4_5',
+        categoryBadge: '📏 흉추 신전 & 거북목 방어 척추 스트레칭 도구',
+        name: '어린이 척추 신전 스트레칭 EPP 폼롤러 & 척추 기립근 교정 세트',
+        activeSpec: '취침 전 3분 흉추 펴기 + 골반·장요근 정렬 스트레칭',
+        whyNeeded: `스마트폰이나 책상에서 굽어진 등을 펴주고 척추 기립근을 이완시켜 바른 자세와 호르몬 순환을 극대화합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '어린이 척추 신전 스트레칭 EPP 폼롤러' 바로 보기 ↗`
       }, buildPinpointUrls(
-        '어린이 높이조절 원목 2단 독서대 거북목 교정',
-        'Ergonomic Adjustable Wooden Book Stand Posture Kids',
-        '바른 자세 독서법',
+        '어린이 척추 신전 스트레칭 EPP 폼롤러',
+        'Kids Spine Extension EPP Foam Roller',
+        '척추 바른자세 스트레칭',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'jumprope_digital_4_5',
+        categoryBadge: '🏃 성장판 압전 자극 실내외 무소음 카운터 줄넘기',
+        name: '줄 꼬임 방지 어린이 디지털 카운터 줄넘기 (무소음 노라인 에어볼 겸용)',
+        activeSpec: '발목·무릎 성장판 미세하중 자극 + 일일 점프 300회 카운팅',
+        whyNeeded: `실내에서도 층간소음 없이 에어볼로 수직 점프를 채워 성장판 연골세포의 분열과 골 형성을 자극합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '어린이 디지털 카운터 줄넘기 무소음 노라인' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '어린이 디지털 카운터 줄넘기 무소음 노라인',
+        'Kids Digital Jump Rope Cordless Ropeless',
+        '어린이 성장 줄넘기 운동',
+        affConfig
+      )));
+    } else if (ageYears <= 8) {
+      toys.push(Object.assign({
+        id: 'doorway_bar_6_8',
+        categoryBadge: '🦴 초등 척추 감압 & 바른 체형 교정 1순위 운동 기구',
+        name: '무타공 안전 이중잠금 실내 문틀 철봉 (어린이 데드행 바)',
+        activeSpec: '저녁 30초×3세트 패시브 데드행 척추 디스크 감압',
+        whyNeeded: `초등 입학 후 책상에 앉아 있는 시간이 늘어나면서 압박받는 척추 추간판을 견인해 숨은 키 +1.8cm를 복원합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '무타공 안전 문틀 철봉 실내 데드행 턱걸이봉' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '무타공 안전 문틀 철봉 실내 데드행 턱걸이봉',
+        'Doorway Pull Up Bar Kids Dead Hang Posture',
+        '초등 척추 감압 운동법',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'trampoline_rebounder_6_8',
+        categoryBadge: '⚡ 성장판 미세하중 플라이오메트릭 점핑 기구',
+        name: '초등 층간소음 방어 고탄성 무소음 실내 트램폴린 점핑매트',
+        activeSpec: '하루 15분 인터벌 점핑 성장판 수직 자극 (볼프의 법칙)',
+        whyNeeded: `날씨와 상관없이 거실에서 15분 점핑으로 성장호르몬 분비와 심폐지구력을 폭발적으로 끌어올립니다 (PMID:19734332).`,
+        buttonLabelCoupang: `쿠팡에서 '초등 층간소음 무소음 실내 트램폴린 점핑매트' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '초등 층간소음 무소음 실내 트램폴린 점핑매트',
+        'Kids Silent Rebounder Trampoline Jump Mat',
+        '키 성장 점핑 홈트레이닝',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'jumprope_digital_6_8',
+        categoryBadge: '🏃 초등 성장판 수직 압전 자극 디지털 카운터 줄넘기',
+        name: '초등 속도조절 디지털 카운터 줄넘기 (노라인 추 & 로프 겸용)',
+        activeSpec: '성장판 수직 압전 자극 + 일일 500회 목표 달성 카운팅',
+        whyNeeded: `초등 학교 줄넘기 급수제 대비는 물론 성장판에 가장 효과적인 수직 중력 하중을 전달해 연간 성장속도를 극대화합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '초등 학생용 디지털 카운터 줄넘기 노라인 호환' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '초등 학생용 디지털 카운터 줄넘기 노라인 호환',
+        'Digital Counting Jump Rope Kids Cordless',
+        '초등 줄넘기 급수제 연습',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'foamroller_spine_6_8',
+        categoryBadge: '📏 거북목·굽은 등 방어 흉추 신전 스트레칭 도구',
+        name: '고밀도 EPP 척추 신전 & 흉추 교정 폼롤러 (성장판 스트레칭)',
+        activeSpec: '취침 전 3분 흉추 신전 스트레칭 + 하지 근막 이완',
+        whyNeeded: `굽은 등과 거북목을 바르게 펴주고 다리 근육의 피로를 풀어주어 야간 성장통 없이 깊은 숙면을 돕습니다.`,
+        buttonLabelCoupang: `쿠팡에서 '고밀도 EPP 척추 신전 폼롤러 거북목 스트레칭' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '고밀도 EPP 척추 신전 폼롤러 거북목 스트레칭',
+        'High Density EPP Foam Roller Spine Alignment',
+        '바른 자세 폼롤러 스트레칭',
         affConfig
       )));
     } else {
       // Age 9+ (Pre-puberty to Adolescence)
       toys.push(Object.assign({
-        id: 'microscope_timer_9_plus',
-        categoryBadge: '🧠 만 9세+ 배외측 전전두엽(DLPFC) 과학 탐구 & 딥워크 도구',
-        name: ageYears <= 12
-          ? '초등 고배율 광학 현미경 프레파라트 과학실험 세트 & 무소음 시각 타이머'
-          : '청소년 자기주도 딥워크 무소음 시각 타이머 & 높이조절 2단 원목 독서대',
-        activeSpec: '가설-검증 과학 실험 / 전두엽 작업기억 45분 몰입 시간관리 표준 도구',
-        whyNeeded: `만 ${ageYears}세는 전두엽 피질 재조직화와 수초화가 일어나는 시기입니다. 스스로 시간을 시각화하여 통제하는 무소음 타이머와 능동적 과학 실험/독서 환경이 자기주도 학습력을 완성합니다.`,
-        buttonLabelCoupang: ageYears <= 12
-          ? `쿠팡에서 '초등 학생용 광학 현미경 과학실험 세트 시각타이머' 바로 보기 ↗`
-          : `쿠팡에서 '무소음 시각 타이머 높이조절 원목 2단 독서대' 바로 보기 ↗`
-      }, buildPinpointUrls(
-        ageYears <= 12 ? '초등 학생용 광학 현미경 프레파라트 과학실험 세트' : '무소음 시각 타이머 공부 시계 원목 2단 독서대',
-        'AmScope Kids Microscope Visual Countdown Timer',
-        '자기주도학습 시간관리',
-        affConfig
-      )));
-
-      toys.push(Object.assign({
         id: 'deadhang_foamroller_9_plus',
         categoryBadge: '🦴 척추 추간판 감압(+1.8cm 복원) & 성장판 스트레칭 기구',
-        name: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 EPP 폼롤러 세트',
+        name: '무타공 안전 잠금 실내 문틀 철봉 (데드행 바) & 척추 신전 EPP 폼롤러 세트',
         activeSpec: '저녁 30초×3세트 패시브 데드행 척추 견인 + 흉추 가동성 복원',
         whyNeeded: `만 ${ageYears}세(${height}cm) 아동·청소년이 하루 종일 앉아 있으면서 눌린 척추 디스크 수분을 저녁 취침 전 90초 매달리기(Dead Hang)와 폼롤러 신전으로 즉각 복원해 숨은 키 1.5~2.2cm를 되찾아줍니다 (PMID:30897641).`,
         buttonLabelCoupang: `쿠팡에서 '무타공 안전 잠금 문틀 철봉 실내 턱걸이봉 폼롤러' 바로 보기 ↗`
@@ -1102,6 +1603,34 @@
         '무타공 안전 잠금 문틀 철봉 실내 데드행 턱걸이봉',
         'Doorway Pull Up Bar No Screw Foam Roller Spine',
         '척추 교정 스트레칭 가이드',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'jumprope_digital_9_plus',
+        categoryBadge: '⚡ 급성장기(PHV) 성장판 폭발 자극 고속 베어링 카운터 줄넘기',
+        name: '청소년 고속 베어링 디지털 카운터 줄넘기 & 무소음 점핑매트 세트',
+        activeSpec: '성장판 닫히기 전 급성장기 매일 1,000회 수직 점프 카운팅',
+        whyNeeded: `사춘기 급성장 골든타임에 성장판 연골세포 분열을 최대치로 자극하는 필수 운동 기구입니다.`,
+        buttonLabelCoupang: `쿠팡에서 '청소년 고속 베어링 디지털 카운터 줄넘기 실내 점핑매트' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '청소년 고속 베어링 디지털 카운터 줄넘기 실내 점핑매트',
+        'High Speed Bearing Digital Jump Rope Kids',
+        '사춘기 성장판 점프 운동',
+        affConfig
+      )));
+
+      toys.push(Object.assign({
+        id: 'trampoline_heavy_9_plus',
+        categoryBadge: '🏃 고중량 무소음 실내 피트니스 리바운더 트램폴린',
+        name: '고중량 지지 8각형 무소음 실내 피트니스 리바운더 트램폴린',
+        activeSpec: '관절 충격 없는 고강도 점핑 인터벌 + 체지방률 관리',
+        whyNeeded: `무릎과 발목 관절에 무리 없이 성장호르몬 분비를 촉진하고 비만·성조숙증을 예방하는 홈트레이닝 기구입니다.`,
+        buttonLabelCoupang: `쿠팡에서 '고중량 무소음 실내 트램폴린 리바운더 점핑매트' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '고중량 무소음 실내 트램폴린 리바운더 점핑매트',
+        'Heavy Duty Silent Fitness Trampoline Rebounder',
+        '청소년 홈트레이닝 리바운더',
         affConfig
       )));
     }
@@ -1249,10 +1778,10 @@
       supplements: attachCurated(supplements),
       toys: attachCurated(toys),
       books: attachCurated(books),
-      eduTours: curateEducationalTours(profile, affConfig),
-      regionalTickets: curateRegionalAgeTickets(profile, affConfig),
+      eduTours: curateEducationalTours(p, affConfig),
+      regionalTickets: curateRegionalAgeTickets(p, affConfig),
       lifecycleRoadmap: getSequentialLifecycleRoadmap(ageYears),
-      autoStage: autoDetectGrowthStage(ageMonths, profile.gender, recent6m)
+      autoStage: autoDetectGrowthStage(ageMonths, p.gender, recent6m)
     };
   }
 
@@ -1905,7 +2434,7 @@
    * 5-A. Renders ONLY the 4-Year Sequential Age Lifecycle Timeline (for Chapter 2: Auxology & Bone Age)
    */
   function renderLifecycleTimelineOnly(profile = {}, affConfig = {}) {
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
@@ -1916,7 +2445,7 @@
           <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
             🗓️ ${isEn
               ? `3-Year Forward Growth & Bone-Age Roadmap (Age ${ageYears} → Age ${ageYears + 3})`
-              : `향후 3개년 성장·골연령 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 3}세 연도별 체크포인트)`}
+              : `향후 3개년 순수 신체성장·골연령 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 3}세 연도별 골단판 체크포인트)`}
           </h4>
           <span style="background: rgba(59, 130, 246, 0.16); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35);">
             ${isEn ? data.autoStage.stageNameEn : data.autoStage.stageNameKo}
@@ -1941,20 +2470,20 @@
             <div class="lifecycle-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(59, 130, 246, 0.45); border-radius: 14px; padding: 1.1rem 1.2rem; text-align: left;">
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
                 <span style="font-size: 1rem; font-weight: 900; color: #60A5FA;">
-                  📌 ${isEn ? `Age ${step.age} Core Milestone` : `만 ${step.age}세 핵심 성장·골연령 체크리스트`}
+                  📌 ${isEn ? `Age ${step.age} Skeletal Milestone` : `만 ${step.age}세 핵심 신체성장·골연령 체크포인트`}
                 </span>
                 <span style="font-size: 0.84rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.2rem 0.65rem; border-radius: 9999px;">
                   권장 성장속도: ${step.expectedVelocity}
                 </span>
               </div>
               <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
-                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체·골연령 포인트:'}</strong> ${step.physicalFocus}
+                <strong style="color: #38BDF8;">📏 ${isEn ? 'Skeletal Maturation:' : '신체·골연령 포인트:'}</strong> ${step.physicalFocus}
               </div>
               <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.45rem;">
-                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·신경망 포인트:'}</strong> ${step.brainFocus}
+                <strong style="color: #34D399;">🦴 ${isEn ? 'Epiphyseal Reserve:' : '골단판 연골 보존:'}</strong> Tanner 단계별 골화 진행도 정상 궤도 유지 및 밤 10시 서파수면 성장호르몬 맥동 극대화
               </div>
               <div style="font-size: 0.86rem; color: #FDE68A; line-height: 1.5; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.45rem;">
-                ⚠️ <strong>부모님 주의 포인트:</strong> ${step.parentWarning}
+                ⚠️ <strong>부모님 성장 관리 주의점:</strong> ${step.parentWarning}
               </div>
             </div>
           `).join('')}
@@ -1964,10 +2493,146 @@
   }
 
   /**
+   * 5-A2. Cognitive & Curriculum Roadmap for Pillar 2 (Migrated from Chapter 2 to Chapter 6)
+   */
+  function renderCognitiveCurriculumRoadmap(profile = {}, affConfig = {}) {
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
+    const data = curatePinpointItems(profile, affConfig);
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+
+    const CURRICULUM_ROADMAP = {
+      1: {
+        kor: '감각 그림책 오감 대화 & 의성어·의태어 폭발기',
+        math: '원목 블록 크기 비교 & 위·아래·안·밖 공간 감각',
+        focus: '10분 이내 손끝 촉각 집게 놀이 및 자율성 지지'
+      },
+      2: {
+        kor: '음운인식 그림책 하브루타 & 질문 대화 턴 3회',
+        math: '1~10 수 세기 구체물 대응 & 도형 맞추기 퍼즐',
+        focus: '15분 몬테소리 손끝 조작 및 자기주도 장난감 정리'
+      },
+      3: {
+        kor: '스토리텔링 문맥 이해 & "왜 그럴까?" 인과 질문',
+        math: '직관적 양감(Subitizing) & 가베 1단계 입체 구성',
+        focus: '15분 무소음 타이머 세팅 후 미션 완수 루틴'
+      },
+      4: {
+        kor: '한글 자모음 결합 & 그림책 3문장 생각 말하기',
+        math: '가베·자석블록 3D 입체 기하학 & 멘탈 로테이션',
+        focus: '20분 착석 지구력 & 손끝 소근육 악력 기르기'
+      },
+      5: {
+        kor: '초등 입학 전 독해 기초 & 어휘 마인드맵 워크북',
+        math: '10 이하 가르기·모으기 & 소마큐브 공간지각',
+        focus: '20분 시각 타이머 활용 1과제 완수 습관'
+      },
+      6: {
+        kor: '초등 1학년 교과 어휘력 & 1지문 핵심어 동그라미',
+        math: '문장제 조건 밑줄 긋기 & 단순 연산 30% 축소',
+        focus: '25분 눈높이 2단 독서대 시선 고정 집중 훈련'
+      },
+      7: {
+        kor: '초등 2학년 비문학 독서 & 3단계 하브루타 대화',
+        math: '구구단 원리 이해 & 칠교/도형 분할 문제 해결',
+        focus: '25분 뽀모도로 인터벌 + 틀린 문제 발상 점검'
+      },
+      8: {
+        kor: '초등 3학년 문단 구조화 & 긴 줄글 서술형 독해',
+        math: '분수·소수 개념 시각화 & 조건 여백에 그림 그리기',
+        focus: '30분 딥워크 몰입 + 코넬 노트 1줄 요약'
+      },
+      9: {
+        kor: '초등 4학년 교과 비문학 요약 & 어휘 한자어 스키마',
+        math: '도형 각도·넓이 개념 구조화 & 심상 회전 훈련',
+        focus: '30분 자기주도 스터디 플래너 체크리스트 실천'
+      },
+      10: {
+        kor: '초등 5학년 긴 지문 요약 & 수능형 문맥 추론',
+        math: '약수·배수·약분 개념 연결 & 오답 원인 역추적',
+        focus: '35분 무방해 딥워크 + 학원 직후 5분 백지복습'
+      },
+      11: {
+        kor: '초등 6학년 비문학 철학·과학 지문 논리적 비판 독해',
+        math: '비례식·원기둥 입체 기하학 & 풀이과정 서술 훈련',
+        focus: '40분 메타인지 백지복습 + 서파수면 기억 공고화'
+      },
+      12: {
+        kor: '중1 국어 문학·비문학 복합 서사 구조화',
+        math: '문자와 식·일차방정식 개념 추상화 & 함수 기초',
+        focus: '45분 스마트폰 격리 딥워크 + 파인만 3분 설명'
+      },
+      13: {
+        kor: '중2 심화 비문학 칼럼 요약 & 수능형 어휘 체계화',
+        math: '연립방정식·부등식 & 중등 기하 논증 증명 훈련',
+        focus: '45분 코넬식 핵심 인출 + 주말 3시간 고효율 복습'
+      }
+    };
+
+    return `
+      <div id="child-cognitive-roadmap-section" style="margin-top: 1.25rem; padding: 1.25rem; background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 18px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+            🗓️ ${isEn
+              ? `3-Year Forward Cognitive & Curriculum Roadmap (Age ${ageYears} → Age ${ageYears + 3})`
+              : `향후 3개년 연령별 학습·교과 전환 로드맵 (만 ${ageYears}세 → 만 ${ageYears + 3}세 핵심 과제)`}
+          </h4>
+          <span style="background: rgba(139, 92, 246, 0.2); color: #DDD6FE; font-size: 0.78rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.45);">
+            🧠 대뇌 피질 재조직화 &amp; 교과 전환
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 0.75rem;">
+          ${data.lifecycleRoadmap.map((step, idx) => `
+            <button
+              type="button"
+              class="cognitive-lifecycle-tab-btn"
+              onclick="(function(btn, targetIdx){ var sec = btn.closest('#child-cognitive-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.cognitive-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.cognitive-lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#7C3AED' : 'rgba(255,255,255,0.06)'; b.style.color = '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#C4B5FD' : 'rgba(255,255,255,0.15)'; }); })(this, ${idx})"
+              style="padding: 0.55rem 0.4rem; border-radius: 10px; font-size: 0.84rem; font-weight: 800; cursor: pointer; background: ${idx === 0 ? '#7C3AED' : 'rgba(255,255,255,0.06)'}; color: #FFFFFF; border: 1px solid ${idx === 0 ? '#C4B5FD' : 'rgba(255,255,255,0.15)'};"
+            >
+              ${isEn ? (idx === 0 ? `Now (${step.age}y)` : `+${idx}Yr (${step.age}y)`) : (idx === 0 ? `현재 만 ${step.age}세` : `만 ${step.age}세 (+${idx}년)`)}
+            </button>
+          `).join('')}
+        </div>
+
+        <div>
+          ${data.lifecycleRoadmap.map((step, idx) => {
+            const curInfo = CURRICULUM_ROADMAP[step.age] || CURRICULUM_ROADMAP[12];
+            return `
+              <div class="cognitive-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 14px; padding: 1.1rem 1.2rem; text-align: left;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
+                  <span style="font-size: 1rem; font-weight: 900; color: #DDD6FE;">
+                    🧠 ${isEn ? `Age ${step.age} Cognitive & Study Roadmap` : `만 ${step.age}세 두뇌 신경망 & 교과 학습 전환 과제`}
+                  </span>
+                  <span style="font-size: 0.84rem; font-weight: 800; color: #6EE7B7; background: rgba(16, 185, 129, 0.15); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+                    집중 목표: ${curInfo.focus}
+                  </span>
+                </div>
+                <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
+                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Cortical Rewiring:' : '두뇌·신경망 발달 과제:'}</strong> ${step.brainFocus}
+                </div>
+                <div style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin-bottom: 0.35rem;">
+                  <strong style="color: #93C5FD;">📖 국어·문해력 포인트:</strong> ${curInfo.kor}
+                </div>
+                <div style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin-bottom: 0.45rem;">
+                  <strong style="color: #FBBF24;">📐 수학·공간추론 포인트:</strong> ${curInfo.math}
+                </div>
+                <div style="font-size: 0.86rem; color: #DDD6FE; line-height: 1.5; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.45rem;">
+                  💡 <strong>자기주도 코칭 조언:</strong> 기계적 선행 학원 진도보다 매일 5분 백지복습(Active Recall)과 밤 10시 숙면(기억 공고화)이 학업 성취도를 50% 이상 결정합니다.
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
    * 5-B. Contextual Nutrition Prescription (for the bottom of Chapter 3: Hormone, Sleep & Clinical Nutrition)
    */
   function renderContextualSupplementsPrescription(profile = {}, affConfig = {}) {
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
 
@@ -1996,7 +2661,7 @@
    * 5-C. Contextual Biomechanics & Posture Prescription (for the bottom of Chapter 4: Spinal Decompression & Biomechanics)
    */
   function renderContextualBiomechanicsPrescription(profile = {}, affConfig = {}) {
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
 
@@ -2017,6 +2682,216 @@
           ${toyTraitNote}
         </p>
         ${renderCategoryProductCards(data.toys, 'rgba(52, 211, 153, 0.45)', 'toy', isEn)}
+      </div>
+    `;
+  }
+
+  /**
+   * 5-C2. Curate Pillar 2 Learning Environment & Manipulative Tools (Migrated from Chapter 4)
+   */
+  function curatePillar2LearningTools(profile = {}, affConfig = {}) {
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const tools = [];
+
+    if (ageYears <= 3) {
+      tools.push(Object.assign({
+        id: 'montessori_pincer_1_3',
+        categoryBadge: '🖐️ 만 1~3세 대뇌 운동피질 30% 손끝 소근육 1순위 교구',
+        name: '몬테소리 원목 악어집게 폼폼이 분류 & 구슬꿰기·안전가위 소근육 세트',
+        activeSpec: '엄지·검지·중지 삼지집기(Tripod Grasp) & 양손 눈-손 협응 정밀 훈련',
+        whyNeeded: `생후 ${ageMonths}개월은 손끝 신경이 전두엽과 가장 활발히 연결되는 '소근육 민감기'입니다. 원목 집게로 폼폼이를 옮기고 구슬을 꿰는 놀이가 소근육 악력과 집중력을 동시에 폭발시킵니다 (PMID:20822219).`,
+        buttonLabelCoupang: `쿠팡에서 '몬테소리 원목 집게 구슬꿰기 유아 안전가위 소근육 교구' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '몬테소리 소근육 교구 원목 집게 구슬꿰기 유아 안전가위 세트',
+        'Montessori Wooden Pincer Grasp Fine Motor Beads Toy',
+        '몬테소리 소근육 놀이 교구',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'montessori_cylinder_shelf_1_3',
+        categoryBadge: '🧩 만 1~3세 몬테소리 꼭지원기둥 실린더 & 자율 교구장',
+        name: '몬테소리 원목 꼭지원기둥 4종 실린더 블록 & 자율정리 원목 전면 교구장',
+        activeSpec: '크기·높이·굵기 시각 변별력 + 스스로 교구를 꺼내 정리하는 자율성 훈련',
+        whyNeeded: '아이 스스로 높낮이와 굵기 차이를 감각하고 제자리에 정리하는 환경이 전두엽 실행기능과 질서감을 형성합니다.',
+        buttonLabelCoupang: `쿠팡에서 '몬테소리 꼭지원기둥 실린더 원목 전면 교구장' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '몬테소리 꼭지원기둥 실린더 블록 원목 전면 교구장',
+        'Montessori Cylinder Blocks Wooden Bookshelf Kids',
+        '몬테소리 자율 환경 교구장',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'sensory_visual_book_1_3',
+        categoryBadge: '📖 만 1~3세 브로카 언어영역 자극 오감 그림책',
+        name: '유아 첫 비주얼 플랩북 & 의성어·의태어 오감 말놀이 그림책 세트',
+        activeSpec: '부모-자녀 일대일 눈맞춤 대화 + 좌뇌 브로카 언어 영역 자극',
+        whyNeeded: '영상 대신 입체 플랩북을 만지고 부모와 의성어·의태어를 주고받을 때 어휘 폭발기 어휘 스키마가 단단해집니다.',
+        buttonLabelCoupang: `쿠팡에서 '유아 첫 비주얼 플랩북 오감 말놀이 그림책' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '유아 첫 비주얼 플랩북 오감 말놀이 그림책 세트',
+        'Toddler Sensory Flap Book Visual Board Books',
+        '유아 오감 말놀이 그림책',
+        affConfig
+      )));
+    } else if (ageYears <= 5) {
+      tools.push(Object.assign({
+        id: 'froebel_gabe_4_5',
+        categoryBadge: '🧩 만 4~5세 두정엽 3D 공간지각·수리 민감기 1순위 교구',
+        name: '프뢰벨식 원목 은물·가베 풀세트 & 3D 입체 자석블록(마그넷 타일) 교구',
+        activeSpec: '점·선·면 입체 기하학 구성 + 멘탈 로테이션(심상 회전) 두뇌 자극',
+        whyNeeded: `만 ${ageYears}세(${ageMonths}개월)는 평면 시각에서 3차원 입체 공간 추론으로 두뇌 회로가 도약하는 시기입니다. 원목 가베와 자석블록 조형 놀이가 초등 기하학·수학적 사고력의 뿌리가 됩니다 (Verdine et al., 2014).`,
+        buttonLabelCoupang: `쿠팡에서 '유아 원목 가베 은물 세트 자석블록 입체도형 교구' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '유아 원목 가베 세트 자석블록 입체도형 공간지각 교구',
+        'Wooden Froebel Gifts Magnetic Tiles 3D Building Blocks',
+        '프뢰벨 가베 은물 활용 가이드북',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'visual_timer_pomodoro_4_5',
+        categoryBadge: '⏳ 만 4~5세 전두엽 시간 감각 & 착석 집중 타이머',
+        name: '타임타이머(Time Timer) 무소음 시각 집중 타이머 (15분 몰입 원반)',
+        activeSpec: '빨간색 원반으로 남은 시간을 직관적으로 시각화 + 15분 착석 완수 루틴',
+        whyNeeded: '초등 입학 전 스스로 시간의 흐름을 눈으로 보며 한 가지 놀이나 그림책을 끝까지 완수하는 전두엽 지구력을 형성합니다.',
+        buttonLabelCoupang: `쿠팡에서 '타임타이머 무소음 시각 타이머 15분 집중 공부시계' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '타임타이머 무소음 시각 타이머 공부시계 유아 집중력',
+        'Time Timer Visual Countdown Timer 15 Min Pomodoro',
+        '유아 집중력 시간관리 시계',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'soma_tangram_math_4_5',
+        categoryBadge: '📐 만 4~5세 두정엽 공간 추론 수리 사고력 교구',
+        name: '소마셈 K·P단계 창의연산 + 원목 칠교놀이·소마큐브 입체도형 세트',
+        activeSpec: '구체물 도형 회전 조작 + 10 이하 가르기·모으기 수감각 체득',
+        whyNeeded: '단순 숫자 암기가 아닌 손끝 조작을 통해 수의 구조와 공간 감각을 동시에 깨우쳐 수학 정서를 긍정적으로 만듭니다.',
+        buttonLabelCoupang: `쿠팡에서 '원목 칠교놀이 소마큐브 유아 창의사고력 수학' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '원목 칠교놀이 소마큐브 유아 창의사고력 수학 퍼즐',
+        'Wooden Tangram Soma Cube Geometric Puzzle Kids',
+        '유아 창의사고력 도형 퍼즐',
+        affConfig
+      )));
+    } else if (ageYears <= 8) {
+      tools.push(Object.assign({
+        id: 'gravitrax_stem_6_8',
+        categoryBadge: '🔬 만 6~8세 전두엽 인과추론 & 소근육 정밀조립 교구',
+        name: '그래비트랙스(GraviTrax) 코어 스타터 세트 & 원목 칠교 소마큐브',
+        activeSpec: '중력·위치에너지 가설 실험 + 3차원 트랙 설계 전두엽 계획 회로 강화',
+        whyNeeded: `초등 입학 전후 만 ${ageYears}세 아이가 스마트폰 대신 손끝으로 트랙 높이와 각도를 조절하며 물리적 인과관계와 공간 논리를 스스로 깨우치는 최고급 STEM 탐구 교구입니다.`,
+        buttonLabelCoupang: `쿠팡에서 '그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이',
+        'Ravensburger GraviTrax Marble Run STEM Toy',
+        '초등 과학 탐구 도형 퍼즐',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'ergonomic_bookstand_6_8',
+        categoryBadge: '🪑 초등 거북목 예방 & 시선 분산 방지 학습도구',
+        name: '초등 거북목 예방 높이·각도조절 원목 2단 독서대 (HW_02 표준형)',
+        activeSpec: '경추 18kg 하중 차단(Hansraj 2014) + 시야 100% 교재 고정으로 착석 시간 2배 연장',
+        whyNeeded: '고개를 숙이지 않아 목과 어깨 피로를 없애고 시선이 교재에만 고정되어 산만한 아이도 30분 이상 깊게 몰입합니다.',
+        buttonLabelCoupang: `쿠팡에서 '초등 높이각도조절 원목 2단 독서대 거북목 예방' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '어린이 높이조절 원목 2단 독서대 거북목 교정',
+        'Ergonomic Adjustable Wooden Book Stand Posture Kids',
+        '바른 자세 독서법',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'time_timer_focus_6_8',
+        categoryBadge: '⏳ 전두엽 작업기억 외부화 & 20분 뽀모도로 타이머',
+        name: '타임타이머(Time Timer) 초등 무소음 시각 집중 타이머',
+        activeSpec: '남은 시간 시각화로 시간 압박감 해소 + 전두엽 충동 억제 훈련',
+        whyNeeded: '스마트폰이나 시계 초침 소리 없이 20분 동안 한 과제에 온전히 몰입하는 전두엽 자기조절력을 완성합니다.',
+        buttonLabelCoupang: `쿠팡에서 '타임타이머 무소음 시각 타이머 초등 학생용' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '타임타이머 초등 무소음 시각 집중 타이머 공부시계',
+        'Time Timer MOD Visual Timer Kids Focus Pomodoro',
+        '초등 자기주도 시각 타이머',
+        affConfig
+      )));
+    } else {
+      // Age 9+
+      tools.push(Object.assign({
+        id: 'microscope_science_kit_9_plus',
+        categoryBadge: '🔬 만 9세+ 배외측 전전두엽(DLPFC) 과학 탐구 & 가설검증 도구',
+        name: '초등·청소년 고배율 광학 현미경 프레파라트 과학실험 관찰 키트',
+        activeSpec: '세포·식물·광물 미세 구조 관찰 + 가설 설정 및 관찰 일지 작성',
+        whyNeeded: `만 ${ageYears}세는 전두엽 피질 재조직화와 추상적 사고가 폭발하는 시기입니다. 교과서 줄글로만 보던 과학 개념을 직접 눈으로 확인하고 탐구 일지를 쓰며 논리적 비판 사고력을 완성합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '초등 학생용 광학 현미경 과학실험 세트 프레파라트' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '초등 학생용 광학 현미경 프레파라트 과학실험 세트',
+        'AmScope Kids Microscope Visual Countdown Timer',
+        '자기주도학습 과학실험',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'ergonomic_wide_stand_timer_9_plus',
+        categoryBadge: '🪑 청소년 딥워크(Deep Work) 높이조절 원목 2단 독서대 & 시각타이머',
+        name: '위즈독서대 / 독서대통령 와이드 2단 원목 독서대 + 무소음 시각 타이머',
+        activeSpec: '상단 교재 독서 + 하단 백지복습 필기 2단 구조화 + 25분 뽀모도로',
+        whyNeeded: '중·고등 내신과 수능 대비 방대한 교재를 시야에 올리고 바른 척추 정렬을 유지하며 딥워크 몰입을 실현합니다.',
+        buttonLabelCoupang: `쿠팡에서 '와이드 높이조절 원목 2단 독서대 무소음 타이머' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '무소음 시각 타이머 공부 시계 원목 2단 독서대',
+        'Adjustable 2-Tier Wooden Book Stand Ergonomic Reading Holder',
+        '자기주도학습 딥워크 독서대',
+        affConfig
+      )));
+
+      tools.push(Object.assign({
+        id: 'cornell_active_recall_planner_9_plus',
+        categoryBadge: '🧠 메타인지 백지복습(인출효과 +50%) 코넬 노트 & 플래너',
+        name: '코넬식 메타인지 백지복습 요약 노트 & 100일 자기주도 스터디 플래너 세트',
+        activeSpec: '단서(Cue)·핵심개념·1줄 요약 3분할 코넬 노트 + 오답 원인 역추적',
+        whyNeeded: '설명을 듣는 수동적 공부에서 벗어나 스스로 책을 덮고 인출(Active Recall)하는 메타인지를 완성합니다 (PMID:16507066).',
+        buttonLabelCoupang: `쿠팡에서 '코넬식 메타인지 백지복습 노트 100일 스터디플래너' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '코넬노트 백지복습 노트 초등 중등 메타인지 자기주도 스터디플래너',
+        'Cornell Notes Notebook Study Planner Active Recall Student',
+        '메타인지 공부법 코넬노트 스터디플래너',
+        affConfig
+      )));
+    }
+
+    return tools;
+  }
+
+  /**
+   * 5-C3. Contextual Learning Tools & Environment Prescription for Pillar 2 (Chapter 8)
+   */
+  function renderPillar2LearningToolsPrescription(profile = {}, affConfig = {}) {
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
+    const learningTools = curatePillar2LearningTools(profile, affConfig);
+
+    return `
+      <div class="pinpoint-category-box" id="pillar2-learning-tools-box" style="margin-top: 1.25rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 27, 75, 0.55)); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 18px; padding: 1.25rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.78rem; font-weight: 900; color: #DDD6FE; background: rgba(139, 92, 246, 0.22); padding: 0.22rem 0.7rem; border-radius: 9999px;">
+            🧩 [Chapter 8 연계 처방] 학습 환경 &amp; 두뇌 사고력 교구 처방
+          </span>
+          <span style="font-size: 0.76rem; color: #C4B5FD; font-weight: 700;">
+            서파수면 기억 공고화 &amp; 전두엽 작업기억 외부화 표준 도구
+          </span>
+        </div>
+        <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+          ${isEn ? 'Tailored Learning Environment, Timers & Cognitive Tools (Top 3)' : '위 뇌인지·학습병목 진단에 맞춘 학습 환경(독서대·타이머) &amp; 사고력 교구 TOP 3'}
+        </h4>
+        <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+          스마트폰 미디어 자극을 줄이고 눈높이 독서대(경추 18kg 하중 차단)와 무소음 시각 타이머, 연령별 맞춤 입체 사고력 교구로 자기주도 몰입 환경을 세팅해 주세요.
+        </p>
+        ${renderCategoryProductCards(learningTools, 'rgba(139, 92, 246, 0.45)', 'learning_tool', isEn)}
       </div>
     `;
   }
@@ -2230,7 +3105,7 @@
    * (뇌인지 결과 기반 어떤 교육이 왜 필요한지 진단 + 1:1 맞춤형 학습 상담 진단서 + 맞춤 도서·워크북·학습도구 큐레이팅)
    */
   function renderCustomEducationChapter(profile = {}, affConfig = {}) {
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const learningPlan = curateLearningCounselingPlan(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
@@ -2488,7 +3363,7 @@
    * (Part 1: 왜 어떤 여행이 필요한지 진단 -> Part 2-A: 내 지역 × 연령대별 실제 인기 과학관·박물관·체험 티켓 TOP 3 -> Part 2-B: 연령대별 시그니처 국내외 교육여행 TOP 3)
    */
   function renderCustomTravelChapter(profile = {}, affConfig = {}) {
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
@@ -2656,8 +3531,11 @@
     getAgeEducationalTravelPhilosophy,
     renderAgeEducationalTravelGuide,
     renderLifecycleTimelineOnly,
+    renderCognitiveCurriculumRoadmap,
     renderContextualSupplementsPrescription,
     renderContextualBiomechanicsPrescription,
+    curatePillar2LearningTools,
+    renderPillar2LearningToolsPrescription,
     renderCustomEducationChapter,
     renderCustomTravelChapter,
     renderPinpointAndLifecycleSection

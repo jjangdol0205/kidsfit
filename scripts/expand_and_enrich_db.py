@@ -37,6 +37,9 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 KB_PATH = ROOT_DIR / "src" / "data" / "research-knowledge-base.json"
 STATUS_PATH = ROOT_DIR / "logs" / "research_crawler_status.json"
 
+GROWTH_PILLARS = {"growth_endocrinology", "posture_biomechanics_exercise"}
+LEARNING_PILLARS = {"fine_motor_neuroscience", "pedagogy_montessori_froebel", "parent_child_interaction_museum"}
+
 SUB_DOMAINS: Dict[str, Dict[str, Any]] = {
     "growth_endocrinology_core": {
         "id": "growth_endocrinology_core",
@@ -683,8 +686,10 @@ def classify_paper_enrichment(p: Dict[str, Any]) -> Dict[str, Any]:
     }
 
     tmpl = HORIZON_TEMPLATES.get(sub_domain, HORIZON_TEMPLATES["growth_endocrinology_core"])
+    macro_pillar = "growth" if pillar in GROWTH_PILLARS else "learning"
 
     return {
+        "macro_pillar": macro_pillar,
         "sub_domain": sub_domain,
         "sub_domain_ko": sub_meta["title_ko"],
         "sub_domain_en": sub_meta["title_en"],
@@ -785,18 +790,62 @@ def run_expansion_and_enrichment() -> None:
             "percent": pct,
         })
 
+    growth_macro_count = sum(1 for p in papers if p.get("macro_pillar") == "growth" or p.get("pillar") in GROWTH_PILLARS)
+    learning_macro_count = sum(1 for p in papers if p.get("macro_pillar") == "learning" or p.get("pillar") in LEARNING_PILLARS)
+    total_macro_papers = growth_macro_count + learning_macro_count
+    learning_ratio = (learning_macro_count / total_macro_papers) if total_macro_papers > 0 else 0.5
+    growth_ratio = (growth_macro_count / total_macro_papers) if total_macro_papers > 0 else 0.5
+    learning_pct = round(learning_ratio * 100, 1)
+    growth_pct = round(growth_ratio * 100, 1)
+
+    eff_ratio = round(learning_ratio, 4)
+    if eff_ratio < 0.48:
+        mode = "LEARNING_PRIORITY_BOOST"
+        mode_code = "LEARNING_BOOST_80_20"
+        mode_label_ko = "학습 집중 가속 모드 (Learning Priority Boost)"
+        query_alloc = {"growth_percent": 20, "learning_percent": 80}
+    elif eff_ratio <= 0.52:
+        mode = "BALANCED_50_50"
+        mode_code = "BALANCED_50_50_MODE"
+        mode_label_ko = "50:50 균형 학습 모드 (Balanced 50:50 Mode)"
+        query_alloc = {"growth_percent": 50, "learning_percent": 50}
+    else:
+        mode = "GROWTH_PRIORITY_BOOST"
+        mode_code = "GROWTH_BOOST_80_20"
+        mode_label_ko = "성장 집중 가속 모드 (Growth Priority Boost)"
+        query_alloc = {"growth_percent": 80, "learning_percent": 20}
+
+    macro_pillar_balance = {
+        "growth_macro_count": growth_macro_count,
+        "learning_macro_count": learning_macro_count,
+        "total_macro_papers": total_macro_papers,
+        "growth_ratio": round(growth_ratio, 4),
+        "growth_percent": growth_pct,
+        "learning_ratio": eff_ratio,
+        "learning_percent": learning_pct,
+        "learning_ratio_percent": learning_pct,
+        "target_ratio": 0.50,
+        "mode": mode,
+        "mode_code": mode_code,
+        "mode_label_ko": mode_label_ko,
+        "query_allocation": query_alloc,
+        "last_balanced_utc": now_iso,
+    }
+
     if "metadata" not in kb or not isinstance(kb["metadata"], dict):
         kb["metadata"] = {}
 
     kb["metadata"]["total_papers"] = total_papers
     kb["metadata"]["last_updated_utc"] = now_iso
     kb["metadata"]["pillar_counts"] = pillar_counts
+    kb["metadata"]["macro_pillar_balance"] = macro_pillar_balance
     kb["metadata"]["learning_analytics"] = {
         "last_enriched_utc": now_iso,
         "total_papers": total_papers,
         "total_pillars": 5,
         "total_sub_domains": len(SUB_DOMAINS),
         "newly_expanded_scope_papers": added_new_scope,
+        "macro_pillar_balance": macro_pillar_balance,
         "sub_domain_distribution": sub_domain_summary,
         "horizon_distribution": {
             "short_term": {

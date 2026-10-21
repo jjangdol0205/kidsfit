@@ -27,10 +27,20 @@ function copyRecursiveSync(src, dest) {
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
-    try {
-      fs.copyFileSync(src, dest);
-    } catch (_err) {
-      fs.writeFileSync(dest, fs.readFileSync(src));
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        fs.copyFileSync(src, dest);
+        break;
+      } catch (_err) {
+        try {
+          fs.writeFileSync(dest, fs.readFileSync(src));
+          break;
+        } catch (writeErr) {
+          if (attempt === 3) throw writeErr;
+          const waitTill = Date.now() + 50;
+          while (Date.now() < waitTill) {}
+        }
+      }
     }
   }
 }
@@ -42,7 +52,18 @@ function build() {
   // 1. Reset / Prepare dist/
   if (fs.existsSync(DIST_DIR)) {
     console.log('[1/5] Cleaning existing dist/ directory...');
-    fs.rmSync(DIST_DIR, { recursive: true, force: true });
+    let removed = false;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        fs.rmSync(DIST_DIR, { recursive: true, force: true });
+        removed = true;
+        break;
+      } catch (err) {
+        if (attempt === 3) throw err;
+        const waitTill = Date.now() + 150;
+        while (Date.now() < waitTill) {}
+      }
+    }
   }
   fs.mkdirSync(DIST_DIR, { recursive: true });
   console.log('[1/5] Created fresh dist/ directory.');

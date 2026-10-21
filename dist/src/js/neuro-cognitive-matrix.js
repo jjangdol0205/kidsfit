@@ -393,7 +393,7 @@
   }
 
   // 5. SVG Radar Chart Generator
-  function renderRadarSvg(scores = {}, isGlobal = false) {
+  function renderRadarSvg(scores = {}, isGlobal = false, options = {}) {
     const cx = 200;
     const cy = 200;
     const maxR = 130;
@@ -457,7 +457,7 @@
     });
 
     return `
-      <svg viewBox="0 0 400 400" class="radar-svg" style="width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Neuro-Cognitive Balance Radar Chart">
+      <svg id="${(options && options.id) ? options.id : 'lq-radar-svg'}" viewBox="0 0 400 400" class="radar-svg" style="width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Neuro-Cognitive Balance Radar Chart">
         <defs>
           <radialGradient id="childRadarGrad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="rgba(56, 189, 248, 0.45)" />
@@ -484,6 +484,303 @@
     `;
   }
 
+  // 5-B. 5-Axis Learning Quotient (LQ) Metrics Definitions & Dynamic Engine
+  const LEARNING_QUOTIENT_METRICS = {
+    literacy_vocab: {
+      key: 'literacy_vocab',
+      nameKo: '문해력 (독해·어휘력)',
+      nameEn: 'Reading Literacy & Vocabulary',
+      icon: '📖',
+      targetCortexKo: '좌측 후두-측두엽 시각단어형태영역(VWFA) & 베르니케 영역',
+      descKo: '어휘 다양성, 문맥 인과 추론, 비문학 요약 및 서술형 문맥 이해력',
+      baseScoreDefault: 76,
+      paperCitation: 'Mol & Bus (2011, Psychological Bulletin · PMID:21219058)',
+      citation: 'Mol & Bus (2011, Psychological Bulletin · PMID:21219058)'
+    },
+    math_spatial: {
+      key: 'math_spatial',
+      nameKo: '수리·공간 추론력',
+      nameEn: 'Mathematical & Spatial Reasoning',
+      icon: '📐',
+      targetCortexKo: '두정엽 하두정소엽(IPL) 3차원 심상 회전(Mental Rotation) 신경망',
+      descKo: '도형 위상 감각, 3D 심상 회전, 규칙 발견 및 문장제 조건 시각화',
+      baseScoreDefault: 78,
+      paperCitation: 'Mix et al. (2016, J Educ Psychol · DOI:10.1037/edu0000105)',
+      citation: 'Mix et al. (2016, J Educ Psychol · DOI:10.1037/edu0000105)'
+    },
+    working_memory_focus: {
+      key: 'working_memory_focus',
+      nameKo: '전두엽 작업기억 & 집중 지속력',
+      nameEn: 'Working Memory & Sustained Focus',
+      icon: '⏳',
+      targetCortexKo: '배외측 전전두엽(DLPFC) & 전대상회(ACC) 충동 억제 회로',
+      descKo: '다단계 조건 동시 파지, 시각·청각 분산 억제 및 착석 유지 지속력',
+      baseScoreDefault: 72,
+      paperCitation: 'Gathercole et al. (2004, PMID:14979759) & Moffitt et al. (2011, PMID:21310973)',
+      citation: 'Gathercole et al. (2004, PMID:14979759) & Moffitt et al. (2011, PMID:21310973)'
+    },
+    metacognition_retrieval: {
+      key: 'metacognition_retrieval',
+      nameKo: '메타인지 & 자기주도 인출력',
+      nameEn: 'Metacognition & Active Retrieval',
+      icon: '🧠',
+      targetCortexKo: '전두극 피질(Frontopolar Cortex) & 해마-신피질 인출 회로',
+      descKo: '유창성 착각 제거, 아는 것/모르는 것 판별 및 백지 인출(Active Recall)력',
+      baseScoreDefault: 70,
+      paperCitation: 'Roediger & Karpicke (2006, Psychol Sci · PMID:16507066)',
+      citation: 'Roediger & Karpicke (2006, Psychol Sci · PMID:16507066)'
+    },
+    inquiry_creative: {
+      key: 'inquiry_creative',
+      nameKo: '탐구·창의 표현력',
+      nameEn: 'Inquiry, Science & Creative Expression',
+      icon: '🔬',
+      targetCortexKo: '기본모드신경망(DMN)-집중신경망(CEN) 동적 전환 회로',
+      descKo: '경험적 가설 설정, 인과 질문, 하브루타 토론 참여도 및 창의적 표현',
+      baseScoreDefault: 80,
+      paperCitation: 'Romeo et al. (2018, PMID:29648612) & Fiorella & Mayer (2014)',
+      citation: 'Romeo et al. (2018, PMID:29648612) & Fiorella & Mayer (2014)'
+    }
+  };
+
+  /**
+   * Calculates the 5 Learning Quotient (LQ) Metrics and 6-Month Trajectory Simulation
+   */
+  function calculateLqMetrics(profile = {}) {
+    const cogAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : [];
+    const concerns = Array.isArray(profile.traitLearningConcerns) ? profile.traitLearningConcerns : [];
+    const temps = Array.isArray(profile.traitTemperament) ? profile.traitTemperament : [];
+    const studyStyle = String(profile.traitStudyStyle || 'dialogue_question');
+    const focusSpan = String(profile.traitFocusSpan || '15_20m');
+
+    const scores = {
+      literacy_vocab: 76,
+      math_spatial: 78,
+      working_memory_focus: 72,
+      metacognition_retrieval: 70,
+      inquiry_creative: 80
+    };
+
+    // Cognitive axes priority (+12~16)
+    if (cogAxes.includes('language_reading')) scores.literacy_vocab += 14;
+    if (cogAxes.includes('math_logic')) scores.math_spatial += 14;
+    if (cogAxes.includes('executive_focus')) {
+      scores.working_memory_focus += 14;
+      scores.metacognition_retrieval += 8;
+    }
+    if (cogAxes.includes('science_nature')) scores.inquiry_creative += 14;
+    if (cogAxes.includes('sensory_arts')) {
+      scores.inquiry_creative += 8;
+      scores.math_spatial += 4;
+    }
+
+    // Temperament modifiers
+    if (temps.includes('questioner')) {
+      scores.literacy_vocab += 4;
+      scores.inquiry_creative += 4;
+    }
+    if (temps.includes('builder')) {
+      scores.math_spatial += 5;
+      scores.working_memory_focus += 3;
+    }
+    if (temps.includes('explorer')) {
+      scores.inquiry_creative += 5;
+    }
+    if (temps.includes('cautious')) {
+      scores.metacognition_retrieval += 4;
+      scores.working_memory_focus += 3;
+    }
+
+    // Study style modifiers
+    if (studyStyle === 'dialogue_question') {
+      scores.literacy_vocab += 5;
+      scores.inquiry_creative += 4;
+    } else if (studyStyle === 'play_manipulative') {
+      scores.math_spatial += 5;
+      scores.inquiry_creative += 3;
+    } else if (studyStyle === 'visual_story') {
+      scores.literacy_vocab += 4;
+      scores.inquiry_creative += 4;
+    } else if (studyStyle === 'goal_workbook') {
+      scores.metacognition_retrieval += 5;
+      scores.working_memory_focus += 4;
+    }
+
+    // Focus span modifiers
+    if (focusSpan === '30m_plus') {
+      scores.working_memory_focus += 6;
+      scores.metacognition_retrieval += 3;
+    } else if (focusSpan === 'under_10m') {
+      scores.working_memory_focus -= 5;
+      scores.metacognition_retrieval -= 3;
+    }
+
+    // Bottlenecks adjustments
+    if (concerns.includes('reading_literacy')) scores.literacy_vocab -= 4;
+    if (concerns.includes('math_concept')) scores.math_spatial -= 4;
+    if (concerns.includes('passive_forget')) scores.metacognition_retrieval -= 5;
+    if (concerns.includes('screen_dopamine')) scores.working_memory_focus -= 5;
+    if (concerns.includes('desk_endurance')) scores.working_memory_focus -= 4;
+    if (concerns.includes('vocab_expression')) scores.literacy_vocab -= 3;
+
+    // Clamping
+    Object.keys(scores).forEach(k => {
+      scores[k] = Math.min(96, Math.max(58, scores[k]));
+    });
+
+    const sum = Object.values(scores).reduce((a, b) => a + b, 0);
+    const overallLQ = Math.round((sum / 5) * 10) / 10;
+    const zScore = (overallLQ - 70) / 12;
+    const t = 1.0 / (1.0 + 0.2316419 * Math.abs(zScore));
+    const d = 0.3989423 * Math.exp(-zScore * zScore / 2.0);
+    const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+    const cdf = zScore >= 0 ? 1.0 - prob : prob;
+    const topPercent = Math.max(1, Math.min(99, Math.round((1 - cdf) * 1000) / 10));
+
+    const trajectory = {
+      unmanaged: {
+        focusMinutes: 12,
+        forgetRatePercent: 52,
+        retentionPercent: 48,
+        lqScore: Math.max(58, Math.round(overallLQ - 13)),
+        statusKo: '현재 학습 습관 유지 시 (방치 궤적)',
+        statusEn: 'Unmanaged Trajectory'
+      },
+      baseline: {
+        focusMinutes: 20,
+        forgetRatePercent: 38,
+        retentionPercent: 62,
+        lqScore: 75,
+        statusKo: '또래 평균 기준선',
+        statusEn: 'Age Baseline'
+      },
+      coached: {
+        focusMinutes: 35,
+        forgetRatePercent: 8,
+        retentionPercent: 92,
+        lqScore: Math.min(96, Math.round(overallLQ + 12)),
+        gainLq: Math.min(25, Math.round((overallLQ + 12) - (overallLQ - 13))),
+        focusGainMinutes: 23,
+        statusKo: '6개월 맞춤 학습 코칭 실천 시',
+        statusEn: '6-Month Tailored Coaching'
+      }
+    };
+
+    return {
+      scores,
+      overallLQ,
+      topPercent,
+      metricsMeta: LEARNING_QUOTIENT_METRICS,
+      trajectory
+    };
+  }
+
+  /**
+   * Renders the 5-Axis LQ Radar Chart with id="lq-radar-svg"
+   */
+  function renderLqRadarSvg(lqScores = {}, isGlobal = false) {
+    const scores = {
+      literacy_vocab: Number(lqScores.literacy_vocab) || 75,
+      math_spatial: Number(lqScores.math_spatial) || 75,
+      working_memory_focus: Number(lqScores.working_memory_focus) || 75,
+      metacognition_retrieval: Number(lqScores.metacognition_retrieval) || 75,
+      inquiry_creative: Number(lqScores.inquiry_creative) || 75
+    };
+
+    const cx = 200;
+    const cy = 200;
+    const maxR = 130;
+    const keys = ['literacy_vocab', 'math_spatial', 'working_memory_focus', 'metacognition_retrieval', 'inquiry_creative'];
+    const n = keys.length;
+
+    // Grid webs (20, 40, 60, 80, 100)
+    let gridSvg = '';
+    [0.2, 0.4, 0.6, 0.8, 1.0].forEach(ratio => {
+      const r = maxR * ratio;
+      const polyPts = [];
+      for (let i = 0; i < n; i++) {
+        const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        polyPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+      }
+      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />`;
+      gridSvg += `<text x="${cx + 4}" y="${(cy - r + 4).toFixed(1)}" font-size="9" fill="rgba(255, 255, 255, 0.25)" font-family="monospace">${Math.round(ratio * 100)}</text>`;
+    });
+
+    // Spokes & Axis Labels
+    let spokesSvg = '';
+    const childPoints = [];
+    const baselinePoints = [];
+
+    keys.forEach((key, i) => {
+      const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
+      const x = cx + maxR * Math.cos(angle);
+      const y = cy + maxR * Math.sin(angle);
+      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255, 255, 255, 0.12)" stroke-dasharray="2,2" />`;
+
+      const meta = LEARNING_QUOTIENT_METRICS[key];
+      const labelText = isGlobal ? meta.nameEn : meta.nameKo;
+      const lx = cx + (maxR + 26) * Math.cos(angle);
+      const ly = cy + (maxR + 18) * Math.sin(angle);
+      const anchor = Math.abs(x - cx) < 10 ? 'middle' : (x > cx ? 'start' : 'end');
+
+      spokesSvg += `
+        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" font-size="11" font-weight="800" fill="#E2E8F0" dominant-baseline="central">
+          ${meta.icon} ${labelText}
+        </text>
+      `;
+
+      // Baseline (70)
+      const baseR = maxR * (70 / 100);
+      baselinePoints.push(`${(cx + baseR * Math.cos(angle)).toFixed(1)},${(cy + baseR * Math.sin(angle)).toFixed(1)}`);
+
+      // Child Score
+      const childR = maxR * (Math.min(100, Math.max(0, scores[key])) / 100);
+      const px = cx + childR * Math.cos(angle);
+      const py = cy + childR * Math.sin(angle);
+      childPoints.push({ x: px.toFixed(1), y: py.toFixed(1), score: scores[key], label: labelText });
+    });
+
+    const baselinePath = 'M ' + baselinePoints.join(' L ') + ' Z';
+    const childPath = 'M ' + childPoints.map(p => `${p.x},${p.y}`).join(' L ') + ' Z';
+
+    let verticesSvg = '';
+    childPoints.forEach(p => {
+      verticesSvg += `
+        <circle cx="${p.x}" cy="${p.y}" r="5" fill="#A855F7" stroke="#FFFFFF" stroke-width="1.8">
+          <title>${p.label}: ${p.score}점</title>
+        </circle>
+      `;
+    });
+
+    return `
+      <svg id="lq-radar-svg" viewBox="0 0 400 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
+        <defs>
+          <radialGradient id="childLqRadarGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(168, 85, 247, 0.45)" />
+            <stop offset="100%" stop-color="rgba(56, 189, 248, 0.18)" />
+          </radialGradient>
+        </defs>
+
+        <!-- Background Concentric Webs -->
+        ${gridSvg}
+
+        <!-- 5 Axis Spokes -->
+        ${spokesSvg}
+
+        <!-- Baseline Normative 70 Polygon (Dashed Slate) -->
+        <path d="${baselinePath}" fill="rgba(148, 163, 184, 0.08)" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4" />
+
+        <!-- Child LQ Profile Polygon (Glowing Violet/Cyan) -->
+        <path d="${childPath}" fill="url(#childLqRadarGrad)" stroke="#C084FC" stroke-width="2.5" />
+
+        <!-- Vertex Point Pins -->
+        ${verticesSvg}
+      </svg>
+    `;
+  }
+
   // 6. Age Golden Window Resolver
   function getGoldenTimeInfo(ageYears = 10) {
     const y = Math.max(1, Math.min(20, Number(ageYears) || 10));
@@ -492,7 +789,7 @@
 
   // 7. Full HTML Section Renderer
   function renderNeuroSection(profile = {}, affConfig = {}) {
-    const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
+    const isGlobal = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') || profile.language === 'en';
     const ageYears = profile.ageYears || (profile.ageMonths ? Math.round(profile.ageMonths / 12) : 10);
     const cogAxes = profile.cognitiveAxes || [];
 
@@ -778,11 +1075,14 @@
     CORTICAL_GOLDEN_WINDOWS,
     HAVRUTA_QUESTIONS,
     EXPLORATION_SITES,
+    LEARNING_QUOTIENT_METRICS,
     calculateCognitiveScores,
     calculateDetailedCognitiveAudit,
     calculateRadarPoints,
     pointsToSvgPolygonPath,
     renderRadarSvg,
+    calculateLqMetrics,
+    renderLqRadarSvg,
     getGoldenTimeInfo,
     renderNeuroSection
   };

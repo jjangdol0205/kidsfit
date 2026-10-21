@@ -37,6 +37,9 @@ LOG_OUT = ROOT_DIR / "logs" / "research_crawler_status.json"
 
 USER_AGENT = "KidsFitGrowthStudioResearchBot/2.0 (https://kidsfit.kr; mailto:research@kidsfit.kr)"
 
+GROWTH_PILLARS = {"growth_endocrinology", "posture_biomechanics_exercise"}
+LEARNING_PILLARS = {"fine_motor_neuroscience", "pedagogy_montessori_froebel", "parent_child_interaction_museum"}
+
 PILLARS: Dict[str, Dict[str, Any]] = {
     "growth_endocrinology": {
         "id": "growth_endocrinology",
@@ -1102,6 +1105,7 @@ def crawl_pubmed_live(pillar_id: str, query: str, retmax: int = 4) -> List[Dict[
                 "pmid": str(pmid),
                 "doi": doi,
                 "pillar": pillar_id,
+                "macro_pillar": "growth" if pillar_id in GROWTH_PILLARS else "learning",
                 "title": title,
                 "title_ko": ko_info["title_ko"],
                 "authors": authors,
@@ -1179,6 +1183,7 @@ def crawl_crossref_live(pillar_id: str, query: str, rows: int = 5) -> List[Dict[
                 "pmid": "",
                 "doi": doi,
                 "pillar": pillar_id,
+                "macro_pillar": "growth" if pillar_id in GROWTH_PILLARS else "learning",
                 "title": title,
                 "title_ko": ko_info["title_ko"],
                 "authors": authors_list,

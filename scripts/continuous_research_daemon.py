@@ -45,7 +45,10 @@ from crawl_research_papers import (
     synthesize_korean_clinical_insight,
 )
 
-EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
+GROWTH_PILLARS = {"growth_endocrinology", "posture_biomechanics_exercise"}
+LEARNING_PILLARS = {"fine_motor_neuroscience", "pedagogy_montessori_froebel", "parent_child_interaction_museum"}
+
+GROWTH_DAEMON_QUERIES: List[Dict[str, str]] = [
     # Pillar 1: growth_endocrinology
     {
         "pillar": "growth_endocrinology",
@@ -77,6 +80,61 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "crossref",
         "query": "astragalus phlomis longitudinal bone growth IGFBP-3 children",
     },
+    # Pillar 5: posture_biomechanics_exercise
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "pubmed",
+        "query": "(\"rope skipping\"[Title/Abstract] OR \"plyometric\"[Title/Abstract]) AND (\"bone\"[Title/Abstract] OR \"growth\"[Title/Abstract]) AND (children)",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "openalex",
+        "query": "pediatric scoliosis forward head posture corrective exercise children",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "smartphone screen time craniovertebral angle neck posture school children",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "pubmed",
+        "query": "(\"high-impact exercise\"[Title/Abstract] OR \"jumping\"[Title/Abstract]) AND (\"bone mineral accrual\"[Title/Abstract]) AND (\"prepubertal\"[Title/Abstract])",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "openalex",
+        "query": "ergonomic school furniture sitting posture lumbar lordosis children",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "trampoline balance training proprioception gross motor coordination children",
+    },
+    # Expanded Scope Growth: Chronobiology, Gut-Bone Nutrigenomics, Spinal Decompression
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"blue light\"[Title/Abstract] OR \"evening light\"[Title/Abstract]) AND (\"melatonin\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"adolescents\"[Title/Abstract])",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "crossref",
+        "query": "vitamin K2 menaquinone-7 osteocalcin bone mineral density children supplementation",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"gut microbiota\"[Title/Abstract] OR \"short-chain fatty acids\"[Title/Abstract]) AND (\"IGF-1\"[Title/Abstract] OR \"bone growth\"[Title/Abstract])",
+    },
+    {
+        "pillar": "posture_biomechanics_exercise",
+        "engine": "crossref",
+        "query": "diurnal stature variation intervertebral disc hydration spinal decompression adolescents",
+    },
+]
+
+LEARNING_DAEMON_QUERIES: List[Dict[str, str]] = [
     # Pillar 2: fine_motor_neuroscience
     {
         "pillar": "fine_motor_neuroscience",
@@ -170,53 +228,7 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "crossref",
         "query": "maternal sensitivity autonomy support toddler defiance compliance self-regulation",
     },
-    # Pillar 5: posture_biomechanics_exercise
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "pubmed",
-        "query": "(\"rope skipping\"[Title/Abstract] OR \"plyometric\"[Title/Abstract]) AND (\"bone\"[Title/Abstract] OR \"growth\"[Title/Abstract]) AND (children)",
-    },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "openalex",
-        "query": "pediatric scoliosis forward head posture corrective exercise children",
-    },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "crossref",
-        "query": "smartphone screen time craniovertebral angle neck posture school children",
-    },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "pubmed",
-        "query": "(\"high-impact exercise\"[Title/Abstract] OR \"jumping\"[Title/Abstract]) AND (\"bone mineral accrual\"[Title/Abstract]) AND (\"prepubertal\"[Title/Abstract])",
-    },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "openalex",
-        "query": "ergonomic school furniture sitting posture lumbar lordosis children",
-    },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "crossref",
-        "query": "trampoline balance training proprioception gross motor coordination children",
-    },
-    # Expanded Autonomous Scope: Chronobiology, Gut-Bone Nutrigenomics, Longitudinal EF, Spinal Decompression
-    {
-        "pillar": "growth_endocrinology",
-        "engine": "pubmed",
-        "query": "(\"blue light\"[Title/Abstract] OR \"evening light\"[Title/Abstract]) AND (\"melatonin\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"adolescents\"[Title/Abstract])",
-    },
-    {
-        "pillar": "growth_endocrinology",
-        "engine": "crossref",
-        "query": "vitamin K2 menaquinone-7 osteocalcin bone mineral density children supplementation",
-    },
-    {
-        "pillar": "growth_endocrinology",
-        "engine": "pubmed",
-        "query": "(\"gut microbiota\"[Title/Abstract] OR \"short-chain fatty acids\"[Title/Abstract]) AND (\"IGF-1\"[Title/Abstract] OR \"bone growth\"[Title/Abstract])",
-    },
+    # Expanded Scope Learning: Longitudinal EF, Conversational Turns, Active Recall, Spatial Math, Sleep-Memory
     {
         "pillar": "fine_motor_neuroscience",
         "engine": "crossref",
@@ -227,12 +239,6 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "pubmed",
         "query": "(\"conversational turns\"[Title/Abstract] OR \"parent-child interaction\"[Title/Abstract]) AND (\"Broca\"[Title/Abstract] OR \"language development\"[Title/Abstract])",
     },
-    {
-        "pillar": "posture_biomechanics_exercise",
-        "engine": "crossref",
-        "query": "diurnal stature variation intervertebral disc hydration spinal decompression adolescents",
-    },
-    # Child Learning Science: Literacy, Math/Spatial Problem Solving, Metacognition, Active Recall, Sleep-Memory
     {
         "pillar": "fine_motor_neuroscience",
         "engine": "pubmed",
@@ -249,7 +255,7 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "query": "spatial reasoning mental rotation mathematical word problem solving elementary children",
     },
     {
-        "pillar": "growth_endocrinology",
+        "pillar": "fine_motor_neuroscience",
         "engine": "pubmed",
         "query": "(\"slow-wave sleep\"[Title/Abstract]) AND (\"memory consolidation\"[Title/Abstract] OR \"hippocampus\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"adolescents\"[Title/Abstract])",
     },
@@ -259,6 +265,8 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "query": "working memory capacity mathematical achievement reading comprehension school children",
     },
 ]
+
+EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = GROWTH_DAEMON_QUERIES + LEARNING_DAEMON_QUERIES
 
 
 def crawl_openalex_live(
@@ -313,6 +321,7 @@ def crawl_openalex_live(
                 "pmid": pmid,
                 "doi": doi,
                 "pillar": pillar_id,
+                "macro_pillar": "growth" if pillar_id in GROWTH_PILLARS else "learning",
                 "title": title,
                 "title_ko": ko_info["title_ko"],
                 "authors": authors,
@@ -367,13 +376,60 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
     newly_added = 0
     cycle_queries_log = []
 
-    # Select a rotating window of 10 queries per cycle + dynamic pagination offset
-    total_q = len(EXPANDED_DAEMON_QUERIES)
-    batch_size = 10
-    start_idx = ((cycle_index - 1) * 5) % total_q
-    selected_queries = [
-        EXPANDED_DAEMON_QUERIES[(start_idx + i) % total_q] for i in range(batch_size)
+    # Inspect macro_pillar_balance from KB before query selection
+    macro_balance = (
+        kb_data.get("metadata", {}).get("learning_analytics", {}).get("macro_pillar_balance")
+        or kb_data.get("metadata", {}).get("macro_pillar_balance")
+    )
+
+    if macro_balance:
+        learning_ratio = macro_balance.get("learning_ratio", 0.5)
+        growth_macro_count = macro_balance.get("growth_macro_count", 0)
+        learning_macro_count = macro_balance.get("learning_macro_count", 0)
+    else:
+        growth_macro_count = sum(1 for p in existing_papers if p.get("macro_pillar") == "growth" or p.get("pillar") in GROWTH_PILLARS)
+        learning_macro_count = sum(1 for p in existing_papers if p.get("macro_pillar") == "learning" or p.get("pillar") in LEARNING_PILLARS)
+        tot = growth_macro_count + learning_macro_count
+        learning_ratio = (learning_macro_count / tot) if tot > 0 else 0.5
+
+    eff_ratio = round(learning_ratio, 4)
+    learning_pct = round(learning_ratio * 100, 1)
+
+    # Dynamic Weight Balancing Rule (Requirement R3):
+    # - learning_ratio < 0.48: LEARNING_PRIORITY_BOOST (8 learning : 2 growth queries)
+    # - 0.48 <= learning_ratio <= 0.52: BALANCED_50_50 (5 learning : 5 growth queries)
+    # - learning_ratio > 0.52: GROWTH_PRIORITY_BOOST (2 learning : 8 growth queries)
+    if eff_ratio < 0.48:
+        mode = "LEARNING_PRIORITY_BOOST"
+        mode_code = "LEARNING_BOOST_80_20"
+        growth_slots = 2
+        learning_slots = 8
+    elif eff_ratio <= 0.52:
+        mode = "BALANCED_50_50"
+        mode_code = "BALANCED_50_50_MODE"
+        growth_slots = 5
+        learning_slots = 5
+    else:
+        mode = "GROWTH_PRIORITY_BOOST"
+        mode_code = "GROWTH_BOOST_80_20"
+        growth_slots = 8
+        learning_slots = 2
+
+    print(f"[DAEMON BALANCE MODE: {mode}] Learning Ratio: {learning_pct}% (Growth: {growth_macro_count}, Learning: {learning_macro_count}, Alloc: {growth_slots}G:{learning_slots}L)")
+
+    # Select rotating queries according to active allocation ratio
+    g_total = len(GROWTH_DAEMON_QUERIES)
+    l_total = len(LEARNING_DAEMON_QUERIES)
+    g_start = ((cycle_index - 1) * growth_slots) % g_total
+    l_start = ((cycle_index - 1) * learning_slots) % l_total
+
+    selected_growth = [
+        GROWTH_DAEMON_QUERIES[(g_start + i) % g_total] for i in range(growth_slots)
     ]
+    selected_learning = [
+        LEARNING_DAEMON_QUERIES[(l_start + i) % l_total] for i in range(learning_slots)
+    ]
+    selected_queries = selected_growth + selected_learning
     page_num = ((cycle_index - 1) // 3) + 1
 
     for eq in selected_queries:
@@ -511,6 +567,10 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
         "status": "daemon_active",
         "cycle_index": cycle_index,
         "last_run_utc": now_iso,
+        "balance_mode": mode,
+        "balance_mode_code": mode_code,
+        "learning_ratio_percent": learning_pct,
+        "macro_pillar_balance": kb_data.get("metadata", {}).get("learning_analytics", {}).get("macro_pillar_balance"),
         "total_papers": len(existing_papers),
         "newly_added_in_cycle": newly_added,
         "pillar_counts": pillar_counts,
@@ -525,7 +585,7 @@ def run_incremental_cycle(cycle_index: int = 0) -> Dict[str, Any]:
         json.dump(status_payload, f, ensure_ascii=False, indent=2)
 
     print(
-        f"[DAEMON CYCLE #{cycle_index}] Added {newly_added} new papers. Total in KB: {len(existing_papers)}."
+        f"[DAEMON CYCLE #{cycle_index}] [DAEMON BALANCE MODE: {mode}] Learning Ratio: {learning_pct}% | Added {newly_added} new papers. Total in KB: {len(existing_papers)}."
     )
     return status_payload
 

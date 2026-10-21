@@ -346,6 +346,7 @@
       curHeight = childData.currentHeight || 137.0;
     }
 
+    habits = Array.isArray(habits) ? habits : [];
     let totalPenalty = 0;
     for (const h of habits) {
       if (HABIT_LOSS_MAP[h]) totalPenalty += HABIT_LOSS_MAP[h];
@@ -408,6 +409,7 @@
 
   // Legacy calculateHeightPrediction for compatibility
   function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none') {
+    habits = Array.isArray(habits) ? habits : [];
     let loss = 0;
     habits.forEach((h) => {
       if (HABIT_LOSS_MAP[h]) loss += HABIT_LOSS_MAP[h];
@@ -800,7 +802,7 @@
   function renderTab1Report(profile) {
     const ageMonths = profile.ageMonths || ((profile.ageYears || 10) * 12);
     const gender = normalizeSex(profile.gender);
-    const standard = (typeof document !== 'undefined' && document.documentElement.lang === 'en') ? 'CDC' : 'KDCA';
+    const standard = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'CDC' : 'KDCA';
 
     const lms = getLmsForMonth(gender, ageMonths, standard);
     const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);

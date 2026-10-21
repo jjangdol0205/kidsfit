@@ -6,3 +6,5 @@ logs/flow_daemon_status.json
 .flow-browser-profile/
 .agents/
 .gemini/
+__pycache__/
+*.pyc
