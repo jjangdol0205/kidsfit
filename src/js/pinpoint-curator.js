@@ -339,12 +339,12 @@
   const CURATED_SPECIFIC_PRODUCTS_DB = {
     liquid_calcium_toddler: [
       {
-        rankKo: '🏆 엄선 1위',
-        rankEn: '🏆 Pick #1',
-        titleKo: '차일드라이프(ChildLife) 액상 칼슘 위드 마그네슘 오렌지맛 474ml',
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: '차일드라이프(ChildLife) 액상 칼슘 마그네슘 오렌지맛 474ml & 뉴질랜드 초유 칼슘',
         titleEn: 'ChildLife Essentials Liquid Calcium with Magnesium Orange (474ml)',
-        specKo: '구연산칼슘 252mg + 마그네슘 115mg + 비타민D3 100IU + 아연 2mg 액상 시럽',
-        specEn: 'Calcium Citrate 252mg + Magnesium 115mg + Vit D3 + Zinc Liquid',
+        specKo: '칼슘 + 비타민D3 + 아연·마그네슘 함유! 아침저녁으로 간편하고 상큼한 오렌지맛으로 아이들이 아주 잘 먹어 6개월 이상 꾸준히 먹이고 재주문하는 제품이에요~!',
+        specEn: 'Calcium Citrate + Magnesium + Vit D3 + Zinc in a delicious natural orange flavor kids love morning & night!',
         cpQuery: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml',
         ihQuery: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange 16 fl oz',
         yesQuery: '유아 영양식단 백과'
@@ -354,7 +354,7 @@
         rankEn: '✨ Pick #2',
         titleKo: '트루엔 키즈 칼슘 마그네슘 비타민D 아연 액상 스틱 (어골·해조칼슘)',
         titleEn: 'Truen Kids Liquid Calcium Magnesium Vitamin D Zinc Stick Pouch',
-        specKo: '개별 스틱포 포장 · 무첨가 어린이 고흡수 칼슘·마그네슘·비타민D3',
+        specKo: '하루 1~2포 간편 스틱 포장 · 우유 배앓이 없이 깔끔한 맛으로 아이들이 먼저 찾는 고흡수 칼슘·비타민D3~!',
         specEn: 'Single-serve liquid sticks · High-absorption Calcium + Mg + D3',
         cpQuery: '트루엔 키즈 칼슘 마그네슘 비타민D 액상 스틱',
         ihQuery: 'Nature\'s Way Alive Kids Calcium + Vitamin D3 Gummies',
@@ -363,12 +363,12 @@
     ],
     ht042_growth: [
       {
-        rankKo: '🏆 엄선 1위',
-        rankEn: '🏆 Pick #1',
-        titleKo: '종근당건강 아이커 (식약처 인정 HT042 황기추출물 등 복합물 정품 · 30포)',
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: '종근당건강 아이커 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연 정품)',
         titleEn: 'Chong Kun Dang Health I-KER (MFDS Approved HT042 Astragalus Complex · 30 Packets)',
-        specKo: '식약처 어린이 키성장 기능성 원료 HT042 정량 + 칼슘·비타민D·아연 배합',
-        specEn: 'Official HT042 clinical dosage + Calcium, Vitamin D, and Zinc',
+        specKo: '성장기 아이에게 어떤 걸 먹일까 고민 끝! 식약처 인정 HT042 + 칼슘·비타민D·아연이 한 번에 들어있어 아침저녁으로 간편하게 챙기고 6개월 이상 꾸준히 재주문하는 1위 제품이에요~!',
+        specEn: 'Official HT042 clinical dosage + Calcium, Vitamin D, and Zinc for 6+ months consistent growth care',
         cpQuery: '종근당건강 아이커 HT042 황기추출물 키성장 30포',
         ihQuery: 'Nature\'s Answer Astragalus Root Fluid Extract Alcohol Free',
         yesQuery: '어린이 키성장 영양 가이드'
@@ -376,9 +376,9 @@
       {
         rankKo: '✨ 엄선 2위',
         rankEn: '✨ Pick #2',
-        titleKo: '보타니스타 키클래오042 / 퍼니트 키즈텐042 (HT042 황기추출물 젤리·액상형)',
+        titleKo: '보타니스타 키클래오042 / 퍼니트 키즈텐042 (HT042 황기추출물 젤리·타블렛형)',
         titleEn: 'Botanista KiCleo 042 (HT042 Astragalus + Red Ginseng Jelly Stick)',
-        specKo: '우유에 타 먹기 싫어하는 아이용 포도·사과맛 HT042 스틱 젤리 제형',
+        specKo: '우유 없이도 간식처럼 씹어서 먹을 수 있고 상큼한 과일맛으로 아이들이 아주 잘 먹어요~!',
         specEn: 'Easy-to-eat grape/apple jelly stick with full HT042 complex + 6-yr red ginseng',
         cpQuery: '보타니스타 키클래오042 황기추출물 HT042 어린이 키성장',
         ihQuery: 'Planetary Herbals Astragalus Extract Full Spectrum',
@@ -387,22 +387,22 @@
     ],
     zinc_colostrum: [
       {
-        rankKo: '🏆 엄선 1위',
-        rankEn: '🏆 Pick #1',
-        titleKo: '일동후디스 하이키즈 초유 플러스 아연·칼슘 / 차일드라이프 초유 파우더',
-        titleEn: 'ChildLife Probiotics with Colostrum Powder / Hoodis Hi-Kids Colostrum Zinc',
-        specKo: '뉴질랜드 초유단백(IgG) + 글루콘산·산화아연 + 성장기 필수 아미노산',
-        specEn: 'Bovine Colostrum IgG + Bioavailable Zinc + Growth Amino Acids',
-        cpQuery: '일동후디스 초유 플러스 어린이 아연 아르기닌 영양제',
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: '뉴질랜드 초유 칼슘 츄어블 & 일동후디스 하이키즈 초유 플러스 아연·비타민D3',
+        titleEn: 'New Zealand Colostrum Calcium Chewable / Hoodis Hi-Kids Colostrum Zinc',
+        specKo: '1알에 우유칼슘 + 비타민C + 뉴질랜드초유, 비타민A,B,D3,E, 철분, 아연, 마그네슘이 다 들어있어요~! 타블렛 형태로 아침저녁 씹어 먹고 깔끔한 오렌지맛이라 6개월 이상 꾸준히 재주문하는 핫템입니다~!',
+        specEn: '1 tablet packs Milk Calcium + Vit C + NZ Colostrum + Vit A,B,D3,E + Iron, Zinc & Magnesium in a clean orange chewable!',
+        cpQuery: '뉴질랜드 초유 칼슘 비타민D 아연 마그네슘 어린이 오렌지맛 츄어블',
         ihQuery: 'ChildLife Probiotics with Colostrum Powder Natural Orange Pineapple',
         yesQuery: '편식 아이 식습관 교정'
       },
       {
         rankKo: '✨ 엄선 2위',
         rankEn: '✨ Pick #2',
-        titleKo: '세노비스 키즈 멀티비타민 미네랄 / 네이처스웨이 키즈 삼부카스 아연 구미',
+        titleKo: '세노비스 키즈 멀티비타민 미네랄 / 네이처스웨이 키즈 아연 츄어블',
         titleEn: 'Nature\'s Way Sambucus Kids Immune Gummy with Zinc & Vitamin C',
-        specKo: '입 짧은 편식 아동의 미각 세포 활성화 및 정상 면역·성장 세포분열 지원',
+        specKo: '입 짧은 편식 아이도 사탕처럼 맛있게 씹어 먹으며 아연·비타민A,B,C,D3,E를 간편하게 채워줘요~!',
         specEn: 'Supports taste-bud cell turnover, appetite & IGF-1 synthesis in picky eaters',
         cpQuery: '세노비스 키즈 멀티비타민 미네랄 어린이 아연 츄어블',
         ihQuery: 'Nature\'s Way Sambucus Kids Gummies Standardized Elderberry Zinc',
@@ -411,12 +411,12 @@
     ],
     sleep_magnesium_tartcherry: [
       {
-        rankKo: '🏆 엄선 1위',
-        rankEn: '🏆 Pick #1',
-        titleKo: '노르딕 내추럴스(Nordic Naturals) 마그네슘 젤리 구미 / 솔가 킬레이트 마그네슘',
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: '노르딕 내추럴스(Nordic Naturals) 마그네슘 오렌지·만다린 구미 & 칼슘·비타민D3',
         titleEn: 'Nordic Naturals Zero Sugar Magnesium Gummies / Solgar Chelated Magnesium',
-        specKo: '구연산·글리시네이트 마그네슘 킬레이트 제형 · 저녁 성장통 완화 및 서파수면 유도',
-        specEn: 'Highly bioavailable chelated magnesium for nocturnal muscle relaxation & SWS sleep',
+        specKo: '저녁 식후 1알로 칼슘·마그네슘·비타민D3를 간편하게! 상큼한 오렌지·귤맛 츄어블이라 아이들이 잘 먹고 밤마다 깨던 성장통 없이 푹 자서 재주문율 최고예요~!',
+        specEn: 'Highly bioavailable chelated magnesium in a clean tangerine chewable for deep sleep & leg comfort',
         cpQuery: '노르딕내추럴스 마그네슘 구미 어린이 칼슘 마그네슘 비타민D',
         ihQuery: 'Nordic Naturals Zero Sugar Magnesium Gummies Tangerine',
         yesQuery: '수면과 성장호르몬 과학'
@@ -424,9 +424,9 @@
       {
         rankKo: '✨ 엄선 2위',
         rankEn: '✨ Pick #2',
-        titleKo: '프롬바이오 키즈 어골칼슘 마그네슘 비타민D & 몽모랑시 타트체리 스틱',
+        titleKo: '프롬바이오 키즈 어골칼슘 마그네슘 비타민D & 타트체리 스틱',
         titleEn: 'FromBIO Kids Fish-Bone Calcium Magnesium D3 & Montmorency Tart Cherry',
-        specKo: '비소성 어골칼슘 + 마그네슘 + 식물성 멜라토닌 함유 타트체리 농축액',
+        specKo: '어골칼슘 + 마그네슘 + 비타민D3가 한 포에 들어있어 저녁마다 간편하게 먹이기 좋아요~!',
         specEn: 'Non-calcined fish bone calcium + magnesium + natural tart cherry phytomelatonin',
         cpQuery: '키즈 어골칼슘 마그네슘 비타민D 타트체리 어린이 영양제',
         ihQuery: 'Dynamic Health Certified Organic Tart Cherry Juice Concentrate',
@@ -435,23 +435,23 @@
     ],
     cartilage_calcium: [
       {
-        rankKo: '🏆 엄선 1위',
-        rankEn: '🏆 Pick #1',
-        titleKo: '종근당건강 아이커 칼슘 / PH365 어린이 비소성 어골·연골칼슘 폴리감마글루탐산',
-        titleEn: 'Premium Kids Non-Calcined Fish-Bone & Cartilage Calcium + PGA + Vit D3/K2',
-        specKo: '인체 뼈 구성비(Ca:P=2:1) 어골·연골칼슘 + 칼슘 흡수 촉진 폴리감마글루탐산(PGA)',
-        specEn: '2:1 Ca:P ratio fish-bone/cartilage calcium + Poly-gamma-glutamic acid (PGA) + D3/K2',
-        cpQuery: '어린이 어골칼슘 연골칼슘 폴리감마글루탐산 비타민D3 K2',
-        ihQuery: ' Carlson Labs Kid\'s Chewable Calcium Vanilla + Vitamin D3',
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: '뉴질랜드 초유 우유칼슘·어골연골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 타블렛',
+        titleEn: 'NZ Colostrum Milk & Cartilage Calcium + Vit D3/C/A/B/E + Iron/Zinc/Mg Orange Chewable',
+        specKo: '1알에 우유·연골칼슘 + 비타민C + 뉴질랜드초유 + 비타민A,B,D3,E + 철분·아연·마그네슘 함유! 아침저녁으로 씹어 먹는 깔끔한 오렌지맛이라 6개월 이상 꾸준히 먹이고 재주문까지 완료하는 스테디셀러~!',
+        specEn: 'All-in-one Milk/Cartilage Calcium + NZ Colostrum + Vit A,B,C,D3,E + Iron, Zinc & Mg in an easy orange chewable tablet!',
+        cpQuery: '어린이 어골칼슘 연골칼슘 초유 비타민D3 아연 마그네슘 츄어블',
+        ihQuery: 'Carlson Labs Kid\'s Chewable Calcium Vanilla + Vitamin D3',
         yesQuery: '소아 뼈성장과 칼슘'
       },
       {
         rankKo: '✨ 엄선 2위',
         rankEn: '✨ Pick #2',
-        titleKo: '네이처스플러스 애니멀 퍼레이드 키즈 칼슘 마그네슘 츄어블 (바닐라맛 90정)',
+        titleKo: '네이처스플러스 애니멀 퍼레이드 키즈 칼슘 마그네슘 츄어블 (90정)',
         titleEn: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Natural Vanilla (90 Tabs)',
-        specKo: '아미노산 킬레이트 칼슘·마그네슘 · 우유 배앓이 없는 무유당 동물 모양 츄어블',
-        specEn: 'Aminoate chelated calcium & magnesium · Lactose-free vanilla chewables',
+        specKo: '우유 배앓이 없는 무유당 킬레이트 칼슘·마그네슘 · 아이들이 좋아하는 동물 모양 타블렛이에요~!',
+        specEn: 'Aminoate chelated calcium & magnesium · Lactose-free chewables',
         cpQuery: '네이처스플러스 애니멀퍼레이드 키즈 칼슘 어린이 츄어블',
         ihQuery: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Supplement Vanilla',
         yesQuery: '어린이 영양제 선택법'
@@ -1306,250 +1306,229 @@
   }
 
   /**
-   * 5. Renders the Clean, Aligned Lifecycle Roadmap + Neutral "Need & Where to Find" Tool Guide
+   * 5. Renders the Clean, Single-View Tabbed Lifecycle Roadmap + 1-Category-at-a-Time Prescription Guide
    */
   function renderPinpointAndLifecycleSection(profile = {}, affConfig = {}) {
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
-    const exactMonths = Number(profile.exactMonths || ageMonths).toFixed(1);
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
-    const genderKo = profile.gender === 'girl' ? '여아' : '남아';
 
     const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
     const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
     const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
 
+    const renderCleanCategoryItems = (items, accentColor, categoryType) => {
+      return items.map((item, itemIdx) => {
+        const topSub = (item.curatedProducts && item.curatedProducts[0]) || {
+          rankKo: '🏆 엄마들 재주문 1위',
+          rankEn: '🏆 Reorder Pick #1',
+          titleKo: item.name,
+          titleEn: item.name,
+          specKo: item.activeSpec,
+          specEn: item.activeSpec,
+          coupangUrl: item.coupangUrl,
+          iherbUrl: item.iherbUrl,
+          yes24Url: item.yes24Url,
+          naverUrl: item.naverUrl
+        };
+        const secondSub = item.curatedProducts && item.curatedProducts[1] ? item.curatedProducts[1] : null;
+
+        const cardBodyHtml = `
+          <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid ${accentColor}; border-radius: 18px; padding: 1.25rem; margin-bottom: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
+              <span style="font-size: 0.82rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                ${isEn ? topSub.rankEn : topSub.rankKo}
+              </span>
+              <span style="font-size: 0.8rem; color: #93C5FD; font-weight: 700;">
+                🔎 ${isEn ? 'Keyword:' : '검색어:'} ${item.coupangQuery}
+              </span>
+            </div>
+
+            <div style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
+              ${isEn ? topSub.titleEn : topSub.titleKo}
+            </div>
+
+            <div style="font-size: 0.96rem; color: #F8FAFC; line-height: 1.62; background: rgba(255, 255, 255, 0.05); border-left: 3.5px solid #34D399; padding: 0.75rem 0.9rem; border-radius: 10px; margin-bottom: 0.85rem;">
+              💬 ${isEn ? topSub.specEn : topSub.specKo}
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.55rem;">
+              <a href="${topSub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.92rem; font-weight: 900; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+                📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
+              </a>
+              ${categoryType === 'book' ? `
+                <a href="${topSub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.22); border: 1px solid rgba(139, 92, 246, 0.5); color: #EDE9FE; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
+                  📚 ${isEn ? 'View on YES24 ↗' : '예스24에서 이 도서 보기 ↗'}
+                </a>
+              ` : categoryType === 'supplement' ? `
+                <a href="${topSub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="iherb" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
+                  🌿 ${isEn ? 'View on iHerb ↗' : '아이허브(iHerb) 직구 보기 ↗'}
+                </a>
+              ` : `
+                <a href="${topSub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
+                  🛍️ ${isEn ? 'View on Naver Brand Store ↗' : '네이버 공식 브랜드관 보기 ↗'}
+                </a>
+              `}
+            </div>
+
+            ${secondSub ? `
+              <details style="margin-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.6rem;">
+                <summary style="cursor: pointer; font-size: 0.84rem; font-weight: 800; color: #93C5FD; outline: none;">
+                  + ${isEn ? 'See Alternative Pick #2' : '대체 추천 상품(엄선 2위) 더보기'}: ${isEn ? secondSub.titleEn : secondSub.titleKo}
+                </summary>
+                <div style="margin-top: 0.55rem; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                  <div style="font-size: 0.88rem; color: #E2E8F0; margin-bottom: 0.5rem;">• ${isEn ? secondSub.specEn : secondSub.specKo}</div>
+                  <a href="${secondSub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="coupang" style="display: inline-flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(255,255,255,0.12); color: #FFFFFF; font-size: 0.82rem; font-weight: 800; padding: 0.45rem 0.9rem; border-radius: 8px; text-decoration: none;">
+                    📦 ${isEn ? 'View Pick #2 on Coupang ↗' : '쿠팡에서 엄선 2위 상품 보기 ↗'}
+                  </a>
+                </div>
+              </details>
+            ` : ''}
+          </div>
+        `;
+
+        if (itemIdx === 0) return cardBodyHtml;
+        return `
+          <details style="margin-top: 0.5rem;">
+            <summary style="cursor: pointer; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; font-size: 0.9rem; font-weight: 800; color: #E2E8F0; outline: none;">
+              ➕ ${isEn ? 'Additional Curated Item:' : '함께 챙기면 좋은 추가 맞춤 추천 보기:'} ${item.name}
+            </summary>
+            <div style="margin-top: 0.6rem;">
+              ${cardBodyHtml}
+            </div>
+          </details>
+        `;
+      }).join('');
+    };
+
     return `
-      <!-- AGE LIFECYCLE TIMELINE (Compact 4-Column Grid) -->
+      <!-- AGE LIFECYCLE TIMELINE (1-Age-at-a-Time Tabbed View — Zero 4-Card Clutter) -->
       <div id="child-lifecycle-roadmap-section" style="margin-top: 1.35rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-          <h3 style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0;">
             🗓️ ${isEn
               ? `Year-by-Year Focus (Age ${ageYears} → Age ${ageYears + 3})`
-              : `앞으로 4년간 나이별 핵심 집중 포인트 (만 ${ageYears}세 → 만 ${ageYears + 3}세)`}
+              : `나이별 집중 포인트 (만 ${ageYears}세 → 만 ${ageYears + 3}세 탭 선택)`}
           </h3>
-          <span style="background: rgba(59, 130, 246, 0.14); color: #60A5FA; font-size: 0.74rem; font-weight: 800; padding: 0.24rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.3);">
+          <span style="background: rgba(59, 130, 246, 0.16); color: #93C5FD; font-size: 0.8rem; font-weight: 800; padding: 0.28rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35);">
             ${isEn ? data.autoStage.stageNameEn : data.autoStage.stageNameKo}
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; align-items: stretch;">
+        <!-- Age Selector Tabs (Click to view 1 age card at a time) -->
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 0.75rem;">
           ${data.lifecycleRoadmap.map((step, idx) => `
-            <div class="lifecycle-age-card" data-age="${step.age}" style="background: ${step.isCurrent ? 'rgba(59, 130, 246, 0.1)' : 'rgba(255, 255, 255, 0.03)'}; border: ${step.isCurrent ? '1.5px solid #3B82F6' : '1px solid rgba(255, 255, 255, 0.1)'}; border-radius: 14px; padding: 0.9rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                  <span style="font-size: 0.74rem; font-weight: 900; color: ${step.isCurrent ? '#60A5FA' : '#94A3B8'};">
-                    ${isEn ? (idx === 0 ? `Now · Age ${step.age}` : `+${idx} Yr · Age ${step.age}`) : (idx === 0 ? `현재 · 만 ${step.age}세` : `+${idx}년 뒤 · 만 ${step.age}세`)}
-                  </span>
-                  <span style="font-size: 0.72rem; font-weight: 800; color: #34D399;">${step.expectedVelocity}</span>
-                </div>
-                <div style="font-size: 0.78rem; color: #E2E8F0; line-height: 1.45; margin-bottom: 0.35rem;">
-                  <strong style="color: #60A5FA;">📏 ${isEn ? 'Body:' : '신체:'}</strong> ${step.physicalFocus.split('·')[0].trim()}
-                </div>
-                <div style="font-size: 0.78rem; color: #E2E8F0; line-height: 1.45; margin-bottom: 0.35rem;">
-                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Study:' : '학습:'}</strong> ${step.brainFocus.split('·')[0].trim()}
-                </div>
+            <button
+              type="button"
+              class="lifecycle-tab-btn"
+              onclick="(function(btn, targetIdx){ var sec = document.getElementById('child-lifecycle-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.lifecycle-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#3B82F6' : 'rgba(255,255,255,0.06)'; b.style.color = '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#60A5FA' : 'rgba(255,255,255,0.15)'; }); })(this, ${idx})"
+              style="padding: 0.55rem 0.4rem; border-radius: 10px; font-size: 0.84rem; font-weight: 800; cursor: pointer; background: ${idx === 0 ? '#3B82F6' : 'rgba(255,255,255,0.06)'}; color: #FFFFFF; border: 1px solid ${idx === 0 ? '#60A5FA' : 'rgba(255,255,255,0.15)'};"
+            >
+              ${isEn ? (idx === 0 ? `Now (${step.age}y)` : `+${idx}Yr (${step.age}y)`) : (idx === 0 ? `현재 만 ${step.age}세` : `만 ${step.age}세 (+${idx}년)`)}
+            </button>
+          `).join('')}
+        </div>
+
+        <div>
+          ${data.lifecycleRoadmap.map((step, idx) => `
+            <div class="lifecycle-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(59, 130, 246, 0.45); border-radius: 16px; padding: 1.15rem 1.25rem; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem;">
+                <span style="font-size: 1.02rem; font-weight: 900; color: #60A5FA;">
+                  📌 ${isEn ? `Age ${step.age} Core Milestone` : `만 ${step.age}세 핵심 성장·발달 체크리스트`}
+                </span>
+                <span style="font-size: 0.86rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                  목표 성장속도: ${step.expectedVelocity}
+                </span>
               </div>
-              <div style="font-size: 0.73rem; color: #6EE7B7; font-weight: 700; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 0.38rem;">
-                🎁 ${step.mustHaveSummary}
+              <div style="font-size: 0.96rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
+                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체 성장 포인트:'}</strong> ${step.physicalFocus.split('·')[0].trim()}
+              </div>
+              <div style="font-size: 0.96rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.5rem;">
+                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·학습 포인트:'}</strong> ${step.brainFocus.split('·')[0].trim()}
+              </div>
+              <div style="font-size: 0.9rem; color: #6EE7B7; font-weight: 800; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.5rem;">
+                🎁 ${isEn ? 'Recommended Prep:' : '이 시기 필수 준비물:'} ${step.mustHaveSummary}
               </div>
             </div>
           `).join('')}
         </div>
       </div>
 
-      <!-- STEP 04: What You Need to Sustain the Routine (Neutral Guidance: Buy Anywhere or Use Reference Links) -->
+      <!-- STEP 04: 1-Category-at-a-Time Tabbed Prescription Guide (Zero 3-Card Clutter!) -->
       <div id="pinpoint-custom-prescription-section" style="margin-top: 1.4rem; padding-top: 1.3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 1rem; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem;">
-            <span style="font-size: 0.75rem; font-weight: 900; color: #34D399; letter-spacing: 0.04em;">
-              STEP 04 · ${isEn ? 'WHAT YOU NEED FOR CONSISTENT PRACTICE' : '꾸준히 실천하기 위해 필요한 맞춤 도구'}
-            </span>
-            <span style="font-size: 0.73rem; color: #94A3B8; font-weight: 700;">
-              ${isEn ? 'Self-Search Keyword or Direct Reference' : '직접 찾아서 구매하셔도 되고, 아래 링크를 참고하셔도 됩니다'}
-            </span>
-          </div>
-          <h3 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.3rem 0;">
+        <div style="margin-bottom: 0.9rem; text-align: left;">
+          <span style="display: inline-block; font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.7rem; border-radius: 9999px; margin-bottom: 0.35rem;">
+            STEP 04 · ${isEn ? '1:1 CURATED ESSENTIALS (1 TAB AT A TIME)' : '한눈에 보는 우리 아이 맞춤 영양제 · 교구 · 필독 도서'}
+          </span>
+          <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.3rem 0;">
             ${isEn
-              ? 'To Practice Consistently, Prepare These 3 Trait-Matched Essentials'
-              : `앞선 루틴을 꾸준히 실천하려면 아래 3가지 맞춤 도구가 필요합니다`}
+              ? 'Select a Tab Below: Custom Supplements, Play/Posture Tools, or Books'
+              : '원하시는 탭을 눌러 확인해 보세요! 엄마들이 6개월 이상 꾸준히 재주문하는 맞춤 추천입니다~!'}
           </h3>
-          <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
-            ${isEn
-              ? 'If you already have similar items at home, use them as is. You can search the recommended keywords yourself on any store, or click the reference links below for convenience.'
-              : '집에 비슷한 제품이 있다면 그대로 활용하세요. <strong>제시된 핵심 키워드로 직접 검색해서 구매하셔도 되고, 일일이 찾기 번거로우시다면 아래 바로가기를 통해 구입하셔도 됩니다.</strong>'}
-          </p>
         </div>
 
-        <div class="pinpoint-3col-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.95rem; align-items: stretch;">
-          
-          <!-- Column 1: Required Supplements -->
-          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
-            <div>
-              <h4 style="font-size: 1rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.35rem 0;">
-                💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 맞춤 영양제 (엄선 세부 상품)'}
-              </h4>
-              <p style="font-size: 0.82rem; color: #93C5FD; margin: 0 0 0.75rem 0; line-height: 1.48;">
-                ${suppTraitNote}
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                ${data.supplements.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
-                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
-                      ${item.name}
-                    </div>
-                    <div style="font-size: 0.78rem; color: #34D399; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
-                      ✓ ${isEn ? 'Key Spec:' : '성분 기준:'} ${item.activeSpec}
-                    </div>
-                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
-                    </div>
+        <!-- 3-Category Interactive Switcher Bar (Shows 1 Category at a Time!) -->
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-bottom: 1rem;">
+          <button
+            type="button"
+            class="pinpoint-cat-tab-btn"
+            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='block'; document.getElementById('pinpoint-toys-box').style.display='none'; document.getElementById('pinpoint-books-box').style.display='none'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===0) ? 'linear-gradient(135deg, #2563EB, #0284C7)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===0) ? '#38BDF8' : 'rgba(255,255,255,0.15)'; }); })(this)"
+            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: linear-gradient(135deg, #2563EB, #0284C7); color: #FFFFFF; border: 1.5px solid #38BDF8;"
+          >
+            💊 ${isEn ? '1. Supplements' : '1. 맞춤 영양제'}
+          </button>
+          <button
+            type="button"
+            class="pinpoint-cat-tab-btn"
+            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='none'; document.getElementById('pinpoint-toys-box').style.display='block'; document.getElementById('pinpoint-books-box').style.display='none'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===1) ? 'linear-gradient(135deg, #059669, #10B981)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===1) ? '#34D399' : 'rgba(255,255,255,0.15)'; }); })(this)"
+            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.15);"
+          >
+            🧩 ${isEn ? '2. Play & Posture' : '2. 맞춤 교구·운동'}
+          </button>
+          <button
+            type="button"
+            class="pinpoint-cat-tab-btn"
+            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='none'; document.getElementById('pinpoint-toys-box').style.display='none'; document.getElementById('pinpoint-books-box').style.display='block'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===2) ? 'linear-gradient(135deg, #7C3AED, #6D28D9)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===2) ? '#C4B5FD' : 'rgba(255,255,255,0.15)'; }); })(this)"
+            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.15);"
+          >
+            📚 ${isEn ? '3. Must-Read Books' : '3. 맞춤 필독 도서'}
+          </button>
+        </div>
 
-                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2 — Mobile Thumb-Friendly Buttons) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
-                      <div style="font-size: 0.76rem; font-weight: 900; color: #60A5FA;">
-                        ✨ ${isEn ? 'Tap a Curated Product to View Directly:' : '엄선 세부 상품 터치 시 바로 이동:'}
-                      </div>
-                      ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(59,130,246,0.28); border-radius: 12px; padding: 0.7rem;">
-                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
-                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
-                          </div>
-                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
-                            • ${isEn ? sub.specEn : sub.specKo}
-                          </div>
-                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                              📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
-                            </a>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
-                              <a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="iherb" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.45); color: #34D399; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
-                                🌿 ${isEn ? 'iHerb Direct ↗' : 'iHerb 직구 보기 ↗'}
-                              </a>
-                              <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.18); border: 1px solid rgba(59, 130, 246, 0.45); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
-                                🛍️ ${isEn ? 'Naver Store ↗' : '네이버 브랜드관 ↗'}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      `).join('')}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
+        <div class="pinpoint-single-view-container">
+          <!-- Tab 1: Required Supplements (Visible by default) -->
+          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
+            <h4 style="font-size: 1.08rem; font-weight: 900; color: #38BDF8; margin: 0 0 0.35rem 0;">
+              💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 우리 아이 아침·저녁 간편 맞춤 영양제'}
+            </h4>
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+              ${suppTraitNote}
+            </p>
+            ${renderCleanCategoryItems(data.supplements, 'rgba(56, 189, 248, 0.45)', 'supplement')}
           </div>
 
-          <!-- Column 2: Required Play & Posture Tools -->
-          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
-            <div>
-              <h4 style="font-size: 1rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
-                🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 맞춤 교구 & 운동기구 (엄선 세부 상품)'}
-              </h4>
-              <p style="font-size: 0.82rem; color: #6EE7B7; margin: 0 0 0.75rem 0; line-height: 1.48;">
-                ${toyTraitNote}
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                ${data.toys.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
-                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
-                      ${item.name}
-                    </div>
-                    <div style="font-size: 0.78rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
-                      ✓ ${isEn ? 'Purpose:' : '활용 목적:'} ${item.activeSpec}
-                    </div>
-                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
-                    </div>
-
-                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2 — Mobile Thumb-Friendly Buttons) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
-                      <div style="font-size: 0.76rem; font-weight: 900; color: #34D399;">
-                        ✨ ${isEn ? 'Tap a Curated Product to View Directly:' : '엄선 세부 상품 터치 시 바로 이동:'}
-                      </div>
-                      ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.28); border-radius: 12px; padding: 0.7rem;">
-                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
-                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
-                          </div>
-                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
-                            • ${isEn ? sub.specEn : sub.specKo}
-                          </div>
-                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                              📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
-                            </a>
-                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; width: 100%; box-sizing: border-box; min-height: 40px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.45); color: #34D399; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
-                              🛍️ ${isEn ? 'View on Naver Brand Store ↗' : '네이버 브랜드/공식몰에서 보기 ↗'}
-                            </a>
-                          </div>
-                        </div>
-                      `).join('')}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
+          <!-- Tab 2: Required Play & Posture Tools (Hidden until tab clicked) -->
+          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
+            <h4 style="font-size: 1.08rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
+              🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 우리 아이 소근육·두뇌 교구 & 실내 점핑 운동기구'}
+            </h4>
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+              ${toyTraitNote}
+            </p>
+            ${renderCleanCategoryItems(data.toys, 'rgba(52, 211, 153, 0.45)', 'toy')}
           </div>
 
-          <!-- Column 3: Required Books & Workbooks -->
-          <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
-            <div>
-              <h4 style="font-size: 1rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
-                📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 맞춤 필독 도서 (엄선 세부 도서)'}
-              </h4>
-              <p style="font-size: 0.82rem; color: #DDD6FE; margin: 0 0 0.75rem 0; line-height: 1.48;">
-                ${bookTraitNote}
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                ${data.books.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; padding: 0.95rem;">
-                    <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.25rem;">
-                      ${item.name}
-                    </div>
-                    <div style="font-size: 0.78rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.4;">
-                      ✓ ${isEn ? 'Focus:' : '핵심 훈련:'} ${item.activeSpec}
-                    </div>
-                    <div style="font-size: 0.76rem; color: #CBD5E1; background: rgba(255,255,255,0.05); padding: 0.38rem 0.6rem; border-radius: 8px; margin-bottom: 0.65rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색어:'} <strong style="color:#FFFFFF;">${item.coupangQuery}</strong>
-                    </div>
-
-                    <!-- Curated Specific Sub-Products (엄선 세부 도서 TOP 2 — Mobile Thumb-Friendly Buttons) -->
-                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.65rem;">
-                      <div style="font-size: 0.76rem; font-weight: 900; color: #C4B5FD;">
-                        ✨ ${isEn ? 'Tap a Curated Book to View Directly:' : '엄선 세부 도서 터치 시 바로 이동:'}
-                      </div>
-                      ${(item.curatedProducts || []).map((sub) => `
-                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(139,92,246,0.28); border-radius: 12px; padding: 0.7rem;">
-                          <div style="font-size: 0.84rem; font-weight: 800; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.2rem;">
-                            <span style="color: #FBBF24; margin-right: 0.3rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
-                          </div>
-                          <div style="font-size: 0.75rem; color: #CBD5E1; line-height: 1.4; margin-bottom: 0.55rem;">
-                            • ${isEn ? sub.specEn : sub.specKo}
-                          </div>
-                          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; width: 100%; box-sizing: border-box; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.75rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                              📦 ${isEn ? 'View Exact Book on Coupang ↗' : '쿠팡 로켓배송으로 이 책 보기 ↗'}
-                            </a>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
-                              <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.45); color: #DDD6FE; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
-                                📚 ${isEn ? 'YES24 Book ↗' : '예스24 도서 보기 ↗'}
-                              </a>
-                              <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.18); border: 1px solid rgba(59, 130, 246, 0.45); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.45rem 0.5rem; border-radius: 9px; text-decoration: none;">
-                                🛍️ ${isEn ? 'Naver Book ↗' : '네이버 도서 보기 ↗'}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      `).join('')}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
+          <!-- Tab 3: Required Books & Workbooks (Hidden until tab clicked) -->
+          <div class="pinpoint-category-box" id="pinpoint-books-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(196, 181, 253, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
+            <h4 style="font-size: 1.08rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
+              📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 우리 아이 집중력·생각 주머니를 키우는 맞춤 필독 도서'}
+            </h4>
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+              ${bookTraitNote}
+            </p>
+            ${renderCleanCategoryItems(data.books, 'rgba(196, 181, 253, 0.45)', 'book')}
           </div>
-
         </div>
       </div>
     `;

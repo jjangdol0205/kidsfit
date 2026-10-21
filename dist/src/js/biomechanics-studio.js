@@ -286,59 +286,240 @@
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 
-  // 4. HTML Section Renderer
+  // 4. SVG Visual Illustrations for Massage & Exercise Guides (No Visible Timers)
+  function getRoutineIllustrationSvg(routineId, isGlobal) {
+    if (routineId === 'dead_hang') {
+      return `
+        <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.25);">
+          <!-- Pull-up Bar -->
+          <line x1="50" y1="26" x2="330" y2="26" stroke="#94A3B8" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="50" cy="26" r="6" fill="#38BDF8"/>
+          <circle cx="330" cy="26" r="6" fill="#38BDF8"/>
+          <!-- Child Hanging Figure -->
+          <!-- Hands & Arms -->
+          <circle cx="155" cy="26" r="5.5" fill="#FBBF24"/>
+          <circle cx="225" cy="26" r="5.5" fill="#FBBF24"/>
+          <line x1="155" y1="26" x2="172" y2="62" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="225" y1="26" x2="208" y2="62" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+          <!-- Head -->
+          <circle cx="190" cy="48" r="13" fill="#F8FAFC" stroke="#38BDF8" stroke-width="2.5"/>
+          <!-- Torso & Decompressing Spine Vertebrae -->
+          <line x1="172" y1="62" x2="208" y2="62" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="190" y1="64" x2="190" y2="124" stroke="#34D399" stroke-width="6" stroke-dasharray="6,5" stroke-linecap="round"/>
+          <!-- Pelvis & Relaxed Legs -->
+          <line x1="176" y1="124" x2="204" y2="124" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="180" y1="124" x2="176" y2="166" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="200" y1="124" x2="204" y2="166" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+          <!-- Spine Decompression Arrows -->
+          <path d="M 135 76 L 135 112" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="135,70 130,78 140,78" fill="#F43F5E"/>
+          <polygon points="135,118 130,110 140,110" fill="#F43F5E"/>
+          <!-- Callout Labels -->
+          <rect x="16" y="42" width="110" height="24" rx="6" fill="rgba(56, 189, 248, 0.16)" stroke="rgba(56, 189, 248, 0.4)"/>
+          <text x="71" y="58" fill="#E0F2FE" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Grip Wide' : '① 어깨너비 그립'}</text>
+          <rect x="232" y="72" width="134" height="26" rx="6" fill="rgba(16, 185, 129, 0.18)" stroke="rgba(16, 185, 129, 0.45)"/>
+          <text x="299" y="89" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Spine Unload +1.2cm' : '② 척추 마디 쭉 펴기'}</text>
+          <rect x="232" y="128" width="134" height="26" rx="6" fill="rgba(251, 191, 36, 0.16)" stroke="rgba(251, 191, 36, 0.4)"/>
+          <text x="299" y="145" fill="#FDE68A" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Relax Lower Body' : '③ 하체 힘 빼고 툭!'}</text>
+        </svg>
+      `;
+    }
+    if (routineId === 'thoracic_stretch') {
+      return `
+        <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.28);">
+          <!-- Floor Mat Line -->
+          <line x1="30" y1="152" x2="350" y2="152" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+          <!-- Foam Roller under Thoracic Spine -->
+          <circle cx="175" cy="134" r="16" fill="rgba(56, 189, 248, 0.25)" stroke="#38BDF8" stroke-width="3"/>
+          <circle cx="175" cy="134" r="5" fill="#38BDF8"/>
+          <!-- Child Arching Thoracic Spine Over Roller -->
+          <!-- Pelvis on floor -->
+          <circle cx="235" cy="144" r="6" fill="#34D399"/>
+          <!-- Bent Knees & Feet -->
+          <line x1="235" y1="144" x2="275" y2="108" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="275" y1="108" x2="305" y2="148" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+          <!-- Arched Spine Curve -->
+          <path d="M 235 144 Q 180 102 125 126" fill="none" stroke="#34D399" stroke-width="6" stroke-linecap="round"/>
+          <!-- Head & Hands Behind Head -->
+          <circle cx="112" cy="122" r="12" fill="#F8FAFC" stroke="#34D399" stroke-width="2.5"/>
+          <path d="M 125 120 Q 112 98 102 116" fill="none" stroke="#FBBF24" stroke-width="4" stroke-linecap="round"/>
+          <!-- Chest Opening Upward Arrow -->
+          <path d="M 175 95 L 175 56" stroke="#34D399" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="175,48 169,58 181,58" fill="#34D399"/>
+          <!-- Callout Labels -->
+          <rect x="20" y="36" width="136" height="26" rx="6" fill="rgba(16, 185, 129, 0.18)" stroke="rgba(16, 185, 129, 0.45)"/>
+          <text x="88" y="53" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Open Chest Upward' : '① 가슴을 천장으로 활짝'}</text>
+          <rect x="205" y="42" width="155" height="26" rx="6" fill="rgba(56, 189, 248, 0.16)" stroke="rgba(56, 189, 248, 0.4)"/>
+          <text x="282" y="59" fill="#E0F2FE" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Foam Roller Under Back' : '② 등 아래 폼롤러·베개 받치기'}</text>
+          <rect x="218" y="76" width="142" height="24" rx="6" fill="rgba(244, 63, 94, 0.16)" stroke="rgba(244, 63, 94, 0.4)"/>
+          <text x="289" y="92" fill="#FECDD3" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Unlock +1.8cm Posture' : '③ 거북목·굽은등 +1.8cm 복원'}</text>
+        </svg>
+      `;
+    }
+    return `
+      <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3);">
+        <!-- Shock Absorbing Mat -->
+        <rect x="95" y="152" width="190" height="10" rx="5" fill="#38BDF8" opacity="0.5"/>
+        <!-- Jump Rope Arc -->
+        <path d="M 125 92 Q 190 12 255 92" fill="none" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="5,4"/>
+        <!-- Jumping Child Figure -->
+        <circle cx="190" cy="48" r="12" fill="#F8FAFC" stroke="#FBBF24" stroke-width="2.5"/>
+        <line x1="190" y1="60" x2="190" y2="102" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+        <line x1="160" y1="78" x2="220" y2="78" stroke="#38BDF8" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- Legs & Glowing Knee/Ankle Growth Plates -->
+        <line x1="190" y1="102" x2="178" y2="138" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+        <line x1="190" y1="102" x2="202" y2="138" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+        <!-- Glowing Epiphyseal Growth Plates (Knees & Forefoot) -->
+        <circle cx="182" cy="118" r="6" fill="#F43F5E"/>
+        <circle cx="198" cy="118" r="6" fill="#F43F5E"/>
+        <circle cx="176" cy="142" r="5" fill="#34D399"/>
+        <circle cx="204" cy="142" r="5" fill="#34D399"/>
+        <!-- Upward Bounce Arrows -->
+        <path d="M 148 138 L 148 104" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="148,96 143,105 153,105" fill="#34D399"/>
+        <!-- Callout Labels -->
+        <rect x="14" y="42" width="128" height="26" rx="6" fill="rgba(251, 191, 36, 0.16)" stroke="rgba(251, 191, 36, 0.4)"/>
+        <text x="78" y="59" fill="#FDE68A" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Rhythmic Hops' : '① 가볍게 사뿐 점핑!'}</text>
+        <rect x="234" y="102" width="134" height="26" rx="6" fill="rgba(244, 63, 94, 0.18)" stroke="rgba(244, 63, 94, 0.45)"/>
+        <text x="301" y="119" fill="#FECDD3" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Knee Growth Plate' : '② 무릎 성장판 자극 ⚡'}</text>
+        <rect x="234" y="134" width="134" height="26" rx="6" fill="rgba(16, 185, 129, 0.18)" stroke="rgba(16, 185, 129, 0.45)"/>
+        <text x="301" y="151" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Forefoot Landing' : '③ 발 앞꿈치로 탄성 착지'}</text>
+      </svg>
+    `;
+  }
+
+  function renderIllustratedMassageSection(isGlobal) {
+    return `
+      <div class="bento-card" id="illustrated-growth-massage-guide" style="margin-bottom: 1.5rem; padding: 1.5rem; border: 1.5px solid rgba(56, 189, 248, 0.32); background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(10, 15, 28, 0.98));">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <span style="display: inline-block; font-size: 0.78rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.25rem 0.75rem; border-radius: 9999px; margin-bottom: 0.4rem;">
+              👐 ${isGlobal ? 'Bedtime 5-Min Growth Plate Massage Guide' : '잠들기 전 5분 · 엄마 손 성장판 마사지 그림 가이드'}
+            </span>
+            <h4 style="font-size: 1.22rem; font-weight: 800; color: #FFFFFF; margin: 0;">
+              ${isGlobal ? 'How to Massage Knee & Calf Growth Plates Before Sleep' : '타이머 없이 그림 보고 쉽게 따라 하는 무릎·종아리 성장판 마사지법'}
+            </h4>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 700; color: #FDE68A; background: rgba(251, 191, 36, 0.14); padding: 0.35rem 0.85rem; border-radius: 9999px;">
+            ✨ ${isGlobal ? 'Relieves Night Growing Pains & Boosts Blood Flow' : '야간 성장통 완화 & 성장판 혈류량 2배 촉진~!'}
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.15rem;">
+          <!-- Massage Card 1: Knee Acupressure Points (Dokbi & Zusanli) -->
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.15rem;">
+            <div style="font-size: 1.02rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.65rem;">
+              🦵 ${isGlobal ? 'Step 1. Knee Growth Plate Acupressure (3 Mins)' : '1단계. 무릎뼈 아래 성장판 혈자리 엄지 지압 (3분)'}
+            </div>
+            <svg viewBox="0 0 380 180" width="100%" height="180" style="display: block; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(56, 189, 248, 0.22); margin-bottom: 0.85rem;">
+              <!-- Femur & Tibia Outline -->
+              <path d="M 155 18 L 162 72 Q 190 82 218 72 L 225 18" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
+              <path d="M 158 105 Q 190 95 222 105 L 215 168 L 165 168 Z" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
+              <!-- Patella (Kneecap) -->
+              <ellipse cx="190" cy="82" rx="24" ry="16" fill="rgba(255, 255, 255, 0.12)" stroke="#E2E8F0" stroke-width="2.5"/>
+              <text x="190" y="86" fill="#FFFFFF" font-size="10" font-weight="800" text-anchor="middle">${isGlobal ? 'Kneecap' : '무릎뼈'}</text>
+              <!-- Epiphyseal Growth Plate Line -->
+              <line x1="152" y1="108" x2="228" y2="108" stroke="#34D399" stroke-width="4" stroke-dasharray="6,4"/>
+              <!-- Acupressure Points: Dokbi (Lateral/Medial Hollows) & Zusanli -->
+              <circle cx="166" cy="98" r="8" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2"/>
+              <circle cx="214" cy="98" r="8" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2"/>
+              <circle cx="222" cy="134" r="9" fill="#FBBF24" stroke="#FFFFFF" stroke-width="2"/>
+              <!-- Circular Massage Arrows -->
+              <path d="M 148 92 A 12 12 0 1 1 148 106" fill="none" stroke="#38BDF8" stroke-width="2.5"/>
+              <path d="M 232 106 A 12 12 0 1 1 232 92" fill="none" stroke="#38BDF8" stroke-width="2.5"/>
+              <!-- Callouts -->
+              <rect x="12" y="84" width="126" height="26" rx="6" fill="rgba(244, 63, 94, 0.2)" stroke="#F43F5E"/>
+              <text x="75" y="101" fill="#FFE4E6" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '① Hollow Below Knee' : '① 무릎 아래 오목한 곳'}</text>
+              <rect x="240" y="120" width="128" height="26" rx="6" fill="rgba(251, 191, 36, 0.2)" stroke="#FBBF24"/>
+              <text x="304" y="137" fill="#FEF3C7" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '② Zusanli Point' : '② 바깥 아래(족삼리)'}</text>
+              <text x="190" y="162" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Press Gently with Thumbs for 5s in Circles' : '엄지손가락으로 5초씩 지그시 누르며 원 그리기'}</text>
+            </svg>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.94rem; color: #F8FAFC; line-height: 1.65;">
+              <li><strong>${isGlobal ? 'Warm Up:' : '따뜻한 손 온기 전달:'}</strong> ${isGlobal ? 'Rub both palms warm and cover the child\'s knees for 30 seconds.' : '엄마 양손을 비벼 따뜻하게 한 뒤 아이 무릎을 30초간 감싸주세요.'}</li>
+              <li><strong>${isGlobal ? 'Thumb Press:' : '무릎 아래 쏙 들어간 곳:'}</strong> ${isGlobal ? 'Gently press the two hollows right below the kneecap (Dokbi) for 5 seconds.' : '무릎뼈 바로 아래 양옆 오목한 곳(독비혈)을 엄지로 5초씩 지그시 눌러주세요.'}</li>
+              <li><strong>${isGlobal ? 'Outer Shin:' : '족삼리·양릉천 원 그리기:'}</strong> ${isGlobal ? 'Massage 3cm below the outer knee in soft circles 10 times.' : '무릎 바깥쪽 아래 3cm(족삼리)를 원을 그리듯 10회 부드럽게 풀어주세요~!'}</li>
+            </ul>
+          </div>
+
+          <!-- Massage Card 2: Calf & Achilles Upward Sweep -->
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.15rem;">
+            <div style="font-size: 1.02rem; font-weight: 800; color: #34D399; margin-bottom: 0.65rem;">
+              🦶 ${isGlobal ? 'Step 2. Calf & Achilles Upward Sweep Massage (2 Mins)' : '2단계. 종아리·아킬레스건 위로 쓸어올리기 (2분)'}
+            </div>
+            <svg viewBox="0 0 380 180" width="100%" height="180" style="display: block; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.25); margin-bottom: 0.85rem;">
+              <!-- Lower Leg & Calf Muscle Outline -->
+              <path d="M 162 24 C 142 65 152 115 168 145 L 198 145 C 214 115 224 65 204 24 Z" fill="rgba(16, 185, 129, 0.12)" stroke="#34D399" stroke-width="3"/>
+              <!-- Foot Outline -->
+              <path d="M 168 145 L 155 164 L 222 164 L 198 145 Z" fill="rgba(148, 163, 184, 0.2)" stroke="#94A3B8" stroke-width="2.5"/>
+              <!-- Upward Sweeping Massage Arrows along Calf -->
+              <path d="M 174 136 L 174 44" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+              <polygon points="174,34 167,46 181,46" fill="#38BDF8"/>
+              <path d="M 194 136 L 194 44" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+              <polygon points="194,34 187,46 201,46" fill="#38BDF8"/>
+              <!-- Popliteal (Back of Knee) Point -->
+              <circle cx="184" cy="28" r="7" fill="#FBBF24" stroke="#FFFFFF" stroke-width="2"/>
+              <!-- Callouts -->
+              <rect x="14" y="42" width="132" height="26" rx="6" fill="rgba(251, 191, 36, 0.2)" stroke="#FBBF24"/>
+              <text x="80" y="59" fill="#FEF3C7" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '② Back of Knee' : '② 무릎 뒤 오금까지 쭉'}</text>
+              <rect x="228" y="82" width="138" height="26" rx="6" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8"/>
+              <text x="297" y="99" fill="#E0F2FE" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '① Sweep Upward 10x' : '① 발목→종아리 쓸어올리기'}</text>
+              <rect x="228" y="132" width="138" height="26" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#34D399"/>
+              <text x="297" y="149" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '③ Pull Toes Gently' : '③ 발끝을 몸쪽으로 당기기'}</text>
+            </svg>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.94rem; color: #F8FAFC; line-height: 1.65;">
+              <li><strong>${isGlobal ? 'Sweep Upward:' : '발목에서 무릎 뒤로:'}</strong> ${isGlobal ? 'Wrap both hands around the ankle and sweep firmly up the calf 10 times.' : '발목 아킬레스건부터 무릎 뒤 오금(위중혈)까지 양손으로 부드럽게 10회 쓸어올려요.'}</li>
+              <li><strong>${isGlobal ? 'Calf Stretch:' : '발끝 당겨 스트레칭:'}</strong> ${isGlobal ? 'Gently push the toes toward the shin for 10 seconds to lengthen the calf.' : '아이 발끝을 몸쪽으로 천천히 당겨 종아리 근육을 10초간 시원하게 늘려주세요.'}</li>
+              <li><strong>${isGlobal ? 'Deep Sleep Effect:' : '숙면 & 성장통 예방:'}</strong> ${isGlobal ? 'Relaxes tight lower-limb fascia so growth hormone peaks during deep sleep!' : '낮 동안 뭉친 다리 피로가 풀리면서 밤새 성장통 없이 푹 자고 쑥쑥 자라납니다~!'}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4b. HTML Section Renderer
   function renderBiomechanicsSection(profile = {}, affConfig = {}) {
     const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
     const habits = profile.habits || [];
     const restoredHeight = calculateDecompressionPotential(habits);
 
-    const titleStr = isGlobal ? 'Spine Decompression & Wolff\'s Law Biomechanics Studio' : '척추 감압 & 볼프의 법칙 생체역학 운동 스튜디오';
+    const titleStr = isGlobal ? 'Illustrated Growth Massage & Spine Decompression Guide' : '그림으로 쉽게 따라 하는 성장판 마사지 & 숨은 키 운동 가이드';
     const subStr = isGlobal
-      ? 'Daily diurnal gravity compresses disc space by 1.5~2.2 cm. Passive axial traction and cyclic epiphyseal loading restore +1.8 cm curvature and trigger Runx2/Sox9 osteogenesis.'
-      : '일상 중력 압박으로 하루 1.5~2.2cm 감소하는 척추 디스크 수핵을 수화시키고, 볼프의 법칙(Wolff\'s Law)에 따라 성장판 연골세포 분열(Runx2/Sox9)을 자극하는 3대 임상 운동 루틴입니다.';
+      ? 'No complicated timers needed! Follow the step-by-step visual illustrations below for 5-minute bedtime knee/calf massage and 3 spine-lengthening exercises.'
+      : '복잡한 타이머 없이 그림만 보고 집에서 바로 따라 해보세요! 잠들기 전 5분 엄마 손 성장판 마사지와 숨은 키 +1.8cm를 찾아주는 3단계 맞춤 운동법입니다~!';
 
     let html = `
       <div id="core-3-container" class="core-module-container biomechanics-studio-container">
         <!-- Studio Clinical Header Card -->
-        <div class="bento-card studio-header-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--rose-alert);">
+        <div class="bento-card studio-header-card" style="margin-bottom: 1.25rem; border-left: 4px solid var(--rose-alert);">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="tab-badge tab-badge-rose" style="display: inline-block; margin-bottom: 0.5rem;">
-                🏃 Core 3 · Clinical Biomechanics
+                🏃 Core 3 · Visual Massage & Exercise Guide
               </span>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
                 ${titleStr}
               </h3>
-              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; max-width: 780px;">
+              <p style="font-size: 0.95rem; color: #E2E8F0; line-height: 1.6; max-width: 780px;">
                 ${subStr}
               </p>
             </div>
             <div class="biomechanics-potential-badge" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: var(--radius-inner); padding: 0.75rem 1.25rem; text-align: center;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">
-                ${isGlobal ? 'Spinal Curvature Recovery' : '숨은 척추 만곡 복원 잠재력'}
+              <span style="font-size: 0.78rem; font-weight: 700; color: #E2E8F0; display: block;">
+                ${isGlobal ? 'Spinal Curvature Recovery' : '숨은 척추·자세 복원 잠재력'}
               </span>
               <span style="font-size: 1.5rem; font-weight: 900; color: var(--rose-alert); font-family: var(--font-mono);">
                 +${restoredHeight} cm
               </span>
             </div>
           </div>
-
-          <!-- Clinical Mechanism Tags -->
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle);">
-            <span class="spec-tag" style="font-size: 0.75rem; padding: 0.25rem 0.65rem; background: var(--theme-surface-sub); border-radius: 9999px; color: var(--text-secondary);">
-              💧 ${isGlobal ? 'Disc Rehydration: L1~L5 Osmotic Flow' : '추간판 수핵 수화: L1~L5 디스크 압박 해소'}
-            </span>
-            <span class="spec-tag" style="font-size: 0.75rem; padding: 0.25rem 0.65rem; background: var(--theme-surface-sub); border-radius: 9999px; color: var(--text-secondary);">
-              🧬 ${isGlobal ? 'Wolff\'s Law: 1.5~2.5G Micro-Stress' : '볼프의 법칙: 1.5~2.5G 미세 압전 전류'}
-            </span>
-            <span class="spec-tag" style="font-size: 0.75rem; padding: 0.25rem 0.65rem; background: var(--theme-surface-sub); border-radius: 9999px; color: var(--text-secondary);">
-              🔬 ${isGlobal ? 'Chondrocyte Trigger: Runx2 / Sox9' : '골단판 성장 촉진: Runx2 / Sox9 활성화'}
-            </span>
-          </div>
         </div>
 
-        <!-- 3 Interactive Routine Cards Grid -->
-        <div class="routines-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+        <!-- NEW: Illustrated Bedtime Growth Plate Massage Guide -->
+        ${renderIllustratedMassageSection(isGlobal)}
+
+        <!-- 3 Illustrated Exercise Routine Cards (No Visible Timers) -->
+        <div class="routines-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
     `;
 
     ROUTINES.forEach((r, idx) => {
@@ -349,83 +530,66 @@
       const initialTime = formatTime(timer.remainingSeconds);
 
       const categoryLabel = r.category === 'decompression'
-        ? (isGlobal ? 'Step 1: Decompression' : '1단계: 척추 견인 감압')
+        ? (isGlobal ? 'Exercise 1: Spine Decompression' : '운동 1단계: 척추 마디 늘리기')
         : (r.category === 'alignment'
-          ? (isGlobal ? 'Step 2: Alignment' : '2단계: 체형·골반 정렬')
-          : (isGlobal ? 'Step 3: Epiphyseal Micro-Stress' : '3단계: 골단판 미세자극'));
+          ? (isGlobal ? 'Exercise 2: Posture Alignment' : '운동 2단계: 굽은 등·골반 펴기')
+          : (isGlobal ? 'Exercise 3: Growth Plate Jumping' : '운동 3단계: 성장판 탄성 점핑'));
+
+      const freqBadge = r.id === 'dead_hang'
+        ? (isGlobal ? 'Morning & Night · 30s × 3 times' : '권장: 아침·저녁 30초씩 3번')
+        : (r.id === 'thoracic_stretch'
+          ? (isGlobal ? 'Before Bed · 45s × 2 times' : '권장: 잠들기 전 45초씩 2번')
+          : (isGlobal ? 'Afternoon · 10~15 mins' : '권장: 하교 후 하루 10~15분'));
 
       html += `
-        <div class="bento-card routine-timer-card" id="routine-card-${r.id}" style="display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+        <div class="bento-card routine-timer-card" id="routine-card-${r.id}" style="display: flex; flex-direction: column; justify-content: space-between; position: relative; padding: 1.35rem;">
           <!-- Card Header -->
           <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--rose-alert); background: rgba(244, 63, 94, 0.12); padding: 0.2rem 0.6rem; border-radius: 9999px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 0.78rem; font-weight: 800; color: #FECDD3; background: rgba(244, 63, 94, 0.18); padding: 0.25rem 0.7rem; border-radius: 9999px;">
                 ${categoryLabel}
               </span>
-              <span class="set-indicator-badge" id="set-badge-${r.id}" style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
-                ${isGlobal ? 'Set' : '세트'} <span class="current-set">${timer.currentSet}</span> / ${r.sets}
+              <span style="font-size: 0.8rem; font-weight: 800; color: #A7F3D0; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                ${freqBadge}
               </span>
             </div>
 
-            <h4 style="font-size: 1.12rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem;">
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">
               ${idx + 1}. ${name}
             </h4>
 
-            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+            <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.55; margin-bottom: 0.9rem;">
               ${summary}
             </p>
-          </div>
 
-          <!-- Digital Stopwatch Display & Circular Dial -->
-          <div class="timer-dial-container" style="background: var(--theme-surface-sub); border-radius: var(--radius-inner); padding: 1.25rem 1rem; text-align: center; margin-bottom: 1.25rem; border: 1px solid var(--theme-border-subtle);">
-            <div class="timer-state-label" id="timer-state-${r.id}" style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.25rem;">
-              ${isGlobal ? 'READY TO START' : '준비 완료'}
+            <!-- Illustrated Exercise Visual Guide (Replaces Stopwatch Timer UI) -->
+            <div class="exercise-visual-guide-box" style="margin-bottom: 1rem;">
+              ${getRoutineIllustrationSvg(r.id, isGlobal)}
             </div>
 
-            <div class="timer-digits" id="timer-digits-${r.id}" style="font-size: 2.75rem; font-weight: 900; font-family: var(--font-mono); color: var(--text-primary); letter-spacing: -0.02em; line-height: 1;">
-              ${initialTime}
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="timer-progress-track" style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 9999px; margin-top: 1rem; overflow: hidden;">
-              <div class="timer-progress-fill" id="timer-progress-${r.id}" style="width: 0%; height: 100%; background: var(--rose-alert); transition: width 0.3s ease;"></div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; margin-top: 0.4rem; font-size: 0.72rem; color: var(--text-muted);">
-              <span>${isGlobal ? 'Target' : '목표'}: ${r.duration >= 60 ? (r.duration / 60) + (isGlobal ? ' min' : '분') : r.duration + (isGlobal ? 's' : '초')}</span>
-              <span>${isGlobal ? 'Est. Gain' : '예상 복원'}: <strong style="color: var(--rose-alert);">${r.restorationEstimate}</strong></span>
+            <!-- Always-Visible Step-by-Step How-To Guide (Large Readable Font) -->
+            <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.95rem 1rem;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>📖 ${isGlobal ? 'Step-by-Step How to Do It' : '그림 보고 따라 하는 동작 순서'}</span>
+                <span style="color: #FDE68A; font-size: 0.8rem;">${isGlobal ? 'Gain' : '기대 효과'}: ${r.restorationEstimate}</span>
+              </div>
+              <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.92rem; color: #F8FAFC; line-height: 1.65;">
+                ${instructions.map(inst => `<li style="margin-bottom: 0.25rem;">${inst}</li>`).join('')}
+              </ol>
             </div>
           </div>
 
-          <!-- Stopwatch Control Buttons -->
-          <div>
-            <div class="timer-controls-group" style="display: flex; gap: 0.5rem; margin-bottom: 0.85rem;">
-              <button type="button" class="btn btn-primary btn-timer-start" id="btn-start-${r.id}" data-routine="${r.id}" style="flex: 2; padding: 0.65rem 0.5rem; font-size: 0.85rem; font-weight: 700; background: var(--rose-alert); border-color: var(--rose-alert);">
-                ▶ ${isGlobal ? 'Start' : '시작'}
-              </button>
-              <button type="button" class="btn btn-secondary btn-timer-pause" id="btn-pause-${r.id}" data-routine="${r.id}" style="flex: 1; padding: 0.65rem 0.5rem; font-size: 0.85rem; font-weight: 700;">
-                ⏸ ${isGlobal ? 'Pause' : '일시정지'}
-              </button>
-              <button type="button" class="btn btn-secondary btn-timer-reset" id="btn-reset-${r.id}" data-routine="${r.id}" style="flex: 1; padding: 0.65rem 0.5rem; font-size: 0.85rem; font-weight: 700;">
-                🔄 ${isGlobal ? 'Reset' : '초기화'}
-              </button>
-            </div>
-
-            <!-- Set Complete Trigger Button -->
-            <button type="button" class="btn btn-secondary btn-timer-complete" id="btn-complete-${r.id}" data-routine="${r.id}" style="width: 100%; padding: 0.5rem; font-size: 0.78rem; color: var(--text-secondary); background: transparent; border: 1px dashed var(--theme-border-subtle);">
-              ✓ ${isGlobal ? 'Mark Current Set Complete' : '현재 세트 완료 처리'}
-            </button>
+          <!-- Hidden Programmatic Stopwatch Nodes (Preserved for API compatibility, hidden from UI as requested) -->
+          <div style="display: none;" aria-hidden="true">
+            <span class="set-indicator-badge" id="set-badge-${r.id}"><span class="current-set">${timer.currentSet}</span> / ${r.sets}</span>
+            <div id="timer-state-${r.id}">READY TO START</div>
+            <div id="timer-digits-${r.id}">${initialTime}</div>
+            <div id="timer-progress-${r.id}"></div>
+            <button type="button" id="btn-start-${r.id}" data-routine="${r.id}">Start</button>
+            <button type="button" id="btn-pause-${r.id}" data-routine="${r.id}">Pause</button>
+            <button type="button" id="btn-reset-${r.id}" data-routine="${r.id}">Reset</button>
+            <button type="button" id="btn-complete-${r.id}" data-routine="${r.id}">Complete</button>
           </div>
-
-          <!-- Accordion / Instructions Tooltip -->
-          <details style="margin-top: 1rem; font-size: 0.78rem; color: var(--text-secondary); border-top: 1px solid var(--theme-border-subtle); padding-top: 0.75rem;">
-            <summary style="cursor: pointer; font-weight: 700; color: var(--text-primary); outline: none;">
-              📖 ${isGlobal ? 'Clinical Execution Guide' : '임상 운동 가이드 & 주의사항'}
-            </summary>
-            <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.55;">
-              ${instructions.map(inst => `<li>${inst}</li>`).join('')}
-            </ol>
-          </details>
         </div>
       `;
     });

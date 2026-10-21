@@ -110,45 +110,45 @@
   const WIZARD_STEPS = [
     {
       step: 1,
-      titleKo: '진단 대상 & 기본 프로필 (성별·나이)',
+      titleKo: '우리 아이 기본 정보 (성별 · 생년월일)',
       titleEn: 'Target Child & Basic Demographics',
-      subKo: '소아청소년 성장도표 및 성인 초기 표준 데이터 매칭에 활용됩니다.',
+      subKo: '생년월일 일수까지 계산해 또래 평균키와 비교해 드려요~!',
       subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
     },
     {
       step: 2,
-      titleKo: '정밀 신체 계측치 (키·체중·성장폭)',
+      titleKo: '현재 키 · 몸무게 · 최근 6개월 성장폭',
       titleEn: 'Accurate Biometrics (Height, Weight, Velocity)',
-      subKo: 'CDC 2000 및 KDCA 2017 LMS 파라미터 백분위와 성장 속도 산출에 사용됩니다.',
+      subKo: '요즘 얼마나 자랐는지 입력하면 숨은 잠재키를 정확히 찾아내요',
       subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
     },
     {
       step: 3,
-      titleKo: '부모 신장 & 실시간 유전 표적키 (Tanner MPH)',
+      titleKo: '엄마·아빠 키 & 실시간 유전 예상키',
       titleEn: 'Mid-Parental Height (MPH) & Genetic Potential',
-      subKo: '부모 신장 기반 실시간 유전 표적키(MPH)와 예측 오차 범위를 확인합니다.',
+      subKo: '부모님 키를 바탕으로 유전 예상키와 관리 후 최대 키를 계산해요',
       subEn: 'Calculates Tanner Mid-Parental Target Height and clinical margin in real-time.'
     },
     {
       step: 4,
-      titleKo: '성장 단계 & 골연령 (Tanner Stage) 진행도',
-      titleEn: 'Skeletal Maturation & Tanner Stage',
-      subKo: '성장판 개방률과 급성장 피크기(PHV) 잔여 잠재력을 평가합니다.',
-      subEn: 'Evaluates epiphyseal plate open ratio and Peak Height Velocity (PHV) runway.'
+      titleKo: '성장단계 확인 & 평소 수면·식습관 체크',
+      titleEn: 'Skeletal Maturation & Sleep/Diet Habits',
+      subKo: '해당하는 습관을 편하게 눌러주시면 아이에게 딱 맞는 성분을 골라드려요',
+      subEn: 'Evaluates epiphyseal plate open ratio and sleep/diet traits.'
     },
     {
       step: 5,
-      titleKo: '라이프스타일 & 생체 저해 요인 체크 (복수 선택)',
-      titleEn: 'Lifestyle & Bio-Inhibition Factors',
-      subKo: '성장호르몬 분비 억제 및 잠재키 손실 요인을 복수 진단합니다.',
+      titleKo: '평소 앉는 자세 & 운동 습관 체크',
+      titleEn: 'Lifestyle & Posture/Exercise Factors',
+      subKo: '거북목이나 다리 성장통이 있는지 체크해 숨은 키 2cm를 찾아드려요',
       subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
     },
     {
       step: 6,
-      titleKo: '두뇌·신경인지 핵심 관심축 & 임상 분석 시작',
+      titleKo: '우리 아이 성향 & 고민 한 줄 적기',
       titleEn: 'Neuro-Cognitive Focus & Analysis Initiation',
-      subKo: '두뇌 인지 관심 영역을 선택하고 800편+ 학술 논문 매칭 분석을 시작하세요.',
-      subEn: 'Select cognitive domains and initiate matching against 800+ clinical studies.'
+      subKo: '아이 기질을 고르고 고민을 적어주시면 맞춤 처방전이 바로 열려요~!',
+      subEn: 'Select cognitive domains and initiate matching against clinical studies.'
     }
   ];
 
@@ -300,6 +300,13 @@
     }
     if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
       HapticEngine.triggerHaptic('tick', titleEl);
+    }
+
+    // Keep selection keys immediately visible at top of smartphone screen on step transition
+    if (typeof document !== 'undefined' && document.body && document.body.classList && document.body.classList.contains('studio-mode-active')) {
+      if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   }
 
@@ -885,15 +892,15 @@
         bannerEl.style.background = 'rgba(139, 92, 246, 0.12)';
         bannerEl.style.borderColor = 'rgba(139, 92, 246, 0.35)';
         bannerEl.innerHTML = isEn
-          ? '🙋 <strong>[Youth & Student Self-Coaching Guidebook]</strong> Analyzes your Date of Birth, sleep, posture, and nutrition to generate a <strong>Hidden Height Recovery Routine, Self-Directed Study Strategy, and Supplement & Book Guidebook</strong>.'
-          : '🙋 <strong>[초·중·고 학생·청소년 본인용 가이드북]</strong> 본인의 생년월일과 수면·자세·영양 데이터를 분석하여 <strong>숨은 잠재키 복원 루틴, 자기주도 학습 전략, 맞춤형 영양제·도서 가이드북</strong>을 생성합니다.';
+          ? '🙋 <strong>[Youth & Student Self-Coaching Guidebook]</strong> Hidden Height Recovery Routine & Supplement/Book Guide.'
+          : '🙋 <strong>[학생·본인용 맞춤 가이드북]</strong> 내 잠재키·수면·자세·영양 루틴을 한눈에 안내해 드려요~!';
       } else {
         bannerEl.style.color = '#E2E8F0';
         bannerEl.style.background = 'rgba(59, 130, 246, 0.1)';
         bannerEl.style.borderColor = 'rgba(59, 130, 246, 0.3)';
         bannerEl.innerHTML = isEn
-          ? '📘 <strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Analyzes your child\'s Date of Birth and biometrics to prescribe <strong>Physical Height Growth, Age N→N+3 Brain & Learning Roadmap, and Pinpoint Supplements, Toys & Books</strong>.'
-          : '📘 <strong>[학부모용 우리 아이 성장·학습 가이드북]</strong> 아이의 생년월일과 신체 계측치를 바탕으로 <strong>키·육체적 성장, 만 N→N+3세 정신·두뇌 발달 및 시기별 학습 로드맵, 맞춤 영양제·교구·도서</strong>를 안내합니다.';
+          ? '📘 <strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Height Growth, Brain Roadmap & Pinpoint Supplements/Toys/Books.'
+          : '📘 <strong>[학부모용 우리 아이 가이드북]</strong> 숨은 잠재키·시기별 학습·잘 먹는 맞춤 영양제까지 한 번에 알려드려요~!';
       }
     }
   }
@@ -902,6 +909,10 @@
     if (typeof document === 'undefined') return;
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
+    }
+    const heroSection = document.getElementById('hero-section');
+    if (heroSection) {
+      heroSection.style.display = 'none';
     }
     const childRadio = document.getElementById('target-child');
     const selfRadio = document.getElementById('target-self');
@@ -931,7 +942,9 @@
     if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
       HapticEngine.triggerHaptic('step', quizSection);
     }
-    if (quizSection && typeof quizSection.scrollIntoView === 'function') {
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (quizSection && typeof quizSection.scrollIntoView === 'function') {
       quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -1144,7 +1157,11 @@
         if (presetsBar) presetsBar.style.display = 'block';
 
         goToStep(1);
-        if (quizSection) quizSection.scrollIntoView({ behavior: 'smooth' });
+        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (quizSection) {
+          quizSection.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
   }
@@ -1171,10 +1188,14 @@
     module.exports = OnboardingWizard;
   } else {
     global.TallerOnboardingWizard = OnboardingWizard;
-    if (typeof window !== 'undefined') {
-      window.addEventListener('DOMContentLoaded', () => {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        window.addEventListener('DOMContentLoaded', () => {
+          initWizard();
+        });
+      } else {
         initWizard();
-      });
+      }
     }
   }
 
