@@ -871,9 +871,9 @@
     const traitPostureList = Array.isArray(profile.traitPostureList) ? profile.traitPostureList : [profile.traitPosture || 'turtle_slouch'];
 
     // Determine if height is below median or velocity needs catch-up
-    const isPicky = habits.includes('picky_eater') || traitDietList.includes('meat_veggie_picky') || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth');
-    const isLateSleep = habits.includes('late_sleep') || habits.includes('night_carbs') || traitSleepList.includes('late_bedtime') || traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle');
-    const isPoorPosture = habits.includes('poor_posture') || traitPostureList.includes('turtle_slouch') || traitPostureList.includes('leg_cross_pelvis');
+    const isPicky = habits.includes('picky_eater') || traitDietList.includes('meat_veggie_picky') || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth') || traitDietList.includes('fast_indigestion') || traitDietList.includes('sweet_carb') || traitDietList.includes('fast_carb_sweet');
+    const isLateSleep = habits.includes('late_sleep') || habits.includes('night_carbs') || traitSleepList.includes('late_bedtime') || traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle') || traitSleepList.includes('light_dream') || traitSleepList.includes('hard_wakeup') || traitSleepList.includes('night_sweat');
+    const isPoorPosture = habits.includes('poor_posture') || traitPostureList.includes('turtle_slouch') || traitPostureList.includes('leg_cross_pelvis') || traitPostureList.includes('chin_lean') || traitPostureList.includes('flat_foot');
     const isSedentary = habits.includes('sedentary');
 
     // =========================================================================
@@ -1232,9 +1232,136 @@
       supplements: attachCurated(supplements),
       toys: attachCurated(toys),
       books: attachCurated(books),
+      eduTours: curateEducationalTours(profile, affConfig),
       lifecycleRoadmap: getSequentialLifecycleRoadmap(ageYears),
       autoStage: autoDetectGrowthStage(ageMonths, profile.gender, recent6m)
     };
+  }
+
+  /**
+   * 4-B. Educational Family Travel & Experiential Tour Curator
+   * Maps age band, region, and cognitive interests to 3 curated educational travel & tour recommendations.
+   */
+  function curateEducationalTours(profile = {}, affConfig = {}) {
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const region = String(profile.region || '서울 강남·서초·송파');
+    const cogAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
+    const cfg = Object.assign({}, DEFAULT_AFF, affConfig || {});
+    const cpTag = encodeURIComponent(cfg.coupang || DEFAULT_AFF.coupang);
+    const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
+
+    const makeTourUrls = (cpQuery, yesQuery, tourQuery) => {
+      const cpUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(cpQuery)}&channel=user&lptag=${cpTag}`;
+      const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yesQuery)}`;
+      const yesUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
+      const naverTourUrl = `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(tourQuery)}`;
+      return { coupangUrl: cpUrl, yes24Url: yesUrl, naverTourUrl };
+    };
+
+    if (ageYears <= 5) {
+      return [
+        Object.assign({
+          badgeKo: '🏆 엄선 1위 · 오감·생태 가족여행',
+          badgeEn: '🏆 Edu Travel #1 · Nature & Sensory',
+          categoryKo: `🌿 [${region} 출발 추천] 강원 홍천·평창 알파카월드 & 대관령 양떼목장 생태 체험 여행`,
+          categoryEn: 'Gangwon Nature & Animal Ranch Family Eco-Tour',
+          titleKo: '대자연 동물 교감 · 숲속 오감 걷기 & 어린이 생태 관찰 돋보기·채집 키트',
+          titleEn: 'Animal Feeding Ranch Tour & Kids Nature Explorer Kit',
+          descKo: '영유아·유아기 시냅스가 가장 활발히 열리는 야외 동물 먹이주기와 잔디밭 달리기 코스로, 낮 동안 충분한 햇빛(비타민D 합성)과 대근육 자극을 통해 밤 9시 반 꿀잠을 유도합니다.',
+          missionKo: '💬 여행지 부모 대화 미션: "양과 알파카의 털을 만져보니 구름처럼 폭신할까, 까슬까슬할까?"'
+        }, makeTourUrls('어린이 곤충채집 생태관찰 돋보기 키트 아기 나들이 가방', '유아 자연관찰 동물 도감', '홍천 알파카월드 대관령 양떼목장 아이와 가볼만한곳 티켓')),
+        Object.assign({
+          badgeKo: '✨ 엄선 2위 · 해양·아쿠아리움 여행',
+          badgeEn: '✨ Edu Travel #2 · Marine Science',
+          categoryKo: '🐠 여수·제주·코엑스 대형 아쿠아리움 해양생태 가족 투어 & 바다생물 사전답사',
+          categoryEn: 'National Aquarium Marine Biology Family Tour',
+          titleKo: '바다 생물 도슨트 워킹투어 & 출발 전 읽는 입체 해양생물 플랩북·놀이키트',
+          titleEn: 'Aquarium Family Pass & Interactive Marine Flap Book',
+          descKo: '수족관의 거대한 수조와 빛의 굴절, 다양한 물고기 움직임을 눈으로 따라가며 유아의 시각 추적 능력과 어휘 호기심을 동시에 키워주는 만족도 1위 실내외 가족 여행입니다.',
+          missionKo: '💬 여행지 부모 대화 미션: "가오리는 왜 배가 하얗고 등이 까만색일까? 같이 찾아볼까?"'
+        }, makeTourUrls('어린이 바다생물 피규어 아쿠아리움 스티커북 플랩북', '어스본 요리조리 열어보는 바다', '아쿠아리움 가족 입장권 어린이 체험')),
+        Object.assign({
+          badgeKo: '💎 엄선 3위 · 별빛·키즈 글램핑 여행',
+          badgeEn: '💎 Edu Travel #3 · Starlight Glamping',
+          categoryKo: '⛺ 경기도 가평·포천·태안 키즈 천문대 & 자연 숲속 글램핑 1박 2일 코스',
+          categoryEn: 'Kids Observatory & Forest Glamping 2-Day Trip',
+          titleKo: '어린이 첫 입문용 휴대용 망원경·쌍안경 & 캠핑 별자리 랜턴 프로젝터 세트',
+          titleEn: 'Kids Beginner Binoculars & Starlight Constellation Projector',
+          descKo: '스마트폰 화면 대신 밤하늘의 달과 별자리를 직접 관찰하고 모닥불 앞에서 가족 대화를 나누며 정서적 안정감과 과학적 호기심을 길러주는 주말 1박 2일 코스입니다.',
+          missionKo: '💬 여행지 부모 대화 미션: "오늘 밤 가장 밝게 빛나는 별은 어떤 모양을 닮았을까?"'
+        }, makeTourUrls('어린이 쌍안경 캠핑 천체망원경 별자리 프로젝터', '유아 밤하늘 별자리 그림책', '아이와 키즈 글램핑 천문대 가족여행'))
+      ];
+    }
+
+    if (ageYears <= 9) {
+      return [
+        Object.assign({
+          badgeKo: '🏆 엄선 1위 · 역사 타임머신 가족여행',
+          badgeEn: '🏆 Edu Travel #1 · UNESCO Heritage Tour',
+          categoryKo: '👑 경주 신라천년(첨성대·대릉원·국립경주박물관) & 부여·공주 백제 역사 도슨트 가족여행',
+          categoryEn: 'Gyeongju & Buyeo UNESCO World Heritage Docent Family Tour',
+          titleKo: '어린이 눈높이 소그룹 역사 해설 투어 & 출발 전 읽는 경주·한국사 유물 탐구 도감',
+          titleEn: 'Kids Historical Docent Tour & Korean Heritage Field Guidebook',
+          descKo: '초등 한국사 교과가 시작되기 전 경주·공주·수원화성을 직접 걸으며 유물의 쓰임새와 선조들의 지혜를 추론해보면 역사적 인과 사고력과 장기 기억이 3배 이상 깊어집니다.',
+          missionKo: '💬 여행지 하브루타 미션: "첨성대는 왜 네모 모양이 아니라 아래가 넓은 원기둥 모양으로 쌓았을까?"'
+        }, makeTourUrls('초등 경주 역사 여행 가이드북 한국사 유물 워크북', '아이와 경주 여행 역사 도감', '경주 어린이 도슨트 역사 투어 국립경주박물관 해설')),
+        Object.assign({
+          badgeKo: '✨ 엄선 2위 · 우주·과학 탐사 가족여행',
+          badgeEn: '✨ Edu Travel #2 · Space & Science Camp',
+          categoryKo: '🚀 대전 국립중앙과학관·천문대 & 과천과학관·나로우주센터 1박 2일 과학 탐사 여행',
+          categoryEn: 'Daejeon National Science Museum & Space Center Family Expedition',
+          titleKo: '과학관 교과 연계 실험 탐구 노트 & 어린이 굴절 천체망원경·현미경 탐사 패키지',
+          titleEn: 'Science Museum Inquiry Journal & Portable Astronomical Telescope',
+          descKo: `우리 아이가 선택한 [${cogAxes.includes('science_nature') ? '과학·자연 원리 탐구' : '전두엽 인과 추론'}] 영역과 직결되는 코스로, 로켓 추진·자기부상·천체 관측을 직접 체험하며 이공계 사고력을 폭발시킵니다.`,
+          missionKo: '💬 여행지 하브루타 미션: "만약 지구에 중력이 절반으로 줄어든다면 우리 키와 점프 높이는 어떻게 달라질까?"'
+        }, makeTourUrls('어린이 천체망원경 초등 과학관 체험 학습 워크북', '초등 과학관 박물관 탐구 도감', '국립중앙과학관 천문대 어린이 과학 캠프 투어')),
+        Object.assign({
+          badgeKo: '💎 엄선 3위 · 지질·생태 자연유산 여행',
+          badgeEn: '💎 Edu Travel #3 · Jeju & Eco Geopark',
+          categoryKo: '🌋 제주 화산지질(곶자왈·성산일출봉) & 서천 국립생태원·고성 공룡발자국 가족 탐사',
+          categoryEn: 'Jeju Volcanic Geopark & National Institute of Ecology Family Tour',
+          titleKo: '어린이 아웃도어 탐험가 조끼·쌍안경·나침반 키트 & 한국 자연생태 현장 도감',
+          titleEn: 'Kids Outdoor Field Explorer Vest/Binoculars & Ecology Guidebook',
+          descKo: '화산 지형과 습지 생태계를 직접 걸으며 하루 8,000보 이상 하지 성장판을 건강하게 자극하고, 살아있는 동식물 생태계를 관찰하며 전두엽 탐구력을 키우는 가족 여행입니다.',
+          missionKo: '💬 여행지 하브루타 미션: "제주도의 돌에는 왜 구멍이 송송 뚫려 있고 비가 와도 물이 고이지 않을까?"'
+        }, makeTourUrls('어린이 쌍안경 나침반 자연관찰 탐험 키트', '제주도 어린이 생태 지질 여행책', '서천 국립생태원 제주 아이와 체험학습 투어'))
+      ];
+    }
+
+    // Age 10+ (Upper Elementary & Youth)
+    return [
+      Object.assign({
+        badgeKo: '🏆 엄선 1위 · 세계유산·궁궐 심화 도슨트 여행',
+        badgeEn: '🏆 Edu Travel #1 · Royal Palace & History Docent',
+        categoryKo: '🏛️ 서울 5대 궁궐(경복궁·창덕궁 후원) · 수원화성 · 안동 하회마을 심화 역사 도슨트 투어',
+        categoryEn: 'Seoul Royal Palaces, Suwon Hwaseong & Andong UNESCO Deep-Dive Tour',
+        titleKo: '초등 고학년·청소년 역사 논술 워크북 & 문화재청 궁궐길라잡이·도슨트 투어 준비 키트',
+        titleEn: 'Youth Historical Essay Workbook & Palace Docent Audio/Field Set',
+        descKo: '배외측 전전두엽(DLPFC)이 정점에 달하는 만 10세 이상 시기에 정조의 수원화성 거중기 과학 원리와 조선 왕실의 의사결정을 현장에서 토론하면 교과서 10번 읽는 것보다 강력한 메타인지가 형성됩니다.',
+        missionKo: '💬 여행지 하브루타 미션: "정조가 수원화성을 지을 때 거중기와 벽돌을 도입한 과학적·경제적 이유는 무엇이었을까?"'
+      }, makeTourUrls('초등 고학년 청소년 역사 논술 한국사 탐구 도서', '수원화성 경복궁 역사 기행 청소년 필독서', '경복궁 창덕궁 어린이 청소년 역사 도슨트 투어')),
+      Object.assign({
+        badgeKo: '✨ 엄선 2위 · 대학 캠퍼스·국립과학관 미래 진로 여행',
+        badgeEn: '✨ Edu Travel #2 · STEM & University Campus Tour',
+        categoryKo: '🔬 대전 KAIST·대덕연구단지 국립중앙과학관 & 서울대·규장각 학술 진로 탐방 코스',
+        categoryEn: 'KAIST Daedeok Science Town & University Museum Career Exploration Tour',
+        titleKo: '청소년 과학·공학 탐구 보고서 노트 & 고배율 천체망원경·코딩 로봇 학습 패키지',
+        titleEn: 'Youth STEM Lab Research Notebook & Astronomical Telescope Kit',
+        descKo: '사춘기 초·중기 아이들에게 막연한 공부 잔소리 대신 국내 최고 과학관과 대학 캠퍼스·박물관을 함께 걸으며 미래의 내 모습을 그려보게 하면 내적 학습 동기와 딥워크 집중력이 깨어납니다.',
+        missionKo: '💬 여행지 하브루타 미션: "오늘 본 미래 기술 중 10년 뒤 네가 직접 만들어보고 싶은 기술은 무엇이니?"'
+      }, makeTourUrls('청소년 과학 탐구 보고서 코넬 노트 천체망원경', '십대를 위한 미래 과학 진로 교양서', '대전 국립중앙과학관 카이스트 캠퍼스 투어 가족여행')),
+      Object.assign({
+        badgeKo: '💎 엄선 3위 · 해양·산림 액티브 성장 캠프 여행',
+        badgeEn: '💎 Edu Travel #3 · Active Nature & Posture Reset Trip',
+        categoryKo: '🌲 강원 평창·정선 국립숲체원 트레킹 & 제주 올레길·한라산 어리목 가족 액티브 여행',
+        categoryEn: 'National Forest Healing Trekking & Jeju Active Family Expedition',
+        titleKo: '어린이·청소년 발 아치 보호 트레킹 인솔·등산스틱 & 가족 여행 독서·관찰 키트',
+        titleEn: 'Youth Arch-Support Trekking Gear & Family Travel Journal',
+        descKo: '책상과 학원 의자에 눌려 있던 척추 디스크와 거북목을 펴주고, 숲길 걷기와 야외 햇빛 노출을 통해 세로토닌·멜라토닌 분비를 극대화하여 밤 10시 성장호르몬 피크를 회복시키는 힐링 여행입니다.',
+        missionKo: '💬 여행지 하브루타 미션: "스마트폰을 내려놓고 숲길을 걸을 때 우리 뇌와 몸에서는 어떤 좋은 변화가 일어날까?"'
+      }, makeTourUrls('주니어 어린이 트레킹화 아치 깔창 가족여행 배낭', '청소년 자연 과학 에세이 필독서', '국립숲체원 가족 캠프 평창 제주 액티브 여행'))
+    ];
   }
 
   /**
@@ -1248,24 +1375,24 @@
     const focus = profile.traitFocusSpan || '15_20m';
 
     if (category === 'supplement') {
-      if (dietList.includes('dairy_sensitive') || dietList.includes('weak_stomach')) {
+      if (dietList.includes('dairy_sensitive') || dietList.includes('weak_stomach') || dietList.includes('constipation_hard')) {
         return isEn
           ? 'Tailored for dairy-sensitive digestion: non-lactose calcium citrate & cartilage matrix.'
-          : '[우유·유제품 배앓이·장 민감 맞춤] 유당 부담 없이 흡수되는 구연산·연골칼슘 및 장 면역 배합이 필요합니다.';
+          : '[우유·유제품 배앓이·변비 맞춤] 유당 부담 없이 흡수되는 구연산·연골칼슘 및 장 면역 배합이 필요합니다.';
       }
-      if (dietList.includes('meat_veggie_picky') || dietList.includes('fast_carb_sweet')) {
+      if (dietList.includes('meat_veggie_picky') || dietList.includes('fast_carb_sweet') || dietList.includes('sweet_carb')) {
         return isEn
           ? 'Tailored for meat/veggie picky eaters: zinc, colostrum protein & amino acid support.'
           : '[고기·채소 편식·단맛 선호 맞춤] 부족한 단백질 기질과 미각 세포를 깨우는 아연·초유·아르기닌 보충이 핵심입니다.';
       }
-      if (sleepList.includes('toss_mouth') || sleepList.includes('late_bedtime') || sleepList.includes('wake_middle') || postureList.includes('growing_pains')) {
+      if (sleepList.includes('toss_mouth') || sleepList.includes('late_bedtime') || sleepList.includes('wake_middle') || sleepList.includes('light_dream') || sleepList.includes('hard_wakeup') || sleepList.includes('night_sweat') || postureList.includes('growing_pains')) {
         return isEn
           ? 'Tailored for late/restless sleep & growing pains: chelated magnesium & cartilage calcium.'
           : '[얕은 수면·늦은 취침·성장통 맞춤] 밤 10시 깊은 서파수면 유도 및 저녁 다리 피로 완화를 돕는 배합입니다.';
       }
       return isEn
         ? 'Tailored for small appetite: high-density HT042 & bioavailable calcium.'
-        : '[입 짧은 소식형 체질 맞춤] 적은 양으로도 성장판 연골 증식(IGF-1)을 돕는 고밀도 원료가 필요합니다.';
+        : '[입 짧은 소식형·체질 맞춤] 적은 양으로도 성장판 연골 증식(IGF-1)을 돕는 고밀도 원료가 필요합니다.';
     }
 
     if (category === 'toy') {
@@ -1274,15 +1401,15 @@
           ? 'Matched to Focused Builder temperament: 3D spatial block construction & posture tools.'
           : '[손끝 조립 몰입형 기질 맞춤] 아이가 좋아하는 입체 조립 교구와 앉은 자세 교정 도구를 결합했습니다.';
       }
-      if (tempList.includes('questioner') || tempList.includes('competitive_game')) {
+      if (tempList.includes('questioner') || tempList.includes('competitive_game') || tempList.includes('reward_goal')) {
         return isEn
-          ? 'Matched to Verbal Questioner temperament: cause-and-effect science kits & spinal decompression.'
-          : '[질문·언어 사고·퀴즈형 기질 맞춤] 원리를 실험하며 대화할 수 있는 과학 탐구 교구와 척추 감압 기구입니다.';
+          ? 'Matched to Verbal Questioner & Goal Achiever temperament: cause-and-effect science kits & spinal decompression.'
+          : '[질문·사고·미션 성취형 기질 맞춤] 원리를 실험하며 단계별 성취감을 느끼는 과학 교구와 척추 감압 기구입니다.';
       }
-      if (tempList.includes('cautious') || tempList.includes('art_story')) {
+      if (tempList.includes('cautious') || tempList.includes('art_story') || tempList.includes('creative_art')) {
         return isEn
-          ? 'Matched to Careful Observer temperament: step-by-step precision puzzles & safe indoor exercise.'
-          : '[섬세·감성 관찰형 맞춤] 실패 부담 없이 단계별로 완성하는 정밀 교구와 안전한 실내 점핑 기구입니다.';
+          ? 'Matched to Careful Observer & Creative temperament: step-by-step precision puzzles & safe indoor exercise.'
+          : '[섬세·감성 창의형 맞춤] 실패 부담 없이 단계별로 완성하는 정밀 교구와 안전한 실내 점핑 기구입니다.';
       }
       return isEn
         ? 'Matched to Active Explorer temperament: hands-on physical play & epiphyseal loading.'
@@ -1319,91 +1446,97 @@
     const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
 
     const renderCleanCategoryItems = (items, accentColor, categoryType) => {
-      return items.map((item, itemIdx) => {
-        const topSub = (item.curatedProducts && item.curatedProducts[0]) || {
+      // Collect exactly 3 curated flagship products from items[0] (top 2) + items[1] (top 1)
+      const threePicks = [];
+      if (items[0]) {
+        const sub0 = (items[0].curatedProducts && items[0].curatedProducts[0]) || {
           rankKo: '🏆 엄마들 재주문 1위',
           rankEn: '🏆 Reorder Pick #1',
-          titleKo: item.name,
-          titleEn: item.name,
-          specKo: item.activeSpec,
-          specEn: item.activeSpec,
-          coupangUrl: item.coupangUrl,
-          iherbUrl: item.iherbUrl,
-          yes24Url: item.yes24Url,
-          naverUrl: item.naverUrl
+          titleKo: items[0].name,
+          titleEn: items[0].name,
+          specKo: items[0].activeSpec,
+          specEn: items[0].activeSpec,
+          coupangUrl: items[0].coupangUrl,
+          iherbUrl: items[0].iherbUrl,
+          yes24Url: items[0].yes24Url,
+          naverUrl: items[0].naverUrl,
+          cpQuery: items[0].coupangQuery
         };
-        const secondSub = item.curatedProducts && item.curatedProducts[1] ? item.curatedProducts[1] : null;
+        threePicks.push({ item: items[0], sub: sub0, badgeKo: '🏆 엄선 1위 (최다 재주문)', badgeEn: '🏆 Curated Pick #1' });
+      }
+      if (items[1]) {
+        const sub1 = (items[1].curatedProducts && items[1].curatedProducts[0]) || {
+          rankKo: '✨ 엄선 2위',
+          rankEn: '✨ Curated Pick #2',
+          titleKo: items[1].name,
+          titleEn: items[1].name,
+          specKo: items[1].activeSpec,
+          specEn: items[1].activeSpec,
+          coupangUrl: items[1].coupangUrl,
+          iherbUrl: items[1].iherbUrl,
+          yes24Url: items[1].yes24Url,
+          naverUrl: items[1].naverUrl,
+          cpQuery: items[1].coupangQuery
+        };
+        threePicks.push({ item: items[1], sub: sub1, badgeKo: '✨ 엄선 2위 (맞춤 시너지)', badgeEn: '✨ Curated Pick #2' });
+      }
+      if (items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
+        const sub2 = items[0].curatedProducts[1];
+        threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+      } else if (items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
+        const sub2 = items[1].curatedProducts[1];
+        threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+      }
 
-        const cardBodyHtml = `
-          <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid ${accentColor}; border-radius: 18px; padding: 1.25rem; margin-bottom: 0.85rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
-              <span style="font-size: 0.82rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-                ${isEn ? topSub.rankEn : topSub.rankKo}
-              </span>
-              <span style="font-size: 0.8rem; color: #93C5FD; font-weight: 700;">
-                🔎 ${isEn ? 'Keyword:' : '검색어:'} ${item.coupangQuery}
-              </span>
-            </div>
-
-            <div style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
-              ${isEn ? topSub.titleEn : topSub.titleKo}
-            </div>
-
-            <div style="font-size: 0.96rem; color: #F8FAFC; line-height: 1.62; background: rgba(255, 255, 255, 0.05); border-left: 3.5px solid #34D399; padding: 0.75rem 0.9rem; border-radius: 10px; margin-bottom: 0.85rem;">
-              💬 ${isEn ? topSub.specEn : topSub.specKo}
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.55rem;">
-              <a href="${topSub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.92rem; font-weight: 900; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
-                📦 ${isEn ? 'View Exact Item on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
-              </a>
-              ${categoryType === 'book' ? `
-                <a href="${topSub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.22); border: 1px solid rgba(139, 92, 246, 0.5); color: #EDE9FE; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
-                  📚 ${isEn ? 'View on YES24 ↗' : '예스24에서 이 도서 보기 ↗'}
-                </a>
-              ` : categoryType === 'supplement' ? `
-                <a href="${topSub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="iherb" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
-                  🌿 ${isEn ? 'View on iHerb ↗' : '아이허브(iHerb) 직구 보기 ↗'}
-                </a>
-              ` : `
-                <a href="${topSub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.88rem; font-weight: 800; padding: 0.65rem 1rem; border-radius: 12px; text-decoration: none;">
-                  🛍️ ${isEn ? 'View on Naver Brand Store ↗' : '네이버 공식 브랜드관 보기 ↗'}
-                </a>
-              `}
-            </div>
-
-            ${secondSub ? `
-              <details style="margin-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.14); padding-top: 0.6rem;">
-                <summary style="cursor: pointer; font-size: 0.84rem; font-weight: 800; color: #93C5FD; outline: none;">
-                  + ${isEn ? 'See Alternative Pick #2' : '대체 추천 상품(엄선 2위) 더보기'}: ${isEn ? secondSub.titleEn : secondSub.titleKo}
-                </summary>
-                <div style="margin-top: 0.55rem; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 10px;">
-                  <div style="font-size: 0.88rem; color: #E2E8F0; margin-bottom: 0.5rem;">• ${isEn ? secondSub.specEn : secondSub.specKo}</div>
-                  <a href="${secondSub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="coupang" style="display: inline-flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(255,255,255,0.12); color: #FFFFFF; font-size: 0.82rem; font-weight: 800; padding: 0.45rem 0.9rem; border-radius: 8px; text-decoration: none;">
-                    📦 ${isEn ? 'View Pick #2 on Coupang ↗' : '쿠팡에서 엄선 2위 상품 보기 ↗'}
-                  </a>
+      return `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.9rem;">
+          ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
+            <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid ${accentColor}; border-radius: 16px; padding: 1.15rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.8rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                    ${isEn ? badgeEn : badgeKo}
+                  </span>
+                  <span style="font-size: 0.76rem; color: #93C5FD; font-weight: 700;">
+                    ${item.categoryBadge}
+                  </span>
                 </div>
-              </details>
-            ` : ''}
-          </div>
-        `;
 
-        if (itemIdx === 0) return cardBodyHtml;
-        return `
-          <details style="margin-top: 0.5rem;">
-            <summary style="cursor: pointer; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; font-size: 0.9rem; font-weight: 800; color: #E2E8F0; outline: none;">
-              ➕ ${isEn ? 'Additional Curated Item:' : '함께 챙기면 좋은 추가 맞춤 추천 보기:'} ${item.name}
-            </summary>
-            <div style="margin-top: 0.6rem;">
-              ${cardBodyHtml}
+                <div style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; line-height: 1.45; margin-bottom: 0.5rem;">
+                  ${isEn ? sub.titleEn : sub.titleKo}
+                </div>
+
+                <div style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.6; background: rgba(255, 255, 255, 0.05); border-left: 3.5px solid #34D399; padding: 0.65rem 0.8rem; border-radius: 10px; margin-bottom: 0.85rem;">
+                  💬 ${isEn ? sub.specEn : sub.specKo}
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 46px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.9rem; font-weight: 900; padding: 0.6rem 0.9rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                  📦 ${isEn ? 'View on Coupang ↗' : '쿠팡에서 이 상품 바로 보기 ↗'}
+                </a>
+                ${categoryType === 'book' ? `
+                  <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 42px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.22); border: 1px solid rgba(139, 92, 246, 0.5); color: #EDE9FE; font-size: 0.84rem; font-weight: 800; padding: 0.5rem 0.85rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                    📚 ${isEn ? 'View on YES24 ↗' : '예스24에서 이 도서 보기 ↗'}
+                  </a>
+                ` : categoryType === 'supplement' ? `
+                  <a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="iherb" style="display: flex; min-height: 42px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.84rem; font-weight: 800; padding: 0.5rem 0.85rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                    🌿 ${isEn ? 'View on iHerb ↗' : '아이허브(iHerb) 직구 보기 ↗'}
+                  </a>
+                ` : `
+                  <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="naver" style="display: flex; min-height: 42px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #A7F3D0; font-size: 0.84rem; font-weight: 800; padding: 0.5rem 0.85rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                    🛍️ ${isEn ? 'View on Naver Brand Store ↗' : '네이버 공식 브랜드관 보기 ↗'}
+                  </a>
+                `}
+              </div>
             </div>
-          </details>
-        `;
-      }).join('');
+          `).join('')}
+        </div>
+      `;
     };
 
     return `
-      <!-- AGE LIFECYCLE TIMELINE (1-Age-at-a-Time Tabbed View — Zero 4-Card Clutter) -->
+      <!-- AGE LIFECYCLE TIMELINE (Full Text Display, Zero Clipping) -->
       <div id="child-lifecycle-roadmap-section" style="margin-top: 1.35rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
           <h3 style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0;">
@@ -1416,7 +1549,7 @@
           </span>
         </div>
 
-        <!-- Age Selector Tabs (Click to view 1 age card at a time) -->
+        <!-- Age Selector Tabs -->
         <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 0.75rem;">
           ${data.lifecycleRoadmap.map((step, idx) => `
             <button
@@ -1441,11 +1574,11 @@
                   목표 성장속도: ${step.expectedVelocity}
                 </span>
               </div>
-              <div style="font-size: 0.96rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
-                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체 성장 포인트:'}</strong> ${step.physicalFocus.split('·')[0].trim()}
+              <div style="font-size: 0.95rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.45rem;">
+                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체 성장 포인트:'}</strong> ${step.physicalFocus}
               </div>
-              <div style="font-size: 0.96rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.5rem;">
-                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·학습 포인트:'}</strong> ${step.brainFocus.split('·')[0].trim()}
+              <div style="font-size: 0.95rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.55rem;">
+                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·학습 포인트:'}</strong> ${step.brainFocus}
               </div>
               <div style="font-size: 0.9rem; color: #6EE7B7; font-weight: 800; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.5rem;">
                 🎁 ${isEn ? 'Recommended Prep:' : '이 시기 필수 준비물:'} ${step.mustHaveSummary}
@@ -1455,80 +1588,105 @@
         </div>
       </div>
 
-      <!-- STEP 04: 1-Category-at-a-Time Tabbed Prescription Guide (Zero 3-Card Clutter!) -->
+      <!-- STEP 04: ALL 3 CATEGORIES FULLY UNFOLDED WITH 3 CURATED ITEMS EACH -->
       <div id="pinpoint-custom-prescription-section" style="margin-top: 1.4rem; padding-top: 1.3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="margin-bottom: 0.9rem; text-align: left;">
-          <span style="display: inline-block; font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.7rem; border-radius: 9999px; margin-bottom: 0.35rem;">
-            STEP 04 · ${isEn ? '1:1 CURATED ESSENTIALS (1 TAB AT A TIME)' : '한눈에 보는 우리 아이 맞춤 영양제 · 교구 · 필독 도서'}
+        <div style="margin-bottom: 1rem; text-align: left;">
+          <span style="display: inline-block; font-size: 0.8rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.16); padding: 0.25rem 0.75rem; border-radius: 9999px; margin-bottom: 0.4rem;">
+            STEP 04 · ${isEn ? '1:1 CURATED ESSENTIALS (TOP 3 PER CATEGORY)' : '우리 아이 맞춤 영양제 · 교구운동 · 필독 도서 엄선 TOP 3 (펼쳐보기)'}
           </span>
-          <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.3rem 0;">
+          <h3 style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.3rem 0;">
             ${isEn
-              ? 'Select a Tab Below: Custom Supplements, Play/Posture Tools, or Books'
-              : '원하시는 탭을 눌러 확인해 보세요! 엄마들이 6개월 이상 꾸준히 재주문하는 맞춤 추천입니다~!'}
+              ? 'All 3 Categories Unfolded: Top 3 Curated Supplements, Play/Posture Tools, and Must-Read Books'
+              : '접지 않고 한눈에 보실 수 있도록 영역별 엄선 3종(총 9종)을 모두 펼쳐 정리했습니다'}
           </h3>
         </div>
 
-        <!-- 3-Category Interactive Switcher Bar (Shows 1 Category at a Time!) -->
-        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-bottom: 1rem;">
-          <button
-            type="button"
-            class="pinpoint-cat-tab-btn"
-            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='block'; document.getElementById('pinpoint-toys-box').style.display='none'; document.getElementById('pinpoint-books-box').style.display='none'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===0) ? 'linear-gradient(135deg, #2563EB, #0284C7)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===0) ? '#38BDF8' : 'rgba(255,255,255,0.15)'; }); })(this)"
-            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: linear-gradient(135deg, #2563EB, #0284C7); color: #FFFFFF; border: 1.5px solid #38BDF8;"
-          >
-            💊 ${isEn ? '1. Supplements' : '1. 맞춤 영양제'}
-          </button>
-          <button
-            type="button"
-            class="pinpoint-cat-tab-btn"
-            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='none'; document.getElementById('pinpoint-toys-box').style.display='block'; document.getElementById('pinpoint-books-box').style.display='none'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===1) ? 'linear-gradient(135deg, #059669, #10B981)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===1) ? '#34D399' : 'rgba(255,255,255,0.15)'; }); })(this)"
-            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.15);"
-          >
-            🧩 ${isEn ? '2. Play & Posture' : '2. 맞춤 교구·운동'}
-          </button>
-          <button
-            type="button"
-            class="pinpoint-cat-tab-btn"
-            onclick="(function(btn){ var sec = document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; document.getElementById('pinpoint-supplements-box').style.display='none'; document.getElementById('pinpoint-toys-box').style.display='none'; document.getElementById('pinpoint-books-box').style.display='block'; var btns = sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i===2) ? 'linear-gradient(135deg, #7C3AED, #6D28D9)' : 'rgba(255,255,255,0.06)'; b.style.borderColor = (i===2) ? '#C4B5FD' : 'rgba(255,255,255,0.15)'; }); })(this)"
-            style="min-height: 48px; padding: 0.65rem 0.5rem; border-radius: 12px; font-size: 0.92rem; font-weight: 900; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.15);"
-          >
-            📚 ${isEn ? '3. Must-Read Books' : '3. 맞춤 필독 도서'}
-          </button>
-        </div>
-
-        <div class="pinpoint-single-view-container">
-          <!-- Tab 1: Required Supplements (Visible by default) -->
-          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
-            <h4 style="font-size: 1.08rem; font-weight: 900; color: #38BDF8; margin: 0 0 0.35rem 0;">
-              💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 우리 아이 아침·저녁 간편 맞춤 영양제'}
+        <div class="pinpoint-single-view-container" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Category 1: Required Supplements (Always Unfolded, 3 Curated Items) -->
+          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(56, 189, 248, 0.38); border-radius: 18px; padding: 1.25rem; text-align: left;">
+            <h4 style="font-size: 1.12rem; font-weight: 900; color: #38BDF8; margin: 0 0 0.35rem 0;">
+              💊 ${isEn ? '1. Curated Nutritional Supplements (Top 3)' : '1. 맞춤 영양제 엄선 TOP 3 (아침·저녁 6개월 이상 꾸준히 챙기는 조합)'}
             </h4>
-            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.9rem 0; line-height: 1.55;">
               ${suppTraitNote}
             </p>
             ${renderCleanCategoryItems(data.supplements, 'rgba(56, 189, 248, 0.45)', 'supplement')}
           </div>
 
-          <!-- Tab 2: Required Play & Posture Tools (Hidden until tab clicked) -->
-          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
-            <h4 style="font-size: 1.08rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
-              🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 우리 아이 소근육·두뇌 교구 & 실내 점핑 운동기구'}
+          <!-- Category 2: Required Play & Posture Tools (Always Unfolded, 3 Curated Items) -->
+          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(52, 211, 153, 0.38); border-radius: 18px; padding: 1.25rem; text-align: left;">
+            <h4 style="font-size: 1.12rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
+              🧩 ${isEn ? '2. Curated Play & Exercise Tools (Top 3)' : '2. 맞춤 교구 & 실내 운동기구 엄선 TOP 3 (숨은 키 +1.8cm & 두뇌 몰입)'}
             </h4>
-            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.9rem 0; line-height: 1.55;">
               ${toyTraitNote}
             </p>
             ${renderCleanCategoryItems(data.toys, 'rgba(52, 211, 153, 0.45)', 'toy')}
           </div>
 
-          <!-- Tab 3: Required Books & Workbooks (Hidden until tab clicked) -->
-          <div class="pinpoint-category-box" id="pinpoint-books-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(196, 181, 253, 0.3); border-radius: 18px; padding: 1.2rem; text-align: left;">
-            <h4 style="font-size: 1.08rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
-              📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 우리 아이 집중력·생각 주머니를 키우는 맞춤 필독 도서'}
+          <!-- Category 3: Required Books & Workbooks (Always Unfolded, 3 Curated Items) -->
+          <div class="pinpoint-category-box" id="pinpoint-books-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(196, 181, 253, 0.38); border-radius: 18px; padding: 1.25rem; text-align: left;">
+            <h4 style="font-size: 1.12rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
+              📚 ${isEn ? '3. Curated Must-Read Books & Workbooks (Top 3)' : '3. 맞춤 필독 도서 & 워크북 엄선 TOP 3 (집중력·하브루타 질문독서)'}
             </h4>
-            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.9rem 0; line-height: 1.55;">
               ${bookTraitNote}
             </p>
             ${renderCleanCategoryItems(data.books, 'rgba(196, 181, 253, 0.45)', 'book')}
           </div>
+
+          <!-- Category 4: Educational Family Travel & Experiential Tours (Always Unfolded, 3 Curated Items) -->
+          <div class="pinpoint-category-box" id="pinpoint-edu-travel-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(251, 191, 36, 0.42); border-radius: 18px; padding: 1.25rem; text-align: left;">
+            <h4 style="font-size: 1.12rem; font-weight: 900; color: #FDE68A; margin: 0 0 0.35rem 0;">
+              ✈️ ${isEn ? '4. Curated Educational Family Travel & Field Tours (Top 3)' : '4. 연령·관심사 맞춤 교육 여행 & 가족 체험 투어 엄선 TOP 3'}
+            </h4>
+            <p style="font-size: 0.92rem; color: #E2E8F0; margin: 0 0 0.9rem 0; line-height: 1.55;">
+              ${isEn
+                ? `Mapped to Age ${ageYears} developmental windows: combines outdoor vitamin D synthesis, active growth plate walking, and parent-child Havruta inquiry.`
+                : `[만 ${ageYears}세 두뇌 민감기 × 거주 지역 맞춤] 주말이나 방학에 아이와 함께 떠나면 야외 신체활동(성장판 자극·비타민D 합성)과 현장 배경지식·전두엽 사고력이 동시에 폭발하는 교육 여행 코스 및 준비물입니다.`}
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.9rem;">
+              ${(data.eduTours || []).map((tour) => `
+                <div class="pinpoint-item-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1.15rem; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
+                      <span style="font-size: 0.8rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                        ${isEn ? tour.badgeEn : tour.badgeKo}
+                      </span>
+                    </div>
+                    <div style="font-size: 0.84rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.3rem;">
+                      ${isEn ? tour.categoryEn : tour.categoryKo}
+                    </div>
+                    <div style="font-size: 1.03rem; font-weight: 900; color: #FFFFFF; line-height: 1.45; margin-bottom: 0.5rem;">
+                      ${isEn ? tour.titleEn : tour.titleKo}
+                    </div>
+                    <p style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.55; margin: 0 0 0.55rem 0;">
+                      ${tour.descKo}
+                    </p>
+                    <div style="font-size: 0.85rem; color: #A7F3D0; line-height: 1.5; background: rgba(16, 185, 129, 0.1); border-left: 3.5px solid #10B981; padding: 0.55rem 0.75rem; border-radius: 8px; margin-bottom: 0.85rem;">
+                      ${tour.missionKo}
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                    <a href="${tour.naverTourUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #0F172A; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                      🎟️ ${isEn ? 'View Educational Tour & Tickets ↗' : '교육 여행 투어·체험 티켓 바로 보기 ↗'}
+                    </a>
+                    <a href="${tour.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="coupang" style="display: flex; min-height: 42px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.84rem; font-weight: 800; padding: 0.5rem 0.85rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                      🎒 ${isEn ? 'View Field Trip Prep Kit on Coupang ↗' : '쿠팡에서 여행 연계 탐구 키트·준비물 보기 ↗'}
+                    </a>
+                    <a href="${tour.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn-sub" data-merchant="linkprice" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.22); border: 1px solid rgba(139, 92, 246, 0.5); color: #EDE9FE; font-size: 0.82rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                      📘 ${isEn ? 'View Pre-Trip Guidebook on YES24 ↗' : '예스24에서 여행 사전답사 필독서 보기 ↗'}
+                    </a>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure -->
+        <div id="affiliate-ftc-disclosure" style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
+          ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
         </div>
       </div>
     `;

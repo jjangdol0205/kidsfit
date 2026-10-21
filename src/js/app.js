@@ -1014,10 +1014,16 @@
     // app.js retains nextStep, prevStep, applyPreset, and validateStep for testing and programmatic use.
 
     const retestBtn = document.getElementById('btn-retest');
-    if (retestBtn) {
-      retestBtn.addEventListener('click', () => {
+    if (retestBtn && !retestBtn._retestDelegatorBound) {
+      retestBtn._currentRetestFn = () => {
         const quiz = document.getElementById('quiz-section');
         if (quiz) quiz.scrollIntoView({ behavior: 'smooth' });
+      };
+      retestBtn._retestDelegatorBound = true;
+      retestBtn.addEventListener('click', (e) => {
+        if (typeof retestBtn._currentRetestFn === 'function') {
+          retestBtn._currentRetestFn(e);
+        }
       });
     }
 

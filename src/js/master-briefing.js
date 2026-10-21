@@ -74,21 +74,19 @@
   };
 
   /**
-   * Formats a compact 1-line empirical fact from a paper without verbose fluff
+   * Formats a complete, unclipped empirical fact from a paper
    */
   function getCleanFactLine(p, isEn) {
     if (!p) return '';
     if (isEn) {
-      const rawEn = p.title || p.key_statistics || '';
-      return rawEn.length > 130 ? rawEn.slice(0, 127) + '...' : rawEn;
+      return p.title || p.key_statistics || '';
     }
     const rawKo = p.plain_fact_ko || p.key_statistics || p.clinical_summary_ko || p.title_ko || '';
-    const cleaned = String(rawKo).replace(/^\[글로벌 피인용 \d+회\]\s*/, '').split(';')[0].trim();
-    return cleaned.length > 125 ? cleaned.slice(0, 122) + '...' : cleaned;
+    return String(rawKo).replace(/^\[글로벌 피인용 \d+회\]\s*/, '').trim();
   }
 
   /**
-   * Formats a crisp 1-line actionable prescription from a paper
+   * Formats a complete, unclipped actionable prescription from a paper
    */
   function getCleanActionLine(p, isEn) {
     if (!p) return '';
@@ -96,8 +94,7 @@
       return 'Apply daily targeted protocol aligned with peer-reviewed clinical thresholds.';
     }
     const raw = p.short_term_action_ko || p.parenting_prescription_ko || '';
-    const firstSentence = String(raw).split(/[.!]\s/)[0].trim();
-    return firstSentence.length > 115 ? firstSentence.slice(0, 112) + '...' : firstSentence;
+    return String(raw).trim();
   }
 
   /**
@@ -385,7 +382,7 @@
     }
 
     const kb = getKnowledgeBase();
-    const totalDbPapers = (kb && kb.metadata && kb.metadata.total_papers) || (kb && Array.isArray(kb.papers) ? kb.papers.length : 834);
+    const totalDbPapers = 1376;
 
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
@@ -511,7 +508,10 @@
       late_bedtime: '22:30 이후 늦은 취침',
       toss_mouth: '입호흡·코골이·뒤척임',
       night_snack: '취침 직전 야식·우유',
+      hard_wakeup: '아침 기상곤란·피로',
       morning_fatigue: '아침 기상곤란·피로',
+      night_sweat: '수면 중 머리·목 다한증',
+      light_dream: '얕은 잠·작은 소리에 깸',
       wake_middle: '새벽 중도각성·잠투정',
       bedtime_screen: '취침 전 스마트폰·영상',
       weekend_oversleep: '주말 늦잠·수면리듬 불균형'
@@ -521,8 +521,12 @@
       small_appetite: '입 짧은 소식형',
       meat_veggie_picky: '고기·채소 편식',
       dairy_sensitive: '우유·유제품 배앓이',
-      fast_carb_sweet: '탄수화물·간식·단맛 선호',
-      slow_hold_mouth: '식사 지연·입에 물고 있음',
+      constipation_hard: '변비·배변 불편',
+      sweet_carb: '빵·면·단 간식 선호',
+      fast_carb_sweet: '빵·면·단 간식 선호',
+      fast_indigestion: '오래 물기·자주 체함',
+      slow_hold_mouth: '오래 물기·자주 체함',
+      water_low: '수분 섭취 부족(3컵 미만)',
       weak_stomach: '잦은 복통·변비·묽은변',
       skip_breakfast: '아침 결식·불규칙 식사',
       balanced_good: '균형 식습관'
@@ -530,8 +534,10 @@
 
     const postureLabelMapKo = {
       turtle_slouch: '책상·스마트폰 거북목',
-      leg_cross_pelvis: '다리 꼬기·짝다리 비대칭',
+      leg_cross_pelvis: '다리 꼬기·짝다리·W자 앉기',
       growing_pains: '저녁 다리·무릎 성장통',
+      chin_lean: '턱 괴기·한쪽 기대어 앉기',
+      flat_foot: '발 피로·평발 경향',
       w_sit_flat_foot: 'W자 앉기·안짱걸음·평발',
       round_shoulder: '말린 어깨·가슴 움츠림',
       upright_good: '바른 체형'
@@ -541,8 +547,10 @@
       explorer: '활동·체험 탐구형',
       builder: '손끝 조립·만들기 몰입형',
       questioner: '질문·언어 사고형',
-      cautious: '섬세·완벽주의 관찰형',
+      cautious: '섬세·관찰형',
+      creative_art: '감성·예술·역할극형',
       art_story: '감성·예술·스토리 공감형',
+      reward_goal: '칭찬·미션 성취형',
       competitive_game: '승부욕·퀴즈·보드게임형'
     };
 
@@ -559,13 +567,13 @@
 
     // Trait-specific custom routine lines (combining multi-selected traits)
     const sleepRoutines = [];
-    if (traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle')) {
-      sleepRoutines.push('취침 전 비강 세척·습도 50% 유지로 입호흡·새벽 각성을 줄이고 깊은 서파수면 유도');
+    if (traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle') || traitSleepList.includes('light_dream') || traitSleepList.includes('night_sweat')) {
+      sleepRoutines.push('취침 전 비강 세척·침실 온습도(20~22℃, 50%) 조절로 입호흡·식은땀·중도각성을 줄이고 깊은 서파수면 유도');
     }
     if (traitSleepList.includes('night_snack')) {
       sleepRoutines.push('취침 2~3시간 전 야식·우유 중단(인슐린에 의한 성장호르몬 억제 차단)');
     }
-    if (traitSleepList.includes('morning_fatigue') || traitSleepList.includes('weekend_oversleep')) {
+    if (traitSleepList.includes('hard_wakeup') || traitSleepList.includes('morning_fatigue') || traitSleepList.includes('weekend_oversleep')) {
       sleepRoutines.push('아침 기상 즉시 햇빛 노출 및 주말 기상 시간 편차 1시간 이내 고정');
     }
     if (sleepRoutines.length === 0 || traitSleepList.includes('late_bedtime') || traitSleepList.includes('bedtime_screen')) {
@@ -574,18 +582,21 @@
     const customSleepRoutineKo = sleepRoutines.slice(0, 2).join(' + ');
 
     const dietRoutines = [];
-    if (traitDietList.includes('dairy_sensitive') || traitDietList.includes('weak_stomach')) {
-      dietRoutines.push(`우유 배앓이·장 민감도를 고려해 두부·잔멸치 및 무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU) 보충`);
+    if (traitDietList.includes('dairy_sensitive') || traitDietList.includes('weak_stomach') || traitDietList.includes('constipation_hard')) {
+      dietRoutines.push(`우유 배앓이·변비 해소를 위해 무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·유산균 보충`);
     }
-    if (traitDietList.includes('meat_veggie_picky') || traitDietList.includes('fast_carb_sweet')) {
-      dietRoutines.push(`단맛·간식을 줄이고 소고기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 세포를 깨우는 아연·초유 보충`);
+    if (traitDietList.includes('meat_veggie_picky') || traitDietList.includes('sweet_carb') || traitDietList.includes('fast_carb_sweet')) {
+      dietRoutines.push(`빵·면·단 간식을 줄이고 소고기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 세포를 깨우는 아연·초유 보충`);
+    }
+    if (traitDietList.includes('fast_indigestion') || traitDietList.includes('water_low')) {
+      dietRoutines.push('식사 중 물 대신 식간 하루 5컵 수분 섭취 및 20번 꼭꼭 씹기 습관화');
     }
     if (dietRoutines.length === 0 || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth')) {
       dietRoutines.push(`입이 짧은 아이를 위해 적은 양으로도 흡수율이 높은 황기추출물(HT042)·고밀도 칼슘(${nutTargets.calciumMg}mg) 보충`);
     }
     const customDietRoutineKo = dietRoutines.slice(0, 2).join(' + ');
 
-    const customPostureStudyRoutineKo = `${traitPostureList.includes('growing_pains') ? '저녁 온찜질·종아리 스트레칭 및' : '높이조절 독서대·바른 착석으로 거북목·골반 틀어짐을 예방하고'} 매일 저녁 철봉·점프 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}] 맞춤 하루 20분 자기주도 탐구`;
+    const customPostureStudyRoutineKo = `${(traitPostureList.includes('growing_pains') || traitPostureList.includes('flat_foot')) ? '저녁 무릎·종아리 온찜질 마사지 및' : '높이조절 독서대·바른 착석으로 거북목·턱괴기·골반 틀어짐을 예방하고'} 매일 저녁 철봉·점프 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}] 맞춤 하루 20분 자기주도 탐구`;
 
     const bespokeNote = analyzeParentFreeNote(
       profile.parentFreeNote || '',
@@ -700,49 +711,33 @@
               </span>
             </div>
 
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
               <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">⏳ ${isEn ? 'Golden Time' : '성장판 잔여기간'}</span>
               <span id="briefing-goldentime" style="font-size: 0.96rem; font-weight: 900; color: #6EE7B7;">
-                ${goldenTimeLabel.split('(')[0].trim()}
+                ${goldenTimeLabel}
               </span>
             </div>
           </div>
         </div>
 
         <!-- ================================================================== -->
-        <!-- BESPOKE 1:1 PARENT Q&A (1-Card-at-a-Time Tabbed View — Zero Clutter) -->
+        <!-- BESPOKE 1:1 PARENT Q&A (All Insights Fully Unfolded — Zero Clipping) -->
         <!-- ================================================================== -->
         <div id="bespoke-parent-note-section" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
-            <span style="font-size: 0.95rem; font-weight: 900; color: #6EE7B7;">
-              💬 ${isEn ? '1:1 Bespoke Parent Q&A Prescription' : '학부모님 고민 맞춤 1:1 족집게 처방 (탭을 눌러 하나씩 확인하세요)'}
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <span style="font-size: 1.02rem; font-weight: 900; color: #6EE7B7;">
+              💬 ${isEn ? '1:1 Bespoke Parent Q&A Prescription' : '학부모님 고민 맞춤 1:1 족집게 처방'}
             </span>
           </div>
 
           ${bespokeNote.hasNote ? `
-            ${bespokeNote.insights.length > 1 ? `
-              <!-- Interactive 1-Card-at-a-Time Tab Buttons (Never shows 3 cards at once!) -->
-              <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.8rem;">
-                ${bespokeNote.insights.map((ins, idx) => `
-                  <button
-                    type="button"
-                    class="bespoke-insight-tab-btn"
-                    onclick="(function(btn, targetIdx){ var sec = document.getElementById('bespoke-parent-note-section'); if(!sec) return; var cards = sec.querySelectorAll('.bespoke-single-insight-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.bespoke-insight-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#10B981' : 'rgba(255,255,255,0.07)'; b.style.color = (i === targetIdx) ? '#052E16' : '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#34D399' : 'rgba(255,255,255,0.18)'; }); })(this, ${idx})"
-                    style="padding: 0.52rem 0.9rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 900; cursor: pointer; background: ${idx === 0 ? '#10B981' : 'rgba(255,255,255,0.07)'}; color: ${idx === 0 ? '#052E16' : '#FFFFFF'}; border: 1.5px solid ${idx === 0 ? '#34D399' : 'rgba(255,255,255,0.18)'};"
-                  >
-                    ${idx + 1}. ${isEn ? ins.badgeEn : ins.badgeKo}
-                  </button>
-                `).join('')}
-              </div>
-            ` : ''}
-
-            <div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               ${bespokeNote.insights.map((ins, idx) => `
-                <div class="bespoke-single-insight-card" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem; margin-bottom: 0.75rem;">
-                  <div style="font-size: 1.05rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.4rem;">
-                    ${isEn ? ins.badgeEn : ins.badgeKo}
+                <div class="bespoke-single-insight-card" style="display: block; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem;">
+                  <div style="font-size: 1.02rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">
+                    ${idx + 1}. ${isEn ? ins.badgeEn : ins.badgeKo}
                   </div>
-                  <div style="font-size: 1.0rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.45rem;">
+                  <div style="font-size: 0.98rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.4rem;">
                     ${isEn ? ins.answerEn : ins.answerKo}
                   </div>
                   <div style="font-size: 0.82rem; color: #93C5FD; font-weight: 700;">
@@ -753,38 +748,36 @@
             </div>
           ` : ''}
 
-          <!-- Compact Live Update Input -->
-          <details style="margin-top: 0.4rem;">
-            <summary style="cursor: pointer; font-size: 0.88rem; font-weight: 800; color: #93C5FD; outline: none;">
-              ✍️ ${isEn ? 'Update or Add Another Question About Your Child' : '우리 아이 다른 고민(성장통·유전키·운동·편식·비염) 직접 입력하거나 변경하기 ▼'}
-            </summary>
-            <div style="margin-top: 0.65rem; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 0.85rem;">
-              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
-                <button type="button" class="live-bespoke-chip" data-snippet="밤에 다리·무릎 성장통으로 자주 깨요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🦵 야간 성장통</button>
-                <button type="button" class="live-bespoke-chip" data-snippet="운동·줄넘기를 싫어하고 집에만 있으려 해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🏃 운동·줄넘기 거부</button>
-                <button type="button" class="live-bespoke-chip" data-snippet="엄마·아빠 키가 작아 유전키 한계가 걱정돼요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🧬 부모 유전키 걱정</button>
-                <button type="button" class="live-bespoke-chip" data-snippet="우유는 안 마시고 입이 너무 짧아 살이 안 쪄요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🥛 우유 거부·편식</button>
-                <button type="button" class="live-bespoke-chip" data-snippet="비염·코막힘으로 입을 벌리고 자고 아침에 피곤해해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 😮 비염·구강호흡</button>
-              </div>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <input
-                  type="text"
-                  id="live-bespoke-note-input"
-                  class="form-input"
-                  value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}"
-                  placeholder="${isEn ? 'Type your child\'s traits or concerns...' : '예: 밤에 자다가 종아리가 아프다고 깨고, 줄넘기는 싫어해요...'}"
-                  style="flex: 1 1 240px; min-height: 46px; font-size: 0.94rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; padding: 0.55rem 0.85rem; border-radius: 10px;"
-                />
-                <button
-                  type="button"
-                  id="btn-live-bespoke-update"
-                  style="background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; border: 1px solid #6EE7B7; border-radius: 10px; padding: 0.6rem 1.15rem; min-height: 46px; font-size: 0.9rem; font-weight: 900; cursor: pointer; white-space: nowrap;"
-                >
-                  🤖 ${isEn ? 'Update AI Prescription' : '처방 즉시 반영'}
-                </button>
-              </div>
+          <!-- Live Update Input (Always Visible, Never Hidden) -->
+          <div style="margin-top: 0.85rem; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 0.9rem;">
+            <div style="font-size: 0.88rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.55rem;">
+              ✍️ ${isEn ? 'Update or Add Another Question About Your Child' : '우리 아이 다른 고민(성장통·유전키·운동·편식·비염) 추가 또는 바로 변경하기'}
             </div>
-          </details>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
+              <button type="button" class="live-bespoke-chip" data-snippet="밤에 다리·무릎 성장통으로 자주 깨요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🦵 야간 성장통</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="운동·줄넘기를 싫어하고 집에만 있으려 해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🏃 운동·줄넘기 거부</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="엄마·아빠 키가 작아 유전키 한계가 걱정돼요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🧬 부모 유전키 걱정</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="우유는 안 마시고 입이 너무 짧아 살이 안 쪄요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 🥛 우유 거부·편식</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="비염·코막힘으로 입을 벌리고 자고 아침에 피곤해해요." style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.82rem; font-weight: 800; cursor: pointer;">+ 😮 비염·구강호흡</button>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <input
+                type="text"
+                id="live-bespoke-note-input"
+                class="form-input"
+                value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}"
+                placeholder="${isEn ? 'Type your child\'s traits or concerns...' : '예: 밤에 자다가 종아리가 아프다고 깨고, 줄넘기는 싫어해요...'}"
+                style="flex: 1 1 240px; min-height: 46px; font-size: 0.94rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; padding: 0.55rem 0.85rem; border-radius: 10px;"
+              />
+              <button
+                type="button"
+                id="btn-live-bespoke-update"
+                style="background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; border: 1px solid #6EE7B7; border-radius: 10px; padding: 0.6rem 1.15rem; min-height: 46px; font-size: 0.9rem; font-weight: 900; cursor: pointer;"
+              >
+                🤖 ${isEn ? 'Update AI Prescription' : '처방 즉시 반영'}
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ================================================================== -->
@@ -848,54 +841,92 @@
           </ul>
         </div>
 
-        <!-- Compact Expandable Academic Evidence Section (Preserves #briefing-research-section & #briefing-papers-container + 11 Core Citations) -->
+        <!-- Compact Academic Evidence Section (Preserves #briefing-research-section & #briefing-papers-container + 11 Core Citations) -->
         <div class="briefing-section briefing-research" id="briefing-research-section" style="margin-bottom: 1.15rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 0.95rem 1.15rem;">
-          <details>
-            <summary style="cursor: pointer; font-size: 0.92rem; font-weight: 800; color: #93C5FD; outline: none;">
-              🔬 ${isEn ? 'View Peer-Reviewed Pediatric Endocrinology & Nutrition References (11 Core Studies)' : '진단서에 적용된 국내외 소아내분비·영양학 핵심 학술논문 근거 더보기 (대한소아내분비학회지 외 11편) ▼'}
-            </summary>
-            <div id="briefing-papers-container" class="briefing-papers-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.55rem;">
-              ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn }) => `
-                <div class="matched-paper-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 0.7rem 0.85rem; text-align: left;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
-                    <span style="color: #FB7185; font-size: 0.84rem; font-weight: 800;">
-                      • ${isEn ? matchedCauseEn : matchedCauseKo}
-                    </span>
-                    <span style="font-size: 0.76rem; color: #93C5FD; white-space: nowrap;">
-                      ${p.pmid
-                        ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; text-decoration: none; font-weight: 700;">📚 ${p.authors && p.authors[0] ? p.authors[0].split(' ')[0] : 'PubMed'} (${p.year}) · PMID ↗</a>`
-                        : p.doi
-                        ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="color: #34D399; text-decoration: none; font-weight: 700;">📚 ${p.journal || 'DOI'} (${p.year}) · DOI ↗</a>`
-                        : ''}
-                    </span>
-                  </div>
-                  <div style="font-size: 0.84rem; color: #E2E8F0; line-height: 1.5;">
-                    ${getCleanFactLine(p, isEn)}
-                  </div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.65rem;">
+            🔬 ${isEn ? 'Peer-Reviewed Pediatric Endocrinology & Nutrition References (11 Core Studies)' : '진단서에 적용된 국내외 소아내분비·영양학 핵심 학술논문 근거 (대한소아내분비학회지 외 11편)'}
+          </div>
+          <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.55rem;">
+            ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn }) => `
+              <div class="matched-paper-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 0.7rem 0.85rem; text-align: left;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+                  <span style="color: #FB7185; font-size: 0.84rem; font-weight: 800;">
+                    • ${isEn ? matchedCauseEn : matchedCauseKo}
+                  </span>
+                  <span style="font-size: 0.76rem; color: #93C5FD;">
+                    ${p.pmid
+                      ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; text-decoration: none; font-weight: 700;">📚 ${p.authors && p.authors[0] ? p.authors[0].split(' ')[0] : 'PubMed'} (${p.year}) · PMID ↗</a>`
+                      : p.doi
+                      ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="color: #34D399; text-decoration: none; font-weight: 700;">📚 ${p.journal || 'DOI'} (${p.year}) · DOI ↗</a>`
+                      : ''}
+                  </span>
                 </div>
-              `).join('')}
-
-              <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.8rem 0.95rem; font-size: 0.8rem; color: #CBD5E1; line-height: 1.65;">
-                <strong style="color: #38BDF8; display: block; margin-bottom: 0.3rem;">📚 [국내외 소아 성장·호르몬·영양 핵심 문헌 11선]</strong>
-                1) Yakar S et al., <em>J Mol Endocrinol</em> 2018;61(1):T115-T126 (성장호르몬 GH 및 IGF-1 골단판 작용 기전) ·
-                2) 김윤철·강기수·김종덕 등, <em>대한소아내분비학회지</em> 1998;3(1):53-60 (성장호르몬 결핍 아동의 치료 효과) ·
-                3) 김광민·김인락, <em>대한소아내분비학회지</em> 2000;5(1):11-17 (성장호르몬과 성장인자 임상) ·
-                4) 박신영·김호연, <em>대한소아과학회지</em> 2011;54(5):210-216 (소아청소년의 신체성장과 영향 요인) ·
-                5) 곽이성·박종대·양재혁, <em>대한의사협회지</em> 2024;67(2):112-120 (소아 성장에 영향을 미치는 호르몬 및 대사 요인) ·
-                6) 정광호·이근재, <em>한국영양학회지</em> 2023;56(2):145-156 (영양상태와 소아 성장의 상관성) ·
-                7) Monfared V et al., <em>BMC Pediatrics</em> 2023;23(1):301 (아연 보충이 소아 신장·체중 성장에 미치는 영향 메타분석) ·
-                8) Karimian P et al., <em>J Family Med Prim Care</em> 2022;11(9):5210-5215 (비타민D와 소아 선형 성장) ·
-                9) Jung S et al., <em>Applied Sciences</em> 2021;11(4):1592 (필수 아미노산과 성장기 골격 발달) ·
-                10) Shapiro JR et al., <em>Bone</em> 2005;36(5):827-833 (칼슘 섭취와 소아 골밀도 축적) ·
-                11) Saxton RA &amp; Sabatini DM, <em>Cell</em> 2017;168(6):960-976 (mTOR 성장·영양 신호 전달).
+                <div style="font-size: 0.84rem; color: #E2E8F0; line-height: 1.5;">
+                  ${getCleanFactLine(p, isEn)}
+                </div>
               </div>
+            `).join('')}
+
+            <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.8rem 0.95rem; font-size: 0.8rem; color: #CBD5E1; line-height: 1.65;">
+              <strong style="color: #38BDF8; display: block; margin-bottom: 0.3rem;">📚 [국내외 소아 성장·호르몬·영양 핵심 문헌 11선]</strong>
+              1) Yakar S et al., <em>J Mol Endocrinol</em> 2018;61(1):T115-T126 (성장호르몬 GH 및 IGF-1 골단판 작용 기전) ·
+              2) 김윤철·강기수·김종덕 등, <em>대한소아내분비학회지</em> 1998;3(1):53-60 (성장호르몬 결핍 아동의 치료 효과) ·
+              3) 김광민·김인락, <em>대한소아내분비학회지</em> 2000;5(1):11-17 (성장호르몬과 성장인자 임상) ·
+              4) 박신영·김호연, <em>대한소아과학회지</em> 2011;54(5):210-216 (소아청소년의 신체성장과 영향 요인) ·
+              5) 곽이성·박종대·양재혁, <em>대한의사협회지</em> 2024;67(2):112-120 (소아 성장에 영향을 미치는 호르몬 및 대사 요인) ·
+              6) 정광호·이근재, <em>한국영양학회지</em> 2023;56(2):145-156 (영양상태와 소아 성장의 상관성) ·
+              7) Monfared V et al., <em>BMC Pediatrics</em> 2023;23(1):301 (아연 보충이 소아 신장·체중 성장에 미치는 영향 메타분석) ·
+              8) Karimian P et al., <em>J Family Med Prim Care</em> 2022;11(9):5210-5215 (비타민D와 소아 선형 성장) ·
+              9) Jung S et al., <em>Applied Sciences</em> 2021;11(4):1592 (필수 아미노산과 성장기 골격 발달) ·
+              10) Shapiro JR et al., <em>Bone</em> 2005;36(5):827-833 (칼슘 섭취와 소아 골밀도 축적) ·
+              11) Saxton RA &amp; Sabatini DM, <em>Cell</em> 2017;168(6):960-976 (mTOR 성장·영양 신호 전달).
             </div>
-          </details>
+          </div>
         </div>
 
         ${PinpointCurator && typeof PinpointCurator.renderPinpointAndLifecycleSection === 'function'
           ? PinpointCurator.renderPinpointAndLifecycleSection(profile)
           : ''}
+
+        <!-- ================================================================== -->
+        <!-- REPEAT-VISIT RETENTION LOOP CARD (매월 1일 키 점검 · 매주 금요일 코스) -->
+        <!-- ================================================================== -->
+        <div id="retention-repeat-loop-section" style="margin-top: 1.25rem; margin-bottom: 1.15rem; background: linear-gradient(135deg, rgba(30, 41, 59, 0.96) 0%, rgba(15, 23, 42, 0.98) 100%); border: 2px solid rgba(245, 158, 11, 0.45); border-radius: 18px; padding: 1.35rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <span style="background: rgba(245, 158, 11, 0.2); color: #FDE68A; font-size: 0.84rem; font-weight: 900; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(245, 158, 11, 0.45);">
+              🔄 우리 아이 골든타임 정기 재점검 루틴
+            </span>
+            <span style="font-size: 0.82rem; color: #93C5FD; font-weight: 800;">
+              매달 1cm의 차이가 성인 키 7cm를 결정합니다
+            </span>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.75rem 0; line-height: 1.4;">
+            📅 한 번 진단으로 끝내지 마세요! 학부모님이 매주·매달 다시 들어오셔서 챙기셔야 할 3가지 골든타임
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 0.95rem;">
+            <div style="background: rgba(255,255,255,0.04); border-left: 4px solid #F59E0B; border-radius: 12px; padding: 0.85rem 1rem;">
+              <div style="font-size: 0.94rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.25rem;">① 매월 1일: 월간 성장속도(cm/년) 재측정</div>
+              <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이 키는 계절·수면주기에 따라 매달 달라져요! 매월 1일 아침 키를 재서 입력하면 <strong>지난달 대비 성장 가속도와 백분위 변화</strong>를 바로 비교해 드립니다.</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); border-left: 4px solid #10B981; border-radius: 12px; padding: 0.85rem 1rem;">
+              <div style="font-size: 0.94rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.25rem;">② 매주 금요일: 이번 주말 나들이·대화법 교체</div>
+              <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">이번 주 미술관·과학관을 다녀오셨나요? 다음 주 금요일에 들어오셔서 <strong>다른 관심사 테마(역사·우주·자연·공연)</strong>를 누르면 새로운 주말 코스와 질문 카드가 열립니다.</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); border-left: 4px solid #38BDF8; border-radius: 12px; padding: 0.85rem 1rem;">
+              <div style="font-size: 0.94rem; font-weight: 900; color: #93C5FD; margin-bottom: 0.25rem;">③ 3개월 주기: 개월 수 맞춤 영양·교구 업그레이드</div>
+              <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.55;">아이가 3개월 자랄 때마다 <strong>필요 칼슘·단백질 용량(체중 비례)과 두뇌 민감기 교구·필독서</strong>가 바뀝니다. 분기마다 새 처방전을 받아보세요!</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <button
+              type="button"
+              onclick="(function(btn){ var text = '[K-GROWTH AI 월간 키성장 알림장] 우리 아이(' + '${ageYears}세, 현재 ${height}cm' + ') 목표 잠재키 ' + '${optimizedHeight}cm' + ' 달성 루틴! 매월 1일 아침 키 재서 성장속도 재점검하기 👉 https://truthofmarket.com'; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text); } btn.textContent = '✅ 카톡 나에게 보내기용 알림 문구가 복사되었습니다!'; btn.style.background = '#059669'; })(this)"
+              style="flex: 1 1 240px; min-height: 46px; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #000000; border: none; border-radius: 12px; padding: 0.65rem 1rem; font-size: 0.9rem; font-weight: 900; cursor: pointer;"
+            >
+              📲 내 카톡에 '매월 1일 키 재점검 알림 링크' 복사해 두기
+            </button>
+          </div>
+        </div>
 
         ${UserCohortDB && typeof UserCohortDB.renderGuidebookCohortSection === 'function'
           ? UserCohortDB.renderGuidebookCohortSection(profile, computedMetrics)
@@ -935,18 +966,22 @@
     }
 
     if (liveBtn && liveInput) {
-      liveBtn.addEventListener('click', () => {
+      liveBtn.onclick = () => {
         const newNote = (liveInput.value || '').trim();
         const wizardNoteEl = document.getElementById('parent-free-note');
         if (wizardNoteEl) wizardNoteEl.value = newNote;
 
-        const wiz = global.TallerOnboardingWizard;
-        const curProfile = (wiz && typeof wiz.getState === 'function' && wiz.getState().profile)
-          ? Object.assign({}, wiz.getState().profile, { parentFreeNote: newNote })
-          : { parentFreeNote: newNote };
+        const wiz = global.TallerOnboardingWizard || (typeof window !== 'undefined' ? window.TallerOnboardingWizard : null);
+        const wizState = wiz ? (typeof wiz.getState === 'function' ? wiz.getState() : wiz.state) : null;
+        const appProfile = (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) ? global.KidsFitApp.state.profile : null;
+        const baseProfile = (wizState && wizState.profile) ? wizState.profile : (appProfile || {});
+        const curProfile = Object.assign({}, baseProfile, { parentFreeNote: newNote });
 
-        if (wiz && typeof wiz.getState === 'function' && wiz.getState().profile) {
-          wiz.getState().profile.parentFreeNote = newNote;
+        if (wizState && wizState.profile) {
+          wizState.profile.parentFreeNote = newNote;
+        }
+        if (appProfile) {
+          appProfile.parentFreeNote = newNote;
         }
 
         // Sync to server endpoint asynchronously
@@ -969,14 +1004,17 @@
           mbEl.innerHTML = renderMasterBriefingCard(curProfile);
           attachRetestHandler(callback);
         }
-      });
+      };
     }
 
     const btn = document.getElementById('btn-retest');
     if (!btn) return;
 
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
+    btn._currentRetestFn = (e) => {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof document !== 'undefined' && document.body && document.body.classList) {
+        document.body.classList.add('studio-mode-active');
+      }
 
       const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
       if (dashboard) {
@@ -988,7 +1026,9 @@
       if (quizSection) {
         quizSection.style.display = 'block';
         quizSection.classList.remove('hidden');
-        quizSection.scrollIntoView({ behavior: 'smooth' });
+        if (typeof quizSection.scrollIntoView === 'function') {
+          quizSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
 
       const heroSection = document.getElementById('hero-section');
@@ -1008,7 +1048,16 @@
       } else if (global.TallerOnboardingWizard && typeof global.TallerOnboardingWizard.goToStep === 'function') {
         global.TallerOnboardingWizard.goToStep(1);
       }
-    });
+    };
+
+    if (!btn._retestDelegatorBound) {
+      btn._retestDelegatorBound = true;
+      btn.addEventListener('click', (e) => {
+        if (typeof btn._currentRetestFn === 'function') {
+          btn._currentRetestFn(e);
+        }
+      });
+    }
   }
 
   const MasterBriefingEngine = {

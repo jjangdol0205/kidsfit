@@ -38,17 +38,17 @@
       principle: "Wolff's Law & Intervertebral Disc Rehydration",
       molecularTrigger: 'Runx2 / Sox9',
       restorationEstimate: '+0.8 ~ +1.2 cm',
-      summaryKo: '철봉에 체중을 완전히 실어 매달림으로써 중력에 눌린 L1~L5 요추 및 T7~T12 흉추 디스크 간격을 확장하고 수핵 수분을 재흡수시킵니다.',
-      summaryEn: 'Passive gravitational traction unloads L1~L5 and T7~T12 vertebrae, rehydrating compressed intervertebral discs through osmotic fluid uptake.',
+      summaryKo: '철봉에 매달려 낮 동안 눌린 척추 디스크 간격을 펴고 수분을 재흡수시킵니다.',
+      summaryEn: 'Passive hanging unloads vertebrae and rehydrates intervertebral discs.',
       instructionsKo: [
-        '철봉을 어깨너비보다 살짝 넓게 잡고 발을 지면에서 뗍니다.',
-        '승모근과 어깨의 힘을 완전히 빼고 골반과 하체가 중력에 의해 자연스럽게 늘어나도록 합니다.',
-        '복식호흡을 유지하며 30초간 매달린 후 30초간 휴식합니다 (총 3세트).'
+        '철봉을 어깨너비로 잡고 발을 바닥에서 뗍니다.',
+        '어깨·하체 힘을 툭 빼고 척추를 자연스럽게 늘립니다.',
+        '30초 매달리기 + 30초 휴식 (총 3세트 반복)'
       ],
       instructionsEn: [
-        'Grip the bar slightly wider than shoulder width and suspend feet freely.',
-        'Completely relax trapezius and shoulder girdle, allowing lower body gravity traction.',
-        'Maintain deep diaphragmatic breathing for 30s, followed by 30s rest (3 sets total).'
+        'Grip bar shoulder-width apart and suspend feet.',
+        'Relax shoulders and lower body for passive traction.',
+        'Hold 30s + rest 30s (3 sets total).'
       ]
     },
     {
@@ -63,17 +63,17 @@
       principle: "Postural Kyphosis & Anterior Pelvic Tilt Correction",
       molecularTrigger: 'Myofascial Alignment',
       restorationEstimate: '+1.5 ~ +1.8 cm',
-      summaryKo: '스마트폰 및 좌식 습관으로 유발된 거북목, 흉추 후만 및 단축된 장요근을 신전하여 숨어있던 척추 만곡 높이(+1.8cm)를 즉각 복원합니다.',
-      summaryEn: 'Extends kyphotic thoracic spine and lengthened tight iliopsoas, counteracting tech-neck and anterior pelvic tilt to unlock +1.8 cm of hidden curvature.',
+      summaryKo: '스마트폰·책상 자세로 굽은 등과 거북목을 펴 숨은 키(+1.8cm)를 복원합니다.',
+      summaryEn: 'Extends thoracic spine and tight hip flexors to unlock +1.8 cm of posture height.',
       instructionsKo: [
-        '폼롤러 또는 매트 위에 등(견갑골 사이)을 대고 누워 무릎을 90도로 세웁니다.',
-        '양손을 머리 뒤로 깍지 끼고 가슴을 천장 방향으로 부드럽게 젖혀 흉추를 신전합니다.',
-        '한쪽 다리를 뒤로 뻗는 런지 자세로 장요근을 함께 이완하며 45초간 유지합니다 (양측 각 2세트).'
+        '등(날개뼈 사이) 아래에 폼롤러나 둥근 베개를 받치고 눕습니다.',
+        '양손을 머리 뒤로 깍지 끼고 가슴을 천장으로 활짝 엽니다.',
+        '런지 자세로 골반 앞쪽을 45초간 늘려줍니다 (2세트).'
       ],
       instructionsEn: [
-        'Position foam roller or mat beneath thoracic spine between scapulae with knees bent at 90 degrees.',
-        'Clasp hands behind head and gently arch chest towards ceiling to extend thoracic curve.',
-        'Transition to kneeling hip flexor stretch for iliopsoas release, holding for 45s (2 sets).'
+        'Place foam roller under upper back with knees bent.',
+        'Clasp hands behind head and open chest upward.',
+        'Hold hip flexor lunge stretch for 45s (2 sets).'
       ]
     },
     {
@@ -88,12 +88,12 @@
       principle: "Wolff's Law",
       molecularTrigger: 'Runx2 / Sox9 & Type II Collagen',
       restorationEstimate: '+1.2 ~ +2.0 cm (장기 골 개조 촉진)',
-      summaryKo: '줄넘기 및 수직 바운딩 운동으로 대퇴골과 경골 골단판에 1.5~2.5G의 주기적 미세 하중을 가해 Runx2/Sox9 발현을 유도하고 연골세포 분열을 촉진합니다.',
-      summaryEn: 'Delivers cyclic vertical micro-compressive impact (1.5~2.5G) to epiphyseal growth plates, activating Runx2/Sox9 chondrocyte proliferation via Wolff\'s Law.',
+      summaryKo: '가벼운 수직 점핑으로 무릎 성장판(Runx2/Sox9) 연골세포 분열을 촉진합니다.',
+      summaryEn: 'Cyclic vertical hops stimulate epiphyseal growth plate chondrocyte proliferation.',
       instructionsKo: [
-        '관절 보호를 위해 충격 흡수 매트 또는 쿠션 운동화를 착용합니다.',
-        '가벼운 줄넘기 또는 제자리 양발 점핑을 45초 수행 후 15초 제자리 걷기(인터벌 방식).',
-        '무리한 착지 충격 대신 발가락 앞꿈치(전족부)를 사용하여 탄성 있게 15분간 완주합니다.'
+        '충격 흡수 매트 위에서 운동화를 신고 준비합니다.',
+        '45초 가볍게 양발 점프 후 15초 제자리 걷기를 반복합니다.',
+        '발 앞꿈치로 사뿐히 착지하며 10~15분간 진행합니다.'
       ],
       instructionsEn: [
         'Wear supportive footwear on shock-absorbing surface to protect joint structures.',
@@ -434,10 +434,10 @@
               <text x="304" y="137" fill="#FEF3C7" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '② Zusanli Point' : '② 바깥 아래(족삼리)'}</text>
               <text x="190" y="162" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Press Gently with Thumbs for 5s in Circles' : '엄지손가락으로 5초씩 지그시 누르며 원 그리기'}</text>
             </svg>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.94rem; color: #F8FAFC; line-height: 1.65;">
-              <li><strong>${isGlobal ? 'Warm Up:' : '따뜻한 손 온기 전달:'}</strong> ${isGlobal ? 'Rub both palms warm and cover the child\'s knees for 30 seconds.' : '엄마 양손을 비벼 따뜻하게 한 뒤 아이 무릎을 30초간 감싸주세요.'}</li>
-              <li><strong>${isGlobal ? 'Thumb Press:' : '무릎 아래 쏙 들어간 곳:'}</strong> ${isGlobal ? 'Gently press the two hollows right below the kneecap (Dokbi) for 5 seconds.' : '무릎뼈 바로 아래 양옆 오목한 곳(독비혈)을 엄지로 5초씩 지그시 눌러주세요.'}</li>
-              <li><strong>${isGlobal ? 'Outer Shin:' : '족삼리·양릉천 원 그리기:'}</strong> ${isGlobal ? 'Massage 3cm below the outer knee in soft circles 10 times.' : '무릎 바깥쪽 아래 3cm(족삼리)를 원을 그리듯 10회 부드럽게 풀어주세요~!'}</li>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.9rem; color: #F8FAFC; line-height: 1.55;">
+              <li><strong>따뜻한 온기:</strong> 양손을 비벼 아이 무릎을 30초간 감싸기</li>
+              <li><strong>독비혈 지압:</strong> 무릎뼈 아래 양옆 오목한 곳 엄지로 5초씩 지압</li>
+              <li><strong>족삼리 마사지:</strong> 무릎 바깥 아래 3cm를 원 그리듯 10회 풀기</li>
             </ul>
           </div>
 
@@ -466,10 +466,10 @@
               <rect x="228" y="132" width="138" height="26" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#34D399"/>
               <text x="297" y="149" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '③ Pull Toes Gently' : '③ 발끝을 몸쪽으로 당기기'}</text>
             </svg>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.94rem; color: #F8FAFC; line-height: 1.65;">
-              <li><strong>${isGlobal ? 'Sweep Upward:' : '발목에서 무릎 뒤로:'}</strong> ${isGlobal ? 'Wrap both hands around the ankle and sweep firmly up the calf 10 times.' : '발목 아킬레스건부터 무릎 뒤 오금(위중혈)까지 양손으로 부드럽게 10회 쓸어올려요.'}</li>
-              <li><strong>${isGlobal ? 'Calf Stretch:' : '발끝 당겨 스트레칭:'}</strong> ${isGlobal ? 'Gently push the toes toward the shin for 10 seconds to lengthen the calf.' : '아이 발끝을 몸쪽으로 천천히 당겨 종아리 근육을 10초간 시원하게 늘려주세요.'}</li>
-              <li><strong>${isGlobal ? 'Deep Sleep Effect:' : '숙면 & 성장통 예방:'}</strong> ${isGlobal ? 'Relaxes tight lower-limb fascia so growth hormone peaks during deep sleep!' : '낮 동안 뭉친 다리 피로가 풀리면서 밤새 성장통 없이 푹 자고 쑥쑥 자라납니다~!'}</li>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.9rem; color: #F8FAFC; line-height: 1.55;">
+              <li><strong>쓸어올리기:</strong> 발목부터 무릎 뒤 오금까지 양손으로 10회 쓸어올리기</li>
+              <li><strong>발끝 당기기:</strong> 발끝을 몸쪽으로 당겨 종아리 근육 10초 늘리기</li>
+              <li><strong>성장통 완화:</strong> 다리 근막 긴장을 풀어 밤새 깊은 숙면 유도</li>
             </ul>
           </div>
         </div>
@@ -595,6 +595,50 @@
     });
 
     html += `
+        </div>
+
+        <!-- Recommended Products at Bottom of Core 3 -->
+        <div class="bento-card" id="core-3-recommended-products" style="margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(244, 63, 94, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(244, 63, 94, 0.35); border-radius: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
+            <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">
+              🎁 척추 감압 · 바른 자세 교정에 도움이 되는 엄선 추천 상품 TOP 3
+            </span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #FDA4AF; background: rgba(244, 63, 94, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+              Core 3 맞춤 큐레이션
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem;">
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8;">🏆 엄선 1위 · 운동 1단계 필수템</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">안전 고정형 실내 문틀 철봉 (데드행 스트레칭 바)</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">아침·저녁 30초 매달리기로 낮 동안 눌린 척추 디스크 간격을 안전하게 펴줍니다.</p>
+              </div>
+              <a href="https://www.coupang.com/np/search?q=%EC%8B%A4%EB%82%B4+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%96%B4%EB%A6%B0%EC%9D%B4&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #0284C7, #2563EB); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                🚀 실내 문틀 철봉 보러가기 ↗
+              </a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #34D399;">✨ 엄선 2위 · 운동 2단계 필수템</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">소프트 EPP 폼롤러 &amp; 2단 각도조절 원목 독서대</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">흉추 신전 스트레칭과 책상 시선 각도 교정으로 숨은 키(+1.8cm)를 복원합니다.</p>
+              </div>
+              <a href="https://www.coupang.com/np/search?q=%ED%8F%BC%EB%A1%A4%EB%9F%AC+%EA%B0%81%EB%8F%84%EC%A1%B0%EC%A0%88+%EB%8F%85%EC%84%9C%EB%8C%80&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #059669, #10B981); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                🚀 폼롤러 · 자세교정 독서대 보기 ↗
+              </a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #FBBF24;">💎 엄선 3위 · 운동 3단계 필수템</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">층간소음 방지 실내 점핑 트램폴린 · 카운트 줄넘기</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">관절 무리 없이 무릎 성장판에 탄성 미세 자극을 전달하는 실내 운동 기구입니다.</p>
+              </div>
+              <a href="https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A4%84%EB%84%98%EA%B8%B0&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #E11D48, #F97316); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                🚀 무소음 트램폴린·줄넘기 보기 ↗
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Academic Research Citations with clickable PMID & DOI -->

@@ -83,12 +83,12 @@
       focus: 'sensorimotor synaptogenesis',
       focusKo: '감각운동 피질 시냅스 폭발적 형성기 (Sensorimotor Synaptogenesis)',
       targetCortex: '감각운동 피질(Sensorimotor Cortex) & 두정엽(Parietal Lobe)',
-      principleKo: '생후 초기 뇌는 초당 100만 개 이상의 신경 시냅스를 연결합니다. 촉각·시각·전정감각 자극과 양손 대칭 소근육 활동이 기초 두뇌 배선을 완성합니다.',
-      principleEn: 'Rapid synaptogenesis forming over 1M neural connections/sec. Bilateral fine-motor play builds foundational sensory-motor pathways.',
-      dailyRegimenKo: '하루 15분: 천연 질감 촉각 놀이, 비대칭 블록 쌓기, 핑거페인팅 및 손가락 가위질/집게 훈련',
-      dailyRegimenEn: '15 min/day: Tactile texture exploration, block sorting, and bilateral fine-motor manipulative tasks.',
-      recommendedToolsKo: '몬테소리 일상 감각 교구, 실리콘 촉각 볼, 대형 원목 퍼즐, 수성 안전 물감 키트',
-      recommendedToolsEn: 'Montessori sensorial apparatus, tactile spheres, chunky wooden geometry puzzles.'
+      principleKo: '초당 100만 개 시냅스가 연결되는 시기로, 양손 촉각·소근육 자극이 기초 두뇌 배선을 완성합니다.',
+      principleEn: 'Rapid synaptogenesis forming 1M connections/sec via bilateral fine-motor play.',
+      dailyRegimenKo: '하루 15분: 촉각 놀이 · 원목 블록 쌓기 · 손끝 집게/가위질',
+      dailyRegimenEn: '15 min/day: Tactile exploration, block sorting, fine-motor tasks.',
+      recommendedToolsKo: '몬테소리 일상 감각 교구 · 실리콘 촉각 볼 · 원목 퍼즐',
+      recommendedToolsEn: 'Montessori sensorial apparatus, tactile spheres, wooden puzzles.'
     },
     {
       id: 'childhood',
@@ -97,14 +97,14 @@
       ageRangeStr: '4~7세 (48~95개월)',
       ageRangeStrEn: '4-7 yrs (Childhood)',
       focus: 'linguistic lateralization',
-      focusKo: '언어 편측화 & 전두-두정 신경망 가지치기 (Linguistic Lateralization)',
-      targetCortex: '브로카(Broca) & 베르니케(Wernicke) 언어 영역, 좌우 반구 뇌량',
-      principleKo: '언어 중추의 편측화가 급격히 진행되며 시냅스 가지치기(Pruning)를 통해 비효율적 회로가 정리되고 구조적 사고와 귀납적 추론의 기초가 확립됩니다.',
-      principleEn: 'Linguistic lateralization in Broca and Wernicke zones with synaptic pruning stabilizing inductive logic.',
-      dailyRegimenKo: '하루 20분: 그림책 소리 내어 읽기(낭독), "왜 그럴까?" 인과 질문 놀이, 은물·가베 3차원 공간 구성',
-      dailyRegimenEn: '20 min/day: Interactive dialogic reading, causal inquiry games, 3D geometric construction blocks.',
-      recommendedToolsKo: '프뢰벨 은물/가베, 자석 블록(마그넷), 자연 관찰 생태 도감, 어린이 기초 광학 현미경',
-      recommendedToolsEn: 'Froebel geometric gifts, magnetic construction sets, beginner optical field microscopes.'
+      focusKo: '언어 편측화 & 전두-두정 신경망 가지치기',
+      targetCortex: '브로카·베르니케 언어 영역 & 좌우 뇌량',
+      principleKo: '시냅스 가지치기로 사고 회로가 정교해지며 언어 표현과 입체 공간 추론의 기초가 확립됩니다.',
+      principleEn: 'Linguistic lateralization and synaptic pruning stabilize inductive logic.',
+      dailyRegimenKo: '하루 20분: 그림책 낭독 · "왜 그럴까?" 질문 · 은물·자석블록 입체 조형',
+      dailyRegimenEn: '20 min/day: Dialogic reading, causal inquiry, 3D block construction.',
+      recommendedToolsKo: '프뢰벨 은물/가베 · 자석 블록 · 자연 관찰 도감 · 입문 현미경',
+      recommendedToolsEn: 'Froebel gifts, magnetic blocks, beginner optical microscopes.'
     },
     {
       id: 'early_puberty',
@@ -113,14 +113,14 @@
       ageRangeStr: '8~11세 (96~143개월)',
       ageRangeStrEn: '8-11 yrs (Early Puberty)',
       focus: 'prefrontal cortical thickness',
-      focusKo: '전두엽 피질 두께 피크 & 메타인지 형성 (Prefrontal Cortical Thickness)',
+      focusKo: '전두엽 피질 두께 피크 & 메타인지 형성',
       targetCortex: '배외측 전전두엽(DLPFC) & 전대상회(ACC)',
-      principleKo: '추상적 개념화와 메타인지(자신의 생각을 점검하는 능력)를 관장하는 배외측 전전두엽의 피질 두께가 일생 중 최고조에 달하는 인지 폭발 골든타임입니다.',
-      principleEn: 'Prefrontal cortex thickness peaks, enabling abstract logic, meta-cognition, and working memory consolidation.',
-      dailyRegimenKo: '하루 25분: 하브루타 비판적 토론, 수학 퍼즐·체스·스도쿠 전략 분석, 관찰 과학 실험 일지 작성',
-      dailyRegimenEn: '25 min/day: Socratic debate, chess/algorithmic puzzles, and empirical science lab journaling.',
-      recommendedToolsKo: '정밀 광학 현미경, 물리·전기 회로 실험 키트, 전략 보드게임(체스/바둑), 어린이 고전 문학선집',
-      recommendedToolsEn: 'Precision laboratory microscope, circuit experiment kits, strategic chess, classic literature.'
+      principleKo: '추상적 사고와 메타인지(스스로 생각을 점검하는 힘)를 관장하는 전두엽이 최고조로 발달합니다.',
+      principleEn: 'Prefrontal cortex thickness peaks, enabling abstract logic and meta-cognition.',
+      dailyRegimenKo: '하루 25분: 하브루타 질문 토론 · 전략 보드게임 · 과학 탐구 일지',
+      dailyRegimenEn: '25 min/day: Socratic debate, strategy games, science journaling.',
+      recommendedToolsKo: '과학 실험 키트 · 그래비트랙스 · 전략 보드게임 · 역사·과학 필독서',
+      recommendedToolsEn: 'Science lab kits, marble runs, chess, classic literature.'
     },
     {
       id: 'adolescence',
@@ -129,14 +129,14 @@
       ageRangeStr: '12~18세 (144~240개월)',
       ageRangeStrEn: '12-18 yrs (Adolescence)',
       focus: 'axonal myelination',
-      focusKo: '신경 축삭 수초화 & 전두엽-변연계 회로 안정화 (Axonal Myelination)',
-      targetCortex: '전두엽 백질 신경망(White Matter Tracts) & 변연계(Limbic System)',
-      principleKo: '신경 전달 속도를 최대 100배 가속하는 수초화(Myelination)가 전두엽 전반으로 확장되어 감정 조절, 장기 목표 수립 및 고차원 학문적 몰입이 완성됩니다.',
-      principleEn: 'Axonal myelination accelerates neural transmission up to 100x, consolidating executive impulse regulation and academic stamina.',
-      dailyRegimenKo: '하루 30분: 딥워크(Deep Work) 무방해 자기주도 몰입, 철학·과학 원전 심층 독서, 학술 에세이 작성',
-      dailyRegimenEn: '30 min/day: Distraction-free deep work blocks, foundational philosophy reading, and scientific essay composition.',
-      recommendedToolsKo: '천체 망원경, 고급 코딩·피지컬 컴퓨팅 키트, 인문 철학 고전, 노이즈캔슬링 학습 환경',
-      recommendedToolsEn: 'Astronomical telescope, microcontroller kits, classic philosophical treatises, deep-focus workspace.'
+      focusKo: '신경 축삭 수초화 & 자기주도 딥워크 완성',
+      targetCortex: '전두엽 백질 신경망 & 변연계',
+      principleKo: '신경 전달 속도를 100배 높이는 수초화가 완성되어 장기 목표 몰입과 고차원 추론이 자리잡습니다.',
+      principleEn: 'Axonal myelination accelerates neural speed 100x for deep academic stamina.',
+      dailyRegimenKo: '하루 30분: 무방해 딥워크 몰입 · 원전 심층 독서 · 요약 노트 작성',
+      dailyRegimenEn: '30 min/day: Distraction-free deep work, deep reading, essay writing.',
+      recommendedToolsKo: '무소음 시각 타이머 · 코딩 키트 · 인문·과학 고전 · 자세교정 독서대',
+      recommendedToolsEn: 'Visual focus timer, coding kits, classic treatises, ergonomic stand.'
     }
   ];
 
@@ -144,27 +144,27 @@
   const HAVRUTA_QUESTIONS = {
     step1: {
       step: 1,
-      titleKo: '1단계: 관찰 & 질문 (Observation & Inquiry)',
+      titleKo: '1단계: 관찰 & 질문',
       titleEn: 'Step 1: Observation & Inquiry',
       modelKo: '이 전시물에서 가장 규칙적이지 않거나 특이한 점은 무엇일까?',
       modelEn: 'What is the most unexpected pattern or irregularity you observe here?',
-      guideKo: '정답을 알려주지 말고, 아이가 전시물의 색상, 비례, 소재, 움직임에서 직관적으로 이상하다고 느끼는 부분을 자유롭게 말하도록 유도하세요.'
+      guideKo: '• 정답 대신 아이가 색·모양·움직임에서 느낀 특이한 점을 먼저 말하게 해주세요.'
     },
     step2: {
       step: 2,
-      titleKo: '2단계: 가설 & 추론 (Hypothesis & Deduction)',
+      titleKo: '2단계: 가설 & 추론',
       titleEn: 'Step 2: Hypothesis & Deduction',
       modelKo: '만약 이 조건이 반대로 바뀌었다면, 구조나 역사적 결과는 어떻게 달라졌을까?',
       modelEn: 'If this core variable had been reversed, how would the structural or historical outcome have changed?',
-      guideKo: '"만약 온도가 높았다면?", "만약 이 재료가 돌이 아니라 나무였다면?"처럼 핵심 변수를 반대로 뒤집는 가설 사고를 훈련합니다.'
+      guideKo: '• "만약 재료가 나무였다면?"처럼 핵심 조건을 반대로 뒤집어 상상하게 해주세요.'
     },
     step3: {
       step: 3,
-      titleKo: '3단계: 적용 & 확장 (Application & Reflection)',
+      titleKo: '3단계: 적용 & 확장',
       titleEn: 'Step 3: Application & Reflection',
       modelKo: '오늘 발견한 원리를 우리 일상이나 미래 과학에 적용한다면 어떤 문제를 해결할 수 있을까?',
       modelEn: 'How can the principle discovered today be applied to modern engineering or our daily lives to solve real-world challenges?',
-      guideKo: '박물관/과학관에서 본 원리를 집 안의 가전, 도시의 다리, 우주 탐사선 등 현실 세계의 문제 해결과 연결 짓게 질문합니다.'
+      guideKo: '• 오늘 본 원리를 우리 집이나 일상 속 물건과 연결해 보게 질문해 주세요.'
     }
   };
 
@@ -545,6 +545,50 @@
               </p>
             </div>
 
+          </div>
+        </div>
+
+        <!-- Recommended Products at Bottom of Core 4 -->
+        <div class="bento-card" id="core-4-recommended-products" style="margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
+            <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">
+              🎁 두뇌 발달 · 자기주도 집중력에 도움이 되는 엄선 추천 상품 TOP 3
+            </span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #7DD3FC; background: rgba(56, 189, 248, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+              Core 4 맞춤 큐레이션
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem;">
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8;">🏆 엄선 1위 · 수리·공간·과학 사고력</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">그래비트랙스 트랙 빌딩 &amp; 입체 자석블록 코딩 교구</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">중력·가속도 원리와 3차원 공간 도형 감각을 손끝으로 설계하는 두뇌 교구입니다.</p>
+              </div>
+              <a href="https://www.coupang.com/np/search?q=%EA%B7%B8%EB%9E%98%EB%B9%84%ED%8A%B8%EB%9E%99%EC%8A%A4+%EC%9E%90%EC%84%9D%EB%B8%94%EB%A1%9D&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #0284C7, #2563EB); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                🚀 그래비트랙스·자석블록 보기 ↗
+              </a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #34D399;">✨ 엄선 2위 · 전두엽 실행기능 &amp; 몰입</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">무소음 시각 타이머 (타임타이머) &amp; 집중력 보드게임</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">남은 시간을 눈으로 확인하며 스스로 스마트폰을 멈추고 25분 몰입하는 습관을 길러줍니다.</p>
+              </div>
+              <a href="https://www.coupang.com/np/search?q=%EB%AC%B4%EC%86%8C%EC%9D%8C+%ED%83%80%EC%9E%84%ED%83%80%EC%9D%B4%EB%A8%B8+%EB%B3%B4%EB%93%9C%EA%B2%8C%EC%9E%84&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #059669, #10B981); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                🚀 무소음 시각 타이머 보러가기 ↗
+              </a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
+              <div>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #FBBF24;">💎 엄선 3위 · 문해력 &amp; 하브루타 필독서</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">초등·유아 하브루타 질문독서 &amp; 과학·역사 탐구 도서</div>
+                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">주말 박물관·과학관 나들이 전후에 부모와 함께 읽으며 사고력을 확장하는 필독서입니다.</p>
+              </div>
+              <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25ED%2595%2598%25EB%25B8%258C%25EB%25A3%25A8%25ED%2583%2580%2B%25EA%25B3%25BC%25ED%2595%2599" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #D97706, #EA580C); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                📚 YES24 하브루타·탐구 도서 보기 ↗
+              </a>
+            </div>
           </div>
         </div>
 

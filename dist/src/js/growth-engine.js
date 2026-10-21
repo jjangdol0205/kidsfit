@@ -91,6 +91,9 @@
   }
 
   function getStandardsTable(sex, standard = 'KDCA') {
+    if (!growthData && typeof window !== 'undefined' && window.KIDSFIT_GROWTH_DATA) {
+      growthData = window.KIDSFIT_GROWTH_DATA;
+    }
     const s = normalizeSex(sex);
     const isCdc = String(standard).toUpperCase().includes('CDC');
 
@@ -654,57 +657,48 @@
     `;
   }
 
-  // 12. Render 3 Habit Coaching Cards
+  // 12. Render 3 Habit Coaching Cards (Concise 1-Line Bullet Style)
   function renderCoachingCards(habits = []) {
     const hasMilk = habits.includes('milk_trouble') || habits.includes('picky_eater');
     const hasLateSleep = habits.includes('late_sleep');
     const hasPosture = habits.includes('poor_posture');
 
     return `
-      <div class="coaching-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+      <div class="coaching-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin-top: 1rem;">
         <!-- Card 1: Nutrition -->
-        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
-            <span style="font-size: 1.4rem;">🥛</span>
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">식단 &amp; 뼈성장 영양소 처방</h4>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">🥛 ① 식단 &amp; 뼈성장 영양 핵심</div>
+          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
             ${hasMilk 
-              ? '<strong>소화 흡수 최적화 포뮬러:</strong> 우유·유제품 소화가 불편하거나 편식이 있는 경우, 일반 탄산칼슘(~22%) 대신 위산 무관 흡수되는 <em>구연산 칼슘(구연산칼슘) / 어골칼슘(MCHA, 흡수율 ~45%)</em>과 비타민 D3+K2를 처방합니다.' 
-              : '<strong>골아세포 분열 촉진:</strong> 성장판 연골 기질 결합을 위해 활성형 비타민 D3(1,000~2,500 IU)와 오스테오칼신 활성화 인자 K2(MK-7 45~90 mcg), 피콜린산 아연 복합 공급이 필수적입니다.'}
-          </p>
+              ? '• <strong>구연산 칼슘 · 어골칼슘(흡수율 45%)</strong> + 비타민D3·K2를 아침·저녁 보충해 우유 배앓이 없이 뼈 기질을 채워주세요.' 
+              : '• <strong>구연산 칼슘 · 비타민D3(1000~2000IU) · 아연 · 초유</strong>를 아침·저녁 꾸준히 보충해 성장판 연골 증식을 돕습니다.'}
+          </div>
         </div>
 
         <!-- Card 2: Sleep -->
-        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
-            <span style="font-size: 1.4rem;">🌙</span>
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">밤 10시 수면 골든타임 루틴</h4>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #38BDF8; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #93C5FD; margin-bottom: 0.35rem;">🌙 ② 밤 10시 수면 골든타임</div>
+          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
             ${hasLateSleep 
-              ? '<strong>성장호르몬(GH) 서파수면 피크 사수:</strong> 늦은 취침은 하루 분비량의 65%에 달하는 NREM Stage 3-4 델타파 성장호르몬 피크를 절단합니다(최대 -52% 손실). 밤 10시 이전 입면 환경 조성이 급선무입니다.' 
-              : '<strong>깊은 서파수면(SWS) 3~4단계:</strong> 취침 후 60~90분 사이 맥동성 성장호르몬이 가장 폭발적으로 분비됩니다. 규칙적인 서파수면 리듬을 유지해 주세요.'}
-          </p>
+              ? '• 밤 10시~새벽 2시에 일일 성장호르몬의 <strong>65%가 분비</strong>됩니다. 21:45 소등 &amp; 취침 2시간 전 금식을 지켜주세요.' 
+              : '• 취침 후 첫 90분 깊은 서파수면(SWS)에서 성장호르몬이 폭발합니다. 잠들기 전 5분 다리 마사지로 숙면을 유도하세요.'}
+          </div>
         </div>
 
         <!-- Card 3: Posture -->
-        <div class="bento-card-sub" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.35rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
-            <span style="font-size: 1.4rem;">🧘</span>
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0;">숨은 키 2cm 척추 감압 &amp; 점핑</h4>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #A855F7; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #D8B4FE; margin-bottom: 0.35rem;">🧘 ③ 숨은 키 2cm 감압 &amp; 점핑</div>
+          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
             ${hasPosture 
-              ? '<strong>추간판 수분 복원:</strong> 거북목과 굽은 등으로 압박받은 추간판 공간을 패시브 데드행(30초×3)으로 감압하면 숨은 키 1.5~2.2cm가 즉시 복원됩니다.' 
-              : '<strong>볼프의 법칙(Wolff\'s Law) 성장판 자극:</strong> 줄넘기·점핑 등 수직 미세 하중(체중의 1.5~2.5배)은 성장판 연골세포 Runx2/Sox9 발현을 촉진하여 종적 골 성장을 가속합니다.'}
-          </p>
+              ? '• 저녁 <strong>문틀 철봉 매달리기(30초×3세트)</strong>로 눌린 척추 디스크를 펴주면 <strong>숨은 키 2cm(1.5~2.2cm)</strong>가 복원됩니다.' 
+              : '• 하루 15분 <strong>실내 트램폴린·줄넘기 점핑</strong>은 성장판 연골세포를 자극해 숨은 키 2cm와 골성장을 깨웁니다.'}
+          </div>
         </div>
       </div>
     `;
   }
 
-  // 13. Official Clinical Velocity, Sleep & Nutrition Box
+  // 13. Official Clinical Velocity, Sleep & Nutrition Box (Concise Summary)
   function renderOfficialClinicalAndNutritionBox(ageMonths, bmiInfo) {
     const clampedM = Math.max(12, Math.min(240, ageMonths || 120));
 
@@ -712,138 +706,91 @@
     const velocityGuide = velocityList.find((v) => clampedM >= v.minMonths && clampedM <= v.maxMonths) || {
       ageRangeLabel: '소아·학령기 표준 기준',
       normalVelocityCmPerYear: '연간 5.0 ~ 7.0cm 성장',
-      sleepRecommendation: '일일 총 9~12시간 (밤 9시 30분 이전 취침 권장)',
-      clinicalAdvice: '매년 일정한 백분위 궤도를 유지하며 자라는지 6개월 단위로 키·체중을 기록해주세요.',
-      redFlags: [
-        '신장이 동일 월령·성별 3백분위수 미만인 경우',
-        '1년간 키 성장 속도가 4.0cm 미만으로 떨어진 경우'
-      ]
-    };
-
-    const kdriList = (authoritiesData && authoritiesData.kdriNutritionByAge) || [];
-    const kdriGuide = kdriList.find((k) => clampedM >= k.minMonths && clampedM <= k.maxMonths) || {
-      label: '보건복지부 한국인 영양소 섭취기준(KDRIs)',
-      calciumMg: 800,
-      vitaminDIu: 1000,
-      proteinG: 35,
-      zincMg: 8,
-      ironMg: 9,
-      foodEquivalents: [
-        '칼슘 = 우유/두유 2컵 + 두부 반 모 + 잔멸치 한 줌',
-        '단백질 = 달걀 1개 + 살코기/생선 1토막',
-        '비타민D = 연어/고등어 주 2회 + 하루 20분 야외 햇볕 산책'
-      ]
+      sleepRecommendation: '일일 총 9~12시간 (밤 10시 전 취침)'
     };
 
     return `
-      <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🏛️</span>
-            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-              [공신력 검증] 대한소아내분비학회 · 미국수면재단(NSF) 성장속도 &amp; 수면 지침
-            </h4>
-          </div>
-          <span style="background: rgba(56, 189, 248, 0.15); color: var(--cyan-pulse, #38BDF8); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+      <div style="background: rgba(15, 23, 42, 0.88); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 18px; padding: 1.2rem; margin-top: 1.15rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <h4 style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+            🏛️ 대한소아내분비학회 · 미국수면재단(NSF) 핵심 기준 요약
+          </h4>
+          <span style="background: rgba(56, 189, 248, 0.15); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px;">
             ${velocityGuide.ageRangeLabel}
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
-          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">정상 연간 성장속도 기준</div>
-            <div style="font-size: 1.05rem; font-weight: 800; color: var(--growth-mint, #10B981); margin-top: 0.25rem;">${velocityGuide.normalVelocityCmPerYear}</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
+            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">📏 정상 성장속도</div>
+            <div style="font-size: 1.0rem; font-weight: 900; color: #34D399; margin-top: 0.2rem;">${velocityGuide.normalVelocityCmPerYear}</div>
           </div>
-          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">미국수면재단(NSF) 권장 수면</div>
-            <div style="font-size: 0.95rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin-top: 0.25rem;">${velocityGuide.sleepRecommendation}</div>
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
+            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">🌙 권장 수면시간</div>
+            <div style="font-size: 0.95rem; font-weight: 900; color: #38BDF8; margin-top: 0.2rem;">${velocityGuide.sleepRecommendation}</div>
           </div>
-          <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 14px; padding: 0.9rem 1rem;">
-            <div style="font-size: 0.78rem; color: var(--text-secondary); font-weight: 700;">체질량지수(BMI ${bmiInfo.bmi}) 판정</div>
-            <div style="font-size: 0.95rem; font-weight: 800; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.25rem;">${bmiInfo.bmiStatus}</div>
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.8rem 1rem;">
+            <div style="font-size: 0.78rem; color: #94A3B8; font-weight: 700;">⚖️ 체질량지수 (BMI ${bmiInfo.bmi})</div>
+            <div style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor}; margin-top: 0.2rem;">${bmiInfo.bmiStatus} (연 4cm 미만 시 진료 권장)</div>
           </div>
-        </div>
-
-        <p style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.6; margin: 0 0 0.9rem 0; background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); padding: 0.95rem 1.1rem; border-radius: 14px; border-left: 4px solid var(--cyan-pulse, #38BDF8);">
-          <strong>👩‍⚕️ 임상 권고 가이드:</strong><br>
-          ${velocityGuide.clinicalAdvice}<br>
-          <span style="color: var(--text-secondary); font-size: 0.82rem;">• 체형 판정: ${bmiInfo.bmiNote}</span>
-        </p>
-
-        <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 14px; padding: 0.85rem 1.1rem;">
-          <div style="font-size: 0.84rem; font-weight: 800; color: #FDA4AF; margin-bottom: 0.35rem;">
-            🚨 소아내분비 전문의 진료를 권장하는 임상 적신호 (Red Flags)
-          </div>
-          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #FECDD3; line-height: 1.55;">
-            ${velocityGuide.redFlags.map((rf) => `<li>${rf}</li>`).join('')}
-          </ul>
         </div>
       </div>
     `;
   }
 
-  // 14. Academic Research Evidences
+  // 14. Recommended Products & Compact Reference Section for Tab 1 (신체성장)
   function renderAcademicEvidenceSection() {
-    let kb = researchData;
-    if (!kb && typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
-      kb = window.KIDSFIT_RESEARCH_DATA;
-    }
-    if (!kb || !Array.isArray(kb.papers)) return '';
-    const papers = kb.papers
-      .filter((p) => p.pillar === 'growth_endocrinology' || p.pillar === 'posture_biomechanics_exercise')
-      .slice(0, 4);
-    if (!papers.length) return '';
-    const totalCount = (kb.metadata && kb.metadata.total_papers) || kb.papers.length;
-
     return `
-      <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🔬</span>
-            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-              동료심사(Peer-Reviewed) 학술 논문 임상 근거
-            </h4>
-          </div>
-          <span style="background: rgba(56, 189, 248, 0.15); color: var(--cyan-pulse, #38BDF8); font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
-            PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동
-          </span>
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <span style="font-size: 0.86rem; font-weight: 800; color: #93C5FD;">🔬 동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+      </div>
+
+      <!-- Bottom Recommended Products for Core 1 (신체성장 맞춤 추천 상품 TOP 3) -->
+      <div id="core-1-recommended-products" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <h4 style="font-size: 1.1rem; font-weight: 900; color: #38BDF8; margin: 0;">
+            🎁 신체성장 · 숨은 키 목표 달성에 도움이 되는 엄선 추천 상품 TOP 3
+          </h4>
+          <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 800;">아침·저녁 6개월 이상 꾸준히 챙기는 핵심 구비템</span>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem;">
-          ${papers.map((p) => `
-            <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.5)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 16px; padding: 1rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem; flex-wrap: wrap;">
-                <span style="font-size: 0.74rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); background: rgba(56, 189, 248, 0.15); padding: 0.15rem 0.5rem; border-radius: 999px;">
-                  ${p.journal} (${p.year})
-                </span>
-                <div style="display: flex; gap: 0.35rem; align-items: center;">
-                  ${p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; color: #38BDF8; font-weight: 700; text-decoration: none; background: rgba(56, 189, 248, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : ''}
-                  ${p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; color: #10B981; font-weight: 700; text-decoration: none; background: rgba(16, 185, 129, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px;">DOI ↗</a>` : ''}
-                  ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: var(--growth-mint, #10B981); font-weight: 700; text-decoration: none;">원문 ↗</a>` : ''}
-                </div>
-              </div>
-              <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-primary); line-height: 1.4; margin-bottom: 0.45rem;">
-                ${p.title_ko || p.title}
-              </div>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin: 0 0 0.45rem 0;">
-                <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
-              </p>
-              <div style="font-size: 0.78rem; color: #A7F3D0; background: rgba(16, 185, 129, 0.12); padding: 0.5rem 0.65rem; border-radius: 10px; line-height: 1.45;">
-                <strong>💡 임상 적용:</strong> ${p.parenting_prescription_ko || ''}
-              </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+          <!-- Product 1: HT042 -->
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251,191,36,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">🏆 엄선 1위 · 키성장 기능성</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 아이들이 잘 먹어 6개월 이상 재주문하는 1위 제품입니다.</p>
             </div>
-          `).join('')}
-        </div>
-        <!-- Quiet 12px Academic Reference Chip -->
-        <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
-          <a href="https://www.coupang.com/np/search?q=%EC%86%8C%EC%95%84+%EC%84%B1%EC%9E%A5%ED%8C%90+%EC%98%81%EC%96%91%EC%A0%9C&channel=user&lptag=AF7865143" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="reference-chip" 
-             id="ref-chip-growth"
-             style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
-            <span>📦</span>
-            <span>[도구·도서 아카이브 (Coupang) ↗]</span>
-          </a>
+            <a href="https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" id="ref-chip-growth" class="reference-chip mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              📦 쿠팡에서 HT042 키성장 영양제 보기 ↗
+            </a>
+          </div>
+
+          <!-- Product 2: Colostrum + Calcium Chewable -->
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #6EE7B7; background: rgba(16,185,129,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">✨ 엄선 2위 · 뼈기질 올인원</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">1알에 칼슘·비타민C·D3·초유·철분·아연·마그네슘이 모두 들어있어 아침·저녁 간편하게 씹어 먹는 스테디셀러입니다.</p>
+            </div>
+            <a href="https://www.coupang.com/np/search?q=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              📦 쿠팡에서 초유·칼슘 올인원 보기 ↗
+            </a>
+          </div>
+
+          <!-- Product 3: Ultrasonic Height Stadiometer -->
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #D8B4FE; background: rgba(168,85,247,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">💎 엄선 3위 · 매월 1일 키 측정</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">인바디 다이얼 키즈 / 가정용 초음파 디지털 신장계 (1초 정밀 키재기)</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">매월 1일 아침 키를 0.1cm 단위로 정확히 측정해 우리 아이 성장속도(cm/년)를 관리해 주는 필수 홈케어 기기입니다.</p>
+            </div>
+            <a href="https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(168, 85, 247, 0.22); border: 1px solid #A855F7; color: #E9D5FF; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              📦 쿠팡에서 초음파 신장계 보기 ↗
+            </a>
+          </div>
         </div>
       </div>
     `;

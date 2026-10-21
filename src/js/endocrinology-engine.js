@@ -146,11 +146,11 @@
       });
     }
 
-    let clinicalAdvice = '밤 10시 이전 입면 및 취침 3시간 전 식사 마감이 유지되어 성장호르몬 분비 효율이 100% 최적 상태입니다.';
+    let clinicalAdvice = '✅ 밤 10시 이전 입면 · 취침 3시간 전 식사 마감으로 성장호르몬 효율 100% 최적 상태입니다.';
     if (suppression.suppressionPercent >= 40.0) {
-      clinicalAdvice = `🚨 긴급 호르몬 손실 경보 (-${suppression.suppressionPercent}%): 늦은 취침과 야식으로 인해 깊은 서파수면(SWS) 성장호르몬 맥동 분비의 절반 이상이 절단되었습니다. 식사 마감 시각을 최소 2시간 이상 앞당기고 22시 이전 입면 환경을 마련해주세요.`;
+      clinicalAdvice = `🚨 긴급 경보 (-${suppression.suppressionPercent}% 손실): 저녁 식사를 19시 이전으로 앞당기고 밤 10시 전 암막 수면을 시작하세요.`;
     } else if (suppression.suppressionPercent > 0.0) {
-      clinicalAdvice = `⚠️ 성장호르몬 분비 부분 손실 (-${suppression.suppressionPercent}%): 수면 시각 지연(${suppression.delayPenalty}%) 및 소화기 인슐린 분비(${suppression.carbPenalty}%)로 인해 서파수면 델타파 맥동 피크가 감소했습니다.`;
+      clinicalAdvice = `⚠️ 부분 손실 (-${suppression.suppressionPercent}%): 취침 지연(-${suppression.delayPenalty}%) · 야간 당질(-${suppression.carbPenalty}%)을 줄이면 성장호르몬 피크가 회복됩니다.`;
     }
 
     return {

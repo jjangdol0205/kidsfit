@@ -325,6 +325,23 @@
     const dayEl = document.getElementById('child-birth-day');
     if (!yearEl || !monthEl || !dayEl) return;
 
+    // Clamp valid days per year/month (28/29/30/31)
+    const yearNum = parseInt(yearEl.value, 10) || 2016;
+    const monthNum = parseInt(monthEl.value, 10) || 5;
+    const maxDaysInMonth = new Date(yearNum, monthNum, 0).getDate();
+    if (dayEl.options && dayEl.options.length) {
+      for (let i = 0; i < dayEl.options.length; i++) {
+        const optDay = parseInt(dayEl.options[i].value, 10);
+        if (!isNaN(optDay)) {
+          dayEl.options[i].disabled = optDay > maxDaysInMonth;
+          dayEl.options[i].hidden = optDay > maxDaysInMonth;
+        }
+      }
+    }
+    if (parseInt(dayEl.value, 10) > maxDaysInMonth) {
+      dayEl.value = String(maxDaysInMonth);
+    }
+
     const boyRadio = document.getElementById('gender-boy');
     const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
     const recentInput = document.getElementById('child-recent-gain');
@@ -481,7 +498,7 @@
     const isFullBrowserDom = typeof document !== 'undefined' && typeof document.createElement === 'function' && overlay && typeof overlay.querySelector === 'function';
 
     if (isFullBrowserDom && HapticEngine && typeof HapticEngine.startPersonalizedAnalysisTheatre === 'function') {
-      const browserDurationMs = typeof options.durationMs === 'number' ? options.durationMs : 60000;
+      const browserDurationMs = typeof options.durationMs === 'number' ? options.durationMs : 4000;
       HapticEngine.startPersonalizedAnalysisTheatre(wizardState.profile, { durationMs: browserDurationMs, isEn }, () => {
         completeScan(onComplete);
       });
@@ -509,7 +526,7 @@
 
       if (elapsed >= 1000 && elapsed < 2000) {
         if (titleEl) titleEl.textContent = step2Msg;
-        if (descEl) descEl.textContent = isEn ? 'Filtering 803+ research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 학술 논문 근거를 추출하고 있습니다.';
+        if (descEl) descEl.textContent = isEn ? 'Filtering 1,376+ research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 1,376편 학술 논문 근거를 추출하고 있습니다.';
       } else if (elapsed >= 2000 && elapsed < 3000) {
         if (titleEl) titleEl.textContent = step3Msg;
         if (descEl) descEl.textContent = isEn ? 'Finalizing 90-day actionable roadmap and clinical prescription...' : '식습관, 척추 감압 루틴, 성장호르몬 골든타임 행동 지침을 도출하고 있습니다.';
@@ -1137,10 +1154,10 @@
       });
     }
 
-    // Retest button
+    // Retest button (deduplicated single delegator)
     const retestBtn = document.getElementById('btn-retest');
     if (retestBtn) {
-      retestBtn.addEventListener('click', () => {
+      retestBtn._currentRetestFn = () => {
         if (document.body && document.body.classList) {
           document.body.classList.add('studio-mode-active');
         }
@@ -1162,7 +1179,15 @@
         } else if (quizSection) {
           quizSection.scrollIntoView({ behavior: 'smooth' });
         }
-      });
+      };
+      if (!retestBtn._retestDelegatorBound) {
+        retestBtn._retestDelegatorBound = true;
+        retestBtn.addEventListener('click', (e) => {
+          if (typeof retestBtn._currentRetestFn === 'function') {
+            retestBtn._currentRetestFn(e);
+          }
+        });
+      }
     }
   }
 
@@ -1171,6 +1196,7 @@
     PRESETS,
     WIZARD_STEPS,
     state: wizardState,
+    getState: () => wizardState,
     goToStep,
     validateStep,
     updateMphPreview,

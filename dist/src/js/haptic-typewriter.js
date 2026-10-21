@@ -244,7 +244,7 @@
         highlight: `⚡ 단기(1~4주) → 중기(90일) → 장기(만 20세) 논문 기반 실천 가이드를 생성하고 있습니다.`
       },
       {
-        badge: `✨ 브리핑 6/6 · 1,108편 국제 학술 논문 DB 대조 완료 임박`,
+        badge: `✨ 브리핑 6/6 · 1,376편 국제 학술 논문 DB 대조 완료 임박`,
         title: `우리 아이만을 위한 1:1 정밀 진단 & 핀셋 추천 리스트가 완성됩니다!`,
         body: `질병관리청 성장도표 백분위, 나이별 자동 골연령 단계, 만 ${ageYears}~${nextAge2}세 성장주기 타임라인, 그리고 클릭 즉시 연결되는 <strong>맞춤 영양제·교구·도서 핀셋 처방전</strong>이 곧 열립니다.`,
         highlight: `🏆 결과 화면 상단에서 [우리 아이 맞춤 핀셋 처방 & 연령별 성장주기 로드맵]을 바로 확인하세요!`
@@ -300,8 +300,8 @@
     {
       step: 4,
       rangeSec: [30, 40],
-      titleKo: 'Step 4/6 · 1,108편 국제 소아내분비·뇌신경 학술 논문 DB에서 우리 아이 맞춤 근거 추출 중...',
-      titleEn: 'Step 4/6 · Matching Child Profile Against 1,108+ Peer-Reviewed Clinical Studies...'
+      titleKo: 'Step 4/6 · 1,376편 국제 소아내분비·뇌신경 학술 논문 DB에서 우리 아이 맞춤 근거 추출 중...',
+      titleEn: 'Step 4/6 · Matching Child Profile Against 1,376+ Peer-Reviewed Clinical Studies...'
     },
     {
       step: 5,
@@ -339,8 +339,9 @@
       countdownEl.textContent = `정밀 맞춤 연산 중 · 약 ${remainingSec}초 남음`;
     }
 
-    // Update 6 step pills
-    const activeStageIdx = Math.min(5, Math.floor(elapsedSec / 10));
+    // Update 6 step pills proportionally to durationMs (e.g. 2.5s per step for 15s total)
+    const stageLenSec = Math.max(0.5, (durationMs / 1000) / 6);
+    const activeStageIdx = Math.min(5, Math.floor(elapsedSec / stageLenSec));
     for (let i = 0; i < 6; i++) {
       const pill = document.getElementById(`theatre-stage-pill-${i + 1}`);
       if (pill) {
@@ -470,7 +471,7 @@
       state.activeTheatreTimer = null;
     }
 
-    const durationMs = typeof options.durationMs === 'number' ? options.durationMs : 60000;
+    const durationMs = typeof options.durationMs === 'number' ? options.durationMs : 4000;
     const overlay = typeof document !== 'undefined' ? document.getElementById('analysis-overlay') : null;
     const titleEl = typeof document !== 'undefined' ? document.getElementById('analysis-title') : null;
     const descEl = typeof document !== 'undefined' ? document.getElementById('analysis-desc') : null;
@@ -494,7 +495,7 @@
         theatreDiv.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; flex-wrap: wrap;">
             <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              정밀 맞춤 연산 중 · 약 60초 남음
+              정밀 맞춤 연산 중 · 약 4초 남음
             </span>
             <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #60A5FA; background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(59, 130, 246, 0.35); padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
               📳 햅틱·진동 ON
@@ -539,7 +540,7 @@
       typewriteText(titleEl, isEn ? SIX_STAGES_60S[0].titleEn : SIX_STAGES_60S[0].titleKo, { charInterval: 28 });
     }
     if (descEl) {
-      descEl.textContent = `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'} 데이터를 1,108편 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
+      descEl.textContent = `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'} 데이터를 1,376편 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
     }
     currentStageIdx = 0;
 
@@ -562,8 +563,8 @@
         }
       }
 
-      // Auto-rotate waiting cards every 10 seconds
-      if (elapsedSec - lastCardSwitchSec >= 10) {
+      // Auto-rotate waiting cards every 3.5 seconds (for 15s total duration)
+      if (elapsedSec - lastCardSwitchSec >= 3.5) {
         lastCardSwitchSec = elapsedSec;
         state.activeCardIndex = (state.activeCardIndex + 1) % 6;
         const cardEl = typeof document !== 'undefined' ? document.getElementById('theatre-dynamic-card') : null;

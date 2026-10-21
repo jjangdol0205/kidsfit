@@ -49,12 +49,21 @@ const MIME_TYPES = {
 };
 
 const NO_CACHE_HEADERS = {
-  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+  'Cache-Control': 'no-cache, must-revalidate, max-age=0',
   'Pragma': 'no-cache',
-  'Expires': '0',
-  'Surrogate-Control': 'no-store',
-  'Clear-Site-Data': '"cache"'
+  'Expires': '0'
 };
+
+const SECURITY_HEADERS = {
+  'X-Frame-Options': 'SAMEORIGIN',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-XSS-Protection': '1; mode=block',
+  'Content-Security-Policy': "frame-ancestors 'self';"
+};
+
+const BLOCKED_SCRAPER_UA_REGEX = /(HTTrack|WebCopier|SiteSucker|Teleport|WebZIP|Offline Explorer|WebStripper|BlackWidow|Website Quester)/i;
+const PROTECTED_INTERNAL_PATH_REGEX = /^\/(scripts|tests|logs|docs|\.git|\.github|\.env|server\.js|package\.json|package-lock\.json)(\/|$)/i;
 
 function resolveSafeFile(baseDir, relPath) {
   const safeRel = path.normalize(relPath).replace(/^(\.\.(\/|\\|$))+/, '');
@@ -70,8 +79,21 @@ function resolveSafeFile(baseDir, relPath) {
 
 const server = http.createServer((req, res) => {
   try {
+    const userAgent = String(req.headers['user-agent'] || '');
+    if (BLOCKED_SCRAPER_UA_REGEX.test(userAgent)) {
+      res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS });
+      res.end('403 Forbidden: Automated site cloning/scraping is strictly prohibited.');
+      return;
+    }
+
     const parsedUrl = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
     let pathname = decodeURIComponent(parsedUrl.pathname);
+
+    if (PROTECTED_INTERNAL_PATH_REGEX.test(pathname)) {
+      res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS });
+      res.end('403 Forbidden: Access to internal server resources is denied.');
+      return;
+    }
 
     // 1. Health & Status Endpoints for Render
     if (pathname === '/healthz' || pathname === '/api/health' || pathname === '/api/stats') {
@@ -326,10 +348,15 @@ const server = http.createServer((req, res) => {
 
     const headers = {
       'Content-Type': contentType,
-      'Content-Length': stat.size
+      'Content-Length': stat.size,
+      ...SECURITY_HEADERS
     };
 
-    if (finalExt === '.html' || finalExt === '.css' || finalExt === '.js' || finalExt === '.json') {
+    if (finalExt === '.html') {
+      Object.assign(headers, NO_CACHE_HEADERS);
+    } else if (finalExt === '.css' || finalExt === '.js') {
+      headers['Cache-Control'] = 'public, max-age=3600';
+    } else if (finalExt === '.json') {
       Object.assign(headers, NO_CACHE_HEADERS);
     } else {
       headers['Cache-Control'] = 'public, max-age=3600';
