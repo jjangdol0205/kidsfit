@@ -77,6 +77,7 @@ function saveTelegramConfig(updates = {}) {
 function telegramApiRequestSingle(botToken, method, payload = null) {
   return new Promise((resolve, reject) => {
     const bodyStr = payload ? JSON.stringify(payload) : '';
+    const bodyBuf = payload ? Buffer.from(bodyStr, 'utf8') : null;
     const options = {
       hostname: 'api.telegram.org',
       port: 443,
@@ -85,13 +86,14 @@ function telegramApiRequestSingle(botToken, method, payload = null) {
       headers: payload
         ? {
             'Content-Type': 'application/json; charset=utf-8',
-            'Content-Length': Buffer.byteLength(bodyStr, 'utf8')
+            'Content-Length': bodyBuf.length
           }
         : {},
       timeout: 25000
     };
 
     const req = https.request(options, res => {
+      res.setEncoding('utf8');
       let data = '';
       res.on('data', chunk => {
         data += chunk;
@@ -120,8 +122,8 @@ function telegramApiRequestSingle(botToken, method, payload = null) {
       reject(new Error('Telegram API request timed out (25s)'));
     });
 
-    if (payload) {
-      req.write(bodyStr);
+    if (bodyBuf) {
+      req.write(bodyBuf);
     }
     req.end();
   });
@@ -192,33 +194,47 @@ function buildCompletionMessageHtml(metrics = {}) {
   const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   const research = loadResearchStatus();
   const pc = research.pillar_counts || {};
+  const mb = research.macro_pillar_balance || {};
+  const totalPapers = research.total_papers || 1764;
+  const growthCount = mb.growth_macro_count || ((pc.growth_endocrinology || 0) + (pc.posture_biomechanics_exercise || 0)) || 770;
+  const learningCount = mb.learning_macro_count || ((pc.fine_motor_neuroscience || 0) + (pc.pedagogy_montessori_froebel || 0) + (pc.parent_child_interaction_museum || 0)) || 994;
+  const growthPct = mb.growth_percent || Number(((growthCount / Math.max(1, totalPapers)) * 100).toFixed(1));
+  const learningPct = mb.learning_percent || Number(((learningCount / Math.max(1, totalPapers)) * 100).toFixed(1));
+  const modeLabel = mb.mode_label_ko || '50:50 자동 균형 학습 모드';
 
   return [
     `🌱 <b>[키즈핏 그로스 스튜디오(KidsFit) × Antigravity 실시간 보고]</b>`,
     `🕒 <b>보고 시각</b>: <code>${escapeHtml(timestamp)}</code>`,
     `🌐 <b>실서버 도메인</b>: <a href="${escapeHtml(siteUrl)}">${escapeHtml(siteUrl)}</a>`,
     `━━━━━━━━━━━━━━━━━━`,
-    `📚 <b>1. 실시간 학술 논문 크롤링 & 지속 학습 현황</b>`,
-    `• <b>누적 학습 논문 수</b>: <b>총 ${research.total_papers || 663}편</b> (Cycle #${research.cycle_index || 34})`,
-    `  ├ ① 소아 내분비·키 성장: <code>${pc.growth_endocrinology || 171}편</code>`,
-    `  ├ ② 소근육 신경과학·K-DST: <code>${pc.fine_motor_neuroscience || 106}편</code>`,
-    `  ├ ③ 몬테소리 vs 가베 공간인지: <code>${pc.pedagogy_montessori_froebel || 128}편</code>`,
-    `  ├ ④ 자율성 지지·박물관 대화법: <code>${pc.parent_child_interaction_museum || 146}편</code>`,
-    `  └ ⑤ 거북목 교정·성장판 점프역학: <code>${pc.posture_biomechanics_exercise || 112}편</code>`,
+    `🏛️ <b>1. 50:50 양대 축(Dual-Pillar) 마스터 분석 보고서 완비</b>`,
+    `• <b>【축 1: 📏 아이 신체 성장 마스터 보고서】 (Chapters 1~4)</b>`,
+    `  └ KDCA/CDC 키·체중 백분위, Tanner 유전키(MPH) & 3단 예측키, 골연령 3개년 로드맵, 성장호르몬(SWS)·영양 처방, 순수 신체 성장 운동기구(실내철봉·트램폴린·줄넘기·폼롤러)`,
+    `• <b>【축 2: 🧠 아이 두뇌·학습 마스터 보고서】 (Chapters 5~8)</b>`,
+    `  └ 5대 학습 역량 지수(LQ: 문해력·수리공간·집중작업기억·메타인지·탐구창의) 레이더 차트 & 6개월 성취 궤적, 6대 학습 병목 1:1 뇌과학 처방, 해마→피질 장기기억 수면 시간표, 이관된 학습 환경 도구(독서대·타임타이머·코넬노트·가베·그래비트랙스) & 40개 권역×연령 박물관 도슨트 투어`,
     ``,
-    `🎨 <b>2. 5대 OSMU 양육 콘텐츠 샘플 패키지</b>`,
-    `• 블로그 칼럼 / 6컷 말풍선 대화형 웹툰 / 1줄 대형폰트 카드뉴스 / 15초(컷당 2.5초) 무빙 캐릭터 영상 2종 완비`,
+    `📚 <b>2. AI 학술 논문 자가학습 (성장 vs 학습 동적 밸런싱)</b>`,
+    `• <b>누적 학습 논문 수</b>: <b>총 ${totalPapers}편</b> (Cycle #${research.cycle_index || 149})`,
+    `  ├ 📏 신체 성장 축(Growth Macro): <code>${growthCount}편 (${growthPct}%)</code>`,
+    `  ├ 🧠 두뇌·학습 축(Learning Macro): <code>${learningCount}편 (${learningPct}%)</code>`,
+    `  └ ⚙️ 현재 스케줄러 모드: <code>${escapeHtml(modeLabel)}</code>`,
     ``,
-    `✅ <b>3. 텔레그램 ↔ 안티그래비티 양방향 브릿지</b>`,
+    `✅ <b>3. 텔레그램 ↔ 안티그래비티 양방향 브릿지 (UTF-8 인코딩 보호 적용)</b>`,
     `• 직결 대화방 ID: <code>${escapeHtml(cfg.conversationId)}</code>`,
-    `• 채팅창에 한국말로 명령을 입력하시면 PC의 안티그래비티가 즉시 수행 후 답장합니다!`
+    `• 채팅창에 한국말로 명령을 입력하시면 PC의 안티그래비티가 즉시 수행 후 깨짐 없는 UTF-8 한국어로 답장합니다!`
   ].join('\n');
 }
 
 async function sendTelegramReport(metrics = {}, options = {}) {
   const cfg = getTelegramConfig();
   const forceDryRun = Boolean(options.dryRun);
-  const htmlMessage = options.customHtml || buildCompletionMessageHtml(metrics);
+  let htmlMessage = options.customHtml || buildCompletionMessageHtml(metrics);
+
+  // Guard against Windows PowerShell CP949 stdin pipe corruption ('???')
+  if (/\?{4,}/.test(htmlMessage) && !/[가-힣]/.test(htmlMessage)) {
+    console.warn('  [Telegram UTF-8 Guard] Detected CP949 pipe corruption (???); falling back to UTF-8 buildCompletionMessageHtml().');
+    htmlMessage = buildCompletionMessageHtml(metrics);
+  }
 
   if (!fs.existsSync(LOGS_DIR)) {
     fs.mkdirSync(LOGS_DIR, { recursive: true });
@@ -333,6 +349,8 @@ if (require.main === module) {
     const tokenArgIdx = args.indexOf('--token');
     const chatArgIdx = args.indexOf('--chat-id');
     const msgArgIdx = args.indexOf('--message');
+    const fileArgIdx = args.indexOf('--file');
+    const htmlFileArgIdx = args.indexOf('--html-file');
     const photoArgIdx = args.indexOf('--photo');
     const captionArgIdx = args.indexOf('--caption');
 
@@ -359,6 +377,23 @@ if (require.main === module) {
       const caption = captionArgIdx !== -1 && args[captionArgIdx + 1] ? args.slice(captionArgIdx + 1).join(' ') : '';
       const photoRes = await sendTelegramPhoto(cfg.botToken, cfg.chatId, photoPath, caption);
       console.log(`[Telegram Photo Sent] message_id=${photoRes.message_id}`);
+      process.exit(0);
+    }
+
+    if (htmlFileArgIdx !== -1 && args[htmlFileArgIdx + 1]) {
+      const filePath = path.resolve(PROJECT_ROOT, args[htmlFileArgIdx + 1]);
+      const customHtml = fs.readFileSync(filePath, 'utf8').trim();
+      const res = await sendTelegramReport({}, { dryRun: isDryRun, customHtml });
+      console.log(`[Telegram HTML File Message] Status: ${res.mode} (sent=${res.sent})`);
+      process.exit(0);
+    }
+
+    if (fileArgIdx !== -1 && args[fileArgIdx + 1]) {
+      const filePath = path.resolve(PROJECT_ROOT, args[fileArgIdx + 1]);
+      const rawMsg = fs.readFileSync(filePath, 'utf8').trim();
+      const customHtml = `🌱 <b>[키즈핏 × Antigravity AI 실시간 알림]</b>\n━━━━━━━━━━━━━━━━━━\n${escapeHtml(rawMsg)}\n━━━━━━━━━━━━━━━━━━\n🌐 <a href="${cfg.siteUrl}">${cfg.siteUrl}</a>`;
+      const res = await sendTelegramReport({}, { dryRun: isDryRun, customHtml });
+      console.log(`[Telegram File Message] Status: ${res.mode} (sent=${res.sent})`);
       process.exit(0);
     }
 
