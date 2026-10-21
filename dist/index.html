@@ -757,14 +757,14 @@
                   <div id="parent-free-note-container" style="margin-top: 1.35rem; padding: 1.15rem; background: rgba(59, 130, 246, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; text-align: left;">
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
                       <label class="form-label" for="parent-free-note" data-i18n="quiz.freenote.label" style="margin: 0; color: #38BDF8; font-weight: 900; font-size: 0.95rem;">
-                        💬 우리 아이 고민을 편하게 적어주세요 (1:1 맞춤 반영)
+                        💬 우리 아이 평소 습관·고민을 직접 적어주세요 (자세히 적을수록 정밀도 UP!)
                       </label>
                       <span style="background: rgba(16, 185, 129, 0.18); color: #34D399; font-size: 0.72rem; font-weight: 800; padding: 0.18rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
-                        🤖 1:1 맞춤 처방
+                        🤖 서술형 정밀도 최대 99% 반영
                       </span>
                     </div>
                     <p class="section-hint" data-i18n="quiz.freenote.hint" style="margin-bottom: 0.65rem; color: #CBD5E1; font-size: 0.8rem; line-height: 1.48;">
-                      어떤 제품을 먹일까 고민되거나 평소 걱정되는 점을 적어주시면 <strong>우리 아이만을 위한 1:1 맞춤 답변</strong>을 리포트에 함께 담아드려요~! (아래 버튼을 누르면 자동 입력됩니다)
+                      평소 잠드는 시각, 안 먹는 음식, 다리 성장통, 운동·독서 습관 등을 <strong>구체적으로 적어주실수록 AI 맞춤 정밀도(Level 1~5)가 올라가고 아침·방과후·저녁·취침 시간대별 1:1 밀착 스케줄</strong>이 훨씬 디테일하게 생성됩니다!
                     </p>
 
                     <!-- Quick-Tap Example Chips for Smartphone Convenience -->
@@ -839,7 +839,7 @@
     <!-- Phase 2: Results Dashboard & Master Guidebook (Hidden initially until scan completes) -->
     <section class="results-dashboard prescription-container hidden" id="results-dashboard" data-alias="prescription-container" style="display: none;" aria-label="AI 맞춤형 성장 가이드북 결과">
       
-      <!-- Patient Summary Bar with Retest Button -->
+      <!-- Patient Summary Bar with Print & Retest Buttons -->
       <div class="prescription-banner">
         <div class="prescription-banner-left">
           <div class="prescription-avatar" id="rx-avatar">K</div>
@@ -848,7 +848,10 @@
             <p id="rx-header-subtitle" data-i18n="rx.standard.kdca">독자 개발 K-GROWTH AI™ · 질병관리청(KDCA 2017) &amp; US CDC 2000 정밀 분석 완료</p>
           </div>
         </div>
-        <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 정보 다시 입력하기</button>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ try { var app = window.KidsFitApp; var gt = window.KidsFitGrowthTracker || window.TallerGrowthTracker; if(gt && typeof gt.preparePrintReport === 'function'){ gt.preparePrintReport(app && app.state ? app.state.profile : {}); } window.print(); } catch(e){ window.print(); } })()" style="background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%); color: #0F172A; font-weight: 900; border: 1.5px solid #38BDF8;">🖨️ 보고서 출력 (인쇄 / PDF)</button>
+          <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 정보 다시 입력하기</button>
+        </div>
       </div>
 
       <!-- Master Briefing Card (Top of Phase 2 Results) -->

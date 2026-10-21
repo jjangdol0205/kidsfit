@@ -322,22 +322,22 @@
     }).join('');
 
     return `
-      <div class="academic-citations-container" style="background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem 1.15rem; margin-top: 1.1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem;">
+      <details class="academic-citations-container clinical-source-details" style="background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 0.85rem 1.15rem; margin-top: 1.1rem;">
+        <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; outline: none;">
           <div style="display: flex; align-items: center; gap: 0.4rem;">
             <span style="font-size: 1.05rem;">🔬</span>
-            <h5 style="font-size: 0.92rem; font-weight: 800; color: #FFFFFF; margin: 0;">
-              ${isGlobal ? 'Peer-Reviewed Clinical Research Citations' : '동료심사(Peer-Reviewed) 학술 논문 임상 근거'}
+            <h5 style="font-size: 0.9rem; font-weight: 800; color: #FFFFFF; margin: 0;">
+              ${isGlobal ? 'Peer-Reviewed Clinical Research Citations (Click to expand ▼)' : '동료심사(Peer-Reviewed) 학술 논문 임상 근거 (출처 접음 · 클릭 시 펼침 ▼)'}
             </h5>
           </div>
           <span style="background: rgba(56, 189, 248, 0.15); color: #38BDF8; font-size: 0.74rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;">
             ${isGlobal ? `PubMed & Crossref (${totalCount} Indexed Papers)` : `PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동`}
           </span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255, 255, 255, 0.12);">
           ${cardsHtml}
         </div>
-      </div>
+      </details>
     `;
   }
 
