@@ -753,18 +753,63 @@
                     </select>
                   </div>
 
+                  <!-- Deep Trait Question 3-B: 1:1 Learning & Study Counseling Questionnaire (Bottlenecks & Learning Style) -->
+                  <div id="learning-counseling-quiz-block" style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(167, 139, 250, 0.3);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.35rem;">
+                      <label class="form-label form-label-required" data-i18n="quiz.trait.learning.label" style="margin: 0; color: #C4B5FD;">📚 현재 가장 고민되는 학습·공부 병목 (복수 선택 · 1:1 학습 상담 연동)</label>
+                      <span style="background: rgba(139, 92, 246, 0.2); color: #DDD6FE; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.4);">
+                        🧠 뇌인지 학습 논문 기반 처방
+                      </span>
+                    </div>
+                    <p class="section-hint" data-i18n="quiz.trait.learning.hint" style="margin-bottom: 0.65rem;">선택하신 학습 고민의 뇌과학적 원인을 진단하고 딱 맞는 공부법·도서·워크북을 큐레이팅해 드려요~!</p>
+                    <div class="choice-chips-grid trait-multi-grid" id="trait-learning-concern" style="margin-bottom: 1rem;">
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="reading_literacy" class="chip-input" checked>
+                        <span class="chip-pill">📖 <span data-i18n="quiz.trait.learning.opt1">긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="math_concept" class="chip-input">
+                        <span class="chip-pill">📐 <span data-i18n="quiz.trait.learning.opt2">단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="passive_forget" class="chip-input">
+                        <span class="chip-pill">🧠 <span data-i18n="quiz.trait.learning.opt3">학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="screen_dopamine" class="chip-input">
+                        <span class="chip-pill">📱 <span data-i18n="quiz.trait.learning.opt4">스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="desk_endurance" class="chip-input">
+                        <span class="chip-pill">🪑 <span data-i18n="quiz.trait.learning.opt5">책상에 15~20분 이상 바른 자세로 앉아 있기 힘들고 산만해요</span></span>
+                      </label>
+                      <label class="chip-label">
+                        <input type="checkbox" name="trait-learning-concern" value="vocab_expression" class="chip-input">
+                        <span class="chip-pill">🗣️ <span data-i18n="quiz.trait.learning.opt6">어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요</span></span>
+                      </label>
+                    </div>
+
+                    <label class="form-label form-label-required" for="trait-study-style" data-i18n="quiz.trait.studystyle.label" style="color: #C4B5FD;">✍️ 우리 아이가 가장 잘 흡수하는 학습·독서 스타일</label>
+                    <select class="form-select" id="trait-study-style" name="trait-study-style">
+                      <option value="dialogue_question" selected data-i18n="quiz.trait.studystyle.opt1">🗣️ 부모·선생님과 질문하고 말로 설명해 볼 때(하브루타·백지복습) 제일 잘 배워요</option>
+                      <option value="play_manipulative" data-i18n="quiz.trait.studystyle.opt2">🧩 손으로 만지는 입체교구·실험·보드게임으로 체험할 때 제일 잘 흡수해요</option>
+                      <option value="visual_story" data-i18n="quiz.trait.studystyle.opt3">🎨 만화·그림 도감·시각 마인드맵과 스토리텔링으로 볼 때 쉽게 이해해요</option>
+                      <option value="goal_workbook" data-i18n="quiz.trait.studystyle.opt4">✅ 하루 분량이 명확한 일일 워크북·체크리스트를 하나씩 끝낼 때 성취감을 느껴요</option>
+                    </select>
+                  </div>
+
                   <!-- Deep Trait Question 4: Parent / Youth Free-Text Narrative Input for Antigravity Bespoke AI Synthesis -->
                   <div id="parent-free-note-container" style="margin-top: 1.35rem; padding: 1.15rem; background: rgba(59, 130, 246, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; text-align: left;">
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
                       <label class="form-label" for="parent-free-note" data-i18n="quiz.freenote.label" style="margin: 0; color: #38BDF8; font-weight: 900; font-size: 0.95rem;">
-                        💬 우리 아이 평소 습관·고민을 직접 적어주세요 (자세히 적을수록 정밀도 UP!)
+                        💬 우리 아이 평소 습관·성장·학습 고민을 직접 적어주세요 (자세히 적을수록 정밀도 UP!)
                       </label>
                       <span style="background: rgba(16, 185, 129, 0.18); color: #34D399; font-size: 0.72rem; font-weight: 800; padding: 0.18rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
                         🤖 서술형 정밀도 최대 99% 반영
                       </span>
                     </div>
                     <p class="section-hint" data-i18n="quiz.freenote.hint" style="margin-bottom: 0.65rem; color: #CBD5E1; font-size: 0.8rem; line-height: 1.48;">
-                      평소 잠드는 시각, 안 먹는 음식, 다리 성장통, 운동·독서 습관 등을 <strong>구체적으로 적어주실수록 AI 맞춤 정밀도(Level 1~5)가 올라가고 아침·방과후·저녁·취침 시간대별 1:1 밀착 스케줄</strong>이 훨씬 디테일하게 생성됩니다!
+                      평소 잠드는 시각, 안 먹는 음식, 다리 성장통은 물론 <strong>책 읽기·문해력·수학·학원 복습 등 학습 고민을 구체적으로 적어주실수록 AI 맞춤 정밀도(Level 1~5)가 올라가고 1:1 성장·학습 통합 스케줄</strong>이 훨씬 디테일하게 생성됩니다!
                     </p>
 
                     <!-- Quick-Tap Example Chips for Smartphone Convenience -->
@@ -786,6 +831,15 @@
                       </button>
                       <button type="button" class="free-note-chip-btn" data-note-snippet="사춘기(2차 성징)가 빨리 올까 봐 걱정되고 성장판이 닫히기 전에 바짝 키워주고 싶어요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
                         + ⏳ 사춘기·성장판이 걱정돼요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="책 읽기를 싫어하고 긴 문장제 문제를 읽고 이해하는 문해력이 부족해서 걱정이에요." style="background: rgba(139,92,246,0.16); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 800; cursor: pointer;">
+                        + 📚 책 읽기를 싫어하고 문해력이 걱정돼요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="단순 연산은 푸는데 조금만 꼬아놓은 응용·도형·사고력 수학 문제가 나오면 포기하려고 해요." style="background: rgba(139,92,246,0.16); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 800; cursor: pointer;">
+                        + 📐 연산은 하는데 응용·사고력 수학을 어려워해요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="학원은 다니는데 스스로 계획해서 복습하는 자기주도 공부 습관이 안 잡혀 있어요." style="background: rgba(139,92,246,0.16); border: 1px solid rgba(167,139,250,0.45); color: #EDE9FE; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 800; cursor: pointer;">
+                        + 🧠 학원만 다니고 자기주도 복습 습관이 없어요
                       </button>
                     </div>
 

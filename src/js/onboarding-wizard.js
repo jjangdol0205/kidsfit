@@ -34,6 +34,8 @@
       tannerPhase: 'phase_1',
       habits: ['picky_eater'],
       cognitiveAxes: ['sensory_arts'],
+      traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
+      traitStudyStyle: 'play_manipulative',
       region: '서울 강남·서초·송파'
     },
     'preset-2': {
@@ -51,6 +53,8 @@
       tannerPhase: 'phase_1',
       habits: ['poor_posture'],
       cognitiveAxes: ['math_logic'],
+      traitLearningConcerns: ['math_concept', 'reading_literacy'],
+      traitStudyStyle: 'play_manipulative',
       region: '경기 남부(분당·수원·용인·동탄)'
     },
     'preset-3': {
@@ -68,6 +72,8 @@
       tannerPhase: 'phase_2',
       habits: ['late_sleep'],
       cognitiveAxes: ['science_nature'],
+      traitLearningConcerns: ['reading_literacy', 'passive_forget'],
+      traitStudyStyle: 'dialogue_question',
       region: '서울 강북·마포·용산'
     },
     'preset-4': {
@@ -85,6 +91,8 @@
       tannerPhase: 'phase_2',
       habits: ['late_sleep', 'night_carbs'],
       cognitiveAxes: ['executive_focus'],
+      traitLearningConcerns: ['passive_forget', 'screen_dopamine'],
+      traitStudyStyle: 'goal_workbook',
       region: '경기 북부·인천'
     },
     'preset-5': {
@@ -102,6 +110,8 @@
       tannerPhase: 'phase_4',
       habits: ['poor_posture', 'late_sleep'],
       cognitiveAxes: ['language_reading'],
+      traitLearningConcerns: ['reading_literacy', 'passive_forget'],
+      traitStudyStyle: 'dialogue_question',
       region: '대구·경북'
     }
   };
@@ -145,10 +155,10 @@
     },
     {
       step: 6,
-      titleKo: '우리 아이 성향 & 고민 한 줄 적기',
-      titleEn: 'Neuro-Cognitive Focus & Analysis Initiation',
-      subKo: '아이 기질을 고르고 고민을 적어주시면 맞춤 처방전이 바로 열려요~!',
-      subEn: 'Select cognitive domains and initiate matching against clinical studies.'
+      titleKo: '두뇌·성향 & 1:1 학습 상담 진단 체크',
+      titleEn: 'Neuro-Cognitive Focus & 1:1 Learning Consultation',
+      subKo: '아이 기질과 학습 고민을 골라주시면 맞춤 공부법·도서·성장 처방전이 바로 열려요~!',
+      subEn: 'Select cognitive domains and learning bottlenecks to generate bespoke counseling.'
     }
   ];
 
@@ -171,6 +181,8 @@
       tannerPhase: 'phase_2',
       habits: ['late_sleep'],
       cognitiveAxes: ['science_nature'],
+      traitLearningConcerns: ['reading_literacy'],
+      traitStudyStyle: 'dialogue_question',
       region: '서울 강남·서초·송파'
     }
   };
@@ -658,6 +670,8 @@
       tannerPhase: preset.tannerPhase,
       habits: [...preset.habits],
       cognitiveAxes: [...preset.cognitiveAxes],
+      traitLearningConcerns: Array.isArray(preset.traitLearningConcerns) ? [...preset.traitLearningConcerns] : ['reading_literacy'],
+      traitStudyStyle: preset.traitStudyStyle || 'dialogue_question',
       region: preset.region
     });
 
@@ -730,6 +744,18 @@
       cogCheckboxes.forEach((cb) => {
         cb.checked = preset.cognitiveAxes.includes(cb.value);
       });
+
+      // Learning Concerns Checkboxes & Study Style Select
+      const learningCheckboxes = document.querySelectorAll('input[name="trait-learning-concern"]');
+      if (learningCheckboxes && learningCheckboxes.forEach && Array.isArray(preset.traitLearningConcerns)) {
+        learningCheckboxes.forEach((cb) => {
+          cb.checked = preset.traitLearningConcerns.includes(cb.value);
+        });
+      }
+      const studyStyleSelect = document.getElementById('trait-study-style');
+      if (studyStyleSelect && preset.traitStudyStyle) {
+        studyStyleSelect.value = preset.traitStudyStyle;
+      }
 
       // Region Select
       const regionSelect = document.getElementById('user-region');
@@ -847,9 +873,11 @@
     const traitDietList = readMultiTrait('trait-diet-digestion', 'trait-diet-digestion', 'small_appetite');
     const traitPostureList = readMultiTrait('trait-posture-type', 'trait-posture-type', 'turtle_slouch');
     const traitTemperamentList = readMultiTrait('trait-temperament', 'trait-temperament', 'explorer');
+    const traitLearningConcerns = readMultiTrait('trait-learning-concern', 'trait-learning-concern', 'reading_literacy');
 
     const exerciseTraitEl = document.getElementById('trait-exercise-freq');
     const focusTraitEl = document.getElementById('trait-focus-span');
+    const studyStyleEl = document.getElementById('trait-study-style');
     const freeNoteEl = document.getElementById('parent-free-note');
 
     const traitSleep = traitSleepList[0] || 'late_bedtime';
@@ -858,6 +886,7 @@
     const traitExercise = exerciseTraitEl && exerciseTraitEl.value ? exerciseTraitEl.value : 'low_indoor';
     const traitTemperament = traitTemperamentList[0] || 'explorer';
     const traitFocusSpan = focusTraitEl && focusTraitEl.value ? focusTraitEl.value : '15_20m';
+    const traitStudyStyle = studyStyleEl && studyStyleEl.value ? studyStyleEl.value : 'dialogue_question';
     const parentFreeNote = freeNoteEl && typeof freeNoteEl.value === 'string'
       ? freeNoteEl.value.trim()
       : (wizardState.profile.parentFreeNote || '');
@@ -889,6 +918,8 @@
       traitTemperament,
       traitTemperamentList,
       traitFocusSpan,
+      traitLearningConcerns,
+      traitStudyStyle,
       parentFreeNote
     };
 

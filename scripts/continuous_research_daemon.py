@@ -232,6 +232,32 @@ EXPANDED_DAEMON_QUERIES: List[Dict[str, str]] = [
         "engine": "crossref",
         "query": "diurnal stature variation intervertebral disc hydration spinal decompression adolescents",
     },
+    # Child Learning Science: Literacy, Math/Spatial Problem Solving, Metacognition, Active Recall, Sleep-Memory
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "pubmed",
+        "query": "(\"retrieval practice\"[Title/Abstract] OR \"testing effect\"[Title/Abstract] OR \"metacognition\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"students\"[Title/Abstract])",
+    },
+    {
+        "pillar": "parent_child_interaction_museum",
+        "engine": "pubmed",
+        "query": "(\"reading comprehension\"[Title/Abstract] OR \"print exposure\"[Title/Abstract]) AND (\"vocabulary\"[Title/Abstract]) AND (\"children\"[Title/Abstract])",
+    },
+    {
+        "pillar": "pedagogy_montessori_froebel",
+        "engine": "crossref",
+        "query": "spatial reasoning mental rotation mathematical word problem solving elementary children",
+    },
+    {
+        "pillar": "growth_endocrinology",
+        "engine": "pubmed",
+        "query": "(\"slow-wave sleep\"[Title/Abstract]) AND (\"memory consolidation\"[Title/Abstract] OR \"hippocampus\"[Title/Abstract]) AND (\"children\"[Title/Abstract] OR \"adolescents\"[Title/Abstract])",
+    },
+    {
+        "pillar": "fine_motor_neuroscience",
+        "engine": "openalex",
+        "query": "working memory capacity mathematical achievement reading comprehension school children",
+    },
 ]
 
 
