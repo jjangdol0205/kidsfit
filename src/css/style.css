@@ -2410,3 +2410,18 @@ svg {
     font-size: 1.05rem !important;
   }
 }
+
+/* 24. DUAL-MODE SURVEY STUDIO (Growth Quiz vs Learning Quiz) */
+.wizard-mode-learning .mode-growth-field {
+  display: none !important;
+}
+.wizard-mode-learning .mode-learning-field {
+  display: block !important;
+}
+.wizard-mode-growth .mode-growth-field {
+  display: block !important;
+}
+.wizard-mode-growth .mode-learning-field {
+  display: none !important;
+}
+

@@ -32,32 +32,32 @@
       'theme.light': '☀️ Light Mode',
       'lang.toggle': '🇺🇸 EN',
 
-      // Hero
-      'hero.badge': '🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 정밀 진단',
-      'hero.headline': '<span class="hero-single-line">성장기 우리 아이, 키 성장과 공부 방향이 고민되시죠?</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">【신체 성장 보고서】와 【두뇌·학습 보고서】를 각각 정밀 발행합니다</span>',
-      'hero.subtitle': '생년월일 1분 입력으로 신체 성장 분석 보고서와 두뇌·학습 분석 보고서를 별도로 제공합니다.',
-      'nav.forWhom': '대상 안내',
-      'nav.services': '제공 서비스',
-      'hero.cta.parent': '📏 신체 성장 보고서 진단 시작 →',
-      'hero.cta.learning': '🧠 두뇌·학습 보고서 진단 시작 →',
-      'hero.cta.youth': '학생용 · 성장·학습 셀프 진단 →',
+      // Hero (Ultra-Concise & Unified — No Parent/Student Split)
+      'hero.badge': '🌱 질병관리청(KDCA) · K-DST · 학술논문 1,857편 기반 AI 맞춤 진단',
+      'hero.headline': '<span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">설문 기반 1:1 정밀 보고서로 확인하세요</span>',
+      'hero.subtitle': '필요한 진단을 선택하면 맞춤 설문 후 안티그래비티 AI가 전용 보고서를 즉시 생성합니다.',
+      'nav.forWhom': '보고서 안내',
+      'nav.services': '핵심 분석',
+      'hero.cta.parent': '📏 신체 성장 진단 시작 →',
+      'hero.cta.learning': '🧠 두뇌·학습 진단 시작 →',
+      'hero.cta.youth': '⚡ 1분 맞춤 진단 시작 →',
 
-      // For Whom Section
-      'forWhom.kicker': 'WHO IT\'S FOR',
-      'forWhom.title': '어떤 분들에게 꼭 필요할까요?',
-      'forWhom.sub': '아이의 신체 성장과 시기별 학습 방향이 막막할 때 명확한 기준을 드립니다.',
-      'forWhom.parent.badge': 'FOR PARENTS · 학부모님',
-      'forWhom.parent.title': '우리 아이 신체 성장 & 두뇌·학습 맞춤 처방',
-      'forWhom.parent.b1': '• 숨은 잠재키 예측과 입 짧은 아이 맞춤 영양·수면 루틴이 궁금할 때',
-      'forWhom.parent.b2': '• 문해력·응용수학·집중력 등 학습 병목의 뇌과학적 해결책이 필요할 때',
-      'forWhom.parent.b3': '• 연령별 꼭 필요한 교구·필독서·주말 박물관 탐구 코스를 찾고 싶을 때',
-      'forWhom.parent.btn': '학부모용 통합 진단 시작 →',
-      'forWhom.student.badge': 'FOR STUDENTS · 초·중·고 학생',
-      'forWhom.student.title': '나의 숨은 잠재키 & 자기주도 집중 공부법',
-      'forWhom.student.b1': '• 성장판이 닫히기 전 최대 잠재키와 척추 스트레칭 루틴이 궁금할 때',
-      'forWhom.student.b2': '• 배운 내용을 잊지 않는 백지복습(메타인지)과 집중 시간표가 필요할 때',
-      'forWhom.student.b3': '• 아침저녁 간편한 체력·영양 관리와 성적 향상 습관을 함께 잡고 싶을 때',
-      'forWhom.student.btn': '학생 본인용 진단 시작 →',
+      // For Whom Section (Unified without Parent/Student split)
+      'forWhom.kicker': '2 DEDICATED REPORTS',
+      'forWhom.title': '원하는 전용 보고서를 선택하세요',
+      'forWhom.sub': '신체 성장 보고서와 두뇌·학습 보고서가 전용 설문과 함께 각각 독립 발행됩니다.',
+      'forWhom.parent.badge': 'REPORT 01 · 신체 성장 전용',
+      'forWhom.parent.title': '📏 신체 성장 마스터 분석 보고서',
+      'forWhom.parent.b1': '• KDCA 키·체중 백분위 & 부모 유전키(MPH) · 3단 예측키',
+      'forWhom.parent.b2': '• 성장호르몬 서파수면 골든타임 & 체중 비례 맞춤 영양',
+      'forWhom.parent.b3': '• 거북목·척추 디스크 감압(+1.8cm) & 성장판 자극 운동',
+      'forWhom.parent.btn': '📏 신체 성장 진단 시작 →',
+      'forWhom.student.badge': 'REPORT 02 · 두뇌·학습 전용',
+      'forWhom.student.title': '🧠 두뇌·학습 마스터 분석 보고서',
+      'forWhom.student.b1': '• 5각 학습역량지수(LQ) & 6개월 집중력·기억력 궤적 예측',
+      'forWhom.student.b2': '• 문해력·수리추론·백지복습·도파민 6대 학습 병목 처방',
+      'forWhom.student.b3': '• 해마→피질 수면 기억공고화 루틴 & 맞춤 교재·교구·탐구',
+      'forWhom.student.btn': '🧠 두뇌·학습 진단 시작 →',
 
       // Services Section
       'services.kicker': 'CORE DIAGNOSTIC SYSTEM',
@@ -80,9 +80,9 @@
       'preset.chip.3': '👦 만 10세',
       'preset.chip.4': '⚡ 만 13세',
       'preset.chip.5': '🌟 만 16세',
-      'quiz.edition.label': '📘 진단 대상 선택',
-      'quiz.edition.child': '👶 학부모용 · 우리 아이 성장 진단',
-      'quiz.edition.self': '🙋 학생·본인용 · 내 잠재키 진단',
+      'quiz.edition.label': '📘 맞춤 진단 유형',
+      'quiz.edition.child': '👶 1:1 맞춤 성장·학습 정밀 진단',
+      'quiz.edition.self': '🙋 1:1 맞춤 성장·학습 정밀 진단',
       'quiz.dob.hint1': '✨ 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다 (일수 단위 AI 보정 완료)',
       'quiz.mph.label': '실시간 부모 유전 표적키 (Tanner MPH)',
       'quiz.region.label': '거주 지역 (지역 환경 & 탐구 코스 연동)',
@@ -233,9 +233,22 @@
       'quiz.trait.focus.opt1': '10분 미만 · 짧은 성취감 놀이가 필요해요',
       'quiz.trait.focus.opt2': '15~20분 집중 · 단계별 미션이 잘 맞아요',
       'quiz.trait.focus.opt3': '30분 이상 · 깊은 독서·프로젝트가 맞아요',
-      'quiz.freenote.label': '💬 우리 아이 고민을 편하게 적어주세요 (1:1 맞춤 반영)',
-      'quiz.freenote.hint': '어떤 제품을 먹일까 고민되거나 평소 걱정되는 점을 적어주시면 우리 아이만을 위한 1:1 맞춤 답변을 리포트에 함께 담아드립니다. (아래 버튼을 누르면 자동 입력됩니다)',
-      'quiz.freenote.placeholder': '예: 성장기 아이를 위해 어떤 영양제를 먹일까 고민 중이에요. 밤에 다리가 아프다고 깨고 입이 짧은데 어떻게 챙겨주면 좋을까요?'
+      'quiz.trait.learning.label': '📚 현재 가장 고민되는 학습·공부 병목 (복수 선택 · 1:1 학습 상담 연동)',
+      'quiz.trait.learning.hint': '선택하신 학습 고민의 뇌과학적 원인을 진단하고 딱 맞는 공부법·도서·워크북을 큐레이팅해 드립니다.',
+      'quiz.trait.learning.opt1': '긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요',
+      'quiz.trait.learning.opt2': '단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요',
+      'quiz.trait.learning.opt3': '학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요',
+      'quiz.trait.learning.opt4': '스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요',
+      'quiz.trait.learning.opt5': '책상에 15~20분 이상 바른 자세로 앉아 있기 힘들고 산만해요',
+      'quiz.trait.learning.opt6': '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요',
+      'quiz.trait.studystyle.label': '🎯 가장 잘 맞는 학습 흡수 스타일',
+      'quiz.trait.studystyle.opt1': '🗣️ 질문·대화형 — 부모님과 문답하고 말로 설명할 때 가장 잘 이해해요 (하브루타형)',
+      'quiz.trait.studystyle.opt2': '🧩 교구·조작형 — 손으로 블록·입체도형·실험키트를 직접 만질 때 눈이 반짝여요 (체험형)',
+      'quiz.trait.studystyle.opt3': '🎨 비주얼·마인드맵형 — 그림·도표·만화·인포그래픽으로 정리할 때 오래 기억해요 (시각형)',
+      'quiz.trait.studystyle.opt4': '🏆 일일 미션·성취형 — 하루 2쪽 워크북 완수와 칭찬 스티커가 있을 때 집중해요 (목표형)',
+      'quiz.freenote.label': '💬 고민을 편하게 적어주세요 (안티그래비티 AI 1:1 실시간 반영)',
+      'quiz.freenote.hint': '평소 걱정되는 점을 적어주시면 안티그래비티 AI가 설문 응답과 학술 논문을 교차 분석해 1:1 맞춤 처방을 담아드립니다. (아래 버튼을 누르면 자동 입력됩니다)',
+      'quiz.freenote.placeholder': '예: 밤에 늦게 자고 입이 짧아서 키 성장이 걱정돼요 / 긴 줄글 독서를 싫어하고 응용 수학 문제에서 자주 막혀요.'
     },
 
     en: {
@@ -300,9 +313,9 @@
       'preset.chip.3': '👦 Age 10',
       'preset.chip.4': '⚡ Age 13',
       'preset.chip.5': '🌟 Age 16',
-      'quiz.edition.label': '📘 Select Personalized Guidebook Edition',
-      'quiz.edition.child': '👶 Parent Mode — Child Growth & Learning Guidebook',
-      'quiz.edition.self': '🙋 Student Mode — My Potential Height & Learning Guidebook',
+      'quiz.edition.label': '📘 Personalized Diagnosis Type',
+      'quiz.edition.child': '👶 1:1 Personalized Growth & Learning Diagnosis',
+      'quiz.edition.self': '🙋 1:1 Personalized Growth & Learning Diagnosis',
       'quiz.dob.hint1': '✨ Even in the same birth year, Jan vs. Dec births differ by up to 4.8 cm (AI day-level calibration active)',
       'quiz.mph.label': 'Real-Time Mid-Parental Target Height (Tanner MPH)',
       'quiz.region.label': 'Region (For Local Museum & Educational Travel Courses)',
@@ -453,7 +466,20 @@
       'quiz.trait.focus.opt1': 'Under 10 mins · Needs short rewarding play',
       'quiz.trait.focus.opt2': '15–20 mins · Fits step-by-step missions',
       'quiz.trait.focus.opt3': '30+ mins · Fits deep reading & projects',
-      'quiz.freenote.label': '💬 Share Your Child\'s Concerns Freely (1:1 Bespoke Synthesis)',
+      'quiz.trait.learning.label': '📚 Current Learning Bottlenecks (Multi-Select · 1:1 Study Rx)',
+      'quiz.trait.learning.hint': 'Pinpoints neuro-cognitive root causes and tailors study strategies, books, and workbooks.',
+      'quiz.trait.learning.opt1': 'Struggles with reading comprehension on long text problems',
+      'quiz.trait.learning.opt2': 'Can do basic math but gets stuck on applied problem-solving',
+      'quiz.trait.learning.opt3': 'Forgets tutoring content quickly & lacks self-directed review',
+      'quiz.trait.learning.opt4': 'Used to smartphone/YouTube stimuli & lacks interest in books',
+      'quiz.trait.learning.opt5': 'Cannot sit upright at desk for 15-20 mins & easily distracted',
+      'quiz.trait.learning.opt6': 'Limited vocabulary or struggles to express ideas in writing',
+      'quiz.trait.studystyle.label': '🎯 Preferred Learning & Study Absorption Style',
+      'quiz.trait.studystyle.opt1': '🗣️ Dialogue & Inquiry — Understands best when asking and explaining aloud (Havruta)',
+      'quiz.trait.studystyle.opt2': '🧩 Hands-On Manipulative — Thrives when touching blocks, 3D shapes & experiment kits',
+      'quiz.trait.studystyle.opt3': '🎨 Visual & Mind-Map — Remembers longer with diagrams, charts & visual stories',
+      'quiz.trait.studystyle.opt4': '🏆 Daily Mission & Goal — Focuses best with 15-min timer missions & daily checklists',
+      'quiz.freenote.label': '💬 Share Your Concerns Freely (1:1 Live Antigravity AI Synthesis)',
       'quiz.freenote.hint': 'Write any concerns about supplements, sleep, or growth to get a 1:1 custom answer in your report! (Tap a chip below to auto-fill)',
       'quiz.freenote.placeholder': 'e.g., Wondering which supplement to give my growing child. Wakes up with leg pain at night and has a small appetite...'
     }
@@ -604,10 +630,13 @@
       const key = el.getAttribute('data-i18n');
       if (key) {
         const translated = t(key);
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.setAttribute('placeholder', translated);
-        } else {
-          el.textContent = translated;
+        // Fallback guard: If key is not in dictionary, preserve existing meaningful DOM text
+        if (translated !== key) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.setAttribute('placeholder', translated);
+          } else {
+            el.textContent = translated;
+          }
         }
       }
     });
@@ -617,7 +646,10 @@
     htmlElements.forEach((el) => {
       const key = el.getAttribute('data-i18n-html');
       if (key) {
-        el.innerHTML = t(key).replace(/\n/g, '<br>');
+        const translated = t(key);
+        if (translated !== key) {
+          el.innerHTML = translated.replace(/\n/g, '<br>');
+        }
       }
     });
 

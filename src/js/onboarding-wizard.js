@@ -117,18 +117,18 @@
   };
 
   // 2. Wizard Steps Meta Definition
-  const WIZARD_STEPS = [
+  const WIZARD_STEPS_GROWTH = [
     {
       step: 1,
       titleKo: '우리 아이 기본 정보 (성별 · 생년월일)',
-      titleEn: 'Target Child & Basic Demographics',
-      subKo: '생년월일 일수까지 계산해 또래 평균키와 비교해 드립니다.',
+      titleEn: 'Basic Demographics (Sex · Date of Birth)',
+      subKo: '생년월일 일수까지 계산해 또래 평균키와 골연령을 정밀 비교합니다.',
       subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
     },
     {
       step: 2,
       titleKo: '현재 키 · 몸무게 · 최근 6개월 성장폭',
-      titleEn: 'Accurate Biometrics (Height, Weight, Velocity)',
+      titleEn: 'Current Stature & Growth Velocity',
       subKo: '요즘 얼마나 자랐는지 입력하면 숨은 잠재키를 정확히 찾아냅니다.',
       subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
     },
@@ -142,25 +142,72 @@
     {
       step: 4,
       titleKo: '성장단계 확인 & 평소 수면·식습관 체크',
-      titleEn: 'Skeletal Maturation & Sleep/Diet Habits',
-      subKo: '해당하는 습관을 편하게 눌러주시면 아이에게 딱 맞는 성분을 골라드립니다.',
+      titleEn: 'Growth Stage & Sleep/Diet Habits',
+      subKo: '해당하는 습관을 골라주시면 아이에게 딱 맞는 맞춤 영양을 찾아드립니다.',
       subEn: 'Evaluates epiphyseal plate open ratio and sleep/diet traits.'
     },
     {
       step: 5,
       titleKo: '평소 앉는 자세 & 운동 습관 체크',
-      titleEn: 'Lifestyle & Posture/Exercise Factors',
+      titleEn: 'Posture Alignment & Physical Activity',
       subKo: '거북목이나 다리 성장통이 있는지 체크해 숨은 키 2cm를 찾아드립니다.',
       subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
     },
     {
       step: 6,
-      titleKo: '두뇌·성향 & 1:1 학습 상담 진단 체크',
-      titleEn: 'Neuro-Cognitive Focus & 1:1 Learning Consultation',
-      subKo: '아이 기질과 학습 고민을 골라주시면 맞춤 공부법·도서·성장 처방전이 바로 열립니다.',
-      subEn: 'Select cognitive domains and learning bottlenecks to generate bespoke counseling.'
+      titleKo: '성장 고민 & Antigravity AI 맞춤 처방',
+      titleEn: 'Growth Concerns & Antigravity Bespoke Synthesis',
+      subKo: '고민을 적어주시면 안티그래비티 AI가 설문 기반 1:1 신체 성장 처방전을 발행합니다.',
+      subEn: 'Generates tailored clinical growth guidance and supplement/exercise prescriptions.'
     }
   ];
+
+  const WIZARD_STEPS_LEARNING = [
+    {
+      step: 1,
+      titleKo: '기본 정보 (성별 · 생년월일)',
+      titleEn: 'Basic Demographics (Sex · Date of Birth)',
+      subKo: '연령 및 학년에 따른 뇌인지 발달 단계를 자동 판별합니다.',
+      subEn: 'Classifies neuro-developmental stage and cognitive baseline.'
+    },
+    {
+      step: 2,
+      titleKo: '📖 평소 독서 습관 & 문해력 이해 패턴',
+      titleEn: 'Reading Habits & Literacy Comprehension',
+      subKo: '긴 글 읽기, 문장제 문제 이해, 어휘력 뇌인지 병목을 진단합니다.',
+      subEn: 'Pinpoints language cognitive processing and reading comprehension gaps.'
+    },
+    {
+      step: 3,
+      titleKo: '📐 수학·수리사고 & 도형 추론 패턴',
+      titleEn: 'Mathematical Logic & Spatial Reasoning',
+      subKo: '단순 연산에서 응용·사고력 수학으로 넘어가는 뇌인지 전환점을 진단합니다.',
+      subEn: 'Evaluates conceptual mathematics transfer and spatial logic capacity.'
+    },
+    {
+      step: 4,
+      titleKo: '⏱️ 책상 앞 집중 시간 & 스마트폰 습관',
+      titleEn: 'Executive Focus & Dopamine Regulation',
+      subKo: '전두엽 실행기능(작업기억, 충동억제)과 책상 몰입 습관을 진단합니다.',
+      subEn: 'Measures prefrontal executive function and digital distraction resilience.'
+    },
+    {
+      step: 5,
+      titleKo: '🧠 자기주도 복습 & 메타인지 기억 패턴',
+      titleEn: 'Metacognition & SWS Memory Consolidation',
+      subKo: '해마 수면 기억공고화 및 혼자 힘으로 설명하는 백지복습 능력을 진단합니다.',
+      subEn: 'Assesses hippocampal long-term consolidation and self-explanation mastery.'
+    },
+    {
+      step: 6,
+      titleKo: '🧩 학습 성향 & Antigravity AI 맞춤 처방',
+      titleEn: 'Study Temperament & Antigravity Bespoke Synthesis',
+      subKo: '학습 고민을 적어주시면 안티그래비티 AI가 설문 기반 1:1 두뇌·학습 처방전을 발행합니다.',
+      subEn: 'Synthesizes personalized learning roadmap, study methodology, and workbook curation.'
+    }
+  ];
+
+  let WIZARD_STEPS = WIZARD_STEPS_GROWTH;
 
   // 3. Wizard Internal State
   const wizardState = {
@@ -414,6 +461,9 @@
   // 5. Validation Logic
   function validateStep(stepNumber) {
     if (typeof document === 'undefined') return true;
+    if (wizardState.preferredReportMode === 'learning') {
+      return true; // Skip physical height/weight check in learning mode
+    }
 
     if (stepNumber === 1 || stepNumber === 2) {
       const heightInput = document.getElementById('child-height');
@@ -635,6 +685,9 @@
           mbEngine.attachRetestListener();
         } else if (typeof mbEngine.attachRetestHandler === 'function') {
           mbEngine.attachRetestHandler();
+        }
+        if (typeof mbEngine.switchActiveReport === 'function') {
+          mbEngine.switchActiveReport(wizardState.preferredReportMode || 'growth');
         }
       }
     }
@@ -887,6 +940,32 @@
     const traitTemperament = traitTemperamentList[0] || 'explorer';
     const traitFocusSpan = focusTraitEl && focusTraitEl.value ? focusTraitEl.value : '15_20m';
     const traitStudyStyle = studyStyleEl && studyStyleEl.value ? studyStyleEl.value : 'dialogue_question';
+
+    const getCheckedValues = (name) => {
+      const arr = [];
+      if (typeof document === 'undefined') return arr;
+      const boxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+      if (boxes && boxes.length > 0) {
+        boxes.forEach((cb) => arr.push(cb.value));
+      }
+      return arr;
+    };
+
+    const learningLiteracy = getCheckedValues('learning-literacy');
+    const learningMath = getCheckedValues('learning-math');
+    const learningFocus = getCheckedValues('learning-focus');
+    const learningMeta = getCheckedValues('learning-meta');
+
+    if (learningLiteracy.length || learningMath.length || learningFocus.length || learningMeta.length) {
+      traitLearningConcerns = Array.from(new Set([
+        ...traitLearningConcerns,
+        ...learningLiteracy,
+        ...learningMath,
+        ...learningFocus,
+        ...learningMeta
+      ]));
+    }
+
     const parentFreeNote = freeNoteEl && typeof freeNoteEl.value === 'string'
       ? freeNoteEl.value.trim()
       : (wizardState.profile.parentFreeNote || '');
@@ -971,12 +1050,33 @@
 
   function enterStudioMode(mode, reportMode) {
     if (typeof document === 'undefined') return;
-    if (reportMode) {
-      wizardState.preferredReportMode = reportMode;
-      if (typeof window !== 'undefined') {
-        window.__KIDSFIT_PREFERRED_REPORT_MODE = reportMode;
+    const activeMode = (reportMode === 'learning') ? 'learning' : 'growth';
+    wizardState.preferredReportMode = activeMode;
+    if (typeof window !== 'undefined') {
+      window.__KIDSFIT_PREFERRED_REPORT_MODE = activeMode;
+    }
+    WIZARD_STEPS = (activeMode === 'learning') ? WIZARD_STEPS_LEARNING : WIZARD_STEPS_GROWTH;
+
+    const formEl = document.getElementById('diagnosis-form');
+    if (formEl) {
+      formEl.className = (activeMode === 'learning') ? 'wizard-mode-learning' : 'wizard-mode-growth';
+    }
+
+    const bannerEl = document.getElementById('guidebook-mode-banner');
+    if (bannerEl) {
+      if (activeMode === 'learning') {
+        bannerEl.style.color = '#DDD6FE';
+        bannerEl.style.background = 'rgba(168, 85, 247, 0.15)';
+        bannerEl.style.borderColor = 'rgba(192, 132, 252, 0.45)';
+        bannerEl.innerHTML = '🧠 <strong>[두뇌·학습 뇌과학 정밀 진단]</strong> K-DST 발달검사 & 뇌인지 과학 논문 기반 문해력·수리사고·집중력·공부법 가이드북을 발행합니다.';
+      } else {
+        bannerEl.style.color = '#38BDF8';
+        bannerEl.style.background = 'rgba(56, 189, 248, 0.12)';
+        bannerEl.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+        bannerEl.innerHTML = '📏 <strong>[신체 성장 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 성장도표 & 논문 기반 키·골연령·성장판 가이드북을 발행합니다.';
       }
     }
+
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
     }
