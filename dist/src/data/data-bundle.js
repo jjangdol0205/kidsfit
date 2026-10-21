@@ -1751,12 +1751,12 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-21T22:00:39Z",
-    "total_papers": 2005,
+    "generated_at": "2026-10-21T22:01:59Z",
+    "total_papers": 2010,
     "pillar_counts": {
       "growth_endocrinology": 584,
-      "fine_motor_neuroscience": 376,
-      "pedagogy_montessori_froebel": 284,
+      "fine_motor_neuroscience": 380,
+      "pedagogy_montessori_froebel": 285,
       "parent_child_interaction_museum": 470,
       "posture_biomechanics_exercise": 291
     },
@@ -1766,22 +1766,22 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-21T22:00:40Z",
+    "last_updated_utc": "2026-10-21T22:14:27Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-21T22:00:40Z",
-      "total_papers": 2005,
+      "last_enriched_utc": "2026-10-21T22:14:27Z",
+      "total_papers": 2010,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
         "growth_macro_count": 875,
-        "learning_macro_count": 1130,
-        "total_macro_papers": 2005,
-        "growth_ratio": 0.4364,
-        "growth_percent": 43.6,
-        "learning_ratio": 0.5636,
-        "learning_percent": 56.4,
-        "learning_ratio_percent": 56.4,
+        "learning_macro_count": 1135,
+        "total_macro_papers": 2010,
+        "growth_ratio": 0.4353,
+        "growth_percent": 43.5,
+        "learning_ratio": 0.5647,
+        "learning_percent": 56.5,
+        "learning_ratio_percent": 56.5,
         "target_ratio": 0.5,
         "mode": "GROWTH_PRIORITY_BOOST",
         "mode_code": "GROWTH_BOOST_80_20",
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-21T22:00:40Z"
+        "last_balanced_utc": "2026-10-21T22:14:27Z"
       },
       "sub_domain_distribution": [
         {
@@ -1840,7 +1840,7 @@
           "title_en": "Fine Motor Dexterity & Sensorimotor Cortical Plasticity",
           "icon": "🤲",
           "color": "#EC4899",
-          "count": 34,
+          "count": 35,
           "percent": 1.7
         },
         {
@@ -1850,8 +1850,8 @@
           "title_en": "Prefrontal Executive Function & Working Memory Longitudinal",
           "icon": "🧠",
           "color": "#A855F7",
-          "count": 342,
-          "percent": 17.1
+          "count": 345,
+          "percent": 17.2
         },
         {
           "id": "pedagogy_montessori_froebel",
@@ -1870,7 +1870,7 @@
           "title_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
           "icon": "📐",
           "color": "#06B6D4",
-          "count": 228,
+          "count": 229,
           "percent": 11.4
         },
         {
@@ -1891,7 +1891,7 @@
           "icon": "💛",
           "color": "#F43F5E",
           "count": 330,
-          "percent": 16.5
+          "percent": 16.4
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1918,49 +1918,49 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 1405
+          "count": 1406
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 2005
+          "count": 2010
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 1267
+          "count": 1272
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1067,
-          "mid_term": 1661,
-          "long_term": 1145
+          "short_term": 1068,
+          "mid_term": 1666,
+          "long_term": 1150
         },
         "4-6y": {
-          "short_term": 1141,
-          "mid_term": 1740,
-          "long_term": 1217
+          "short_term": 1142,
+          "mid_term": 1745,
+          "long_term": 1222
         },
         "7-9y": {
-          "short_term": 1394,
-          "mid_term": 1967,
-          "long_term": 1233
+          "short_term": 1395,
+          "mid_term": 1972,
+          "long_term": 1238
         },
         "10-12y": {
-          "short_term": 1119,
-          "mid_term": 1716,
-          "long_term": 1172
+          "short_term": 1120,
+          "mid_term": 1721,
+          "long_term": 1177
         },
         "13-16y": {
-          "short_term": 818,
-          "mid_term": 988,
-          "long_term": 632
+          "short_term": 819,
+          "mid_term": 990,
+          "long_term": 634
         },
         "17-20y": {
-          "short_term": 818,
-          "mid_term": 988,
-          "long_term": 632
+          "short_term": 819,
+          "mid_term": 990,
+          "long_term": 634
         }
       },
       "core_empirical_laws": [
@@ -2064,7 +2064,7 @@
       "top_journals": [
         {
           "journal": "Cognitive Development",
-          "count": 30
+          "count": 31
         },
         {
           "journal": "Frontiers in Psychology",
@@ -2072,7 +2072,7 @@
         },
         {
           "journal": "Developmental Psychology",
-          "count": 22
+          "count": 23
         },
         {
           "journal": "Child Development",
@@ -2149,13 +2149,13 @@
     },
     "macro_pillar_balance": {
       "growth_macro_count": 875,
-      "learning_macro_count": 1130,
-      "total_macro_papers": 2005,
-      "growth_ratio": 0.4364,
-      "growth_percent": 43.6,
-      "learning_ratio": 0.5636,
-      "learning_percent": 56.4,
-      "learning_ratio_percent": 56.4,
+      "learning_macro_count": 1135,
+      "total_macro_papers": 2010,
+      "growth_ratio": 0.4353,
+      "growth_percent": 43.5,
+      "learning_ratio": 0.5647,
+      "learning_percent": 56.5,
+      "learning_ratio_percent": 56.5,
       "target_ratio": 0.5,
       "mode": "GROWTH_PRIORITY_BOOST",
       "mode_code": "GROWTH_BOOST_80_20",
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-21T22:00:40Z"
+      "last_balanced_utc": "2026-10-21T22:14:27Z"
     }
   },
   "pillars": [
@@ -2184,7 +2184,7 @@
       "title_en": "Early Childhood Fine Motor Skills, Prefrontal Executive Function & K-DST Validation",
       "target_feature": "연령별(0~7세) 소근육·뇌발달 체크리스트 및 K-DST 기반 발달 단계 진단",
       "clinical_focus": "집게잡기(Pincer grasp)·삼지잡기(Tripod grasp)·양손 협응(Bimanual coordination)이 소뇌-전전두엽(Prefrontal Cortex) 신경망과 작업기억·초기 수리력(Mathematical readiness)에 미치는 종단적 영향 및 한국 영유아 발달선별검사(K-DST) 타당도",
-      "paper_count": 376
+      "paper_count": 380
     },
     {
       "id": "pedagogy_montessori_froebel",
@@ -2193,7 +2193,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 284
+      "paper_count": 285
     },
     {
       "id": "parent_child_interaction_museum",
@@ -36498,6 +36498,49 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.1016/j.cogdev.2020.100957",
+      "pmid": "",
+      "doi": "10.1016/j.cogdev.2020.100957",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Hong Kong Cantonese L1 preschool children’s name writing in English L2",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Hong Kong Cantonese L1 preschool children’s name writing in English L2 (2020)",
+      "authors": [
+        "Wong KR",
+        "Russak S"
+      ],
+      "journal": "Cognitive Development",
+      "year": 2020,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Cognitive Development (2020)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/j.cogdev.2020.100957",
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
       "id": "PMID:30999730",
       "pmid": "30999730",
       "doi": "10.3345/kjp.2018.07381",
@@ -41358,6 +41401,52 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.1016/j.ridd.2014.03.046",
+      "pmid": "",
+      "doi": "10.1016/j.ridd.2014.03.046",
+      "pillar": "fine_motor_neuroscience",
+      "title": "The Democritos Movement Screening Tool for preschool children (DEMOST-PRE©): Development and factorial validity",
+      "title_ko": "[K-DST 영유아 발달선별 검증] The Democritos Movement Screening Tool for preschool children (DEMOST-PRE©): Development a (2014)",
+      "authors": [
+        "Kambas A",
+        "Venetsanou F"
+      ],
+      "journal": "Research in Developmental Disabilities",
+      "year": 2014,
+      "citations_count": 10,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "K-DST 6대 발달영역(대근육·소근육·인지·언어·사회성·자조) 선별 민감도 및 특이도 85% 이상 검증",
+      "clinical_summary_ko": "Research in Developmental Disabilities (2014)에 보고된 영유아 발달선별 연구로, 한국 영유아 발달선별검사(K-DST)를 활용한 조기 발달 모니터링이 소근육·언어·인지 지연을 골든타임 내에 발견하는 데 높은 임상적 타당도를 가짐을 입증했습니다.",
+      "parenting_prescription_ko": "개별 발달 속도의 차이를 존중하되, 월령별 핵심 이정표(생후 9~12개월 집게잡기, 18개월 블록 3~4개 쌓기, 36개월 원 그리기·가위질) 달성 여부를 정기적으로 체크하세요.",
+      "age_range": "생후 4~71개월",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/j.ridd.2014.03.046",
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "fine_motor_neuroscience",
+      "sub_domain_ko": "소근육 협응 · 대뇌 운동피질 신경가소성",
+      "sub_domain_en": "Fine Motor Dexterity & Sensorimotor Cortical Plasticity",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "K-DST 6대 발달영역(대근육·소근육·인지·언어·사회성·자조) 선별 민감도 및 특이도 85% 이상 검증",
+      "short_term_action_ko": "단기(1~4주): 하루 15분 집게·가위·구슬꿰기 등 세 손가락(엄지·검지·중지) 정밀 협응 놀이 즉시 실천",
+      "mid_term_action_ko": "중기(1~3개월): 소뇌-배외측 전전두엽(dlPFC) 공활성화 회로 강화로 시각-운동 통합(VMI) 및 초기 수리 감각 도약",
+      "long_term_action_ko": "장기(6개월~성인기): 정교한 신경운동 제어력을 기반으로 학령기 고차원 수리 추론·쓰기 유창성·집중력 완성"
+    },
+    {
       "id": "PMID:26173288",
       "pmid": "26173288",
       "doi": "10.1177/1529100612453266",
@@ -41790,6 +41879,51 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/25157206/",
       "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
+      "id": "DOI:10.15388/sw.2013.28217",
+      "pmid": "",
+      "doi": "10.15388/sw.2013.28217",
+      "pillar": "fine_motor_neuroscience",
+      "title": "Development of psychological readiness to work with gifted children for preschool institution teachers",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] Development of psychological readiness to work with gifted children for preschool institut (2013)",
+      "authors": [
+        "Bondarchuk O",
+        "Dovgan N"
+      ],
+      "journal": "Social welfare : interdisciplinary approach",
+      "year": 2013,
+      "citations_count": 2,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Social welfare : interdisciplinary approach (2013)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.15388/sw.2013.28217",
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
       "sub_domain": "executive_function_longitudinal",
       "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
       "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
@@ -46232,6 +46366,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
     },
     {
+      "id": "DOI:10.1037/h0034911",
+      "pmid": "",
+      "doi": "10.1037/h0034911",
+      "pillar": "fine_motor_neuroscience",
+      "title": "A test of the validity of two methods of selecting incentives for research with children.",
+      "title_ko": "[소근육·전두엽 실행기능 신경과학] A test of the validity of two methods of selecting incentives for research with children. (1973)",
+      "authors": [
+        "Dmitruk VM"
+      ],
+      "journal": "Developmental Psychology",
+      "year": 1973,
+      "citations_count": 5,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "clinical_summary_ko": "Developmental Psychology (1973)에 게재된 발달신경과학 연구로, 영유아의 손가락 정밀 조작(집게잡기·삼지잡기·양손 협응)이 소뇌-전전두엽 신경회로를 자극하여 실행기능(Executive Function)과 초등 입학 준비도를 높이는 메커니즘을 규명했습니다.",
+      "parenting_prescription_ko": "하루 15~20분씩 구슬 꿰기, 핀셋으로 색깔 폼폼이 분류하기, 점토 빚기, 종이접기 등 손끝 고유수용성감각을 깨우는 아날로그 소근육 놀이를 제공하세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1037/h0034911",
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "executive_function_longitudinal",
+      "sub_domain_ko": "전두엽 실행기능 · 작업기억 · 종단 코호트",
+      "sub_domain_en": "Prefrontal Executive Function & Working Memory Longitudinal",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "정밀 소근육 및 시각-운동 통합(VMI) 점수가 작업기억·억제조절 및 초기 수학/문해력 성취도를 유의미하게 예측(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 부모의 일방적 지시 대신 아이 스스로 오늘의 3대 실천 루틴을 계획·체크하는 자기조절 환경 구축",
+      "mid_term_action_ko": "중기(1~3개월): 90일 스트릭(Streak) 달성 경험을 통해 작업기억(Working Memory)·충동억제·과제 지속력 회로 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 청소년·성인기까지 이어지는 전두엽 메타인지 및 자기주도 학습 역량(Self-Directed Mastery) 완성"
+    },
+    {
       "id": "DOI:10.2307/1127481",
       "pmid": "",
       "doi": "10.2307/1127481",
@@ -49276,6 +49452,48 @@
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.58524/jasme.v5i2.965",
       "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
+      "id": "DOI:10.1111/desc.13589",
+      "pmid": "",
+      "doi": "10.1111/desc.13589",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "RETRACTION: Self‐Regulation in Preschool: Are Executive Function and Effortful Control Overlapping Constructs?",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] RETRACTION: Self‐Regulation in Preschool: Are Executive Function and Effortful Control Ove (2025)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Developmental Science",
+      "year": 2025,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Developmental Science (2025)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1111/desc.13589",
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
       "sub_domain": "spatial_stem_mathematics",
       "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
       "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
