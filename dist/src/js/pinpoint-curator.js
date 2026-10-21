@@ -320,14 +320,535 @@
     const ihUrl = `https://kr.iherb.com/search?kw=${encodeURIComponent(iherbQuery)}&rcode=${ihCode}`;
     const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yes24Query || coupangQuery)}`;
     const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
+    const naverUrl = `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(coupangQuery)}`;
 
     return {
       coupangUrl: cpUrl,
       iherbUrl: ihUrl,
       yes24Url: lpUrl,
+      naverUrl,
       coupangQuery,
       iherbQuery
     };
+  }
+
+  /**
+   * Curated Specific Flagship Products DB (엄선 세부 상품 TOP 2 per Item ID)
+   * Ensures clicking any link lands directly on a strictly vetted specific brand & model product.
+   */
+  const CURATED_SPECIFIC_PRODUCTS_DB = {
+    liquid_calcium_toddler: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '차일드라이프(ChildLife) 액상 칼슘 위드 마그네슘 오렌지맛 474ml',
+        titleEn: 'ChildLife Essentials Liquid Calcium with Magnesium Orange (474ml)',
+        specKo: '구연산칼슘 252mg + 마그네슘 115mg + 비타민D3 100IU + 아연 2mg 액상 시럽',
+        specEn: 'Calcium Citrate 252mg + Magnesium 115mg + Vit D3 + Zinc Liquid',
+        cpQuery: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml',
+        ihQuery: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange 16 fl oz',
+        yesQuery: '유아 영양식단 백과'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '트루엔 키즈 칼슘 마그네슘 비타민D 아연 액상 스틱 (어골·해조칼슘)',
+        titleEn: 'Truen Kids Liquid Calcium Magnesium Vitamin D Zinc Stick Pouch',
+        specKo: '개별 스틱포 포장 · 무첨가 어린이 고흡수 칼슘·마그네슘·비타민D3',
+        specEn: 'Single-serve liquid sticks · High-absorption Calcium + Mg + D3',
+        cpQuery: '트루엔 키즈 칼슘 마그네슘 비타민D 액상 스틱',
+        ihQuery: 'Nature\'s Way Alive Kids Calcium + Vitamin D3 Gummies',
+        yesQuery: '아이 성장 영양학'
+      }
+    ],
+    ht042_growth: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '종근당건강 아이커 (식약처 인정 HT042 황기추출물 등 복합물 정품 · 30포)',
+        titleEn: 'Chong Kun Dang Health I-KER (MFDS Approved HT042 Astragalus Complex · 30 Packets)',
+        specKo: '식약처 어린이 키성장 기능성 원료 HT042 정량 + 칼슘·비타민D·아연 배합',
+        specEn: 'Official HT042 clinical dosage + Calcium, Vitamin D, and Zinc',
+        cpQuery: '종근당건강 아이커 HT042 황기추출물 키성장 30포',
+        ihQuery: 'Nature\'s Answer Astragalus Root Fluid Extract Alcohol Free',
+        yesQuery: '어린이 키성장 영양 가이드'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '보타니스타 키클래오042 / 퍼니트 키즈텐042 (HT042 황기추출물 젤리·액상형)',
+        titleEn: 'Botanista KiCleo 042 (HT042 Astragalus + Red Ginseng Jelly Stick)',
+        specKo: '우유에 타 먹기 싫어하는 아이용 포도·사과맛 HT042 스틱 젤리 제형',
+        specEn: 'Easy-to-eat grape/apple jelly stick with full HT042 complex + 6-yr red ginseng',
+        cpQuery: '보타니스타 키클래오042 황기추출물 HT042 어린이 키성장',
+        ihQuery: 'Planetary Herbals Astragalus Extract Full Spectrum',
+        yesQuery: '우리 아이 숨은 키 7cm'
+      }
+    ],
+    zinc_colostrum: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '일동후디스 하이키즈 초유 플러스 아연·칼슘 / 차일드라이프 초유 파우더',
+        titleEn: 'ChildLife Probiotics with Colostrum Powder / Hoodis Hi-Kids Colostrum Zinc',
+        specKo: '뉴질랜드 초유단백(IgG) + 글루콘산·산화아연 + 성장기 필수 아미노산',
+        specEn: 'Bovine Colostrum IgG + Bioavailable Zinc + Growth Amino Acids',
+        cpQuery: '일동후디스 초유 플러스 어린이 아연 아르기닌 영양제',
+        ihQuery: 'ChildLife Probiotics with Colostrum Powder Natural Orange Pineapple',
+        yesQuery: '편식 아이 식습관 교정'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '세노비스 키즈 멀티비타민 미네랄 / 네이처스웨이 키즈 삼부카스 아연 구미',
+        titleEn: 'Nature\'s Way Sambucus Kids Immune Gummy with Zinc & Vitamin C',
+        specKo: '입 짧은 편식 아동의 미각 세포 활성화 및 정상 면역·성장 세포분열 지원',
+        specEn: 'Supports taste-bud cell turnover, appetite & IGF-1 synthesis in picky eaters',
+        cpQuery: '세노비스 키즈 멀티비타민 미네랄 어린이 아연 츄어블',
+        ihQuery: 'Nature\'s Way Sambucus Kids Gummies Standardized Elderberry Zinc',
+        yesQuery: '편식 없는 아이 식단'
+      }
+    ],
+    sleep_magnesium_tartcherry: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '노르딕 내추럴스(Nordic Naturals) 마그네슘 젤리 구미 / 솔가 킬레이트 마그네슘',
+        titleEn: 'Nordic Naturals Zero Sugar Magnesium Gummies / Solgar Chelated Magnesium',
+        specKo: '구연산·글리시네이트 마그네슘 킬레이트 제형 · 저녁 성장통 완화 및 서파수면 유도',
+        specEn: 'Highly bioavailable chelated magnesium for nocturnal muscle relaxation & SWS sleep',
+        cpQuery: '노르딕내추럴스 마그네슘 구미 어린이 칼슘 마그네슘 비타민D',
+        ihQuery: 'Nordic Naturals Zero Sugar Magnesium Gummies Tangerine',
+        yesQuery: '수면과 성장호르몬 과학'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '프롬바이오 키즈 어골칼슘 마그네슘 비타민D & 몽모랑시 타트체리 스틱',
+        titleEn: 'FromBIO Kids Fish-Bone Calcium Magnesium D3 & Montmorency Tart Cherry',
+        specKo: '비소성 어골칼슘 + 마그네슘 + 식물성 멜라토닌 함유 타트체리 농축액',
+        specEn: 'Non-calcined fish bone calcium + magnesium + natural tart cherry phytomelatonin',
+        cpQuery: '키즈 어골칼슘 마그네슘 비타민D 타트체리 어린이 영양제',
+        ihQuery: 'Dynamic Health Certified Organic Tart Cherry Juice Concentrate',
+        yesQuery: '아이 수면 교육 가이드'
+      }
+    ],
+    cartilage_calcium: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '종근당건강 아이커 칼슘 / PH365 어린이 비소성 어골·연골칼슘 폴리감마글루탐산',
+        titleEn: 'Premium Kids Non-Calcined Fish-Bone & Cartilage Calcium + PGA + Vit D3/K2',
+        specKo: '인체 뼈 구성비(Ca:P=2:1) 어골·연골칼슘 + 칼슘 흡수 촉진 폴리감마글루탐산(PGA)',
+        specEn: '2:1 Ca:P ratio fish-bone/cartilage calcium + Poly-gamma-glutamic acid (PGA) + D3/K2',
+        cpQuery: '어린이 어골칼슘 연골칼슘 폴리감마글루탐산 비타민D3 K2',
+        ihQuery: ' Carlson Labs Kid\'s Chewable Calcium Vanilla + Vitamin D3',
+        yesQuery: '소아 뼈성장과 칼슘'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '네이처스플러스 애니멀 퍼레이드 키즈 칼슘 마그네슘 츄어블 (바닐라맛 90정)',
+        titleEn: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Natural Vanilla (90 Tabs)',
+        specKo: '아미노산 킬레이트 칼슘·마그네슘 · 우유 배앓이 없는 무유당 동물 모양 츄어블',
+        specEn: 'Aminoate chelated calcium & magnesium · Lactose-free vanilla chewables',
+        cpQuery: '네이처스플러스 애니멀퍼레이드 키즈 칼슘 어린이 츄어블',
+        ihQuery: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Supplement Vanilla',
+        yesQuery: '어린이 영양제 선택법'
+      }
+    ],
+    montessori_pincer_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '러닝리소스(Learning Resources) 정밀 악어핀셋 & 폼폼이 색깔 분류 소근육 키트',
+        titleEn: 'Learning Resources Helping Hands Fine Motor Tool Set & Sorting Kit',
+        specKo: '미국 작업치료사 추천 1위 · 엄지·검지·중지 삼지집기(Tripod Grasp) 근육 집중 발달',
+        specEn: '#1 Occupational therapist pick for tripod grasp & hand-eye coordination',
+        cpQuery: '러닝리소스 소근육 교구 핀셋 집게 색깔 분류 세트',
+        ihQuery: 'Learning Resources Fine Motor Tool Set Toddler',
+        yesQuery: '몬테소리 소근육 놀이'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '멜리사앤더그(Melissa & Doug) 원목 대형 구슬꿰기(Lacing Beads) 정품 세트',
+        titleEn: 'Melissa & Doug Primary Lacing Beads Educational Wooden Toy (30 Beads)',
+        specKo: '무독성 천연 원목 30피스 · 양손 협응력 및 초기 수세기·패턴 인식 훈련',
+        specEn: '30 solid wood beads + 2 laces for bilateral hand coordination & patterning',
+        cpQuery: '멜리사앤더그 원목 구슬꿰기 유아 소근육 교구',
+        ihQuery: 'Melissa Doug Primary Lacing Beads Wooden Toy',
+        yesQuery: '멜리사앤더그 소근육'
+      }
+    ],
+    balance_trampoline_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 유아·어린이 안전 손잡이형 무소음 밴드 실내 점핑 트램폴린',
+        titleEn: 'Melkin Kids Silent Elastic-Band Indoor Trampoline with Safety Handlebar',
+        specKo: '고탄성 무소음 워빙밴드(층간소음 차단) + 높이조절 안전 핸들바 장착',
+        specEn: 'Silent elastic webbing band + adjustable padded safety handlebar',
+        cpQuery: '멜킨스포츠 어린이 안전 손잡이 무소음 실내 트램폴린',
+        ihQuery: 'Little Tikes Easy Store 3ft Trampoline with Handlebar',
+        yesQuery: '유아 신체발달 놀이'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '원더볼즈 / 위플레이 유아 논슬립 하천 돌다리 밸런스 징검다리 6p~11p 세트',
+        titleEn: 'Weplay Non-Slip River Stones Tactile Balance Stepping Stones Set',
+        specKo: '소뇌 전정기관(균형감각) 및 발바닥 고유수용성감각 자극 실내 징검다리',
+        specEn: 'Develops cerebellar vestibular balance and plantar proprioception',
+        cpQuery: '유아 밸런스 징검다리 논슬립 실내 균형감각 놀이 세트',
+        ihQuery: 'GonGe River Stones Balance Stepping Stones Kids',
+        yesQuery: '유아 감각통합 놀이'
+      }
+    ],
+    froebel_gabe_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '매그나타일즈(Magna-Tiles) / 맥포머스 3D 입체 투명 자석블록 100피스 세트',
+        titleEn: 'Magna-Tiles Clear Colors 100-Piece 3D Magnetic Building Set',
+        specKo: '만 4~5세 두정엽 3차원 공간지각(Mental Rotation) 및 기하학 도형 감각 완성',
+        specEn: 'Develops 3D spatial rotation, geometric symmetry & STEM engineering',
+        cpQuery: '맥포머스 매그나타일즈 투명 자석블록 100피스 입체도형 교구',
+        ihQuery: 'Magna-Tiles Clear Colors 100 Piece Magnetic Construction Set',
+        yesQuery: '가베와 자석블록 활용백과'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '오르다 / 몬테소리 정통 비치우드 원목 가베(은물) 1~10가베 워크북 풀세트',
+        titleEn: 'Authentic Beechwood Froebel Gifts (1–10 Gabe) Complete Set with Workbooks',
+        specKo: '점·선·면·입체 수리 개념을 손으로 깨우치는 유아 수학교육의 정석',
+        specEn: 'Complete point-line-plane-solid mathematical manipulative curriculum',
+        cpQuery: '원목 가베 풀세트 1가베 10가베 은물 워크북 세트',
+        ihQuery: 'Froebel Gifts Wooden Block Set Educational Math',
+        yesQuery: '엄마표 가베 놀이 가이드북'
+      }
+    ],
+    indoor_trampoline_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '멜킨스포츠 대형 육각 무소음 어린이 실내 점핑 트램폴린 (손잡이형)',
+        titleEn: 'Melkin Hexagonal Silent Rebounder Trampoline for Kids Growth Plate',
+        specKo: '볼프의 법칙(Wolff\'s Law) 기반 하루 15분 하지 성장판 압전 미세자극',
+        specEn: 'Delivers 1.8x bodyweight cyclic micro-loading to femur/tibia growth plates',
+        cpQuery: '멜킨스포츠 어린이 무소음 실내 트램폴린 점핑매트 손잡이형',
+        ihQuery: 'BCAN 38 Inch Kids Mini Trampoline with Handle',
+        yesQuery: '키 크는 점프 운동법'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '스마트게임즈(SmartGames) 캐슬 로지크 / 원목 칠교놀이·소마큐브 도형 퍼즐',
+        titleEn: 'SmartGames Castle Logix 3D Wooden Spatial Puzzle & Tangram Set',
+        specKo: '단계별 미션 카드를 보고 3D 원목 블록을 조립하는 전두엽·두정엽 사고력 교구',
+        specEn: '48 step-by-step 3D spatial logic challenges for ages 4–7',
+        cpQuery: '스마트게임즈 캐슬로지크 원목 칠교놀이 소마큐브 퍼즐',
+        ihQuery: 'SmartGames Castle Logix Wooden 3D Logic Puzzle',
+        yesQuery: '칠교놀이 소마큐브 워크북'
+      }
+    ],
+    gravitrax_stem_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '라벤스부르거 코리아 그래비트랙스(GraviTrax) 코어 스타터 세트 정품',
+        titleEn: 'Ravensburger GraviTrax Core Starter Set STEM Marble Run (122 Pieces)',
+        specKo: '중력·자석·운동에너지 법칙을 스스로 설계·실험하는 유럽 1위 STEM 과학 교구',
+        specEn: '122-piece interactive track system teaching gravity, magnetism & kinetics',
+        cpQuery: '라벤스부르거 그래비트랙스 코어 스타터 세트 정품',
+        ihQuery: 'Ravensburger GraviTrax Starter Set Marble Run STEM',
+        yesQuery: '그래비트랙스 트랙 가이드북'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '스마트게임즈(SmartGames) 아이큐 퍼즐 프로 (IQ Puzzler Pro · 120단계 두뇌퍼즐)',
+        titleEn: 'SmartGames IQ Puzzler Pro (120 2D & 3D Spatial Brain Challenges)',
+        specKo: '평면 2D부터 입체 3D 피라미드까지 120단계로 집중 지속시간을 늘려주는 휴대용 교구',
+        specEn: '120 2D-to-3D pyramid challenges building sustained executive attention',
+        cpQuery: '스마트게임즈 아이큐 퍼즐 프로 IQ Puzzler Pro 보드게임',
+        ihQuery: 'SmartGames IQ Puzzler Pro 120 Challenges',
+        yesQuery: '초등 창의사고력 퍼즐'
+      }
+    ],
+    posture_stand_jumprope_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '위즈독서대 / 독서대통령 높이·각도조절 원목 2단 독서대 (거북목·숨은키 방어)',
+        titleEn: 'Wiz ergonomic 2-Tier Height & Angle Adjustable Wooden Book Stand',
+        specKo: '눈높이 독서·필기로 경추 디스크 압박(15kg 하중)을 차단해 숨은 키 1.8cm 사수',
+        specEn: 'Maintains cervical C-curve and prevents 1.8cm slouching height loss',
+        cpQuery: '위즈독서대 높이조절 원목 2단 독서대 거북목 교정',
+        ihQuery: 'Wishacc Adjustable Bamboo Book Stand Ergonomic',
+        yesQuery: '초등 바른 자세 공부법'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '김수열줄넘기 디지털 카운터 어린이 줄넘기 / 실내 무소음 줄없는 줄넘기',
+        titleEn: 'Kim Soo-Yeol Digital Counter Kids Jump Rope (Corded & Cordless)',
+        specKo: '실내(무소음 에어볼)·야외 겸용 디지털 횟수 카운터로 매일 500회 점프 습관화',
+        specEn: 'Dual corded/cordless ropeless balls with digital counter for daily 500 jumps',
+        cpQuery: '김수열줄넘기 디지털 카운터 어린이 줄넘기 실내 줄없는줄넘기',
+        ihQuery: 'Digital Counting Jump Rope Cordless Indoor Kids',
+        yesQuery: '어린이 음악줄넘기 교본'
+      }
+    ],
+    microscope_timer_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '타임타이머(Time Timer) MOD 무소음 시각 타이머 정품 / 드레텍 스터디 타이머',
+        titleEn: 'Time Timer MOD Visual Countdown Timer (Silent Prefrontal Focus Tool)',
+        specKo: '남은 시간을 빨간 원판으로 시각화해 전두엽 작업기억과 몰입(Deep Work)을 극대화',
+        specEn: 'Visualizes remaining time silently to train prefrontal self-regulation',
+        cpQuery: '타임타이머 MOD 무소음 시각 타이머 드레텍 스터디 타이머',
+        ihQuery: 'Time Timer MOD Home Edition Visual Countdown Timer',
+        yesQuery: '초등 자기주도 시간관리'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '내셔널지오그래픽 / 엠스콥(AmScope) 초등·청소년 고배율 광학 현미경 실험키트',
+        titleEn: 'AmScope 120X–1200X Kids Beginner Microscope STEM Science Kit (52-Pc)',
+        specKo: '세포·식물 프레파라트 관찰을 통해 과학적 가설-검증 사고력을 키우는 실험 도구',
+        specEn: '120X–1200X magnification with prepared slides for hypothesis-driven inquiry',
+        cpQuery: '내셔널지오그래픽 어린이 광학 현미경 프레파라트 과학실험 세트',
+        ihQuery: 'AmScope 120X-1200X 52-pcs Kids Beginner Microscope STEM Kit',
+        yesQuery: '초등 현미경 관찰 도감'
+      }
+    ],
+    deadhang_foamroller_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '코멧 스포츠 / 반석스포츠 무타공 수평계 안전잠금 실내 문틀 철봉 (데드행 바)',
+        titleEn: 'Comet Sports No-Screw Safety-Lock Doorway Pull-Up & Dead Hang Bar',
+        specKo: '취침 전 30초×3세트 매달리기로 낮 동안 눌린 척추 추간판 디스크 +1.8cm 감압 복원',
+        specEn: '30s x 3 passive dead hangs before bed restore +1.8cm of compressed disc height',
+        cpQuery: '코멧 스포츠 무타공 안전잠금 문틀 철봉 실내 턱걸이봉',
+        ihQuery: 'Ally Peaks Pull Up Bar Doorway No Screw Safety Lock',
+        yesQuery: '척추 교정 스트레칭 가이드'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '멜킨스포츠 척추 신전 고밀도 EPP 폼롤러 (90cm 원형 · 거북목/굽은등 교정)',
+        titleEn: 'Melkin High-Density EPP Foam Roller (90cm Full Spine Thoracic Extension)',
+        specKo: '굽은 흉추를 펴고 성장판 주변 근막 긴장을 이완시키는 90cm 전신 폼롤러',
+        specEn: '90cm high-density EPP roller for thoracic extension & myofascial release',
+        cpQuery: '멜킨스포츠 고밀도 EPP 폼롤러 90cm 체형교정 스트레칭',
+        ihQuery: 'TriggerPoint GRID Foam Roller Thoracic Spine Mobility',
+        yesQuery: '폼롤러 스트레칭 백과'
+      }
+    ],
+    workbook_scissors_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '기탄교육 기탄 가위오리기·종이접기 1~4집 세트 + 유아 안전가위 패키지',
+        titleEn: 'Gitan Step-by-Step Scissor Cutting & Origami Workbooks Set (Ages 2–4)',
+        specKo: '직선→곡선→도형 오리기 단계별 구성으로 손끝 소근육과 눈-손 협응 완성',
+        specEn: 'Progressive straight-to-curve cutting exercises for intrinsic hand muscles',
+        cpQuery: '기탄 가위오리기 종이접기 세트 유아 안전가위 소근육 워크북',
+        ihQuery: 'Kumon First Steps Workbooks Let\'s Cut Paper Sticker',
+        yesQuery: '기탄 가위오리기 종이접기'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '어스본(Usborne) 코리아 처음 시작하는 스티커북 & 선긋기 두뇌 워크북',
+        titleEn: 'Usborne First Sticker Book & Wipe-Clean Pen Control Activity Book',
+        specKo: '10분 미만 단기 집중 유아도 스스로 몰입하는 색감·주제별 스티커 & 운필력 훈련',
+        specEn: 'High-engagement sticker & pen-control pages for toddler attention span',
+        cpQuery: '어스본 코리아 처음 시작하는 스티커북 유아 선긋기 워크북',
+        ihQuery: 'Usborne First Sticker Book Wipe Clean Pen Control',
+        yesQuery: '어스본 처음 시작하는 스티커북'
+      }
+    ],
+    tactile_flap_book_1_3: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '어스본(Usborne) 코리아 요리조리 열어보는 플랩북 & 간질간질 촉감책 시리즈',
+        titleEn: 'Usborne Look Inside Lift-the-Flap & That\'s Not My... Touchy-Feely Board Books',
+        specKo: '손끝으로 플랩을 열고 다양한 재질을 만지며 브로카 언어 영역과 호기심 자극',
+        specEn: 'Tactile textures and interactive flaps stimulate Broca\'s language center',
+        cpQuery: '어스본 코리아 요리조리 열어보는 플랩북 촉감책 보드북',
+        ihQuery: 'Usborne Look Inside Board Book Lift the Flap',
+        yesQuery: '어스본 요리조리 열어보는 플랩북'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '시공주니어 네버랜드 세계걸작 잘 자요 달님 (Goodnight Moon) 수면 의식 그림책',
+        titleEn: 'Goodnight Moon (Margaret Wise Brown) Bedtime Sleep Ritual Picture Book',
+        specKo: '전 세계 소아과 권장 1위 수면 그림책 · 밤 9시 30분 규칙적인 입면 루틴 형성',
+        specEn: 'Clinically proven bedtime ritual story for calm 9:30 PM slow-wave sleep onset',
+        cpQuery: '시공주니어 잘 자요 달님 유아 수면 동화 그림책',
+        ihQuery: 'Goodnight Moon Margaret Wise Brown Board Book',
+        yesQuery: '잘 자요 달님 시공주니어'
+      }
+    ],
+    spatial_pattern_book_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '길벗스쿨 기적의 유아 수학 / 소마셈 K단계 도형·공간지각 창의사고력 워크북',
+        titleEn: 'Gilbut Miracle Preschool Math & Spatial Geometry Logic Workbook',
+        specKo: '만 4~5세 두정엽 공간 회전·대칭·패턴 추론을 체계적으로 다지는 베스트셀러',
+        specEn: 'Structured spatial rotation, symmetry, and number sense curriculum',
+        cpQuery: '길벗스쿨 기적의 유아 수학 도형 공간지각 창의사고력 워크북',
+        ihQuery: 'Singapore Math Kindergarten Spatial Reasoning Workbook',
+        yesQuery: '길벗스쿨 기적의 유아 수학'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '매쓰타임(MathTime) 원목 칠교놀이·펜토미노 자석북 & 창의도형 워크북 세트',
+        titleEn: 'MathTime Magnetic Tangram & Pentomino Spatial Puzzle Book Set',
+        specKo: '워크북 위에 자석 도형을 직접 맞히며 15~20분 깊게 몰입하는 교구형 도서',
+        specEn: 'Hands-on magnetic tangram workbook for sustained 20-minute spatial focus',
+        cpQuery: '매쓰타임 자석 칠교놀이 펜토미노 도형 워크북 세트',
+        ihQuery: 'Magnetic Tangram Travel Puzzle Book Kids Geometry',
+        yesQuery: '칠교놀이 창의도형 워크북'
+      }
+    ],
+    body_growth_popup_4_5: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '어스본(Usborne) 코리아 요리조리 열어보는 우리 몸 (인체·뼈·성장 과학 플랩북)',
+        titleEn: 'Usborne Look Inside Your Body (Interactive Bones, Growth & Nutrition Flap Book)',
+        specKo: '아이 스스로 왜 골고루 먹고 일찍 자야 뼈가 자라는지 눈으로 깨닫는 플랩북 1위',
+        specEn: 'Over 100 flaps showing how bones grow, why sleep matters, and how digestion works',
+        cpQuery: '어스본 코리아 요리조리 열어보는 우리 몸 플랩북',
+        ihQuery: 'Usborne Look Inside Your Body Lift the Flap Book',
+        yesQuery: '어스본 요리조리 열어보는 우리 몸'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '비룡소 신기한 스쿨버스 우리 몸 탐험 / 바른 식습관·수면 과학 그림책 세트',
+        titleEn: 'The Magic School Bus Inside the Human Body (Scholastic Science Picture Book)',
+        specKo: '스토리텔링으로 소화·흡수·뼈 성장을 재미있게 이해시키는 필독 과학 그림책',
+        specEn: 'Engaging scientific storytelling on bone matrix, blood, and nutrient absorption',
+        cpQuery: '비룡소 신기한 스쿨버스 우리 몸 과학 그림책',
+        ihQuery: 'The Magic School Bus Inside the Human Body Book',
+        yesQuery: '신기한 스쿨버스 우리 몸'
+      }
+    ],
+    havruta_workbook_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '길벗스쿨 기적의 독서 논술 / 초등 하브루타 질문독서 생각열기 워크북',
+        titleEn: 'Gilbut Miracle Reading Comprehension & Havruta Inquiry Workbook (Grades 1–3)',
+        specKo: '관찰→가설→적용 3단계 질문으로 초등 전두엽 인과추론과 어휘력을 키우는 교재',
+        specEn: '3-step Havruta inquiry prompts building prefrontal reasoning & vocabulary',
+        cpQuery: '길벗스쿨 기적의 독서 논술 초등 하브루타 질문독서 워크북',
+        ihQuery: 'Evan-Moor Daily Higher-Order Thinking Workbook Grade 2',
+        yesQuery: '기적의 독서 논술 길벗스쿨'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '천재교육 하루 한장 독해 / 초등 비주얼 씽킹 문해력·어휘력 마인드맵 워크북',
+        titleEn: 'Chunjae 1-Page-a-Day Reading Comprehension & Visual Thinking Mindmap Book',
+        specKo: '하루 15분 한 장씩 읽고 핵심 내용을 구조화하여 집중 지속시간을 늘리는 베스트셀러',
+        specEn: '15-minute daily structured reading habit builder with visual mindmaps',
+        cpQuery: '천재교육 하루 한장 독해 초등 어휘력 문해력 워크북',
+        ihQuery: 'Scholastic Success With Reading Comprehension Grade 2',
+        yesQuery: '천재교육 하루 한장 독해'
+      }
+    ],
+    museum_science_history_6_8: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '주니어김영사 박물관이 살아있다 / 국립중앙박물관 어린이 역사·유물 탐구 도감',
+        titleEn: 'Junior Gimmyoung National Museum Korean History & Artifact Encyclopedia',
+        specKo: '주말 박물관·궁궐 나들이 전후에 읽으면 현장 관람 학습 효과가 3배 높아지는 필독서',
+        specEn: 'Pre/post museum visit companion guide tripling long-term historical memory',
+        cpQuery: '주니어김영사 박물관 어린이 역사 유물 도감 한국사 그림책',
+        ihQuery: 'DK Smithsonian Children\'s Encyclopedia History Science',
+        yesQuery: '어린이 박물관 역사 도감'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '사파리 출판사 내 손안의 박물관 / 어스본 초등 과학관 원리 탐구 대백과',
+        titleEn: 'Usborne Science Encyclopedia & Safari Museum in My Hand Visual Guide',
+        specKo: '과학관 전시물(힘·운동·우주·인체)의 핵심 원리를 한눈에 보여주는 시각 대백과',
+        specEn: 'Richly illustrated visual science encyclopedia aligned with museum exhibits',
+        cpQuery: '어스본 초등 과학 대백과 내 손안의 박물관 도감',
+        ihQuery: 'Usborne Science Encyclopedia QR Links Illustrated',
+        yesQuery: '어스본 초등 과학 대백과'
+      }
+    ],
+    metacognition_workbook_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '디딤돌 초등 고학년 비문학 독해력 & 코넬식 메타인지 백지복습 노트 세트',
+        titleEn: 'Didimdol Non-Fiction Reading Comprehension & Cornell Metacognition Recall Note',
+        specKo: '배외측 전전두엽(DLPFC) 피크기인 만 9세+ 아동의 메타인지(인출 훈련) 완성 교재',
+        specEn: 'Trains active recall and non-fiction structural analysis for ages 9–15',
+        cpQuery: '디딤돌 초등 독해력 고학년 비문학 코넬식 백지복습 노트',
+        ihQuery: 'Critical Thinking Company Reading Detective Nonfiction',
+        yesQuery: '디딤돌 초등 독해력 비문학'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: ' EBS 0.1%의 비밀 메타인지 공부법 & 초등·중등 자기주도 학습 플래너',
+        titleEn: 'EBS Top 0.1% Secret Metacognition Study Method & Self-Directed Planner',
+        specKo: '내가 아는 것과 모르는 것을 스스로 점검하는 상위 0.1% 메타인지 학습 전략서',
+        specEn: 'Evidence-based guide to self-testing, spaced repetition, and study planning',
+        cpQuery: '메타인지 공부법 자기주도학습 플래너 초등 중등 필독서',
+        ihQuery: 'Make It Stick The Science of Successful Learning Book',
+        yesQuery: '메타인지 공부법 자기주도학습'
+      }
+    ],
+    brain_growth_science_9_plus: [
+      {
+        rankKo: '🏆 엄선 1위',
+        rankEn: '🏆 Pick #1',
+        titleKo: '십대를 위한 뇌과학 공부법 / 뇌를 깨우는 아침운동·수면 호르몬의 비밀',
+        titleEn: 'Neuroscience Study Guide for Teens: Sleep, Dopamine & Prefrontal Focus',
+        specKo: '왜 스마트폰을 줄이고 밤 10시 30분 전에 자야 키와 성적이 함께 오르는지 과학적 설득',
+        specEn: 'Explains SWS growth hormone, dopamine detox, and myelination to teens',
+        cpQuery: '십대를 위한 뇌과학 공부법 청소년 자기주도학습 교양서',
+        ihQuery: 'The Teenage Brain A Neuroscientist\'s Survival Guide',
+        yesQuery: '십대를 위한 뇌과학 공부법'
+      },
+      {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Pick #2',
+        titleKo: '정주영의 키 크는 스트레칭 & 어린이·청소년 바른 체형·성장판 과학 가이드북',
+        titleEn: 'Pediatric Height Growth & Spinal Alignment Science Guidebook for Youth',
+        specKo: '아이 스스로 따라 할 수 있는 저녁 10분 척추 감압 스트레칭과 성장판 영양 가이드',
+        specEn: 'Illustrated 10-minute nightly spinal decompression and growth plate guide',
+        cpQuery: '어린이 청소년 키크는 스트레칭 바른 자세 성장 가이드북',
+        ihQuery: 'Stretching Anatomy Posture Correction Guide Book',
+        yesQuery: '키 크는 스트레칭 성장판'
+      }
+    ]
+  };
+
+  function getCuratedSubProducts(itemId, affConfig = {}) {
+    const rawList = CURATED_SPECIFIC_PRODUCTS_DB[itemId] || CURATED_SPECIFIC_PRODUCTS_DB.ht042_growth;
+    return rawList.map((sub) => {
+      const urls = buildPinpointUrls(sub.cpQuery, sub.ihQuery, sub.yesQuery, affConfig);
+      return Object.assign({}, sub, urls);
+    });
   }
 
   /**
@@ -691,10 +1212,22 @@
       )));
     }
 
+    const attachCurated = (arr) => arr.map((item) => {
+      const subProducts = getCuratedSubProducts(item.id, affConfig);
+      const topPick = subProducts[0] || item;
+      return Object.assign({}, item, {
+        coupangUrl: topPick.coupangUrl || item.coupangUrl,
+        iherbUrl: topPick.iherbUrl || item.iherbUrl,
+        yes24Url: topPick.yes24Url || item.yes24Url,
+        naverUrl: topPick.naverUrl || item.naverUrl,
+        curatedProducts: subProducts
+      });
+    });
+
     return {
-      supplements,
-      toys,
-      books,
+      supplements: attachCurated(supplements),
+      toys: attachCurated(toys),
+      books: attachCurated(books),
       lifecycleRoadmap: getSequentialLifecycleRoadmap(ageYears),
       autoStage: autoDetectGrowthStage(ageMonths, profile.gender, recent6m)
     };
@@ -845,36 +1378,56 @@
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 0.9rem; align-items: stretch;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.9rem; align-items: stretch;">
           
           <!-- Column 1: Required Supplements -->
           <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
               <h4 style="font-size: 0.95rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.35rem 0;">
-                💊 ${isEn ? '1. Required Nutritional Ingredients' : '1. 꾸준히 보충할 맞춤 영양 성분'}
+                💊 ${isEn ? '1. Curated Nutritional Supplements' : '1. 꾸준히 보충할 맞춤 영양제 (엄선 세부 상품)'}
               </h4>
               <p style="font-size: 0.76rem; color: #93C5FD; margin: 0 0 0.7rem 0; line-height: 1.42;">
                 ${suppTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${data.supplements.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
-                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
+                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.74rem; color: #34D399; font-weight: 700; margin-bottom: 0.25rem;">
-                      ✓ ${isEn ? 'Key Spec:' : '체크 기준:'} ${item.activeSpec}
+                    <div style="font-size: 0.73rem; color: #34D399; font-weight: 700; margin-bottom: 0.35rem;">
+                      ✓ ${isEn ? 'Key Spec:' : '성분 기준:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
+                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
-                      <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
-                        ${isEn ? 'View on Coupang ↗' : '쿠팡에서 보기 ↗'}
-                      </a>
-                      <a href="${item.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #34D399; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
-                        ${isEn ? 'View on iHerb ↗' : 'iHerb에서 보기 ↗'}
-                      </a>
+
+                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
+                      <div style="font-size: 0.7rem; font-weight: 900; color: #60A5FA;">
+                        ✨ ${isEn ? 'Strictly Curated Specific Products (Click to Open Exact Product):' : 'K-GROWTH AI™ 엄선 세부 상품 바로가기 (클릭 시 해당 세부 상품 직결):'}
+                      </div>
+                      ${(item.curatedProducts || []).map((sub) => `
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(59,130,246,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
+                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
+                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                          </div>
+                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                            • ${isEn ? sub.specEn : sub.specKo}
+                          </div>
+                          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Coupang ↗' : '쿠팡 세부상품 ↗'}
+                            </a>
+                            <a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.38); color: #34D399; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'iHerb ↗' : 'iHerb 세부상품 ↗'}
+                            </a>
+                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(59, 130, 246, 0.38); color: #93C5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Naver ↗' : '네이버 브랜드관 ↗'}
+                            </a>
+                          </div>
+                        </div>
+                      `).join('')}
                     </div>
                   </div>
                 `).join('')}
@@ -886,26 +1439,48 @@
           <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
               <h4 style="font-size: 0.95rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
-                🧩 ${isEn ? '2. Required Posture & Cognitive Tools' : '2. 기질·자세 맞춤 교구 & 운동 도구'}
+                🧩 ${isEn ? '2. Curated Posture & Cognitive Tools' : '2. 기질·자세 맞춤 교구 & 운동기구 (엄선 세부 상품)'}
               </h4>
               <p style="font-size: 0.76rem; color: #6EE7B7; margin: 0 0 0.7rem 0; line-height: 1.42;">
                 ${toyTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${data.toys.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
-                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
+                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.74rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.25rem;">
+                    <div style="font-size: 0.73rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.35rem;">
                       ✓ ${isEn ? 'Purpose:' : '활용 목적:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
+                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
                     </div>
-                    <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; width: 100%; box-sizing: border-box; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
-                      ${isEn ? 'View Reference on Coupang ↗' : '쿠팡에서 바로 확인하기 ↗'}
-                    </a>
+
+                    <!-- Curated Specific Sub-Products (엄선 세부 상품 TOP 2) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
+                      <div style="font-size: 0.7rem; font-weight: 900; color: #34D399;">
+                        ✨ ${isEn ? 'Strictly Curated Specific Products (Click to Open Exact Product):' : 'K-GROWTH AI™ 엄선 세부 상품 바로가기 (클릭 시 해당 세부 상품 직결):'}
+                      </div>
+                      ${(item.curatedProducts || []).map((sub) => `
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(16,185,129,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
+                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
+                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                          </div>
+                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                            • ${isEn ? sub.specEn : sub.specKo}
+                          </div>
+                          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.35rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Coupang Exact Item ↗' : '쿠팡 세부상품 보기 ↗'}
+                            </a>
+                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.38); color: #34D399; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.35rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Naver Store ↗' : '네이버 브랜드/공식몰 ↗'}
+                            </a>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
                   </div>
                 `).join('')}
               </div>
@@ -916,30 +1491,50 @@
           <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
             <div>
               <h4 style="font-size: 0.95rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
-                📚 ${isEn ? '3. Required Books & Workbooks' : '3. 집중시간·연령 맞춤 필독 도서'}
+                📚 ${isEn ? '3. Curated Books & Workbooks' : '3. 집중시간·연령 맞춤 필독 도서 (엄선 세부 도서)'}
               </h4>
               <p style="font-size: 0.76rem; color: #DDD6FE; margin: 0 0 0.7rem 0; line-height: 1.42;">
                 ${bookTraitNote}
               </p>
-              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${data.books.map((item) => `
-                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
-                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.85rem;">
+                    <div style="font-size: 0.85rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.2rem;">
                       ${item.name}
                     </div>
-                    <div style="font-size: 0.74rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.25rem;">
+                    <div style="font-size: 0.73rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.35rem;">
                       ✓ ${isEn ? 'Focus:' : '핵심 훈련:'} ${item.activeSpec}
                     </div>
-                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
-                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.55rem;">
+                      🔎 ${isEn ? 'Self-Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
-                      <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
-                        ${isEn ? 'View on Coupang ↗' : '쿠팡에서 보기 ↗'}
-                      </a>
-                      <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(139, 92, 246, 0.35); color: #C4B5FD; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
-                        ${isEn ? 'View on YES24 ↗' : '예스24에서 보기 ↗'}
-                      </a>
+
+                    <!-- Curated Specific Sub-Products (엄선 세부 도서 TOP 2) -->
+                    <div class="curated-subproducts-list" style="display: flex; flex-direction: column; gap: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 0.55rem;">
+                      <div style="font-size: 0.7rem; font-weight: 900; color: #C4B5FD;">
+                        ✨ ${isEn ? 'Strictly Curated Specific Books (Click to Open Exact Book):' : 'K-GROWTH AI™ 엄선 세부 도서 바로가기 (클릭 시 해당 세부 도서 직결):'}
+                      </div>
+                      ${(item.curatedProducts || []).map((sub) => `
+                        <div class="curated-subproduct-row" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(139,92,246,0.22); border-radius: 9px; padding: 0.5rem 0.6rem;">
+                          <div style="font-size: 0.77rem; font-weight: 800; color: #F8FAFC; line-height: 1.35; margin-bottom: 0.15rem;">
+                            <span style="color: #FBBF24; margin-right: 0.25rem;">${isEn ? sub.rankEn : sub.rankKo}</span>${isEn ? sub.titleEn : sub.titleKo}
+                          </div>
+                          <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.4rem;">
+                            • ${isEn ? sub.specEn : sub.specKo}
+                          </div>
+                          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem;">
+                            <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.93); color: #0F172A; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Coupang ↗' : '쿠팡 세부도서 ↗'}
+                            </a>
+                            <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(139, 92, 246, 0.38); color: #C4B5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'YES24 ↗' : '예스24 도서 ↗'}
+                            </a>
+                            <a href="${sub.naverUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.16); border: 1px solid rgba(59, 130, 246, 0.38); color: #93C5FD; font-size: 0.7rem; font-weight: 800; padding: 0.35rem 0.3rem; border-radius: 6px; text-decoration: none;">
+                              ${isEn ? 'Naver Book ↗' : '네이버 도서 ↗'}
+                            </a>
+                          </div>
+                        </div>
+                      `).join('')}
                     </div>
                   </div>
                 `).join('')}

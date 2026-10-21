@@ -25,87 +25,87 @@
     amazon: 'tallerbiolab-20'
   };
 
-  // Canonical Query Mappings for Clinical Categories
+  // Canonical Query Mappings for Clinical Categories (Strictly Curated Flagship Products)
   const CATEGORY_SEARCH_QUERIES = {
-    // Nutrition / Micronutrients (Exact Pinpoint SKU Queries)
+    // Nutrition / Micronutrients (Exact Curated Flagship SKU Queries)
     ht042: {
-      ko: '식약처 인정 키성장 황기추출물 HT042 어린이 영양제',
-      en: 'Astragalus root extract kids immune growth',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=어린이+키성장+영양'
+      ko: '종근당건강 아이커 HT042 황기추출물 어린이 키성장 30포',
+      en: 'Nature\'s Answer Astragalus Root Fluid Extract Kids',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%96%B4%EB%A6%B0%EC%9D%B4+%ED%82%A4%EC%84%B1%EC%9E%A5+%EC%98%81%EC%96%91'
     },
     cartilage_calcium: {
-      ko: '어린이 연골칼슘 어골칼슘 폴리감마글루탐산 비타민D3 츄어블',
-      en: 'ChildLife Liquid Calcium with Magnesium Orange',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아+칼슘+영양학'
+      ko: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml 어린이 어골칼슘',
+      en: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange 16 fl oz',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%86%8C%EC%95%84+%EC%B9%BC%EC%8A%98+%EC%98%81%EC%96%91%ED%95%99'
     },
     calcium: {
-      ko: '어린이 연골칼슘 어골칼슘 구연산 칼슘 마그네슘 비타민D3',
-      en: 'calcium citrate magnesium d3 kids',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=칼슘+영양학'
+      ko: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml 구연산칼슘',
+      en: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%B9%BC%EC%8A%98+%EC%98%81%EC%96%91%ED%95%99'
     },
     vitamind: {
-      ko: '어린이 비타민 D3 1000IU K2 MK-7 드롭',
-      en: 'vitamin d3 k2 mk7 drops kids',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=비타민D'
+      ko: '닥터써니디 드롭스 비타민D3 1000IU K2 어린이 액상',
+      en: 'ChildLife Organic Vitamin D3 Drops 400 IU Natural Berry',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%B9%84%ED%83%80%EB%AF%BCD'
     },
     zinc: {
-      ko: '어린이 글루콘산 피콜린산 아연 초유 글리시네이트 마그네슘',
-      en: 'zinc picolinate magnesium glycinate kids',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=미네랄+영양'
+      ko: '일동후디스 하이키즈 초유 플러스 아연 노르딕내추럴스 마그네슘 구미',
+      en: 'Nature\'s Way Sambucus Kids Gummies Zinc Elderberry',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%AF%B8%EB%84%A4%EB%9E%84+%EC%98%81%EC%96%91'
     },
     protein: {
-      ko: '초유 분리유청 단백질 WPI 어린이 아르기닌 스틱',
-      en: 'whey protein isolate l-arginine colostrum',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=단백질+영양학'
+      ko: '일동후디스 초유 플러스 어린이 아르기닌 단백질 스틱',
+      en: 'ChildLife Probiotics with Colostrum Powder Natural Orange Pineapple',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%8B%A8%EB%B0%B1%EC%A7%88+%EC%98%81%EC%96%91%ED%95%99'
     },
     nutrients: {
-      ko: '식약처 인정 키성장 황기추출물 HT042 구연산칼슘 D3',
-      en: 'pediatric growth micronutrients calcium d3',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아영양학'
+      ko: '종근당건강 아이커 HT042 황기추출물 차일드라이프 액상 칼슘 마그네슘',
+      en: 'ChildLife Liquid Calcium with Magnesium Vitamin D3 Kids',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%86%8C%EC%95%84%EC%98%81%EC%96%91%ED%95%99'
     },
 
-    // Biomechanics & Posture Equipment
+    // Biomechanics & Posture Equipment (Exact Curated Flagship SKU Queries)
     deadhang: {
-      ko: '무타공 안전 잠금 가정용 문틀 턱걸이봉 철봉 데드행',
-      en: 'pull up bar doorway dead hang spinal decompression',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=척추교정+자세'
+      ko: '코멧 스포츠 무타공 안전잠금 문틀 철봉 실내 턱걸이봉',
+      en: 'Ally Peaks Pull Up Bar Doorway No Screw Safety Lock',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%B2%99%EC%B6%94%EA%B5%90%EC%A0%95+%EC%9E%90%EC%84%B8'
     },
     stretching: {
-      ko: '바른자세 경추 EPP 폼롤러 스트레칭 밴드',
-      en: 'thoracic spine foam roller posture stretching band',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=체형교정'
+      ko: '멜킨스포츠 고밀도 EPP 폼롤러 90cm 체형교정 스트레칭',
+      en: 'TriggerPoint GRID Foam Roller Thoracic Spine Mobility',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%ED%82%A4+%ED%81%AC%EB%8A%94+%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%B9%AD'
     },
     jumping: {
-      ko: '성장판 자극 어린이 무소음 실내 트램폴린 점핑매트',
-      en: 'plyometric jumping rebounder trampoline kids',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=줄넘기+운동'
+      ko: '멜킨스포츠 어린이 무소음 실내 트램폴린 손잡이형 점핑매트',
+      en: 'Little Tikes Easy Store 3ft Trampoline with Handlebar',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%A4%84%EB%84%98%EA%B8%B0+%EC%9A%B4%EB%8F%99'
     },
     biomechanics: {
-      ko: '어린이 높이조절 원목 2단 독서대 거북목 바른자세 교정 도구',
-      en: 'pediatric biomechanics posture spinal decompression tools',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=소아정형외과'
+      ko: '위즈독서대 높이조절 원목 2단 독서대 코멧 문틀 철봉',
+      en: 'Wishacc Adjustable Bamboo Book Stand Ergonomic Posture',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%B0%94%EB%A5%B8+%EC%9E%90%EC%84%B8+%EA%B3%B5%EB%B6%80%EB%B2%95'
     },
 
-    // Neuro-Cognitive & Havruta
+    // Neuro-Cognitive & Havruta (Exact Curated Flagship SKU Queries)
     havruta: {
-      ko: '초등 하브루타 과학 질문 생각열기 독서 워크북',
-      en: 'socratic inquiry science deduction book',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%ED%95%98%EB%B8%8C%EB%A3%A8%ED%83%80+%EA%B3%BC%ED%95%99'
+      ko: '길벗스쿨 기적의 독서 논술 초등 하브루타 질문독서 워크북',
+      en: 'Evan-Moor Daily Higher-Order Thinking Workbook',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B8%B0%EC%A0%81%EC%9D%98+%EB%8F%85%EC%84%9C+%EB%85%BC%EC%88%A0'
     },
     montessori: {
-      ko: '몬테소리 원목 집게 구슬꿰기 유아 안전가위 소근육 감각 교구',
-      en: 'montessori sensorial spatial wooden materials',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=몬테소리'
+      ko: '러닝리소스 소근육 핀셋 집게 멜리사앤더그 원목 구슬꿰기',
+      en: 'Learning Resources Helping Hands Fine Motor Tool Set',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%AA%AC%ED%85%8C%EC%86%8C%EB%A6%AC+%EC%86%8C%EA%B7%BC%EC%9C%A1'
     },
     science: {
-      ko: '초등학생 광학 현미경 프레파라트 어린이 과학 실험 키트',
-      en: 'kids science experiment kit microscope optical',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=과학실험키트'
+      ko: '라벤스부르거 그래비트랙스 코어 스타터 세트 내셔널지오그래픽 현미경',
+      en: 'Ravensburger GraviTrax Starter Set Marble Run STEM',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B7%B8%EB%9E%98%EB%B9%84%ED%8A%B8%EB%9E%99%EC%8A%A4'
     },
     neuro: {
-      ko: '유아 원목 가베 은물 자석블록 소근육 가위질 워크북 세트',
-      en: 'pediatric cognitive neuroscience developmental tools',
-      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=뇌과학+육아'
+      ko: '맥포머스 매그나타일즈 자석블록 100피스 스마트게임즈 아이큐 퍼즐 프로',
+      en: 'Magna-Tiles Clear Colors 100 Piece Magnetic Building Set',
+      linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B8%B8%EB%B2%97%EC%8A%A4%EC%BF%A8+%EA%B8%B0%EC%A0%81%EC%9D%98+%EC%9C%A0%EC%95%84+%EC%88%98%ED%95%99'
     }
   };
 
