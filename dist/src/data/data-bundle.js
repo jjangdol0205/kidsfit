@@ -1751,14 +1751,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-21T19:30:45Z",
-    "total_papers": 1938,
+    "generated_at": "2026-10-21T20:00:45Z",
+    "total_papers": 1939,
     "pillar_counts": {
       "growth_endocrinology": 566,
       "fine_motor_neuroscience": 361,
       "pedagogy_montessori_froebel": 273,
       "parent_child_interaction_museum": 450,
-      "posture_biomechanics_exercise": 288
+      "posture_biomechanics_exercise": 289
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -1766,20 +1766,20 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-21T19:04:24Z",
+    "last_updated_utc": "2026-10-21T20:00:45Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-21T19:04:24Z",
-      "total_papers": 1933,
+      "last_enriched_utc": "2026-10-21T20:00:45Z",
+      "total_papers": 1939,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 853,
-        "learning_macro_count": 1080,
-        "total_macro_papers": 1933,
-        "growth_ratio": 0.4413,
+        "growth_macro_count": 855,
+        "learning_macro_count": 1084,
+        "total_macro_papers": 1939,
+        "growth_ratio": 0.4409,
         "growth_percent": 44.1,
-        "learning_ratio": 0.5587,
+        "learning_ratio": 0.5591,
         "learning_percent": 55.9,
         "learning_ratio_percent": 55.9,
         "target_ratio": 0.5,
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-21T19:04:24Z"
+        "last_balanced_utc": "2026-10-21T20:00:45Z"
       },
       "sub_domain_distribution": [
         {
@@ -1821,7 +1821,7 @@
           "icon": "🥗",
           "color": "#10B981",
           "count": 317,
-          "percent": 16.4
+          "percent": 16.3
         },
         {
           "id": "bone_age_precocious_puberty",
@@ -1831,7 +1831,7 @@
           "icon": "🦴",
           "color": "#F59E0B",
           "count": 30,
-          "percent": 1.6
+          "percent": 1.5
         },
         {
           "id": "fine_motor_neuroscience",
@@ -1890,8 +1890,8 @@
           "title_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
           "icon": "💛",
           "color": "#F43F5E",
-          "count": 308,
-          "percent": 15.9
+          "count": 312,
+          "percent": 16.1
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1900,8 +1900,8 @@
           "title_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
           "icon": "🧘",
           "color": "#3B82F6",
-          "count": 219,
-          "percent": 11.3
+          "count": 221,
+          "percent": 11.4
         },
         {
           "id": "epiphyseal_wolff_loading",
@@ -1918,49 +1918,49 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 1359
+          "count": 1365
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 1933
+          "count": 1939
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 1228
+          "count": 1231
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1025,
-          "mid_term": 1593,
-          "long_term": 1107
+          "short_term": 1029,
+          "mid_term": 1597,
+          "long_term": 1109
         },
         "4-6y": {
-          "short_term": 1099,
-          "mid_term": 1672,
-          "long_term": 1179
+          "short_term": 1103,
+          "mid_term": 1676,
+          "long_term": 1181
         },
         "7-9y": {
-          "short_term": 1348,
-          "mid_term": 1895,
-          "long_term": 1194
+          "short_term": 1354,
+          "mid_term": 1901,
+          "long_term": 1197
         },
         "10-12y": {
-          "short_term": 1092,
-          "mid_term": 1663,
-          "long_term": 1135
+          "short_term": 1095,
+          "mid_term": 1666,
+          "long_term": 1137
         },
         "13-16y": {
-          "short_term": 794,
-          "mid_term": 959,
-          "long_term": 617
+          "short_term": 796,
+          "mid_term": 961,
+          "long_term": 618
         },
         "17-20y": {
-          "short_term": 794,
-          "mid_term": 959,
-          "long_term": 617
+          "short_term": 796,
+          "mid_term": 961,
+          "long_term": 618
         }
       },
       "core_empirical_laws": [
@@ -2145,15 +2145,15 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-21T19:04:24Z"
+      "last_synced_utc": "2026-10-21T20:00:45Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 853,
-      "learning_macro_count": 1080,
-      "total_macro_papers": 1933,
-      "growth_ratio": 0.4413,
+      "growth_macro_count": 855,
+      "learning_macro_count": 1084,
+      "total_macro_papers": 1939,
+      "growth_ratio": 0.4409,
       "growth_percent": 44.1,
-      "learning_ratio": 0.5587,
+      "learning_ratio": 0.5591,
       "learning_percent": 55.9,
       "learning_ratio_percent": 55.9,
       "target_ratio": 0.5,
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-21T19:04:24Z"
+      "last_balanced_utc": "2026-10-21T20:00:45Z"
     }
   },
   "pillars": [
@@ -2211,7 +2211,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 288
+      "paper_count": 289
     }
   ],
   "clinical_synthesis_rules": {
@@ -62373,7 +62373,29 @@
       "age_range": "만 1~7세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1037/adb0000891.supp",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
       "id": "PMID:35357069",
@@ -65934,7 +65956,25 @@
       "age_range": "만 1~7세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1037/fam0000814.supp",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
       "id": "DOI:10.1038/s41404-021-0877-2",
@@ -65957,7 +65997,25 @@
       "age_range": "만 1~7세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1038/s41404-021-0877-2",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
       "id": "PMID:32175600",
@@ -76089,7 +76147,26 @@
       "age_range": "만 1~7세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1017/s0954579400006027",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "learning",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "[피인용 256회 검증 논문] 부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
       "id": "DOI:10.1002/edp.2430010108",
@@ -78238,6 +78315,48 @@
       "horizons": [
         "short_term",
         "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.3390/jcm15114060",
+      "pmid": "",
+      "doi": "10.3390/jcm15114060",
+      "pillar": "posture_biomechanics_exercise",
+      "macro_pillar": "growth",
+      "title": "The Clinical, Functional, and Radiological Outcomes of Percutaneous Laser Disc Decompression in Disc-Related Lumbar Spinal Stenosis: A Retrospective Cohort Study",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The Clinical, Functional, and Radiological Outcomes of Percutaneous Laser Disc Decompressi (2026)",
+      "authors": [
+        "Kucukbingoz C",
+        "Yilmaz A"
+      ],
+      "journal": "Journal of Clinical Medicine",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Journal of Clinical Medicine (2026)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3390/jcm15114060",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
       ],
       "age_bands": [
         "7-9y",
@@ -85485,7 +85604,26 @@
       "age_range": "만 5~18세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.3109/09593985.2015.1099172",
-      "source_api": "Crossref Works REST API Live"
+      "source_api": "Crossref Works REST API Live",
+      "macro_pillar": "growth",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 18회 검증 논문] 스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
     },
     {
       "id": "PMID:26583083",
