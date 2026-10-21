@@ -572,6 +572,21 @@
       } catch (_) {}
     }
 
+    // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
+    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
+      try {
+        window.fetch('/api/bespoke-note', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            profile: wizardState.profile,
+            parentFreeNote: wizardState.profile.parentFreeNote
+          })
+        }).catch(() => {});
+      } catch (_) {}
+    }
+
     // Render Master Briefing Card if present
     if (typeof document !== 'undefined') {
       const mbEl = document.getElementById('master-briefing-card');
@@ -811,6 +826,7 @@
 
     const exerciseTraitEl = document.getElementById('trait-exercise-freq');
     const focusTraitEl = document.getElementById('trait-focus-span');
+    const freeNoteEl = document.getElementById('parent-free-note');
 
     const traitSleep = traitSleepList[0] || 'late_bedtime';
     const traitDiet = traitDietList[0] || 'small_appetite';
@@ -818,6 +834,9 @@
     const traitExercise = exerciseTraitEl && exerciseTraitEl.value ? exerciseTraitEl.value : 'low_indoor';
     const traitTemperament = traitTemperamentList[0] || 'explorer';
     const traitFocusSpan = focusTraitEl && focusTraitEl.value ? focusTraitEl.value : '15_20m';
+    const parentFreeNote = freeNoteEl && typeof freeNoteEl.value === 'string'
+      ? freeNoteEl.value.trim()
+      : (wizardState.profile.parentFreeNote || '');
 
     wizardState.profile = {
       targetSubject,
@@ -845,7 +864,8 @@
       traitExercise,
       traitTemperament,
       traitTemperamentList,
-      traitFocusSpan
+      traitFocusSpan,
+      parentFreeNote
     };
 
     return wizardState.profile;
@@ -1077,6 +1097,31 @@
           applyPreset(`preset-${i}`);
         });
       }
+    }
+
+    // Quick-Tap Example Chips for Parent Free-Text Narrative Input
+    const freeNoteChips = typeof document.querySelectorAll === 'function'
+      ? document.querySelectorAll('.free-note-chip-btn')
+      : [];
+    const freeNoteTextarea = document.getElementById('parent-free-note');
+    if (freeNoteChips && freeNoteChips.forEach && freeNoteTextarea) {
+      freeNoteChips.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const snippet = btn.getAttribute('data-note-snippet') || '';
+          if (!snippet) return;
+          const cur = (freeNoteTextarea.value || '').trim();
+          if (!cur.includes(snippet)) {
+            freeNoteTextarea.value = cur ? `${cur} ${snippet}` : snippet;
+          }
+          wizardState.profile.parentFreeNote = freeNoteTextarea.value.trim();
+          btn.style.borderColor = '#34D399';
+          btn.style.background = 'rgba(16, 185, 129, 0.18)';
+          btn.style.color = '#6EE7B7';
+          if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
+            HapticEngine.triggerHaptic('tick', btn);
+          }
+        });
+      });
     }
 
     // Retest button

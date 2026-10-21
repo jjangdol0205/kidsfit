@@ -140,7 +140,8 @@ const server = http.createServer((req, res) => {
               mph: Number(incoming.mph) || 173.5,
               unmanagedHeight: Number(incoming.unmanagedHeight) || 171.2,
               optimizedHeight: Number(incoming.optimizedHeight) || 180.5,
-              potentialGainCm: Number(incoming.potentialGainCm) || 7.2
+              potentialGainCm: Number(incoming.potentialGainCm) || 7.2,
+              parentFreeNote: String(incoming.parentFreeNote || '').slice(0, 1000)
             };
 
             if (!cohortDb.metadata) cohortDb.metadata = {};
@@ -177,6 +178,42 @@ const server = http.createServer((req, res) => {
         });
         return;
       }
+    }
+
+    // 1-A2. Antigravity Bespoke Parent Narrative Log Endpoint (/api/bespoke-note)
+    if (pathname === '/api/bespoke-note') {
+      const notesLogPath = path.join(ROOT_DIR, 'logs', 'parent_bespoke_notes.jsonl');
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', (chunk) => {
+          if (body.length < 32768) body += chunk.toString('utf8');
+        });
+        req.on('end', () => {
+          try {
+            const payload = JSON.parse(body || '{}');
+            const entry = {
+              id: `NOTE-${Date.now().toString(36).toUpperCase()}`,
+              timestamp: new Date().toISOString(),
+              parentFreeNote: String(payload.parentFreeNote || '').slice(0, 1000),
+              ageYears: payload.profile && payload.profile.ageYears ? Number(payload.profile.ageYears) : 10,
+              gender: payload.profile && payload.profile.gender ? String(payload.profile.gender) : 'boy'
+            };
+            try {
+              fs.mkdirSync(path.dirname(notesLogPath), { recursive: true });
+              fs.appendFileSync(notesLogPath, JSON.stringify(entry) + '\n', 'utf8');
+            } catch (_) {}
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: true, saved: entry }));
+          } catch (e) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false }));
+          }
+        });
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({ ok: true, endpoint: '/api/bespoke-note' }));
+      return;
     }
 
     // 1-B. Coupang Partners Redirect & Search Proxy Route

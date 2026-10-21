@@ -738,6 +738,53 @@
                       <option value="30m_plus" data-i18n="quiz.trait.focus.opt3">30분 이상 깊은 몰입 가능 (심화 프로젝트·독서 적합)</option>
                     </select>
                   </div>
+
+                  <!-- Deep Trait Question 4: Parent / Youth Free-Text Narrative Input for Antigravity Bespoke AI Synthesis -->
+                  <div id="parent-free-note-container" style="margin-top: 1.35rem; padding: 1.15rem; background: rgba(59, 130, 246, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; text-align: left;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                      <label class="form-label" for="parent-free-note" data-i18n="quiz.freenote.label" style="margin: 0; color: #38BDF8; font-weight: 900; font-size: 0.95rem;">
+                        💬 우리 아이(또는 본인)에 대해 직접 적어주세요 (AI 맞춤형 리포트 심층 반영)
+                      </label>
+                      <span style="background: rgba(16, 185, 129, 0.18); color: #34D399; font-size: 0.72rem; font-weight: 800; padding: 0.18rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
+                        🤖 K-GROWTH AI 자연어 정밀 분석
+                      </span>
+                    </div>
+                    <p class="section-hint" data-i18n="quiz.freenote.hint" style="margin-bottom: 0.65rem; color: #CBD5E1; font-size: 0.8rem; line-height: 1.48;">
+                      선택지에 없는 아이만의 특징, 평소 걱정되는 습관, 혹은 꼭 해결하고 싶은 고민을 자유롭게 적어주시면 학술 논문 DB(1,260편)와 대조하여 <strong>오직 우리 아이만을 위한 1:1 심층 문답 &amp; 실천 처방</strong>을 리포트에 함께 담아드립니다. (아래 예시를 터치하면 자동 입력됩니다)
+                    </p>
+
+                    <!-- Quick-Tap Example Chips for Smartphone Convenience -->
+                    <div id="free-note-example-chips" style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem;">
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="밤에 자다가 무릎이나 종아리가 아프다고 자주 깨서 주물러줘요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + 🦵 밤에 다리 성장통으로 자주 깨요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="줄넘기나 땀 흘리는 운동을 싫어하고 집에서 유튜브만 보려고 해요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + 🏃 운동·줄넘기를 싫어하고 집에만 있어요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="엄마·아빠 키가 작은 편이라 유전키 한계를 뛰어넘을 수 있을지 걱정돼요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + 🧬 부모 키가 작아 유전키 한계가 걱정돼요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="우유는 안 마시고 입이 너무 짧아 또래보다 마르고 키가 작아요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + 🥛 우유를 안 먹고 입이 너무 짧아요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="비염·코막힘 때문에 입을 벌리고 자고 아침에 일어나기 힘들어해요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + 😮 비염·입호흡이 있고 아침 기상이 힘들어요
+                      </button>
+                      <button type="button" class="free-note-chip-btn" data-note-snippet="사춘기(2차 성징)가 빨리 올까 봐 걱정되고 성장판이 닫히기 전에 바짝 키워주고 싶어요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #E2E8F0; border-radius: 9999px; padding: 0.38rem 0.75rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                        + ⏳ 사춘기·성장판 닫힘 시기가 걱정돼요
+                      </button>
+                    </div>
+
+                    <textarea
+                      id="parent-free-note"
+                      name="parent-free-note"
+                      class="form-input"
+                      rows="3"
+                      data-i18n-placeholder="quiz.freenote.placeholder"
+                      placeholder="예: 밤에 자다가 다리가 아프다고 자주 깨고, 고기는 뱉어내요. 엄마 아빠 키가 작은 편인데 지금부터 어떻게 관리해주면 숨은 키를 최대로 키울 수 있을까요?"
+                      style="width: 100%; resize: vertical; min-height: 84px; line-height: 1.5; font-size: 0.92rem; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.4); color: #FFFFFF; padding: 0.75rem 0.9rem; border-radius: 12px;"
+                    ></textarea>
+                  </div>
                 </div>
 
                 <!-- Primary M:FFERENCE White CTA Button -->

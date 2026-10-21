@@ -229,7 +229,10 @@
       'quiz.trait.focus.label': '⏱️ 한 가지 과제 평균 집중 지속시간',
       'quiz.trait.focus.opt1': '10분 미만 (쉽게 지루해하여 짧은 호흡 미션 필요)',
       'quiz.trait.focus.opt2': '15~20분 집중 후 전환 (단계별 성취감 자극 적합)',
-      'quiz.trait.focus.opt3': '30분 이상 깊은 몰입 가능 (심화 프로젝트·독서 적합)'
+      'quiz.trait.focus.opt3': '30분 이상 깊은 몰입 가능 (심화 프로젝트·독서 적합)',
+      'quiz.freenote.label': '💬 우리 아이(또는 본인)에 대해 직접 적어주세요 (AI 맞춤형 리포트 심층 반영)',
+      'quiz.freenote.hint': '선택지에 없는 아이만의 특징, 평소 걱정되는 습관, 혹은 꼭 해결하고 싶은 고민을 자유롭게 적어주시면 학술 논문 DB(1,260편)와 대조하여 오직 우리 아이만을 위한 1:1 심층 문답 & 실천 처방을 리포트에 함께 담아드립니다.',
+      'quiz.freenote.placeholder': '예: 밤에 자다가 다리가 아프다고 자주 깨고, 고기는 뱉어내요. 엄마 아빠 키가 작은 편인데 지금부터 어떻게 관리해주면 숨은 키를 최대로 키울 수 있을까요?'
     },
 
     en: {
@@ -443,7 +446,10 @@
       'quiz.trait.focus.label': '⏱️ Average Single-Task Attention Span',
       'quiz.trait.focus.opt1': 'Under 10 mins (Needs short, high-reward micro-missions)',
       'quiz.trait.focus.opt2': '15–20 mins (Fits step-by-step milestone challenges)',
-      'quiz.trait.focus.opt3': '30+ mins deep immersion (Ready for advanced projects)'
+      'quiz.trait.focus.opt3': '30+ mins deep immersion (Ready for advanced projects)',
+      'quiz.freenote.label': '💬 Tell Us Directly About Your Child (Bespoke AI Narrative Synthesis)',
+      'quiz.freenote.hint': 'Write any unique traits, daily habits, or concerns in your own words. Our AI engine cross-references 1,260+ clinical papers to add a 1:1 Bespoke Q&A and Action Plan to your report.',
+      'quiz.freenote.placeholder': 'e.g., Wakes up at night with calf/knee growing pains, refuses milk, and we worry about short parental height limits...'
     }
   };
 

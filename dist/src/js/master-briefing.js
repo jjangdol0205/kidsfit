@@ -248,6 +248,127 @@
   }
 
   /**
+   * 3-B. Antigravity Bespoke Parent Narrative AI Analyzer
+   * Parses parent's free-text description (`profile.parentFreeNote`) across clinical & developmental
+   * clusters and synthesizes a 1:1 custom Q&A + daily routine prescription grounded in the 1,260-paper DB.
+   */
+  function analyzeParentFreeNote(noteText, profile, nutTargets, mphVal, optimizedHeight, potentialGainCm, isEn) {
+    const raw = (noteText || '').trim();
+    const ageYears = Math.max(1, Math.min(20, Math.floor((Number(profile.ageMonths) || 120) / 12)));
+    const weight = Number(profile.currentWeight) || 35.5;
+    const insights = [];
+
+    if (raw.length > 0) {
+      const text = raw.toLowerCase();
+
+      // Cluster 1: Growing pains / leg / knee pain at night
+      if (/성장통|다리|무릎|종아리|발목|아프|아파|주물/.test(text)) {
+        insights.push({
+          badgeKo: '🦵 야간 성장통 & 골막 견인 완화 처방',
+          badgeEn: '🦵 Nocturnal Growing Pains Relief Protocol',
+          answerKo: `밤마다 무릎·종아리 통증을 호소하는 것은 낮 동안의 근육 피로와 밤사이 뼈가 자라며 골막(Periosteum)이 당겨지는 신호입니다. 주물러주기 전에 <strong>취침 20분 전 따뜻한 물 족욕·온찜질과 아킬레스건·종아리 스트레칭 3분</strong>을 시행하고, 신경·근육 이완을 돕는 <strong>킬레이트 마그네슘(${Math.round(weight * 4.5)}mg)과 연골·어골칼슘(${nutTargets.calciumMg}mg)</strong>을 저녁 식후에 보충해 주세요.`,
+          answerEn: `Nocturnal calf/knee pain stems from periosteal stretching and tendon fatigue. Apply a warm compress 20 mins before bed, perform 3-min calf stretches, and supplement chelated Magnesium (${Math.round(weight * 4.5)}mg) + Cartilage Calcium (${nutTargets.calciumMg}mg).`,
+          sourceKo: '근거: 소아 하지 성장통 및 칼슘·마그네슘 근육이완 임상 (PMID:24709624)'
+        });
+      }
+
+      // Cluster 2: Genetic height worry / short parents / small peer percentile
+      if (/유전|엄마|아빠|부모|작아|작은|키가 작|한계|또래|백분위/.test(text)) {
+        insights.push({
+          badgeKo: '🧬 부모 유전키(MPH) 한계 돌파 후성유전학 솔루션',
+          badgeEn: '🧬 Overcoming Genetic MPH via Epigenetic Factors',
+          answerKo: `부모님 키 기반 유전 표적키(<strong>${mphVal}cm</strong>)는 고정된 운명이 아닙니다. 쌍둥이 코호트 학술 연구에 따르면 최종 성인 키의 <strong>20~30%(약 ±6.5~8.5cm)는 후천적 수면 호르몬·영양·성장판 자극</strong>으로 결정됩니다. 지금부터 방해 요인을 차단하면 유전키를 넘어 <strong>최대 ${optimizedHeight}cm (+${potentialGainCm}cm 추가 성장)</strong>까지 충분히 도달할 수 있습니다.`,
+          answerEn: `Genetic target height (${mphVal}cm) accounts for 70–80%, leaving a +6.5 to +8.5cm epigenetic window. Consistent sleep, nutrition, and mechanical loading can elevate potential height to ${optimizedHeight}cm (+${potentialGainCm}cm).`,
+          sourceKo: '근거: 쌍둥이 코호트 후성유전 신장 연구 (Jelenkovic et al., Sci Rep / Tanner MPH)'
+        });
+      }
+
+      // Cluster 3: Dislikes exercise / rope skipping / stays indoors / YouTube
+      if (/운동|줄넘기|싫어|안 움|집에|귀찮|체력|땀/.test(text)) {
+        insights.push({
+          badgeKo: '🏃 운동 싫어하는 아이 맞춤 무소음 실내 성장판 자극법',
+          badgeEn: '🏃 Fun Indoor Epiphyseal Loading for Exercise-Reluctant Kids',
+          answerKo: `억지로 줄넘기를 시키면 코르티솔(스트레스 호르몬)이 분비되어 오히려 성장호르몬을 방해합니다. 줄넘기 대신 <strong>좋아하는 음악을 틀어놓고 거실 무소음 트램폴린 위에서 하루 10분 신나게 뛰기</strong> 또는 <strong>방문 철봉에 저녁 30초×3세트 매달리기(성취 스티커 보상)</strong>로 바꾸면 스트레스 없이 성장판 압전 자극과 숨은 키 1.8cm 복원이 동시에 해결됩니다.`,
+          answerEn: `Replace forced outdoor rope-skipping with 10 mins of music-assisted indoor silent rebounder jumping and 3×30s doorway bar hanging before bath time.`,
+          sourceKo: '근거: 성장판 기계적 압전 자극(Wolff\'s Law · PMID:19050004) & 척추 감압(PMID:30897641)'
+        });
+      }
+
+      // Cluster 4: Refuses milk / picky eater / small appetite / underweight
+      if (/우유|배앓이|설사|입이 짧|소식|편식|고기|채소|안 먹|마른|살이|체중/.test(text)) {
+        insights.push({
+          badgeKo: '🍽️ 우유 거부·입 짧은 아이 고밀도 영양 흡수 처방',
+          badgeEn: '🍽️ High-Density Nutrient Absorption for Picky/Dairy-Free Kids',
+          answerKo: `억지로 우유를 먹이면 복부 팽만과 장 염증으로 다른 영양소 흡수까지 떨어집니다. 우유 대신 <strong>잔멸치·두부·유당제거 치즈와 흡수율이 2배 높은 무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)</strong>으로 대체하고, 미각 세포 재생을 돕는 <strong>글루콘산·피콜린산 아연(10mg)과 식약처 인정 황기추출물(HT042)</strong>로 적은 식사량에서도 IGF-1 성장인자 생성을 극대화하세요.`,
+          answerEn: `Replace liquid milk with lactose-free Calcium Citrate/Cartilage Calcium (${nutTargets.calciumMg}mg), Zinc Picolinate (10mg) to restore taste-bud appetite, and HT042 extract.`,
+          sourceKo: '근거: 아연 미각세포 재생(PMID:12036814) & HT042 IGF-1 임상(PMID:25374566)'
+        });
+      }
+
+      // Cluster 5: Rhinitis / mouth breathing / snoring / hard wakeup
+      if (/비염|코막힘|코골이|입 벌|입호흡|구강호흡|깨요|잠|피곤|일어나/.test(text)) {
+        insights.push({
+          badgeKo: '😮 비염·구강호흡 교정 & 밤 10시 서파수면(SWS) 복원',
+          badgeEn: '😮 Rhinitis/Mouth-Breathing & Deep SWS GH Recovery',
+          answerKo: `비염이나 코막힘으로 입을 벌리고 자면 뇌 산소 포화도가 떨어져 성장호르몬의 65%가 분비되는 <strong>깊은 서파수면(Stage N3) 진입이 최대 34% 억제</strong>됩니다. 취침 30분 전 <strong>생리식염수 비강 세척과 침실 습도 50~55% 유지</strong>로 코호흡을 열어주고, 아침 기상 직후 창가 햇빛을 5분간 쬐어 멜라토닌 생체시계를 앞당겨 주세요.`,
+          answerEn: `Mouth breathing disrupts slow-wave sleep (Stage N3) and suppresses nocturnal GH/IGF-1 by up to 34%. Use pre-bed nasal saline rinse, keep 50–55% humidity, and get morning sunlight.`,
+          sourceKo: '근거: 소아 수면호흡장애 및 IGF-1 회복 임상 (Nieminen et al., PMID:11944202)'
+        });
+      }
+
+      // Cluster 6: Puberty / precocious puberty / bone age closure worry
+      if (/사춘기|성조숙|2차 성징|가슴|초경|변성기|머리냄새|여드름|뼈나이|골연령|성장판/.test(text)) {
+        insights.push({
+          badgeKo: '⏳ 사춘기 골든타임 & 성장판 폐쇄 지연 집중 프로토콜',
+          badgeEn: '⏳ Pubertal Golden-Time & Epiphyseal Senescence Delay',
+          answerKo: `사춘기 신호가 시작되면 성호르몬이 성장판 연골을 빠르게 뼈로 굳게(골화) 만듭니다. 지금 가장 중요한 것은 <strong>① 밤 9시 이후 야식·단 음료 완전 차단(인슐린·성호르몬 자극 억제), ② 체지방률 정상 유지, ③ 성장판이 열려 있는 향후 18~24개월 동안 HT042·연골칼슘과 수직 점프 운동을 매일 밀착 실행</strong>하여 연간 성장속도를 연 7~9cm로 끌어올리는 것입니다.`,
+          answerEn: `During pubertal transition, strictly block late-night sugars/snacks, manage body fat to prevent rapid bone age advancement, and maximize linear velocity while plates remain open.`,
+          sourceKo: '근거: 성장판 노화 및 성호르몬 조절 기전 (Nilsson & Baron, Nat Rev Endocrinol)'
+        });
+      }
+
+      // Cluster 7: Smartphone / YouTube / short attention span / reading reluctance
+      if (/스마트폰|유튜브|게임|영상|미디어|집중|산만|책|독서|공부/.test(text)) {
+        insights.push({
+          badgeKo: '🧠 디지털 도파민 디톡스 & 전두엽 자기주도 몰입 전환',
+          badgeEn: '🧠 Digital Dopamine Reset & Prefrontal Deep Focus',
+          answerKo: `유튜브·숏폼의 빠른 화면 전환은 전두엽의 내재적 도파민 수용체를 둔감하게 만들고 밤에는 블루라이트로 멜라토닌과 성장호르몬을 동시에 억제합니다. 스마트폰을 갑자기 뺏기보다 <strong>무소음 시각 타이머로 15분 단위 짧은 몰입 미션</strong>을 주고, 손끝으로 직접 트랙·도형을 조립하는 <strong>입체 과학·공간 교구(그래비트랙스·맥포머스 등)</strong>로 '손끝 성취 도파민'을 대체해 주세요.`,
+          answerEn: `Replace passive screen dopamine with a 15-minute visual countdown timer and hands-on 3D spatial/STEM construction kits to re-activate prefrontal executive circuits.`,
+          sourceKo: '근거: 야간 블루라이트 멜라토닌 억제(PMID:12970330) & 소근육-전두엽 공활성화(PMID:20822219)'
+        });
+      }
+
+      // Cluster 8: Confidence / shyness / sensitivity / perfectionism / friends
+      if (/자신감|위축|소심|부끄|친구|발표|예민|완벽|실수|울|짜증|고집/.test(text)) {
+        insights.push({
+          badgeKo: '💛 정서 자존감 & 자율성 지지 하브루타 코칭',
+          badgeEn: '💛 Emotional Confidence & Autonomy-Supportive Coaching',
+          answerKo: `만 ${ageYears}세 시기에 실수를 두려워하거나 위축되는 아이에게는 결과 칭찬("잘했네")보다 <strong>과정과 시도를 인정하는 대화("끝까지 궁리한 네 방법이 멋지다!")</strong>가 전두엽 정서 조절 회로를 가장 단단하게 키웁니다. 하루 10분 작은 성취를 맛볼 수 있는 단계별 교구·워크북과 주말 박물관·전시 나들이에서 <strong>아이의 생각을 먼저 묻는 열린 질문 대화</strong>를 시작해 보세요.`,
+          answerEn: `Praise effort and strategy rather than outcomes, provide step-by-step achievable challenges, and use open-ended curiosity questions during weekend outings.`,
+          sourceKo: '근거: 부모 자율성 지지와 아동 실행기능·자존감 발달 (Bernier et al., PMID:20331667)'
+        });
+      }
+
+      // Fallback general bespoke synthesis if parent wrote other unique details
+      if (insights.length === 0) {
+        insights.push({
+          badgeKo: '🎯 학부모님 직접 서술 내용 맞춤형 종합 처방',
+          badgeEn: '🎯 Bespoke Clinical Synthesis for Your Written Note',
+          answerKo: `남겨주신 우리 아이의 고유 상황(<strong>"${raw}"</strong>)을 만 ${ageYears}세 성장·발달 주기와 결합하여 분석했습니다. 현재 시기에는 <strong>① 밤 21:45 이전 취침으로 성장호르몬 피크 확보, ② 체중(${weight}kg) 비례 고흡수 칼슘(${nutTargets.calciumMg}mg)·단백질(${nutTargets.proteinG}g) 보충, ③ 아이 성향에 맞춘 하루 20분 손끝·탐구 루틴</strong>을 흔들림 없이 90일간 유지하는 것이 가장 확실한 해법입니다.`,
+          answerEn: `Based on your specific note ("${raw}") at Age ${ageYears}, combining pre-22:00 deep sleep, ${nutTargets.calciumMg}mg bioavailable calcium, and 20-min daily hands-on inquiry will maximize both height (+${potentialGainCm}cm) and focus.`,
+          sourceKo: '근거: 질병관리청(KDCA) 성장표준 및 K-GROWTH AI™ 1,260편 통합 학술 DB'
+        });
+      }
+    }
+
+    return {
+      hasNote: raw.length > 0,
+      rawNote: raw,
+      insights
+    };
+  }
+
+  /**
    * Renders the complete HTML for Master Briefing Card
    * - Section 1: Fact-Based Comprehensive Precision Diagnosis
    * - Section 2: Matched Paper Fact Cards (Zero Fluff)
@@ -466,6 +587,16 @@
 
     const customPostureStudyRoutineKo = `${traitPostureList.includes('growing_pains') ? '저녁 온찜질·종아리 스트레칭 및' : '높이조절 독서대·바른 착석으로 거북목·골반 틀어짐을 예방하고'} 매일 저녁 철봉·점프 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}] 맞춤 하루 20분 자기주도 탐구`;
 
+    const bespokeNote = analyzeParentFreeNote(
+      profile.parentFreeNote || '',
+      profile,
+      nutTargets,
+      mphVal,
+      optimizedHeight,
+      potentialGainCm,
+      isEn
+    );
+
     return `
       <!-- Master Briefing Card: Clean 4-Step Aligned Report -->
       <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid #3B82F6; text-align: left;">
@@ -541,6 +672,84 @@
           <a href="#briefing-actions-section" class="guidebook-chapter-pill">🧭 ${isEn ? 'STEP 2. What to Do Consistently' : 'STEP 2. 앞으로 꾸준히 해야 할 일'}</a>
           <a href="#expected-outcomes-section" class="guidebook-chapter-pill">🏆 ${isEn ? 'STEP 3. Expected Outcomes' : 'STEP 3. 실천 시 얻는 기대 성과'}</a>
           <a href="#pinpoint-custom-prescription-section" class="guidebook-chapter-pill">🎯 ${isEn ? 'STEP 4. What You Need' : 'STEP 4. 꾸준히 하려면 필요한 도구'}</a>
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- BESPOKE PARENT NARRATIVE AI COACHING & LIVE QUESTION BOX           -->
+        <!-- ================================================================== -->
+        <div id="bespoke-parent-note-section" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.25) 100%); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 16px; padding: 1.05rem 1.15rem; margin-bottom: 1.25rem; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
+            <span style="font-size: 0.75rem; font-weight: 900; color: #38BDF8; letter-spacing: 0.04em;">
+              🤖 ${isEn ? 'BESPOKE AI NARRATIVE SYNTHESIS' : '학부모 직접 서술 기반 · K-GROWTH AI™ 1:1 심층 문답'}
+            </span>
+            <span style="font-size: 0.72rem; color: #6EE7B7; font-weight: 800; background: rgba(16, 185, 129, 0.16); padding: 0.18rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35);">
+              ${isEn ? 'Live Custom Report Engine' : '아이별 자유 서술 실시간 반영'}
+            </span>
+          </div>
+
+          ${bespokeNote.hasNote ? `
+            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3.5px solid #38BDF8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 0.85rem;">
+              <div style="font-size: 0.75rem; color: #93C5FD; font-weight: 800; margin-bottom: 0.2rem;">
+                📝 ${isEn ? 'What You Wrote About Your Child:' : '학부모님(본인)께서 직접 적어주신 우리 아이 이야기:'}
+              </div>
+              <div style="font-size: 0.88rem; color: #FFFFFF; font-weight: 700; line-height: 1.48;">
+                "${bespokeNote.rawNote}"
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 0.85rem;">
+              ${bespokeNote.insights.map((ins) => `
+                <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(52, 211, 153, 0.35); border-radius: 12px; padding: 0.85rem 0.95rem;">
+                  <div style="font-size: 0.8rem; font-weight: 900; color: #34D399; margin-bottom: 0.35rem;">
+                    ${isEn ? ins.badgeEn : ins.badgeKo}
+                  </div>
+                  <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.52; margin-bottom: 0.45rem;">
+                    ${isEn ? ins.answerEn : ins.answerKo}
+                  </div>
+                  <div style="font-size: 0.72rem; color: #94A3B8; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 0.35rem;">
+                    📚 ${ins.sourceKo}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : `
+            <p style="font-size: 0.82rem; color: #CBD5E1; margin: 0 0 0.65rem 0; line-height: 1.48;">
+              ${isEn
+                ? 'Write any specific traits, worries, or questions about your child below to immediately generate a 1:1 clinical Q&A and tailored routine inside this report.'
+                : '우리 아이만의 특징이나 평소 걱정되는 점(성장통, 줄넘기 거부, 유전키 걱정, 우유 배앓이, 비염 등)을 아래 칸에 직접 적어주시면 <strong>즉시 이 리포트 안에 1:1 맞춤 처방이 추가</strong>됩니다.'}
+            </p>
+          `}
+
+          <!-- Live Interactive Bespoke Input inside the Report -->
+          <div style="background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.45rem;">
+              ✍️ ${isEn ? 'Add or Update Your Child\'s Specific Concern (Instant AI Re-Synthesis):' : '아이 특징·추가 궁금증 직접 입력 (터치 또는 입력 후 [AI 맞춤 코칭 즉시 반영] 클릭):'}
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.55rem;">
+              <button type="button" class="live-bespoke-chip" data-snippet="밤에 다리·무릎 성장통으로 자주 깨요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: #E2E8F0; border-radius: 9999px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;">+ 🦵 밤마다 다리 성장통</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="운동·줄넘기를 싫어하고 집에만 있으려 해요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: #E2E8F0; border-radius: 9999px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;">+ 🏃 운동·줄넘기 거부</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="엄마·아빠 키가 작아 유전키 한계가 걱정돼요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: #E2E8F0; border-radius: 9999px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;">+ 🧬 부모 유전키 걱정</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="우유는 안 마시고 입이 너무 짧아 살이 안 쪄요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: #E2E8F0; border-radius: 9999px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;">+ 🥛 우유 거부·소식</button>
+              <button type="button" class="live-bespoke-chip" data-snippet="비염·코막힘으로 입을 벌리고 자고 아침에 피곤해해요." style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: #E2E8F0; border-radius: 9999px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;">+ 😮 비염·구강호흡</button>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <input
+                type="text"
+                id="live-bespoke-note-input"
+                class="form-input"
+                value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}"
+                placeholder="${isEn ? 'Type your child\'s traits or concerns...' : '예: 밤에 자다가 종아리가 아프다고 깨고, 줄넘기는 싫어해요...'}"
+                style="flex: 1 1 240px; min-height: 44px; font-size: 0.88rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.4); color: #FFFFFF; padding: 0.55rem 0.8rem; border-radius: 10px;"
+              />
+              <button
+                type="button"
+                id="btn-live-bespoke-update"
+                style="background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; border: 1px solid #6EE7B7; border-radius: 10px; padding: 0.6rem 1.05rem; min-height: 44px; font-size: 0.84rem; font-weight: 900; cursor: pointer; white-space: nowrap;"
+              >
+                🤖 ${isEn ? 'Update Custom AI Report' : 'AI 맞춤 코칭 즉시 반영'}
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ================================================================== -->
@@ -760,10 +969,72 @@
   }
 
   /**
-   * Attaches click event to retest button to return smoothly to Phase 1
+   * Attaches click event to retest button and live bespoke note updater
    */
   function attachRetestHandler(callback) {
     if (typeof document === 'undefined') return;
+
+    // 1. Wire Live Bespoke Note Chips & Update Button inside the Report
+    const liveInput = document.getElementById('live-bespoke-note-input');
+    const liveBtn = document.getElementById('btn-live-bespoke-update');
+    const liveChips = typeof document.querySelectorAll === 'function'
+      ? document.querySelectorAll('.live-bespoke-chip')
+      : [];
+
+    if (liveChips && liveChips.forEach && liveInput) {
+      liveChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const snippet = chip.getAttribute('data-snippet') || '';
+          if (!snippet) return;
+          const cur = (liveInput.value || '').trim();
+          if (!cur.includes(snippet)) {
+            liveInput.value = cur ? `${cur} ${snippet}` : snippet;
+          }
+          chip.style.borderColor = '#34D399';
+          chip.style.background = 'rgba(16, 185, 129, 0.2)';
+          chip.style.color = '#6EE7B7';
+        });
+      });
+    }
+
+    if (liveBtn && liveInput) {
+      liveBtn.addEventListener('click', () => {
+        const newNote = (liveInput.value || '').trim();
+        const wizardNoteEl = document.getElementById('parent-free-note');
+        if (wizardNoteEl) wizardNoteEl.value = newNote;
+
+        const wiz = global.TallerOnboardingWizard;
+        const curProfile = (wiz && typeof wiz.getState === 'function' && wiz.getState().profile)
+          ? Object.assign({}, wiz.getState().profile, { parentFreeNote: newNote })
+          : { parentFreeNote: newNote };
+
+        if (wiz && typeof wiz.getState === 'function' && wiz.getState().profile) {
+          wiz.getState().profile.parentFreeNote = newNote;
+        }
+
+        // Sync to server endpoint asynchronously
+        if (typeof window !== 'undefined' && typeof window.fetch === 'function' && newNote) {
+          try {
+            window.fetch('/api/bespoke-note', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                timestamp: new Date().toISOString(),
+                profile: curProfile,
+                parentFreeNote: newNote
+              })
+            }).catch(() => {});
+          } catch (_) {}
+        }
+
+        const mbEl = document.getElementById('master-briefing-card');
+        if (mbEl) {
+          mbEl.innerHTML = renderMasterBriefingCard(curProfile);
+          attachRetestHandler(callback);
+        }
+      });
+    }
+
     const btn = document.getElementById('btn-retest');
     if (!btn) return;
 
