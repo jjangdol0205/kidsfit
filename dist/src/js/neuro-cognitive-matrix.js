@@ -743,50 +743,6 @@
           </div>
         </div>
 
-        <!-- Recommended Products at Bottom of Core 4 -->
-        <div class="bento-card" id="core-4-recommended-products" style="margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
-            <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">
-              🎁 두뇌 발달 · 자기주도 집중력에 도움이 되는 엄선 추천 상품 TOP 3
-            </span>
-            <span style="font-size: 0.78rem; font-weight: 800; color: #7DD3FC; background: rgba(56, 189, 248, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              Core 4 맞춤 큐레이션
-            </span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem;">
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8;">🏆 엄선 1위 · 수리·공간·과학 사고력</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">그래비트랙스 트랙 빌딩 &amp; 입체 자석블록 코딩 교구</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">중력·가속도 원리와 3차원 공간 도형 감각을 손끝으로 설계하는 두뇌 교구입니다.</p>
-              </div>
-              <a href="https://www.coupang.com/np/search?q=%EA%B7%B8%EB%9E%98%EB%B9%84%ED%8A%B8%EB%9E%99%EC%8A%A4+%EC%9E%90%EC%84%9D%EB%B8%94%EB%A1%9D&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #0284C7, #2563EB); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                🚀 그래비트랙스·자석블록 보기 ↗
-              </a>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #34D399;">✨ 엄선 2위 · 전두엽 실행기능 &amp; 몰입</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">무소음 시각 타이머 (타임타이머) &amp; 집중력 보드게임</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">남은 시간을 눈으로 확인하며 스스로 스마트폰을 멈추고 25분 몰입하는 습관을 길러줍니다.</p>
-              </div>
-              <a href="https://www.coupang.com/np/search?q=%EB%AC%B4%EC%86%8C%EC%9D%8C+%ED%83%80%EC%9E%84%ED%83%80%EC%9D%B4%EB%A8%B8+%EB%B3%B4%EB%93%9C%EA%B2%8C%EC%9E%84&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #059669, #10B981); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                🚀 무소음 시각 타이머 보러가기 ↗
-              </a>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #FBBF24;">💎 엄선 3위 · 문해력 &amp; 하브루타 필독서</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">초등·유아 하브루타 질문독서 &amp; 과학·역사 탐구 도서</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">주말 박물관·과학관 나들이 전후에 부모와 함께 읽으며 사고력을 확장하는 필독서입니다.</p>
-              </div>
-              <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25ED%2595%2598%25EB%25B8%258C%25EB%25A3%25A8%25ED%2583%2580%2B%25EA%25B3%25BC%25ED%2595%2599" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #D97706, #EA580C); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                📚 YES24 하브루타·탐구 도서 보기 ↗
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- Academic Research Citations with clickable PMID & DOI -->
         ${(function() {
           const rc = (typeof window !== 'undefined' && window.TallerReferenceChips) || 

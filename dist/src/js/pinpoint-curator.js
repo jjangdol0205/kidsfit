@@ -1637,126 +1637,129 @@
   }
 
   /**
-   * 5. Renders the Clean, Single-View Tabbed Lifecycle Roadmap + Educational Travel Guide + Category-Tabbed Prescription Guide
+   * Helper: Renders 3 curated flagship cards for a given category ('supplement' | 'toy' | 'book')
    */
-  function renderPinpointAndLifecycleSection(profile = {}, affConfig = {}) {
+  function renderCategoryProductCards(items, accentColor, categoryType, isEn = false) {
+    const threePicks = [];
+    if (items && items[0]) {
+      const sub0 = (items[0].curatedProducts && items[0].curatedProducts[0]) || {
+        rankKo: '🏆 엄마들 재주문 1위',
+        rankEn: '🏆 Reorder Pick #1',
+        titleKo: items[0].name,
+        titleEn: items[0].name,
+        specKo: items[0].activeSpec,
+        specEn: items[0].activeSpec,
+        coupangUrl: items[0].coupangUrl,
+        iherbUrl: items[0].iherbUrl,
+        amazonUrl: items[0].amazonUrl,
+        yes24Url: items[0].yes24Url,
+        naverUrl: items[0].naverUrl,
+        naverBrandConnectHealthUrl: items[0].naverBrandConnectHealthUrl,
+        tenpingUrl: items[0].tenpingUrl,
+        cpQuery: items[0].coupangQuery,
+        ihQuery: items[0].iherbQuery
+      };
+      threePicks.push({ item: items[0], sub: sub0, badgeKo: '🏆 엄선 1위 (최다 재주문)', badgeEn: '🏆 Curated Pick #1' });
+    }
+    if (items && items[1]) {
+      const sub1 = (items[1].curatedProducts && items[1].curatedProducts[0]) || {
+        rankKo: '✨ 엄선 2위',
+        rankEn: '✨ Curated Pick #2',
+        titleKo: items[1].name,
+        titleEn: items[1].name,
+        specKo: items[1].activeSpec,
+        specEn: items[1].activeSpec,
+        coupangUrl: items[1].coupangUrl,
+        iherbUrl: items[1].iherbUrl,
+        amazonUrl: items[1].amazonUrl,
+        yes24Url: items[1].yes24Url,
+        naverUrl: items[1].naverUrl,
+        naverBrandConnectHealthUrl: items[1].naverBrandConnectHealthUrl,
+        tenpingUrl: items[1].tenpingUrl,
+        cpQuery: items[1].coupangQuery,
+        ihQuery: items[1].iherbQuery
+      };
+      threePicks.push({ item: items[1], sub: sub1, badgeKo: '✨ 엄선 2위 (맞춤 시너지)', badgeEn: '✨ Curated Pick #2' });
+    }
+    if (items && items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
+      const sub2 = items[0].curatedProducts[1];
+      threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+    } else if (items && items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
+      const sub2 = items[1].curatedProducts[1];
+      threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+    }
+
+    return `
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+        ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
+          <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid ${accentColor}; border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
+                <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.2rem 0.6rem; border-radius: 9999px;">
+                  ${isEn ? badgeEn : badgeKo}
+                </span>
+                <span style="font-size: 0.74rem; color: #93C5FD; font-weight: 700;">
+                  ${item.categoryBadge}
+                </span>
+              </div>
+
+              <div style="font-size: 0.98rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
+                ${isEn ? sub.titleEn : sub.titleKo}
+              </div>
+
+              <div style="font-size: 0.85rem; color: #F8FAFC; line-height: 1.55; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #34D399; padding: 0.55rem 0.75rem; border-radius: 8px; margin-bottom: 0.7rem;">
+                💬 ${isEn ? sub.specEn : sub.specKo}
+              </div>
+            </div>
+
+            <div>
+              <a href="${categoryType === 'book' ? sub.yes24Url : sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="${categoryType === 'book' ? 'linkprice' : 'coupang'}" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.28); color: #FFFFFF; font-size: 0.84rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                ${categoryType === 'book' ? `📚 ${isEn ? 'View Book Info ↗' : '도서 상세 정보 확인하기 ↗'}` : `📦 ${isEn ? 'View Product Spec ↗' : '상세 스펙·성분 확인하기 ↗'}`}
+              </a>
+              <details style="margin-top: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
+                <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">교차 비교처 &amp; 제휴 혜택 더보기 ▼</summary>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;">
+                  <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">쿠팡(AF7865143) ↗</a>
+                  ${categoryType === 'supplement' ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(16,185,129,0.14); border-radius: 6px; color: #A7F3D0; text-decoration: none; text-align: center; font-weight: 700;">iHerb(IPZ1547) ↗</a>` : `<a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">YES24 ↗</a>`}
+                  <a href="${sub.amazonUrl || `https://www.amazon.com/s?k=${encodeURIComponent(sub.ihQuery || sub.cpQuery || '')}&tag=kidfit-20`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="amazon" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(245,158,11,0.14); border-radius: 6px; color: #FDE68A; text-decoration: none; text-align: center; font-weight: 700;">Amazon(kidfit-20) ↗</a>
+                  ${categoryType === 'toy' ? `<a href="${sub.naverBrandConnectHealthUrl || 'https://naver.me/5Jq9LnLT'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.14); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">💆 닥터웰 건강케어(네이버) ↗</a>` : `<a href="${sub.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="tenping" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(244,63,94,0.14); border-radius: 6px; color: #FDA4AF; text-decoration: none; text-align: center; font-weight: 700;">🎁 유아교육전 무료입장(텐핑) ↗</a>`}
+                </div>
+              </details>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  /**
+   * 5-A. Renders ONLY the 4-Year Sequential Age Lifecycle Timeline (for Chapter 2: Auxology & Bone Age)
+   */
+  function renderLifecycleTimelineOnly(profile = {}, affConfig = {}) {
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
 
-    const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
-    const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
-    const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
-    const travelPhilosophyHtml = renderAgeEducationalTravelGuide(ageYears, profile, isEn);
-
-    const renderCleanCategoryItems = (items, accentColor, categoryType) => {
-      // Collect exactly 3 curated flagship products from items[0] (top 2) + items[1] (top 1)
-      const threePicks = [];
-      if (items[0]) {
-        const sub0 = (items[0].curatedProducts && items[0].curatedProducts[0]) || {
-          rankKo: '🏆 엄마들 재주문 1위',
-          rankEn: '🏆 Reorder Pick #1',
-          titleKo: items[0].name,
-          titleEn: items[0].name,
-          specKo: items[0].activeSpec,
-          specEn: items[0].activeSpec,
-          coupangUrl: items[0].coupangUrl,
-          iherbUrl: items[0].iherbUrl,
-          yes24Url: items[0].yes24Url,
-          naverUrl: items[0].naverUrl,
-          cpQuery: items[0].coupangQuery
-        };
-        threePicks.push({ item: items[0], sub: sub0, badgeKo: '🏆 엄선 1위 (최다 재주문)', badgeEn: '🏆 Curated Pick #1' });
-      }
-      if (items[1]) {
-        const sub1 = (items[1].curatedProducts && items[1].curatedProducts[0]) || {
-          rankKo: '✨ 엄선 2위',
-          rankEn: '✨ Curated Pick #2',
-          titleKo: items[1].name,
-          titleEn: items[1].name,
-          specKo: items[1].activeSpec,
-          specEn: items[1].activeSpec,
-          coupangUrl: items[1].coupangUrl,
-          iherbUrl: items[1].iherbUrl,
-          yes24Url: items[1].yes24Url,
-          naverUrl: items[1].naverUrl,
-          cpQuery: items[1].coupangQuery
-        };
-        threePicks.push({ item: items[1], sub: sub1, badgeKo: '✨ 엄선 2위 (맞춤 시너지)', badgeEn: '✨ Curated Pick #2' });
-      }
-      if (items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
-        const sub2 = items[0].curatedProducts[1];
-        threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
-      } else if (items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
-        const sub2 = items[1].curatedProducts[1];
-        threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
-      }
-
-      return `
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
-          ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
-            <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid ${accentColor}; border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
-                  <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.2rem 0.6rem; border-radius: 9999px;">
-                    ${isEn ? badgeEn : badgeKo}
-                  </span>
-                  <span style="font-size: 0.74rem; color: #93C5FD; font-weight: 700;">
-                    ${item.categoryBadge}
-                  </span>
-                </div>
-
-                <div style="font-size: 0.98rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
-                  ${isEn ? sub.titleEn : sub.titleKo}
-                </div>
-
-                <div style="font-size: 0.85rem; color: #F8FAFC; line-height: 1.55; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #34D399; padding: 0.55rem 0.75rem; border-radius: 8px; margin-bottom: 0.7rem;">
-                  💬 ${isEn ? sub.specEn : sub.specKo}
-                </div>
-              </div>
-
-              <div>
-                <a href="${categoryType === 'book' ? sub.yes24Url : sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="${categoryType === 'book' ? 'linkprice' : 'coupang'}" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.28); color: #FFFFFF; font-size: 0.84rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
-                  ${categoryType === 'book' ? `📚 ${isEn ? 'View Book Info ↗' : '도서 상세 정보 확인하기 ↗'}` : `📦 ${isEn ? 'View Product Spec ↗' : '상세 스펙·성분 확인하기 ↗'}`}
-                </a>
-                <details style="margin-top: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
-                  <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">교차 비교처 &amp; 제휴 혜택 더보기 ▼</summary>
-                  <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;">
-                    <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">쿠팡(AF7865143) ↗</a>
-                    ${categoryType === 'supplement' ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(16,185,129,0.14); border-radius: 6px; color: #A7F3D0; text-decoration: none; text-align: center; font-weight: 700;">iHerb(IPZ1547) ↗</a>` : `<a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">YES24 ↗</a>`}
-                    <a href="${sub.amazonUrl || `https://www.amazon.com/s?k=${encodeURIComponent(sub.ihQuery || sub.cpQuery || '')}&tag=kidfit-20`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="amazon" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(245,158,11,0.14); border-radius: 6px; color: #FDE68A; text-decoration: none; text-align: center; font-weight: 700;">Amazon(kidfit-20) ↗</a>
-                    ${categoryType === 'toy' ? `<a href="${sub.naverBrandConnectHealthUrl || 'https://naver.me/5Jq9LnLT'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.14); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">💆 닥터웰 건강케어(네이버) ↗</a>` : `<a href="${sub.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="tenping" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(244,63,94,0.14); border-radius: 6px; color: #FDA4AF; text-decoration: none; text-align: center; font-weight: 700;">🎁 유아교육전 무료입장(텐핑) ↗</a>`}
-                  </div>
-                </details>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    };
-
     return `
-      <!-- AGE LIFECYCLE TIMELINE (Full Text Display, Zero Clipping) -->
-      <div id="child-lifecycle-roadmap-section" style="margin-top: 1.35rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div id="child-lifecycle-roadmap-section" style="margin-top: 1.25rem; padding: 1.25rem; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 18px; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-          <h3 style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+          <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
             🗓️ ${isEn
-              ? `Year-by-Year Focus (Age ${ageYears} → Age ${ageYears + 3})`
-              : `나이별 집중 포인트 (만 ${ageYears}세 → 만 ${ageYears + 3}세 탭 선택)`}
-          </h3>
-          <span style="background: rgba(59, 130, 246, 0.16); color: #93C5FD; font-size: 0.8rem; font-weight: 800; padding: 0.28rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35);">
+              ? `3-Year Forward Growth & Bone-Age Roadmap (Age ${ageYears} → Age ${ageYears + 3})`
+              : `향후 3개년 성장·골연령 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 3}세 연도별 체크포인트)`}
+          </h4>
+          <span style="background: rgba(59, 130, 246, 0.16); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35);">
             ${isEn ? data.autoStage.stageNameEn : data.autoStage.stageNameKo}
           </span>
         </div>
 
-        <!-- Age Selector Tabs -->
         <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 0.75rem;">
           ${data.lifecycleRoadmap.map((step, idx) => `
             <button
               type="button"
               class="lifecycle-tab-btn"
-              onclick="(function(btn, targetIdx){ var sec = document.getElementById('child-lifecycle-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.lifecycle-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#3B82F6' : 'rgba(255,255,255,0.06)'; b.style.color = '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#60A5FA' : 'rgba(255,255,255,0.15)'; }); })(this, ${idx})"
+              onclick="(function(btn, targetIdx){ var sec = btn.closest('#child-lifecycle-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.lifecycle-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#3B82F6' : 'rgba(255,255,255,0.06)'; b.style.color = '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#60A5FA' : 'rgba(255,255,255,0.15)'; }); })(this, ${idx})"
               style="padding: 0.55rem 0.4rem; border-radius: 10px; font-size: 0.84rem; font-weight: 800; cursor: pointer; background: ${idx === 0 ? '#3B82F6' : 'rgba(255,255,255,0.06)'}; color: #FFFFFF; border: 1px solid ${idx === 0 ? '#60A5FA' : 'rgba(255,255,255,0.15)'};"
             >
               ${isEn ? (idx === 0 ? `Now (${step.age}y)` : `+${idx}Yr (${step.age}y)`) : (idx === 0 ? `현재 만 ${step.age}세` : `만 ${step.age}세 (+${idx}년)`)}
@@ -1766,160 +1769,327 @@
 
         <div>
           ${data.lifecycleRoadmap.map((step, idx) => `
-            <div class="lifecycle-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(59, 130, 246, 0.45); border-radius: 16px; padding: 1.15rem 1.25rem; text-align: left;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem;">
-                <span style="font-size: 1.02rem; font-weight: 900; color: #60A5FA;">
-                  📌 ${isEn ? `Age ${step.age} Core Milestone` : `만 ${step.age}세 핵심 성장·발달 체크리스트`}
+            <div class="lifecycle-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(59, 130, 246, 0.45); border-radius: 14px; padding: 1.1rem 1.2rem; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
+                <span style="font-size: 1rem; font-weight: 900; color: #60A5FA;">
+                  📌 ${isEn ? `Age ${step.age} Core Milestone` : `만 ${step.age}세 핵심 성장·골연령 체크리스트`}
                 </span>
-                <span style="font-size: 0.86rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-                  목표 성장속도: ${step.expectedVelocity}
+                <span style="font-size: 0.84rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.15); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+                  권장 성장속도: ${step.expectedVelocity}
                 </span>
               </div>
-              <div style="font-size: 0.95rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.45rem;">
-                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체 성장 포인트:'}</strong> ${step.physicalFocus}
+              <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
+                <strong style="color: #38BDF8;">📏 ${isEn ? 'Body Growth:' : '신체·골연령 포인트:'}</strong> ${step.physicalFocus}
               </div>
-              <div style="font-size: 0.95rem; color: #FFFFFF; line-height: 1.62; margin-bottom: 0.55rem;">
-                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·학습 포인트:'}</strong> ${step.brainFocus}
+              <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.45rem;">
+                <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Study:' : '두뇌·신경망 포인트:'}</strong> ${step.brainFocus}
               </div>
-              <div style="font-size: 0.9rem; color: #6EE7B7; font-weight: 800; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.5rem;">
-                🎁 ${isEn ? 'Recommended Prep:' : '이 시기 필수 준비물:'} ${step.mustHaveSummary}
+              <div style="font-size: 0.86rem; color: #FDE68A; line-height: 1.5; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.45rem;">
+                ⚠️ <strong>부모님 주의 포인트:</strong> ${step.parentWarning}
               </div>
             </div>
           `).join('')}
         </div>
       </div>
+    `;
+  }
 
-      <!-- EDUCATIONAL TRAVEL EXPLANATION FIRST (Before any product recommendations) -->
-      ${travelPhilosophyHtml}
+  /**
+   * 5-B. Contextual Nutrition Prescription (for the bottom of Chapter 3: Hormone, Sleep & Clinical Nutrition)
+   */
+  function renderContextualSupplementsPrescription(profile = {}, affConfig = {}) {
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const data = curatePinpointItems(profile, affConfig);
+    const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
 
-      <!-- STEP 04: CATEGORY-TABBED CURATED ITEMS (Eliminates Mid-Report Ad Clutter; Shows 1 Category at a Time) -->
-      <div id="pinpoint-custom-prescription-section" style="margin-top: 1.4rem; padding-top: 1.3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="margin-bottom: 0.9rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span style="display: inline-block; font-size: 0.8rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.16); padding: 0.25rem 0.75rem; border-radius: 9999px;">
-              STEP 04 · ${isEn ? 'OPTIONAL CURATED TOOLKIT (BY CATEGORY TAB)' : '필요한 영역만 탭해서 보는 맞춤 교구·영양·도서·여행 추천'}
-            </span>
-            <span style="font-size: 0.76rem; color: #94A3B8;">
-              ※ 본문 가독성을 위해 원하는 카테고리 탭을 누를 때만 깔끔하게 표시됩니다
-            </span>
-          </div>
-          <h3 style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
-            ${isEn
-              ? 'Select a Category Tab Below to View Tailored Recommendations'
-              : '우리 아이 맞춤 준비물 보관함 (원하시는 카테고리 버튼을 눌러 확인하세요)'}
-          </h3>
-
-          <!-- Category Filter Buttons -->
-          <div id="pinpoint-category-filter-bar" style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem;">
-            <button type="button" class="pinpoint-cat-tab-btn" onclick="(function(btn){ var sec=document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; var boxes=sec.querySelectorAll('.pinpoint-category-box'); boxes.forEach(function(b){ b.style.display=(b.id==='pinpoint-supplements-box')?'block':'none'; }); var btns=sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(bt){ bt.style.background='rgba(255,255,255,0.06)'; bt.style.borderColor='rgba(255,255,255,0.18)'; }); btn.style.background='#0284C7'; btn.style.borderColor='#38BDF8'; })(this)" style="padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; cursor: pointer; background: #0284C7; color: #FFFFFF; border: 1px solid #38BDF8;">
-              💊 1. 맞춤 영양제 (3선)
-            </button>
-            <button type="button" class="pinpoint-cat-tab-btn" onclick="(function(btn){ var sec=document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; var boxes=sec.querySelectorAll('.pinpoint-category-box'); boxes.forEach(function(b){ b.style.display=(b.id==='pinpoint-toys-box')?'block':'none'; }); var btns=sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(bt){ bt.style.background='rgba(255,255,255,0.06)'; bt.style.borderColor='rgba(255,255,255,0.18)'; }); btn.style.background='#059669'; btn.style.borderColor='#34D399'; })(this)" style="padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.18);">
-              🧩 2. 맞춤 교구·실내운동 (3선)
-            </button>
-            <button type="button" class="pinpoint-cat-tab-btn" onclick="(function(btn){ var sec=document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; var boxes=sec.querySelectorAll('.pinpoint-category-box'); boxes.forEach(function(b){ b.style.display=(b.id==='pinpoint-books-box')?'block':'none'; }); var btns=sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(bt){ bt.style.background='rgba(255,255,255,0.06)'; bt.style.borderColor='rgba(255,255,255,0.18)'; }); btn.style.background='#7C3AED'; btn.style.borderColor='#C4B5FD'; })(this)" style="padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.18);">
-              📚 3. 필독 도서·워크북 (3선)
-            </button>
-            <button type="button" class="pinpoint-cat-tab-btn" onclick="(function(btn){ var sec=document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; var boxes=sec.querySelectorAll('.pinpoint-category-box'); boxes.forEach(function(b){ b.style.display=(b.id==='pinpoint-edu-travel-box')?'block':'none'; }); var btns=sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(bt){ bt.style.background='rgba(255,255,255,0.06)'; bt.style.borderColor='rgba(255,255,255,0.18)'; }); btn.style.background='#D97706'; btn.style.borderColor='#FBBF24'; })(this)" style="padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; cursor: pointer; background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.18);">
-              ✈️ 4. 교육여행 추천 코스·키트 (3선)
-            </button>
-            <button type="button" class="pinpoint-cat-tab-btn" onclick="(function(btn){ var sec=document.getElementById('pinpoint-custom-prescription-section'); if(!sec) return; var boxes=sec.querySelectorAll('.pinpoint-category-box'); boxes.forEach(function(b){ b.style.display='block'; }); var btns=sec.querySelectorAll('.pinpoint-cat-tab-btn'); btns.forEach(function(bt){ bt.style.background='rgba(255,255,255,0.06)'; bt.style.borderColor='rgba(255,255,255,0.18)'; }); btn.style.background='#334155'; btn.style.borderColor='#94A3B8'; })(this)" style="padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; cursor: pointer; background: rgba(255,255,255,0.06); color: #CBD5E1; border: 1px solid rgba(255,255,255,0.18);">
-              📋 전체 펼침 보기
-            </button>
-          </div>
+    return `
+      <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="margin-top: 1.25rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.45)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; padding: 1.25rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.16); padding: 0.22rem 0.7rem; border-radius: 9999px;">
+            💊 [Chapter 3 연계 처방] 호르몬·임상영양 맞춤 솔루션
+          </span>
+          <span style="font-size: 0.76rem; color: #93C5FD; font-weight: 700;">
+            위 영양 흡수율·체중 비례 요구량 진단 기반
+          </span>
         </div>
+        <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+          ${isEn ? 'Tailored Clinical Nutrition & Sleep-GH Supplements (Top 3)' : '위 영양·수면 진단 결과에 맞춘 아침·저녁 필수 영양제 처방 TOP 3'}
+        </h4>
+        <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+          ${suppTraitNote}
+        </p>
+        ${renderCategoryProductCards(data.supplements, 'rgba(56, 189, 248, 0.45)', 'supplement', isEn)}
+      </div>
+    `;
+  }
 
-        <div class="pinpoint-single-view-container" style="display: flex; flex-direction: column; gap: 1rem;">
-          <!-- Category 1: Required Supplements (Default Visible Tab) -->
-          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="display: block; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(56, 189, 248, 0.38); border-radius: 18px; padding: 1.15rem; text-align: left;">
-            <h4 style="font-size: 1.05rem; font-weight: 900; color: #38BDF8; margin: 0 0 0.3rem 0;">
-              💊 ${isEn ? '1. Curated Nutritional Supplements (Top 3)' : '1. 맞춤 영양제 엄선 TOP 3 (아침·저녁 6개월 이상 꾸준히 챙기는 조합)'}
-            </h4>
-            <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.8rem 0; line-height: 1.52;">
-              ${suppTraitNote}
-            </p>
-            ${renderCleanCategoryItems(data.supplements, 'rgba(56, 189, 248, 0.45)', 'supplement')}
+  /**
+   * 5-C. Contextual Biomechanics & Posture Prescription (for the bottom of Chapter 4: Spinal Decompression & Biomechanics)
+   */
+  function renderContextualBiomechanicsPrescription(profile = {}, affConfig = {}) {
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const data = curatePinpointItems(profile, affConfig);
+    const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
+
+    return `
+      <div class="pinpoint-category-box" id="pinpoint-toys-box" style="margin-top: 1.25rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(6, 78, 59, 0.42)); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 18px; padding: 1.25rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.16); padding: 0.22rem 0.7rem; border-radius: 9999px;">
+            🏃 [Chapter 4 연계 처방] 척추 감압 · 자세교정 · 성장통 케어 도구
+          </span>
+          <span style="font-size: 0.76rem; color: #A7F3D0; font-weight: 700;">
+            숨은 키 +1.8cm 복원 및 성장판 기계적 미세하중(Wolff's Law) 기반
+          </span>
+        </div>
+        <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+          ${isEn ? 'Spinal Decompression, Posture & Active Home Exercise Tools (Top 3)' : '위 척추·생체역학 진단에 맞춘 자세교정 & 실내 점핑·스트레칭 도구 TOP 3'}
+        </h4>
+        <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.55;">
+          ${toyTraitNote}
+        </p>
+        ${renderCategoryProductCards(data.toys, 'rgba(52, 211, 153, 0.45)', 'toy', isEn)}
+      </div>
+    `;
+  }
+
+  /**
+   * 5-D. Chapter 6: Custom Education Prescription (뇌인지 결과 기반 어떤 교육이 왜 필요한지 진단 + 맞춤 교구·필독서 처방)
+   */
+  function renderCustomEducationChapter(profile = {}, affConfig = {}) {
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const data = curatePinpointItems(profile, affConfig);
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
+    const cogAxes = Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes.length > 0
+      ? profile.cognitiveAxes
+      : ['science_nature'];
+    const temps = Array.isArray(profile.traitTemperament) && profile.traitTemperament.length > 0
+      ? profile.traitTemperament
+      : ['explorer'];
+    const focusSpan = profile.traitFocusSpan || '15_20m';
+
+    // Determine Age-Specific Core Pedagogy Diagnosis
+    let eduStageBadge = '';
+    let eduHeadline = '';
+    let eduWhyNeeded = '';
+    let eduAvoidPitfall = '';
+    let eduMethodComparison = [];
+
+    if (ageYears <= 3) {
+      eduStageBadge = `만 ${ageYears}세 · 대뇌 운동피질 손끝 민감기 & 자율성 폭발기`;
+      eduHeadline = '지식 주입이나 빠른 학습지 대신 【몬테소리 일상감각 · 손끝 소근육(Pincer Grasp) 자율 교육】이 1순위입니다';
+      eduWhyNeeded = `만 ${ageYears}세는 대뇌 운동피질의 약 30%가 손가락 끝 신경과 직결되어 시냅스가 폭발적으로 연결되는 시기입니다. 아이가 "내가 혼자 할 거야!"라고 고집을 부리는 것은 반항이 아니라, 전두엽 자기조절력과 눈-손 협응 회로를 스스로 완성하려는 신호(Lillard & Else-Quest, Science 2006)입니다.`;
+      eduAvoidPitfall = '아직 손끝 악력과 세 손가락 집기(엄지·검지·중지)가 완성되기 전에 복잡한 입체 가베나 글자 통암기 카드를 주면 쉽게 좌절하고 흥미를 잃습니다.';
+      eduMethodComparison = [
+        { title: '🥇 1순위 필수: 몬테소리 일상·감각 소근육 교육', desc: '원목 집게로 폼폼이 옮기기, 구슬 꿰기, 안전가위 오리기 등 손끝 정교성을 키우는 활동이 초등 입학 후 수학·독해력을 결정합니다(Grissmer et al., 2010).' },
+        { title: '🥈 2순위 병행: 오감 그림책 & 의성어·의태어 상호작용', desc: '일방적인 영상 시청을 줄이고, 플랩북·촉감책을 엄마 아빠와 함께 만지고 질문하며 브로카 언어영역을 자극하세요.' },
+        { title: '⏳ 다음 단계 예고 (만 4~5세~): 프뢰벨 은물·가베 입체도형', desc: '손끝 소근육이 충분히 잡힌 만 4세 이후부터 자석블록·은물로 넘어가야 중복 지출 없이 200% 활용합니다.' }
+      ];
+    } else if (ageYears <= 6) {
+      eduStageBadge = `만 ${ageYears}세 · 두정엽 3D 공간지각 & 전두엽 실행기능 도약기`;
+      eduHeadline = '단순 연산 반복 대신 【프뢰벨 은물·가베·자석블록 3D 공간도형 교육 & 스토리텔링 수감각】이 필요한 시기입니다';
+      eduWhyNeeded = `만 ${ageYears}세는 뇌가 평면(2D)에서 입체(3D)로 확장되며 두정엽의 심상회전(Mental Rotation) 회로와 전전두엽의 실행기능(작업기억·충동억제)이 급격히 발달하는 골든타임입니다. 손으로 직접 대칭·비례·기하 구조물을 만들어본 경험이 초등 고학년 도형·물리 사고력의 뿌리가 됩니다.`;
+      eduAvoidPitfall = '취학 전 불안감으로 연산 문제집만 기계적으로 풀게 하면 수학 정서가 무너집니다. 손으로 만지는 구체물(블록·칠교·패턴)로 수의 구조를 먼저 눈으로 보게 해주세요.';
+      eduMethodComparison = [
+        { title: '🥇 1순위 필수: 은물·가베 & 자석 입체블록 3D 조형 교육', desc: '정육면체 분할·결합과 입체 트랙 설계를 통해 공간지각력과 물리적 인과관계 추론 회로를 동시에 깨웁니다.' },
+        { title: '🥈 2순위 병행: 음운인식 & 그림책 하브루타 대화 교육', desc: '글자를 읽는 것보다 중요한 것은 이야기를 듣고 "만약 네가 주인공이라면 어떻게 했을까?"를 상상해 말해보는 문해력입니다.' },
+        { title: '🥉 3순위 습관: 무소음 시각 타이머 15~20분 착석 루틴', desc: '초등 입학 전 스스로 정해진 시간 동안 한 가지 놀이나 워크북을 끝까지 완수하는 전두엽 지구력을 길러주세요.' }
+      ];
+    } else if (ageYears <= 9) {
+      eduStageBadge = `만 ${ageYears}세 · 초등 구체적 조작기 & 배외측 전전두엽(DLPFC) 성장기`;
+      eduHeadline = '정답 맞히기식 문제풀이 대신 【3단계 하브루타 질문독서 & STEAM 원리 실험·탐구 교육】으로 전환해야 합니다';
+      eduWhyNeeded = `만 ${ageYears}세는 피아제 인지발달 이론상 '구체적 조작기'에 해당하며, 만 9세경 배외측 전전두엽(DLPFC) 피질 두께가 정점에 도달합니다. 이때 눈으로 직접 실험·관찰하고 부모에게 자신의 말로 원리를 설명해 보는 경험이 평생의 메타인지와 학습 자존감을 좌우합니다.`;
+      eduAvoidPitfall = '선행 진도 위주의 학원 뺑뺑이는 아이를 수동적 암기 기계로 만들고 밤 10시 수면 골든타임까지 침해하여 키 성장과 전두엽 발달을 동시에 깎아먹습니다.';
+      eduMethodComparison = [
+        { title: '🥇 1순위 필수: 부모-자녀 3단계 하브루타 질문독서', desc: '책을 읽은 뒤 ① 사실 확인 → ② 이유·원리 추론("왜 그랬을까?") → ③ 적용·확장 질문으로 생각을 말과 글로 구조화합니다.' },
+        { title: '🥈 2순위 병행: STEAM 과학 실험·역사 스토리텔링 탐구', desc: '현미경 관찰, 과학 키트 실험, 역사 인물 탐구처럼 교과 개념을 실제 사물·사건과 연결하는 체험형 교육이 가장 효과적입니다.' },
+        { title: '🥉 3순위 습관: 메타인지 1줄 요약 & 바른 독서 자세', desc: '하루 20분 눈높이 독서대에서 책을 읽고 오늘 새롭게 알게 된 핵심 1문장을 스스로 적어보는 루틴을 시작하세요.' }
+      ];
+    } else if (ageYears <= 13) {
+      eduStageBadge = `만 ${ageYears}세 · 형식적 조작기 진입 & 2차 시냅스 가지치기(Pruning) 골든타임`;
+      eduHeadline = '수동적 인강·학원 수강을 줄이고 【메타인지 백지복습(인출 학습) & 비문학 문해력·개념 구조화 교육】에 집중하세요';
+      eduWhyNeeded = `만 ${ageYears}세는 추상적·가설연역적 사고가 가능해지는 시기이자, 뇌가 자주 쓰는 신경회로만 남기고 수초화(Myelination·전달속도 100배 가속)하는 결정적 재조직화 구간입니다. 눈으로만 읽는 공부는 뇌에 남지 않으며, 책을 덮고 스스로 설명·인출하는 공부가 전두엽 회로를 단단히 코팅합니다.`;
+      eduAvoidPitfall = '밤 11시~12시까지 이어지는 심야 학원·숙제는 코르티솔(스트레스 호르몬)을 높여 해마 기억 공고화를 방해하고 급성장기(PHV) 성장호르몬을 최대 38% 억제합니다.';
+      eduMethodComparison = [
+        { title: '🥇 1순위 필수: 메타인지 백지복습 & 파인만 설명법', desc: '오늘 배운 수학·과학·사회 개념을 백지에 마인드맵으로 그려보거나 부모님께 3분간 선생님처럼 설명해 보게 하세요.' },
+        { title: '🥈 2순위 병행: 교과 연계 비문학(과학·역사·철학) 심화 독해', desc: '중·고등 내신과 수능의 핵심 병목은 어휘력과 긴 지문 문해력입니다. 매일 비문학 칼럼/교양서 2쪽씩 문단 요약을 실천하세요.' },
+        { title: '🥉 3순위 습관: 밤 10시 취침 사수를 위한 방과후 골든타임 몰입', desc: '시각 타이머로 방과후~저녁 9시 사이에 25분 고밀도 몰입(뽀모도로)으로 학습을 끝내고 밤 10시 전 숙면에 들어가는 것이 성적과 키를 모두 잡는 비결입니다.' }
+      ];
+    } else {
+      eduStageBadge = `만 ${ageYears}세 · 전두엽 백질 수초화 완성 & 고차원 자기주도 전략기`;
+      eduHeadline = '잠을 줄이는 소모전 대신 【25분 딥워크(Deep Work) 초집중 인출 학습 & 서파수면 기억 공고화 교육】이 핵심입니다';
+      eduWhyNeeded = `청소년 후기에는 전두엽과 변연계를 잇는 백질 수초화가 완성됩니다. 수면 중 서파수면(SWS)과 렘수면 단계에서 낮에 학습한 해마의 단기 기억이 대뇌 피질의 장기 기억으로 이전(Consolidation)되므로, 수면 효율과 낮 시간 무방해 몰입 밀도가 성적을 결정합니다.`;
+      eduAvoidPitfall = '스마트폰을 옆에 두고 4시간 앉아 있는 가짜 공부나 새벽 2시까지의 카페인·야식 학습은 기억 저장 효율을 절반 이하로 떨어뜨립니다.';
+      eduMethodComparison = [
+        { title: '🥇 1순위 필수: 스마트폰 격리 25분 뽀모도로 & 오답 원인 역추적', desc: '시각 타이머를 활용해 25분 완전 몰입 + 5분 철봉·스트레칭 휴식 주기로 뇌 피로를 리셋하고, 틀린 문제는 발상 조건을 한 줄로 정리합니다.' },
+        { title: '🥈 2순위 병행: 개념 간 연결망(Schema) 구축 & 논술형 인출', desc: '단편적 암기 대신 단원 간 인과관계를 구조화하고 백지에 스스로 증명·서술하는 연습이 최상위권 변별력을 만듭니다.' },
+        { title: '🥉 3순위 습관: 뇌 피로 회복과 척추 감압을 결합한 루틴', desc: '책상 착석 50분마다 2분씩 흉추 신전 스트레칭과 눈높이 독서대 사용으로 경추 피로와 두통을 예방하세요.' }
+      ];
+    }
+
+    // Focus span specific coaching
+    let focusCoachingKo = '15~20분 단위로 작은 미션을 주고 완수할 때마다 구체적인 과정 칭찬을 해주세요.';
+    if (focusSpan === 'under_10m') {
+      focusCoachingKo = '현재 집중 유지 시간이 10분 미만이므로, 처음부터 30분 앉혀두려 하지 마시고 <strong>무소음 시각 타이머로 딱 10분 미션</strong>부터 시작해 성취 도파민을 쌓아주세요.';
+    } else if (focusSpan === '30m_plus') {
+      focusCoachingKo = '30분 이상 깊은 몰입이 가능한 우수한 전두엽 지속력을 가지고 있습니다! 단, 40분 이상 연속 착석 시 성장판과 척추 디스크가 눌리므로 <strong>40분 몰입 후 반드시 5분 스트레칭·물 마시기 휴식</strong>을 넣어주세요.';
+    }
+
+    return `
+      <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left;">
+        <!-- Part 1: Clinical Educational Diagnosis (Why & What Education is Needed) -->
+        <div style="background: linear-gradient(145deg, rgba(30, 27, 75, 0.92), rgba(15, 23, 42, 0.96)); border: 1.5px solid rgba(139, 92, 246, 0.48); border-radius: 18px; padding: 1.3rem; margin-bottom: 1.15rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
+            <span style="background: rgba(139, 92, 246, 0.22); color: #DDD6FE; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.45);">
+              🎓 ${eduStageBadge}
+            </span>
+            <span style="font-size: 0.78rem; color: #34D399; font-weight: 800;">
+              Chapter 5 5각 뇌인지 · 기질 · 집중시간 연동 판정
+            </span>
           </div>
 
-          <!-- Category 2: Required Play & Posture Tools (Shown when Tab 2 or Show All clicked) -->
-          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(52, 211, 153, 0.38); border-radius: 18px; padding: 1.15rem; text-align: left;">
-            <h4 style="font-size: 1.05rem; font-weight: 900; color: #34D399; margin: 0 0 0.3rem 0;">
-              🧩 ${isEn ? '2. Curated Play & Exercise Tools (Top 3)' : '2. 맞춤 교구 & 실내 운동기구 엄선 TOP 3 (숨은 키 +1.8cm & 두뇌 몰입)'}
-            </h4>
-            <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.8rem 0; line-height: 1.52;">
-              ${toyTraitNote}
-            </p>
-            ${renderCleanCategoryItems(data.toys, 'rgba(52, 211, 153, 0.45)', 'toy')}
+          <h4 style="font-size: 1.14rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0; line-height: 1.45;">
+            ${eduHeadline}
+          </h4>
+
+          <div style="background: rgba(255, 255, 255, 0.04); border-left: 4px solid #A78BFA; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.95rem; font-size: 0.88rem; color: #E2E8F0; line-height: 1.62;">
+            <strong style="color: #C4B5FD; display: block; margin-bottom: 0.25rem;">🧠 왜 지금 우리 아이에게 이 교육이 필요할까요? (뇌과학적 근거)</strong>
+            ${eduWhyNeeded}
           </div>
 
-          <!-- Category 3: Required Books & Workbooks (Shown when Tab 3 or Show All clicked) -->
-          <div class="pinpoint-category-box" id="pinpoint-books-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(196, 181, 253, 0.38); border-radius: 18px; padding: 1.15rem; text-align: left;">
-            <h4 style="font-size: 1.05rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.3rem 0;">
-              📚 ${isEn ? '3. Curated Must-Read Books & Workbooks (Top 3)' : '3. 맞춤 필독 도서 & 워크북 엄선 TOP 3 (집중력·하브루타 질문독서)'}
-            </h4>
-            <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.8rem 0; line-height: 1.52;">
-              ${bookTraitNote}
-            </p>
-            ${renderCleanCategoryItems(data.books, 'rgba(196, 181, 253, 0.45)', 'book')}
+          <!-- 3-Priority Educational Methods Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 0.95rem;">
+            ${eduMethodComparison.map(m => `
+              <div style="background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(196, 181, 253, 0.25); border-radius: 12px; padding: 0.9rem;">
+                <div style="font-size: 0.9rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.35rem;">${m.title}</div>
+                <p style="font-size: 0.83rem; color: #CBD5E1; line-height: 1.52; margin: 0;">${m.desc}</p>
+              </div>
+            `).join('')}
           </div>
 
-          <!-- Category 4: Educational Family Travel & Experiential Tours (Shown when Tab 4 or Show All clicked) -->
-          <div class="pinpoint-category-box" id="pinpoint-edu-travel-box" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(251, 191, 36, 0.42); border-radius: 18px; padding: 1.15rem; text-align: left;">
-            <h4 style="font-size: 1.05rem; font-weight: 900; color: #FDE68A; margin: 0 0 0.3rem 0;">
-              ✈️ ${isEn ? '4. Curated Educational Family Travel & Field Tours (Top 3)' : '4. 위 동 나이대 필수 여행 가이드에 맞춘 추천 여행지 & 준비물 TOP 3'}
-            </h4>
-            <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.8rem 0; line-height: 1.52;">
-              ${isEn
-                ? `Mapped to Age ${ageYears} developmental windows: combines outdoor vitamin D synthesis, active growth plate walking, and parent-child Havruta inquiry.`
-                : `앞서 설명드린 [만 ${ageYears}세 필수 교육여행 3대 테마]를 주말·방학에 바로 실천할 수 있도록 엄선한 실제 여행지 및 사전답사 도서·탐구키트입니다.`}
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
-              ${(data.eduTours || []).map((tour) => `
-                <div class="pinpoint-item-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
-                  <div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
-                      <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.2rem 0.6rem; border-radius: 9999px;">
-                        ${isEn ? tour.badgeEn : tour.badgeKo}
-                      </span>
-                    </div>
-                    <div style="font-size: 0.82rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">
-                      ${isEn ? tour.categoryEn : tour.categoryKo}
-                    </div>
-                    <div style="font-size: 0.98rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
-                      ${isEn ? tour.titleEn : tour.titleKo}
-                    </div>
-                    <p style="font-size: 0.84rem; color: #E2E8F0; line-height: 1.52; margin: 0 0 0.5rem 0;">
-                      ${tour.descKo}
-                    </p>
-                    <div style="font-size: 0.82rem; color: #A7F3D0; line-height: 1.48; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10B981; padding: 0.5rem 0.7rem; border-radius: 8px; margin-bottom: 0.7rem;">
-                      ${tour.missionKo}
-                    </div>
-                  </div>
-                  <div>
-                    <a href="${tour.myrealtripUrl || tour.naverTourUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.45); color: #FDE68A; font-size: 0.84rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
-                      ✈️ ${isEn ? 'MyRealTrip Family Tour & Ticket ↗' : '마이리얼트립 가족 투어·티켓 특가 보기 ↗'}
-                    </a>
-                    <details style="margin-top: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
-                      <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">클룩(Klook) · 네이버투어 · 사전답사 도서 보기 ▼</summary>
-                      <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;">
-                        <a href="${tour.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(249,115,22,0.16); border-radius: 6px; color: #FDBA74; text-decoration: none; text-align: center; font-weight: 700;">🎫 클룩(Klook) 패스 ↗</a>
-                        <a href="${tour.naverBrandTourUrl || 'https://naver.me/xJcOADhA'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.15); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">🏖️ 네이버 패밀리투어 ↗</a>
-                        <a href="${tour.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">🎒 탐구키트(쿠팡) ↗</a>
-                        <a href="${tour.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">📘 사전도서(YES24) ↗</a>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-              `).join('')}
+          <!-- Focus Span & Pitfall Alert Row -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem;">
+            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.32); border-radius: 12px; padding: 0.8rem 0.95rem; font-size: 0.84rem; color: #E2E8F0; line-height: 1.55;">
+              <strong style="color: #34D399; display: block; margin-bottom: 0.2rem;">⏱️ 우리 아이 집중시간 맞춤 홈 코칭법</strong>
+              ${focusCoachingKo}
+            </div>
+            <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.32); border-radius: 12px; padding: 0.8rem 0.95rem; font-size: 0.84rem; color: #E2E8F0; line-height: 1.55;">
+              <strong style="color: #FDA4AF; display: block; margin-bottom: 0.2rem;">⚠️ 이 시기 피해야 할 교육·교구 실패 패턴</strong>
+              ${eduAvoidPitfall}
             </div>
           </div>
         </div>
 
-        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure -->
-        <div id="affiliate-ftc-disclosure" style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
-          ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+        <!-- Part 2: Contextual Education Prescription (Books, Workbooks & Baby/Edu Fair) -->
+        <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(196, 181, 253, 0.42); border-radius: 18px; padding: 1.2rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <span style="font-size: 0.78rem; font-weight: 900; color: #C4B5FD; background: rgba(139, 92, 246, 0.2); padding: 0.22rem 0.7rem; border-radius: 9999px;">
+              📚 [Chapter 6 연계 처방] 맞춤 교육 필독 도서 · 워크북 &amp; 교육전 혜택
+            </span>
+            <a href="${affConfig.tenpingUrl || DEFAULT_AFF.tenpingUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="tenping" style="font-size: 0.78rem; font-weight: 900; color: #FDA4AF; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(244, 63, 94, 0.4); padding: 0.24rem 0.75rem; border-radius: 9999px; text-decoration: none;">
+              🎁 코베 베이비페어·유아교육전 무료입장 사전등록 ↗
+            </a>
+          </div>
+          <h4 style="font-size: 1.06rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+            ${isEn ? 'Curated Must-Read Books & Cognitive Workbooks (Top 3)' : '위 맞춤 교육 처방을 집에서 바로 실천하는 필독 도서 & 워크북 TOP 3'}
+          </h4>
+          <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.52;">
+            ${bookTraitNote}
+          </p>
+          ${renderCategoryProductCards(data.books, 'rgba(196, 181, 253, 0.45)', 'book', isEn)}
         </div>
       </div>
+    `;
+  }
+
+  /**
+   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (왜 어떤 여행이 필요한지 진단 + 맞춤 투어·티켓 처방)
+   */
+  function renderCustomTravelChapter(profile = {}, affConfig = {}) {
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const data = curatePinpointItems(profile, affConfig);
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const travelPhilosophyHtml = renderAgeEducationalTravelGuide(ageYears, profile, isEn);
+
+    return `
+      <div id="custom-travel-chapter-box" style="text-align: left;">
+        <!-- Part 1: Why & What Travel is Needed First -->
+        ${travelPhilosophyHtml}
+
+        <!-- Part 2: Contextual Travel & Tour Prescription (MyRealTrip, Klook, Naver Family Package Tour) -->
+        <div class="pinpoint-category-box" id="pinpoint-edu-travel-box" style="margin-top: 1.15rem; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 18px; padding: 1.2rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <span style="font-size: 0.78rem; font-weight: 900; color: #FDE68A; background: rgba(245, 158, 11, 0.2); padding: 0.22rem 0.7rem; border-radius: 9999px;">
+              ✈️ [Chapter 7 연계 처방] 맞춤 체험학습 · 도슨트 투어 · 가족여행 코스
+            </span>
+            <a href="${affConfig.naverBrandConnectTour || DEFAULT_AFF.naverBrandConnectTour}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="font-size: 0.78rem; font-weight: 900; color: #86EFAC; background: rgba(34, 197, 94, 0.16); border: 1px solid rgba(34, 197, 94, 0.4); padding: 0.24rem 0.75rem; border-radius: 9999px; text-decoration: none;">
+              🏖️ 노랑풍선×네이버 온천·힐튼 가족 패키지투어 특가 ↗
+            </a>
+          </div>
+          <h4 style="font-size: 1.06rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+            ${isEn ? 'Curated Educational Family Travel & Field Tours (Top 3)' : `위 만 ${ageYears}세 필수 여행 테마를 주말·방학에 바로 실천하는 추천 코스 TOP 3`}
+          </h4>
+          <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.52;">
+            ${isEn
+              ? `Mapped to Age ${ageYears} developmental windows: combines outdoor vitamin D synthesis, active growth plate walking, and parent-child Havruta inquiry.`
+              : `아이의 해마 장기기억과 전두엽 호기심을 깨우는 실제 도슨트 투어·액티비티 티켓(마이리얼트립·클룩·네이버 가족투어) 및 사전답사 키트입니다.`}
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+            ${(data.eduTours || []).map((tour) => `
+              <div class="pinpoint-item-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
+                    <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.2rem 0.6rem; border-radius: 9999px;">
+                      ${isEn ? tour.badgeEn : tour.badgeKo}
+                    </span>
+                  </div>
+                  <div style="font-size: 0.82rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">
+                    ${isEn ? tour.categoryEn : tour.categoryKo}
+                  </div>
+                  <div style="font-size: 0.98rem; font-weight: 900; color: #FFFFFF; line-height: 1.42; margin-bottom: 0.45rem;">
+                    ${isEn ? tour.titleEn : tour.titleKo}
+                  </div>
+                  <p style="font-size: 0.84rem; color: #E2E8F0; line-height: 1.52; margin: 0 0 0.5rem 0;">
+                    ${tour.descKo}
+                  </p>
+                  <div style="font-size: 0.82rem; color: #A7F3D0; line-height: 1.48; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10B981; padding: 0.5rem 0.7rem; border-radius: 8px; margin-bottom: 0.7rem;">
+                    ${tour.missionKo}
+                  </div>
+                </div>
+                <div>
+                  <a href="${tour.myrealtripUrl || tour.naverTourUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.45); color: #FDE68A; font-size: 0.84rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                    ✈️ ${isEn ? 'MyRealTrip Family Tour & Ticket ↗' : '마이리얼트립 도슨트·입장권 보러가기 ↗'}
+                  </a>
+                  <details style="margin-top: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
+                    <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">클룩(Klook) · 네이버투어 · 사전답사 도서 보기 ▼</summary>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;">
+                      <a href="${tour.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(249,115,22,0.16); border-radius: 6px; color: #FDBA74; text-decoration: none; text-align: center; font-weight: 700;">🎫 클룩(Klook) 패스 ↗</a>
+                      <a href="${tour.naverBrandTourUrl || 'https://naver.me/xJcOADhA'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.15); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">🏖️ 네이버 패밀리투어 ↗</a>
+                      <a href="${tour.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">🎒 탐구키트(쿠팡) ↗</a>
+                      <a href="${tour.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">📘 사전도서(YES24) ↗</a>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * 5. Legacy combined renderer (preserved for backwards compatibility)
+   */
+  function renderPinpointAndLifecycleSection(profile = {}, affConfig = {}) {
+    return `
+      ${renderLifecycleTimelineOnly(profile, affConfig)}
+      ${renderContextualSupplementsPrescription(profile, affConfig)}
+      ${renderContextualBiomechanicsPrescription(profile, affConfig)}
+      ${renderCustomEducationChapter(profile, affConfig)}
+      ${renderCustomTravelChapter(profile, affConfig)}
     `;
   }
 
@@ -1934,6 +2104,11 @@
     curatePinpointItems,
     getAgeEducationalTravelPhilosophy,
     renderAgeEducationalTravelGuide,
+    renderLifecycleTimelineOnly,
+    renderContextualSupplementsPrescription,
+    renderContextualBiomechanicsPrescription,
+    renderCustomEducationChapter,
+    renderCustomTravelChapter,
     renderPinpointAndLifecycleSection
   };
 

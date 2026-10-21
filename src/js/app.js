@@ -695,6 +695,11 @@
           MasterBriefingEngine.attachRetestHandler();
         }
       }
+      // Bind interactive 24h hormone sliders (Chapter 3) & biomechanics routine timers (Chapter 4) inside the One-Page 7-Chapter Report
+      attachHormoneSliderListeners();
+      if (BiomechanicsStudio && typeof BiomechanicsStudio.initRoutineTimers === 'function') {
+        BiomechanicsStudio.initRoutineTimers();
+      }
     }
   }
 
@@ -1143,6 +1148,7 @@
     issuePrescription,
     renderPrescriptionResults,
     renderPrescriptionReport: renderPrescriptionResults, // Alias for backward compatibility
+    attachHormoneSliderListeners,
     switchTab,
     openAdminModal,
     closeAdminModal,

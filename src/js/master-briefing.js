@@ -8,7 +8,11 @@
   'use strict';
 
   let GrowthEngine = typeof require !== 'undefined' ? (function () { try { return require('./growth-engine'); } catch (e) { return null; } })() : (global.KidsFitGrowthEngine || null);
+  let EndocrinologyEngine = typeof require !== 'undefined' ? (function () { try { return require('./endocrinology-engine'); } catch (e) { return null; } })() : (global.KidsFitEndocrinologyEngine || null);
   let NutritionEngine = typeof require !== 'undefined' ? (function () { try { return require('./nutrition-engine'); } catch (e) { return null; } })() : (global.KidsFitNutritionEngine || null);
+  let BiomechanicsStudio = typeof require !== 'undefined' ? (function () { try { return require('./biomechanics-studio'); } catch (e) { return null; } })() : (global.KidsFitBiomechanicsStudio || null);
+  let NeuroCognitiveMatrix = typeof require !== 'undefined' ? (function () { try { return require('./neuro-cognitive-matrix'); } catch (e) { return null; } })() : (global.KidsFitNeuroCognitiveMatrix || null);
+  let GrowthTracker = typeof require !== 'undefined' ? (function () { try { return require('./growth-tracker'); } catch (e) { return null; } })() : (global.KidsFitGrowthTracker || null);
   let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
   let UserCohortDB = typeof require !== 'undefined' ? (function () { try { return require('./user-cohort-db'); } catch (e) { return null; } })() : (global.TallerUserCohortDB || global.KidsFitUserCohortDB || null);
 
@@ -446,7 +450,11 @@
    */
   function renderMasterBriefingCard(profile = {}) {
     if (!GrowthEngine && global.KidsFitGrowthEngine) GrowthEngine = global.KidsFitGrowthEngine;
+    if (!EndocrinologyEngine && global.KidsFitEndocrinologyEngine) EndocrinologyEngine = global.KidsFitEndocrinologyEngine;
     if (!NutritionEngine && global.KidsFitNutritionEngine) NutritionEngine = global.KidsFitNutritionEngine;
+    if (!BiomechanicsStudio && global.KidsFitBiomechanicsStudio) BiomechanicsStudio = global.KidsFitBiomechanicsStudio;
+    if (!NeuroCognitiveMatrix && global.KidsFitNeuroCognitiveMatrix) NeuroCognitiveMatrix = global.KidsFitNeuroCognitiveMatrix;
+    if (!GrowthTracker && global.KidsFitGrowthTracker) GrowthTracker = global.KidsFitGrowthTracker;
     if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
       PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
     }
@@ -713,37 +721,51 @@
           </div>
         </div>
 
-        <!-- Top Marketing-Optimized Core Tab Switcher (신체성장 · 호르몬 · 척추감압 · 뇌인지 · 교육여행 · 보고서이력함) -->
-        <div id="top-core-quick-tabs" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 16px; padding: 0.75rem 0.9rem; margin-bottom: 1.15rem;">
+        <!-- Sticky 7-Chapter One-Page Quick-Jump TOC Bar (Ch 1 Summary -> Ch 2 Auxology -> Ch 3 Hormone/Nutrition -> Ch 4 Biomechanics -> Ch 5 Neuro -> Ch 6 Education -> Ch 7 Travel) -->
+        <div id="top-core-quick-tabs" style="position: sticky; top: 0.45rem; z-index: 40; backdrop-filter: blur(14px); background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 16px; padding: 0.7rem 0.9rem; margin-bottom: 1.25rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8;">
-              ⚡ 원하는 정밀 분석 영역 버튼을 누르면 해당 탭과 차트가 즉시 열립니다
+              🧭 7단계 원페이지 종합 처방전 목차 (아래로 쭉 읽으시거나 원하는 챕터를 누르면 바로 이동합니다)
             </span>
-            <span style="font-size: 0.74rem; color: #94A3B8;">
-              기본 요약 진단서 + 5대 정밀 탭 연동
+            <span style="font-size: 0.74rem; color: #34D399; font-weight: 800;">
+              ✓ 1~7장 전 영역 한눈에 연속 열람
             </span>
           </div>
-          <div class="guidebook-chapter-nav" aria-label="Core Analysis Quick Tabs" style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0;">
-            <button type="button" class="guidebook-chapter-pill" onclick="if(window.KidsFitApp) window.KidsFitApp.switchTab('tab-auxology'); var el=document.getElementById('capsule-nav-wrapper'); if(el) el.scrollIntoView({behavior:'smooth'});" style="cursor: pointer; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; font-weight: 800;">
-              📏 기본 신체성장·골연령
+          <div class="guidebook-chapter-nav" aria-label="One-Page 7-Chapter Quick Jump" style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0;">
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-1'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.5); color: #FFFFFF; font-weight: 800;">
+              ① 📋 맞춤성장 리포트
             </button>
-            <button type="button" class="guidebook-chapter-pill" onclick="if(window.KidsFitApp) window.KidsFitApp.switchTab('tab-endocrinology'); var el=document.getElementById('capsule-nav-wrapper'); if(el) el.scrollIntoView({behavior:'smooth'});" style="cursor: pointer; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.45); color: #FFFFFF; font-weight: 800;">
-              🧬 호르몬·수면·임상영양
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-2'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; font-weight: 800;">
+              ② 📏 신체성장·골연령
             </button>
-            <button type="button" class="guidebook-chapter-pill" onclick="if(window.KidsFitApp) window.KidsFitApp.switchTab('tab-biomechanics'); var el=document.getElementById('capsule-nav-wrapper'); if(el) el.scrollIntoView({behavior:'smooth'});" style="cursor: pointer; background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.45); color: #FFFFFF; font-weight: 800;">
-              🏃 척추감압·생체역학
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-3'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(245, 158, 11, 0.16); border: 1px solid rgba(245, 158, 11, 0.45); color: #FFFFFF; font-weight: 800;">
+              ③ 🧬 호르몬·수면·영양
             </button>
-            <button type="button" class="guidebook-chapter-pill" onclick="if(window.KidsFitApp) window.KidsFitApp.switchTab('tab-neuro'); var el=document.getElementById('capsule-nav-wrapper'); if(el) el.scrollIntoView({behavior:'smooth'});" style="cursor: pointer; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.45); color: #FFFFFF; font-weight: 800;">
-              🧠 5각 뇌인지·하브루타
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-4'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(244, 63, 94, 0.45); color: #FFFFFF; font-weight: 800;">
+              ④ 🏃 척추감압·생체역학
             </button>
-            <a href="#age-educational-travel-guide-box" class="guidebook-chapter-pill" style="background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.45); color: #FDE68A; font-weight: 800;">
-              ✈️ 동 나이대 필수 여행
-            </a>
-            <a href="#member-history-vault-section" class="guidebook-chapter-pill" style="background: rgba(139, 92, 246, 0.18); border: 1px solid rgba(139, 92, 246, 0.45); color: #DDD6FE; font-weight: 800;">
-              📂 보고서 이력 관리함
-            </a>
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-5'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.45); color: #FFFFFF; font-weight: 800;">
+              ⑤ 🧠 5각 뇌인지·하브루타
+            </button>
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-6'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.5); color: #DDD6FE; font-weight: 800;">
+              ⑥ 🎓 맞춤 교육 처방
+            </button>
+            <button type="button" class="guidebook-chapter-pill" onclick="var el=document.getElementById('report-ch-7'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});" style="cursor: pointer; background: rgba(251, 191, 36, 0.18); border: 1px solid rgba(251, 191, 36, 0.5); color: #FDE68A; font-weight: 800;">
+              ⑦ ✈️ 맞춤 여행 처방
+            </button>
           </div>
         </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 1: 맞춤 성장 종합 리포트 & 하루 시간표 (No Ad Clutter!)       -->
+        <!-- ================================================================== -->
+        <div id="report-ch-1" style="scroll-margin-top: 5.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <span style="background: rgba(59, 130, 246, 0.2); color: #93C5FD; font-size: 0.78rem; font-weight: 900; padding: 0.22rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.45);">
+              CHAPTER 01 · EXECUTIVE SUMMARY
+            </span>
+            <span style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF;">맞춤 성장 종합 리포트 &amp; 하루 실천 시간표</span>
+          </div>
 
         <!-- Top Summary Hero Card (Large Readable Typography) -->
         <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.35rem 1.5rem;">
@@ -965,7 +987,7 @@
         </div>
 
         <!-- ================================================================== -->
-        <!-- STEP 03: 6-MONTH EXPECTED OUTCOMES & FOLDED ACADEMIC CITATIONS      -->
+        <!-- STEP 03: 6-MONTH EXPECTED OUTCOMES                                  -->
         <!-- ================================================================== -->
         <div id="expected-outcomes-section" style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; text-align: left;">
           <h3 style="font-size: 1.14rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
@@ -977,9 +999,141 @@
             <li><strong>🧠 ${isEn ? 'Focus & Confidence:' : '두뇌 집중력 & 자존감:'}</strong> 스마트폰 대신 손끝 교구·독서 습관이 잡히면서 집중 시간이 <strong>2배 이상</strong> 길어집니다~!</li>
           </ul>
         </div>
+        </div><!-- /#report-ch-1 -->
 
-        <!-- Collapsible Academic Evidence Section (Folded by default per User Request; preserves #briefing-research-section & #briefing-papers-container) -->
-        <details class="clinical-source-details" style="margin-bottom: 1.15rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 0.85rem 1.15rem;">
+        <!-- ================================================================== -->
+        <!-- CHAPTER 2: 기본 신체성장 & 골연령 예측 궤적 (Auxology & Bone Age)    -->
+        <!-- ================================================================== -->
+        <div id="report-ch-2" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(56, 189, 248, 0.32);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(56, 189, 248, 0.18); color: #38BDF8; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.45); margin-bottom: 0.35rem;">
+              📏 CHAPTER 02 · AUXOLOGY &amp; BONE AGE TRAJECTORY
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '2. Physical Growth Percentile & Bone-Age Trajectory' : '2. 기본 신체 성장 백분위 & 골연령 예측 궤적'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              질병관리청(KDCA 2017) 표준 성장곡선과 부모 유전 표적키(MPH), 그리고 방해 습관 교정 여부에 따른 3단 성인 예측키 시뮬레이션입니다.
+            </p>
+          </div>
+          ${GrowthEngine && typeof GrowthEngine.renderTab1Report === 'function'
+            ? GrowthEngine.renderTab1Report(profile)
+            : ''}
+          ${PinpointCurator && typeof PinpointCurator.renderLifecycleTimelineOnly === 'function'
+            ? PinpointCurator.renderLifecycleTimelineOnly(profile)
+            : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 3: 호르몬·수면 & 임상 영양 생체이용률 (+ 맞춤 영양 처방)      -->
+        <!-- ================================================================== -->
+        <div id="report-ch-3" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(245, 158, 11, 0.35);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(245, 158, 11, 0.18); color: #FDE68A; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(245, 158, 11, 0.45); margin-bottom: 0.35rem;">
+              🧬 CHAPTER 03 · ENDOCRINOLOGY, SLEEP &amp; CLINICAL NUTRITION
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '3. 24h Growth Hormone Curve & Clinical Nutrition Bioavailability' : '3. 호르몬·수면 24시간 궤적 & 임상 영양 생체이용률'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              취침 시각·야식에 따른 서파수면(SWS) 성장호르몬 분비 곡선과 체중 비례 일일 칼슘·비타민D3·아연·단백질 요구량 및 흡수율 비교입니다.
+            </p>
+          </div>
+          ${NutritionEngine && typeof NutritionEngine.renderTab2Report === 'function'
+            ? NutritionEngine.renderTab2Report(profile)
+            : (EndocrinologyEngine && typeof EndocrinologyEngine.renderEndocrinologySection === 'function'
+              ? EndocrinologyEngine.renderEndocrinologySection(profile)
+              : '')}
+          ${PinpointCurator && typeof PinpointCurator.renderContextualSupplementsPrescription === 'function'
+            ? PinpointCurator.renderContextualSupplementsPrescription(profile)
+            : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 4: 척추 감압 & 생체역학 스튜디오 (+ 자세·실내운동 처방)      -->
+        <!-- ================================================================== -->
+        <div id="report-ch-4" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(244, 63, 94, 0.35);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(244, 63, 94, 0.18); color: #FDA4AF; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(244, 63, 94, 0.45); margin-bottom: 0.35rem;">
+              🏃 CHAPTER 04 · SPINAL DECOMPRESSION &amp; BIOMECHANICS
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '4. Spinal Decompression (+1.8cm) & Epiphyseal Micro-Loading' : '4. 척추 감압(+1.8cm 숨은 키 복원) & 성장판 생체역학'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              거북목·굽은 등으로 눌린 추간판 수분 복원 메커니즘과 볼프의 법칙(Wolff's Law)에 기반한 성장판 자극 3대 실내 운동 루틴입니다.
+            </p>
+          </div>
+          ${BiomechanicsStudio && typeof BiomechanicsStudio.renderBiomechanicsSection === 'function'
+            ? BiomechanicsStudio.renderBiomechanicsSection(profile)
+            : ''}
+          ${PinpointCurator && typeof PinpointCurator.renderContextualBiomechanicsPrescription === 'function'
+            ? PinpointCurator.renderContextualBiomechanicsPrescription(profile)
+            : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 5: 5각 뇌인지 밸런스 & 주말 하브루타                        -->
+        <!-- ================================================================== -->
+        <div id="report-ch-5" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(16, 185, 129, 0.38);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(16, 185, 129, 0.18); color: #6EE7B7; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.45); margin-bottom: 0.35rem;">
+              🧠 CHAPTER 05 · 5-AXIS NEURO-COGNITIVE &amp; HAVRUTA
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '5. 5-Axis Brain Balance Radar & Havruta Inquiry Dialogue' : '5. 5각 뇌인지 발달 밸런스 & 부모-자녀 하브루타 문답법'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              보건복지부 K-DST 기준선 대비 수리·언어·과학·예술·집중력 5각 레이더 차트와 전두엽 사고력을 깨우는 3단계 하브루타 질문 세트입니다.
+            </p>
+          </div>
+          ${NeuroCognitiveMatrix && typeof NeuroCognitiveMatrix.renderNeuroSection === 'function'
+            ? NeuroCognitiveMatrix.renderNeuroSection(profile)
+            : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 6: 우리 아이 시기별 맞춤 교육 처방 (왜 어떤 교육이 필요한가?) -->
+        <!-- ================================================================== -->
+        <div id="report-ch-6" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(139, 92, 246, 0.42);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(139, 92, 246, 0.22); color: #DDD6FE; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.48); margin-bottom: 0.35rem;">
+              🎓 CHAPTER 06 · CUSTOM EDUCATION &amp; PEDAGOGY PRESCRIPTION
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '6. Age & Brain-Matched Custom Education Prescription' : '6. 우리 아이 시기별·기질별 맞춤 교육 처방 (어떤 교육이 왜 필요한가?)'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              위 5각 뇌인지 결과와 아이의 기질·집중시간을 바탕으로 지금 시기에 가장 효과적인 교육법과 피해야 할 실패 패턴, 연계 필독서를 처방합니다.
+            </p>
+          </div>
+          ${PinpointCurator && typeof PinpointCurator.renderCustomEducationChapter === 'function'
+            ? PinpointCurator.renderCustomEducationChapter(profile)
+            : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- CHAPTER 7: 우리 아이 성향·지역 맞춤 여행 & 체험학습 처방             -->
+        <!-- ================================================================== -->
+        <div id="report-ch-7" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(251, 191, 36, 0.42);">
+          <div style="margin-bottom: 0.9rem;">
+            <span style="display: inline-block; background: rgba(251, 191, 36, 0.2); color: #FDE68A; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(251, 191, 36, 0.48); margin-bottom: 0.35rem;">
+              ✈️ CHAPTER 07 · CUSTOM EDUCATIONAL TRAVEL &amp; FIELD TOUR PRESCRIPTION
+            </span>
+            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '7. Age & Temperament-Matched Educational Travel Prescription' : '7. 우리 아이 발달 단계별 맞춤 여행 & 체험학습 처방 (어떤 여행이 왜 필요한가?)'}
+            </h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
+              아이의 해마 장기기억과 전두엽 도파민 회로를 깨우는 동 나이대 필수 여행 테마 3선과 출발 전·현장·귀가 후 대화법, 맞춤 투어 코스입니다.
+            </p>
+          </div>
+          ${PinpointCurator && typeof PinpointCurator.renderCustomTravelChapter === 'function'
+            ? PinpointCurator.renderCustomTravelChapter(profile)
+            : ''}
+        </div>
+
+        <!-- Collapsible Academic Evidence Section (Preserves #briefing-research-section & #briefing-papers-container) -->
+        <details class="clinical-source-details" style="margin-top: 1.5rem; margin-bottom: 1.15rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 0.85rem 1.15rem;">
           <summary style="cursor: pointer; font-size: 0.92rem; font-weight: 800; color: #93C5FD; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
             <span>🔬 ${isEn ? 'Peer-Reviewed Pediatric Endocrinology & Nutrition References (Click to Expand ▼)' : '진단서에 적용된 국내외 소아내분비·영양학 학술논문 출처 보기 (대한소아내분비학회지 외 11편 · 접음 보기 ▼)'}</span>
             <span style="font-size: 0.76rem; color: #38BDF8; background: rgba(56, 189, 248, 0.14); padding: 0.18rem 0.6rem; border-radius: 9999px;">클릭 시 출처 펼침</span>
@@ -1024,9 +1178,10 @@
           </div>
         </details>
 
-        ${PinpointCurator && typeof PinpointCurator.renderPinpointAndLifecycleSection === 'function'
-          ? PinpointCurator.renderPinpointAndLifecycleSection(profile)
-          : ''}
+        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure -->
+        <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.15rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
+          ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+        </div>
 
         <!-- ================================================================== -->
         <!-- SOFT-LOCK-IN MEMBERSHIP VAULT: 내 아이 성장 보고서 이력 관리함         -->
@@ -1216,6 +1371,13 @@
         if (mbEl) {
           mbEl.innerHTML = renderMasterBriefingCard(curProfile);
           attachRetestHandler(callback);
+          if (global.KidsFitApp && typeof global.KidsFitApp.attachHormoneSliderListeners === 'function') {
+            global.KidsFitApp.attachHormoneSliderListeners();
+          }
+          const bioStudio = global.KidsFitBiomechanicsStudio || global.BiomechanicsStudio || global.TallerBiomechanicsStudio;
+          if (bioStudio && typeof bioStudio.initRoutineTimers === 'function') {
+            bioStudio.initRoutineTimers();
+          }
         }
       };
     }

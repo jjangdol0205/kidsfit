@@ -198,50 +198,6 @@
         <!-- Bioavailability Visual Comparison Gauges -->
         ${renderBioavailabilityGauges(targets)}
 
-        <!-- Recommended Products at Bottom of Core 2 -->
-        <div class="bento-card" id="core-2-recommended-products" style="margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
-            <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">
-              🎁 호르몬 숙면 &amp; 체중 비례 영양 보충을 위한 엄선 추천 상품 TOP 3
-            </span>
-            <span style="font-size: 0.78rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.16); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              Core 2 맞춤 큐레이션
-            </span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem;">
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #38BDF8;">🏆 엄선 1위 · 구연산 칼슘 (${targets.calciumMg}mg 타깃)</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">어린이 구연산 칼슘 · 마그네슘 · 비타민D 츄어블</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">위산과 무관하게 45% 흡수되어 변비·배앓이 없이 뼈 기질을 채워줍니다.</p>
-              </div>
-              <a href="https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%B9%BC%EC%8A%B4+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #0284C7, #2563EB); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                🚀 구연산 칼슘·마그네슘 보러가기 ↗
-              </a>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #FBBF24;">✨ 엄선 2위 · 뼈 침착 시너지 (${targets.vitDIU}IU 타깃)</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">키즈 액상 비타민D3 + K2 (MK-7) 드롭스</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">혈중 칼슘을 성장판 연골 기질로 정확히 타깃팅하는 오스테오칼신 활성 조합입니다.</p>
-              </div>
-              <a href="https://kr.iherb.com/search?kw=kids+vitamin+d3+k2&rcode=KIDSBIO" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #059669, #10B981); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                🌿 아이허브 D3+K2 글로벌 직구 보기 ↗
-              </a>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
-              <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #F472B6;">💎 엄선 3위 · 성장인자 &amp; 단백질 (${targets.proteinG}g 타깃)</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #FFFFFF; margin: 0.25rem 0;">어린이 산양유 초유 단백질 · 아연 · 아르기닌</div>
-                <p style="font-size: 0.84rem; color: #CBD5E1; margin: 0; line-height: 1.45;">우유 배앓이 없이 간 IGF-1 합성과 뼈 콜라겐 단백질을 맛있게 보충합니다.</p>
-              </div>
-              <a href="https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%82%B0%EC%96%91%EC%9C%A0+%EC%B4%88%EC%9C%A0+%EB%8B%A8%EB%B0%B1%EC%A7%88+%EC%95%84%EC%97%B0&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: linear-gradient(135deg, #DB2777, #9333EA); color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                🚀 산양유 초유·아연 보러가기 ↗
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- Academic Research Citations with clickable PMID & DOI -->
         ${(function() {
           const rc = (typeof window !== 'undefined' && window.TallerReferenceChips) || 
@@ -263,7 +219,7 @@
               return rc.getReferenceChipsHtml('calcium', isGlobalMode, affConfig);
             }
             return `
-              <a href="https://kr.iherb.com/search?kw=%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%B9%BC%EC%8A%B4&rcode=KIDSBIO" 
+              <a href="https://kr.iherb.com/search?kw=%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%B9%BC%EC%8A%B4&rcode=IPZ1547" 
                  target="_blank" 
                  rel="noopener noreferrer" 
                  class="reference-chip" 
