@@ -521,10 +521,32 @@
                       </div>
                     </label>
                   </div>
+
+                  <!-- Deep Trait Question 1: Sleep Quality & Diet/Digestion Pattern -->
+                  <div class="form-row-grid" style="margin-top: 1.15rem;">
+                    <div>
+                      <label class="form-label form-label-required" for="trait-sleep-quality" data-i18n="quiz.trait.sleep.label">수면 깊이 &amp; 아침 기상 특성</label>
+                      <select class="form-select" id="trait-sleep-quality" name="trait-sleep-quality">
+                        <option value="deep_early" data-i18n="quiz.trait.sleep.opt1">21:30 이전 숙면 · 아침에 개운하게 기상</option>
+                        <option value="late_bedtime" selected data-i18n="quiz.trait.sleep.opt2">22:30 이후 늦은 취침 (학원·숙제·스마트폰)</option>
+                        <option value="toss_mouth" data-i18n="quiz.trait.sleep.opt3">자주 뒤척이거나 입호흡·코골이·얕은 수면</option>
+                        <option value="night_snack" data-i18n="quiz.trait.sleep.opt4">자기 직전 우유·야식·간식을 먹고 잠듦</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label form-label-required" for="trait-diet-digestion" data-i18n="quiz.trait.diet.label">식사량 &amp; 소화·장 흡수 체질</label>
+                      <select class="form-select" id="trait-diet-digestion" name="trait-diet-digestion">
+                        <option value="small_appetite" selected data-i18n="quiz.trait.diet.opt1">입이 짧고 한 끼 식사량이 적은 소식형</option>
+                        <option value="meat_veggie_picky" data-i18n="quiz.trait.diet.opt2">고기·채소를 가리고 탄수화물·간식 선호</option>
+                        <option value="dairy_sensitive" data-i18n="quiz.trait.diet.opt3">우유·유제품 마시면 배앓이·설사·변비 잦음</option>
+                        <option value="balanced_good" data-i18n="quiz.trait.diet.opt4">골고루 잘 먹고 소화·배변도 원활함</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Slide 5: Bio-Inhibition Factors (5 Habits) -->
+              <!-- Slide 5: Bio-Inhibition Factors (5 Habits) + Posture/Activity Traits -->
               <div class="slide-funnel-card quiz-step-content" data-step="5" id="step-content-5">
                 <div class="form-group">
                   <label class="form-label form-label-required" data-i18n="quiz.habits.label">수면·영양·자세 생체 저해 요인 체크 (복수 선택 가능)</label>
@@ -551,10 +573,31 @@
                       <span class="chip-pill">🪑 <span data-i18n="habit.sedentary">신체활동 부족 (하루 30분 점프 미만)</span></span>
                     </label>
                   </div>
+
+                  <!-- Deep Trait Question 2: Posture & Physical Activity Pattern -->
+                  <div class="form-row-grid" style="margin-top: 1.15rem;">
+                    <div>
+                      <label class="form-label form-label-required" for="trait-posture-type" data-i18n="quiz.trait.posture.label">평소 앉는 자세 &amp; 성장통 여부</label>
+                      <select class="form-select" id="trait-posture-type" name="trait-posture-type">
+                        <option value="turtle_slouch" selected data-i18n="quiz.trait.posture.opt1">책상·스마트폰 볼 때 고개가 나오는 거북목·굽은 등</option>
+                        <option value="leg_cross_pelvis" data-i18n="quiz.trait.posture.opt2">다리 꼬기·짝다리·한쪽으로 기대어 앉는 습관</option>
+                        <option value="growing_pains" data-i18n="quiz.trait.posture.opt3">저녁·밤에 무릎·종아리 성장통이나 피로 호소</option>
+                        <option value="upright_good" data-i18n="quiz.trait.posture.opt4">비교적 허리와 목을 곧게 펴고 바르게 앉음</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label form-label-required" for="trait-exercise-freq" data-i18n="quiz.trait.exercise.label">주당 땀 흘리는 점핑·야외 운동 빈도</label>
+                      <select class="form-select" id="trait-exercise-freq" name="trait-exercise-freq">
+                        <option value="low_indoor" selected data-i18n="quiz.trait.exercise.opt1">주 1회 이하 · 실내 정적 활동 위주 (운동 부족)</option>
+                        <option value="moderate_2_3" data-i18n="quiz.trait.exercise.opt2">주 2~3회 체육·태권도·줄넘기 등 보통 수준</option>
+                        <option value="active_4_plus" data-i18n="quiz.trait.exercise.opt3">주 4회 이상 매일 땀 흘리며 뛰어노는 활동형</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Slide 6: Cognitive 5 Domains + Primary CTA -->
+              <!-- Slide 6: Cognitive 5 Domains + Child Temperament & Focus Span + Primary CTA -->
               <div class="slide-funnel-card quiz-step-content" data-step="6" id="slide-step-6">
                 <div class="form-group">
                   <label class="form-label form-label-required" data-i18n="quiz.cog.label">연령별 두뇌·신경인지 핵심 관심 축 (5대 영역)</label>
@@ -580,6 +623,27 @@
                       <input type="checkbox" name="cognitive-axes" value="executive_focus" class="chip-input" id="cog-exec">
                       <span class="chip-pill">🎯 <span data-i18n="cog.executive_focus">전두엽 실행기능 &amp; 집중력</span></span>
                     </label>
+                  </div>
+
+                  <!-- Deep Trait Question 3: Child Temperament & Focus Span -->
+                  <div class="form-row-grid" style="margin-top: 1.15rem;">
+                    <div>
+                      <label class="form-label form-label-required" for="trait-temperament" data-i18n="quiz.trait.temp.label">아이 고유 기질 &amp; 학습 성향</label>
+                      <select class="form-select" id="trait-temperament" name="trait-temperament">
+                        <option value="explorer" selected data-i18n="quiz.trait.temp.opt1">몸으로 부딪히고 직접 실험할 때 신나는 활동·탐구형</option>
+                        <option value="builder" data-i18n="quiz.trait.temp.opt2">차분하게 손끝으로 조립·만들기·그리기에 몰입하는 조립형</option>
+                        <option value="questioner" data-i18n="quiz.trait.temp.opt3">"왜?" 질문이 많고 이야기·토론을 좋아하는 언어·사고형</option>
+                        <option value="cautious" data-i18n="quiz.trait.temp.opt4">신중하고 틀리는 것을 두려워하는 섬세·완벽주의 관찰형</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label form-label-required" for="trait-focus-span" data-i18n="quiz.trait.focus.label">한 가지 과제 평균 집중 지속시간</label>
+                      <select class="form-select" id="trait-focus-span" name="trait-focus-span">
+                        <option value="under_10m" data-i18n="quiz.trait.focus.opt1">10분 미만 (쉽게 지루해하여 짧은 호흡 미션 필요)</option>
+                        <option value="15_20m" selected data-i18n="quiz.trait.focus.opt2">15~20분 집중 후 전환 (단계별 성취감 자극 적합)</option>
+                        <option value="30m_plus" data-i18n="quiz.trait.focus.opt3">30분 이상 깊은 몰입 가능 (심화 프로젝트·독서 적합)</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 

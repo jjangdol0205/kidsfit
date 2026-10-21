@@ -185,7 +185,37 @@
       // Results
       'rx.retest': '🔄 재문진 및 데이터 변경',
       'rx.standard.kdca': '질병관리청(KDCA 2017) 소아청소년 표준 성장도표 적용',
-      'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied'
+      'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied',
+
+      // Deep Child Trait Questions
+      'quiz.trait.sleep.label': '수면 깊이 & 아침 기상 특성',
+      'quiz.trait.sleep.opt1': '21:30 이전 숙면 · 아침에 개운하게 기상',
+      'quiz.trait.sleep.opt2': '22:30 이후 늦은 취침 (학원·숙제·스마트폰)',
+      'quiz.trait.sleep.opt3': '자주 뒤척이거나 입호흡·코골이·얕은 수면',
+      'quiz.trait.sleep.opt4': '자기 직전 우유·야식·간식을 먹고 잠듦',
+      'quiz.trait.diet.label': '식사량 & 소화·장 흡수 체질',
+      'quiz.trait.diet.opt1': '입이 짧고 한 끼 식사량이 적은 소식형',
+      'quiz.trait.diet.opt2': '고기·채소를 가리고 탄수화물·간식 선호',
+      'quiz.trait.diet.opt3': '우유·유제품 마시면 배앓이·설사·변비 잦음',
+      'quiz.trait.diet.opt4': '골고루 잘 먹고 소화·배변도 원활함',
+      'quiz.trait.posture.label': '평소 앉는 자세 & 성장통 여부',
+      'quiz.trait.posture.opt1': '책상·스마트폰 볼 때 고개가 나오는 거북목·굽은 등',
+      'quiz.trait.posture.opt2': '다리 꼬기·짝다리·한쪽으로 기대어 앉는 습관',
+      'quiz.trait.posture.opt3': '저녁·밤에 무릎·종아리 성장통이나 피로 호소',
+      'quiz.trait.posture.opt4': '비교적 허리와 목을 곧게 펴고 바르게 앉음',
+      'quiz.trait.exercise.label': '주당 땀 흘리는 점핑·야외 운동 빈도',
+      'quiz.trait.exercise.opt1': '주 1회 이하 · 실내 정적 활동 위주 (운동 부족)',
+      'quiz.trait.exercise.opt2': '주 2~3회 체육·태권도·줄넘기 등 보통 수준',
+      'quiz.trait.exercise.opt3': '주 4회 이상 매일 땀 흘리며 뛰어노는 활동형',
+      'quiz.trait.temp.label': '아이 고유 기질 & 학습 성향',
+      'quiz.trait.temp.opt1': '몸으로 부딪히고 직접 실험할 때 신나는 활동·탐구형',
+      'quiz.trait.temp.opt2': '차분하게 손끝으로 조립·만들기·그리기에 몰입하는 조립형',
+      'quiz.trait.temp.opt3': '"왜?" 질문이 많고 이야기·토론을 좋아하는 언어·사고형',
+      'quiz.trait.temp.opt4': '신중하고 틀리는 것을 두려워하는 섬세·완벽주의 관찰형',
+      'quiz.trait.focus.label': '한 가지 과제 평균 집중 지속시간',
+      'quiz.trait.focus.opt1': '10분 미만 (쉽게 지루해하여 짧은 호흡 미션 필요)',
+      'quiz.trait.focus.opt2': '15~20분 집중 후 전환 (단계별 성취감 자극 적합)',
+      'quiz.trait.focus.opt3': '30분 이상 깊은 몰입 가능 (심화 프로젝트·독서 적합)'
     },
 
     en: {
@@ -355,7 +385,37 @@
       // Results
       'rx.retest': '🔄 Re-evaluate Biometrics',
       'rx.standard.kdca': 'Korean KDCA 2017 Clinical Growth Charts Applied',
-      'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied'
+      'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied',
+
+      // Deep Child Trait Questions
+      'quiz.trait.sleep.label': 'Sleep Depth & Morning Wake-Up Pattern',
+      'quiz.trait.sleep.opt1': 'Deep sleep before 21:30 · Wakes up refreshed',
+      'quiz.trait.sleep.opt2': 'Late bedtime after 22:30 (study, academy, screen)',
+      'quiz.trait.sleep.opt3': 'Frequent tossing, mouth-breathing, or light sleep',
+      'quiz.trait.sleep.opt4': 'Drinks milk or eats snacks right before bedtime',
+      'quiz.trait.diet.label': 'Appetite & Digestive Constitution',
+      'quiz.trait.diet.opt1': 'Small appetite · Eats small portions per meal',
+      'quiz.trait.diet.opt2': 'Avoids meat/vegetables · Prefers carbs & snacks',
+      'quiz.trait.diet.opt3': 'Sensitive to milk/dairy (bloating, diarrhea, constipation)',
+      'quiz.trait.diet.opt4': 'Balanced eater with smooth digestion',
+      'quiz.trait.posture.label': 'Sitting Posture & Growing Pains',
+      'quiz.trait.posture.opt1': 'Forward head (tech-neck) & rounded shoulders at desk',
+      'quiz.trait.posture.opt2': 'Crossed legs, uneven leaning, or pelvic tilt',
+      'quiz.trait.posture.opt3': 'Complains of evening knee/calf growing pains or fatigue',
+      'quiz.trait.posture.opt4': 'Maintains relatively upright spine and neck posture',
+      'quiz.trait.exercise.label': 'Weekly Active Jumping & Outdoor Exercise',
+      'quiz.trait.exercise.opt1': '1x/week or less · Mostly indoor sedentary activity',
+      'quiz.trait.exercise.opt2': '2–3x/week moderate sports, jump rope, or PE',
+      'quiz.trait.exercise.opt3': '4x+/week active daily sweating & outdoor play',
+      'quiz.trait.temp.label': 'Child Temperament & Learning Style',
+      'quiz.trait.temp.opt1': 'Active Explorer · Thrives on hands-on experiments & motion',
+      'quiz.trait.temp.opt2': 'Focused Builder · Immerses in blocks, crafting & drawing',
+      'quiz.trait.temp.opt3': 'Verbal Questioner · Loves asking "Why?" and storytelling',
+      'quiz.trait.temp.opt4': 'Careful Observer · Cautious, detail-oriented perfectionist',
+      'quiz.trait.focus.label': 'Average Single-Task Attention Span',
+      'quiz.trait.focus.opt1': 'Under 10 mins (Needs short, high-reward micro-missions)',
+      'quiz.trait.focus.opt2': '15–20 mins (Fits step-by-step milestone challenges)',
+      'quiz.trait.focus.opt3': '30+ mins deep immersion (Ready for advanced projects)'
     }
   };
 

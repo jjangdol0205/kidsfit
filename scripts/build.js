@@ -27,7 +27,11 @@ function copyRecursiveSync(src, dest) {
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
-    fs.copyFileSync(src, dest);
+    try {
+      fs.copyFileSync(src, dest);
+    } catch (_err) {
+      fs.writeFileSync(dest, fs.readFileSync(src));
+    }
   }
 }
 

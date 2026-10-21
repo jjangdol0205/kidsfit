@@ -701,7 +701,75 @@
   }
 
   /**
-   * 5. Renders the Pinpoint Supplement / Toy / Book Recommendation Section + Age N -> N+1 -> N+2 Roadmap HTML
+   * Helper to summarize child-specific trait reasons concisely
+   */
+  function getTraitSpecificNote(profile = {}, category = 'supplement', isEn = false) {
+    const diet = profile.traitDiet || 'small_appetite';
+    const sleep = profile.traitSleep || 'late_bedtime';
+    const posture = profile.traitPosture || 'turtle_slouch';
+    const temp = profile.traitTemperament || 'explorer';
+    const focus = profile.traitFocusSpan || '15_20m';
+
+    if (category === 'supplement') {
+      if (diet === 'dairy_sensitive') {
+        return isEn
+          ? 'Tailored for dairy-sensitive digestion: non-lactose calcium citrate & cartilage matrix.'
+          : '[우유·유제품 배앓이 체질 맞춤] 유당 부담 없이 흡수되는 구연산·연골칼슘 및 장 면역 배합이 필요합니다.';
+      }
+      if (diet === 'meat_veggie_picky') {
+        return isEn
+          ? 'Tailored for meat/veggie picky eaters: zinc, colostrum protein & amino acid support.'
+          : '[고기·채소 편식 체질 맞춤] 부족한 단백질 기질과 미각 세포를 깨우는 아연·초유·아르기닌 보충이 핵심입니다.';
+      }
+      if (sleep === 'toss_mouth' || sleep === 'late_bedtime' || posture === 'growing_pains') {
+        return isEn
+          ? 'Tailored for late/restless sleep & growing pains: chelated magnesium & cartilage calcium.'
+          : '[얕은 수면·늦은 취침·성장통 맞춤] 밤 10시 깊은 서파수면 유도 및 저녁 다리 피로 완화를 돕는 배합입니다.';
+      }
+      return isEn
+        ? 'Tailored for small appetite: high-density HT042 & bioavailable calcium.'
+        : '[입 짧은 소식형 체질 맞춤] 적은 양으로도 성장판 연골 증식(IGF-1)을 돕는 고밀도 원료가 필요합니다.';
+    }
+
+    if (category === 'toy') {
+      if (temp === 'builder') {
+        return isEn
+          ? 'Matched to Focused Builder temperament: 3D spatial block construction & posture tools.'
+          : '[손끝 조립 몰입형 기질 맞춤] 아이가 좋아하는 입체 조립 교구와 앉은 자세 교정 도구를 결합했습니다.';
+      }
+      if (temp === 'questioner') {
+        return isEn
+          ? 'Matched to Verbal Questioner temperament: cause-and-effect science kits & spinal decompression.'
+          : '[질문·언어 사고형 기질 맞춤] 원리를 실험하며 대화할 수 있는 과학 탐구 교구와 척추 감압 기구입니다.';
+      }
+      if (temp === 'cautious') {
+        return isEn
+          ? 'Matched to Careful Observer temperament: step-by-step precision puzzles & safe indoor exercise.'
+          : '[섬세·완벽주의 관찰형 맞춤] 실패 부담 없이 단계별로 완성하는 정밀 교구와 안전한 실내 점핑 기구입니다.';
+      }
+      return isEn
+        ? 'Matched to Active Explorer temperament: hands-on physical play & epiphyseal loading.'
+        : '[활동·탐구형 기질 맞춤] 몸으로 직접 조작하고 뛰면서 성장판과 전두엽을 동시에 자극하는 도구입니다.';
+    }
+
+    // book
+    if (focus === 'under_10m') {
+      return isEn
+        ? 'Matched to <10m focus span: short-breath interactive pop-up/activity books for instant engagement.'
+        : '[10분 미만 단기 집중 특성 맞춤] 긴 글 대신 손으로 조작하고 짧게 성취감을 느끼는 워크북·팝업북입니다.';
+    }
+    if (focus === '30m_plus') {
+      return isEn
+        ? 'Matched to 30m+ deep focus: advanced metacognition & scientific inquiry reading.'
+        : '[30분+ 심화 몰입 특성 맞춤] 깊이 있는 원리 탐구와 백지복습·하브루타 확장이 가능한 심화 도서입니다.';
+    }
+    return isEn
+      ? 'Matched to 15–20m focus span: structured 1-chapter-per-day inquiry workbooks.'
+      : '[15~20분 집중 특성 맞춤] 하루 한 챕터씩 질문하고 해결하며 집중 시간을 30분으로 늘려주는 도서입니다.';
+  }
+
+  /**
+   * 5. Renders the Clean, Aligned Lifecycle Roadmap + Neutral "Need & Where to Find" Tool Guide
    */
   function renderPinpointAndLifecycleSection(profile = {}, affConfig = {}) {
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
@@ -710,174 +778,172 @@
     const exactMonths = Number(profile.exactMonths || ageMonths).toFixed(1);
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const genderKo = profile.gender === 'girl' ? '여아' : '남아';
-    const dobText = profile.birthDateKo || `${new Date().getFullYear() - ageYears}년생`;
+
+    const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
+    const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
+    const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
 
     return `
-      <!-- SECTION A: Age-by-Age Sequential Lifecycle Roadmap (만 N세 -> 만 N+1세 -> 만 N+2세 -> 만 N+3세) -->
-      <div id="child-lifecycle-roadmap-section" style="margin-top: 1.5rem; padding-top: 1.35rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem;">
-          <div>
-            <span style="display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom: 0.3rem;">
-              🌱 KIDS-FIT AI · AGE-BY-AGE LIFECYCLE MILESTONE ROADMAP
-            </span>
-            <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0;">
-              ${isEn
-                ? `Year-by-Year Growth & Brain Focus: Age ${ageYears} → Age ${ageYears + 1} → Age ${ageYears + 2} → Age ${ageYears + 3}`
-                : `성장주기별 신체·정신 발달 &amp; 맞춤 학습 타임라인 (만 ${ageYears}세 → 만 ${ageYears + 1}세 → 만 ${ageYears + 2}세 → 만 ${ageYears + 3}세)`}
-            </h3>
-            <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.25rem 0 0 0;">
-              ${isEn
-                ? `Based on ${profile.birthDateStr || `Age ${ageYears}`} (${exactMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}), here is your sequential physical, cognitive, and learning roadmap for this year and the next 3 years.`
-                : `${dobText} (생후 ${exactMonths}개월 ${genderKo}) 기준, 올해·내년·내후년에 어떤 신체적·정신적 성장과 학습 방향을 가장 중요하게 챙겨야 하는지 정리했습니다.`}
-            </p>
-          </div>
-          <span style="background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.76rem; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.35);">
-            🤖 ${isEn ? `AI Stage: ${data.autoStage.stageNameEn}` : `AI 자동 판정 단계: ${data.autoStage.stageNameKo}`}
+      <!-- AGE LIFECYCLE TIMELINE (Compact 4-Column Grid) -->
+      <div id="child-lifecycle-roadmap-section" style="margin-top: 1.35rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+            🗓️ ${isEn
+              ? `Year-by-Year Focus (Age ${ageYears} → Age ${ageYears + 3})`
+              : `앞으로 4년간 나이별 핵심 집중 포인트 (만 ${ageYears}세 → 만 ${ageYears + 3}세)`}
+          </h3>
+          <span style="background: rgba(59, 130, 246, 0.14); color: #60A5FA; font-size: 0.74rem; font-weight: 800; padding: 0.24rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.3);">
+            ${isEn ? data.autoStage.stageNameEn : data.autoStage.stageNameKo}
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.85rem;">
-          ${data.lifecycleRoadmap.map((step) => `
-            <div class="lifecycle-age-card" data-age="${step.age}" style="background: ${step.isCurrent ? 'rgba(59, 130, 246, 0.1)' : 'rgba(255, 255, 255, 0.04)'}; border: ${step.isCurrent ? '2px solid #3B82F6' : '1px solid rgba(255, 255, 255, 0.1)'}; border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: ${step.isCurrent ? '0 10px 24px rgba(59, 130, 246, 0.18)' : 'none'};">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; align-items: stretch;">
+          ${data.lifecycleRoadmap.map((step, idx) => `
+            <div class="lifecycle-age-card" data-age="${step.age}" style="background: ${step.isCurrent ? 'rgba(59, 130, 246, 0.1)' : 'rgba(255, 255, 255, 0.03)'}; border: ${step.isCurrent ? '1.5px solid #3B82F6' : '1px solid rgba(255, 255, 255, 0.1)'}; border-radius: 14px; padding: 0.9rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
               <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem;">
-                  <span style="background: rgba(59, 130, 246, 0.18); color: #60A5FA; font-size: 0.73rem; font-weight: 800; padding: 0.18rem 0.55rem; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.3);">
-                    ${isEn ? `Age ${step.age}` : step.stageBadge}
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.74rem; font-weight: 900; color: ${step.isCurrent ? '#60A5FA' : '#94A3B8'};">
+                    ${isEn ? (idx === 0 ? `Now · Age ${step.age}` : `+${idx} Yr · Age ${step.age}`) : (idx === 0 ? `현재 · 만 ${step.age}세` : `+${idx}년 뒤 · 만 ${step.age}세`)}
                   </span>
-                  <span style="font-size: 0.72rem; font-weight: 800; color: #34D399;">${isEn ? `Target: ${step.expectedVelocity}` : `목표: ${step.expectedVelocity}`}</span>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #34D399;">${step.expectedVelocity}</span>
                 </div>
-                <h4 style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0;">
-                  ${step.bandLabel}
-                </h4>
-                <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.48; margin-bottom: 0.45rem;">
-                  <strong style="color: #60A5FA;">📏 ${isEn ? 'Physical Focus:' : '신체·골격 핵심:'}</strong> ${step.physicalFocus}
+                <div style="font-size: 0.78rem; color: #E2E8F0; line-height: 1.45; margin-bottom: 0.35rem;">
+                  <strong style="color: #60A5FA;">📏 ${isEn ? 'Body:' : '신체:'}</strong> ${step.physicalFocus.split('·')[0].trim()}
                 </div>
-                <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.48; margin-bottom: 0.45rem;">
-                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Brain & Learning:' : '두뇌·발달 핵심:'}</strong> ${step.brainFocus}
-                </div>
-                <div style="font-size: 0.75rem; color: #FDE68A; line-height: 1.42; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.42rem 0.58rem; border-radius: 8px; margin-bottom: 0.5rem;">
-                  <strong>⚠️ ${isEn ? 'Parent Note:' : '학부모 주의점:'}</strong> ${step.parentWarning}
+                <div style="font-size: 0.78rem; color: #E2E8F0; line-height: 1.45; margin-bottom: 0.35rem;">
+                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Study:' : '학습:'}</strong> ${step.brainFocus.split('·')[0].trim()}
                 </div>
               </div>
-              <div style="font-size: 0.74rem; color: #6EE7B7; font-weight: 700; border-top: 1px dashed rgba(255, 255, 255, 0.12); padding-top: 0.45rem;">
-                🎁 <strong>${isEn ? 'Key Essentials:' : '이 시기 필수 준비물:'}</strong> ${step.mustHaveSummary}
+              <div style="font-size: 0.73rem; color: #6EE7B7; font-weight: 700; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 0.38rem;">
+                🎁 ${step.mustHaveSummary}
               </div>
             </div>
           `).join('')}
         </div>
       </div>
 
-      <!-- SECTION B: Pinpoint Custom Prescriptions (Supplements, Play Toys, Books) -->
-      <div id="pinpoint-custom-prescription-section" style="margin-top: 1.5rem; padding-top: 1.35rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div style="margin-bottom: 1rem;">
-          <span style="display: inline-block; background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35); margin-bottom: 0.3rem;">
-            🎯 1:1 BESPOKE PINPOINT PRESCRIPTION ${isEn ? '(Supplements · Toys · Books)' : '(영양제 · 놀이 장난감 · 필독 도서)'}
-          </span>
-          <h3 style="font-size: 1.15rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+      <!-- STEP 04: What You Need to Sustain the Routine (Neutral Guidance: Buy Anywhere or Use Reference Links) -->
+      <div id="pinpoint-custom-prescription-section" style="margin-top: 1.4rem; padding-top: 1.3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 1rem; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem;">
+            <span style="font-size: 0.75rem; font-weight: 900; color: #34D399; letter-spacing: 0.04em;">
+              STEP 04 · ${isEn ? 'WHAT YOU NEED FOR CONSISTENT PRACTICE' : '꾸준히 실천하기 위해 필요한 맞춤 도구'}
+            </span>
+            <span style="font-size: 0.73rem; color: #94A3B8; font-weight: 700;">
+              ${isEn ? 'Self-Search Keyword or Direct Reference' : '직접 찾아서 구매하셔도 되고, 아래 링크를 참고하셔도 됩니다'}
+            </span>
+          </div>
+          <h3 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.3rem 0;">
             ${isEn
-              ? `Child-Specific Pinpoint Supplement, Manipulative Toy & Book Prescriptions`
-              : `우리 아이(생후 ${exactMonths}개월 ${genderKo}) 맞춤 【영양제 · 놀이 장난감 · 필독 도서】 핀셋 처방`}
+              ? 'To Practice Consistently, Prepare These 3 Trait-Matched Essentials'
+              : `앞선 루틴을 꾸준히 실천하려면 아래 3가지 맞춤 도구가 필요합니다`}
           </h3>
-          <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.25rem 0 0 0;">
+          <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
             ${isEn
-              ? 'Curated active ingredients, developmental manipulatives, and age-matched books tailored to your exact age and habits.'
-              : '막연한 전체 목록이 아니라, 현재 월령·신장·선택 습관에 꼭 필요한 <strong>구체적 성분과 교구·도서</strong>만 엄선했습니다. 버튼을 누르면 해당 상품이 바로 표시됩니다.'}
+              ? 'If you already have similar items at home, use them as is. You can search the recommended keywords yourself on any store, or click the reference links below for convenience.'
+              : '집에 비슷한 제품이 있다면 그대로 활용하세요. <strong>제시된 핵심 키워드로 직접 검색해서 구매하셔도 되고, 일일이 찾기 번거로우시다면 아래 바로가기를 통해 구입하셔도 됩니다.</strong>'}
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 0.9rem; align-items: stretch;">
           
-          <!-- Column 1: Pinpoint Supplements -->
-          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
-            <h4 style="font-size: 0.98rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              💊 ${isEn ? '1. Custom Growth Supplements' : '1. 우리 아이 맞춤 핵심 영양제 처방'}
-            </h4>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-              ${data.supplements.map((item) => `
-                <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.9rem;">
-                  <span style="display: inline-block; font-size: 0.7rem; font-weight: 800; color: #60A5FA; background: rgba(59, 130, 246, 0.16); padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">
-                    ${item.categoryBadge}
-                  </span>
-                  <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.38; margin-bottom: 0.3rem;">
-                    ${item.name}
+          <!-- Column 1: Required Supplements -->
+          <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.35rem 0;">
+                💊 ${isEn ? '1. Required Nutritional Ingredients' : '1. 꾸준히 보충할 맞춤 영양 성분'}
+              </h4>
+              <p style="font-size: 0.76rem; color: #93C5FD; margin: 0 0 0.7rem 0; line-height: 1.42;">
+                ${suppTraitNote}
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+                ${data.supplements.map((item) => `
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
+                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                      ${item.name}
+                    </div>
+                    <div style="font-size: 0.74rem; color: #34D399; font-weight: 700; margin-bottom: 0.25rem;">
+                      ✓ ${isEn ? 'Key Spec:' : '체크 기준:'} ${item.activeSpec}
+                    </div>
+                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
+                      <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
+                        ${isEn ? 'View on Coupang ↗' : '쿠팡에서 보기 ↗'}
+                      </a>
+                      <a href="${item.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #34D399; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
+                        ${isEn ? 'View on iHerb ↗' : 'iHerb에서 보기 ↗'}
+                      </a>
+                    </div>
                   </div>
-                  <div style="font-size: 0.74rem; color: #34D399; font-weight: 800; margin-bottom: 0.35rem;">
-                    🧪 ${isEn ? 'Spec:' : '핵심 규격:'} ${item.activeSpec}
-                  </div>
-                  <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
-                    ${item.whyNeeded}
-                  </p>
-                  <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                    <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; font-size: 0.78rem; font-weight: 900; padding: 0.54rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-                      📦 ${item.buttonLabelCoupang}
-                    </a>
-                    <a href="${item.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.35); color: #34D399; font-size: 0.76rem; font-weight: 800; padding: 0.44rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-                      🌿 ${item.buttonLabelIherb}
-                    </a>
-                  </div>
-                </div>
-              `).join('')}
+                `).join('')}
+              </div>
             </div>
           </div>
 
-          <!-- Column 2: Pinpoint Developmental Play & Toys -->
-          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
-            <h4 style="font-size: 0.98rem; font-weight: 900; color: #34D399; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              🧩 ${isEn ? '2. Fine-Motor & Cognitive Play Toys' : '2. 소근육·두뇌·성장판 맞춤 놀이 장난감 &amp; 교구'}
-            </h4>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-              ${data.toys.map((item) => `
-                <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.9rem;">
-                  <span style="display: inline-block; font-size: 0.7rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.16); padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">
-                    ${item.categoryBadge}
-                  </span>
-                  <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.38; margin-bottom: 0.3rem;">
-                    ${item.name}
+          <!-- Column 2: Required Play & Posture Tools -->
+          <div class="pinpoint-category-box" id="pinpoint-toys-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 900; color: #34D399; margin: 0 0 0.35rem 0;">
+                🧩 ${isEn ? '2. Required Posture & Cognitive Tools' : '2. 기질·자세 맞춤 교구 & 운동 도구'}
+              </h4>
+              <p style="font-size: 0.76rem; color: #6EE7B7; margin: 0 0 0.7rem 0; line-height: 1.42;">
+                ${toyTraitNote}
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+                ${data.toys.map((item) => `
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
+                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                      ${item.name}
+                    </div>
+                    <div style="font-size: 0.74rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.25rem;">
+                      ✓ ${isEn ? 'Purpose:' : '활용 목적:'} ${item.activeSpec}
+                    </div>
+                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    </div>
+                    <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; width: 100%; box-sizing: border-box; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
+                      ${isEn ? 'View Reference on Coupang ↗' : '쿠팡에서 바로 확인하기 ↗'}
+                    </a>
                   </div>
-                  <div style="font-size: 0.74rem; color: #60A5FA; font-weight: 800; margin-bottom: 0.35rem;">
-                    🎯 ${isEn ? 'Target:' : '발달 타겟:'} ${item.activeSpec}
-                  </div>
-                  <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
-                    ${item.whyNeeded}
-                  </p>
-                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; width: 100%; box-sizing: border-box; align-items: center; justify-content: center; gap: 0.35rem; background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; font-size: 0.78rem; font-weight: 900; padding: 0.54rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-                    📦 ${item.buttonLabelCoupang}
-                  </a>
-                </div>
-              `).join('')}
+                `).join('')}
+              </div>
             </div>
           </div>
 
-          <!-- Column 3: Pinpoint Books & Workbooks -->
-          <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 1.15rem;">
-            <h4 style="font-size: 0.98rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.75rem 0; display: flex; align-items: center; gap: 0.4rem;">
-              📚 ${isEn ? '3. Age-Matched Books & Workbooks' : '3. 월령·인지축 맞춤 필독 도서 &amp; 워크북'}
-            </h4>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-              ${data.books.map((item) => `
-                <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.9rem;">
-                  <span style="display: inline-block; font-size: 0.7rem; font-weight: 800; color: #C4B5FD; background: rgba(139, 92, 246, 0.16); padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">
-                    ${item.categoryBadge}
-                  </span>
-                  <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.38; margin-bottom: 0.3rem;">
-                    ${item.name}
+          <!-- Column 3: Required Books & Workbooks -->
+          <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 900; color: #C4B5FD; margin: 0 0 0.35rem 0;">
+                📚 ${isEn ? '3. Required Books & Workbooks' : '3. 집중시간·연령 맞춤 필독 도서'}
+              </h4>
+              <p style="font-size: 0.76rem; color: #DDD6FE; margin: 0 0 0.7rem 0; line-height: 1.42;">
+                ${bookTraitNote}
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+                ${data.books.map((item) => `
+                  <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 0.8rem;">
+                    <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin-bottom: 0.25rem;">
+                      ${item.name}
+                    </div>
+                    <div style="font-size: 0.74rem; color: #C4B5FD; font-weight: 700; margin-bottom: 0.25rem;">
+                      ✓ ${isEn ? 'Focus:' : '핵심 훈련:'} ${item.activeSpec}
+                    </div>
+                    <div style="font-size: 0.73rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.28rem 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                      🔎 ${isEn ? 'Search Keyword:' : '직접 검색 키워드:'} <strong style="color:#E2E8F0;">${item.coupangQuery}</strong>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
+                      <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #0F172A; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
+                        ${isEn ? 'View on Coupang ↗' : '쿠팡에서 보기 ↗'}
+                      </a>
+                      <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(139, 92, 246, 0.35); color: #C4B5FD; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.5rem; border-radius: 8px; text-decoration: none;">
+                        ${isEn ? 'View on YES24 ↗' : '예스24에서 보기 ↗'}
+                      </a>
+                    </div>
                   </div>
-                  <div style="font-size: 0.74rem; color: #C4B5FD; font-weight: 800; margin-bottom: 0.35rem;">
-                    📖 ${isEn ? 'Focus:' : '두뇌 자극:'} ${item.activeSpec}
-                  </div>
-                  <p style="font-size: 0.77rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.65rem 0;">
-                    ${item.whyNeeded}
-                  </p>
-                  <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                    <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; font-size: 0.78rem; font-weight: 900; padding: 0.54rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-                      📦 ${item.buttonLabelCoupang}
-                    </a>
-                    <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; background: rgba(139, 92, 246, 0.16); border: 1px solid rgba(139, 92, 246, 0.35); color: #C4B5FD; font-size: 0.75rem; font-weight: 800; padding: 0.44rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-                      📚 ${item.buttonLabelYes24}
-                    </a>
-                  </div>
-                </div>
-              `).join('')}
+                `).join('')}
+              </div>
             </div>
           </div>
 

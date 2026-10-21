@@ -790,6 +790,21 @@
     const regionSelect = document.getElementById('user-region');
     const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
 
+    // Child-Specific Deep Traits (Sleep, Diet/Digestion, Posture, Exercise, Temperament, Focus Span)
+    const sleepTraitEl = document.getElementById('trait-sleep-quality');
+    const dietTraitEl = document.getElementById('trait-diet-digestion');
+    const postureTraitEl = document.getElementById('trait-posture-type');
+    const exerciseTraitEl = document.getElementById('trait-exercise-freq');
+    const tempTraitEl = document.getElementById('trait-temperament');
+    const focusTraitEl = document.getElementById('trait-focus-span');
+
+    const traitSleep = sleepTraitEl && sleepTraitEl.value ? sleepTraitEl.value : 'late_bedtime';
+    const traitDiet = dietTraitEl && dietTraitEl.value ? dietTraitEl.value : 'small_appetite';
+    const traitPosture = postureTraitEl && postureTraitEl.value ? postureTraitEl.value : 'turtle_slouch';
+    const traitExercise = exerciseTraitEl && exerciseTraitEl.value ? exerciseTraitEl.value : 'low_indoor';
+    const traitTemperament = tempTraitEl && tempTraitEl.value ? tempTraitEl.value : 'explorer';
+    const traitFocusSpan = focusTraitEl && focusTraitEl.value ? focusTraitEl.value : '15_20m';
+
     wizardState.profile = {
       targetSubject,
       gender,
@@ -806,7 +821,13 @@
       tannerPhase,
       habits,
       cognitiveAxes,
-      region
+      region,
+      traitSleep,
+      traitDiet,
+      traitPosture,
+      traitExercise,
+      traitTemperament,
+      traitFocusSpan
     };
 
     return wizardState.profile;
