@@ -610,6 +610,18 @@ function runSuite() {
       const html = MasterBriefing.renderMasterBriefingCard(renderedProfile);
       assert.ok(html.includes('id="pillar-2-container" class="master-pillar-container" style="display: block;'), 'Learning report container must be visible');
       assert.ok(html.includes('id="pillar-1-container" class="master-pillar-container" style="display: none;'), 'Physical growth report container must be hidden');
+      assert.ok(!html.includes('id="separate-report-selector-bar"'), 'Cross-report selector bar must be completely removed');
+      assert.ok(!html.includes('[보고서 1: 신체 성장 마스터 보고서] 단독 보기'), 'Learning report must not contain cross-switch button to physical growth report');
+      assert.ok(html.includes('id="learning-step-1-style"'), '8-step learning report must contain Step 1 style');
+      assert.ok(html.includes('id="learning-step-2-strengths"'), '8-step learning report must contain Step 2 strengths');
+      assert.ok(html.includes('id="learning-step-3-weaknesses"'), '8-step learning report must contain Step 3 weaknesses');
+      assert.ok(html.includes('id="learning-step-4-careers"'), '8-step learning report must contain Step 4 careers');
+      assert.ok(html.includes('id="learning-step-5-boost"'), '8-step learning report must contain Step 5 boost');
+      assert.ok(html.includes('id="learning-step-6-remedy"'), '8-step learning report must contain Step 6 remedy');
+      assert.ok(html.includes('id="learning-step-7-items"'), '8-step learning report must contain Step 7 items');
+      assert.ok(html.includes('id="learning-step-8-links"'), '8-step learning report must contain Step 8 links');
+      assert.ok(html.includes('id="learning-retention-repeat-loop" style="display: block;'), 'Learning report mode must display learning periodic re-check routine');
+      assert.ok(html.includes('id="growth-retention-repeat-loop" style="display: none;'), 'Learning report mode must hide physical growth periodic re-check routine');
     } finally {
       global.document = origDoc;
       global.window = origWin;

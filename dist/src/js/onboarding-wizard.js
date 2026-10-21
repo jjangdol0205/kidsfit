@@ -290,6 +290,12 @@
       }
     }
 
+    // Reset Step 6 choices vs Additional Step 7 narrative view when navigating to Step 1..6
+    const choicesView = document.getElementById('step-6-choices-view');
+    const narrativeView = document.getElementById('step-7-narrative-view');
+    if (choicesView) choicesView.style.display = 'block';
+    if (narrativeView) narrativeView.style.display = 'none';
+
     // Update Progress Indicator
     const tagEl = document.getElementById('quiz-step-tag');
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
@@ -1092,8 +1098,8 @@
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
       submitBtnEl.textContent = (activeMode === 'learning')
-        ? '✦ 우리 아이 맞춤 두뇌·학습 보고서 보기 →'
-        : '✦ 우리 아이 맞춤 신체 성장 보고서 보기 →';
+        ? '✦ 진단 6단계 + 아이 특징 합산 두뇌·학습 보고서 보기 →'
+        : '✦ 진단 6단계 + 아이 특징 합산 신체 성장 보고서 보기 →';
     }
 
     if (document.body && document.body.classList) {
@@ -1385,6 +1391,37 @@
     }
   }
 
+  function openAdditionalNarrativeStep() {
+    if (typeof document === 'undefined') return;
+    const choicesView = document.getElementById('step-6-choices-view');
+    const narrativeView = document.getElementById('step-7-narrative-view');
+    if (choicesView) choicesView.style.display = 'none';
+    if (narrativeView) narrativeView.style.display = 'block';
+
+    const tagEl = document.getElementById('quiz-step-tag');
+    const titleEl = document.getElementById('quiz-step-title');
+    const subtitleEl = document.getElementById('quiz-step-subtitle');
+    const prevBtn = document.getElementById('btn-prev-step');
+
+    if (tagEl) tagEl.textContent = '추가 심층 단계 (진단 6단계 + 아이 특징 합산)';
+    if (titleEl) titleEl.textContent = '💬 우리 아이 특징·잘하는 점·부족한 점을 길게 적어주세요';
+    if (subtitleEl) subtitleEl.textContent = '진단 1~6단계 객관식 결과와 부모님이 적어주신 아이 특징을 더해서 세상에 하나뿐인 맞춤 보고서를 만듭니다.';
+    if (prevBtn) prevBtn.style.display = 'none';
+
+    const noteEl = document.getElementById('parent-free-note');
+    if (noteEl && typeof noteEl.focus === 'function') {
+      try { noteEl.focus(); } catch (_) {}
+    }
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function closeAdditionalNarrativeStep() {
+    if (typeof document === 'undefined') return;
+    goToStep(6);
+  }
+
   function submitQuiz(e) {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
@@ -1426,6 +1463,8 @@
     start3SecondScan,
     completeScan,
     readProfileFromForm,
+    openAdditionalNarrativeStep,
+    closeAdditionalNarrativeStep,
     submitQuiz,
     initWizard
   };

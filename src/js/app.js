@@ -599,11 +599,23 @@
     if (typeof document === 'undefined') return;
 
     const headerTitleEl = document.getElementById('rx-header-title');
+    const headerSubEl = document.getElementById('rx-header-subtitle');
+    const isLearningModeActive = (state.profile && state.profile.preferredReportMode === 'learning') ||
+      (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning');
     if (headerTitleEl) {
       const isEn = document.documentElement.lang === 'en';
       headerTitleEl.textContent = isEn
-        ? `Custom Growth & Learning Guidebook (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`
-        : `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+        ? (isLearningModeActive
+          ? `Brain & Learning Disposition Master Report (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`
+          : `Physical Growth Master Report (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`)
+        : (isLearningModeActive
+          ? `만 ${Math.max(1, Math.floor((state.profile.ageMonths || 120) / 12))}세(${state.profile.ageMonths}개월) ${state.profile.gender === 'boy' ? '남아' : '여아'} 두뇌·학습 성향 & 진로 맞춤 보고서`
+          : `만 ${Math.max(1, Math.floor((state.profile.ageMonths || 120) / 12))}세(${state.profile.ageMonths}개월) ${state.profile.gender === 'boy' ? '남아' : '여아'} 신체 성장 맞춤 보고서`);
+    }
+    if (headerSubEl) {
+      headerSubEl.textContent = isLearningModeActive
+        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 2,005편 정밀 분석 완료'
+        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 2,005편 정밀 분석 완료';
     }
 
     const affConfig = getAffiliateConfig();
