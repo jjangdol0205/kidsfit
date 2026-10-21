@@ -401,7 +401,7 @@
             </h4>
           </div>
           <span style="font-size: 0.85rem; font-weight: 700; color: #FDE68A; background: rgba(251, 191, 36, 0.14); padding: 0.35rem 0.85rem; border-radius: 9999px;">
-            ✨ ${isGlobal ? 'Relieves Night Growing Pains & Boosts Blood Flow' : '야간 성장통 완화 & 성장판 혈류량 2배 촉진~!'}
+            ✨ ${isGlobal ? 'Relieves Night Growing Pains & Boosts Blood Flow' : '야간 성장통 완화 & 성장판 혈류량 2배 촉진'}
           </span>
         </div>
 
@@ -486,7 +486,7 @@
     const titleStr = isGlobal ? 'Illustrated Growth Massage & Spine Decompression Guide' : '그림으로 쉽게 따라 하는 성장판 마사지 & 숨은 키 운동 가이드';
     const subStr = isGlobal
       ? 'No complicated timers needed! Follow the step-by-step visual illustrations below for 5-minute bedtime knee/calf massage and 3 spine-lengthening exercises.'
-      : '복잡한 타이머 없이 그림만 보고 집에서 바로 따라 해보세요! 잠들기 전 5분 엄마 손 성장판 마사지와 숨은 키 +1.8cm를 찾아주는 3단계 맞춤 운동법입니다~!';
+      : '복잡한 타이머 없이 그림만 보고 집에서 바로 따라 해보세요. 잠들기 전 5분 엄마 손 성장판 마사지와 숨은 키 +1.8cm를 찾아주는 3단계 맞춤 운동법입니다.';
 
     let html = `
       <div id="core-3-container" class="core-module-container biomechanics-studio-container">

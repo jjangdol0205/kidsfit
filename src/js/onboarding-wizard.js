@@ -122,42 +122,42 @@
       step: 1,
       titleKo: '우리 아이 기본 정보 (성별 · 생년월일)',
       titleEn: 'Target Child & Basic Demographics',
-      subKo: '생년월일 일수까지 계산해 또래 평균키와 비교해 드려요~!',
+      subKo: '생년월일 일수까지 계산해 또래 평균키와 비교해 드립니다.',
       subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
     },
     {
       step: 2,
       titleKo: '현재 키 · 몸무게 · 최근 6개월 성장폭',
       titleEn: 'Accurate Biometrics (Height, Weight, Velocity)',
-      subKo: '요즘 얼마나 자랐는지 입력하면 숨은 잠재키를 정확히 찾아내요',
+      subKo: '요즘 얼마나 자랐는지 입력하면 숨은 잠재키를 정확히 찾아냅니다.',
       subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
     },
     {
       step: 3,
       titleKo: '엄마·아빠 키 & 실시간 유전 예상키',
       titleEn: 'Mid-Parental Height (MPH) & Genetic Potential',
-      subKo: '부모님 키를 바탕으로 유전 예상키와 관리 후 최대 키를 계산해요',
+      subKo: '부모님 키를 바탕으로 유전 예상키와 관리 후 최대 키를 계산합니다.',
       subEn: 'Calculates Tanner Mid-Parental Target Height and clinical margin in real-time.'
     },
     {
       step: 4,
       titleKo: '성장단계 확인 & 평소 수면·식습관 체크',
       titleEn: 'Skeletal Maturation & Sleep/Diet Habits',
-      subKo: '해당하는 습관을 편하게 눌러주시면 아이에게 딱 맞는 성분을 골라드려요',
+      subKo: '해당하는 습관을 편하게 눌러주시면 아이에게 딱 맞는 성분을 골라드립니다.',
       subEn: 'Evaluates epiphyseal plate open ratio and sleep/diet traits.'
     },
     {
       step: 5,
       titleKo: '평소 앉는 자세 & 운동 습관 체크',
       titleEn: 'Lifestyle & Posture/Exercise Factors',
-      subKo: '거북목이나 다리 성장통이 있는지 체크해 숨은 키 2cm를 찾아드려요',
+      subKo: '거북목이나 다리 성장통이 있는지 체크해 숨은 키 2cm를 찾아드립니다.',
       subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
     },
     {
       step: 6,
       titleKo: '두뇌·성향 & 1:1 학습 상담 진단 체크',
       titleEn: 'Neuro-Cognitive Focus & 1:1 Learning Consultation',
-      subKo: '아이 기질과 학습 고민을 골라주시면 맞춤 공부법·도서·성장 처방전이 바로 열려요~!',
+      subKo: '아이 기질과 학습 고민을 골라주시면 맞춤 공부법·도서·성장 처방전이 바로 열립니다.',
       subEn: 'Select cognitive domains and learning bottlenecks to generate bespoke counseling.'
     }
   ];
@@ -920,7 +920,8 @@
       traitFocusSpan,
       traitLearningConcerns,
       traitStudyStyle,
-      parentFreeNote
+      parentFreeNote,
+      preferredReportMode: wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'both'
     };
 
     return wizardState.profile;
@@ -932,6 +933,7 @@
     const selfRadio = document.getElementById('target-self');
     const isSelf = Boolean(selfRadio && selfRadio.checked);
     wizardState.profile.targetSubject = isSelf ? 'self' : 'child';
+    const prefMode = wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'both';
 
     const bannerEl = document.getElementById('guidebook-mode-banner');
     if (bannerEl) {
@@ -941,20 +943,40 @@
         bannerEl.style.borderColor = 'rgba(139, 92, 246, 0.35)';
         bannerEl.innerHTML = isEn
           ? '🙋 <strong>[Youth & Student Self-Coaching Guidebook]</strong> Hidden Height Recovery Routine & Supplement/Book Guide.'
-          : '🙋 <strong>[학생·본인용 맞춤 가이드북]</strong> 내 잠재키·수면·자세·영양 루틴을 한눈에 안내해 드려요~!';
+          : '🙋 <strong>[학생·본인용 맞춤 가이드북]</strong> 내 잠재키·수면·자세·영양 및 자기주도 학습 루틴을 안내해 드립니다.';
+      } else if (prefMode === 'growth') {
+        bannerEl.style.color = '#BAE6FD';
+        bannerEl.style.background = 'rgba(14, 116, 144, 0.2)';
+        bannerEl.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+        bannerEl.innerHTML = isEn
+          ? '📏 <strong>[Report 1: Physical Growth Master Mode]</strong> Dedicated physical growth, bone-age & nutrition report.'
+          : '📏 <strong>[별도 보고서 1 · 신체 성장 진단 모드]</strong> 진단 완료 시 【아이 신체 성장 마스터 분석 보고서】가 먼저 단독으로 열립니다.';
+      } else if (prefMode === 'learning') {
+        bannerEl.style.color = '#E9D5FF';
+        bannerEl.style.background = 'rgba(88, 28, 135, 0.24)';
+        bannerEl.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+        bannerEl.innerHTML = isEn
+          ? '🧠 <strong>[Report 2: Brain & Learning Master Mode]</strong> Dedicated 5-axis LQ, study bottlenecks & textbook roadmap report.'
+          : '🧠 <strong>[별도 보고서 2 · 두뇌·학습 진단 모드]</strong> 진단 완료 시 【아이 두뇌·학습 마스터 분석 보고서】가 먼저 단독으로 열립니다.';
       } else {
         bannerEl.style.color = '#E2E8F0';
         bannerEl.style.background = 'rgba(59, 130, 246, 0.1)';
         bannerEl.style.borderColor = 'rgba(59, 130, 246, 0.3)';
         bannerEl.innerHTML = isEn
           ? '📘 <strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Height Growth, Brain Roadmap & Pinpoint Supplements/Toys/Books.'
-          : '📘 <strong>[학부모용 우리 아이 가이드북]</strong> 숨은 잠재키·시기별 학습·잘 먹는 맞춤 영양제까지 한 번에 알려드려요~!';
+          : '📘 <strong>[학부모용 가이드북]</strong> 【보고서 1: 신체 성장】과 【보고서 2: 두뇌·학습】을 각각 정밀 발행합니다.';
       }
     }
   }
 
-  function enterStudioMode(mode) {
+  function enterStudioMode(mode, reportMode) {
     if (typeof document === 'undefined') return;
+    if (reportMode) {
+      wizardState.preferredReportMode = reportMode;
+      if (typeof window !== 'undefined') {
+        window.__KIDSFIT_PREFERRED_REPORT_MODE = reportMode;
+      }
+    }
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
     }
