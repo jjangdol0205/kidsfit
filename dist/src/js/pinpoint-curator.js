@@ -21,8 +21,8 @@
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
-    adpickAffId: '',
-    adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
+    adpickAffId: '4d31d3',
+    adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=4d31d3&os=&adtype=&category=notgame&order=rand',
     naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
     myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
@@ -333,8 +333,9 @@
     const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yes24Query || coupangQuery)}`;
     const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
     const naverUrl = `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(coupangQuery)}`;
-    const naverBrandConnectHealthUrl = cfg.naverBrandConnectHealth || DEFAULT_AFF.naverBrandConnectHealth;
-    const tenpingUrl = cfg.tenpingUrl || DEFAULT_AFF.tenpingUrl;
+    const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
+    const st11Target = `https://www.11st.co.kr/search/search.tmall?kwd=${encodeURIComponent(coupangQuery)}`;
+    const adpickShoppingUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=c16a2&url=${encodeURIComponent(st11Target)}`;
 
     return {
       coupangUrl: cpUrl,
@@ -342,8 +343,7 @@
       amazonUrl: amzUrl,
       yes24Url: lpUrl,
       naverUrl,
-      naverBrandConnectHealthUrl,
-      tenpingUrl,
+      adpickShoppingUrl,
       coupangQuery,
       iherbQuery
     };
@@ -1250,14 +1250,110 @@
       toys: attachCurated(toys),
       books: attachCurated(books),
       eduTours: curateEducationalTours(profile, affConfig),
+      regionalTickets: curateRegionalAgeTickets(profile, affConfig),
       lifecycleRoadmap: getSequentialLifecycleRoadmap(ageYears),
       autoStage: autoDetectGrowthStage(ageMonths, profile.gender, recent6m)
     };
   }
 
   /**
-   * 4-B. Educational Family Travel & Experiential Tour Curator
-   * Maps age band, region, and cognitive interests to 3 curated educational travel & tour recommendations.
+   * 4-B1. Regional × Age-Band (만 1~3세 / 4~6세 / 7~9세 / 10~13세 / 14세+) Real Popular Museum, Science Center & Experience Ticket Curator
+   * Combines the 40 regional courses with live MyRealTrip short links (mylinkId: 6226316), Klook Affiliate (aid=140161&aff_adid=1514603),
+   * and Adpick KKday (affid=4d31d3&offer=b796d) + 5-tier age-band developmental viewing guides.
+   */
+  function curateRegionalAgeTickets(profile = {}, affConfig = {}) {
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const region = String(profile.region || '서울 강남·서초·송파');
+    const cogAxes = Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : ['science_nature'];
+    const cfg = Object.assign({}, DEFAULT_AFF, affConfig || {});
+    const klookAid = encodeURIComponent(cfg.klookAid || DEFAULT_AFF.klookAid || '140161');
+    const klookAdId = encodeURIComponent(cfg.klookAdId || DEFAULT_AFF.klookAdId || '1514603');
+    const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
+
+    // Load 40-course regional catalog
+    let catalogCourses = [];
+    if (typeof window !== 'undefined' && window.KIDSFIT_CATALOG_DATA && Array.isArray(window.KIDSFIT_CATALOG_DATA.courses)) {
+      catalogCourses = window.KIDSFIT_CATALOG_DATA.courses;
+    } else if (typeof global !== 'undefined' && global.KIDSFIT_CATALOG_DATA && Array.isArray(global.KIDSFIT_CATALOG_DATA.courses)) {
+      catalogCourses = global.KIDSFIT_CATALOG_DATA.courses;
+    } else if (typeof require === 'function') {
+      try {
+        const catJson = require('../data/curation-catalog.json');
+        if (catJson && Array.isArray(catJson.courses)) catalogCourses = catJson.courses;
+      } catch (_) {}
+    }
+
+    const ageKey = ageYears <= 3 ? 'age_1_3' : ageYears <= 6 ? 'age_4_6' : ageYears <= 9 ? 'age_7_9' : ageYears <= 13 ? 'age_10_13' : 'age_14_plus';
+    const ageBandLabelKo = ageYears <= 3 ? '만 1~3세 (오감·촉각·유모차 무장애 코스)'
+      : ageYears <= 6 ? '만 4~6세 (입체 조작·호기심 체험 코스)'
+      : ageYears <= 9 ? '만 7~9세 (초등 교과 연계·하브루타 도슨트)'
+      : ageYears <= 13 ? '만 10~13세 (심화 과학·역사 인과 탐구 코스)'
+      : '만 14세+ (진로·융합 비평 & 뇌 피로 힐링 코스)';
+
+    // Map cognitive axes / interest to preferred themeKey priority
+    let preferredThemes = ['space_science', 'dino_nature', 'history_tradition', 'art_making', 'music_musical'];
+    if (ageYears <= 3) {
+      preferredThemes = ['dino_nature', 'art_making', 'music_musical', 'space_science', 'history_tradition'];
+    } else if (ageYears <= 6) {
+      preferredThemes = ['dino_nature', 'space_science', 'art_making', 'music_musical', 'history_tradition'];
+    } else if (cogAxes.includes('sensory_arts')) {
+      preferredThemes = ['art_making', 'music_musical', 'history_tradition', 'space_science', 'dino_nature'];
+    } else if (cogAxes.includes('language_reading')) {
+      preferredThemes = ['history_tradition', 'art_making', 'space_science', 'dino_nature', 'music_musical'];
+    }
+
+    const regionalPool = catalogCourses.filter(c => c.region === region);
+    const activePool = regionalPool.length > 0 ? regionalPool : catalogCourses.slice(0, 5);
+
+    const sorted = activePool.slice().sort((a, b) => {
+      const idxA = preferredThemes.indexOf(a.themeKey);
+      const idxB = preferredThemes.indexOf(b.themeKey);
+      return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+    });
+
+    const THEME_BADGE_KO = {
+      space_science: '🚀 과학관·우주·로봇 체험',
+      dino_nature: '🦖 자연사·아쿠아리움·생태',
+      history_tradition: '🏛️ 역사박물관·궁궐·유적 도슨트',
+      art_making: '🎨 어린이미술관·드로잉·전시',
+      music_musical: '🎵 어린이 공연·클래식·문화원'
+    };
+
+    return sorted.slice(0, 3).map((c, idx) => {
+      const q = c.klookQuery || (c.destination || '').split('&')[0].trim();
+      const kSite = `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(q)}`;
+      const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
+      const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(q)}`;
+      const adpickKkdayUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=b796d&url=${encodeURIComponent(kkdayTarget)}`;
+      const mrtUrl = c.mrtShortUrl || 'https://myrealt.rip/xctNfd';
+      const ageTip = (c.ageBandGuides && c.ageBandGuides[ageKey])
+        ? c.ageBandGuides[ageKey]
+        : `${c.destination} — 만 ${ageYears}세 눈높이 맞춤 관람 및 체험 코스`;
+
+      return {
+        id: c.id,
+        rankBadgeKo: idx === 0 ? '🥇 내 지역 1순위 맞춤 티켓·코스' : idx === 1 ? '🥈 내 지역 2순위 연계 코스' : '🥉 내 지역 3순위 주말 나들이',
+        region: c.region,
+        ageBandLabelKo,
+        themeBadgeKo: THEME_BADGE_KO[c.themeKey] || '🎫 지역 대표 체험',
+        destination: c.destination,
+        summary: c.summary,
+        ageSpecificGuide: ageTip,
+        viewPoints: Array.isArray(c.viewPoints) ? c.viewPoints : [],
+        bookingTips: c.bookingTips || '',
+        route: c.route || '',
+        myrealtripUrl: mrtUrl,
+        klookUrl,
+        adpickKkdayUrl
+      };
+    });
+  }
+
+  /**
+   * 4-B2. 5-Tier Age-Band (만 1~3세 / 4~6세 / 7~9세 / 10~13세 / 14세+) Signature Domestic & Overseas Educational Travel Curator
+   * Powered 100% by MyRealTrip Partner API short links (mylinkId: 6226316), Klook Affiliate (aid=140161&aff_adid=1514603),
+   * and Adpick Shopping Mate KKday/11st (affid=4d31d3).
    */
   function curateEducationalTours(profile = {}, affConfig = {}) {
     const ageMonths = Number(profile.ageMonths) || 120;
@@ -1267,12 +1363,10 @@
     const cfg = Object.assign({}, DEFAULT_AFF, affConfig || {});
     const cpTag = encodeURIComponent(cfg.coupang || DEFAULT_AFF.coupang);
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
-
     const klookAid = encodeURIComponent(cfg.klookAid || DEFAULT_AFF.klookAid || '140161');
     const klookAdId = encodeURIComponent(cfg.klookAdId || DEFAULT_AFF.klookAdId || '1514603');
     const mrtMylinkId = encodeURIComponent(cfg.myrealtripMylinkId || DEFAULT_AFF.myrealtripMylinkId || '6226316');
-    const naverBrandTourUrl = cfg.naverBrandConnectTour || DEFAULT_AFF.naverBrandConnectTour || 'https://naver.me/xJcOADhA';
-    const tenpingFairUrl = cfg.tenpingUrl || DEFAULT_AFF.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';
+    const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
 
     const makeTourUrls = (cpQuery, yesQuery, tourQuery, mrtShortUrl, klookDestUrl) => {
       const cpUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(cpQuery)}&channel=user&lptag=${cpTag}`;
@@ -1281,119 +1375,194 @@
       const myrealtripUrl = mrtShortUrl || `https://www.myrealtrip.com/offers?q=${encodeURIComponent(tourQuery)}&mylink_id=${mrtMylinkId}&utm_source=mktpartner`;
       const kSite = klookDestUrl || `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(tourQuery)}`;
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
+      const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(tourQuery)}`;
+      const adpickKkdayUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=b796d&url=${encodeURIComponent(kkdayTarget)}`;
       return {
         coupangUrl: cpUrl,
         yes24Url: yesUrl,
         naverTourUrl: myrealtripUrl,
         myrealtripUrl,
         klookUrl,
-        naverBrandTourUrl,
-        tenpingFairUrl
+        adpickKkdayUrl
       };
     };
 
-    if (ageYears <= 5) {
+    // Band 1: 만 1~3세 (영유아 오감·아쿠아리움·실내동물원·유모차 생태 목장)
+    if (ageYears <= 3) {
       return [
         Object.assign({
-          badgeKo: '🏆 엄선 1위 · 오감·생태 가족여행',
-          badgeEn: '🏆 Edu Travel #1 · Nature & Sensory',
-          categoryKo: `🌿 [${region} 출발 추천] 강원 홍천·평창 알파카월드 & 대관령 양떼목장 생태 체험 여행`,
-          categoryEn: 'Gangwon Nature & Animal Ranch Family Eco-Tour',
-          titleKo: '대자연 동물 교감 · 숲속 오감 걷기 & 어린이 생태 관찰 돋보기·채집 키트',
-          titleEn: 'Animal Feeding Ranch Tour & Kids Nature Explorer Kit',
-          descKo: '영유아·유아기 시냅스가 가장 활발히 열리는 야외 동물 먹이주기와 잔디밭 달리기 코스로, 낮 동안 충분한 햇빛(비타민D 합성)과 대근육 자극을 통해 밤 9시 반 꿀잠을 유도합니다.',
-          missionKo: '💬 여행지 부모 대화 미션: "양과 알파카의 털을 만져보니 구름처럼 폭신할까, 까슬까슬할까?"'
-        }, makeTourUrls('어린이 곤충채집 생태관찰 돋보기 키트 아기 나들이 가방', '유아 자연관찰 동물 도감', '홍천 알파카월드 대관령 양떼목장', 'https://myrealt.rip/xc4Y3a', 'https://www.klook.com/ko/search/result/?query=%EC%95%8C%ED%8C%8C%EC%B9%B4%EC%9B%94%EB%93%9C')),
+          badgeKo: '🏆 만 1~3세 시그니처 1위 · 대형 아쿠아리움 수중 시각추적',
+          badgeEn: '🏆 Age 1–3 Pick #1 · Aquarium Sensory',
+          categoryKo: `🐠 [${region} 연계] 코엑스·일산·부산·여수·제주 아쿠아리움 패밀리 입장권 & 오감 바다 플랩북`,
+          categoryEn: 'National Aquarium Family Pass & Toddler Marine Flap Book',
+          titleKo: '대형 수조 물고기 시각 추적 워킹투어 & 출발 전 만져보는 해양생물 사운드·플랩북',
+          titleEn: 'Aquarium Family Ticket & Interactive Marine Sound/Flap Book',
+          descKo: '만 1~3세 영유아는 날씨 영향을 받지 않는 실내 아쿠아리움의 대형 수조 빛깔과 물고기 움직임을 눈으로 쫓으며 시각피질과 어휘 폭발기 시냅스가 가장 안전하고 강력하게 자극됩니다.',
+          missionKo: '💬 아쿠아리움 부모 대화 미션: "우와~ 가오리가 날개처럼 헤엄치네! 가오리 배는 무슨 색깔일까?"'
+        }, makeTourUrls('유아 바다생물 사운드북 아쿠아리움 스티커북 플랩북', '어스본 요리조리 열어보는 바다', '코엑스 아쿠아리움', 'https://myrealt.rip/xc4l47', 'https://www.klook.com/ko/search/result/?query=%EC%BD%94%EC%97%91%EC%8A%A4+%EC%95%84%EC%BF%A0%EC%95%84%EB%A6%AC%EC%9B%80')),
         Object.assign({
-          badgeKo: '✨ 엄선 2위 · 해양·아쿠아리움 여행',
-          badgeEn: '✨ Edu Travel #2 · Marine Science',
-          categoryKo: '🐠 여수·제주·코엑스 대형 아쿠아리움 해양생태 가족 투어 & 바다생물 사전답사',
-          categoryEn: 'National Aquarium Marine Biology Family Tour',
-          titleKo: '바다 생물 도슨트 워킹투어 & 출발 전 읽는 입체 해양생물 플랩북·놀이키트',
-          titleEn: 'Aquarium Family Pass & Interactive Marine Flap Book',
-          descKo: '수족관의 거대한 수조와 빛의 굴절, 다양한 물고기 움직임을 눈으로 따라가며 유아의 시각 추적 능력과 어휘 호기심을 동시에 키워주는 만족도 1위 실내외 가족 여행입니다.',
-          missionKo: '💬 여행지 부모 대화 미션: "가오리는 왜 배가 하얗고 등이 까만색일까? 같이 찾아볼까?"'
-        }, makeTourUrls('어린이 바다생물 피규어 아쿠아리움 스티커북 플랩북', '어스본 요리조리 열어보는 바다', '코엑스 아쿠아리움 가족 입장권', 'https://myrealt.rip/xc4l47', 'https://www.klook.com/ko/search/result/?query=%EC%BD%94%EC%97%91%EC%8A%A4+%EC%95%84%EC%BF%A0%EC%95%84%EB%A6%AC%EC%9B%80')),
+          badgeKo: '✨ 만 1~3세 시그니처 2위 · 실내 애니멀 테마파크 먹이주기',
+          badgeEn: '✨ Age 1–3 Pick #2 · Indoor Animal Park',
+          categoryKo: '🐾 주렁주렁 실내동물원(하남·동탄·경주·타임스퀘어) & 집게 먹이주기 소근육 체험',
+          categoryEn: 'Joolung Joolung Indoor Animal Theme Park & Fine Motor Feeding',
+          titleKo: '온순한 소동물 가까이 관찰·먹이주기 체험권 & 유아 동물 촉감책·미아방지 배낭',
+          titleEn: 'Indoor Animal Park Ticket & Toddler Touch-and-Feel Animal Book',
+          descKo: '미세먼지나 더위·추위 걱정 없이 유모차로 이동하며 작은 새와 초식동물에게 먹이를 건네주는 과정이 만 1~3세 아이의 손끝 조절력과 정서적 안정감을 동시에 키워줍니다.',
+          missionKo: '💬 동물원 부모 대화 미션: "작은 새가 모이를 콕콕 먹네! 보들보들 깃털은 어떤 느낌일까?"'
+        }, makeTourUrls('유아 동물 촉감책 아기 미아방지 가방', '아기 동물 촉감 그림책', '주렁주렁 실내 동물원', 'https://myrealt.rip/xc4wa0', 'https://www.klook.com/ko/search/result/?query=%EC%A3%BC%EB%A0%81%EC%A3%BC%EB%A0%81')),
         Object.assign({
-          badgeKo: '💎 엄선 3위 · 별빛·키즈 글램핑 여행',
-          badgeEn: '💎 Edu Travel #3 · Starlight Glamping',
-          categoryKo: '⛺ 경기도 가평·포천·동탄 키즈 생태·실내동물원 & 자연 숲속 글램핑 1박 2일 코스',
-          categoryEn: 'Kids Observatory & Forest Glamping 2-Day Trip',
-          titleKo: '어린이 첫 입문용 휴대용 망원경·쌍안경 & 캠핑 별자리 랜턴 프로젝터 세트',
-          titleEn: 'Kids Beginner Binoculars & Starlight Constellation Projector',
-          descKo: '스마트폰 화면 대신 밤하늘의 달과 별자리, 살아있는 동식물을 직접 관찰하고 가족 대화를 나누며 정서적 안정감과 과학적 호기심을 길러주는 주말 코스입니다.',
-          missionKo: '💬 여행지 부모 대화 미션: "오늘 밤 가장 밝게 빛나는 별은 어떤 모양을 닮았을까?"'
-        }, makeTourUrls('어린이 쌍안경 캠핑 천체망원경 별자리 프로젝터', '유아 밤하늘 별자리 그림책', '주렁주렁 실내 동물원 키즈 체험', 'https://myrealt.rip/xc4wa0', 'https://www.klook.com/ko/search/result/?query=%EC%A3%BC%EB%A0%81%EC%A3%BC%EB%A0%81'))
+          badgeKo: '💎 만 1~3세 시그니처 3위 · 무장애 초원 양떼·알파카 목장',
+          badgeEn: '💎 Age 1–3 Pick #3 · Nature Ranch Walk',
+          categoryKo: '🌿 강원 홍천 알파카월드 · 대관령 양떼목장 · 제주 스누피가든 잔디 산책 & 비타민D 합성',
+          categoryEn: 'Alpaca World / Sheep Ranch & Snoopy Garden Stroller-Friendly Tour',
+          titleKo: '푸른 초원 잔디밭 걷기·동물 교감 투어 & 유아 생태 돋보기·나들이 모자 세트',
+          titleEn: 'Nature Ranch Family Ticket & Toddler Outdoor Explorer Set',
+          descKo: '낮 시간 30분 이상의 자연광 노출은 영유아 칼슘 흡수를 돕는 비타민D 합성과 밤 9시 멜라토닌 분비를 촉진해 밤중 각성 없이 통잠을 자게 해줍니다.',
+          missionKo: '💬 초원 산책 부모 대화 미션: "복슬복슬 양털이 구름 같네! 풀 냄새를 코로 킁킁 맡아볼까?"'
+        }, makeTourUrls('유아 나들이 가방 어린이 곤충 관찰 돋보기', '유아 자연관찰 동물 그림책', '홍천 알파카월드', 'https://myrealt.rip/xc4Y3a', 'https://www.klook.com/ko/search/result/?query=%EC%95%8C%ED%8C%8C%EC%B9%B4%EC%9B%94%EB%93%9C'))
       ];
     }
 
+    // Band 2: 만 4~6세 (유아기 사파리·과학관 유아체험관·공룡 화석·테마파크)
+    if (ageYears <= 6) {
+      return [
+        Object.assign({
+          badgeKo: '🏆 만 4~6세 시그니처 1위 · 사파리 생태 탐험 & 대근육 자극',
+          badgeEn: '🏆 Age 4–6 Pick #1 · Safari & Zoo Expedition',
+          categoryKo: `🦁 [${region} 연계] 에버랜드 로스트밸리·판다월드 & 대전 오월드·대구 네이처파크 사파리 투어`,
+          categoryEn: 'Everland Lost Valley Safari & Nature Park Family Pass',
+          titleKo: '초식·육식동물 생태 비교 사파리 종일권 & 어린이 동물 대백과·쌍안경 탐험 세트',
+          titleEn: 'Safari Theme Park Pass & Kids Binoculars Animal Encyclopedia Set',
+          descKo: '만 4~6세는 동물의 생김새와 서식지 이유("기린은 왜 목과 혀가 길까?")를 추론하며 전두엽 인과 사고가 열리는 시기입니다. 야외 걷기로 하지 성장판에도 최적의 자극을 줍니다.',
+          missionKo: '💬 사파리 하브루타 미션: "기린과 얼룩말은 왜 줄무늬와 점무늬 모양이 서로 다를까?"'
+        }, makeTourUrls('어린이 쌍안경 동물 백과사전 피규어 세트', '유아 동물 대백과 도감', '에버랜드 종일권', 'https://myrealt.rip/xctSa3', 'https://www.klook.com/ko/search/result/?query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C')),
+        Object.assign({
+          badgeKo: '✨ 만 4~6세 시그니처 2위 · 국립과학관 어린이관 & 공룡 탐사',
+          badgeEn: '✨ Age 4–6 Pick #2 · Kids Science & Dinosaur Museum',
+          categoryKo: '🦖 서대문자연사박물관 · 국립과천과학관 유아체험관 · 고성 공룡박물관 탐험 코스',
+          categoryEn: 'Natural History Dinosaur Museum & National Science Center Kids Zone',
+          titleKo: '실물 공룡 화석·기초 물리 작동 체험 & 집에서 발굴하는 공룡 화석 발굴 키트',
+          titleEn: 'Dinosaur & Science Museum Tour + Home Fossil Digging Kit',
+          descKo: '거대한 공룡 골격의 스케일을 체감하고 도르래·기어·물길 장치를 손으로 직접 돌려보는 체험이 두정엽 3차원 공간지각력을 폭발적으로 깨워줍니다.',
+          missionKo: '💬 박물관 하브루타 미션: "티라노사우루스의 이빨은 뾰족한데 브라키오사우루스는 왜 평평할까?"'
+        }, makeTourUrls('어린이 공룡 화석 발굴 키트 공룡 뼈대 조립', '어스본 공룡 대백과 플랩북', '서대문자연사박물관 투어', 'https://myrealt.rip/xctR7f', 'https://www.klook.com/ko/search/result/?query=%EA%B3%BC%ED%95%99%EA%B4%80')),
+        Object.assign({
+          badgeKo: '💎 만 4~6세 시그니처 3위 · 예술마을 공방 & 어린이박물관',
+          badgeEn: '💎 Age 4–6 Pick #3 · Art Village & Children\'s Museum',
+          categoryKo: '🎨 국립중앙박물관 어린이박물관 · 파주 헤이리 예술마을 · 현대어린이책미술관(MOKA)',
+          categoryEn: 'National Children\'s Museum & Heyri Art Village Hands-on Workshop',
+          titleKo: '손끝으로 빚고 만지는 도자기·미술·전통문화 체험 & 창의 미술·클레이 워크북',
+          titleEn: 'Kids Art/Pottery Workshop Ticket & Creative Clay Activity Set',
+          descKo: '취학 전 아이가 자기 손으로 흙을 빚고 색을 섞어 작품을 완성해 보는 경험은 소근육 정교성과 자기효능감(Self-Efficacy)을 동시에 높여줍니다.',
+          missionKo: '💬 미술관 하브루타 미션: "오늘 네가 만든 작품에 이름을 붙여준다면 어떤 제목이 좋을까?"'
+        }, makeTourUrls('어린이 도자기 클레이 만들기 키트 워셔블 물감', '유아 미술 놀이 그림책', '파주 헤이리 예술마을 체험', 'https://myrealt.rip/xctX9c', 'https://www.klook.com/ko/search/result/?query=%ED%8C%8C%EC%A3%BC+%ED%97%A4%EC%9D%B4%EB%A6%AC'))
+      ];
+    }
+
+    // Band 3: 만 7~9세 (초등 저학년 역사 도슨트·과학관 물리탐험·제주 생태지질)
     if (ageYears <= 9) {
       return [
         Object.assign({
-          badgeKo: '🏆 엄선 1위 · 역사 타임머신 가족여행',
-          badgeEn: '🏆 Edu Travel #1 · UNESCO Heritage Tour',
-          categoryKo: '👑 경주 신라천년(첨성대·대릉원·국립경주박물관) & 부여·공주 백제 역사 도슨트 가족여행',
-          categoryEn: 'Gyeongju & Buyeo UNESCO World Heritage Docent Family Tour',
-          titleKo: '어린이 눈높이 소그룹 역사 해설 투어 & 출발 전 읽는 경주·한국사 유물 탐구 도감',
+          badgeKo: '🏆 만 7~9세 시그니처 1위 · 유네스코 역사 도슨트 가족여행',
+          badgeEn: '🏆 Age 7–9 Pick #1 · UNESCO Heritage Docent Tour',
+          categoryKo: '👑 경주 신라천년(국립경주박물관·첨성대·대릉원) & 공주·부여 백제 · 경복궁 소그룹 어린이 해설투어',
+          categoryEn: 'Gyeongju, Buyeo & Gyeongbokgung Kids Historical Docent Tour',
+          titleKo: '초등 눈높이 전문 도슨트 역사 투어 & 출발 전 읽는 한국사 유물 탐구 도감',
           titleEn: 'Kids Historical Docent Tour & Korean Heritage Field Guidebook',
-          descKo: '초등 한국사 교과가 시작되기 전 경주·공주·수원화성을 직접 걸으며 유물의 쓰임새와 선조들의 지혜를 추론해보면 역사적 인과 사고력과 장기 기억이 3배 이상 깊어집니다.',
+          descKo: '초등 사회·한국사 교과가 본격화되기 전 경주·공주·경복궁을 도슨트 선생님과 걸으며 유물의 과학적 원리를 추론해보면 역사적 인과 사고력과 장기 기억이 3배 깊어집니다.',
           missionKo: '💬 여행지 하브루타 미션: "첨성대는 왜 네모 모양이 아니라 아래가 넓은 원기둥 모양으로 쌓았을까?"'
-        }, makeTourUrls('초등 경주 역사 여행 가이드북 한국사 유물 워크북', '아이와 경주 여행 역사 도감', '경주 어린이 도슨트 역사 투어 국립경주박물관 해설', 'https://myrealt.rip/xc4b13', 'https://www.klook.com/ko/search/result/?query=%EA%B2%BD%EC%A3%BC+%ED%88%AC%EC%96%B4')),
+        }, makeTourUrls('초등 경주 역사 여행 가이드북 한국사 유물 워크북', '아이와 경주 여행 역사 도감', '경주 어린이 도슨트 역사 투어', 'https://myrealt.rip/xc4b13', 'https://www.klook.com/ko/search/result/?query=%EA%B2%BD%EC%A3%BC+%ED%88%AC%EC%96%B4')),
         Object.assign({
-          badgeKo: '✨ 엄선 2위 · 우주·과학 탐사 가족여행',
-          badgeEn: '✨ Edu Travel #2 · Space & Science Camp',
-          categoryKo: '🚀 국립과천과학관 물리탐험대 & 대전 국립중앙과학관·천문대 과학 탐사 여행',
-          categoryEn: 'Gwacheon & Daejeon National Science Museum Family Expedition',
-          titleKo: '과학관 교과 연계 실험 탐구 노트 & 어린이 굴절 천체망원경·현미경 탐사 패키지',
-          titleEn: 'Science Museum Inquiry Journal & Portable Astronomical Telescope',
-          descKo: `우리 아이가 선택한 [${cogAxes.includes('science_nature') ? '과학·자연 원리 탐구' : '전두엽 인과 추론'}] 영역과 직결되는 코스로, 로켓 추진·자기부상·천체 관측을 직접 체험하며 이공계 사고력을 폭발시킵니다.`,
-          missionKo: '💬 여행지 하브루타 미션: "만약 지구에 중력이 절반으로 줄어든다면 우리 키와 점프 높이는 어떻게 달라질까?"'
+          badgeKo: '✨ 만 7~9세 시그니처 2위 · 국립과학관 물리·우주 탐험대',
+          badgeEn: '✨ Age 7–9 Pick #2 · National Science & Space Expedition',
+          categoryKo: '🚀 국립과천과학관 물리·우주탐험대 & 대전 국립중앙과학관·서울시립과학관 도슨트 투어',
+          categoryEn: 'Gwacheon & Daejeon National Science Museum Inquiry Expedition',
+          titleKo: '과학관 교과 연계 실험 해설 투어 & 어린이 굴절 천체망원경·과학 탐구 일지',
+          titleEn: 'Science Museum Docent Tour & Portable Astronomical Telescope',
+          descKo: `우리 아이가 선택한 [${cogAxes.includes('science_nature') ? '과학·자연 원리 탐구' : '전두엽 인과 추론'}] 영역과 직결되는 코스로, 로켓 작용-반작용·자기부상·천체 관측을 직접 체험하며 이공계 사고력을 깨웁니다.`,
+          missionKo: '💬 과학관 하브루타 미션: "만약 달에서 점프를 한다면 지구에서보다 몇 배나 더 높이 뛸 수 있을까?"'
         }, makeTourUrls('어린이 천체망원경 초등 과학관 체험 학습 워크북', '초등 과학관 박물관 탐구 도감', '국립과천과학관 초등 물리탐험대', 'https://myrealt.rip/xc4c05', 'https://www.klook.com/ko/search/result/?query=%EA%B3%BC%ED%95%99%EA%B4%80')),
         Object.assign({
-          badgeKo: '💎 엄선 3위 · 지질·생태 자연유산 여행',
-          badgeEn: '💎 Edu Travel #3 · Jeju & Eco Geopark',
-          categoryKo: '🌋 제주 화산지질(곶자왈·성산일출봉) & 서천 국립생태원·고성 공룡발자국 가족 탐사',
-          categoryEn: 'Jeju Volcanic Geopark & National Institute of Ecology Family Tour',
-          titleKo: '어린이 아웃도어 탐험가 조끼·쌍안경·나침반 키트 & 한국 자연생태 현장 도감',
-          titleEn: 'Kids Outdoor Field Explorer Vest/Binoculars & Ecology Guidebook',
-          descKo: '화산 지형과 습지 생태계를 직접 걸으며 하루 8,000보 이상 하지 성장판을 건강하게 자극하고, 살아있는 동식물 생태계를 관찰하며 전두엽 탐구력을 키우는 가족 여행입니다.',
-          missionKo: '💬 여행지 하브루타 미션: "제주도의 돌에는 왜 구멍이 송송 뚫려 있고 비가 와도 물이 고이지 않을까?"'
-        }, makeTourUrls('어린이 쌍안경 나침반 자연관찰 탐험 키트', '제주도 어린이 생태 지질 여행책', '제주 아이와 체험학습 투어', 'https://myrealt.rip/xc4e9f', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%EC%95%84%EC%9D%B4%EC%99%80'))
+          badgeKo: '💎 만 7~9세 시그니처 3위 · 제주 화산지질 & 해양생태 가족탐사',
+          badgeEn: '💎 Age 7–9 Pick #3 · Jeju Volcanic Geopark & Aquarium',
+          categoryKo: '🌋 제주 아쿠아플라넷·스누피가든·성산일출봉 지질트레킹 & 여수 해양과학 가족여행',
+          categoryEn: 'Jeju Aqua Planet, Snoopy Garden & Volcanic Geopark Family Pass',
+          titleKo: '제주 투어패스·아쿠아리움 할인권 & 어린이 아웃도어 쌍안경·생태 탐험 도감',
+          titleEn: 'Jeju Family Tour Pass & Kids Outdoor Ecology Guidebook',
+          descKo: '화산 지형과 해안 생태계를 직접 걸으며 하루 8,000보 이상 하지 성장판을 건강하게 자극하고, 가족과 함께 자연 현상의 원리를 대화로 풀어보는 최고의 방학 코스입니다.',
+          missionKo: '💬 제주 하브루타 미션: "제주도의 현무암 돌에는 왜 구멍이 송송 뚫려 있고 비가 와도 물이 고이지 않을까?"'
+        }, makeTourUrls('어린이 쌍안경 나침반 자연관찰 탐험 키트', '제주도 어린이 생태 지질 여행책', '제주 아쿠아플라넷 스누피가든', 'https://myrealt.rip/xctjf8', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%EC%95%84%EC%BF%A0%EC%95%84%ED%94%8C%EB%9E%98%EB%8B%9B'))
       ];
     }
 
-    // Age 10+ (Upper Elementary & Youth)
+    // Band 4: 만 10~13세 (초등 고학년·중1 궁궐·수원화성 심화 도슨트, KAIST 과학관, 도쿄/오사카 과학·문화 해외탐방)
+    if (ageYears <= 13) {
+      return [
+        Object.assign({
+          badgeKo: '🏆 만 10~13세 시그니처 1위 · 궁궐·수원화성 심화 역사 도슨트',
+          badgeEn: '🏆 Age 10–13 Pick #1 · Royal Palace & Hwaseong Deep Docent',
+          categoryKo: '🏛️ 서울 경복궁·창덕궁 · 국립중앙박물관 · 수원화성 거중기 과학·역사 심화 해설투어',
+          categoryEn: 'Seoul Royal Palaces, National Museum & Suwon Hwaseong Deep-Dive Tour',
+          titleKo: '초등 고학년·중등 소그룹 심화 도슨트 투어 & 한국사 논술·유물 분석 워크북',
+          titleEn: 'Upper-Elementary Historical Docent Tour & Essay Workbook',
+          descKo: '배외측 전전두엽(DLPFC)이 급성장하는 만 10~13세 시기에 정조의 수원화성 거중기 과학 원리와 조선 왕실의 역사적 의사결정을 현장에서 토론하면 강력한 메타인지가 형성됩니다.',
+          missionKo: '💬 역사 하브루타 미션: "정조가 수원화성을 지을 때 거중기와 벽돌을 도입한 과학적·경제적 이유는 무엇이었을까?"'
+        }, makeTourUrls('초등 고학년 청소년 역사 논술 한국사 탐구 도서', '수원화성 경복궁 역사 기행 청소년 필독서', '경복궁 역사체험 가족여행 도슨트 투어', 'https://myrealt.rip/xc4f7a', 'https://www.klook.com/ko/search/result/?query=%EA%B2%BD%EB%B3%B5%EA%B6%81+%ED%88%AC%EC%96%B4')),
+        Object.assign({
+          badgeKo: '✨ 만 10~13세 시그니처 2위 · 대덕연구단지 국립중앙과학관 & 캠퍼스',
+          badgeEn: '✨ Age 10–13 Pick #2 · Daedeok Science Town & STEM Tour',
+          categoryKo: '🔬 대전 국립중앙과학관(창의나래관·천체관) · KAIST 캠퍼스 진로 탐방 & 서울 과학관 투어',
+          categoryEn: 'Daejeon National Science Museum & KAIST STEM Career Exploration',
+          titleKo: '과학관 심화 해설 투어 & 청소년 과학 탐구 보고서 노트·광학 현미경 세트',
+          titleEn: 'National Science Museum Deep Tour & STEM Research Journal',
+          descKo: '사춘기 진입기 아이들에게 막연한 공부 잔소리 대신 국내 최고 과학관과 대학 캠퍼스를 함께 걸으며 미래의 내 모습을 그려보게 하면 내적 학습 동기가 깨어납니다.',
+          missionKo: '💬 과학관 하브루타 미션: "오늘 본 미래 과학기술 중 10년 뒤 네가 직접 연구해보고 싶은 분야는 무엇이니?"'
+        }, makeTourUrls('청소년 과학 탐구 보고서 코넬 노트 현미경', '십대를 위한 미래 과학 진로 교양서', '대전 국립중앙과학관 도슨트 투어', 'https://myrealt.rip/xc4g4e', 'https://www.klook.com/ko/search/result/?query=%EB%8C%80%EC%A0%84+%EA%B3%BC%ED%95%99%EA%B4%80')),
+        Object.assign({
+          badgeKo: '💎 만 10~13세 시그니처 3위 · 방학 해외 과학박물관·테마파크 가족연수',
+          badgeEn: '💎 Age 10–13 Pick #3 · Tokyo/Osaka/Singapore Science & Theme Tour',
+          categoryKo: '✈️ 도쿄 국립과학박물관·디즈니 / 오사카 과학관·유니버설(USJ) / 싱가포르 사이언스센터 가족투어',
+          categoryEn: 'Tokyo Miraikan / Osaka USJ / Singapore Science Centre Family Pass',
+          titleKo: '해외 과학관·테마파크 패스·공항 리무진 티켓 & 어린이 세계문화·영어회화 가이드북',
+          titleEn: 'Overseas Family Theme Park/Airport Pass & World Culture Guidebook',
+          descKo: '방학 기간 가까운 일본(도쿄 오다이바 미래과학관·오사카)·싱가포르의 세계적 과학관과 테마파크를 경험하며 글로벌 시야를 넓히고 가족 유대감을 깊게 다지는 코스입니다.',
+          missionKo: '💬 해외여행 하브루타 미션: "다른 나라의 박물관과 교통시스템에서 우리나라와 가장 다른 점과 배울 점은 무엇이었니?"'
+        }, makeTourUrls('어린이 세계 여러나라 백과 일본 싱가포르 가족여행 가이드북', '아이와 일본 도쿄 오사카 싱가포르 여행', '도쿄 디즈니랜드 나리타 리무진', 'https://myrealt.rip/xctk64', 'https://www.klook.com/ko/activity/2274-narita-airport-limousine-bus-tokyo'))
+      ];
+    }
+
+    // Band 5: 만 14세+ (중·고등 청소년 명문대·규장각 진로탐방, 해외 문화·과학 인사이트 투어, 산림·제주 척추감압 액티브 리프레시)
     return [
       Object.assign({
-        badgeKo: '🏆 엄선 1위 · 세계유산·궁궐 심화 도슨트 여행',
-        badgeEn: '🏆 Edu Travel #1 · Royal Palace & History Docent',
-        categoryKo: '🏛️ 서울 5대 궁궐(경복궁·창덕궁 후원) · 수원화성 · 안동 하회마을 심화 역사 도슨트 투어',
-        categoryEn: 'Seoul Royal Palaces, Suwon Hwaseong & Andong UNESCO Deep-Dive Tour',
-        titleKo: '초등 고학년·청소년 역사 논술 워크북 & 문화재청 궁궐길라잡이·도슨트 투어 준비 키트',
-        titleEn: 'Youth Historical Essay Workbook & Palace Docent Audio/Field Set',
-        descKo: '배외측 전전두엽(DLPFC)이 정점에 달하는 만 10세 이상 시기에 정조의 수원화성 거중기 과학 원리와 조선 왕실의 의사결정을 현장에서 토론하면 교과서 10번 읽는 것보다 강력한 메타인지가 형성됩니다.',
-        missionKo: '💬 여행지 하브루타 미션: "정조가 수원화성을 지을 때 거중기와 벽돌을 도입한 과학적·경제적 이유는 무엇이었을까?"'
-      }, makeTourUrls('초등 고학년 청소년 역사 논술 한국사 탐구 도서', '수원화성 경복궁 역사 기행 청소년 필독서', '경복궁 역사체험 가족여행 도슨트 투어', 'https://myrealt.rip/xc4f7a', 'https://www.klook.com/ko/search/result/?query=%EA%B2%BD%EB%B3%B5%EA%B6%81+%ED%88%AC%EC%96%B4')),
+        badgeKo: '🏆 만 14세+ 시그니처 1위 · 학술·박물관·명문 캠퍼스 진로 로드맵',
+        badgeEn: '🏆 Age 14+ Pick #1 · University Museum & Heritage Deep Dive',
+        categoryKo: '🎓 국립중앙박물관 사유의 방 · 서울대 규장각 · 경복궁·창덕궁 인문·건축 심화 도슨트',
+        categoryEn: 'National Museum Room of Quiet Contemplation & Palace Architecture Tour',
+        titleKo: '청소년 인문·역사·건축 심화 도슨트 투어 & 코넬식 탐구 보고서·독서 노트 패키지',
+        titleEn: 'Youth Humanities/Architecture Docent Tour & Cornell Research Note',
+        descKo: '학업 스트레스와 진로 고민이 깊어지는 만 14세 이상 청소년에게 깊이 있는 박물관 사유 공간과 명문 캠퍼스·역사 건축 해설 투어는 지적 호기심과 생기부 심화 탐구 주제를 동시에 선물합니다.',
+        missionKo: '💬 인문 탐방 대화 포인트: "반가사유상과 조선 궁궐 건축이 수백 년이 지나도 사람들에게 깊은 울림을 주는 이유는 무엇일까?"'
+      }, makeTourUrls('청소년 코넬식 탐구 보고서 노트 한국사 인문학 필독서', '청소년을 위한 박물관 인문학 건축 교양서', '국립중앙박물관 어린이 투어', 'https://myrealt.rip/xctPa2', 'https://www.klook.com/ko/search/result/?query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')),
       Object.assign({
-        badgeKo: '✨ 엄선 2위 · 대학 캠퍼스·국립과학관 미래 진로 여행',
-        badgeEn: '✨ Edu Travel #2 · STEM & University Campus Tour',
-        categoryKo: '🔬 대전 KAIST·대덕연구단지 국립중앙과학관 & 서울대·규장각 학술 진로 탐방 코스',
-        categoryEn: 'KAIST Daedeok Science Town & University Museum Career Exploration Tour',
-        titleKo: '청소년 과학·공학 탐구 보고서 노트 & 고배율 천체망원경·코딩 로봇 학습 패키지',
-        titleEn: 'Youth STEM Lab Research Notebook & Astronomical Telescope Kit',
-        descKo: '사춘기 초·중기 아이들에게 막연한 공부 잔소리 대신 국내 최고 과학관과 대학 캠퍼스·박물관을 함께 걸으며 미래의 내 모습을 그려보게 하면 내적 학습 동기와 딥워크 집중력이 깨어납니다.',
-        missionKo: '💬 여행지 하브루타 미션: "오늘 본 미래 기술 중 10년 뒤 네가 직접 만들어보고 싶은 기술은 무엇이니?"'
-      }, makeTourUrls('청소년 과학 탐구 보고서 코넬 노트 천체망원경', '십대를 위한 미래 과학 진로 교양서', '대전 국립중앙과학관 도슨트 투어', 'https://myrealt.rip/xc4g4e', 'https://www.klook.com/ko/search/result/?query=%EB%8C%80%EC%A0%84+%EA%B3%BC%ED%95%99%EA%B4%80')),
+        badgeKo: '✨ 만 14세+ 시그니처 2위 · 글로벌 과학·문화 도시 인사이트 투어',
+        badgeEn: '✨ Age 14+ Pick #2 · Global City Science & Cultural Insight',
+        categoryKo: '🌏 오사카·교토 역사과학 투어 / 도쿄 미래과학관·시부야 스카이 / 싱가포르 바이오폴리스 탐방',
+        categoryEn: 'Osaka-Kyoto Heritage / Tokyo Miraikan / Singapore Global Tour Pass',
+        titleKo: '글로벌 시티 패스·고속열차·입장권(마이리얼트립·클룩) & 청소년 세계사·과학 교양서',
+        titleEn: 'Global City Rail/Attraction Pass & Youth World History/Science Book',
+        descKo: '시험이 끝난 방학·연휴에 세계적인 과학·문화 도시를 아이가 직접 동선과 교통패스(나리타 리무진·라피트·메트로패스)까지 계획해 다녀오면 자기주도 문제해결력이 비약적으로 성장합니다.',
+        missionKo: '💬 글로벌 탐방 미션: "오늘 하루 이동 동선과 예산을 네가 직접 캡틴이 되어 가이드해 볼래?"'
+      }, makeTourUrls('청소년 세계사 교양서 글로벌 진로 탐색 도서', '십대를 위한 세계문화 역사 기행', '오사카 유니버설 스튜디오 재팬', 'https://myrealt.rip/xctl66', 'https://www.klook.com/ko/search/result/?query=%EC%98%A4%EC%82%AC%EC%B9%B4+%ED%8C%A8%EC%8A%A4')),
       Object.assign({
-        badgeKo: '💎 엄선 3위 · 해양·산림 액티브 성장 캠프 여행',
-        badgeEn: '💎 Edu Travel #3 · Active Nature & Posture Reset Trip',
-        categoryKo: '🌲 강원 평창·정선 국립숲체원 트레킹 & 제주 올레길·한라산 어리목 가족 액티브 여행',
-        categoryEn: 'National Forest Healing Trekking & Jeju Active Family Expedition',
-        titleKo: '어린이·청소년 발 아치 보호 트레킹 인솔·등산스틱 & 가족 여행 독서·관찰 키트',
-        titleEn: 'Youth Arch-Support Trekking Gear & Family Travel Journal',
-        descKo: '책상과 학원 의자에 눌려 있던 척추 디스크와 거북목을 펴주고, 숲길 걷기와 야외 햇빛 노출을 통해 세로토닌·멜라토닌 분비를 극대화하여 밤 10시 성장호르몬 피크를 회복시키는 힐링 여행입니다.',
-        missionKo: '💬 여행지 하브루타 미션: "스마트폰을 내려놓고 숲길을 걸을 때 우리 뇌와 몸에서는 어떤 좋은 변화가 일어날까?"'
-      }, makeTourUrls('주니어 어린이 트레킹화 아치 깔창 가족여행 배낭', '청소년 자연 과학 에세이 필독서', '제주투어패스 가족 액티브 여행', 'https://myrealt.rip/xc4hf6', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4'))
+        badgeKo: '💎 만 14세+ 시그니처 3위 · 척추 감압 & 코르티솔 리셋 액티브 트레킹',
+        badgeEn: '💎 Age 14+ Pick #3 · Spinal Decompression & Cortisol Reset Trip',
+        categoryKo: '🌲 제주 올레·성산일출봉·비자림 트레킹 & 부산 해운대 요트·강원 숲체원 힐링 여행',
+        categoryEn: 'Jeju Forest Trekking & Busan Marine Yacht Cortisol-Reset Tour',
+        titleKo: '제주·부산 액티브 투어패스 & 청소년 발 아치 보호 트레킹 인솔·척추 스트레칭 가이드',
+        titleEn: 'Jeju/Busan Active Tour Pass & Arch-Support Trekking Gear',
+        descKo: '하루 10시간 이상 책상 착석으로 눌린 청소년의 척추 추간판 디스크(+1.8cm 숨은 키)를 펴주고, 학업 코르티솔(성장호르몬 억제 요인)을 낮춰 깊은 서파수면을 회복시키는 재충전 코스입니다.',
+        missionKo: '💬 힐링 트레킹 대화 포인트: "공부 이야기 없이 오늘은 푸른 바다와 숲을 보며 네가 제일 하고 싶은 이야기만 해보자!"'
+      }, makeTourUrls('주니어 아치 보호 트레킹 깔창 청소년 스트레칭 폼롤러', '청소년 뇌과학 수면 휴식 에세이', '제주투어패스 가족 액티브 여행', 'https://myrealt.rip/xc4hf6', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4'))
     ];
   }
 
@@ -1722,7 +1891,7 @@
                   <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">쿠팡(AF7865143) ↗</a>
                   ${categoryType === 'supplement' ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="iherb" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(16,185,129,0.14); border-radius: 6px; color: #A7F3D0; text-decoration: none; text-align: center; font-weight: 700;">iHerb(IPZ1547) ↗</a>` : `<a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">YES24 ↗</a>`}
                   <a href="${sub.amazonUrl || `https://www.amazon.com/s?k=${encodeURIComponent(sub.ihQuery || sub.cpQuery || '')}&tag=kidfit-20`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="amazon" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(245,158,11,0.14); border-radius: 6px; color: #FDE68A; text-decoration: none; text-align: center; font-weight: 700;">Amazon(kidfit-20) ↗</a>
-                  ${categoryType === 'toy' ? `<a href="${sub.naverBrandConnectHealthUrl || 'https://naver.me/5Jq9LnLT'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.14); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">💆 닥터웰 건강케어(네이버) ↗</a>` : `<a href="${sub.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="tenping" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(244,63,94,0.14); border-radius: 6px; color: #FDA4AF; text-decoration: none; text-align: center; font-weight: 700;">🎁 유아교육전 무료입장(텐핑) ↗</a>`}
+                  <a href="${sub.adpickShoppingUrl || `https://adpick.co.kr/apis/goshopping.php?affid=4d31d3&offer=c16a2&url=${encodeURIComponent('https://www.11st.co.kr/search/search.tmall?kwd=' + encodeURIComponent(sub.cpQuery || ''))}`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(236,72,153,0.14); border-radius: 6px; color: #FBCFE8; text-decoration: none; text-align: center; font-weight: 700;">🛒 11번가(애드픽 4d31d3) ↗</a>
                 </div>
               </details>
             </div>
@@ -1981,15 +2150,15 @@
           </div>
         </div>
 
-        <!-- Part 2: Contextual Education Prescription (Books, Workbooks & Baby/Edu Fair) -->
+        <!-- Part 2: Contextual Education Prescription (Books & Workbooks) -->
         <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(196, 181, 253, 0.42); border-radius: 18px; padding: 1.2rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #C4B5FD; background: rgba(139, 92, 246, 0.2); padding: 0.22rem 0.7rem; border-radius: 9999px;">
-              📚 [Chapter 6 연계 처방] 맞춤 교육 필독 도서 · 워크북 &amp; 교육전 혜택
+              📚 [Chapter 6 연계 처방] 맞춤 교육 필독 도서 &amp; 워크북
             </span>
-            <a href="${affConfig.tenpingUrl || DEFAULT_AFF.tenpingUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="tenping" style="font-size: 0.78rem; font-weight: 900; color: #FDA4AF; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(244, 63, 94, 0.4); padding: 0.24rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-              🎁 코베 베이비페어·유아교육전 무료입장 사전등록 ↗
-            </a>
+            <span style="font-size: 0.76rem; color: #DDD6FE; font-weight: 700;">
+              YES24(A100708867) · 쿠팡(AF7865143) · 11번가(애드픽 4d31d3) 연동
+            </span>
           </div>
           <h4 style="font-size: 1.06rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
             ${isEn ? 'Curated Must-Read Books & Cognitive Workbooks (Top 3)' : '위 맞춤 교육 처방을 집에서 바로 실천하는 필독 도서 & 워크북 TOP 3'}
@@ -2004,37 +2173,103 @@
   }
 
   /**
-   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (왜 어떤 여행이 필요한지 진단 + 맞춤 투어·티켓 처방)
+   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription
+   * (Part 1: 왜 어떤 여행이 필요한지 진단 -> Part 2-A: 내 지역 × 연령대별 실제 인기 과학관·박물관·체험 티켓 TOP 3 -> Part 2-B: 연령대별 시그니처 국내외 교육여행 TOP 3)
    */
   function renderCustomTravelChapter(profile = {}, affConfig = {}) {
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+    const region = String(profile.region || '서울 강남·서초·송파');
     const travelPhilosophyHtml = renderAgeEducationalTravelGuide(ageYears, profile, isEn);
+    const regionalTickets = data.regionalTickets || [];
+    const ageBandTag = ageYears <= 3 ? '만 1~3세' : ageYears <= 6 ? '만 4~6세' : ageYears <= 9 ? '만 7~9세' : ageYears <= 13 ? '만 10~13세' : '만 14세+';
 
     return `
       <div id="custom-travel-chapter-box" style="text-align: left;">
         <!-- Part 1: Why & What Travel is Needed First -->
         ${travelPhilosophyHtml}
 
-        <!-- Part 2: Contextual Travel & Tour Prescription (MyRealTrip, Klook, Naver Family Package Tour) -->
+        <!-- Part 2-A: Regional × Age-Band Real Popular Museum, Science Center & Experience Ticket Catalog (Top 3) -->
+        <div id="regional-age-ticket-catalog-box" style="margin-top: 1.15rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(12, 74, 110, 0.38)); border: 1.5px solid rgba(56, 189, 248, 0.48); border-radius: 18px; padding: 1.25rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.22rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
+              📍 [내 지역 × 연령 맞춤 티켓] ${region} × ${ageBandTag} 인기 과학관·박물관·체험 TOP 3
+            </span>
+            <span style="font-size: 0.76rem; color: #93C5FD; font-weight: 800;">
+              마이리얼트립(6226316) · 클룩(140161) · KKday(애드픽 4d31d3) 실시간 연동
+            </span>
+          </div>
+          <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
+            ${isEn
+              ? `Top 3 Regional Museums, Science Centers & Experiences in [${region}] for Age ${ageYears}`
+              : `우리 동네 권역(${region})에서 만 ${ageYears}세 아이와 이번 주말 바로 갈 수 있는 인기 박물관·과학관·체험 티켓 TOP 3`}
+          </h4>
+          <p style="font-size: 0.86rem; color: #CBD5E1; margin: 0 0 0.9rem 0; line-height: 1.55;">
+            8대 거주 권역 × 5단계 연령대(만 1~3세 / 4~6세 / 7~9세 / 10~13세 / 14세+) 매트릭스를 기반으로, 우리 아이 나이에 딱 맞는 관람 포인트와 사전 예약·할인 티켓을 매칭했습니다.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+            ${regionalTickets.map((tk) => `
+              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 16px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.4rem;">
+                    <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.16); padding: 0.18rem 0.55rem; border-radius: 9999px;">
+                      ${tk.rankBadgeKo}
+                    </span>
+                    <span style="font-size: 0.73rem; font-weight: 800; color: #A7F3D0;">
+                      ${tk.themeBadgeKo}
+                    </span>
+                  </div>
+                  <div style="font-size: 1rem; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 0.4rem;">
+                    ${tk.destination}
+                  </div>
+                  <div style="font-size: 0.82rem; color: #FDE68A; font-weight: 800; background: rgba(245, 158, 11, 0.12); border-left: 3px solid #F59E0B; padding: 0.45rem 0.65rem; border-radius: 8px; margin-bottom: 0.5rem; line-height: 1.48;">
+                    🎯 <strong>[${ageBandTag} 맞춤 포인트]</strong> ${tk.ageSpecificGuide}
+                  </div>
+                  <ul style="margin: 0 0 0.55rem 0; padding-left: 1.1rem; font-size: 0.8rem; color: #E2E8F0; line-height: 1.5;">
+                    ${tk.viewPoints.map(vp => `<li>${vp}</li>`).join('')}
+                  </ul>
+                  <div style="font-size: 0.76rem; color: #94A3B8; background: rgba(255,255,255,0.04); padding: 0.45rem 0.6rem; border-radius: 8px; margin-bottom: 0.7rem; line-height: 1.45;">
+                    💡 <strong>예약·동선 팁:</strong> ${tk.bookingTips}<br>
+                    🗺️ <strong>추천 코스:</strong> ${tk.route}
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.5); color: #E0F2FE; font-size: 0.83rem; font-weight: 900; padding: 0.45rem 0.75rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                    ✈️ 마이리얼트립 티켓·도슨트 투어 보기 ↗
+                  </a>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;">
+                    <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="padding: 0.4rem 0.45rem; background: rgba(249, 115, 22, 0.16); border: 1px solid rgba(249, 115, 22, 0.42); border-radius: 8px; color: #FDBA74; font-size: 0.76rem; font-weight: 800; text-decoration: none; text-align: center;">
+                      🎟️ 클룩(Klook) 할인권 ↗
+                    </a>
+                    <a href="${tk.adpickKkdayUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="padding: 0.4rem 0.45rem; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 8px; color: #FBCFE8; font-size: 0.76rem; font-weight: 800; text-decoration: none; text-align: center;">
+                      🎫 KKday·애드픽 패스 ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Part 2-B: 5-Tier Age-Band Signature Domestic & Overseas Educational Travel Prescription (MyRealTrip + Klook + Adpick KKday) -->
         <div class="pinpoint-category-box" id="pinpoint-edu-travel-box" style="margin-top: 1.15rem; background: rgba(255, 255, 255, 0.03); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 18px; padding: 1.2rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #FDE68A; background: rgba(245, 158, 11, 0.2); padding: 0.22rem 0.7rem; border-radius: 9999px;">
-              ✈️ [Chapter 7 연계 처방] 맞춤 체험학습 · 도슨트 투어 · 가족여행 코스
+              🌏 [${ageBandTag} 시그니처 교육여행] 주말·방학 국내외 도슨트 · 과학관 · 테마파크 투어 TOP 3
             </span>
-            <a href="${affConfig.naverBrandConnectTour || DEFAULT_AFF.naverBrandConnectTour}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="font-size: 0.78rem; font-weight: 900; color: #86EFAC; background: rgba(34, 197, 94, 0.16); border: 1px solid rgba(34, 197, 94, 0.4); padding: 0.24rem 0.75rem; border-radius: 9999px; text-decoration: none;">
-              🏖️ 노랑풍선×네이버 온천·힐튼 가족 패키지투어 특가 ↗
-            </a>
+            <span style="font-size: 0.76rem; color: #FDE68A; font-weight: 700;">
+              마이리얼트립 · 클룩(Klook) · KKday(애드픽) 공식 연동
+            </span>
           </div>
           <h4 style="font-size: 1.06rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.35rem 0;">
-            ${isEn ? 'Curated Educational Family Travel & Field Tours (Top 3)' : `위 만 ${ageYears}세 필수 여행 테마를 주말·방학에 바로 실천하는 추천 코스 TOP 3`}
+            ${isEn ? 'Curated Educational Family Travel & Field Tours (Top 3)' : `만 ${ageYears}세(${ageBandTag}) 필수 여행 테마를 주말·방학에 완성하는 시그니처 투어 TOP 3`}
           </h4>
           <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0 0 0.85rem 0; line-height: 1.52;">
             ${isEn
               ? `Mapped to Age ${ageYears} developmental windows: combines outdoor vitamin D synthesis, active growth plate walking, and parent-child Havruta inquiry.`
-              : `아이의 해마 장기기억과 전두엽 호기심을 깨우는 실제 도슨트 투어·액티비티 티켓(마이리얼트립·클룩·네이버 가족투어) 및 사전답사 키트입니다.`}
+              : `아이의 해마 장기기억과 전두엽 호기심을 깨우는 연령별 대표 도슨트 투어·과학관·테마파크 티켓(마이리얼트립·클룩·KKday) 및 사전답사 도서·키트입니다.`}
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
             ${(data.eduTours || []).map((tour) => `
@@ -2062,11 +2297,13 @@
                   <a href="${tour.myrealtripUrl || tour.naverTourUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.45); color: #FDE68A; font-size: 0.84rem; font-weight: 800; padding: 0.45rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
                     ✈️ ${isEn ? 'MyRealTrip Family Tour & Ticket ↗' : '마이리얼트립 도슨트·입장권 보러가기 ↗'}
                   </a>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin-top: 0.4rem;">
+                    <a href="${tour.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="padding: 0.4rem 0.45rem; background: rgba(249,115,22,0.16); border: 1px solid rgba(249,115,22,0.42); border-radius: 8px; color: #FDBA74; text-decoration: none; text-align: center; font-size: 0.76rem; font-weight: 800;">🎟️ 클룩(Klook) 패스 ↗</a>
+                    <a href="${tour.adpickKkdayUrl || 'https://adpick.co.kr/apis/goshopping.php?affid=4d31d3&offer=b796d&url=https%3A%2F%2Fwww.kkday.com%2Fko'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="padding: 0.4rem 0.45rem; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.4); border-radius: 8px; color: #FBCFE8; text-decoration: none; text-align: center; font-size: 0.76rem; font-weight: 800;">🎫 KKday·애드픽 ↗</a>
+                  </div>
                   <details style="margin-top: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
-                    <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">클룩(Klook) · 네이버투어 · 사전답사 도서 보기 ▼</summary>
+                    <summary style="cursor: pointer; text-align: right; color: #94A3B8; font-weight: 700;">사전답사 도서 &amp; 탐구키트(YES24·쿠팡) 보기 ▼</summary>
                     <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;">
-                      <a href="${tour.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(249,115,22,0.16); border-radius: 6px; color: #FDBA74; text-decoration: none; text-align: center; font-weight: 700;">🎫 클룩(Klook) 패스 ↗</a>
-                      <a href="${tour.naverBrandTourUrl || 'https://naver.me/xJcOADhA'}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="naver-brandconnect" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(34,197,94,0.15); border-radius: 6px; color: #86EFAC; text-decoration: none; text-align: center; font-weight: 700;">🏖️ 네이버 패밀리투어 ↗</a>
                       <a href="${tour.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(255,255,255,0.06); border-radius: 6px; color: #E2E8F0; text-decoration: none; text-align: center; font-weight: 700;">🎒 탐구키트(쿠팡) ↗</a>
                       <a href="${tour.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="flex: 1 1 45%; padding: 0.35rem; background: rgba(139,92,246,0.16); border-radius: 6px; color: #EDE9FE; text-decoration: none; text-align: center; font-weight: 700;">📘 사전도서(YES24) ↗</a>
                     </div>
@@ -2102,6 +2339,8 @@
     getSequentialLifecycleRoadmap,
     buildPinpointUrls,
     curatePinpointItems,
+    curateRegionalAgeTickets,
+    curateEducationalTours,
     getAgeEducationalTravelPhilosophy,
     renderAgeEducationalTravelGuide,
     renderLifecycleTimelineOnly,

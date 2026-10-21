@@ -302,9 +302,19 @@ const server = http.createServer((req, res) => {
             active: true
           },
           adpick: {
-            offersApi: 'https://adpick.co.kr/apis/offers.php?affid={affid}&os=&adtype=&category=notgame&order=rand',
-            shoppingApi: 'https://adpick.co.kr/apis/sdk_shopping.php?affid={affid}',
-            hotdealApi: 'https://adpick.co.kr/apis/sdk_shopping_hotdeal.php?affid={affid}',
+            affid: '4d31d3',
+            active: true,
+            offersApi: 'https://adpick.co.kr/apis/offers.php?affid=4d31d3&os=&adtype=&category=notgame&order=rand',
+            shoppingApi: 'https://adpick.co.kr/apis/sdk_shopping.php?affid=4d31d3',
+            hotdealApi: 'https://adpick.co.kr/apis/sdk_shopping_hotdeal.php?affid=4d31d3',
+            goshoppingGateway: 'https://adpick.co.kr/apis/goshopping.php?affid=4d31d3&offer={offer}&url={url}',
+            partnerMalls: {
+              '11st': 'c16a2',
+              'kkday': 'b796d',
+              'tripcom': '2f07c',
+              'lotteimall': '7676b',
+              'cjthemarket': 'f5ff7'
+            },
             rateLimitPolicy: '최대 1분에 1회 이하 호출 및 캐싱 필수'
           }
         }
@@ -374,10 +384,27 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // 1-F. Adpick Campaign & Shopping JSON API Proxy with 60-Second Cache (/api/adpick/offers)
+    // 1-F. Adpick Campaign & Shopping JSON API Proxy with 60-Second Cache (/api/adpick/offers & /api/adpick/go)
+    if (pathname === '/api/adpick/go') {
+      const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '4d31d3';
+      const mall = (parsedUrl.searchParams.get('mall') || '11st').toLowerCase();
+      const q = parsedUrl.searchParams.get('q') || '';
+      const offerMap = { '11st': 'c16a2', 'kkday': 'b796d', 'tripcom': '2f07c', 'lotteimall': '7676b', 'cjthemarket': 'f5ff7' };
+      const offer = parsedUrl.searchParams.get('offer') || offerMap[mall] || 'c16a2';
+      const destUrl = parsedUrl.searchParams.get('url') || (
+        mall === 'kkday'
+          ? `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(q || '박물관')}`
+          : `https://www.11st.co.kr/search/search.tmall?kwd=${encodeURIComponent(q || '어린이 영양제')}`
+      );
+      const redirectUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${encodeURIComponent(affid)}&offer=${encodeURIComponent(offer)}&url=${encodeURIComponent(destUrl)}`;
+      res.writeHead(302, { 'Location': redirectUrl, ...NO_CACHE_HEADERS });
+      res.end(`Redirecting to Adpick Shopping Mate: ${redirectUrl}`);
+      return;
+    }
+
     if (pathname === '/api/adpick/offers') {
-      const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '';
-      const mode = parsedUrl.searchParams.get('mode') || 'offers'; // offers | shopping | hotdeal
+      const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '4d31d3';
+      const mode = parsedUrl.searchParams.get('mode') || 'shopping'; // offers | shopping | hotdeal
       if (!affid) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
         res.end(JSON.stringify({
