@@ -928,8 +928,8 @@
 
                 <!-- Primary M:FFERENCE White CTA Button -->
                 <div style="margin-top: 1.25rem; text-align: center;">
-                  <button type="submit" class="btn btn-submit btn-block-cta mf-btn-white" id="btn-submit-quiz" data-i18n="quiz.submit.btn" style="width: 100%; max-width: 500px; padding: 0.95rem 1.4rem; font-size: 0.96rem; font-weight: 800; border-radius: 9999px; white-space: nowrap;">
-                    ✦ 우리 아이 맞춤 성장 가이드북 보기 →
+                  <button type="submit" onclick="if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.submitQuiz === 'function') window.TallerOnboardingWizard.submitQuiz(event);" class="btn btn-submit btn-block-cta mf-btn-white" id="btn-submit-quiz" data-i18n="quiz.submit.btn" style="width: 100%; max-width: 500px; padding: 0.95rem 1.4rem; font-size: 0.96rem; font-weight: 800; border-radius: 9999px; white-space: nowrap;">
+                    ✦ 우리 아이 맞춤 성장·학습 보고서 보기 →
                   </button>
                 </div>
               </div>

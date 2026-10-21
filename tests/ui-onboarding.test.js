@@ -562,6 +562,61 @@ function runSuite() {
     }
   });
 
+  it('verifies Learning Mode survey submission (#btn-submit-quiz) with checked learning-literacy/math/focus/meta succeeds and renders Learning report', () => {
+    const { elements, mockDoc, mockWin } = setupInteractiveDOM();
+    elements['btn-submit-quiz'] = new (elements['btn-next-step'].constructor)('btn-submit-quiz', 'button');
+    const origDoc = global.document;
+    const origWin = global.window;
+
+    // Simulate checked learning checkboxes in Learning Mode
+    const origQSA = mockDoc.querySelectorAll.bind(mockDoc);
+    mockDoc.querySelectorAll = (sel) => {
+      if (sel === 'input[name="learning-literacy"]:checked') return [{ value: 'reading_comprehension' }, { value: 'vocab_context' }];
+      if (sel === 'input[name="learning-math"]:checked') return [{ value: 'applied_math_block' }];
+      if (sel === 'input[name="learning-focus"]:checked') return [{ value: 'distracted_desk' }, { value: 'dopamine_media' }];
+      if (sel === 'input[name="learning-meta"]:checked') return [{ value: 'passive_illusion' }];
+      return origQSA(sel);
+    };
+
+    global.document = mockDoc;
+    global.window = mockWin;
+
+    let renderedProfile = null;
+    global.KidsFitApp = {
+      renderPrescriptionResults: (profile) => { renderedProfile = profile; }
+    };
+
+    try {
+      const OnboardingWizard = require(path.join(ROOT_DIR, 'src/js/onboarding-wizard.js'));
+      const MasterBriefing = require(path.join(ROOT_DIR, 'src/js/master-briefing.js'));
+      OnboardingWizard.initWizard();
+      OnboardingWizard.enterStudioMode('child', 'learning');
+      OnboardingWizard.goToStep(6);
+
+      // Click submit button in Learning Mode
+      elements['btn-submit-quiz'].click();
+      assert.strictEqual(OnboardingWizard.state.isScanning, true, 'Learning Mode submit button click must start scan without throwing');
+
+      OnboardingWizard.completeScan((profile) => {
+        global.KidsFitApp.renderPrescriptionResults(profile);
+      });
+
+      assert.ok(renderedProfile, 'Learning Mode scan completion must pass profile to renderPrescriptionResults');
+      assert.strictEqual(renderedProfile.preferredReportMode, 'learning');
+      assert.ok(renderedProfile.traitLearningConcerns.includes('reading_literacy'));
+      assert.ok(renderedProfile.traitLearningConcerns.includes('math_concept'));
+      assert.ok(renderedProfile.traitLearningConcerns.includes('screen_dopamine'));
+
+      const html = MasterBriefing.renderMasterBriefingCard(renderedProfile);
+      assert.ok(html.includes('id="pillar-2-container" class="master-pillar-container" style="display: block;'), 'Learning report container must be visible');
+      assert.ok(html.includes('id="pillar-1-container" class="master-pillar-container" style="display: none;'), 'Physical growth report container must be hidden');
+    } finally {
+      global.document = origDoc;
+      global.window = origWin;
+      delete global.KidsFitApp;
+    }
+  });
+
   // --------------------------------------------------------------------------
   console.log('\n====================================================');
   console.log(`Summary: ${passedTests}/${totalTests} tests passed.`);

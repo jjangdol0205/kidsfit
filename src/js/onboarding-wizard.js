@@ -926,7 +926,7 @@
     const traitDietList = readMultiTrait('trait-diet-digestion', 'trait-diet-digestion', 'small_appetite');
     const traitPostureList = readMultiTrait('trait-posture-type', 'trait-posture-type', 'turtle_slouch');
     const traitTemperamentList = readMultiTrait('trait-temperament', 'trait-temperament', 'explorer');
-    const traitLearningConcerns = readMultiTrait('trait-learning-concern', 'trait-learning-concern', 'reading_literacy');
+    let traitLearningConcerns = readMultiTrait('trait-learning-concern', 'trait-learning-concern', 'reading_literacy');
 
     const exerciseTraitEl = document.getElementById('trait-exercise-freq');
     const focusTraitEl = document.getElementById('trait-focus-span');
@@ -957,8 +957,16 @@
     const learningMeta = getCheckedValues('learning-meta');
 
     if (learningLiteracy.length || learningMath.length || learningFocus.length || learningMeta.length) {
+      const mappedConcerns = [...traitLearningConcerns];
+      if (learningLiteracy.some(v => v !== 'active_reader')) mappedConcerns.push('reading_literacy');
+      if (learningLiteracy.includes('vocab_context') || learningLiteracy.includes('summary_expression')) mappedConcerns.push('vocab_expression');
+      if (learningMath.some(v => v !== 'math_explorer')) mappedConcerns.push('math_concept');
+      if (learningFocus.includes('distracted_desk') || learningFocus.includes('procrastination') || learningFocus.includes('impulsive_mistakes')) mappedConcerns.push('desk_endurance');
+      if (learningFocus.includes('dopamine_media')) mappedConcerns.push('screen_dopamine');
+      if (learningMeta.some(v => v !== 'daily_retrieval_active')) mappedConcerns.push('passive_forget');
+
       traitLearningConcerns = Array.from(new Set([
-        ...traitLearningConcerns,
+        ...mappedConcerns,
         ...learningLiteracy,
         ...learningMath,
         ...learningFocus,
@@ -998,9 +1006,13 @@
       traitTemperamentList,
       traitFocusSpan,
       traitLearningConcerns,
+      learningLiteracy,
+      learningMath,
+      learningFocus,
+      learningMeta,
       traitStudyStyle,
       parentFreeNote,
-      preferredReportMode: wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'both'
+      preferredReportMode: wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'growth'
     };
 
     return wizardState.profile;
@@ -1075,6 +1087,13 @@
         bannerEl.style.borderColor = 'rgba(56, 189, 248, 0.35)';
         bannerEl.innerHTML = '📏 <strong>[신체 성장 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 성장도표 & 논문 기반 키·골연령·성장판 가이드북을 발행합니다.';
       }
+    }
+
+    const submitBtnEl = document.getElementById('btn-submit-quiz');
+    if (submitBtnEl) {
+      submitBtnEl.textContent = (activeMode === 'learning')
+        ? '✦ 우리 아이 맞춤 두뇌·학습 보고서 보기 →'
+        : '✦ 우리 아이 맞춤 신체 성장 보고서 보기 →';
     }
 
     if (document.body && document.body.classList) {
@@ -1161,22 +1180,38 @@
       });
     }
 
-    if (form) {
-      form.addEventListener('submit', (e) => {
+    const submitBtn = document.getElementById('btn-submit-quiz');
+
+    const triggerFinalSubmission = (e) => {
+      if (e && typeof e.preventDefault === 'function') {
         e.preventDefault();
-        if (validateStep(wizardState.currentStep)) {
+      }
+      if (wizardState.isScanning) return;
+      if (validateStep(wizardState.currentStep)) {
+        try {
           readProfileFromForm();
-          start3SecondScan((profile) => {
-            if (typeof global.KidsFitApp !== 'undefined') {
-              if (typeof global.KidsFitApp.renderPrescriptionResults === 'function') {
-                global.KidsFitApp.renderPrescriptionResults(profile);
-              } else if (typeof global.KidsFitApp.renderPrescriptionReport === 'function') {
-                global.KidsFitApp.renderPrescriptionReport(profile);
-              }
-            }
-          });
+        } catch (err) {
+          if (typeof console !== 'undefined' && console.error) {
+            console.error('[OnboardingWizard] readProfileFromForm error:', err);
+          }
         }
-      });
+        start3SecondScan((profile) => {
+          if (typeof global.KidsFitApp !== 'undefined') {
+            if (typeof global.KidsFitApp.renderPrescriptionResults === 'function') {
+              global.KidsFitApp.renderPrescriptionResults(profile);
+            } else if (typeof global.KidsFitApp.renderPrescriptionReport === 'function') {
+              global.KidsFitApp.renderPrescriptionReport(profile);
+            }
+          }
+        });
+      }
+    };
+
+    if (form) {
+      form.addEventListener('submit', triggerFinalSubmission);
+    }
+    if (submitBtn) {
+      submitBtn.addEventListener('click', triggerFinalSubmission);
     }
 
     // Age slider & DOB picker sync
@@ -1258,14 +1293,20 @@
 
     // Brand Showcase -> Studio Mode Entry & Return Buttons
     const btnEnterTop = document.getElementById('btn-enter-studio-top');
+    const btnEnterLearning = document.getElementById('btn-enter-studio-learning');
+    const btnHomeStartGrowth = document.getElementById('btn-home-start-growth-report');
+    const btnHomeStartLearning = document.getElementById('btn-home-start-learning-report');
     const btnEnterParent = document.getElementById('btn-enter-studio-parent');
     const btnEnterYouth = document.getElementById('btn-enter-studio-youth');
     const btnBackBrand = document.getElementById('btn-back-to-brand');
     const brandHomeTrigger = document.getElementById('brand-home-trigger');
 
-    if (btnEnterTop) btnEnterTop.addEventListener('click', () => enterStudioMode('child'));
-    if (btnEnterParent) btnEnterParent.addEventListener('click', () => enterStudioMode('child'));
-    if (btnEnterYouth) btnEnterYouth.addEventListener('click', () => enterStudioMode('self'));
+    if (btnEnterTop) btnEnterTop.addEventListener('click', () => enterStudioMode('child', 'growth'));
+    if (btnEnterLearning) btnEnterLearning.addEventListener('click', () => enterStudioMode('child', 'learning'));
+    if (btnHomeStartGrowth) btnHomeStartGrowth.addEventListener('click', () => enterStudioMode('child', 'growth'));
+    if (btnHomeStartLearning) btnHomeStartLearning.addEventListener('click', () => enterStudioMode('child', 'learning'));
+    if (btnEnterParent) btnEnterParent.addEventListener('click', () => enterStudioMode('child', 'growth'));
+    if (btnEnterYouth) btnEnterYouth.addEventListener('click', () => enterStudioMode('self', 'growth'));
     if (btnBackBrand) btnBackBrand.addEventListener('click', () => exitStudioMode());
     if (brandHomeTrigger) brandHomeTrigger.addEventListener('click', () => exitStudioMode());
 
@@ -1344,6 +1385,31 @@
     }
   }
 
+  function submitQuiz(e) {
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
+    if (wizardState.isScanning) return;
+    if (validateStep(wizardState.currentStep)) {
+      try {
+        readProfileFromForm();
+      } catch (err) {
+        if (typeof console !== 'undefined' && console.error) {
+          console.error('[OnboardingWizard] readProfileFromForm error:', err);
+        }
+      }
+      start3SecondScan((profile) => {
+        if (typeof global.KidsFitApp !== 'undefined') {
+          if (typeof global.KidsFitApp.renderPrescriptionResults === 'function') {
+            global.KidsFitApp.renderPrescriptionResults(profile);
+          } else if (typeof global.KidsFitApp.renderPrescriptionReport === 'function') {
+            global.KidsFitApp.renderPrescriptionReport(profile);
+          }
+        }
+      });
+    }
+  }
+
   // Export
   const OnboardingWizard = {
     PRESETS,
@@ -1360,6 +1426,7 @@
     start3SecondScan,
     completeScan,
     readProfileFromForm,
+    submitQuiz,
     initWizard
   };
 

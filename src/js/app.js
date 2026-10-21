@@ -694,6 +694,13 @@
         } else if (typeof MasterBriefingEngine.attachRetestHandler === 'function') {
           MasterBriefingEngine.attachRetestHandler();
         }
+        if (typeof MasterBriefingEngine.switchActiveReport === 'function') {
+          const activeMode = (state.profile && state.profile.preferredReportMode === 'learning') ||
+            (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning')
+            ? 'learning'
+            : 'growth';
+          MasterBriefingEngine.switchActiveReport(activeMode);
+        }
       }
       // Bind interactive 24h hormone sliders (Chapter 3) & biomechanics routine timers (Chapter 4) inside the One-Page 7-Chapter Report
       attachHormoneSliderListeners();

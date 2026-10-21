@@ -840,6 +840,10 @@
       };
     }
 
+    const isLearningDefault = (profile && profile.preferredReportMode === 'learning') ||
+      (typeof global !== 'undefined' && global.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning') ||
+      (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning');
+
     return `
       <!-- Master Briefing Card: Crisp Clinical Diagnosis Sheet (Zero 3-Card Clutter, Large High-Contrast Font) -->
       <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid #3B82F6; text-align: left; padding: 1.5rem;">
@@ -851,7 +855,9 @@
               📋 ${isEn ? 'KIDS-FIT AI · CLINICAL GROWTH DIAGNOSIS SHEET' : guidebookEditionLabel}
             </span>
             <h2 class="briefing-title" style="font-size: 1.38rem; font-weight: 900; color: #FFFFFF; margin: 0.15rem 0;">
-              ${isEn ? 'At-a-Glance Precision Growth Diagnosis & Daily Prescription' : '한눈에 보는 우리 아이 맞춤 성장 진단서 & 아침·저녁 처방전'}
+              ${isEn
+                ? 'At-a-Glance Precision Diagnosis & Daily Prescription'
+                : (isLearningDefault ? '한눈에 보는 우리 아이 맞춤 두뇌·학습 진단서 & 자기주도 처방전' : '한눈에 보는 우리 아이 맞춤 신체 성장 진단서 & 아침·저녁 처방전')}
             </h2>
           </div>
           <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
@@ -875,8 +881,8 @@
             <span style="font-size: 0.86rem; font-weight: 800; color: #FFFFFF;">
               📑 1:1 맞춤 단독 보고서 열람
             </span>
-            <span id="active-report-mode-badge" style="font-size: 0.76rem; font-weight: 800; color: #38BDF8; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.22rem 0.7rem; border-radius: 9999px;">
-              현재 열람: 📏 신체 성장 마스터 보고서
+            <span id="active-report-mode-badge" style="font-size: 0.76rem; font-weight: 800; color: ${isLearningDefault ? '#C084FC' : '#38BDF8'}; background: rgba(56, 189, 248, 0.16); border: 1px solid ${isLearningDefault ? '#C084FC' : 'rgba(56, 189, 248, 0.4)'}; padding: 0.22rem 0.7rem; border-radius: 9999px;">
+              ${isLearningDefault ? '현재 열람: 🧠 두뇌·학습 마스터 보고서' : '현재 열람: 📏 신체 성장 마스터 보고서'}
             </span>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
@@ -902,7 +908,7 @@
         <!-- ====================================================================== -->
         <!-- 【축 1: 📏 아이 신체 성장 마스터 분석 보고서 (Chapters 1~4)】              -->
         <!-- ====================================================================== -->
-        <div id="pillar-1-container" class="master-pillar-container" style="background: rgba(15, 23, 42, 0.65); border: 2px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 1.4rem; margin-bottom: 2rem;">
+        <div id="pillar-1-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'none' : 'block'}; background: rgba(15, 23, 42, 0.65); border: 2px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 1.4rem; margin-bottom: 2rem;">
           <!-- Antigravity AI Real-time Engine Verification Banner -->
           <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, rgba(16, 185, 129, 0.18) 100%); border: 1.5px solid #38BDF8; border-radius: 14px; padding: 0.75rem 1rem; margin-bottom: 1.15rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -1271,7 +1277,7 @@
       <!-- ====================================================================== -->
       <!-- 【축 2: 🧠 아이 두뇌·학습 마스터 분석 보고서 (Chapters 5~8)】              -->
       <!-- ====================================================================== -->
-      <div id="pillar-2-container" class="master-pillar-container" style="background: rgba(15, 23, 42, 0.65); border: 2px solid rgba(168, 85, 247, 0.35); border-radius: 24px; padding: 1.4rem; margin-top: 2rem; margin-bottom: 2rem;">
+      <div id="pillar-2-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.65); border: 2px solid rgba(168, 85, 247, 0.35); border-radius: 24px; padding: 1.4rem; margin-top: 2rem; margin-bottom: 2rem;">
           <!-- Antigravity AI Real-time Engine Verification Banner -->
           <div style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.24) 0%, rgba(236, 72, 153, 0.18) 100%); border: 1.5px solid #C084FC; border-radius: 14px; padding: 0.75rem 1rem; margin-bottom: 1.15rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
