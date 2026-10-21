@@ -28,7 +28,7 @@ const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json')
 
 const DEFAULT_CONVERSATION_ID = 'efdd0412-2586-40cf-bb28-0fa8976613df';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
-const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe';
+const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\app\\extensions\\antigravity\\bin\\language_server_windows_x64.exe';
 
 const CONTROL_PANEL_KEYBOARD = {
   inline_keyboard: [
@@ -102,36 +102,15 @@ function dispatchToAntigravity(userCommandText, conversationId) {
   const res = spawnSync(binPath, sendArgs, {
     cwd: PROJECT_ROOT,
     encoding: 'utf8',
-    timeout: 15000,
-    shell: !useDirectExe
-  });
-
-  if (res.status === 0) {
-    return {
-      ok: true,
-      mode: 'SEND_MESSAGE',
-      conversationId: targetConvId,
-      output: (res.stdout || '').trim()
-    };
-  }
-
-  const shortTitle = `[Telegram] ${userCommandText.slice(0, 30)}`;
-  const newArgs = useDirectExe
-    ? ['agentapi', 'new-conversation', `--title=${shortTitle}`, '--', fullPrompt]
-    : ['new-conversation', `--title=${shortTitle}`, '--', fullPrompt];
-
-  const fallbackRes = spawnSync(binPath, newArgs, {
-    cwd: PROJECT_ROOT,
-    encoding: 'utf8',
-    timeout: 15000,
+    timeout: 30000,
     shell: !useDirectExe
   });
 
   return {
-    ok: fallbackRes.status === 0,
-    mode: 'NEW_CONVERSATION',
+    ok: res.status === 0,
+    mode: 'SEND_MESSAGE',
     conversationId: targetConvId,
-    output: (fallbackRes.stdout || fallbackRes.stderr || '').trim()
+    output: (res.stdout || res.stderr || '').trim()
   };
 }
 
