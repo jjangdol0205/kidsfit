@@ -5,9 +5,12 @@
  */
 
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+
+let adpickCache = { timestamp: 0, data: null };
 
 const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
@@ -273,6 +276,148 @@ const server = http.createServer((req, res) => {
         ...NO_CACHE_HEADERS
       });
       res.end(`Redirecting to Coupang Partners: ${redirectUrl}`);
+      return;
+    }
+
+    // 1-C. 9-Platform Affiliate Integration Status Endpoint (/api/affiliate/status)
+    if (pathname === '/api/affiliate/status') {
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({
+        ok: true,
+        channels: {
+          coupang: { subId: 'AF7865143', active: true },
+          linkprice: { affId: 'A100708867', active: true },
+          iherb: { rcode: 'IPZ1547', active: true },
+          amazon: { storeId: 'kidfit-20', active: true },
+          tenping: { shortUrl: 'https://iryan.kr/t8g8qxgcc2', campaign: '코베 베이비페어·유아교육전 무료입장 사전등록', active: true },
+          myrealtrip: { mylinkId: '6226316', apiEndpoint: 'https://partner-ext-api.myrealtrip.com', active: true },
+          klook: { aid: '140161', aff_adid: '1514603', redirectBase: 'https://affiliate.klook.com/redirect', active: true },
+          naverBrandConnect: {
+            openApiAvailable: false,
+            note: '네이버 브랜드커넥트는 공개 Open API를 제공하지 않으며 캠페인별 발급 단축링크(naver.me) 브릿지 해시(NaPm) 방식으로 정산됩니다.',
+            links: {
+              healthMassage: 'https://naver.me/5Jq9LnLT',
+              familyTour: 'https://naver.me/xJcOADhA'
+            },
+            active: true
+          },
+          adpick: {
+            offersApi: 'https://adpick.co.kr/apis/offers.php?affid={affid}&os=&adtype=&category=notgame&order=rand',
+            shoppingApi: 'https://adpick.co.kr/apis/sdk_shopping.php?affid={affid}',
+            hotdealApi: 'https://adpick.co.kr/apis/sdk_shopping_hotdeal.php?affid={affid}',
+            rateLimitPolicy: '최대 1분에 1회 이하 호출 및 캐싱 필수'
+          }
+        }
+      }));
+      return;
+    }
+
+    // 1-D. Klook Affiliate Dynamic Redirect Proxy (/api/klook)
+    if (pathname === '/api/klook') {
+      const aid = parsedUrl.searchParams.get('aid') || '140161';
+      const adid = parsedUrl.searchParams.get('aff_adid') || '1514603';
+      const q = parsedUrl.searchParams.get('q') || '';
+      const kSite = parsedUrl.searchParams.get('k_site') ||
+        parsedUrl.searchParams.get('url') ||
+        (q ? `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(q)}` : 'https://www.klook.com/ko/');
+      const redirectUrl = `https://affiliate.klook.com/redirect?aid=${encodeURIComponent(aid)}&aff_adid=${encodeURIComponent(adid)}&k_site=${encodeURIComponent(kSite)}`;
+
+      const format = parsedUrl.searchParams.get('format');
+      const acceptHeader = req.headers['accept'] || '';
+      if (format === 'json' || acceptHeader.includes('application/json')) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(JSON.stringify({ ok: true, aid, aff_adid: adid, k_site: kSite, redirectUrl }));
+        return;
+      }
+
+      res.writeHead(302, { 'Location': redirectUrl, ...NO_CACHE_HEADERS });
+      res.end(`Redirecting to Klook Affiliate: ${redirectUrl}`);
+      return;
+    }
+
+    // 1-E. MyRealTrip Partner API Proxy (/api/myrealtrip/mylink & /api/myrealtrip/search)
+    if (pathname === '/api/myrealtrip/mylink' || pathname === '/api/myrealtrip/search') {
+      const mrtKey = process.env.MYREALTRIP_API_KEY || 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0';
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', (chunk) => { if (body.length < 16384) body += chunk.toString('utf8'); });
+        req.on('end', () => {
+          const apiPath = pathname === '/api/myrealtrip/mylink' ? '/v1/mylink' : '/v1/products/tna/search';
+          const mrtReq = https.request({
+            hostname: 'partner-ext-api.myrealtrip.com',
+            path: apiPath,
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${mrtKey}`,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          }, (mrtRes) => {
+            let respBody = '';
+            mrtRes.on('data', (c) => { respBody += c.toString('utf8'); });
+            mrtRes.on('end', () => {
+              res.writeHead(mrtRes.statusCode || 200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+              res.end(respBody);
+            });
+          });
+          mrtReq.on('error', (err) => {
+            res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false, error: err.message }));
+          });
+          mrtReq.write(body || '{}');
+          mrtReq.end();
+        });
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({ ok: true, mylinkId: 6226316, endpoint: pathname }));
+      return;
+    }
+
+    // 1-F. Adpick Campaign & Shopping JSON API Proxy with 60-Second Cache (/api/adpick/offers)
+    if (pathname === '/api/adpick/offers') {
+      const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '';
+      const mode = parsedUrl.searchParams.get('mode') || 'offers'; // offers | shopping | hotdeal
+      if (!affid) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(JSON.stringify({
+          ok: true,
+          configured: false,
+          message: '애드픽(Adpick) 회원 고유코드(affid)를 관리자 스튜디오 또는 ?affid= 파라미터로 전달하면 실시간 캠페인/쇼핑메이트 JSON이 반환됩니다.',
+          endpoints: {
+            offers: 'https://adpick.co.kr/apis/offers.php?affid={affid}&os=&adtype=&category=notgame&order=rand',
+            shopping: 'https://adpick.co.kr/apis/sdk_shopping.php?affid={affid}',
+            hotdeal: 'https://adpick.co.kr/apis/sdk_shopping_hotdeal.php?affid={affid}'
+          }
+        }));
+        return;
+      }
+
+      const nowMs = Date.now();
+      if (adpickCache.data && (nowMs - adpickCache.timestamp < 60000) && adpickCache.affid === affid && adpickCache.mode === mode) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(adpickCache.data);
+        return;
+      }
+
+      const targetPath = mode === 'shopping'
+        ? `/apis/sdk_shopping.php?affid=${encodeURIComponent(affid)}`
+        : mode === 'hotdeal'
+        ? `/apis/sdk_shopping_hotdeal.php?affid=${encodeURIComponent(affid)}`
+        : `/apis/offers.php?affid=${encodeURIComponent(affid)}&category=notgame&order=rand`;
+
+      https.get(`https://adpick.co.kr${targetPath}`, (adpRes) => {
+        let raw = '';
+        adpRes.on('data', (c) => { raw += c.toString('utf8'); });
+        adpRes.on('end', () => {
+          adpickCache = { timestamp: Date.now(), affid, mode, data: raw };
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(raw);
+        });
+      }).on('error', (err) => {
+        res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: err.message }));
+      });
       return;
     }
 

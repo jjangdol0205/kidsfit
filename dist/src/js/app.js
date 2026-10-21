@@ -848,14 +848,23 @@
     }
   }
 
-  // 9. Secret Admin Studio Logic
+  // 9. Secret Admin Studio Logic (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
     coupang: 'AF7865143',
     linkprice: 'A100708867',
-    iherb: 'KIDSBIO',
-    amazon: 'tallerbiolab-20',
+    iherb: 'IPZ1547',
+    amazon: 'kidfit-20',
     tenping: '010-****-2370',
+    tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
+    adpickAffId: '',
+    adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
+    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectTour: 'https://naver.me/xJcOADhA',
+    myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
+    myrealtripMylinkId: '6226316',
+    klookAid: '140161',
+    klookAdId: '1514603',
     cafeUrl: 'https://cafe.naver.com/kidsfitgrowth',
     blogUrl: 'https://blog.naver.com/kidsfit_studio'
   };

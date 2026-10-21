@@ -107,20 +107,20 @@ async function runAllSuites() {
     });
   });
 
-  it('routes bilingually: EN mode renders iHerb (KIDSBIO) & Amazon (tallerbiolab-20)', () => {
+  it('routes bilingually: EN mode renders iHerb (IPZ1547) & Amazon (kidfit-20)', () => {
     const enChips = ReferenceChips.getReferenceChipsData('calcium', true);
     assert.strictEqual(enChips.length, 2);
     const iherb = enChips.find(c => c.merchant === 'iHerb');
     const amazon = enChips.find(c => c.merchant === 'Amazon');
     assert.ok(iherb, 'EN mode must include iHerb');
     assert.ok(amazon, 'EN mode must include Amazon');
-    assert.ok(iherb.url.includes('KIDSBIO'));
-    assert.ok(amazon.url.includes('tallerbiolab-20'));
+    assert.ok(iherb.url.includes('IPZ1547'));
+    assert.ok(amazon.url.includes('kidfit-20'));
     assert.ok(iherb.label.includes('iHerb'));
     assert.ok(amazon.label.includes('Amazon'));
   });
 
-  it('routes bilingually: KO mode renders Coupang (AF7865143), LinkPrice (A100708867), iHerb (KIDSBIO)', () => {
+  it('routes bilingually: KO mode renders Coupang (AF7865143), LinkPrice (A100708867), iHerb (IPZ1547)', () => {
     const koChips = ReferenceChips.getReferenceChipsData('calcium', false);
     assert.strictEqual(koChips.length, 3);
     const iherb = koChips.find(c => c.merchant === 'iHerb');
@@ -133,7 +133,7 @@ async function runAllSuites() {
 
     assert.ok(coupang.url.includes('AF7865143'));
     assert.ok(linkprice.url.includes('A100708867'));
-    assert.ok(iherb.url.includes('KIDSBIO'));
+    assert.ok(iherb.url.includes('IPZ1547'));
 
     assert.ok(coupang.label.includes('Coupang'));
     assert.ok(linkprice.label.includes('LinkPrice'));
@@ -245,6 +245,51 @@ async function runAllSuites() {
     });
   });
 
+  await itAsync('server handles /api/klook redirect with aid=140161 and aff_adid=1514603', (done) => {
+    http.get(`http://127.0.0.1:${TEST_PORT}/api/klook?format=json&url=${encodeURIComponent('https://www.klook.com/ko/activity/2274-narita-airport-limousine-bus-tokyo')}`, (res) => {
+      let body = '';
+      res.on('data', chunk => { body += chunk; });
+      res.on('end', () => {
+        try {
+          assert.strictEqual(res.statusCode, 200);
+          const data = JSON.parse(body);
+          assert.strictEqual(data.ok, true);
+          assert.strictEqual(data.aid, '140161');
+          assert.strictEqual(data.aff_adid, '1514603');
+          assert.strictEqual(data.redirectUrl, 'https://affiliate.klook.com/redirect?aid=140161&aff_adid=1514603&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2274-narita-airport-limousine-bus-tokyo');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    });
+  });
+
+  await itAsync('server exposes /api/affiliate/status with all 9 channels', (done) => {
+    http.get(`http://127.0.0.1:${TEST_PORT}/api/affiliate/status`, (res) => {
+      let body = '';
+      res.on('data', chunk => { body += chunk; });
+      res.on('end', () => {
+        try {
+          assert.strictEqual(res.statusCode, 200);
+          const data = JSON.parse(body);
+          assert.strictEqual(data.ok, true);
+          assert.strictEqual(data.channels.iherb.rcode, 'IPZ1547');
+          assert.strictEqual(data.channels.amazon.storeId, 'kidfit-20');
+          assert.strictEqual(data.channels.tenping.shortUrl, 'https://iryan.kr/t8g8qxgcc2');
+          assert.strictEqual(data.channels.myrealtrip.mylinkId, '6226316');
+          assert.strictEqual(data.channels.klook.aid, '140161');
+          assert.strictEqual(data.channels.klook.aff_adid, '1514603');
+          assert.strictEqual(data.channels.naverBrandConnect.openApiAvailable, false);
+          assert.ok(data.channels.adpick.offersApi.includes('https://adpick.co.kr/apis/offers.php'));
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    });
+  });
+
   testServer.close();
 
   // ---------------------------------------------------------------------------
@@ -256,8 +301,14 @@ async function runAllSuites() {
     const cfg = AdminStudio.getAffiliateConfig();
     assert.strictEqual(cfg.coupang, 'AF7865143');
     assert.strictEqual(cfg.linkprice, 'A100708867');
-    assert.strictEqual(cfg.iherb, 'KIDSBIO');
-    assert.strictEqual(cfg.amazon, 'tallerbiolab-20');
+    assert.strictEqual(cfg.iherb, 'IPZ1547');
+    assert.strictEqual(cfg.amazon, 'kidfit-20');
+    assert.strictEqual(cfg.tenpingUrl, 'https://iryan.kr/t8g8qxgcc2');
+    assert.strictEqual(cfg.naverBrandConnectHealth, 'https://naver.me/5Jq9LnLT');
+    assert.strictEqual(cfg.naverBrandConnectTour, 'https://naver.me/xJcOADhA');
+    assert.strictEqual(cfg.myrealtripMylinkId, '6226316');
+    assert.strictEqual(cfg.klookAid, '140161');
+    assert.strictEqual(cfg.klookAdId, '1514603');
     assert.strictEqual(cfg.chipsEnabled, true);
   });
 
@@ -358,7 +409,7 @@ async function runAllSuites() {
     const html = NutritionEngine.renderNutritionSection({ ageYears: 10, currentWeight: 35.0 });
     assert.ok(html.includes('동료심사(Peer-Reviewed) 학술 논문 임상 근거'));
     assert.ok(html.includes('id="ref-chip-nutrition"'));
-    assert.ok(html.includes('KIDSBIO'));
+    assert.ok(html.includes('IPZ1547'));
   });
 
   it('Core 3 (BiomechanicsStudio) renders research citations and quiet Coupang reference chip', () => {

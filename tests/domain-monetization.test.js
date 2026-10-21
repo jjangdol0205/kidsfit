@@ -312,8 +312,8 @@ it('verifies clinical affiliate configuration integrity and multi-channel parame
   const cfg = Monetization.getAffiliateConfig();
   assert.strictEqual(cfg.coupang, 'AF7865143');
   assert.strictEqual(cfg.linkprice, 'A100708867');
-  assert.strictEqual(cfg.iherb, 'KIDSBIO');
-  assert.strictEqual(cfg.amazon, 'tallerbiolab-20');
+  assert.strictEqual(cfg.iherb, 'IPZ1547');
+  assert.strictEqual(cfg.amazon, 'kidfit-20');
   assert.strictEqual(cfg.chipsEnabled, true);
 });
 

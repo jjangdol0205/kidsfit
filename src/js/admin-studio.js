@@ -21,14 +21,23 @@
 (function (global) {
   'use strict';
 
-  // 1. Authoritative Default Affiliate Settings
+  // 1. Authoritative Default Affiliate Settings (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
     coupang: 'AF7865143',
     linkprice: 'A100708867',
-    iherb: 'KIDSBIO',
-    amazon: 'tallerbiolab-20',
+    iherb: 'IPZ1547',
+    amazon: 'kidfit-20',
     tenping: '010-****-2370',
+    tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
+    adpickAffId: '',
+    adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
+    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectTour: 'https://naver.me/xJcOADhA',
+    myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
+    myrealtripMylinkId: '6226316',
+    klookAid: '140161',
+    klookAdId: '1514603',
     cafeUrl: 'https://cafe.naver.com/kidsfitgrowth',
     blogUrl: 'https://blog.naver.com/kidsfit_studio'
   };
@@ -120,8 +129,8 @@
     const cfg = Object.assign({}, getAffiliateConfig(), affiliateConfig);
     const coupangId = cfg.coupang || 'AF7865143';
     const linkpriceId = cfg.linkprice || 'A100708867';
-    const iherbCode = cfg.iherb || 'KIDSBIO';
-    const amazonTag = cfg.amazon || 'tallerbiolab-20';
+    const iherbCode = cfg.iherb || 'IPZ1547';
+    const amazonTag = cfg.amazon || 'kidfit-20';
 
     // Normalize scenario ID
     const scId = SCENARIOS[scenarioId] ? scenarioId : 'scenario-1';
@@ -358,12 +367,28 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
       const linkpriceEl = document.getElementById('cfg-linkprice');
       const iherbEl = document.getElementById('cfg-iherb');
       const amazonEl = document.getElementById('cfg-amazon');
+      const tenpingUrlEl = document.getElementById('cfg-tenping-url');
+      const adpickAffIdEl = document.getElementById('cfg-adpick-affid');
+      const naverBcHealthEl = document.getElementById('cfg-naver-bc-health');
+      const naverBcTourEl = document.getElementById('cfg-naver-bc-tour');
+      const mrtKeyEl = document.getElementById('cfg-myrealtrip-key');
+      const mrtIdEl = document.getElementById('cfg-myrealtrip-id');
+      const klookAidEl = document.getElementById('cfg-klook-aid');
+      const klookAdIdEl = document.getElementById('cfg-klook-adid');
       const chipsToggleEl = document.getElementById('cfg-chips-toggle');
 
       if (coupangEl) coupangEl.value = cfg.coupang || DEFAULT_AFFILIATE_CONFIG.coupang;
       if (linkpriceEl) linkpriceEl.value = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
       if (iherbEl) iherbEl.value = cfg.iherb || DEFAULT_AFFILIATE_CONFIG.iherb;
       if (amazonEl) amazonEl.value = cfg.amazon || DEFAULT_AFFILIATE_CONFIG.amazon;
+      if (tenpingUrlEl) tenpingUrlEl.value = cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl;
+      if (adpickAffIdEl) adpickAffIdEl.value = cfg.adpickAffId || DEFAULT_AFFILIATE_CONFIG.adpickAffId;
+      if (naverBcHealthEl) naverBcHealthEl.value = cfg.naverBrandConnectHealth || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectHealth;
+      if (naverBcTourEl) naverBcTourEl.value = cfg.naverBrandConnectTour || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectTour;
+      if (mrtKeyEl) mrtKeyEl.value = cfg.myrealtripKey || DEFAULT_AFFILIATE_CONFIG.myrealtripKey;
+      if (mrtIdEl) mrtIdEl.value = cfg.myrealtripMylinkId || DEFAULT_AFFILIATE_CONFIG.myrealtripMylinkId;
+      if (klookAidEl) klookAidEl.value = cfg.klookAid || DEFAULT_AFFILIATE_CONFIG.klookAid;
+      if (klookAdIdEl) klookAdIdEl.value = cfg.klookAdId || DEFAULT_AFFILIATE_CONFIG.klookAdId;
       if (chipsToggleEl) chipsToggleEl.checked = (cfg.chipsEnabled !== false);
 
       if (global.TallerAdminDbDashboard && typeof global.TallerAdminDbDashboard.mountAdminDbDashboard === 'function') {
@@ -549,17 +574,33 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
         const linkpriceEl = document.getElementById('cfg-linkprice');
         const iherbEl = document.getElementById('cfg-iherb');
         const amazonEl = document.getElementById('cfg-amazon');
+        const tenpingUrlEl = document.getElementById('cfg-tenping-url');
+        const adpickAffIdEl = document.getElementById('cfg-adpick-affid');
+        const naverBcHealthEl = document.getElementById('cfg-naver-bc-health');
+        const naverBcTourEl = document.getElementById('cfg-naver-bc-tour');
+        const mrtKeyEl = document.getElementById('cfg-myrealtrip-key');
+        const mrtIdEl = document.getElementById('cfg-myrealtrip-id');
+        const klookAidEl = document.getElementById('cfg-klook-aid');
+        const klookAdIdEl = document.getElementById('cfg-klook-adid');
 
-        const newCfg = {
+        const newCfg = Object.assign({}, getAffiliateConfig(), {
           chipsEnabled: chipsToggle ? chipsToggle.checked : true,
           coupang: coupangEl && coupangEl.value ? coupangEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.coupang,
           linkprice: linkpriceEl && linkpriceEl.value ? linkpriceEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.linkprice,
           iherb: iherbEl && iherbEl.value ? iherbEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.iherb,
-          amazon: amazonEl && amazonEl.value ? amazonEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.amazon
-        };
+          amazon: amazonEl && amazonEl.value ? amazonEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.amazon,
+          tenpingUrl: tenpingUrlEl && tenpingUrlEl.value ? tenpingUrlEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.tenpingUrl,
+          adpickAffId: adpickAffIdEl && adpickAffIdEl.value ? adpickAffIdEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.adpickAffId,
+          naverBrandConnectHealth: naverBcHealthEl && naverBcHealthEl.value ? naverBcHealthEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.naverBrandConnectHealth,
+          naverBrandConnectTour: naverBcTourEl && naverBcTourEl.value ? naverBcTourEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.naverBrandConnectTour,
+          myrealtripKey: mrtKeyEl && mrtKeyEl.value ? mrtKeyEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.myrealtripKey,
+          myrealtripMylinkId: mrtIdEl && mrtIdEl.value ? mrtIdEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.myrealtripMylinkId,
+          klookAid: klookAidEl && klookAidEl.value ? klookAidEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.klookAid,
+          klookAdId: klookAdIdEl && klookAdIdEl.value ? klookAdIdEl.value.trim() : DEFAULT_AFFILIATE_CONFIG.klookAdId
+        });
 
         saveAffiliateConfig(newCfg);
-        alert('관리자 설정이 저장되었으며 실시간으로 동기화됩니다.');
+        alert('9대 제휴 채널 설정이 저장되었으며 실시간으로 동기화됩니다.');
         closeAdminModal();
       };
     }

@@ -16,13 +16,22 @@
 (function (global) {
   'use strict';
 
-  // Default Affiliate & Merchant Configuration
+  // Default Affiliate & Merchant Configuration (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
     coupang: 'AF7865143',
     linkprice: 'A100708867',
-    iherb: 'KIDSBIO',
-    amazon: 'tallerbiolab-20'
+    iherb: 'IPZ1547',
+    amazon: 'kidfit-20',
+    tenping: '010-****-2370',
+    tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
+    adpickAffId: '',
+    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectTour: 'https://naver.me/xJcOADhA',
+    myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
+    myrealtripMylinkId: '6226316',
+    klookAid: '140161',
+    klookAdId: '1514603'
   };
 
   // Canonical Query Mappings for Clinical Categories (Strictly Curated Flagship Products)
@@ -159,6 +168,25 @@
         const tag = cfg.amazon || DEFAULT_AFFILIATE_CONFIG.amazon;
         return `https://www.amazon.com/s?k=${encodedQ}&tag=${encodeURIComponent(tag)}`;
       }
+      case 'klook': {
+        const aid = cfg.klookAid || DEFAULT_AFFILIATE_CONFIG.klookAid || '140161';
+        const adid = cfg.klookAdId || DEFAULT_AFFILIATE_CONFIG.klookAdId || '1514603';
+        const kSite = `https://www.klook.com/ko/search/result/?query=${encodedQ}`;
+        return `https://affiliate.klook.com/redirect?aid=${encodeURIComponent(aid)}&aff_adid=${encodeURIComponent(adid)}&k_site=${encodeURIComponent(kSite)}`;
+      }
+      case 'myrealtrip': {
+        const mylinkId = cfg.myrealtripMylinkId || DEFAULT_AFFILIATE_CONFIG.myrealtripMylinkId || '6226316';
+        return `https://www.myrealtrip.com/offers?q=${encodedQ}&mylink_id=${encodeURIComponent(mylinkId)}&utm_source=mktpartner`;
+      }
+      case 'tenping': {
+        return cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';
+      }
+      case 'naver_brandconnect': {
+        return cfg.naverBrandConnectHealth || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectHealth || 'https://naver.me/5Jq9LnLT';
+      }
+      case 'naver_brandconnect_tour': {
+        return cfg.naverBrandConnectTour || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectTour || 'https://naver.me/xJcOADhA';
+      }
       default:
         return `https://www.google.com/search?q=${encodedQ}`;
     }
@@ -180,14 +208,14 @@
           merchant: 'iHerb',
           label: '[Ingredient Spec Reference (iHerb) ↗]',
           url: buildMerchantUrl('iHerb', categoryKey, true, config),
-          tag: config.iherb || 'KIDSBIO',
+          tag: config.iherb || 'IPZ1547',
           icon: '🌿'
         },
         {
           merchant: 'Amazon',
-          label: `[Biomechanical Tool Spec (Amazon ${config.amazon || 'tallerbiolab-20'}) ↗]`,
+          label: `[Biomechanical Tool Spec (Amazon ${config.amazon || 'kidfit-20'}) ↗]`,
           url: buildMerchantUrl('amazon', categoryKey, true, config),
-          tag: config.amazon || 'tallerbiolab-20',
+          tag: config.amazon || 'kidfit-20',
           icon: '📦'
         }
       ];
@@ -199,7 +227,7 @@
         merchant: 'iHerb',
         label: '[성분 스펙 레퍼런스 (iHerb) ↗]',
         url: buildMerchantUrl('iHerb', categoryKey, false, config),
-        tag: config.iherb || 'KIDSBIO',
+        tag: config.iherb || 'IPZ1547',
         icon: '🌿'
       },
       {

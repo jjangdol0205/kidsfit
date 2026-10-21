@@ -321,13 +321,13 @@ function auditStage5AffiliateLinks() {
     if (!c.url || c.url.startsWith('#')) hasDeadLinks = true;
     if (c.url.includes('AF7865143')) hasCoupangTag = true;
     if (c.url.includes('A100708867')) hasLinkPriceTag = true;
-    if (c.url.includes('KIDSBIO')) hasIherbTag = true;
+    if (c.url.includes('IPZ1547')) hasIherbTag = true;
   });
 
   recordCheck('Stage 5: Links', 'Zero Dead Links ("#") in KO Mode', !hasDeadLinks, 'URLs are active');
   recordCheck('Stage 5: Links', 'Coupang Channel Tag (AF7865143) Active', hasCoupangTag, 'Channel check');
   recordCheck('Stage 5: Links', 'LinkPrice Affiliate ID (A100708867) Active', hasLinkPriceTag, 'Merchant check');
-  recordCheck('Stage 5: Links', 'iHerb Rewards Code (KIDSBIO) Active', hasIherbTag, 'Rewards code check');
+  recordCheck('Stage 5: Links', 'iHerb Rewards Code (IPZ1547) Active', hasIherbTag, 'Rewards code check');
 
   // EN Mode Chips
   const enChips = RefChips.getReferenceChipsData('calcium', true);
@@ -336,11 +336,11 @@ function auditStage5AffiliateLinks() {
   let hasAmazonTag = false;
   enChips.forEach(c => {
     if (!c.url || c.url.startsWith('#')) hasDeadLinks = true;
-    if (c.url.includes('tallerbiolab-20')) hasAmazonTag = true;
+    if (c.url.includes('kidfit-20')) hasAmazonTag = true;
   });
 
   recordCheck('Stage 5: Links', 'Zero Dead Links ("#") in EN Mode', !hasDeadLinks, 'URLs are active');
-  recordCheck('Stage 5: Links', 'Amazon Tag (tallerbiolab-20) Active in EN Mode', hasAmazonTag, 'Amazon tag check');
+  recordCheck('Stage 5: Links', 'Amazon Tag (kidfit-20) Active in EN Mode', hasAmazonTag, 'Amazon tag check');
 
   // HTML Rendering & Discreet 12px Styling Check
   const htmlKo = RefChips.getReferenceChipsHtml('calcium', false);

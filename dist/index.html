@@ -986,53 +986,91 @@
           <input type="checkbox" id="cfg-chips-toggle" checked style="width: 20px; height: 20px; cursor: pointer;">
         </div>
 
-        <!-- Referral Program Signup & Status Guide (Hidden on general/default view) -->
-        <div id="admin-referral-guide-box" style="display: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(59, 130, 246, 0.35); border-radius: 16px; padding: 1.15rem; margin-bottom: 1.35rem; text-align: left;">
-          <h4 style="font-size: 1rem; font-weight: 900; color: #60A5FA; margin: 0 0 0.4rem 0;">
-            💰 추가 가입 필요한 현역 알짜 레퍼럴(제휴) 5대 채널 정리 (기가입 쿠팡·링크프라이스 제외)
+        <!-- 9-Channel Affiliate Integration Status & Guide (Inside Secret Admin Modal) -->
+        <div id="admin-referral-guide-box" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(59, 130, 246, 0.45); border-radius: 16px; padding: 1.15rem; margin-bottom: 1.35rem; text-align: left;">
+          <h4 style="font-size: 1rem; font-weight: 900; color: #38BDF8; margin: 0 0 0.4rem 0;">
+            💰 9대 제휴 수익 채널 실시간 연동 현황 (쿠팡 · 링크프라이스 · iHerb · Amazon · 텐핑 · 마이리얼트립 · 클룩 · 네이버 브랜드커넥트 · 애드픽)
           </h4>
-          <p style="font-size: 0.78rem; color: #CBD5E1; margin: 0 0 0.8rem 0; line-height: 1.45;">
-            이미 연동된 <strong>쿠팡 파트너스(AF7865143)</strong>·<strong>링크프라이스(A100708867)</strong> 및 운영 종료된 플랫폼을 제외하고, 현재 현역으로 가장 수익이 잘 나오는 <strong>미가입 5대 레퍼럴 채널</strong>입니다.
+          <p style="font-size: 0.78rem; color: #CBD5E1; margin: 0 0 0.8rem 0; line-height: 1.48;">
+            보내주신 모든 제휴 코드와 API 키, 리다이렉트 딥링크 구조가 사이트 전역의 추천 카드 및 12px 레퍼런스 칩에 100% 자동 반영되었습니다.
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.6rem; font-size: 0.76rem; color: #E2E8F0;">
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(251,191,36,0.45); border-radius: 10px; padding: 0.65rem;">
-              <div style="font-weight: 900; color: #FBBF24; margin-bottom: 0.2rem;">⚠️ 1순위. 아이허브 리워드 (iHerb Rewards)</div>
-              <div style="color: #94A3B8; line-height: 1.4;">• 수수료: 차일드라이프 칼슘·마그네슘 등 영양제 직구 <strong>5%~10% 현금 리워드</strong><br>• 가입처: <a href="https://kr.iherb.com/info/rewards" target="_blank" rel="noopener noreferrer" style="color:#FBBF24;">kr.iherb.com/info/rewards ↗</a> (로그인 즉시 6~7자리 본인 코드 발급)</div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 1. 아이허브 리워드 (iHerb: IPZ1547)</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 상태: <strong>실코드 <code>IPZ1547</code> 연동 완료</strong><br>• 적용: 모든 영양제(칼슘·D3·초유·마그네슘) 링크에 <code>?rcode=IPZ1547</code> 자동 삽입</div>
             </div>
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(244,63,94,0.45); border-radius: 10px; padding: 0.65rem;">
-              <div style="font-weight: 900; color: #FB7185; margin-bottom: 0.2rem;">🔥 2순위. 애드픽(Adpick) · 텐핑(Tenping) · 디비디비딥</div>
-              <div style="color: #94A3B8; line-height: 1.4;">• 수익: 아이커 등 키성장 영양제 &amp; 초등 스마트학습(밀크T·엘리하이) 무료상담 CPA <strong>건당 30,000원~80,000원</strong><br>• 가입처: <a href="https://adpick.co.kr" target="_blank" rel="noopener noreferrer" style="color:#FB7185;">adpick.co.kr ↗</a> / <a href="https://tenping.kr" target="_blank" rel="noopener noreferrer" style="color:#FB7185;">tenping.kr ↗</a> / <a href="https://www.dbdbdeep.com" target="_blank" rel="noopener noreferrer" style="color:#FB7185;">dbdbdeep.com ↗</a></div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 2. 아마존 어소시에이트 (StoreID: kidfit-20)</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 상태: <strong>실코드 <code>kidfit-20</code> 연동 완료</strong><br>• 적용: 글로벌 EN 모드 및 교차 비교처 아카이브에 <code>?tag=kidfit-20</code> 자동 삽입</div>
             </div>
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(59,130,246,0.35); border-radius: 10px; padding: 0.65rem;">
-              <div style="font-weight: 900; color: #60A5FA; margin-bottom: 0.2rem;">🆕 3순위. 네이버 브랜드커넥트 (쇼핑커넥트)</div>
-              <div style="color: #94A3B8; line-height: 1.4;">• 수수료: 네이버 브랜드스토어(종근당건강·정관장·교구·도서) <strong>2%~10%</strong><br>• 가입처: <a href="https://brandconnect.naver.com" target="_blank" rel="noopener noreferrer" style="color:#60A5FA;">brandconnect.naver.com ↗</a> (또는 애드픽 쇼핑메이트로 즉시 연동)</div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 3. 텐핑 CPA (iryan.kr/t8g8qxgcc2)</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 상태: <strong>코베 베이비페어·유아교육전 무료입장 CPA 캠페인 연동 완료</strong><br>• 적용: 유아·아동 준비물 및 나들이 카드 내 무료입장 혜택 버튼 연결</div>
             </div>
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(167,139,250,0.35); border-radius: 10px; padding: 0.65rem;">
-              <div style="font-weight: 900; color: #C4B5FD; margin-bottom: 0.2rem;">🎟️ 4순위. 마이리얼트립 파트너스 / 클룩(Klook)</div>
-              <div style="color: #94A3B8; line-height: 1.4;">• 수수료: 주말 박물관 어린이 도슨트 투어·과학관·전시 티켓 <strong>3~6%</strong><br>• 가입처: <a href="https://partner.myrealtrip.com" target="_blank" rel="noopener noreferrer" style="color:#C4B5FD;">partner.myrealtrip.com ↗</a> / <a href="https://affiliate.klook.com" target="_blank" rel="noopener noreferrer" style="color:#C4B5FD;">affiliate.klook.com ↗</a></div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 4. 마이리얼트립 파트너스 (Open API + mylinkId: 6226316)</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 상태: <strong>Bearer API 키 인증 &amp; <code>mylinkId=6226316</code> 추출 완료</strong><br>• 적용: 연령별 교육여행 9종 <code>myrealt.rip/xc4...</code> 단축링크 &amp; 주말 나들이 40선 자동 연동</div>
             </div>
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.35); border-radius: 10px; padding: 0.65rem;">
-              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">🌎 5순위. 아마존 어소시에이트 (영문 EN 모드용)</div>
-              <div style="color: #94A3B8; line-height: 1.4;">• 수수료: 글로벌 영문 모드 방문자 구매액 <strong>4%~8%</strong><br>• 가입처: <a href="https://affiliate-program.amazon.com" target="_blank" rel="noopener noreferrer" style="color:#34D399;">affiliate-program.amazon.com ↗</a></div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 5. 클룩 어필리에이트 (aid=140161 · aff_adid=1514603)</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 상태: <strong>리다이렉트 딥링크 구조 인식 &amp; 자동 생성기 탑재 완료</strong><br>• 적용: <code>affiliate.klook.com/redirect?aid=140161&amp;aff_adid=1514603&amp;k_site=...</code> 전역 연동</div>
+            </div>
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.4); border-radius: 10px; padding: 0.65rem;">
+              <div style="font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">✅ 6. 네이버 브랜드커넥트 &amp; 애드픽 JSON API</div>
+              <div style="color: #CBD5E1; line-height: 1.4;">• 브랜드커넥트: <code>naver.me/5Jq9LnLT</code>(닥터웰 마사지케어) · <code>naver.me/xJcOADhA</code>(패밀리투어) 연동<br>• 애드픽 API: <code>/apis/offers.php</code> &amp; <code>/apis/sdk_shopping.php</code> 서버 프록시 연동</div>
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label" for="cfg-coupang">쿠팡 파트너스 서브 ID (Coupang Channel)</label>
-          <input type="text" id="cfg-coupang" class="form-input" value="AF7865143">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cfg-linkprice">링크프라이스 제휴 ID (LinkPrice ID — 예스24·교보·오늘의집)</label>
-          <input type="text" id="cfg-linkprice" class="form-input" value="A100708867">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cfg-iherb">iHerb 리워드 코드 (iHerb Rewards — 본인 코드로 교체 권장)</label>
-          <input type="text" id="cfg-iherb" class="form-input" value="KIDSBIO">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cfg-amazon">Amazon 어소시에이트 태그 (글로벌 EN 모드용 Amazon Tag)</label>
-          <input type="text" id="cfg-amazon" class="form-input" value="tallerbiolab-20">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem;">
+          <div class="form-group">
+            <label class="form-label" for="cfg-coupang">쿠팡 파트너스 서브 ID (Coupang Channel)</label>
+            <input type="text" id="cfg-coupang" class="form-input" value="AF7865143">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-linkprice">링크프라이스 제휴 ID (LinkPrice — 예스24·교보·오늘의집)</label>
+            <input type="text" id="cfg-linkprice" class="form-input" value="A100708867">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-iherb">iHerb 리워드 코드 (iHerb Rewards Code)</label>
+            <input type="text" id="cfg-iherb" class="form-input" value="IPZ1547">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-amazon">Amazon 어소시에이트 StoreID (Amazon Tag)</label>
+            <input type="text" id="cfg-amazon" class="form-input" value="kidfit-20">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-tenping-url">텐핑(Tenping) CPA 캠페인 단축 URL</label>
+            <input type="text" id="cfg-tenping-url" class="form-input" value="https://iryan.kr/t8g8qxgcc2">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-adpick-affid">애드픽(Adpick) API 회원 고유코드 (affid)</label>
+            <input type="text" id="cfg-adpick-affid" class="form-input" placeholder="애드픽 로그인 후 확인되는 affid 입력" value="">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-naver-bc-health">네이버 브랜드커넥트 링크 #1 (닥터웰 건강·마사지케어)</label>
+            <input type="text" id="cfg-naver-bc-health" class="form-input" value="https://naver.me/5Jq9LnLT">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-naver-bc-tour">네이버 브랜드커넥트 링크 #2 (패밀리 해외·온천 투어)</label>
+            <input type="text" id="cfg-naver-bc-tour" class="form-input" value="https://naver.me/xJcOADhA">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-myrealtrip-key">마이리얼트립 파트너스 Open API Key (Bearer)</label>
+            <input type="text" id="cfg-myrealtrip-key" class="form-input" value="mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-myrealtrip-id">마이리얼트립 파트너 ID (mylink_id)</label>
+            <input type="text" id="cfg-myrealtrip-id" class="form-input" value="6226316">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-klook-aid">클룩(Klook) 어필리에이트 AID</label>
+            <input type="text" id="cfg-klook-aid" class="form-input" value="140161">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfg-klook-adid">클룩(Klook) 캠페인 Ad ID (aff_adid)</label>
+            <input type="text" id="cfg-klook-adid" class="form-input" value="1514603">
+          </div>
         </div>
         <input type="hidden" id="cfg-tenping" value="010-****-2370">
 

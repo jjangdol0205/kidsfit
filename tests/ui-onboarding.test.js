@@ -274,8 +274,14 @@ function runSuite() {
     assert.strictEqual(cfg.coupang, 'AF7865143');
     assert.strictEqual(cfg.linkprice, 'A100708867');
     assert.strictEqual(cfg.tenping, '010-****-2370');
-    assert.strictEqual(cfg.iherb, 'KIDSBIO');
-    assert.strictEqual(cfg.amazon, 'tallerbiolab-20');
+    assert.strictEqual(cfg.tenpingUrl, 'https://iryan.kr/t8g8qxgcc2');
+    assert.strictEqual(cfg.iherb, 'IPZ1547');
+    assert.strictEqual(cfg.amazon, 'kidfit-20');
+    assert.strictEqual(cfg.naverBrandConnectHealth, 'https://naver.me/5Jq9LnLT');
+    assert.strictEqual(cfg.naverBrandConnectTour, 'https://naver.me/xJcOADhA');
+    assert.strictEqual(cfg.myrealtripMylinkId, '6226316');
+    assert.strictEqual(cfg.klookAid, '140161');
+    assert.strictEqual(cfg.klookAdId, '1514603');
     assert.strictEqual(cfg.chipsEnabled, true);
   });
 
