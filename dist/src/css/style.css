@@ -1924,14 +1924,23 @@ p, li, dt, dd,
 }
 
 .hero-headline {
-  font-size: clamp(1.45rem, 3.3vw, 2.75rem) !important;
-  line-height: 1.32 !important;
-  letter-spacing: -0.03em !important;
+  font-size: clamp(1.26rem, 4.2vw, 2.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.38 !important;
+  letter-spacing: -0.025em !important;
 }
 
 .mf-glass-card h3 {
-  font-size: clamp(1.05rem, 2vw, 1.22rem) !important;
+  font-size: clamp(1.0rem, 2.6vw, 1.16rem) !important;
+  font-weight: 600 !important;
   line-height: 1.38 !important;
+}
+
+.hero-single-line,
+.hero-one-line-list li {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ==========================================================================
