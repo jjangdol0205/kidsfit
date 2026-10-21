@@ -1501,13 +1501,10 @@
             : (EndocrinologyEngine && typeof EndocrinologyEngine.renderEndocrinologySection === 'function'
               ? EndocrinologyEngine.renderEndocrinologySection(profile)
               : '')}
-          ${PinpointCurator && typeof PinpointCurator.renderContextualSupplementsPrescription === 'function'
-            ? PinpointCurator.renderContextualSupplementsPrescription(profile)
-            : ''}
         </div>
 
         <!-- ================================================================== -->
-        <!-- CHAPTER 4: 척추 감압 & 생체역학 스튜디오 (+ 자세·실내운동 처방)      -->
+        <!-- CHAPTER 4: 척추 감압 & 생체역학 스튜디오 (순수 분석 & 운동 루틴만 표시) -->
         <!-- ================================================================== -->
         <div id="report-ch-4" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid rgba(244, 63, 94, 0.35);">
           <div style="margin-bottom: 0.9rem;">
@@ -1524,10 +1521,44 @@
           ${BiomechanicsStudio && typeof BiomechanicsStudio.renderBiomechanicsSection === 'function'
             ? BiomechanicsStudio.renderBiomechanicsSection(profile)
             : ''}
+        </div><!-- /#report-ch-4 -->
+
+        <!-- ================================================================== -->
+        <!-- ON-DEMAND BUTTON & DRAWER: 신체 성장 맞춤형 추천 상품 (기본 숨김)      -->
+        <!-- ================================================================== -->
+        <div id="growth-products-cta-banner" style="margin-top: 1.75rem; padding: 1.35rem 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #10B981; border-radius: 20px; text-align: center;">
+          <div style="font-size: 0.84rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">
+            ✨ 순수 신체 성장 분석 보고서를 모두 확인하셨나요?
+          </div>
+          <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.85rem; line-height: 1.45;">
+            우리 아이(만 ${ageYears}세 · ${height}cm)의 목표 잠재키 <strong>${optimizedHeight}cm</strong> 달성에 꼭 필요한 <strong>맞춤형 영양제·실내 철봉·트램폴린 추천 상품</strong>은 아래 버튼을 누르면 나타납니다.
+          </div>
+          <button
+            type="button"
+            id="btn-toggle-growth-products"
+            onclick="(function(btn){ var box=document.getElementById('growth-curated-products-drawer'); var ftc=document.getElementById('affiliate-ftc-disclosure'); if(!box) return; var isHidden=(box.style.display==='none' || !box.style.display); box.style.display=isHidden ? 'block' : 'none'; if(ftc && isHidden) ftc.style.display='block'; btn.innerHTML=isHidden ? '🔼 아이를 위한 맞춤형 신체 성장 추천 상품 접기 ▲' : '🎁 아이를 위한 맞춤형 신체 성장 추천 상품 보기 (영양제 · 실내 철봉 · 트램폴린) ▼'; if(isHidden && typeof box.scrollIntoView==='function'){ box.scrollIntoView({behavior:'smooth', block:'start'}); } })(this)"
+            style="cursor: pointer; width: 100%; max-width: 580px; min-height: 54px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border: 2px solid #A7F3D0; color: #052E16; font-weight: 900; font-size: 1.02rem; padding: 0.85rem 1.4rem; border-radius: 14px; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.28);"
+          >
+            🎁 아이를 위한 맞춤형 신체 성장 추천 상품 보기 (영양제 · 실내 철봉 · 트램폴린) ▼
+          </button>
+        </div>
+
+        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" style="display: none; margin-top: 1.25rem; padding: 1.35rem; background: rgba(15, 23, 42, 0.96); border: 2px solid rgba(56, 189, 248, 0.45); border-radius: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px dashed rgba(56, 189, 248, 0.35);">
+            <span style="font-size: 1.05rem; font-weight: 900; color: #38BDF8;">
+              🎁 [우리 아이 신체 성장 맞춤형 추천 상품] 체중 비례 영양제 &amp; 척추 감압·성장판 운동 기구
+            </span>
+            <span style="font-size: 0.78rem; color: #6EE7B7; font-weight: 800;">
+              ✓ 아이 연령(만 ${ageYears}세) · 체중(${weight}kg) · 방해습관 1:1 매칭
+            </span>
+          </div>
+          ${PinpointCurator && typeof PinpointCurator.renderContextualSupplementsPrescription === 'function'
+            ? PinpointCurator.renderContextualSupplementsPrescription(profile)
+            : ''}
           ${PinpointCurator && typeof PinpointCurator.renderContextualBiomechanicsPrescription === 'function'
             ? PinpointCurator.renderContextualBiomechanicsPrescription(profile)
             : ''}
-        </div><!-- /#report-ch-4 -->
+        </div>
 
         <!-- Report 1 Standalone Action Footer (100% Independent - No Cross-Report Button) -->
         <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed rgba(56, 189, 248, 0.35); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
@@ -1930,74 +1961,96 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 8: 그건 여기 링크에 있다 ==================== -->
-          <div id="learning-step-8-links" style="background: linear-gradient(145deg, rgba(131, 24, 67, 0.38) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #F472B6; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
-              <span style="background: #EC4899; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 8 · 원클릭 바로가기 링크 모음
-              </span>
-              <span style="font-size: 0.82rem; font-weight: 800; color: #FBCFE8;">
-                찾아 헤맬 필요 없이 바로 확인하는 맞춤 교구·도서·주말 체험 링크
-              </span>
+          <!-- ================================================================== -->
+          <!-- ON-DEMAND BUTTON & DRAWER: 두뇌·학습 맞춤형 추천 상품 (기본 숨김)    -->
+          <!-- ================================================================== -->
+          <div id="learning-products-cta-banner" style="margin-top: 1.5rem; margin-bottom: 1.25rem; padding: 1.35rem 1.5rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.22) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #C084FC; border-radius: 20px; text-align: center;">
+            <div style="font-size: 0.84rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.35rem;">
+              ✨ 순수 학습 성향·강약점·진로 분석 보고서를 모두 확인하셨나요?
             </div>
-            <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0;">
-              🔗 8. 도움이 되는 교구·도서·주말 체험은 모두 여기 링크에 있습니다!
-            </h3>
-
-            <!-- Quick One-Look Direct Link Table -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
-              ${quickTools.map(item => `
-                <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(244, 114, 182, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
-                  <div>
-                    <span style="font-size: 0.74rem; font-weight: 900; color: #F472B6;">🧩 맞춤 학습교구·환경도구</span>
-                    <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${item.name}</div>
-                  </div>
-                  <a href="${item.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
-                    🔗 ${item.buttonLabelCoupang || '쿠팡 로켓배송 바로가기'} ↗
-                  </a>
-                </div>
-              `).join('')}
-              ${quickBooks.map(book => `
-                <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
-                  <div>
-                    <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">📚 맞춤 필독서·워크북</span>
-                    <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${book.name}</div>
-                  </div>
-                  <a href="${book.yes24Url || book.coupangUrl || 'https://www.yes24.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #0284C7 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
-                    🔗 도서·교재 상세 바로가기 ↗
-                  </a>
-                </div>
-              `).join('')}
-              ${quickTours.map(tour => `
-                <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
-                  <div>
-                    <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏛️ 주말 현장 체험·투어</span>
-                    <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${tour.name}</div>
-                  </div>
-                  <a href="${tour.mrtUrl || tour.klookUrl || 'https://www.myrealtrip.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #059669 0%, #0D9488 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
-                    🔗 주말 체험·티켓 바로가기 ↗
-                  </a>
-                </div>
-              `).join('')}
+            <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.85rem; line-height: 1.45;">
+              위 7단계에서 안내해 드린 <strong>우리 아이 강점 강화 &amp; 약점 보완용 맞춤형 교구·필독서·주말 체험 추천 상품</strong>은 아래 버튼을 누르면 나타납니다.
             </div>
+            <button
+              type="button"
+              id="btn-toggle-learning-products"
+              onclick="(function(btn){ var box=document.getElementById('learning-curated-products-drawer'); var ftc=document.getElementById('affiliate-ftc-disclosure'); if(!box) return; var isHidden=(box.style.display==='none' || !box.style.display); box.style.display=isHidden ? 'block' : 'none'; if(ftc && isHidden) ftc.style.display='block'; btn.innerHTML=isHidden ? '🔼 아이를 위한 맞춤형 두뇌·학습 추천 상품 접기 ▲' : '🎁 아이를 위한 맞춤형 두뇌·학습 추천 상품 보기 (사고력 교구 · 맞춤 도서 · 주말 체험) ▼'; if(isHidden && typeof box.scrollIntoView==='function'){ box.scrollIntoView({behavior:'smooth', block:'start'}); } })(this)"
+              style="cursor: pointer; width: 100%; max-width: 580px; min-height: 54px; background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%); border: 2px solid #FBCFE8; color: #FFFFFF; font-weight: 900; font-size: 1.02rem; padding: 0.85rem 1.4rem; border-radius: 14px; box-shadow: 0 10px 25px rgba(168, 85, 247, 0.32);"
+            >
+              🎁 아이를 위한 맞춤형 두뇌·학습 추천 상품 보기 (사고력 교구 · 맞춤 도서 · 주말 체험) ▼
+            </button>
+          </div>
 
-            <!-- Full Detailed Curated Cards (#pillar2-learning-tools-box, Education Chapter, Travel Chapter) -->
-            ${PinpointCurator && typeof PinpointCurator.renderPillar2LearningToolsPrescription === 'function'
-              ? PinpointCurator.renderPillar2LearningToolsPrescription(profile)
-              : ''}
-            ${PinpointCurator && typeof PinpointCurator.renderCustomEducationChapter === 'function'
-              ? PinpointCurator.renderCustomEducationChapter(profile)
-              : ''}
-            ${PinpointCurator && typeof PinpointCurator.renderCustomTravelChapter === 'function'
-              ? PinpointCurator.renderCustomTravelChapter(profile)
-              : ''}
+          <!-- ==================== STEP 8: 그건 여기 링크에 있다 (버튼 클릭 시 열림) ==================== -->
+          <div id="learning-curated-products-drawer" class="curated-product-recommendation-section" style="display: none; margin-top: 1.25rem;">
+            <div id="learning-step-8-links" style="background: linear-gradient(145deg, rgba(131, 24, 67, 0.38) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #F472B6; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
+                <span style="background: #EC4899; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
+                  STEP 8 · 아이를 위한 맞춤형 추천 상품 &amp; 바로가기 링크
+                </span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #FBCFE8;">
+                  찾아 헤맬 필요 없이 바로 확인하는 맞춤 교구·도서·주말 체험 링크
+                </span>
+              </div>
+              <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0;">
+                🔗 8. 도움이 되는 교구·도서·주말 체험은 모두 여기 링크에 있습니다!
+              </h3>
+
+              <!-- Quick One-Look Direct Link Table -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+                ${quickTools.map(item => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(244, 114, 182, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+                    <div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #F472B6;">🧩 맞춤 학습교구·환경도구</span>
+                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${item.name}</div>
+                    </div>
+                    <a href="${item.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                      🔗 ${item.buttonLabelCoupang || '쿠팡 로켓배송 바로가기'} ↗
+                    </a>
+                  </div>
+                `).join('')}
+                ${quickBooks.map(book => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+                    <div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">📚 맞춤 필독서·워크북</span>
+                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${book.name}</div>
+                    </div>
+                    <a href="${book.yes24Url || book.coupangUrl || 'https://www.yes24.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #0284C7 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                      🔗 도서·교재 상세 바로가기 ↗
+                    </a>
+                  </div>
+                `).join('')}
+                ${quickTours.map(tour => `
+                  <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.55rem;">
+                    <div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏛️ 주말 현장 체험·투어</span>
+                      <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; margin-top: 0.2rem;">${tour.name}</div>
+                    </div>
+                    <a href="${tour.mrtUrl || tour.klookUrl || 'https://www.myrealtrip.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #059669 0%, #0D9488 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px;">
+                      🔗 주말 체험·티켓 바로가기 ↗
+                    </a>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Full Detailed Curated Cards (#pillar2-learning-tools-box, Education Chapter, Travel Chapter) -->
+              ${PinpointCurator && typeof PinpointCurator.renderPillar2LearningToolsPrescription === 'function'
+                ? PinpointCurator.renderPillar2LearningToolsPrescription(profile)
+                : ''}
+              ${PinpointCurator && typeof PinpointCurator.renderCustomEducationChapter === 'function'
+                ? PinpointCurator.renderCustomEducationChapter(profile)
+                : ''}
+              ${PinpointCurator && typeof PinpointCurator.renderCustomTravelChapter === 'function'
+                ? PinpointCurator.renderCustomTravelChapter(profile)
+                : ''}
+            </div>
           </div>
         </div><!-- /#report-ch-8 -->
 
         <!-- Report 2 Standalone Action Footer (100% Independent - No Cross-Report Button) -->
         <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed rgba(168, 85, 247, 0.35); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
           <span style="font-size: 0.84rem; color: #DDD6FE; font-weight: 800;">
-            ✓ [두뇌·학습 마스터 분석 보고서] 8단계 진단 완료 · 진단 6단계 + 우리 아이 특징 서술형 종합 반영
+            ✓ [두뇌·학습 마스터 분석 보고서] 진단 완료 · 진단 6단계 + 우리 아이 특징 서술형 종합 반영
           </span>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <button type="button" onclick="window.print()" style="cursor: pointer; background: rgba(168, 85, 247, 0.18); border: 1px solid #C084FC; color: #FFFFFF; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
@@ -2010,7 +2063,7 @@
         <!-- Collapsible Academic Evidence Section (Preserves #briefing-research-section & #briefing-papers-container) -->
         <details class="clinical-source-details" style="margin-top: 1.5rem; margin-bottom: 1.15rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 0.85rem 1.15rem;">
           <summary style="cursor: pointer; font-size: 0.92rem; font-weight: 800; color: #93C5FD; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span>🔬 ${isEn ? 'Peer-Reviewed Pediatric Endocrinology & Nutrition References (Click to Expand ▼)' : '진단서에 적용된 국내외 소아내분비·영양학 학술논문 출처 보기 (대한소아내분비학회지 외 11편 · 접음 보기 ▼)'}</span>
+            <span>🔬 ${isEn ? 'Peer-Reviewed Pediatric Endocrinology & Nutrition References (Click to Expand ▼)' : '진단서에 적용된 국내외 소아내분비·영양학·뇌인지 학술논문 출처 보기 (대한소아내분비학회지 외 15편 · 접음 보기 ▼)'}</span>
             <span style="font-size: 0.76rem; color: #38BDF8; background: rgba(56, 189, 248, 0.14); padding: 0.18rem 0.6rem; border-radius: 9999px;">클릭 시 출처 펼침</span>
           </summary>
           <div class="briefing-section briefing-research" id="briefing-research-section" style="margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.14);">
@@ -2057,8 +2110,8 @@
           </div>
         </details>
 
-        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure -->
-        <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.15rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
+        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Hidden until product drawer is opened) -->
+        <div id="affiliate-ftc-disclosure" style="display: none; margin-bottom: 1.15rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
           ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
         </div>
 
@@ -2285,6 +2338,90 @@
                 📲 내 카톡에 '학습에 맞는 정기 재점검 루틴 알림' 복사해 두기
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- GOLDEN ZONE 4-CHANNEL OWNED MEDIA HUB (블로그 · 카페 · 인스타 · 쓰레드) -->
+        <!-- ================================================================== -->
+        <div id="official-4channel-community-hub" style="margin-top: 1.35rem; margin-bottom: 1.35rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.94) 100%); border: 1.5px solid rgba(148, 163, 184, 0.35); border-radius: 20px; padding: 1.35rem 1.4rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <span style="background: rgba(56, 189, 248, 0.16); color: #38BDF8; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
+              📣 KIDS-FIT 공식 성장·학습 4대 소통 채널
+            </span>
+            <span style="font-size: 0.78rem; color: #94A3B8; font-weight: 800;">
+              매일 업데이트되는 논문 칼럼 · 무료 워크지 PDF · 6컷 육아툰 · 3줄 핵심 팁
+            </span>
+          </div>
+          <h3 id="channel-hub-dynamic-title" style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0; line-height: 1.45;">
+            ${isLearningDefault
+              ? '🧠 혼자 챙기기 막막한 우리 아이 공부 습관·문해력, 공식 4대 채널에서 매일 무료 자료와 코칭을 받아보세요!'
+              : '📏 혼자 챙기기 막막한 우리 아이 숨은 키 7cm·수면·식단, 공식 4대 채널에서 매일 무료 자료와 코칭을 받아보세요!'}
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 0.75rem;">
+            <!-- 1. Naver Blog -->
+            <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #4ADE80;">📝 공식 네이버 블로그</span>
+                  <span style="font-size: 0.72rem; color: #86EFAC; font-weight: 800;">심층 칼럼 ↗</span>
+                </div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
+                  ${isLearningDefault ? '연령별 문해력·수학·백지복습 논문 칼럼' : '소아 키 성장·성조숙증·영양 논문 칼럼'}
+                </div>
+                <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
+                  진단 결과지를 200% 활용하는 연령별 심층 가이드와 교구·영양 비교 분석글을 정독하세요.
+                </p>
+              </div>
+            </a>
+
+            <!-- 2. Naver Cafe -->
+            <a href="https://cafe.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #34D399;">☕ 공식 네이버 카페</span>
+                  <span style="font-size: 0.72rem; color: #6EE7B7; font-weight: 800;">무료 PDF 나눔 ↗</span>
+                </div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
+                  ${isLearningDefault ? '백지복습 노트·하브루타 질문지 PDF 무료 받기' : '월간 키 성장 기록표·주간 식단표 PDF 무료 받기'}
+                </div>
+                <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
+                  같은 개월 수 학부모님들과 매달 성장·학습 챌린지를 함께하고 무료 워크지를 다운받으세요.
+                </p>
+              </div>
+            </a>
+
+            <!-- 3. Instagram -->
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #F472B6;">📸 공식 인스타그램</span>
+                  <span style="font-size: 0.72rem; color: #FBCFE8; font-weight: 800;">6컷 웹툰·카드뉴스 ↗</span>
+                </div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
+                  1분 공감 육아·공부 웹툰 &amp; 주말 나들이 코스
+                </div>
+                <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
+                  바쁜 출퇴근길에 저장해 두고 보는 6컷 핵심 카드뉴스와 이번 주말 박물관·과학관 추천!
+                </p>
+              </div>
+            </a>
+
+            <!-- 4. Threads -->
+            <a href="https://www.threads.net" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #C084FC;">🧵 공식 쓰레드 (Threads)</span>
+                  <span style="font-size: 0.72rem; color: #E9D5FF; font-weight: 800;">하루 3줄 핵심팁 ↗</span>
+                </div>
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
+                  매일 아침 '오늘의 3줄 성장·공부 뇌과학 팁'
+                </div>
+                <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0; line-height: 1.45;">
+                  짧고 강렬한 최신 논문 팩트 요약과 우리 아이 키·공부 고민 실시간 댓글 Q&amp;A 소통!
+                </p>
+              </div>
+            </a>
           </div>
         </div>
 

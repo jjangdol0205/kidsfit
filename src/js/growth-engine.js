@@ -748,8 +748,8 @@
         <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
       </div>
 
-      <!-- Bottom Recommended Products for Core 1 (신체성장 맞춤 추천 상품 TOP 3) -->
-      <div id="core-1-recommended-products" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
+      <!-- Bottom Recommended Products for Core 1 (Hidden by default so pure report shows first) -->
+      <div id="core-1-recommended-products" class="curated-product-recommendation-section growth-product-section" style="display: none; background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <h4 style="font-size: 1.1rem; font-weight: 900; color: #38BDF8; margin: 0;">
             🎁 신체성장 · 숨은 키 목표 달성에 도움이 되는 엄선 추천 상품 TOP 3

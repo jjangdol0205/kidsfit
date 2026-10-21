@@ -597,8 +597,8 @@
     html += `
         </div>
 
-        <!-- Recommended Products at Bottom of Core 3 -->
-        <div class="bento-card" id="core-3-recommended-products" style="margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(244, 63, 94, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(244, 63, 94, 0.35); border-radius: 20px;">
+        <!-- Recommended Products at Bottom of Core 3 (Hidden by default so pure report shows first) -->
+        <div class="bento-card curated-product-recommendation-section growth-product-section" id="core-3-recommended-products" style="display: none; margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(244, 63, 94, 0.1), rgba(15, 23, 42, 0.92)); border: 1.5px solid rgba(244, 63, 94, 0.35); border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
             <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">
               🎁 척추 감압 · 바른 자세 교정에 도움이 되는 엄선 추천 상품 TOP 3
@@ -652,8 +652,8 @@
           return '';
         })()}
 
-        <!-- Biomechanics Reference Archival Chip -->
-        <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+        <!-- Biomechanics Reference Archival Chip (Hidden by default in pure report) -->
+        <div class="curated-product-recommendation-section growth-product-section" style="display: none; justify-content: flex-end; margin-top: 1rem;">
           <a href="https://www.coupang.com/np/search?q=%EC%B2%B4%ED%98%95%EA%B5%90%EC%A0%95+%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4&channel=user&lptag=AF7865143" 
              target="_blank" 
              rel="noopener noreferrer" 
