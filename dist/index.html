@@ -33,7 +33,7 @@
   <meta name="apple-mobile-web-app-title" content="KIDS-FIT">
   <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022v11">
 
-  <link rel="stylesheet" href="src/css/style.css?v=20261022v12">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022v13">
   <script>
     window.__deferredKidsFitPrompt = null;
     window.addEventListener('beforeinstallprompt', function(e) {
@@ -150,17 +150,37 @@
 
       <!-- Dedicated Smartphone & PC App Download Banner -->
       <div id="hero-app-download-bar" class="hero-app-download-bar">
-        <div class="hero-app-download-info">
-          <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon">
-          <div class="hero-app-download-text">
-            <div class="hero-app-download-title">📲 KIDS-FIT 스마트폰·PC 전용 앱(App) 무료 다운로드</div>
-            <div class="hero-app-download-desc">스마트폰 홈 화면에 앱으로 설치하고 언제든 1초 만에 성장·학습 리포트를 확인하세요</div>
+        <!-- PC View: Natural Wide Horizontal Bar -->
+        <div class="pc-view-block" style="width: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
+            <div class="hero-app-download-info">
+              <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon">
+              <div class="hero-app-download-text">
+                <div class="hero-app-download-title">📲 KIDS-FIT 스마트폰·PC 전용 앱(App) 무료 다운로드</div>
+                <div class="hero-app-download-desc">홈 화면에 앱으로 설치하고 언제든 1초 만에 성장·학습 리포트를 확인하세요</div>
+              </div>
+            </div>
+            <div class="hero-app-download-actions">
+              <button type="button" id="btn-hero-app-install" class="hero-app-install-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();">
+                📲 앱으로 다운받기 / 홈화면 설치
+              </button>
+            </div>
           </div>
         </div>
-        <div class="hero-app-download-actions">
-          <button type="button" id="btn-hero-app-install" class="hero-app-install-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();">
-            📲 앱으로 다운받기 / 홈화면 설치
-          </button>
+        <!-- Smartphone View: Sleek 1-Row Compact Native Pill Bar (Zero ugly multi-line wrapping) -->
+        <div class="mobile-view-block" style="width: 100%;">
+          <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
+              <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT" style="width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.6); flex-shrink: 0;">
+              <div style="min-width: 0; text-align: left;">
+                <div style="font-size: 0.86rem; font-weight: 800; color: #FFFFFF; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">KIDS-FIT 전용 앱 설치</div>
+                <div style="font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.68); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">홈 화면에서 1초 만에 바로 실행</div>
+              </div>
+            </div>
+            <button type="button" class="mobile-app-pill-btn" onclick="event.stopPropagation(); if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="flex-shrink: 0; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.55); color: #7DD3FC; font-size: 0.78rem; font-weight: 800; padding: 0.42rem 0.78rem; border-radius: 9999px; cursor: pointer; white-space: nowrap;">
+              📲 앱 받기
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1245,57 +1265,52 @@
   <div id="clinic-print-report-container"></div>
 
   <!-- =========================================================================
-       KIDS-FIT OFFICIAL APP DOWNLOAD & PWA INSTALL MODAL
+       KIDS-FIT OFFICIAL APP DOWNLOAD & PWA INSTALL MODAL (MINIMAL & CLEAN)
        ========================================================================= -->
-  <div id="kidsfit-app-install-modal" class="kidsfit-app-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="app-modal-title" style="display: none;">
+  <div id="kidsfit-app-install-modal" class="kidsfit-app-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="app-modal-title" onclick="if(event.target === this) window.closeKidsFitAppDownloadModal();" style="display: none;">
     <div class="kidsfit-app-modal-card">
       <div class="kidsfit-app-modal-header">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" style="width: 52px; height: 52px; border-radius: 14px; border: 1.5px solid #38BDF8; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 0.7rem;">
+          <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(56,189,248,0.6); flex-shrink: 0;">
           <div>
-            <span id="app-modal-native-status" style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #38BDF8; background: rgba(56,189,248,0.14); padding: 0.16rem 0.55rem; border-radius: 9999px; margin-bottom: 0.2rem;">📲 공식 웹앱(PWA) &amp; 런처 무료 배포</span>
-            <h3 id="app-modal-title" style="margin: 0; font-size: 1.15rem; font-weight: 900; color: #FFFFFF; line-height: 1.3;">KIDS-FIT 앱 다운로드 &amp; 홈 화면 설치</h3>
+            <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 700; color: #38BDF8;">KIDS-FIT OFFICIAL APP</span>
+            <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #FFFFFF; line-height: 1.3;">홈 화면에 키즈핏 앱 추가</h3>
           </div>
         </div>
-        <button type="button" onclick="window.closeKidsFitAppDownloadModal();" aria-label="닫기" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; width: 34px; height: 34px; border-radius: 9999px; font-size: 1rem; font-weight: 900; cursor: pointer; flex-shrink: 0;">✕</button>
+        <button type="button" onclick="window.closeKidsFitAppDownloadModal();" aria-label="닫기" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #FFFFFF; width: 32px; height: 32px; border-radius: 9999px; font-size: 0.9rem; font-weight: 800; cursor: pointer; flex-shrink: 0;">✕</button>
       </div>
 
-      <p id="app-modal-env-notice" style="margin: 0.65rem 0 0.9rem; font-size: 0.88rem; color: #E2E8F0; line-height: 1.5; background: rgba(15,23,42,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 0.65rem 0.8rem;">
-        스마트폰 바탕화면(홈 화면)이나 PC에 <strong>KIDS-FIT 전용 앱 아이콘</strong>을 생성하여 주소창 없이 진짜 앱처럼 1초 만에 실행할 수 있습니다.
+      <p id="app-modal-env-notice" style="margin: 0.65rem 0 0.85rem; font-size: 0.85rem; color: rgba(255,255,255,0.82); line-height: 1.5;">
+        바탕화면에 <strong>KIDS-FIT 아이콘</strong>을 추가하면 주소창 없이 앱처럼 1초 만에 열립니다.
       </p>
 
-      <!-- Primary Action Buttons -->
-      <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;">
-        <button type="button" id="btn-modal-pwa-install" onclick="window.triggerKidsFitNativeInstall();" style="width: 100%; padding: 0.95rem 1rem; border-radius: 14px; border: none; background: linear-gradient(90deg, #0284C7 0%, #10B981 100%); color: #FFFFFF; font-size: 0.98rem; font-weight: 900; cursor: pointer; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3); text-align: center;">
-          🚀 스마트폰·PC 홈 화면에 앱 바로 설치하기
+      <!-- Clean Primary Action Button -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <button type="button" id="btn-modal-pwa-install" onclick="window.triggerKidsFitNativeInstall();" style="width: 100%; padding: 0.85rem 1rem; border-radius: 12px; border: none; background: #FFFFFF; color: #05070B; font-size: 0.94rem; font-weight: 800; cursor: pointer; text-align: center;">
+          📲 홈 화면에 앱 바로 설치하기
         </button>
 
-        <button type="button" id="btn-modal-open-chrome" onclick="window.openInExternalChromeForAppInstall();" style="display: none; width: 100%; padding: 0.9rem 1rem; border-radius: 14px; border: 1.5px solid #38BDF8; background: rgba(2, 132, 199, 0.22); color: #7DD3FC; font-size: 0.94rem; font-weight: 900; cursor: pointer; text-align: center;">
-          🌐 안드로이드 크롬(Chrome)으로 열어서 1초 앱 설치하기 →
+        <button type="button" id="btn-modal-open-chrome" onclick="window.openInExternalChromeForAppInstall();" style="display: none; width: 100%; padding: 0.82rem 1rem; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.55); background: rgba(56, 189, 248, 0.14); color: #7DD3FC; font-size: 0.88rem; font-weight: 800; cursor: pointer; text-align: center;">
+          🌐 Chrome 브라우저로 열어서 설치하기 →
         </button>
 
-        <button type="button" id="btn-modal-file-download" onclick="window.downloadKidsFitAppLauncher();" style="width: 100%; padding: 0.85rem 1rem; border-radius: 14px; border: 1.5px solid rgba(192, 132, 252, 0.65); background: rgba(168, 85, 247, 0.18); color: #F3E8FF; font-size: 0.92rem; font-weight: 800; cursor: pointer; text-align: center;">
-          📥 앱 바로가기 실행 파일(KIDS-FIT_App.html) 기기에 직접 다운로드
+        <button type="button" id="btn-modal-file-download" onclick="window.downloadKidsFitAppLauncher();" style="width: 100%; padding: 0.72rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.85); font-size: 0.84rem; font-weight: 700; cursor: pointer; text-align: center;">
+          📥 바로가기 파일(KIDS-FIT_App.html) 저장
         </button>
       </div>
 
-      <!-- Step-by-Step Guide by OS -->
-      <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-        <div id="android-install-guide-card" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 0.8rem 0.9rem;">
-          <div style="font-size: 0.9rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.35rem;">🤖 안드로이드 (갤럭시 · Chrome / 삼성 인터넷) 10초 설치법</div>
-          <ol style="margin: 0; padding-left: 1.15rem; font-size: 0.84rem; color: #F1F5F9; line-height: 1.6;">
-            <li>텔레그램·카톡 안에서 열었다면 위 <strong>[크롬으로 열어서 1초 앱 설치]</strong> 버튼 또는 우측 상단 <strong>[⋮] ➔ [다른 브라우저(Chrome)로 열기]</strong>를 누릅니다.</li>
-            <li>상단 <strong>[🚀 홈 화면에 앱 바로 설치하기]</strong> 버튼을 누르거나 브라우저 메뉴 <strong>[⋮] ➔ [앱 설치 / 홈 화면에 추가]</strong>를 누르면 바탕화면에 앱이 설치됩니다!</li>
-          </ol>
+      <!-- Concise Single-Device Guide (Only shows the relevant OS card) -->
+      <div id="android-install-guide-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem 0.85rem;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">📱 안드로이드 홈 화면 추가 팁</div>
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5;">
+          브라우저 우측 상단 <strong>[⋮ 메뉴] ➔ [앱 설치]</strong> 또는 <strong>[홈 화면에 추가]</strong>를 누르면 설치됩니다.
         </div>
+      </div>
 
-        <div id="ios-install-guide-card" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 0.8rem 0.9rem;">
-          <div style="font-size: 0.9rem; font-weight: 900; color: #34D399; margin-bottom: 0.35rem;">🍎 아이폰 · 아이패드 (iOS Safari) 10초 홈 화면 앱 추가법</div>
-          <ol style="margin: 0; padding-left: 1.15rem; font-size: 0.84rem; color: #F1F5F9; line-height: 1.6;">
-            <li><strong>Safari(사파리)</strong> 브라우저 하단 가운데의 <strong>[⬆️ 공유 아이콘]</strong>을 터치합니다. (카톡·텔레그램 안이라면 우측 하단 나침반/메뉴로 Safari에서 열기)</li>
-            <li>공유 메뉴를 살짝 위로 올려 <strong>[➕ 홈 화면에 추가]</strong>를 선택합니다.</li>
-            <li>우측 상단 <strong>[추가]</strong>를 누르면 아이폰 바탕화면에 <strong>KIDS-FIT 전용 앱</strong>이 생성됩니다!</li>
-          </ol>
+      <div id="ios-install-guide-card" style="display: none; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem 0.85rem;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #6EE7B7; margin-bottom: 0.25rem;">🍎 아이폰(Safari) 홈 화면 추가 팁</div>
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5;">
+          Safari 하단 <strong>[⬆️ 공유] ➔ [➕ 홈 화면에 추가]</strong>를 누르면 바탕화면에 앱이 생성됩니다.
         </div>
       </div>
     </div>
@@ -1323,19 +1338,17 @@
         var iosCard = document.getElementById('ios-install-guide-card');
         var androidCard = document.getElementById('android-install-guide-card');
 
-        if (env.isAndroid && env.isInApp) {
-          if (btnChrome) btnChrome.style.display = 'block';
-          if (envNotice) {
-            envNotice.innerHTML = '💡 현재 <strong>메신저 인앱 브라우저(텔레그램/카카오톡 등)</strong>에서 접속 중입니다. 아래 <strong>[안드로이드 크롬으로 열어서 1초 앱 설치하기]</strong>를 누르면 스마트폰 바탕화면에 진짜 앱으로 바로 설치됩니다!';
-          }
-        } else if (env.isIOS) {
-          if (iosCard) iosCard.style.border = '2px solid #34D399';
-          if (envNotice) {
-            envNotice.innerHTML = '🍎 <strong>아이폰/아이패드</strong>에서는 Safari 하단 <strong>[⬆️ 공유] ➔ [➕ 홈 화면에 추가]</strong>를 누르거나 아래 <strong>[앱 바로가기 파일 다운로드]</strong>를 눌러 즉시 저장할 수 있습니다.';
-          }
-        } else if (window.__deferredKidsFitPrompt) {
-          if (envNotice) {
-            envNotice.innerHTML = '✅ 현재 브라우저에서 <strong>원클릭 네이티브 앱 설치</strong>가 준비되었습니다! 아래 <strong>[🚀 홈 화면에 앱 바로 설치하기]</strong> 버튼을 눌러주세요.';
+        if (env.isIOS) {
+          if (iosCard) iosCard.style.display = 'block';
+          if (androidCard) androidCard.style.display = 'none';
+          if (btnChrome) btnChrome.style.display = 'none';
+        } else {
+          if (iosCard) iosCard.style.display = 'none';
+          if (androidCard) androidCard.style.display = 'block';
+          if (env.isAndroid && env.isInApp) {
+            if (btnChrome) btnChrome.style.display = 'block';
+          } else if (btnChrome) {
+            btnChrome.style.display = 'none';
           }
         }
       };

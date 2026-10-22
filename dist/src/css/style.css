@@ -2962,23 +2962,26 @@ html[data-device-view="mobile"] .prescription-retest-btn {
 }
 
 html[data-device-view="mobile"] .hero-app-download-bar,
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .hero-app-download-bar {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    padding: 0.85rem 0.85rem !important;
-    gap: 0.65rem !important;
-  }
-
-  .hero-app-download-actions,
-  .hero-app-install-btn {
-    width: 100% !important;
-    text-align: center !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.62rem 0.8rem !important;
+    margin: 0 auto 1rem !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: none !important;
   }
 
   .app-download-header-btn {
-    font-size: 0.72rem !important;
-    padding: 0.28rem 0.52rem !important;
+    font-size: 0.73rem !important;
+    padding: 0.28rem 0.58rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #E2E8F0 !important;
+    box-shadow: none !important;
   }
 }
 
