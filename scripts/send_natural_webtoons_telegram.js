@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
  * scripts/send_natural_webtoons_telegram.js
- * Sends the updated @gangjidol style natural hand-drawn Instatoon Webtoons (Episodes 1~3) to Telegram.
+ * Sends the @gangjidol style natural hand-drawn Instatoon Webtoons organized episode-by-episode
+ * (1화, 2화, 3화 individual ZIP packages + vertical scroll strip + copy-ready caption TXT) to Telegram.
  */
 
 const fs = require('fs');
 const path = require('path');
-const { getTelegramConfig, telegramApiRequest, sendTelegramPhoto } = require('./telegram-notify');
+const { getTelegramConfig, telegramApiRequest, sendTelegramDocument } = require('./telegram-notify');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const WEBTOON_DIR = path.join(ROOT_DIR, '웹툰_모음');
@@ -19,15 +20,18 @@ async function main() {
   }
 
   const introHtml = [
-    `💬 <b>[@gangjidol(강지돌) 인스타툰 감성 자연스러운 말풍선 전면 적용 완료!]</b>`,
+    `📂 <b>[웹툰 1화 · 2화 · 3화 각 화별 개별 폴더 &amp; 화별 ZIP 저장 완료!]</b>`,
     ``,
-    `보내주신 <code>@gangjidol</code> 인스타툰 스타일에 맞춰 웹툰 말풍선을 완전히 새롭게 바꿨습니다!`,
-    `• <b>딱딱한 UI 이름표 배지·형광펜·보라색 테두리·길쭉한 바늘 꼬리 100% 제거</b>`,
-    `• <b>일러스트 펜선과 똑같은 따뜻한 다크브라운 손그림 라인 + 크림화이트 동글동글 타원형 말풍선</b>`,
-    `• <b>캐릭터 머리 바로 옆에 붙어 짧고 귀엽게 쏙 나오는 자연스러운 만화 말풍선 꼬리 + 둥근 라운드 폰트 적용</b>`,
+    `요청하신 대로 <code>@gangjidol</code> 감성의 자연스러운 말풍선 웹툰을 <b>각 화별(1화 · 2화 · 3화) 전용 폴더와 화별 통합 압축파일(ZIP)</b>로 각각 깔끔하게 분리 저장했습니다!`,
     ``,
-    `🌐 <b>웹에서도 즉시 확인</b>: <a href="https://truthofmarket.com/samples/8_insta_threads_webtoon_pack/">https://truthofmarket.com/samples/8_insta_threads_webtoon_pack/</a>`,
-    `👇 아래로 자연스러운 인스타툰 말풍선이 적용된 <b>1화 · 2화 · 3화</b> 이미지를 바로 보내드립니다!`
+    `📁 <b>PC 저장 경로 (<code>d:\\사업아이템\\웹툰_모음\\</code>)</b>`,
+    `• <b>1화 폴더</b>: <code>웹툰_모음\\1화_만3세소근육민감기_웹툰\\</code>`,
+    `• <b>2화 폴더</b>: <code>웹툰_모음\\2화_초등문장제수학작업기억_웹툰\\</code>`,
+    `• <b>3화 폴더</b>: <code>웹툰_모음\\3화_밤10시숙면숨은키7cm_웹툰\\</code>`,
+    `<i>(각 폴더 안에 ① 4컷 바둑판 합본, ② 4컷 세로 스크롤 합본, ③ 1~4컷 개별 원본 PNG, ④ 인스타·쓰레드 본문 TXT가 모두 들어 있습니다!)</i>`,
+    ``,
+    `🌐 <b>웹에서도 화별 원클릭 다운로드</b>: <a href="https://truthofmarket.com/samples/8_insta_threads_webtoon_pack/">https://truthofmarket.com/samples/8_insta_threads_webtoon_pack/</a>`,
+    `👇 스마트폰에서도 바로 화별로 저장하실 수 있도록 <b>[1화] · [2화] · [3화] 화별 원본 ZIP + 세로합본 + 본문 파일</b>을 순서대로 보내드립니다!`
   ].join('\n');
 
   await telegramApiRequest(cfg.botToken, 'sendMessage', {
@@ -37,26 +41,57 @@ async function main() {
     disable_web_page_preview: false
   });
 
-  const folders = [
-    { folder: '1화_만3세소근육민감기_웹툰', label: '🌱 [1화: 만 3세 손끝 소근육 민감기 인스타툰]' },
-    { folder: '2화_초등문장제수학작업기억_웹툰', label: '🧠 [2화: 초등 문장제 수학과 전두엽 작업기억 인스타툰]' },
-    { folder: '3화_밤10시숙면숨은키7cm_웹툰', label: '📏 [3화: 밤 10시 숙면과 숨은 키 +7cm 인스타툰]' }
+  const episodes = [
+    {
+      num: 1,
+      folder: '1화_만3세소근육민감기_웹툰',
+      label: '🌱 [웹툰 1화] 만 3세 손끝 소근육 민감기 인스타툰'
+    },
+    {
+      num: 2,
+      folder: '2화_초등문장제수학작업기억_웹툰',
+      label: '🧠 [웹툰 2화] 초등 문장제 수학과 전두엽 작업기억 인스타툰'
+    },
+    {
+      num: 3,
+      folder: '3화_밤10시숙면숨은키7cm_웹툰',
+      label: '📏 [웹툰 3화] 밤 10시 숙면과 숨은 키 +7cm 인스타툰'
+    }
   ];
 
-  for (const f of folders) {
-    const dir = path.join(WEBTOON_DIR, f.folder);
-    const gridPath = path.join(dir, '00_전체_4컷_한눈에보기_합본.png');
-    if (fs.existsSync(gridPath)) {
-      await sendTelegramPhoto(cfg.botToken, cfg.chatId, gridPath, `${f.label} — 4컷 한눈에 보기 (자연스러운 말풍선)`);
+  for (const ep of episodes) {
+    const dir = path.join(WEBTOON_DIR, ep.folder);
+    const zipPath = path.join(WEBTOON_DIR, `${ep.folder}_전체파일.zip`);
+    const vstripPath = path.join(dir, '00_전체_4컷_세로연속보기_스크롤합본.png');
+    const txtPath = path.join(dir, '07_인스타_쓰레드_통합본.txt');
+
+    if (fs.existsSync(zipPath)) {
+      await sendTelegramDocument(
+        cfg.botToken,
+        cfg.chatId,
+        zipPath,
+        `📦 ${ep.label} — 화별 전체 묶음 (1~4컷 + 바둑판/세로 합본 + 본문 TXT)`
+      );
     }
-    for (let i = 1; i <= 4; i++) {
-      const cp = path.join(dir, `0${i}_${i}컷.png`);
-      if (fs.existsSync(cp)) {
-        await sendTelegramPhoto(cfg.botToken, cfg.chatId, cp, `${f.label} — ${i}컷`);
-      }
+    if (fs.existsSync(vstripPath)) {
+      await sendTelegramDocument(
+        cfg.botToken,
+        cfg.chatId,
+        vstripPath,
+        `📜 ${ep.label} — 블로그/카페용 4컷 세로 연속 합본 원본 (고화질 무압축)`
+      );
+    }
+    if (fs.existsSync(txtPath)) {
+      await sendTelegramDocument(
+        cfg.botToken,
+        cfg.chatId,
+        txtPath,
+        `📝 ${ep.label} — 인스타 & 쓰레드 복붙용 본문·해시태그 통합본.txt`
+      );
     }
   }
-  console.log('  ✓ Sent all natural Instatoon webtoons to Telegram!');
+
+  console.log('  ✓ Sent episode-by-episode webtoon packages to Telegram!');
 }
 
 main().catch(err => {

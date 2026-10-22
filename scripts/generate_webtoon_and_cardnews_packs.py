@@ -1013,6 +1013,9 @@ CARDNEWS_SERIES = [
 ]
 
 
+import zipfile
+
+
 def build_grid_2x2(cuts_4: list) -> Image.Image:
     grid = Image.new("RGB", (2160, 2160), (255, 255, 255))
     positions = [(0, 0), (1080, 0), (0, 1080), (1080, 1080)]
@@ -1025,6 +1028,15 @@ def build_grid_2x2(cuts_4: list) -> Image.Image:
     return grid.resize((1080, 1080), Image.Resampling.LANCZOS)
 
 
+def build_vertical_strip(cuts: list) -> Image.Image:
+    gap = 24
+    total_h = len(cuts) * 1080 + (len(cuts) - 1) * gap
+    strip = Image.new("RGB", (1080, total_h), (255, 253, 249))
+    for i, img in enumerate(cuts):
+        strip.paste(img, (0, i * (1080 + gap)))
+    return strip
+
+
 def generate_all_webtoons_and_cardnews():
     ensure_ep1_raw_files()
     WEBTOON_ROOT_KO.mkdir(parents=True, exist_ok=True)
@@ -1032,7 +1044,7 @@ def generate_all_webtoons_and_cardnews():
     CARDNEWS_ROOT_KO.mkdir(parents=True, exist_ok=True)
     CARDNEWS_SAMPLE_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1. Render All 3 Webtoon Episodes into Dedicated Folders
+    # 1. Render All 3 Webtoon Episodes into Dedicated Folders + Per-Episode ZIPs
     for ep in WEBTOON_EPISODES:
         ep_num = ep["ep_num"]
         folder_name = ep["folder_name"]
@@ -1057,11 +1069,37 @@ def generate_all_webtoons_and_cardnews():
             grid_img = build_grid_2x2(rendered_cuts)
             grid_img.save(f_dir / "00_전체_4컷_한눈에보기_합본.png", "PNG")
 
+            # Save 4-cut vertical scroll strip (for Naver Blog / Cafe)
+            vstrip_img = build_vertical_strip(rendered_cuts)
+            vstrip_img.save(f_dir / "00_전체_4컷_세로연속보기_스크롤합본.png", "PNG")
+
             # Save Instagram & Threads copy-ready text files inside the episode folder
+            combined_txt = (
+                f"==================================================\n"
+                f"[{ep['title']}]\n"
+                f"==================================================\n\n"
+                f"【1. 인스타그램 피드 본문 & 해시태그】\n"
+                f"--------------------------------------------------\n"
+                f"{ep['insta_caption']}\n\n"
+                f"==================================================\n\n"
+                f"【2. 쓰레드(Threads) 본문 & 첫 번째 고정 대댓글】\n"
+                f"--------------------------------------------------\n"
+                f"{ep['threads_post']}\n"
+            )
+            (f_dir / "05_인스타그램_본문_해시태그.txt").write_text(ep["insta_caption"] + "\n", encoding="utf-8")
+            (f_dir / "06_쓰레드_공감질문_본문_대댓글.txt").write_text(ep["threads_post"] + "\n", encoding="utf-8")
+            (f_dir / "07_인스타_쓰레드_통합본.txt").write_text(combined_txt, encoding="utf-8")
             (f_dir / "인스타그램_본문_해시태그.txt").write_text(ep["insta_caption"] + "\n", encoding="utf-8")
             (f_dir / "쓰레드_공감질문_본문_대댓글.txt").write_text(ep["threads_post"] + "\n", encoding="utf-8")
 
-        print(f"✅ 웹툰 {ep_num}화 렌더링 및 폴더 정리 완료 -> {folder_name}")
+            # Create per-episode ZIP archive both inside base_dir and inside the episode folder
+            zip_path = base_dir / f"{folder_name}_전체파일.zip"
+            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+                for file_p in sorted(f_dir.glob("*")):
+                    if file_p.is_file() and not file_p.name.endswith(".zip"):
+                        zf.write(file_p, arcname=f"{folder_name}/{file_p.name}")
+
+        print(f"✅ 웹툰 {ep_num}화 렌더링·폴더 저장 및 화별 ZIP 생성 완료 -> {folder_name}")
 
     # 2. Render All 3 Cardnews Series into Dedicated Folders (and update samples/3_cardnews_sample/)
     sample3_dir = ROOT_DIR / "samples" / "3_cardnews_sample"
@@ -1093,72 +1131,110 @@ def generate_all_webtoons_and_cardnews():
 
             (f_dir / "인스타그램_블로그_동시업로드_본문.txt").write_text(sr["caption"] + "\n", encoding="utf-8")
 
-        print(f"✅ 카드뉴스 {sr_num}탄 렌더링 및 폴더 정리 완료 -> {folder_name}")
+            zip_path = base_dir / f"{folder_name}_전체파일.zip"
+            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+                for file_p in sorted(f_dir.glob("*")):
+                    if file_p.is_file() and not file_p.name.endswith(".zip"):
+                        zf.write(file_p, arcname=f"{folder_name}/{file_p.name}")
+
+        print(f"✅ 카드뉴스 {sr_num}탄 렌더링·폴더 저장 및 탄별 ZIP 생성 완료 -> {folder_name}")
 
     # 3. Generate Web Hub for Webtoons & Cardnews (samples/8_insta_threads_webtoon_pack/index.html)
     generate_webtoon_cardnews_web_hub()
 
 
 def generate_webtoon_cardnews_web_hub():
-    web_html = """<!DOCTYPE html>
+    ep1 = WEBTOON_EPISODES[0]
+    ep2 = WEBTOON_EPISODES[1]
+    ep3 = WEBTOON_EPISODES[2]
+    web_html = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>키즈핏 감각적 4컷 웹툰 & 여백 없는 카드뉴스 올인원 발행 센터</title>
+  <title>키즈핏 @gangjidol 감성 4컷 웹툰(1~3화) & 여백 없는 카드뉴스(1~3탄) 화별 저장 센터</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
-    :root { --bg: #0F172A; --card: #1E293B; --accent: #6366F1; --mint: #10B981; --yellow: #FACC15; --text: #F8FAFC; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Pretendard', sans-serif; background: var(--bg); color: var(--text); padding: 24px 14px 90px; line-height: 1.6; }
-    .container { max-width: 960px; margin: 0 auto; }
-    .hero { background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%); padding: 28px 22px; border-radius: 22px; margin-bottom: 24px; }
-    .hero h1 { font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }
-    .section-title { font-size: 1.25rem; font-weight: 800; margin: 28px 0 14px; color: var(--yellow); }
-    .card { background: var(--card); border: 1px solid #334155; border-radius: 20px; padding: 20px; margin-bottom: 22px; }
-    .card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; color: #fff; }
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
-    .grid-4 img { width: 100%; border-radius: 12px; border: 1px solid #475569; }
-    pre { background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 14px; font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; color: #E2E8F0; margin-bottom: 12px; }
-    .btn { display: inline-block; background: var(--mint); color: #0F172A; font-weight: 800; padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; font-size: 0.92rem; text-decoration: none; margin-right: 8px; margin-bottom: 8px; }
+    :root {{ --bg: #0F172A; --card: #1E293B; --accent: #6366F1; --mint: #10B981; --yellow: #FACC15; --text: #F8FAFC; }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{ font-family: 'Pretendard', sans-serif; background: var(--bg); color: var(--text); padding: 24px 14px 90px; line-height: 1.6; }}
+    .container {{ max-width: 980px; margin: 0 auto; }}
+    .hero {{ background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%); padding: 28px 22px; border-radius: 22px; margin-bottom: 24px; }}
+    .hero h1 {{ font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }}
+    .section-title {{ font-size: 1.25rem; font-weight: 800; margin: 28px 0 14px; color: var(--yellow); }}
+    .card {{ background: var(--card); border: 1px solid #334155; border-radius: 20px; padding: 20px; margin-bottom: 22px; }}
+    .card h3 {{ font-size: 1.15rem; font-weight: 800; margin-bottom: 12px; color: #fff; }}
+    .grid-4 {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }}
+    .grid-4 img {{ width: 100%; border-radius: 12px; border: 1px solid #475569; }}
+    pre {{ background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 14px; font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; color: #E2E8F0; margin-bottom: 12px; }}
+    .btn-row {{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }}
+    .btn {{ display: inline-block; background: var(--mint); color: #0F172A; font-weight: 800; padding: 10px 16px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.9rem; text-decoration: none; }}
+    .btn-sub {{ background: #334155; color: #F8FAFC; }}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="hero">
-      <h1>🎨 키즈핏 감각적 4컷 공감 웹툰 (1~3화) &amp; 여백 없는 카드뉴스 (1~3탄) 센터</h1>
-      <p>인스타그램과 쓰레드에 동시 업로드할 수 있는 고해상도 4컷 웹툰 시리즈와 꽉 찬 풀블리드 카드뉴스 시리즈입니다.</p>
+      <h1>🎨 키즈핏 @gangjidol 감성 4컷 웹툰 (1~3화 화별 저장) &amp; 카드뉴스 (1~3탄) 센터</h1>
+      <p>각 화별로 폴더 정리 및 원클릭 ZIP·컷별 저장, 인스타·쓰레드 본문 복사가 가능합니다.</p>
     </div>
 
-    <h2 class="section-title">💬 1. 인스타·쓰레드 동시 업로드용 4컷 공감 웹툰 (폴더별 1화 ~ 3화)</h2>
+    <h2 class="section-title">💬 1. 인스타·쓰레드 동시 업로드용 4컷 공감 웹툰 (1화 · 2화 · 3화 화별 저장)</h2>
     <div class="card">
-      <h3>EP.01 만 3세 '내가 혼자 할 거야!' 고집의 진짜 이유 (손끝 소근육 민감기)</h3>
-      <div class="grid-4">
-        <img src="./1화_만3세소근육민감기_웹툰/01_1컷.png" alt="1화 1컷" />
-        <img src="./1화_만3세소근육민감기_웹툰/02_2컷.png" alt="1화 2컷" />
-        <img src="./1화_만3세소근육민감기_웹툰/03_3컷.png" alt="1화 3컷" />
-        <img src="./1화_만3세소근육민감기_웹툰/04_4컷.png" alt="1화 4컷" />
+      <h3>🌱 1화: 만 3세 '내가 혼자 할 거야!' 고집의 진짜 이유 (손끝 소근육 민감기)</h3>
+      <div class="btn-row">
+        <a class="btn" href="./1화_만3세소근육민감기_웹툰_전체파일.zip" download>📦 1화 전체 파일(4컷+합본+본문TXT) ZIP 다운로드</a>
+        <a class="btn btn-sub" href="./1화_만3세소근육민감기_웹툰/00_전체_4컷_한눈에보기_합본.png" download>🖼️ 1화 4컷 바둑판 합본 저장</a>
+        <a class="btn btn-sub" href="./1화_만3세소근육민감기_웹툰/00_전체_4컷_세로연속보기_스크롤합본.png" download>📜 1화 블로그용 세로 스크롤 합본 저장</a>
       </div>
+      <div class="grid-4">
+        <a href="./1화_만3세소근육민감기_웹툰/01_1컷.png" download><img src="./1화_만3세소근육민감기_웹툰/01_1컷.png" alt="1화 1컷" /></a>
+        <a href="./1화_만3세소근육민감기_웹툰/02_2컷.png" download><img src="./1화_만3세소근육민감기_웹툰/02_2컷.png" alt="1화 2컷" /></a>
+        <a href="./1화_만3세소근육민감기_웹툰/03_3컷.png" download><img src="./1화_만3세소근육민감기_웹툰/03_3컷.png" alt="1화 3컷" /></a>
+        <a href="./1화_만3세소근육민감기_웹툰/04_4컷.png" download><img src="./1화_만3세소근육민감기_웹툰/04_4컷.png" alt="1화 4컷" /></a>
+      </div>
+      <pre id="ep1-txt">{ep1['insta_caption']}
+
+{ep1['threads_post']}</pre>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('ep1-txt').innerText).then(()=>alert('1화 본문이 복사되었습니다!'))">📋 1화 인스타·쓰레드 본문 복사하기</button>
     </div>
 
     <div class="card">
-      <h3>EP.02 연산은 100점인데 문장제 수학만 별표 치는 아이 (전두엽 작업기억의 비밀)</h3>
-      <div class="grid-4">
-        <img src="./2화_초등문장제수학작업기억_웹툰/01_1컷.png" alt="2화 1컷" />
-        <img src="./2화_초등문장제수학작업기억_웹툰/02_2컷.png" alt="2화 2컷" />
-        <img src="./2화_초등문장제수학작업기억_웹툰/03_3컷.png" alt="2화 3컷" />
-        <img src="./2화_초등문장제수학작업기억_웹툰/04_4컷.png" alt="2화 4컷" />
+      <h3>🧠 2화: 연산은 100점인데 문장제 수학만 별표 치는 아이 (전두엽 작업기억의 비밀)</h3>
+      <div class="btn-row">
+        <a class="btn" href="./2화_초등문장제수학작업기억_웹툰_전체파일.zip" download>📦 2화 전체 파일(4컷+합본+본문TXT) ZIP 다운로드</a>
+        <a class="btn btn-sub" href="./2화_초등문장제수학작업기억_웹툰/00_전체_4컷_한눈에보기_합본.png" download>🖼️ 2화 4컷 바둑판 합본 저장</a>
+        <a class="btn btn-sub" href="./2화_초등문장제수학작업기억_웹툰/00_전체_4컷_세로연속보기_스크롤합본.png" download>📜 2화 블로그용 세로 스크롤 합본 저장</a>
       </div>
+      <div class="grid-4">
+        <a href="./2화_초등문장제수학작업기억_웹툰/01_1컷.png" download><img src="./2화_초등문장제수학작업기억_웹툰/01_1컷.png" alt="2화 1컷" /></a>
+        <a href="./2화_초등문장제수학작업기억_웹툰/02_2컷.png" download><img src="./2화_초등문장제수학작업기억_웹툰/02_2컷.png" alt="2화 2컷" /></a>
+        <a href="./2화_초등문장제수학작업기억_웹툰/03_3컷.png" download><img src="./2화_초등문장제수학작업기억_웹툰/03_3컷.png" alt="2화 3컷" /></a>
+        <a href="./2화_초등문장제수학작업기억_웹툰/04_4컷.png" download><img src="./2화_초등문장제수학작업기억_웹툰/04_4컷.png" alt="2화 4컷" /></a>
+      </div>
+      <pre id="ep2-txt">{ep2['insta_caption']}
+
+{ep2['threads_post']}</pre>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('ep2-txt').innerText).then(()=>alert('2화 본문이 복사되었습니다!'))">📋 2화 인스타·쓰레드 본문 복사하기</button>
     </div>
 
     <div class="card">
-      <h3>EP.03 밤마다 우유 먹였는데 키가 안 큰다고요? (밤 10시 성장호르몬 &amp; 하체 스트레칭)</h3>
-      <div class="grid-4">
-        <img src="./3화_밤10시숙면숨은키7cm_웹툰/01_1컷.png" alt="3화 1컷" />
-        <img src="./3화_밤10시숙면숨은키7cm_웹툰/02_2컷.png" alt="3화 2컷" />
-        <img src="./3화_밤10시숙면숨은키7cm_웹툰/03_3컷.png" alt="3화 3컷" />
-        <img src="./3화_밤10시숙면숨은키7cm_웹툰/04_4컷.png" alt="3화 4컷" />
+      <h3>📏 3화: 밤마다 우유 먹였는데 키가 안 큰다고요? (밤 10시 성장호르몬 &amp; 하체 스트레칭)</h3>
+      <div class="btn-row">
+        <a class="btn" href="./3화_밤10시숙면숨은키7cm_웹툰_전체파일.zip" download>📦 3화 전체 파일(4컷+합본+본문TXT) ZIP 다운로드</a>
+        <a class="btn btn-sub" href="./3화_밤10시숙면숨은키7cm_웹툰/00_전체_4컷_한눈에보기_합본.png" download>🖼️ 3화 4컷 바둑판 합본 저장</a>
+        <a class="btn btn-sub" href="./3화_밤10시숙면숨은키7cm_웹툰/00_전체_4컷_세로연속보기_스크롤합본.png" download>📜 3화 블로그용 세로 스크롤 합본 저장</a>
       </div>
+      <div class="grid-4">
+        <a href="./3화_밤10시숙면숨은키7cm_웹툰/01_1컷.png" download><img src="./3화_밤10시숙면숨은키7cm_웹툰/01_1컷.png" alt="3화 1컷" /></a>
+        <a href="./3화_밤10시숙면숨은키7cm_웹툰/02_2컷.png" download><img src="./3화_밤10시숙면숨은키7cm_웹툰/02_2컷.png" alt="3화 2컷" /></a>
+        <a href="./3화_밤10시숙면숨은키7cm_웹툰/03_3컷.png" download><img src="./3화_밤10시숙면숨은키7cm_웹툰/03_3컷.png" alt="3화 3컷" /></a>
+        <a href="./3화_밤10시숙면숨은키7cm_웹툰/04_4컷.png" download><img src="./3화_밤10시숙면숨은키7cm_웹툰/04_4컷.png" alt="3화 4컷" /></a>
+      </div>
+      <pre id="ep3-txt">{ep3['insta_caption']}
+
+{ep3['threads_post']}</pre>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('ep3-txt').innerText).then(()=>alert('3화 본문이 복사되었습니다!'))">📋 3화 인스타·쓰레드 본문 복사하기</button>
     </div>
 
     <h2 class="section-title">📊 2. 여백 없는 고대비 형광펜 하이라이트 카드뉴스 (폴더별 1탄 ~ 3탄)</h2>
