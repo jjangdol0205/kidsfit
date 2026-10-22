@@ -290,7 +290,7 @@
   function getRoutineIllustrationSvg(routineId, isGlobal) {
     if (routineId === 'dead_hang') {
       return `
-        <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.25);">
+        <svg viewBox="0 0 380 185" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 185; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 14px; border: 1px solid rgba(56, 189, 248, 0.25);">
           <!-- Pull-up Bar -->
           <line x1="50" y1="26" x2="330" y2="26" stroke="#94A3B8" stroke-width="6" stroke-linecap="round"/>
           <circle cx="50" cy="26" r="6" fill="#38BDF8"/>
@@ -326,7 +326,7 @@
     }
     if (routineId === 'thoracic_stretch') {
       return `
-        <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.28);">
+        <svg viewBox="0 0 380 185" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 185; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.28);">
           <!-- Floor Mat Line -->
           <line x1="30" y1="152" x2="350" y2="152" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
           <!-- Foam Roller under Thoracic Spine -->
@@ -357,7 +357,7 @@
       `;
     }
     return `
-      <svg viewBox="0 0 380 185" width="100%" height="185" style="display: block; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3);">
+      <svg viewBox="0 0 380 185" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 185; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 14px; border: 1px solid rgba(251, 191, 36, 0.3);">
         <!-- Shock Absorbing Mat -->
         <rect x="95" y="152" width="190" height="10" rx="5" fill="#38BDF8" opacity="0.5"/>
         <!-- Jump Rope Arc -->
@@ -388,6 +388,61 @@
     `;
   }
 
+  const ROUTINE_4_LOWER_BODY_STRETCH = {
+    id: 'lower_body_core_stretch',
+    nameKo: '하체 성장판(햄스트링·무릎) 이완 & 골반·코어 브릿지 스트레칭',
+    nameEn: 'Lower-Limb Growth Plate Release & Core Pelvic Bridge Stretch',
+    category: 'lower_body_bridge',
+    duration: 60,
+    durationMinutes: 1,
+    sets: 2,
+    restSeconds: 20,
+    principle: 'Lower-Extremity Myofascial Release & Lumbo-Pelvic Stabilization',
+    molecularTrigger: 'Epiphyseal Vascular Perfusion & IGF-1 Delivery',
+    restorationEstimate: '+0.8 ~ +1.4 cm (하체 정렬 & 성장판 혈류 촉진)',
+    summaryKo: '점핑 운동 후 긴장된 허벅지·종아리 근막을 쭉 펴주고 골반 브릿지로 하체 성장판 혈류를 높입니다.',
+    summaryEn: 'Releases tight hamstrings/calves after jumping and aligns pelvis to boost growth plate blood flow.',
+    instructionsKo: [
+      '바닥에 누워 두 무릎을 세우고 엉덩이를 천천히 들어 올려 어깨-골반-무릎을 일직선으로 만듭니다 (15초 유지 × 2회).',
+      '한쪽 다리를 천장으로 곧게 펴고 발끝을 몸쪽으로 당겨 허벅지 뒤(햄스트링)와 종아리를 20초간 늘려줍니다.',
+      '양 무릎을 가슴 쪽으로 가볍게 안아 허리와 골반 긴장을 부드럽게 풀어주며 마무리합니다.'
+    ],
+    instructionsEn: [
+      'Lie on back with knees bent and lift hips to align shoulders, pelvis, and knees for 15s (2 reps).',
+      'Extend one leg upward and pull toes toward shin for 20s to stretch hamstrings and calves.',
+      'Hug both knees gently to chest to release lower back and pelvic tension.'
+    ]
+  };
+
+  function getRoutine4IllustrationSvg(isGlobal) {
+    return `
+      <svg viewBox="0 0 380 185" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 185; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border-radius: 14px; border: 1px solid rgba(168, 85, 247, 0.35);">
+        <!-- Floor Mat Line -->
+        <line x1="26" y1="152" x2="354" y2="152" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+        <!-- Child Doing Pelvic Bridge & Leg Stretch -->
+        <circle cx="105" cy="138" r="12" fill="#F8FAFC" stroke="#C084FC" stroke-width="2.5"/>
+        <!-- Shoulders to Raised Pelvis -->
+        <line x1="120" y1="142" x2="205" y2="104" stroke="#C084FC" stroke-width="6" stroke-linecap="round"/>
+        <!-- Supporting Bent Leg -->
+        <line x1="205" y1="104" x2="248" y2="96" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+        <line x1="248" y1="96" x2="262" y2="148" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
+        <!-- Extended Upward Leg (Hamstring & Calf Stretch) -->
+        <line x1="205" y1="104" x2="232" y2="38" stroke="#34D399" stroke-width="5.5" stroke-linecap="round"/>
+        <circle cx="218" cy="72" r="6" fill="#F43F5E"/>
+        <!-- Upward Pelvis Lift Arrow -->
+        <path d="M 185 138 L 185 112" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="185,104 179,114 191,114" fill="#FBBF24"/>
+        <!-- Callout Labels -->
+        <rect x="16" y="42" width="142" height="26" rx="6" fill="rgba(168, 85, 247, 0.2)" stroke="rgba(192, 132, 252, 0.45)"/>
+        <text x="87" y="59" fill="#F3E8FF" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '① Pelvic Core Bridge' : '① 골반·코어 브릿지 들기'}</text>
+        <rect x="242" y="34" width="126" height="26" rx="6" fill="rgba(16, 185, 129, 0.18)" stroke="rgba(16, 185, 129, 0.45)"/>
+        <text x="305" y="51" fill="#A7F3D0" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '② Stretch Hamstring' : '② 다리 펴고 발끝 당기기'}</text>
+        <rect x="242" y="68" width="126" height="26" rx="6" fill="rgba(244, 63, 94, 0.18)" stroke="rgba(244, 63, 94, 0.45)"/>
+        <text x="305" y="85" fill="#FECDD3" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '③ Growth Plate Flow' : '③ 하체 성장판 혈류 2배'}</text>
+      </svg>
+    `;
+  }
+
   function renderIllustratedMassageSection(isGlobal) {
     return `
       <div class="bento-card" id="illustrated-growth-massage-guide" style="margin-bottom: 1.5rem; padding: 1.5rem; border: 1.5px solid rgba(56, 189, 248, 0.32); background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(10, 15, 28, 0.98));">
@@ -408,10 +463,10 @@
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <!-- Massage Card 1: Knee Acupressure Points (Dokbi & Zusanli) -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.15rem;">
-            <div style="font-size: 1.02rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.65rem;">
+            <div style="font-size: 1.04rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.65rem;">
               🦵 ${isGlobal ? 'Step 1. Knee Growth Plate Acupressure (3 Mins)' : '1단계. 무릎뼈 아래 성장판 혈자리 엄지 지압 (3분)'}
             </div>
-            <svg viewBox="0 0 380 180" width="100%" height="180" style="display: block; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(56, 189, 248, 0.22); margin-bottom: 0.85rem;">
+            <svg viewBox="0 0 380 180" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 180; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(56, 189, 248, 0.22); margin-bottom: 0.85rem;">
               <!-- Femur & Tibia Outline -->
               <path d="M 155 18 L 162 72 Q 190 82 218 72 L 225 18" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
               <path d="M 158 105 Q 190 95 222 105 L 215 168 L 165 168 Z" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
@@ -443,10 +498,10 @@
 
           <!-- Massage Card 2: Calf & Achilles Upward Sweep -->
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.15rem;">
-            <div style="font-size: 1.02rem; font-weight: 800; color: #34D399; margin-bottom: 0.65rem;">
+            <div style="font-size: 1.04rem; font-weight: 800; color: #34D399; margin-bottom: 0.65rem;">
               🦶 ${isGlobal ? 'Step 2. Calf & Achilles Upward Sweep Massage (2 Mins)' : '2단계. 종아리·아킬레스건 위로 쓸어올리기 (2분)'}
             </div>
-            <svg viewBox="0 0 380 180" width="100%" height="180" style="display: block; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.25); margin-bottom: 0.85rem;">
+            <svg viewBox="0 0 380 180" width="100%" style="display: block; width: 100%; height: auto; aspect-ratio: 380 / 180; background: rgba(15, 23, 42, 0.9); border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.25); margin-bottom: 0.85rem;">
               <!-- Lower Leg & Calf Muscle Outline -->
               <path d="M 162 24 C 142 65 152 115 168 145 L 198 145 C 214 115 224 65 204 24 Z" fill="rgba(16, 185, 129, 0.12)" stroke="#34D399" stroke-width="3"/>
               <!-- Foot Outline -->
@@ -483,10 +538,10 @@
     const habits = profile.habits || [];
     const restoredHeight = calculateDecompressionPotential(habits);
 
-    const titleStr = isGlobal ? 'Illustrated Growth Massage & Spine Decompression Guide' : '그림으로 쉽게 따라 하는 성장판 마사지 & 숨은 키 운동 가이드';
+    const titleStr = isGlobal ? 'Illustrated Growth Massage & 4-Step Spine/Growth Plate Exercise Guide' : '그림으로 쉽게 따라 하는 성장판 마사지 & 숨은 키 4단계 운동 가이드';
     const subStr = isGlobal
-      ? 'No complicated timers needed! Follow the step-by-step visual illustrations below for 5-minute bedtime knee/calf massage and 3 spine-lengthening exercises.'
-      : '복잡한 타이머 없이 그림만 보고 집에서 바로 따라 해보세요. 잠들기 전 5분 엄마 손 성장판 마사지와 숨은 키 +1.8cm를 찾아주는 3단계 맞춤 운동법입니다.';
+      ? 'No complicated timers needed! Follow the step-by-step visual illustrations below for 5-minute bedtime knee/calf massage and 4 spine-lengthening & growth plate exercises.'
+      : '복잡한 타이머 없이 그림만 보고 집에서 바로 따라 해보세요. 잠들기 전 5분 엄마 손 성장판 마사지와 숨은 키 +1.8cm를 찾아주는 4단계 맞춤 운동법입니다.';
 
     let html = `
       <div id="core-3-container" class="core-module-container biomechanics-studio-container">
@@ -495,12 +550,12 @@
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="tab-badge tab-badge-rose" style="display: inline-block; margin-bottom: 0.5rem;">
-                🏃 Core 3 · Visual Massage & Exercise Guide
+                🏃 Core 3 · Visual Massage & 4-Step Exercise Guide
               </span>
-              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
+              <h3 style="font-size: 1.22rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
                 ${titleStr}
               </h3>
-              <p style="font-size: 0.95rem; color: #E2E8F0; line-height: 1.6; max-width: 780px;">
+              <p style="font-size: 0.94rem; color: #E2E8F0; line-height: 1.65; max-width: 780px;">
                 ${subStr}
               </p>
             </div>
@@ -518,35 +573,45 @@
         <!-- NEW: Illustrated Bedtime Growth Plate Massage Guide -->
         ${renderIllustratedMassageSection(isGlobal)}
 
-        <!-- 3 Illustrated Exercise Routine Cards (1-Card-Per-Row Sequential Layout) -->
+        <!-- 4 Illustrated Exercise Routine Cards (1-Card-Per-Row Sequential Layout) -->
         <div class="routines-grid" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.35rem;">
     `;
 
-    ROUTINES.forEach((r, idx) => {
+    const displayRoutines = [...ROUTINES, ROUTINE_4_LOWER_BODY_STRETCH];
+
+    displayRoutines.forEach((r, idx) => {
       const name = isGlobal ? r.nameEn : r.nameKo;
       const summary = isGlobal ? r.summaryEn : r.summaryKo;
       const instructions = isGlobal ? r.instructionsEn : r.instructionsKo;
-      const timer = getOrCreateTimer(r.id);
+      const timer = getOrCreateTimer(r.id) || { currentSet: 1, remainingSeconds: r.duration || 60 };
       const initialTime = formatTime(timer.remainingSeconds);
 
       const categoryLabel = r.category === 'decompression'
         ? (isGlobal ? 'Exercise 1: Spine Decompression' : '운동 1단계: 척추 마디 늘리기')
         : (r.category === 'alignment'
           ? (isGlobal ? 'Exercise 2: Posture Alignment' : '운동 2단계: 굽은 등·골반 펴기')
-          : (isGlobal ? 'Exercise 3: Growth Plate Jumping' : '운동 3단계: 성장판 탄성 점핑'));
+          : (r.category === 'epiphyseal_stimulation'
+            ? (isGlobal ? 'Exercise 3: Growth Plate Jumping' : '운동 3단계: 성장판 탄성 점핑')
+            : (isGlobal ? 'Exercise 4: Lower-Body & Core Stretch' : '운동 4단계: 하체 성장판 이완 & 코어 브릿지')));
 
       const freqBadge = r.id === 'dead_hang'
         ? (isGlobal ? 'Morning & Night · 30s × 3 times' : '권장: 아침·저녁 30초씩 3번')
         : (r.id === 'thoracic_stretch'
           ? (isGlobal ? 'Before Bed · 45s × 2 times' : '권장: 잠들기 전 45초씩 2번')
-          : (isGlobal ? 'Afternoon · 10~15 mins' : '권장: 하교 후 하루 10~15분'));
+          : (r.id === 'plyometrics'
+            ? (isGlobal ? 'Afternoon · 10~15 mins' : '권장: 하교 후 하루 10~15분')
+            : (isGlobal ? 'After Jumping / Bedtime · 1 min × 2' : '권장: 점핑 후·취침 전 1분씩 2번')));
+
+      const illustrationSvg = r.id === 'lower_body_core_stretch'
+        ? getRoutine4IllustrationSvg(isGlobal)
+        : getRoutineIllustrationSvg(r.id, isGlobal);
 
       html += `
-        <div class="bento-card routine-timer-card" id="routine-card-${r.id}" style="display: flex; flex-direction: column; justify-content: space-between; position: relative; padding: 1.35rem;">
+        <div class="bento-card routine-timer-card" id="routine-card-${r.id}" style="display: flex; flex-direction: column; justify-content: space-between; position: relative; padding: 1.2rem;">
           <!-- Card Header -->
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
-              <span style="font-size: 0.78rem; font-weight: 800; color: #FECDD3; background: rgba(244, 63, 94, 0.18); padding: 0.25rem 0.7rem; border-radius: 9999px;">
+              <span style="font-size: 0.8rem; font-weight: 800; color: #FECDD3; background: rgba(244, 63, 94, 0.18); padding: 0.25rem 0.7rem; border-radius: 9999px;">
                 ${categoryLabel}
               </span>
               <span style="font-size: 0.8rem; font-weight: 800; color: #A7F3D0; background: rgba(16, 185, 129, 0.15); padding: 0.22rem 0.65rem; border-radius: 9999px;">
@@ -554,17 +619,17 @@
               </span>
             </div>
 
-            <h4 style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">
+            <h4 style="font-size: 1.04rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.45rem;">
               ${idx + 1}. ${name}
             </h4>
 
-            <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.55; margin-bottom: 0.9rem;">
+            <p style="font-size: 0.94rem; color: #E2E8F0; line-height: 1.65; margin-bottom: 0.9rem;">
               ${summary}
             </p>
 
             <!-- Illustrated Exercise Visual Guide (Replaces Stopwatch Timer UI) -->
             <div class="exercise-visual-guide-box" style="margin-bottom: 1rem;">
-              ${getRoutineIllustrationSvg(r.id, isGlobal)}
+              ${illustrationSvg}
             </div>
 
             <!-- Always-Visible Step-by-Step How-To Guide (Large Readable Font) -->

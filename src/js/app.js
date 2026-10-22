@@ -598,10 +598,23 @@
 
     if (typeof document === 'undefined') return;
 
+    const resolvedReportMode = (profile && profile.preferredReportMode)
+      ? profile.preferredReportMode
+      : ((typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE)
+        ? window.__KIDSFIT_PREFERRED_REPORT_MODE
+        : ((state.profile && state.profile.preferredReportMode) || 'growth'));
+    if (state.profile) {
+      state.profile.preferredReportMode = resolvedReportMode;
+    }
+    if (typeof window !== 'undefined') {
+      window.__KIDSFIT_PREFERRED_REPORT_MODE = resolvedReportMode;
+    }
+    if (typeof global !== 'undefined') {
+      global.__KIDSFIT_PREFERRED_REPORT_MODE = resolvedReportMode;
+    }
     const headerTitleEl = document.getElementById('rx-header-title');
     const headerSubEl = document.getElementById('rx-header-subtitle');
-    const isLearningModeActive = (state.profile && state.profile.preferredReportMode === 'learning') ||
-      (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning');
+    const isLearningModeActive = (resolvedReportMode === 'learning');
     if (headerTitleEl) {
       const isEn = document.documentElement.lang === 'en';
       headerTitleEl.textContent = isEn

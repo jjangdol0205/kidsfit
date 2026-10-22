@@ -706,20 +706,22 @@ CARDNEWS_SLIDES = [
 
 def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) -> Image.Image:
     W, H = 1080, 1350
-    font_title = get_font(58, bold=True)
-    font_sub = get_font(32, bold=True)
-    font_point = get_font(36, bold=True)
+    font_title = get_font(60, bold=True)
+    font_sub = get_font(34, bold=True)
+    font_point = get_font(38, bold=True)
 
-    canvas = Image.new("RGB", (W, H), (250, 248, 245))
+    # Full-bleed background with ZERO outer whitespace margin
+    canvas = Image.new("RGB", (W, H), (255, 255, 255))
     draw = ImageDraw.Draw(canvas)
     acc = s["accent"]
     tint = s["bg_tint"]
 
-    # Outer card frame (no CARD badge, no 공신력 검증 footer)
-    draw_rounded_rect(draw, (32, 32, W - 32, H - 32), radius=36, fill=(255, 255, 255), outline=(226, 232, 240), width=3)
+    # Top Header Band (Full-bleed 0..W)
+    draw.rectangle((0, 0, W, 240), fill=tint)
+    draw.line([(0, 240), (W, 240)], fill=acc, width=4)
 
-    # Main Headline (2 concise lines, 58pt bold, centered horizontally, zero clipping)
-    ty = 72
+    # Main Headline (2 concise lines, 60pt bold, centered horizontally, zero clipping)
+    ty = 26
     for line in s["title"].split("\n"):
         t_bbox = draw.textbbox((0, 0), line, font=font_title)
         tw = t_bbox[2] - t_bbox[0]
@@ -727,23 +729,23 @@ def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) 
         draw.text((tx, ty - t_bbox[1]), line, font=font_title, fill=(15, 23, 42))
         ty += 76
 
-    # Subtitle (strictly 1 concise line, 32pt bold, centered horizontally)
-    ty += 12
+    # Subtitle (strictly 1 concise line, 34pt bold, centered horizontally)
+    ty += 8
     sub_line = s["subtitle"].replace("\n", " ")
     s_bbox = draw.textbbox((0, 0), sub_line, font=font_sub)
     sw = s_bbox[2] - s_bbox[0]
     sx = (W - sw) // 2 - s_bbox[0]
     draw.text((sx, ty - s_bbox[1]), sub_line, font=font_sub, fill=acc)
 
-    # Center Visual Illustration Strip
+    # Full-Bleed Center Visual Illustration (Zero Left/Right Margin: x=0..W, y=240..945)
     if animated_art_pil is not None:
         art = animated_art_pil
     else:
         raw_path = WEBTOON_RAW_DIR / s["raw_bg"]
         art = Image.open(raw_path).convert("RGB")
 
-    vw, vh = W - 144, 540
-    vy = 315
+    vw, vh = W, 705
+    vy = 240
     art_ratio = art.width / art.height
     box_ratio = vw / vh
     if art_ratio > box_ratio:
@@ -756,24 +758,24 @@ def render_single_cardnews_frame(s: dict, animated_art_pil: Image.Image = None) 
     crop_l = (nw - vw) // 2
     crop_t = (nh - vh) // 2
     art_c = art_r.crop((crop_l, crop_t, crop_l + vw, crop_t + vh))
+    canvas.paste(art_c, (0, vy))
+    draw.line([(0, vy + vh), (W, vy + vh)], fill=acc, width=4)
 
-    mask = Image.new("L", (vw, vh), 0)
-    ImageDraw.Draw(mask).rounded_rectangle((0, 0, vw, vh), radius=28, fill=255)
-    canvas.paste(art_c, (72, vy), mask)
-    draw_rounded_rect(draw, (72, vy, 72 + vw, vy + vh), radius=28, outline=acc, width=3)
-
-    # 3 Key Points at bottom: Strictly 1 concise line per box, large 36pt bold font, zero clipping
-    py = 890
-    box_h = 114
-    for pt in s["points"]:
-        draw_rounded_rect(draw, (72, py, W - 72, py + box_h), radius=24, fill=tint, outline=acc, width=3)
+    # 3 Key Points at bottom: Full-width edge-to-edge bands (y=945..1350, 135px each, zero outer margin)
+    py = 945
+    box_h = 135
+    for idx, pt in enumerate(s["points"]):
+        band_bg = tint if idx % 2 == 0 else (255, 255, 255)
+        draw.rectangle((0, py, W, py + box_h), fill=band_bg)
+        if idx < 2:
+            draw.line([(0, py + box_h), (W, py + box_h)], fill=acc, width=3)
         p_bbox = draw.textbbox((0, 0), pt, font=font_point)
         pw = p_bbox[2] - p_bbox[0]
         ph = p_bbox[3] - p_bbox[1]
         px = (W - pw) // 2 - p_bbox[0]
         pty = py + (box_h - ph) // 2 - p_bbox[1]
         draw.text((px, pty), pt, font=font_point, fill=(15, 23, 42))
-        py += box_h + 18
+        py += box_h
 
     return canvas
 

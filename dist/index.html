@@ -26,7 +26,7 @@
   <!-- Minimalist SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
 
-  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022v5">
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(function(regs) {
@@ -77,16 +77,16 @@
     <section class="hero-section compact-hero" id="hero-section" aria-label="키즈핏 성장 및 학습 플랫폼 소개" style="padding: 3.2rem 1rem 2.6rem;">
 
       <div class="hero-pill-badge" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #93C5FD; font-weight: 500; font-size: clamp(0.74rem, 2.2vw, 0.84rem); margin-bottom: 1.1rem; padding: 0.38rem 0.9rem; white-space: nowrap;">
-        <span data-i18n="hero.badge">🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 정밀 진단</span>
+        <span data-i18n="hero.badge">🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 진단</span>
       </div>
 
       <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width: 820px; margin: 0 auto 0.7rem; color: #FFFFFF; font-weight: 600; font-size: clamp(1.24rem, 4.0vw, 2.25rem); line-height: 1.36; letter-spacing: -0.025em;">
         <span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br>
-        <span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">클릭 설문 기반 1:1 정밀 보고서로 확인하세요</span>
+        <span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">1분 설문으로 각각 맞춤 보고서를 받아보세요</span>
       </h1>
 
       <p class="hero-subtitle hero-single-line" data-i18n="hero.subtitle" style="color: rgba(255, 255, 255, 0.78); font-weight: 400; max-width: 660px; margin: 0 auto 1.4rem; font-size: clamp(0.82rem, 2.2vw, 0.96rem); line-height: 1.48;">
-        원하는 진단을 선택하고 객관식 항목만 클릭하면 아이 나이에 맞춘 전용 보고서를 즉시 발행합니다.
+        원하는 진단을 선택해 설문을 마치면 해당 영역의 전문 분석 보고서를 바로 발행합니다.
       </p>
 
       <!-- Clean Dual Entry CTA Buttons (No Parent/Student Split) -->
@@ -108,59 +108,43 @@
       <div id="brand-editorial-showcase" style="text-align: left; max-width: 920px; margin: 0 auto;">
 
         <div id="dual-pillar-intro-showcase" style="padding: 1.1rem 0 0.8rem; border-top: 1px solid rgba(255,255,255,0.10);">
-          <!-- Updated First-Screen Feature Highlights -->
-          <div id="homepage-feature-pills" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.55rem; margin-bottom: 1rem;">
-            <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 12px; padding: 0.55rem 0.75rem; font-size: 0.78rem; color: #E0F2FE; font-weight: 700;">
-              ✓ 주관식 타이핑 없이 <strong>클릭 선택만으로 정밀 진단</strong>
-            </div>
-            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.28); border-radius: 12px; padding: 0.55rem 0.75rem; font-size: 0.78rem; color: #D1FAE5; font-weight: 700;">
-              ✓ <strong>점수·예측키 산출 공식과 가감점 근거</strong> 투명 공개
-            </div>
-            <div style="background: rgba(168, 85, 247, 0.10); border: 1px solid rgba(168, 85, 247, 0.30); border-radius: 12px; padding: 0.55rem 0.75rem; font-size: 0.78rem; color: #F3E8FF; font-weight: 700;">
-              ✓ <strong>아이 만 나이(3~16세)별</strong> 맞춤 교구·도서·학습 세팅
-            </div>
-            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.28); border-radius: 12px; padding: 0.55rem 0.75rem; font-size: 0.78rem; color: #FEF3C7; font-weight: 700;">
-              ✓ <strong>1위 → 2위 → 3위 한 줄에 하나씩</strong> 간결한 보고서
-            </div>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 0.95rem;">
-            <!-- Report 1 Intro Card: Physical Growth (1 Card Per Row Clean Layout) -->
-            <div id="homepage-intro-growth-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.2rem; border: 1.5px solid rgba(56, 189, 248, 0.42); background: linear-gradient(180deg, rgba(14, 116, 144, 0.16) 0%, rgba(15, 23, 42, 0.85) 100%);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem;">
+            <!-- Report 1 Intro Card: Physical Growth -->
+            <div id="homepage-intro-growth-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.15rem; border: 1.5px solid rgba(56, 189, 248, 0.42); background: linear-gradient(180deg, rgba(14, 116, 144, 0.16) 0%, rgba(15, 23, 42, 0.85) 100%);">
               <div>
-                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.45rem;">
+                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.5rem;">
                   REPORT 01 · PHYSICAL GROWTH
                 </span>
-                <h3 style="font-size: 1.08rem; font-weight: 700; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  📏 신체 성장 분석 보고서 (산출 공식 공개 · 한 줄 1카드 간결 구성)
+                <h3 style="font-size: clamp(1.02rem, 2.8vw, 1.15rem); font-weight: 700; color: #FFFFFF; margin: 0 0 0.5rem 0; white-space: nowrap;">
+                  📏 신체 성장 분석 보고서
                 </h3>
-                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1rem 0; padding: 0; font-size: 0.84rem; color: rgba(255,255,255,0.86); line-height: 1.75;">
-                  <li>• KDCA 키·체중 백분위 &amp; 유전키·방치키·잠재키 산출 공식 투명 공개</li>
-                  <li>• 클릭 설문(수면·식습관·성장통·비염·자세) 기반 1:1 맞춤 영양·식단</li>
-                  <li>• 숨은 키 +1.8cm 척추 감압 &amp; 성장판 자극 운동 단계별 가이드</li>
+                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.05rem 0; padding: 0; font-size: clamp(0.78rem, 2.1vw, 0.86rem); color: rgba(255,255,255,0.85); line-height: 1.8; font-weight: 400;">
+                  <li>• 키·체중 백분위 &amp; 유전키·방치키·잠재키 비교</li>
+                  <li>• 수면 호르몬 골든타임 &amp; 체중 비례 맞춤 영양</li>
+                  <li>• 숨은 키 +1.8cm 척추 감압 &amp; 성장판 자극 운동</li>
                 </ul>
               </div>
-              <button type="button" id="btn-home-start-growth-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" style="width: 100%; padding: 0.78rem 1rem; font-size: 0.86rem; font-weight: 700;">
+              <button type="button" id="btn-home-start-growth-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" style="width: 100%; padding: 0.78rem 1rem; font-size: 0.86rem; font-weight: 700; white-space: nowrap;">
                 📏 신체 성장 진단 시작 →
               </button>
             </div>
 
-            <!-- Report 2 Intro Card: Brain & Learning (1 Card Per Row Clean Layout) -->
-            <div id="homepage-intro-learning-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.2rem; border: 1.5px solid rgba(168, 85, 247, 0.48); background: linear-gradient(180deg, rgba(88, 28, 135, 0.22) 0%, rgba(15, 23, 42, 0.85) 100%);">
+            <!-- Report 2 Intro Card: Brain & Learning -->
+            <div id="homepage-intro-learning-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.15rem; border: 1.5px solid rgba(168, 85, 247, 0.48); background: linear-gradient(180deg, rgba(88, 28, 135, 0.22) 0%, rgba(15, 23, 42, 0.85) 100%);">
               <div>
-                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #C084FC; background: rgba(168, 85, 247, 0.18); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.45rem;">
+                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #C084FC; background: rgba(168, 85, 247, 0.18); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.5rem;">
                   REPORT 02 · BRAIN &amp; LEARNING
                 </span>
-                <h3 style="font-size: 1.08rem; font-weight: 700; color: #FFFFFF; margin: 0 0 0.45rem 0;">
-                  🧠 두뇌·학습 분석 보고서 (연령별 맞춤 세팅 · 1위→2위→3위 순차 진단)
+                <h3 style="font-size: clamp(1.02rem, 2.8vw, 1.15rem); font-weight: 700; color: #FFFFFF; margin: 0 0 0.5rem 0; white-space: nowrap;">
+                  🧠 두뇌·학습 분석 보고서
                 </h3>
-                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1rem 0; padding: 0; font-size: 0.84rem; color: rgba(255,255,255,0.86); line-height: 1.75;">
-                  <li>• 5대 학습역량지수(LQ) 산출 근거 &amp; 강점·보완점 1위→2위→3위 순차 서술</li>
-                  <li>• 아이 만 나이(영유아 감각놀이 ~ 초·중등 교과 추론)별 맞춤 공부법 처방</li>
-                  <li>• 연령 적합 도서·워크북·교구 &amp; 우리 동네 박물관·과학관 체험 코스</li>
+                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.05rem 0; padding: 0; font-size: clamp(0.78rem, 2.1vw, 0.86rem); color: rgba(255,255,255,0.85); line-height: 1.8; font-weight: 400;">
+                  <li>• 5대 학습역량지수(LQ) &amp; 강점·약점 3순위 진단</li>
+                  <li>• 유망 진로·직업 매칭 &amp; 학습 병목 극복 솔루션</li>
+                  <li>• 연령별 필독 도서·교구 &amp; 주말 박물관 체험 코스</li>
                 </ul>
               </div>
-              <button type="button" id="btn-home-start-learning-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" style="width: 100%; padding: 0.78rem 1rem; font-size: 0.86rem; font-weight: 700; background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%); border: 1px solid #C4B5FD; color: #FFFFFF;">
+              <button type="button" id="btn-home-start-learning-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" style="width: 100%; padding: 0.78rem 1rem; font-size: 0.86rem; font-weight: 700; background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%); border: 1px solid #C4B5FD; color: #FFFFFF; white-space: nowrap;">
                 🧠 두뇌·학습 진단 시작 →
               </button>
             </div>
@@ -1252,28 +1236,28 @@
   </div>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 4MB Data Bundle Deferred) -->
-  <script src="src/js/i18n.js"></script>
-  <script src="src/js/theme-switcher.js"></script>
-  <script src="src/js/haptic-typewriter.js"></script>
-  <script src="src/js/pinpoint-curator.js"></script>
-  <script src="src/js/user-cohort-db.js"></script>
-  <script src="src/js/reference-chips.js"></script>
-  <script src="src/js/onboarding-wizard.js"></script>
-  <script src="src/data/data-bundle.js" defer></script>
-  <script src="src/js/growth-engine.js" defer></script>
-  <script src="src/js/endocrinology-engine.js" defer></script>
-  <script src="src/js/nutrition-engine.js" defer></script>
+  <script src="src/js/i18n.js?v=20261022v5"></script>
+  <script src="src/js/theme-switcher.js?v=20261022v5"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022v5"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022v5"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022v5"></script>
+  <script src="src/js/reference-chips.js?v=20261022v5"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022v5"></script>
+  <script src="src/data/data-bundle.js?v=20261022v5" defer></script>
+  <script src="src/js/growth-engine.js?v=20261022v5" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022v5" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022v5" defer></script>
   <script src="src/js/biomechanics-studio.js" defer></script>
   <script src="src/js/neuro-cognitive-matrix.js" defer></script>
   <script src="src/js/growth-tracker.js" defer></script>
-  <script src="src/js/development-engine.js" defer></script>
-  <script src="src/js/weekend-curator.js" defer></script>
-  <script src="src/js/monetization.js" defer></script>
-  <script src="src/js/admin-osmu.js" defer></script>
-  <script src="src/js/admin-db-dashboard.js" defer></script>
-  <script src="src/js/admin-studio.js" defer></script>
-  <script src="src/js/master-briefing.js" defer></script>
-  <script src="src/js/app.js" defer></script>
+  <script src="src/js/development-engine.js?v=20261022v5" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022v5" defer></script>
+  <script src="src/js/monetization.js?v=20261022v5" defer></script>
+  <script src="src/js/admin-osmu.js?v=20261022v5" defer></script>
+  <script src="src/js/admin-db-dashboard.js?v=20261022v5" defer></script>
+  <script src="src/js/admin-studio.js?v=20261022v5" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022v5" defer></script>
+  <script src="src/js/app.js?v=20261022v5" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking & Unauthorized Embedding Protection

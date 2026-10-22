@@ -834,6 +834,20 @@
     const preset = PRESETS[presetId];
     if (!preset) return;
 
+    const formEl = typeof document !== 'undefined' ? document.getElementById('diagnosis-form') : null;
+    const isLearningFormActive = Boolean(formEl && formEl.className && formEl.className.includes('wizard-mode-learning'));
+    const activeReportMode = isLearningFormActive
+      ? 'learning'
+      : ((wizardState.preferredReportMode === 'learning') ? 'learning' : 'growth');
+
+    wizardState.preferredReportMode = activeReportMode;
+    if (typeof window !== 'undefined') {
+      window.__KIDSFIT_PREFERRED_REPORT_MODE = activeReportMode;
+    }
+    if (typeof global !== 'undefined') {
+      global.__KIDSFIT_PREFERRED_REPORT_MODE = activeReportMode;
+    }
+
     wizardState.activePresetId = presetId;
     wizardState.profile = Object.assign({}, wizardState.profile, {
       gender: preset.gender,
@@ -849,7 +863,8 @@
       cognitiveAxes: [...preset.cognitiveAxes],
       traitLearningConcerns: Array.isArray(preset.traitLearningConcerns) ? [...preset.traitLearningConcerns] : ['reading_literacy'],
       traitStudyStyle: preset.traitStudyStyle || 'dialogue_question',
-      region: preset.region
+      region: preset.region,
+      preferredReportMode: activeReportMode
     });
 
     // Sync to DOM inputs
@@ -1190,8 +1205,20 @@
     if (typeof document === 'undefined') return;
     const activeMode = (reportMode === 'learning') ? 'learning' : 'growth';
     wizardState.preferredReportMode = activeMode;
+    if (wizardState.profile) {
+      wizardState.profile.preferredReportMode = activeMode;
+    }
     if (typeof window !== 'undefined') {
       window.__KIDSFIT_PREFERRED_REPORT_MODE = activeMode;
+      if (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) {
+        window.KidsFitApp.state.profile.preferredReportMode = activeMode;
+      }
+    }
+    if (typeof global !== 'undefined') {
+      global.__KIDSFIT_PREFERRED_REPORT_MODE = activeMode;
+      if (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) {
+        global.KidsFitApp.state.profile.preferredReportMode = activeMode;
+      }
     }
     WIZARD_STEPS = (activeMode === 'learning') ? WIZARD_STEPS_LEARNING : WIZARD_STEPS_GROWTH;
 

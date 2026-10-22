@@ -52,7 +52,7 @@ const MIME_TYPES = {
 };
 
 const NO_CACHE_HEADERS = {
-  'Cache-Control': 'no-cache, must-revalidate, max-age=0',
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
   'Pragma': 'no-cache',
   'Expires': '0'
 };
@@ -634,11 +634,7 @@ const server = http.createServer((req, res) => {
       ...SECURITY_HEADERS
     };
 
-    if (finalExt === '.html') {
-      Object.assign(headers, NO_CACHE_HEADERS);
-    } else if (finalExt === '.css' || finalExt === '.js') {
-      headers['Cache-Control'] = 'public, max-age=3600';
-    } else if (finalExt === '.json') {
+    if (finalExt === '.html' || finalExt === '.css' || finalExt === '.js' || finalExt === '.json') {
       Object.assign(headers, NO_CACHE_HEADERS);
     } else {
       headers['Cache-Control'] = 'public, max-age=3600';

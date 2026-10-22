@@ -831,8 +831,8 @@
           </div>
         </div>
 
-        <!-- 2-Column Grid: Radar Chart vs. Cortical Rewiring Guide -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+        <!-- 1-Column Sequential Stack: Radar Chart -> Cortical Rewiring Guide -->
+        <div style="display: flex; flex-direction: column; gap: 1.15rem; margin-bottom: 1.35rem;">
           
           <!-- Column 1: 5-Axis Radar Chart & Scores -->
           <div class="bento-card radar-card" style="display: flex; flex-direction: column; justify-content: space-between;">
@@ -859,8 +859,8 @@
               </div>
             </div>
 
-            <!-- Domain Score Badges -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle);">
+            <!-- Domain Score Badges (1-Per-Row) -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle);">
               ${COGNITIVE_PILLARS.map(p => {
                 const s = scores[p.id] || 70;
                 const isHigh = s >= 85;
@@ -956,8 +956,8 @@
               : '영역별 최종 점수 = 또래 표준 기준선(70점) + 설문 선택 중점 발달축(+20점) + 기질·집중시간·수면습관·서술형 보정치(±점수)'}
           </div>
 
-          <!-- 5-Axis Individual Breakdown Cards -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
+          <!-- 5-Axis Individual Breakdown Cards (1-Per-Row) -->
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
             ${COGNITIVE_PILLARS.map(p => {
               const b = breakdown[p.id];
               const isHigh = b.finalScore >= 85;
@@ -995,8 +995,8 @@
             </span>
           </div>
 
-          <!-- 3-Step Question Cards -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <!-- 3-Step Question Cards (1-Per-Row) -->
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             
             <!-- Step 1 -->
             <div style="background: var(--theme-surface-sub); border: 1px solid var(--theme-border-subtle); border-radius: var(--radius-inner); padding: 1.1rem; border-top: 3px solid var(--cyan-pulse);">

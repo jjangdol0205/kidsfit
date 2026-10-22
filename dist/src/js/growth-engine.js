@@ -818,8 +818,8 @@
       <!-- Core 1 Container -->
       <div id="core-1-container" class="core-module-container">
 
-        <!-- Big Stats Bento Header (Clean Symmetric 2×2 Grid) -->
-        <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 1.35rem;">
+        <!-- Big Stats Bento Header (Clean 1-Card-Per-Row Layout) -->
+        <div class="growth-stats-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
           <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
             <span style="font-size: 0.85rem; font-weight: 700; color: var(--cyan-pulse, #38BDF8);">소아 신체 백분위 &amp; Z-Score</span>
             <div style="font-size: 1.9rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>

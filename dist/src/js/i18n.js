@@ -33,9 +33,9 @@
       'lang.toggle': '🇺🇸 EN',
 
       // Hero (Ultra-Concise & Unified — No Parent/Student Split)
-      'hero.badge': '🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 정밀 진단',
-      'hero.headline': '<span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">클릭 설문 기반 1:1 정밀 보고서로 확인하세요</span>',
-      'hero.subtitle': '원하는 진단을 선택하고 객관식 항목만 클릭하면 아이 나이에 맞춘 전용 보고서를 즉시 발행합니다.',
+      'hero.badge': '🌱 신체 성장(키·골연령) × 두뇌·학습(문해력·수리·집중력) 논문 1,376편 기반 진단',
+      'hero.headline': '<span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br><span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">1분 설문으로 각각 맞춤 보고서를 받아보세요</span>',
+      'hero.subtitle': '원하는 진단을 선택해 설문을 마치면 해당 영역의 전문 분석 보고서를 바로 발행합니다.',
       'nav.forWhom': '신체 성장 보고서',
       'nav.services': '두뇌·학습 보고서',
       'hero.cta.parent': '📏 신체 성장 진단 시작 →',

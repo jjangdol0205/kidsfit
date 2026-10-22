@@ -874,9 +874,10 @@
       };
     }
 
-    const isLearningDefault = (profile && profile.preferredReportMode === 'learning') ||
-      (typeof global !== 'undefined' && global.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning') ||
-      (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning');
+    const isLearningDefault = (profile && (profile.preferredReportMode === 'growth' || profile.preferredReportMode === 'learning'))
+      ? (profile.preferredReportMode === 'learning')
+      : ((typeof global !== 'undefined' && global.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning') ||
+         (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning'));
 
     // Build intuitive 8-step Learning Report data (Disposition -> Strengths -> Weaknesses -> Careers -> Strengthen How-To -> Remedy How-To -> Helpful Items -> Direct Links)
     const cogAxisPrimary = (Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes[0]) || 'science_nature';
@@ -1255,13 +1256,6 @@
           </div>
         </div>
 
-        <!-- Hidden Legacy Free-Text Generator Box (Hidden per user request to remove free-text input & AI branding) -->
-        <div id="antigravity-live-custom-generator-box" style="display: none;">
-          <textarea id="antigravity-live-characteristic-input" rows="1">${(bespokeNote.rawNote || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
-          <button type="button" id="btn-antigravity-live-generate">생성</button>
-          <div id="antigravity-live-api-status" style="display: none;"></div>
-        </div>
-
         <!-- ====================================================================== -->
         <!-- 【축 1: 📏 아이 신체 성장 마스터 분석 보고서 (Chapters 1~4)】              -->
         <!-- ====================================================================== -->
@@ -1307,12 +1301,12 @@
             <span style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF;">맞춤 성장 종합 리포트 &amp; 하루 실천 시간표</span>
           </div>
 
-        <!-- Top Summary Hero Card (Large Readable Typography) -->
-        <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.35rem 1.5rem;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.15rem; align-items: center;">
+        <!-- Top Summary Hero Card (Large Readable Typography, 1-Per-Row Flow) -->
+        <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.25rem 1.35rem;">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
             <div>
               <div style="font-size: 0.85rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">
-                ${isEn ? 'K-GROWTH AI™ · POTENTIAL ADULT HEIGHT' : '아침·저녁으로 6개월 이상 꾸준히 챙겨주셨을 때 기대 잠재키'}
+                ${isEn ? 'POTENTIAL ADULT HEIGHT' : '아침·저녁으로 6개월 이상 꾸준히 챙겨주셨을 때 기대 잠재키'}
               </div>
               <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap;">
                 <span class="taller-giant-height-number">${optimizedHeight.toFixed(1)} cm</span>
@@ -1361,7 +1355,7 @@
             </span>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
             <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">📏 ${isEn ? 'Height Percentile' : '현재 키 백분위'}</span>
               <span id="briefing-percentile" style="font-size: 1.04rem; font-weight: 900; color: #38BDF8;">
@@ -1571,11 +1565,11 @@
             <span style="display: inline-block; background: rgba(244, 63, 94, 0.18); color: #FDA4AF; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(244, 63, 94, 0.45); margin-bottom: 0.35rem;">
               🏃 CHAPTER 04 · SPINAL DECOMPRESSION &amp; BIOMECHANICS
             </span>
-            <h3 style="font-size: 1.24rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
-              ${isEn ? '4. Spinal Decompression (+1.8cm) & Epiphyseal Micro-Loading' : '4. 척추 감압(+1.8cm 숨은 키 복원) & 성장판 생체역학'}
+            <h3 style="font-size: 1.22rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.25rem 0;">
+              ${isEn ? '4. Spinal Decompression (+1.8cm) & 4-Step Epiphyseal Exercise' : '4. 척추 감압(+1.8cm 숨은 키 복원) & 성장판 4단계 생체역학 운동'}
             </h3>
-            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0; line-height: 1.5;">
-              거북목·굽은 등으로 눌린 추간판 수분 복원 메커니즘과 볼프의 법칙(Wolff's Law)에 기반한 성장판 자극 3대 실내 운동 루틴입니다.
+            <p style="font-size: 0.94rem; color: #CBD5E1; margin: 0; line-height: 1.65;">
+              거북목·굽은 등으로 눌린 추간판 수분 복원 메커니즘과 볼프의 법칙(Wolff's Law)에 기반한 성장판 자극 4단계 실내 운동 루틴입니다.
             </p>
           </div>
           ${BiomechanicsStudio && typeof BiomechanicsStudio.renderBiomechanicsSection === 'function'
@@ -1650,12 +1644,12 @@
           </span>
         </div>
 
-        <!-- 8-Step Quick Index Bar (한눈에 보는 학습보고서 8단계 흐름) -->
+        <!-- 8-Step Quick Index Bar (한눈에 보는 학습보고서 8단계 흐름 - 1줄씩 보기) -->
         <div style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(192, 132, 252, 0.4); border-radius: 18px; padding: 1rem 1.15rem; margin-bottom: 1.5rem;">
-          <div style="font-size: 0.86rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.65rem;">
+          <div style="font-size: 0.94rem; font-weight: 900; color: #DDD6FE; margin-bottom: 0.65rem;">
             🧭 한눈에 들어오는 우리 아이 맞춤 학습보고서 8단계 흐름 (클릭 시 해당 단계로 바로 이동)
           </div>
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <a href="#learning-step-1-style" style="text-decoration: none; background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(192, 132, 252, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #F3E8FF; font-size: 0.82rem; font-weight: 800;">① 아이의 학습 성향 &amp; 점수 산출근거</a>
             <a href="#learning-step-2-strengths" style="text-decoration: none; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #A7F3D0; font-size: 0.82rem; font-weight: 800;">② 잘하는 성향 (1위→2위→3위)</a>
             <a href="#learning-step-3-weaknesses" style="text-decoration: none; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(251, 113, 133, 0.4); border-radius: 10px; padding: 0.5rem 0.7rem; color: #FECDD3; font-size: 0.82rem; font-weight: 800;">③ 보완할 성향 (1위→2위→3위)</a>
@@ -2420,12 +2414,12 @@
               블로그·카페: 순수 성장·학습 칼럼 | 인스타·쓰레드: 공감 4칸 웹툰 동시 업로드
             </span>
           </div>
-          <h3 id="channel-hub-dynamic-title" style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0; line-height: 1.45;">
+          <h3 id="channel-hub-dynamic-title" style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.85rem 0; line-height: 1.45;">
             ${isLearningDefault
               ? '🧠 네이버 블로그·카페의 순수 아이 성장·학습 심층 글과 인스타그램·쓰레드의 공감 4칸 웹툰을 만나보세요!'
               : '📏 네이버 블로그·카페의 순수 아이 성장·학습 심층 글과 인스타그램·쓰레드의 공감 4칸 웹툰을 만나보세요!'}
           </h3>
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <!-- 1. Naver Blog -->
             <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>

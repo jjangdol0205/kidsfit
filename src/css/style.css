@@ -2425,3 +2425,102 @@ svg {
   display: none !important;
 }
 
+/* ==========================================================================
+   25. UNIFIED REPORT TYPOGRAPHY (GROWTH & LEARNING) + 1-LINE VERTICAL FLOW
+       & ZERO REDUNDANT CARD WHITESPACE
+   ========================================================================== */
+
+/* 25-1. 1-Item-Per-Row (한줄로 나오도록) across all 6 Quiz Steps & All Report Grids */
+#quiz-section .choice-chips-grid,
+#quiz-section .trait-multi-grid,
+#quiz-section .bento-choice-grid,
+#quiz-section .form-grid-2,
+#quiz-section .form-grid-3,
+#results-dashboard .growth-stats-grid,
+#results-dashboard .routines-grid,
+#results-dashboard .pinpoint-3col-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.65rem !important;
+}
+
+#quiz-section .chip-pill {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
+  padding: 0.72rem 1rem !important;
+  font-size: 0.92rem !important;
+  line-height: 1.42 !important;
+}
+
+/* 25-2. Eliminate redundant outer wrapper padding/margin (카드뉴스·보고서 불필요 여백 제거) */
+#master-briefing-card {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-bottom: 1rem !important;
+}
+
+#master-briefing-card-content {
+  padding: 1.15rem !important;
+}
+
+#pillar-1-container,
+#pillar-2-container {
+  padding: 1.15rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.exercise-visual-guide-box,
+.radar-chart-container {
+  padding: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.exercise-visual-guide-box svg,
+#illustrated-growth-massage-guide svg {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* 25-3. Consistent Typography Hierarchy Across BOTH Growth (#pillar-1-container) & Learning (#pillar-2-container) */
+/* 대주제 (Section Headings: h2, h3) */
+#results-dashboard h2,
+#results-dashboard h3,
+#results-dashboard .briefing-title,
+#results-dashboard .briefing-section-title,
+#results-dashboard .pillar-section-header h3 {
+  font-size: 1.2rem !important;
+  line-height: 1.42 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* 소주제 (Card Sub-Headings: h4) */
+#results-dashboard h4 {
+  font-size: 1.04rem !important;
+  line-height: 1.45 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* 본문 (Body Paragraphs & List Items: p, li, .action-desc) */
+#results-dashboard p,
+#results-dashboard li,
+#results-dashboard .action-desc {
+  font-size: 0.94rem !important;
+  line-height: 1.65 !important;
+}
+
+/* 배지 (Badges & Section Pills) */
+#results-dashboard .section-badge-pill,
+#results-dashboard .tab-badge {
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+}
+
+

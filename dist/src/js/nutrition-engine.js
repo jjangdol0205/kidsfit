@@ -134,8 +134,8 @@
           </h4>
         </div>
 
-        <!-- 4 Nutrient Bento Grid (Clean Symmetric 2×2 Layout) -->
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 1.15rem;">
+        <!-- 4 Nutrient Bento Grid (Clean 1-Card-Per-Row Layout) -->
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.15rem;">
           
           <!-- Card 1: Calcium -->
           <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">

@@ -310,9 +310,9 @@
           </div>
         </div>
 
-        <!-- Interactive Sliders Bento Card -->
-        <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.6)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <!-- Interactive Sliders Bento Card (Clean 1-Per-Row Layout) -->
+        <div style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.6)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.15rem 1.25rem; margin-bottom: 1.25rem;">
+          <div style="display: flex; flex-direction: column; gap: 1.15rem;">
             
             <!-- Slider 1: Bedtime -->
             <div class="form-group" style="margin: 0;">
