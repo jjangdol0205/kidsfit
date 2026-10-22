@@ -16,6 +16,7 @@
   let PinpointCurator = typeof require !== 'undefined' ? (function () { try { return require('./pinpoint-curator'); } catch (e) { return null; } })() : (global.TallerPinpointCurator || global.KidsFitPinpointCurator || null);
   let HapticEngine = typeof require !== 'undefined' ? (function () { try { return require('./haptic-typewriter'); } catch (e) { return null; } })() : (global.TallerHapticEngine || global.KidsFitHapticEngine || null);
   let UserCohortDB = typeof require !== 'undefined' ? (function () { try { return require('./user-cohort-db'); } catch (e) { return null; } })() : (global.TallerUserCohortDB || global.KidsFitUserCohortDB || null);
+  let GrowthEngine = typeof require !== 'undefined' ? (function () { try { return require('./growth-engine'); } catch (e) { return null; } })() : (global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine || null);
 
   // 1. Definition of 5 Authoritative Clinical Presets
   const PRESETS = {
@@ -427,6 +428,26 @@
     wizardState.profile.ageYears = dobInfo.ageYears;
     wizardState.profile.tannerPhase = autoStage.tannerPhase;
 
+    // Auto-sync KDCA 50th percentile standard height & weight unless user manually edited
+    if (!GrowthEngine && (global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine)) {
+      GrowthEngine = global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine;
+    }
+    if (GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function') {
+      const lms = GrowthEngine.getLmsForMonth(gender, dobInfo.exactMonths || dobInfo.ageMonths);
+      if (lms) {
+        const heightInput = document.getElementById('child-height');
+        const weightInput = document.getElementById('child-weight');
+        if (heightInput && !(heightInput.dataset && heightInput.dataset.userEdited === 'true')) {
+          heightInput.value = lms.M;
+          wizardState.profile.currentHeight = lms.M;
+        }
+        if (weightInput && !(weightInput.dataset && weightInput.dataset.userEdited === 'true')) {
+          weightInput.value = lms.wM;
+          wizardState.profile.currentWeight = lms.wM;
+        }
+      }
+    }
+
     // Sync hidden & legacy inputs
     const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
     const ageDisplay = document.getElementById('child-age-display');
@@ -694,7 +715,7 @@
     if (fillEl) fillEl.style.width = '0%';
 
     const step1Msg = isEn ? 'Matching KDCA & CDC Official Growth Parameter Matrices...' : '질병관리청 KDCA·CDC 표준 대조 중...';
-    const step2Msg = isEn ? 'Matching 800+ Pediatric Endocrinology & Neuroscience Papers...' : '800편+ 소아내분비·뇌과학 학술 논문 매칭 중...';
+    const step2Msg = isEn ? 'Matching 2,081 Pediatric Endocrinology & Neuroscience Papers...' : '2,081편 소아내분비·뇌과학 학술 논문 매칭 중...';
     const step3Msg = isEn ? 'Synthesizing 90-Day Actionable Guidance Roadmap...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...';
 
     if (titleEl) titleEl.textContent = step1Msg;
@@ -712,7 +733,7 @@
 
       if (elapsed >= 1000 && elapsed < 2000) {
         if (titleEl) titleEl.textContent = step2Msg;
-        if (descEl) descEl.textContent = isEn ? 'Filtering 1,376+ research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 1,376편 학술 논문 근거를 추출하고 있습니다.';
+        if (descEl) descEl.textContent = isEn ? 'Filtering 2,081 research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 2,081편 학술 논문 근거를 추출하고 있습니다.';
       } else if (elapsed >= 2000 && elapsed < 3000) {
         if (titleEl) titleEl.textContent = step3Msg;
         if (descEl) descEl.textContent = isEn ? 'Finalizing 90-day actionable roadmap and clinical prescription...' : '식습관, 척추 감압 루틴, 성장호르몬 골든타임 행동 지침을 도출하고 있습니다.';
@@ -797,8 +818,10 @@
       } catch (_) {}
     }
 
-    // Render Master Briefing Card if present
-    if (typeof document !== 'undefined') {
+    // Trigger onComplete callback (or fallback render if no callback provided)
+    if (typeof onComplete === 'function') {
+      onComplete(wizardState.profile);
+    } else if (typeof document !== 'undefined') {
       const mbEl = document.getElementById('master-briefing-card');
       const mbEngine = (typeof global !== 'undefined' && (global.MasterBriefingEngine || global.KidsFitMasterBriefing || global.TallerMasterBriefing)) ||
                        (typeof window !== 'undefined' && (window.MasterBriefingEngine || window.KidsFitMasterBriefing || window.TallerMasterBriefing));
@@ -814,11 +837,6 @@
           mbEngine.switchActiveReport(wizardState.preferredReportMode || 'growth');
         }
       }
-    }
-
-    // Trigger onComplete callback
-    if (typeof onComplete === 'function') {
-      onComplete(wizardState.profile);
     }
 
     // Dispatch global event
@@ -913,8 +931,14 @@
       const fatherInput = document.getElementById('father-height');
       const motherInput = document.getElementById('mother-height');
 
-      if (heightInput) heightInput.value = preset.currentHeight;
-      if (weightInput) weightInput.value = preset.currentWeight;
+      if (heightInput) {
+        heightInput.value = preset.currentHeight;
+        if (heightInput.dataset) delete heightInput.dataset.userEdited;
+      }
+      if (weightInput) {
+        weightInput.value = preset.currentWeight;
+        if (weightInput.dataset) delete weightInput.dataset.userEdited;
+      }
       if (recentInput) recentInput.value = preset.recentGrowth6m;
       if (fatherInput) fatherInput.value = preset.fatherHeight;
       if (motherInput) motherInput.value = preset.motherHeight;
@@ -1296,6 +1320,14 @@
     if (document.body && document.body.classList) {
       document.body.classList.remove('studio-mode-active');
     }
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) {
+      quizSection.style.display = 'none';
+    }
+    const presetsBar = document.getElementById('quick-presets-bar');
+    if (presetsBar) {
+      presetsBar.style.display = 'none';
+    }
     const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
     if (dashboard) {
       dashboard.classList.add('hidden');
@@ -1384,6 +1416,15 @@
     const birthMonthEl = document.getElementById('child-birth-month');
     const birthDayEl = document.getElementById('child-birth-day');
     const recentGainEl = document.getElementById('child-recent-gain');
+    const heightInputEl = document.getElementById('child-height');
+    const weightInputEl = document.getElementById('child-weight');
+    [heightInputEl, weightInputEl].forEach((el) => {
+      if (el) {
+        el.addEventListener('input', () => {
+          if (el.dataset) el.dataset.userEdited = 'true';
+        });
+      }
+    });
     [birthYearEl, birthMonthEl, birthDayEl, recentGainEl].forEach((el) => {
       if (el) {
         el.addEventListener('change', () => {

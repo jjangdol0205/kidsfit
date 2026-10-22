@@ -17,6 +17,24 @@ const HOST = '0.0.0.0';
 const ROOT_DIR = __dirname;
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
+// Load .env variables into process.env if present
+try {
+  const envPath = path.join(ROOT_DIR, '.env');
+  if (fs.existsSync(envPath)) {
+    const envLines = fs.readFileSync(envPath, 'utf8').split(/\r?\n/);
+    envLines.forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) return;
+      const eqIdx = trimmed.indexOf('=');
+      if (eqIdx > 0) {
+        const k = trimmed.slice(0, eqIdx).trim();
+        const v = trimmed.slice(eqIdx + 1).trim();
+        if (k && !process.env[k]) process.env[k] = v;
+      }
+    });
+  }
+} catch (_) {}
+
 // Ensure dist/index.html is built on startup
 function ensureBuild() {
   const distIndex = path.join(DIST_DIR, 'index.html');
@@ -283,13 +301,13 @@ const server = http.createServer((req, res) => {
 
             // Match relevant papers from src/data/research-knowledge-base.json
             let matchedPapers = [];
-            let totalKbPapers = 2005;
+            let totalKbPapers = 2081;
             try {
               const kbPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
               if (fs.existsSync(kbPath)) {
                 const kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));
                 const papers = Array.isArray(kb.papers) ? kb.papers : [];
-                totalKbPapers = papers.length || 2005;
+                totalKbPapers = papers.length || 2081;
                 const tokens = rawNote.split(/[\s,.!?/]+/).filter(w => w && w.length >= 2);
                 const scored = papers.map(p => {
                   let score = 0;
@@ -457,7 +475,7 @@ const server = http.createServer((req, res) => {
 
     // 1-E. MyRealTrip Partner API Proxy (/api/myrealtrip/mylink & /api/myrealtrip/search)
     if (pathname === '/api/myrealtrip/mylink' || pathname === '/api/myrealtrip/search') {
-      const mrtKey = process.env.MYREALTRIP_API_KEY || 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0';
+      const mrtKey = process.env.MYREALTRIP_API_KEY || '';
       if (req.method === 'POST') {
         let body = '';
         req.on('data', (chunk) => { if (body.length < 16384) body += chunk.toString('utf8'); });
@@ -634,8 +652,10 @@ const server = http.createServer((req, res) => {
       ...SECURITY_HEADERS
     };
 
-    if (finalExt === '.html' || finalExt === '.css' || finalExt === '.js' || finalExt === '.json') {
+    if (finalExt === '.html' || finalExt === '.json') {
       Object.assign(headers, NO_CACHE_HEADERS);
+    } else if (finalExt === '.css' || finalExt === '.js') {
+      headers['Cache-Control'] = 'public, max-age=31536000, immutable';
     } else {
       headers['Cache-Control'] = 'public, max-age=3600';
     }

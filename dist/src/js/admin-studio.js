@@ -34,7 +34,7 @@
     adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
     naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
-    myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
+    myrealtripKey: '',
     myrealtripMylinkId: '6226316',
     klookAid: '140161',
     klookAdId: '1514603',
@@ -539,18 +539,11 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
   function initAdminStudio() {
     if (typeof document === 'undefined') return;
 
-    // 1. Footer click trigger
+    // 1. Footer click trigger (Removed unauthenticated ?admin=1 auto-open from client HTML)
     const footer = document.getElementById('footer-copyright');
     if (footer) {
       footer.removeEventListener('click', handleFooterClick);
       footer.addEventListener('click', handleFooterClick);
-    }
-
-    // 2. URL ?admin=1 query trigger
-    if (typeof window !== 'undefined' && window.location && window.location.search) {
-      if (window.location.search.includes('admin=1') || window.location.search.includes('admin=true')) {
-        openAdminModal();
-      }
     }
 
     // 3. Modal close and save actions

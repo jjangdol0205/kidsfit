@@ -377,23 +377,78 @@
   // 3. 2-Page Hospital Clinic Style A4 PDF Document Generator
   function renderClinicalPdfReport(profile = {}) {
     const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
-    const ageMonths = profile.ageMonths || 120;
-    const ageYears = profile.ageYears || Math.round(ageMonths / 12);
-    const gender = profile.gender === 'girl' ? (isGlobal ? 'Female' : '여아') : (isGlobal ? 'Male' : '남아');
-    const height = Number(profile.currentHeight) || 137.0;
-    const weight = Number(profile.currentWeight) || 35.5;
+    const ageMonths = Number(profile.ageMonths || profile.exactMonths) || 120;
+    const ageYears = Number(profile.ageYears) || Math.round(ageMonths / 12);
+    const sexKey = (profile.gender === 'girl' || profile.gender === 'female') ? 'girl' : 'boy';
+    const gender = sexKey === 'girl' ? (isGlobal ? 'Female' : '여아') : (isGlobal ? 'Male' : '남아');
+
+    let GrowthEngine = (typeof global !== 'undefined' && (global.TallerGrowthEngine || global.KidsFitGrowthEngine || global.GrowthEngine)) ||
+      (typeof window !== 'undefined' && (window.TallerGrowthEngine || window.KidsFitGrowthEngine || window.GrowthEngine)) ||
+      null;
+    if (!GrowthEngine && typeof require !== 'undefined') {
+      try { GrowthEngine = require('./growth-engine'); } catch (e) {}
+    }
+
+    const lms = (GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function')
+      ? GrowthEngine.getLmsForMonth(sexKey, ageMonths)
+      : { L: 1.0, M: 137.0, S: 0.0498, wM: 35.5, wS: 0.190 };
+
+    const height = Number(profile.currentHeight) || Number(lms.M) || 137.0;
+    const weight = Number(profile.currentWeight) || Number(lms.wM) || 35.5;
     const fatherH = Number(profile.fatherHeight) || 173.5;
     const motherH = Number(profile.motherHeight) || 160.5;
 
-    // Tanner MPH
-    const mphOffset = profile.gender === 'girl' ? -13 : 13;
+    const medianHeight = Math.round((Number(lms.M) || 137.0) * 10) / 10;
+    const medianWeight = Math.round((Number(lms.wM) || 35.5) * 10) / 10;
+
+    const hKdca = (GrowthEngine && typeof GrowthEngine.calculateKdcaPercentile === 'function')
+      ? GrowthEngine.calculateKdcaPercentile(height, lms.L || 1.0, medianHeight, lms.S || 0.0498)
+      : { zScore: 0.0, percentile: 50.0, topPercent: 50.0, deltaMedian: Math.round((height - medianHeight) * 10) / 10 };
+
+    const wKdca = (GrowthEngine && typeof GrowthEngine.calculateKdcaPercentile === 'function')
+      ? GrowthEngine.calculateKdcaPercentile(weight, 1.0, medianWeight, lms.wS || 0.19)
+      : { zScore: 0.0, percentile: 50.0, topPercent: 50.0, deltaMedian: Math.round((weight - medianWeight) * 10) / 10 };
+
+    const hDeltaVal = hKdca.deltaMedian !== undefined ? hKdca.deltaMedian : Math.round((height - medianHeight) * 10) / 10;
+    const hDeltaStr = `${hDeltaVal >= 0 ? '+' : ''}${hDeltaVal.toFixed(1)} cm`;
+    const hZStr = `${hKdca.zScore >= 0 ? '+' : ''}${Number(hKdca.zScore || 0).toFixed(2)} SD`;
+    const hPctStr = `${Number(hKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`;
+
+    const wDeltaVal = wKdca.deltaMedian !== undefined ? wKdca.deltaMedian : Math.round((weight - medianWeight) * 10) / 10;
+    const wDeltaStr = `${wDeltaVal >= 0 ? '+' : ''}${wDeltaVal.toFixed(1)} kg`;
+    const wZStr = `${wKdca.zScore >= 0 ? '+' : ''}${Number(wKdca.zScore || 0).toFixed(2)} SD`;
+    const wPctStr = `${Number(wKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`;
+
+    const recentGain6m = Number(profile.recentGrowth6m) || 3.2;
+    const velCalc = (GrowthEngine && typeof GrowthEngine.calculateVelocity === 'function')
+      ? GrowthEngine.calculateVelocity(recentGain6m, ageYears)
+      : { velocityCmPerYear: Math.round(recentGain6m * 2 * 10) / 10, alert: false };
+    const velocityVal = Number(velCalc.velocityCmPerYear || (recentGain6m * 2)).toFixed(1);
+    const velStatusText = velCalc.alert ? '저성장 주의 (<4.0cm/yr)' : (Number(velocityVal) >= 7.0 ? '급성장 가속 궤도' : '정상 성장 궤도');
+
+    // Tanner MPH & Predicted adult heights via GrowthEngine.predictAdultHeightTrajectories()
+    const mphOffset = sexKey === 'girl' ? -13 : 13;
     const mph = Math.round(((fatherH + motherH + mphOffset) / 2) * 10) / 10;
     const mphMin = Math.round((mph - 8.5) * 10) / 10;
     const mphMax = Math.round((mph + 8.5) * 10) / 10;
 
-    // Predicted adult heights
-    const unmanagedHeight = Math.round((mph - 2.8) * 10) / 10;
-    const potentialHeight = Math.round((mph + 6.4) * 10) / 10;
+    const traj = (GrowthEngine && typeof GrowthEngine.predictAdultHeightTrajectories === 'function')
+      ? GrowthEngine.predictAdultHeightTrajectories({
+          gender: sexKey,
+          ageYears,
+          ageMonths,
+          currentHeight: height,
+          fatherHeight: fatherH,
+          motherHeight: motherH,
+          habits: Array.isArray(profile.habits) ? profile.habits : ['late_sleep'],
+          tannerPhase: profile.tannerPhase || 'phase_2'
+        })
+      : null;
+
+    const unmanagedHeight = traj && traj.unmanaged ? traj.unmanaged.height : Math.round((mph - 2.8) * 10) / 10;
+    const unmanagedPenalty = traj && traj.unmanaged ? traj.unmanaged.penalty : 2.8;
+    const potentialHeight = traj && traj.optimized ? traj.optimized.height : Math.round((mph + 6.4) * 10) / 10;
+    const potentialBoost = traj && traj.optimized ? traj.optimized.gainOverUnmanaged : 6.4;
     const bmi = Math.round((weight / Math.pow(height / 100, 2)) * 10) / 10;
     const patientId = `TB-2026-${Math.abs((ageMonths * 73 + Math.round(height * 11)) % 9000 + 1000)}`;
     const todayStr = new Date().toISOString().split('T')[0];
@@ -460,26 +515,26 @@
                 <tr style="border-bottom: 1px solid #E2E8F0;">
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">신장 (Height)</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #0284C7;">${height} cm</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">137.0 cm</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">+0.0 cm</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">+0.00 SD</td>
-                  <td style="padding: 6px; font-weight: 700; color: #0284C7;">50.0th (상위 50.0%)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${medianHeight.toFixed(1)} cm</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${hDeltaStr}</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${hZStr}</td>
+                  <td style="padding: 6px; font-weight: 700; color: #0284C7;">${hPctStr}</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #E2E8F0;">
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">체중 (Weight)</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">${weight} kg</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">35.5 kg</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">+0.0 kg</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">+0.00 SD</td>
-                  <td style="padding: 6px; font-weight: 700;">50.0th (상위 50.0%)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${medianWeight.toFixed(1)} kg</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${wDeltaStr}</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${wZStr}</td>
+                  <td style="padding: 6px; font-weight: 700;">${wPctStr}</td>
                 </tr>
                 <tr>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">연간 성장속도</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #059669;">6.4 cm/yr</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #059669;">${velocityVal} cm/yr</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">5.0 ~ 7.0 cm/yr</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">정상 범위</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${velCalc.alert ? '관찰 필요' : '정상 범위'}</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">-</td>
-                  <td style="padding: 6px; font-weight: 700; color: #059669;">정상 성장 궤도</td>
+                  <td style="padding: 6px; font-weight: 700; color: #059669;">${velStatusText}</td>
                 </tr>
               </tbody>
             </table>
@@ -501,13 +556,13 @@
               <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
                 <div style="font-size: 8pt; font-weight: 700; color: #E11D48;">저해 요인 방치 시 예측키</div>
                 <div style="font-size: 14pt; font-weight: 900; color: #E11D48; margin: 4px 0;">${unmanagedHeight} cm</div>
-                <div style="font-size: 7.5pt; color: #E11D48;">수면·자세 손실: -2.8 cm</div>
+                <div style="font-size: 7.5pt; color: #E11D48;">수면·자세 손실: -${unmanagedPenalty} cm</div>
               </div>
 
               <div style="border: 1px solid #A7F3D0; border-radius: 6px; padding: 10px; background: #ECFDF5;">
                 <div style="font-size: 8pt; font-weight: 700; color: #059669;">골든타임 개입 시 최대 잠재키</div>
                 <div style="font-size: 14pt; font-weight: 900; color: #059669; margin: 4px 0;">${potentialHeight} cm</div>
-                <div style="font-size: 7.5pt; color: #059669;">영양·감압 복원: +6.4 cm 잠재력</div>
+                <div style="font-size: 7.5pt; color: #059669;">영양·감압 복원: +${potentialBoost} cm 잠재력</div>
               </div>
 
             </div>
@@ -535,12 +590,12 @@
 
                 <!-- Current Child Marker -->
                 <circle cx="280" cy="98" r="5" fill="#059669" stroke="#FFFFFF" stroke-width="2" />
-                <text x="280" y="88" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">현재 환자 (137.0cm)</text>
+                <text x="280" y="88" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">현재 환자 (${height}cm)</text>
 
                 <!-- Legend -->
-                <text x="60" y="22" font-size="8" fill="#0284C7">― 최대 개입 궤적 (+6.4cm)</text>
-                <text x="220" y="22" font-size="8" fill="#D97706">― 유전 기준선 (MPH)</text>
-                <text x="360" y="22" font-size="8" fill="#E11D48">--- 저해 습관 궤적 (-2.8cm)</text>
+                <text x="60" y="22" font-size="8" fill="#0284C7">― 최대 개입 궤적 (+${potentialBoost}cm)</text>
+                <text x="220" y="22" font-size="8" fill="#D97706">― 유전 기준선 (MPH ${mph}cm)</text>
+                <text x="360" y="22" font-size="8" fill="#E11D48">--- 저해 습관 궤적 (-${unmanagedPenalty}cm)</text>
               </svg>
             </div>
           </div>
@@ -717,6 +772,11 @@
   // 4. Print Report Pre-population & Trigger
   function preparePrintReport(profile = {}) {
     if (typeof document === 'undefined') return;
+
+    const activeMode = profile.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'growth';
+    if (document.body && document.body.classList) {
+      document.body.classList.toggle('print-mode-learning', activeMode === 'learning');
+    }
 
     let printContainer = document.getElementById('clinic-print-report-container');
     if (!printContainer) {

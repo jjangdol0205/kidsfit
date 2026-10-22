@@ -259,14 +259,9 @@ function runSuite() {
   console.log('\n[Suite 6: Secret Admin Studio Trigger & Storage]');
   // --------------------------------------------------------------------------
 
-  it('includes secret admin modal with affiliate configuration inputs', () => {
-    assert(indexHtml.includes('id="admin-modal"'), 'Missing secret admin modal');
-    assert(indexHtml.includes('id="cfg-coupang"'), 'Missing Coupang config input');
-    assert(indexHtml.includes('id="cfg-linkprice"'), 'Missing LinkPrice config input');
-    assert(indexHtml.includes('id="cfg-tenping"'), 'Missing Tenping config input');
-    assert(indexHtml.includes('id="cfg-iherb"'), 'Missing iHerb config input');
-    assert(indexHtml.includes('id="cfg-amazon"'), 'Missing Amazon config input');
-    assert(indexHtml.includes('id="cfg-chips-toggle"'), 'Missing Reference Chips master toggle');
+  it('separates #admin-modal and secret API keys from public client HTML', () => {
+    assert(!indexHtml.includes('id="admin-modal"'), 'Public index.html should not expose #admin-modal');
+    assert(!indexHtml.includes('mAGXbDg5'), 'Public index.html should not expose plaintext API keys');
   });
 
   it('provides correct default affiliate settings', () => {

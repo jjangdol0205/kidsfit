@@ -27,7 +27,7 @@ function copyRecursiveSync(src, dest) {
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    for (let attempt = 1; attempt <= 8; attempt++) {
       try {
         fs.copyFileSync(src, dest);
         break;
@@ -36,8 +36,8 @@ function copyRecursiveSync(src, dest) {
           fs.writeFileSync(dest, fs.readFileSync(src));
           break;
         } catch (writeErr) {
-          if (attempt === 3) throw writeErr;
-          const waitTill = Date.now() + 50;
+          if (attempt === 8) throw writeErr;
+          const waitTill = Date.now() + 150;
           while (Date.now() < waitTill) {}
         }
       }

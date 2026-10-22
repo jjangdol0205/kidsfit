@@ -394,9 +394,9 @@ suite('Suite 4: Stylesheet & Print Rule Verification', () => {
     assert(html.includes('id="core-4-container"'));
     assert(html.includes('id="core-5-container"'));
     assert(html.includes('id="btn-print-clinic-pdf"'));
-    assert(html.includes('src="src/js/biomechanics-studio.js"'));
-    assert(html.includes('src="src/js/neuro-cognitive-matrix.js"'));
-    assert(html.includes('src="src/js/growth-tracker.js"'));
+    assert(html.includes('src="src/js/biomechanics-studio.js'));
+    assert(html.includes('src="src/js/neuro-cognitive-matrix.js'));
+    assert(html.includes('src="src/js/growth-tracker.js'));
   });
 
 });

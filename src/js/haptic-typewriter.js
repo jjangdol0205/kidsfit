@@ -244,7 +244,7 @@
         highlight: `⚡ 단기(1~4주) → 중기(90일) → 장기(만 20세) 논문 기반 실천 가이드를 생성하고 있습니다.`
       },
       {
-        badge: `✨ 브리핑 6/6 · 1,376편 국제 학술 논문 DB 대조 완료 임박`,
+        badge: `✨ 브리핑 6/6 · 2,081편 국제 학술 논문 DB 대조 완료 임박`,
         title: `우리 아이만을 위한 1:1 정밀 진단 & 핀셋 추천 리스트가 완성됩니다!`,
         body: `질병관리청 성장도표 백분위, 나이별 자동 골연령 단계, 만 ${ageYears}~${nextAge2}세 성장주기 타임라인, 그리고 클릭 즉시 연결되는 <strong>맞춤 영양제·교구·도서 핀셋 처방전</strong>이 곧 열립니다.`,
         highlight: `🏆 결과 화면 상단에서 [우리 아이 맞춤 핀셋 처방 & 연령별 성장주기 로드맵]을 바로 확인하세요!`
@@ -300,8 +300,8 @@
     {
       step: 4,
       rangeSec: [30, 40],
-      titleKo: 'Step 4/6 · 1,376편 국제 소아내분비·뇌신경 학술 논문 DB에서 우리 아이 맞춤 근거 추출 중...',
-      titleEn: 'Step 4/6 · Matching Child Profile Against 1,376+ Peer-Reviewed Clinical Studies...'
+      titleKo: 'Step 4/6 · 2,081편 국제 소아내분비·뇌신경 학술 논문 DB에서 우리 아이 맞춤 근거 추출 중...',
+      titleEn: 'Step 4/6 · Matching Child Profile Against 2,081 Peer-Reviewed Clinical Studies...'
     },
     {
       step: 5,
@@ -540,7 +540,7 @@
       typewriteText(titleEl, isEn ? SIX_STAGES_60S[0].titleEn : SIX_STAGES_60S[0].titleKo, { charInterval: 28 });
     }
     if (descEl) {
-      descEl.textContent = `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'} 데이터를 1,376편 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
+      descEl.textContent = `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'} 데이터를 2,081편 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
     }
     currentStageIdx = 0;
 

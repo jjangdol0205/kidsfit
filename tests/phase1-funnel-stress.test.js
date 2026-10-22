@@ -826,9 +826,9 @@ it('#results-dashboard remains strictly hidden while 3-second scan animation is 
   assert(dashboard.classList.contains('hidden'), 'Dashboard must remain hidden at t=500ms');
   assert.strictEqual(dashboard.style.display, 'none');
 
-  // Step 2: 1500ms (800+ papers)
+  // Step 2: 1500ms (2,081 papers)
   env.advanceTime(1000);
-  assert.strictEqual(env.elements['analysis-title'].textContent, '800편+ 소아내분비·뇌과학 학술 논문 매칭 중...');
+  assert.strictEqual(env.elements['analysis-title'].textContent, '2,081편 소아내분비·뇌과학 학술 논문 매칭 중...');
   assert(dashboard.classList.contains('hidden'), 'Dashboard must remain hidden at t=1500ms');
   assert.strictEqual(dashboard.style.display, 'none');
 

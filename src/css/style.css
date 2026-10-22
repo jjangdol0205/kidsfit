@@ -1506,6 +1506,26 @@ body {
   .print-page-break {
     page-break-after: always;
   }
+
+  /* Learning Report Print Mode Support */
+  body.print-mode-learning #clinic-print-report-container,
+  body.print-mode-learning #clinic-print-report,
+  body.print-mode-learning .clinic-print-report,
+  body.print-mode-learning #pillar-1-container,
+  body.print-mode-learning .report-mode-switcher {
+    display: none !important;
+  }
+
+  body.print-mode-learning .results-dashboard,
+  body.print-mode-learning #master-briefing-container,
+  body.print-mode-learning .master-briefing-card,
+  body.print-mode-learning #pillar-2-container {
+    display: block !important;
+    width: 100% !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Responsive Breakpoints */
@@ -1651,7 +1671,7 @@ body[data-theme="dark"] {
 /* First-Screen Gate: Hide Survey & Presets until user clicks "Start Diagnosis" */
 body:not(.studio-mode-active) #quick-presets-bar,
 body:not(.studio-mode-active) #quiz-section {
-  display: none;
+  display: none !important;
 }
 
 body.studio-mode-active #hero-section,
@@ -2320,14 +2340,13 @@ p, li, dt, dd,
 }
 
 /* ==========================================================================
-   22. ANTI-COPY & CONTENT PROTECTION SHIELD (Batch D Security)
+   22. TEXT SELECTION & ACCESSIBILITY (Copy Enabled for Parents)
    ========================================================================== */
 body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 input,

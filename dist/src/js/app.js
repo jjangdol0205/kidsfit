@@ -627,8 +627,8 @@
     }
     if (headerSubEl) {
       headerSubEl.textContent = isLearningModeActive
-        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 2,005편 정밀 분석 완료'
-        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 2,005편 정밀 분석 완료';
+        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 2,081편 정밀 분석 완료'
+        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 2,081편 정밀 분석 완료';
     }
 
     const affConfig = getAffiliateConfig();
@@ -898,7 +898,7 @@
     adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=4d31d3&os=&adtype=&category=notgame&order=rand',
     naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
-    myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
+    myrealtripKey: '',
     myrealtripMylinkId: '6226316',
     klookAid: '140161',
     klookAdId: '1514603',
@@ -1073,16 +1073,10 @@
       });
     }
 
-    // Secret Admin Triggers
+    // Secret Admin Triggers ( Separated from client HTML & unauthenticated URL auto-open disabled )
     const footerCopyright = document.getElementById('footer-copyright');
     if (footerCopyright) {
       footerCopyright.addEventListener('click', handleFooterClick);
-    }
-
-    if (typeof window !== 'undefined' && window.location && window.location.search) {
-      if (window.location.search.includes('admin=1')) {
-        openAdminModal();
-      }
     }
 
     // Admin modal actions

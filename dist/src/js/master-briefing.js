@@ -611,7 +611,7 @@
     }
 
     const kb = getKnowledgeBase();
-    const totalDbPapers = 2005;
+    const totalDbPapers = 2081;
 
     const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
@@ -2171,8 +2171,8 @@
           </div>
         </details>
 
-        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Hidden until product drawer is opened) -->
-        <div id="affiliate-ftc-disclosure" style="display: none; margin-bottom: 1.15rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
+        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Always visible inside the report) -->
+        <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.15rem; padding: 0.75rem 1rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.8rem; color: #94A3B8; text-align: center; line-height: 1.5;">
           ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
         </div>
 
@@ -2421,7 +2421,7 @@
           </h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <!-- 1. Naver Blog -->
-            <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+            <a href="https://blog.naver.com/kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #4ADE80;">📝 공식 네이버 블로그</span>
@@ -2437,7 +2437,7 @@
             </a>
 
             <!-- 2. Naver Cafe -->
-            <a href="https://cafe.naver.com" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+            <a href="https://cafe.naver.com/kidsfitgrowth" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #34D399;">☕ 공식 네이버 카페</span>
@@ -2453,7 +2453,7 @@
             </a>
 
             <!-- 3. Instagram (4-Panel Webtoon) -->
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+            <a href="https://www.instagram.com/kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #F472B6;">📸 공식 인스타그램</span>
@@ -2469,7 +2469,7 @@
             </a>
 
             <!-- 4. Threads (4-Panel Webtoon Simultaneous Upload) -->
-            <a href="https://www.threads.net" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
+            <a href="https://www.threads.net/@kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.45rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                   <span style="font-size: 0.76rem; font-weight: 900; color: #C084FC;">🧵 공식 쓰레드 (Threads)</span>
@@ -2503,6 +2503,27 @@
     const normalized = (mode === 'learning') ? 'learning' : 'growth';
     global.__KIDSFIT_PREFERRED_REPORT_MODE = normalized;
     if (typeof window !== 'undefined') window.__KIDSFIT_PREFERRED_REPORT_MODE = normalized;
+    if (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) {
+      global.KidsFitApp.state.profile.preferredReportMode = normalized;
+    }
+    if (document.body && document.body.classList) {
+      document.body.classList.toggle('print-mode-learning', normalized === 'learning');
+    }
+
+    const btnGrowth = document.getElementById('btn-switch-report-growth');
+    const btnLearning = document.getElementById('btn-switch-report-learning');
+    if (btnGrowth && btnGrowth.style) {
+      btnGrowth.style.background = normalized === 'growth'
+        ? 'linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%)'
+        : 'rgba(56, 189, 248, 0.12)';
+      btnGrowth.style.color = normalized === 'growth' ? '#FFFFFF' : '#BAE6FD';
+    }
+    if (btnLearning && btnLearning.style) {
+      btnLearning.style.background = normalized === 'learning'
+        ? 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)'
+        : 'rgba(139, 92, 246, 0.14)';
+      btnLearning.style.color = normalized === 'learning' ? '#FFFFFF' : '#DDD6FE';
+    }
 
     const p1 = document.getElementById('pillar-1-container');
     const p2 = document.getElementById('pillar-2-container');
@@ -2647,7 +2668,7 @@
               if (latestStatusBox && data && data.ok) {
                 const topPaper = Array.isArray(data.matchedPapers) && data.matchedPapers[0] ? data.matchedPapers[0] : null;
                 latestStatusBox.style.display = 'block';
-                latestStatusBox.innerHTML = `✅ <strong>[검증코드 #${data.verifiedId || 'AGY-LIVE'}] Antigravity 서버 실시간 논문 대조 완료 (${data.totalPapersSearched || 2005}편 검색):</strong> ${data.customAiPrescription || ''}${topPaper ? `<br/><span style="color:#6EE7B7;">📚 최우선 매칭 논문: ${topPaper.titleKo || topPaper.title} (${topPaper.journal || 'PubMed'}, ${topPaper.year || ''}) — ${topPaper.findingKo || ''}</span>` : ''}`;
+                latestStatusBox.innerHTML = `✅ <strong>[검증코드 #${data.verifiedId || 'AGY-LIVE'}] Antigravity 서버 실시간 논문 대조 완료 (${data.totalPapersSearched || 2081}편 검색):</strong> ${data.customAiPrescription || ''}${topPaper ? `<br/><span style="color:#6EE7B7;">📚 최우선 매칭 논문: ${topPaper.titleKo || topPaper.title} (${topPaper.journal || 'PubMed'}, ${topPaper.year || ''}) — ${topPaper.findingKo || ''}</span>` : ''}`;
               }
             })
             .catch(() => {});
