@@ -2415,14 +2415,31 @@
       threePicks.push({ item: items[1], sub: sub1, badgeKo: '✨ 엄선 2위 (맞춤 시너지)', badgeEn: '✨ Curated Pick #2' });
     }
     const isLearningCompact = (categoryType === 'learning_tool' || categoryType === 'book');
-    if (!isLearningCompact) {
-      if (items && items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
-        const sub2 = items[0].curatedProducts[1];
-        threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
-      } else if (items && items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
-        const sub2 = items[1].curatedProducts[1];
-        threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
-      }
+    if (items && items[2]) {
+      const sub2 = (items[2].curatedProducts && items[2].curatedProducts[0]) || {
+        rankKo: '💎 엄선 3위',
+        rankEn: '💎 Curated Pick #3',
+        titleKo: items[2].name,
+        titleEn: items[2].name,
+        specKo: items[2].activeSpec,
+        specEn: items[2].activeSpec,
+        coupangUrl: items[2].coupangUrl,
+        iherbUrl: items[2].iherbUrl,
+        amazonUrl: items[2].amazonUrl,
+        yes24Url: items[2].yes24Url,
+        naverUrl: items[2].naverUrl,
+        naverBrandConnectHealthUrl: items[2].naverBrandConnectHealthUrl,
+        tenpingUrl: items[2].tenpingUrl,
+        cpQuery: items[2].coupangQuery,
+        ihQuery: items[2].iherbQuery
+      };
+      threePicks.push({ item: items[2], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+    } else if (items && items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
+      const sub2 = items[0].curatedProducts[1];
+      threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+    } else if (items && items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
+      const sub2 = items[1].curatedProducts[1];
+      threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
     }
 
     if (isLearningCompact) {
@@ -2431,7 +2448,7 @@
           ${threePicks.map(({ item, sub }, idx) => `
             <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1px solid ${accentColor}; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : '✨ 2위'}</span>${isEn ? sub.titleEn : sub.titleKo}
+                <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : idx === 1 ? '✨ 2위' : '💎 3위'}</span>${isEn ? sub.titleEn : sub.titleKo}
               </div>
               <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
                 ✓ ${isEn ? sub.specEn : sub.specKo}
@@ -2901,10 +2918,10 @@
       <div class="pinpoint-category-box" id="pillar2-learning-tools-box" style="margin-top: 0.5rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 27, 75, 0.55)); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
           <span style="font-size: 0.78rem; font-weight: 900; color: #DDD6FE; background: rgba(139, 92, 246, 0.22); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-            🧩 1. [만 ${ageYears}세 집중·사고력 분석 기반] 맞춤 학습도구 &amp; 교구 TOP 2
+            🧩 1. [만 ${ageYears}세 집중·사고력 분석 기반] 맞춤 학습도구 &amp; 교구 TOP 3
           </span>
           <span style="font-size: 0.73rem; color: #C4B5FD; font-weight: 700;">
-            집중시간 × 흡수스타일 맞춤
+            집중시간 × 흡수스타일 맞춤 3선
           </span>
         </div>
         ${renderCategoryProductCards(learningTools, 'rgba(139, 92, 246, 0.45)', 'learning_tool', isEn)}
@@ -3145,27 +3162,30 @@
   }
 
   /**
-   * 5-D. Chapter 6: Custom Education & 1:1 Learning Counseling Prescription (Ultra-Concise 2-Item Book/Workbook Curation)
+   * 5-D. Chapter 6: Custom Education & 1:1 Learning Counseling Prescription (Ultra-Concise 3-Item Book/Workbook Curation)
    */
   function renderCustomEducationChapter(profile = {}, affConfig = {}) {
     const learningPlan = curateLearningCounselingPlan(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
-    const topBooks = (learningPlan.learningItems || []).slice(0, 2);
+    const topBooks = (learningPlan.learningItems || []).slice(0, 3);
 
     return `
       <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left; margin-top: 0.7rem;">
         <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(15, 23, 42, 0.96); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 0.9rem 1rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              📚 2. [만 ${ageYears}세 맞춤] 필독서 &amp; 사고력 워크북 TOP 2
+              📚 2. [만 ${ageYears}세 맞춤] 필독서 &amp; 사고력 워크북 TOP 3
+            </span>
+            <span style="font-size: 0.73rem; color: #7DD3FC; font-weight: 700;">
+              강점·보완 성향 맞춤 3선
             </span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.55rem;">
             ${topBooks.map((item, idx) => `
               <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
                 <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                  <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : '✨ 2위'}</span>${item.titleKo}
+                  <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : idx === 1 ? '✨ 2위' : '💎 3위'}</span>${item.titleKo}
                 </div>
                 <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
                   ✓ ${item.whyKo || item.specKo}
@@ -3185,28 +3205,31 @@
   }
 
   /**
-   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise Regional Ticket Curation)
+   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise 3-Item Regional Ticket Curation)
    */
   function renderCustomTravelChapter(profile = {}, affConfig = {}) {
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const region = String(profile.region || '서울 강남·서초·송파');
-    const regionalTickets = (data.regionalTickets || []).slice(0, 1);
+    const regionalTickets = (data.regionalTickets || []).slice(0, 3);
 
     return `
       <div id="custom-travel-chapter-box" style="text-align: left; margin-top: 0.7rem;">
         <div id="regional-age-ticket-catalog-box" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(6, 78, 59, 0.35)); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 0.9rem 1rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              🏛️ 3. [${region} × 만 ${ageYears}세 맞춤] 주말 현장 체험 1순위
+              🏛️ 3. [${region} × 만 ${ageYears}세 맞춤] 주말 현장 체험 TOP 3
+            </span>
+            <span style="font-size: 0.73rem; color: #6EE7B7; font-weight: 700;">
+              지역 × 연령 배경지식 3선
             </span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.55rem;">
-            ${regionalTickets.map((tk) => `
+            ${regionalTickets.map((tk, idx) => `
               <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
                 <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                  <span style="color:#6EE7B7; margin-right:0.3rem;">🎫 추천</span>${tk.destination}
+                  <span style="color:#6EE7B7; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : idx === 1 ? '✨ 2위' : '💎 3위'}</span>${tk.destination}
                 </div>
                 <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
                   ✓ ${tk.ageSpecificGuide}

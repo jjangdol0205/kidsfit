@@ -396,7 +396,7 @@
   function renderRadarSvg(scores = {}, isGlobal = false, options = {}) {
     const cx = 200;
     const cy = 200;
-    const maxR = 130;
+    const maxR = 104;
     const n = 5;
 
     // Normative baseline scores (70 across all axes)
@@ -433,9 +433,9 @@
       const y = cy + maxR * Math.sin(angle);
       spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255, 255, 255, 0.12)" stroke-dasharray="2,2" />`;
 
-      // Label coordinate outside radius
-      const lx = cx + (maxR + 24) * Math.cos(angle);
-      const ly = cy + (maxR + 20) * Math.sin(angle);
+      // Label coordinate outside radius (comfortably inside 400x400 viewBox)
+      const lx = cx + (maxR + 18) * Math.cos(angle);
+      const ly = cy + (maxR + 18) * Math.sin(angle);
       const anchor = Math.abs(x - cx) < 10 ? 'middle' : (x > cx ? 'start' : 'end');
       const labelText = isGlobal ? pillar.nameEn : pillar.nameKo;
 
@@ -687,9 +687,9 @@
       inquiry_creative: Number(lqScores.inquiry_creative) || 75
     };
 
-    const cx = 210;
-    const cy = 205;
-    const maxR = 118;
+    const cx = 240;
+    const cy = 200;
+    const maxR = 104;
     const keys = ['literacy_vocab', 'math_spatial', 'working_memory_focus', 'metacognition_retrieval', 'inquiry_creative'];
     const shortLabelsKo = {
       literacy_vocab: '문해·어휘',
@@ -712,9 +712,9 @@
         polyPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
       }
       const isOuter = ratio === 1.0;
-      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(238, 242, 255, 0.45)' : 'none'}" stroke="${isOuter ? 'rgba(99, 102, 241, 0.35)' : 'rgba(148, 163, 184, 0.28)'}" stroke-width="${isOuter ? '1.5' : '1'}" />`;
+      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(238, 242, 255, 0.55)' : 'none'}" stroke="${isOuter ? 'rgba(99, 102, 241, 0.4)' : 'rgba(148, 163, 184, 0.32)'}" stroke-width="${isOuter ? '1.6' : '1'}" />`;
       if (ratio >= 0.4) {
-        gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10" font-weight="700" fill="#64748B" font-family="Pretendard, sans-serif">${Math.round(ratio * 100)}</text>`;
+        gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10.5" font-weight="800" fill="#475569" font-family="Pretendard, sans-serif">${Math.round(ratio * 100)}</text>`;
       }
     });
 
@@ -727,19 +727,19 @@
       const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
       const x = cx + maxR * Math.cos(angle);
       const y = cy + maxR * Math.sin(angle);
-      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(99, 102, 241, 0.25)" stroke-dasharray="3,3" />`;
+      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(99, 102, 241, 0.3)" stroke-dasharray="3,3" />`;
 
       const meta = LEARNING_QUOTIENT_METRICS[key];
       const labelText = isGlobal ? meta.nameEn : (shortLabelsKo[key] || meta.nameKo);
-      const lx = cx + (maxR + 34) * Math.cos(angle);
-      const ly = cy + (maxR + 26) * Math.sin(angle);
+      const lx = cx + (maxR + 24) * Math.cos(angle);
+      const ly = cy + (maxR + 24) * Math.sin(angle);
       const anchor = Math.abs(x - cx) < 12 ? 'middle' : (x > cx ? 'start' : 'end');
 
       spokesSvg += `
-        <text x="${lx.toFixed(1)}" y="${(ly - 6).toFixed(1)}" text-anchor="${anchor}" font-size="12.5" font-weight="900" fill="#1E293B" dominant-baseline="central">
+        <text x="${lx.toFixed(1)}" y="${(ly - 7).toFixed(1)}" text-anchor="${anchor}" font-size="13" font-weight="900" fill="#0F172A" dominant-baseline="central">
           ${meta.icon} ${labelText}
         </text>
-        <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="11.5" font-weight="900" fill="#4F46E5" dominant-baseline="central">
+        <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="12" font-weight="900" fill="#4F46E5" dominant-baseline="central">
           ${scores[key]}점
         </text>
       `;
@@ -768,7 +768,7 @@
     });
 
     return `
-      <svg id="lq-radar-svg" viewBox="0 0 420 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 390px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
+      <svg id="lq-radar-svg" viewBox="0 0 480 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
         <defs>
           <radialGradient id="childLqRadarGrad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="rgba(79, 70, 229, 0.42)" />

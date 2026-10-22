@@ -263,7 +263,7 @@
     ];
 
     return `
-      <svg viewBox="0 0 ${size} ${size}" class="kdst-radar-svg" style="width: 100%; max-width: 340px; height: auto; margin: 0 auto; display: block;" aria-label="보건복지부 K-DST 6대 발달영역 레이더">
+      <svg viewBox="-65 0 430 ${size}" class="kdst-radar-svg" style="width: 100%; max-width: 390px; height: auto; margin: 0 auto; display: block;" aria-label="보건복지부 K-DST 6대 발달영역 레이더">
         <!-- Background Rings -->
         ${ringPolygons.map((pts, i) => `
           <polygon points="${pts}" fill="${i === 4 ? '#F8FAFC' : 'none'}" stroke="#E2E8F0" stroke-width="1" />
@@ -285,7 +285,7 @@
 
         <!-- Axis Labels -->
         ${labelOffsets.map((l, idx) => `
-          <text x="${l.x}" y="${l.y}" font-size="11" font-weight="700" fill="#334155" text-anchor="${l.anchor}">${l.text}</text>
+          <text x="${l.x}" y="${l.y}" font-size="11.5" font-weight="800" fill="#1E293B" text-anchor="${l.anchor}">${l.text}</text>
         `).join('')}
       </svg>
     `;

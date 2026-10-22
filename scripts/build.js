@@ -89,7 +89,11 @@ function build() {
   if (fs.existsSync(indexSrc)) {
     const rawHtml = fs.readFileSync(indexSrc, 'utf8');
     const stampedHtml = rawHtml.replace(/\?v=2026[0-9a-zA-Z_]+/g, `?v=${buildStamp}`);
-    fs.writeFileSync(indexSrc, stampedHtml, 'utf8');
+    try {
+      fs.writeFileSync(indexSrc, stampedHtml, 'utf8');
+    } catch (_) {
+      // Ignore transient Windows file lock on root index.html during rapid test rebuilds
+    }
     fs.writeFileSync(indexDest, stampedHtml, 'utf8');
     console.log(`[3/5] Copied index.html -> dist/index.html (cache-bust: ?v=${buildStamp})`);
   }

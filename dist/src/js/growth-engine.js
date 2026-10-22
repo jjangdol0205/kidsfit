@@ -554,7 +554,7 @@
   function renderSvgGrowthCurve(sex, currentAgeMonths, currentHeight, options = {}) {
     const width = 600;
     const height = 320;
-    const padding = { top: 25, right: 45, bottom: 40, left: 50 };
+    const padding = { top: 28, right: 138, bottom: 40, left: 50 };
 
     const normData = getGrowthCurveData(sex, options.standard || 'KDCA');
     const minM = 12;
@@ -619,8 +619,24 @@
     const curLms = getLmsForMonth(sex, curM, options.standard || 'KDCA');
     const curZ = calculateKdcaPercentile(curH, curLms.L, curLms.M, curLms.S);
 
+    // Anti-collision right-hand label Y coordinates (minimum 24px vertical gap)
+    const endX = scaleX(240);
+    const rawYOpt = scaleY(traj.optimized.height);
+    const rawYBase = scaleY(traj.baselineMPH.height);
+    const rawYUnm = scaleY(traj.unmanaged.height);
+    const labelYBase = Math.max(padding.top + 28, Math.min(height - padding.bottom - 28, rawYBase));
+    const labelYOpt = Math.max(padding.top + 4, Math.min(labelYBase - 24, rawYOpt));
+    const labelYUnm = Math.min(height - padding.bottom - 4, Math.max(labelYBase + 24, rawYUnm));
+
+    // Mid-chart reference index (~144 months = 12 yrs) for P97/P50/P3 badges so they never collide with right-edge trajectory labels
+    const refIdx = Math.max(0, normData.months.findIndex((m) => m >= 144));
+    const refX = scaleX(normData.months[refIdx] || 144);
+    const refYP97 = scaleY(normData.p97[refIdx] || 162);
+    const refYP50 = scaleY(normData.p50[refIdx] || 150);
+    const refYP3 = scaleY(normData.p3[refIdx] || 138);
+
     return `
-      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 340px;" aria-label="3중 인터랙티브 임상 성장 곡선 차트">
+      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 360px;" aria-label="3중 인터랙티브 임상 성장 곡선 차트">
         <defs>
           <linearGradient id="optZoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.22" />
@@ -642,48 +658,57 @@
 
         ${shadedAreaPath ? `<path d="${shadedAreaPath}" fill="url(#optZoneGrad)" class="trajectory-target-zone" />` : ''}
 
-        <!-- Normative Reference Background Curves (P3, P50, P97) -->
-        <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p97" />
-        <text x="${width - padding.right + 4}" y="${scaleY(normData.p97[normData.p97.length - 1]) + 3}" font-size="9" fill="#94A3B8" font-family="monospace">P97 (97%)</text>
+        <!-- Normative Reference Background Curves (P3, P50, P97) with non-overlapping mid-chart badges -->
+        <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p97" />
+        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#94A3B8" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
 
-        <path d="${pathP50}" fill="none" stroke="#334155" stroke-width="1.8" id="curve-p50" />
-        <text x="${width - padding.right + 4}" y="${scaleY(normData.p50[normData.p50.length - 1]) + 3}" font-size="10" fill="#64748B" font-weight="700" font-family="monospace">P50 (50%)</text>
+        <path d="${pathP50}" fill="none" stroke="#475569" stroke-width="1.8" id="curve-p50" />
+        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#CBD5E1" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
 
-        <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p3" />
-        <text x="${width - padding.right + 4}" y="${scaleY(normData.p3[normData.p3.length - 1]) + 3}" font-size="9" fill="#94A3B8" font-family="monospace">P3 (3%)</text>
+        <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p3" />
+        <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#94A3B8" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
 
-        <!-- 3 Color-Coded Trajectory Path Lines -->
+        <!-- 3 Color-Coded Trajectory Path Lines & Anti-Collision Right Badges -->
         <!-- 1. Optimized Intervention Trajectory (Cyan Blue #38BDF8) -->
-        <path d="${pathOptimized}" fill="none" stroke="#38BDF8" stroke-width="2.8" stroke-linecap="round" id="curve-optimized" />
-        <text x="${scaleX(240) + 4}" y="${scaleY(traj.optimized.height) - 4}" font-size="10" fill="#38BDF8" font-weight="800">최대 잠재 ${traj.optimized.height}cm</text>
+        <path d="${pathOptimized}" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" id="curve-optimized" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYOpt.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYOpt.toFixed(1)}" stroke="#38BDF8" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#38BDF8" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYOpt + 3).toFixed(1)}" font-size="11" fill="#38BDF8" font-weight="900" text-anchor="middle">최대 잠재 ${traj.optimized.height}cm</text>
 
         <!-- 2. Genetic Baseline Trajectory (Amber #F59E0B) -->
-        <path d="${pathBaseline}" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
-        <text x="${scaleX(240) + 4}" y="${scaleY(traj.baselineMPH.height) + 3}" font-size="10" fill="#F59E0B" font-weight="700">유전 MPH ${traj.baselineMPH.height}cm</text>
+        <path d="${pathBaseline}" fill="none" stroke="#F59E0B" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#F59E0B" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#F59E0B" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#FBBF24" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
 
         <!-- 3. Current Unmanaged Trajectory (Coral/Rose #F43F5E) -->
-        <path d="${pathUnmanaged}" fill="none" stroke="#F43F5E" stroke-width="2.4" stroke-linecap="round" id="curve-unmanaged" />
-        <text x="${scaleX(240) + 4}" y="${scaleY(traj.unmanaged.height) + 10}" font-size="10" fill="#F43F5E" font-weight="700">방치 손실 ${traj.unmanaged.height}cm</text>
+        <path d="${pathUnmanaged}" fill="none" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#F43F5E" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#F43F5E" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#FDA4AF" font-weight="800" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
 
         <!-- Axes -->
         <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
         <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
 
         <!-- X-Axis Age Ticks (1 to 20 yrs) -->
-        <text x="${scaleX(24)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">2세</text>
-        <text x="${scaleX(72)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">6세</text>
-        <text x="${scaleX(120)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">10세</text>
-        <text x="${scaleX(168)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">14세</text>
-        <text x="${scaleX(216)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">18세</text>
-        <text x="${scaleX(240)}" y="${height - 12}" font-size="10" fill="#94A3B8" text-anchor="middle">20세</text>
+        <text x="${scaleX(24)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">2세</text>
+        <text x="${scaleX(72)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">6세</text>
+        <text x="${scaleX(120)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">10세</text>
+        <text x="${scaleX(168)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">14세</text>
+        <text x="${scaleX(216)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">18세</text>
+        <text x="${scaleX(240)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">20세</text>
 
         <!-- Y-Axis Height Ticks -->
-        <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">80cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">100cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(120) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">120cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">140cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(160) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">160cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(180) + 4}" font-size="10" fill="#94A3B8" text-anchor="end">180cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">80cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">100cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(120) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">120cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">140cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(160) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">160cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(180) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">180cm</text>
 
         <!-- Current Child Coordinate: Pulsing Bio-Emerald Point (#10B981) -->
         <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="14" fill="#10B981" fill-opacity="0.25">
@@ -692,9 +717,9 @@
         <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2.5" filter="url(#glowPulse)" />
 
         <!-- Tooltip Badge -->
-        <g transform="translate(${Math.max(padding.left + 5, Math.min(width - padding.right - 130, curX - 60))}, ${Math.max(padding.top + 5, curY - 38)})">
-          <rect x="0" y="0" width="125" height="26" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.2" opacity="0.95" />
-          <text x="62" y="17" font-size="10.5" font-weight="800" fill="#10B981" text-anchor="middle">
+        <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 140, curX - 68))}, ${Math.max(padding.top + 4, curY - 38)})">
+          <rect x="0" y="0" width="136" height="26" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.4" opacity="0.96" />
+          <text x="68" y="17" font-size="11" font-weight="900" fill="#6EE7B7" text-anchor="middle">
             현재 ${curH}cm (${curZ.percentile}th Pct)
           </text>
         </g>

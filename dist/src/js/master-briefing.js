@@ -1058,6 +1058,7 @@
       strengthsList.push({
         icon: '📐',
         score: Math.max(84, (lqData.scores && lqData.scores.math_spatial) || 86),
+        shortLabel: isToddlerAge ? '모양·블록 탐색력' : (isKinderAge ? '도형·수 규칙력' : '수리·공간 추론력'),
         title: isToddlerAge ? '모양·크기 비교 & 블록 탐색력' : (isKinderAge ? '도형 대칭 감각 & 수 규칙 발견력' : '수리 규칙 발견 & 입체 공간 추론력'),
         goodTrait: isToddlerAge
           ? '블록·퍼즐 모양을 비교하고 맞출 때 공간 감각이 빠르게 깨어납니다.'
@@ -1071,6 +1072,7 @@
       strengthsList.push({
         icon: '📚',
         score: Math.max(84, (lqData.scores && lqData.scores.literacy_vocab) || 86),
+        shortLabel: isToddlerAge ? '말소리·공감력' : (isKinderAge ? '어휘·이야기 표현' : '맥락 파악·소통력'),
         title: isToddlerAge ? '말소리 모방 & 그림책 공감력' : (isKinderAge ? '상황 어휘 흡수 & 이야기 표현력' : '이야기 맥락 파악 & 질문 소통력'),
         goodTrait: isToddlerAge
           ? '부모님 억양과 그림책 상황을 빠르게 흡수하는 언어 감수성이 높습니다.'
@@ -1084,6 +1086,7 @@
       strengthsList.push({
         icon: '🎨',
         score: Math.max(85, (lqData.scores && lqData.scores.inquiry_creative) || 87),
+        shortLabel: isToddlerAge ? '오감·손끝 표현력' : '시각·창의 표현력',
         title: isToddlerAge ? '오감 색채 반응 & 손끝 표현력' : '시각 상상력 & 손끝 창의 표현력',
         goodTrait: '떠오른 생각을 그림·만들기로 표현할 때 두뇌 몰입도가 최고조에 달합니다.',
         howToBoost: isToddlerAge
@@ -1095,6 +1098,7 @@
       strengthsList.push({
         icon: '🎯',
         score: Math.max(84, (lqData.scores && lqData.scores.working_memory_focus) || 85),
+        shortLabel: isToddlerAge ? '반복 탐색 집중력' : '관심사 고밀도 몰입',
         title: isToddlerAge ? '관심 놀잇감 반복 탐색 집중력' : '관심 대상에 깊게 빠져드는 몰입 에너지',
         goodTrait: '흥미 있는 주제가 주어지면 주변 소음을 잊고 깊게 파고드는 집중력이 있습니다.',
         howToBoost: isToddlerAge
@@ -1106,6 +1110,7 @@
       strengthsList.push({
         icon: '🔬',
         score: Math.max(85, (lqData.scores && lqData.scores.inquiry_creative) || 86),
+        shortLabel: isToddlerAge ? '오감 호기심 탐구' : '원리·과학 탐구력',
         title: isToddlerAge ? '오감으로 탐색하는 호기심 탐구력' : '원리와 인과관계를 파고드는 과학 탐구력',
         goodTrait: isToddlerAge
           ? '사물을 직접 만지고 움직이며 원인과 결과를 몸으로 배우는 탐색력이 좋습니다.'
@@ -1121,6 +1126,7 @@
       strengthsList.push({
         icon: '🧱',
         score: 86,
+        shortLabel: '손끝 조립 몰입력',
         title: '손끝으로 조립·완성하며 배우는 행동 몰입력',
         goodTrait: '손을 움직여 직접 결과물을 만들 때 성취감과 두뇌 회전율이 급상승합니다.',
         howToBoost: isToddlerAge
@@ -1132,6 +1138,7 @@
       strengthsList.push({
         icon: '💬',
         score: 87,
+        shortLabel: '질문·문답 사고력',
         title: '질문과 대화로 생각을 넓히는 문답 사고력',
         goodTrait: '대화로 납득했을 때 배운 내용을 오랫동안 자기 지식으로 만듭니다.',
         howToBoost: '하루 10분 오늘 가장 신기했던 것 1가지를 나누는 문답 루틴을 만드세요.',
@@ -1141,6 +1148,7 @@
       strengthsList.push({
         icon: '🏆',
         score: 86,
+        shortLabel: '목표 달성 성취력',
         title: '칭찬과 미션 달성에 강하게 동기부여되는 성취력',
         goodTrait: '작은 성공 경험과 과정 칭찬이 주어지면 스스로 다음 과제에 도전합니다.',
         howToBoost: '목표 분량을 작게 나누고 완수할 때마다 과정 칭찬을 즉시 해주세요.',
@@ -1150,6 +1158,7 @@
       strengthsList.push({
         icon: '🚀',
         score: 85,
+        shortLabel: '현장 체험 흡수력',
         title: '직접 보고 경험하며 흡수하는 현장 체험력',
         goodTrait: '박물관·과학관 체험처럼 오감이 깨어나는 환경에서 흡수율이 2배 높아집니다.',
         howToBoost: '주말 현장 체험 후 연계 도서를 읽으면 배경지식(스키마)이 빠르게 확장됩니다.',
@@ -1160,6 +1169,7 @@
     strengthsList.push({
       icon: '✨',
       score: Math.max(83, Math.round(lqData.overallLQ || 83)),
+      shortLabel: '맞춤 직관 흡수력',
       title: `${activeStyleInfo.badge} 기반 직관 흡수력`,
       goodTrait: activeStyleInfo.summary,
       howToBoost: activeStyleInfo.boostAction,
@@ -1172,6 +1182,7 @@
       weaknessesList.push({
         icon: '📖',
         score: Math.min(72, (lqData.scores && lqData.scores.literacy_vocab) || 70),
+        shortLabel: '그림책 주의 지속력',
         title: '그림책을 빠르게 넘기거나 다른 놀잇감으로 옮겨가는 경향',
         weakTrait: '글자나 설명이 길어지면 주의가 흩어지기 쉬운 발달 단계입니다.',
         howToFix: '하루 10분 들춰보는 플랩북으로 사물 짚기·의성어 놀이부터 시작하세요.',
@@ -1180,6 +1191,7 @@
       weaknessesList.push({
         icon: '🤲',
         score: Math.min(71, (lqData.scores && lqData.scores.working_memory_focus) || 69),
+        shortLabel: '손끝 소근육 협응력',
         title: '손끝 소근육 조절이 마음처럼 안 될 때 답답해하는 경향',
         weakTrait: '자율성은 크지만 세 손가락 협응력이 자라는 중이어서 답답해하기 쉽습니다.',
         howToFix: '원목 집게로 폼폼이 옮기기·병뚜껑 넣기 놀이로 손끝 성공 경험을 주세요.',
@@ -1188,6 +1200,7 @@
       weaknessesList.push({
         icon: '📱',
         score: Math.min(70, (lqData.scores && lqData.scores.metacognition_retrieval) || 68),
+        shortLabel: '미디어 자극 조절력',
         title: '빠른 영상 자극이 없으면 쉽게 지루해하는 경향',
         weakTrait: '화면 전환이 빠른 영상에 익숙해지면 손끝 탐색 놀이를 심심해합니다.',
         howToFix: '식사·취침 1시간 전엔 영상을 끄고 부모님과 15분간 블록·촉감 놀이를 하세요.',
@@ -1198,6 +1211,7 @@
         weaknessesList.push({
           icon: '📖',
           score: Math.min(72, (lqData.scores && lqData.scores.literacy_vocab) || 68),
+          shortLabel: isKinderAge ? '문장 의미 정독력' : '긴 줄글·문해 정독',
           title: isKinderAge
             ? '그림만 빠르게 넘기고 문장 의미를 건너뛰는 경향'
             : '긴 줄글 정독을 피하고 문장제 핵심 조건을 놓치는 경향',
@@ -1214,6 +1228,7 @@
         weaknessesList.push({
           icon: '📐',
           score: Math.min(72, (lqData.scores && lqData.scores.math_spatial) || 69),
+          shortLabel: isKinderAge ? '수 모형·도형 감각' : '응용·서술형 도식화',
           title: isKinderAge
             ? '수 가르기·모으기와 입체 도형 회전을 헷갈리는 경향'
             : '단순 연산은 풀지만 응용·도형·서술형 수학에서 막히는 경향',
@@ -1230,6 +1245,7 @@
         weaknessesList.push({
           icon: '🧠',
           score: Math.min(71, (lqData.scores && lqData.scores.metacognition_retrieval) || 67),
+          shortLabel: '백지복습·인출 습관',
           title: '설명을 들을 땐 알지만 혼자 풀거나 설명할 때 막히는 경향',
           weakTrait: '눈과 귀로만 듣는 수동 학습에 그쳐 스스로 떠올리는 인출 회로가 약합니다.',
           howToFix: '공부 직후 책을 덮고 핵심 3줄을 적거나 1분간 말로 설명하는 백지복습을 하세요.',
@@ -1240,6 +1256,7 @@
         weaknessesList.push({
           icon: '📱',
           score: Math.min(70, (lqData.scores && lqData.scores.working_memory_focus) || 66),
+          shortLabel: '착석 집중 지구력',
           title: '미디어 자극엔 빠지지만 책상 앞 15~20분 착석 집중이 짧은 경향',
           weakTrait: '빠른 영상 자극에 익숙해 단일 과제를 끝까지 푸는 전두엽 지구력이 짧습니다.',
           howToFix: '스마트폰을 거실에 두고 무소음 시각 타이머로 15~20분 몰입 루틴을 시작하세요.',
@@ -1251,6 +1268,7 @@
           weaknessesList.push({
             icon: '📐',
             score: 70,
+            shortLabel: '조건 시각화·도식화',
             title: '복잡한 문제에서 그림·식을 쓰기보다 암산에 의존하는 경향',
             weakTrait: '문제가 길어질 때 여백에 조건을 그림·도식으로 정리하는 습관이 부족합니다.',
             howToFix: '구하려는 조건에 밑줄을 긋고 간단한 수직선·도식을 먼저 그리게 하세요.',
@@ -1260,6 +1278,7 @@
           weaknessesList.push({
             icon: '🧠',
             score: 69,
+            shortLabel: '당일 3줄 요약 인출',
             title: '배운 내용을 그날 스스로 정리·설명하는 백지복습 부족',
             weakTrait: '눈으로만 다시 읽는 복습에 그쳐 응용문제에서 개념 인출이 늦어집니다.',
             howToFix: '공부 마지막 3분 동안 책을 덮고 핵심 키워드 3가지를 말해보게 하세요.',
@@ -1272,29 +1291,29 @@
     // Step 4: Recommended Future Careers (Concise 1-line aptitude match, zero double quotes)
     const careerMap = {
       math_logic: [
-        { icon: '🤖', group: 'IT·인공지능·공학', jobs: 'AI 알고리즘 · 로봇 소프트웨어 설계자', majors: '인공지능학 · 컴퓨터공학 · 로봇공학', reason: '수리 규칙 발견과 논리 구조화 강점이 가장 빛나는 분야입니다.' },
-        { icon: '🏛️', group: '건축·모빌리티·반도체', jobs: '3D 공간 건축가 & 반도체·모빌리티 엔지니어', majors: '건축학 · 기계항공공학 · 반도체공학', reason: '입체 구조와 동선을 머릿속으로 설계하는 공간 추론력에 부합합니다.' },
-        { icon: '📊', group: '데이터·금융·전략', jobs: '핀테크 · 퀀트 데이터 사이언티스트', majors: '통계학 · 금융공학 · 데이터사이언스', reason: '숫자 속에서 핵심 패턴을 찾아내는 수리 분석 성향과 잘 맞습니다.' }
+        { icon: '🤖', group: 'IT·인공지능·공학', shortJob: 'AI·로봇 설계자', jobs: 'AI 알고리즘 · 로봇 소프트웨어 설계자', majors: '인공지능학 · 컴퓨터공학 · 로봇공학', reason: '수리 규칙 발견과 논리 구조화 강점이 가장 빛나는 분야입니다.' },
+        { icon: '🏛️', group: '건축·모빌리티·반도체', shortJob: '건축·반도체 공학', jobs: '3D 공간 건축가 & 반도체·모빌리티 엔지니어', majors: '건축학 · 기계항공공학 · 반도체공학', reason: '입체 구조와 동선을 머릿속으로 설계하는 공간 추론력에 부합합니다.' },
+        { icon: '📊', group: '데이터·금융·전략', shortJob: '데이터 사이언티스트', jobs: '핀테크 · 퀀트 데이터 사이언티스트', majors: '통계학 · 금융공학 · 데이터사이언스', reason: '숫자 속에서 핵심 패턴을 찾아내는 수리 분석 성향과 잘 맞습니다.' }
       ],
       language_reading: [
-        { icon: '⚖️', group: '법조·공공정책·리더십', jobs: '국제 변호사·법조인 & 공공정책 전략가', majors: '법학 · 정치외교학 · 행정학', reason: '질문과 대화로 핵심 논리를 짚고 설득하는 문답형 두뇌에 어울립니다.' },
-        { icon: '🎬', group: '미디어·콘텐츠·저술', jobs: '글로벌 미디어 프로듀서(PD) & 작가', majors: '미디어커뮤니케이션 · 국어국문 · 문예창작', reason: '이야기 맥락과 감정을 읽고 스토리로 풀어내는 능력이 탁월합니다.' },
-        { icon: '🌏', group: '외교·글로벌 비즈니스', jobs: '외교관 & 글로벌 비즈니스 협상 리더', majors: '국제학부 · 경영학 · 외국어문학', reason: '다양한 관점을 이해하고 말과 글로 소통하는 강점이 발휘됩니다.' }
+        { icon: '⚖️', group: '법조·공공정책·리더십', shortJob: '변호사·정책 전략가', jobs: '국제 변호사·법조인 & 공공정책 전략가', majors: '법학 · 정치외교학 · 행정학', reason: '질문과 대화로 핵심 논리를 짚고 설득하는 문답형 두뇌에 어울립니다.' },
+        { icon: '🎬', group: '미디어·콘텐츠·저술', shortJob: '미디어 PD·작가', jobs: '글로벌 미디어 프로듀서(PD) & 작가', majors: '미디어커뮤니케이션 · 국어국문 · 문예창작', reason: '이야기 맥락과 감정을 읽고 스토리로 풀어내는 능력이 탁월합니다.' },
+        { icon: '🌏', group: '외교·글로벌 비즈니스', shortJob: '외교관·글로벌 리더', jobs: '외교관 & 글로벌 비즈니스 협상 리더', majors: '국제학부 · 경영학 · 외국어문학', reason: '다양한 관점을 이해하고 말과 글로 소통하는 강점이 발휘됩니다.' }
       ],
       sensory_arts: [
-        { icon: '🎨', group: '디지털 프로덕트·UX', jobs: 'UX/UI 프로덕트 디자이너 & 아트 디렉터', majors: '시각·산업디자인 · 디지털미디어 · 융합예술', reason: '풍부한 시각 이미지 감각과 손끝 표현력을 서비스 설계로 꽃피웁니다.' },
-        { icon: '🏛️', group: '공간·미디어아트', jobs: '스마트 공간 디자이너 & 미디어아트 크리에이터', majors: '실내건축학 · 공간디자인 · 문화콘텐츠학', reason: '시각 상상력을 입체 공간과 체험 콘텐츠로 구현하는 감각이 뛰어납니다.' },
-        { icon: '🎬', group: '문화·전시·브랜드 기획', jobs: '공연·전시 총괄 기획자 & 브랜드 디렉터', majors: '예술경영학 · 영상학 · 문화기획학', reason: '공감 능력과 스토리텔링 흡수력으로 대중을 사로잡는 기획에 강합니다.' }
+        { icon: '🎨', group: '디지털 프로덕트·UX', shortJob: 'UX/UI·아트 디렉터', jobs: 'UX/UI 프로덕트 디자이너 & 아트 디렉터', majors: '시각·산업디자인 · 디지털미디어 · 융합예술', reason: '풍부한 시각 이미지 감각과 손끝 표현력을 서비스 설계로 꽃피웁니다.' },
+        { icon: '🏛️', group: '공간·미디어아트', shortJob: '공간·미디어아트', jobs: '스마트 공간 디자이너 & 미디어아트 크리에이터', majors: '실내건축학 · 공간디자인 · 문화콘텐츠학', reason: '시각 상상력을 입체 공간과 체험 콘텐츠로 구현하는 감각이 뛰어납니다.' },
+        { icon: '🎬', group: '문화·전시·브랜드 기획', shortJob: '전시·브랜드 디렉터', jobs: '공연·전시 총괄 기획자 & 브랜드 디렉터', majors: '예술경영학 · 영상학 · 문화기획학', reason: '공감 능력과 스토리텔링 흡수력으로 대중을 사로잡는 기획에 강합니다.' }
       ],
       executive_focus: [
-        { icon: '🚀', group: '테크 리더십·창업', jobs: '글로벌 테크 프로덕트 매니저(PM) & 창업가', majors: '산업공학 · 경영학 · 컴퓨터공학', reason: '목표에 강하게 몰입해 끝까지 완수해 내는 실행력이 돋보입니다.' },
-        { icon: '🩺', group: '임상의학·뇌신경과학', jobs: '전문의(외과·뇌신경과) & 의학 연구자', majors: '의예과 · 약학과 · 바이오메디컬공학', reason: '깊은 집중력과 단계별 프로토콜을 정확히 수행하는 기질에 적합합니다.' },
-        { icon: '💼', group: '경영전략·벤처투자', jobs: '글로벌 경영 전략 컨설턴트 & 벤처 투자자', majors: '경영학 · 경제학 · 기술경영학', reason: '핵심 문제를 빠르게 진단하고 목표 달성 로드맵을 설계하는 데 강합니다.' }
+        { icon: '🚀', group: '테크 리더십·창업', shortJob: '테크 PM·창업가', jobs: '글로벌 테크 프로덕트 매니저(PM) & 창업가', majors: '산업공학 · 경영학 · 컴퓨터공학', reason: '목표에 강하게 몰입해 끝까지 완수해 내는 실행력이 돋보입니다.' },
+        { icon: '🩺', group: '임상의학·뇌신경과학', shortJob: '전문의·의학 연구자', jobs: '전문의(외과·뇌신경과) & 의학 연구자', majors: '의예과 · 약학과 · 바이오메디컬공학', reason: '깊은 집중력과 단계별 프로토콜을 정확히 수행하는 기질에 적합합니다.' },
+        { icon: '💼', group: '경영전략·벤처투자', shortJob: '전략 컨설턴트·VC', jobs: '글로벌 경영 전략 컨설턴트 & 벤처 투자자', majors: '경영학 · 경제학 · 기술경영학', reason: '핵심 문제를 빠르게 진단하고 목표 달성 로드맵을 설계하는 데 강합니다.' }
       ],
       science_nature: [
-        { icon: '🧬', group: '의생명·약학·뇌과학', jobs: '의생명·뇌과학 연구원 및 전문의/약사', majors: '의예과 · 약학과 · 생명과학 · 뇌인지과학', reason: '원인과 기전을 끝까지 파고드는 과학 탐구력에 딱 맞습니다.' },
-        { icon: '🚀', group: '항공우주·로봇·에너지', jobs: '항공우주·친환경 에너지 & 로봇 공학자', majors: '기계항공우주공학 · 신소재공학 · 로봇공학', reason: '자연 법칙과 과학 원리를 직접 실험·조립하며 해결하는 두뇌에 어울립니다.' },
-        { icon: '🤖', group: 'AI·데이터·바이오테크', jobs: 'AI 데이터 사이언티스트 & 바이오테크 리더', majors: '인공지능학 · 컴퓨터공학 · 바이오엔지니어링', reason: '가설을 세우고 데이터를 검증하는 과학적 사고력이 핵심 경쟁력이 됩니다.' }
+        { icon: '🧬', group: '의생명·약학·뇌과학', shortJob: '의생명·전문의·약사', jobs: '의생명·뇌과학 연구원 및 전문의/약사', majors: '의예과 · 약학과 · 생명과학 · 뇌인지과학', reason: '원인과 기전을 끝까지 파고드는 과학 탐구력에 딱 맞습니다.' },
+        { icon: '🚀', group: '항공우주·로봇·에너지', shortJob: '항공우주·로봇 공학', jobs: '항공우주·친환경 에너지 & 로봇 공학자', majors: '기계항공우주공학 · 신소재공학 · 로봇공학', reason: '자연 법칙과 과학 원리를 직접 실험·조립하며 해결하는 두뇌에 어울립니다.' },
+        { icon: '🤖', group: 'AI·데이터·바이오테크', shortJob: 'AI·바이오테크 리더', jobs: 'AI 데이터 사이언티스트 & 바이오테크 리더', majors: '인공지능학 · 컴퓨터공학 · 바이오엔지니어링', reason: '가설을 세우고 데이터를 검증하는 과학적 사고력이 핵심 경쟁력이 됩니다.' }
       ]
     };
     const recommendedCareers = careerMap[cogAxisPrimary] || careerMap.science_nature;
@@ -1483,23 +1502,23 @@
                   <circle cx="355" cy="66" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="495" cy="36" r="8.5" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
 
-                  <rect x="18" y="132" width="98" height="28" rx="8" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.2" />
-                  <text x="67" y="150" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
+                  <rect x="14" y="130" width="98" height="26" rx="8" fill="rgba(15,23,42,0.92)" stroke="#38BDF8" stroke-width="1.4" />
+                  <text x="63" y="147" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
 
-                  <rect x="155" y="92" width="102" height="24" rx="7" fill="rgba(16,185,129,0.2)" stroke="#34D399" stroke-width="1" />
-                  <text x="206" y="108" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">6개월 목표 ${targetHeight6m}cm</text>
+                  <rect x="150" y="88" width="110" height="24" rx="7" fill="rgba(15,23,42,0.92)" stroke="#34D399" stroke-width="1.2" />
+                  <text x="205" y="104" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">6개월 목표 ${targetHeight6m}cm</text>
 
                   <line x1="495" y1="45" x2="495" y2="114" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3" />
-                  <rect x="382" y="42" width="104" height="24" rx="12" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.3" />
-                  <text x="434" y="58" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 숨은키</text>
+                  <rect x="372" y="24" width="108" height="24" rx="12" fill="rgba(15,23,42,0.92)" stroke="#10B981" stroke-width="1.3" />
+                  <text x="426" y="40" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 숨은키</text>
 
-                  <rect x="510" y="20" width="122" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.6" />
-                  <text x="571" y="39" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">잠재키 ${optimizedHeight}cm</text>
+                  <rect x="510" y="20" width="122" height="28" rx="8" fill="rgba(15,23,42,0.94)" stroke="#10B981" stroke-width="1.6" />
+                  <text x="571" y="38" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">잠재키 ${optimizedHeight}cm</text>
 
-                  <rect x="510" y="63" width="122" height="28" rx="8" fill="rgba(59,130,246,0.24)" stroke="#60A5FA" stroke-width="1.3" />
+                  <rect x="510" y="63" width="122" height="28" rx="8" fill="rgba(15,23,42,0.94)" stroke="#60A5FA" stroke-width="1.3" />
                   <text x="571" y="81" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">유전키 ${mphVal}cm</text>
 
-                  <rect x="510" y="108" width="122" height="28" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.3" />
+                  <rect x="510" y="108" width="122" height="28" rx="8" fill="rgba(15,23,42,0.94)" stroke="#FB7185" stroke-width="1.3" />
                   <text x="571" y="126" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">방치시 ${unmanagedHeight}cm</text>
                 </svg>
 
@@ -1537,15 +1556,15 @@
                   <circle cx="305" cy="72" r="6" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="305" cy="112" r="5.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="1.8" />
 
-                  <rect x="8" y="106" width="112" height="28" rx="8" fill="rgba(56,189,248,0.25)" stroke="#38BDF8" stroke-width="1.4" />
-                  <text x="64" y="125" fill="#FFFFFF" font-size="13.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
+                  <rect x="8" y="102" width="106" height="26" rx="8" fill="rgba(15,23,42,0.92)" stroke="#38BDF8" stroke-width="1.4" />
+                  <text x="61" y="119" fill="#FFFFFF" font-size="12.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
 
-                  <rect x="104" y="42" width="126" height="26" rx="8" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.4" />
-                  <text x="167" y="59" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 더 성장!</text>
+                  <rect x="114" y="34" width="128" height="26" rx="8" fill="rgba(15,23,42,0.92)" stroke="#10B981" stroke-width="1.4" />
+                  <text x="178" y="51" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 더 성장!</text>
 
-                  <text x="38" y="185" fill="#93C5FD" font-size="13" font-weight="900" text-anchor="start">현재(만 ${ageYears}세)</text>
-                  <text x="170" y="185" fill="#CBD5E1" font-size="12.5" font-weight="800" text-anchor="middle">6개월 뒤 ${targetHeight6m}cm</text>
-                  <text x="320" y="185" fill="#6EE7B7" font-size="13" font-weight="900" text-anchor="end">성인키(만 ${windowInfo.closureAge}세)</text>
+                  <text x="12" y="186" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="start">현재(만${ageYears}세)</text>
+                  <text x="168" y="186" fill="#CBD5E1" font-size="11.5" font-weight="800" text-anchor="middle">6개월 뒤 ${targetHeight6m}cm</text>
+                  <text x="328" y="186" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="end">성인키(만${windowInfo.closureAge}세)</text>
                 </svg>
 
                 <div style="display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed rgba(255,255,255,0.16);">
@@ -2167,17 +2186,17 @@
                     <circle cx="355" cy="62" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
                     <circle cx="495" cy="34" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
 
-                    <rect x="18" y="104" width="104" height="26" rx="7" fill="rgba(168,85,247,0.25)" stroke="#C084FC" stroke-width="1.2" />
-                    <text x="70" y="121" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
-                    <rect x="152" y="72" width="110" height="24" rx="7" fill="rgba(56,189,248,0.2)" stroke="#38BDF8" stroke-width="1" />
-                    <text x="207" y="88" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +10분↑</text>
-                    <rect x="300" y="30" width="114" height="24" rx="7" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1" />
-                    <text x="357" y="46" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">기억보존 ${lqData.trajectory.coached.retentionRate}%</text>
-                    <rect x="508" y="18" width="124" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.5" />
-                    <text x="570" y="37" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">코칭 LQ ${lqData.trajectory.coached.lqScore}점</text>
-                    <rect x="508" y="83" width="124" height="26" rx="8" fill="rgba(168,85,247,0.22)" stroke="#C084FC" stroke-width="1.2" />
+                    <rect x="14" y="102" width="104" height="26" rx="7" fill="rgba(15,23,42,0.92)" stroke="#C084FC" stroke-width="1.3" />
+                    <text x="66" y="119" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
+                    <rect x="148" y="68" width="110" height="24" rx="7" fill="rgba(15,23,42,0.92)" stroke="#38BDF8" stroke-width="1.2" />
+                    <text x="203" y="84" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +10분↑</text>
+                    <rect x="294" y="24" width="116" height="24" rx="7" fill="rgba(15,23,42,0.92)" stroke="#34D399" stroke-width="1.2" />
+                    <text x="352" y="40" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">기억보존 ${lqData.trajectory.coached.retentionRate}%</text>
+                    <rect x="508" y="18" width="124" height="28" rx="8" fill="rgba(15,23,42,0.94)" stroke="#10B981" stroke-width="1.5" />
+                    <text x="570" y="36" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">코칭 LQ ${lqData.trajectory.coached.lqScore}점</text>
+                    <rect x="508" y="83" width="124" height="26" rx="8" fill="rgba(15,23,42,0.94)" stroke="#C084FC" stroke-width="1.2" />
                     <text x="570" y="100" fill="#E9D5FF" font-size="11" font-weight="900" text-anchor="middle">또래평균 LQ 80점</text>
-                    <rect x="508" y="139" width="124" height="26" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.2" />
+                    <rect x="508" y="139" width="124" height="26" rx="8" fill="rgba(15,23,42,0.94)" stroke="#FB7185" stroke-width="1.2" />
                     <text x="570" y="156" fill="#FDA4AF" font-size="11" font-weight="900" text-anchor="middle">방치시 LQ ${lqData.trajectory.unmanaged.lqScore}점</text>
                   </svg>
                 </div>
@@ -2198,15 +2217,15 @@
                     <circle cx="168" cy="72" r="5.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
                     <circle cx="305" cy="26" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="2.5" />
 
-                    <rect x="8" y="88" width="124" height="28" rx="8" fill="rgba(168,85,247,0.28)" stroke="#C084FC" stroke-width="1.4" />
-                    <text x="70" y="107" fill="#FFFFFF" font-size="13.5" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
+                    <rect x="8" y="84" width="118" height="26" rx="8" fill="rgba(15,23,42,0.92)" stroke="#C084FC" stroke-width="1.4" />
+                    <text x="67" y="101" fill="#FFFFFF" font-size="12.5" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
 
-                    <rect x="112" y="32" width="138" height="26" rx="8" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.4" />
-                    <text x="181" y="49" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">▲ +${lqData.trajectory.coached.gainLq}점 · 기억 ${lqData.trajectory.coached.retentionRate}%</text>
+                    <rect x="118" y="24" width="142" height="26" rx="8" fill="rgba(15,23,42,0.92)" stroke="#10B981" stroke-width="1.4" />
+                    <text x="189" y="41" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">▲ +${lqData.trajectory.coached.gainLq}점 · 기억 ${lqData.trajectory.coached.retentionRate}%</text>
 
-                    <text x="32" y="172" fill="#DDD6FE" font-size="13" font-weight="900" text-anchor="start">현재 진단일</text>
-                    <text x="170" y="172" fill="#CBD5E1" font-size="12.5" font-weight="800" text-anchor="middle">12주 회로강화</text>
-                    <text x="320" y="172" fill="#6EE7B7" font-size="13" font-weight="900" text-anchor="end">6개월 목표</text>
+                    <text x="12" y="172" fill="#DDD6FE" font-size="12" font-weight="900" text-anchor="start">현재 진단일</text>
+                    <text x="170" y="172" fill="#CBD5E1" font-size="12" font-weight="800" text-anchor="middle">12주 회로강화</text>
+                    <text x="328" y="172" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="end">6개월 목표</text>
                   </svg>
 
                   <div style="display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed rgba(255,255,255,0.16);">
@@ -2250,7 +2269,7 @@
               <svg id="learning-synapse-bar-svg" viewBox="0 0 600 54" style="width: 100%; height: auto; display: block;">
                 <rect x="6" y="8" width="184" height="38" rx="9" fill="rgba(168,85,247,0.2)" stroke="#C084FC" stroke-width="1.4" />
                 <text x="98" y="24" fill="#E9D5FF" font-size="10.5" font-weight="900" text-anchor="middle">① 흡수 채널</text>
-                <text x="98" y="40" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
+                <text x="98" y="40" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
                 <path d="M 194 27 L 206 27" stroke="#38BDF8" stroke-width="2.5" />
                 <rect x="208" y="8" width="184" height="38" rx="9" fill="rgba(16,185,129,0.2)" stroke="#34D399" stroke-width="1.4" />
                 <text x="300" y="24" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">② 핵심 강점 회로</text>
@@ -2301,33 +2320,34 @@
                   <span style="color: #94A3B8;">--- 또래 평균(78점)</span>
                 </div>
               </div>
-              <svg id="learning-step2-strength-chart-svg" viewBox="0 0 540 175" style="width: 100%; height: auto; display: block;">
+              <svg id="learning-step2-strength-chart-svg" viewBox="0 0 560 192" style="width: 100%; height: auto; display: block;">
                 <defs>
                   <linearGradient id="strBarGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#34D399" />
                     <stop offset="100%" stop-color="#059669" />
                   </linearGradient>
                 </defs>
-                <!-- Baseline & Peer Average Dashed Line -->
-                <line x1="24" y1="136" x2="516" y2="136" stroke="rgba(148,163,184,0.4)" stroke-width="1.8" />
-                <line x1="24" y1="58" x2="516" y2="58" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-dasharray="5,4" />
-                <rect x="412" y="38" width="102" height="20" rx="6" fill="rgba(15,23,42,0.92)" stroke="rgba(255,255,255,0.4)" />
-                <text x="463" y="52" fill="#E2E8F0" font-size="11" font-weight="900" text-anchor="middle">또래 평균 78점</text>
+                <!-- Baseline & Peer Average Dashed Line (Non-overlapping top-left reference badge) -->
+                <line x1="20" y1="154" x2="540" y2="154" stroke="rgba(148,163,184,0.45)" stroke-width="1.8" />
+                <line x1="20" y1="78" x2="540" y2="78" stroke="rgba(255,255,255,0.45)" stroke-width="1.6" stroke-dasharray="5,4" />
+                <rect x="16" y="6" width="106" height="20" rx="6" fill="rgba(15,23,42,0.94)" stroke="rgba(148,163,184,0.5)" />
+                <text x="69" y="20" fill="#CBD5E1" font-size="10.5" font-weight="800" text-anchor="middle">┄ 기준: 평균 78점</text>
 
                 ${strengthsList.map((s, idx) => {
-                  const colX = 95 + idx * 170;
-                  const barH = Math.max(40, Math.min(106, Math.round((s.score - 45) * 1.92)));
-                  const barY = 136 - barH;
-                  const shortTitle = (s.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
+                  const colX = 105 + idx * 175;
+                  const barH = Math.max(42, Math.min(104, Math.round((s.score - 45) * 1.88)));
+                  const barY = 154 - barH;
+                  const pillY = Math.max(28, barY - 24);
+                  const shortTitle = s.shortLabel || (s.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
                   return `
                     <!-- Peer Avg Reference Bar -->
-                    <rect x="${colX - 38}" y="58" width="34" height="78" rx="6" fill="rgba(148,163,184,0.24)" stroke="rgba(148,163,184,0.5)" />
-                    <text x="${colX - 21}" y="76" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">78</text>
+                    <rect x="${colX - 42}" y="78" width="34" height="76" rx="6" fill="rgba(148,163,184,0.22)" stroke="rgba(148,163,184,0.48)" />
+                    <text x="${colX - 25}" y="96" fill="#CBD5E1" font-size="10.5" font-weight="800" text-anchor="middle">78</text>
                     <!-- Child Strength Bar -->
-                    <rect x="${colX + 2}" y="${barY}" width="46" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#A7F3D0" stroke-width="1.8" />
-                    <rect x="${colX - 22}" y="${Math.max(4, barY - 24)}" width="94" height="20" rx="10" fill="rgba(16,185,129,0.32)" stroke="#34D399" stroke-width="1.2" />
-                    <text x="${colX + 25}" y="${Math.max(18, barY - 10)}" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78})</text>
-                    <text x="${colX + 4}" y="158" fill="#FFFFFF" font-size="12.5" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
+                    <rect x="${colX}" y="${barY}" width="44" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#A7F3D0" stroke-width="1.8" />
+                    <rect x="${colX - 25}" y="${pillY}" width="94" height="20" rx="10" fill="rgba(15,23,42,0.92)" stroke="#34D399" stroke-width="1.3" />
+                    <text x="${colX + 22}" y="${pillY + 14}" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78})</text>
+                    <text x="${colX + 2}" y="176" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
                   `;
                 }).join('')}
               </svg>
@@ -2370,7 +2390,7 @@
                   <span style="color: #34D399;">■ 6개월 코칭 목표 (+16점↑)</span>
                 </div>
               </div>
-              <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 540 175" style="width: 100%; height: auto; display: block;">
+              <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 560 192" style="width: 100%; height: auto; display: block;">
                 <defs>
                   <linearGradient id="weakBeforeGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#FB7185" />
@@ -2381,26 +2401,29 @@
                     <stop offset="100%" stop-color="#059669" />
                   </linearGradient>
                 </defs>
-                <line x1="24" y1="136" x2="516" y2="136" stroke="rgba(148,163,184,0.4)" stroke-width="1.8" />
+                <line x1="20" y1="154" x2="540" y2="154" stroke="rgba(148,163,184,0.45)" stroke-width="1.8" />
                 ${weaknessesList.map((w, idx) => {
-                  const colX = 95 + idx * 170;
+                  const colX = 100 + idx * 180;
                   const targetScore = Math.min(96, w.score + 16);
-                  const curH = Math.max(34, Math.min(84, Math.round((w.score - 40) * 1.7)));
-                  const tarH = Math.max(58, Math.min(108, Math.round((targetScore - 40) * 1.7)));
-                  const curY = 136 - curH;
-                  const tarY = 136 - tarH;
-                  const shortTitle = (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
+                  const curH = Math.max(36, Math.min(82, Math.round((w.score - 40) * 1.65)));
+                  const tarH = Math.max(62, Math.min(108, Math.round((targetScore - 40) * 1.65)));
+                  const curY = 154 - curH;
+                  const tarY = 154 - tarH;
+                  const curPillY = Math.max(24, curY - 22);
+                  const tarPillY = Math.max(8, tarY - 23);
+                  const shortTitle = w.shortLabel || (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
                   return `
-                    <!-- Current Score Bar -->
-                    <rect x="${colX - 40}" y="${curY}" width="36" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#FDA4AF" stroke-width="1.4" />
-                    <text x="${colX - 22}" y="${Math.max(18, curY - 6)}" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">${w.score}점</text>
-                    <!-- Jump Arrow -->
-                    <path d="M ${colX - 8} ${curY - 10} Q ${colX + 6} ${tarY - 18} ${colX + 20} ${tarY - 8}" fill="none" stroke="#FBBF24" stroke-width="2.4" />
-                    <!-- Coached Target Bar -->
-                    <rect x="${colX + 4}" y="${tarY}" width="44" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#A7F3D0" stroke-width="1.8" />
-                    <rect x="${colX - 6}" y="${Math.max(4, tarY - 24)}" width="74" height="19" rx="9" fill="rgba(16,185,129,0.32)" stroke="#34D399" stroke-width="1.2" />
-                    <text x="${colX + 31}" y="${Math.max(17, tarY - 10)}" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
-                    <text x="${colX + 2}" y="158" fill="#FFFFFF" font-size="12.5" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
+                    <!-- Current Score Bar (Left of pair) -->
+                    <rect x="${colX - 46}" y="${curY}" width="34" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#FDA4AF" stroke-width="1.4" />
+                    <rect x="${colX - 53}" y="${curPillY}" width="48" height="18" rx="6" fill="rgba(15,23,42,0.94)" stroke="#FB7185" stroke-width="1" />
+                    <text x="${colX - 29}" y="${curPillY + 13}" fill="#FDA4AF" font-size="10.5" font-weight="900" text-anchor="middle">${w.score}점</text>
+                    <!-- Non-overlapping Jump Arrow Between Bars -->
+                    <text x="${colX - 2}" y="${Math.round((curY + tarY) / 2 + 12)}" fill="#FBBF24" font-size="13" font-weight="900" text-anchor="middle">↗</text>
+                    <!-- Coached Target Bar (Right of pair) -->
+                    <rect x="${colX + 10}" y="${tarY}" width="38" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#A7F3D0" stroke-width="1.8" />
+                    <rect x="${colX + 2}" y="${tarPillY}" width="64" height="19" rx="8" fill="rgba(15,23,42,0.94)" stroke="#34D399" stroke-width="1.3" />
+                    <text x="${colX + 34}" y="${tarPillY + 13}" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
+                    <text x="${colX + 2}" y="176" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
                   `;
                 }).join('')}
               </svg>
@@ -2442,28 +2465,30 @@
 
             <!-- Schematic SVG Brain-to-Career Aptitude Mapping Diagram -->
             <div style="background: rgba(9, 14, 28, 0.94); border: 1.5px solid rgba(96, 165, 250, 0.5); border-radius: 16px; padding: 0.8rem 0.9rem; margin-bottom: 0.65rem;">
-              <svg id="learning-step4-career-diagram-svg" viewBox="0 0 540 148" style="width: 100%; height: auto; display: block;">
+              <svg id="learning-step4-career-diagram-svg" viewBox="0 0 560 148" style="width: 100%; height: auto; display: block;">
                 <!-- Left Node: Child's Core Brain Circuit -->
-                <rect x="8" y="24" width="164" height="98" rx="14" fill="rgba(37, 99, 235, 0.26)" stroke="#60A5FA" stroke-width="2" />
-                <text x="90" y="50" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">🧠 핵심 두뇌 강점 회로</text>
-                <text x="90" y="75" fill="#FFFFFF" font-size="13" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
-                <text x="90" y="100" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">1위: ${(strengthsList[0].title || '').slice(0, 10)}</text>
+                <rect x="8" y="24" width="168" height="98" rx="14" fill="rgba(37, 99, 235, 0.26)" stroke="#60A5FA" stroke-width="2" />
+                <text x="92" y="49" fill="#93C5FD" font-size="11" font-weight="900" text-anchor="middle">🧠 핵심 두뇌 강점 회로</text>
+                <text x="92" y="74" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
+                <text x="92" y="99" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">1위: ${strengthsList[0].shortLabel || (strengthsList[0].title || '').slice(0, 10)}</text>
 
                 <!-- Connecting Flow Lines -->
-                <path d="M 172 73 C 204 73, 208 28, 236 28" fill="none" stroke="#38BDF8" stroke-width="2.8" />
-                <path d="M 172 73 L 236 73" fill="none" stroke="#60A5FA" stroke-width="2.8" />
-                <path d="M 172 73 C 204 73, 208 118, 236 118" fill="none" stroke="#818CF8" stroke-width="2.8" />
+                <path d="M 176 73 C 206 73, 210 28, 238 28" fill="none" stroke="#38BDF8" stroke-width="2.8" />
+                <path d="M 176 73 L 238 73" fill="none" stroke="#60A5FA" stroke-width="2.8" />
+                <path d="M 176 73 C 206 73, 210 118, 238 118" fill="none" stroke="#818CF8" stroke-width="2.8" />
 
                 <!-- Right 3 Career Target Nodes -->
                 ${recommendedCareers.map((c, idx) => {
                   const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
                   const boxY = 9 + idx * 45;
                   const strokeCol = idx === 0 ? '#38BDF8' : idx === 1 ? '#60A5FA' : '#A78BFA';
+                  const shortGroup = (c.group || '').replace(/\s*\(.*?\)/g, '');
+                  const shortJob = c.shortJob || ((c.jobs || '').split('·')[0] || '').trim().slice(0, 10);
                   return `
-                    <rect x="236" y="${boxY}" width="296" height="38" rx="10" fill="rgba(15, 23, 42, 0.96)" stroke="${strokeCol}" stroke-width="1.8" />
-                    <text x="250" y="${boxY + 24}" fill="#FDE68A" font-size="12" font-weight="900">${c.icon} ${(c.group || '').slice(0, 12)} · ${(c.jobs || '').split('·')[0]}</text>
-                    <rect x="454" y="${boxY + 7}" width="70" height="24" rx="7" fill="rgba(56, 189, 248, 0.24)" stroke="${strokeCol}" />
-                    <text x="489" y="${boxY + 23}" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${matchPct}% 매칭</text>
+                    <rect x="238" y="${boxY}" width="314" height="38" rx="10" fill="rgba(15, 23, 42, 0.96)" stroke="${strokeCol}" stroke-width="1.8" />
+                    <text x="250" y="${boxY + 24}" fill="#FDE68A" font-size="11.5" font-weight="900">${c.icon} ${shortGroup} · ${shortJob}</text>
+                    <rect x="472" y="${boxY + 7}" width="72" height="24" rx="7" fill="rgba(56, 189, 248, 0.24)" stroke="${strokeCol}" />
+                    <text x="508" y="${boxY + 23}" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">${matchPct}% 매칭</text>
                   `;
                 }).join('')}
               </svg>
@@ -2639,7 +2664,7 @@
               <svg id="learning-step6-remedy-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
                 <rect x="6" y="8" width="160" height="96" rx="12" fill="rgba(244,63,94,0.2)" stroke="#FB7185" stroke-width="1.8" />
                 <text x="86" y="34" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">⚠️ 현재 학습 병목</text>
-                <text x="86" y="58" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${(weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</text>
+                <text x="86" y="58" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${weaknessesList[0].shortLabel || (weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</text>
                 <text x="86" y="82" fill="#FECDD3" font-size="10.5" font-weight="800" text-anchor="middle">작업기억 피로 · 산만</text>
 
                 <path d="M 168 56 L 184 56" stroke="#FBBF24" stroke-width="3" />
@@ -2757,21 +2782,21 @@
 
             <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem;">
               <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(167, 139, 250, 0.45); border-left: 4px solid #A855F7; border-radius: 11px; padding: 0.6rem 0.75rem;">
-                <div style="font-size: 0.73rem; font-weight: 900; color: #C084FC; margin-bottom: 0.15rem;">🧩 맞춤 교구·도구 TOP 2</div>
-                <div style="font-size: 0.84rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                  ${quickTools.length > 0 ? quickTools.slice(0, 2).map(t => t.name).join(' · ') : '무소음 시각 타이머 · 눈높이 원목 독서대'}
+                <div style="font-size: 0.74rem; font-weight: 900; color: #C084FC; margin-bottom: 0.2rem;">🧩 맞춤 교구·도구 TOP 3</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: #FFFFFF; line-height: 1.4;">
+                  ${quickTools.length > 0 ? quickTools.slice(0, 3).map((t, i) => `${i + 1}. ${t.name}`).join('<br/>') : '1. 무소음 시각 타이머<br/>2. 눈높이 원목 독서대<br/>3. 코넬 백지복습 노트'}
                 </div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(56, 189, 248, 0.45); border-left: 4px solid #38BDF8; border-radius: 11px; padding: 0.6rem 0.75rem;">
-                <div style="font-size: 0.73rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.15rem;">📚 맞춤 필독서·워크북 TOP 2</div>
-                <div style="font-size: 0.84rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                  ${quickBooks.length > 0 ? quickBooks.slice(0, 2).map(b => b.name).join(' · ') : '연령별 맞춤 도서 · 사고력 워크북'}
+                <div style="font-size: 0.74rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.2rem;">📚 맞춤 필독서·워크북 TOP 3</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: #FFFFFF; line-height: 1.4;">
+                  ${quickBooks.length > 0 ? quickBooks.slice(0, 3).map((b, i) => `${i + 1}. ${b.name}`).join('<br/>') : '1. 문해력 독해 워크북<br/>2. 창의사고력 도형 수학<br/>3. 교과 어휘 마인드맵'}
                 </div>
               </div>
               <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(52, 211, 153, 0.45); border-left: 4px solid #10B981; border-radius: 11px; padding: 0.6rem 0.75rem;">
-                <div style="font-size: 0.73rem; font-weight: 900; color: #34D399; margin-bottom: 0.15rem;">🏛️ [${profile.region || '수도권'}] 주말 체험</div>
-                <div style="font-size: 0.84rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
-                  ${quickTours.length > 0 ? quickTours.slice(0, 1).map(t => t.name).join(' · ') : '국립과천과학관 · 박물관 투어'}
+                <div style="font-size: 0.74rem; font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">🏛️ [${profile.region || '수도권'}] 주말 체험 TOP 3</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: #FFFFFF; line-height: 1.4;">
+                  ${quickTours.length > 0 ? quickTours.slice(0, 3).map((t, i) => `${i + 1}. ${t.name}`).join('<br/>') : '1. 국립과학관 체험<br/>2. 역사박물관 도슨트<br/>3. 생태수목원 탐방'}
                 </div>
               </div>
             </div>
@@ -2939,16 +2964,16 @@
 
             <div id="vault-save-feedback" style="display: none; margin-bottom: 0.7rem; padding: 0.5rem 0.8rem; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 10px; font-size: 0.82rem; font-weight: 800; color: #6EE7B7;"></div>
 
-            <div style="overflow-x: auto; background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem;">
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; color: #E2E8F0; text-align: left;">
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem;">
+              <table style="width: 100%; min-width: 520px; white-space: nowrap; border-collapse: collapse; font-size: 0.82rem; color: #E2E8F0; text-align: left;">
                 <thead>
                   <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.16); color: #93C5FD;">
-                    <th style="padding: 0.4rem 0.5rem;">진단 일자</th>
-                    <th style="padding: 0.4rem 0.5rem;">아이 이름</th>
-                    <th style="padding: 0.4rem 0.5rem;">측정 키 / 체중</th>
-                    <th style="padding: 0.4rem 0.5rem;">백분위</th>
-                    <th style="padding: 0.4rem 0.5rem;">맞춤 잠재키</th>
-                    <th style="padding: 0.4rem 0.5rem;">성장폭</th>
+                    <th style="padding: 0.45rem 0.55rem;">진단 일자</th>
+                    <th style="padding: 0.45rem 0.55rem;">아이 이름</th>
+                    <th style="padding: 0.45rem 0.55rem;">측정 키 / 체중</th>
+                    <th style="padding: 0.45rem 0.55rem;">백분위</th>
+                    <th style="padding: 0.45rem 0.55rem;">맞춤 잠재키</th>
+                    <th style="padding: 0.45rem 0.55rem;">성장폭</th>
                   </tr>
                 </thead>
                 <tbody id="vault-history-tbody">
@@ -3015,16 +3040,16 @@
 
             <div id="vault-learning-save-feedback" style="display: none; margin-bottom: 0.7rem; padding: 0.5rem 0.8rem; background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(192, 132, 252, 0.5); border-radius: 10px; font-size: 0.82rem; font-weight: 800; color: #F3E8FF;"></div>
 
-            <div style="overflow-x: auto; background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem;">
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; color: #E2E8F0; text-align: left;">
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; background: rgba(15, 23, 42, 0.82); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem;">
+              <table style="width: 100%; min-width: 520px; white-space: nowrap; border-collapse: collapse; font-size: 0.82rem; color: #E2E8F0; text-align: left;">
                 <thead>
                   <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.16); color: #DDD6FE;">
-                    <th style="padding: 0.4rem 0.5rem;">진단 일자</th>
-                    <th style="padding: 0.4rem 0.5rem;">아이 이름</th>
-                    <th style="padding: 0.4rem 0.5rem;">종합 학습지수 (LQ)</th>
-                    <th style="padding: 0.4rem 0.5rem;">핵심 학습 성향</th>
-                    <th style="padding: 0.4rem 0.5rem;">6개월 목표 LQ</th>
-                    <th style="padding: 0.4rem 0.5rem;">향상폭</th>
+                    <th style="padding: 0.45rem 0.55rem;">진단 일자</th>
+                    <th style="padding: 0.45rem 0.55rem;">아이 이름</th>
+                    <th style="padding: 0.45rem 0.55rem;">종합 학습지수 (LQ)</th>
+                    <th style="padding: 0.45rem 0.55rem;">핵심 학습 성향</th>
+                    <th style="padding: 0.45rem 0.55rem;">6개월 목표 LQ</th>
+                    <th style="padding: 0.45rem 0.55rem;">향상폭</th>
                   </tr>
                 </thead>
                 <tbody id="vault-learning-history-tbody">

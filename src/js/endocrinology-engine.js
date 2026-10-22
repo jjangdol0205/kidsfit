@@ -170,7 +170,7 @@
   function renderHormoneSvg(bedtimeMin, lastMealMin, options = {}) {
     const width = 600;
     const height = 260;
-    const padding = { top: 30, right: 35, bottom: 40, left: 45 };
+    const padding = { top: 34, right: 35, bottom: 40, left: 50 };
 
     const sim = simulateHormoneCurve(bedtimeMin, lastMealMin);
     const startMin = 960;  // 16:00
@@ -197,12 +197,14 @@
     const swsX2 = scaleX(1560);
     const swsWidth = swsX2 - swsX1;
 
-    // Marker X coordinates for current Bedtime & Dinner
+    // Marker X coordinates for current Bedtime & Dinner (with safe clamped label centers)
     const bedX = scaleX(Number(bedtimeMin) || 1320);
     const mealX = scaleX(Number(lastMealMin) || 1140);
+    const mealLabelX = Math.max(padding.left + 52, Math.min(width - padding.right - 52, mealX));
+    const bedLabelX = Math.max(padding.left + 52, Math.min(width - padding.right - 52, bedX));
 
     return `
-      <svg viewBox="0 0 ${width} ${height}" class="hormone-curve-svg" style="width: 100%; height: auto; max-height: 280px;" aria-label="24시간 성장호르몬 분비 및 억제 곡선 차트">
+      <svg viewBox="0 0 ${width} ${height}" class="hormone-curve-svg" style="width: 100%; height: auto; max-height: 290px;" aria-label="24시간 성장호르몬 분비 및 억제 곡선 차트">
         <defs>
           <linearGradient id="optHormoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#10B981" stop-opacity="0.35" />
@@ -220,7 +222,7 @@
 
         <!-- SWS Growth Hormone Gold Window Highlight (22:00 ~ 02:00) -->
         <rect x="${swsX1.toFixed(1)}" y="${padding.top}" width="${swsWidth.toFixed(1)}" height="${height - padding.top - padding.bottom}" fill="url(#swsWindowGrad)" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3,3" opacity="0.85" rx="4" />
-        <text x="${(swsX1 + swsWidth / 2).toFixed(1)}" y="${padding.top - 8}" font-size="9.5" font-weight="800" fill="#38BDF8" text-anchor="middle">
+        <text x="${(swsX1 + swsWidth / 2).toFixed(1)}" y="${padding.top - 10}" font-size="11" font-weight="900" fill="#38BDF8" text-anchor="middle">
           ★ SWS 성장호르몬 골든 피크 (22:00 ~ 02:00)
         </text>
 
@@ -235,47 +237,49 @@
 
         <!-- Curves -->
         <!-- 1. Optimal Pulsatile GH (Bio Emerald #10B981) -->
-        <path d="${optPathD}" fill="none" stroke="#10B981" stroke-width="2.6" stroke-linecap="round" />
+        <path d="${optPathD}" fill="none" stroke="#10B981" stroke-width="2.8" stroke-linecap="round" />
 
         <!-- 2. Suppressed GH Curve (Coral / Rose #F43F5E) -->
         ${sim.ghLossPercent > 0 ? `
-          <path d="${supPathD}" fill="none" stroke="#F43F5E" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="5,3" />
+          <path d="${supPathD}" fill="none" stroke="#F43F5E" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="5,3" />
         ` : ''}
 
-        <!-- Marker: Last Meal Line -->
-        <line x1="${mealX.toFixed(1)}" y1="${padding.top}" x2="${mealX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="2,2" />
-        <text x="${mealX.toFixed(1)}" y="${padding.top + 12}" font-size="9" font-weight="700" fill="#F59E0B" text-anchor="middle">
+        <!-- Marker: Last Meal Line & Pill Badge (Row 1) -->
+        <line x1="${mealX.toFixed(1)}" y1="${padding.top}" x2="${mealX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="3,3" />
+        <rect x="${(mealLabelX - 48).toFixed(1)}" y="${padding.top + 6}" width="96" height="20" rx="6" fill="rgba(15, 23, 42, 0.92)" stroke="#F59E0B" stroke-width="1.2" />
+        <text x="${mealLabelX.toFixed(1)}" y="${padding.top + 20}" font-size="10.5" font-weight="800" fill="#FBBF24" text-anchor="middle">
           🍽️ 식사 ${sim.mealStr}
         </text>
 
-        <!-- Marker: Bedtime Line -->
-        <line x1="${bedX.toFixed(1)}" y1="${padding.top}" x2="${bedX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#A855F7" stroke-width="1.8" />
-        <text x="${bedX.toFixed(1)}" y="${padding.top + 24}" font-size="9" font-weight="700" fill="#C084FC" text-anchor="middle">
+        <!-- Marker: Bedtime Line & Pill Badge (Row 2 - never overlaps Meal badge) -->
+        <line x1="${bedX.toFixed(1)}" y1="${padding.top}" x2="${bedX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#A855F7" stroke-width="2" />
+        <rect x="${(bedLabelX - 48).toFixed(1)}" y="${padding.top + 32}" width="96" height="20" rx="6" fill="rgba(15, 23, 42, 0.92)" stroke="#C084FC" stroke-width="1.2" />
+        <text x="${bedLabelX.toFixed(1)}" y="${padding.top + 46}" font-size="10.5" font-weight="800" fill="#E9D5FF" text-anchor="middle">
           🛏️ 취침 ${sim.bedtimeStr}
         </text>
 
         <!-- Axes -->
-        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.2" />
-        <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.2" />
+        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.4" />
+        <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.4" />
 
         <!-- Time Axis Ticks (16:00 to 12:00) -->
-        <text x="${scaleX(960)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">16:00</text>
-        <text x="${scaleX(1140)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">19:00</text>
-        <text x="${scaleX(1320)}" y="${height - 14}" font-size="9.5" font-weight="700" fill="#38BDF8" text-anchor="middle">22:00</text>
-        <text x="${scaleX(1500)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">01:00</text>
-        <text x="${scaleX(1680)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">04:00</text>
-        <text x="${scaleX(1860)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">07:00</text>
-        <text x="${scaleX(2040)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">10:00</text>
-        <text x="${scaleX(2160)}" y="${height - 14}" font-size="9" fill="#94A3B8" text-anchor="middle">12:00</text>
+        <text x="${scaleX(960)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">16:00</text>
+        <text x="${scaleX(1140)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">19:00</text>
+        <text x="${scaleX(1320)}" y="${height - 14}" font-size="11" font-weight="900" fill="#38BDF8" text-anchor="middle">22:00</text>
+        <text x="${scaleX(1500)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">01:00</text>
+        <text x="${scaleX(1680)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">04:00</text>
+        <text x="${scaleX(1860)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">07:00</text>
+        <text x="${scaleX(2040)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">10:00</text>
+        <text x="${scaleX(2160)}" y="${height - 14}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="middle">12:00</text>
 
         <!-- Y Axis Ticks (GH ng/mL) -->
-        <text x="${padding.left - 6}" y="${scaleY(0) + 3}" font-size="8.5" fill="#64748B" text-anchor="end">0</text>
-        <text x="${padding.left - 6}" y="${scaleY(10) + 3}" font-size="8.5" fill="#64748B" text-anchor="end">10</text>
-        <text x="${padding.left - 6}" y="${scaleY(20) + 3}" font-size="8.5" fill="#64748B" text-anchor="end">20</text>
-        <text x="${padding.left - 6}" y="${scaleY(30) + 3}" font-size="8.5" fill="#64748B" text-anchor="end">30</text>
+        <text x="${padding.left - 7}" y="${scaleY(0) + 4}" font-size="10" font-weight="700" fill="#CBD5E1" text-anchor="end">0</text>
+        <text x="${padding.left - 7}" y="${scaleY(10) + 4}" font-size="10" font-weight="700" fill="#CBD5E1" text-anchor="end">10</text>
+        <text x="${padding.left - 7}" y="${scaleY(20) + 4}" font-size="10" font-weight="700" fill="#CBD5E1" text-anchor="end">20</text>
+        <text x="${padding.left - 7}" y="${scaleY(30) + 4}" font-size="10" font-weight="700" fill="#CBD5E1" text-anchor="end">30</text>
 
         <!-- Y Axis Unit Label -->
-        <text x="${padding.left - 4}" y="${padding.top - 10}" font-size="8" fill="#64748B">GH(ng/mL)</text>
+        <text x="${padding.left - 6}" y="${padding.top - 10}" font-size="9.5" font-weight="700" fill="#94A3B8" text-anchor="middle">GH(ng/mL)</text>
       </svg>
     `;
   }
