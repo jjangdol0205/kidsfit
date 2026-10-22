@@ -4,83 +4,56 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-WEBTOON_DIR = ROOT_DIR / "웹툰_모음"
-CARDNEWS_DIR = ROOT_DIR / "카드뉴스_모음"
+PROF_DIR = ROOT_DIR / "인스타_쓰레드_프로필_모음"
 CLIP_DIR = ROOT_DIR / "네이버클립_웹툰영상_모음"
 
 EMAIL_BATCHES = [
     {
-        "subject": "[키즈핏 패키지 ①] 인스타·쓰레드·블로그용 육아웹툰(1~3화) 전체 모음집 (ZIP 3종)",
+        "subject": "[키즈핏 신규] KidsFit 인스타그램 & 쓰레드 원형 프로필 이미지 3종 + 16초 책넘김 웹툰 영상(1~3화 무음성 피아노BGM)",
         "body": """안녕하세요 대표님! 키즈핏(KIDS-FIT) 그로스 스튜디오입니다.
 
-요청하신 【육아웹툰 1~3화 전체 패키지】 원본 이미지(4컷 개별 + 2x2 합본 + 블로그 세로연속 합본) 및 인스타·쓰레드 본문·해시태그·고정 대댓글 텍스트 모음 ZIP 파일 3종을 보내드립니다.
+방금 요청하신 2가지 신규 제작물을 첨부해 드립니다:
 
-■ 첨부파일 구성 (웹툰 1~3화 ZIP 3개)
-1. 1화_만3세소근육민감기_웹툰_전체파일.zip
-2. 2화_초등문장제수학작업기억_웹툰_전체파일.zip
-3. 3화_밤10시숙면숨은키7cm_웹툰_전체파일.zip
+1. 【KidsFit 인스타그램 & 쓰레드 전용 1080x1080 원형 안전영역 프로필 이미지 3종 패키지】
+- 00_인스타쓰레드_원형적용_미리보기_3종비교.png
+- 01_키즈핏_인스타쓰레드_프로필_로얄인디고_엠블럼.png
+- 02_키즈핏_인스타쓰레드_프로필_웜아이보리_감성툰형.png
+- 03_키즈핏_인스타쓰레드_프로필_화이트클리닉_배지형.png
+- 04_인스타_쓰레드_프로필소개글_링크_세팅가이드.txt
+- 키즈핏_인스타_쓰레드_프로필이미지_3종패키지.zip
 
-이어서 카드뉴스(1~3탄) 패키지와 네이버 클립용 웹툰 묶음 영상(MP4) 메일을 바로 발송해 드립니다!""",
+2. 【16초 책장 넘김(Page-Flip) 웹툰 영상 (음성 완전 제거 · 잔잔한 피아노·오르골 BGM 전용, 4컷×4초=16초)】
+- 01_네이버클립_웹툰1화_만3세소근육민감기.mp4 (16초)
+- 02_네이버클립_웹툰2화_초등문장제수학작업기억.mp4 (16초)
+- 03_네이버클립_웹툰3화_밤10시숙면숨은키7cm.mp4 (16초)
+- 05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt
+
+이어서 1~3화 통합 묶음 책넘김 합본 영상도 바로 다음 메일로 발송해 드립니다!""",
         "files": [
-            str(WEBTOON_DIR / "1화_만3세소근육민감기_웹툰_전체파일.zip"),
-            str(WEBTOON_DIR / "2화_초등문장제수학작업기억_웹툰_전체파일.zip"),
-            str(WEBTOON_DIR / "3화_밤10시숙면숨은키7cm_웹툰_전체파일.zip"),
-        ],
-    },
-    {
-        "subject": "[키즈핏 패키지 ②] 인스타·블로그·카페용 카드뉴스(1~3탄) 전체 모음집 (ZIP 3종)",
-        "body": """안녕하세요 대표님! 키즈핏(KIDS-FIT) 그로스 스튜디오입니다.
-
-요청하신 【카드뉴스 1~3탄 전체 패키지 (1080x1350 풀블리드 고해상도 슬라이드 + 캡션 텍스트)】 ZIP 파일 3종을 보내드립니다.
-
-■ 첨부파일 구성 (카드뉴스 1~3탄 ZIP 3개)
-1. 1탄_만3세고집과소근육발달_카드뉴스_전체파일.zip (6장 + 본문 텍스트)
-2. 2탄_초등문장제수학과백지복습_카드뉴스_전체파일.zip (4장 + 본문 텍스트)
-3. 3탄_밤10시숙면과숨은키7cm_카드뉴스_전체파일.zip (4장 + 본문 텍스트)""",
-        "files": [
-            str(CARDNEWS_DIR / "1탄_만3세고집과소근육발달_카드뉴스_전체파일.zip"),
-            str(CARDNEWS_DIR / "2탄_초등문장제수학과백지복습_카드뉴스_전체파일.zip"),
-            str(CARDNEWS_DIR / "3탄_밤10시숙면과숨은키7cm_카드뉴스_전체파일.zip"),
-        ],
-    },
-    {
-        "subject": "[키즈핏 패키지 ③] 네이버 클립용 웹툰 1~3화 통합 묶음 합본 영상 (1080x1920 세로형 MP4)",
-        "body": """안녕하세요 대표님! 키즈핏(KIDS-FIT) 그로스 스튜디오입니다.
-
-요청하신 【네이버 클립(Naver Clip)용 웹툰 1~3화 통합 묶음 합본 영상 (1080x1920 세로형, 전체 12컷 연속, 나레이션+배경음악 포함)】 및 업로드 가이드를 보내드립니다.
-
-■ 첨부파일 구성
-1. 00_네이버클립_웹툰_1~3화_통합묶음_합본영상.mp4 (1화 소근육 민감기 + 2화 초등 문장제 수학 + 3화 밤 10시 키성장 통합 영상)
-2. 05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt (네이버 클립 업로드 시 제목·해시태그·정보스티커 링크 복사본)
-
-■ 네이버 클립 업로드 시 정보 스티커(링크 스티커) 추천 주소
-- 공식 홈페이지: https://truthofmarket.com
-- 공식 네이버 블로그: https://blog.naver.com/expertise333
-- 공식 네이버 카페: https://cafe.naver.com/moneyfitlab""",
-        "files": [
-            str(CLIP_DIR / "00_네이버클립_웹툰_1~3화_통합묶음_합본영상.mp4"),
+            str(PROF_DIR / "키즈핏_인스타_쓰레드_프로필이미지_3종패키지.zip"),
+            str(PROF_DIR / "00_인스타쓰레드_원형적용_미리보기_3종비교.png"),
+            str(PROF_DIR / "01_키즈핏_인스타쓰레드_프로필_로얄인디고_엠블럼.png"),
+            str(PROF_DIR / "02_키즈핏_인스타쓰레드_프로필_웜아이보리_감성툰형.png"),
+            str(PROF_DIR / "03_키즈핏_인스타쓰레드_프로필_화이트클리닉_배지형.png"),
+            str(CLIP_DIR / "01_네이버클립_웹툰1화_만3세소근육민감기.mp4"),
+            str(CLIP_DIR / "02_네이버클립_웹툰2화_초등문장제수학작업기억.mp4"),
+            str(CLIP_DIR / "03_네이버클립_웹툰3화_밤10시숙면숨은키7cm.mp4"),
             str(CLIP_DIR / "05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt"),
         ],
     },
     {
-        "subject": "[키즈핏 패키지 ④] 네이버 클립용 에피소드별 개별 웹툰 영상(1화·2화·3화) & 카드뉴스 영상",
+        "subject": "[키즈핏 신규] 네이버 클립용 웹툰 1~3화 통합 묶음 책넘김 영상 (무음성 · 잔잔한 피아노 BGM 전용)",
         "body": """안녕하세요 대표님! 키즈핏(KIDS-FIT) 그로스 스튜디오입니다.
 
-네이버 클립에 에피소드별로 나누어 매일 1편씩 업로드하실 수 있도록 【웹툰 1화 · 2화 · 3화 개별 클립 영상(MP4)】과 【카드뉴스 핵심요약 클립 영상(MP4)】을 함께 첨부해 드립니다.
+음성(TTS)을 완전히 빼고 잔잔한 피아노·오르골 선율과 함께 그림책 페이지가 넘어가듯 자연스럽게 넘어가는 【웹툰 1~3화 전체 통합 책넘김 합본 영상(MP4)】을 보내드립니다.
 
 ■ 첨부파일 구성
-1. 01_네이버클립_웹툰1화_만3세소근육민감기.mp4
-2. 02_네이버클립_웹툰2화_초등문장제수학작업기억.mp4
-3. 03_네이버클립_웹툰3화_밤10시숙면숨은키7cm.mp4
-4. 04_네이버클립_카드뉴스_핵심요약_영상.mp4
-5. 05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt
+1. 00_네이버클립_웹툰_1~3화_통합묶음_합본영상.mp4
+2. 05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt
 
 감사합니다!""",
         "files": [
-            str(CLIP_DIR / "01_네이버클립_웹툰1화_만3세소근육민감기.mp4"),
-            str(CLIP_DIR / "02_네이버클립_웹툰2화_초등문장제수학작업기억.mp4"),
-            str(CLIP_DIR / "03_네이버클립_웹툰3화_밤10시숙면숨은키7cm.mp4"),
-            str(CLIP_DIR / "04_네이버클립_카드뉴스_핵심요약_영상.mp4"),
+            str(CLIP_DIR / "00_네이버클립_웹툰_1~3화_통합묶음_합본영상.mp4"),
             str(CLIP_DIR / "05_네이버클립_업로드_제목_태그_정보스티커_가이드.txt"),
         ],
     },
@@ -102,7 +75,6 @@ with sync_playwright() as p:
             page.goto("https://mail.naver.com/v2/new", wait_until="domcontentloaded", timeout=30000)
             time.sleep(3)
 
-            # 1. Enter recipients
             rec_input = page.locator("#recipient_input_element")
             for r_email in RECIPIENTS:
                 rec_input.click()
@@ -110,13 +82,11 @@ with sync_playwright() as p:
                 rec_input.press("Enter")
                 time.sleep(0.5)
 
-            # 2. Enter subject
             subj_input = page.locator("#subject_title")
             subj_input.click()
             subj_input.fill(batch["subject"])
             time.sleep(0.5)
 
-            # 3. Attach files directly via CDP DOM.setFileInputFiles (bypasses Playwright 50MB remote check!)
             existing_files = [f for f in batch["files"] if os.path.exists(f)]
             doc_root = cdp.send("DOM.getDocument", {"depth": 1})["root"]["nodeId"]
             file_node = cdp.send("DOM.querySelector", {
@@ -127,15 +97,13 @@ with sync_playwright() as p:
                 "nodeId": file_node,
                 "files": existing_files
             })
-            # Dispatch change event just in case
             page.evaluate("""() => {
                 const inp = document.getElementById('ATTACH_LOCAL_FILE_ELEMENT_ID');
                 if (inp) inp.dispatchEvent(new Event('change', { bubbles: true }));
             }""")
             time.sleep(6)
 
-            # 4. Fill body text inside editor iframe or contenteditable
-            body_filled = page.evaluate("""(bodyText) => {
+            page.evaluate("""(bodyText) => {
                 for (const ifr of Array.from(document.querySelectorAll('iframe'))) {
                     try {
                         const doc = ifr.contentDocument;
@@ -148,49 +116,24 @@ with sync_playwright() as p:
                     } catch (e) {}
                 }
                 const ce = document.querySelector('[contenteditable="true"]');
-                if (ce) {
-                    ce.innerHTML = bodyText.replace(/\\n/g, '<br>');
-                    return 'contenteditable';
-                }
-                return 'not_found';
+                if (ce) ce.innerHTML = bodyText.replace(/\\n/g, '<br>');
             }""", batch["body"])
 
-            # 5. Click Send button (button.button_write_task)
             page.locator("button.button_write_task").first.click()
             time.sleep(4)
-
-            # Check if confirmation modal popped up
             page.evaluate("""() => {
                 const btns = Array.from(document.querySelectorAll('button'));
                 for (const b of btns) {
                     const t = (b.innerText || '').trim();
                     if (t === '확인' || t === '보내기') {
-                        if (b.offsetParent !== null && !b.classList.contains('button_write_task')) {
-                            b.click();
-                        }
+                        if (b.offsetParent !== null && !b.classList.contains('button_write_task')) b.click();
                     }
                 }
             }""")
             time.sleep(4)
+            print(f"New Batch {idx} sent -> url={page.url}")
 
-            screenshot_path = str(ROOT_DIR / "logs" / f"mail_sent_batch_{idx}.png")
-            page.screenshot(path=screenshot_path)
-            report["batches"].append({
-                "idx": idx,
-                "subject": batch["subject"],
-                "files_count": len(existing_files),
-                "body_filled": body_filled,
-                "after_url": page.url,
-                "result_text": page.evaluate("() => document.body.innerText.slice(0, 600)"),
-            })
-            print(f"Batch {idx} sent -> url={page.url}")
-
-    except Exception as e:
-        report["error"] = str(e)
     finally:
         page.close()
 
-with open(str(ROOT_DIR / "logs" / "mail_send_report.json"), "w", encoding="utf-8") as f:
-    json.dump(report, f, ensure_ascii=False, indent=2)
-
-print("ALL EMAILS SENT")
+print("ALL NEW EMAILS SENT")
