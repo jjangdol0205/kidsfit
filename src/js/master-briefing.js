@@ -1403,108 +1403,145 @@
               </div>
             </div>
 
-            <!-- VIVID FIRST-SCREEN 3-TRAJECTORY CURVE + MILESTONE CALLOUTS SVG -->
-            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; padding: 1rem 1.05rem; box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.08);">
+            <!-- VIVID FIRST-SCREEN 3-TRAJECTORY CURVE + MILESTONE CALLOUTS SVG (PC Wide vs Smartphone Mobile Split) -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; padding: 0.95rem 0.95rem; box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.08);">
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
-                <span style="font-size: 0.86rem; font-weight: 900; color: #38BDF8;">
-                  🚀 한눈에 보는 3중 성인 예측키 성장 궤적 곡선 (현재 만 ${ageYears}세 → 만 ${windowInfo.closureAge}세 성인키)
+                <span style="font-size: 0.88rem; font-weight: 900; color: #38BDF8;">
+                  🚀 한눈에 보는 3중 성인 예측키 성장 궤적 곡선 (만 ${ageYears}세 → 만 ${windowInfo.closureAge}세)
                 </span>
-                <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; font-size: 0.76rem; font-weight: 800;">
-                  <span style="color: #34D399;">● 맞춤 관리 잠재키 (${optimizedHeight}cm)</span>
-                  <span style="color: #60A5FA;">● 부모 유전 표적키 (${mphVal}cm)</span>
-                  <span style="color: #FB7185;">● 방해습관 방치 시 (${unmanagedHeight}cm)</span>
+                <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; font-size: 0.78rem; font-weight: 800;">
+                  <span style="color: #34D399;">● 맞춤 관리 (${optimizedHeight}cm)</span>
+                  <span style="color: #60A5FA;">● 부모 유전키 (${mphVal}cm)</span>
+                  <span style="color: #FB7185;">● 방치 시 (${unmanagedHeight}cm)</span>
                 </div>
               </div>
 
-              <svg id="hero-vivid-growth-curve-svg" viewBox="0 0 640 245" style="width: 100%; height: auto; display: block; overflow: visible;">
-                <defs>
-                  <linearGradient id="heroOptFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.42" />
-                    <stop offset="100%" stop-color="#10B981" stop-opacity="0.02" />
-                  </linearGradient>
-                  <linearGradient id="heroMphFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.24" />
-                    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.0" />
-                  </linearGradient>
-                  <linearGradient id="heroOptStroke" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#38BDF8" />
-                    <stop offset="55%" stop-color="#10B981" />
-                    <stop offset="100%" stop-color="#34D399" />
-                  </linearGradient>
-                </defs>
+              <!-- [PC 홈페이지 전용 와이드 그래프] -->
+              <div class="pc-view-block">
+                <svg id="hero-vivid-growth-curve-svg" viewBox="0 0 640 245" style="width: 100%; height: auto; display: block;">
+                  <defs>
+                    <linearGradient id="heroOptFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.42" />
+                      <stop offset="100%" stop-color="#10B981" stop-opacity="0.02" />
+                    </linearGradient>
+                    <linearGradient id="heroMphFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.24" />
+                      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.0" />
+                    </linearGradient>
+                    <linearGradient id="heroOptStroke" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#38BDF8" />
+                      <stop offset="55%" stop-color="#10B981" />
+                      <stop offset="100%" stop-color="#34D399" />
+                    </linearGradient>
+                  </defs>
 
-                <!-- Background Grid Lines -->
-                <line x1="48" y1="35" x2="515" y2="35" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
-                <line x1="48" y1="85" x2="515" y2="85" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
-                <line x1="48" y1="135" x2="515" y2="135" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
-                <line x1="48" y1="185" x2="515" y2="185" stroke="rgba(148,163,184,0.28)" />
+                  <line x1="48" y1="35" x2="515" y2="35" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                  <line x1="48" y1="85" x2="515" y2="85" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                  <line x1="48" y1="135" x2="515" y2="135" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                  <line x1="48" y1="185" x2="515" y2="185" stroke="rgba(148,163,184,0.28)" />
 
-                <!-- X-Axis Milestone Labels -->
-                <text x="58" y="212" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">현재 (만 ${ageYears}세)</text>
-                <text x="205" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">+1년 뒤</text>
-                <text x="355" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">급성장 피크기</text>
-                <text x="495" y="212" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">성인키 (만 ${windowInfo.closureAge}세)</text>
+                  <text x="58" y="212" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">현재 (만 ${ageYears}세)</text>
+                  <text x="205" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">+1년 뒤</text>
+                  <text x="355" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">급성장 피크기</text>
+                  <text x="495" y="212" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">성인키 (만 ${windowInfo.closureAge}세)</text>
 
-                <!-- Area under Optimized Trajectory -->
-                <path d="M 58 172 C 175 142, 315 68, 495 36 L 495 185 L 58 185 Z" fill="url(#heroOptFill)" />
-                <path d="M 58 172 C 175 152, 315 102, 495 78 L 495 185 L 58 185 Z" fill="url(#heroMphFill)" />
+                  <path d="M 58 172 C 175 142, 315 68, 495 36 L 495 185 L 58 185 Z" fill="url(#heroOptFill)" />
+                  <path d="M 58 172 C 175 152, 315 102, 495 78 L 495 185 L 58 185 Z" fill="url(#heroMphFill)" />
 
-                <!-- 1) Unmanaged Trajectory (Coral Red Dashed) -->
-                <path d="M 58 172 C 175 162, 315 136, 495 122" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
-                <circle cx="205" cy="155" r="4.5" fill="#FB7185" />
-                <circle cx="355" cy="133" r="4.5" fill="#FB7185" />
-                <circle cx="495" cy="122" r="6" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" />
+                  <path d="M 58 172 C 175 162, 315 136, 495 122" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
+                  <circle cx="205" cy="155" r="4.5" fill="#FB7185" />
+                  <circle cx="355" cy="133" r="4.5" fill="#FB7185" />
+                  <circle cx="495" cy="122" r="6" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" />
 
-                <!-- 2) Genetic MPH Trajectory (Sky Blue Solid) -->
-                <path d="M 58 172 C 175 152, 315 102, 495 78" fill="none" stroke="#60A5FA" stroke-width="3.5" />
-                <circle cx="205" cy="140" r="4.5" fill="#60A5FA" />
-                <circle cx="355" cy="99" r="5" fill="#60A5FA" />
-                <circle cx="495" cy="78" r="6.5" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+                  <path d="M 58 172 C 175 152, 315 102, 495 78" fill="none" stroke="#60A5FA" stroke-width="3.5" />
+                  <circle cx="205" cy="140" r="4.5" fill="#60A5FA" />
+                  <circle cx="355" cy="99" r="5" fill="#60A5FA" />
+                  <circle cx="495" cy="78" r="6.5" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
 
-                <!-- 3) Consistent Care Potential Trajectory (Glowing Emerald-Cyan Curve) -->
-                <path d="M 58 172 C 175 142, 315 68, 495 36" fill="none" stroke="url(#heroOptStroke)" stroke-width="5" stroke-linecap="round" />
-                <circle cx="58" cy="172" r="7" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2.5" />
-                <circle cx="205" cy="124" r="5.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
-                <circle cx="355" cy="66" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
-                <circle cx="495" cy="36" r="8.5" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
+                  <path d="M 58 172 C 175 142, 315 68, 495 36" fill="none" stroke="url(#heroOptStroke)" stroke-width="5" stroke-linecap="round" />
+                  <circle cx="58" cy="172" r="7" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2.5" />
+                  <circle cx="205" cy="124" r="5.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
+                  <circle cx="355" cy="66" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="495" cy="36" r="8.5" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
 
-                <!-- Current Height Callout Tag -->
-                <rect x="18" y="132" width="98" height="28" rx="8" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.2" />
-                <text x="67" y="150" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
+                  <rect x="18" y="132" width="98" height="28" rx="8" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.2" />
+                  <text x="67" y="150" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
 
-                <!-- +6M / +1Y Target Callout -->
-                <rect x="155" y="92" width="102" height="24" rx="7" fill="rgba(16,185,129,0.2)" stroke="#34D399" stroke-width="1" />
-                <text x="206" y="108" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">6개월 목표 ${targetHeight6m}cm</text>
+                  <rect x="155" y="92" width="102" height="24" rx="7" fill="rgba(16,185,129,0.2)" stroke="#34D399" stroke-width="1" />
+                  <text x="206" y="108" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">6개월 목표 ${targetHeight6m}cm</text>
 
-                <!-- Gain Bracket Between Unmanaged and Potential -->
-                <line x1="495" y1="45" x2="495" y2="114" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3" />
-                <rect x="382" y="42" width="104" height="24" rx="12" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.3" />
-                <text x="434" y="58" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 숨은키</text>
+                  <line x1="495" y1="45" x2="495" y2="114" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3" />
+                  <rect x="382" y="42" width="104" height="24" rx="12" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.3" />
+                  <text x="434" y="58" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 숨은키</text>
 
-                <!-- Right-Side End Callout Badges -->
-                <rect x="510" y="20" width="122" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.6" />
-                <text x="571" y="39" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">잠재키 ${optimizedHeight}cm</text>
+                  <rect x="510" y="20" width="122" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.6" />
+                  <text x="571" y="39" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">잠재키 ${optimizedHeight}cm</text>
 
-                <rect x="510" y="63" width="122" height="28" rx="8" fill="rgba(59,130,246,0.24)" stroke="#60A5FA" stroke-width="1.3" />
-                <text x="571" y="81" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">유전키 ${mphVal}cm</text>
+                  <rect x="510" y="63" width="122" height="28" rx="8" fill="rgba(59,130,246,0.24)" stroke="#60A5FA" stroke-width="1.3" />
+                  <text x="571" y="81" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">유전키 ${mphVal}cm</text>
 
-                <rect x="510" y="108" width="122" height="28" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.3" />
-                <text x="571" y="126" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">방치시 ${unmanagedHeight}cm</text>
-              </svg>
+                  <rect x="510" y="108" width="122" height="28" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.3" />
+                  <text x="571" y="126" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">방치시 ${unmanagedHeight}cm</text>
+                </svg>
 
-              <!-- 3-Tier Horizontal Gauge Bars Underneath Curve for Instant Comparison -->
-              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255,255,255,0.14);">
-                <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
-                  <div style="font-size: 0.74rem; color: #FDA4AF; font-weight: 800;">① 방해습관 방치 시</div>
-                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${unmanagedHeight} cm</div>
+                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255,255,255,0.14);">
+                  <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                    <div style="font-size: 0.74rem; color: #FDA4AF; font-weight: 800;">① 방해습관 방치 시</div>
+                    <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${unmanagedHeight} cm</div>
+                  </div>
+                  <div style="background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(96, 165, 250, 0.45); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                    <div style="font-size: 0.74rem; color: #93C5FD; font-weight: 800;">② 부모 유전 표적키</div>
+                    <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${mphVal} cm</div>
+                  </div>
+                  <div style="background: rgba(16, 185, 129, 0.18); border: 1.5px solid #10B981; border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                    <div style="font-size: 0.74rem; color: #6EE7B7; font-weight: 900;">③ 맞춤 관리 최대잠재키</div>
+                    <div style="font-size: 1.12rem; font-weight: 900; color: #6EE7B7; margin-top: 0.15rem;">${optimizedHeight} cm</div>
+                  </div>
                 </div>
-                <div style="background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(96, 165, 250, 0.45); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
-                  <div style="font-size: 0.74rem; color: #93C5FD; font-weight: 800;">② 부모 유전 표적키</div>
-                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${mphVal} cm</div>
-                </div>
-                <div style="background: rgba(16, 185, 129, 0.18); border: 1.5px solid #10B981; border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
-                  <div style="font-size: 0.74rem; color: #6EE7B7; font-weight: 900;">③ 맞춤 관리 최대잠재키</div>
-                  <div style="font-size: 1.12rem; font-weight: 900; color: #6EE7B7; margin-top: 0.15rem;">${optimizedHeight} cm</div>
+              </div>
+
+              <!-- [스마트폰 전용 큰글씨·세로 와이드 그래프 & 1줄 비교 바] -->
+              <div class="mobile-view-block">
+                <svg viewBox="0 0 340 215" style="width: 100%; height: auto; display: block; margin-bottom: 0.65rem;">
+                  <line x1="20" y1="30" x2="320" y2="30" stroke="rgba(148,163,184,0.18)" stroke-dasharray="4,4" />
+                  <line x1="20" y1="95" x2="320" y2="95" stroke="rgba(148,163,184,0.18)" stroke-dasharray="4,4" />
+                  <line x1="20" y1="160" x2="320" y2="160" stroke="rgba(148,163,184,0.35)" />
+
+                  <path d="M 32 148 C 115 118, 200 58, 305 28 L 305 160 L 32 160 Z" fill="rgba(16,185,129,0.22)" />
+                  <path d="M 32 148 C 115 140, 200 122, 305 112" fill="none" stroke="#FB7185" stroke-width="3.2" stroke-dasharray="5,4" />
+                  <path d="M 32 148 C 115 128, 200 92, 305 72" fill="none" stroke="#60A5FA" stroke-width="3.5" />
+                  <path d="M 32 148 C 115 118, 200 58, 305 28" fill="none" stroke="#34D399" stroke-width="5" stroke-linecap="round" />
+
+                  <circle cx="32" cy="148" r="6.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="165" cy="82" r="5.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
+                  <circle cx="305" cy="28" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="2.5" />
+                  <circle cx="305" cy="72" r="6" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="305" cy="112" r="5.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="1.8" />
+
+                  <rect x="8" y="106" width="112" height="28" rx="8" fill="rgba(56,189,248,0.25)" stroke="#38BDF8" stroke-width="1.4" />
+                  <text x="64" y="125" fill="#FFFFFF" font-size="13.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
+
+                  <rect x="104" y="42" width="126" height="26" rx="8" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.4" />
+                  <text x="167" y="59" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 더 성장!</text>
+
+                  <text x="38" y="185" fill="#93C5FD" font-size="13" font-weight="900" text-anchor="start">현재(만 ${ageYears}세)</text>
+                  <text x="170" y="185" fill="#CBD5E1" font-size="12.5" font-weight="800" text-anchor="middle">6개월 뒤 ${targetHeight6m}cm</text>
+                  <text x="320" y="185" fill="#6EE7B7" font-size="13" font-weight="900" text-anchor="end">성인키(만 ${windowInfo.closureAge}세)</text>
+                </svg>
+
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed rgba(255,255,255,0.16);">
+                  <div style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10B981; border-radius: 12px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.9rem; color: #A7F3D0; font-weight: 900;">③ 맞춤 관리 최대잠재키</span>
+                    <span style="font-size: 1.22rem; font-weight: 900; color: #6EE7B7;">${optimizedHeight} cm <small style="font-size:0.82rem;">(+${potentialGainCm.toFixed(1)}cm↑)</small></span>
+                  </div>
+                  <div style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(96, 165, 250, 0.45); border-radius: 12px; padding: 0.6rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.88rem; color: #93C5FD; font-weight: 800;">② 부모 유전 표적키 (MPH)</span>
+                    <span style="font-size: 1.12rem; font-weight: 900; color: #FFFFFF;">${mphVal} cm</span>
+                  </div>
+                  <div style="background: rgba(244, 63, 94, 0.14); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 12px; padding: 0.6rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.88rem; color: #FDA4AF; font-weight: 800;">① 방해습관 방치 시 예측키</span>
+                    <span style="font-size: 1.12rem; font-weight: 900; color: #FDA4AF;">${unmanagedHeight} cm</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1537,7 +1574,7 @@
 
           <!-- Weight 4-Stage Visual Comparison Bars + BMI Spectrum Gauge -->
           <div style="background: rgba(9, 14, 28, 0.88); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 16px; padding: 0.95rem 1rem;">
-            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
+            <div class="weight-4stage-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
               <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.65rem 0.8rem;">
                 <div style="font-size: 0.76rem; color: #94A3B8; font-weight: 800;">① 현재 몸무게 vs 동월령 표준</div>
                 <div style="font-size: 1.05rem; font-weight: 900; color: #FDE68A; margin-top: 0.2rem;">${weight}kg <span style="font-size:0.82rem; color:#CBD5E1;">(표준 ${weightEval.standardWeight}kg / ${weightDeltaStr})</span></div>
@@ -1557,10 +1594,10 @@
             </div>
 
             <!-- Visual Weight Balance Spectrum Bar -->
-            <div style="font-size: 0.78rem; color: #CBD5E1; font-weight: 800; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
-              <span>저체중·마른체형 (단백질·아연 보강)</span>
-              <span style="color: #34D399;">★ 키 성장 최적 표준 밸런스 구간</span>
-              <span>과체중 주의 (골연령 가속 방어)</span>
+            <div style="font-size: 0.78rem; color: #CBD5E1; font-weight: 800; margin-bottom: 0.35rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem;">
+              <span>저체중·마른체형</span>
+              <span style="color: #34D399;">★ 키 성장 최적 표준 구간</span>
+              <span>과체중 주의</span>
             </div>
             <div style="position: relative; height: 14px; border-radius: 9999px; background: linear-gradient(90deg, #38BDF8 0%, #10B981 35%, #34D399 65%, #F59E0B 82%, #F43F5E 100%); overflow: hidden;">
               <div style="position: absolute; top: 0; bottom: 0; left: ${Math.max(6, Math.min(92, weightEval.weightPercentile))}%; width: 10px; margin-left: -5px; background: #FFFFFF; border: 2px solid #0F172A; border-radius: 9999px; box-shadow: 0 0 10px #FFFFFF;"></div>
@@ -1581,7 +1618,7 @@
             </span>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem;">
+          <div class="briefing-status-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem;">
             <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56,189,248,0.3); border-radius: 12px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.25rem;">
               <span style="font-size: 0.84rem; color: #93C5FD; font-weight: 800;">📏 ${isEn ? 'Height Percentile' : '현재 키 백분위 (또래 비교)'}</span>
               <span id="briefing-percentile" style="font-size: 1.06rem; font-weight: 900; color: #38BDF8;">
@@ -2004,79 +2041,112 @@
                   : ''}
               </div>
 
-              <!-- 6-Month Learning Growth Curve SVG (LQ & Focus & Memory Retention Trajectory) -->
-              <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 0.95rem 1rem;">
+              <!-- 6-Month Learning Growth Curve SVG (PC Wide vs Smartphone Mobile Split) -->
+              <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 0.9rem 0.9rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
                   <span style="font-size: 0.86rem; font-weight: 900; color: #38BDF8;">
                     📈 6개월 학습지수(LQ) · 집중시간 · 장기기억 3중 상승 궤적 그래프
                   </span>
-                  <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; font-size: 0.75rem; font-weight: 800;">
-                    <span style="color: #34D399;">● 맞춤 학습코칭 시 (LQ ${lqData.trajectory.coached.lqScore}점)</span>
-                    <span style="color: #C084FC;">● 또래 평균 궤적 (LQ 80점)</span>
-                    <span style="color: #FB7185;">● 현재 병목 방치 시 (LQ ${lqData.trajectory.unmanaged.lqScore}점)</span>
+                  <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; font-size: 0.76rem; font-weight: 800;">
+                    <span style="color: #34D399;">● 맞춤 코칭 (LQ ${lqData.trajectory.coached.lqScore}점)</span>
+                    <span style="color: #C084FC;">● 또래 평균 (LQ 80점)</span>
+                    <span style="color: #FB7185;">● 방치 시 (LQ ${lqData.trajectory.unmanaged.lqScore}점)</span>
                   </div>
                 </div>
 
-                <svg id="hero-vivid-learning-curve-svg" viewBox="0 0 640 220" style="width: 100%; height: auto; display: block; overflow: visible;">
-                  <defs>
-                    <linearGradient id="learnOptFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.38" />
-                      <stop offset="100%" stop-color="#A855F7" stop-opacity="0.03" />
-                    </linearGradient>
-                    <linearGradient id="learnOptStroke" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stop-color="#C084FC" />
-                      <stop offset="50%" stop-color="#38BDF8" />
-                      <stop offset="100%" stop-color="#10B981" />
-                    </linearGradient>
-                  </defs>
+                <!-- [PC 홈페이지 전용 와이드 학습 곡선] -->
+                <div class="pc-view-block">
+                  <svg id="hero-vivid-learning-curve-svg" viewBox="0 0 640 220" style="width: 100%; height: auto; display: block;">
+                    <defs>
+                      <linearGradient id="learnOptFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#10B981" stop-opacity="0.38" />
+                        <stop offset="100%" stop-color="#A855F7" stop-opacity="0.03" />
+                      </linearGradient>
+                      <linearGradient id="learnOptStroke" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#C084FC" />
+                        <stop offset="50%" stop-color="#38BDF8" />
+                        <stop offset="100%" stop-color="#10B981" />
+                      </linearGradient>
+                    </defs>
 
-                  <line x1="50" y1="35" x2="505" y2="35" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
-                  <line x1="50" y1="80" x2="505" y2="80" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
-                  <line x1="50" y1="125" x2="505" y2="125" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
-                  <line x1="50" y1="170" x2="505" y2="170" stroke="rgba(148,163,184,0.28)" />
+                    <line x1="50" y1="35" x2="505" y2="35" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                    <line x1="50" y1="80" x2="505" y2="80" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                    <line x1="50" y1="125" x2="505" y2="125" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                    <line x1="50" y1="170" x2="505" y2="170" stroke="rgba(148,163,184,0.28)" />
 
-                  <text x="60" y="196" fill="#DDD6FE" font-size="11.5" font-weight="900" text-anchor="middle">현재 (진단일)</text>
-                  <text x="205" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">4주 뒤 (습관 형성)</text>
-                  <text x="355" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">12주 뒤 (회로 강화)</text>
-                  <text x="495" y="196" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">6개월 뒤 (목표 도달)</text>
+                    <text x="60" y="196" fill="#DDD6FE" font-size="11.5" font-weight="900" text-anchor="middle">현재 (진단일)</text>
+                    <text x="205" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">4주 뒤 (습관 형성)</text>
+                    <text x="355" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">12주 뒤 (회로 강화)</text>
+                    <text x="495" y="196" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">6개월 뒤 (목표 도달)</text>
 
-                  <!-- Area Fill -->
-                  <path d="M 60 142 C 180 112, 320 64, 495 34 L 495 170 L 60 170 Z" fill="url(#learnOptFill)" />
+                    <path d="M 60 142 C 180 112, 320 64, 495 34 L 495 170 L 60 170 Z" fill="url(#learnOptFill)" />
+                    <path d="M 60 142 C 180 146, 320 150, 495 154" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
+                    <circle cx="495" cy="154" r="5.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="1.8" />
+                    <path d="M 60 142 C 180 130, 320 112, 495 98" fill="none" stroke="#C084FC" stroke-width="3" />
+                    <circle cx="495" cy="98" r="5.5" fill="#A855F7" stroke="#FFFFFF" stroke-width="1.8" />
+                    <path d="M 60 142 C 180 112, 320 64, 495 34" fill="none" stroke="url(#learnOptStroke)" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="60" cy="142" r="7" fill="#C084FC" stroke="#FFFFFF" stroke-width="2.2" />
+                    <circle cx="205" cy="105" r="5.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
+                    <circle cx="355" cy="62" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+                    <circle cx="495" cy="34" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
 
-                  <!-- Unmanaged Curve -->
-                  <path d="M 60 142 C 180 146, 320 150, 495 154" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
-                  <circle cx="495" cy="154" r="5.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="1.8" />
+                    <rect x="18" y="104" width="104" height="26" rx="7" fill="rgba(168,85,247,0.25)" stroke="#C084FC" stroke-width="1.2" />
+                    <text x="70" y="121" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
+                    <rect x="152" y="72" width="110" height="24" rx="7" fill="rgba(56,189,248,0.2)" stroke="#38BDF8" stroke-width="1" />
+                    <text x="207" y="88" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +10분↑</text>
+                    <rect x="300" y="30" width="114" height="24" rx="7" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1" />
+                    <text x="357" y="46" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존 ${lqData.trajectory.coached.retentionRate}%</text>
+                    <rect x="508" y="18" width="124" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.5" />
+                    <text x="570" y="37" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">코칭시 LQ ${lqData.trajectory.coached.lqScore}점</text>
+                    <rect x="508" y="83" width="124" height="26" rx="8" fill="rgba(168,85,247,0.22)" stroke="#C084FC" stroke-width="1.2" />
+                    <text x="570" y="100" fill="#E9D5FF" font-size="11" font-weight="900" text-anchor="middle">또래평균 LQ 80점</text>
+                    <rect x="508" y="139" width="124" height="26" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.2" />
+                    <text x="570" y="156" fill="#FDA4AF" font-size="11" font-weight="900" text-anchor="middle">방치시 LQ ${lqData.trajectory.unmanaged.lqScore}점</text>
+                  </svg>
+                </div>
 
-                  <!-- Peer Standard Curve -->
-                  <path d="M 60 142 C 180 130, 320 112, 495 98" fill="none" stroke="#C084FC" stroke-width="3" />
-                  <circle cx="495" cy="98" r="5.5" fill="#A855F7" stroke="#FFFFFF" stroke-width="1.8" />
+                <!-- [스마트폰 전용 큰글씨 학습 곡선 & 1줄 비교 바] -->
+                <div class="mobile-view-block">
+                  <svg viewBox="0 0 340 205" style="width: 100%; height: auto; display: block; margin-bottom: 0.6rem;">
+                    <line x1="20" y1="30" x2="320" y2="30" stroke="rgba(148,163,184,0.18)" stroke-dasharray="4,4" />
+                    <line x1="20" y1="90" x2="320" y2="90" stroke="rgba(148,163,184,0.18)" stroke-dasharray="4,4" />
+                    <line x1="20" y1="150" x2="320" y2="150" stroke="rgba(148,163,184,0.35)" />
 
-                  <!-- Coached Curve -->
-                  <path d="M 60 142 C 180 112, 320 64, 495 34" fill="none" stroke="url(#learnOptStroke)" stroke-width="5" stroke-linecap="round" />
-                  <circle cx="60" cy="142" r="7" fill="#C084FC" stroke="#FFFFFF" stroke-width="2.2" />
-                  <circle cx="205" cy="105" r="5.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
-                  <circle cx="355" cy="62" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
-                  <circle cx="495" cy="34" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
+                    <path d="M 32 132 C 115 102, 200 54, 305 26 L 305 150 L 32 150 Z" fill="rgba(16,185,129,0.2)" />
+                    <path d="M 32 132 C 115 136, 200 140, 305 144" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="5,4" />
+                    <path d="M 32 132 C 115 120, 200 100, 305 86" fill="none" stroke="#C084FC" stroke-width="3.2" />
+                    <path d="M 32 132 C 115 102, 200 54, 305 26" fill="none" stroke="#34D399" stroke-width="5" stroke-linecap="round" />
 
-                  <!-- Callout Badges -->
-                  <rect x="18" y="104" width="104" height="26" rx="7" fill="rgba(168,85,247,0.25)" stroke="#C084FC" stroke-width="1.2" />
-                  <text x="70" y="121" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
+                    <circle cx="32" cy="132" r="6.5" fill="#C084FC" stroke="#FFFFFF" stroke-width="2" />
+                    <circle cx="168" cy="76" r="5.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
+                    <circle cx="305" cy="26" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="2.5" />
 
-                  <rect x="152" y="72" width="110" height="24" rx="7" fill="rgba(56,189,248,0.2)" stroke="#38BDF8" stroke-width="1" />
-                  <text x="207" y="88" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +10분↑</text>
+                    <rect x="8" y="92" width="124" height="28" rx="8" fill="rgba(168,85,247,0.28)" stroke="#C084FC" stroke-width="1.4" />
+                    <text x="70" y="111" fill="#FFFFFF" font-size="13.5" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
 
-                  <rect x="300" y="30" width="114" height="24" rx="7" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1" />
-                  <text x="357" y="46" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존 ${lqData.trajectory.coached.retentionRate}%</text>
+                    <rect x="112" y="34" width="138" height="26" rx="8" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.4" />
+                    <text x="181" y="51" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">▲ +${lqData.trajectory.coached.gainLq}점 · 기억 ${lqData.trajectory.coached.retentionRate}%</text>
 
-                  <rect x="508" y="18" width="124" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.5" />
-                  <text x="570" y="37" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">코칭시 LQ ${lqData.trajectory.coached.lqScore}점</text>
+                    <text x="32" y="176" fill="#DDD6FE" font-size="13" font-weight="900" text-anchor="start">현재 진단일</text>
+                    <text x="170" y="176" fill="#CBD5E1" font-size="12.5" font-weight="800" text-anchor="middle">12주 회로강화</text>
+                    <text x="320" y="176" fill="#6EE7B7" font-size="13" font-weight="900" text-anchor="end">6개월 뒤 목표</text>
+                  </svg>
 
-                  <rect x="508" y="83" width="124" height="26" rx="8" fill="rgba(168,85,247,0.22)" stroke="#C084FC" stroke-width="1.2" />
-                  <text x="570" y="100" fill="#E9D5FF" font-size="11" font-weight="900" text-anchor="middle">또래평균 LQ 80점</text>
-
-                  <rect x="508" y="139" width="124" height="26" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.2" />
-                  <text x="570" y="156" fill="#FDA4AF" font-size="11" font-weight="900" text-anchor="middle">방치시 LQ ${lqData.trajectory.unmanaged.lqScore}점</text>
-                </svg>
+                  <div style="display: flex; flex-direction: column; gap: 0.45rem; padding-top: 0.45rem; border-top: 1px dashed rgba(255,255,255,0.16);">
+                    <div style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10B981; border-radius: 11px; padding: 0.6rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-size: 0.88rem; color: #A7F3D0; font-weight: 900;">③ 6개월 맞춤 코칭 시</span>
+                      <span style="font-size: 1.14rem; font-weight: 900; color: #6EE7B7;">LQ ${lqData.trajectory.coached.lqScore}점 · 몰입 ${lqData.trajectory.coached.focusMinutes}분</span>
+                    </div>
+                    <div style="background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 11px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-size: 0.86rem; color: #E9D5FF; font-weight: 800;">② 또래 평균 기준선</span>
+                      <span style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF;">LQ 80점 · 몰입 20분</span>
+                    </div>
+                    <div style="background: rgba(244, 63, 94, 0.14); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 11px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-size: 0.86rem; color: #FDA4AF; font-weight: 800;">① 현재 병목 방치 시</span>
+                      <span style="font-size: 1.05rem; font-weight: 900; color: #FDA4AF;">LQ ${lqData.trajectory.unmanaged.lqScore}점 · 몰입 ${lqData.trajectory.current.focusMinutes}분</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2283,48 +2353,78 @@
               </span>
             </div>
 
-            <svg id="learning-brain-mechanism-svg" viewBox="0 0 660 175" style="width: 100%; height: auto; display: block;">
-              <!-- Step 1 Card -->
-              <rect x="8" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#38BDF8" stroke-width="2" />
-              <circle cx="52" cy="48" r="22" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.8" />
-              <text x="52" y="55" font-size="20" text-anchor="middle">📐</text>
-              <text x="86" y="42" fill="#38BDF8" font-size="11.5" font-weight="900">STEP 1 · 전두엽 몰입</text>
-              <text x="86" y="60" fill="#FFFFFF" font-size="13" font-weight="900">독서대 15° &amp; 타이머</text>
-              <text x="22" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 고개 숙임 방지 → 뇌 산소 공급↑</text>
-              <text x="22" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 시각 타이머 ${lqData.trajectory.coached.focusMinutes}분 도파민 집중</text>
-              <rect x="22" y="126" width="168" height="22" rx="6" fill="rgba(56, 189, 248, 0.16)" />
-              <text x="106" y="141" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">집중 지속시간 +${lqData.trajectory.coached.gainFocusMin}분 연장</text>
+            <!-- [PC 홈페이지 전용 3열 와이드 일러스트] -->
+            <div class="pc-view-block">
+              <svg id="learning-brain-mechanism-svg" viewBox="0 0 660 175" style="width: 100%; height: auto; display: block;">
+                <rect x="8" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#38BDF8" stroke-width="2" />
+                <circle cx="52" cy="48" r="22" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.8" />
+                <text x="52" y="55" font-size="20" text-anchor="middle">📐</text>
+                <text x="86" y="42" fill="#38BDF8" font-size="11.5" font-weight="900">STEP 1 · 전두엽 몰입</text>
+                <text x="86" y="60" fill="#FFFFFF" font-size="13" font-weight="900">독서대 15° &amp; 타이머</text>
+                <text x="22" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 고개 숙임 방지 → 뇌 산소 공급↑</text>
+                <text x="22" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 시각 타이머 ${lqData.trajectory.coached.focusMinutes}분 도파민 집중</text>
+                <rect x="22" y="126" width="168" height="22" rx="6" fill="rgba(56, 189, 248, 0.16)" />
+                <text x="106" y="141" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">집중 지속시간 +${lqData.trajectory.coached.gainFocusMin}분 연장</text>
 
-              <!-- Arrow 1 -> 2 -->
-              <path d="M 208 86 L 228 86" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" />
-              <polygon points="226,80 235,86 226,92" fill="#A78BFA" />
+                <path d="M 208 86 L 228 86" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" />
+                <polygon points="226,80 235,86 226,92" fill="#A78BFA" />
 
-              <!-- Step 2 Card -->
-              <rect x="236" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#C084FC" stroke-width="2" />
-              <circle cx="280" cy="48" r="22" fill="rgba(192, 132, 252, 0.2)" stroke="#C084FC" stroke-width="1.8" />
-              <text x="280" y="55" font-size="20" text-anchor="middle">🗣️</text>
-              <text x="314" y="42" fill="#C084FC" font-size="11.5" font-weight="900">STEP 2 · 해마 인출 자극</text>
-              <text x="314" y="60" fill="#FFFFFF" font-size="13" font-weight="900">책 덮고 3분 설명하기</text>
-              <text x="250" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 눈으로만 읽는 가짜기억 차단</text>
-              <text x="250" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 엄마에게 오늘 배운 3줄 말하기</text>
-              <rect x="250" y="126" width="168" height="22" rx="6" fill="rgba(192, 132, 252, 0.18)" />
-              <text x="334" y="141" fill="#E9D5FF" font-size="10.5" font-weight="900" text-anchor="middle">시냅스 인출 강도 +50% 강화</text>
+                <rect x="236" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#C084FC" stroke-width="2" />
+                <circle cx="280" cy="48" r="22" fill="rgba(192, 132, 252, 0.2)" stroke="#C084FC" stroke-width="1.8" />
+                <text x="280" y="55" font-size="20" text-anchor="middle">🗣️</text>
+                <text x="314" y="42" fill="#C084FC" font-size="11.5" font-weight="900">STEP 2 · 해마 인출 자극</text>
+                <text x="314" y="60" fill="#FFFFFF" font-size="13" font-weight="900">책 덮고 3분 설명하기</text>
+                <text x="250" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 눈으로만 읽는 가짜기억 차단</text>
+                <text x="250" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 엄마에게 오늘 배운 3줄 말하기</text>
+                <rect x="250" y="126" width="168" height="22" rx="6" fill="rgba(192, 132, 252, 0.18)" />
+                <text x="334" y="141" fill="#E9D5FF" font-size="10.5" font-weight="900" text-anchor="middle">시냅스 인출 강도 +50% 강화</text>
 
-              <!-- Arrow 2 -> 3 -->
-              <path d="M 436 86 L 456 86" stroke="#34D399" stroke-width="3" stroke-linecap="round" />
-              <polygon points="454,80 463,86 454,92" fill="#34D399" />
+                <path d="M 436 86 L 456 86" stroke="#34D399" stroke-width="3" stroke-linecap="round" />
+                <polygon points="454,80 463,86 454,92" fill="#34D399" />
 
-              <!-- Step 3 Card -->
-              <rect x="464" y="10" width="188" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#10B981" stroke-width="2" />
-              <circle cx="508" cy="48" r="22" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" stroke-width="1.8" />
-              <text x="508" y="55" font-size="20" text-anchor="middle">🌙</text>
-              <text x="540" y="42" fill="#34D399" font-size="11.5" font-weight="900">STEP 3 · 대뇌피질 코팅</text>
-              <text x="540" y="60" fill="#FFFFFF" font-size="13" font-weight="900">밤 10시 서파수면 저장</text>
-              <text x="478" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 수면 중 해마→대뇌피질 전송</text>
-              <text x="478" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 단기기억이 영구 장기기억으로!</text>
-              <rect x="478" y="126" width="160" height="22" rx="6" fill="rgba(16, 185, 129, 0.2)" />
-              <text x="558" y="141" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존율 ${lqData.trajectory.coached.retentionRate}% 달성</text>
-            </svg>
+                <rect x="464" y="10" width="188" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#10B981" stroke-width="2" />
+                <circle cx="508" cy="48" r="22" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" stroke-width="1.8" />
+                <text x="508" y="55" font-size="20" text-anchor="middle">🌙</text>
+                <text x="540" y="42" fill="#34D399" font-size="11.5" font-weight="900">STEP 3 · 대뇌피질 코팅</text>
+                <text x="540" y="60" fill="#FFFFFF" font-size="13" font-weight="900">밤 10시 서파수면 저장</text>
+                <text x="478" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 수면 중 해마→대뇌피질 전송</text>
+                <text x="478" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 단기기억이 영구 장기기억으로!</text>
+                <rect x="478" y="126" width="160" height="22" rx="6" fill="rgba(16, 185, 129, 0.2)" />
+                <text x="558" y="141" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존율 ${lqData.trajectory.coached.retentionRate}% 달성</text>
+              </svg>
+            </div>
+
+            <!-- [스마트폰 전용 세로형 큰글씨 3단계 일러스트 카드] -->
+            <div class="mobile-view-block">
+              <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                <div style="background: rgba(30, 41, 59, 0.95); border: 2px solid #38BDF8; border-radius: 14px; padding: 0.85rem 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                    <span style="font-size: 0.96rem; font-weight: 900; color: #38BDF8;">📐 STEP 1 · 전두엽 몰입 환경</span>
+                    <span style="font-size: 0.78rem; font-weight: 900; color: #7DD3FC; background: rgba(56,189,248,0.18); padding: 0.18rem 0.55rem; border-radius: 9999px;">집중 +${lqData.trajectory.coached.gainFocusMin}분↑</span>
+                  </div>
+                  <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">각도조절 독서대 15° &amp; 시각 타이머 ${lqData.trajectory.coached.focusMinutes}분</div>
+                  <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5;">고개 숙임을 막아 뇌 산소 공급을 높이고, 눈에 보이는 타이머로 도파민 몰입을 시작합니다.</div>
+                </div>
+                <div style="text-align: center; font-size: 1rem; color: #A78BFA; font-weight: 900; line-height: 1;">⬇️</div>
+                <div style="background: rgba(30, 41, 59, 0.95); border: 2px solid #C084FC; border-radius: 14px; padding: 0.85rem 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                    <span style="font-size: 0.96rem; font-weight: 900; color: #C084FC;">🗣️ STEP 2 · 해마 인출 자극</span>
+                    <span style="font-size: 0.78rem; font-weight: 900; color: #E9D5FF; background: rgba(192,132,252,0.2); padding: 0.18rem 0.55rem; border-radius: 9999px;">인출강도 +50%↑</span>
+                  </div>
+                  <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">책을 덮고 엄마에게 오늘 배운 3줄 설명하기</div>
+                  <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5;">눈으로만 읽는 가짜기억을 차단하고 아이 입으로 직접 말할 때 해마 시냅스가 강력하게 연결됩니다.</div>
+                </div>
+                <div style="text-align: center; font-size: 1rem; color: #34D399; font-weight: 900; line-height: 1;">⬇️</div>
+                <div style="background: rgba(30, 41, 59, 0.95); border: 2px solid #10B981; border-radius: 14px; padding: 0.85rem 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                    <span style="font-size: 0.96rem; font-weight: 900; color: #34D399;">🌙 STEP 3 · 대뇌피질 수면 코팅</span>
+                    <span style="font-size: 0.78rem; font-weight: 900; color: #6EE7B7; background: rgba(16,185,129,0.2); padding: 0.18rem 0.55rem; border-radius: 9999px;">보존율 ${lqData.trajectory.coached.retentionRate}%</span>
+                  </div>
+                  <div style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">밤 10시 깊은 서파수면(SWS) 장기기억 저장</div>
+                  <div style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5;">잠든 사이 해마의 단기기억이 대뇌피질로 전송되어 잊어버리지 않는 진짜 실력으로 코팅됩니다.</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- ==================== STEP 5: 잘하는 성향을 강화시키려면 이걸 해야 하고 ==================== -->

@@ -2572,4 +2572,256 @@ svg {
   line-height: 1.3 !important;
 }
 
+/* ==========================================================================
+   26. DEDICATED PC HOMEPAGE vs SMARTPHONE MOBILE VIEW SEPARATION
+       (홈페이지용 와이드 화면 vs 스마트폰용 큰글씨·세로 풀와이드 화면)
+   ========================================================================== */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Top Device View Switcher Pill Bar */
+.device-view-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 9999px;
+  padding: 0.18rem;
+  gap: 0.2rem;
+}
+
+.device-switch-btn {
+  border: none;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.32rem 0.68rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.device-switch-btn.active-device-btn {
+  background: linear-gradient(135deg, #0EA5E9 0%, #10B981 100%);
+  color: #052E16;
+  font-weight: 900;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+/* Default PC View: Show .pc-view-block, Hide .mobile-view-block */
+.pc-view-block {
+  display: block;
+}
+
+.mobile-view-block {
+  display: none;
+}
+
+/* Explicit Mobile Mode Toggle OR Smartphone Viewport (<= 768px unless forced to PC) */
+html[data-device-view="mobile"] .pc-view-block {
+  display: none !important;
+}
+
+html[data-device-view="mobile"] .mobile-view-block {
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  html:not([data-device-view="pc"]) .pc-view-block {
+    display: none !important;
+  }
+
+  html:not([data-device-view="pc"]) .mobile-view-block {
+    display: block !important;
+  }
+}
+
+/* Smartphone-Dedicated Full-Width & Large-Font Layout Rules */
+html[data-device-view="mobile"] .main-container {
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  padding: 0.4rem 0.45rem 2.5rem !important;
+}
+
+html[data-device-view="mobile"] #master-briefing-card-content,
+html[data-device-view="mobile"] #pillar-1-container,
+html[data-device-view="mobile"] #pillar-2-container {
+  padding: 0.65rem 0.5rem !important;
+  border-radius: 16px !important;
+}
+
+html[data-device-view="mobile"] #taller-potential-reveal-hero,
+html[data-device-view="mobile"] #taller-weight-reveal-hero,
+html[data-device-view="mobile"] #briefing-status-section,
+html[data-device-view="mobile"] #bespoke-parent-note-section,
+html[data-device-view="mobile"] #briefing-actions-section,
+html[data-device-view="mobile"] #expected-outcomes-section,
+html[data-device-view="mobile"] #learning-step-1-style,
+html[data-device-view="mobile"] #learning-step-2-strengths,
+html[data-device-view="mobile"] #learning-step-3-weaknesses,
+html[data-device-view="mobile"] #learning-step-4-careers,
+html[data-device-view="mobile"] #learning-step-5-boost,
+html[data-device-view="mobile"] #learning-step-6-remedy,
+html[data-device-view="mobile"] #learning-step-7-items,
+html[data-device-view="mobile"] #learning-step-8-links,
+html[data-device-view="mobile"] #learning-visual-brain-illustration-card,
+html[data-device-view="mobile"] #learning-visual-charts-showcase,
+html[data-device-view="mobile"] .bento-card {
+  padding: 0.9rem 0.75rem !important;
+  border-radius: 16px !important;
+}
+
+html[data-device-view="mobile"] .weight-4stage-grid,
+html[data-device-view="mobile"] .briefing-status-grid,
+html[data-device-view="mobile"] .home-dual-report-grid {
+  grid-template-columns: 1fr !important;
+  gap: 0.55rem !important;
+}
+
+html[data-device-view="mobile"] #results-dashboard .growth-stats-grid,
+html[data-device-view="mobile"] #learning-bento-stats-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.5rem !important;
+}
+
+html[data-device-view="mobile"] #results-dashboard .growth-stats-grid .stat-card,
+html[data-device-view="mobile"] #learning-bento-stats-grid > div {
+  padding: 0.7rem 0.5rem !important;
+  border-radius: 14px !important;
+}
+
+html[data-device-view="mobile"] .prescription-banner {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 0.85rem 0.75rem !important;
+  gap: 0.65rem !important;
+}
+
+html[data-device-view="mobile"] .prescription-banner .report-mode-switcher {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.45rem !important;
+  width: 100% !important;
+}
+
+html[data-device-view="mobile"] .prescription-retest-btn {
+  width: 100% !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0.55rem 0.4rem !important;
+  font-size: 0.82rem !important;
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 0.55rem 0.65rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .brand-tagline {
+    display: none !important;
+  }
+
+  .header-actions {
+    gap: 0.35rem !important;
+    justify-content: flex-end !important;
+  }
+
+  #nav-header-growth-report,
+  #nav-header-learning-report {
+    display: none !important;
+  }
+
+  .main-container {
+    padding: 0.35rem 0.4rem 2.5rem !important;
+    max-width: 100% !important;
+  }
+
+  #hero-section {
+    padding: 1.35rem 0.5rem 1.4rem !important;
+  }
+
+  .hero-pill-badge {
+    white-space: normal !important;
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.7rem !important;
+    line-height: 1.4 !important;
+  }
+
+  #master-briefing-card-content,
+  #pillar-1-container,
+  #pillar-2-container {
+    padding: 0.6rem 0.45rem !important;
+    border-radius: 16px !important;
+  }
+
+  #taller-potential-reveal-hero,
+  #taller-weight-reveal-hero,
+  #briefing-status-section,
+  #bespoke-parent-note-section,
+  #briefing-actions-section,
+  #expected-outcomes-section,
+  #learning-step-1-style,
+  #learning-step-2-strengths,
+  #learning-step-3-weaknesses,
+  #learning-step-4-careers,
+  #learning-step-5-boost,
+  #learning-step-6-remedy,
+  #learning-step-7-items,
+  #learning-step-8-links,
+  #learning-visual-brain-illustration-card,
+  #learning-visual-charts-showcase,
+  .bento-card {
+    padding: 0.85rem 0.7rem !important;
+    border-radius: 15px !important;
+  }
+
+  .weight-4stage-grid,
+  .briefing-status-grid,
+  .home-dual-report-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  #results-dashboard .growth-stats-grid,
+  #learning-bento-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem !important;
+  }
+
+  #results-dashboard .growth-stats-grid .stat-card,
+  #learning-bento-stats-grid > div {
+    padding: 0.68rem 0.48rem !important;
+    border-radius: 13px !important;
+  }
+
+  .prescription-banner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0.8rem 0.7rem !important;
+    gap: 0.6rem !important;
+  }
+
+  .prescription-banner .report-mode-switcher {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem !important;
+    width: 100% !important;
+  }
+
+  .prescription-retest-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.55rem 0.35rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+
 

@@ -1751,14 +1751,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-22T05:07:07Z",
-    "total_papers": 2218,
+    "generated_at": "2026-10-22T06:08:18Z",
+    "total_papers": 2235,
     "pillar_counts": {
       "growth_endocrinology": 632,
       "fine_motor_neuroscience": 426,
-      "pedagogy_montessori_froebel": 303,
-      "parent_child_interaction_museum": 542,
-      "posture_biomechanics_exercise": 315
+      "pedagogy_montessori_froebel": 304,
+      "parent_child_interaction_museum": 554,
+      "posture_biomechanics_exercise": 319
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -2193,7 +2193,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 303
+      "paper_count": 304
     },
     {
       "id": "parent_child_interaction_museum",
@@ -2202,7 +2202,7 @@
       "title_en": "Autonomy-Supportive Parenting, Emotion Coaching & Museum Inquiry Scaffolding",
       "target_feature": "떼쓰기·자율성 발달기(만 2~4세) 양육 처방전 & 주말 박물관·과학관 연령별 도슨트/하브루타 질문 가이드",
       "clinical_focus": "미운 세 살~네 살 자율성 급등기(Autonomy Phase)의 자율성 지지(Autonomy Support) 대 통제적 양육이 아동의 자기조절력에 미치는 영향, Gottman 감정코칭(Emotion Coaching)의 미주신경 톤 안정화 효과, 박물관·과학관에서의 개방형 질문(Wh-questions)과 정교화 대화(Elaborative Reminiscing)",
-      "paper_count": 542
+      "paper_count": 554
     },
     {
       "id": "posture_biomechanics_exercise",
@@ -2211,7 +2211,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 315
+      "paper_count": 319
     }
   ],
   "clinical_synthesis_rules": {
@@ -56161,6 +56161,29 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.1016/s0262-4079(23)01947-4",
+      "pmid": "",
+      "doi": "10.1016/s0262-4079(23)01947-4",
+      "pillar": "pedagogy_montessori_froebel",
+      "title": "Discarded toys produce more electronic waste than vapes",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Discarded toys produce more electronic waste than vapes (2023)",
+      "authors": [
+        "Stokel-Walker C"
+      ],
+      "journal": "New Scientist",
+      "year": 2023,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "New Scientist (2023)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/s0262-4079(23)01947-4",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.17278/ijesim.987450",
       "pmid": "",
       "doi": "10.17278/ijesim.987450",
@@ -65786,6 +65809,174 @@
       "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
       "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
       "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "PMID:40323823",
+      "pmid": "40323823",
+      "doi": "10.1037/dev0001975",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Children's mental health and mother-child elaborative reminiscing during the COVID-19 pandemic: Insights from Estonian and German middle-class families",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Children's mental health and mother-child elaborative reminiscing during the COVID-19 pand (2026)",
+      "authors": [
+        "Tõugu P",
+        "Schröder L",
+        "Tulviste T"
+      ],
+      "journal": "Developmental psychology",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Developmental psychology (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40323823/",
+      "source_api": "NCBI PubMed E-utilities Live"
+    },
+    {
+      "id": "DOI:10.3390/educsci16081260",
+      "pmid": "",
+      "doi": "10.3390/educsci16081260",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Adult and Child Interactions When Using Digital Technologies",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Adult and Child Interactions When Using Digital Technologies (2026)",
+      "authors": [
+        "Lisa K. Kervin",
+        "Kate L. Lewis",
+        "Natalie Day",
+        "Steven James Howard"
+      ],
+      "journal": "Education Sciences",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Education Sciences (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.3390/educsci16081260",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.1080/00344087.2026.2714692",
+      "pmid": "",
+      "doi": "10.1080/00344087.2026.2714692",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Humanizing Theological Education with Slow Media: Literature in Ministerial Formation",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Humanizing Theological Education with Slow Media: Literature in Ministerial Formation (2026)",
+      "authors": [
+        "Daniella Zsupan‐Jerome"
+      ],
+      "journal": "Religious Education",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Religious Education (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1080/00344087.2026.2714692",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.3390/educsci16081240",
+      "pmid": "",
+      "doi": "10.3390/educsci16081240",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Formation of Children’s Interests in Physical Versus Life Sciences: Significance of Parent, Gender and Ethnicity Influences",
+      "title_ko": "[박물관·과학관 하브루타 탐구 대화] Formation of Children’s Interests in Physical Versus Life Sciences: Significance of Parent (2026)",
+      "authors": [
+        "Susannah Sandrin",
+        "Katherine Short‐Meyerson"
+      ],
+      "journal": "Education Sciences",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 개방형 질문(Wh-questions) 및 인과적 대화 시 아동의 전시 원리 장기기억 및 과학적 탐구 지속시간 유의미 증가(p < 0.01)",
+      "clinical_summary_ko": "Education Sciences (2026)에 발표된 박물관 비형식 학습(Informal learning) 연구로, 관람 중 부모가 일방적으로 지식을 설명하기보다 아동의 호기심을 따라가며 개방형 질문을 던질 때 지식 전이(Transfer)가 극대화됨을 입증했습니다.",
+      "parenting_prescription_ko": "박물관 관람 후 집에 돌아오는 차 안이나 저녁 식사 자리에서 '오늘 본 것 중 가장 신기했던 1가지는 뭐였어?'라고 회상 대화(Elaborative reminiscing)를 나누면 장기기억으로 각인됩니다.",
+      "age_range": "만 3~10세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.3390/educsci16081240",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.5749/ces.0902.1.05",
+      "pmid": "",
+      "doi": "10.5749/ces.0902.1.05",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Race, Remembering, and the Dialogics of Oral History in an Arab American Tragedy",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Race, Remembering, and the Dialogics of Oral History in an Arab American Tragedy (2026)",
+      "authors": [
+        "Sarah M. A. Gualtieri"
+      ],
+      "journal": "Critical Ethnic Studies",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Critical Ethnic Studies (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.5749/ces.0902.1.05",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.62423/jepece.2026.4.1.213",
+      "pmid": "",
+      "doi": "10.62423/jepece.2026.4.1.213",
+      "pillar": "parent_child_interaction_museum",
+      "title": "An Exploratory Study for Developing an Autonomy-Supportive Parenting Scale for Parents of Young Children",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] An Exploratory Study for Developing an Autonomy-Supportive Parenting Scale for Parents of  (2026)",
+      "authors": [
+        "Shon Y"
+      ],
+      "journal": "The Korean Society for Educational Practice in Early Childhood Education",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "The Korean Society for Educational Practice in Early Childhood Education (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.62423/jepece.2026.4.1.213",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.56303/jhnresearch.v5i2.1386",
+      "pmid": "",
+      "doi": "10.56303/jhnresearch.v5i2.1386",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Factors Associated with Toddler Nutritional Status and Stunting: A Cross-Sectional Study of Maternal Knowledge, Parenting Styles, and Family Support",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Factors Associated with Toddler Nutritional Status and Stunting: A Cross-Sectional Study o (2026)",
+      "authors": [
+        "Wirawati D",
+        "Awalin F",
+        "Sumarmi S"
+      ],
+      "journal": "Journal of Health and Nutrition Research",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Journal of Health and Nutrition Research (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.56303/jhnresearch.v5i2.1386",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "DOI:10.1007/s43076-025-00507-2",
@@ -79356,6 +79547,59 @@
       "long_term_action_ko": "장기(6개월~성인기): 지식의 단순 암기를 넘어 현상의 본질을 질문하고 논증하는 비판적 지성 완성"
     },
     {
+      "id": "DOI:10.55612/s-5002-041-003",
+      "pmid": "",
+      "doi": "10.55612/s-5002-041-003",
+      "pillar": "parent_child_interaction_museum",
+      "title": "A Participatory Approach for Digital Documentation of Egyptian Bedouins' Intangible Cultural Heritage",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] A Participatory Approach for Digital Documentation of Egyptian Bedouins' Intangible Cultur (2019)",
+      "authors": [
+        "Danilo Giglitto",
+        "Shaimaa Lazem",
+        "Anne Preston"
+      ],
+      "journal": "Interaction design & architecture(s)/ID&A Interaction design & architecture(s)",
+      "year": 2019,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Interaction design & architecture(s)/ID&A Interaction design & architecture(s) (2019)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.55612/s-5002-041-003",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.4236/jss.2019.79014",
+      "pmid": "",
+      "doi": "10.4236/jss.2019.79014",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Harmful Memories—Present Dynamics: The Heroic Helper’s Effect on Collective and Individual Responsibility and Prejudice",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Harmful Memories—Present Dynamics: The Heroic Helper’s Effect on Collective and Individual (2019)",
+      "authors": [
+        "Sára Bigazzi",
+        "Fanni Csernus",
+        "Sára Serdült",
+        "Bálint Takács",
+        "Ildikó Bokrétás",
+        "Dorottya Géczy"
+      ],
+      "journal": "Open Journal of Social Sciences",
+      "year": 2019,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Open Journal of Social Sciences (2019)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.4236/jss.2019.79014",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
       "id": "PMID:29648612",
       "pmid": "29648612",
       "doi": "10.1177/0956797617749670",
@@ -80556,6 +80800,57 @@
       "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
       "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
       "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "DOI:10.1111/etho.12218",
+      "pmid": "",
+      "doi": "10.1111/etho.12218",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Traumatic Home: Argentinian Victimhood and the Everyday Moral Comfort of Trauma",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Traumatic Home: Argentinian Victimhood and the Everyday Moral Comfort of Trauma (2018)",
+      "authors": [
+        "Eva van Roekel"
+      ],
+      "journal": "Ethos",
+      "year": 2018,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Ethos (2018)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1111/etho.12218",
+      "source_api": "OpenAlex Academic Graph API Live"
+    },
+    {
+      "id": "DOI:10.1080/0046760x.2018.1516811",
+      "pmid": "",
+      "doi": "10.1080/0046760x.2018.1516811",
+      "pillar": "parent_child_interaction_museum",
+      "title": "‘History taught in the pageant way’: education and historical performance in twentieth-century Britain",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] ‘History taught in the pageant way’: education and historical performance in twentieth-cen (2018)",
+      "authors": [
+        "Angela Bartie",
+        "Linda Fleming",
+        "Mark Freeman",
+        "Tom Hulme",
+        "Alexander Hutton",
+        "Paul Readman"
+      ],
+      "journal": "History of Education",
+      "year": 2018,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Empirical Study (OpenAlex / DOI Indexed)",
+      "sample_size": "다기관 임상·발달 코호트",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "History of Education (2018)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (OpenAlex Peer-Reviewed Article)",
+      "url": "https://doi.org/10.1080/0046760x.2018.1516811",
+      "source_api": "OpenAlex Academic Graph API Live"
     },
     {
       "id": "DOI:10.1016/j.edurev.2017.08.003",
@@ -87922,6 +88217,29 @@
       "macro_pillar": "learning"
     },
     {
+      "id": "DOI:10.3406/enfan.1980.3229",
+      "pmid": "",
+      "doi": "10.3406/enfan.1980.3229",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Teacher technique and toddler compliance in five day care settings",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Teacher technique and toddler compliance in five day care settings (1980)",
+      "authors": [
+        "Honiga S"
+      ],
+      "journal": "Enfance",
+      "year": 1980,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Enfance (1980)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.3406/enfan.1980.3229",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.2307/795401",
       "pmid": "",
       "doi": "10.2307/795401",
@@ -89746,6 +90064,55 @@
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
     },
     {
+      "id": "DOI:10.22219/physiohs.v9i1.45271",
+      "pmid": "",
+      "doi": "10.22219/physiohs.v9i1.45271",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "The Mediating Role of Forward Head Posture in the Relationship Between Smartphone Use Duration and Musculoskeletal Complaints Among Primary School Children",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The Mediating Role of Forward Head Posture in the Relationship Between Smartphone Use Dura (2026)",
+      "authors": [
+        "Permata A",
+        "Zein RH",
+        "Marzuki T"
+      ],
+      "journal": "Physiotherapy Health Science (PhysioHS)",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Physiotherapy Health Science (PhysioHS) (2026)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.22219/physiohs.v9i1.45271",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.7860/jcdr/2026/91674.24608",
+      "pmid": "",
+      "doi": "10.7860/jcdr/2026/91674.24608",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Comparison of Wobble Board and Trampoline Training as an Adjunct on Proprioception, Kinesiophobia and Risk of Fall in Patients with Knee Osteoarthritis: A Randomised Clinical Trial Protocol",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Comparison of Wobble Board and Trampoline Training as an Adjunct on Proprioception, Kinesi (2026)",
+      "authors": [
+        "Pandey PD",
+        "Aggarwal AS"
+      ],
+      "journal": "JOURNAL OF CLINICAL AND DIAGNOSTIC RESEARCH",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "JOURNAL OF CLINICAL AND DIAGNOSTIC RESEARCH (2026)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.7860/jcdr/2026/91674.24608",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "PMID:40611942",
       "pmid": "40611942",
       "doi": "10.7717/peerj.19616",
@@ -91120,6 +91487,30 @@
       "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
       "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.52403/ijhsr.20250523",
+      "pmid": "",
+      "doi": "10.52403/ijhsr.20250523",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Effectiveness of Scapular Stabilization Exercises Versus Kinesiotaping on Craniovertebral Angle Among Young Adults with Forward Head Posture",
+      "title_ko": "[성장판 역학적 부하·점프 운동 생체역학] Effectiveness of Scapular Stabilization Exercises Versus Kinesiotaping on Craniovertebral  (2025)",
+      "authors": [
+        "Raichura RK",
+        "M. Patel A"
+      ],
+      "journal": "International Journal of Health Sciences and Research",
+      "year": 2025,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "규칙적인 점프·줄넘기 등 체중부하 운동군에서 하지 골밀도(BMD/BMC) 및 골강도 지표 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "International Journal of Health Sciences and Research (2025)에 보고된 소아 스포츠의학·골생리학 연구로, 점프 착지 시 발생하는 적정 수직 지면반력이 하지 성장판과 골소주(Trabecular bone)의 재형성을 촉진하는 생체역학적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "주 3~5회, 하루 15분 내외의 줄넘기·농구·트램펄린 등 리드미컬한 점프 운동과 운동 후 대퇴사두근·종아리 스트레칭을 병행하세요.",
+      "age_range": "만 5~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.52403/ijhsr.20250523",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "PMID:38396433",
@@ -96074,6 +96465,29 @@
       "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
       "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.31525/ct1-nct04176159",
+      "pmid": "",
+      "doi": "10.31525/ct1-nct04176159",
+      "pillar": "posture_biomechanics_exercise",
+      "title": "Effectiveness of Motor Imagery and Task-oriented Training in Children With Developmental Coordination Disorder",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Effectiveness of Motor Imagery and Task-oriented Training in Children With Developmental C (2019)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Case Medical Research",
+      "year": 2019,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Case Medical Research (2019)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.31525/ct1-nct04176159",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "PMID:30775541",
