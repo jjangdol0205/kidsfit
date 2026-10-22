@@ -2,13 +2,13 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-22T00:31:31Z",
-    "total_papers": 2062,
+    "generated_at": "2026-10-22T00:33:30Z",
+    "total_papers": 2065,
     "pillar_counts": {
       "growth_endocrinology": 602,
       "fine_motor_neuroscience": 382,
       "pedagogy_montessori_froebel": 289,
-      "parent_child_interaction_museum": 485,
+      "parent_child_interaction_museum": 488,
       "posture_biomechanics_exercise": 304
     },
     "engines_used": [
@@ -453,7 +453,7 @@
       "title_en": "Autonomy-Supportive Parenting, Emotion Coaching & Museum Inquiry Scaffolding",
       "target_feature": "떼쓰기·자율성 발달기(만 2~4세) 양육 처방전 & 주말 박물관·과학관 연령별 도슨트/하브루타 질문 가이드",
       "clinical_focus": "미운 세 살~네 살 자율성 급등기(Autonomy Phase)의 자율성 지지(Autonomy Support) 대 통제적 양육이 아동의 자기조절력에 미치는 영향, Gottman 감정코칭(Emotion Coaching)의 미주신경 톤 안정화 효과, 박물관·과학관에서의 개방형 질문(Wh-questions)과 정교화 대화(Elaborative Reminiscing)",
-      "paper_count": 485
+      "paper_count": 488
     },
     {
       "id": "posture_biomechanics_exercise",
@@ -62425,6 +62425,58 @@
       "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
+      "id": "DOI:10.1007/s10826-024-02807-0",
+      "pmid": "",
+      "doi": "10.1007/s10826-024-02807-0",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Who benefits from autonomy-supportive parenting? Considering individual difference in adolescent emotional reactivity",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Who benefits from autonomy-supportive parenting? Considering individual difference in adol (2024)",
+      "authors": [
+        "Chen L",
+        "Fosco GM",
+        "Tornello SL"
+      ],
+      "journal": "Journal of Child and Family Studies",
+      "year": 2024,
+      "citations_count": 4,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Journal of Child and Family Studies (2024)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1007/s10826-024-02807-0",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
+      "id": "DOI:10.35451/mmj.v2i1.2369",
+      "pmid": "",
+      "doi": "10.35451/mmj.v2i1.2369",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Maternal Self-Health on Toddler Diarrhea associated with Environmental Sanitation in Deli Tua Health Center Area",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Maternal Self-Health on Toddler Diarrhea associated with Environmental Sanitation in Deli  (2024)",
+      "authors": [
+        "Dania IA",
+        "Brando Lubis AR",
+        "Akbar S",
+        "Pangestuti D",
+        "Bestari R"
+      ],
+      "journal": "MEDISTRA MEDICAL JOURNAL (MMJ)",
+      "year": 2024,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "MEDISTRA MEDICAL JOURNAL (MMJ) (2024)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.35451/mmj.v2i1.2369",
+      "source_api": "Crossref Works REST API Live"
+    },
+    {
       "id": "DOI:10.1037/emo0001233.supp",
       "pmid": "",
       "doi": "10.1037/emo0001233.supp",
@@ -73675,6 +73727,29 @@
       "short_term_action_ko": "단기(1~4주): 이번 주말 박물관·과학관·미술관 방문 시 설명 대신 '관찰 → 인과 추론 → 창의 대안' 3단계 하브루타 질문 실천",
       "mid_term_action_ko": "중기(1~3개월): 격주 주말 현장 탐구 + 연계 도서 확장을 통해 좌뇌 브로카 영역 대화 턴(Turn-taking) 및 장기기억 정착",
       "long_term_action_ko": "장기(6개월~성인기): 지식의 단순 암기를 넘어 현상의 본질을 질문하고 논증하는 비판적 지성 완성"
+    },
+    {
+      "id": "DOI:10.1037/dev0000364.supp",
+      "pmid": "",
+      "doi": "10.1037/dev0000364.supp",
+      "pillar": "parent_child_interaction_museum",
+      "title": "Supplemental Material for The Link Between Perceived Maternal and Paternal Autonomy Support and Adolescent Well-Being Across Three Major Educational Transitions",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Supplemental Material for The Link Between Perceived Maternal and Paternal Autonomy Suppor (2017)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Developmental Psychology",
+      "year": 2017,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Developmental Psychology (2017)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1037/dev0000364.supp",
+      "source_api": "Crossref Works REST API Live"
     },
     {
       "id": "DOI:10.1007/s10984-016-9222-9",

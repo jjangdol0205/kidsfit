@@ -75,7 +75,7 @@ def draw_common_header(draw: ImageDraw.ImageDraw, badge_text: str, title_text: s
     f_sub = get_font(26, bold=False)
 
     # Badge pill
-    draw.rounded_rectangle([(70, 38), (680, 88)], radius=25, fill=accent_color)
+    draw.rounded_rectangle([(70, 38), (760, 88)], radius=25, fill=accent_color)
     draw.text((98, 46), badge_text, font=f_badge, fill=(255, 255, 255))
 
     # Right brand tag
@@ -95,13 +95,13 @@ def draw_common_footer(draw: ImageDraw.ImageDraw, accent_color):
     f_foot = get_font(23, bold=False)
     draw.text(
         (70, y_top + 22),
-        "🌱 키즈핏(KIDS-FIT) 공식 네이버 카페 무료 배포 워크지 | 무단 상업적 도용 금지",
+        "★ 키즈핏(KIDS-FIT) 공식 네이버 카페 무료 배포 워크지 | 무단 상업적 도용 금지",
         font=f_foot_b,
         fill=accent_color,
     )
     draw.text(
         (70, y_top + 60),
-        "🌐 우리 아이 키 백분위 & 두뇌·학습 역량(LQ) 1분 무료 진단: https://truthofmarket.com",
+        "▶ 우리 아이 키 백분위 & 두뇌·학습 역량(LQ) 1분 무료 진단: https://truthofmarket.com",
         font=f_foot,
         fill=(80, 92, 115),
     )
@@ -131,7 +131,7 @@ def generate_pdf_01_fine_motor():
     f_info = get_font(28, bold=True)
     draw.text(
         (105, 305),
-        "👶 아이 이름: ________________    📅 날짜: 2026년 ___월 ___일    🌟 엄마·아빠 칭찬 별:  ☆  ☆  ☆",
+        "■ 아이 이름: ________________    ■ 날짜: 2026년 ___월 ___일    ★ 엄마·아빠 칭찬 별:  ☆  ☆  ☆",
         font=f_info,
         fill=(45, 55, 72),
     )
@@ -236,7 +236,7 @@ def generate_pdf_01_fine_motor():
 
     # SECTION 3: Safe Scissors Cutting Track & Parenting Tip
     draw.rounded_rectangle([(70, 1725), (A4_W - 70, 2190)], radius=24, fill=(255, 251, 235), outline=(251, 191, 36), width=3)
-    draw.text((105, 1750), "STEP 3. ✂️ 안전가위 오리기 트랙 & 오늘 저녁 0원 소근육 놀이 팁", font=f_sec, fill=(180, 83, 9))
+    draw.text((105, 1750), "STEP 3. [가위질 트랙] 안전가위 오리기 & 오늘 저녁 0원 소근육 놀이 팁", font=f_sec, fill=(180, 83, 9))
     draw.text(
         (105, 1805),
         "엄지·검지·중지 세 손가락에 힘을 주어 아래 점선을 따라 안전가위로 오려보세요! (연필 잡기 기초 근력 완성)",
@@ -245,7 +245,7 @@ def generate_pdf_01_fine_motor():
     )
 
     for line_idx, ly in enumerate([1890, 1985]):
-        label_str = "✂️ 가위질 1단계 (직선 오리기)" if line_idx == 0 else "✂️ 가위질 2단계 (긴 호흡 오리기)"
+        label_str = "▶ 가위질 1단계 (직선 오리기)" if line_idx == 0 else "▶ 가위질 2단계 (긴 호흡 오리기)"
         draw.text((105, ly - 38), label_str, font=f_label, fill=(146, 64, 14))
         draw_dashed_line(draw, (105, ly + 10), (A4_W - 105, ly + 10), fill=(217, 119, 6), width=5, dash_len=28, gap_len=16)
 
@@ -253,7 +253,7 @@ def generate_pdf_01_fine_motor():
     draw.rounded_rectangle([(100, 2045), (A4_W - 100, 2160)], radius=16, fill=(255, 255, 255), outline=(252, 211, 77), width=2)
     draw.text(
         (125, 2065),
-        "💡 엄마·아빠 코칭 팁: 아이가 선을 조금 벗어나도 절대 지우개로 지우거나 대신 그려주지 마세요!",
+        "★ 엄마·아빠 코칭 팁: 아이가 선을 조금 벗어나도 절대 지우개로 지우거나 대신 그려주지 마세요!",
         font=f_label,
         fill=(30, 41, 59),
     )
@@ -300,7 +300,7 @@ def generate_pdf_02_cornell_study():
     draw.rounded_rectangle([(70, 280), (A4_W - 70, 365)], radius=18, fill=(248, 250, 252), outline=(203, 213, 225), width=2)
     draw.text(
         (105, 306),
-        "✏️ 학생 이름: ______________   📅 날짜: 2026년 ___월 ___일   🎯 오늘 복습 과목/단원: _______________________",
+        "■ 학생 이름: ______________   ■ 날짜: 2026년 ___월 ___일   ★ 오늘 복습 과목/단원: _______________________",
         font=f_info,
         fill=(30, 41, 59),
     )
@@ -315,7 +315,7 @@ def generate_pdf_02_cornell_study():
     draw.line([(col_split_x, 468), (col_split_x, 1175)], fill=(203, 213, 225), width=3)
     draw.line([(70, 1175), (A4_W - 70, 1175)], fill=(203, 213, 225), width=3)
 
-    draw.text((100, 490), "🔑 핵심 키워드 & 질문 3가지", font=f_label, fill=indigo)
+    draw.text((100, 490), "◆ 핵심 키워드 & 질문 3가지", font=f_label, fill=indigo)
     draw.text((100, 528), "(단어만 보고 오른쪽에 설명 쓰기)", font=f_desc, fill=(100, 116, 139))
 
     for q_idx in range(3):
@@ -324,7 +324,7 @@ def generate_pdf_02_cornell_study():
         draw.text((115, qy + 18), f"핵심 키워드 #{q_idx + 1}", font=f_label, fill=(51, 65, 85))
         draw.line([(115, qy + 115), (col_split_x - 45, qy + 115)], fill=(203, 213, 225), width=2)
 
-    draw.text((col_split_x + 35, 490), "🧠 백지 인출 & 도식화 노트 (공식 암기 대신 원리·그림·화살표로 정리!)", font=f_label, fill=accent)
+    draw.text((col_split_x + 35, 490), "★ 백지 인출 & 도식화 노트 (공식 암기 대신 원리·그림·화살표로 정리!)", font=f_label, fill=accent)
     draw.text((col_split_x + 35, 528), "※ 막히는 부분은 별표(★) 해두고 백지복습이 끝난 뒤 교과서를 펼쳐 다른 색 펜으로 채우세요.", font=f_desc, fill=(100, 116, 139))
 
     # Ruled lines in Right Column
@@ -332,7 +332,7 @@ def generate_pdf_02_cornell_study():
         draw.line([(col_split_x + 35, ry), (A4_W - 105, ry)], fill=(226, 232, 240), width=2)
 
     # Bottom Summary Row of Cornell Note (Havruta 1-sentence summary)
-    draw.text((105, 1195), "🗣️ [1분 하브루타 요약] 오늘 배운 핵심을 동생이나 부모님께 한 문장으로 설명한다면?", font=f_label, fill=(30, 41, 59))
+    draw.text((105, 1195), "▶ [1분 하브루타 요약] 오늘 배운 핵심을 동생이나 부모님께 한 문장으로 설명한다면?", font=f_label, fill=(30, 41, 59))
     draw.line([(105, 1295), (A4_W - 105, 1295)], fill=(148, 163, 184), width=2)
 
     # PART 2: Weekly Self-Directed Habit & Study Matrix (Mon-Sun)
@@ -380,7 +380,7 @@ def generate_pdf_02_cornell_study():
     draw.rounded_rectangle([(95, 2068), (A4_W - 95, 2165)], radius=16, fill=(240, 253, 250), outline=(153, 246, 228), width=2)
     draw.text(
         (125, 2100),
-        "🎁 이번 주 목표 달성 시 우리 가족 주말 보상 약속: ____________________________________ (부모님 사인: ________)",
+        "★ 이번 주 목표 달성 시 우리 가족 주말 보상 약속: ____________________________________ (부모님 사인: ________)",
         font=f_label,
         fill=(15, 118, 110),
     )
@@ -422,7 +422,7 @@ def generate_pdf_03_growth_sleep_tracker():
     draw.rounded_rectangle([(70, 280), (A4_W - 70, 365)], radius=18, fill=(255, 251, 235), outline=(253, 186, 116), width=2)
     draw.text(
         (105, 306),
-        "🌱 아이 이름: ____________   📏 시작 키: ______cm   🎯 올해 목표 키: ______cm   💪 부모님 유전예상키(MPH): ______cm",
+        "■ 아이 이름: ____________   ■ 시작 키: ______cm   ★ 올해 목표 키: ______cm   ◆ 부모님 유전예상키(MPH): ______cm",
         font=f_info,
         fill=(124, 45, 18),
     )
@@ -466,7 +466,7 @@ def generate_pdf_03_growth_sleep_tracker():
     draw.rounded_rectangle([(95, 1190), (A4_W - 95, 1280)], radius=16, fill=(248, 250, 252), outline=(226, 232, 240), width=2)
     draw.text(
         (120, 1220),
-        "✅ 매일 저녁 3가지 약속:  ① 밤 10시 전 불 끄고 쿨쿨!   ② 잠들기 전 5분 성장판 스트레칭!   ③ 야식·단 음료 참기!",
+        "★ 매일 저녁 3가지 약속:  ① 밤 10시 전 불 끄고 쿨쿨!   ② 잠들기 전 5분 성장판 스트레칭!   ③ 야식·단 음료 참기!",
         font=f_label,
         fill=(30, 41, 59),
     )
@@ -506,7 +506,7 @@ def generate_pdf_03_growth_sleep_tracker():
     draw.rounded_rectangle([(95, 2070), (A4_W - 95, 2165)], radius=16, fill=(236, 253, 245), outline=(110, 231, 183), width=2)
     draw.text(
         (125, 2100),
-        "📸 [매월 1일 카페 인증 이벤트] 기록표와 truthofmarket.com 진단 캡처를 네이버 카페에 올리면 우수회원 혜택 증정!",
+        "★ [매월 1일 카페 인증 이벤트] 기록표와 truthofmarket.com 진단 캡처를 네이버 카페에 올리면 우수회원 혜택 증정!",
         font=f_label,
         fill=mint,
     )
