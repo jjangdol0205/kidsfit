@@ -103,8 +103,8 @@
         <button type="button" id="btn-header-app-download" class="app-download-header-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" aria-label="키즈핏 앱 다운로드">
           📲 앱 다운로드
         </button>
-        <a href="#homepage-intro-growth-report" id="nav-header-growth-report" onclick="event.preventDefault(); (function(){ var dash = document.getElementById('results-dashboard'); if(dash && !dash.classList.contains('hidden') && dash.style.display !== 'none' && window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function'){ window.MasterBriefingEngine.switchActiveReport('growth'); } else if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function'){ window.TallerOnboardingWizard.enterStudioMode('child', 'growth'); } })();" data-i18n="nav.forWhom" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem; cursor: pointer;">신체 성장 보고서</a>
-        <a href="#homepage-intro-learning-report" id="nav-header-learning-report" onclick="event.preventDefault(); (function(){ var dash = document.getElementById('results-dashboard'); if(dash && !dash.classList.contains('hidden') && dash.style.display !== 'none' && window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function'){ window.MasterBriefingEngine.switchActiveReport('learning'); } else if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function'){ window.TallerOnboardingWizard.enterStudioMode('child', 'learning'); } })();" data-i18n="nav.services" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem; cursor: pointer;">두뇌·학습 보고서</a>
+        <a href="#homepage-intro-growth-report" id="nav-header-growth-report" data-i18n="nav.forWhom" style="display: none;">신체 성장 보고서</a>
+        <a href="#homepage-intro-learning-report" id="nav-header-learning-report" data-i18n="nav.services" style="display: none;">두뇌·학습 보고서</a>
         <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language">
           🇺🇸 EN
         </button>
@@ -1088,8 +1088,8 @@
           </div>
         </div>
         <div class="report-mode-switcher" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-          <button type="button" class="prescription-retest-btn" id="btn-switch-report-growth" onclick="if(window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function') window.MasterBriefingEngine.switchActiveReport('growth');" style="background: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%); color: #FFFFFF; font-weight: 800; border: 1.5px solid #38BDF8;">📏 신체 성장 보고서</button>
-          <button type="button" class="prescription-retest-btn" id="btn-switch-report-learning" onclick="if(window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function') window.MasterBriefingEngine.switchActiveReport('learning');" style="background: rgba(139, 92, 246, 0.16); color: #DDD6FE; font-weight: 800; border: 1.5px solid rgba(167, 139, 250, 0.5);">🧠 두뇌·학습 보고서</button>
+          <button type="button" class="prescription-retest-btn" id="btn-switch-report-growth" style="display: none !important;">📏 신체 성장 보고서</button>
+          <button type="button" class="prescription-retest-btn" id="btn-switch-report-learning" style="display: none !important;">🧠 두뇌·학습 보고서</button>
           <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ try { var app = window.KidsFitApp; var gt = window.KidsFitGrowthTracker || window.TallerGrowthTracker; if(gt && typeof gt.preparePrintReport === 'function'){ gt.preparePrintReport(app && app.state ? app.state.profile : {}); } window.print(); } catch(e){ window.print(); } })()" style="background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%); color: #0F172A; font-weight: 900; border: 1.5px solid #38BDF8;">🖨️ 보고서 출력 (인쇄 / PDF)</button>
           <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 정보 다시 입력하기</button>
         </div>

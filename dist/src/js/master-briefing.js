@@ -1309,16 +1309,16 @@
     const quickBooks = Array.isArray(curatedAllItems.books) ? curatedAllItems.books.slice(0, 3) : [];
     const quickTours = Array.isArray(curatedAllItems.tours) ? curatedAllItems.tours.slice(0, 3) : [];
 
-    // Immediately sync top prescription banner buttons so inactive report button is never shown
+    // Strictly isolate Physical Growth Report & Brain Learning Report so neither can enter the other
     if (typeof document !== 'undefined') {
       const topBtnGrowth = document.getElementById('btn-switch-report-growth');
       const topBtnLearning = document.getElementById('btn-switch-report-learning');
-      if (topBtnGrowth && topBtnGrowth.style) {
-        topBtnGrowth.style.display = isLearningDefault ? 'none' : 'inline-flex';
-      }
-      if (topBtnLearning && topBtnLearning.style) {
-        topBtnLearning.style.display = isLearningDefault ? 'inline-flex' : 'none';
-      }
+      const navHeaderGrowth = document.getElementById('nav-header-growth-report');
+      const navHeaderLearning = document.getElementById('nav-header-learning-report');
+      if (topBtnGrowth && topBtnGrowth.style) topBtnGrowth.style.display = 'none';
+      if (topBtnLearning && topBtnLearning.style) topBtnLearning.style.display = 'none';
+      if (navHeaderGrowth && navHeaderGrowth.style) navHeaderGrowth.style.display = 'none';
+      if (navHeaderLearning && navHeaderLearning.style) navHeaderLearning.style.display = 'none';
     }
 
     return `
@@ -2278,35 +2278,73 @@
             ` : ''}
           </div>
 
-          <!-- ==================== STEP 2: 아이가 잘하는 강점 성향 (시각 게이지 바 & 1줄 요약) ==================== -->
+          <!-- ==================== STEP 2: 아이가 잘하는 강점 성향 (도식화 비교 막대그래프 & 1줄 요약) ==================== -->
           <div id="learning-step-2-strengths" class="learning-step-card" style="background: linear-gradient(145deg, rgba(6, 78, 59, 0.38) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #10B981; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #10B981; color: #052E16; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 2 · 핵심 강점 그래프
+                STEP 2 · 핵심 강점 도식화 그래프
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #6EE7B7;">
-                또래 평균(78점) 대비 우수 영역
+                또래 평균(78점) 대비 우수 시냅스 회로 비교도
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
-              🌟 2. 만 ${ageYears}세 우리 아이 강점 성향 TOP 3
+              🌟 2. 만 ${ageYears}세 우리 아이 강점 성향 TOP 3 비교 그래프
             </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+
+            <!-- Schematic SVG Bar Chart Comparing Child's Top 3 Strengths vs Peer Average (78) -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 16px; padding: 0.85rem 0.95rem; margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
+                <span style="font-size: 0.82rem; font-weight: 900; color: #6EE7B7;">📊 강점 3대 영역 시냅스 활성도 vs 또래 기준선(78점)</span>
+                <div style="display: flex; gap: 0.6rem; font-size: 0.74rem; font-weight: 800;">
+                  <span style="color: #34D399;">■ 우리 아이 강점 점수</span>
+                  <span style="color: #94A3B8;">--- 또래 평균 기준선 (78점)</span>
+                </div>
+              </div>
+              <svg id="learning-step2-strength-chart-svg" viewBox="0 0 640 165" style="width: 100%; height: auto; display: block;">
+                <defs>
+                  <linearGradient id="strBarGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#34D399" />
+                    <stop offset="100%" stop-color="#059669" />
+                  </linearGradient>
+                </defs>
+                <!-- Baseline & Peer Average Dashed Line -->
+                <line x1="40" y1="130" x2="600" y2="130" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" />
+                <line x1="40" y1="54" x2="600" y2="54" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-dasharray="5,4" />
+                <rect x="502" y="38" width="96" height="18" rx="5" fill="rgba(15,23,42,0.9)" stroke="rgba(255,255,255,0.35)" />
+                <text x="550" y="50" fill="#E2E8F0" font-size="9.5" font-weight="800" text-anchor="middle">또래 평균 78점</text>
+
+                ${strengthsList.map((s, idx) => {
+                  const colX = 115 + idx * 185;
+                  const barH = Math.max(36, Math.min(102, Math.round((s.score - 45) * 1.85)));
+                  const barY = 130 - barH;
+                  const shortTitle = (s.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 11);
+                  return `
+                    <!-- Peer Avg Reference Bar -->
+                    <rect x="${colX - 38}" y="54" width="32" height="76" rx="6" fill="rgba(148,163,184,0.22)" stroke="rgba(148,163,184,0.45)" />
+                    <text x="${colX - 22}" y="70" fill="#CBD5E1" font-size="9.5" font-weight="800" text-anchor="middle">78점</text>
+                    <!-- Child Strength Bar -->
+                    <rect x="${colX + 2}" y="${barY}" width="44" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#A7F3D0" stroke-width="1.5" />
+                    <rect x="${colX - 18}" y="${Math.max(4, barY - 22)}" width="84" height="18" rx="9" fill="rgba(16,185,129,0.28)" stroke="#34D399" />
+                    <text x="${colX + 24}" y="${Math.max(16, barY - 10)}" fill="#FFFFFF" font-size="10.5" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78})</text>
+                    <text x="${colX + 4}" y="150" fill="#F8FAFC" font-size="11" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
+                  `;
+                }).join('')}
+              </svg>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
               ${strengthsList.map((s) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.5); border-left: 5px solid #10B981; border-radius: 13px; padding: 0.75rem 0.95rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.25rem;">
-                    <span style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; word-break: keep-all;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.5); border-left: 5px solid #10B981; border-radius: 13px; padding: 0.7rem 0.9rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.22rem;">
+                    <span style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; word-break: keep-all;">
                       ${s.icon} ${s.title}
                     </span>
-                    <span style="font-size: 0.84rem; font-weight: 900; color: #6EE7B7; background: rgba(16, 185, 129, 0.18); padding: 0.15rem 0.6rem; border-radius: 9999px;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #6EE7B7; background: rgba(16, 185, 129, 0.18); padding: 0.14rem 0.55rem; border-radius: 9999px;">
                       ${s.score}점 (평균 +${s.score - 78}점)
                     </span>
                   </div>
-                  <div style="position: relative; height: 10px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin-bottom: 0.3rem;">
-                    <div style="position: absolute; left: 78%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.55); z-index: 2;"></div>
-                    <div style="width: ${Math.min(100, s.score)}%; height: 100%; background: linear-gradient(90deg, #10B981 0%, #34D399 100%); border-radius: 9999px;"></div>
-                  </div>
-                  <div style="font-size: 0.83rem; color: #E2E8F0; line-height: 1.38; word-break: keep-all;">
+                  <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.38; word-break: keep-all;">
                     ✓ ${s.goodTrait}
                   </div>
                 </div>
@@ -2314,35 +2352,77 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 3: 지금 보완해주면 좋은 학습 성향 (시각 게이지 바 & 1줄 요약) ==================== -->
+          <!-- ==================== STEP 3: 지금 보완해주면 좋은 학습 성향 (Before → After 점프 도식화 그래프 & 1줄 요약) ==================== -->
           <div id="learning-step-3-weaknesses" class="learning-step-card" style="background: linear-gradient(145deg, rgba(136, 19, 55, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #F43F5E; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #F43F5E; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 3 · 보완 포인트 그래프
+                STEP 3 · 보완 포인트 도식화 그래프
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #FDA4AF;">
-                코칭 시 +16점 상승 가능 영역
+                현재 병목 점수 → 6개월 코칭 후 목표치(+16점↑) 도약 시뮬레이션
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
-              🚨 3. 만 ${ageYears}세 맞춤 보완 학습 포인트 TOP 3
+              🚨 3. 만 ${ageYears}세 맞춤 보완 포인트 Before → After 도약 그래프
             </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+
+            <!-- Schematic SVG Before vs After Jump Chart -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.45); border-radius: 16px; padding: 0.85rem 0.95rem; margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
+                <span style="font-size: 0.82rem; font-weight: 900; color: #FDA4AF;">📈 보완 타겟 3대 영역 [현재 점수 → 6개월 맞춤 코칭 목표]</span>
+                <div style="display: flex; gap: 0.6rem; font-size: 0.74rem; font-weight: 800;">
+                  <span style="color: #FB7185;">■ 현재 보완 필요 점수</span>
+                  <span style="color: #34D399;">■ 6개월 코칭 목표 (+16점↑)</span>
+                </div>
+              </div>
+              <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 640 165" style="width: 100%; height: auto; display: block;">
+                <defs>
+                  <linearGradient id="weakBeforeGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FB7185" />
+                    <stop offset="100%" stop-color="#E11D48" />
+                  </linearGradient>
+                  <linearGradient id="weakAfterGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#34D399" />
+                    <stop offset="100%" stop-color="#059669" />
+                  </linearGradient>
+                </defs>
+                <line x1="40" y1="130" x2="600" y2="130" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" />
+                ${weaknessesList.map((w, idx) => {
+                  const colX = 115 + idx * 185;
+                  const targetScore = Math.min(96, w.score + 16);
+                  const curH = Math.max(30, Math.min(82, Math.round((w.score - 40) * 1.65)));
+                  const tarH = Math.max(54, Math.min(104, Math.round((targetScore - 40) * 1.65)));
+                  const curY = 130 - curH;
+                  const tarY = 130 - tarH;
+                  const shortTitle = (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 11);
+                  return `
+                    <!-- Current Score Bar -->
+                    <rect x="${colX - 42}" y="${curY}" width="36" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#FDA4AF" stroke-width="1.2" />
+                    <text x="${colX - 24}" y="${Math.max(18, curY - 6)}" fill="#FDA4AF" font-size="10" font-weight="900" text-anchor="middle">${w.score}점</text>
+                    <!-- Jump Arrow -->
+                    <path d="M ${colX - 10} ${curY - 10} Q ${colX + 4} ${tarY - 18} ${colX + 18} ${tarY - 8}" fill="none" stroke="#FBBF24" stroke-width="2" />
+                    <!-- Coached Target Bar -->
+                    <rect x="${colX + 4}" y="${tarY}" width="40" height="${tarH}" rx="6" fill="url(#weakAfterGrad)" stroke="#A7F3D0" stroke-width="1.5" />
+                    <rect x="${colX - 4}" y="${Math.max(4, tarY - 22)}" width="64" height="17" rx="8" fill="rgba(16,185,129,0.28)" stroke="#34D399" />
+                    <text x="${colX + 28}" y="${Math.max(15, tarY - 10)}" fill="#6EE7B7" font-size="10" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
+                    <text x="${colX + 2}" y="150" fill="#F8FAFC" font-size="11" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
+                  `;
+                }).join('')}
+              </svg>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
               ${weaknessesList.map((w) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.5); border-left: 5px solid #F43F5E; border-radius: 13px; padding: 0.75rem 0.95rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.25rem;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.5); border-left: 5px solid #F43F5E; border-radius: 13px; padding: 0.7rem 0.9rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.22rem;">
                     <span style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; word-break: keep-all;">
                       ${w.icon} ${w.title}
                     </span>
-                    <span style="font-size: 0.84rem; font-weight: 900; color: #FDA4AF; background: rgba(244, 63, 94, 0.16); padding: 0.15rem 0.6rem; border-radius: 9999px;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #FDA4AF; background: rgba(244, 63, 94, 0.16); padding: 0.14rem 0.55rem; border-radius: 9999px;">
                       ${w.score}점 → <span style="color:#6EE7B7;">목표 ${Math.min(96, w.score + 16)}점</span>
                     </span>
                   </div>
-                  <div style="position: relative; height: 10px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin-bottom: 0.3rem;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${Math.min(96, w.score + 16)}%; background: rgba(16, 185, 129, 0.35); border-right: 2px solid #34D399; border-radius: 9999px;"></div>
-                    <div style="position: relative; width: ${Math.min(100, w.score)}%; height: 100%; background: linear-gradient(90deg, #F43F5E 0%, #FB7185 100%); border-radius: 9999px;"></div>
-                  </div>
-                  <div style="font-size: 0.83rem; color: #E2E8F0; line-height: 1.38; word-break: keep-all;">
+                  <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.38; word-break: keep-all;">
                     • ${w.weakTrait}
                   </div>
                 </div>
@@ -2356,36 +2436,66 @@
         <!-- ================================================================== -->
         <div id="report-ch-6" style="scroll-margin-top: 5.5rem; margin-top: 1.15rem;">
 
-          <!-- ==================== STEP 4: 어울리는 미래 진로 (시각 도넛 게이지 & 1줄 카드) ==================== -->
+          <!-- ==================== STEP 4: 어울리는 미래 진로 (두뇌-진로 연결 도식화 다이어그램 & 도넛 게이지) ==================== -->
           <div id="learning-step-4-careers" class="learning-step-card" style="background: linear-gradient(145deg, rgba(30, 58, 138, 0.45) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #60A5FA; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #3B82F6; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 4 · 미래 진로 적성 매칭도
+                STEP 4 · 미래 진로 적성 매칭 다이어그램
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #93C5FD;">
-                강점 성향 × 학습 스타일 도넛 게이지
+                두뇌 강점 회로 × 학습 성향 → 3대 유망 진로 연결도
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
-              🎓 4. 우리 아이 강점과 잘 어울리는 미래 진로
+              🎓 4. 우리 아이 두뇌 강점 × 미래 진로 적성 매칭도
             </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+
+            <!-- Schematic SVG Brain-to-Career Aptitude Mapping Diagram -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.45); border-radius: 16px; padding: 0.8rem 0.9rem; margin-bottom: 0.75rem;">
+              <svg id="learning-step4-career-diagram-svg" viewBox="0 0 640 135" style="width: 100%; height: auto; display: block;">
+                <!-- Left Node: Child's Core Brain Circuit -->
+                <rect x="10" y="24" width="186" height="86" rx="14" fill="rgba(37, 99, 235, 0.24)" stroke="#60A5FA" stroke-width="2" />
+                <text x="103" y="48" fill="#93C5FD" font-size="10.5" font-weight="900" text-anchor="middle">🧠 핵심 두뇌 강점 회로</text>
+                <text x="103" y="70" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
+                <text x="103" y="92" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">강점 1위: ${(strengthsList[0].title || '').slice(0, 12)}</text>
+
+                <!-- Connecting Flow Lines -->
+                <path d="M 196 67 C 235 67, 240 26, 276 26" fill="none" stroke="#38BDF8" stroke-width="2.5" />
+                <path d="M 196 67 L 276 67" fill="none" stroke="#60A5FA" stroke-width="2.5" />
+                <path d="M 196 67 C 235 67, 240 108, 276 108" fill="none" stroke="#818CF8" stroke-width="2.5" />
+
+                <!-- Right 3 Career Target Nodes -->
+                ${recommendedCareers.map((c, idx) => {
+                  const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
+                  const boxY = 8 + idx * 41;
+                  const strokeCol = idx === 0 ? '#38BDF8' : idx === 1 ? '#60A5FA' : '#A78BFA';
+                  return `
+                    <rect x="276" y="${boxY}" width="352" height="35" rx="9" fill="rgba(15, 23, 42, 0.95)" stroke="${strokeCol}" stroke-width="1.5" />
+                    <text x="290" y="${boxY + 22}" fill="#FDE68A" font-size="11" font-weight="900">${c.icon} ${(c.group || '').slice(0, 14)} · ${(c.jobs || '').split('·')[0]}</text>
+                    <rect x="548" y="${boxY + 6}" width="70" height="22" rx="6" fill="rgba(56, 189, 248, 0.2)" stroke="${strokeCol}" />
+                    <text x="583" y="${boxY + 21}" fill="#FFFFFF" font-size="10.5" font-weight="900" text-anchor="middle">적성 ${matchPct}%</text>
+                  `;
+                }).join('')}
+              </svg>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
               ${recommendedCareers.map((c, idx) => {
                 const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
                 const dashVal = Math.round((matchPct / 100) * 125.6);
                 return `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.5); border-left: 5px solid #3B82F6; border-radius: 13px; padding: 0.75rem 0.95rem; display: flex; align-items: center; gap: 0.8rem;">
-                  <svg width="50" height="50" viewBox="0 0 52 52" style="flex-shrink: 0;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.5); border-left: 5px solid #3B82F6; border-radius: 13px; padding: 0.7rem 0.9rem; display: flex; align-items: center; gap: 0.8rem;">
+                  <svg width="48" height="48" viewBox="0 0 52 52" style="flex-shrink: 0;">
                     <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="5" />
                     <circle cx="26" cy="26" r="20" fill="none" stroke="#38BDF8" stroke-width="5" stroke-dasharray="${dashVal} 126" stroke-linecap="round" transform="rotate(-90 26 26)" />
                     <text x="26" y="30" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="900">${matchPct}%</text>
                   </svg>
                   <div style="flex: 1; min-width: 0;">
-                    <div style="font-size: 0.75rem; font-weight: 900; color: #93C5FD; margin-bottom: 0.12rem;">${c.group} · ${c.majors}</div>
-                    <div style="font-size: 0.96rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.12rem; word-break: keep-all;">
+                    <div style="font-size: 0.74rem; font-weight: 900; color: #93C5FD; margin-bottom: 0.1rem;">${c.group} · ${c.majors}</div>
+                    <div style="font-size: 0.94rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.1rem; word-break: keep-all;">
                       ${c.icon} ${c.jobs}
                     </div>
-                    <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.35; word-break: keep-all;">
+                    <div style="font-size: 0.81rem; color: #E2E8F0; line-height: 1.35; word-break: keep-all;">
                       ${c.reason}
                     </div>
                   </div>
@@ -2475,44 +2585,56 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 5: 잘하는 성향 강화 솔루션 (SVG 플로우 + 1줄 카드) ==================== -->
+          <!-- ==================== STEP 5: 잘하는 성향 강화 솔루션 (시각 도식화 다이어그램 + 1줄 카드) ==================== -->
           <div id="learning-step-5-boost" style="background: linear-gradient(145deg, rgba(6, 95, 70, 0.35) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #34D399; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #10B981; color: #052E16; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 5 · 강점 강화 솔루션
+                STEP 5 · 강점 강화 도식화 솔루션
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #6EE7B7;">
-                ${activeStyleInfo.badge} 맞춤 가속 루틴
+                ${activeStyleInfo.badge} 맞춤 시냅스 가속 다이어그램
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.6rem 0;">
-              🚀 5. 강점 성향 200% 살리는 코칭 플로우
+              🚀 5. 강점 성향 200% 살리는 3단계 가속 다이어그램
             </h3>
 
-            <!-- Visual SVG Boost Flow -->
-            <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 12px; padding: 0.6rem 0.8rem; margin-bottom: 0.65rem;">
-              <svg id="learning-step5-boost-svg" viewBox="0 0 600 50" style="width: 100%; height: auto; display: block;">
-                <rect x="4" y="6" width="180" height="38" rx="8" fill="rgba(16,185,129,0.18)" stroke="#10B981" stroke-width="1.2" />
-                <text x="94" y="29" fill="#A7F3D0" font-size="11.5" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
-                <path d="M 188 25 L 204 25" stroke="#34D399" stroke-width="2.5" />
-                <rect x="208" y="6" width="184" height="38" rx="8" fill="rgba(16,185,129,0.25)" stroke="#34D399" stroke-width="1.2" />
-                <text x="300" y="29" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${isToddlerAge ? '손끝·그림책 10분 놀이' : '직접 조작·설명 루틴'}</text>
-                <path d="M 396 25 L 412 25" stroke="#34D399" stroke-width="2.5" />
-                <rect x="416" y="6" width="180" height="38" rx="8" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.2" />
-                <text x="506" y="29" fill="#7DD3FC" font-size="11.5" font-weight="900" text-anchor="middle">시냅스 흡수율 2배↑</text>
+            <!-- Visual SVG Boost Schematic Diagram -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.7rem;">
+              <svg id="learning-step5-boost-svg" viewBox="0 0 640 115" style="width: 100%; height: auto; display: block;">
+                <rect x="8" y="10" width="190" height="94" rx="12" fill="rgba(16,185,129,0.16)" stroke="#10B981" stroke-width="1.6" />
+                <text x="103" y="34" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">STAGE 1 · 강점 채널 개방</text>
+                <text x="103" y="56" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
+                <text x="103" y="80" fill="#A7F3D0" font-size="10" font-weight="800" text-anchor="middle">흥미 자극 도입 (5분)</text>
+
+                <path d="M 202 57 L 220 57" stroke="#34D399" stroke-width="3" />
+                <polygon points="218,51 226,57 218,63" fill="#34D399" />
+
+                <rect x="228" y="10" width="190" height="94" rx="12" fill="rgba(16,185,129,0.24)" stroke="#34D399" stroke-width="1.6" />
+                <text x="323" y="34" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">STAGE 2 · 주도적 탐색·표현</text>
+                <text x="323" y="56" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">${isToddlerAge ? '손끝·그림책 10분 놀이' : '직접 조작·3줄 설명 루틴'}</text>
+                <text x="323" y="80" fill="#A7F3D0" font-size="10" font-weight="800" text-anchor="middle">전두엽 도파민 활성</text>
+
+                <path d="M 422 57 L 440 57" stroke="#38BDF8" stroke-width="3" />
+                <polygon points="438,51 446,57 438,63" fill="#38BDF8" />
+
+                <rect x="448" y="10" width="184" height="94" rx="12" fill="rgba(56,189,248,0.2)" stroke="#38BDF8" stroke-width="1.6" />
+                <text x="540" y="34" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">STAGE 3 · 상위권 회로 완성</text>
+                <text x="540" y="56" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">시냅스 흡수율 200%↑</text>
+                <text x="540" y="80" fill="#BAE6FD" font-size="10" font-weight="800" text-anchor="middle">자기주도 성취감 정착</text>
               </svg>
             </div>
 
-            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem;">
+            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem;">
               ${strengthsList.map((s) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(52, 211, 153, 0.45); border-top: 4px solid #10B981; border-radius: 12px; padding: 0.75rem 0.85rem;">
-                  <div style="font-size: 0.88rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.22rem;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(52, 211, 153, 0.45); border-top: 4px solid #10B981; border-radius: 12px; padding: 0.7rem 0.8rem;">
+                  <div style="font-size: 0.86rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.2rem;">
                     ✅ ${s.title}
                   </div>
-                  <p style="font-size: 0.81rem; color: #F8FAFC; line-height: 1.38; margin: 0 0 0.35rem 0;">
+                  <p style="font-size: 0.8rem; color: #F8FAFC; line-height: 1.36; margin: 0 0 0.3rem 0;">
                     ${s.howToBoost}
                   </p>
-                  <div style="font-size: 0.74rem; color: #A7F3D0; font-weight: 800; background: rgba(16, 185, 129, 0.12); padding: 0.22rem 0.5rem; border-radius: 7px;">
+                  <div style="font-size: 0.73rem; color: #A7F3D0; font-weight: 800; background: rgba(16, 185, 129, 0.12); padding: 0.2rem 0.45rem; border-radius: 7px;">
                     🛠️ ${s.helpfulTools}
                   </div>
                 </div>
@@ -2520,44 +2642,56 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 6: 보완 성향 맞춤 솔루션 (SVG 플로우 + 24h 시간표 그래프) ==================== -->
+          <!-- ==================== STEP 6: 보완 성향 맞춤 솔루션 (병목 교정 도식화 + 4단계 하루 루틴 그래프) ==================== -->
           <div id="learning-step-6-remedy" style="background: linear-gradient(145deg, rgba(120, 53, 15, 0.38) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #FBBF24; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #F59E0B; color: #000000; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 6 · 약점 보완 솔루션
+                STEP 6 · 약점 보완 도식화 솔루션
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #FDE68A;">
-                만 ${ageYears}세 눈높이 처방
+                만 ${ageYears}세 병목 제거 &amp; 하루 4단계 루틴 그래프
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.6rem 0;">
-              🛠️ 6. 보완 포인트 1:1 교정 &amp; 일일 루틴 그래프
+              🛠️ 6. 보완 포인트 1:1 교정 &amp; 일일 루틴 도식도
             </h3>
 
-            <!-- Visual SVG Remedy Flow -->
-            <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 12px; padding: 0.6rem 0.8rem; margin-bottom: 0.65rem;">
-              <svg id="learning-step6-remedy-svg" viewBox="0 0 600 50" style="width: 100%; height: auto; display: block;">
-                <rect x="4" y="6" width="180" height="38" rx="8" fill="rgba(244,63,94,0.18)" stroke="#FB7185" stroke-width="1.2" />
-                <text x="94" y="29" fill="#FDA4AF" font-size="11.2" font-weight="900" text-anchor="middle">보완점 (${weaknessesList[0].score}점)</text>
-                <path d="M 188 25 L 204 25" stroke="#FBBF24" stroke-width="2.5" />
-                <rect x="208" y="6" width="184" height="38" rx="8" fill="rgba(245,158,11,0.22)" stroke="#FBBF24" stroke-width="1.2" />
-                <text x="300" y="29" fill="#FDE68A" font-size="11.2" font-weight="900" text-anchor="middle">15~20분 타이머·시각화</text>
-                <path d="M 396 25 L 412 25" stroke="#34D399" stroke-width="2.5" />
-                <rect x="416" y="6" width="180" height="38" rx="8" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1.2" />
-                <text x="506" y="29" fill="#6EE7B7" font-size="11.2" font-weight="900" text-anchor="middle">6개월 목표 ${Math.min(96, weaknessesList[0].score + 16)}점 달성</text>
+            <!-- Visual SVG Remedy Flow Diagram -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.65rem;">
+              <svg id="learning-step6-remedy-svg" viewBox="0 0 640 110" style="width: 100%; height: auto; display: block;">
+                <rect x="8" y="10" width="190" height="90" rx="12" fill="rgba(244,63,94,0.18)" stroke="#FB7185" stroke-width="1.5" />
+                <text x="103" y="34" fill="#FDA4AF" font-size="10.5" font-weight="900" text-anchor="middle">⚠️ 현재 학습 병목</text>
+                <text x="103" y="56" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">${(weaknessesList[0].title || '').slice(0, 12)} (${weaknessesList[0].score}점)</text>
+                <text x="103" y="78" fill="#FECDD3" font-size="10" font-weight="800" text-anchor="middle">작업기억 피로 · 산만 유발</text>
+
+                <path d="M 202 55 L 220 55" stroke="#FBBF24" stroke-width="3" />
+                <polygon points="218,49 226,55 218,61" fill="#FBBF24" />
+
+                <rect x="228" y="10" width="190" height="90" rx="12" fill="rgba(245,158,11,0.22)" stroke="#FBBF24" stroke-width="1.5" />
+                <text x="323" y="34" fill="#FDE68A" font-size="10.5" font-weight="900" text-anchor="middle">🔧 핀셋 환경·습관 처방</text>
+                <text x="323" y="56" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">독서대 15° + ${lqData.trajectory.coached.focusMinutes}분 타이머</text>
+                <text x="323" y="78" fill="#FEF08A" font-size="10" font-weight="800" text-anchor="middle">소단위 쪼개기 · 시각화</text>
+
+                <path d="M 422 55 L 440 55" stroke="#34D399" stroke-width="3" />
+                <polygon points="438,49 446,55 438,61" fill="#34D399" />
+
+                <rect x="448" y="10" width="184" height="90" rx="12" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1.5" />
+                <text x="540" y="34" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">✨ 6개월 코칭 후 목표</text>
+                <text x="540" y="56" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점↑)</text>
+                <text x="540" y="78" fill="#A7F3D0" font-size="10" font-weight="800" text-anchor="middle">착석 지구력 · 자신감 회복</text>
               </svg>
             </div>
 
-            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
+            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; margin-bottom: 0.75rem;">
               ${weaknessesList.map((w) => `
-                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(251, 191, 36, 0.45); border-top: 4px solid #F59E0B; border-radius: 12px; padding: 0.75rem 0.85rem;">
-                  <div style="font-size: 0.88rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.22rem;">
+                <div style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(251, 191, 36, 0.45); border-top: 4px solid #F59E0B; border-radius: 12px; padding: 0.7rem 0.8rem;">
+                  <div style="font-size: 0.86rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.2rem;">
                     🔧 ${w.title}
                   </div>
-                  <p style="font-size: 0.81rem; color: #F8FAFC; line-height: 1.38; margin: 0 0 0.35rem 0;">
+                  <p style="font-size: 0.8rem; color: #F8FAFC; line-height: 1.36; margin: 0 0 0.3rem 0;">
                     ${w.howToFix}
                   </p>
-                  <div style="font-size: 0.74rem; color: #FCD34D; font-weight: 800; background: rgba(245, 158, 11, 0.12); padding: 0.22rem 0.5rem; border-radius: 7px;">
+                  <div style="font-size: 0.73rem; color: #FCD34D; font-weight: 800; background: rgba(245, 158, 11, 0.12); padding: 0.2rem 0.45rem; border-radius: 7px;">
                     🛠️ ${w.helpfulTools}
                   </div>
                 </div>
@@ -2568,24 +2702,28 @@
             <div id="bespoke-learning-timetable-box" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 14px; padding: 0.8rem 0.95rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
                 <span style="font-size: 0.88rem; font-weight: 900; color: #DDD6FE;">
-                  ⏰ 만 ${ageYears}세 하루 4단계 두뇌 루틴 타임라인
+                  ⏰ 만 ${ageYears}세 하루 4단계 두뇌 루틴 타임라인 그래프
                 </span>
                 <span style="font-size: 0.74rem; color: #6EE7B7; font-weight: 800;">
                   오전 워밍업 → 오후 몰입 → 저녁 인출 → 밤 수면코팅
                 </span>
               </div>
-              <svg id="learning-timetable-clock-svg" viewBox="0 0 600 32" style="width: 100%; height: auto; display: block; margin-bottom: 0.45rem;">
-                <line x1="20" y1="16" x2="580" y2="16" stroke="rgba(192,132,252,0.4)" stroke-width="3" />
-                <circle cx="75" cy="16" r="7" fill="#38BDF8" />
-                <circle cx="225" cy="16" r="7" fill="#A855F7" />
-                <circle cx="375" cy="16" r="7" fill="#F59E0B" />
-                <circle cx="525" cy="16" r="7" fill="#10B981" />
+              <svg id="learning-timetable-clock-svg" viewBox="0 0 640 76" style="width: 100%; height: auto; display: block; margin-bottom: 0.5rem;">
+                <line x1="40" y1="28" x2="600" y2="28" stroke="rgba(192,132,252,0.45)" stroke-width="3.5" />
+                <circle cx="85" cy="28" r="10" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2" />
+                <text x="85" y="56" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">① 오전 워밍업</text>
+                <circle cx="240" cy="28" r="10" fill="#A855F7" stroke="#FFFFFF" stroke-width="2" />
+                <text x="240" y="56" fill="#DDD6FE" font-size="10.5" font-weight="900" text-anchor="middle">② 오후 집중몰입</text>
+                <circle cx="400" cy="28" r="10" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2" />
+                <text x="400" y="56" fill="#FDE68A" font-size="10.5" font-weight="900" text-anchor="middle">③ 저녁 3줄 인출</text>
+                <circle cx="555" cy="28" r="10" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+                <text x="555" y="56" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">④ 밤 10시 수면코팅</text>
               </svg>
-              <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; font-size: 0.81rem; color: #F8FAFC; line-height: 1.38;">
-                <div style="background: rgba(56,189,248,0.1); border-left: 3px solid #38BDF8; padding: 0.45rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage1}</div>
-                <div style="background: rgba(168,85,247,0.1); border-left: 3px solid #A855F7; padding: 0.45rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage2}</div>
-                <div style="background: rgba(245,158,11,0.1); border-left: 3px solid #F59E0B; padding: 0.45rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage3}</div>
-                <div style="background: rgba(16,185,129,0.1); border-left: 3px solid #10B981; padding: 0.45rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage4}</div>
+              <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; font-size: 0.8rem; color: #F8FAFC; line-height: 1.36;">
+                <div style="background: rgba(56,189,248,0.1); border-left: 3px solid #38BDF8; padding: 0.42rem 0.6rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage1}</div>
+                <div style="background: rgba(168,85,247,0.1); border-left: 3px solid #A855F7; padding: 0.42rem 0.6rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage2}</div>
+                <div style="background: rgba(245,158,11,0.1); border-left: 3px solid #F59E0B; padding: 0.42rem 0.6rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage3}</div>
+                <div style="background: rgba(16,185,129,0.1); border-left: 3px solid #10B981; padding: 0.42rem 0.6rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage4}</div>
               </div>
             </div>
           </div>
@@ -2596,36 +2734,69 @@
         <!-- ================================================================== -->
         <div id="report-ch-8" style="scroll-margin-top: 5.5rem; margin-top: 1.2rem;">
 
-          <!-- ==================== STEP 7: 만 N세 × 성향 맞춤 교구·도서·체험 매칭도 ==================== -->
+          <!-- ==================== STEP 7: 만 N세 × 성향 맞춤 교구·도서·체험 3축 시너지 다이어그램 ==================== -->
           <div id="learning-step-7-items" style="background: linear-gradient(145deg, rgba(76, 29, 149, 0.4) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #A78BFA; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
               <span style="background: #8B5CF6; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                STEP 7 · 분석 기반 맞춤 처방 구성
+                STEP 7 · 3대 맞춤 솔루션 도식도
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #DDD6FE;">
-                만 ${ageYears}세 × [${activeStyleInfo.badge}] 핀셋 매칭
+                만 ${ageYears}세 × [${activeStyleInfo.badge}] 핀셋 매칭 다이어그램
               </span>
             </div>
-            <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.65rem 0;">
-              🎒 7. 진단 결과와 직결된 3대 맞춤 솔루션
+            <h3 style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.6rem 0;">
+              🎒 7. 진단 결과와 직결된 3대 맞춤 솔루션 시너지 도식도
             </h3>
-            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem;">
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(167, 139, 250, 0.45); border-top: 4px solid #A855F7; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.75rem; font-weight: 900; color: #C084FC; margin-bottom: 0.2rem;">🧩 보완점 교정 교구·도구</div>
-                <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
-                  ${quickTools.length > 0 ? quickTools.map(t => t.name).join(' · ') : '무소음 시각 타이머 · 눈높이 원목 독서대'}
+
+            <!-- Schematic SVG 3-Pillar Synergy Diagram -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(167, 139, 250, 0.45); border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.65rem;">
+              <svg id="learning-step7-synergy-svg" viewBox="0 0 640 112" style="width: 100%; height: auto; display: block;">
+                <rect x="8" y="10" width="150" height="92" rx="11" fill="rgba(168,85,247,0.2)" stroke="#C084FC" stroke-width="1.5" />
+                <text x="83" y="34" fill="#E9D5FF" font-size="10.5" font-weight="900" text-anchor="middle">🧩 1. 맞춤 교구·도구</text>
+                <text x="83" y="56" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">집중 타이머 · 독서대</text>
+                <text x="83" y="78" fill="#DDD6FE" font-size="9.5" font-weight="800" text-anchor="middle">전두엽 몰입 환경 세팅</text>
+
+                <text x="171" y="62" fill="#A78BFA" font-size="18" font-weight="900" text-anchor="middle">+</text>
+
+                <rect x="184" y="10" width="150" height="92" rx="11" fill="rgba(56,189,248,0.18)" stroke="#38BDF8" stroke-width="1.5" />
+                <text x="259" y="34" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">📚 2. 맞춤 도서·워크북</text>
+                <text x="259" y="56" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">연령별 필독서 · 사고력</text>
+                <text x="259" y="78" fill="#7DD3FC" font-size="9.5" font-weight="800" text-anchor="middle">문해력 · 수리 추론 확장</text>
+
+                <text x="347" y="62" fill="#38BDF8" font-size="18" font-weight="900" text-anchor="middle">+</text>
+
+                <rect x="360" y="10" width="144" height="92" rx="11" fill="rgba(16,185,129,0.18)" stroke="#34D399" stroke-width="1.5" />
+                <text x="432" y="34" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">🏛️ 3. 주말 현장 체험</text>
+                <text x="432" y="56" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">${(profile.region || '수도권').slice(0, 6)} 과학·박물관</text>
+                <text x="432" y="78" fill="#6EE7B7" font-size="9.5" font-weight="800" text-anchor="middle">교과 배경지식 스키마 코팅</text>
+
+                <path d="M 508 56 L 524 56" stroke="#FBBF24" stroke-width="3" />
+                <polygon points="522,50 530,56 522,62" fill="#FBBF24" />
+
+                <rect x="532" y="10" width="100" height="92" rx="11" fill="rgba(245,158,11,0.24)" stroke="#FBBF24" stroke-width="1.8" />
+                <text x="582" y="36" fill="#FDE68A" font-size="10" font-weight="900" text-anchor="middle">🎯 시너지 효과</text>
+                <text x="582" y="58" fill="#FFFFFF" font-size="12" font-weight="900" text-anchor="middle">LQ ${lqData.trajectory.coached.lqScore}점</text>
+                <text x="582" y="78" fill="#6EE7B7" font-size="10" font-weight="900" text-anchor="middle">+${lqData.trajectory.coached.gainLq}점 도약!</text>
+              </svg>
+            </div>
+
+            <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem;">
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(167, 139, 250, 0.45); border-top: 4px solid #A855F7; border-radius: 12px; padding: 0.7rem 0.85rem;">
+                <div style="font-size: 0.74rem; font-weight: 900; color: #C084FC; margin-bottom: 0.18rem;">🧩 보완점 교정 교구·도구 TOP 2</div>
+                <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
+                  ${quickTools.length > 0 ? quickTools.slice(0, 2).map(t => t.name).join(' · ') : '무소음 시각 타이머 · 눈높이 원목 독서대'}
                 </div>
               </div>
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-top: 4px solid #38BDF8; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.75rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.2rem;">📚 강점 확장 필독서·워크북</div>
-                <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
-                  ${quickBooks.length > 0 ? quickBooks.map(b => b.name).join(' · ') : '연령별 맞춤 도서 · 사고력 워크북'}
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-top: 4px solid #38BDF8; border-radius: 12px; padding: 0.7rem 0.85rem;">
+                <div style="font-size: 0.74rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.18rem;">📚 강점 확장 필독서·워크북 TOP 2</div>
+                <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
+                  ${quickBooks.length > 0 ? quickBooks.slice(0, 2).map(b => b.name).join(' · ') : '연령별 맞춤 도서 · 사고력 워크북'}
                 </div>
               </div>
-              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.45); border-top: 4px solid #10B981; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.75rem; font-weight: 900; color: #34D399; margin-bottom: 0.2rem;">🏛️ [${profile.region || '수도권'}] 주말 체험</div>
-                <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
-                  ${quickTours.length > 0 ? quickTours.map(t => t.name).join(' · ') : '국립과천과학관 · 박물관 투어'}
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.45); border-top: 4px solid #10B981; border-radius: 12px; padding: 0.7rem 0.85rem;">
+                <div style="font-size: 0.74rem; font-weight: 900; color: #34D399; margin-bottom: 0.18rem;">🏛️ [${profile.region || '수도권'}] 주말 체험 TOP 2</div>
+                <div style="font-size: 0.86rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
+                  ${quickTours.length > 0 ? quickTours.slice(0, 2).map(t => t.name).join(' · ') : '국립과천과학관 · 박물관 투어'}
                 </div>
               </div>
             </div>
@@ -3082,22 +3253,15 @@
       document.body.classList.toggle('print-mode-learning', normalized === 'learning');
     }
 
+    // Strictly hide any cross-report switching buttons so Physical Growth Report and Brain Learning Report never enter each other
     const btnGrowth = document.getElementById('btn-switch-report-growth');
     const btnLearning = document.getElementById('btn-switch-report-learning');
-    if (btnGrowth && btnGrowth.style) {
-      btnGrowth.style.display = normalized === 'learning' ? 'none' : 'inline-flex';
-      btnGrowth.style.background = normalized === 'growth'
-        ? 'linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%)'
-        : 'rgba(56, 189, 248, 0.12)';
-      btnGrowth.style.color = normalized === 'growth' ? '#FFFFFF' : '#BAE6FD';
-    }
-    if (btnLearning && btnLearning.style) {
-      btnLearning.style.display = normalized === 'growth' ? 'none' : 'inline-flex';
-      btnLearning.style.background = normalized === 'learning'
-        ? 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)'
-        : 'rgba(139, 92, 246, 0.14)';
-      btnLearning.style.color = normalized === 'learning' ? '#FFFFFF' : '#DDD6FE';
-    }
+    const navHeaderGrowth = document.getElementById('nav-header-growth-report');
+    const navHeaderLearning = document.getElementById('nav-header-learning-report');
+    if (btnGrowth && btnGrowth.style) btnGrowth.style.display = 'none';
+    if (btnLearning && btnLearning.style) btnLearning.style.display = 'none';
+    if (navHeaderGrowth && navHeaderGrowth.style) navHeaderGrowth.style.display = 'none';
+    if (navHeaderLearning && navHeaderLearning.style) navHeaderLearning.style.display = 'none';
 
     const p1 = document.getElementById('pillar-1-container');
     const p2 = document.getElementById('pillar-2-container');

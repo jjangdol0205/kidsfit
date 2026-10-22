@@ -2414,12 +2414,15 @@
       };
       threePicks.push({ item: items[1], sub: sub1, badgeKo: '✨ 엄선 2위 (맞춤 시너지)', badgeEn: '✨ Curated Pick #2' });
     }
-    if (items && items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
-      const sub2 = items[0].curatedProducts[1];
-      threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
-    } else if (items && items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
-      const sub2 = items[1].curatedProducts[1];
-      threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+    const isLearningCompact = (categoryType === 'learning_tool' || categoryType === 'book');
+    if (!isLearningCompact) {
+      if (items && items[0] && items[0].curatedProducts && items[0].curatedProducts[1]) {
+        const sub2 = items[0].curatedProducts[1];
+        threePicks.push({ item: items[0], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+      } else if (items && items[1] && items[1].curatedProducts && items[1].curatedProducts[1]) {
+        const sub2 = items[1].curatedProducts[1];
+        threePicks.push({ item: items[1], sub: sub2, badgeKo: '💎 엄선 3위 (인기 대안)', badgeEn: '💎 Curated Pick #3' });
+      }
     }
 
     return `
@@ -2870,18 +2873,15 @@
     const learningTools = curatePillar2LearningTools(profile, affConfig);
 
     return `
-      <div class="pinpoint-category-box" id="pillar2-learning-tools-box" style="margin-top: 0.75rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 27, 75, 0.55)); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 16px; padding: 1.05rem; text-align: left;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
-          <span style="font-size: 0.76rem; font-weight: 900; color: #DDD6FE; background: rgba(139, 92, 246, 0.22); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-            🧩 [만 ${ageYears}세 학습환경 · 두뇌교구 추천] 집중 타이머 · 독서대 · 사고력 교구 TOP 3
+      <div class="pinpoint-category-box" id="pillar2-learning-tools-box" style="margin-top: 0.5rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 27, 75, 0.55)); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+          <span style="font-size: 0.78rem; font-weight: 900; color: #DDD6FE; background: rgba(139, 92, 246, 0.22); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+            🧩 1. [만 ${ageYears}세 집중·사고력 분석 기반] 맞춤 학습도구 &amp; 교구 TOP 2
           </span>
-          <span style="font-size: 0.74rem; color: #C4B5FD; font-weight: 700;">
-            진단된 집중시간 × 학습 흡수 스타일 맞춤
+          <span style="font-size: 0.73rem; color: #C4B5FD; font-weight: 700;">
+            집중시간 × 흡수스타일 맞춤
           </span>
         </div>
-        <p style="font-size: 0.83rem; color: #E2E8F0; margin: 0 0 0.65rem 0; line-height: 1.45;">
-          🎯 위 두뇌·집중력 분석 결과에 맞춰 스마트폰 자극을 대체하고 몰입도를 높여주는 필수 도구입니다.
-        </p>
         ${renderCategoryProductCards(learningTools, 'rgba(139, 92, 246, 0.45)', 'learning_tool', isEn)}
       </div>
     `;
@@ -3120,173 +3120,102 @@
   }
 
   /**
-   * 5-D. Chapter 6: Custom Education & 1:1 Learning Counseling Prescription (Ultra-Concise Analysis-Driven Product Curation)
+   * 5-D. Chapter 6: Custom Education & 1:1 Learning Counseling Prescription (Ultra-Concise 2-Item Book/Workbook Curation)
    */
   function renderCustomEducationChapter(profile = {}, affConfig = {}) {
-    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
-    const data = curatePinpointItems(profile, affConfig);
     const learningPlan = curateLearningCounselingPlan(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
-    const bookTraitNote = getTraitSpecificNote(profile, 'book', isEn);
+    const topBooks = (learningPlan.learningItems || []).slice(0, 2);
 
     return `
-      <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left;">
-        <!-- Concise 1:1 Learning Bottleneck Curation (Directly Bridged from Analysis) -->
-        <div class="pinpoint-category-box" id="pinpoint-learning-counseling-curation-box" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 27, 75, 0.55)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 1.05rem; margin-bottom: 0.9rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
-            <span style="font-size: 0.76rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              ✍️ [만 ${ageYears}세 보완점·학습스타일 맞춤 추천] 병목 해결 교재 · 백지복습 노트 TOP 3
+      <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left; margin-top: 0.8rem;">
+        <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(15, 23, 42, 0.96); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+            <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+              📚 2. [만 ${ageYears}세 보완점·강점 분석 기반] 맞춤 교재 &amp; 필독서 TOP 2
             </span>
-            <span style="font-size: 0.74rem; color: #93C5FD; font-weight: 700;">
-              ${learningPlan.activeStyle.badgeKo} 매칭
+            <span style="font-size: 0.73rem; color: #93C5FD; font-weight: 700;">
+              ${learningPlan.activeStyle.badgeKo}
             </span>
           </div>
-          <p style="font-size: 0.83rem; color: #CBD5E1; margin: 0 0 0.65rem 0; line-height: 1.45;">
-            🎯 진단된 보완점(<strong>${learningPlan.diagnosedConcerns.map(c => c.badgeKo).join(' · ')}</strong>)을 해결하기 위해 가장 먼저 시작할 핵심 교재입니다.
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-            ${learningPlan.learningItems.map((item) => `
-              <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.42rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
-                  <span style="font-size: 0.74rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.16rem 0.55rem; border-radius: 9999px;">
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            ${topBooks.map((item) => `
+              <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.38rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem;">
+                  <span style="font-size: 0.73rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.15rem 0.5rem; border-radius: 9999px;">
                     ${item.badgeKo}
                   </span>
-                  <span style="font-size: 0.73rem; font-weight: 800; color: #93C5FD;">
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #93C5FD;">
                     ${item.categoryKo}
                   </span>
                 </div>
-                <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; line-height: 1.38;">
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
                   ${item.titleKo}
                 </div>
-                <div style="font-size: 0.81rem; color: #F8FAFC; line-height: 1.45; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #38BDF8; padding: 0.4rem 0.65rem; border-radius: 8px;">
+                <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.4; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #38BDF8; padding: 0.36rem 0.6rem; border-radius: 8px;">
                   ✓ ${item.specKo}
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.48); color: #FFFFFF; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                    📚 YES24 도서 보기 ↗
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
+                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.48); color: #FFFFFF; font-size: 0.79rem; font-weight: 800; padding: 0.35rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                    📚 YES24 도서 ↗
                   </a>
-                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.24); color: #E2E8F0; text-decoration: none; text-align: center; font-size: 0.8rem; font-weight: 800; border-radius: 8px;">🚀 쿠팡 로켓배송 ↗</a>
-                  <a href="${item.adpickShoppingUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.4); color: #FBCFE8; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800; border-radius: 8px;">🛒 11번가 ↗</a>
+                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.24); color: #E2E8F0; text-decoration: none; text-align: center; font-size: 0.79rem; font-weight: 800; border-radius: 8px;">🚀 쿠팡 로켓배송 ↗</a>
                 </div>
               </div>
             `).join('')}
           </div>
-        </div>
-
-        <!-- Age-Band Must-Read Books & Workbooks (Concise) -->
-        <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(196, 181, 253, 0.42); border-radius: 16px; padding: 1.05rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
-            <span style="font-size: 0.76rem; font-weight: 900; color: #C4B5FD; background: rgba(139, 92, 246, 0.2); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              📚 [만 ${ageYears}세 두뇌 민감기 추천] 연령별 필독 도서 &amp; 사고력 워크북 TOP 3
-            </span>
-            <span style="font-size: 0.74rem; color: #DDD6FE; font-weight: 700;">
-              YES24 · 쿠팡 · 11번가 연동
-            </span>
-          </div>
-          <p style="font-size: 0.83rem; color: #E2E8F0; margin: 0 0 0.65rem 0; line-height: 1.45;">
-            🎯 ${bookTraitNote}
-          </p>
-          ${renderCategoryProductCards(data.books, 'rgba(196, 181, 253, 0.45)', 'book', isEn)}
         </div>
       </div>
     `;
   }
 
   /**
-   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise Regional & Age-Band Ticket Curation)
+   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise 2-Item Regional Ticket Curation)
    */
   function renderCustomTravelChapter(profile = {}, affConfig = {}) {
-    const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const region = String(profile.region || '서울 강남·서초·송파');
-    const regionalTickets = data.regionalTickets || [];
+    const regionalTickets = (data.regionalTickets || []).slice(0, 2);
     const ageBandTag = ageYears <= 3 ? '만 1~3세' : ageYears <= 6 ? '만 4~6세' : ageYears <= 9 ? '만 7~9세' : ageYears <= 13 ? '만 10~13세' : '만 14세+';
 
     return `
-      <div id="custom-travel-chapter-box" style="text-align: left;">
-        <!-- Regional × Age-Band Popular Museum, Science Center & Experience Ticket Catalog (Top 3) -->
-        <div id="regional-age-ticket-catalog-box" style="margin-top: 0.9rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(12, 74, 110, 0.38)); border: 1.5px solid rgba(56, 189, 248, 0.48); border-radius: 16px; padding: 1.05rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
-            <span style="font-size: 0.76rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              📍 [내 지역 × 연령 분석 기반] ${region} × ${ageBandTag} 맞춤 박물관·과학관 티켓 TOP 3
+      <div id="custom-travel-chapter-box" style="text-align: left; margin-top: 0.8rem;">
+        <div id="regional-age-ticket-catalog-box" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(6, 78, 59, 0.35)); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+            <span style="font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+              🏛️ 3. [${region} × ${ageBandTag} 분석 기반] 주말 박물관·과학관 체험 TOP 2
             </span>
-            <span style="font-size: 0.74rem; color: #93C5FD; font-weight: 800;">
-              마이리얼트립 · 클룩 · KKday 연동
+            <span style="font-size: 0.73rem; color: #A7F3D0; font-weight: 800;">
+              마이리얼트립 · 클룩 연동
             </span>
           </div>
-          <p style="font-size: 0.83rem; color: #CBD5E1; margin: 0 0 0.65rem 0; line-height: 1.45;">
-            🎯 거주 권역(<strong>${region}</strong>)과 <strong>${ageBandTag}</strong> 두뇌 흥미에 맞춰 배경지식(스키마)을 넓혀줄 주말 현장 체험입니다.
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
             ${regionalTickets.map((tk) => `
-              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.42rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
-                  <span style="font-size: 0.73rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.16); padding: 0.16rem 0.55rem; border-radius: 9999px;">
+              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(52, 211, 153, 0.4); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.38rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem;">
+                  <span style="font-size: 0.73rem; font-weight: 900; color: #6EE7B7; background: rgba(16, 185, 129, 0.16); padding: 0.15rem 0.5rem; border-radius: 9999px;">
                     ${tk.rankBadgeKo}
                   </span>
-                  <span style="font-size: 0.73rem; font-weight: 800; color: #A7F3D0;">
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #93C5FD;">
                     ${tk.themeBadgeKo}
                   </span>
                 </div>
-                <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; line-height: 1.38;">
+                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
                   ${tk.destination}
                 </div>
-                <div style="font-size: 0.81rem; color: #FDE68A; font-weight: 800; background: rgba(245, 158, 11, 0.12); border-left: 3px solid #F59E0B; padding: 0.4rem 0.65rem; border-radius: 8px; line-height: 1.42;">
-                  ✓ <strong>[${ageBandTag} 핵심 포인트]</strong> ${tk.ageSpecificGuide}
+                <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.4; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #10B981; padding: 0.36rem 0.6rem; border-radius: 8px;">
+                  ✓ ${tk.ageSpecificGuide}
                 </div>
-                <div style="font-size: 0.76rem; color: #CBD5E1; line-height: 1.4;">
-                  🗺️ <strong>추천 동선:</strong> ${tk.route}
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.5); color: #E0F2FE; font-size: 0.79rem; font-weight: 900; padding: 0.38rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
+                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(52, 211, 153, 0.5); color: #A7F3D0; font-size: 0.79rem; font-weight: 900; padding: 0.35rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     ✈️ 마이리얼트립 ↗
                   </a>
-                  <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(249, 115, 22, 0.16); border: 1px solid rgba(249, 115, 22, 0.42); border-radius: 8px; color: #FDBA74; font-size: 0.78rem; font-weight: 800; text-decoration: none; text-align: center;">
+                  <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(249, 115, 22, 0.16); border: 1px solid rgba(249, 115, 22, 0.42); border-radius: 8px; color: #FDBA74; font-size: 0.78rem; font-weight: 800; text-decoration: none; text-align: center;">
                     🎟️ 클룩(Klook) ↗
                   </a>
-                  <a href="${tk.adpickKkdayUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 8px; color: #FBCFE8; font-size: 0.78rem; font-weight: 800; text-decoration: none; text-align: center;">
-                    🎫 KKday 패스 ↗
-                  </a>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- 5-Tier Age-Band Signature Domestic & Overseas Educational Travel Prescription (Concise) -->
-        <div class="pinpoint-category-box" id="pinpoint-edu-travel-box" style="margin-top: 0.9rem; background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 16px; padding: 1.05rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
-            <span style="font-size: 0.76rem; font-weight: 900; color: #FDE68A; background: rgba(245, 158, 11, 0.2); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              🌏 [${ageBandTag} 시그니처 교육여행] 방학·주말 도슨트 · 과학관 · 테마파크 TOP 3
-            </span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.45rem;">
-            ${(data.eduTours || []).map((tour) => `
-              <div class="pinpoint-item-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(251, 191, 36, 0.42); border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.42rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
-                  <span style="font-size: 0.74rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.16rem 0.55rem; border-radius: 9999px;">
-                    ${isEn ? tour.badgeEn : tour.badgeKo}
-                  </span>
-                  <span style="font-size: 0.73rem; font-weight: 800; color: #93C5FD;">
-                    ${isEn ? tour.categoryEn : tour.categoryKo}
-                  </span>
-                </div>
-                <div style="font-size: 0.95rem; font-weight: 900; color: #FFFFFF; line-height: 1.38;">
-                  ${isEn ? tour.titleEn : tour.titleKo}
-                </div>
-                <div style="font-size: 0.8rem; color: #A7F3D0; line-height: 1.42; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10B981; padding: 0.4rem 0.65rem; border-radius: 8px;">
-                  ${tour.missionKo}
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-                  <a href="${tour.myrealtripUrl || tour.naverTourUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.45); color: #FDE68A; font-size: 0.79rem; font-weight: 800; padding: 0.38rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                    ✈️ 마이리얼트립 ↗
-                  </a>
-                  <a href="${tour.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(249,115,22,0.16); border: 1px solid rgba(249,115,22,0.42); border-radius: 8px; color: #FDBA74; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800;">🎟️ 클룩 패스 ↗</a>
-                  <a href="${tour.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="coupang" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #E2E8F0; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800;">🎒 연계교구(쿠팡) ↗</a>
-                  <a href="${tour.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(139,92,246,0.18); border: 1px solid rgba(167,139,250,0.4); border-radius: 8px; color: #EDE9FE; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800;">📘 연계도서(YES24) ↗</a>
                 </div>
               </div>
             `).join('')}
