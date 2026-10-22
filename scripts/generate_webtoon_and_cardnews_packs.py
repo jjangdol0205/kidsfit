@@ -32,11 +32,27 @@ CARDNEWS_ROOT_KO = ROOT_DIR / "카드뉴스_모음"
 CARDNEWS_SAMPLE_DIR = ROOT_DIR / "samples" / "9_cardnews_series_pack"
 
 
-def get_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
+def get_font(size: int, bold: bool = False, instatoon: bool = False) -> ImageFont.FreeTypeFont:
+    if instatoon:
+        insta_candidates = [
+            str(ROOT_DIR / "src" / "fonts" / ("NanumSquareRoundEB.ttf" if bold else "NanumSquareRoundB.ttf")),
+            str(ROOT_DIR / "src" / "fonts" / "Gaegu-Bold.ttf"),
+        ]
+        for fp in insta_candidates:
+            if Path(fp).exists():
+                return ImageFont.truetype(fp, size)
     candidates = (
-        ["C:/Windows/Fonts/malgunbd.ttf", "C:/Windows/Fonts/NanumGothicBold.ttf"]
+        [
+            str(ROOT_DIR / "src" / "fonts" / "NanumSquareRoundEB.ttf"),
+            "C:/Windows/Fonts/malgunbd.ttf",
+            "C:/Windows/Fonts/NanumGothicBold.ttf",
+        ]
         if bold
-        else ["C:/Windows/Fonts/malgun.ttf", "C:/Windows/Fonts/NanumGothic.ttf"]
+        else [
+            str(ROOT_DIR / "src" / "fonts" / "NanumSquareRoundB.ttf"),
+            "C:/Windows/Fonts/malgun.ttf",
+            "C:/Windows/Fonts/NanumGothic.ttf",
+        ]
     )
     for fp in candidates:
         if Path(fp).exists():
@@ -79,106 +95,169 @@ def draw_sensuous_speech_bubble(
     box_rect,
     tail_target,
     text: str,
-    speaker_label: str = "엄마",
-    speaker_color=(79, 70, 229),
-    highlight_color=(254, 240, 138),
+    speaker_label: str = "",
+    speaker_color=(61, 49, 42),
+    highlight_color=None,
+    is_narration: bool = False,
 ):
     """
-    Draws an eye-catching, editorial Korean webtoon speech bubble with:
-    - Soft blurred drop shadow
-    - Crisp white rounded body + bold colored border
-    - Pointer tail pointing directly toward the character
-    - Floating Speaker Pill Badge (e.g. '엄마', '아이', '뇌과학 팩트') on top-left
-    - Soft yellow highlighter bar under the second/key line for instant visual impact
+    Draws an authentic, organic Korean Instatoon (@gangjidol style) speech bubble:
+    - Snugly fitted, soft chubby oval/capsule shape around the dialogue text
+    - Unified 2x supersampled hand-drawn charcoal-brown ink outline (#3D312A) matching the illustration's line art
+    - Warm cream-white fill (#FFFDF9) with zero artificial UI badges, zero neon borders, and zero long needle tails
+    - Short, cute comic pointer tail smoothly merged into the bubble body pointing toward the speaker
     """
-    x1, y1, x2, y2 = box_rect
-    tx, ty = tail_target
-    cx = (x1 + x2) // 2
-    cy = (y1 + y2) // 2
+    scale = 2
+    W, H = canvas.size
+    SW, SH = W * scale, H * scale
 
-    if ty > y2:
-        bx = max(x1 + 44, min(x2 - 44, cx + (tx - cx) // 3))
-        by = y2 - 3
-        tail_poly = [(bx - 18, by), (bx + 18, by), (tx, ty)]
-    elif ty < y1:
-        bx = max(x1 + 44, min(x2 - 44, cx + (tx - cx) // 3))
-        by = y1 + 3
-        tail_poly = [(bx - 18, by), (bx + 18, by), (tx, ty)]
-    elif tx < x1:
-        bx = x1 + 3
-        by = max(y1 + 30, min(y2 - 30, cy))
-        tail_poly = [(bx, by - 16), (bx, by + 16), (tx, ty)]
+    f_text = get_font(31 * scale, bold=True, instatoon=True)
+    temp_draw = ImageDraw.Draw(Image.new("RGBA", (100, 100)))
+
+    lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
+    line_widths = []
+    line_heights = []
+    for ln in lines:
+        bb = temp_draw.textbbox((0, 0), ln, font=f_text)
+        line_widths.append(bb[2] - bb[0])
+        line_heights.append(bb[3] - bb[1])
+
+    max_tw = max(line_widths) if line_widths else 200
+    line_gap = 15 * scale
+    total_th = sum(line_heights) + line_gap * max(0, len(lines) - 1)
+
+    # Snug padding around the text for a soft, organic Instatoon oval/pill feel
+    pad_x = 44 * scale
+    pad_y = 32 * scale
+    bw = max_tw + pad_x * 2
+    bh = total_th + pad_y * 2
+
+    x1_hint, y1_hint, x2_hint, y2_hint = box_rect
+    cx = ((x1_hint + x2_hint) // 2) * scale
+    cy = ((y1_hint + y2_hint) // 2) * scale
+
+    # Keep bubble comfortably inside the 1080x1080 frame
+    margin = 26 * scale
+    bx1 = max(margin, min(SW - margin - bw, cx - bw // 2))
+    by1 = max(margin, min(SH - margin - bh, cy - bh // 2))
+    bx2 = bx1 + bw
+    by2 = by1 + bh
+    bcx = (bx1 + bx2) // 2
+    bcy = (by1 + by2) // 2
+
+    tx, ty = tail_target[0] * scale, tail_target[1] * scale
+
+    # Clamp tail length so it is ALWAYS a short, cute Instatoon tail (max ~48px outside bubble)
+    # pointing in the direction of (tx, ty)
+    import math
+    if not is_narration:
+        # Find anchor point on bubble boundary closest to target
+        if ty > by2:
+            anchor_x = max(bx1 + 65 * scale, min(bx2 - 65 * scale, bcx + (tx - bcx) // 2))
+            anchor_y = by2 - 6 * scale
+            dx = tx - anchor_x
+            dy = max(24 * scale, ty - anchor_y)
+            dist = math.hypot(dx, dy)
+            max_len = 38 * scale
+            if dist > max_len:
+                tx = int(anchor_x + dx * (max_len / dist))
+                ty = int(anchor_y + dy * (max_len / dist))
+            tail_w = 18 * scale
+            tail_poly = [(anchor_x - tail_w, anchor_y), (anchor_x + tail_w, anchor_y), (tx, ty)]
+        elif ty < by1:
+            anchor_x = max(bx1 + 65 * scale, min(bx2 - 65 * scale, bcx + (tx - bcx) // 2))
+            anchor_y = by1 + 6 * scale
+            dx = tx - anchor_x
+            dy = min(-24 * scale, ty - anchor_y)
+            dist = math.hypot(dx, dy)
+            max_len = 38 * scale
+            if dist > max_len:
+                tx = int(anchor_x + dx * (max_len / dist))
+                ty = int(anchor_y + dy * (max_len / dist))
+            tail_w = 18 * scale
+            tail_poly = [(anchor_x - tail_w, anchor_y), (anchor_x + tail_w, anchor_y), (tx, ty)]
+        else:
+            anchor_x = bx1 + 6 * scale if tx < bcx else bx2 - 6 * scale
+            anchor_y = max(by1 + 36 * scale, min(by2 - 36 * scale, bcy))
+            dx = tx - anchor_x
+            dy = ty - anchor_y
+            dist = max(1.0, math.hypot(dx, dy))
+            max_len = 36 * scale
+            if dist > max_len:
+                tx = int(anchor_x + dx * (max_len / dist))
+                ty = int(anchor_y + dy * (max_len / dist))
+            tail_w = 15 * scale
+            tail_poly = [(anchor_x, anchor_y - tail_w), (anchor_x, anchor_y + tail_w), (tx, ty)]
     else:
-        bx = x2 - 3
-        by = max(y1 + 30, min(y2 - 30, cy))
-        tail_poly = [(bx, by - 16), (bx, by + 16), (tx, ty)]
+        tail_poly = None
 
-    # 1. Blurred Drop Shadow Layer
-    shadow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    s_draw = ImageDraw.Draw(shadow)
-    s_offset = 10
-    s_tail = [(px, py + s_offset) for (px, py) in tail_poly]
-    s_draw.polygon(s_tail, fill=(15, 23, 42, 75))
-    s_draw.rounded_rectangle([(x1, y1 + s_offset), (x2, y2 + s_offset)], radius=32, fill=(15, 23, 42, 85))
-    shadow = shadow.filter(ImageFilter.GaussianBlur(radius=6))
+    # Create 2x supersampled RGBA overlay for silky-smooth hand-drawn outline + fill
+    hi_overlay = Image.new("RGBA", (SW, SH), (0, 0, 0, 0))
+    hd = ImageDraw.Draw(hi_overlay)
 
-    # 2. Bubble Body & Tail Layer
-    overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    o_draw = ImageDraw.Draw(overlay)
+    ink_color = (58, 46, 39, 255)      # Warm hand-drawn dark brown-charcoal pen line
+    fill_color = (255, 253, 249, 250)  # Soft warm cream-white paper fill
+    stroke_w = int(3.5 * scale)
+    radius = min(bw, bh) // 2 if not is_narration else 26 * scale
 
-    o_draw.polygon(tail_poly, fill=(255, 255, 255, 250), outline=speaker_color + (255,), width=4)
-    o_draw.rounded_rectangle(
-        [(x1, y1), (x2, y2)],
-        radius=32,
-        fill=(255, 255, 255, 250),
-        outline=speaker_color + (255,),
-        width=4,
-    )
-    # seamlessly cover inner tail seam
-    o_draw.rounded_rectangle(
-        [(x1 + 4, y1 + 4), (x2 - 4, y2 - 4)],
-        radius=28,
-        fill=(255, 255, 255, 252),
+    # Subtle, ultra-soft natural ambient shadow (barely noticeable, blends into watercolor)
+    sh_off = 4 * scale
+    hd.rounded_rectangle(
+        [(bx1 + sh_off, by1 + sh_off), (bx2 + sh_off, by2 + sh_off)],
+        radius=radius,
+        fill=(40, 32, 26, 28),
     )
 
-    # 3. Speaker Name Pill Badge on top-left corner of bubble
-    f_speaker = get_font(23, bold=True)
-    sp_bbox = o_draw.textbbox((0, 0), speaker_label, font=f_speaker)
-    sp_w = (sp_bbox[2] - sp_bbox[0]) + 34
-    sp_h = 38
-    sp_x1 = x1 + 24
-    sp_y1 = y1 - 19
-    o_draw.rounded_rectangle(
-        [(sp_x1, sp_y1), (sp_x1 + sp_w, sp_y1 + sp_h)],
-        radius=19,
-        fill=speaker_color + (255,),
+    # Step A: Draw outer ink shape (capsule + tail) in ink_color
+    if tail_poly:
+        # Expand tail slightly for outer ink border
+        hd.polygon(tail_poly, fill=ink_color, outline=ink_color, width=stroke_w * 2)
+    hd.rounded_rectangle(
+        [(bx1 - stroke_w, by1 - stroke_w), (bx2 + stroke_w, by2 + stroke_w)],
+        radius=radius + stroke_w,
+        fill=ink_color,
     )
-    o_draw.text((sp_x1 + 17, sp_y1 + 5), speaker_label, font=f_speaker, fill=(255, 255, 255, 255))
 
-    # 4. Crisp Dialogue Typography + Highlighter Bar on Final Line
-    f_text = get_font(29, bold=True)
-    lines = text.split("\n")
-    line_h = 41
-    total_th = len(lines) * line_h
-    start_ty = y1 + 10 + ((y2 - y1 - 10) - total_th) // 2
+    # Step B: Draw inner cream fill (capsule + tail interior) so tail and bubble merge with ZERO seam!
+    hd.rounded_rectangle(
+        [(bx1, by1), (bx2, by2)],
+        radius=radius,
+        fill=fill_color,
+    )
+    if tail_poly:
+        # Shrink tail tip inward along vector by stroke_w so ink tip stays sharp and clean
+        ax = (tail_poly[0][0] + tail_poly[1][0]) / 2.0
+        ay = (tail_poly[0][1] + tail_poly[1][1]) / 2.0
+        vx, vy = tx - ax, ty - ay
+        vlen = max(1.0, math.hypot(vx, vy))
+        in_tx = int(tx - (vx / vlen) * (stroke_w * 1.35))
+        in_ty = int(ty - (vy / vlen) * (stroke_w * 1.35))
+        if abs(tail_poly[0][0] - tail_poly[1][0]) > 0:
+            inner_tail = [
+                (tail_poly[0][0] + stroke_w, tail_poly[0][1]),
+                (tail_poly[1][0] - stroke_w, tail_poly[1][1]),
+                (in_tx, in_ty),
+            ]
+        else:
+            inner_tail = [
+                (tail_poly[0][0], tail_poly[0][1] + stroke_w),
+                (tail_poly[1][0], tail_poly[1][1] - stroke_w),
+                (in_tx, in_ty),
+            ]
+        hd.polygon(inner_tail, fill=fill_color)
 
-    for idx, line in enumerate(lines):
-        bbox = o_draw.textbbox((0, 0), line, font=f_text)
-        tw = bbox[2] - bbox[0]
-        lx = x1 + ((x2 - x1) - tw) // 2
-        ly = start_ty + idx * line_h
-        # Draw warm highlighter bar under the last line for visual emphasis
-        if idx == len(lines) - 1 and len(lines) >= 2:
-            o_draw.rounded_rectangle(
-                [(lx - 8, ly + 22), (lx + tw + 8, ly + 39)],
-                radius=6,
-                fill=highlight_color + (235,),
-            )
-        o_draw.text((lx, ly), line, font=f_text, fill=(15, 23, 42, 255))
+    # Step C: Draw warm, expressive Instatoon text centered inside the bubble
+    cur_y = by1 + (bh - total_th) // 2 - 2 * scale
+    for idx, ln in enumerate(lines):
+        tw = line_widths[idx]
+        th = line_heights[idx]
+        lx = bx1 + (bw - tw) // 2
+        hd.text((lx, cur_y), ln, font=f_text, fill=(42, 34, 30, 255))
+        cur_y += th + line_gap
 
-    combined = Image.alpha_composite(canvas.convert("RGBA"), shadow)
-    combined = Image.alpha_composite(combined, overlay)
-    return combined.convert("RGB")
+    # Downsample 2x -> 1x with LANCZOS for crisp anti-aliased hand-drawn look
+    smooth_overlay = hi_overlay.resize((W, H), Image.Resampling.LANCZOS)
+    return Image.alpha_composite(canvas.convert("RGBA"), smooth_overlay).convert("RGB")
 
 
 def render_webtoon_cut(
@@ -189,38 +268,21 @@ def render_webtoon_cut(
     accent_color=(79, 70, 229),
 ) -> Image.Image:
     """
-    Renders a full-bleed 1080x1080 square webtoon cut with:
-    - Sleek editorial top-left episode pill & top-right step indicator
-    - Sensuous 3D speech bubbles with speaker badges & highlighter accents
+    Renders a pure, natural 1080x1080 Instatoon cut (@gangjidol style):
+    - NO artificial UI header pills or speaker tags
+    - Natural oval/capsule hand-drawn speech bubbles placed right next to the characters
     """
     canvas = load_square_art(raw_path, 1080)
 
-    # Top editorial pill badge (small & sleek so it never blocks art)
-    overlay = Image.new("RGBA", (1080, 1080), (0, 0, 0, 0))
-    od = ImageDraw.Draw(overlay)
-    f_ep = get_font(22, bold=True)
-
-    # Top-right compact page counter pill
-    eb_bbox = od.textbbox((0, 0), f"{ep_badge}  |  {step_badge}", font=f_ep)
-    eb_w = (eb_bbox[2] - eb_bbox[0]) + 36
-    od.rounded_rectangle(
-        [(1080 - eb_w - 22, 18), (1080 - 22, 58)],
-        radius=20,
-        fill=(15, 23, 42, 185),
-    )
-    od.text((1080 - eb_w - 4, 24), f"{ep_badge}  |  {step_badge}", font=f_ep, fill=(255, 255, 255, 255))
-
-    canvas = Image.alpha_composite(canvas.convert("RGBA"), overlay).convert("RGB")
-
     for b in bubbles:
+        spk = b.get("speaker", "")
+        is_narr = "팩트" in spk or "팁" in spk
         canvas = draw_sensuous_speech_bubble(
             canvas,
             box_rect=b["box"],
             tail_target=b["tail"],
             text=b["text"],
-            speaker_label=b.get("speaker", "엄마"),
-            speaker_color=b.get("color", accent_color),
-            highlight_color=b.get("highlight", (254, 240, 138)),
+            is_narration=is_narr,
         )
     return canvas
 
@@ -503,15 +565,15 @@ WEBTOON_EPISODES = [
                     {
                         "speaker": "답답한 엄마",
                         "color": (79, 70, 229),
-                        "box": (32, 36, 595, 192),
-                        "tail": (635, 255),
+                        "box": (250, 26, 880, 176),
+                        "tail": (665, 215),
                         "text": "연산 시험지는 100점 맞으면서\n왜 세 줄짜리 문장제만 나오면 별표야?",
                     },
                     {
                         "speaker": "초등 2학년 민준",
                         "color": (234, 88, 12),
-                        "box": (420, 865, 1044, 1025),
-                        "tail": (360, 640),
+                        "box": (380, 865, 1044, 1025),
+                        "tail": (390, 790),
                         "text": "끝까지 읽으면 앞줄 숫자가\n머릿속에서 다 지워진단 말이에요 ㅠㅠ",
                     },
                 ],
@@ -523,15 +585,15 @@ WEBTOON_EPISODES = [
                     {
                         "speaker": "인지뇌과학 팩트",
                         "color": (13, 148, 136),
-                        "box": (32, 36, 595, 192),
-                        "tail": (390, 280),
+                        "box": (32, 26, 620, 176),
+                        "tail": (390, 220),
                         "text": "국어 어휘 부족이 아니라 머릿속 칠판\n'전두엽 작업기억' 용량이 꽉 찬 현상!",
                     },
                     {
                         "speaker": "엄마의 깨달음",
                         "color": (79, 70, 229),
                         "box": (385, 865, 1044, 1025),
-                        "tail": (740, 440),
+                        "tail": (760, 790),
                         "text": "아하! 암산하라고 재촉할 게 아니라\n종이 여백을 칠판으로 쓰게 해야겠네!",
                     },
                 ],
@@ -543,15 +605,15 @@ WEBTOON_EPISODES = [
                     {
                         "speaker": "코칭하는 엄마",
                         "color": (13, 148, 136),
-                        "box": (32, 36, 595, 192),
-                        "tail": (630, 255),
+                        "box": (240, 26, 880, 176),
+                        "tail": (655, 215),
                         "text": "식을 바로 쓰지 말고 구하는 건 동그라미,\n여백에 상자 그림부터 그려볼까?",
                     },
                     {
                         "speaker": "눈이 번쩍 민준",
                         "color": (79, 70, 229),
-                        "box": (415, 865, 1044, 1025),
-                        "tail": (350, 680),
+                        "box": (380, 865, 1044, 1025),
+                        "tail": (390, 790),
                         "text": "우와! 그림으로 그리니까 더할지 뺄지\n한눈에 바로 보여요 엄마!!",
                     },
                 ],
@@ -563,15 +625,15 @@ WEBTOON_EPISODES = [
                     {
                         "speaker": "자신감 넘치는 민준",
                         "color": (234, 88, 12),
-                        "box": (32, 36, 595, 192),
-                        "tail": (430, 390),
+                        "box": (32, 26, 620, 176),
+                        "tail": (380, 225),
                         "text": "엄마! 내가 왜 이렇게 식 세웠는지\n30초 만에 설명해 볼게요! 하이파이브!",
                     },
                     {
                         "speaker": "든든한 엄마",
                         "color": (13, 148, 136),
                         "box": (385, 865, 1044, 1025),
-                        "tail": (740, 450),
+                        "tail": (760, 790),
                         "text": "열 문제 푸는 것보다 한 문제를\n내 말로 설명하는 게 진짜 실력이야♥",
                     },
                 ],
@@ -654,15 +716,15 @@ WEBTOON_EPISODES = [
                     {
                         "speaker": "다정한 엄마",
                         "color": (79, 70, 229),
-                        "box": (32, 36, 595, 192),
-                        "tail": (560, 250),
+                        "box": (210, 26, 850, 176),
+                        "tail": (605, 215),
                         "text": "불 끄기 전 5분 동안 무릎이랑 종아리\n성장판 쭉쭉 이완 마사지 해줄게~",
                     },
                     {
                         "speaker": "노곤노곤 서연",
                         "color": (5, 150, 105),
-                        "box": (415, 865, 1044, 1025),
-                        "tail": (280, 740),
+                        "box": (380, 865, 1044, 1025),
+                        "tail": (380, 790),
                         "text": "다리도 시원하고 따뜻해서\n벌써 눈이 스르륵 감겨요 엄마…♥",
                     },
                 ],
