@@ -2618,25 +2618,25 @@
     };
 
     return `
-      <div id="child-cognitive-roadmap-section" style="margin-top: 1.25rem; padding: 1.25rem; background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 18px; text-align: left;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-          <h4 style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+      <div id="child-cognitive-roadmap-section" style="margin-top: 1.1rem; padding: 1.15rem; background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 18px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem;">
+          <h4 style="font-size: 1.02rem; font-weight: 900; color: #0F172A; margin: 0; word-break: keep-all;">
             🗓️ ${isEn
-              ? `3-Year Forward Cognitive & Curriculum Roadmap (Age ${ageYears} → Age ${ageYears + 3})`
-              : `향후 3개년 연령별 학습·교과 전환 로드맵 (만 ${ageYears}세 → 만 ${ageYears + 3}세 핵심 과제)`}
+              ? `3-Year Forward Learning Roadmap (Age ${ageYears} → Age ${ageYears + 3})`
+              : `향후 3개년 연령별 학습 로드맵 (만 ${ageYears}세 → 만 ${ageYears + 3}세)`}
           </h4>
-          <span style="background: rgba(139, 92, 246, 0.2); color: #DDD6FE; font-size: 0.78rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.45);">
-            🧠 대뇌 피질 재조직화 &amp; 교과 전환
+          <span style="background: #EEF2FF; color: #4F46E5; font-size: 0.76rem; font-weight: 900; padding: 0.22rem 0.65rem; border-radius: 9999px; border: 1px solid #C7D2FE;">
+            🧠 연령별 핵심 포인트
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 0.75rem;">
+        <div class="learning-roadmap-tab-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: 0.4rem; margin-bottom: 0.75rem;">
           ${data.lifecycleRoadmap.map((step, idx) => `
             <button
               type="button"
               class="cognitive-lifecycle-tab-btn"
-              onclick="(function(btn, targetIdx){ var sec = btn.closest('#child-cognitive-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.cognitive-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.cognitive-lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#7C3AED' : 'rgba(255,255,255,0.06)'; b.style.color = '#FFFFFF'; b.style.borderColor = (i === targetIdx) ? '#C4B5FD' : 'rgba(255,255,255,0.15)'; }); })(this, ${idx})"
-              style="padding: 0.55rem 0.4rem; border-radius: 10px; font-size: 0.84rem; font-weight: 800; cursor: pointer; background: ${idx === 0 ? '#7C3AED' : 'rgba(255,255,255,0.06)'}; color: #FFFFFF; border: 1px solid ${idx === 0 ? '#C4B5FD' : 'rgba(255,255,255,0.15)'};"
+              onclick="(function(btn, targetIdx){ var sec = btn.closest('#child-cognitive-roadmap-section'); if(!sec) return; var cards = sec.querySelectorAll('.cognitive-age-card'); cards.forEach(function(c, i){ c.style.display = (i === targetIdx) ? 'block' : 'none'; }); var btns = sec.querySelectorAll('.cognitive-lifecycle-tab-btn'); btns.forEach(function(b, i){ b.style.background = (i === targetIdx) ? '#4F46E5' : '#FFFFFF'; b.style.color = (i === targetIdx) ? '#FFFFFF' : '#334155'; b.style.borderColor = (i === targetIdx) ? '#4F46E5' : '#CBD5E1'; }); })(this, ${idx})"
+              style="padding: 0.55rem 0.4rem; border-radius: 10px; font-size: 0.84rem; font-weight: 900; cursor: pointer; background: ${idx === 0 ? '#4F46E5' : '#FFFFFF'}; color: ${idx === 0 ? '#FFFFFF' : '#334155'}; border: 1.5px solid ${idx === 0 ? '#4F46E5' : '#CBD5E1'};"
             >
               ${isEn ? (idx === 0 ? `Now (${step.age}y)` : `+${idx}Yr (${step.age}y)`) : (idx === 0 ? `현재 만 ${step.age}세` : `만 ${step.age}세 (+${idx}년)`)}
             </button>
@@ -2647,26 +2647,20 @@
           ${data.lifecycleRoadmap.map((step, idx) => {
             const curInfo = CURRICULUM_ROADMAP[step.age] || CURRICULUM_ROADMAP[12];
             return `
-              <div class="cognitive-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 14px; padding: 1.1rem 1.2rem; text-align: left;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
-                  <span style="font-size: 1rem; font-weight: 900; color: #DDD6FE;">
-                    🧠 ${isEn ? `Age ${step.age} Cognitive & Study Roadmap` : `만 ${step.age}세 두뇌 신경망 & 교과 학습 전환 과제`}
-                  </span>
-                  <span style="font-size: 0.84rem; font-weight: 800; color: #6EE7B7; background: rgba(16, 185, 129, 0.15); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-                    집중 목표: ${curInfo.focus}
-                  </span>
-                </div>
-                <div style="font-size: 0.92rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 0.4rem;">
-                  <strong style="color: #C4B5FD;">🧠 ${isEn ? 'Cortical Rewiring:' : '두뇌·신경망 발달 과제:'}</strong> ${step.brainFocus}
-                </div>
-                <div style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin-bottom: 0.35rem;">
-                  <strong style="color: #93C5FD;">📖 국어·문해력 포인트:</strong> ${curInfo.kor}
-                </div>
-                <div style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; margin-bottom: 0.45rem;">
-                  <strong style="color: #FBBF24;">📐 수학·공간추론 포인트:</strong> ${curInfo.math}
-                </div>
-                <div style="font-size: 0.86rem; color: #DDD6FE; line-height: 1.5; border-top: 1px dashed rgba(255, 255, 255, 0.14); padding-top: 0.45rem;">
-                  💡 <strong>자기주도 코칭 조언:</strong> 기계적 선행 학원 진도보다 매일 5분 백지복습(Active Recall)과 밤 10시 숙면(기억 공고화)이 학업 성취도를 50% 이상 결정합니다.
+              <div class="cognitive-age-card" data-age="${step.age}" style="display: ${idx === 0 ? 'block' : 'none'}; background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 0.95rem 1rem; text-align: left;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.55rem;">
+                  <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.65rem 0.8rem;">
+                    <div style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">📖 국어 · 문해력</div>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.4; word-break: keep-all;">${curInfo.kor}</div>
+                  </div>
+                  <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 10px; padding: 0.65rem 0.8rem;">
+                    <div style="font-size: 0.76rem; font-weight: 900; color: #B45309; margin-bottom: 0.2rem;">📐 수학 · 공간추론</div>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.4; word-break: keep-all;">${curInfo.math}</div>
+                  </div>
+                  <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 10px; padding: 0.65rem 0.8rem;">
+                    <div style="font-size: 0.76rem; font-weight: 900; color: #047857; margin-bottom: 0.2rem;">⏳ 집중 · 자기주도</div>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.4; word-break: keep-all;">${curInfo.focus}</div>
+                  </div>
                 </div>
               </div>
             `;

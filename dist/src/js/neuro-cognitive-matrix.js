@@ -687,10 +687,17 @@
       inquiry_creative: Number(lqScores.inquiry_creative) || 75
     };
 
-    const cx = 200;
-    const cy = 200;
-    const maxR = 130;
+    const cx = 210;
+    const cy = 205;
+    const maxR = 118;
     const keys = ['literacy_vocab', 'math_spatial', 'working_memory_focus', 'metacognition_retrieval', 'inquiry_creative'];
+    const shortLabelsKo = {
+      literacy_vocab: '문해·어휘',
+      math_spatial: '수리·공간',
+      working_memory_focus: '집중·작업기억',
+      metacognition_retrieval: '메타인지·인출',
+      inquiry_creative: '탐구·창의'
+    };
     const n = keys.length;
 
     // Grid webs (20, 40, 60, 80, 100)
@@ -704,8 +711,11 @@
         const y = cy + r * Math.sin(angle);
         polyPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
       }
-      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />`;
-      gridSvg += `<text x="${cx + 4}" y="${(cy - r + 4).toFixed(1)}" font-size="9" fill="rgba(255, 255, 255, 0.25)" font-family="monospace">${Math.round(ratio * 100)}</text>`;
+      const isOuter = ratio === 1.0;
+      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(238, 242, 255, 0.45)' : 'none'}" stroke="${isOuter ? 'rgba(99, 102, 241, 0.35)' : 'rgba(148, 163, 184, 0.28)'}" stroke-width="${isOuter ? '1.5' : '1'}" />`;
+      if (ratio >= 0.4) {
+        gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10" font-weight="700" fill="#64748B" font-family="Pretendard, sans-serif">${Math.round(ratio * 100)}</text>`;
+      }
     });
 
     // Spokes & Axis Labels
@@ -717,22 +727,25 @@
       const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
       const x = cx + maxR * Math.cos(angle);
       const y = cy + maxR * Math.sin(angle);
-      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255, 255, 255, 0.12)" stroke-dasharray="2,2" />`;
+      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(99, 102, 241, 0.25)" stroke-dasharray="3,3" />`;
 
       const meta = LEARNING_QUOTIENT_METRICS[key];
-      const labelText = isGlobal ? meta.nameEn : meta.nameKo;
-      const lx = cx + (maxR + 26) * Math.cos(angle);
-      const ly = cy + (maxR + 18) * Math.sin(angle);
-      const anchor = Math.abs(x - cx) < 10 ? 'middle' : (x > cx ? 'start' : 'end');
+      const labelText = isGlobal ? meta.nameEn : (shortLabelsKo[key] || meta.nameKo);
+      const lx = cx + (maxR + 34) * Math.cos(angle);
+      const ly = cy + (maxR + 26) * Math.sin(angle);
+      const anchor = Math.abs(x - cx) < 12 ? 'middle' : (x > cx ? 'start' : 'end');
 
       spokesSvg += `
-        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" font-size="11" font-weight="800" fill="#E2E8F0" dominant-baseline="central">
+        <text x="${lx.toFixed(1)}" y="${(ly - 6).toFixed(1)}" text-anchor="${anchor}" font-size="12.5" font-weight="900" fill="#1E293B" dominant-baseline="central">
           ${meta.icon} ${labelText}
+        </text>
+        <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="11.5" font-weight="900" fill="#4F46E5" dominant-baseline="central">
+          ${scores[key]}점
         </text>
       `;
 
-      // Baseline (70)
-      const baseR = maxR * (70 / 100);
+      // Baseline (75)
+      const baseR = maxR * (75 / 100);
       baselinePoints.push(`${(cx + baseR * Math.cos(angle)).toFixed(1)},${(cy + baseR * Math.sin(angle)).toFixed(1)}`);
 
       // Child Score
@@ -748,18 +761,18 @@
     let verticesSvg = '';
     childPoints.forEach(p => {
       verticesSvg += `
-        <circle cx="${p.x}" cy="${p.y}" r="5" fill="#A855F7" stroke="#FFFFFF" stroke-width="1.8">
+        <circle cx="${p.x}" cy="${p.y}" r="6" fill="#4F46E5" stroke="#FFFFFF" stroke-width="2.2">
           <title>${p.label}: ${p.score}점</title>
         </circle>
       `;
     });
 
     return `
-      <svg id="lq-radar-svg" viewBox="0 0 400 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
+      <svg id="lq-radar-svg" viewBox="0 0 420 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 390px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
         <defs>
           <radialGradient id="childLqRadarGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(168, 85, 247, 0.45)" />
-            <stop offset="100%" stop-color="rgba(56, 189, 248, 0.18)" />
+            <stop offset="0%" stop-color="rgba(79, 70, 229, 0.42)" />
+            <stop offset="100%" stop-color="rgba(14, 165, 233, 0.22)" />
           </radialGradient>
         </defs>
 
@@ -769,11 +782,11 @@
         <!-- 5 Axis Spokes -->
         ${spokesSvg}
 
-        <!-- Baseline Normative 70 Polygon (Dashed Slate) -->
-        <path d="${baselinePath}" fill="rgba(148, 163, 184, 0.08)" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4" />
+        <!-- Baseline Normative 75 Polygon (Dashed Slate) -->
+        <path d="${baselinePath}" fill="rgba(148, 163, 184, 0.12)" stroke="#64748B" stroke-width="1.6" stroke-dasharray="4,4" />
 
-        <!-- Child LQ Profile Polygon (Glowing Violet/Cyan) -->
-        <path d="${childPath}" fill="url(#childLqRadarGrad)" stroke="#C084FC" stroke-width="2.5" />
+        <!-- Child LQ Profile Polygon (Vibrant Indigo) -->
+        <path d="${childPath}" fill="url(#childLqRadarGrad)" stroke="#4F46E5" stroke-width="3" />
 
         <!-- Vertex Point Pins -->
         ${verticesSvg}
