@@ -1526,6 +1526,31 @@ body {
     color: #0F172A !important;
     box-shadow: none !important;
   }
+
+  body.print-mode-learning #pillar-2-container,
+  body.print-mode-learning #pillar-2-container div,
+  body.print-mode-learning #pillar-2-container section,
+  body.print-mode-learning #pillar-2-container article {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+    box-shadow: none !important;
+  }
+
+  body.print-mode-learning #pillar-2-container h1,
+  body.print-mode-learning #pillar-2-container h2,
+  body.print-mode-learning #pillar-2-container h3,
+  body.print-mode-learning #pillar-2-container h4,
+  body.print-mode-learning #pillar-2-container p,
+  body.print-mode-learning #pillar-2-container span,
+  body.print-mode-learning #pillar-2-container li,
+  body.print-mode-learning #pillar-2-container strong {
+    color: #0F172A !important;
+  }
+
+  body.print-mode-learning #pillar-2-container button {
+    display: none !important;
+  }
 }
 
 /* Responsive Breakpoints */

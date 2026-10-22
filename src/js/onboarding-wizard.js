@@ -437,13 +437,15 @@
       if (lms) {
         const heightInput = document.getElementById('child-height');
         const weightInput = document.getElementById('child-weight');
+        const roundedH = Math.round((Number(lms.M) || 137.0) * 10) / 10;
+        const roundedW = Math.round((Number(lms.wM) || 35.5) * 10) / 10;
         if (heightInput && !(heightInput.dataset && heightInput.dataset.userEdited === 'true')) {
-          heightInput.value = lms.M;
-          wizardState.profile.currentHeight = lms.M;
+          heightInput.value = roundedH.toFixed(1);
+          wizardState.profile.currentHeight = roundedH;
         }
         if (weightInput && !(weightInput.dataset && weightInput.dataset.userEdited === 'true')) {
-          weightInput.value = lms.wM;
-          wizardState.profile.currentWeight = lms.wM;
+          weightInput.value = roundedW.toFixed(1);
+          wizardState.profile.currentWeight = roundedW;
         }
       }
     }
