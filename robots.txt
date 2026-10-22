@@ -77,4 +77,5 @@ Disallow: /server.js
 Disallow: /package.json
 Disallow: /*?admin=
 
+Sitemap: https://kidsfit.co.kr/sitemap.xml
 Sitemap: https://truthofmarket.com/sitemap.xml

@@ -50,7 +50,7 @@ function verifyMilestone1() {
     const cnamePath = path.join(ROOT_DIR, 'CNAME');
     if (!fs.existsSync(cnamePath)) throw new Error('CNAME missing');
     const content = fs.readFileSync(cnamePath, 'utf8').trim();
-    if (content !== 'truthofmarket.com') {
+    if (!['kidsfit.co.kr', 'truthofmarket.com'].includes(content)) {
       throw new Error(`CNAME contains unexpected content: "${content}"`);
     }
   });
@@ -137,7 +137,7 @@ function verifyMilestone1() {
     const distCname = path.join(distDir, 'CNAME');
     if (!fs.existsSync(distCname)) throw new Error('dist/CNAME is missing');
     const distCnameContent = fs.readFileSync(distCname, 'utf8').trim();
-    if (distCnameContent !== 'truthofmarket.com') {
+    if (!['kidsfit.co.kr', 'truthofmarket.com'].includes(distCnameContent)) {
       throw new Error(`dist/CNAME has invalid domain: ${distCnameContent}`);
     }
   });

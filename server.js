@@ -121,8 +121,10 @@ const server = http.createServer((req, res) => {
     if (pathname === '/healthz' || pathname === '/api/health' || pathname === '/api/stats') {
       const payload = JSON.stringify({
         ok: true,
-        service: 'Taller Bio Labs (truthofmarket.com)',
-        version: '2.4.0',
+        service: 'KidsFit Growth Studio (kidsfit.co.kr / truthofmarket.com)',
+        primaryDomain: 'https://kidsfit.co.kr',
+        domains: ['kidsfit.co.kr', 'www.kidsfit.co.kr', 'truthofmarket.com', 'www.truthofmarket.com'],
+        version: '2.5.0',
         timestamp: new Date().toISOString()
       });
       res.writeHead(200, {
@@ -615,8 +617,8 @@ const server = http.createServer((req, res) => {
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#05070B">
   <title>KIDS-FIT 앱 실행기</title>
-  <link rel="icon" href="https://truthofmarket.com/samples/app-icon-192.png">
-  <link rel="apple-touch-icon" href="https://truthofmarket.com/samples/apple-touch-icon.png">
+  <link rel="icon" href="https://kidsfit.co.kr/samples/app-icon-192.png">
+  <link rel="apple-touch-icon" href="https://kidsfit.co.kr/samples/apple-touch-icon.png">
   <style>
     body { margin: 0; background: #05070B; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; box-sizing: border-box; }
     .card { max-width: 400px; width: 100%; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 24px; padding: 28px 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.65); }
@@ -627,16 +629,16 @@ const server = http.createServer((req, res) => {
   </style>
   <script>
     setTimeout(function() {
-      window.location.replace('https://truthofmarket.com/?source=app_launcher');
+      window.location.replace('https://kidsfit.co.kr/?source=app_launcher');
     }, 600);
   </script>
 </head>
 <body>
   <div class="card">
-    <img class="icon" src="https://truthofmarket.com/samples/app-icon-192.png" alt="KIDS-FIT">
+    <img class="icon" src="https://kidsfit.co.kr/samples/app-icon-192.png" alt="KIDS-FIT">
     <h1>KIDS-FIT 그로스 스튜디오</h1>
     <p>아이 신체 성장 &amp; 두뇌·학습 맞춤 처방 앱으로 연결 중입니다...</p>
-    <a class="btn" href="https://truthofmarket.com/?source=app_launcher">📲 키즈핏 앱 바로 열기 →</a>
+    <a class="btn" href="https://kidsfit.co.kr/?source=app_launcher">📲 키즈핏 앱 바로 열기 →</a>
   </div>
 </body>
 </html>`;

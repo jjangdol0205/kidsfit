@@ -136,10 +136,13 @@ async function sendEpisodePack(epMeta, cfg) {
   let threadsP1 = fs.readFileSync(path.join(dir, '06_쓰레드_1번째본문_4컷합본용.txt'), 'utf8').trim();
   let threadsR2 = fs.readFileSync(path.join(dir, '07_쓰레드_2번째이어쓰기_링크댓글용.txt'), 'utf8').trim();
 
-  // Dynamically sync paper count and ensure @kids_fit1 is pre-filled
+  // Dynamically sync paper count, @kids_fit1 handle, and kidsfit.co.kr official domain
   instaCaption = instaCaption
     .replace(/@계정아이디/g, '@kids_fit1')
-    .replace(/논문 [\d,]+편 기반/g, `논문 ${totalPapers}편 기반`);
+    .replace(/논문 [\d,]+편 기반/g, `논문 ${totalPapers}편 기반`)
+    .replace(/https:\/\/truthofmarket\.com/g, 'https://kidsfit.co.kr');
+  threadsR2 = threadsR2
+    .replace(/https:\/\/truthofmarket\.com/g, 'https://kidsfit.co.kr');
 
   // 1. Header Banner Message
   await telegramApiRequest(cfg.botToken, 'sendMessage', {
