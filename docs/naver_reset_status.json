@@ -1,79 +1,61 @@
 {
-  "resetExecutedAt": "2026-10-19T13:13:21.289Z",
-  "status": "INITIALIZED_TO_KIDSFIT_PARENTING_STUDIO",
-  "removedLegacyScheduledTasks": [],
-  "cleanedLegacyFiles": [],
-  "legacyChannelsResetPlan": {
-    "blogs": [
-      {
-        "id": "comedifarm",
-        "url": "https://blog.naver.com/comedifarm",
-        "oldTitle": "머니핏 생활금융 블로그",
-        "newTitle": "키즈핏 소아성장·두뇌발달 양육 연구소"
-      },
-      {
-        "id": "expertise333",
-        "url": "https://blog.naver.com/expertise333",
-        "oldTitle": "머니핏 숨은환급금·절세·고정비 연구소",
-        "newTitle": "키즈핏 그로스 스튜디오 공식 양육 칼럼"
-      }
-    ],
-    "cafes": [
-      {
-        "id": "moneyfitlab",
-        "clubId": "31805224",
-        "url": "https://cafe.naver.com/moneyfitlab",
-        "manageUrl": "https://cafe.naver.com/ManageGate.nhn?clubid=31805224",
-        "oldTitle": "머니핏 생활비 살림 팩트체크 연구소",
-        "newTitle": "키즈핏 그로스 라운지 — 우리 아이 키성장·소근육발달·주말전시 엄마모임"
-      }
+  "resetExecutedAt": "2026-10-22T21:21:00+09:00",
+  "status": "COMPLETED_LIVE_NAVER_BLOG_AND_CAFE_KIDSFIT_SETUP",
+  "naverAccount": "better_life333",
+  "liveBlog": {
+    "blogId": "expertise333",
+    "blogNo": 168792969,
+    "url": "https://blog.naver.com/expertise333",
+    "oldTitle": "머니핏 숨은환급금·절세·고정비 연구소",
+    "newTitle": "키즈핏 소아성장·두뇌발달 양육 연구소",
+    "nickname": "키즈핏연구소장",
+    "subject": "육아·결혼 (directorySeq=15)",
+    "introduce": "질병관리청 성장도표·영유아 건강검진(K-DST) 공식 기준에 기반해\n우리 아이 숨은 키·성조숙증·월령별 두뇌발달·가베/몬테소리 교구·주말 나들이 가이드를 연구합니다.\n공식 웹앱: https://truthofmarket.com",
+    "categories": [
+      "공지 및 키즈핏 가이드",
+      "우리 아이 키성장·성조숙증",
+      "월령별 두뇌·소근육 발달",
+      "연령별 교구·책육아 추천",
+      "주말 미술관·박물관 나들이"
     ]
   },
-  "newCafeBoardStructure": [
-    {
-      "group": "📢 키즈핏 공식 안내 & 공신력 가이드",
-      "boards": [
-        "👋 가입인사 & 우리아이 월령 소개",
-        "🏛️ 질병관리청 성장도표·K-DST 공식 기준표",
-        "🎁 [무료나눔] 월령별 가위질·선긋기 워크지 PDF 자료실"
-      ]
-    },
-    {
-      "group": "📏 우리 아이 신체 성장 & 숨은 키 고민방",
-      "boards": [
-        "📏 월령별 키·몸무게 백분위 질문방",
-        "🥛 편식·우유배앓이 극복 자연식 식단 공유",
-        "🌙 밤 10시 수면 골든타임 & 바른자세 실천 인증"
-      ]
-    },
-    {
-      "group": "🧩 월령별 두뇌·소근육 발달 & 집콕놀이방",
-      "boards": [
-        "👶 만 1~3세 오감·몬테소리 손끝놀이 질문방",
-        "🧒 만 4~6세 가베·공간수리·창의블록 질문방",
-        "🏠 돈 안 드는 거실 0원 일상놀이 레시피"
-      ]
-    },
-    {
-      "group": "🎨 주말 미술관·박물관·역사 나들이 후기",
-      "boards": [
-        "🗺️ 이번 주말 권역별 전시·박물관 예약 꿀팁",
-        "🗣️ 다녀온 후 하브루타 대화 & 독후활동 인증"
-      ]
-    },
-    {
-      "group": "🤝 엄마들의 현명한 교구·영양 라운지 (선택참여)",
-      "boards": [
-        "💬 내돈내산 교구·책 솔직 후기 (광고절대금지)",
-        "📦 [회원전용] 검증 교구·영양제 공동구매 수요조사"
-      ]
-    }
-  ],
-  "activeAffiliateDefaults": {
-    "coupang": "AF7865143",
-    "linkprice": "A100708867",
-    "tenping": "010-****-2370",
-    "cafeUrl": "https://cafe.naver.com/kidsfitgrowth",
-    "blogUrl": "https://blog.naver.com/kidsfit_studio"
+  "liveCafe": {
+    "cafeUrlName": "moneyfitlab",
+    "clubId": "31805224",
+    "url": "https://cafe.naver.com/moneyfitlab",
+    "studioUrl": "https://studio.cafe.naver.com/@31805224/operation/base-info",
+    "deletedLegacyArticles": [12, 11, 9, 6],
+    "pcCafeName": "키즈핏 소아성장 두뇌발달 양육 연구소",
+    "mobileCafeName": "키즈핏 양육연구소",
+    "topic": "가족/육아 > 육아/여성",
+    "description": "질병관리청 성장도표·영유아검진 기반 아이 예상키·두뇌발달·교구·나들이 양육 연구소",
+    "searchKeywords": [
+      "키즈핏",
+      "아이키성장",
+      "예상키계산기",
+      "성조숙증",
+      "영유아검진",
+      "소근육발달",
+      "몬테소리교구",
+      "하브루타",
+      "주말나들이",
+      "육아카페"
+    ],
+    "boards": [
+      "공지 및 키즈핏 가이드",
+      "연령별 무료 워크지 PDF",
+      "우리아이 키성장·성조숙증",
+      "두뇌·소근육·학습 질문방",
+      "주말 전시·박물관 나들이",
+      "매월 1일 리포트 인증방",
+      "반가운 가입인사"
+    ],
+    "memberLevels": [
+      "새싹 학부모",
+      "일반 학부모",
+      "성실 학부모",
+      "열혈 학부모",
+      "키즈핏 멘토"
+    ]
   }
 }
