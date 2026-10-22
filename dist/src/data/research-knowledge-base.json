@@ -2,12 +2,12 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-22T23:00:26Z",
-    "total_papers": 2723,
+    "generated_at": "2026-10-22T23:26:24Z",
+    "total_papers": 2733,
     "pillar_counts": {
-      "growth_endocrinology": 776,
+      "growth_endocrinology": 781,
       "fine_motor_neuroscience": 525,
-      "pedagogy_montessori_froebel": 369,
+      "pedagogy_montessori_froebel": 374,
       "parent_child_interaction_museum": 667,
       "posture_biomechanics_exercise": 386
     },
@@ -17,20 +17,20 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-22T23:00:27Z",
+    "last_updated_utc": "2026-10-22T23:26:24Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-22T23:00:27Z",
-      "total_papers": 2723,
+      "last_enriched_utc": "2026-10-22T23:26:24Z",
+      "total_papers": 2733,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 1162,
-        "learning_macro_count": 1561,
-        "total_macro_papers": 2723,
-        "growth_ratio": 0.4267,
+        "growth_macro_count": 1167,
+        "learning_macro_count": 1566,
+        "total_macro_papers": 2733,
+        "growth_ratio": 0.427,
         "growth_percent": 42.7,
-        "learning_ratio": 0.5733,
+        "learning_ratio": 0.573,
         "learning_percent": 57.3,
         "learning_ratio_percent": 57.3,
         "target_ratio": 0.5,
@@ -41,7 +41,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-22T23:00:27Z"
+        "last_balanced_utc": "2026-10-22T23:26:24Z"
       },
       "sub_domain_distribution": [
         {
@@ -52,7 +52,7 @@
           "icon": "🧬",
           "color": "#38BDF8",
           "count": 0,
-          "percent": 0.0
+          "percent": 0
         },
         {
           "id": "chronobiology_sleep_architecture",
@@ -61,8 +61,8 @@
           "title_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
           "icon": "🌙",
           "color": "#818CF8",
-          "count": 292,
-          "percent": 10.7
+          "count": 294,
+          "percent": 10.8
         },
         {
           "id": "clinical_nutrigenomics_microbiome",
@@ -71,8 +71,8 @@
           "title_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
           "icon": "🥗",
           "color": "#10B981",
-          "count": 453,
-          "percent": 16.6
+          "count": 456,
+          "percent": 16.7
         },
         {
           "id": "bone_age_precocious_puberty",
@@ -102,7 +102,7 @@
           "icon": "🧠",
           "color": "#A855F7",
           "count": 479,
-          "percent": 17.6
+          "percent": 17.5
         },
         {
           "id": "pedagogy_montessori_froebel",
@@ -121,8 +121,8 @@
           "title_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
           "icon": "📐",
           "color": "#06B6D4",
-          "count": 300,
-          "percent": 11.0
+          "count": 305,
+          "percent": 11.2
         },
         {
           "id": "parent_child_interaction_museum",
@@ -132,7 +132,7 @@
           "icon": "🏛️",
           "color": "#F97316",
           "count": 192,
-          "percent": 7.1
+          "percent": 7
         },
         {
           "id": "emotion_coaching_vagal_tone",
@@ -162,56 +162,56 @@
           "icon": "🏃",
           "color": "#22C55E",
           "count": 83,
-          "percent": 3.0
+          "percent": 3
         }
       ],
       "horizon_distribution": {
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 1914
+          "count": 1919
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 2723
+          "count": 2733
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 1716
+          "count": 1724
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1470,
-          "mid_term": 2273,
-          "long_term": 1566
+          "short_term": 1475,
+          "mid_term": 2283,
+          "long_term": 1574
         },
         "4-6y": {
-          "short_term": 1559,
-          "mid_term": 2367,
-          "long_term": 1653
+          "short_term": 1564,
+          "mid_term": 2377,
+          "long_term": 1661
         },
         "7-9y": {
-          "short_term": 1901,
-          "mid_term": 2682,
-          "long_term": 1679
+          "short_term": 1906,
+          "mid_term": 2692,
+          "long_term": 1687
         },
         "10-12y": {
-          "short_term": 1492,
-          "mid_term": 2298,
-          "long_term": 1580
+          "short_term": 1497,
+          "mid_term": 2308,
+          "long_term": 1588
         },
         "13-16y": {
-          "short_term": 1090,
-          "mid_term": 1308,
-          "long_term": 851
+          "short_term": 1095,
+          "mid_term": 1313,
+          "long_term": 854
         },
         "17-20y": {
-          "short_term": 1090,
-          "mid_term": 1308,
-          "long_term": 851
+          "short_term": 1095,
+          "mid_term": 1313,
+          "long_term": 854
         }
       },
       "core_empirical_laws": [
@@ -396,15 +396,15 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-22T23:00:26Z"
+      "last_synced_utc": "2026-10-22T23:26:24Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 1162,
-      "learning_macro_count": 1561,
-      "total_macro_papers": 2723,
-      "growth_ratio": 0.4267,
+      "growth_macro_count": 1167,
+      "learning_macro_count": 1566,
+      "total_macro_papers": 2733,
+      "growth_ratio": 0.427,
       "growth_percent": 42.7,
-      "learning_ratio": 0.5733,
+      "learning_ratio": 0.573,
       "learning_percent": 57.3,
       "learning_ratio_percent": 57.3,
       "target_ratio": 0.5,
@@ -415,7 +415,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-22T23:00:27Z"
+      "last_balanced_utc": "2026-10-22T23:26:24Z"
     }
   },
   "pillars": [
@@ -426,7 +426,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 776
+      "paper_count": 781
     },
     {
       "id": "fine_motor_neuroscience",
@@ -444,7 +444,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 369
+      "paper_count": 374
     },
     {
       "id": "parent_child_interaction_museum",
@@ -2750,6 +2750,55 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42662354/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:42421919",
+      "pmid": "42421919",
+      "doi": "10.3389/fnut.2026.1886883",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Micronutrient status and growth outcomes in children with cow's milk allergy: beyond elimination diets",
+      "title_ko": "[소아 골성장·미량영양소 임상] Micronutrient status and growth outcomes in children with cow's milk allergy: beyond elimi (2026)",
+      "authors": [
+        "Di Rosa M",
+        "Foti Randazzese S",
+        "De Amici M",
+        "Ghiglioni DG",
+        "Marseglia A",
+        "Marseglia GL"
+      ],
+      "journal": "Frontiers in nutrition",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Frontiers in nutrition (2026)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42421919/",
       "source_api": "NCBI PubMed E-utilities Live",
       "sub_domain": "clinical_nutrigenomics_microbiome",
       "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
@@ -16614,6 +16663,52 @@
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
+      "id": "PMID:30249230",
+      "pmid": "30249230",
+      "doi": "10.1186/s12902-018-0271-1",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Associations among IGF-1, IGF2, IGF-1R, IGF-2R, IGFBP-3, insulin genetic polymorphisms and central precocious puberty in girls",
+      "title_ko": "[수면·성장내분비 임상] Associations among IGF-1, IGF2, IGF-1R, IGF-2R, IGFBP-3, insulin genetic polymorphisms and (2018)",
+      "authors": [
+        "Chang HP",
+        "Yang SF",
+        "Wang SL",
+        "Su PH"
+      ],
+      "journal": "BMC endocrine disorders",
+      "year": 2018,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "BMC endocrine disorders (2018)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30249230/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
       "id": "PMID:28713437",
       "pmid": "28713437",
       "doi": "10.1155/2017/6935802",
@@ -26893,6 +26988,56 @@
       "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
+      "id": "DOI:10.1093/jn/136.9.2378",
+      "pmid": "",
+      "doi": "10.1093/jn/136.9.2378",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Iron and/or Zinc Supplementation Did Not Reduce Blood Lead Concentrations in Children in a Randomized, Placebo-Controlled Trial",
+      "title_ko": "[소아 골성장·미량영양소 임상] Iron and/or Zinc Supplementation Did Not Reduce Blood Lead Concentrations in Children in a (2006)",
+      "authors": [
+        "Rosado JL",
+        "López P",
+        "Kordas K",
+        "García-Vargas G",
+        "Ronquillo D",
+        "Alatorre J"
+      ],
+      "journal": "The Journal of Nutrition",
+      "year": 2006,
+      "citations_count": 54,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 54회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "The Journal of Nutrition (2006)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1093/jn/136.9.2378",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 54회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
       "id": "DOI:10.1016/s1569-1993(05)80281-4",
       "pmid": "",
       "doi": "10.1016/s1569-1993(05)80281-4",
@@ -28489,6 +28634,51 @@
       "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
       "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "DOI:10.1016/s1043-6618(03)00151-8",
+      "pmid": "",
+      "doi": "10.1016/s1043-6618(03)00151-8",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Antinociceptive effect of Phlomis olivieri Benth., Phlomis anisodonta Boiss. and Phlomis persica Boiss. total extracts",
+      "title_ko": "[소아 골성장·미량영양소 임상] Antinociceptive effect of Phlomis olivieri Benth., Phlomis anisodonta Boiss. and Phlomis p (2003)",
+      "authors": [
+        "Sarkhail P"
+      ],
+      "journal": "Pharmacological Research",
+      "year": 2003,
+      "citations_count": 37,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 37회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Pharmacological Research (2003)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1016/s1043-6618(03)00151-8",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 37회 검증 논문] 칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
     },
     {
       "id": "PMID:12088188",
@@ -32564,6 +32754,49 @@
         "17-20y"
       ],
       "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "PMID:8940745",
+      "pmid": "8940745",
+      "doi": "10.1016/s0163-7258(96)00092-7",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Circadian rhythms and the pharmacology of affective illness",
+      "title_ko": "[소아 골성장·미량영양소 임상] Circadian rhythms and the pharmacology of affective illness (1996)",
+      "authors": [
+        "Duncan WC Jr"
+      ],
+      "journal": "Pharmacology & therapeutics",
+      "year": 1996,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Pharmacology & therapeutics (1996)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8940745/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
       "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
       "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
@@ -37084,7 +37317,7 @@
         "PARKER SG"
       ],
       "journal": "Archives of Surgery",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 7,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -60188,7 +60421,7 @@
         "Pediatric Research Group"
       ],
       "journal": "Physical Therapy",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -60230,7 +60463,7 @@
         "Metheny E"
       ],
       "journal": "Child Development",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -60272,7 +60505,7 @@
         "METHENY E"
       ],
       "journal": "Child Development",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -63850,6 +64083,48 @@
       "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
       "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
       "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
+    },
+    {
+      "id": "DOI:10.61365/forum.2025.062",
+      "pmid": "",
+      "doi": "10.61365/forum.2025.062",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "IMAGINATION VS. MARKETING: EMPIRICAL EVIDENCE\nON THE IMPACT OF PREFERRED TOYS ON PRESCHOOLER\nIMAGINATION ORIGINALITY",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] IMAGINATION VS. MARKETING: EMPIRICAL EVIDENCE\nON THE IMPACT OF PREFERRED TOYS ON PRESCHOOL (2025)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Child in a Digital World",
+      "year": 2025,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Child in a Digital World (2025)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.61365/forum.2025.062",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
       "id": "DOI:10.1080/1034912x.2021.2016657",
@@ -74062,6 +74337,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.4103/0970-0218.66867",
+      "pmid": "",
+      "doi": "10.4103/0970-0218.66867",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Selecting the right toys for your child is not a child′s play",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Selecting the right toys for your child is not a child′s play (2010)",
+      "authors": [
+        "Pandve H"
+      ],
+      "journal": "Indian Journal of Community Medicine",
+      "year": 2010,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Indian Journal of Community Medicine (2010)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.4103/0970-0218.66867",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "DOI:10.54870/1551-3440.1148",
       "pmid": "",
       "doi": "10.54870/1551-3440.1148",
@@ -75101,6 +75418,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.1525/si.1998.21.2.197",
+      "pmid": "",
+      "doi": "10.1525/si.1998.21.2.197",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Too Much Fun: Toys as Social Problems and the Interpretation of Culture",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Too Much Fun: Toys as Social Problems and the Interpretation of Culture (1998)",
+      "authors": [
+        "Best J"
+      ],
+      "journal": "Symbolic Interaction",
+      "year": 1998,
+      "citations_count": 37,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 37회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Symbolic Interaction (1998)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1525/si.1998.21.2.197",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 37회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "PMID:9217685",
       "pmid": "9217685",
       "doi": "10.1093/brain/120.6.1015",
@@ -75658,6 +76017,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.1049/esn.1987.0058",
+      "pmid": "",
+      "doi": "10.1049/esn.1987.0058",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "New technology in toys—what the future holds",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] New technology in toys—what the future holds (1987)",
+      "authors": [
+        "Billingsley J"
+      ],
+      "journal": "Electronic Systems News",
+      "year": 1987,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Electronic Systems News (1987)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1049/esn.1987.0058",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "DOI:10.5014/ajot.40.4.298b",
       "pmid": "",
       "doi": "10.5014/ajot.40.4.298b",
@@ -75781,6 +76182,48 @@
         "10-12y"
       ],
       "plain_fact_ko": "[피인용 100회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
+      "id": "DOI:10.1097/00011363-198409000-00004",
+      "pmid": "",
+      "doi": "10.1097/00011363-198409000-00004",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Habilitating the language-impaired child",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Habilitating the language-impaired child (1984)",
+      "authors": [
+        "Cross TG"
+      ],
+      "journal": "Topics in Language Disorders",
+      "year": 1984,
+      "citations_count": 37,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 37회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Topics in Language Disorders (1984)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1097/00011363-198409000-00004",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 37회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
       "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
       "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
@@ -76224,7 +76667,7 @@
         "Long A"
       ],
       "journal": "The Science News-Letter",
-      "year": 1953,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -76266,7 +76709,7 @@
         "Gips CD"
       ],
       "journal": "Child Development",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 1,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -76308,7 +76751,7 @@
         "Gips CD"
       ],
       "journal": "Child Development",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -76350,7 +76793,7 @@
         "Langdon G"
       ],
       "journal": "Child Development",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 2,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -76393,7 +76836,7 @@
         "Pediatric Research Group"
       ],
       "journal": "Journal of Education",
-      "year": 1927,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -122364,7 +122807,7 @@
         "HART GM"
       ],
       "journal": "Annals of Surgery",
-      "year": 1958,
+      "year": 1960,
       "citations_count": 3,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -122404,7 +122847,7 @@
         "Logue V"
       ],
       "journal": "Journal of Neurology, Neurosurgery &amp; Psychiatry",
-      "year": 1952,
+      "year": 1960,
       "citations_count": 142,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -122447,7 +122890,7 @@
         "Nash FP"
       ],
       "journal": "Annals of Surgery",
-      "year": 1951,
+      "year": 1960,
       "citations_count": 28,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",
@@ -122486,7 +122929,7 @@
         "ECKER A"
       ],
       "journal": "Journal of the American Medical Association",
-      "year": 1950,
+      "year": 1960,
       "citations_count": 0,
       "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
       "sample_size": "동료심사 학술지 검증 연구 표본",

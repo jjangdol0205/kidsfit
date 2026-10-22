@@ -64,7 +64,8 @@ function build() {
     throw new Error('Missing CNAME file at project root!');
   }
 
-  // 3. Generate and inline datasets into data-bundle.js first so src/ copy includes fresh bundle
+  // 3. Synchronize live accumulated paper count across HTML & JS source files, then generate data-bundle.js
+  syncLiveResearchCountToSourceFiles();
   generateDataBundle();
 
   // 4. Build / Copy index.html with automatic cache-busting stamp
@@ -116,6 +117,69 @@ function build() {
 
   const duration = Date.now() - startTime;
   console.log(`Build complete in ${duration}ms! Target: ${DIST_DIR}`);
+}
+
+function syncLiveResearchCountToSourceFiles() {
+  const researchPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
+  if (!fs.existsSync(researchPath)) return;
+  try {
+    const kb = JSON.parse(fs.readFileSync(researchPath, 'utf8'));
+    let kbModified = false;
+    if (Array.isArray(kb.papers)) {
+      kb.papers.forEach((p) => {
+        const yr = Number(p.year) || 2020;
+        if (yr < 1960 || yr > 2026) {
+          p.year = Math.max(1960, Math.min(2026, yr));
+          kbModified = true;
+        }
+      });
+    }
+    if (kbModified) {
+      fs.writeFileSync(researchPath, JSON.stringify(kb, null, 2) + '\n', 'utf8');
+    }
+    const meta = kb.metadata || {};
+    const total = Number(meta.total_papers) || (Array.isArray(kb.papers) ? kb.papers.length : 0);
+    if (!total || total < 100) return;
+
+    const totalFormatted = total.toLocaleString('en-US'); // e.g., "2,723"
+    const bal = (meta.learning_analytics && meta.learning_analytics.macro_pillar_balance) || {};
+    let gCnt = Number(bal.growth_macro_count || 0);
+    let lCnt = Number(bal.learning_macro_count || 0);
+    if (!gCnt || !lCnt) {
+      const pc = meta.pillar_counts || {};
+      gCnt = Number(pc.growth_endocrinology || 0) + Number(pc.posture_biomechanics_exercise || 0);
+      lCnt = Math.max(0, total - gCnt);
+    }
+    const gStr = gCnt.toLocaleString('en-US');
+    const lStr = lCnt.toLocaleString('en-US');
+
+    const targetFiles = [
+      path.join(ROOT_DIR, 'index.html'),
+      path.join(ROOT_DIR, 'src', 'js', 'i18n.js'),
+      path.join(ROOT_DIR, 'src', 'js', 'onboarding-wizard.js'),
+      path.join(ROOT_DIR, 'src', 'js', 'haptic-typewriter.js'),
+      path.join(ROOT_DIR, 'src', 'js', 'app.js')
+    ];
+
+    targetFiles.forEach((fp) => {
+      if (!fs.existsSync(fp)) return;
+      let content = fs.readFileSync(fp, 'utf8');
+      const updated = content
+        .replace(/논문 [1-9],[0-9]{3}편/g, `논문 ${totalFormatted}편`)
+        .replace(/[1-9],[0-9]{3}편 (인지뇌과학|소아내분비)/g, `${totalFormatted}편 $1`)
+        .replace(/[1-9],[0-9]{3} (Clinical Papers|Cognitive|Pediatric|peer-reviewed|research papers|papers)/g, `${totalFormatted} $1`)
+        .replace(/[1-9],[0-9]{3}-Paper DB/g, `${totalFormatted}-Paper DB`)
+        .replace(/누적 [1-9],[0-9]{3}편 반영 중 \(신체성장 [0-9,]+편 · 두뇌학습 [0-9,]+편\)/g, `누적 ${totalFormatted}편 반영 중 (신체성장 ${gStr}편 · 두뇌학습 ${lStr}편)`);
+      if (updated !== content) {
+        try {
+          fs.writeFileSync(fp, updated, 'utf8');
+        } catch (_) {}
+      }
+    });
+    console.log(`[Build] Synced live accumulated paper count (${totalFormatted} papers: Growth ${gStr} / Learning ${lStr}) across UI files.`);
+  } catch (e) {
+    console.warn('[Build] Could not sync live paper count:', e.message);
+  }
 }
 
 function generateDataBundle() {

@@ -613,7 +613,7 @@
     }
 
     const kb = getKnowledgeBase();
-    const totalDbPapers = 2081;
+    const totalDbPapers = (kb && kb.metadata && Number(kb.metadata.total_papers)) || (kb && Array.isArray(kb.papers) && kb.papers.length) || 2723;
 
     const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
