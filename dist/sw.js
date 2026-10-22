@@ -4,7 +4,7 @@
  * while enabling native Android WebAPK / Chrome / Samsung Internet / Desktop PWA installation.
  */
 
-const CACHE_NAME = 'kidsfit-pwa-v20261022v11';
+const CACHE_NAME = 'kidsfit-pwa-v20261022v30';
 const APP_SHELL = [
   '/',
   '/manifest.json',
@@ -45,9 +45,11 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/download/')) return;
 
-  // Network-first so updates to truthofmarket.com are reflected immediately
+  const isCodeOrDoc = url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.json');
+
+  // Network-first with cache: 'no-store' for code/HTML so updates to truthofmarket.com are reflected immediately
   event.respondWith(
-    fetch(req)
+    fetch(req, isCodeOrDoc ? { cache: 'no-store' } : undefined)
       .then((networkRes) => {
         if (networkRes && networkRes.status === 200 && (url.pathname.startsWith('/samples/app-icon') || url.pathname === '/manifest.json')) {
           const clone = networkRes.clone();

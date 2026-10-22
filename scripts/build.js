@@ -82,12 +82,16 @@ function build() {
   // 3. Generate and inline datasets into data-bundle.js first so src/ copy includes fresh bundle
   generateDataBundle();
 
-  // 4. Build / Copy index.html
+  // 4. Build / Copy index.html with automatic cache-busting stamp
+  const buildStamp = `20261022_${Date.now().toString(36)}`;
   const indexSrc = path.join(ROOT_DIR, 'index.html');
   const indexDest = path.join(DIST_DIR, 'index.html');
   if (fs.existsSync(indexSrc)) {
-    fs.copyFileSync(indexSrc, indexDest);
-    console.log('[3/5] Copied index.html -> dist/index.html');
+    const rawHtml = fs.readFileSync(indexSrc, 'utf8');
+    const stampedHtml = rawHtml.replace(/\?v=2026[0-9a-zA-Z_]+/g, `?v=${buildStamp}`);
+    fs.writeFileSync(indexSrc, stampedHtml, 'utf8');
+    fs.writeFileSync(indexDest, stampedHtml, 'utf8');
+    console.log(`[3/5] Copied index.html -> dist/index.html (cache-bust: ?v=${buildStamp})`);
   }
 
   // 5. Copy Assets / Source & Samples directories if present

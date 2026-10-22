@@ -2425,6 +2425,31 @@
       }
     }
 
+    if (isLearningCompact) {
+      return `
+        <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+          ${threePicks.map(({ item, sub }, idx) => `
+            <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: rgba(15, 23, 42, 0.94); border: 1px solid ${accentColor}; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
+                <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : '✨ 2위'}</span>${isEn ? sub.titleEn : sub.titleKo}
+              </div>
+              <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
+                ✓ ${isEn ? sub.specEn : sub.specKo}
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
+                <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #FFFFFF; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  🚀 쿠팡 로켓배송 ↗
+                </a>
+                <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(167, 139, 250, 0.45); color: #EDE9FE; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  📚 YES24 도서 ↗
+                </a>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
     return `
       <div style="display: flex; flex-direction: column; gap: 0.7rem;">
         ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
@@ -3129,38 +3154,27 @@
     const topBooks = (learningPlan.learningItems || []).slice(0, 2);
 
     return `
-      <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left; margin-top: 0.8rem;">
-        <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(15, 23, 42, 0.96); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+      <div id="pinpoint-custom-prescription-section" data-chapter="custom-education-chapter-box" style="text-align: left; margin-top: 0.7rem;">
+        <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: rgba(15, 23, 42, 0.96); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 16px; padding: 0.9rem 1rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #38BDF8; background: rgba(56, 189, 248, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              📚 2. [만 ${ageYears}세 보완점·강점 분석 기반] 맞춤 교재 &amp; 필독서 TOP 2
-            </span>
-            <span style="font-size: 0.73rem; color: #93C5FD; font-weight: 700;">
-              ${learningPlan.activeStyle.badgeKo}
+              📚 2. [만 ${ageYears}세 맞춤] 필독서 &amp; 사고력 워크북 TOP 2
             </span>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            ${topBooks.map((item) => `
-              <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.42); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.38rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem;">
-                  <span style="font-size: 0.73rem; font-weight: 900; color: #FBBF24; background: rgba(251, 191, 36, 0.16); padding: 0.15rem 0.5rem; border-radius: 9999px;">
-                    ${item.badgeKo}
-                  </span>
-                  <span style="font-size: 0.72rem; font-weight: 800; color: #93C5FD;">
-                    ${item.categoryKo}
-                  </span>
+          <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+            ${topBooks.map((item, idx) => `
+              <div class="pinpoint-item-card learning-curated-card" style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
+                  <span style="color:#FBBF24; margin-right:0.3rem;">${idx === 0 ? '🏆 1위' : '✨ 2위'}</span>${item.titleKo}
                 </div>
-                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
-                  ${item.titleKo}
+                <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
+                  ✓ ${item.whyKo || item.specKo}
                 </div>
-                <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.4; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #38BDF8; padding: 0.36rem 0.6rem; border-radius: 8px;">
-                  ✓ ${item.specKo}
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.48); color: #FFFFFF; font-size: 0.79rem; font-weight: 800; padding: 0.35rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
+                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.48); color: #FFFFFF; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     📚 YES24 도서 ↗
                   </a>
-                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.24); color: #E2E8F0; text-decoration: none; text-align: center; font-size: 0.79rem; font-weight: 800; border-radius: 8px;">🚀 쿠팡 로켓배송 ↗</a>
+                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.24); color: #E2E8F0; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800; border-radius: 8px;">🚀 쿠팡 로켓배송 ↗</a>
                 </div>
               </div>
             `).join('')}
@@ -3171,46 +3185,34 @@
   }
 
   /**
-   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise 2-Item Regional Ticket Curation)
+   * 5-E. Chapter 7: Custom Travel & Experiential Learning Prescription (Ultra-Concise Regional Ticket Curation)
    */
   function renderCustomTravelChapter(profile = {}, affConfig = {}) {
     const data = curatePinpointItems(profile, affConfig);
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const region = String(profile.region || '서울 강남·서초·송파');
-    const regionalTickets = (data.regionalTickets || []).slice(0, 2);
-    const ageBandTag = ageYears <= 3 ? '만 1~3세' : ageYears <= 6 ? '만 4~6세' : ageYears <= 9 ? '만 7~9세' : ageYears <= 13 ? '만 10~13세' : '만 14세+';
+    const regionalTickets = (data.regionalTickets || []).slice(0, 1);
 
     return `
-      <div id="custom-travel-chapter-box" style="text-align: left; margin-top: 0.8rem;">
-        <div id="regional-age-ticket-catalog-box" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(6, 78, 59, 0.35)); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 1rem; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+      <div id="custom-travel-chapter-box" style="text-align: left; margin-top: 0.7rem;">
+        <div id="regional-age-ticket-catalog-box" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(6, 78, 59, 0.35)); border: 1.5px solid rgba(52, 211, 153, 0.45); border-radius: 16px; padding: 0.9rem 1rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #34D399; background: rgba(16, 185, 129, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              🏛️ 3. [${region} × ${ageBandTag} 분석 기반] 주말 박물관·과학관 체험 TOP 2
-            </span>
-            <span style="font-size: 0.73rem; color: #A7F3D0; font-weight: 800;">
-              마이리얼트립 · 클룩 연동
+              🏛️ 3. [${region} × 만 ${ageYears}세 맞춤] 주말 현장 체험 1순위
             </span>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.55rem;">
             ${regionalTickets.map((tk) => `
-              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(52, 211, 153, 0.4); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.38rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem;">
-                  <span style="font-size: 0.73rem; font-weight: 900; color: #6EE7B7; background: rgba(16, 185, 129, 0.16); padding: 0.15rem 0.5rem; border-radius: 9999px;">
-                    ${tk.rankBadgeKo}
-                  </span>
-                  <span style="font-size: 0.72rem; font-weight: 800; color: #93C5FD;">
-                    ${tk.themeBadgeKo}
-                  </span>
+              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; line-height: 1.32;">
+                  <span style="color:#6EE7B7; margin-right:0.3rem;">🎫 추천</span>${tk.destination}
                 </div>
-                <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
-                  ${tk.destination}
-                </div>
-                <div style="font-size: 0.8rem; color: #E2E8F0; line-height: 1.4; background: rgba(255, 255, 255, 0.05); border-left: 3px solid #10B981; padding: 0.36rem 0.6rem; border-radius: 8px;">
+                <div style="font-size: 0.79rem; color: #CBD5E1; line-height: 1.35;">
                   ✓ ${tk.ageSpecificGuide}
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(52, 211, 153, 0.5); color: #A7F3D0; font-size: 0.79rem; font-weight: 900; padding: 0.35rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
+                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(52, 211, 153, 0.5); color: #A7F3D0; font-size: 0.78rem; font-weight: 900; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     ✈️ 마이리얼트립 ↗
                   </a>
                   <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(249, 115, 22, 0.16); border: 1px solid rgba(249, 115, 22, 0.42); border-radius: 8px; color: #FDBA74; font-size: 0.78rem; font-weight: 800; text-decoration: none; text-align: center;">

@@ -706,14 +706,12 @@ const server = http.createServer((req, res) => {
       ...SECURITY_HEADERS
     };
 
-    if (finalExt === '.html' || finalExt === '.json') {
+    if (finalExt === '.html' || finalExt === '.json' || finalExt === '.js' || finalExt === '.css') {
       Object.assign(headers, NO_CACHE_HEADERS);
       if (finalExt === '.html') {
         const isAdminQuery = parsedUrl.searchParams.has('admin');
         headers['X-Robots-Tag'] = isAdminQuery ? 'noindex, nofollow' : 'index, follow';
       }
-    } else if (finalExt === '.css' || finalExt === '.js') {
-      headers['Cache-Control'] = 'public, max-age=31536000, immutable';
     } else {
       headers['Cache-Control'] = 'public, max-age=3600';
     }
