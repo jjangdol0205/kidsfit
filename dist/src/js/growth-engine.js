@@ -226,36 +226,57 @@
     };
   }
 
-  // 4-1. KDCA Weight & BMI Status Evaluator
+  // 4-1. KDCA Weight & BMI Status Evaluator (Full Weight Percentile + Height-Adjusted Optimal Weight)
   function evaluateWeightAndBmi(heightCm, weightKg, lms) {
-    const hMeter = Math.max(0.5, (heightCm || 100) / 100.0);
-    const wKg = Math.max(5.0, weightKg || lms.wM || 16.5);
+    const hVal = Math.max(50.0, Number(heightCm) || Number(lms && lms.M) || 137.0);
+    const hMeter = hVal / 100.0;
+    const stdWeight = Math.round((Number(lms && lms.wM) || 35.5) * 10) / 10;
+    const stdHeight = Math.round((Number(lms && lms.M) || 137.0) * 10) / 10;
+    const wKg = Math.round(Math.max(3.0, Number(weightKg) || stdWeight) * 10) / 10;
     const bmi = Math.round((wKg / (hMeter * hMeter)) * 10) / 10;
-    const wPct = calculateKdcaPercentile(wKg, 1.0, lms.wM || 16.5, lms.wS || 0.13);
+    const wPct = calculateKdcaPercentile(wKg, 1.0, stdWeight, (lms && lms.wS) || 0.15);
+
+    const stdBmiP50 = (lms && lms.bmiP50) ? Number(lms.bmiP50) : (stdWeight / Math.pow(stdHeight / 100.0, 2));
+    const optimalWeightForHeight = Math.round((stdBmiP50 * hMeter * hMeter) * 10) / 10;
+    const weightVsHeightDelta = Math.round((wKg - optimalWeightForHeight) * 10) / 10;
+    const futureHeight6mMeter = (hVal + 3.2) / 100.0;
+    const targetWeight6m = Math.round(Math.max(optimalWeightForHeight + 1.0, stdBmiP50 * futureHeight6mMeter * futureHeight6mMeter) * 10) / 10;
 
     let bmiStatus = '표준 균형 체형 (정상 5~84백분위)';
-    let bmiNote = '현재 키 대비 체중 밸런스가 이상적입니다. 근육과 골격 성장을 위한 양질의 단백질 섭취를 유지해주세요.';
-    let bmiBadgeColor = '#059669';
+    let bmiShortStatus = '키 성장 최적 표준 체중';
+    let bmiNote = '현재 키 대비 체중 밸런스가 이상적입니다. 체지방 과다 없이 근육과 뼈 성장을 위한 양질의 단백질·칼슘 섭취를 유지해주세요.';
+    let bmiBadgeColor = '#10B981';
 
-    if (bmi < (lms.bmiP5 || 13.6)) {
-      bmiStatus = '저체중 주의 (<5백분위)';
-      bmiNote = '또래 대비 체중과 열량 비축이 부족합니다. 키 성장의 재료가 되는 단백질·아연·철분 보강이 우선입니다.';
-      bmiBadgeColor = '#D97706';
-    } else if (bmi >= (lms.bmiP95 || 19.5)) {
-      bmiStatus = '소아비만·성조숙 주의 (≥95백분위)';
-      bmiNote = '과도한 체지방(렙틴 호르몬)은 사춘기 신호와 성장판 골화를 앞당길 수 있습니다. 정제 탄수화물을 줄이고 점프·유산소 운동을 늘려주세요.';
-      bmiBadgeColor = '#E11D48';
-    } else if (bmi >= (lms.bmiP85 || 17.8)) {
+    if (bmi < ((lms && lms.bmiP5) || 13.8) || wKg < optimalWeightForHeight * 0.88) {
+      bmiStatus = '저체중 · 영양 보충 필요 (<5백분위)';
+      bmiShortStatus = '저체중 · 골밀도 영양 보충 필요';
+      bmiNote = `현재 키(${hVal}cm) 맞춤 적정 체중(${optimalWeightForHeight}kg)보다 ${Math.abs(weightVsHeightDelta).toFixed(1)}kg 부족합니다. 키 성장의 재료가 되는 단백질·칼슘·아연·초유 보강이 우선입니다.`;
+      bmiBadgeColor = '#F59E0B';
+    } else if (bmi >= ((lms && lms.bmiP95) || 21.0) || wKg > optimalWeightForHeight * 1.2) {
+      bmiStatus = '과체중·성조숙 주의 (≥95백분위)';
+      bmiShortStatus = '과체중 · 성장판 조기 골화 주의';
+      bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg)보다 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg 높습니다. 과도한 체지방(렙틴 호르몬)은 사춘기와 성장판 골화를 앞당길 수 있으므로 야식·단 음료를 줄이고 줄넘기·점핑 운동으로 전환해주세요.`;
+      bmiBadgeColor = '#F43F5E';
+    } else if (bmi >= ((lms && lms.bmiP85) || 18.8) || wKg > optimalWeightForHeight * 1.1) {
       bmiStatus = '과체중 경계 (85~94백분위)';
-      bmiNote = '체중 증가 속도가 키 성장 속도보다 빠르지 않도록 야식과 액상과당 음료를 조절해주세요.';
-      bmiBadgeColor = '#D97706';
+      bmiShortStatus = '과체중 경계 · 체지방 관리 권장';
+      bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg) 대비 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg입니다. 체중 증가 속도가 키 성장 속도보다 빠르지 않도록 야식과 액상과당 음료를 조절해주세요.`;
+      bmiBadgeColor = '#F59E0B';
     }
 
     return {
       bmi,
+      currentWeight: wKg,
+      standardWeight: stdWeight,
       weightPercentile: wPct.percentile,
+      weightTopPercent: wPct.topPercent,
+      weightZScore: wPct.zScore,
       weightDelta: wPct.deltaMedian,
+      optimalWeightForHeight,
+      weightVsHeightDelta,
+      targetWeight6m,
       bmiStatus,
+      bmiShortStatus,
       bmiNote,
       bmiBadgeColor
     };
@@ -407,8 +428,71 @@
     };
   }
 
-  // Legacy calculateHeightPrediction for compatibility
-  function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none') {
+  // 8-1. Age & Sex Accurate Epiphyseal Growth Plate Remaining Window Calculator
+  function calculateRemainingGrowthWindow(ageMonths = 120, sex = 'boy', pubertyStage = 'none') {
+    const isBoy = normalizeSex(sex) === 'boy';
+    const exactYears = Math.max(1.0, Math.min(20.0, (Number(ageMonths) || 120) / 12.0));
+    const ageYearsInt = Math.floor(exactYears);
+    // Korean Pediatric Endocrinology standard epiphyseal closure age: Boy ~16.5-17.0 yrs, Girl ~14.5-15.0 yrs
+    const closureAge = isBoy ? 17.0 : 15.0;
+    const phvAge = isBoy ? 12.5 : 10.5;
+    const rawRemYears = Math.max(0, closureAge - exactYears);
+    const remMinYr = Math.max(1, Math.floor(rawRemYears - 0.5));
+    const remMaxYr = Math.max(remMinYr + 1, Math.ceil(rawRemYears + 0.5));
+
+    if (pubertyStage === 'phase_4' || rawRemYears <= 0.8) {
+      return {
+        headline: '약 6~12개월 (체형·숨은키 복원기)',
+        shortBadge: '약 6~12개월 잔여',
+        subLabel: '성장판 마감 단계 · 척추 디스크 감압(+1.8cm) 집중 구간',
+        fullText: '약 6~12개월 (성장판 마감 단계 / 척추 디스크 수분 복원 및 숨은 키 +1.8cm 교정 구간)',
+        meaningKo: `성장판이 거의 닫혀가는 시기(${isBoy ? '남아 만 16.5~17세' : '여아 만 14.5~15세'} 기준)로, 거북목·척추 디스크 감압 스트레칭을 통해 숨은 키 1.5~2.2cm를 복원하는 마지막 골든타임입니다.`
+      };
+    }
+
+    if (pubertyStage === 'urgent_secondary_signs' || pubertyStage === 'phase_3' || rawRemYears <= 2.2) {
+      const remMosMin = Math.max(6, Math.round((rawRemYears - 0.5) * 12));
+      const remMosMax = Math.max(remMosMin + 6, Math.round((rawRemYears + 0.3) * 12));
+      return {
+        headline: `약 ${remMosMin}~${remMosMax}개월 남음`,
+        shortBadge: `약 ${remMosMin}~${remMosMax}개월 잔여`,
+        subLabel: `만 ${closureAge}세 성장판 폐쇄 전 마지막 스퍼트 구간`,
+        fullText: `약 ${remMosMin}~${remMosMax}개월 남음 (만 ${closureAge}세 성장판 닫히기 전 마지막 집중 방어 골든타임!)`,
+        meaningKo: `2차 성징 후반부로 성장판이 빠르게 닫히는 시기입니다. ${isBoy ? '남아 평균 만 17세' : '여아 평균 만 15세'} 완전 폐쇄 전 남은 ${remMosMin}~${remMosMax}개월 동안 수면·칼슘·철봉 감압을 밀착 관리해야 최종 키를 지킬 수 있습니다.`
+      };
+    }
+
+    if (ageYearsInt <= 6) {
+      return {
+        headline: `약 ${remMinYr}~${remMaxYr}년 여유`,
+        shortBadge: `약 ${remMinYr}~${remMaxYr}년 여유 (개방률 95%+)`,
+        subLabel: `만 ${closureAge}세 성장판 닫힐 때까지 기초키 비축기`,
+        fullText: `약 ${remMinYr}~${remMaxYr}년 여유 (현재 만 ${ageYearsInt}세 · 성장판 95%+ 열림 → 만 ${closureAge}세 폐쇄까지 매년 6~7cm 기초키 비축기)`,
+        meaningKo: `만 ${ageYearsInt}세는 성장판이 95% 이상 활짝 열려 있으며, 성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년의 충분한 성장 기간이 남아 있습니다! 사춘기 급성장기(만 ${phvAge}세경)가 오기 전 기초 키를 매년 6~7cm씩 탄탄하게 쌓아올리는 황금기입니다.`
+      };
+    }
+
+    if (ageYearsInt <= Math.floor(phvAge - 1)) {
+      return {
+        headline: `약 ${remMinYr}~${remMaxYr}년 여유`,
+        shortBadge: `약 ${remMinYr}~${remMaxYr}년 남음 (개방률 85%+)`,
+        subLabel: `사춘기 전 기초키 비축 · 만 ${closureAge}세 폐쇄 기준`,
+        fullText: `약 ${remMinYr}~${remMaxYr}년 남음 (만 ${closureAge}세 성장판 폐쇄 기준 · 사춘기 급성장 진입 전 기초신장 비축 골든타임)`,
+        meaningKo: `성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년이 남아 있으며, 사춘기 폭풍 성장기(만 ${phvAge}세경) 진입 전에 기초 키를 최대한 높여두고 성조숙증(체지방 과다)을 예방해야 하는 핵심 골든타임입니다.`
+      };
+    }
+
+    return {
+      headline: `약 ${remMinYr}~${remMaxYr}년 남음`,
+      shortBadge: `약 ${remMinYr}~${remMaxYr}년 남음 (급성장 피크 PHV)`,
+      subLabel: `만 ${closureAge}세 성장판 폐쇄 전 최대 가속 골든타임`,
+      fullText: `약 ${remMinYr}~${remMaxYr}년 남음 (사춘기 급성장 피크 PHV · 만 ${closureAge}세 성장판 닫히기 전 1cm가 아쉬운 핵심 골든타임)`,
+      meaningKo: `일생 중 키가 가장 폭발적으로 자라는 급성장 피크(PHV) 구간으로, 성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년 남았습니다. 지금 칼슘·단백질·밤 10시 숙면을 챙기면 잠재키를 최대 +7~9cm까지 끌어올릴 수 있습니다.`
+    };
+  }
+
+  // Legacy calculateHeightPrediction for compatibility (now age & sex aware!)
+  function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none', ageMonths = null, sex = 'boy') {
     habits = Array.isArray(habits) ? habits : [];
     let loss = 0;
     habits.forEach((h) => {
@@ -418,17 +502,23 @@
     const unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
 
     let goldenBoost = 5.0;
-    let monthsRemaining = '약 36~48개월 (성장판 여유 / 기초체질 형성기)';
+    let legacyStageMonths = '약 36~48개월 여유';
     if (pubertyStage === 'growth_spurt' || pubertyStage === 'phase_2') {
       goldenBoost = 4.0;
-      monthsRemaining = '약 18~24개월 (급성장기 / 1cm가 아쉬운 골든타임)';
+      legacyStageMonths = '약 18~24개월 골든타임';
     } else if (pubertyStage === 'urgent_secondary_signs' || pubertyStage === 'phase_3') {
       goldenBoost = 2.5;
-      monthsRemaining = '약 6~12개월 (성장판 폐쇄 직전 긴급 카운트다운!)';
+      legacyStageMonths = '약 6~12개월 긴급 골든타임!';
     } else if (pubertyStage === 'phase_4') {
       goldenBoost = 1.8;
-      monthsRemaining = '체형 완성기 (척추 디스크 수분 복원 및 자세 교정 구간)';
+      legacyStageMonths = '약 6개월 이내 마감기';
     }
+
+    const effectiveAgeMonths = (ageMonths !== null && ageMonths !== undefined && Number(ageMonths) > 0) ? Number(ageMonths) : 120;
+    const windowInfo = calculateRemainingGrowthWindow(effectiveAgeMonths, sex, pubertyStage);
+    const monthsRemaining = (ageMonths !== null && ageMonths !== undefined && Number(ageMonths) > 0)
+      ? windowInfo.fullText
+      : `${windowInfo.fullText} (${legacyStageMonths})`;
 
     const rawGain = Math.round((mph + goldenBoost + (unmanagedLoss * 0.5) - unmanagedHeight) * 10) / 10;
     const goldenTimeGain = Math.min(9.5, Math.max(0, rawGain));
@@ -441,7 +531,11 @@
       goldenBoost,
       potentialHeight,
       goldenTimeGain,
-      monthsRemaining
+      monthsRemaining,
+      windowHeadline: windowInfo.headline,
+      windowShortBadge: windowInfo.shortBadge,
+      windowSubLabel: windowInfo.subLabel,
+      windowMeaningKo: windowInfo.meaningKo
     };
   }
 
@@ -740,58 +834,242 @@
     `;
   }
 
-  // 14. Recommended Products & Compact Reference Section for Tab 1 (신체성장)
-  function renderAcademicEvidenceSection() {
+  // 14. Age-Appropriate Recommended Products & Compact Reference Section for Tab 1 (신체성장)
+  function renderAcademicEvidenceSection(profile = {}) {
+    const ageMonths = Number(profile.ageMonths) || 120;
+    const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+
+    let ageBandTitle = `만 ${ageYears}세 맞춤`;
+    let prod1, prod2, prod3;
+
+    if (ageYears <= 3) {
+      ageBandTitle = `만 ${ageYears}세(영유아기) 맞춤`;
+      prod1 = {
+        badge: `🍼 만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
+        title: '차일드라이프 액상 구연산 칼슘·마그네슘 오렌지맛 & 비타민D3 1000IU 드롭',
+        desc: `생후 ${ageMonths}개월 영유아는 정제 알약 대신 위산과 무관하게 흡수되는 액상 구연산 칼슘과 비타민D3 드롭으로 기초 골격을 다져주어야 합니다.`,
+        url: 'https://www.coupang.com/np/search?q=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
+      };
+      prod2 = {
+        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
+        title: '일동후디스 하이키즈 초유 분말 / 영유아 글루콘산 아연·초유 스틱',
+        desc: '편식·입짧음을 예방하고 성장호르몬 수용체(IGF-1) 활성과 기초 면역력을 동시에 챙겨주는 영유아 맞춤 초유·아연입니다.',
+        url: 'https://www.coupang.com/np/search?q=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
+      };
+      prod3 = {
+        badge: `🏃 만 ${ageYears}세 맞춤 3위 · 안전 손잡이 트램폴린`,
+        title: '멜킨 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 & 초음파 신장계',
+        desc: '영유아 소뇌 평형감각 발달과 하지 성장판 미세자극을 층간소음 없이 안전하게 도와주는 손잡이형 점핑 기구입니다.',
+        url: 'https://www.coupang.com/np/search?q=%EB%A9%9C%ED%82%A8+%EC%9C%A0%EC%95%84+%EC%95%88%EC%A0%84+%EC%86%90%EC%9E%A1%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 유아 손잡이 트램폴린 보기 ↗`
+      };
+    } else if (ageYears <= 6) {
+      ageBandTitle = `만 ${ageYears}세(유아·유치원기) 맞춤`;
+      prod1 = {
+        badge: `🏆 만 ${ageYears}세 맞춤 1위 · 키성장 기능성 젤리/분말`,
+        title: '종근당건강 아이커 / 키클래오042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
+        desc: `만 ${ageYears}세 유아기 하지 성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 우유나 간식처럼 맛있게 챙기는 1위 제품입니다.`,
+        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 만 ${ageYears}세 HT042 키성장 영양제 보기 ↗`
+      };
+      prod2 = {
+        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 츄어블 칼슘 올인원`,
+        title: '뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블',
+        desc: '알약을 삼키기 힘든 유아도 사탕처럼 맛있게 씹어 먹으며 칼슘·초유·비타민D3·아연을 한 번에 채우는 스테디셀러입니다.',
+        url: 'https://www.coupang.com/np/search?q=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 유아 초유·칼슘 츄어블 보기 ↗`
+      };
+      prod3 = {
+        badge: `⚡ 만 ${ageYears}세 맞춤 3위 · 무소음 점핑 트램폴린`,
+        title: '층간소음 방어 어린이 실내 무소음 점핑 트램폴린 & 초음파 디지털 신장계',
+        desc: '하루 15분 수직 점핑(볼프의 법칙)으로 대퇴골·경골 성장판을 자극하고 매달 1일 아침 키를 0.1cm 단위로 측정합니다.',
+        url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A0%90%ED%95%91%EB%A7%A4%ED%8A%B8&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 어린이 무소음 트램폴린 보기 ↗`
+      };
+    } else if (ageYears <= 10) {
+      ageBandTitle = `만 ${ageYears}세(초등 학령기) 맞춤`;
+      prod1 = {
+        badge: `🏆 만 ${ageYears}세 맞춤 1위 · 사춘기 전 기초키 확보`,
+        title: '종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
+        desc: `사춘기 급성장기 진입 전 기초 신장을 최대한 높여주어야 하는 만 ${ageYears}세 초등 핵심 기능성 원료입니다.`,
+        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 초등 HT042 키성장 영양제 보기 ↗`
+      };
+      prod2 = {
+        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 고흡수 어골·연골칼슘`,
+        title: '초등 고흡수 비소성 어골·연골칼슘(800mg) + 비타민D3·K2·아연·마그네슘',
+        desc: '초등 시기 급격히 늘어나는 뼈 길이 성장을 단단한 골기질로 채워주는 생체흡수율 45% 칼슘·D3·K2 배합입니다.',
+        url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EC%97%B0%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3+K2+%EC%95%84%EC%97%B0&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 초등 어골·연골칼슘 보기 ↗`
+      };
+      prod3 = {
+        badge: `💎 만 ${ageYears}세 맞춤 3위 · 초음파 신장계 & 카운터 줄넘기`,
+        title: '인바디 초음파 디지털 신장계(1초 정밀 키재기) & 초등 디지털 카운터 줄넘기',
+        desc: '초등 줄넘기 급수제 대비 하루 500회 점핑으로 성장판을 자극하고, 매월 1일 아침 성장속도(cm/년)를 정밀 측정합니다.',
+        url: 'https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 초음파 신장계·줄넘기 보기 ↗`
+      };
+    } else {
+      ageBandTitle = `만 ${ageYears}세(초등 고학년·청소년 급성장기) 맞춤`;
+      prod1 = {
+        badge: `🏆 만 ${ageYears}세 급성장 1위 · HT042 & 고함량 칼슘`,
+        title: '식약처 인정 HT042 황기추출물 + 청소년 고함량 어골·연골칼슘(1100mg)·아르기닌',
+        desc: `성장판이 닫히기 전 마지막 골든타임(만 ${ageYears}세)에 폭발하는 뼈 성장 요구량을 채워주는 고함량 집중 배합입니다.`,
+        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 청소년 HT042·고함량 칼슘 보기 ↗`
+      };
+      prod2 = {
+        badge: `🌙 만 ${ageYears}세 맞춤 2위 · 심야 수면·성장통 마그네슘`,
+        title: '청소년 킬레이트 글리시네이트 마그네슘·타트체리 슬립케어 & 비타민D3·K2',
+        desc: '학원·학업 스트레스로 늦게 자는 청소년의 서파수면(SWS) 성장호르몬 피크를 회복시키고 다리 성장통을 완화합니다.',
+        url: 'https://www.coupang.com/np/search?q=%EC%B2%AD%EC%86%8C%EB%85%84+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%ED%83%80%ED%8A%B8%EC%B2%B4%EB%A6%AC+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 청소년 수면·마그네슘 칼슘 보기 ↗`
+      };
+      prod3 = {
+        badge: `🦴 만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
+        title: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 고밀도 EPP 폼롤러',
+        desc: '하루 종일 책상에 앉아 눌린 척추 디스크를 저녁 90초 매달리기(Dead Hang)로 감압해 숨은 키 1.8~2.2cm를 즉시 복원합니다.',
+        url: 'https://www.coupang.com/np/search?q=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC&channel=user&lptag=AF7865143',
+        btnText: `📦 쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
+      };
+    }
+
     return `
       <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <span style="font-size: 0.86rem; font-weight: 800; color: #93C5FD;">🔬 동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+        <a href="https://pubmed.ncbi.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
       </div>
 
-      <!-- Bottom Recommended Products for Core 1 (Hidden by default so pure report shows first) -->
+      <!-- Bottom Recommended Products for Core 1 (Age-Tailored & Hidden by default so pure report shows first) -->
       <div id="core-1-recommended-products" class="curated-product-recommendation-section growth-product-section" style="display: none; background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <h4 style="font-size: 1.1rem; font-weight: 900; color: #38BDF8; margin: 0;">
-            🎁 신체성장 · 숨은 키 목표 달성에 도움이 되는 엄선 추천 상품 TOP 3
+            🎁 [${ageBandTitle}] 신체성장 · 숨은 키 목표 달성 엄선 추천 상품 TOP 3
           </h4>
-          <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 800;">아침·저녁 6개월 이상 꾸준히 챙기는 핵심 구비템</span>
+          <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 800;">✓ 만 ${ageYears}세(${ageMonths}개월) 연령별 발달 단계 1:1 맞춤 큐레이션</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-          <!-- Product 1: HT042 -->
+          <!-- Product 1 -->
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251,191,36,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">🏆 엄선 1위 · 키성장 기능성</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 아이들이 잘 먹어 6개월 이상 재주문하는 1위 제품입니다.</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251,191,36,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod1.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod1.title}</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod1.desc}</p>
             </div>
-            <a href="https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" id="ref-chip-growth" class="reference-chip mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
-              📦 쿠팡에서 HT042 키성장 영양제 보기 ↗
+            <a href="${prod1.url}" target="_blank" rel="noopener noreferrer" id="ref-chip-growth" class="reference-chip mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              ${prod1.btnText}
             </a>
           </div>
 
-          <!-- Product 2: Colostrum + Calcium Chewable -->
+          <!-- Product 2 -->
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #6EE7B7; background: rgba(16,185,129,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">✨ 엄선 2위 · 뼈기질 올인원</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">1알에 칼슘·비타민C·D3·초유·철분·아연·마그네슘이 모두 들어있어 아침·저녁 간편하게 씹어 먹는 스테디셀러입니다.</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #6EE7B7; background: rgba(16,185,129,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod2.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod2.title}</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod2.desc}</p>
             </div>
-            <a href="https://www.coupang.com/np/search?q=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
-              📦 쿠팡에서 초유·칼슘 올인원 보기 ↗
+            <a href="${prod2.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              ${prod2.btnText}
             </a>
           </div>
 
-          <!-- Product 3: Ultrasonic Height Stadiometer -->
+          <!-- Product 3 -->
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #D8B4FE; background: rgba(168,85,247,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">💎 엄선 3위 · 매월 1일 키 측정</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">인바디 다이얼 키즈 / 가정용 초음파 디지털 신장계 (1초 정밀 키재기)</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">매월 1일 아침 키를 0.1cm 단위로 정확히 측정해 우리 아이 성장속도(cm/년)를 관리해 주는 필수 홈케어 기기입니다.</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #D8B4FE; background: rgba(168,85,247,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod3.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod3.title}</div>
+              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod3.desc}</p>
             </div>
-            <a href="https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0&channel=user&lptag=AF7865143" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(168, 85, 247, 0.22); border: 1px solid #A855F7; color: #E9D5FF; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
-              📦 쿠팡에서 초음파 신장계 보기 ↗
+            <a href="${prod3.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(168, 85, 247, 0.22); border: 1px solid #A855F7; color: #E9D5FF; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+              ${prod3.btnText}
             </a>
+          </div>
+        </div>
+        <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255,255,255,0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
+          <span>📚 학술 레퍼런스: Kim JH et al. (2018) 2017 Korean National Growth Charts · Lee D et al. HT042 Clinical Trial</span>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/29628905/" target="_blank" rel="noopener noreferrer" style="color: #93C5FD; text-decoration: underline;">PubMed PMID: 29628905 ↗</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // 14-B. 3-Tier Weight & Body Composition Balance Card (Matches Height 3-Tier Card)
+  function render3TierWeightCard(profile, bmiInfo, pred, gender) {
+    const curW = bmiInfo.currentWeight || Number(profile.currentWeight) || 35.5;
+    const stdW = bmiInfo.standardWeight || 35.5;
+    const optW = bmiInfo.optimalWeightForHeight || stdW;
+    const target6mW = bmiInfo.targetWeight6m || Math.round((optW + 1.5) * 10) / 10;
+    const curH = Number(profile.currentHeight) || 137.0;
+    const wTop = bmiInfo.weightTopPercent !== undefined ? bmiInfo.weightTopPercent : 50.0;
+    const wPct = bmiInfo.weightPercentile !== undefined ? bmiInfo.weightPercentile : 50.0;
+    const wDelta = bmiInfo.weightDelta !== undefined ? bmiInfo.weightDelta : 0.0;
+    const wDeltaStr = wDelta >= 0 ? `+${wDelta}kg` : `${wDelta}kg`;
+    const optDelta = bmiInfo.weightVsHeightDelta !== undefined ? bmiInfo.weightVsHeightDelta : 0.0;
+    const optDeltaStr = optDelta >= 0 ? `+${optDelta}kg` : `${optDelta}kg`;
+
+    const maxRefW = Math.max(curW, stdW, optW, target6mW) * 1.18;
+    const minRefW = Math.max(2.0, Math.min(curW, stdW, optW) * 0.65);
+    const calcWWidth = (val) => Math.max(18, Math.min(100, Math.round(((val - minRefW) / Math.max(4, maxRefW - minRefW)) * 100)));
+
+    const wStdPct = calcWWidth(stdW);
+    const wCurPct = calcWWidth(curW);
+    const wOptPct = calcWWidth(optW);
+    const wTargetPct = calcWWidth(target6mW);
+
+    return `
+      <div id="weight-3tier-analysis-card" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: var(--text-primary);">
+              ⚖️ 우리 아이 몸무게 &amp; 체질량(BMI) 3단 밸런스 비교 (키 성장 연동 진단)
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
+              질병관리청(KDCA) 또래 평균 몸무게 · 현재 키(${curH}cm) 맞춤 적정 몸무게 · 6개월 후 목표 몸무게
+            </p>
+          </div>
+          <span style="background: rgba(16, 185, 129, 0.16); border: 1px solid ${bmiInfo.bmiBadgeColor}; color: ${bmiInfo.bmiBadgeColor}; font-size: 0.8rem; font-weight: 900; padding: 0.28rem 0.75rem; border-radius: 9999px;">
+            BMI ${bmiInfo.bmi} · ${bmiInfo.bmiShortStatus || bmiInfo.bmiStatus}
+          </span>
+        </div>
+
+        <div class="predicted-bars-container">
+          <!-- Weight Bar 1: KDCA Peer Standard Weight -->
+          <div class="predicted-bar-row">
+            <div class="predicted-bar-header">
+              <span class="bar-title">① 동월령 또래 표준 평균 몸무게 (KDCA 50백분위)</span>
+              <span class="bar-val">${stdW}kg</span>
+            </div>
+            <div class="predicted-bar-track">
+              <div class="predicted-bar-fill bar-fill-mph" style="width: ${wStdPct}%;"></div>
+            </div>
+            <div class="predicted-bar-caption">질병관리청 성장도표 기준 같은 개월 수 ${gender === 'boy' ? '남아' : '여아'}의 표준 중앙값 체중</div>
+          </div>
+
+          <!-- Weight Bar 2: Current Child Weight -->
+          <div class="predicted-bar-row" style="margin-top: 1rem;">
+            <div class="predicted-bar-header">
+              <span class="bar-title">② 현재 우리 아이 몸무게 (상위 ${wTop}% · ${wPct}백분위)</span>
+              <span class="bar-val" style="color: ${bmiInfo.bmiBadgeColor};">${curW}kg <small style="font-size: 0.84rem;">(또래 평균 대비 ${wDeltaStr} / 현재 키 적정 대비 ${optDeltaStr})</small></span>
+            </div>
+            <div class="predicted-bar-track">
+              <div class="predicted-bar-fill" style="width: ${wCurPct}%; background: ${bmiInfo.bmiBadgeColor};"></div>
+            </div>
+            <div class="predicted-bar-caption">${bmiInfo.bmiNote}</div>
+          </div>
+
+          <!-- Weight Bar 3: Optimal Weight for Current Height & 6-Month Goal -->
+          <div class="predicted-bar-row" style="margin-top: 1rem;">
+            <div class="predicted-bar-header">
+              <span class="bar-title">③ 현재 키(${curH}cm) 맞춤 적정 몸무게 → 6개월 후 목표</span>
+              <span class="bar-val bar-val-mint">적정 ${optW}kg <small style="color: #38BDF8; font-size: 0.88rem; font-weight: 800;">→ 6개월 후 ${target6mW}kg</small></span>
+            </div>
+            <div class="predicted-bar-track">
+              <div class="predicted-bar-fill bar-fill-mint" style="width: ${Math.max(wOptPct, wTargetPct)}%;"></div>
+            </div>
+            <div class="predicted-bar-caption">성조숙증(체지방 과다)과 영양 부족 없이 잠재키(${pred.potentialHeight}cm)까지 가장 잘 자라는 황금 체중 궤적</div>
           </div>
         </div>
       </div>
@@ -808,9 +1086,10 @@
     const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);
     const bmiInfo = evaluateWeightAndBmi(profile.currentHeight, profile.currentWeight, lms);
     const mphObj = calculateMPH(profile.fatherHeight, profile.motherHeight, gender);
-    const pred = calculateHeightPrediction(mphObj.mph, profile.habits, profile.tannerPhase || profile.pubertyStage);
+    const pred = calculateHeightPrediction(mphObj.mph, profile.habits, profile.tannerPhase || profile.pubertyStage, ageMonths, gender);
 
     const deltaSign = kdca.deltaMedian >= 0 ? `+${kdca.deltaMedian}` : `${kdca.deltaMedian}`;
+    const wDeltaSign = bmiInfo.weightDelta >= 0 ? `+${bmiInfo.weightDelta}` : `${bmiInfo.weightDelta}`;
     const genderKorean = gender === 'boy' ? '남아' : '여아';
     const vel = calculateVelocity(profile.recentGrowth6m || 3.0, Math.round(ageMonths / 12));
 
@@ -818,37 +1097,45 @@
       <!-- Core 1 Container -->
       <div id="core-1-container" class="core-module-container">
 
-        <!-- Big Stats Bento Header (Clean 1-Card-Per-Row Layout) -->
-        <div class="growth-stats-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
-          <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--cyan-pulse, #38BDF8);">소아 신체 백분위 &amp; Z-Score</span>
-            <div style="font-size: 1.9rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8); margin: 0.35rem 0;">상위 ${kdca.topPercent}%</div>
-            <span style="font-size: 0.82rem; color: var(--text-secondary);">${kdca.percentile}th Pct (Z: ${kdca.zScore >= 0 ? `+${kdca.zScore}` : kdca.zScore} SD)</span>
+        <!-- Big Stats Bento Header (2x2 Grid — 2 Cards Per Row Filling the Screen Cleanly) -->
+        <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 0.85rem;">
+          <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">📏 키·몸무게 백분위</span>
+            <div style="font-size: 1.55rem; font-weight: 900; color: var(--cyan-pulse, #38BDF8); margin: 0.3rem 0;">키 상위 ${kdca.topPercent}%</div>
+            <span style="font-size: 0.8rem; color: #E2E8F0; font-weight: 700; display: block;">몸무게 상위 ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">키 ${kdca.percentile}th · 체중 ${bmiInfo.weightPercentile}th Pct</span>
           </div>
 
-          <div class="stat-card" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--growth-mint, #10B981);">연간 성장속도 (Velocity)</span>
-            <div style="font-size: 1.9rem; font-weight: 800; color: ${vel.alert ? '#F43F5E' : 'var(--growth-mint, #10B981)'}; margin: 0.35rem 0;">
-              ${vel.velocityCmPerYear} cm/yr
+          <div class="stat-card" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--growth-mint, #10B981);">🚀 연간 성장속도</span>
+            <div style="font-size: 1.55rem; font-weight: 900; color: ${vel.alert ? '#F43F5E' : 'var(--growth-mint, #10B981)'}; margin: 0.3rem 0;">
+              ${vel.velocityCmPerYear} cm/년
             </div>
-            <span style="font-size: 0.82rem; color: ${vel.alert ? '#FDA4AF' : 'var(--text-secondary)'};">
-              ${vel.alert ? '🚨 저신장 적신호 (<4.0cm/yr)' : vel.status === 'accelerated' ? '⚡ 급성장 가속 피크' : '정상 성장 궤도'}
+            <span style="font-size: 0.8rem; color: #E2E8F0; font-weight: 700; display: block;">적정체중 ${bmiInfo.optimalWeightForHeight}kg 기준</span>
+            <span style="font-size: 0.75rem; color: ${vel.alert ? '#FDA4AF' : 'var(--text-secondary)'};">
+              ${vel.alert ? '🚨 저성장 주의 (<4.0cm/yr)' : vel.status === 'accelerated' ? '⚡ 급성장 가속 피크' : '✓ 정상 성장 궤도'}
             </span>
           </div>
 
-          <div class="stat-card" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--amber-caution, #F59E0B);">유전 표적키 (Tanner MPH)</span>
-            <div style="font-size: 1.9rem; font-weight: 800; color: var(--amber-caution, #F59E0B); margin: 0.35rem 0;">${mphObj.mph}cm</div>
-            <span style="font-size: 0.82rem; color: var(--text-secondary);">${mphObj.rangeStr} (±8.5cm)</span>
+          <div class="stat-card" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">🧬 유전 표적키 (MPH)</span>
+            <div style="font-size: 1.55rem; font-weight: 900; color: var(--amber-caution, #F59E0B); margin: 0.3rem 0;">${mphObj.mph}cm</div>
+            <span style="font-size: 0.8rem; color: #FDE68A; font-weight: 700; display: block;">잠재키 최대 ${pred.potentialHeight}cm</span>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">${mphObj.rangeStr} (±8.5cm)</span>
           </div>
 
-          <div class="stat-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 20px; padding: 1.25rem; text-align: center;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--rose-alert, #F43F5E);">골든타임 성장판 잔여 기간</span>
-            <div style="font-size: 1.1rem; font-weight: 800; color: var(--rose-alert, #F43F5E); margin: 0.65rem 0;">
-              ${pred.monthsRemaining.split('(')[0].trim()}
+          <div class="stat-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--rose-alert, #F43F5E);">⏳ 성장판 잔여 기간</span>
+            <div style="font-size: 1.35rem; font-weight: 900; color: var(--rose-alert, #F43F5E); margin: 0.35rem 0;">
+              ${pred.windowHeadline || pred.monthsRemaining.split('(')[0].trim()}
             </div>
-            <span style="font-size: 0.82rem; color: var(--text-secondary);">${pred.monthsRemaining}</span>
+            <span style="font-size: 0.78rem; color: #FECDD3; font-weight: 700; display: block;">${pred.windowSubLabel || ''}</span>
           </div>
+        </div>
+
+        <!-- Clear Clinical Explanation of Growth Plate Remaining Window -->
+        <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 14px; padding: 0.8rem 1rem; margin-bottom: 1.25rem; font-size: 0.84rem; color: #F8FAFC; line-height: 1.55;">
+          <strong style="color: #FDA4AF;">💡 [골든타임 성장판 잔여 기간이란?]</strong> 뼈 끝의 연골 성장판이 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 <strong>실제로 키가 더 자랄 수 있는 남은 시간</strong>입니다. ${pred.windowMeaningKo || ''}
         </div>
 
         <!-- High-Resolution Interactive 3-Curve SVG Chart Card -->
@@ -884,6 +1171,9 @@
           ${render3TierBarChart(pred)}
         </div>
 
+        <!-- 3-Tier Weight & BMI Balance Card (Same Depth as Height!) -->
+        ${render3TierWeightCard(profile, bmiInfo, pred, gender)}
+
         <!-- Official Pediatric Authority Guidance -->
         ${renderOfficialClinicalAndNutritionBox(ageMonths, bmiInfo)}
 
@@ -895,7 +1185,7 @@
           ${renderCoachingCards(profile.habits)}
         </div>
 
-        ${renderAcademicEvidenceSection()}
+        ${renderAcademicEvidenceSection(profile)}
 
       </div>
     `;
@@ -913,10 +1203,12 @@
     calculateMph,
     calculateVelocity,
     predictAdultHeightTrajectories,
+    calculateRemainingGrowthWindow,
     calculateHeightPrediction,
     getGrowthCurveData,
     renderSvgGrowthCurve,
     render3TierBarChart,
+    render3TierWeightCard,
     renderCoachingCards,
     renderOfficialClinicalAndNutritionBox,
     renderAcademicEvidenceSection,

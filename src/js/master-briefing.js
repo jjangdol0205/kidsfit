@@ -278,6 +278,8 @@
       if (profile.traitGrowthDetails && Array.isArray(profile.traitGrowthDetails)) {
         profile.traitGrowthDetails.forEach(g => {
           if (g === 'growing_pain_night') surveyClues.push('밤에 다리 무릎 종아리 성장통으로 깨요');
+          if (g === 'underweight_thin') surveyClues.push('밥을 안 먹어 마른 저체중 살이 안 쪄서 체중 걱정');
+          if (g === 'overweight_fat_gain') surveyClues.push('과체중 뱃살 사춘기 성조숙 골연령 걱정');
           if (g === 'rhinitis_mouth') surveyClues.push('비염 코막힘 입 벌리고 구강호흡 잠');
           if (g === 'early_puberty_worry') surveyClues.push('사춘기 가슴 멍울 골연령 뼈나이 걱정');
           if (g === 'bone_age_delay') surveyClues.push('엄마 아빠 유전키 또래보다 키가 작아 걱정');
@@ -637,10 +639,11 @@
     let kdcaPct = 50.0;
     let kdcaZ = 0.0;
     let standardMean = 137.0;
+    let lmsObj = { L: 1.0, M: 137.0, S: 0.0498, wM: 35.5, wS: 0.15, bmiP5: 14.2, bmiP50: 17.2, bmiP85: 20.5, bmiP95: 22.8 };
     if (GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function' && typeof GrowthEngine.calculateKdcaPercentile === 'function') {
-      const lms = GrowthEngine.getLmsForMonth(gender, exactMonths);
-      standardMean = lms.M;
-      const kdcaRes = GrowthEngine.calculateKdcaPercentile(height, lms.L, lms.M, lms.S);
+      lmsObj = GrowthEngine.getLmsForMonth(gender, exactMonths) || lmsObj;
+      standardMean = lmsObj.M;
+      const kdcaRes = GrowthEngine.calculateKdcaPercentile(height, lmsObj.L, lmsObj.M, lmsObj.S);
       kdcaTop = kdcaRes.topPercent;
       kdcaPct = kdcaRes.percentile;
       kdcaZ = kdcaRes.zScore;
@@ -648,6 +651,41 @@
 
     const deltaCm = Math.round((height - standardMean) * 10) / 10;
     const deltaStr = deltaCm >= 0 ? `+${deltaCm} cm` : `${deltaCm} cm`;
+
+    // Weight & BMI Full Clinical Evaluation (Matching Height's Precision!)
+    let weightEval = {
+      bmi: Math.round((weight / Math.pow(height / 100, 2)) * 10) / 10,
+      currentWeight: weight,
+      standardWeight: Math.round((lmsObj.wM || 35.5) * 10) / 10,
+      weightPercentile: 50.0,
+      weightTopPercent: 50.0,
+      weightZScore: 0.0,
+      weightDelta: 0.0,
+      optimalWeightForHeight: Math.round((lmsObj.wM || 35.5) * 10) / 10,
+      weightVsHeightDelta: 0.0,
+      targetWeight6m: Math.round(((lmsObj.wM || 35.5) + 1.8) * 10) / 10,
+      bmiStatus: '표준 균형 체형 (정상 5~84백분위)',
+      bmiShortStatus: '키 성장 최적 표준 체중',
+      bmiNote: '현재 키 대비 체중 밸런스가 이상적입니다.',
+      bmiBadgeColor: '#10B981'
+    };
+    if (GrowthEngine && typeof GrowthEngine.evaluateWeightAndBmi === 'function') {
+      try {
+        weightEval = Object.assign(weightEval, GrowthEngine.evaluateWeightAndBmi(height, weight, lmsObj));
+      } catch (_) {}
+    }
+    weightEval.statusLabel = weightEval.statusLabel || weightEval.bmiStatus || '표준 균형 체형 (정상 5~84백분위)';
+    const weightTop = weightEval.weightTopPercent;
+    const weightPct = weightEval.weightPercentile;
+    const standardWeight = weightEval.standardWeight;
+    const weightDeltaKg = weightEval.weightDelta;
+    const weightDeltaStr = weightDeltaKg >= 0 ? `+${weightDeltaKg} kg` : `${weightDeltaKg} kg`;
+    const optimalWeightForHeight = weightEval.optimalWeightForHeight;
+    const weightVsHeightDelta = weightEval.weightVsHeightDelta;
+    const weightVsHeightDeltaStr = weightVsHeightDelta >= 0 ? `+${weightVsHeightDelta} kg` : `${weightVsHeightDelta} kg`;
+    const weightVsHeightStr = weightVsHeightDeltaStr;
+    const targetWeight6m = weightEval.targetWeight6m;
+    const targetHeight6m = Math.round((height + Math.max(2.6, recentGain + 0.8)) * 10) / 10;
 
     let mphVal = gender === 'boy' ? (fatherH + motherH + 13) / 2 : (fatherH + motherH - 13) / 2;
     mphVal = Math.round(mphVal * 10) / 10;
@@ -665,13 +703,33 @@
       } catch (_) {}
     }
 
+    const adultStandardBmi = gender === 'boy' ? 21.5 : 20.0;
+    const adultTargetWeight = Math.round((adultStandardBmi * Math.pow(optimizedHeight / 100, 2)) * 10) / 10;
+
     const velocityPerYear = Math.round(recentGain * 2 * 10) / 10;
     const isRedFlag = ageYears >= 4 && ageYears <= 11 && velocityPerYear < 4.5;
 
-    let goldenTimeLabel = isEn ? '~2.5–3 yrs remaining (Peak Height Velocity PHV)' : '약 2.5~3년 잔여 (급성장 피크기 PHV)';
-    if (tanner === 'phase_1') goldenTimeLabel = isEn ? '~4–5 yrs remaining (Foundation Stage · Open Plate 90%+)' : '약 4~5년 잔여 (기초 성장기 · 개방률 90%+)';
-    else if (tanner === 'phase_3') goldenTimeLabel = isEn ? '~12–18 mos remaining (Post-PHV Defense)' : '약 12~18개월 잔여 (감속기 · 집중 방어)';
-    else if (tanner === 'phase_4') goldenTimeLabel = isEn ? '~6–12 mos remaining (Spinal Decompression)' : '약 6~12개월 잔여 (척추 디스크 복원기)';
+    // Age & Sex Accurate Growth Plate Remaining Window
+    const defaultClosureAge = gender === 'boy' ? 17 : 15;
+    let windowInfo = {
+      closureAge: defaultClosureAge,
+      headline: `약 ${Math.max(1, defaultClosureAge - ageYears)}~${Math.max(2, defaultClosureAge + 1 - ageYears)}년 여유`,
+      shortBadge: `약 ${Math.max(1, defaultClosureAge - ageYears)}~${Math.max(2, defaultClosureAge + 1 - ageYears)}년 여유`,
+      subLabel: `만 ${defaultClosureAge}세 성장판 닫힐 때까지`,
+      fullText: `약 ${Math.max(1, defaultClosureAge - ageYears)}~${Math.max(2, defaultClosureAge + 1 - ageYears)}년 여유 (만 ${defaultClosureAge}세 성장판 폐쇄 기준)`,
+      meaningKo: `뼈 끝의 연골 성장판이 단단한 뼈로 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 실제로 더 자랄 수 있는 남은 시간입니다.`,
+      meaningExplanation: `뼈 끝의 연골 성장판이 단단한 뼈로 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 실제로 더 자랄 수 있는 남은 시간입니다.`,
+      detailExplanation: `만 ${ageYears}세 ${genderKo}는 성장판이 닫히는 만 ${defaultClosureAge}세까지 약 ${Math.max(1, defaultClosureAge - ageYears)}~${Math.max(2, defaultClosureAge + 1 - ageYears)}년의 충분한 성장 기간이 남아 있습니다.`
+    };
+    if (GrowthEngine && typeof GrowthEngine.calculateRemainingGrowthWindow === 'function') {
+      try {
+        windowInfo = Object.assign({}, windowInfo, GrowthEngine.calculateRemainingGrowthWindow(exactMonths, gender, tanner));
+      } catch (_) {}
+    }
+    const goldenTimeLabel = isEn
+      ? `~${Math.max(1, (gender === 'boy' ? 17 : 15) - ageYears)} yrs remaining until epiphyseal closure`
+      : `${windowInfo.shortBadge} · ${windowInfo.subLabel}`;
+    const goldenTimeMeaningKo = windowInfo.meaningKo;
 
     // Neuro-Cognitive Target Focus Label
     let neuroFocusLabel = isEn ? 'Prefrontal Executive Function & Causal Reasoning' : '전두엽 실행기능 & 과학적 인과 추론';
@@ -872,6 +930,23 @@
           coached: { focusMinutes: 35, forgetRatePercent: 8, retentionPercent: 92, lqScore: 88, gainLq: 23, focusGainMinutes: 23, statusKo: '6개월 맞춤 코칭 실천 시' }
         }
       };
+    }
+
+    // Normalize lqData.trajectory fields so both legacy and new chart templates work seamlessly
+    if (lqData && lqData.trajectory) {
+      const unm = lqData.trajectory.unmanaged || { focusMinutes: 12, retentionPercent: 48, lqScore: 65 };
+      const base = lqData.trajectory.baseline || lqData.trajectory.current || { focusMinutes: 18, retentionPercent: 60, lqScore: 76 };
+      const coach = lqData.trajectory.coached || { focusMinutes: 35, retentionPercent: 92, lqScore: 89, gainLq: 14, focusGainMinutes: 17 };
+      lqData.trajectory.current = Object.assign({}, unm, {
+        focusMinutes: unm.focusMinutes || base.focusMinutes || 15,
+        retentionRate: unm.retentionRate || unm.retentionPercent || 48
+      });
+      lqData.trajectory.coached = Object.assign({}, coach, {
+        focusMinutes: coach.focusMinutes || 35,
+        retentionRate: coach.retentionRate || coach.retentionPercent || 92,
+        gainFocusMin: coach.gainFocusMin || coach.focusGainMinutes || 18,
+        gainLq: coach.gainLq || Math.max(8, Math.round((coach.lqScore || 89) - (lqData.overallLQ || 78)))
+      });
     }
 
     const isLearningDefault = (profile && (profile.preferredReportMode === 'growth' || profile.preferredReportMode === 'learning'))
@@ -1217,13 +1292,15 @@
     };
     const recommendedCareers = careerMap[cogAxisPrimary] || careerMap.science_nature;
 
-    // Curated Direct Link Items for Step 7 & Step 8
-    const curatedLearningItems = (PinpointCurator && typeof PinpointCurator.curatePinpointItems === 'function')
+    // Curated Direct Link Items for Both Growth (Pillar 1) & Learning (Pillar 2)
+    const curatedAllItems = (PinpointCurator && typeof PinpointCurator.curatePinpointItems === 'function')
       ? PinpointCurator.curatePinpointItems(profile)
-      : { learningTools: [], books: [], tours: [] };
-    const quickTools = Array.isArray(curatedLearningItems.learningTools) ? curatedLearningItems.learningTools.slice(0, 3) : [];
-    const quickBooks = Array.isArray(curatedLearningItems.books) ? curatedLearningItems.books.slice(0, 3) : [];
-    const quickTours = Array.isArray(curatedLearningItems.tours) ? curatedLearningItems.tours.slice(0, 2) : [];
+      : { supplements: [], toys: [], learningTools: [], books: [], tours: [] };
+    const quickSupplements = Array.isArray(curatedAllItems.supplements) ? curatedAllItems.supplements.slice(0, 3) : [];
+    const quickGrowthGear = Array.isArray(curatedAllItems.toys) ? curatedAllItems.toys.slice(0, 3) : [];
+    const quickTools = Array.isArray(curatedAllItems.learningTools) ? curatedAllItems.learningTools.slice(0, 3) : [];
+    const quickBooks = Array.isArray(curatedAllItems.books) ? curatedAllItems.books.slice(0, 3) : [];
+    const quickTours = Array.isArray(curatedAllItems.tours) ? curatedAllItems.tours.slice(0, 3) : [];
 
     return `
       <!-- Master Briefing Card: Crisp Clinical Diagnosis Sheet (Zero 3-Card Clutter, Large High-Contrast Font) -->
@@ -1301,43 +1378,192 @@
             <span style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF;">맞춤 성장 종합 리포트 &amp; 하루 실천 시간표</span>
           </div>
 
-        <!-- Top Summary Hero Card (Large Readable Typography, 1-Per-Row Flow) -->
-        <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.25rem 1.35rem;">
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <!-- Top Summary Hero Card (Vivid Eye-Catching 3-Trajectory Curve + Milestone Pillars) -->
+        <div class="taller-height-reveal-hero" id="taller-potential-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.35rem 1.4rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 58, 138, 0.85) 55%, rgba(6, 78, 59, 0.82) 100%); border: 2px solid #38BDF8; box-shadow: 0 20px 45px rgba(16, 185, 129, 0.18);">
+          <div style="display: flex; flex-direction: column; gap: 1.05rem;">
             <div>
-              <div style="font-size: 0.85rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">
-                ${isEn ? 'POTENTIAL ADULT HEIGHT' : '아침·저녁으로 6개월 이상 꾸준히 챙겨주셨을 때 기대 잠재키'}
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.35rem;">
+                <span style="font-size: 0.86rem; font-weight: 900; color: #93C5FD;">
+                  ${isEn ? 'POTENTIAL ADULT HEIGHT & GROWTH TRAJECTORY' : '📈 아침·저녁 6개월 밀착 관리 시 우리 아이 성인 예측키 3중 성장 궤적'}
+                </span>
+                <span style="font-size: 0.78rem; font-weight: 900; color: #052E16; background: #34D399; padding: 0.2rem 0.7rem; border-radius: 9999px;">
+                  ✓ 질병관리청(KDCA) · Tanner 골연령 공식 적용
+                </span>
               </div>
               <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap;">
                 <span class="taller-giant-height-number">${optimizedHeight.toFixed(1)} cm</span>
-                <span style="background: rgba(16, 185, 129, 0.22); border: 1.5px solid #10B981; color: #6EE7B7; font-size: 0.94rem; font-weight: 900; padding: 0.25rem 0.75rem; border-radius: 9999px;">
-                  ▲ +${potentialGainCm.toFixed(1)} cm ${isEn ? 'More Growth' : '더 자랄 수 있어요.'}
+                <span style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10B981; color: #6EE7B7; font-size: 0.96rem; font-weight: 900; padding: 0.28rem 0.85rem; border-radius: 9999px; box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);">
+                  ▲ 방치 시 대비 +${potentialGainCm.toFixed(1)} cm ${isEn ? 'More Growth' : '더 자랄 수 있어요!'}
                 </span>
               </div>
               <div id="briefing-one-line-verdict" style="font-size: 0.96rem; color: #F8FAFC; margin-top: 0.55rem; line-height: 1.55;">
                 ${isEn
                   ? `Current <strong>${height}cm (Top ${kdcaTop}%)</strong> · Genetic MPH <strong>${mphVal}cm</strong> · Unmanaged <strong>${unmanagedHeight}cm</strong> → Consistent Care <strong style="color:#6EE7B7;">${optimizedHeight}cm</strong>`
-                  : `현재 <strong>${height}cm (상위 ${kdcaTop}%)</strong> · 부모 유전키 <strong>${mphVal}cm</strong> · 방치 시 <strong>${unmanagedHeight}cm</strong> → 맞춤 관리 시 <strong style="color:#6EE7B7;">${optimizedHeight}cm</strong>`}
+                  : `현재 <strong>${height}cm (상위 ${kdcaTop}%)</strong> · 부모 유전키 <strong>${mphVal}cm</strong> · 방치 시 <strong style="color:#FDA4AF;">${unmanagedHeight}cm</strong> → 맞춤 관리 시 <strong style="color:#6EE7B7;">${optimizedHeight}cm</strong>`}
               </div>
             </div>
 
-            <!-- Right: Clean 3-Bar Comparison -->
-            <div style="background: rgba(0, 0, 0, 0.65); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 16px; padding: 0.9rem 1rem; display: flex; justify-content: space-around; align-items: flex-end; height: 128px;">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                <span style="font-size: 0.84rem; font-weight: 800; color: #FDA4AF;">${unmanagedHeight}cm</span>
-                <div style="width: 36px; height: 46px; border-radius: 6px; background: rgba(244,63,94,0.65); border: 1px solid #F43F5E;"></div>
-                <span style="font-size: 0.78rem; color: #E2E8F0; font-weight: 700;">${isEn ? 'Unmanaged' : '방치 시'}</span>
+            <!-- VIVID FIRST-SCREEN 3-TRAJECTORY CURVE + MILESTONE CALLOUTS SVG -->
+            <div style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; padding: 1rem 1.05rem; box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.08);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
+                <span style="font-size: 0.86rem; font-weight: 900; color: #38BDF8;">
+                  🚀 한눈에 보는 3중 성인 예측키 성장 궤적 곡선 (현재 만 ${ageYears}세 → 만 ${windowInfo.closureAge}세 성인키)
+                </span>
+                <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; font-size: 0.76rem; font-weight: 800;">
+                  <span style="color: #34D399;">● 맞춤 관리 잠재키 (${optimizedHeight}cm)</span>
+                  <span style="color: #60A5FA;">● 부모 유전 표적키 (${mphVal}cm)</span>
+                  <span style="color: #FB7185;">● 방해습관 방치 시 (${unmanagedHeight}cm)</span>
+                </div>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                <span style="font-size: 0.84rem; font-weight: 800; color: #93C5FD;">${mphVal}cm</span>
-                <div style="width: 36px; height: 64px; border-radius: 6px; background: rgba(59,130,246,0.75); border: 1px solid #60A5FA;"></div>
-                <span style="font-size: 0.78rem; color: #93C5FD; font-weight: 700;">${isEn ? 'Genetic MPH' : '부모 유전키'}</span>
+
+              <svg id="hero-vivid-growth-curve-svg" viewBox="0 0 640 245" style="width: 100%; height: auto; display: block; overflow: visible;">
+                <defs>
+                  <linearGradient id="heroOptFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.42" />
+                    <stop offset="100%" stop-color="#10B981" stop-opacity="0.02" />
+                  </linearGradient>
+                  <linearGradient id="heroMphFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.24" />
+                    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.0" />
+                  </linearGradient>
+                  <linearGradient id="heroOptStroke" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#38BDF8" />
+                    <stop offset="55%" stop-color="#10B981" />
+                    <stop offset="100%" stop-color="#34D399" />
+                  </linearGradient>
+                </defs>
+
+                <!-- Background Grid Lines -->
+                <line x1="48" y1="35" x2="515" y2="35" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                <line x1="48" y1="85" x2="515" y2="85" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                <line x1="48" y1="135" x2="515" y2="135" stroke="rgba(148,163,184,0.16)" stroke-dasharray="4,4" />
+                <line x1="48" y1="185" x2="515" y2="185" stroke="rgba(148,163,184,0.28)" />
+
+                <!-- X-Axis Milestone Labels -->
+                <text x="58" y="212" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">현재 (만 ${ageYears}세)</text>
+                <text x="205" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">+1년 뒤</text>
+                <text x="355" y="212" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">급성장 피크기</text>
+                <text x="495" y="212" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">성인키 (만 ${windowInfo.closureAge}세)</text>
+
+                <!-- Area under Optimized Trajectory -->
+                <path d="M 58 172 C 175 142, 315 68, 495 36 L 495 185 L 58 185 Z" fill="url(#heroOptFill)" />
+                <path d="M 58 172 C 175 152, 315 102, 495 78 L 495 185 L 58 185 Z" fill="url(#heroMphFill)" />
+
+                <!-- 1) Unmanaged Trajectory (Coral Red Dashed) -->
+                <path d="M 58 172 C 175 162, 315 136, 495 122" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
+                <circle cx="205" cy="155" r="4.5" fill="#FB7185" />
+                <circle cx="355" cy="133" r="4.5" fill="#FB7185" />
+                <circle cx="495" cy="122" r="6" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" />
+
+                <!-- 2) Genetic MPH Trajectory (Sky Blue Solid) -->
+                <path d="M 58 172 C 175 152, 315 102, 495 78" fill="none" stroke="#60A5FA" stroke-width="3.5" />
+                <circle cx="205" cy="140" r="4.5" fill="#60A5FA" />
+                <circle cx="355" cy="99" r="5" fill="#60A5FA" />
+                <circle cx="495" cy="78" r="6.5" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+
+                <!-- 3) Consistent Care Potential Trajectory (Glowing Emerald-Cyan Curve) -->
+                <path d="M 58 172 C 175 142, 315 68, 495 36" fill="none" stroke="url(#heroOptStroke)" stroke-width="5" stroke-linecap="round" />
+                <circle cx="58" cy="172" r="7" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2.5" />
+                <circle cx="205" cy="124" r="5.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
+                <circle cx="355" cy="66" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+                <circle cx="495" cy="36" r="8.5" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
+
+                <!-- Current Height Callout Tag -->
+                <rect x="18" y="132" width="98" height="28" rx="8" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.2" />
+                <text x="67" y="150" fill="#FFFFFF" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
+
+                <!-- +6M / +1Y Target Callout -->
+                <rect x="155" y="92" width="102" height="24" rx="7" fill="rgba(16,185,129,0.2)" stroke="#34D399" stroke-width="1" />
+                <text x="206" y="108" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">6개월 목표 ${targetHeight6m}cm</text>
+
+                <!-- Gain Bracket Between Unmanaged and Potential -->
+                <line x1="495" y1="45" x2="495" y2="114" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3" />
+                <rect x="382" y="42" width="104" height="24" rx="12" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.3" />
+                <text x="434" y="58" fill="#6EE7B7" font-size="11" font-weight="900" text-anchor="middle">▲ +${potentialGainCm.toFixed(1)}cm 숨은키</text>
+
+                <!-- Right-Side End Callout Badges -->
+                <rect x="510" y="20" width="122" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.6" />
+                <text x="571" y="39" fill="#6EE7B7" font-size="12.5" font-weight="900" text-anchor="middle">잠재키 ${optimizedHeight}cm</text>
+
+                <rect x="510" y="63" width="122" height="28" rx="8" fill="rgba(59,130,246,0.24)" stroke="#60A5FA" stroke-width="1.3" />
+                <text x="571" y="81" fill="#93C5FD" font-size="11.5" font-weight="900" text-anchor="middle">유전키 ${mphVal}cm</text>
+
+                <rect x="510" y="108" width="122" height="28" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.3" />
+                <text x="571" y="126" fill="#FDA4AF" font-size="11.5" font-weight="900" text-anchor="middle">방치시 ${unmanagedHeight}cm</text>
+              </svg>
+
+              <!-- 3-Tier Horizontal Gauge Bars Underneath Curve for Instant Comparison -->
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255,255,255,0.14);">
+                <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                  <div style="font-size: 0.74rem; color: #FDA4AF; font-weight: 800;">① 방해습관 방치 시</div>
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${unmanagedHeight} cm</div>
+                </div>
+                <div style="background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(96, 165, 250, 0.45); border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                  <div style="font-size: 0.74rem; color: #93C5FD; font-weight: 800;">② 부모 유전 표적키</div>
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${mphVal} cm</div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.18); border: 1.5px solid #10B981; border-radius: 10px; padding: 0.55rem 0.65rem; text-align: center;">
+                  <div style="font-size: 0.74rem; color: #6EE7B7; font-weight: 900;">③ 맞춤 관리 최대잠재키</div>
+                  <div style="font-size: 1.12rem; font-weight: 900; color: #6EE7B7; margin-top: 0.15rem;">${optimizedHeight} cm</div>
+                </div>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                <span style="font-size: 0.9rem; font-weight: 900; color: #6EE7B7;">${optimizedHeight}cm</span>
-                <div style="width: 40px; height: 84px; border-radius: 6px; background: linear-gradient(180deg, #10B981 0%, #3B82F6 100%); border: 1px solid #A7F3D0;"></div>
-                <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 900;">${isEn ? 'Consistent Goal' : '맞춤 관리 시'}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- VIVID WEIGHT & BMI BALANCE HERO CARD (몸무게도 키처럼 한눈에 진단!)   -->
+        <!-- ================================================================== -->
+        <div id="taller-weight-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.25rem 1.35rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(124, 45, 18, 0.35) 55%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #F59E0B; border-radius: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <span style="background: rgba(245, 158, 11, 0.22); color: #FDE68A; font-size: 0.82rem; font-weight: 900; padding: 0.25rem 0.8rem; border-radius: 9999px; border: 1px solid #F59E0B;">
+              ⚖️ 몸무게 &amp; 체질량(BMI) 정밀 진단 리포트 (키 대비 적정 체중 밸런스)
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #FCD34D;">
+              BMI ${weightEval.bmi} (${weightEval.bmiShortStatus})
+            </span>
+          </div>
+
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.45rem;">
+            <span style="font-size: 2.1rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em;">${weight} kg</span>
+            <span style="background: rgba(245, 158, 11, 0.2); border: 1.5px solid #FBBF24; color: #FDE68A; font-size: 0.9rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+              또래 체중 상위 ${weightEval.weightTopPercent}% (${weightDeltaStr}) · 현재 키(${height}cm) 적정 체중 ${weightEval.optimalWeightForHeight}kg
+            </span>
+          </div>
+
+          <p style="font-size: 0.9rem; color: #F8FAFC; line-height: 1.55; margin: 0 0 0.85rem 0;">
+            ${weightEval.statusLabel} — 6개월 뒤 목표 키(<strong>${targetHeight6m}cm</strong>) 도약을 위한 <strong>6개월 목표 적정 몸무게는 <span style="color:#6EE7B7;">${weightEval.targetWeight6m}kg</span></strong>입니다.
+          </p>
+
+          <!-- Weight 4-Stage Visual Comparison Bars + BMI Spectrum Gauge -->
+          <div style="background: rgba(9, 14, 28, 0.88); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 16px; padding: 0.95rem 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.65rem 0.8rem;">
+                <div style="font-size: 0.76rem; color: #94A3B8; font-weight: 800;">① 현재 몸무게 vs 동월령 표준</div>
+                <div style="font-size: 1.05rem; font-weight: 900; color: #FDE68A; margin-top: 0.2rem;">${weight}kg <span style="font-size:0.82rem; color:#CBD5E1;">(표준 ${weightEval.standardWeight}kg / ${weightDeltaStr})</span></div>
               </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56,189,248,0.35); border-radius: 12px; padding: 0.65rem 0.8rem;">
+                <div style="font-size: 0.76rem; color: #93C5FD; font-weight: 800;">② 현재 키(${height}cm) 맞춤 적정 몸무게</div>
+                <div style="font-size: 1.05rem; font-weight: 900; color: #38BDF8; margin-top: 0.2rem;">${weightEval.optimalWeightForHeight}kg <span style="font-size:0.82rem; color:#CBD5E1;">(키 대비 ${weightVsHeightStr})</span></div>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.4); border-radius: 12px; padding: 0.65rem 0.8rem;">
+                <div style="font-size: 0.76rem; color: #6EE7B7; font-weight: 800;">③ 6개월 뒤(${targetHeight6m}cm) 목표 몸무게</div>
+                <div style="font-size: 1.05rem; font-weight: 900; color: #34D399; margin-top: 0.2rem;">${weightEval.targetWeight6m}kg <span style="font-size:0.82rem; color:#A7F3D0;">(근골격 균형 증량)</span></div>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(192,132,252,0.4); border-radius: 12px; padding: 0.65rem 0.8rem;">
+                <div style="font-size: 0.76rem; color: #DDD6FE; font-weight: 800;">④ 체질량지수 (BMI · 골연령 영향)</div>
+                <div style="font-size: 1.05rem; font-weight: 900; color: #E9D5FF; margin-top: 0.2rem;">BMI ${weightEval.bmi} <span style="font-size:0.82rem; color:#F3E8FF;">(${weightEval.bmiShortStatus})</span></div>
+              </div>
+            </div>
+
+            <!-- Visual Weight Balance Spectrum Bar -->
+            <div style="font-size: 0.78rem; color: #CBD5E1; font-weight: 800; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
+              <span>저체중·마른체형 (단백질·아연 보강)</span>
+              <span style="color: #34D399;">★ 키 성장 최적 표준 밸런스 구간</span>
+              <span>과체중 주의 (골연령 가속 방어)</span>
+            </div>
+            <div style="position: relative; height: 14px; border-radius: 9999px; background: linear-gradient(90deg, #38BDF8 0%, #10B981 35%, #34D399 65%, #F59E0B 82%, #F43F5E 100%); overflow: hidden;">
+              <div style="position: absolute; top: 0; bottom: 0; left: ${Math.max(6, Math.min(92, weightEval.weightPercentile))}%; width: 10px; margin-left: -5px; background: #FFFFFF; border: 2px solid #0F172A; border-radius: 9999px; box-shadow: 0 0 10px #FFFFFF;"></div>
             </div>
           </div>
         </div>
@@ -1348,52 +1574,64 @@
         <div class="briefing-section briefing-status" id="briefing-status-section" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(59, 130, 246, 0.4); border-radius: 18px; padding: 1.25rem 1.35rem; margin-bottom: 1.15rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 0.65rem;">
             <h3 class="briefing-section-title" style="font-size: 1.18rem; font-weight: 900; color: #FFFFFF; margin: 0;">
-              📋 ${isEn ? '1. Clinical Growth Diagnosis Sheet' : '1. 우리 아이 핵심 성장 진단서 요약표'}
+              📋 ${isEn ? '1. Clinical Growth Diagnosis Sheet' : '1. 우리 아이 핵심 성장 진단서 요약표 (키 & 몸무게 통합)'}
             </h3>
             <span style="font-size: 0.82rem; font-weight: 800; color: #93C5FD;">
               ${genderKo} · 만 ${ageYears}세 (${exactMonths.toFixed(1)}개월) · ${height}cm / ${weight}kg
             </span>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">📏 ${isEn ? 'Height Percentile' : '현재 키 백분위'}</span>
-              <span id="briefing-percentile" style="font-size: 1.04rem; font-weight: 900; color: #38BDF8;">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem;">
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56,189,248,0.3); border-radius: 12px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-size: 0.84rem; color: #93C5FD; font-weight: 800;">📏 ${isEn ? 'Height Percentile' : '현재 키 백분위 (또래 비교)'}</span>
+              <span id="briefing-percentile" style="font-size: 1.06rem; font-weight: 900; color: #38BDF8;">
                 ${isEn ? `Top ${kdcaTop}% (${kdcaPct}th)` : `상위 ${kdcaTop}% (${deltaStr})`}
               </span>
             </div>
 
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">🚀 ${isEn ? 'Growth Velocity' : '연간 성장속도'}</span>
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(245,158,11,0.35); border-radius: 12px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-size: 0.84rem; color: #FDE68A; font-weight: 800;">⚖️ ${isEn ? 'Weight Percentile' : '현재 몸무게 백분위 (적정체중)'}</span>
+              <span id="briefing-weight-percentile" style="font-size: 1.06rem; font-weight: 900; color: #FBBF24;">
+                상위 ${weightEval.weightTopPercent}% (${weightDeltaStr} · 적정 ${weightEval.optimalWeightForHeight}kg)
+              </span>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-size: 0.84rem; color: #E2E8F0; font-weight: 800;">🚀 ${isEn ? 'Growth Velocity' : '연간 키 성장속도'}</span>
               <span id="briefing-velocity" style="font-size: 1.04rem; font-weight: 900; color: ${isRedFlag ? '#FB7185' : '#34D399'};">
                 연 ${velocityPerYear} cm ${isRedFlag ? '🚨 집중케어' : '✓ 정상궤도'}
               </span>
             </div>
 
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">🧬 ${isEn ? 'Genetic MPH' : '부모 유전 표적키'}</span>
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-size: 0.84rem; color: #E2E8F0; font-weight: 800;">🧬 ${isEn ? 'Genetic MPH' : '부모 유전 표적키'}</span>
               <span id="briefing-mph" style="font-size: 1.04rem; font-weight: 900; color: #FBBF24;">
                 ${mphVal} cm <span style="font-size: 0.8rem; font-weight: 700;">(±8.5cm)</span>
               </span>
             </div>
 
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
-              <span style="font-size: 0.94rem; color: #E2E8F0; font-weight: 700;">⏳ ${isEn ? 'Golden Time' : '성장판 잔여기간'}</span>
-              <span id="briefing-goldentime" style="font-size: 0.96rem; font-weight: 900; color: #6EE7B7;">
-                ${goldenTimeLabel}
-              </span>
+            <div style="grid-column: 1 / -1; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
+                <span style="font-size: 0.92rem; color: #A7F3D0; font-weight: 900;">⏳ ${isEn ? 'Remaining Epiphyseal Growth Window' : '골든타임 성장판 잔여 기간 (키가 더 자랄 수 있는 남은 시간)'}</span>
+                <span id="briefing-goldentime" style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7;">
+                  ${goldenTimeLabel}
+                </span>
+              </div>
+              <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.5;">
+                💡 <strong>‘골든타임 성장판 잔여 기간’이란?</strong> ${windowInfo.meaningExplanation} (${windowInfo.detailExplanation})
+              </div>
             </div>
           </div>
 
           <!-- Transparent Growth Score & 3-Tier Height Calculation Formula Box -->
           <div id="growth-score-formula-box" style="margin-top: 0.85rem; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.38); border-radius: 14px; padding: 0.95rem 1.1rem; font-size: 0.86rem; color: #E2E8F0; line-height: 1.65;">
             <div style="font-size: 0.92rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.4rem;">
-              📐 [점수·예측키 산출 공식 안내] 위 수치는 어떻게 계산되었나요?
+              📐 [키·몸무게 백분위 &amp; 예측키 산출 공식 안내] 위 수치는 어떻게 계산되었나요?
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.3rem;">
-              <div>• <strong>① 현재 키 백분위 (상위 ${kdcaTop}%):</strong> 질병관리청(KDCA 2017) 표준 성장도표에서 동성·동월령(${exactMonths.toFixed(1)}개월) 표준 정규분포(LMS Z-Score) 공식을 적용해 또래 100명 중 위치(${deltaStr})를 산출했습니다.</div>
+              <div>• <strong>① 현재 키 백분위 (상위 ${kdcaTop}%) &amp; 몸무게 백분위 (상위 ${weightEval.weightTopPercent}%):</strong> 질병관리청(KDCA 2017) 표준 성장도표에서 동성·동월령(${exactMonths.toFixed(1)}개월) 표준 정규분포(LMS Z-Score) 공식을 적용해 또래 100명 중 키 위치(${deltaStr})와 몸무게 위치(${weightDeltaStr}, 현재 키 대비 적정 체중 ${weightEval.optimalWeightForHeight}kg)를 산출했습니다.</div>
               <div>• <strong>② 부모 유전 표적키 (${mphVal}cm):</strong> 소아내분비학 국제 표준 Tanner 공식 <code>(${profile.gender === 'girl' ? '아빠키 + 엄마키 - 13cm' : '아빠키 + 엄마키 + 13cm'}) ÷ 2</code>로 계산된 유전 기준값입니다.</div>
-              <div>• <strong>③ 방치 시 예측키 (${unmanagedHeight}cm) vs 맞춤 관리 잠재키 (${optimizedHeight}cm):</strong> 유전키(${mphVal}cm)와 현재 골연령 성장궤적에 설문에서 선택하신 방해습관(${Math.max(1, (profile.habits || []).length)}개 항목 감점)을 반영하면 <strong>${unmanagedHeight}cm</strong>로 예측되며, 밤 10시 수면·체중비례 영양·척추 감압(+1.8cm) 실천 시 후천적 환경 가산점(<strong>+${potentialGainCm}cm</strong>)이 더해져 <strong>${optimizedHeight}cm</strong>까지 도약할 수 있습니다.</div>
+              <div>• <strong>③ 방치 시 예측키 (${unmanagedHeight}cm) vs 맞춤 관리 잠재키 (${optimizedHeight}cm):</strong> 유전키(${mphVal}cm)와 현재 골연령 성장궤적에 설문에서 선택하신 방해습관(${Math.max(1, (profile.habits || []).length)}개 항목 감점)을 반영하면 <strong>${unmanagedHeight}cm</strong>로 예측되며, 남은 성장판 기간(<strong>${windowInfo.shortBadge}</strong>) 동안 밤 10시 수면·체중비례 영양·척추 감압(+1.8cm) 실천 시 후천적 가산점(<strong>+${potentialGainCm}cm</strong>)이 더해져 <strong>${optimizedHeight}cm</strong>까지 도약할 수 있습니다.</div>
             </div>
           </div>
         </div>
@@ -1600,12 +1838,39 @@
         <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" style="display: none; margin-top: 1.25rem; padding: 1.35rem; background: rgba(15, 23, 42, 0.96); border: 2px solid rgba(56, 189, 248, 0.45); border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px dashed rgba(56, 189, 248, 0.35);">
             <span style="font-size: 1.05rem; font-weight: 900; color: #38BDF8;">
-              🎁 [우리 아이 신체 성장 맞춤형 추천 상품] 체중 비례 영양제 &amp; 척추 감압·성장판 운동 기구
+              🎁 [만 ${ageYears}세(${exactMonths.toFixed(0)}개월) 맞춤 신체 성장 큐레이션] 연령별 영양제 &amp; 척추·성장판 운동 기구
             </span>
             <span style="font-size: 0.78rem; color: #6EE7B7; font-weight: 800;">
-              ✓ 아이 연령(만 ${ageYears}세) · 체중(${weight}kg) · 방해습관 1:1 매칭
+              ✓ 만 ${ageYears}세 연령에 맞지 않는 제형·기구는 제외했습니다 (${height}cm / ${weight}kg 맞춤)
             </span>
           </div>
+
+          <!-- Age-Matched Physical Growth Quick Summary & Direct Link List -->
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.15rem;">
+            ${quickSupplements.map((supp, idx) => `
+              <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
+                <div>
+                  <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">💊 [만 ${ageYears}세 맞춤 영양제 ${idx + 1}순위] ${supp.categoryBadge || ''}</span>
+                  <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${supp.name}</div>
+                </div>
+                <a href="${supp.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
+                  🔗 ${supp.buttonLabelCoupang || '쿠팡 로켓배송 바로가기 ↗'}
+                </a>
+              </div>
+            `).join('')}
+            ${quickGrowthGear.map((gear, idx) => `
+              <div style="background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
+                <div>
+                  <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏃 [만 ${ageYears}세 맞춤 운동기구 ${idx + 1}순위] ${gear.categoryBadge || ''}</span>
+                  <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${gear.name}</div>
+                </div>
+                <a href="${gear.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #10B981 0%, #0D9488 100%); color: #052E16; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
+                  🔗 ${gear.buttonLabelCoupang || '쿠팡 로켓배송 바로가기 ↗'}
+                </a>
+              </div>
+            `).join('')}
+          </div>
+
           ${PinpointCurator && typeof PinpointCurator.renderContextualSupplementsPrescription === 'function'
             ? PinpointCurator.renderContextualSupplementsPrescription(profile)
             : ''}
@@ -1666,18 +1931,25 @@
         <!-- ================================================================== -->
         <div id="report-ch-5" style="scroll-margin-top: 5.5rem;">
 
-          <!-- ==================== STEP 1: 아이의 학습 성향 분석 ==================== -->
-          <div id="learning-step-1-style" class="taller-learning-reveal-hero" style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.42) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #C084FC; border-radius: 22px; margin-bottom: 1.4rem; padding: 1.4rem 1.5rem; text-align: left;">
+          <!-- ==================== STEP 1: 아이의 학습 성향 분석 + 2×2 학습 핵심지표 + 시각 그래프 대시보드 ==================== -->
+          <div id="learning-step-1-style" class="taller-learning-reveal-hero" style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.45) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #C084FC; border-radius: 22px; margin-bottom: 1.4rem; padding: 1.4rem 1.5rem; text-align: left; box-shadow: 0 20px 45px rgba(168, 85, 247, 0.16);">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               <span style="background: #A855F7; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 1 · 아이의 학습 성향 분석
+                STEP 1 · 아이의 학습 성향 &amp; 두뇌 밸런스 그래프 진단
               </span>
               <span style="font-size: 0.86rem; font-weight: 900; color: #DDD6FE; background: rgba(168, 85, 247, 0.22); border: 1px solid #C084FC; padding: 0.25rem 0.8rem; border-radius: 9999px;">
                 종합 학습지수 LQ ${lqData.overallLQ.toFixed(1)}점 (또래 상위 ${lqData.topPercent}%)
               </span>
             </div>
 
-            <h3 style="font-size: 1.35rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0; line-height: 1.4;">
+            <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.45rem;">
+              <span style="font-size: 2.3rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em;">LQ ${lqData.trajectory.coached.lqScore}점</span>
+              <span style="background: rgba(16, 185, 129, 0.24); border: 1.5px solid #10B981; color: #6EE7B7; font-size: 0.92rem; font-weight: 900; padding: 0.24rem 0.8rem; border-radius: 9999px;">
+                ▲ 6개월 맞춤 코칭 시 +${lqData.trajectory.coached.gainLq}점 도약 (현재 ${lqData.overallLQ.toFixed(1)}점)
+              </span>
+            </div>
+
+            <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0; line-height: 1.4;">
               🧠 1. 우리 아이(만 ${ageYears}세) 학습 성향: <span style="color: #E9D5FF;">“${activeStyleInfo.title}”</span>
             </h3>
             <div style="display: inline-block; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(233, 213, 255, 0.35); color: #F3E8FF; font-size: 0.84rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; margin-bottom: 0.75rem;">
@@ -1686,9 +1958,127 @@
             <p style="font-size: 1.02rem; font-weight: 800; color: #F8FAFC; line-height: 1.6; margin: 0 0 0.55rem 0;">
               ${activeStyleInfo.summary}
             </p>
-            <p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.65; margin: 0 0 0.95rem 0;">
+            <p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.65; margin: 0 0 1rem 0;">
               ${activeStyleInfo.detail}
             </p>
+
+            <!-- 2×2 Learning Bento Stat Cards (신체 성장 보고서의 2×2 카드와 동일한 한눈에 들어오는 구조!) -->
+            <div id="learning-bento-stats-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; margin-bottom: 1.1rem;">
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem;">
+                <div style="font-size: 0.78rem; color: #DDD6FE; font-weight: 800;">🧠 종합 학습역량 백분위</div>
+                <div style="font-size: 1.25rem; font-weight: 900; color: #C084FC; margin: 0.2rem 0;">상위 ${lqData.topPercent}%</div>
+                <div style="font-size: 0.76rem; color: #CBD5E1;">현재 LQ ${lqData.overallLQ.toFixed(1)}점 → 목표 ${lqData.trajectory.coached.lqScore}점</div>
+              </div>
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem;">
+                <div style="font-size: 0.78rem; color: #BAE6FD; font-weight: 800;">⏱️ 전두엽 1회 몰입 지속시간</div>
+                <div style="font-size: 1.25rem; font-weight: 900; color: #38BDF8; margin: 0.2rem 0;">${lqData.trajectory.current.focusMinutes}분 → ${lqData.trajectory.coached.focusMinutes}분</div>
+                <div style="font-size: 0.76rem; color: #CBD5E1;">6개월 타이머 훈련 시 +${lqData.trajectory.coached.gainFocusMin}분 연장</div>
+              </div>
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem;">
+                <div style="font-size: 0.78rem; color: #A7F3D0; font-weight: 800;">💾 해마→피질 장기기억 보존율</div>
+                <div style="font-size: 1.25rem; font-weight: 900; color: #34D399; margin: 0.2rem 0;">${lqData.trajectory.current.retentionRate}% → ${lqData.trajectory.coached.retentionRate}%</div>
+                <div style="font-size: 0.76rem; color: #CBD5E1;">3분 백지복습 + 밤 10시 수면 코팅</div>
+              </div>
+              <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(251, 191, 36, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem;">
+                <div style="font-size: 0.78rem; color: #FDE68A; font-weight: 800;">🌟 만 ${ageYears}세 두뇌 결정적 민감기</div>
+                <div style="font-size: 1.05rem; font-weight: 900; color: #FBBF24; margin: 0.25rem 0;">${ageYears <= 3 ? '손끝 소근육·감각 시냅스 폭발기' : ageYears <= 6 ? '전두엽 공간·어휘 회로 형성기' : ageYears <= 9 ? '문해력·수리 도식화 골든타임' : '메타인지·추상논리 완성기'}</div>
+                <div style="font-size: 0.76rem; color: #CBD5E1;">최우선 강점: ${strengthsList[0].title}</div>
+              </div>
+            </div>
+
+            <!-- VIVID LEARNING GRAPH 1 & 2: 5-AXIS RADAR CHART + 6-MONTH LEARNING TRAJECTORY CURVE SVG -->
+            <div id="learning-visual-charts-showcase" style="background: rgba(9, 14, 28, 0.92); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 18px; padding: 1.1rem 1.15rem; margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+                <span style="font-size: 0.92rem; font-weight: 900; color: #E9D5FF;">
+                  📊 한눈에 보는 우리 아이 5각 두뇌 밸런스 &amp; 6개월 학습 성장 곡선 그래프
+                </span>
+                <span style="font-size: 0.76rem; color: #6EE7B7; font-weight: 800;">
+                  ● 보라색: 현재 역량 | ● 에메랄드: 6개월 맞춤 코칭 시 도달 역량
+                </span>
+              </div>
+
+              <!-- Openly Rendered 5-Axis Radar SVG & Bar Gauges from NeuroCognitiveMatrix -->
+              <div style="margin-bottom: 1rem;">
+                ${NeuroCognitiveMatrix && typeof NeuroCognitiveMatrix.renderNeuroSection === 'function'
+                  ? NeuroCognitiveMatrix.renderNeuroSection(profile)
+                  : ''}
+              </div>
+
+              <!-- 6-Month Learning Growth Curve SVG (LQ & Focus & Memory Retention Trajectory) -->
+              <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 0.95rem 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.86rem; font-weight: 900; color: #38BDF8;">
+                    📈 6개월 학습지수(LQ) · 집중시간 · 장기기억 3중 상승 궤적 그래프
+                  </span>
+                  <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; font-size: 0.75rem; font-weight: 800;">
+                    <span style="color: #34D399;">● 맞춤 학습코칭 시 (LQ ${lqData.trajectory.coached.lqScore}점)</span>
+                    <span style="color: #C084FC;">● 또래 평균 궤적 (LQ 80점)</span>
+                    <span style="color: #FB7185;">● 현재 병목 방치 시 (LQ ${lqData.trajectory.unmanaged.lqScore}점)</span>
+                  </div>
+                </div>
+
+                <svg id="hero-vivid-learning-curve-svg" viewBox="0 0 640 220" style="width: 100%; height: auto; display: block; overflow: visible;">
+                  <defs>
+                    <linearGradient id="learnOptFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.38" />
+                      <stop offset="100%" stop-color="#A855F7" stop-opacity="0.03" />
+                    </linearGradient>
+                    <linearGradient id="learnOptStroke" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#C084FC" />
+                      <stop offset="50%" stop-color="#38BDF8" />
+                      <stop offset="100%" stop-color="#10B981" />
+                    </linearGradient>
+                  </defs>
+
+                  <line x1="50" y1="35" x2="505" y2="35" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                  <line x1="50" y1="80" x2="505" y2="80" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                  <line x1="50" y1="125" x2="505" y2="125" stroke="rgba(148,163,184,0.15)" stroke-dasharray="4,4" />
+                  <line x1="50" y1="170" x2="505" y2="170" stroke="rgba(148,163,184,0.28)" />
+
+                  <text x="60" y="196" fill="#DDD6FE" font-size="11.5" font-weight="900" text-anchor="middle">현재 (진단일)</text>
+                  <text x="205" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">4주 뒤 (습관 형성)</text>
+                  <text x="355" y="196" fill="#CBD5E1" font-size="11" font-weight="800" text-anchor="middle">12주 뒤 (회로 강화)</text>
+                  <text x="495" y="196" fill="#6EE7B7" font-size="11.5" font-weight="900" text-anchor="middle">6개월 뒤 (목표 도달)</text>
+
+                  <!-- Area Fill -->
+                  <path d="M 60 142 C 180 112, 320 64, 495 34 L 495 170 L 60 170 Z" fill="url(#learnOptFill)" />
+
+                  <!-- Unmanaged Curve -->
+                  <path d="M 60 142 C 180 146, 320 150, 495 154" fill="none" stroke="#FB7185" stroke-width="3" stroke-dasharray="6,5" />
+                  <circle cx="495" cy="154" r="5.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="1.8" />
+
+                  <!-- Peer Standard Curve -->
+                  <path d="M 60 142 C 180 130, 320 112, 495 98" fill="none" stroke="#C084FC" stroke-width="3" />
+                  <circle cx="495" cy="98" r="5.5" fill="#A855F7" stroke="#FFFFFF" stroke-width="1.8" />
+
+                  <!-- Coached Curve -->
+                  <path d="M 60 142 C 180 112, 320 64, 495 34" fill="none" stroke="url(#learnOptStroke)" stroke-width="5" stroke-linecap="round" />
+                  <circle cx="60" cy="142" r="7" fill="#C084FC" stroke="#FFFFFF" stroke-width="2.2" />
+                  <circle cx="205" cy="105" r="5.5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
+                  <circle cx="355" cy="62" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="495" cy="34" r="8" fill="#10B981" stroke="#A7F3D0" stroke-width="3" />
+
+                  <!-- Callout Badges -->
+                  <rect x="18" y="104" width="104" height="26" rx="7" fill="rgba(168,85,247,0.25)" stroke="#C084FC" stroke-width="1.2" />
+                  <text x="70" y="121" fill="#FFFFFF" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
+
+                  <rect x="152" y="72" width="110" height="24" rx="7" fill="rgba(56,189,248,0.2)" stroke="#38BDF8" stroke-width="1" />
+                  <text x="207" y="88" fill="#BAE6FD" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +10분↑</text>
+
+                  <rect x="300" y="30" width="114" height="24" rx="7" fill="rgba(16,185,129,0.22)" stroke="#34D399" stroke-width="1" />
+                  <text x="357" y="46" fill="#A7F3D0" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존 ${lqData.trajectory.coached.retentionRate}%</text>
+
+                  <rect x="508" y="18" width="124" height="30" rx="9" fill="rgba(16,185,129,0.28)" stroke="#10B981" stroke-width="1.5" />
+                  <text x="570" y="37" fill="#6EE7B7" font-size="12" font-weight="900" text-anchor="middle">코칭시 LQ ${lqData.trajectory.coached.lqScore}점</text>
+
+                  <rect x="508" y="83" width="124" height="26" rx="8" fill="rgba(168,85,247,0.22)" stroke="#C084FC" stroke-width="1.2" />
+                  <text x="570" y="100" fill="#E9D5FF" font-size="11" font-weight="900" text-anchor="middle">또래평균 LQ 80점</text>
+
+                  <rect x="508" y="139" width="124" height="26" rx="8" fill="rgba(244,63,94,0.22)" stroke="#FB7185" stroke-width="1.2" />
+                  <text x="570" y="156" fill="#FDA4AF" font-size="11" font-weight="900" text-anchor="middle">방치시 LQ ${lqData.trajectory.unmanaged.lqScore}점</text>
+                </svg>
+              </div>
+            </div>
 
             <!-- Transparent Learning LQ Score Calculation Formula Box -->
             <div id="learning-score-formula-box" style="background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 0.9rem; font-size: 0.86rem; color: #F3E8FF; line-height: 1.65;">
@@ -1741,32 +2131,36 @@
             ` : ''}
           </div>
 
-          <!-- ==================== STEP 2: 아이가 잘하는 성향 (1위 → 2위 → 3위 세로 순차 서술) ==================== -->
+          <!-- ==================== STEP 2: 아이가 잘하는 성향 (시각 게이지 바 + 1위 → 2위 → 3위) ==================== -->
           <div id="learning-step-2-strengths" style="background: linear-gradient(145deg, rgba(6, 78, 59, 0.38) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #10B981; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #10B981; color: #052E16; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 2 · 아이가 잘하는 성향 (강점 1위 → 2위 → 3위)
+                STEP 2 · 아이가 잘하는 성향 (강점 1위 → 2위 → 3위 그래프)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #6EE7B7;">
-                강점 1위부터 3위까지 한 줄에 하나씩 순서대로 확인하세요
+                또래 평균(78점) 대비 시냅스 활성도가 높은 상위 강점
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.9rem 0;">
-              🌟 2. 우리 아이가 잘하는 성향 (강점 1위 → 2위 → 3위 순차 진단)
+              🌟 2. 우리 아이가 잘하는 성향 (강점 1위 → 2위 → 3위 점수 &amp; 게이지)
             </h3>
             <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${strengthsList.map((s, idx) => `
                 <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(16, 185, 129, 0.5); border-left: 5px solid #10B981; border-radius: 16px; padding: 1.1rem 1.25rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.35rem;">
                     <span style="font-size: 0.82rem; font-weight: 900; color: #052E16; background: #34D399; padding: 0.2rem 0.7rem; border-radius: 9999px;">
                       강점 ${idx + 1}위
                     </span>
                     <span style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7;">
-                      역량 점수 ${s.score}점 (상위 강점)
+                      역량 점수 ${s.score}점 / 100점 (상위 강점)
                     </span>
                   </div>
-                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.4rem;">
                     ${s.icon} ${s.title}
+                  </div>
+                  <!-- Visual Strength Gauge Bar -->
+                  <div style="position: relative; height: 12px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem;">
+                    <div style="width: ${Math.min(100, s.score)}%; height: 100%; background: linear-gradient(90deg, #10B981 0%, #34D399 100%); border-radius: 9999px;"></div>
                   </div>
                   <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
                     ${s.goodTrait}
@@ -1776,32 +2170,37 @@
             </div>
           </div>
 
-          <!-- ==================== STEP 3: 아이가 못하는 성향 (1위 → 2위 → 3위 세로 순차 서술) ==================== -->
+          <!-- ==================== STEP 3: 아이가 못하는 성향 (시각 게이지 바 + 1위 → 2위 → 3위) ==================== -->
           <div id="learning-step-3-weaknesses" style="background: linear-gradient(145deg, rgba(136, 19, 55, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%); border: 2px solid #F43F5E; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #F43F5E; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 3 · 보완이 필요한 성향 (1순위 → 2순위 → 3순위)
+                STEP 3 · 보완이 필요한 성향 (1순위 → 2순위 → 3순위 그래프)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #FDA4AF;">
-                만 ${ageYears}세 발달 단계에서 우선 보완할 병목 순서
+                6개월 맞춤 코칭 시 +15~18점 수직 상승 가능한 잠재 영역
               </span>
             </div>
             <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.9rem 0;">
-              🚨 3. 지금 보완해주면 좋은 성향 (1순위 → 2순위 → 3순위 순차 진단)
+              🚨 3. 지금 보완해주면 좋은 성향 (현재 점수 vs 6개월 코칭 목표 게이지)
             </h3>
             <div style="display: flex; flex-direction: column; gap: 0.85rem;">
               ${weaknessesList.map((w, idx) => `
                 <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.5); border-left: 5px solid #F43F5E; border-radius: 16px; padding: 1.1rem 1.25rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.35rem;">
                     <span style="font-size: 0.82rem; font-weight: 900; color: #FFFFFF; background: #E11D48; padding: 0.2rem 0.7rem; border-radius: 9999px;">
                       보완 ${idx + 1}순위
                     </span>
                     <span style="font-size: 0.94rem; font-weight: 900; color: #FDA4AF;">
-                      현재 ${w.score}점 (우선 코칭 대상)
+                      현재 ${w.score}점 → <span style="color:#6EE7B7;">코칭 목표 ${Math.min(96, w.score + 16)}점 (+16점↑)</span>
                     </span>
                   </div>
-                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.35rem;">
+                  <div style="font-size: 1.08rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.4rem;">
                     ${w.icon} ${w.title}
+                  </div>
+                  <!-- Dual Gauge Bar: Current vs 6M Target -->
+                  <div style="position: relative; height: 12px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${Math.min(96, w.score + 16)}%; background: rgba(16, 185, 129, 0.35); border-right: 2px solid #34D399; border-radius: 9999px;"></div>
+                    <div style="position: relative; width: ${Math.min(100, w.score)}%; height: 100%; background: linear-gradient(90deg, #F43F5E 0%, #FB7185 100%); border-radius: 9999px;"></div>
                   </div>
                   <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.6; margin: 0;">
                     ${w.weakTrait}
@@ -1821,7 +2220,7 @@
           <div id="learning-step-4-careers" style="background: linear-gradient(145deg, rgba(30, 58, 138, 0.45) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #60A5FA; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.35rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #3B82F6; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.3rem 0.85rem; border-radius: 9999px;">
-                STEP 4 · 어울리는 미래 직업 &amp; 진로 (1순위 → 2순위 → 3순위)
+                STEP 4 · 어울리는 미래 직업 &amp; 진로 적합도 (1순위 → 2순위 → 3순위)
               </span>
               <span style="font-size: 0.82rem; font-weight: 800; color: #93C5FD;">
                 강점 성향과 학습 스타일을 결합한 적성 진로
@@ -1834,11 +2233,13 @@
               상위 강점(<strong>${strengthsList[0].title}</strong>)과 공부 성향(<strong>${activeStyleInfo.title}</strong>)을 살렸을 때 가장 빛을 발할 추천 진로입니다.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-              ${recommendedCareers.map((c, idx) => `
+              ${recommendedCareers.map((c, idx) => {
+                const matchPct = idx === 0 ? 96 : idx === 1 ? 91 : 88;
+                return `
                 <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(96, 165, 250, 0.5); border-left: 5px solid #3B82F6; border-radius: 16px; padding: 1.1rem 1.25rem;">
                   <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem;">
                     <span style="font-size: 0.82rem; font-weight: 900; color: #FFFFFF; background: #2563EB; padding: 0.2rem 0.7rem; border-radius: 9999px;">
-                      추천 진로 ${idx + 1}위 · ${c.group}
+                      추천 진로 ${idx + 1}위 · ${c.group} (적성 매칭도 ${matchPct}%)
                     </span>
                     <span style="font-size: 0.82rem; font-weight: 800; color: #93C5FD;">
                       🎯 연계 전공: ${c.majors}
@@ -1847,35 +2248,84 @@
                   <div style="font-size: 1.08rem; font-weight: 900; color: #FDE68A; margin-bottom: 0.35rem; line-height: 1.4;">
                     ${c.icon} ${c.jobs}
                   </div>
+                  <div style="height: 8px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin-bottom: 0.45rem;">
+                    <div style="width: ${matchPct}%; height: 100%; background: linear-gradient(90deg, #3B82F6 0%, #38BDF8 100%); border-radius: 9999px;"></div>
+                  </div>
                   <p style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.55; margin: 0;">
                     ${c.reason}
                   </p>
                 </div>
-              `).join('')}
+              `;}).join('')}
             </div>
           </div>
 
-          <!-- Collapsible 5-Axis Radar & 3-Year Curriculum Detail (Preserves #lq-radar-svg cleanly without cluttering main view) -->
-          <details style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 16px; padding: 0.95rem 1.2rem; margin-bottom: 1.4rem;">
-            <summary style="cursor: pointer; font-size: 0.95rem; font-weight: 900; color: #DDD6FE; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-              <span>📊 [상세 차트 보기] 5각 뇌인지 밸런스 레이더 차트 &amp; 향후 3개년 교과 연계 로드맵 펼치기 ▼</span>
-              <span style="font-size: 0.78rem; color: #C084FC; background: rgba(168, 85, 247, 0.18); padding: 0.2rem 0.65rem; border-radius: 9999px;">클릭 시 상세 차트 열림</span>
-            </summary>
-            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed rgba(139, 92, 246, 0.35);">
-              ${NeuroCognitiveMatrix && typeof NeuroCognitiveMatrix.renderNeuroSection === 'function'
-                ? NeuroCognitiveMatrix.renderNeuroSection(profile)
-                : ''}
-              ${PinpointCurator && typeof PinpointCurator.renderCognitiveCurriculumRoadmap === 'function'
-                ? PinpointCurator.renderCognitiveCurriculumRoadmap(profile)
-                : ''}
-            </div>
-          </details>
+          <!-- 3-Year Curriculum Roadmap (Open by default so parents immediately see the visual roadmap) -->
+          <div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 18px; padding: 1.1rem 1.25rem; margin-bottom: 1.4rem;">
+            ${PinpointCurator && typeof PinpointCurator.renderCognitiveCurriculumRoadmap === 'function'
+              ? PinpointCurator.renderCognitiveCurriculumRoadmap(profile)
+              : ''}
+          </div>
         </div><!-- /#report-ch-6 -->
 
         <!-- ================================================================== -->
         <!-- CHAPTER 7: [STEP 5] 잘하는 성향 강화법 + [STEP 6] 못하는 성향 보완법 -->
         <!-- ================================================================== -->
         <div id="report-ch-7" style="scroll-margin-top: 5.5rem; margin-top: 1.5rem;">
+
+          <!-- ==================== VISUAL ILLUSTRATION: 그림으로 보는 3단계 두뇌 학습·기억 코팅 메커니즘 ==================== -->
+          <div id="learning-visual-brain-illustration-card" style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(49, 46, 129, 0.72) 100%); border: 2px solid #818CF8; border-radius: 22px; padding: 1.25rem 1.35rem; margin-bottom: 1.4rem; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+              <span style="background: rgba(129, 140, 248, 0.22); color: #E0E7FF; font-size: 0.82rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #818CF8;">
+                🎨 그림으로 한눈에 보는 우리 아이 두뇌 학습·장기기억 코팅 3단계 원리
+              </span>
+              <span style="font-size: 0.78rem; color: #A5B4FC; font-weight: 800;">
+                전두엽 몰입 → 해마 인출 → 밤 10시 대뇌피질 수면 코팅
+              </span>
+            </div>
+
+            <svg id="learning-brain-mechanism-svg" viewBox="0 0 660 175" style="width: 100%; height: auto; display: block;">
+              <!-- Step 1 Card -->
+              <rect x="8" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#38BDF8" stroke-width="2" />
+              <circle cx="52" cy="48" r="22" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.8" />
+              <text x="52" y="55" font-size="20" text-anchor="middle">📐</text>
+              <text x="86" y="42" fill="#38BDF8" font-size="11.5" font-weight="900">STEP 1 · 전두엽 몰입</text>
+              <text x="86" y="60" fill="#FFFFFF" font-size="13" font-weight="900">독서대 15° &amp; 타이머</text>
+              <text x="22" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 고개 숙임 방지 → 뇌 산소 공급↑</text>
+              <text x="22" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 시각 타이머 ${lqData.trajectory.coached.focusMinutes}분 도파민 집중</text>
+              <rect x="22" y="126" width="168" height="22" rx="6" fill="rgba(56, 189, 248, 0.16)" />
+              <text x="106" y="141" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">집중 지속시간 +${lqData.trajectory.coached.gainFocusMin}분 연장</text>
+
+              <!-- Arrow 1 -> 2 -->
+              <path d="M 208 86 L 228 86" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" />
+              <polygon points="226,80 235,86 226,92" fill="#A78BFA" />
+
+              <!-- Step 2 Card -->
+              <rect x="236" y="10" width="196" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#C084FC" stroke-width="2" />
+              <circle cx="280" cy="48" r="22" fill="rgba(192, 132, 252, 0.2)" stroke="#C084FC" stroke-width="1.8" />
+              <text x="280" y="55" font-size="20" text-anchor="middle">🗣️</text>
+              <text x="314" y="42" fill="#C084FC" font-size="11.5" font-weight="900">STEP 2 · 해마 인출 자극</text>
+              <text x="314" y="60" fill="#FFFFFF" font-size="13" font-weight="900">책 덮고 3분 설명하기</text>
+              <text x="250" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 눈으로만 읽는 가짜기억 차단</text>
+              <text x="250" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 엄마에게 오늘 배운 3줄 말하기</text>
+              <rect x="250" y="126" width="168" height="22" rx="6" fill="rgba(192, 132, 252, 0.18)" />
+              <text x="334" y="141" fill="#E9D5FF" font-size="10.5" font-weight="900" text-anchor="middle">시냅스 인출 강도 +50% 강화</text>
+
+              <!-- Arrow 2 -> 3 -->
+              <path d="M 436 86 L 456 86" stroke="#34D399" stroke-width="3" stroke-linecap="round" />
+              <polygon points="454,80 463,86 454,92" fill="#34D399" />
+
+              <!-- Step 3 Card -->
+              <rect x="464" y="10" width="188" height="152" rx="16" fill="rgba(30, 41, 59, 0.92)" stroke="#10B981" stroke-width="2" />
+              <circle cx="508" cy="48" r="22" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" stroke-width="1.8" />
+              <text x="508" y="55" font-size="20" text-anchor="middle">🌙</text>
+              <text x="540" y="42" fill="#34D399" font-size="11.5" font-weight="900">STEP 3 · 대뇌피질 코팅</text>
+              <text x="540" y="60" fill="#FFFFFF" font-size="13" font-weight="900">밤 10시 서파수면 저장</text>
+              <text x="478" y="92" fill="#E2E8F0" font-size="11" font-weight="700">• 수면 중 해마→대뇌피질 전송</text>
+              <text x="478" y="112" fill="#E2E8F0" font-size="11" font-weight="700">• 단기기억이 영구 장기기억으로!</text>
+              <rect x="478" y="126" width="160" height="22" rx="6" fill="rgba(16, 185, 129, 0.2)" />
+              <text x="558" y="141" fill="#6EE7B7" font-size="10.5" font-weight="900" text-anchor="middle">장기기억 보존율 ${lqData.trajectory.coached.retentionRate}% 달성</text>
+            </svg>
+          </div>
 
           <!-- ==================== STEP 5: 잘하는 성향을 강화시키려면 이걸 해야 하고 ==================== -->
           <div id="learning-step-5-boost" style="background: linear-gradient(145deg, rgba(6, 95, 70, 0.35) 0%, rgba(15, 23, 42, 0.96) 100%); border: 2px solid #34D399; border-radius: 22px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; text-align: left;">

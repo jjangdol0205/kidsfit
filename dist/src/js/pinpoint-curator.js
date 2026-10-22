@@ -1351,10 +1351,10 @@
       // Toddler 1-3 yrs: Liquid Citrate/Cartilage Calcium + D3
       supplements.push(Object.assign({
         id: 'liquid_calcium_toddler',
-        categoryBadge: '🍼 영유아 골기질 1순위 맞춤 영양제',
+        categoryBadge: `🍼 [만 ${ageYears}세 영유아 맞춤 1위] 골기질 액상 영양제`,
         name: '영유아 액상 구연산·연골 칼슘 마그네슘 & 비타민D3 1000IU 드롭',
         activeSpec: '액상 구연산칼슘(흡수율 45%) + 연골추출물 + 마그네슘 + 콜레칼시페롤(D3)',
-        whyNeeded: `생후 ${ageMonths}개월 ${genderKo}는 제1급성장기 골격이 형성되는 시기로, 정제 알약 대신 위산 분비와 무관하게 흡수되는 액상 구연산·연골칼슘(일일 650mg 기준)과 비타민D3 보충이 필수입니다 (PMID:31964028).`,
+        whyNeeded: `생후 ${ageMonths}개월(만 ${ageYears}세) ${genderKo}는 제1급성장기 골격이 형성되는 시기로, 알약 대신 위산 분비와 무관하게 흡수되는 액상 구연산·연골칼슘(일일 650mg 기준)과 비타민D3 드롭 보충이 필수입니다 (PMID:31964028).`,
         buttonLabelCoupang: `쿠팡에서 '유아 액상 구연산 연골칼슘 비타민D' 바로 보기 ↗`,
         buttonLabelIherb: `iHerb에서 'ChildLife 액상 칼슘 마그네슘' 바로 보기 ↗`
       }, buildPinpointUrls(
@@ -1363,15 +1363,15 @@
         '유아 영양식단 칼슘 육아',
         affConfig
       )));
-    } else {
-      // Age 4+: HT042 Astragalus Complex (Primary Growth Promoter)
+    } else if (ageYears <= 6) {
+      // Preschool 4-6 yrs: Chewable/Jelly HT042 Astragalus Complex
       supplements.push(Object.assign({
         id: 'ht042_growth',
-        categoryBadge: '🧬 식약처 인정 키성장 기능성 원료 1순위',
-        name: '식약처 인정 황기추출물 등 복합물(HT042) 어린이 키성장 영양제',
-        activeSpec: '황기추출물 등 복합물(HT042 · 가시오갈피·한속단 배합) 개별인정형 원료',
-        whyNeeded: `만 ${ageYears}세(${ageMonths}개월, 현재 ${height}cm) 시기에 간에서 성장호르몬 하위 인자(IGF-1 및 IGFBP-3) 생성을 촉진하여 성장판 연골세포 증식 속도를 높여주는 식약처 인정 핵심 원료입니다 (경희대 임상 PMID:25374566).`,
-        buttonLabelCoupang: `쿠팡에서 '어린이 황기추출물 HT042 키성장 영양제' 바로 보기 ↗`,
+        categoryBadge: `🧬 [만 ${ageYears}세 유아 맞춤 1위] 식약처 인정 키성장 젤리·분말`,
+        name: '식약처 인정 황기추출물 등 복합물(HT042) 유아·어린이 키성장 영양제 (아이커·키클래오042)',
+        activeSpec: '황기추출물 등 복합물(HT042 · 가시오갈피·한속단 배합) 유아 친화 분말/젤리형',
+        whyNeeded: `만 ${ageYears}세(${ageMonths}개월, 현재 ${height}cm) 유아기에 간에서 성장호르몬 하위 인자(IGF-1 및 IGFBP-3) 생성을 촉진하여 하지 성장판 연골세포 증식 속도를 높여주는 식약처 인정 핵심 원료입니다 (경희대 임상 PMID:25374566).`,
+        buttonLabelCoupang: `쿠팡에서 '만 ${ageYears}세 어린이 황기추출물 HT042 키성장 영양제' 바로 보기 ↗`,
         buttonLabelIherb: `iHerb에서 '황기추출물(Astragalus) 성장 면역 스펙' 바로 보기 ↗`
       }, buildPinpointUrls(
         '식약처 인정 키성장 황기추출물 HT042 어린이 영양제',
@@ -1379,20 +1379,56 @@
         '어린이 키성장 영양가이드',
         affConfig
       )));
+    } else if (ageYears <= 10) {
+      // Elementary 7-10 yrs: Pre-pubertal foundation HT042
+      supplements.push(Object.assign({
+        id: 'ht042_growth',
+        categoryBadge: `🧬 [만 ${ageYears}세 초등 맞춤 1위] 사춘기 전 기초키 확보 HT042`,
+        name: '식약처 인정 황기추출물 등 복합물(HT042) 초등 키성장 집중 영양제',
+        activeSpec: '황기추출물 등 복합물(HT042) + 어골칼슘·비타민D3·아연 올인원 배합',
+        whyNeeded: `사춘기 급성장기 진입 전 기초 신장을 최대한 비축해야 하는 만 ${ageYears}세(현재 ${height}cm) 시기에 성장인자(IGF-1)와 성장판 연골 증식을 직접 돕는 식약처 인정 1순위 원료입니다 (PMID:25374566).`,
+        buttonLabelCoupang: `쿠팡에서 '초등 황기추출물 HT042 키성장 영양제' 바로 보기 ↗`,
+        buttonLabelIherb: `iHerb에서 '황기추출물(Astragalus) 성장 면역 스펙' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '식약처 인정 키성장 황기추출물 HT042 어린이 영양제',
+        'Astragalus root extract kids growth immune',
+        '어린이 키성장 영양가이드',
+        affConfig
+      )));
+    } else {
+      // Age 11+ (Puberty / PHV / Adolescence): High-potency HT042 + Arginine
+      supplements.push(Object.assign({
+        id: 'ht042_growth',
+        categoryBadge: `🧬 [만 ${ageYears}세 급성장기 맞춤 1위] 성장판 마감 전 집중 부스터`,
+        name: '식약처 인정 황기추출물(HT042) & 청소년 고함량 아르기닌·초유 키성장 영양제',
+        activeSpec: '황기추출물 복합물(HT042) + L-아르기닌 + 초유단백(IgG) 고함량 배합',
+        whyNeeded: `성장판이 서서히 닫히기 시작하는 만 ${ageYears}세(${height}cm) 급성장·방어 골든타임에 성장호르몬 하위 인자(IGF-1) 분비와 골단 연골 증식을 극대화하는 필수 기능성 원료입니다 (PMID:25374566).`,
+        buttonLabelCoupang: `쿠팡에서 '청소년 황기추출물 HT042 키성장 영양제' 바로 보기 ↗`,
+        buttonLabelIherb: `iHerb에서 '황기추출물(Astragalus) & L-Arginine' 바로 보기 ↗`
+      }, buildPinpointUrls(
+        '식약처 인정 키성장 황기추출물 HT042 어린이 청소년 영양제',
+        'Astragalus root extract L-Arginine growth',
+        '청소년 키성장 영양가이드',
+        affConfig
+      )));
     }
 
-    // Supplement #2: Dynamically chosen based on child's specific habit bottleneck or bone mineralization need
+    // Supplement #2: Dynamically chosen based on child's age & specific habit bottleneck
     if (isPicky) {
       supplements.push(Object.assign({
         id: 'zinc_colostrum',
-        categoryBadge: '🥦 편식·입짧음 & IGF-1 활성화 맞춤 처방',
-        name: '어린이 글루콘산·피콜린산 아연 + 초유 단백질(IgG) + L-아르기닌 영양제',
-        activeSpec: '글루콘산/피콜린산 아연(8~12mg) + 뉴질랜드 초유단백 + L-아르기닌',
-        whyNeeded: `선택하신 [단백질·채소 편식] 요인은 성장호르몬 수용체(GHR) 인산화와 미각 세포 재생을 늦춥니다. 체중(${weight}kg) 비례 단백질 기질과 아연·초유 성장인자를 동시에 보충해야 합니다 (PMID:12036814).`,
-        buttonLabelCoupang: `쿠팡에서 '어린이 글루콘산 아연 초유 아르기닌 영양제' 바로 보기 ↗`,
+        categoryBadge: `🥦 [만 ${ageYears}세 맞춤 2위] 편식·입짧음 & 적정체중(${weight}kg) 케어`,
+        name: ageYears <= 3
+          ? '영유아 액상 글루콘산 아연 시럽 & 뉴질랜드 초유 분말 스틱'
+          : (ageYears <= 6
+            ? '유아 오렌지맛 초유 칼슘·아연 츄어블 & 어린이 멀티비타민 구미'
+            : '어린이·청소년 글루콘산·피콜린산 아연 + 초유 단백질(IgG) + L-아르기닌'),
+        activeSpec: `글루콘산/피콜린산 아연(${ageYears <= 3 ? '5~8mg 액상/분말' : '8~12mg 츄어블'}) + 뉴질랜드 초유단백 + L-아르기닌`,
+        whyNeeded: `선택하신 [단백질·채소 편식 / 마른 체형] 요인은 성장호르몬 수용체(GHR) 인산화와 미각 세포 재생을 늦춥니다. 만 ${ageYears}세 체중(${weight}kg) 비례 단백질 기질과 아연·초유 성장인자를 동시에 보충해야 키와 적정 몸무게가 함께 자랍니다 (PMID:12036814).`,
+        buttonLabelCoupang: `쿠팡에서 '만 ${ageYears}세 맞춤 아연 초유 영양제' 바로 보기 ↗`,
         buttonLabelIherb: `iHerb에서 '어린이 피콜린산 아연 초유(Colostrum)' 바로 보기 ↗`
       }, buildPinpointUrls(
-        '어린이 글루콘산 아연 초유 아르기닌 영양제',
+        ageYears <= 3 ? '유아 액상 아연 시럽 초유 분말 스틱' : '어린이 글루콘산 아연 초유 아르기닌 영양제',
         'Kids Zinc Picolinate Colostrum Chewable',
         '편식 아이 영양사전',
         affConfig
@@ -1400,10 +1436,10 @@
     } else if (isLateSleep && ageYears >= 7) {
       supplements.push(Object.assign({
         id: 'sleep_magnesium_tartcherry',
-        categoryBadge: '🌙 밤 10시 서파수면(SWS) & 성장통 완화 맞춤 처방',
-        name: '어린이 연골칼슘·글리시네이트 마그네슘 & 몽모랑시 타트체리 슬립케어',
-        activeSpec: '연골·어골칼슘 + 킬레이트 글리시네이트 마그네슘(${Math.round(weight * 4.5)}mg) + 타트체리·L-테아닌',
-        whyNeeded: `선택하신 [늦은 취침 / 야간 혈당] 요인으로 억제된 밤 10시~2시 서파수면 성장호르몬 피크(일일 분비량의 65%)를 복원하고 야간 성장통·신경 흥분을 안정시키는 맞춤 배합입니다 (PMID:4300547).`,
+        categoryBadge: `🌙 [만 ${ageYears}세 맞춤 2위] 밤 10시 서파수면(SWS) & 성장통 완화`,
+        name: '어린이·청소년 연골칼슘·글리시네이트 마그네슘 & 몽모랑시 타트체리 슬립케어',
+        activeSpec: `연골·어골칼슘 + 킬레이트 글리시네이트 마그네슘(${Math.round(weight * 4.5)}mg) + 타트체리·L-테아닌`,
+        whyNeeded: `선택하신 [늦은 취침 / 야간 혈당] 요인으로 억제된 밤 10시~2시 서파수면 성장호르몬 피크(일일 분비량의 65%)를 복원하고 만 ${ageYears}세 야간 성장통·신경 흥분을 안정시키는 맞춤 배합입니다 (PMID:4300547).`,
         buttonLabelCoupang: `쿠팡에서 '어린이 연골칼슘 마그네슘 타트체리 영양제' 바로 보기 ↗`,
         buttonLabelIherb: `iHerb에서 '어린이 글리시네이트 마그네슘 타트체리' 바로 보기 ↗`
       }, buildPinpointUrls(
@@ -1413,15 +1449,19 @@
         affConfig
       )));
     } else {
-      // Default #2: Cartilage Calcium (연골칼슘) & Fish Bone Calcium (어골칼슘 MCHA) + PGA + Vit D3/K2
+      // Default #2: Age-tailored Cartilage Calcium & Fish Bone Calcium + Vit D3/K2
       const targetCa = ageYears <= 3 ? 650 : ageYears <= 8 ? 800 : 1100;
       supplements.push(Object.assign({
         id: 'cartilage_calcium',
-        categoryBadge: '🦴 성장판 연골 → 뼈 기질 골화 필수 처방',
-        name: '어린이 연골칼슘·비소성 어골칼슘(MCHA) & 폴리감마글루탐산·비타민D3·K2',
-        activeSpec: `연골칼슘·어골칼슘(일일 목표 ${targetCa}mg, 흡수율 45%) + 폴리감마글루탐산(PGA) + D3·K2(MK-7)`,
+        categoryBadge: `🦴 [만 ${ageYears}세 맞춤 2위] 성장판 연골 → 뼈 기질 골화 필수 칼슘`,
+        name: ageYears <= 3
+          ? '영유아 초유·해조칼슘 분말 스틱 & 비타민D3·아연 올인원'
+          : (ageYears <= 6
+            ? '유아용 오렌지맛 어골·연골칼슘 츄어블 & 폴리감마글루탐산·비타민D3·K2'
+            : `초등·청소년 고흡수 어골·연골칼슘(${targetCa}mg) & 폴리감마글루탐산·비타민D3·K2`),
+        activeSpec: `연골·어골칼슘(만 ${ageYears}세 일일 목표 ${targetCa}mg, 흡수율 45%) + 폴리감마글루탐산(PGA) + D3·K2(MK-7)`,
         whyNeeded: `만 ${ageYears}세 성장판의 연골세포가 단단한 뼈 기질로 전환될 때, 일반 탄산칼슘(흡수율 22%)보다 생체흡수율이 2배 이상 높고 인체 뼈 구성비(Ca:P=2:1)와 동일한 연골·어골칼슘과 비타민D3·K2가 필수입니다.`,
-        buttonLabelCoupang: `쿠팡에서 '어린이 연골칼슘 어골칼슘 폴리감마글루탐산 비타민D' 바로 보기 ↗`,
+        buttonLabelCoupang: `쿠팡에서 '만 ${ageYears}세 연골칼슘 어골칼슘 비타민D3' 바로 보기 ↗`,
         buttonLabelIherb: `iHerb에서 '어린이 구연산·킬레이트 칼슘 마그네슘 D3·K2' 바로 보기 ↗`
       }, buildPinpointUrls(
         '어린이 연골칼슘 어골칼슘 폴리감마글루탐산 비타민D3 츄어블',
@@ -1774,11 +1814,19 @@
       });
     });
 
+    const eduToursList = curateEducationalTours(p, affConfig).map((t) => Object.assign({}, t, {
+      name: t.titleKo || t.categoryKo,
+      mrtUrl: t.myrealtripUrl
+    }));
+    const learningToolsList = attachCurated(curatePillar2LearningTools(p, affConfig));
+
     return {
       supplements: attachCurated(supplements),
       toys: attachCurated(toys),
       books: attachCurated(books),
-      eduTours: curateEducationalTours(p, affConfig),
+      learningTools: learningToolsList,
+      eduTours: eduToursList,
+      tours: eduToursList,
       regionalTickets: curateRegionalAgeTickets(p, affConfig),
       lifecycleRoadmap: getSequentialLifecycleRoadmap(ageYears),
       autoStage: autoDetectGrowthStage(ageMonths, p.gender, recent6m)
@@ -2970,39 +3018,57 @@
       },
       passive_forget: {
         key: 'passive_forget',
-        badgeKo: '🧠 메타인지 · 자기주도 복습 병목 진단',
-        titleKo: '학원·설명을 들어도 금방 잊어버리고 스스로 복습이 안 될 때',
-        rootCauseKo: '선생님의 설명을 눈과 귀로만 따라가는 수동적 학습은 "내가 다 안다"는 유창성 착각(Fluency Illusion)을 일으켜 해마 단기기억에만 머물다 1주일 내 52%가 망각됩니다.',
-        prescriptionKo: '학원 다녀온 직후 딱 5분만 책을 덮고 【코넬 백지복습 노트에 오늘 배운 핵심 3가지 적기(Active Recall)】 또는 【엄마에게 일일 선생님이 되어 1분간 설명하기(파인만 기법)】를 실천하세요! 그리고 밤 10시 전 서파수면에 진입하면 해마 단기기억이 대뇌 장기기억으로 +50% 이상 공고화됩니다.',
+        badgeKo: `🧠 [만 ${ageYears}세 맞춤] 기억 정착 · 자기주도 인출 병목 진단`,
+        titleKo: ageYears <= 6 ? '배운 낱말이나 그림책 내용을 금방 잊어버릴 때' : '학원·설명을 들어도 금방 잊어버리고 스스로 복습이 안 될 때',
+        rootCauseKo: '선생님이나 부모님의 설명을 눈과 귀로만 따라가는 수동적 학습은 "내가 다 안다"는 유창성 착각(Fluency Illusion)을 일으켜 해마 단기기억에만 머물다 1주일 내 52%가 망각됩니다.',
+        prescriptionKo: ageYears <= 6
+          ? '그림책이나 놀이를 마친 직후 딱 3분만 책을 덮고 【아이에게 오늘 가장 재미있었던 장면 1가지를 그림으로 그리거나 엄마에게 이야기해 주기】를 실천하세요! 그리고 밤 9시 30분~10시 전 숙면에 들면 해마 단기기억이 대뇌 장기기억으로 코팅됩니다.'
+          : '학원 다녀온 직후 딱 5분만 책을 덮고 【코넬 백지복습 노트에 오늘 배운 핵심 3가지 적기(Active Recall)】 또는 【엄마에게 일일 선생님이 되어 1분간 설명하기(파인만 기법)】를 실천하세요! 그리고 밤 10시 전 서파수면에 진입하면 해마 단기기억이 대뇌 장기기억으로 +50% 이상 공고화됩니다.',
         paperCitationKo: '📚 학술 근거: Roediger & Karpicke (2006, Psychol Sci · 인출학습 장기기억 보존 +50% · PMID:16507066) & Diekelmann & Born (2010, Nat Rev Neurosci · 서파수면 기억 공고화 · PMID:20046194)',
         product: Object.assign({
-          badgeKo: '🏆 메타인지 백지복습 1순위 처방',
-          categoryKo: '🧠 인출효과(+50%) 코넬식 백지복습 노트 & 자기주도 스터디 플래너',
-          titleKo: '초등·청소년 코넬식 메타인지 백지복습 요약 노트 & 100일 자기주도 스터디 플래너 세트',
-          specKo: '단서(Cue)·핵심개념·1줄 요약 3분할 코넬 노트 + 오답 원인 역추적 체크리스트',
-          whyKo: '책을 덮고 스스로 인출(Active Recall)해 봄으로써 아는 것과 모르는 것을 정확히 구분하는 메타인지를 완성합니다.'
+          badgeKo: `🏆 [만 ${ageYears}세 맞춤] 장기기억·복습 1순위 처방`,
+          categoryKo: ageYears <= 6
+            ? '🧠 만 1~6세 유아 기억력·표현력을 깨우는 스토리텔링 그림일기 & 생각열기 워크북'
+            : '🧠 인출효과(+50%) 코넬식 백지복습 노트 & 자기주도 스터디 플래너',
+          titleKo: ageYears <= 3
+            ? '유아 첫 낱말·사물 인지 플래시카드 & 들춰보기 기억력 플랩북 세트'
+            : (ageYears <= 6
+              ? '유아 생각 표현 그림일기장 · 이야기 순서 맞추기 카드 & 스티커 워크북 세트'
+              : (ageYears <= 9
+                ? '초등 저학년 오늘 배운 내용 3줄 백지복습 노트 & 일일 성취 스터디 플래너'
+                : '초등 고학년·청소년 코넬식 메타인지 백지복습 요약 노트 & 100일 스터디 플래너 세트')),
+          specKo: ageYears <= 6
+            ? '그림책 읽은 뒤 장면 떠올려 말하기 + 손끝 스티커·그림으로 기억 인출 훈련'
+            : '단서(Cue)·핵심개념·1줄 요약 3분할 코넬 노트 + 오답 원인 역추적 체크리스트',
+          whyKo: ageYears <= 6
+            ? '아이 눈높이에서 방금 본 내용을 스스로 떠올려 말하고 표현하게 하여 해마 장기기억 회로를 단단하게 만듭니다.'
+            : '책을 덮고 스스로 인출(Active Recall)해 봄으로써 아는 것과 모르는 것을 정확히 구분하는 메타인지를 완성합니다.'
         }, buildPinpointUrls(
-          '코넬노트 백지복습 노트 초등 중등 메타인지 자기주도 스터디플래너',
+          ageYears <= 3 ? '유아 사물 인지 플래시카드 기억력 플랩북' : (ageYears <= 6 ? '유아 그림일기장 이야기 순서 카드 생각열기 워크북' : '코넬노트 백지복습 노트 초등 중등 메타인지 자기주도 스터디플래너'),
           'Cornell Notes Notebook Study Planner Active Recall Student',
-          '메타인지 공부법 코넬노트 스터디플래너',
+          ageYears <= 6 ? '유아 생각열기 그림일기 워크북' : '메타인지 공부법 코넬노트 스터디플래너',
           affConfig
         ))
       },
       screen_dopamine: {
         key: 'screen_dopamine',
-        badgeKo: '📱 미디어 도파민 · 학습 흥미 병목 진단',
+        badgeKo: `📱 [만 ${ageYears}세 맞춤] 미디어 도파민 · 학습 흥미 병목 진단`,
         titleKo: '스마트폰·유튜브 자극에 익숙해 책이나 공부에 흥미가 없을 때',
         rootCauseKo: '빠르게 전환되는 영상·게임의 고농도 도파민 스파이크에 뇌 보상회로가 적응하면서, 전두엽과 언어 중추를 잇는 백질 수초화가 지연되고 느린 호흡의 텍스트에 지루함을 느끼는 상태입니다.',
-        prescriptionKo: '스마트폰을 갑자기 뺏으면 반발심만 커집니다. 【무소음 시각 타이머 15분】을 세팅해 손끝 입체교구(그래비트랙스·자석블록·두뇌퍼즐)나 과학·역사 만화 도감 1챕터를 먼저 끝낸 뒤 정해진 시간만 미디어를 허용하는 "선(先) 전두엽 몰입 → 후(後) 보상" 루틴으로 도파민 기준선을 낮춰주세요.',
+        prescriptionKo: '스마트폰을 갑자기 뺏으면 반발심만 커집니다. 【무소음 시각 타이머 15분】을 세팅해 연령에 맞는 손끝 입체교구(원목교구·자석블록·그래비트랙스·두뇌퍼즐)를 먼저 끝낸 뒤 정해진 시간만 미디어를 허용하는 "선(先) 전두엽 몰입 → 후(後) 보상" 루틴으로 도파민 기준선을 낮춰주세요.',
         paperCitationKo: '📚 학술 근거: Hutton et al. (2020, JAMA Pediatrics · 스크린 미디어 노출과 뇌 언어·집중 백질 수초화 DTI 연구 · PMID:31682712)',
         product: Object.assign({
-          badgeKo: '🏆 도파민 디톡스 · 몰입 전환 1순위',
-          categoryKo: '📱 스마트폰 대신 손끝과 눈을 사로잡는 두뇌 퍼즐 & 시각 집중 타이머',
-          titleKo: '타임타이머(Time Timer) 무소음 시각 집중 타이머 + 스마트게임즈 IQ 퍼즐·그래비트랙스 몰입 세트',
-          specKo: '남은 시간을 직관적으로 보여주는 무소음 원판 타이머 + 120단계 입체 두뇌 미션',
+          badgeKo: `🏆 [만 ${ageYears}세 맞춤] 도파민 디톡스 · 몰입 전환 1순위`,
+          categoryKo: '📱 스마트폰 대신 손끝과 눈을 사로잡는 연령별 입체 교구 & 시각 집중 타이머',
+          titleKo: ageYears <= 3
+            ? '유아 무소음 시각 타이머 + 원목 구슬꿰기·자석 낚시·원목 퍼즐 손끝 몰입 세트'
+            : (ageYears <= 6
+              ? '타임타이머 무소음 시각 타이머 + 매그나타일즈/맥포머스 3D 입체 자석블록 세트'
+              : '타임타이머(Time Timer) 무소음 시각 집중 타이머 + 스마트게임즈 IQ 퍼즐·그래비트랙스 몰입 세트'),
+          specKo: '남은 시간을 직관적으로 보여주는 무소음 원판 타이머 + 연령 맞춤 손끝 입체 미션',
           whyKo: '디지털 화면 없이도 손끝 조작과 단계별 미션 클리어를 통해 건강한 성취 도파민을 회복시킵니다.'
         }, buildPinpointUrls(
-          '타임타이머 무소음 시각 타이머 스마트게임즈 IQ퍼즐 두뇌보드게임',
+          ageYears <= 3 ? '유아 원목 자석 낚시 구슬꿰기 타임타이머' : (ageYears <= 6 ? '유아 투명 자석블록 타임타이머 집중력 시계' : '타임타이머 무소음 시각 타이머 스마트게임즈 IQ퍼즐 두뇌보드게임'),
           'Time Timer MOD Visual Timer SmartGames IQ Puzzler Pro',
           '스마트폰 이기는 독서 공부 습관',
           affConfig
@@ -3010,41 +3076,51 @@
       },
       desk_endurance: {
         key: 'desk_endurance',
-        badgeKo: '🪑 착석 지구력 · 학습 자세 병목 진단',
+        badgeKo: `🪑 [만 ${ageYears}세 맞춤] 착석 지구력 · 학습 자세 병목 진단`,
         titleKo: '책상에 15~20분 이상 바른 자세로 앉아 있기 힘들고 산만할 때',
         rootCauseKo: '전두엽 억제조절(Inhibitory Control) 회로가 발달 중이거나, 평면 책상에 고개를 숙여 경추 하중(15~18kg)과 흉곽 압박으로 뇌 산소 공급이 떨어져 신체적 피로가 빨리 오기 때문입니다.',
-        prescriptionKo: '공부 시작 전 5분 트램폴린·줄넘기로 뇌 각성도(세로토닌·BDNF)를 깨운 뒤, 【눈높이 각도조절 원목 2단 독서대 + 15분 뽀모도로 타이머】 조합으로 고개를 세우고 짧고 굵게 끊어 공부하는 습관을 들여주세요. 숨은 키 +1.8cm와 집중 지속시간이 동시에 살아납니다.',
+        prescriptionKo: '공부·독서 시작 전 5분 트램폴린·스트레칭으로 뇌 각성도(세로토닌·BDNF)를 깨운 뒤, 【눈높이 각도조절 원목 독서대 + 15분 뽀모도로 타이머】 조합으로 고개를 세우고 짧고 굵게 몰입하는 습관을 들여주세요. 숨은 키 +1.8cm와 집중 지속시간이 동시에 살아납니다.',
         paperCitationKo: '📚 학술 근거: Moffitt et al. (2011, PNAS · 전두엽 자기조절력 32년 종단 연구 · PMID:21310973) & Hansraj (2014, 경추 굴곡 생체역학 하중 · PMID:25393825)',
         product: Object.assign({
-          badgeKo: '🏆 바른 착석 · 집중 지구력 1순위',
-          categoryKo: '🪑 거북목·산만함 동시 교정 눈높이 원목 2단 독서대 & 바른자세 방석',
-          titleKo: '위즈독서대 / 독서대통령 높이·각도조절 원목 2단 독서대 + 학습 집중 스터디 타이머 세트',
-          specKo: '독서(상단)·필기(하단) 분리형 2단 각도 조절로 경추 C자 커브 및 시선 집중 유지',
+          badgeKo: `🏆 [만 ${ageYears}세 맞춤] 바른 착석 · 집중 지구력 1순위`,
+          categoryKo: '🪑 거북목·산만함 동시 교정 눈높이 원목 독서대 & 집중 타이머',
+          titleKo: ageYears <= 5
+            ? '유아용 그림책 전면 거치 원목 독서대 & 바른자세 유아 책상의자·시각 타이머 세트'
+            : '위즈독서대 / 독서대통령 높이·각도조절 원목 2단 독서대 + 학습 집중 스터디 타이머 세트',
+          specKo: '아이 눈높이 맞춤 각도 조절로 경추 C자 커브 보호 및 시선 집중 유지',
           whyKo: '고개를 숙이지 않아 목·어깨 피로가 줄어들고, 시야가 책에만 고정되어 착석 유지 시간이 2배 이상 늘어납니다.'
         }, buildPinpointUrls(
-          '위즈독서대 높이각도조절 원목 2단 독서대 초등 바른자세',
+          ageYears <= 5 ? '유아 그림책 원목 독서대 유아 바른자세 책상의자' : '위즈독서대 높이각도조절 원목 2단 독서대 초등 바른자세',
           'Adjustable 2-Tier Wooden Book Stand Ergonomic Reading Holder',
-          '초등 집중력 바른 자세 공부법',
+          '집중력 바른 자세 공부법',
           affConfig
         ))
       },
       vocab_expression: {
         key: 'vocab_expression',
-        badgeKo: '🗣️ 어휘력 · 서술형 표현 병목 진단',
+        badgeKo: `🗣️ [만 ${ageYears}세 맞춤] 어휘력 · 서술형 표현 병목 진단`,
         titleKo: '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워할 때',
         rootCauseKo: '단답형·객관식 문제풀이나 일방적 영상 시청에 익숙해져 좌측 전두엽 브로카 영역(언어 생성 중추)과 손끝 운필 신경망이 스스로 문장을 조직해 발화할 기회가 부족했기 때문입니다.',
-        prescriptionKo: '하루 10분 【초등 교과 필수 어휘·한자어 마인드맵 워크북】으로 어휘 뿌리를 넓히고, 저녁 식탁에서 【하브루타 질문카드】를 1장 뽑아 "네 생각은 어때? 왜 그렇게 생각했어?"라고 5회 이상 대화 턴(Turn-taking)을 주고받으며 완성된 문장으로 말해보게 하세요.',
+        prescriptionKo: ageYears <= 6
+          ? '하루 10분 【유아 의성어·의태어 그림책 & 낱말 말놀이 카드】로 어휘 뿌리를 넓히고, 저녁 식탁에서 【부모-자녀 이야기 질문카드】를 1장 뽑아 "네 생각은 어때? 만약 네가 주인공이라면 어땠을까?"라고 5회 이상 대화를 주고받으세요.'
+          : '하루 10분 【초등·청소년 교과 필수 어휘·한자어 마인드맵 워크북】으로 어휘 뿌리를 넓히고, 저녁 식탁에서 【하브루타 질문카드】를 1장 뽑아 "네 생각은 어때? 왜 그렇게 생각했어?"라고 5회 이상 대화 턴(Turn-taking)을 주고받으며 완성된 문장으로 말해보게 하세요.',
         paperCitationKo: '📚 학술 근거: Romeo et al. (2018, Psychological Science · MIT/하버드 대화 턴과 브로카 영역 활성 r=0.51 · PMID:29648612) & Fiorella & Mayer (2014, 설명하기 효과 d=0.77)',
         product: Object.assign({
-          badgeKo: '🏆 어휘력 · 하브루타 표현 1순위',
-          categoryKo: '🗣️ 좌뇌 브로카 영역을 깨우는 교과 어휘력 & 부모-자녀 하브루타 질문카드',
-          titleKo: '길벗스쿨 기적의 어휘력 / 초등 교과서 한자어·어휘 마인드맵 워크북 & 하브루타 질문카드 세트',
-          specKo: '교과 핵심 어휘 구조화 워크북 + 식탁·차 안에서 대화 턴을 늘려주는 질문카드',
-          whyKo: '단어 뜻을 정확히 이해하고 자신의 생각을 논리적인 말과 서술형 문장으로 인출하는 힘을 길러줍니다.'
+          badgeKo: `🏆 [만 ${ageYears}세 맞춤] 어휘력 · 하브루타 표현 1순위`,
+          categoryKo: '🗣️ 좌뇌 브로카 영역을 깨우는 연령별 어휘력 & 부모-자녀 하브루타 질문카드',
+          titleKo: ageYears <= 3
+            ? '유아 첫 낱말 말놀이 사운드북·세이펜 어휘 병풍책 & 부모 대화 가이드 세트'
+            : (ageYears <= 6
+              ? '유아 한글 어휘 마인드맵 스티커북 & 유치원생 눈높이 하브루타 그림 질문카드 세트'
+              : (ageYears <= 9
+                ? '길벗스쿨 기적의 어휘력 (초등 저학년) & 초등 교과서 어휘 마인드맵·하브루타 질문카드 세트'
+                : '초등 고학년·중등 비문학 한자어·교과 어휘 스키마 워크북 & 심화 하브루타 토론카드 세트')),
+          specKo: `만 ${ageYears}세 발달 단계 맞춤 어휘 확장 워크북 + 식탁·차 안에서 대화 턴을 늘려주는 질문카드`,
+          whyKo: '단어 뜻을 정확히 이해하고 자신의 생각을 논리적인 말과 문장으로 인출하는 힘을 길러줍니다.'
         }, buildPinpointUrls(
-          '기적의 어휘력 초등 교과서 어휘 한자어 워크북 하브루타 질문카드',
+          ageYears <= 3 ? '유아 낱말 사운드북 어휘 병풍책 말놀이 카드' : (ageYears <= 6 ? '유아 한글 어휘 스티커북 유아 하브루타 질문카드' : '기적의 어휘력 초등 교과서 어휘 한자어 워크북 하브루타 질문카드'),
           'Wordly Wise 3000 Vocabulary Workbook Conversation Cards Kids',
-          '기적의 어휘력 초등 어휘 워크북',
+          ageYears <= 6 ? '유아 어휘력 말놀이 그림책' : '기적의 어휘력 초등 어휘 워크북',
           affConfig
         ))
       }

@@ -2474,18 +2474,23 @@ svg {
        & ZERO REDUNDANT CARD WHITESPACE
    ========================================================================== */
 
-/* 25-1. 1-Item-Per-Row (한줄로 나오도록) across all 6 Quiz Steps & All Report Grids */
+/* 25-1. 1-Item-Per-Row (한줄로 나오도록) across all 6 Quiz Steps & Report Grids (except 2x2 growth-stats-grid) */
 #quiz-section .choice-chips-grid,
 #quiz-section .trait-multi-grid,
 #quiz-section .bento-choice-grid,
 #quiz-section .form-grid-2,
 #quiz-section .form-grid-3,
-#results-dashboard .growth-stats-grid,
 #results-dashboard .routines-grid,
 #results-dashboard .pinpoint-3col-grid {
   display: grid !important;
   grid-template-columns: 1fr !important;
   gap: 0.65rem !important;
+}
+
+#results-dashboard .growth-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.75rem !important;
 }
 
 #quiz-section .chip-pill {

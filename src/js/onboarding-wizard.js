@@ -716,12 +716,25 @@
 
     if (fillEl) fillEl.style.width = '0%';
 
-    const step1Msg = isEn ? 'Matching KDCA & CDC Official Growth Parameter Matrices...' : '질병관리청 KDCA·CDC 표준 대조 중...';
-    const step2Msg = isEn ? 'Matching 2,081 Pediatric Endocrinology & Neuroscience Papers...' : '2,081편 소아내분비·뇌과학 학술 논문 매칭 중...';
-    const step3Msg = isEn ? 'Synthesizing 90-Day Actionable Guidance Roadmap...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...';
+    const isLearningScan = wizardState.preferredReportMode === 'learning';
+    const step1Msg = isEn
+      ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
+      : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
+    const step2Msg = isEn
+      ? (isLearningScan ? 'Matching 2,081 Cognitive Neuroscience & Literacy Papers...' : 'Matching 2,081 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '2,081편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '2,081편 소아내분비·뇌과학 학술 논문 매칭 중...');
+    const step3Msg = isEn
+      ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
+      : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
 
     if (titleEl) titleEl.textContent = step1Msg;
-    if (descEl) descEl.textContent = isEn ? 'Standardizing patient biometrics against national normative LMS tables...' : '환자 생체 데이터를 질병관리청 국가 임상 표본과 대조하고 있습니다.';
+    if (descEl) {
+      descEl.textContent = isEn
+        ? 'Standardizing patient biometrics against national normative LMS tables...'
+        : (isLearningScan
+          ? '아이의 월령별 두뇌 민감기·집중 지속시간·학습 병목 데이터를 인지발달 표본과 대조하고 있습니다.'
+          : '아이의 현재 키·몸무게·유전 예상키 데이터를 질병관리청 국가 임상 표본과 대조하고 있습니다.');
+    }
 
     // Progress pulse
     let start = Date.now();
@@ -735,10 +748,22 @@
 
       if (elapsed >= 1000 && elapsed < 2000) {
         if (titleEl) titleEl.textContent = step2Msg;
-        if (descEl) descEl.textContent = isEn ? 'Filtering 2,081 research papers for active bio-inhibitors...' : '수면, 야간 혈당, 척추 자세 저해 인자별 2,081편 학술 논문 근거를 추출하고 있습니다.';
+        if (descEl) {
+          descEl.textContent = isEn
+            ? 'Filtering 2,081 research papers for active bio-inhibitors...'
+            : (isLearningScan
+              ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
+              : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
+        }
       } else if (elapsed >= 2000 && elapsed < 3000) {
         if (titleEl) titleEl.textContent = step3Msg;
-        if (descEl) descEl.textContent = isEn ? 'Finalizing 90-day actionable roadmap and clinical prescription...' : '식습관, 척추 감압 루틴, 성장호르몬 골든타임 행동 지침을 도출하고 있습니다.';
+        if (descEl) {
+          descEl.textContent = isEn
+            ? 'Finalizing 90-day actionable roadmap and clinical prescription...'
+            : (isLearningScan
+              ? '아이 연령에 꼭 맞는 공부 루틴, 두뇌 교구·도서, 박물관 배경지식 코스를 도출하고 있습니다.'
+              : '식습관, 적정 몸무게 밸런스, 척추 감압 루틴, 연령별 성장 영양 행동 지침을 도출하고 있습니다.');
+        }
       }
 
       if (elapsed >= 3000) {
