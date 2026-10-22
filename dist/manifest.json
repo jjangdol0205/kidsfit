@@ -1,0 +1,71 @@
+{
+  "id": "/?source=pwa",
+  "name": "KIDS-FIT 키즈핏 — 아이 키 성장 & 두뇌·학습 맞춤 리포트",
+  "short_name": "KIDS-FIT",
+  "description": "질병관리청 성장도표 & 학술논문 2,081편 기반 우리 아이 신체 성장·예상키 및 두뇌·학습 맞춤 처방 앱",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#05070B",
+  "theme_color": "#05070B",
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "categories": ["health", "education", "medical", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/samples/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/samples/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/samples/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/samples/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "📏 신체 성장 진단 시작",
+      "short_name": "신체 성장",
+      "description": "키·몸무게 백분위 및 유전키·잠재키 3단 그래프 분석",
+      "url": "/?mode=growth&source=pwa",
+      "icons": [
+        {
+          "src": "/samples/app-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "🧠 두뇌·학습 진단 시작",
+      "short_name": "두뇌·학습",
+      "description": "연령별 문해력·수리·전두엽 집중력 5대 역량 및 공부법 처방",
+      "url": "/?mode=learning&source=pwa",
+      "icons": [
+        {
+          "src": "/samples/app-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

@@ -23,14 +23,31 @@
   <meta property="twitter:description" content="생년월일과 생활 습관으로 확인하는 신체 성장 궤적 &amp; 연령별 맞춤 학습 리포트">
   <meta property="twitter:image" content="https://truthofmarket.com/samples/og-kidsfit-studio-v3.png?v=20261022v8">
 
-  <!-- Minimalist SVG Favicon -->
+  <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json?v=20261022v11">
+  <meta name="theme-color" content="#05070B">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KIDS-FIT">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022v11">
 
-  <link rel="stylesheet" href="src/css/style.css?v=20261022v10">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022v11">
   <script>
+    window.__deferredKidsFitPrompt = null;
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      window.__deferredKidsFitPrompt = e;
+      var statusBadge = document.getElementById('app-modal-native-status');
+      if (statusBadge) {
+        statusBadge.textContent = '✅ 원클릭 즉시 앱 설치 가능 기기';
+        statusBadge.style.color = '#34D399';
+      }
+    });
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(regs) {
-        regs.forEach(function(r) { r.unregister(); });
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js?v=20261022v11').catch(function() {});
       });
     }
     window.setKidsFitDeviceView = function(mode) {
@@ -89,6 +106,9 @@
           <button type="button" id="btn-device-view-mobile" class="device-switch-btn" onclick="window.setKidsFitDeviceView('mobile');">📱 스마트폰용</button>
           <button type="button" id="btn-device-view-pc" class="device-switch-btn" onclick="window.setKidsFitDeviceView('pc');">💻 홈페이지용</button>
         </div>
+        <button type="button" id="btn-header-app-download" class="app-download-header-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" aria-label="키즈핏 앱 다운로드">
+          📲 앱 다운로드
+        </button>
         <a href="#homepage-intro-growth-report" id="nav-header-growth-report" onclick="event.preventDefault(); (function(){ var dash = document.getElementById('results-dashboard'); if(dash && !dash.classList.contains('hidden') && dash.style.display !== 'none' && window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function'){ window.MasterBriefingEngine.switchActiveReport('growth'); } else if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function'){ window.TallerOnboardingWizard.enterStudioMode('child', 'growth'); } })();" data-i18n="nav.forWhom" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem; cursor: pointer;">신체 성장 보고서</a>
         <a href="#homepage-intro-learning-report" id="nav-header-learning-report" onclick="event.preventDefault(); (function(){ var dash = document.getElementById('results-dashboard'); if(dash && !dash.classList.contains('hidden') && dash.style.display !== 'none' && window.MasterBriefingEngine && typeof window.MasterBriefingEngine.switchActiveReport === 'function'){ window.MasterBriefingEngine.switchActiveReport('learning'); } else if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function'){ window.TallerOnboardingWizard.enterStudioMode('child', 'learning'); } })();" data-i18n="nav.services" style="color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 600; text-decoration: none; padding: 0.35rem 0.6rem; cursor: pointer;">두뇌·학습 보고서</a>
         <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language">
@@ -132,6 +152,22 @@
         <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-glass" id="btn-enter-studio-youth" data-i18n="hero.cta.youth" style="display: none;">
           ⚡ 1분 맞춤 진단 시작 →
         </button>
+      </div>
+
+      <!-- Dedicated Smartphone & PC App Download Banner -->
+      <div id="hero-app-download-bar" class="hero-app-download-bar">
+        <div class="hero-app-download-info">
+          <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon">
+          <div class="hero-app-download-text">
+            <div class="hero-app-download-title">📲 KIDS-FIT 스마트폰·PC 전용 앱(App) 무료 다운로드</div>
+            <div class="hero-app-download-desc">스마트폰 홈 화면에 앱으로 설치하고 언제든 1초 만에 성장·학습 리포트를 확인하세요</div>
+          </div>
+        </div>
+        <div class="hero-app-download-actions">
+          <button type="button" id="btn-hero-app-install" class="hero-app-install-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();">
+            📲 앱으로 다운받기 / 홈화면 설치
+          </button>
+        </div>
       </div>
 
       <!-- =====================================================================
@@ -1213,5 +1249,186 @@
 
   <!-- Hospital Clinic Style 2-Page A4 PDF Print Container -->
   <div id="clinic-print-report-container"></div>
+
+  <!-- =========================================================================
+       KIDS-FIT OFFICIAL APP DOWNLOAD & PWA INSTALL MODAL
+       ========================================================================= -->
+  <div id="kidsfit-app-install-modal" class="kidsfit-app-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="app-modal-title" style="display: none;">
+    <div class="kidsfit-app-modal-card">
+      <div class="kidsfit-app-modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img src="samples/app-icon-192.png?v=20261022v11" alt="KIDS-FIT 앱 아이콘" style="width: 52px; height: 52px; border-radius: 14px; border: 1.5px solid #38BDF8; flex-shrink: 0;">
+          <div>
+            <span id="app-modal-native-status" style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #38BDF8; background: rgba(56,189,248,0.14); padding: 0.16rem 0.55rem; border-radius: 9999px; margin-bottom: 0.2rem;">📲 공식 웹앱(PWA) &amp; 런처 무료 배포</span>
+            <h3 id="app-modal-title" style="margin: 0; font-size: 1.15rem; font-weight: 900; color: #FFFFFF; line-height: 1.3;">KIDS-FIT 앱 다운로드 &amp; 홈 화면 설치</h3>
+          </div>
+        </div>
+        <button type="button" onclick="window.closeKidsFitAppDownloadModal();" aria-label="닫기" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; width: 34px; height: 34px; border-radius: 9999px; font-size: 1rem; font-weight: 900; cursor: pointer; flex-shrink: 0;">✕</button>
+      </div>
+
+      <p id="app-modal-env-notice" style="margin: 0.65rem 0 0.9rem; font-size: 0.88rem; color: #E2E8F0; line-height: 1.5; background: rgba(15,23,42,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 0.65rem 0.8rem;">
+        스마트폰 바탕화면(홈 화면)이나 PC에 <strong>KIDS-FIT 전용 앱 아이콘</strong>을 생성하여 주소창 없이 진짜 앱처럼 1초 만에 실행할 수 있습니다.
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;">
+        <button type="button" id="btn-modal-pwa-install" onclick="window.triggerKidsFitNativeInstall();" style="width: 100%; padding: 0.95rem 1rem; border-radius: 14px; border: none; background: linear-gradient(90deg, #0284C7 0%, #10B981 100%); color: #FFFFFF; font-size: 0.98rem; font-weight: 900; cursor: pointer; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3); text-align: center;">
+          🚀 스마트폰·PC 홈 화면에 앱 바로 설치하기
+        </button>
+
+        <button type="button" id="btn-modal-open-chrome" onclick="window.openInExternalChromeForAppInstall();" style="display: none; width: 100%; padding: 0.9rem 1rem; border-radius: 14px; border: 1.5px solid #38BDF8; background: rgba(2, 132, 199, 0.22); color: #7DD3FC; font-size: 0.94rem; font-weight: 900; cursor: pointer; text-align: center;">
+          🌐 안드로이드 크롬(Chrome)으로 열어서 1초 앱 설치하기 →
+        </button>
+
+        <button type="button" id="btn-modal-file-download" onclick="window.downloadKidsFitAppLauncher();" style="width: 100%; padding: 0.85rem 1rem; border-radius: 14px; border: 1.5px solid rgba(192, 132, 252, 0.65); background: rgba(168, 85, 247, 0.18); color: #F3E8FF; font-size: 0.92rem; font-weight: 800; cursor: pointer; text-align: center;">
+          📥 앱 바로가기 실행 파일(KIDS-FIT_App.html) 기기에 직접 다운로드
+        </button>
+      </div>
+
+      <!-- Step-by-Step Guide by OS -->
+      <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+        <div id="android-install-guide-card" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 0.8rem 0.9rem;">
+          <div style="font-size: 0.9rem; font-weight: 900; color: #38BDF8; margin-bottom: 0.35rem;">🤖 안드로이드 (갤럭시 · Chrome / 삼성 인터넷) 10초 설치법</div>
+          <ol style="margin: 0; padding-left: 1.15rem; font-size: 0.84rem; color: #F1F5F9; line-height: 1.6;">
+            <li>텔레그램·카톡 안에서 열었다면 위 <strong>[크롬으로 열어서 1초 앱 설치]</strong> 버튼 또는 우측 상단 <strong>[⋮] ➔ [다른 브라우저(Chrome)로 열기]</strong>를 누릅니다.</li>
+            <li>상단 <strong>[🚀 홈 화면에 앱 바로 설치하기]</strong> 버튼을 누르거나 브라우저 메뉴 <strong>[⋮] ➔ [앱 설치 / 홈 화면에 추가]</strong>를 누르면 바탕화면에 앱이 설치됩니다!</li>
+          </ol>
+        </div>
+
+        <div id="ios-install-guide-card" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 0.8rem 0.9rem;">
+          <div style="font-size: 0.9rem; font-weight: 900; color: #34D399; margin-bottom: 0.35rem;">🍎 아이폰 · 아이패드 (iOS Safari) 10초 홈 화면 앱 추가법</div>
+          <ol style="margin: 0; padding-left: 1.15rem; font-size: 0.84rem; color: #F1F5F9; line-height: 1.6;">
+            <li><strong>Safari(사파리)</strong> 브라우저 하단 가운데의 <strong>[⬆️ 공유 아이콘]</strong>을 터치합니다. (카톡·텔레그램 안이라면 우측 하단 나침반/메뉴로 Safari에서 열기)</li>
+            <li>공유 메뉴를 살짝 위로 올려 <strong>[➕ 홈 화면에 추가]</strong>를 선택합니다.</li>
+            <li>우측 상단 <strong>[추가]</strong>를 누르면 아이폰 바탕화면에 <strong>KIDS-FIT 전용 앱</strong>이 생성됩니다!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function detectUserEnv() {
+        var ua = navigator.userAgent || '';
+        var isIOS = /iPhone|iPad|iPod/i.test(ua);
+        var isAndroid = /Android/i.test(ua);
+        var isInApp = /KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line|Telegram|wv\)/i.test(ua);
+        return { isIOS: isIOS, isAndroid: isAndroid, isInApp: isInApp };
+      }
+
+      window.openKidsFitAppDownloadModal = function() {
+        var modal = document.getElementById('kidsfit-app-install-modal');
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+
+        var env = detectUserEnv();
+        var btnChrome = document.getElementById('btn-modal-open-chrome');
+        var envNotice = document.getElementById('app-modal-env-notice');
+        var iosCard = document.getElementById('ios-install-guide-card');
+        var androidCard = document.getElementById('android-install-guide-card');
+
+        if (env.isAndroid && env.isInApp) {
+          if (btnChrome) btnChrome.style.display = 'block';
+          if (envNotice) {
+            envNotice.innerHTML = '💡 현재 <strong>메신저 인앱 브라우저(텔레그램/카카오톡 등)</strong>에서 접속 중입니다. 아래 <strong>[안드로이드 크롬으로 열어서 1초 앱 설치하기]</strong>를 누르면 스마트폰 바탕화면에 진짜 앱으로 바로 설치됩니다!';
+          }
+        } else if (env.isIOS) {
+          if (iosCard) iosCard.style.border = '2px solid #34D399';
+          if (envNotice) {
+            envNotice.innerHTML = '🍎 <strong>아이폰/아이패드</strong>에서는 Safari 하단 <strong>[⬆️ 공유] ➔ [➕ 홈 화면에 추가]</strong>를 누르거나 아래 <strong>[앱 바로가기 파일 다운로드]</strong>를 눌러 즉시 저장할 수 있습니다.';
+          }
+        } else if (window.__deferredKidsFitPrompt) {
+          if (envNotice) {
+            envNotice.innerHTML = '✅ 현재 브라우저에서 <strong>원클릭 네이티브 앱 설치</strong>가 준비되었습니다! 아래 <strong>[🚀 홈 화면에 앱 바로 설치하기]</strong> 버튼을 눌러주세요.';
+          }
+        }
+      };
+
+      window.closeKidsFitAppDownloadModal = function() {
+        var modal = document.getElementById('kidsfit-app-install-modal');
+        if (!modal) return;
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      };
+
+      window.openInExternalChromeForAppInstall = function() {
+        var targetUrl = 'https://truthofmarket.com/?install_app=1';
+        var ua = navigator.userAgent || '';
+        if (/Android/i.test(ua)) {
+          window.location.href = 'intent://truthofmarket.com/?install_app=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(targetUrl) + ';end';
+        } else {
+          window.open(targetUrl, '_blank');
+        }
+      };
+
+      window.triggerKidsFitNativeInstall = function() {
+        if (window.__deferredKidsFitPrompt) {
+          var promptEvent = window.__deferredKidsFitPrompt;
+          promptEvent.prompt();
+          promptEvent.userChoice.then(function(choice) {
+            if (choice && choice.outcome === 'accepted') {
+              window.__deferredKidsFitPrompt = null;
+              window.closeKidsFitAppDownloadModal();
+            }
+          }).catch(function() {});
+          return;
+        }
+        var env = detectUserEnv();
+        if (env.isAndroid && env.isInApp) {
+          window.openInExternalChromeForAppInstall();
+          return;
+        }
+        if (env.isIOS) {
+          var iosCard = document.getElementById('ios-install-guide-card');
+          if (iosCard && iosCard.scrollIntoView) iosCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          alert('🍎 아이폰/아이패드 홈 화면 앱 설치:\n\n1. Safari 하단 가운데 [⬆️ 공유] 버튼을 누르세요.\n2. 메뉴에서 [➕ 홈 화면에 추가]를 누르면 바탕화면에 KIDS-FIT 앱 아이콘이 생성됩니다!\n\n(즉시 파일 저장을 원하시면 아래 [📥 앱 바로가기 실행 파일 다운로드] 버튼을 눌러주세요.)');
+          return;
+        }
+        // Fallback: trigger direct launcher download + show browser menu tip
+        window.downloadKidsFitAppLauncher();
+      };
+
+      window.downloadKidsFitAppLauncher = function() {
+        try {
+          var htmlContent = [
+            '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">',
+            '<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">',
+            '<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">',
+            '<title>KIDS-FIT 앱 실행기</title>',
+            '<link rel="icon" href="https://truthofmarket.com/samples/app-icon-192.png">',
+            '<link rel="apple-touch-icon" href="https://truthofmarket.com/samples/apple-touch-icon.png">',
+            '<style>body{margin:0;background:#05070B;color:#FFF;font-family:-apple-system,BlinkMacSystemFont,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:24px;box-sizing:border-box}.card{max-width:380px;width:100%;background:#0F172A;border:1.5px solid #38BDF8;border-radius:24px;padding:28px 20px;box-shadow:0 20px 50px rgba(0,0,0,0.7)}.icon{width:80px;height:80px;border-radius:18px;border:2px solid #38BDF8;margin-bottom:14px}h1{font-size:21px;margin:0 0 8px}p{font-size:14px;color:#CBD5E1;line-height:1.5;margin:0 0 18px}.btn{display:block;padding:14px;border-radius:14px;background:linear-gradient(90deg,#0284C7,#10B981);color:#FFF;font-weight:900;font-size:16px;text-decoration:none}</style>',
+            '<script>setTimeout(function(){window.location.replace("https://truthofmarket.com/?source=app_launcher");},400);<\/script>',
+            '</head><body><div class="card"><img class="icon" src="https://truthofmarket.com/samples/app-icon-192.png" alt="KIDS-FIT">',
+            '<h1>KIDS-FIT 그로스 스튜디오</h1><p>아이 신체 성장 & 두뇌·학습 맞춤 리포트 앱으로 이동합니다...</p>',
+            '<a class="btn" href="https://truthofmarket.com/?source=app_launcher">📲 키즈핏 앱 바로 열기 →</a></div></body></html>'
+          ].join('');
+          var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'KIDS-FIT_App.html';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function() {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          }, 500);
+        } catch (e) {
+          window.location.href = '/download/kidsfit-app';
+        }
+      };
+
+      window.addEventListener('DOMContentLoaded', function() {
+        try {
+          if (window.location.search && window.location.search.indexOf('install_app=1') !== -1) {
+            window.openKidsFitAppDownloadModal();
+          }
+        } catch (e) {}
+      });
+    })();
+  </script>
 </body>
 </html>

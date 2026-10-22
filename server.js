@@ -66,7 +66,8 @@ const MIME_TYPES = {
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
   '.md': 'text/markdown; charset=utf-8',
-  '.pdf': 'application/pdf'
+  '.pdf': 'application/pdf',
+  '.webmanifest': 'application/manifest+json; charset=utf-8'
 };
 
 const NO_CACHE_HEADERS = {
@@ -576,22 +577,74 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // 2. Self-unregistering Service Worker to purge any legacy MoneyFit SW
+    // 2. Official KIDS-FIT PWA Service Worker & App Download Endpoints
     if (pathname === '/sw.js' || pathname === '/service-worker.js') {
-      const swKillScript = [
-        "self.addEventListener('install', () => self.skipWaiting());",
-        "self.addEventListener('activate', (event) => {",
-        "  event.waitUntil(",
-        "    caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k))))",
-        "      .then(() => self.registration.unregister())",
-        "  );",
-        "});"
-      ].join('\n');
+      const swFile = resolveSafeFile(DIST_DIR, 'sw.js') || resolveSafeFile(ROOT_DIR, 'sw.js');
+      const swBody = swFile
+        ? fs.readFileSync(swFile, 'utf8')
+        : "self.addEventListener('install', () => self.skipWaiting()); self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim())); self.addEventListener('fetch', () => {});";
       res.writeHead(200, {
         'Content-Type': 'application/javascript; charset=utf-8',
+        'Service-Worker-Allowed': '/',
         ...NO_CACHE_HEADERS
       });
-      res.end(swKillScript);
+      res.end(swBody);
+      return;
+    }
+
+    if (pathname === '/manifest.json' || pathname === '/manifest.webmanifest') {
+      const mfFile = resolveSafeFile(DIST_DIR, 'manifest.json') || resolveSafeFile(ROOT_DIR, 'manifest.json');
+      if (mfFile) {
+        res.writeHead(200, {
+          'Content-Type': 'application/manifest+json; charset=utf-8',
+          ...NO_CACHE_HEADERS
+        });
+        res.end(fs.readFileSync(mfFile, 'utf8'));
+        return;
+      }
+    }
+
+    if (pathname === '/download/kidsfit-app') {
+      const appLauncherHtml = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#05070B">
+  <title>KIDS-FIT 앱 실행기</title>
+  <link rel="icon" href="https://truthofmarket.com/samples/app-icon-192.png">
+  <link rel="apple-touch-icon" href="https://truthofmarket.com/samples/apple-touch-icon.png">
+  <style>
+    body { margin: 0; background: #05070B; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; box-sizing: border-box; }
+    .card { max-width: 400px; width: 100%; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 24px; padding: 28px 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.65); }
+    .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 16px; border: 2px solid #38BDF8; }
+    h1 { font-size: 22px; font-weight: 900; margin: 0 0 8px; color: #FFFFFF; }
+    p { font-size: 14.5px; color: #CBD5E1; line-height: 1.55; margin: 0 0 20px; }
+    .btn { display: block; width: 100%; padding: 15px 18px; border-radius: 14px; background: linear-gradient(90deg, #0284C7 0%, #10B981 100%); color: #FFFFFF; font-weight: 900; font-size: 16px; text-decoration: none; box-sizing: border-box; margin-bottom: 10px; }
+  </style>
+  <script>
+    setTimeout(function() {
+      window.location.replace('https://truthofmarket.com/?source=app_launcher');
+    }, 600);
+  </script>
+</head>
+<body>
+  <div class="card">
+    <img class="icon" src="https://truthofmarket.com/samples/app-icon-192.png" alt="KIDS-FIT">
+    <h1>KIDS-FIT 그로스 스튜디오</h1>
+    <p>아이 신체 성장 &amp; 두뇌·학습 맞춤 처방 앱으로 연결 중입니다...</p>
+    <a class="btn" href="https://truthofmarket.com/?source=app_launcher">📲 키즈핏 앱 바로 열기 →</a>
+  </div>
+</body>
+</html>`;
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Content-Disposition': 'attachment; filename="KIDS-FIT_App.html"',
+        ...NO_CACHE_HEADERS
+      });
+      res.end(appLauncherHtml);
       return;
     }
 

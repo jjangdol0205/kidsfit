@@ -103,8 +103,8 @@ function build() {
     console.log('[5/5] Copied samples/ -> dist/samples/');
   }
 
-  // Copy robots.txt and sitemap.xml if they exist
-  ['robots.txt', 'sitemap.xml'].forEach((file) => {
+  // Copy robots.txt, sitemap.xml, manifest.json, and sw.js if they exist
+  ['robots.txt', 'sitemap.xml', 'manifest.json', 'sw.js'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
       fs.copyFileSync(fPath, path.join(DIST_DIR, file));
