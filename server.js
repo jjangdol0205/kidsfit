@@ -402,6 +402,7 @@ const server = http.createServer((req, res) => {
       // HTTP 302 Found Redirect
       res.writeHead(302, {
         'Location': redirectUrl,
+        'X-Robots-Tag': 'noindex, nofollow',
         ...NO_CACHE_HEADERS
       });
       res.end(`Redirecting to Coupang Partners: ${redirectUrl}`);
@@ -469,7 +470,7 @@ const server = http.createServer((req, res) => {
         return;
       }
 
-      res.writeHead(302, { 'Location': redirectUrl, ...NO_CACHE_HEADERS });
+      res.writeHead(302, { 'Location': redirectUrl, 'X-Robots-Tag': 'noindex, nofollow', ...NO_CACHE_HEADERS });
       res.end(`Redirecting to Klook Affiliate: ${redirectUrl}`);
       return;
     }
@@ -526,7 +527,7 @@ const server = http.createServer((req, res) => {
           : `https://www.11st.co.kr/search/search.tmall?kwd=${encodeURIComponent(q || '어린이 영양제')}`
       );
       const redirectUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${encodeURIComponent(affid)}&offer=${encodeURIComponent(offer)}&url=${encodeURIComponent(destUrl)}`;
-      res.writeHead(302, { 'Location': redirectUrl, ...NO_CACHE_HEADERS });
+      res.writeHead(302, { 'Location': redirectUrl, 'X-Robots-Tag': 'noindex, nofollow', ...NO_CACHE_HEADERS });
       res.end(`Redirecting to Adpick Shopping Mate: ${redirectUrl}`);
       return;
     }
@@ -707,6 +708,10 @@ const server = http.createServer((req, res) => {
 
     if (finalExt === '.html' || finalExt === '.json') {
       Object.assign(headers, NO_CACHE_HEADERS);
+      if (finalExt === '.html') {
+        const isAdminQuery = parsedUrl.searchParams.has('admin');
+        headers['X-Robots-Tag'] = isAdminQuery ? 'noindex, nofollow' : 'index, follow';
+      }
     } else if (finalExt === '.css' || finalExt === '.js') {
       headers['Cache-Control'] = 'public, max-age=31536000, immutable';
     } else {

@@ -1,20 +1,41 @@
 User-agent: Googlebot
 Allow: /
+Allow: /src/
+Allow: /samples/
+Disallow: /api/
 Disallow: /scripts/
 Disallow: /tests/
 Disallow: /logs/
+Disallow: /docs/
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /*?admin=
 
 User-agent: Yeti
 Allow: /
+Allow: /src/
+Allow: /samples/
+Disallow: /api/
 Disallow: /scripts/
 Disallow: /tests/
 Disallow: /logs/
+Disallow: /docs/
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /*?admin=
 
 User-agent: NaverBot
 Allow: /
+Allow: /src/
+Allow: /samples/
+Disallow: /api/
 Disallow: /scripts/
 Disallow: /tests/
 Disallow: /logs/
+Disallow: /docs/
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /*?admin=
 
 User-agent: HTTrack
 Disallow: /
@@ -45,11 +66,15 @@ Disallow: /
 
 User-agent: *
 Allow: /
+Allow: /src/
+Allow: /samples/
+Disallow: /api/
 Disallow: /scripts/
 Disallow: /tests/
 Disallow: /logs/
 Disallow: /docs/
 Disallow: /server.js
 Disallow: /package.json
+Disallow: /*?admin=
 
 Sitemap: https://truthofmarket.com/sitemap.xml
