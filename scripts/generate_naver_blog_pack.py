@@ -595,9 +595,9 @@ def render_blog_infographic(item: dict) -> Path:
 
     # Bottom Brand Footer Bar
     draw.rectangle([(0, IMG_H - 78), (IMG_W, IMG_H)], fill=accent)
-    f_foot = get_font(26, bold=True)
+    f_foot = get_font(23, bold=True)
     draw.text(
-        (60, IMG_H - 56),
+        (55, IMG_H - 54),
         "★ 키즈핏 그로스 & 러닝 스튜디오  |  우리 아이 성장·학습 1분 무료 진단: truthofmarket.com",
         font=f_foot,
         fill=(255, 255, 255),
