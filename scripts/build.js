@@ -79,7 +79,16 @@ function build() {
     } catch (_) {
       // Ignore transient Windows file lock on root index.html during rapid test rebuilds
     }
-    fs.writeFileSync(indexDest, stampedHtml, 'utf8');
+    for (let attempt = 1; attempt <= 6; attempt++) {
+      try {
+        fs.writeFileSync(indexDest, stampedHtml, 'utf8');
+        break;
+      } catch (err) {
+        if (attempt === 6) throw err;
+        const waitTill = Date.now() + 150;
+        while (Date.now() < waitTill) {}
+      }
+    }
     console.log(`[3/5] Copied index.html -> dist/index.html (cache-bust: ?v=${buildStamp})`);
   }
 
