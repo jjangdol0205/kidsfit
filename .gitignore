@@ -4,6 +4,7 @@ node_modules/
 logs/*.json
 logs/flow_daemon_status.json
 .flow-browser-profile/
+.naver-browser-profile/
 .agents/
 .gemini/
 __pycache__/
