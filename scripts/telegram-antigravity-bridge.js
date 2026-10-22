@@ -26,7 +26,7 @@ const telegramNotifier = require('./telegram-notify.js');
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json');
 
-const DEFAULT_CONVERSATION_ID = 'e6c1bb34-f211-4899-a864-42850c85ae86';
+const DEFAULT_CONVERSATION_ID = 'efdd0412-2586-40cf-bb28-0fa8976613df';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
 const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\app\\extensions\\antigravity\\bin\\language_server_windows_x64.exe';
 
@@ -37,7 +37,7 @@ const CONTROL_PANEL_KEYBOARD = {
       { text: '⚡ 지금 논문 추가 학습 실행', callback_data: '/research' }
     ],
     [
-      { text: '🎨 웹툰·카드뉴스 샘플 받기', callback_data: '/samples' },
+      { text: '🌅 오늘의 인스타·쓰레드 세트 받기', callback_data: '/daily' },
       { text: '🔄 재빌드 & 실서버 배포', callback_data: '/deploy' }
     ]
   ]
@@ -231,30 +231,31 @@ async function handleIncomingCommand(rawText, options = {}) {
     return reply(msg, true);
   }
 
-  // 4. /samples
-  if (text === '/samples' || text === '샘플' || text === '웹툰' || text === '카드뉴스') {
+  // 4. /daily or /samples
+  if (
+    text === '/daily' ||
+    text === '오늘분' ||
+    text === '오늘웹툰' ||
+    text === '인스타' ||
+    text === '쓰레드' ||
+    text === '/samples' ||
+    text === '샘플' ||
+    text === '웹툰' ||
+    text === '카드뉴스'
+  ) {
     if (!dryRun) {
-      const webtoonPath = path.join(PROJECT_ROOT, 'samples', '2_webtoon_sample', 'webtoon_cut_01.png');
-      const cardPath = path.join(PROJECT_ROOT, 'samples', '3_cardnews_sample', 'cardnews_01.png');
-      if (fs.existsSync(webtoonPath)) {
-        await telegramNotifier.sendTelegramPhoto(
-          botToken,
-          chatId,
-          webtoonPath,
-          '🎨 [키즈핏 6컷 공감 육아 웹툰 샘플 1컷] 말풍선 대화형 일러스트'
-        );
-      }
-      if (fs.existsSync(cardPath)) {
-        await telegramNotifier.sendTelegramPhoto(
-          botToken,
-          chatId,
-          cardPath,
-          '📊 [키즈핏 카드뉴스 샘플 1슬라이드] 한 줄 요약 & 대형 폰트'
-        );
+      const dailyScript = path.join(PROJECT_ROOT, 'scripts', 'send_daily_6am_insta_threads.js');
+      if (fs.existsSync(dailyScript)) {
+        spawnSync(process.execPath, [dailyScript, '--advance'], {
+          cwd: PROJECT_ROOT,
+          encoding: 'utf8',
+          timeout: 120000
+        });
+        return { ok: true, mode: 'DAILY_INSTA_THREADS' };
       }
     }
     return reply(
-      `✅ <b>[키즈핏 5대 양육 샘플 패키지 전송 완료]</b>\n• 웹툰(말풍선 대화형) & 카드뉴스(1줄 대형폰트) 대표 이미지를 전송했습니다.\n• 전체 샘플 및 15초(컷당 2.5초) 무빙 영상은 <a href="${cfg.siteUrl}">${cfg.siteUrl}</a> 및 로컬 <code>samples/</code> 폴더에 준비되어 있습니다.`,
+      `✅ <b>[오늘의 @kids_fit1 인스타·쓰레드 업로드 패키지 전송 완료]</b>`,
       true
     );
   }
@@ -388,6 +389,24 @@ async function startPollingDaemon() {
 
   while (true) {
     try {
+      // Check Daily 06:00 AM KST (UTC+9) Auto-Delivery for Instagram & Threads (@kids_fit1)
+      const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+      const kstDateStr = nowKst.toISOString().slice(0, 10);
+      const kstHour = nowKst.getUTCHours();
+      if (kstHour === 6 && state.lastDailyInstaSentDate !== kstDateStr) {
+        state.lastDailyInstaSentDate = kstDateStr;
+        saveBridgeState(state);
+        console.log(`\n🌅 [Daily 06:00 AM KST Trigger] Sending today's @kids_fit1 Instagram & Threads pack (${kstDateStr})...`);
+        const dailyScript = path.join(PROJECT_ROOT, 'scripts', 'send_daily_6am_insta_threads.js');
+        if (fs.existsSync(dailyScript)) {
+          spawnSync(process.execPath, [dailyScript, '--advance'], {
+            cwd: PROJECT_ROOT,
+            encoding: 'utf8',
+            timeout: 180000
+          });
+        }
+      }
+
       const updates = await telegramNotifier.telegramApiRequest(
         botToken,
         `getUpdates?offset=${state.lastUpdateId + 1}&timeout=20`
