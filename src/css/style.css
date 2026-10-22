@@ -2622,7 +2622,7 @@ body {
   display: none;
 }
 
-/* Explicit Mobile Mode Toggle OR Smartphone Viewport (<= 768px unless forced to PC) */
+/* Automatic Device Detection: Smartphone (<= 820px or coarse touch) vs PC (> 820px) */
 html[data-device-view="mobile"] .pc-view-block {
   display: none !important;
 }
@@ -2631,13 +2631,29 @@ html[data-device-view="mobile"] .mobile-view-block {
   display: block !important;
 }
 
-@media (max-width: 768px) {
-  html:not([data-device-view="pc"]) .pc-view-block {
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  .pc-view-block {
     display: none !important;
   }
 
-  html:not([data-device-view="pc"]) .mobile-view-block {
+  .mobile-view-block {
     display: block !important;
+  }
+
+  .editorial-cta-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.6rem !important;
+  }
+
+  .editorial-cta-bar > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .quiz-card.bento-card {
+    padding: 1rem 0.75rem !important;
+    border-radius: 16px !important;
   }
 }
 
