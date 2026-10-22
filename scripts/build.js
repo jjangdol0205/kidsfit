@@ -49,24 +49,9 @@ function build() {
   console.log('--- KidsFit Growth Studio Build Pipeline ---');
   const startTime = Date.now();
 
-  // 1. Reset / Prepare dist/
-  if (fs.existsSync(DIST_DIR)) {
-    console.log('[1/5] Cleaning existing dist/ directory...');
-    let removed = false;
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      try {
-        fs.rmSync(DIST_DIR, { recursive: true, force: true });
-        removed = true;
-        break;
-      } catch (err) {
-        if (attempt === 3) throw err;
-        const waitTill = Date.now() + 150;
-        while (Date.now() < waitTill) {}
-      }
-    }
-  }
+  // 1. Prepare dist/ (in-place overwrite to prevent Windows EPERM & race conditions)
   fs.mkdirSync(DIST_DIR, { recursive: true });
-  console.log('[1/5] Created fresh dist/ directory.');
+  console.log('[1/5] Prepared dist/ directory.');
 
   // 2. Preserve & Copy CNAME
   const cnameSrc = path.join(ROOT_DIR, 'CNAME');
