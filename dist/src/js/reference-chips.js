@@ -156,8 +156,7 @@
       }
       case 'coupang': {
         const lptag = cfg.coupang || DEFAULT_AFFILIATE_CONFIG.coupang;
-        // Primary URL goes via /api/coupang proxy route, with client-side fallback
-        return `https://www.coupang.com/np/search?q=${encodedQ}&channel=user&lptag=${encodeURIComponent(lptag)}`;
+        return `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(lptag)}&subid=kidsfit&pageKey=${encodedQ}`;
       }
       case 'linkprice': {
         const affId = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
@@ -176,7 +175,8 @@
       }
       case 'myrealtrip': {
         const mylinkId = cfg.myrealtripMylinkId || DEFAULT_AFFILIATE_CONFIG.myrealtripMylinkId || '6226316';
-        return `https://www.myrealtrip.com/offers?q=${encodedQ}&mylink_id=${encodeURIComponent(mylinkId)}&utm_source=mktpartner`;
+        const mrtRet = `https://www.myrealtrip.com/search?q=${encodedQ}&mylink_id=${encodeURIComponent(mylinkId)}&t_scope=604800&utm_source=mktpartner`;
+        return `https://www.myrealtrip.com/main/bridge/marketing?return_url=${encodeURIComponent(mrtRet)}`;
       }
       case 'tenping': {
         return cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';

@@ -379,8 +379,8 @@ const server = http.createServer((req, res) => {
                     parsedUrl.searchParams.get('subId') || 
                     'AF7865143';
       const redirectUrl = q 
-        ? `https://www.coupang.com/np/search?q=${encodeURIComponent(q)}&channel=user&lptag=${encodeURIComponent(lptag)}`
-        : `https://www.coupang.com/?lptag=${encodeURIComponent(lptag)}`;
+        ? `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(lptag)}&subid=kidsfit&pageKey=${encodeURIComponent(q)}`
+        : `https://link.coupang.com/re/AFFHOME?lptag=${encodeURIComponent(lptag)}&subid=kidsfit`;
 
       const format = parsedUrl.searchParams.get('format');
       const acceptHeader = req.headers['accept'] || '';

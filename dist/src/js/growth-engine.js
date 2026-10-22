@@ -848,21 +848,21 @@
         badge: `🍼 만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
         title: '차일드라이프 액상 구연산 칼슘·마그네슘 오렌지맛 & 비타민D3 1000IU 드롭',
         desc: `생후 ${ageMonths}개월 영유아는 정제 알약 대신 위산과 무관하게 흡수되는 액상 구연산 칼슘과 비타민D3 드롭으로 기초 골격을 다져주어야 합니다.`,
-        url: 'https://www.coupang.com/np/search?q=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84',
         btnText: `📦 쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
       };
       prod2 = {
         badge: `✨ 만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
         title: '일동후디스 하이키즈 초유 분말 / 영유아 글루콘산 아연·초유 스틱',
         desc: '편식·입짧음을 예방하고 성장호르몬 수용체(IGF-1) 활성과 기초 면역력을 동시에 챙겨주는 영유아 맞춤 초유·아연입니다.',
-        url: 'https://www.coupang.com/np/search?q=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C',
         btnText: `📦 쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
       };
       prod3 = {
         badge: `🏃 만 ${ageYears}세 맞춤 3위 · 안전 손잡이 트램폴린`,
         title: '멜킨 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 & 초음파 신장계',
         desc: '영유아 소뇌 평형감각 발달과 하지 성장판 미세자극을 층간소음 없이 안전하게 도와주는 손잡이형 점핑 기구입니다.',
-        url: 'https://www.coupang.com/np/search?q=%EB%A9%9C%ED%82%A8+%EC%9C%A0%EC%95%84+%EC%95%88%EC%A0%84+%EC%86%90%EC%9E%A1%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88+%EC%9C%A0%EC%95%84+%EC%95%88%EC%A0%84+%EC%86%90%EC%9E%A1%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0',
         btnText: `📦 쿠팡에서 유아 손잡이 트램폴린 보기 ↗`
       };
     } else if (ageYears <= 6) {
@@ -871,21 +871,21 @@
         badge: `🏆 만 ${ageYears}세 맞춤 1위 · 키성장 기능성 젤리/분말`,
         title: '종근당건강 아이커 / 키클래오042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
         desc: `만 ${ageYears}세 유아기 하지 성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 우유나 간식처럼 맛있게 챙기는 1위 제품입니다.`,
-        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
         btnText: `📦 쿠팡에서 만 ${ageYears}세 HT042 키성장 영양제 보기 ↗`
       };
       prod2 = {
         badge: `✨ 만 ${ageYears}세 맞춤 2위 · 츄어블 칼슘 올인원`,
         title: '뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블',
         desc: '알약을 삼키기 힘든 유아도 사탕처럼 맛있게 씹어 먹으며 칼슘·초유·비타민D3·아연을 한 번에 채우는 스테디셀러입니다.',
-        url: 'https://www.coupang.com/np/search?q=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94',
         btnText: `📦 쿠팡에서 유아 초유·칼슘 츄어블 보기 ↗`
       };
       prod3 = {
         badge: `⚡ 만 ${ageYears}세 맞춤 3위 · 무소음 점핑 트램폴린`,
         title: '층간소음 방어 어린이 실내 무소음 점핑 트램폴린 & 초음파 디지털 신장계',
         desc: '하루 15분 수직 점핑(볼프의 법칙)으로 대퇴골·경골 성장판을 자극하고 매달 1일 아침 키를 0.1cm 단위로 측정합니다.',
-        url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A0%90%ED%95%91%EB%A7%A4%ED%8A%B8&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A0%90%ED%95%91%EB%A7%A4%ED%8A%B8',
         btnText: `📦 쿠팡에서 어린이 무소음 트램폴린 보기 ↗`
       };
     } else if (ageYears <= 10) {
@@ -894,21 +894,21 @@
         badge: `🏆 만 ${ageYears}세 맞춤 1위 · 사춘기 전 기초키 확보`,
         title: '종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
         desc: `사춘기 급성장기 진입 전 기초 신장을 최대한 높여주어야 하는 만 ${ageYears}세 초등 핵심 기능성 원료입니다.`,
-        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
         btnText: `📦 쿠팡에서 초등 HT042 키성장 영양제 보기 ↗`
       };
       prod2 = {
         badge: `✨ 만 ${ageYears}세 맞춤 2위 · 고흡수 어골·연골칼슘`,
         title: '초등 고흡수 비소성 어골·연골칼슘(800mg) + 비타민D3·K2·아연·마그네슘',
         desc: '초등 시기 급격히 늘어나는 뼈 길이 성장을 단단한 골기질로 채워주는 생체흡수율 45% 칼슘·D3·K2 배합입니다.',
-        url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EC%97%B0%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3+K2+%EC%95%84%EC%97%B0&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EC%97%B0%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3+K2+%EC%95%84%EC%97%B0',
         btnText: `📦 쿠팡에서 초등 어골·연골칼슘 보기 ↗`
       };
       prod3 = {
         badge: `💎 만 ${ageYears}세 맞춤 3위 · 초음파 신장계 & 카운터 줄넘기`,
         title: '인바디 초음파 디지털 신장계(1초 정밀 키재기) & 초등 디지털 카운터 줄넘기',
         desc: '초등 줄넘기 급수제 대비 하루 500회 점핑으로 성장판을 자극하고, 매월 1일 아침 성장속도(cm/년)를 정밀 측정합니다.',
-        url: 'https://www.coupang.com/np/search?q=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0',
         btnText: `📦 쿠팡에서 초음파 신장계·줄넘기 보기 ↗`
       };
     } else {
@@ -917,21 +917,21 @@
         badge: `🏆 만 ${ageYears}세 급성장 1위 · HT042 & 고함량 칼슘`,
         title: '식약처 인정 HT042 황기추출물 + 청소년 고함량 어골·연골칼슘(1100mg)·아르기닌',
         desc: `성장판이 닫히기 전 마지막 골든타임(만 ${ageYears}세)에 폭발하는 뼈 성장 요구량을 채워주는 고함량 집중 배합입니다.`,
-        url: 'https://www.coupang.com/np/search?q=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
         btnText: `📦 쿠팡에서 청소년 HT042·고함량 칼슘 보기 ↗`
       };
       prod2 = {
         badge: `🌙 만 ${ageYears}세 맞춤 2위 · 심야 수면·성장통 마그네슘`,
         title: '청소년 킬레이트 글리시네이트 마그네슘·타트체리 슬립케어 & 비타민D3·K2',
         desc: '학원·학업 스트레스로 늦게 자는 청소년의 서파수면(SWS) 성장호르몬 피크를 회복시키고 다리 성장통을 완화합니다.',
-        url: 'https://www.coupang.com/np/search?q=%EC%B2%AD%EC%86%8C%EB%85%84+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%ED%83%80%ED%8A%B8%EC%B2%B4%EB%A6%AC+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%AD%EC%86%8C%EB%85%84+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%ED%83%80%ED%8A%B8%EC%B2%B4%EB%A6%AC+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD',
         btnText: `📦 쿠팡에서 청소년 수면·마그네슘 칼슘 보기 ↗`
       };
       prod3 = {
         badge: `🦴 만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
         title: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 고밀도 EPP 폼롤러',
         desc: '하루 종일 책상에 앉아 눌린 척추 디스크를 저녁 90초 매달리기(Dead Hang)로 감압해 숨은 키 1.8~2.2cm를 즉시 복원합니다.',
-        url: 'https://www.coupang.com/np/search?q=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC&channel=user&lptag=AF7865143',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC',
         btnText: `📦 쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
       };
     }

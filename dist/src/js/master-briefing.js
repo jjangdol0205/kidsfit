@@ -1901,7 +1901,7 @@
                   <span style="font-size: 0.74rem; font-weight: 900; color: #38BDF8;">💊 [만 ${ageYears}세 맞춤 영양제 ${idx + 1}순위] ${supp.categoryBadge || ''}</span>
                   <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${supp.name}</div>
                 </div>
-                <a href="${supp.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
+                <a href="${supp.coupangUrl || 'https://link.coupang.com/re/AFFHOME?lptag=AF7865143&subid=kidsfit'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #2563EB 0%, #059669 100%); color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
                   🔗 ${supp.buttonLabelCoupang || '쿠팡 로켓배송 바로가기 ↗'}
                 </a>
               </div>
@@ -1912,7 +1912,7 @@
                   <span style="font-size: 0.74rem; font-weight: 900; color: #34D399;">🏃 [만 ${ageYears}세 맞춤 운동기구 ${idx + 1}순위] ${gear.categoryBadge || ''}</span>
                   <div style="font-size: 0.96rem; font-weight: 900; color: #FFFFFF; margin-top: 0.15rem;">${gear.name}</div>
                 </div>
-                <a href="${gear.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #10B981 0%, #0D9488 100%); color: #052E16; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
+                <a href="${gear.coupangUrl || 'https://link.coupang.com/re/AFFHOME?lptag=AF7865143&subid=kidsfit'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #10B981 0%, #0D9488 100%); color: #052E16; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 1rem; border-radius: 10px; white-space: nowrap;">
                   🔗 ${gear.buttonLabelCoupang || '쿠팡 로켓배송 바로가기 ↗'}
                 </a>
               </div>
@@ -2690,7 +2690,7 @@
                       <span style="font-size: 0.74rem; font-weight: 900; color: #F472B6;">🧩 맞춤 추천 교구·도구</span>
                       <div style="font-size: 0.94rem; font-weight: 900; color: #FFFFFF; margin-top: 0.12rem;">${item.name}</div>
                     </div>
-                    <a href="${item.coupangUrl || 'https://www.coupang.com'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.5rem 0.95rem; border-radius: 10px; white-space: nowrap;">
+                    <a href="${item.coupangUrl || 'https://link.coupang.com/re/AFFHOME?lptag=AF7865143&subid=kidsfit'}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-align: center; text-decoration: none; background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%); color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.5rem 0.95rem; border-radius: 10px; white-space: nowrap;">
                       🔗 ${item.buttonLabelCoupang || '쿠팡 로켓배송 바로가기'} ↗
                     </a>
                   </div>

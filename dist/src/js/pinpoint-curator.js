@@ -327,7 +327,7 @@
     const amzTag = encodeURIComponent(cfg.amazon || DEFAULT_AFF.amazon);
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
 
-    const cpUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(coupangQuery)}&channel=user&lptag=${cpTag}`;
+    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(coupangQuery)}`;
     const ihUrl = `https://kr.iherb.com/search?kw=${encodeURIComponent(iherbQuery)}&rcode=${ihCode}`;
     const amzUrl = `https://www.amazon.com/s?k=${encodeURIComponent(iherbQuery)}&tag=${amzTag}`;
     const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yes24Query || coupangQuery)}`;
@@ -1946,10 +1946,11 @@
     const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
 
     const makeTourUrls = (cpQuery, yesQuery, tourQuery, mrtShortUrl, klookDestUrl) => {
-      const cpUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(cpQuery)}&channel=user&lptag=${cpTag}`;
+      const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(cpQuery)}`;
       const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yesQuery)}`;
       const yesUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
-      const myrealtripUrl = mrtShortUrl || `https://www.myrealtrip.com/offers?q=${encodeURIComponent(tourQuery)}&mylink_id=${mrtMylinkId}&utm_source=mktpartner`;
+      const mrtReturnUrl = `https://www.myrealtrip.com/search?q=${encodeURIComponent(tourQuery)}&mylink_id=${mrtMylinkId}&t_scope=604800&utm_source=mktpartner`;
+      const myrealtripUrl = mrtShortUrl || `https://www.myrealtrip.com/main/bridge/marketing?return_url=${encodeURIComponent(mrtReturnUrl)}`;
       const kSite = klookDestUrl || `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(tourQuery)}`;
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
       const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(tourQuery)}`;
