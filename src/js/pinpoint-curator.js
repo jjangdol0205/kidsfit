@@ -313,7 +313,7 @@
       Object.assign({ stageBadge: `현재 (만 ${startAge}세 · 지금 당장 집중!)`, accent: '#1D4ED8', isCurrent: true }, getAgeLifecycleItem(startAge)),
       Object.assign({ stageBadge: `+1년 뒤 (만 ${startAge + 1}세 때 신경써야 할 핵심)`, accent: '#1D4ED8', isCurrent: false }, getAgeLifecycleItem(startAge + 1)),
       Object.assign({ stageBadge: `+2년 뒤 (만 ${startAge + 2}세 때 신경써야 할 핵심)`, accent: '#1D4ED8', isCurrent: false }, getAgeLifecycleItem(startAge + 2)),
-      Object.assign({ stageBadge: `+3년 뒤 (만 ${startAge + 3}세 중장기 준비 포인트)`, accent: '#A78BFA', isCurrent: false }, getAgeLifecycleItem(startAge + 3))
+      Object.assign({ stageBadge: `+3년 뒤 (만 ${startAge + 3}세 중장기 준비 포인트)`, accent: '#1D4ED8', isCurrent: false }, getAgeLifecycleItem(startAge + 3))
     ];
   }
 

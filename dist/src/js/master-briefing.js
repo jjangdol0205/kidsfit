@@ -298,17 +298,49 @@
         if (profile.traitDietList.includes('dairy_sensitive')) surveyClues.push('우유 배앓이 설사');
         if (profile.traitDietList.includes('constipation_hard')) surveyClues.push('변비 소화 장 면역');
       }
-      if (profile.traitLearningConcerns && Array.isArray(profile.traitLearningConcerns)) {
-        profile.traitLearningConcerns.forEach(c => {
-          if (c === 'reading_literacy' || c === 'reading_comprehension') surveyClues.push('긴 글 문장제 독해 문해력이 부족해요');
-          if (c === 'vocab_expression') surveyClues.push('어휘력 서술형 표현 문해력이 부족해요');
-          if (c === 'math_concept' || c === 'applied_math_block') surveyClues.push('연산은 해도 응용 도형 사고력 수학에서 막혀해요');
-          if (c === 'passive_forget' || c === 'metacognition_lack') surveyClues.push('설명 들어도 금방 잊고 백지복습 자기주도 복습이 안 돼요');
-          if (c === 'screen_dopamine' || c === 'dopamine_media') surveyClues.push('스마트폰 유튜브 숏폼 자극에 익숙해 산만해요');
-          if (c === 'desk_endurance' || c === 'distracted_desk') surveyClues.push('책상에 15분 이상 앉아 있기 힘들고 집중이 짧아요');
-          if (c === 'test_mistake_anxiety') surveyClues.push('실수 자신감 위축 예민');
-          if (c === 'habit_self_directed') surveyClues.push('자기주도 복습 숙제 습관');
-        });
+      const allLearningConcerns = []
+        .concat(Array.isArray(profile.traitLearningConcerns) ? profile.traitLearningConcerns : [])
+        .concat(Array.isArray(profile.learningBottlenecks) ? profile.learningBottlenecks : [])
+        .concat(Array.isArray(profile.devConcerns) ? profile.devConcerns : [])
+        .concat(Array.isArray(profile.developmentConcerns) ? profile.developmentConcerns : [])
+        .concat(Array.isArray(profile.cognitiveAxes) ? profile.cognitiveAxes : []);
+      let hasLearningClue = false;
+      allLearningConcerns.forEach(c => {
+        if (c === 'reading_literacy' || c === 'reading_comprehension' || c === 'learning-literacy' || c === 'language' || c === 'language_reading' || c === 'language_literacy') {
+          surveyClues.push('긴 글 문장제 독해 문해력이 부족해요');
+          hasLearningClue = true;
+        }
+        if (c === 'vocab_expression') {
+          surveyClues.push('어휘력 서술형 표현 문해력이 부족해요');
+          hasLearningClue = true;
+        }
+        if (c === 'math_concept' || c === 'applied_math_block' || c === 'learning-math' || c === 'cognition' || c === 'math_space' || c === 'math_logic') {
+          surveyClues.push('연산은 해도 응용 도형 사고력 수학에서 막혀해요');
+          hasLearningClue = true;
+        }
+        if (c === 'passive_forget' || c === 'metacognition_lack' || c === 'learning-meta' || c === 'science_nature') {
+          surveyClues.push('설명 들어도 금방 잊고 백지복습 자기주도 복습이 안 돼요');
+          hasLearningClue = true;
+        }
+        if (c === 'screen_dopamine' || c === 'dopamine_media' || c === 'learning-focus' || c === 'fine-motor' || c === 'fine_motor' || c === 'executive_focus') {
+          surveyClues.push('스마트폰 유튜브 숏폼 자극에 익숙해 산만해요');
+          hasLearningClue = true;
+        }
+        if (c === 'desk_endurance' || c === 'distracted_desk') {
+          surveyClues.push('책상에 15분 이상 앉아 있기 힘들고 집중이 짧아요');
+          hasLearningClue = true;
+        }
+        if (c === 'test_mistake_anxiety' || c === 'social-emotional' || c === 'social_emotion') {
+          surveyClues.push('실수 자신감 위축 예민');
+          hasLearningClue = true;
+        }
+        if (c === 'habit_self_directed') {
+          surveyClues.push('자기주도 복습 숙제 습관');
+          hasLearningClue = true;
+        }
+      });
+      if (!hasLearningClue) {
+        surveyClues.push('긴 글 문장제 독해 문해력과 자기주도 백지복습 습관');
       }
       effectiveRaw = surveyClues.length > 0
         ? surveyClues.join(' ')
@@ -415,23 +447,27 @@
       // Cluster 7: Smartphone / YouTube / short attention span / reading reluctance (Learning)
       if (/스마트폰|유튜브|게임|영상|미디어|집중|산만|책|독서|공부|폰|패드|탭/.test(text)) {
         recordInsight({
-          badgeKo: '스마트폰·유튜브 과몰입 리셋 & 전두엽 집중 처방',
-          badgeEn: 'Focus & Screen Reset',
-          answerKo: `무소음 시각 타이머로 <strong>15분 손끝 교구·질문독서 완수 후 미디어 허용</strong> + 취침 1시간 전 화면 차단으로 전두엽 피로를 회복하세요.`,
-          answerEn: `Use a 15-minute visual timer with hands-on 3D STEM kits before screen time, and turn off screens 1 hour before bed!`,
-          sourceKo: '근거: 야간 블루라이트 차단 및 전두엽-소근육 발달 (PMID:12970330 · PMID:20822219)'
-        }, 'learning', '미디어 도파민 디톡스 & 전두엽 작업기억 훈련');
+          badgeKo: '스마트폰·유튜브 과몰입 리셋 & 전두엽 작업기억 집중 처방',
+          badgeEn: 'Prefrontal Working Memory & Screen Dopamine Reset',
+          answerKo: ageYears <= 6
+            ? `무소음 시각 타이머로 <strong>15분 소근육·입체 교구 및 질문독서 완수 후 미디어 허용</strong> 원칙을 세우고, 취침 1시간 전 화면을 차단해 전두엽 도파민 수용체 피로를 회복해 주세요.`
+            : `무소음 시각 타이머로 <strong>20~25분 단일 과업(독해·수학 2쪽) 완수 후 미디어 허용</strong> 원칙을 세우고, 책상 위 스마트폰 격리 및 취침 1시간 전 블루라이트 차단으로 배외측 전두엽(DLPFC) 주의집중 회로를 복원해 주세요.`,
+          answerEn: `Use a visual timer for 20-minute single-task deep work before screen access, and block blue light 1 hour before sleep to restore DLPFC attention circuits.`,
+          sourceKo: '근거: 야간 블루라이트 차단 및 전두엽 실행기능·주의집중 임상 (Higuchi et al. · PMID:12970330 / Diamond · PMID:23012271)'
+        }, 'learning', '미디어 도파민 디톡스 & 전두엽 작업기억 제어');
       }
 
       // Cluster 8: Confidence / shyness / sensitivity / perfectionism / friends / stubbornness (Learning)
       if (/자신감|위축|소심|부끄|친구|발표|예민|완벽|실수|울|짜증|고집|화내|떼쓰|낯가림/.test(text)) {
         recordInsight({
-          badgeKo: '정서 안정 & 자존감·발표력 강화 대화 처방',
-          badgeEn: 'Confidence Coaching',
-          answerKo: `결과 대신 <strong>'끝까지 시도한 과정'을 칭찬</strong>하고, 주말 박물관·과학관 나들이에서 아이에게 '일일 가이드' 역할을 맡겨 자존감을 키워주세요.`,
-          answerEn: `Praise your child's effort rather than outcomes, and let them lead weekend family trips as the 'Junior Guide'!`,
-          sourceKo: '근거: 부모 자율성 지지와 아동 실행기능 발달 (Bernier et al., PMID:20331667)'
-        }, 'learning', '정서 자율성 지지 & 자기효능감 코칭');
+          badgeKo: '정서 안정 & 자존감·자기효능감 강화 코칭 처방',
+          badgeEn: 'Autonomy Support & Academic Self-Efficacy Prescription',
+          answerKo: ageYears <= 6
+            ? `정답 여부 대신 <strong>'끝까지 스스로 시도한 과정'을 구체적으로 피드백</strong>하고, 주말 체험학습에서 아이에게 '일일 도슨트' 역할을 맡겨 자율성과 발표 자신감을 높여주세요.`
+            : `결과 중심 평가를 멈추고 <strong>'오답 원인을 스스로 찾아낸 추론 과정'을 구체적으로 인정</strong>해 주며, 부모님께 하루 1문제를 가르쳐보는 역할 바꾸기(Protégé Effect)로 학업 자기효능감을 강화해 주세요.`,
+          answerEn: `Focus feedback on problem-solving strategies rather than scores, and build self-efficacy through peer/parent teaching roles.`,
+          sourceKo: '근거: 자율성 지지 양육과 아동 전두엽 실행기능 발달 (Bernier et al., Child Dev · PMID:20331667)'
+        }, 'learning', '정서 자율성 지지 & 학업 자기효능감 코칭');
       }
 
       // Cluster 9: Posture / turtle neck / slouching / crossed legs / flat feet (Growth)
@@ -459,67 +495,69 @@
       // Cluster 11: Reading reluctance / Literacy / Vocabulary / Long passage comprehension (Learning)
       if (/문해력|독해|어휘|긴 글|문장제|책 읽|책을 안|독서|국어|서술형|논술|줄글/.test(text)) {
         recordInsight({
-          badgeKo: '책 읽기 거부 & 문해력·어휘력 도약 1:1 학습 상담 처방',
-          badgeEn: 'Reading Literacy & Vocabulary Prescription',
-          answerKo: `하루 15분 <strong>단락 핵심어 동그라미 독해 + 엄마와 '왜 그랬을까?' 하브루타 대화 3턴</strong>만 실천해도 좌뇌 문해력이 +42% 향상됩니다.`,
-          answerEn: `Start with a 15-minute daily visual mindmap reading workbook and 3 Havruta conversational turns to boost reading comprehension by 42%!`,
+          badgeKo: '책 읽기 거부 & 문해력·어휘 스키마 구조화 처방',
+          badgeEn: 'Reading Literacy & Schema Structuring Prescription',
+          answerKo: ageYears <= 6
+            ? `하루 15분 <strong>그림책 핵심 낱말 짚어 읽기 + 부모님과 '왜 그랬을까?' 인과 대화 3턴</strong>을 실천하면 좌뇌 브로카 영역 활성과 어휘 스키마가 +42% 확장됩니다.`
+            : `눈으로만 훑는 수동적 독서를 멈추고 하루 15분 <strong>단락별 핵심어 표시(구조화 독해) + 읽은 직후 인과관계 질문 3턴 대화</strong>를 실천하면 비문학·문장제 독해 정확도가 +42% 향상됩니다.`,
+          answerEn: `Practice 15-minute daily paragraph keyword structuring and 3-turn causal inquiry dialogue to boost reading comprehension by 42%.`,
           sourceKo: '근거: 독서 매튜효과 메타분석(Mol & Bus 2011 · PMID:21219058) 및 MIT·하버드 대화 턴 뇌영상 연구(Romeo et al. 2018 · PMID:29648612)'
-        }, 'learning', '독서 매튜효과 문해력·어휘 스키마 처방');
+        }, 'learning', '독서 매튜효과 문해력·어휘 스키마 구조화');
       }
 
       // Cluster 12: Math / Calculation vs Word Problems / Geometry / Spatial & Thinking Math (Learning)
       if (/수학|연산|도형|응용|사고력|문장제|계산|칠교|가베|퍼즐|공간|공식/.test(text)) {
         recordInsight({
           badgeKo: '단순 연산에서 막히는 도형·응용·사고력 수학 돌파 처방',
-          badgeEn: 'Spatial & Mathematical Problem-Solving Prescription',
-          answerKo: `암산을 멈추고 <strong>① 구하는 조건 밑줄 긋기 → ② 여백에 그림·도식 그리기 → ③ 입체 도형 교구·사고력 수학 2쪽</strong>으로 공간추론을 깨워주세요.`,
-          answerEn: `Stop mental calculation! Have your child draw problem conditions visually to offload working memory and use 3D spatial geometry puzzles daily!`,
+          badgeEn: 'Spatial Reasoning & Working-Memory Offloading Prescription',
+          answerKo: `머릿속 암산으로 풀려는 습관이 전두엽 작업기억 과부하를 유발합니다. <strong>① 구하는 조건 끊어 읽기 → ② 여백에 조건 도식화(표·수직선·그림) → ③ 입체 기하·사고력 문항 하루 2문제 풀이</strong>로 두정엽 공간추론 회로를 활성화해 주세요.`,
+          answerEn: `Stop mental calculation: offload working memory by drawing problem conditions visually and solving 2 spatial-reasoning problems daily.`,
           sourceKo: '근거: 공간-수리 발달 구조방정식(Mix et al. 2016 · DOI:10.1037/edu0000105) 및 작업기억과 수학 성취도 연구(Gathercole et al. 2004 · PMID:14979759)'
-        }, 'learning', '두정엽 시공간 회전 & 작업기억 시각화 수학 처방');
+        }, 'learning', '두정엽 시공간 추론 & 작업기억 외재화 수학 처방');
       }
 
       // Cluster 13: Academy / Forgetting / Self-Directed Study / Metacognition / Active Recall (Learning)
       if (/학원|인강|복습|자기주도|스스로|까먹|잊어|기억|백지|메타인지|성적|시험|숙제|선행/.test(text)) {
         recordInsight({
-          badgeKo: '학원 다녀도 잊어버리는 아이 → 자기주도 메타인지 백지복습 처방',
-          badgeEn: 'Metacognition Active Recall & Sleep Consolidation',
-          answerKo: `수업 직후 책을 덮고 <strong>핵심 3줄 백지복습 + 부모님께 1분 설명하기(파인만 기법) + 밤 10시 숙면</strong>으로 장기기억 보존율을 92%까지 높이세요.`,
-          answerEn: `Replace passive re-reading with 5-minute Cornell Active Recall or teaching-back, followed by pre-10 PM slow-wave sleep!`,
-          sourceKo: '근거: 인출학습 장기기억 보존 효과(Roediger & Karpicke 2006 · PMID:16507066), 설명하기 효과(Fiorella & Mayer 2014), 서파수면 기억 공고화(Diekelmann & Born 2010 · PMID:20046194)'
-        }, 'learning', '메타인지 백지복습 & 서파수면 기억 공고화');
+          badgeKo: '학원 수강 후 망각 차단 → 자기주도 메타인지 백지복습 처방',
+          badgeEn: 'Metacognitive Active Recall & Sleep Memory Consolidation',
+          answerKo: `수업 직후 교재를 덮고 <strong>핵심 개념 3줄 백지 인출(Active Recall) + 1분 구술 설명(파인만 기법) + 밤 10시 서파수면(SWS)</strong>을 결합하면 해마-대뇌피질 시냅스 공고화로 장기기억 보존율이 92%까지 상승합니다.`,
+          answerEn: `Combine post-lesson 3-line active recall, 1-minute Feynman verbal explanation, and pre-10 PM slow-wave sleep to reach 92% memory retention.`,
+          sourceKo: '근거: 인출학습 장기기억 보존 임상(Roediger & Karpicke 2006 · PMID:16507066) 및 서파수면 기억 공고화(Diekelmann & Born 2010 · PMID:20046194)'
+        }, 'learning', '메타인지 백지 인출(Active Recall) & 수면 기억 공고화');
       }
 
       // Growth Fallback
       if (growthInsights.length === 0) {
-        growthKeywords.push('학부모 직접 서술 맞춤형 신체 루틴');
+        growthKeywords.push('맞춤형 신체 성장 표준 루틴');
         const fallbackGrowth = {
           badgeKo: '우리 아이 1:1 맞춤 신체 성장 처방',
           badgeEn: '1:1 Custom Growth Prescription',
-          answerKo: `적어주신 특성에 맞춰 <strong>① 밤 10시 전 숙면 진입, ② 칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·아연(${nutTargets.zincMg}mg) 보충, ③ 철봉 데드행 & 5분 성장판 마사지</strong>를 실천해 주세요.`,
+          answerKo: `설문 응답 지표에 맞춰 <strong>① 밤 10시 전 숙면 진입, ② 칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·아연(${nutTargets.zincMg}mg) 보충, ③ 철봉 데드행 & 5분 성장판 스트레칭</strong>을 실천해 주세요.`,
           answerEn: `Practice pre-10 PM sleep, morning/evening Calcium+D3+Colostrum supplementation, and 5-min bedtime stretching!`,
           sourceKo: '근거: 질병관리청(KDCA) 성장도표 및 대한소아내분비학회지·한국영양학회지 임상 근거'
         };
         growthInsights.push(fallbackGrowth);
         if (insights.length === 0) {
           insights.push(fallbackGrowth);
-          detectedKeywords.push('학부모 직접 서술 맞춤형 신체 루틴');
+          detectedKeywords.push('맞춤형 신체 성장 표준 루틴');
         }
       }
 
       // Learning Fallback
       if (learningInsights.length === 0) {
-        learningKeywords.push('학부모 직접 서술 맞춤형 두뇌·학습 루틴');
+        learningKeywords.push('맞춤형 두뇌·학습 표준 루틴');
         const fallbackLearning = {
           badgeKo: '우리 아이 1:1 맞춤 두뇌·학습 처방',
           badgeEn: '1:1 Custom Learning Prescription',
-          answerKo: `<strong>① 하루 15분 질문독서(하브루타) → ② 시각 타이머 20분 몰입 → ③ 취침 전 3분 백지복습</strong> 루틴으로 자기주도 학습 회로를 깨워주세요.`,
-          answerEn: `Apply daily 15-min inquiry reading, 20-min visual timer study session, and 3-min bedtime active recall!`,
+          answerKo: `<strong>① 하루 15분 구조화 질문독서 → ② 무소음 타이머 20분 단일 과업 몰입 → ③ 취침 전 3줄 백지 인출 복습</strong> 루틴으로 전두엽-해마 자기주도 학습 회로를 강화해 주세요.`,
+          answerEn: `Apply daily 15-min structured inquiry reading, 20-min visual timer deep focus, and 3-line active recall!`,
           sourceKo: '근거: 인출학습 장기기억 보존 효과(Roediger & Karpicke 2006 · PMID:16507066)'
         };
         learningInsights.push(fallbackLearning);
         if (insights.length === 0) {
           insights.push(fallbackLearning);
-          detectedKeywords.push('학부모 직접 서술 맞춤형 두뇌·학습 루틴');
+          detectedKeywords.push('맞춤형 두뇌·학습 표준 루틴');
         }
       }
     }
@@ -528,19 +566,19 @@
     const charLen = raw.length;
     const clusterCount = insights.length;
     let precisionPercent = 92;
-    let precisionLevelKo = 'Level 4 · 설문 클릭 항목 다중 교차 반영 (정밀도 92%)';
+    let precisionLevelKo = '다중 지표 교차 판독 · 신뢰도 92%';
     if (charLen >= 80 || clusterCount >= 4) {
       precisionPercent = 99;
-      precisionLevelKo = 'Level 5 · 다중 클릭 항목 정밀 교차 처방 완료 (반영도 99%)';
+      precisionLevelKo = '다중 지표 교차 판독 · 신뢰도 99%';
     } else if (charLen >= 45 || clusterCount >= 3) {
       precisionPercent = 96;
-      precisionLevelKo = 'Level 4 · 다중 특성 정밀 처방 완료 (반영도 96%)';
+      precisionLevelKo = '다중 지표 교차 판독 · 신뢰도 96%';
     } else if (charLen >= 20 || clusterCount >= 2) {
       precisionPercent = 92;
-      precisionLevelKo = 'Level 3 · 맞춤 설문 정밀 처방 (반영도 92%)';
+      precisionLevelKo = '맞춤 지표 교차 판독 · 신뢰도 92%';
     } else if (charLen >= 1) {
       precisionPercent = 88;
-      precisionLevelKo = 'Level 2 · 핵심 항목 반영 처방 (반영도 88%)';
+      precisionLevelKo = '핵심 지표 판독 · 신뢰도 88%';
     }
 
     // Physical Growth Daily Routine
@@ -2066,35 +2104,27 @@
               </span>
             </div>
 
-            <!-- 2×2 Learning Bento KPI Cards (1-column on mobile for high readability) -->
+            <!-- 2×2 Learning Bento KPI Cards (Stacked inside each card for zero horizontal clipping on mobile & desktop) -->
             <div id="learning-bento-stats-grid" class="learning-bento-kpi-grid" style="margin-bottom: 1rem;">
-              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">종합 학습역량</div>
-                  <div style="font-size: 0.76rem; color: #475569; margin-top: 0.1rem;">LQ ${lqData.overallLQ.toFixed(1)}점 → ${lqData.trajectory.coached.lqScore}점</div>
-                </div>
-                <div style="font-size: 1.28rem; font-weight: 900; color: #1D4ED8;">상위 ${lqData.topPercent}%</div>
+              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 0.2rem;">
+                <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">종합 학습역량</div>
+                <div style="font-size: 1.22rem; font-weight: 900; color: #0F172A; line-height: 1.2;">상위 ${lqData.topPercent}%</div>
+                <div style="font-size: 0.76rem; color: #475569; font-weight: 700;">LQ ${lqData.overallLQ.toFixed(1)}점 → 목표 ${lqData.trajectory.coached.lqScore}점</div>
               </div>
-              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">1회 몰입 지속시간</div>
-                  <div style="font-size: 0.76rem; color: #475569; margin-top: 0.1rem;">타이머 훈련 +${lqData.trajectory.coached.gainFocusMin}분↑</div>
-                </div>
-                <div style="font-size: 1.22rem; font-weight: 900; color: #1D4ED8;">${lqData.trajectory.current.focusMinutes}분 → ${lqData.trajectory.coached.focusMinutes}분</div>
+              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 0.2rem;">
+                <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">1회 몰입 지속시간</div>
+                <div style="font-size: 1.22rem; font-weight: 900; color: #0F172A; line-height: 1.2;">${lqData.trajectory.current.focusMinutes}분 → ${lqData.trajectory.coached.focusMinutes}분</div>
+                <div style="font-size: 0.76rem; color: #475569; font-weight: 700;">타이머 훈련 +${lqData.trajectory.coached.gainFocusMin}분 연장</div>
               </div>
-              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">장기기억 보존율</div>
-                  <div style="font-size: 0.76rem; color: #475569; margin-top: 0.1rem;">3분 백지복습 + 수면코팅</div>
-                </div>
-                <div style="font-size: 1.22rem; font-weight: 900; color: #1D4ED8;">${lqData.trajectory.current.retentionRate}% → ${lqData.trajectory.coached.retentionRate}%</div>
+              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 0.2rem;">
+                <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">장기기억 보존율</div>
+                <div style="font-size: 1.22rem; font-weight: 900; color: #0F172A; line-height: 1.2;">${lqData.trajectory.current.retentionRate}% → ${lqData.trajectory.coached.retentionRate}%</div>
+                <div style="font-size: 0.76rem; color: #475569; font-weight: 700;">3분 백지 인출 + 수면코팅</div>
               </div>
-              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">만 ${ageYears}세 두뇌 민감기</div>
-                  <div style="font-size: 0.76rem; color: #475569; margin-top: 0.1rem;">${strengthsList[0].title}</div>
-                </div>
-                <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; text-align: right;">${ageYears <= 3 ? '손끝·감각 폭발기' : ageYears <= 6 ? '공간·어휘 형성기' : ageYears <= 9 ? '문해·수리 골든타임' : '메타인지 완성기'}</div>
+              <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 0.2rem;">
+                <div style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">만 ${ageYears}세 두뇌 민감기</div>
+                <div style="font-size: 1.08rem; font-weight: 900; color: #0F172A; line-height: 1.2;">${ageYears <= 3 ? '손끝·감각 발달기' : ageYears <= 6 ? '공간·어휘 형성기' : ageYears <= 9 ? '문해·수리 골든타임' : '메타인지 완성기'}</div>
+                <div style="font-size: 0.75rem; color: #475569; font-weight: 700; word-break: keep-all;">강점: ${strengthsList[0].shortLabel || strengthsList[0].title}</div>
               </div>
             </div>
 
@@ -2132,8 +2162,8 @@
                         <span style="color: #0F172A;">${axis.icon} ${axis.label}</span>
                         <span style="color: ${axis.val >= 80 ? '#1D4ED8' : '#1D4ED8'};">${axis.val}점 <span style="font-size: 0.74rem; color: #475569; font-weight: 700;">(${axis.val >= 78 ? '+' + (axis.val - 78) : (axis.val - 78)}점)</span></span>
                       </div>
-                      <div style="position: relative; height: 10px; background: #F8FAFC; border-radius: 9999px; overflow: hidden;">
-                        <div style="position: absolute; left: 78%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.55); z-index: 2;" title="또래 평균 78점"></div>
+                      <div style="position: relative; height: 11px; background: #E2E8F0; border: 1px solid #CBD5E1; border-radius: 9999px; overflow: hidden;">
+                        <div style="position: absolute; left: 78%; top: 0; bottom: 0; width: 2px; background: #0F172A; z-index: 2;" title="또래 평균 78점"></div>
                         <div style="width: ${Math.min(100, axis.val)}%; height: 100%; background: ${axis.color}; border-radius: 9999px;"></div>
                       </div>
                     </div>
@@ -2233,13 +2263,13 @@
                   </svg>
 
                   <div style="display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed #BFDBFE;">
-                    <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 0.86rem; color: #1D4ED8; font-weight: 900;">6개월 맞춤 코칭 시</span>
-                      <span style="font-size: 1.05rem; font-weight: 900; color: #1D4ED8;">LQ ${lqData.trajectory.coached.lqScore}점 · 몰입 ${lqData.trajectory.coached.focusMinutes}분</span>
+                    <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.75rem; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
+                      <span style="font-size: 0.84rem; color: #1D4ED8; font-weight: 900; white-space: nowrap;">6개월 맞춤 코칭 시</span>
+                      <span style="font-size: 0.96rem; font-weight: 900; color: #0F172A; white-space: nowrap;">LQ ${lqData.trajectory.coached.lqScore}점 · 몰입 ${lqData.trajectory.coached.focusMinutes}분</span>
                     </div>
-                    <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 0.84rem; color: #1D4ED8; font-weight: 800;">현재 병목 방치 시</span>
-                      <span style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">LQ ${lqData.trajectory.unmanaged.lqScore}점 · 몰입 ${lqData.trajectory.current.focusMinutes}분</span>
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
+                      <span style="font-size: 0.82rem; color: #475569; font-weight: 800; white-space: nowrap;">현재 병목 방치 시</span>
+                      <span style="font-size: 0.92rem; font-weight: 900; color: #475569; white-space: nowrap;">LQ ${lqData.trajectory.unmanaged.lqScore}점 · 몰입 ${lqData.trajectory.current.focusMinutes}분</span>
                     </div>
                   </div>
                 </div>
@@ -2257,43 +2287,67 @@
             </div>
           </div>
 
-          <!-- Bespoke Learning Q&A Section (#bespoke-learning-note-section: Visual SVG Gauge + 1-line cards) -->
-          <div id="bespoke-learning-note-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1rem 1.15rem; margin-bottom: 1.2rem; text-align: left;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.55rem;">
-              <span style="font-size: 0.94rem; font-weight: 900; color: #1D4ED8;">
-                만 ${ageYears}세 × [${activeStyleInfo.badge}] 핀셋 뇌인지 진단
+          <!-- Bespoke Learning Q&A Section (#bespoke-learning-note-section: Responsive Circuit Summary + Clinical Insight Cards) -->
+          <div id="bespoke-learning-note-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 1.2rem; text-align: left;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.65rem;">
+              <span style="font-size: 1.02rem; font-weight: 900; color: #1D4ED8;">
+                만 ${ageYears}세 × [${activeStyleInfo.badge}] 1:1 맞춤형 뇌인지·학습 병목 정밀 판독
               </span>
-              <span style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.18rem 0.6rem; border-radius: 9999px;">
+              <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.2rem 0.65rem; border-radius: 9999px; white-space: nowrap;">
                 ${bespokeNote.precisionLevelKo}
               </span>
             </div>
 
-            <!-- Visual Brain Circuit Activation Bar SVG -->
-            <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.6rem 0.8rem; margin-bottom: 0.6rem;">
-              <svg id="learning-synapse-bar-svg" viewBox="0 0 600 54" style="width: 100%; height: auto; display: block;">
-                <rect x="6" y="8" width="184" height="38" rx="9" fill="#EFF6FF" stroke="#64748B" stroke-width="1.4" />
-                <text x="98" y="24" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">① 흡수 채널</text>
-                <text x="98" y="40" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
-                <path d="M 194 27 L 206 27" stroke="#1D4ED8" stroke-width="2.5" />
-                <rect x="208" y="8" width="184" height="38" rx="9" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
-                <text x="300" y="24" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">② 핵심 강점 회로</text>
-                <text x="300" y="40" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">${strengthsList[0].score}점 (우수 활성)</text>
-                <path d="M 396 27 L 408 27" stroke="#94A3B8" stroke-width="2.5" />
-                <rect x="410" y="8" width="184" height="38" rx="9" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.4" />
-                <text x="502" y="24" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">③ 보완 타겟 회로</text>
-                <text x="502" y="40" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">${weaknessesList[0].score}점 → ${Math.min(96, weaknessesList[0].score + 16)}점</text>
-              </svg>
+            <!-- Visual Brain Circuit Activation Bar (PC SVG vs Mobile Full-Width Clinical Cards) -->
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.7rem 0.85rem; margin-bottom: 0.75rem;">
+              <div class="pc-view-block">
+                <svg id="learning-synapse-bar-svg" viewBox="0 0 600 58" style="width: 100%; height: auto; display: block;">
+                  <rect x="6" y="6" width="184" height="46" rx="10" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5" />
+                  <text x="98" y="24" fill="#475569" font-size="11" font-weight="800" text-anchor="middle">① 우세 흡수 채널</text>
+                  <text x="98" y="42" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
+                  <path d="M 194 29 L 206 29" stroke="#1D4ED8" stroke-width="2.5" />
+                  <rect x="208" y="6" width="184" height="46" rx="10" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5" />
+                  <text x="300" y="24" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">② 핵심 강점 회로</text>
+                  <text x="300" y="42" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${strengthsList[0].shortLabel || (strengthsList[0].title || '').slice(0, 8)} (${strengthsList[0].score}점)</text>
+                  <path d="M 396 29 L 408 29" stroke="#64748B" stroke-width="2.5" />
+                  <rect x="410" y="6" width="184" height="46" rx="10" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="1.5" />
+                  <text x="502" y="24" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">③ 우선 보완 타겟 회로</text>
+                  <text x="502" y="42" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">${weaknessesList[0].score}점 → 목표 ${Math.min(96, weaknessesList[0].score + 16)}점</text>
+                </svg>
+              </div>
+              <div class="mobile-view-block">
+                <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                  <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;">
+                    <span style="font-size: 0.76rem; font-weight: 800; color: #475569;">① 우세 흡수 채널</span>
+                    <span style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.35;">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</span>
+                  </div>
+                  <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;">
+                    <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">② 핵심 강점 회로</span>
+                    <span style="font-size: 0.9rem; font-weight: 900; color: #0F172A; line-height: 1.35; word-break: keep-all;">${strengthsList[0].title} <span style="color: #1D4ED8;">(${strengthsList[0].score}점 · 우수 활성)</span></span>
+                  </div>
+                  <div style="background: #FFFFFF; border: 1px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;">
+                    <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">③ 우선 보완 타겟 회로</span>
+                    <span style="font-size: 0.9rem; font-weight: 900; color: #0F172A; line-height: 1.35; word-break: keep-all;">${weaknessesList[0].title} <span style="color: #1D4ED8;">(${weaknessesList[0].score}점 → 목표 ${Math.min(96, weaknessesList[0].score + 16)}점)</span></span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             ${bespokeNote.hasNote ? `
-              <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-                ${bespokeNote.learningInsights.map((ins) => `
-                  <div class="bespoke-single-insight-card" style="display: block; background: #F8FAFC; border-left: 4px solid #93C5FD; border-radius: 10px; padding: 0.6rem 0.85rem;">
-                    <div style="font-size: 0.86rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.15rem;">
-                      ${isEn ? ins.badgeEn : ins.badgeKo}
+              <div style="margin-bottom: 0.65rem; font-size: 0.82rem; color: #475569; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 0.55rem 0.85rem; line-height: 1.45;">
+                <strong style="color: #1D4ED8;">설문 응답으로 감지된 핵심 뇌인지·학습 지표 (${bespokeNote.learningKeywords.length}건):</strong> ${bespokeNote.learningKeywords.join(' · ')}
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                ${bespokeNote.learningInsights.map((ins, idx) => `
+                  <div class="bespoke-single-insight-card" style="display: block; background: #F8FAFC; border: 1px solid #E2E8F0; border-left: 4px solid #1D4ED8; border-radius: 12px; padding: 0.85rem 1rem;">
+                    <div style="font-size: 0.94rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.28rem;">
+                      처방 ${idx + 1}순위 · ${isEn ? ins.badgeEn : ins.badgeKo}
                     </div>
-                    <div style="font-size: 0.84rem; color: #0F172A; line-height: 1.42; word-break: keep-all;">
+                    <div style="font-size: 0.88rem; color: #0F172A; line-height: 1.54; word-break: keep-all; margin-bottom: 0.28rem;">
                       ${isEn ? ins.answerEn : ins.answerKo}
+                    </div>
+                    <div style="font-size: 0.76rem; color: #1D4ED8; font-weight: 700;">
+                      ${ins.sourceKo || ''}
                     </div>
                   </div>
                 `).join('')}
@@ -2390,7 +2444,7 @@
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
                 <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">보완 타겟 3대 영역 [현재 점수 → 6개월 코칭 목표]</span>
                 <div style="display: flex; gap: 0.55rem; font-size: 0.75rem; font-weight: 800;">
-                  <span style="color: #1D4ED8;">■ 현재 점수</span>
+                  <span style="color: #64748B;">■ 현재 점수</span>
                   <span style="color: #1D4ED8;">■ 6개월 코칭 목표 (+16점↑)</span>
                 </div>
               </div>
@@ -2420,7 +2474,7 @@
                     <!-- Current Score Bar (Left of pair) -->
                     <rect x="${colX - 46}" y="${curY}" width="34" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#64748B" stroke-width="1.4" />
                     <rect x="${colX - 53}" y="${curPillY}" width="48" height="18" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1" />
-                    <text x="${colX - 29}" y="${curPillY + 13}" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">${w.score}점</text>
+                    <text x="${colX - 29}" y="${curPillY + 13}" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">${w.score}점</text>
                     <!-- Non-overlapping Jump Arrow Between Bars -->
                     <text x="${colX - 2}" y="${Math.round((curY + tarY) / 2 + 12)}" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">↗</text>
                     <!-- Coached Target Bar (Right of pair) -->
@@ -2471,27 +2525,27 @@
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.8rem 0.9rem; margin-bottom: 0.65rem;">
               <svg id="learning-step4-career-diagram-svg" viewBox="0 0 560 148" style="width: 100%; height: auto; display: block;">
                 <!-- Left Node: Child's Core Brain Circuit -->
-                <rect x="8" y="24" width="168" height="98" rx="14" fill="rgba(37, 99, 235, 0.26)" stroke="#64748B" stroke-width="2" />
+                <rect x="8" y="24" width="168" height="98" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
                 <text x="92" y="49" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">핵심 두뇌 강점 회로</text>
                 <text x="92" y="74" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
                 <text x="92" y="99" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">1위: ${strengthsList[0].shortLabel || (strengthsList[0].title || '').slice(0, 10)}</text>
 
                 <!-- Connecting Flow Lines -->
                 <path d="M 176 73 C 206 73, 210 28, 238 28" fill="none" stroke="#1D4ED8" stroke-width="2.8" />
-                <path d="M 176 73 L 238 73" fill="none" stroke="#64748B" stroke-width="2.8" />
-                <path d="M 176 73 C 206 73, 210 118, 238 118" fill="none" stroke="#818CF8" stroke-width="2.8" />
+                <path d="M 176 73 L 238 73" fill="none" stroke="#3B82F6" stroke-width="2.8" />
+                <path d="M 176 73 C 206 73, 210 118, 238 118" fill="none" stroke="#64748B" stroke-width="2.8" />
 
                 <!-- Right 3 Career Target Nodes -->
                 ${recommendedCareers.map((c, idx) => {
                   const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
                   const boxY = 9 + idx * 45;
-                  const strokeCol = idx === 0 ? '#1D4ED8' : idx === 1 ? '#60A5FA' : '#A78BFA';
+                  const strokeCol = idx === 0 ? '#1D4ED8' : idx === 1 ? '#3B82F6' : '#64748B';
                   const shortGroup = (c.group || '').replace(/\s*\(.*?\)/g, '');
                   const shortJob = c.shortJob || ((c.jobs || '').split('·')[0] || '').trim().slice(0, 10);
                   return `
                     <rect x="238" y="${boxY}" width="314" height="38" rx="10" fill="#EFF6FF" stroke="${strokeCol}" stroke-width="1.8" />
                     <text x="250" y="${boxY + 24}" fill="#1D4ED8" font-size="11.5" font-weight="900">${c.icon} ${shortGroup} · ${shortJob}</text>
-                    <rect x="472" y="${boxY + 7}" width="72" height="24" rx="7" fill="#EFF6FF" stroke="${strokeCol}" />
+                    <rect x="472" y="${boxY + 7}" width="72" height="24" rx="7" fill="#FFFFFF" stroke="${strokeCol}" />
                     <text x="508" y="${boxY + 23}" fill="#0F172A" font-size="11" font-weight="900" text-anchor="middle">${matchPct}% 매칭</text>
                   `;
                 }).join('')}
@@ -2528,12 +2582,12 @@
         <div id="report-ch-7" style="scroll-margin-top: 5.5rem; margin-top: 1.25rem;">
 
           <!-- ==================== VISUAL ILLUSTRATION: 그림으로 보는 3단계 두뇌 학습·기억 코팅 메커니즘 ==================== -->
-          <div id="learning-visual-brain-illustration-card" style="background: #F8FAFC; border: 2px solid #818CF8; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.2rem; text-align: left;">
+          <div id="learning-visual-brain-illustration-card" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.2rem; text-align: left;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem;">
-              <span style="background: rgba(129, 140, 248, 0.22); color: #1D4ED8; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px; border: 1px solid #818CF8;">
+              <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
                 3단계 두뇌 장기기억 코팅 다이어그램
               </span>
-              <span style="font-size: 0.76rem; color: #A5B4FC; font-weight: 800;">
+              <span style="font-size: 0.76rem; color: #1D4ED8; font-weight: 800;">
                 전두엽 몰입 → 해마 인출 → 대뇌피질 수면 코팅
               </span>
             </div>
@@ -2542,36 +2596,36 @@
             <div class="pc-view-block">
               <svg id="learning-brain-mechanism-svg" viewBox="0 0 660 155" style="width: 100%; height: auto; display: block;">
                 <rect x="8" y="8" width="196" height="138" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
-                <circle cx="48" cy="44" r="20" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.6" />
-                <text x="48" y="51" font-size="18" text-anchor="middle"></text>
+                <circle cx="48" cy="44" r="20" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="1.6" />
+                <text x="48" y="49" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">01</text>
                 <text x="80" y="38" fill="#1D4ED8" font-size="11" font-weight="900">STEP 1 · 전두엽 몰입</text>
                 <text x="80" y="56" fill="#0F172A" font-size="12.5" font-weight="900">독서대 15° &amp; 타이머</text>
                 <text x="22" y="88" fill="#0F172A" font-size="10.8" font-weight="700">• 시선 정렬 + 타이머 ${lqData.trajectory.coached.focusMinutes}분 집중</text>
-                <rect x="22" y="106" width="168" height="24" rx="6" fill="#EFF6FF" />
-                <text x="106" y="122" fill="#7DD3FC" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +${lqData.trajectory.coached.gainFocusMin}분 연장</text>
+                <rect x="22" y="106" width="168" height="24" rx="6" fill="#FFFFFF" stroke="#BFDBFE" />
+                <text x="106" y="122" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">집중시간 +${lqData.trajectory.coached.gainFocusMin}분 연장</text>
 
-                <path d="M 208 77 L 228 77" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" />
-                <polygon points="226,71 235,77 226,83" fill="#A78BFA" />
+                <path d="M 208 77 L 228 77" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" />
+                <polygon points="226,71 235,77 226,83" fill="#1D4ED8" />
 
                 <rect x="236" y="8" width="196" height="138" rx="14" fill="#EFF6FF" stroke="#64748B" stroke-width="2" />
-                <circle cx="276" cy="44" r="20" fill="#EFF6FF" stroke="#64748B" stroke-width="1.6" />
-                <text x="276" y="51" font-size="18" text-anchor="middle"></text>
+                <circle cx="276" cy="44" r="20" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6" />
+                <text x="276" y="49" fill="#0F172A" font-size="13" font-weight="900" text-anchor="middle">02</text>
                 <text x="308" y="38" fill="#1D4ED8" font-size="11" font-weight="900">STEP 2 · 해마 인출</text>
                 <text x="308" y="56" fill="#0F172A" font-size="12.5" font-weight="900">책 덮고 3줄 설명</text>
                 <text x="250" y="88" fill="#0F172A" font-size="10.8" font-weight="700">• 내 말로 설명해 가짜기억 차단</text>
-                <rect x="250" y="106" width="168" height="24" rx="6" fill="#EFF6FF" />
-                <text x="334" y="122" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">시냅스 인출 강도 +50%↑</text>
+                <rect x="250" y="106" width="168" height="24" rx="6" fill="#FFFFFF" stroke="#CBD5E1" />
+                <text x="334" y="122" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">시냅스 인출 강도 +50% 향상</text>
 
                 <path d="M 436 77 L 456 77" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" />
                 <polygon points="454,71 463,77 454,83" fill="#1D4ED8" />
 
                 <rect x="464" y="8" width="188" height="138" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
-                <circle cx="504" cy="44" r="20" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.6" />
-                <text x="504" y="51" font-size="18" text-anchor="middle"></text>
+                <circle cx="504" cy="44" r="20" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="1.6" />
+                <text x="504" y="49" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">03</text>
                 <text x="536" y="38" fill="#1D4ED8" font-size="11" font-weight="900">STEP 3 · 대뇌피질 코팅</text>
                 <text x="536" y="56" fill="#0F172A" font-size="12.5" font-weight="900">밤 10시 서파수면</text>
                 <text x="478" y="88" fill="#0F172A" font-size="10.8" font-weight="700">• 수면 중 해마→대뇌 장기기억 전송</text>
-                <rect x="478" y="106" width="160" height="24" rx="6" fill="#EFF6FF" />
+                <rect x="478" y="106" width="160" height="24" rx="6" fill="#FFFFFF" stroke="#BFDBFE" />
                 <text x="558" y="122" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">기억보존율 ${lqData.trajectory.coached.retentionRate}% 달성</text>
               </svg>
             </div>
@@ -2581,11 +2635,11 @@
               <div style="display: flex; flex-direction: column; gap: 0.45rem;">
                 <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 12px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
                   <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">1. 독서대 15° &amp; 타이머 ${lqData.trajectory.coached.focusMinutes}분</span>
-                  <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8;">집중 +${lqData.trajectory.coached.gainFocusMin}분↑</span>
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8;">집중 +${lqData.trajectory.coached.gainFocusMin}분 연장</span>
                 </div>
                 <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 12px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
                   <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">2. 책 덮고 핵심 3줄 설명하기</span>
-                  <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8;">인출 +50%↑</span>
+                  <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8;">인출 +50% 향상</span>
                 </div>
                 <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 12px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
                   <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">3. 밤 10시 서파수면 기억 코팅</span>
@@ -2629,8 +2683,8 @@
                 <polygon points="368,50 376,56 368,62" fill="#1D4ED8" />
 
                 <rect x="378" y="8" width="156" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="456" y="34" fill="#7DD3FC" font-size="11.5" font-weight="900" text-anchor="middle">③ 상위권 회로 완성</text>
-                <text x="456" y="58" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">시냅스 흡수율 200%↑</text>
+                <text x="456" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">③ 상위권 회로 완성</text>
+                <text x="456" y="58" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">시냅스 흡수율 200% 향상</text>
                 <text x="456" y="82" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">자기주도 성취감 정착</text>
               </svg>
             </div>
@@ -2652,7 +2706,7 @@
           <!-- ==================== STEP 6: 보완 성향 맞춤 솔루션 (병목 교정 도식화 + 4단계 하루 루틴 그래프) ==================== -->
           <div id="learning-step-6-remedy" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
-              <span style="background: #EFF6FF; color: #000000; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
+              <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
                 STEP 6 · 약점 보완 도식화 솔루션
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">
@@ -2666,25 +2720,25 @@
             <!-- Visual SVG Remedy Flow Diagram -->
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.6rem;">
               <svg id="learning-step6-remedy-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
-                <rect x="6" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.8" />
+                <rect x="6" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#64748B" stroke-width="1.8" />
                 <text x="86" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">현재 학습 병목</text>
                 <text x="86" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${weaknessesList[0].shortLabel || (weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</text>
-                <text x="86" y="82" fill="#0F172A" font-size="10.5" font-weight="800" text-anchor="middle">작업기억 피로 · 산만</text>
+                <text x="86" y="82" fill="#475569" font-size="10.5" font-weight="800" text-anchor="middle">작업기억 피로 · 산만</text>
 
-                <path d="M 168 56 L 184 56" stroke="#FBBF24" stroke-width="3" />
-                <polygon points="182,50 190,56 182,62" fill="#FBBF24" />
+                <path d="M 168 56 L 184 56" stroke="#1D4ED8" stroke-width="3" />
+                <polygon points="182,50 190,56 182,62" fill="#1D4ED8" />
 
-                <rect x="192" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#FBBF24" stroke-width="1.8" />
-                <text x="272" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">핀셋 환경 처방</text>
+                <rect x="192" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.8" />
+                <text x="272" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">맞춤형 환경 처방</text>
                 <text x="272" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">독서대 15°+${lqData.trajectory.coached.focusMinutes}분 타이머</text>
-                <text x="272" y="82" fill="#FEF08A" font-size="10.5" font-weight="800" text-anchor="middle">소단위 쪼개기 · 시각화</text>
+                <text x="272" y="82" fill="#1D4ED8" font-size="10.5" font-weight="800" text-anchor="middle">소단위 분할 · 구조화</text>
 
                 <path d="M 354 56 L 370 56" stroke="#1D4ED8" stroke-width="3" />
                 <polygon points="368,50 376,56 368,62" fill="#1D4ED8" />
 
                 <rect x="378" y="8" width="156" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
                 <text x="456" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">6개월 코칭 목표</text>
-                <text x="456" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점↑)</text>
+                <text x="456" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점 향상)</text>
                 <text x="456" y="82" fill="#1D4ED8" font-size="10.5" font-weight="800" text-anchor="middle">착석 지구력 · 자신감</text>
               </svg>
             </div>
@@ -2713,12 +2767,12 @@
                 </span>
               </div>
               <svg id="learning-timetable-clock-svg" viewBox="0 0 540 72" style="width: 100%; height: auto; display: block; margin-bottom: 0.45rem;">
-                <line x1="36" y1="26" x2="504" y2="26" stroke="rgba(192,132,252,0.5)" stroke-width="3.5" />
+                <line x1="36" y1="26" x2="504" y2="26" stroke="#93C5FD" stroke-width="3.5" />
                 <circle cx="72" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
-                <text x="72" y="54" fill="#7DD3FC" font-size="11.5" font-weight="900" text-anchor="middle">① 오전 워밍업</text>
+                <text x="72" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">① 오전 워밍업</text>
                 <circle cx="204" cy="26" r="10" fill="#64748B" stroke="#FFFFFF" stroke-width="2" />
                 <text x="204" y="54" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">② 오후 집중몰입</text>
-                <circle cx="338" cy="26" r="10" fill="#94A3B8" stroke="#FFFFFF" stroke-width="2" />
+                <circle cx="338" cy="26" r="10" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
                 <text x="338" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">③ 저녁 3줄 인출</text>
                 <circle cx="468" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
                 <text x="468" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">④ 밤 10시 수면코팅</text>
@@ -2739,13 +2793,13 @@
         <div id="report-ch-8" style="scroll-margin-top: 5.5rem; margin-top: 1.2rem;">
 
           <!-- ==================== STEP 7: 만 N세 × 성향 맞춤 교구·도서·체험 3축 시너지 다이어그램 ==================== -->
-          <div id="learning-step-7-items" style="background: #F8FAFC; border: 2px solid #A78BFA; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
+          <div id="learning-step-7-items" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem;">
-              <span style="background: #1D4ED8; color: #0F172A; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
+              <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
                 STEP 7 · 3대 맞춤 솔루션 도식도
               </span>
               <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">
-                만 ${ageYears}세 × [${activeStyleInfo.badge}] 핀셋 매칭 다이어그램
+                만 ${ageYears}세 × [${activeStyleInfo.badge}] 맞춤형 솔루션 매칭 다이어그램
               </span>
             </div>
             <h3 style="font-size: 1.18rem; font-weight: 900; color: #0F172A; margin: 0 0 0.6rem 0;">
@@ -2756,16 +2810,16 @@
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.6rem;">
               <svg id="learning-step7-synergy-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
                 <rect x="6" y="8" width="126" height="96" rx="11" fill="#EFF6FF" stroke="#64748B" stroke-width="1.8" />
-                <text x="69" y="34" fill="#0F172A" font-size="11" font-weight="900" text-anchor="middle">1. 맞춤 교구</text>
+                <text x="69" y="34" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">1. 맞춤 교구</text>
                 <text x="69" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">타이머 · 독서대</text>
-                <text x="69" y="82" fill="#0F172A" font-size="10" font-weight="800" text-anchor="middle">전두엽 몰입 세팅</text>
+                <text x="69" y="82" fill="#475569" font-size="10" font-weight="800" text-anchor="middle">전두엽 몰입 세팅</text>
 
-                <text x="142" y="62" fill="#A78BFA" font-size="18" font-weight="900" text-anchor="middle">+</text>
+                <text x="142" y="62" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
 
                 <rect x="152" y="8" width="126" height="96" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
                 <text x="215" y="34" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">2. 맞춤 도서</text>
                 <text x="215" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">필독서 · 사고력</text>
-                <text x="215" y="82" fill="#7DD3FC" font-size="10" font-weight="800" text-anchor="middle">문해 · 수리 확장</text>
+                <text x="215" y="82" fill="#1D4ED8" font-size="10" font-weight="800" text-anchor="middle">문해 · 수리 확장</text>
 
                 <text x="288" y="62" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
 
@@ -2774,13 +2828,13 @@
                 <text x="360" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${(profile.region || '수도권').slice(0, 6)} 체험</text>
                 <text x="360" y="82" fill="#1D4ED8" font-size="10" font-weight="800" text-anchor="middle">배경지식 코팅</text>
 
-                <path d="M 426 56 L 440 56" stroke="#FBBF24" stroke-width="3" />
-                <polygon points="438,50 446,56 438,62" fill="#FBBF24" />
+                <path d="M 426 56 L 440 56" stroke="#1D4ED8" stroke-width="3" />
+                <polygon points="438,50 446,56 438,62" fill="#1D4ED8" />
 
-                <rect x="448" y="8" width="86" height="96" rx="11" fill="#EFF6FF" stroke="#FBBF24" stroke-width="1.8" />
+                <rect x="448" y="8" width="86" height="96" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
                 <text x="491" y="34" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">시너지</text>
                 <text x="491" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">LQ ${lqData.trajectory.coached.lqScore}점</text>
-                <text x="491" y="82" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">+${lqData.trajectory.coached.gainLq}점↑</text>
+                <text x="491" y="82" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">+${lqData.trajectory.coached.gainLq}점 향상</text>
               </svg>
             </div>
 
