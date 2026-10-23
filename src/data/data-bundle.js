@@ -1751,10 +1751,10 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-23T08:06:32Z",
-    "total_papers": 3025,
+    "generated_at": "2026-10-23T08:30:32Z",
+    "total_papers": 3026,
     "pillar_counts": {
-      "growth_endocrinology": 862,
+      "growth_endocrinology": 863,
       "fine_motor_neuroscience": 592,
       "pedagogy_montessori_froebel": 401,
       "parent_child_interaction_museum": 749,
@@ -1766,20 +1766,20 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-23T08:06:33Z",
+    "last_updated_utc": "2026-10-23T08:30:33Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-23T08:06:33Z",
-      "total_papers": 3025,
+      "last_enriched_utc": "2026-10-23T08:30:33Z",
+      "total_papers": 3026,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 1283,
+        "growth_macro_count": 1284,
         "learning_macro_count": 1742,
-        "total_macro_papers": 3025,
-        "growth_ratio": 0.4241,
+        "total_macro_papers": 3026,
+        "growth_ratio": 0.4243,
         "growth_percent": 42.4,
-        "learning_ratio": 0.5759,
+        "learning_ratio": 0.5757,
         "learning_percent": 57.6,
         "learning_ratio_percent": 57.6,
         "target_ratio": 0.5,
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-23T08:06:33Z"
+        "last_balanced_utc": "2026-10-23T08:30:33Z"
       },
       "sub_domain_distribution": [
         {
@@ -1810,7 +1810,7 @@
           "title_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
           "icon": "🌙",
           "color": "#818CF8",
-          "count": 326,
+          "count": 327,
           "percent": 10.8
         },
         {
@@ -1891,7 +1891,7 @@
           "icon": "💛",
           "color": "#F43F5E",
           "count": 537,
-          "percent": 17.8
+          "percent": 17.7
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1918,12 +1918,12 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 2125
+          "count": 2126
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 3025
+          "count": 3026
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
@@ -1933,33 +1933,33 @@
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1642,
-          "mid_term": 2536,
+          "short_term": 1643,
+          "mid_term": 2537,
           "long_term": 1738
         },
         "4-6y": {
-          "short_term": 1737,
-          "mid_term": 2636,
+          "short_term": 1738,
+          "mid_term": 2637,
           "long_term": 1831
         },
         "7-9y": {
-          "short_term": 2112,
-          "mid_term": 2982,
+          "short_term": 2113,
+          "mid_term": 2983,
           "long_term": 1859
         },
         "10-12y": {
-          "short_term": 1648,
-          "mid_term": 2545,
+          "short_term": 1649,
+          "mid_term": 2546,
           "long_term": 1747
         },
         "13-16y": {
-          "short_term": 1206,
-          "mid_term": 1453,
+          "short_term": 1207,
+          "mid_term": 1454,
           "long_term": 944
         },
         "17-20y": {
-          "short_term": 1206,
-          "mid_term": 1453,
+          "short_term": 1207,
+          "mid_term": 1454,
           "long_term": 944
         }
       },
@@ -2130,9 +2130,9 @@
       ]
     },
     "user_cohort_self_improvement": {
-      "total_user_records": 131,
+      "total_user_records": 132,
       "subject_mode_counts": {
-        "child": 92,
+        "child": 93,
         "self": 39
       },
       "auto_learning_weights": {
@@ -2145,15 +2145,15 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-23T08:06:32Z"
+      "last_synced_utc": "2026-10-23T08:30:32Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 1283,
+      "growth_macro_count": 1284,
       "learning_macro_count": 1742,
-      "total_macro_papers": 3025,
-      "growth_ratio": 0.4241,
+      "total_macro_papers": 3026,
+      "growth_ratio": 0.4243,
       "growth_percent": 42.4,
-      "learning_ratio": 0.5759,
+      "learning_ratio": 0.5757,
       "learning_percent": 57.6,
       "learning_ratio_percent": 57.6,
       "target_ratio": 0.5,
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-23T08:06:33Z"
+      "last_balanced_utc": "2026-10-23T08:30:33Z"
     }
   },
   "pillars": [
@@ -2175,7 +2175,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 862
+      "paper_count": 863
     },
     {
       "id": "fine_motor_neuroscience",
@@ -40166,6 +40166,54 @@
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/8374688/",
       "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "DOI:10.1203/00006450-199305001-00256",
+      "pmid": "",
+      "doi": "10.1203/00006450-199305001-00256",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "EXCESS IGFBP-3 PROTEOLYSIS IS PARTLY RESPONSIBLE FOR THE ACCELERATED GROWTH IN CONSTITUTIONALLY TALL CHILDREN",
+      "title_ko": "[수면·성장내분비 임상] EXCESS IGFBP-3 PROTEOLYSIS IS PARTLY RESPONSIBLE FOR THE ACCELERATED GROWTH IN CONSTITUTIO (1993)",
+      "authors": [
+        "Gourmelen M",
+        "Lalou C",
+        "Perin L",
+        "Cabrol S",
+        "Binoux M"
+      ],
+      "journal": "Pediatric Research",
+      "year": 1993,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Pediatric Research (1993)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1203/00006450-199305001-00256",
+      "source_api": "Crossref Works REST API Live",
       "sub_domain": "chronobiology_sleep_architecture",
       "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
       "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
@@ -137853,10 +137901,10 @@
   "metadata": {
     "db_name": "Taller Bio Labs — User Input Cohort & Autonomous Self-Improvement DB",
     "db_version": "2.4.0",
-    "last_updated_utc": "2026-10-23T07:46:12.189Z",
-    "total_records": 131,
+    "last_updated_utc": "2026-10-23T08:20:13.520Z",
+    "total_records": 132,
     "subject_mode_counts": {
-      "child": 92,
+      "child": 93,
       "self": 39
     },
     "gender_counts": {
@@ -137867,12 +137915,12 @@
       "1-3y": 22,
       "4-6y": 26,
       "7-9y": 29,
-      "10-12y": 34,
+      "10-12y": 35,
       "13-16y": 14,
       "17-20y": 6
     },
     "bottleneck_habit_frequencies": {
-      "late_sleep": 87,
+      "late_sleep": 88,
       "picky_eater": 61,
       "poor_posture": 58,
       "sedentary": 49,
@@ -137973,6 +138021,35 @@
     }
   },
   "records": [
+    {
+      "id": "USR-MVKP9D87",
+      "timestamp": "2026-10-23T08:20:13.520Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
     {
       "id": "USR-MVKO1M4O",
       "timestamp": "2026-10-23T07:46:12.189Z",

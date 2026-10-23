@@ -2,10 +2,10 @@
   "metadata": {
     "db_name": "Taller Bio Labs — User Input Cohort & Autonomous Self-Improvement DB",
     "db_version": "2.4.0",
-    "last_updated_utc": "2026-10-23T07:46:12.189Z",
-    "total_records": 131,
+    "last_updated_utc": "2026-10-23T08:20:13.520Z",
+    "total_records": 132,
     "subject_mode_counts": {
-      "child": 92,
+      "child": 93,
       "self": 39
     },
     "gender_counts": {
@@ -16,12 +16,12 @@
       "1-3y": 22,
       "4-6y": 26,
       "7-9y": 29,
-      "10-12y": 34,
+      "10-12y": 35,
       "13-16y": 14,
       "17-20y": 6
     },
     "bottleneck_habit_frequencies": {
-      "late_sleep": 87,
+      "late_sleep": 88,
       "picky_eater": 61,
       "poor_posture": 58,
       "sedentary": 49,
@@ -122,6 +122,35 @@
     }
   },
   "records": [
+    {
+      "id": "USR-MVKP9D87",
+      "timestamp": "2026-10-23T08:20:13.520Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
     {
       "id": "USR-MVKO1M4O",
       "timestamp": "2026-10-23T07:46:12.189Z",
