@@ -99,6 +99,178 @@ function resolveSafeFile(baseDir, relPath) {
   return null;
 }
 
+// ============================================================================
+// Real-Time Homepage Visitor & Funnel Analytics Engine (KST Daily + Cumulative)
+// ============================================================================
+const VISITOR_ANALYTICS_PATH = path.join(ROOT_DIR, 'logs', 'visitor_analytics.json');
+const BOT_UA_REGEX = /(bot|crawler|spider|slurp|yeti|daumoa|mediapartners|facebookexternalhit|telegrambot|kakaotalk-scrap|curl|python|headless|monitor|uptime)/i;
+const recentPageviewMap = new Map();
+
+function getKstDateString(offsetDays = 0) {
+  const ms = Date.now() + (9 * 3600 * 1000) + (offsetDays * 86400 * 1000);
+  return new Date(ms).toISOString().slice(0, 10);
+}
+
+function createEmptyDayBucket(dateStr) {
+  return {
+    date: dateStr,
+    uv: 0,
+    pv: 0,
+    uniqueHashes: [],
+    devices: { mobile: 0, desktop: 0 },
+    referrers: {
+      instagram: 0,
+      threads: 0,
+      naver_blog: 0,
+      naver_cafe: 0,
+      naver_search_clip: 0,
+      google_daum_kakao: 0,
+      direct: 0
+    },
+    diagnoses: { total: 0, growth: 0, learning: 0 },
+    affiliateClicks: 0,
+    bots: 0
+  };
+}
+
+let visitorStats = {
+  startedAt: new Date().toISOString(),
+  total: {
+    uv: 0,
+    pv: 0,
+    diagnoses: { total: 0, growth: 0, learning: 0 },
+    affiliateClicks: 0,
+    bots: 0
+  },
+  daily: {}
+};
+
+try {
+  if (fs.existsSync(VISITOR_ANALYTICS_PATH)) {
+    const loaded = JSON.parse(fs.readFileSync(VISITOR_ANALYTICS_PATH, 'utf8'));
+    if (loaded && typeof loaded === 'object' && loaded.daily) {
+      visitorStats = loaded;
+    }
+  }
+} catch (_) {}
+
+function saveVisitorStats() {
+  try {
+    fs.mkdirSync(path.dirname(VISITOR_ANALYTICS_PATH), { recursive: true });
+    fs.writeFileSync(VISITOR_ANALYTICS_PATH, JSON.stringify(visitorStats, null, 2), 'utf8');
+  } catch (_) {}
+}
+
+function ensureDayBucket(dateStr) {
+  if (!visitorStats.daily[dateStr]) {
+    visitorStats.daily[dateStr] = createEmptyDayBucket(dateStr);
+    // Keep last 60 days to bound file size
+    const keys = Object.keys(visitorStats.daily).sort();
+    if (keys.length > 60) {
+      delete visitorStats.daily[keys[0]];
+    }
+  }
+  return visitorStats.daily[dateStr];
+}
+
+function getClientIp(req) {
+  const cfIp = req.headers['cf-connecting-ip'];
+  if (cfIp) return String(cfIp).trim();
+  const xff = req.headers['x-forwarded-for'];
+  if (xff) return String(xff).split(',')[0].trim();
+  return String((req.socket && req.socket.remoteAddress) || '0.0.0.0');
+}
+
+function classifyReferrer(refStr) {
+  const r = String(refStr || '').toLowerCase();
+  if (!r) return 'direct';
+  if (r.includes('instagram.com') || r.includes('ig.me')) return 'instagram';
+  if (r.includes('threads.net') || r.includes('threads.com')) return 'threads';
+  if (r.includes('blog.naver.com')) return 'naver_blog';
+  if (r.includes('cafe.naver.com')) return 'naver_cafe';
+  if (r.includes('naver.com') || r.includes('clip')) return 'naver_search_clip';
+  if (r.includes('google.') || r.includes('daum.net') || r.includes('kakao')) return 'google_daum_kakao';
+  return 'direct';
+}
+
+function recordVisitorPageview(req, customRef) {
+  try {
+    const ua = String(req.headers['user-agent'] || '');
+    const todayStr = getKstDateString(0);
+    const day = ensureDayBucket(todayStr);
+
+    if (BOT_UA_REGEX.test(ua)) {
+      day.bots = (day.bots || 0) + 1;
+      visitorStats.total.bots = (visitorStats.total.bots || 0) + 1;
+      saveVisitorStats();
+      return;
+    }
+
+    const ip = getClientIp(req);
+    const vHash = `${ip}|${ua.slice(0, 64)}`;
+    const now = Date.now();
+    const lastPv = recentPageviewMap.get(vHash) || 0;
+    if (now - lastPv < 4000) {
+      // Avoid double counting if GET / and POST /api/visit fire together
+      return;
+    }
+    recentPageviewMap.set(vHash, now);
+    if (recentPageviewMap.size > 2000) {
+      recentPageviewMap.clear();
+    }
+
+    day.pv += 1;
+    visitorStats.total.pv += 1;
+
+    if (!Array.isArray(day.uniqueHashes)) day.uniqueHashes = [];
+    if (!day.uniqueHashes.includes(vHash)) {
+      day.uniqueHashes.push(vHash);
+      day.uv = day.uniqueHashes.length;
+      visitorStats.total.uv += 1;
+    }
+
+    const isMobile = /(Mobile|Android|iPhone|iPad|iPod)/i.test(ua);
+    if (isMobile) {
+      day.devices.mobile = (day.devices.mobile || 0) + 1;
+    } else {
+      day.devices.desktop = (day.devices.desktop || 0) + 1;
+    }
+
+    const refSource = classifyReferrer(customRef || req.headers['referer'] || req.headers['referrer'] || '');
+    day.referrers[refSource] = (day.referrers[refSource] || 0) + 1;
+
+    saveVisitorStats();
+  } catch (_) {}
+}
+
+function recordDiagnosisEvent(mode) {
+  try {
+    const todayStr = getKstDateString(0);
+    const day = ensureDayBucket(todayStr);
+    const isLearning = mode === 'learning';
+    day.diagnoses.total += 1;
+    visitorStats.total.diagnoses.total += 1;
+    if (isLearning) {
+      day.diagnoses.learning += 1;
+      visitorStats.total.diagnoses.learning += 1;
+    } else {
+      day.diagnoses.growth += 1;
+      visitorStats.total.diagnoses.growth += 1;
+    }
+    saveVisitorStats();
+  } catch (_) {}
+}
+
+function recordAffiliateClickEvent() {
+  try {
+    const todayStr = getKstDateString(0);
+    const day = ensureDayBucket(todayStr);
+    day.affiliateClicks = (day.affiliateClicks || 0) + 1;
+    visitorStats.total.affiliateClicks = (visitorStats.total.affiliateClicks || 0) + 1;
+    saveVisitorStats();
+  } catch (_) {}
+}
+
 const server = http.createServer((req, res) => {
   try {
     const userAgent = String(req.headers['user-agent'] || '');
@@ -117,21 +289,74 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // 1. Health & Status Endpoints for Render
+    // 1. Health & Status Endpoints for Render + Live Visitor Analytics
     if (pathname === '/healthz' || pathname === '/api/health' || pathname === '/api/stats') {
+      const todayStr = getKstDateString(0);
+      const yesterdayStr = getKstDateString(-1);
+      const todayBucket = ensureDayBucket(todayStr);
+      const yesterdayBucket = visitorStats.daily[yesterdayStr] || createEmptyDayBucket(yesterdayStr);
+
+      const cleanDay = (b) => ({
+        date: b.date,
+        uv: b.uv || 0,
+        pv: b.pv || 0,
+        devices: b.devices || { mobile: 0, desktop: 0 },
+        referrers: b.referrers || {},
+        diagnoses: b.diagnoses || { total: 0, growth: 0, learning: 0 },
+        affiliateClicks: b.affiliateClicks || 0,
+        bots: b.bots || 0
+      });
+
       const payload = JSON.stringify({
         ok: true,
         service: 'KidsFit Growth Studio (kidsfit.co.kr / truthofmarket.com)',
         primaryDomain: 'https://kidsfit.co.kr',
         domains: ['kidsfit.co.kr', 'www.kidsfit.co.kr', 'truthofmarket.com', 'www.truthofmarket.com'],
         version: '2.5.0',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        analytics: {
+          kstDate: todayStr,
+          startedAt: visitorStats.startedAt,
+          today: cleanDay(todayBucket),
+          yesterday: cleanDay(yesterdayBucket),
+          total: visitorStats.total
+        }
       });
       res.writeHead(200, {
         'Content-Type': 'application/json; charset=utf-8',
         ...NO_CACHE_HEADERS
       });
       res.end(payload);
+      return;
+    }
+
+    // 1-0. Client Beacon Endpoint (/api/visit) for accurate referrer & funnel events
+    if (pathname === '/api/visit') {
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', (chunk) => { if (body.length < 8192) body += chunk.toString('utf8'); });
+        req.on('end', () => {
+          try {
+            const data = JSON.parse(body || '{}');
+            const ev = String(data.event || 'pageview');
+            if (ev === 'diagnosis') {
+              recordDiagnosisEvent(data.mode || 'growth');
+            } else if (ev === 'affiliate_click') {
+              recordAffiliateClickEvent();
+            } else {
+              recordVisitorPageview(req, data.referrer || '');
+            }
+          } catch (_) {
+            recordVisitorPageview(req, '');
+          }
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: true }));
+        });
+        return;
+      }
+      recordVisitorPageview(req, parsedUrl.searchParams.get('ref') || '');
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({ ok: true }));
       return;
     }
 
@@ -211,6 +436,8 @@ const server = http.createServer((req, res) => {
             try {
               fs.writeFileSync(cohortDbPath, JSON.stringify(cohortDb, null, 2), 'utf8');
             } catch (_) {}
+
+            recordDiagnosisEvent(incoming.preferredReportMode || 'growth');
 
             res.writeHead(200, {
               'Content-Type': 'application/json; charset=utf-8',
@@ -374,6 +601,7 @@ const server = http.createServer((req, res) => {
 
     // 1-B. Coupang Partners Redirect & Search Proxy Route
     if (pathname === '/api/coupang') {
+      recordAffiliateClickEvent();
       const q = parsedUrl.searchParams.get('q') || 
                 parsedUrl.searchParams.get('kw') || 
                 parsedUrl.searchParams.get('keyword') || '';
@@ -654,6 +882,9 @@ const server = http.createServer((req, res) => {
     // 3. Normalize root & directory index paths
     if (pathname === '/' || pathname === '') {
       pathname = '/index.html';
+    }
+    if (pathname === '/index.html' && req.method === 'GET') {
+      recordVisitorPageview(req, parsedUrl.searchParams.get('utm_source') || '');
     }
 
     const relPath = pathname.replace(/^\/+/, '');
