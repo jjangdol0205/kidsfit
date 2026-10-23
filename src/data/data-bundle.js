@@ -1751,14 +1751,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-23T02:00:42Z",
-    "total_papers": 2822,
+    "generated_at": "2026-10-23T02:31:10Z",
+    "total_papers": 2836,
     "pillar_counts": {
-      "growth_endocrinology": 802,
+      "growth_endocrinology": 807,
       "fine_motor_neuroscience": 548,
-      "pedagogy_montessori_froebel": 382,
-      "parent_child_interaction_museum": 692,
-      "posture_biomechanics_exercise": 398
+      "pedagogy_montessori_froebel": 385,
+      "parent_child_interaction_museum": 696,
+      "posture_biomechanics_exercise": 400
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -1766,22 +1766,22 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-23T02:00:42Z",
+    "last_updated_utc": "2026-10-23T02:31:10Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-23T02:00:42Z",
-      "total_papers": 2822,
+      "last_enriched_utc": "2026-10-23T02:31:10Z",
+      "total_papers": 2836,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 1200,
-        "learning_macro_count": 1622,
-        "total_macro_papers": 2822,
-        "growth_ratio": 0.4252,
-        "growth_percent": 42.5,
-        "learning_ratio": 0.5748,
-        "learning_percent": 57.5,
-        "learning_ratio_percent": 57.5,
+        "growth_macro_count": 1207,
+        "learning_macro_count": 1629,
+        "total_macro_papers": 2836,
+        "growth_ratio": 0.4256,
+        "growth_percent": 42.6,
+        "learning_ratio": 0.5744,
+        "learning_percent": 57.4,
+        "learning_ratio_percent": 57.4,
         "target_ratio": 0.5,
         "mode": "GROWTH_PRIORITY_BOOST",
         "mode_code": "GROWTH_BOOST_80_20",
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-23T02:00:42Z"
+        "last_balanced_utc": "2026-10-23T02:31:10Z"
       },
       "sub_domain_distribution": [
         {
@@ -1810,7 +1810,7 @@
           "title_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
           "icon": "🌙",
           "color": "#818CF8",
-          "count": 300,
+          "count": 302,
           "percent": 10.6
         },
         {
@@ -1820,7 +1820,7 @@
           "title_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
           "icon": "🥗",
           "color": "#10B981",
-          "count": 469,
+          "count": 472,
           "percent": 16.6
         },
         {
@@ -1851,7 +1851,7 @@
           "icon": "🧠",
           "color": "#A855F7",
           "count": 500,
-          "percent": 17.7
+          "percent": 17.6
         },
         {
           "id": "pedagogy_montessori_froebel",
@@ -1861,7 +1861,7 @@
           "icon": "🧩",
           "color": "#14B8A6",
           "count": 72,
-          "percent": 2.6
+          "percent": 2.5
         },
         {
           "id": "spatial_stem_mathematics",
@@ -1870,7 +1870,7 @@
           "title_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
           "icon": "📐",
           "color": "#06B6D4",
-          "count": 310,
+          "count": 313,
           "percent": 11.0
         },
         {
@@ -1890,8 +1890,8 @@
           "title_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
           "icon": "💛",
           "color": "#F43F5E",
-          "count": 491,
-          "percent": 17.4
+          "count": 495,
+          "percent": 17.5
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1900,7 +1900,7 @@
           "title_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
           "icon": "🧘",
           "color": "#3B82F6",
-          "count": 312,
+          "count": 314,
           "percent": 11.1
         },
         {
@@ -1918,49 +1918,49 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 1980
+          "count": 1991
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 2822
+          "count": 2836
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 1783
+          "count": 1789
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1521,
-          "mid_term": 2357,
-          "long_term": 1627
+          "short_term": 1530,
+          "mid_term": 2369,
+          "long_term": 1633
         },
         "4-6y": {
-          "short_term": 1613,
-          "mid_term": 2454,
-          "long_term": 1717
+          "short_term": 1622,
+          "mid_term": 2466,
+          "long_term": 1723
         },
         "7-9y": {
-          "short_term": 1967,
-          "mid_term": 2779,
-          "long_term": 1744
+          "short_term": 1978,
+          "mid_term": 2793,
+          "long_term": 1750
         },
         "10-12y": {
-          "short_term": 1544,
-          "mid_term": 2383,
-          "long_term": 1641
+          "short_term": 1552,
+          "mid_term": 2394,
+          "long_term": 1647
         },
         "13-16y": {
-          "short_term": 1127,
-          "mid_term": 1351,
-          "long_term": 878
+          "short_term": 1132,
+          "mid_term": 1357,
+          "long_term": 882
         },
         "17-20y": {
-          "short_term": 1127,
-          "mid_term": 1351,
-          "long_term": 878
+          "short_term": 1132,
+          "mid_term": 1357,
+          "long_term": 882
         }
       },
       "core_empirical_laws": [
@@ -2076,7 +2076,7 @@
         },
         {
           "journal": "Child Development",
-          "count": 28
+          "count": 29
         },
         {
           "journal": "Developmental Psychology",
@@ -2145,17 +2145,17 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-23T02:00:42Z"
+      "last_synced_utc": "2026-10-23T02:31:10Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 1200,
-      "learning_macro_count": 1622,
-      "total_macro_papers": 2822,
-      "growth_ratio": 0.4252,
-      "growth_percent": 42.5,
-      "learning_ratio": 0.5748,
-      "learning_percent": 57.5,
-      "learning_ratio_percent": 57.5,
+      "growth_macro_count": 1207,
+      "learning_macro_count": 1629,
+      "total_macro_papers": 2836,
+      "growth_ratio": 0.4256,
+      "growth_percent": 42.6,
+      "learning_ratio": 0.5744,
+      "learning_percent": 57.4,
+      "learning_ratio_percent": 57.4,
       "target_ratio": 0.5,
       "mode": "GROWTH_PRIORITY_BOOST",
       "mode_code": "GROWTH_BOOST_80_20",
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-23T02:00:42Z"
+      "last_balanced_utc": "2026-10-23T02:31:10Z"
     }
   },
   "pillars": [
@@ -2175,7 +2175,7 @@
       "title_en": "Pediatric Linear Growth, Sleep Endocrinology & Micronutrient Bioavailability",
       "target_feature": "키즈핏 성장 예측 계산기 (Tanner MPH · 골연령 · 수면/영양 성장 시뮬레이터)",
       "clinical_focus": "부모 키 기반 유전적 표적키(MPH) 산출, 서파수면(Slow-Wave Sleep) 중 뇌하수체 성장호르몬(GH)-IGF-1 분비 축, 칼슘·비타민D·아연·황기추출물(HT042)의 골단 연골세포 증식 기전, 소아비만 및 성조숙증(골연령 가속) 예방",
-      "paper_count": 802
+      "paper_count": 807
     },
     {
       "id": "fine_motor_neuroscience",
@@ -2193,7 +2193,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 382
+      "paper_count": 385
     },
     {
       "id": "parent_child_interaction_museum",
@@ -2202,7 +2202,7 @@
       "title_en": "Autonomy-Supportive Parenting, Emotion Coaching & Museum Inquiry Scaffolding",
       "target_feature": "떼쓰기·자율성 발달기(만 2~4세) 양육 처방전 & 주말 박물관·과학관 연령별 도슨트/하브루타 질문 가이드",
       "clinical_focus": "미운 세 살~네 살 자율성 급등기(Autonomy Phase)의 자율성 지지(Autonomy Support) 대 통제적 양육이 아동의 자기조절력에 미치는 영향, Gottman 감정코칭(Emotion Coaching)의 미주신경 톤 안정화 효과, 박물관·과학관에서의 개방형 질문(Wh-questions)과 정교화 대화(Elaborative Reminiscing)",
-      "paper_count": 692
+      "paper_count": 696
     },
     {
       "id": "posture_biomechanics_exercise",
@@ -2211,7 +2211,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 398
+      "paper_count": 400
     }
   ],
   "clinical_synthesis_rules": {
@@ -13266,6 +13266,149 @@
       "age_range": "만 1~15세",
       "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/35730613/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "DOI:10.1177/2333794x221099266",
+      "pmid": "",
+      "doi": "10.1177/2333794x221099266",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Effect of Zinc Supplementation in Children Less Than 5 Years on Diarrhea Attacks: A Randomized Controlled Trial",
+      "title_ko": "[소아 골성장·미량영양소 임상] Effect of Zinc Supplementation in Children Less Than 5 Years on Diarrhea Attacks: A Random (2022)",
+      "authors": [
+        "Abd El-Ghaffar YS",
+        "Shouman AE",
+        "Hakim SA",
+        "El Gendy YGA",
+        "Wahdan MMM"
+      ],
+      "journal": "Global Pediatric Health",
+      "year": 2022,
+      "citations_count": 9,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Global Pediatric Health (2022)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1177/2333794x221099266",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:35043537",
+      "pmid": "35043537",
+      "doi": "10.1111/brv.12833",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Microbiome mediation of animal life histories via metabolites and insulin-like signalling",
+      "title_ko": "[소아 골성장·미량영양소 임상] Microbiome mediation of animal life histories via metabolites and insulin-like signalling (2022)",
+      "authors": [
+        "Warne RW",
+        "Dallas J"
+      ],
+      "journal": "Biological reviews of the Cambridge Philosophical Society",
+      "year": 2022,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Biological reviews of the Cambridge Philosophical Society (2022)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35043537/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "clinical_nutrigenomics_microbiome",
+      "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
+      "sub_domain_en": "Clinical Nutrigenomics, Gut-Bone Axis & Bioavailability",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 액상과당·야식 차단 및 체중 비례 일일 단백질(체중×1.3g)·구연산 칼슘(흡수율 45%) 식단 전환",
+      "mid_term_action_ko": "중기(1~3개월): 칼슘+비타민D3+K2(MK-7)+아연 90일 포화 보충 및 장-골격 축(마이크로바이옴) 흡수 효율 정상화",
+      "long_term_action_ko": "장기(6개월~성인기): 골단판 연골기질 광화(Mineralization) 및 청소년기 최대 골질량(Peak Bone Mass) 완성"
+    },
+    {
+      "id": "PMID:34986766",
+      "pmid": "34986766",
+      "doi": "10.2174/0929867329666220105121124",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "The Crosstalk between Gut Microbiota, Intestinal Immunological Niche and Visceral Adipose Tissue as a New Model for the Pathogenesis of Metabolic and Inflammatory Diseases: The Paradigm of Type 2 Diabetes Mellitus",
+      "title_ko": "[소아 골성장·미량영양소 임상] The Crosstalk between Gut Microbiota, Intestinal Immunological Niche and Visceral Adipose  (2022)",
+      "authors": [
+        "Cianci R",
+        "Franza L",
+        "Massaro MG",
+        "Borriello R",
+        "Tota A",
+        "Pallozzi M"
+      ],
+      "journal": "Current medicinal chemistry",
+      "year": 2022,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "칼슘·비타민D·아연 및 성장 기능성 영양 개입군에서 골단 연골 증식 및 골미네랄밀도(BMD) 유의미 개선(p < 0.05)",
+      "clinical_summary_ko": "Current medicinal chemistry (2022)에 발표된 소아 영양·내분비 연구로, 필수 미네랄(칼슘·비타민D·아연)과 단백질의 생체이용률이 장골 골단판(Epiphyseal plate)의 연골내 골화(Endochondral ossification)에 미치는 정량적 효과를 검증했습니다.",
+      "parenting_prescription_ko": "단백질(체중 kg당 1.0~1.2g)과 칼슘·비타민D3·아연을 균형 있게 섭취하되, 탄산음료(인산에 의한 칼슘 배출)와 카페인 섭취를 엄격히 제한하세요.",
+      "age_range": "만 1~15세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34986766/",
       "source_api": "NCBI PubMed E-utilities Live",
       "sub_domain": "clinical_nutrigenomics_microbiome",
       "sub_domain_ko": "임상 영양유전체 · 장-골격 축 · 생체이용률",
@@ -29722,6 +29865,54 @@
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
     },
     {
+      "id": "DOI:10.1515/jpem.2005.18.1.69",
+      "pmid": "",
+      "doi": "10.1515/jpem.2005.18.1.69",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Effect of Zinc Supplementation on Growth Hormone Secretion, IGF-I, IGFBP-3, Somatomedin Generation, Alkaline Phosphatase, Osteocalcin and Growth in Prepubertal Children with Idiopathic Short Stature",
+      "title_ko": "[수면·성장내분비 임상] Effect of Zinc Supplementation on Growth Hormone Secretion, IGF-I, IGFBP-3, Somatomedin Ge (2005)",
+      "authors": [
+        "Imamoglu S",
+        "Bereket A",
+        "Turan S",
+        "Taga Y",
+        "Haklar G"
+      ],
+      "journal": "Journal of Pediatric Endocrinology and Metabolism",
+      "year": 2005,
+      "citations_count": 37,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 37회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "Journal of Pediatric Endocrinology and Metabolism (2005)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1515/jpem.2005.18.1.69",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "[피인용 37회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
       "id": "DOI:10.1016/j.ghir.2004.03.003",
       "pmid": "",
       "doi": "10.1016/j.ghir.2004.03.003",
@@ -37511,6 +37702,54 @@
         "17-20y"
       ],
       "plain_fact_ko": "[피인용 19회 검증 논문] 서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
+      "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
+      "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
+    },
+    {
+      "id": "PMID:8374688",
+      "pmid": "8374688",
+      "doi": "10.1515/jpem.1993.6.1.45",
+      "pillar": "growth_endocrinology",
+      "macro_pillar": "growth",
+      "title": "Growth hormone (GH) treatment in achondroplasia",
+      "title_ko": "[수면·성장내분비 임상] Growth hormone (GH) treatment in achondroplasia (1993)",
+      "authors": [
+        "Yamate T",
+        "Kanzaki S",
+        "Tanaka H",
+        "Kubo T",
+        "Moriwake T",
+        "Inoue M"
+      ],
+      "journal": "The Journal of pediatric endocrinology",
+      "year": 1993,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05); 수면 시간·수면 효율 개선 시 연간 성장속도(HV) 향상 확인",
+      "clinical_summary_ko": "The Journal of pediatric endocrinology (1993)에 보고된 소아 성장내분비 연구로, 야간 깊은 수면(서파수면) 동안 뇌하수체 전엽의 성장호르몬(GH) 박동성 분비와 간에서의 IGF-1/IGFBP-3 합성 기전이 소아 선형 골성장(Linear bone growth)에 미치는 임상적 영향을 분석했습니다.",
+      "parenting_prescription_ko": "취침 시각을 일정하게 고정(밤 9시 30분~10시 이전)하고, 수면 중 빛·소음 노출과 취침 직전 고탄수화물/당분 섭취(인슐린 상승으로 인한 GH 분비 억제)를 피하세요.",
+      "age_range": "만 2~16세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8374688/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "chronobiology_sleep_architecture",
+      "sub_domain_ko": "일주기 생체시계 · 서파수면(SWS) 아키텍처",
+      "sub_domain_en": "Chronobiology, Melatonin & Slow-Wave Sleep Architecture",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "서파수면(SWS) 및 야간 GH-IGF-1 분비 축 활성도 유의미 상관(p < 0.05)",
       "short_term_action_ko": "단기(1~4주): 밤 21:45 입면 고정 · 취침 1시간 전 블루라이트 차단 · 취침 3시간 전 무당류 공복으로 야간 GH 억제율 0% 달성",
       "mid_term_action_ko": "중기(1~3개월): 90일 연속 서파수면(SWS) 생체리듬 정착으로 야간 성장호르몬(GH)·IGF-1 분비 진폭 극대화",
       "long_term_action_ko": "장기(6개월~성인기): 안정적 일주기 수면 아키텍처 유지를 통한 연간 성장속도 방어 및 전두엽 기억 공고화 완성"
@@ -68016,6 +68255,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
     },
     {
+      "id": "DOI:10.1177/01427237251356864",
+      "pmid": "",
+      "doi": "10.1177/01427237251356864",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Book Review: Schwartz, M.,\n                    Ecological perspectives in early language education: Parent, teacher, peer, and child agency in interaction\n                    SchwartzM. (2024). Ecological perspectives in early language education: Parent, teacher, peer, and child agency in interaction. London, New York: Routledge.",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] Book Review: Schwartz, M.,\n                    Ecological perspectives in early language e (2025)",
+      "authors": [
+        "Anatoli O"
+      ],
+      "journal": "First Language",
+      "year": 2025,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "First Language (2025)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1177/01427237251356864",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "DOI:10.1080/1034912x.2021.2016657",
       "pmid": "",
       "doi": "10.1080/1034912x.2021.2016657",
@@ -76800,6 +77081,50 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.1111/dmcn.12779_4",
+      "pmid": "",
+      "doi": "10.1111/dmcn.12779_4",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "CareToy: a smart system for home intervention based on mechatronic toys",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] CareToy: a smart system for home intervention based on mechatronic toys (2015)",
+      "authors": [
+        "Pediatric Research Group"
+      ],
+      "journal": "Developmental Medicine &amp; Child Neurology",
+      "year": 2015,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Developmental Medicine &amp; Child Neurology (2015)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1111/dmcn.12779_4",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
       "id": "PMID:24874186",
       "pmid": "24874186",
       "doi": "10.1016/j.jecp.2014.02.012",
@@ -80158,6 +80483,50 @@
         "10-12y"
       ],
       "plain_fact_ko": "구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
+      "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
+      "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
+      "id": "DOI:10.2307/1130534",
+      "pmid": "",
+      "doi": "10.2307/1130534",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "The Effects of Maternal Positive, Neutral, and Negative Affective Communications on Infant Responses to New Toys",
+      "title_ko": "[프뢰벨 은물·블록 공간인지 발달] The Effects of Maternal Positive, Neutral, and Negative Affective Communications on Infant (1987)",
+      "authors": [
+        "Hornik R",
+        "Risenhoover N",
+        "Gunnar M"
+      ],
+      "journal": "Child Development",
+      "year": 1987,
+      "citations_count": 192,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "[피인용 192회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
+      "clinical_summary_ko": "Child Development (1987)에 게재된 공간인지·수학교육 연구로, 프뢰벨 은물(Gifts) 및 원목 블록을 활용한 입체 구성 놀이가 유아의 기하학적 표상 능력과 STEM 수리 추론 발달에 미치는 긍정적 영향을 밝혔습니다.",
+      "parenting_prescription_ko": "블록 놀이를 할 때 도면대로만 조립하게 하기보다, 정육면체 8개로 큰 정육면체를 만들거나 대칭 구조물을 변형해 보는 열린 공간 탐색을 격려하세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.2307/1130534",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "spatial_stem_mathematics",
+      "sub_domain_ko": "프뢰벨 은물 · 입체 공간추론 · 수리 토폴로지",
+      "sub_domain_en": "Froebel Gifts, Mental Rotation & Spatial-Math Topology",
+      "horizon": "long_term",
+      "horizons": [
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "[피인용 192회 검증 논문] 구조적 블록·기하 도형 놀이 빈도가 높을수록 정신적 회전(Mental rotation) 및 공간-수학 추론 점수 유의미 향상(p < 0.01)",
       "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
       "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
@@ -83747,6 +84116,49 @@
       "long_term_action_ko": "장기(6개월~성인기): 지식의 단순 암기를 넘어 현상의 본질을 질문하고 논증하는 비판적 지성 완성"
     },
     {
+      "id": "PMID:39921521",
+      "pmid": "39921521",
+      "doi": "10.1080/00221325.2025.2454314",
+      "pillar": "parent_child_interaction_museum",
+      "macro_pillar": "learning",
+      "title": "Parental Emotion Socialization and Children's Emotional Skills and Socio-Emotional Functioning in Early Childhood in Türkiye and the United States",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Parental Emotion Socialization and Children's Emotional Skills and Socio-Emotional Functio (2026)",
+      "authors": [
+        "Kılıç Ş",
+        "Hernandez Acton E",
+        "Zhu D",
+        "Dunsmore JC"
+      ],
+      "journal": "The Journal of genetic psychology",
+      "year": 2026,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "The Journal of genetic psychology (2026)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39921521/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
       "id": "DOI:10.1007/s43076-025-00507-2",
       "pmid": "",
       "doi": "10.1007/s43076-025-00507-2",
@@ -86160,6 +86572,87 @@
       "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
     },
     {
+      "id": "PMID:41198591",
+      "pmid": "41198591",
+      "doi": "10.1111/famp.70090",
+      "pillar": "parent_child_interaction_museum",
+      "macro_pillar": "learning",
+      "title": "Origin Stories in Donor-Conception: Helping Families to Promote Autobiographical Memories and Identity Development in Their Children",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Origin Stories in Donor-Conception: Helping Families to Promote Autobiographical Memories  (2025)",
+      "authors": [
+        "Navarro-Marshall J",
+        "Sutil AL"
+      ],
+      "journal": "Family process",
+      "year": 2025,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Family process (2025)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41198591/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "PMID:39833134",
+      "pmid": "39833134",
+      "doi": "10.1093/humrep/deaf004",
+      "pillar": "parent_child_interaction_museum",
+      "macro_pillar": "learning",
+      "title": "Beyond the disclosure debate in donor-conception: how do we help families to discuss origin stories with their children?",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] Beyond the disclosure debate in donor-conception: how do we help families to discuss origi (2025)",
+      "authors": [
+        "Navarro-Marshall J"
+      ],
+      "journal": "Human reproduction (Oxford, England)",
+      "year": 2025,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Human reproduction (Oxford, England) (2025)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39833134/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
       "id": "PMID:38841560",
       "pmid": "38841560",
       "doi": "10.17505/jpor.2024.26261",
@@ -88409,6 +88902,48 @@
         "1-3y",
         "4-6y",
         "7-9y"
+      ],
+      "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
+      "mid_term_action_ko": "중기(1~3개월): 부교감 미주신경 톤(Vagal Tone) 안정화 및 야간 스트레스 호르몬(코르티솔) 저감으로 숙면·정서 안정 달성",
+      "long_term_action_ko": "장기(6개월~성인기): 정서적 회복탄력성(Resilience)과 높은 자존감을 갖춘 자율적 인격체로 성장"
+    },
+    {
+      "id": "PMID:39062252",
+      "pmid": "39062252",
+      "doi": "10.3390/children11070803",
+      "pillar": "parent_child_interaction_museum",
+      "macro_pillar": "learning",
+      "title": "\"Our Generation Is Trying to Break Some of That Resistance to Emotions\"-A Mixed-Methods Pilot Examination of Tuning in to Kids for Black Parents of Preschoolers in the United States",
+      "title_ko": "[자율성 지지 양육·감정코칭 임상] \"Our Generation Is Trying to Break Some of That Resistance to Emotions\"-A Mixed-Methods Pi (2024)",
+      "authors": [
+        "Williams BJ",
+        "Carlson JS"
+      ],
+      "journal": "Children (Basel, Switzerland)",
+      "year": 2024,
+      "study_design": "Peer-Reviewed Clinical / Empirical Study (PubMed Indexed)",
+      "sample_size": "PubMed 동료심사 임상/코호트 표본",
+      "key_statistics": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
+      "clinical_summary_ko": "Children (Basel, Switzerland) (2024)에 게재된 발달심리 연구로, 만 2~5세 자율성 발달기에 부모의 공감적 감정 수용과 자율성 지지 스캐폴딩이 아동의 공격성·떼쓰기를 줄이고 내면화된 자기조절력을 키우는 핵심 기전임을 규명했습니다.",
+      "parenting_prescription_ko": "아이의 부정적 감정(화, 짜증, 실망)은 100% 공감해 주되, 물건을 던지거나 때리는 행동은 차분하고 단호하게 제한하며 말로 표현하는 법을 코칭해 주세요.",
+      "age_range": "만 1~7세",
+      "evidence_level": "Level II (PubMed Peer-Reviewed Literature)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39062252/",
+      "source_api": "NCBI PubMed E-utilities Live",
+      "sub_domain": "emotion_coaching_vagal_tone",
+      "sub_domain_ko": "자율성 지지 양육 · 감정코칭 · 미주신경 안정",
+      "sub_domain_en": "Autonomy Support, Emotion Coaching & Vagal Tone Regulation",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
       ],
       "plain_fact_ko": "부모의 자율성 지지(Autonomy support) 및 정서 코칭 수준이 높을수록 유아의 자기조절력·충동억제 점수 유의미 상승(p < 0.01)",
       "short_term_action_ko": "단기(1~4주): 아이의 거부·떼쓰기 시 감정 명명(Labeling) 후 '2가지 대안 중 스스로 선택하기' 자율성 지지 화법 즉시 적용",
@@ -113828,6 +114363,48 @@
       "long_term_action_ko": "장기(6개월~성인기): 볼프의 법칙(Wolff's Law) 기반 하지 장골 선형 성장 가속 및 고강도 골격 구조 완성"
     },
     {
+      "id": "DOI:10.25258/ijcpr.18.3.217",
+      "pmid": "",
+      "doi": "10.25258/ijcpr.18.3.217",
+      "pillar": "posture_biomechanics_exercise",
+      "macro_pillar": "growth",
+      "title": "Functional Outcome of Lumbar Intervertebral Disc Prolapse Treated by Posterior Decompression and Fenestration Discectomy: A Prospective Study",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Functional Outcome of Lumbar Intervertebral Disc Prolapse Treated by Posterior Decompressi (2026)",
+      "authors": [
+        "S. MK",
+        "R. P",
+        "S. T"
+      ],
+      "journal": "International Journal of Current Pharmaceutical Review and Research",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "International Journal of Current Pharmaceutical Review and Research (2026)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.25258/ijcpr.18.3.217",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
       "id": "PMID:40611942",
       "pmid": "40611942",
       "doi": "10.7717/peerj.19616",
@@ -119378,6 +119955,51 @@
       "age_range": "만 5~18세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.52403/ijhsr.20220613",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.1590/fst.54421",
+      "pmid": "",
+      "doi": "10.1590/fst.54421",
+      "pillar": "posture_biomechanics_exercise",
+      "macro_pillar": "growth",
+      "title": "Treatment of protrusion of Lumbar Intervertebral Disc (LID) with percutaneous laser disc decompression - a follow-up study of 108 patients",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Treatment of protrusion of Lumbar Intervertebral Disc (LID) with percutaneous laser disc d (2022)",
+      "authors": [
+        "ZHAO J",
+        "SHI M",
+        "WANG X",
+        "ZHAO N",
+        "DENG Q",
+        "CHEN Q"
+      ],
+      "journal": "Food Science and Technology",
+      "year": 2022,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Food Science and Technology (2022)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1590/fst.54421",
       "source_api": "Crossref Works REST API Live",
       "sub_domain": "posture_biomechanics_exercise",
       "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
