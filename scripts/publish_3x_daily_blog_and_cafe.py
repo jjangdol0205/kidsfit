@@ -456,7 +456,32 @@ def type_multiline_into_se_one(page, body: str):
         time.sleep(0.02)
 
 
+def ensure_naver_session_cookies(context):
+    backup_file = PROFILE_DIR / "naver_cookies_backup.json"
+    try:
+        current_names = {ck["name"] for ck in context.cookies("https://www.naver.com")}
+        if "NID_AUT" not in current_names and backup_file.exists():
+            saved = json.loads(backup_file.read_text(encoding="utf-8"))
+            exp_365 = int(time.time()) + 365 * 86400
+            for ck in saved:
+                if ck.get("expires", -1) <= 0:
+                    ck["expires"] = exp_365
+            context.add_cookies(saved)
+            print("  🔒 [세션 복원] 저장된 네이버 영구 로그인 쿠키(NID_AUT/NID_SES)를 복원했습니다.", flush=True)
+        elif "NID_AUT" in current_names:
+            all_ck = [ck for ck in context.cookies() if "naver.com" in ck.get("domain", "")]
+            exp_365 = int(time.time()) + 365 * 86400
+            for ck in all_ck:
+                if ck.get("expires", -1) <= 0:
+                    ck["expires"] = exp_365
+            context.add_cookies(all_ck)
+            backup_file.write_text(json.dumps(all_ck, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception as e:
+        print(f"  ⚠️ 쿠키 동기화 경고: {e}", flush=True)
+
+
 def publish_blog_post(context, title: str, body: str, tags: list[str], img_path: str):
+    ensure_naver_session_cookies(context)
     page = context.new_page()
     page.on("dialog", lambda d: d.accept())
     try:
@@ -553,6 +578,7 @@ def publish_blog_post(context, title: str, body: str, tags: list[str], img_path:
 
 
 def publish_cafe_post(context, board_name: str, title: str, body: str, tags: list[str], img_path: str):
+    ensure_naver_session_cookies(context)
     page = context.new_page()
     page.on("dialog", lambda d: d.accept())
     try:
