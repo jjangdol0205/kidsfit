@@ -613,7 +613,11 @@
     }
 
     const kb = getKnowledgeBase();
-    const totalDbPapers = (kb && kb.metadata && Number(kb.metadata.total_papers)) || (kb && Array.isArray(kb.papers) && kb.papers.length) || 2723;
+    const totalDbPapers = (kb && kb.metadata && Number(kb.metadata.total_papers)) || (kb && Array.isArray(kb.papers) && kb.papers.length) || 2783;
+    const kbBal = (kb && kb.metadata && kb.metadata.learning_analytics && kb.metadata.learning_analytics.macro_pillar_balance) || {};
+    const kbPillarCounts = (kb && kb.metadata && kb.metadata.pillar_counts) || {};
+    const growthMacroCount = Number(kbBal.growth_macro_count) || (Number(kbPillarCounts.growth_endocrinology || 0) + Number(kbPillarCounts.posture_biomechanics_exercise || 0)) || 1183;
+    const learningMacroCount = Number(kbBal.learning_macro_count) || Math.max(0, totalDbPapers - growthMacroCount) || 1600;
 
     const isEn = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
     const isYouthSelf = profile.targetSubject === 'self' || (Number(profile.ageYears) >= 14 && profile.targetSubject !== 'child');
@@ -1366,7 +1370,7 @@
               🖨️ ${isEn ? 'Print / Save A4 PDF' : '보고서 출력 (인쇄 / PDF 저장)'}
             </button>
             <span id="master-report-standard-badge" style="background: rgba(16, 185, 129, 0.18); color: #6EE7B7; font-weight: 800; font-size: 0.8rem; padding: 0.38rem 0.8rem; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.4);">
-              📚 ${isEn ? `Official Standards · ${totalDbPapers} Papers` : (isLearningDefault ? `보건복지부 K-DST · 뇌인지 논문 ${totalDbPapers}편 근거` : `질병관리청 성장도표 · 논문 ${totalDbPapers}편 근거`)}
+              ✓ ${isEn ? 'Official Pediatric Standards' : (isLearningDefault ? '보건복지부 K-DST 발달기준 적용' : '질병관리청 소아성장도표 기준 적용')}
             </span>
           </div>
         </div>
@@ -1380,11 +1384,11 @@
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <span style="font-size: 1.1rem;">📏</span>
               <span style="font-size: 0.86rem; font-weight: 800; color: #FFFFFF;">
-                질병관리청(KDCA) 성장도표 &amp; 소아내분비 논문 기반 1:1 신체 성장 정밀 보고서
+                질병관리청(KDCA) 소아청소년 성장도표 기반 1:1 신체 성장 정밀 보고서
               </span>
             </div>
             <span style="font-size: 0.76rem; font-weight: 800; color: #38BDF8; background: rgba(56, 189, 248, 0.16); padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
-              ✓ 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 기준 · 논문 ${totalDbPapers}편 대조 완료
+              ✓ 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) 맞춤 정밀 진단
             </span>
           </div>
 
@@ -2002,7 +2006,7 @@
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="font-size: 1.15rem;">🧠</span>
             <span style="font-size: 0.88rem; font-weight: 900; color: #FFFFFF; word-break: keep-all;">
-              보건복지부 K-DST &amp; 뇌인지 논문 기반 【만 ${ageYears}세 두뇌·학습 시각 진단서】
+              보건복지부 K-DST 기준 【만 ${ageYears}세 두뇌·학습 시각 진단서】
             </span>
           </div>
           <span style="font-size: 0.76rem; font-weight: 800; color: #DDD6FE; background: rgba(168, 85, 247, 0.25); padding: 0.22rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(168, 85, 247, 0.45);">
@@ -2872,37 +2876,6 @@
         </template>
       </div><!-- /#pillar-2-container -->
 
-        <!-- Collapsible Academic Evidence Section (Preserves #briefing-research-section & #briefing-papers-container) -->
-        <details class="clinical-source-details" style="margin-top: 1.35rem; margin-bottom: 1.1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 0.8rem 1.1rem;">
-          <summary style="cursor: pointer; font-size: 0.88rem; font-weight: 800; color: #93C5FD; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span>🔬 ${isEn ? 'Peer-Reviewed Academic References (Click to Expand ▼)' : '진단서에 적용된 국내외 학술논문 출처 보기 (접음 보기 ▼)'}</span>
-            <span style="font-size: 0.74rem; color: #38BDF8; background: rgba(56, 189, 248, 0.14); padding: 0.16rem 0.55rem; border-radius: 9999px;">클릭 시 출처 펼침</span>
-          </summary>
-          <div class="briefing-section briefing-research" id="briefing-research-section" style="margin-top: 0.75rem; padding-top: 0.7rem; border-top: 1px dashed rgba(255,255,255,0.14);">
-            <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
-              ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn }) => `
-                <div class="matched-paper-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 0.65rem 0.8rem; text-align: left;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.2rem;">
-                    <span style="color: #FB7185; font-size: 0.82rem; font-weight: 800;">
-                      • ${isEn ? matchedCauseEn : matchedCauseKo}
-                    </span>
-                    <span style="font-size: 0.75rem; color: #93C5FD;">
-                      ${p.pmid
-                        ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; text-decoration: none; font-weight: 700;">📚 ${p.authors && p.authors[0] ? p.authors[0].split(' ')[0] : 'PubMed'} (${p.year}) · PMID ↗</a>`
-                        : p.doi
-                        ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="color: #34D399; text-decoration: none; font-weight: 700;">📚 ${p.journal || 'DOI'} (${p.year}) · DOI ↗</a>`
-                        : ''}
-                    </span>
-                  </div>
-                  <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.45;">
-                    ${getCleanFactLine(p, isEn)}
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </details>
-
         <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Always visible inside the report) -->
         <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.1rem; padding: 0.7rem 0.95rem; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 0.78rem; color: #94A3B8; text-align: center; line-height: 1.45;">
           ℹ️ 본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
@@ -3174,7 +3147,7 @@
           </h3>
           <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem;">
             <!-- 1. Naver Blog -->
-            <a href="https://blog.naver.com/kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="https://blog.naver.com/expertise333" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: rgba(3, 199, 90, 0.1); border: 1.5px solid rgba(3, 199, 90, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #4ADE80;">📝 공식 네이버 블로그</span>
@@ -3187,7 +3160,7 @@
             </a>
 
             <!-- 2. Naver Cafe -->
-            <a href="https://cafe.naver.com/kidsfitgrowth" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="https://cafe.naver.com/moneyfitlab" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #34D399;">☕ 공식 네이버 카페</span>
@@ -3200,10 +3173,10 @@
             </a>
 
             <!-- 3. Instagram (4-Panel Webtoon) -->
-            <a href="https://www.instagram.com/kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="https://www.instagram.com/kids_fit1" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: rgba(236, 72, 153, 0.1); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
-                  <span style="font-size: 0.75rem; font-weight: 900; color: #F472B6;">📸 공식 인스타그램</span>
+                  <span style="font-size: 0.75rem; font-weight: 900; color: #F472B6;">📸 공식 인스타그램 (@kids_fit1)</span>
                   <span style="font-size: 0.72rem; color: #FBCFE8; font-weight: 800;">4칸 웹툰 ↗</span>
                 </div>
                 <div style="font-size: 0.9rem; font-weight: 900; color: #FFFFFF;">
@@ -3213,7 +3186,7 @@
             </a>
 
             <!-- 4. Threads (4-Panel Webtoon Simultaneous Upload) -->
-            <a href="https://www.threads.net/@kidsfit_studio" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="https://www.threads.com/@kids_fit1" target="_blank" rel="noopener noreferrer" id="hub-link-threads" style="text-decoration: none; background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #C084FC;">🧵 공식 쓰레드 (Threads)</span>
@@ -3232,6 +3205,53 @@
           ${UserCohortDB && typeof UserCohortDB.renderGuidebookCohortSection === 'function'
             ? UserCohortDB.renderGuidebookCohortSection(profile, computedMetrics)
             : ''}
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- REPORT FOOTER ARCHIVE: 실시간 AI 학술논문 자가학습 누적 현황 & 출처 아카이브 (보고서 맨 끝) -->
+        <!-- ================================================================== -->
+        <div id="report-end-academic-archive" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(16, 185, 129, 0.08) 100%); border: 1.5px solid rgba(16, 185, 129, 0.38); border-radius: 18px; padding: 1.15rem 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.7rem;">
+            <div style="display: inline-flex; align-items: center; gap: 0.45rem;">
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
+              <span id="live-research-sync-text" style="font-size: 0.88rem; font-weight: 900; color: #6EE7B7;">
+                실시간 AI 학술논문 자가학습 누적 ${totalDbPapers.toLocaleString('en-US')}편 반영 중 (신체성장 ${growthMacroCount.toLocaleString('en-US')}편 · 두뇌학습 ${learningMacroCount.toLocaleString('en-US')}편)
+              </span>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #93C5FD; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.35); padding: 0.2rem 0.65rem; border-radius: 9999px;">
+              PubMed · Crossref · OpenAlex 30분 주기 자동 업데이트
+            </span>
+          </div>
+
+          <details class="clinical-source-details" open style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 0.8rem 1.1rem;">
+            <summary style="cursor: pointer; font-size: 0.86rem; font-weight: 800; color: #93C5FD; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+              <span>🔬 ${isEn ? 'Peer-Reviewed Academic References Applied to This Report' : '본 보고서에 매칭·적용된 핵심 학술논문 출처 (클릭하여 접기/펼치기 ▼)'}</span>
+              <span style="font-size: 0.74rem; color: #38BDF8; background: rgba(56, 189, 248, 0.14); padding: 0.16rem 0.55rem; border-radius: 9999px;">총 ${totalDbPapers.toLocaleString('en-US')}편 DB 대조 완료</span>
+            </summary>
+            <div class="briefing-section briefing-research" id="briefing-research-section" style="margin-top: 0.75rem; padding-top: 0.7rem; border-top: 1px dashed rgba(255,255,255,0.14);">
+              <div id="briefing-papers-container" class="briefing-papers-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                ${matchedPapers.map(({ paper: p, matchedCauseKo, matchedCauseEn }) => `
+                  <div class="matched-paper-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 0.65rem 0.8rem; text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.2rem;">
+                      <span style="color: #FB7185; font-size: 0.82rem; font-weight: 800;">
+                        • ${isEn ? matchedCauseEn : matchedCauseKo}
+                      </span>
+                      <span style="font-size: 0.75rem; color: #93C5FD;">
+                        ${p.pmid
+                          ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; text-decoration: none; font-weight: 700;">📚 ${p.authors && p.authors[0] ? p.authors[0].split(' ')[0] : 'PubMed'} (${p.year}) · PMID ↗</a>`
+                          : p.doi
+                          ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="color: #34D399; text-decoration: none; font-weight: 700;">📚 ${p.journal || 'DOI'} (${p.year}) · DOI ↗</a>`
+                          : ''}
+                      </span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #E2E8F0; line-height: 1.45;">
+                      ${getCleanFactLine(p, isEn)}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </details>
         </div>
 
       </div>
@@ -3621,7 +3641,7 @@
       const age = (btn && btn.getAttribute('data-age')) || '10';
       const height = (btn && btn.getAttribute('data-height')) || '137';
       const opt = (btn && btn.getAttribute('data-opt')) || '177';
-      const text = `[신체 성장 정기 재점검 알림장] 우리 아이(만 ${age}세, 현재 ${height}cm) 목표 잠재키 ${opt}cm 달성 루틴! ①매월 1일 아침 키 재점검 ②매주 밤10시 수면·철봉 체크 ③3개월마다 체중비례 영양 재조정 👉 https://truthofmarket.com`;
+      const text = `[신체 성장 정기 재점검 알림장] 우리 아이(만 ${age}세, 현재 ${height}cm) 목표 잠재키 ${opt}cm 달성 루틴! ①매월 1일 아침 키 재점검 ②매주 밤10시 수면·철봉 체크 ③3개월마다 체중비례 영양 재조정 👉 https://kidsfit.co.kr`;
       if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text);
       }
@@ -3638,7 +3658,7 @@
       const style = (btn && btn.getAttribute('data-style')) || '맞춤 학습형';
       const lq = (btn && btn.getAttribute('data-lq')) || '78';
       const target = (btn && btn.getAttribute('data-target')) || '90';
-      const text = `[두뇌·학습 정기 재점검 알림장] 우리 아이(만 ${age}세, ${style}) LQ ${lq}점 → 목표 ${target}점 달성 루틴! ①매주 금요일 복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 👉 https://truthofmarket.com`;
+      const text = `[두뇌·학습 정기 재점검 알림장] 우리 아이(만 ${age}세, ${style}) LQ ${lq}점 → 목표 ${target}점 달성 루틴! ①매주 금요일 복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 👉 https://kidsfit.co.kr`;
       if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text);
       }

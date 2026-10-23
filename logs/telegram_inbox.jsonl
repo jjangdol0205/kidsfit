@@ -94,3 +94,6 @@
 {"receivedAt":"2026-10-22T23:02:31.259Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"논문 자가학습 한거 계속 누적해서 홈페이지에 업데이트 되면 좋을거 같아"}
 {"receivedAt":"2026-10-22T23:21:20.385Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"kidsfit.co.kr 가비아에서 도메인 샀어 이쪽으로 옮기려고 해 작업 진행해줘"}
 {"receivedAt":"2026-10-22T23:25:35.861Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"가비아에서 dns 설정도 해야하자나 그것도 알려줘"}
+{"receivedAt":"2026-10-22T23:50:25.506Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"We weren't able to verify kids.fit.co.kr\nPlease check that your DNS records are correct and follow the special instructions for AAAA records and CAA records.\nDNS changes can take 24 hours or longer to propagate. Contact support for assistance if the problem persists.\n\n이렇게 뜨는데"}
+{"receivedAt":"2026-10-23T00:01:30.838Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"내가 잘못입력했네 이제 렌더도 됐어 그럼 블로그랑 카페는 너가 들어가서 홈페이지 수정해주고\n\n쓰레드랑 인스타 클립은 내가 수정할건데 수정할부분 알려줘"}
+{"receivedAt":"2026-10-23T00:19:35.682Z","chatId":"755033799","targetConversationId":"efdd0412-2586-40cf-bb28-0fa8976613df","message":"홈페이지 첫화면에 있는 논문 부분은 지우고\n\n나중에 보고서 나올때 맨 끝에 넣어줘\n\n홈페이지 첫화면은 깔끔하면 좋겠어"}

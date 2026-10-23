@@ -818,7 +818,7 @@
     const outing = WeekendCurator ? WeekendCurator.getWeekendOuting(state.profile.region, state.profile.interest) : { destination: '어린이박물관' };
 
     const childGender = state.profile.gender === 'boy' ? '남아' : '여아';
-    const text = `💌 여보! 방금 우리 아이(만 ${state.profile.ageMonths}개월 ${childGender}) 질병관리청 성장도표 진단해봤는데, 또래 상위 ${kdca.topPercent}%래!\n골든타임 관리하면 최대 ${pred.potentialHeight}cm까지 클 수 있대!\n이번 주말엔 [${outing.destination}] 같이 가보자 👉 https://truthofmarket.com`;
+    const text = `💌 여보! 방금 우리 아이(만 ${state.profile.ageMonths}개월 ${childGender}) 질병관리청 성장도표 진단해봤는데, 또래 상위 ${kdca.topPercent}%래!\n골든타임 관리하면 최대 ${pred.potentialHeight}cm까지 클 수 있대!\n이번 주말엔 [${outing.destination}] 같이 가보자 👉 https://kidsfit.co.kr`;
 
     if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {

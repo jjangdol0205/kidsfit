@@ -64,7 +64,7 @@ def make_profile_icon():
 
     # Bottom domain pill
     draw_rounded_rect(draw, (85, 412, W - 85, 456), 22, fill=(79, 70, 229))
-    d_txt = "truthofmarket.com"
+    d_txt = "kidsfit.co.kr"
     tbd = draw.textbbox((0, 0), d_txt, font=fnt(23, True))
     draw.text(((W - (tbd[2] - tbd[0])) // 2, 419), d_txt, font=fnt(23, True), fill=(255, 255, 255))
 
@@ -130,7 +130,7 @@ def main():
         1080, 240,
         badge="KIDS-FIT GROWTH STUDIO · 질병관리청 성장도표 & K-DST 기준",
         title="키즈핏 소아성장 · 두뇌발달 양육 연구소",
-        subtitle="우리 아이 숨은 키 +7cm 골든타임 처방 × 5대 두뇌 역량(LQ) 맞춤 학습 로드맵 (truthofmarket.com)",
+        subtitle="우리 아이 숨은 키 +7cm 골든타임 처방 × 5대 두뇌 역량(LQ) 맞춤 학습 로드맵 (kidsfit.co.kr)",
         pills=[],
         filename="kidsfit_cafe_title_1080x240.png",
     )
@@ -138,7 +138,7 @@ def main():
         1080, 520,
         badge="BUILT ON OFFICIAL STANDARDS · 질병관리청 성장도표 & 보건복지부 K-DST 기준",
         title="우리 아이 숨은 키 +7cm 골든타임과\n두뇌·학습 5대 역량(LQ)을 1분 만에 진단하세요",
-        subtitle="소아내분비·뇌인지 논문 2,480+편 기반 맞춤형 신체 성장 & 자기주도 학습 처방 플랫폼",
+        subtitle="질병관리청 성장도표 · 보건복지부 K-DST 기반 맞춤형 신체 성장 & 자기주도 학습 처방 플랫폼 (kidsfit.co.kr)",
         pills=[
             ("📏 키 백분위 & 유전 예상키(MPH)", (236, 253, 245), (5, 150, 105)),
             ("🧠 5대 두뇌 역량 & 공부법 처방", (238, 242, 255), (79, 70, 229)),
@@ -150,7 +150,7 @@ def main():
         966, 260,
         badge="KIDS-FIT OFFICIAL COLUMN · 소아성장 & 두뇌학습 연구소",
         title="키즈핏(KIDS-FIT) 우리 아이 키성장 · 두뇌학습 공식 칼럼",
-        subtitle="질병관리청 성장도표 · K-DST · 뇌인지 논문 기반 1분 무료 진단 → truthofmarket.com",
+        subtitle="질병관리청 성장도표 · K-DST 기준 1분 무료 진단 → kidsfit.co.kr",
         pills=[],
         filename="kidsfit_blog_skin_966x260.png",
     )

@@ -86,9 +86,9 @@ def main():
     # Warning / Tip Box inside Step 1
     draw.rounded_rectangle((68, 710, W - 68, 830), radius=16, fill=(255, 251, 235), outline=(252, 211, 77), width=2)
     draw.text(
-        (92, 728),
-        "💡 가비아 입력 꿀팁: 두 줄 모두 우측 [확인]을 누른 뒤, 화면 맨 아래 파란색 [저장] 버튼을 꼭 눌러주세요!",
-        font=get_font(22, True),
+        (86, 728),
+        "★ 가비아 입력 꿀팁: 두 줄 모두 우측 [확인]을 누른 뒤, 화면 맨 아래 파란색 [저장] 버튼을 꼭 눌러주세요!",
+        font=get_font(21, True),
         fill=(180, 83, 9),
     )
     draw.text(
