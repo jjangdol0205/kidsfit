@@ -1504,7 +1504,7 @@
                   <circle cx="58" cy="172" r="7" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2.5" />
                   <circle cx="205" cy="124" r="5.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.8" />
                   <circle cx="355" cy="66" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
-                  <circle cx="495" cy="36" r="8.5" fill="#1D4ED8" stroke="#A7F3D0" stroke-width="3" />
+                  <circle cx="495" cy="36" r="8.5" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="3" />
 
                   <rect x="14" y="130" width="98" height="26" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
                   <text x="63" y="147" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">현재 ${height}cm</text>
@@ -1556,7 +1556,7 @@
 
                   <circle cx="32" cy="148" r="6.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="165" cy="82" r="5.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.8" />
-                  <circle cx="305" cy="28" r="8" fill="#1D4ED8" stroke="#A7F3D0" stroke-width="2.5" />
+                  <circle cx="305" cy="28" r="8" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="2.5" />
                   <circle cx="305" cy="72" r="6" fill="#64748B" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="305" cy="112" r="5.5" fill="#94A3B8" stroke="#FFFFFF" stroke-width="1.8" />
 
@@ -2188,7 +2188,7 @@
                     <circle cx="60" cy="142" r="7" fill="#64748B" stroke="#FFFFFF" stroke-width="2.2" />
                     <circle cx="205" cy="105" r="5.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.8" />
                     <circle cx="355" cy="62" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
-                    <circle cx="495" cy="34" r="8" fill="#1D4ED8" stroke="#A7F3D0" stroke-width="3" />
+                    <circle cx="495" cy="34" r="8" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="3" />
 
                     <rect x="14" y="102" width="104" height="26" rx="7" fill="#EFF6FF" stroke="#64748B" stroke-width="1.3" />
                     <text x="66" y="119" fill="#0F172A" font-size="11" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
@@ -2219,7 +2219,7 @@
 
                     <circle cx="32" cy="128" r="6.5" fill="#64748B" stroke="#FFFFFF" stroke-width="2" />
                     <circle cx="168" cy="72" r="5.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.8" />
-                    <circle cx="305" cy="26" r="8" fill="#1D4ED8" stroke="#A7F3D0" stroke-width="2.5" />
+                    <circle cx="305" cy="26" r="8" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="2.5" />
 
                     <rect x="8" y="84" width="118" height="26" rx="8" fill="#EFF6FF" stroke="#64748B" stroke-width="1.4" />
                     <text x="67" y="101" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">현재 LQ ${lqData.overallLQ.toFixed(1)}점</text>
@@ -2328,12 +2328,12 @@
                 <defs>
                   <linearGradient id="strBarGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#1D4ED8" />
-                    <stop offset="100%" stop-color="#059669" />
+                    <stop offset="100%" stop-color="#2563EB" />
                   </linearGradient>
                 </defs>
                 <!-- Baseline & Peer Average Dashed Line (Non-overlapping top-left reference badge) -->
                 <line x1="20" y1="154" x2="540" y2="154" stroke="#E2E8F0" stroke-width="1.8" />
-                <line x1="20" y1="78" x2="540" y2="78" stroke="rgba(255,255,255,0.45)" stroke-width="1.6" stroke-dasharray="5,4" />
+                <line x1="20" y1="78" x2="540" y2="78" stroke="#64748B" stroke-width="1.6" stroke-dasharray="5,4" />
                 <rect x="16" y="6" width="106" height="20" rx="6" fill="#EFF6FF" stroke="#E2E8F0" />
                 <text x="69" y="20" fill="#0F172A" font-size="10.5" font-weight="800" text-anchor="middle">┄ 기준: 평균 78점</text>
 
@@ -2348,7 +2348,7 @@
                     <rect x="${colX - 42}" y="78" width="34" height="76" rx="6" fill="rgba(148,163,184,0.22)" stroke="#E2E8F0" />
                     <text x="${colX - 25}" y="96" fill="#0F172A" font-size="10.5" font-weight="800" text-anchor="middle">78</text>
                     <!-- Child Strength Bar -->
-                    <rect x="${colX}" y="${barY}" width="44" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#A7F3D0" stroke-width="1.8" />
+                    <rect x="${colX}" y="${barY}" width="44" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#1D4ED8" stroke-width="1.8" />
                     <rect x="${colX - 25}" y="${pillY}" width="94" height="20" rx="10" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.3" />
                     <text x="${colX + 22}" y="${pillY + 14}" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78})</text>
                     <text x="${colX + 2}" y="176" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
@@ -2397,12 +2397,12 @@
               <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 560 192" style="width: 100%; height: auto; display: block;">
                 <defs>
                   <linearGradient id="weakBeforeGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#FB7185" />
-                    <stop offset="100%" stop-color="#E11D48" />
+                    <stop offset="0%" stop-color="#94A3B8" />
+                    <stop offset="100%" stop-color="#64748B" />
                   </linearGradient>
                   <linearGradient id="weakAfterGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#1D4ED8" />
-                    <stop offset="100%" stop-color="#059669" />
+                    <stop offset="100%" stop-color="#2563EB" />
                   </linearGradient>
                 </defs>
                 <line x1="20" y1="154" x2="540" y2="154" stroke="#E2E8F0" stroke-width="1.8" />
@@ -2418,13 +2418,13 @@
                   const shortTitle = w.shortLabel || (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
                   return `
                     <!-- Current Score Bar (Left of pair) -->
-                    <rect x="${colX - 46}" y="${curY}" width="34" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#FDA4AF" stroke-width="1.4" />
+                    <rect x="${colX - 46}" y="${curY}" width="34" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#64748B" stroke-width="1.4" />
                     <rect x="${colX - 53}" y="${curPillY}" width="48" height="18" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1" />
                     <text x="${colX - 29}" y="${curPillY + 13}" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">${w.score}점</text>
                     <!-- Non-overlapping Jump Arrow Between Bars -->
                     <text x="${colX - 2}" y="${Math.round((curY + tarY) / 2 + 12)}" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">↗</text>
                     <!-- Coached Target Bar (Right of pair) -->
-                    <rect x="${colX + 10}" y="${tarY}" width="38" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#A7F3D0" stroke-width="1.8" />
+                    <rect x="${colX + 10}" y="${tarY}" width="38" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#1D4ED8" stroke-width="1.8" />
                     <rect x="${colX + 2}" y="${tarPillY}" width="64" height="19" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.3" />
                     <text x="${colX + 34}" y="${tarPillY + 13}" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
                     <text x="${colX + 2}" y="176" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
@@ -2439,7 +2439,7 @@
                   <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">
                     ${w.icon} ${w.title} <span style="color: #1D4ED8; font-size:0.8rem;">(${w.score}점→<strong style="color: #1D4ED8;">${Math.min(96, w.score + 16)}점</strong>)</span>
                   </span>
-                  <span style="font-size: 0.8rem; color: #FFE4E6; font-weight: 700;">
+                  <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700;">
                     • ${w.weakTrait}
                   </span>
                 </div>

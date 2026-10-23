@@ -420,9 +420,9 @@
         const y = cy + r * Math.sin(angle);
         polyPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
       }
-      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />`;
+      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="none" stroke="#CBD5E1" stroke-width="1" />`;
       // Grid label
-      gridSvg += `<text x="${cx + 4}" y="${(cy - r + 4).toFixed(1)}" font-size="9" fill="rgba(255, 255, 255, 0.25)" font-family="var(--font-mono)">${Math.round(ratio * 100)}</text>`;
+      gridSvg += `<text x="${cx + 4}" y="${(cy - r + 4).toFixed(1)}" font-size="9" fill="#475569" font-family="var(--font-mono)">${Math.round(ratio * 100)}</text>`;
     });
 
     // Axis spokes & labels
@@ -431,7 +431,7 @@
       const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
       const x = cx + maxR * Math.cos(angle);
       const y = cy + maxR * Math.sin(angle);
-      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255, 255, 255, 0.12)" stroke-dasharray="2,2" />`;
+      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#CBD5E1" stroke-dasharray="2,2" />`;
 
       // Label coordinate outside radius (comfortably inside 400x400 viewBox)
       const lx = cx + (maxR + 18) * Math.cos(angle);
@@ -440,7 +440,7 @@
       const labelText = isGlobal ? pillar.nameEn : pillar.nameKo;
 
       spokesSvg += `
-        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" font-size="11" font-weight="700" fill="var(--text-primary)" dominant-baseline="central">
+        <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" font-size="11" font-weight="700" fill="#0F172A" dominant-baseline="central">
           ${labelText}
         </text>
       `;
@@ -826,15 +826,15 @@
               <span class="tab-badge tab-badge-mint" style="display: inline-block; margin-bottom: 0.5rem;">
                 Core 4 · Neuro-Cognitive Architecture
               </span>
-              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
                 ${titleStr}
               </h3>
-              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; max-width: 800px;">
+              <p style="font-size: 0.88rem; color: #334155; line-height: 1.55; max-width: 800px;">
                 ${subStr}
               </p>
             </div>
             <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--radius-inner); padding: 0.75rem 1.25rem; text-align: center;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #334155; display: block;">
                 ${isGlobal ? 'Neuroplasticity Golden Age' : '현재 두뇌 발달 골든타임'}
               </span>
               <span style="font-size: 1.15rem; font-weight: 800; color: var(--bio-emerald);">
@@ -851,10 +851,10 @@
           <div class="bento-card radar-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; margin: 0;">
                   ${isGlobal ? '5-Axis Cognitive Balance Radar' : '5각 뇌인지 밸런스 레이더 차트'}
                 </h4>
-                <div style="font-size: 0.75rem; color: var(--text-secondary); display: flex; gap: 0.75rem;">
+                <div style="font-size: 0.75rem; color: #334155; display: flex; gap: 0.75rem;">
                   <span style="display: inline-flex; align-items: center; gap: 0.25rem;">
                     <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--cyan-pulse);"></span>
                     ${isGlobal ? 'Child Profile' : '아이 프로필'}
@@ -880,9 +880,9 @@
                 const name = isGlobal ? p.nameEn : p.nameKo;
                 return `
                   <div style="background: var(--theme-surface-sub); padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid ${isHigh ? '#EFF6FF' : 'var(--theme-border-subtle)'}; text-align: center;">
-                    <div style="font-size: 0.72rem; color: var(--text-secondary);">${name}</div>
+                    <div style="font-size: 0.72rem; color: #334155;">${name}</div>
                     <div style="font-size: 1.05rem; font-weight: 800; color: ${isHigh ? 'var(--cyan-pulse)' : 'var(--text-primary)'}; font-family: var(--font-mono);">
-                      ${s} <span style="font-size: 0.7rem; font-weight: 500; color: var(--text-muted);">/100</span>
+                      ${s} <span style="font-size: 0.7rem; font-weight: 500; color: #475569;">/100</span>
                     </div>
                   </div>
                 `;
@@ -897,16 +897,16 @@
                 <span style="font-size: 0.75rem; font-weight: 700; color: var(--bio-emerald); background: #EFF6FF; padding: 0.2rem 0.6rem; border-radius: 9999px;">
                   ${isGlobal ? 'Cortical Rewiring Science' : '대뇌 피질 신경가소성'}
                 </span>
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
+                <span style="font-size: 0.8rem; font-weight: 700; color: #334155;">
                   ${goldenWindow.ageRangeStr}
                 </span>
               </div>
 
-              <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">
                 ${isGlobal ? goldenWindow.focus : goldenWindow.focusKo}
               </h4>
 
-              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+              <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin-bottom: 1.25rem;">
                 ${isGlobal ? goldenWindow.principleEn : goldenWindow.principleKo}
               </p>
 
@@ -915,7 +915,7 @@
                 <span style="font-size: 0.75rem; font-weight: 800; color: var(--bio-emerald); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">
                   ${isGlobal ? 'Daily 15~25 Min Regimen' : '매일 15~25분 가정 두뇌 훈련법'}
                 </span>
-                <p style="font-size: 0.82rem; color: var(--text-primary); margin: 0; line-height: 1.5;">
+                <p style="font-size: 0.82rem; color: #0F172A; margin: 0; line-height: 1.5;">
                   ${isGlobal ? goldenWindow.dailyRegimenEn : goldenWindow.dailyRegimenKo}
                 </p>
               </div>
@@ -925,14 +925,14 @@
                 <span style="font-size: 0.75rem; font-weight: 800; color: var(--theme-accent); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">
                   ${isGlobal ? 'Recommended Development Tools' : '추천 두뇌·탐구 도구 카테고리'}
                 </span>
-                <p style="font-size: 0.82rem; color: var(--text-primary); margin: 0; line-height: 1.5;">
+                <p style="font-size: 0.82rem; color: #0F172A; margin: 0; line-height: 1.5;">
                   ${isGlobal ? goldenWindow.recommendedToolsEn : goldenWindow.recommendedToolsKo}
                 </p>
               </div>
             </div>
 
             <!-- Target Cortex Badge -->
-            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle); font-size: 0.75rem; color: var(--text-muted);">
+            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle); font-size: 0.75rem; color: #475569;">
               <strong>${isGlobal ? 'Target Area' : '핵심 신경 타깃'}:</strong> ${goldenWindow.targetCortex}
             </div>
           </div>
@@ -978,10 +978,10 @@
                 .map(f => `<div style="font-size: 0.76rem; color: #475569; line-height: 1.4;">• ${f}</div>`)
                 .join('');
               return `
-                <div style="background: #FFFFFF; border: 1px solid ${isHigh ? '#EFF6FF' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 0.75rem 0.85rem;">
+                <div style="background: #FFFFFF; border: 1px solid ${isHigh ? '#93C5FD' : '#CBD5E1'}; border-radius: 12px; padding: 0.75rem 0.85rem;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                    <span style="font-size: 0.84rem; font-weight: 800; color: ${isHigh ? '#1D4ED8' : '#F8FAFC'};">${isGlobal ? p.nameEn : p.nameKo}</span>
-                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#1D4ED8' : '#E2E8F0'};">${b.finalScore}점</span>
+                    <span style="font-size: 0.84rem; font-weight: 800; color: ${isHigh ? '#1D4ED8' : '#0F172A'};">${isGlobal ? p.nameEn : p.nameKo}</span>
+                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#1D4ED8' : '#334155'};">${b.finalScore}점</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 0.18rem;">
                     ${factorsList}
@@ -996,10 +996,10 @@
         <div class="bento-card havruta-card" style="margin-bottom: 1rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
             <div>
-              <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.25rem 0;">
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin: 0 0 0.25rem 0;">
                 ${isGlobal ? 'Weekend Cultural / Science Exploration & Havruta 3-Question Sets' : '주말 박물관·과학관 현장 탐구 & 부모-자녀 하브루타 대화 질문 3선'}
               </h4>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); margin: 0;">
+              <p style="font-size: 0.83rem; color: #334155; margin: 0;">
                 ${isGlobal ? 'Transform weekend outings into critical scientific deductions using Socratic Havruta dialogue.' : '단순 관람을 넘어 아이의 비판적 인과 추론과 전두엽 사고력을 폭발시키는 3단계 문답 모델입니다.'}
               </p>
             </div>
@@ -1016,10 +1016,10 @@
               <span style="font-size: 0.75rem; font-weight: 800; color: var(--cyan-pulse); display: block; margin-bottom: 0.4rem;">
                 ${isGlobal ? HAVRUTA_QUESTIONS.step1.titleEn : HAVRUTA_QUESTIONS.step1.titleKo}
               </span>
-              <p style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.5rem;">
+              <p style="font-size: 0.95rem; font-weight: 800; color: #0F172A; line-height: 1.45; margin-bottom: 0.5rem;">
                 "${isGlobal ? HAVRUTA_QUESTIONS.step1.modelEn : HAVRUTA_QUESTIONS.step1.modelKo}"
               </p>
-              <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+              <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
                 ${HAVRUTA_QUESTIONS.step1.guideKo}
               </p>
             </div>
@@ -1029,10 +1029,10 @@
               <span style="font-size: 0.75rem; font-weight: 800; color: var(--amber-caution); display: block; margin-bottom: 0.4rem;">
                 ${isGlobal ? HAVRUTA_QUESTIONS.step2.titleEn : HAVRUTA_QUESTIONS.step2.titleKo}
               </span>
-              <p style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.5rem;">
+              <p style="font-size: 0.95rem; font-weight: 800; color: #0F172A; line-height: 1.45; margin-bottom: 0.5rem;">
                 "${isGlobal ? HAVRUTA_QUESTIONS.step2.modelEn : HAVRUTA_QUESTIONS.step2.modelKo}"
               </p>
-              <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+              <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
                 ${HAVRUTA_QUESTIONS.step2.guideKo}
               </p>
             </div>
@@ -1042,10 +1042,10 @@
               <span style="font-size: 0.75rem; font-weight: 800; color: var(--bio-emerald); display: block; margin-bottom: 0.4rem;">
                 ${isGlobal ? HAVRUTA_QUESTIONS.step3.titleEn : HAVRUTA_QUESTIONS.step3.titleKo}
               </span>
-              <p style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.5rem;">
+              <p style="font-size: 0.95rem; font-weight: 800; color: #0F172A; line-height: 1.45; margin-bottom: 0.5rem;">
                 "${isGlobal ? HAVRUTA_QUESTIONS.step3.modelEn : HAVRUTA_QUESTIONS.step3.modelKo}"
               </p>
-              <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+              <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
                 ${HAVRUTA_QUESTIONS.step3.guideKo}
               </p>
             </div>
@@ -1071,7 +1071,7 @@
              rel="noopener noreferrer" 
              class="reference-chip" 
              id="ref-chip-neuro"
-             style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
+             style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
             <span></span>
             <span>${isGlobal ? '[Cognitive Tools & Books Archive Reference (Yes24) ↗]' : '[관련 도구·도서 아카이브 참고 ↗]'}</span>
           </a>

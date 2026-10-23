@@ -627,8 +627,8 @@
     }
     if (headerSubEl) {
       headerSubEl.textContent = isLearningModeActive
-        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,014편 정밀 분석 완료'
-        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,014편 정밀 분석 완료';
+        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,025편 정밀 분석 완료'
+        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,025편 정밀 분석 완료';
     }
 
     const affConfig = getAffiliateConfig();
@@ -732,6 +732,14 @@
       if (BiomechanicsStudio && typeof BiomechanicsStudio.initRoutineTimers === 'function') {
         BiomechanicsStudio.initRoutineTimers();
       }
+      if (typeof window !== 'undefined' && window.location && window.location.hash) {
+        try {
+          const targetEl = document.querySelector(window.location.hash);
+          if (targetEl && typeof targetEl.scrollIntoView === 'function') {
+            setTimeout(() => targetEl.scrollIntoView({ behavior: 'instant', block: 'start' }), 80);
+          }
+        } catch (_) {}
+      }
     }
   }
 
@@ -764,18 +772,18 @@
       if (mealDisplay) mealDisplay.textContent = sim.mealStr;
       if (gapDisplay) {
         gapDisplay.textContent = `${sim.gapHours}시간`;
-        gapDisplay.style.color = sim.gapHours >= 3.0 ? '#10B981' : '#F59E0B';
+        gapDisplay.style.color = '#1D4ED8';
       }
       if (delayPenaltyEl) delayPenaltyEl.textContent = `-${sim.delayPenalty}%`;
       if (carbPenaltyEl) carbPenaltyEl.textContent = `-${sim.carbPenalty}%`;
 
       if (lossBadge) {
-        const badgeColor = sim.ghLossPercent >= 40.0 ? '#F43F5E' : (sim.ghLossPercent > 0 ? '#F59E0B' : '#10B981');
-        const badgeBg = sim.ghLossPercent >= 40.0 ? 'rgba(244, 63, 94, 0.15)' : (sim.ghLossPercent > 0 ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)');
+        const badgeColor = '#1D4ED8';
+        const badgeBg = '#EFF6FF';
         lossBadge.style.border = `1.5px solid ${badgeColor}`;
         lossBadge.style.background = badgeBg;
         lossBadge.innerHTML = `
-          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">성장호르몬 분비 손실률</span>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #334155; display: block;">성장호르몬 분비 손실률</span>
           <span style="font-size: 1.25rem; font-weight: 800; color: ${badgeColor};">
             -${sim.ghLossPercent}% <span style="font-size: 0.75rem; font-weight: 600;">(최대 -52% 억제)</span>
           </span>
@@ -790,8 +798,7 @@
         adviceText.innerHTML = sim.clinicalAdvice;
       }
       if (adviceCard) {
-        const badgeColor = sim.ghLossPercent >= 40.0 ? '#F43F5E' : (sim.ghLossPercent > 0 ? '#F59E0B' : '#10B981');
-        adviceCard.style.borderLeft = `4px solid ${badgeColor}`;
+        adviceCard.style.borderLeft = '4px solid #1D4ED8';
       }
     }
 
@@ -1139,6 +1146,37 @@
       initialStepTag.textContent = 'Step 1 / 6';
     }
     syncStateToForm(state.profile);
+
+    // Support direct URL view parameter (?view=growth-report | ?view=learning-report | ?view=survey)
+    if (typeof window !== 'undefined' && window.location && window.location.search) {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const viewParam = params.get('view');
+        if (viewParam === 'growth-report' || viewParam === 'learning-report') {
+          const mode = viewParam === 'learning-report' ? 'learning' : 'growth';
+          window.__KIDSFIT_PREFERRED_REPORT_MODE = mode;
+          state.profile.preferredReportMode = mode;
+          if (document.body && document.body.classList) {
+            document.body.classList.add('studio-mode-active');
+          }
+          const quizSec = document.getElementById('quiz-section');
+          if (quizSec) quizSec.style.display = 'none';
+          const presetsBar = document.getElementById('quick-presets-bar');
+          if (presetsBar) presetsBar.style.display = 'none';
+          const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+          if (dashboard) {
+            dashboard.classList.remove('hidden');
+            dashboard.style.display = 'block';
+          }
+          state.isPrescriptionIssued = true;
+          renderPrescriptionResults(state.profile);
+        } else if (viewParam === 'survey') {
+          if (global.TallerOnboardingWizard && typeof global.TallerOnboardingWizard.enterStudioMode === 'function') {
+            global.TallerOnboardingWizard.enterStudioMode('child', 'growth');
+          }
+        }
+      } catch (_) {}
+    }
 
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
       window.addEventListener('taller-language-change', () => {

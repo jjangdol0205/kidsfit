@@ -640,7 +640,7 @@
         <defs>
           <linearGradient id="optZoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.22" />
-            <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.05" />
+            <stop offset="100%" stop-color="#93C5FD" stop-opacity="0.08" />
           </linearGradient>
           <filter id="glowPulse" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="4" result="blur" />
@@ -649,26 +649,26 @@
         </defs>
 
         <!-- Grid Lines & Shaded Area -->
-        <line x1="${padding.left}" y1="${scaleY(80)}" x2="${width - padding.right}" y2="${scaleY(80)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(120)}" x2="${width - padding.right}" y2="${scaleY(120)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(160)}" x2="${width - padding.right}" y2="${scaleY(160)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(180)}" x2="${width - padding.right}" y2="${scaleY(180)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(80)}" x2="${width - padding.right}" y2="${scaleY(80)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(120)}" x2="${width - padding.right}" y2="${scaleY(120)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(160)}" x2="${width - padding.right}" y2="${scaleY(160)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(180)}" x2="${width - padding.right}" y2="${scaleY(180)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
 
         ${shadedAreaPath ? `<path d="${shadedAreaPath}" fill="url(#optZoneGrad)" class="trajectory-target-zone" />` : ''}
 
         <!-- Normative Reference Background Curves (P3, P50, P97) with non-overlapping mid-chart badges -->
         <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p97" />
-        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
         <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
 
         <path d="${pathP50}" fill="none" stroke="#475569" stroke-width="1.8" id="curve-p50" />
-        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
         <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
 
         <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p3" />
-        <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#0F172A" opacity="0.85" />
+        <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
         <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
 
         <!-- 3 Color-Coded Trajectory Path Lines & Anti-Collision Right Badges -->
@@ -718,7 +718,7 @@
 
         <!-- Tooltip Badge -->
         <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 140, curX - 68))}, ${Math.max(padding.top + 4, curY - 38)})">
-          <rect x="0" y="0" width="136" height="26" rx="6" fill="#0F172A" stroke="#1D4ED8" stroke-width="1.4" opacity="0.96" />
+          <rect x="0" y="0" width="136" height="26" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
           <text x="68" y="17" font-size="11" font-weight="900" fill="#1D4ED8" text-anchor="middle">
             현재 ${curH}cm (${curZ.percentile}th Pct)
           </text>
@@ -1048,10 +1048,10 @@
       <div id="weight-3tier-analysis-card" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div>
-            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: var(--text-primary);">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: #0F172A;">
               우리 아이 몸무게 &amp; 체질량(BMI) 3단 밸런스 비교 (키 성장 연동 진단)
             </h4>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
+            <p style="font-size: 0.82rem; color: #334155; margin: 0.2rem 0 0 0;">
               질병관리청(KDCA) 또래 평균 몸무게 · 현재 키(${curH}cm) 맞춤 적정 몸무게 · 6개월 후 목표 몸무게
             </p>
           </div>
@@ -1128,7 +1128,7 @@
             <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">키·몸무게 백분위</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: var(--cyan-pulse, #38BDF8); margin: 0.3rem 0;">키 상위 ${kdca.topPercent}%</div>
             <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">몸무게 상위 ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
-            <span style="font-size: 0.75rem; color: var(--text-secondary);">키 ${kdca.percentile}th · 체중 ${bmiInfo.weightPercentile}th Pct</span>
+            <span style="font-size: 0.75rem; color: #334155;">키 ${kdca.percentile}th · 체중 ${bmiInfo.weightPercentile}th Pct</span>
           </div>
 
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
@@ -1146,7 +1146,7 @@
             <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">유전 표적키 (MPH)</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: var(--amber-caution, #F59E0B); margin: 0.3rem 0;">${mphObj.mph}cm</div>
             <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700; display: block;">잠재키 최대 ${pred.potentialHeight}cm</span>
-            <span style="font-size: 0.75rem; color: var(--text-secondary);">${mphObj.rangeStr} (±8.5cm)</span>
+            <span style="font-size: 0.75rem; color: #334155;">${mphObj.rangeStr} (±8.5cm)</span>
           </div>
 
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
@@ -1164,13 +1164,13 @@
         </div>
 
         <!-- High-Resolution Interactive 3-Curve SVG Chart Card -->
-        <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <div>
-              <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0; color: var(--text-primary);">
+              <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0; color: #0F172A;">
                 3중 성인 예측키 성장 궤적 곡선 (Auxology Trajectory)
               </h4>
-              <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
+              <p style="font-size: 0.82rem; color: #334155; margin: 0.2rem 0 0 0;">
                 현재 나이(${Math.round(ageMonths / 12)}세)부터 만 20세까지 3가지 성장 경로 시뮬레이션
               </p>
             </div>
@@ -1189,8 +1189,8 @@
         </div>
 
         <!-- 3-Tier Predicted Height Bar Chart -->
-        <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
-          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 1rem 0; color: var(--text-primary);">
+        <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 1rem 0; color: #0F172A;">
             성인 예측키 3단 비교 (유전 MPH vs 현재 습관 유지 vs 골든타임 최적화)
           </h4>
           ${render3TierBarChart(pred)}
@@ -1204,7 +1204,7 @@
 
         <!-- 3 Habit Prescriptive Coaching Cards -->
         <div style="margin-top: 1.5rem;">
-          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: var(--text-primary);">
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: #0F172A;">
             성장 방해 생체 요인별 임상 프로토콜
           </h4>
           ${renderCoachingCards(profile.habits)}

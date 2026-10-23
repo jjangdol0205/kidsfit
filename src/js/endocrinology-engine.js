@@ -211,8 +211,8 @@
             <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0.03" />
           </linearGradient>
           <linearGradient id="supHormoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.45" />
-            <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.08" />
+            <stop offset="0%" stop-color="#64748B" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#64748B" stop-opacity="0.08" />
           </linearGradient>
           <linearGradient id="swsWindowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.16" />
@@ -227,9 +227,9 @@
         </text>
 
         <!-- Grid Lines -->
-        <line x1="${padding.left}" y1="${scaleY(10)}" x2="${width - padding.right}" y2="${scaleY(10)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(20)}" x2="${width - padding.right}" y2="${scaleY(20)}" stroke="#1E293B" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(30)}" x2="${width - padding.right}" y2="${scaleY(30)}" stroke="#1E293B" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(10)}" x2="${width - padding.right}" y2="${scaleY(10)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(20)}" x2="${width - padding.right}" y2="${scaleY(20)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(30)}" x2="${width - padding.right}" y2="${scaleY(30)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
 
         <!-- Shaded Areas -->
         <path d="${optAreaD}" fill="url(#optHormoneGrad)" />
@@ -299,15 +299,15 @@
         <!-- Header & Live Loss Badge -->
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
           <div>
-            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin: 0;">
               24시간 호르몬 궤적 &amp; 서파수면(SWS) GH 분비 시뮬레이터
             </h4>
-            <p style="font-size: 0.84rem; color: var(--text-secondary); margin: 0.25rem 0 0 0;">
+            <p style="font-size: 0.84rem; color: #334155; margin: 0.25rem 0 0 0;">
               취침 시각 지연 및 야식 혈당 스파이크에 따른 성장호르몬 분비 억제율(-52% max) 정밀 연산
             </p>
           </div>
           <div id="hormone-loss-badge" style="background: ${lossBadgeBg}; border: 1.5px solid ${lossBadgeColor}; border-radius: 9999px; padding: 0.45rem 1.1rem; text-align: center;">
-            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">성장호르몬 분비 손실률</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: #334155; display: block;">성장호르몬 분비 손실률</span>
             <span style="font-size: 1.25rem; font-weight: 800; color: ${lossBadgeColor};">
               -${sim.ghLossPercent}% <span style="font-size: 0.75rem; font-weight: 600;">(최대 -52% 억제)</span>
             </span>
@@ -315,13 +315,13 @@
         </div>
 
         <!-- Interactive Sliders Bento Card (Clean 1-Per-Row Layout) -->
-        <div style="background: #F8FAFC; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.15rem 1.25rem; margin-bottom: 1.25rem;">
+        <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 1.25rem; margin-bottom: 1.25rem;">
           <div style="display: flex; flex-direction: column; gap: 1.15rem;">
             
             <!-- Slider 1: Bedtime -->
             <div class="form-group" style="margin: 0;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
-                <label for="hormone-bedtime-slider" style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">
+                <label for="hormone-bedtime-slider" style="font-size: 0.88rem; font-weight: 700; color: #0F172A;">
                   아이 취침 시각 (입면 기준)
                 </label>
                 <span id="hormone-bedtime-display" style="font-size: 1rem; font-weight: 800; color: #1D4ED8;">
@@ -329,7 +329,7 @@
                 </span>
               </div>
               <input type="range" id="hormone-bedtime-slider" min="1230" max="1500" step="15" value="${bMin}" class="form-input" style="padding: 0.35rem 0; width: 100%; cursor: pointer;">
-              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #475569; margin-top: 0.25rem;">
                 <span>20:30 (이른 입면)</span>
                 <span>22:00 (표준 골든타임)</span>
                 <span>01:00 (심야 지연)</span>
@@ -339,7 +339,7 @@
             <!-- Slider 2: Last Meal / Late Carbs -->
             <div class="form-group" style="margin: 0;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
-                <label for="hormone-meal-slider" style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">
+                <label for="hormone-meal-slider" style="font-size: 0.88rem; font-weight: 700; color: #0F172A;">
                   마지막 음식·당질 섭취 시각
                 </label>
                 <span id="hormone-meal-display" style="font-size: 1rem; font-weight: 800; color: #1D4ED8;">
@@ -347,7 +347,7 @@
                 </span>
               </div>
               <input type="range" id="hormone-meal-slider" min="1020" max="1380" step="15" value="${mMin}" class="form-input" style="padding: 0.35rem 0; width: 100%; cursor: pointer;">
-              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #475569; margin-top: 0.25rem;">
                 <span>17:00 (이른 저녁)</span>
                 <span>19:00 (표준 마감)</span>
                 <span>23:00 (심야 야식)</span>
@@ -358,25 +358,25 @@
 
           <!-- Gap Status Bar -->
           <div style="margin-top: 1rem; padding-top: 0.85rem; border-top: 1px dashed #BFDBFE; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <div style="font-size: 0.82rem; color: var(--text-secondary);">
+            <div style="font-size: 0.82rem; color: #334155;">
               소화기 공복 간격: <strong id="hormone-gap-display" style="color: ${sim.gapHours >= 3.0 ? '#1D4ED8' : '#1D4ED8'};">${sim.gapHours}시간</strong>
               (식후 인슐린 반감기 2.5시간 충족 필요)
             </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">
+            <div style="font-size: 0.78rem; color: #475569;">
               취침 지연 감점: <span id="hormone-delay-penalty">-${sim.delayPenalty}%</span> · 야간 당질 감점: <span id="hormone-carb-penalty">-${sim.carbPenalty}%</span>
             </div>
           </div>
         </div>
 
         <!-- High-Resolution Dynamic SVG Chart Card -->
-        <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 20px; padding: 1.25rem; margin-bottom: 1.25rem;">
+        <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.25rem; margin-bottom: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #334155;">
               실시간 24시간 성장호르몬 분비 곡선 (녹색: 최적 100% vs 적색 점선: 현재 손실)
             </span>
             <div style="display: flex; gap: 0.75rem; font-size: 0.78rem; font-weight: 700;">
               <span style="color: #1D4ED8;">● 최적 서파수면 맥동</span>
-              <span style="color: #1D4ED8;">● 지연/야식 손실 곡선</span>
+              <span style="color: #64748B;">● 지연/야식 손실 곡선</span>
             </div>
           </div>
 
@@ -386,8 +386,8 @@
         </div>
 
         <!-- Clinical Advice Box -->
-        <div id="hormone-advice-card" style="background: #FFFFFF; border-left: 4px solid ${lossBadgeColor}; border-radius: 12px; padding: 1rem 1.25rem;">
-          <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-primary);" id="hormone-advice-text">
+        <div id="hormone-advice-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 4px solid ${lossBadgeColor}; border-radius: 12px; padding: 1rem 1.25rem;">
+          <div style="font-size: 0.88rem; line-height: 1.6; color: #0F172A;" id="hormone-advice-text">
             ${sim.clinicalAdvice}
           </div>
         </div>

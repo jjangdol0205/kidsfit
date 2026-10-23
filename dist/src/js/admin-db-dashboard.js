@@ -154,7 +154,7 @@
 
       return `
         <g transform="translate(0, ${y})">
-          <text x="4" y="15" fill="#E2E8F0" font-size="11.5" font-weight="700" font-family="Pretendard, sans-serif">${label}</text>
+          <text x="4" y="15" fill="#0F172A" font-size="11.5" font-weight="700" font-family="Pretendard, sans-serif">${label}</text>
           <rect x="245" y="3" width="${barMaxW}" height="16" rx="8" fill="rgba(255,255,255,0.06)" />
           <rect x="245" y="3" width="${barW}" height="16" rx="8" fill="${color}" />
           <text x="535" y="15" fill="${color}" font-size="11.5" font-weight="800" font-family="JetBrains Mono, monospace">${statText}</text>
@@ -190,12 +190,12 @@
 
       const getCellStyle = (cnt, baseRgb) => {
         const alpha = Math.min(0.45, Math.max(0.12, cnt / 650));
-        return `background: rgba(${baseRgb}, ${alpha.toFixed(2)}); border: 1px solid rgba(${baseRgb}, 0.35); color: #F8FAFC; font-weight: 800; text-align: center; padding: 0.45rem 0.4rem; border-radius: 6px; font-size: 0.78rem;`;
+        return `background: rgba(${baseRgb}, ${alpha.toFixed(2)}); border: 1px solid rgba(${baseRgb}, 0.35); color: #0F172A; font-weight: 800; text-align: center; padding: 0.45rem 0.4rem; border-radius: 6px; font-size: 0.78rem;`;
       };
 
       return `
         <tr>
-          <td style="padding: 0.4rem 0.5rem; font-size: 0.78rem; font-weight: 700; color: #CBD5E1; white-space: nowrap;">${label}</td>
+          <td style="padding: 0.4rem 0.5rem; font-size: 0.78rem; font-weight: 700; color: #334155; white-space: nowrap;">${label}</td>
           <td style="${getCellStyle(sCnt, '56, 189, 248')}">${sCnt}편 <span style="font-size:0.68rem; color:#7DD3FC;">✓</span></td>
           <td style="${getCellStyle(mCnt, '16, 185, 129')}">${mCnt}편 <span style="font-size:0.68rem; color:#6EE7B7;">✓</span></td>
           <td style="${getCellStyle(lCnt, '245, 158, 11')}">${lCnt}편 <span style="font-size:0.68rem; color:#FCD34D;">✓</span></td>
@@ -295,11 +295,11 @@
             </div>
           </div>
 
-          <div style="font-size: 0.83rem; font-weight: 800; color: #F8FAFC; margin-bottom: 0.3rem; line-height: 1.38;">
+          <div style="font-size: 0.83rem; font-weight: 800; color: #0F172A; margin-bottom: 0.3rem; line-height: 1.38;">
             ${p.title_ko || p.title}
           </div>
 
-          <div style="font-size: 0.76rem; color: #CBD5E1; margin-bottom: 0.3rem; line-height: 1.4;">
+          <div style="font-size: 0.76rem; color: #334155; margin-bottom: 0.3rem; line-height: 1.4;">
             <strong style="color: #38BDF8;">📊 학습된 핵심 팩트:</strong> ${factLine}
           </div>
 
@@ -370,7 +370,7 @@
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="font-size: 1.25rem;">⚖️</span>
             <div>
-              <h5 style="font-size: 0.95rem; font-weight: 900; color: #F8FAFC; margin: 0; display: flex; align-items: center; gap: 0.45rem;">
+              <h5 style="font-size: 0.95rem; font-weight: 900; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 0.45rem;">
                 양대 매크로 축(Dual-Pillar) 논문 균형 &amp; AI 자가학습 가중치 제어
               </h5>
               <div style="font-size: 0.72rem; color: #94A3B8; margin-top: 0.15rem;">
@@ -447,13 +447,13 @@
             ${law.law_id} · 핵심 학습 법칙
           </span>
         </div>
-        <div style="font-size: 0.82rem; font-weight: 800; color: #F8FAFC; margin-bottom: 0.28rem; line-height: 1.35;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #0F172A; margin-bottom: 0.28rem; line-height: 1.35;">
           ${law.title_ko}
         </div>
         <div style="font-size: 0.74rem; color: #A7F3D0; margin-bottom: 0.25rem; line-height: 1.38;">
           <strong>📐 팩트 기전:</strong> ${law.fact_formula}
         </div>
-        <div style="font-size: 0.73rem; color: #CBD5E1; margin-bottom: 0.25rem; line-height: 1.38;">
+        <div style="font-size: 0.73rem; color: #334155; margin-bottom: 0.25rem; line-height: 1.38;">
           <strong>📊 입증 수치:</strong> ${law.key_stat}
         </div>
         <div style="font-size: 0.71rem; color: #FDE68A; background: rgba(245, 158, 11, 0.1); padding: 0.25rem 0.45rem; border-radius: 4px; line-height: 1.35;">
@@ -467,7 +467,7 @@
         <span style="background: rgba(16,185,129,0.18); color: #10B981; font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 9999px; white-space: nowrap;">
           ${item.phase}
         </span>
-        <span style="font-size: 0.76rem; color: #E2E8F0; line-height: 1.4;">
+        <span style="font-size: 0.76rem; color: #334155; line-height: 1.4;">
           <strong>[${item.domains}개 도메인]</strong> ${item.focus}
         </span>
       </div>
@@ -481,7 +481,7 @@
     const cohortBottlenecksHtml = (cohortStats.rankedBottlenecks || []).slice(0, 4).map((b) => `
       <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 8px; padding: 0.55rem 0.7rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
-          <span style="font-size: 0.75rem; font-weight: 800; color: #F8FAFC;">${b.labelKo}</span>
+          <span style="font-size: 0.75rem; font-weight: 800; color: #0F172A;">${b.labelKo}</span>
           <span style="font-size: 0.7rem; font-weight: 800; color: #10B981; background: rgba(16,185,129,0.16); padding: 0.08rem 0.4rem; border-radius: 9999px;">가중치 ×${b.learningWeight}</span>
         </div>
         <div style="font-size: 0.71rem; color: #94A3B8;">입력 빈도: <strong style="color:#38BDF8;">${b.count}건 (${b.percent}%)</strong> · ${b.actionKo}</div>
@@ -497,7 +497,7 @@
             <span style="display: inline-block; background: rgba(56, 189, 248, 0.16); color: #38BDF8; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 9999px; margin-bottom: 0.25rem;">
               🧠 ADMIN KNOWLEDGE INTELLIGENCE CENTER
             </span>
-            <h4 style="font-size: 1.12rem; font-weight: 900; color: var(--text-primary, #F8FAFC); margin: 0;">
+            <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0;">
               학술 논문 DB 실시간 학습 현황 &amp; 누적 지식 시각화 대시보드
             </h4>
           </div>
@@ -598,7 +598,7 @@
         <!-- 3. What the DB Has Learned So Far: 12 Core Empirical Laws -->
         <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
-            <h5 style="font-size: 0.92rem; font-weight: 900; color: #F8FAFC; margin: 0;">
+            <h5 style="font-size: 0.92rem; font-weight: 900; color: #0F172A; margin: 0;">
               💡 그동안 학습한 ${analytics.total_papers}편 논문에서 추출한 【12대 핵심 과학 법칙 &amp; 지도 공식】
             </h5>
             <span style="font-size: 0.72rem; color: #38BDF8; font-weight: 700;">진단 리포트 및 단·중·장기 처방에 실시간 적용 중</span>
@@ -610,7 +610,7 @@
 
         <!-- 4. Interactive Learned Paper Explorer (Search + Domain Filter + Horizon Filter) -->
         <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 12px; padding: 1rem;">
-          <h5 style="font-size: 0.92rem; font-weight: 900; color: #F8FAFC; margin: 0 0 0.65rem 0;">
+          <h5 style="font-size: 0.92rem; font-weight: 900; color: #0F172A; margin: 0 0 0.65rem 0;">
             🔎 학습 논문 데이터베이스 실시간 탐색기 (도메인 · 지도기간 · 키워드 검색)
           </h5>
 

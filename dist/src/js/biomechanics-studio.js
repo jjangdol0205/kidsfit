@@ -471,7 +471,7 @@
               <path d="M 155 18 L 162 72 Q 190 82 218 72 L 225 18" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
               <path d="M 158 105 Q 190 95 222 105 L 215 168 L 165 168 Z" fill="rgba(148, 163, 184, 0.15)" stroke="#94A3B8" stroke-width="3"/>
               <!-- Patella (Kneecap) -->
-              <ellipse cx="190" cy="82" rx="24" ry="16" fill="rgba(255, 255, 255, 0.12)" stroke="#E2E8F0" stroke-width="2.5"/>
+              <ellipse cx="190" cy="82" rx="24" ry="16" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2.5"/>
               <text x="190" y="86" fill="#0F172A" font-size="10" font-weight="800" text-anchor="middle">${isGlobal ? 'Kneecap' : '무릎뼈'}</text>
               <!-- Epiphyseal Growth Plate Line -->
               <line x1="152" y1="108" x2="228" y2="108" stroke="#1D4ED8" stroke-width="4" stroke-dasharray="6,4"/>
@@ -484,7 +484,7 @@
               <path d="M 232 106 A 12 12 0 1 1 232 92" fill="none" stroke="#1D4ED8" stroke-width="2.5"/>
               <!-- Callouts -->
               <rect x="12" y="84" width="126" height="26" rx="6" fill="#EFF6FF" stroke="#94A3B8"/>
-              <text x="75" y="101" fill="#FFE4E6" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '① Hollow Below Knee' : '① 무릎 아래 오목한 곳'}</text>
+              <text x="75" y="101" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '① Hollow Below Knee' : '① 무릎 아래 오목한 곳'}</text>
               <rect x="240" y="120" width="128" height="26" rx="6" fill="rgba(251, 191, 36, 0.2)" stroke="#FBBF24"/>
               <text x="304" y="137" fill="#334155" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '② Zusanli Point' : '② 바깥 아래(족삼리)'}</text>
               <text x="190" y="162" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Press Gently with Thumbs for 5s in Circles' : '엄지손가락으로 5초씩 지그시 누르며 원 그리기'}</text>
@@ -552,7 +552,7 @@
               <span class="tab-badge tab-badge-rose" style="display: inline-block; margin-bottom: 0.5rem;">
                 Core 3 · Visual Massage & 4-Step Exercise Guide
               </span>
-              <h3 style="font-size: 1.22rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
+              <h3 style="font-size: 1.22rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
                 ${titleStr}
               </h3>
               <p style="font-size: 0.94rem; color: #0F172A; line-height: 1.65; max-width: 780px;">
@@ -724,7 +724,7 @@
              rel="noopener noreferrer" 
              class="reference-chip" 
              id="ref-chip-biomechanics"
-             style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
+             style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
             <span></span>
             <span>${isGlobal ? '[Biomechanics Equipment Reference (Coupang) ↗]' : '[생체역학·자세교정 도구 아카이브 참고 ↗]'}</span>
           </a>

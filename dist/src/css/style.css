@@ -1608,41 +1608,35 @@ body {
 :root,
 body,
 body[data-theme="dark"] {
-  --theme-bg: #000000;
-  --theme-surface: rgba(255, 255, 255, 0.04);
-  --theme-surface-solid: #090B10;
-  --theme-surface-sub: rgba(255, 255, 255, 0.06);
-  --theme-border: rgba(255, 255, 255, 0.12);
-  --theme-border-subtle: rgba(255, 255, 255, 0.07);
-  --theme-accent: #38BDF8;
-  --theme-accent-hover: #60A5FA;
-  --theme-accent-sub: rgba(56, 189, 248, 0.14);
-  --theme-accent-glow: rgba(59, 130, 246, 0.28);
+  --theme-bg: #F8FAFC;
+  --theme-surface: #FFFFFF;
+  --theme-surface-solid: #FFFFFF;
+  --theme-surface-sub: #F8FAFC;
+  --theme-border: #CBD5E1;
+  --theme-border-subtle: #E2E8F0;
+  --theme-accent: #1D4ED8;
+  --theme-accent-hover: #1E40AF;
+  --theme-accent-sub: #EFF6FF;
+  --theme-accent-glow: rgba(29, 78, 216, 0.16);
 
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.68);
-  --text-muted: rgba(255, 255, 255, 0.42);
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #475569;
   --text-light: #FFFFFF;
 
   --editorial-serif: "Inter", "DM Sans", "Pretendard Variable", "Pretendard", sans-serif;
-  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.65);
-  --shadow-card-hover: 0 28px 70px rgba(59, 130, 246, 0.18);
-  --shadow-glow-cyan: 0 0 28px rgba(56, 189, 248, 0.28);
-  --shadow-glow-emerald: 0 0 28px rgba(16, 185, 129, 0.25);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 10px 28px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 16px 36px rgba(15, 23, 42, 0.09);
+  --shadow-glow-cyan: 0 4px 16px rgba(29, 78, 216, 0.16);
+  --shadow-glow-emerald: 0 4px 16px rgba(29, 78, 216, 0.14);
 }
 
 body,
 body[data-theme="dark"] {
-  background-color: #000000;
-  color: #FFFFFF;
-  background-image:
-    radial-gradient(circle at 82% 16%, rgba(59, 130, 246, 0.13) 0%, transparent 42%),
-    radial-gradient(circle at 18% 48%, rgba(147, 51, 234, 0.10) 0%, transparent 42%),
-    radial-gradient(circle at 50% 88%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 56px 56px, 56px 56px;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  background-image: radial-gradient(circle at 50% 0%, #EFF6FF 0%, #F8FAFC 55%, #F1F5F9 100%);
   background-attachment: fixed;
 }
 
@@ -3431,19 +3425,110 @@ html[data-theme="light"],
 body[data-theme="light"] {
   --theme-bg: #F8FAFC !important;
   --theme-bg-gradient: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%) !important;
+  --theme-surface: #FFFFFF !important;
+  --theme-surface-solid: #FFFFFF !important;
   --theme-surface-card: #FFFFFF !important;
   --theme-surface-sub: #F8FAFC !important;
   --theme-surface-hover: #EFF6FF !important;
-  --theme-border: #DBEAFE !important;
+  --theme-border: #CBD5E1 !important;
+  --theme-border-subtle: #E2E8F0 !important;
+  --border-clinic: #CBD5E1 !important;
+  --border-glass: #CBD5E1 !important;
   --theme-border-highlight: #1D4ED8 !important;
+  --text-primary: #0F172A !important;
+  --text-secondary: #334155 !important;
+  --text-muted: #475569 !important;
   --theme-text-primary: #0F172A !important;
   --theme-text-secondary: #334155 !important;
   --theme-text-muted: #475569 !important;
   --theme-accent: #1D4ED8 !important;
   --cyan-pulse: #1D4ED8 !important;
   --bio-emerald: #1D4ED8 !important;
+  --growth-mint: #1D4ED8 !important;
+  --amber-caution: #1E40AF !important;
+  --rose-alert: #1D4ED8 !important;
   --clinical-amber: #1E40AF !important;
   --alert-coral: #1E3A8A !important;
+}
+
+#results-dashboard h5,
+#results-dashboard h6,
+#results-dashboard label {
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+}
+
+/* Range Sliders in Chapter 3 (24-Hour Hormone & Sleep Simulator) */
+input[type="range"],
+input[type="range"].form-input {
+  -webkit-appearance: auto !important;
+  appearance: auto !important;
+  accent-color: #1D4ED8 !important;
+  background: #E2E8F0 !important;
+  height: 10px !important;
+  min-height: 10px !important;
+  padding: 0 !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 9999px !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+/* 3-Tier Height & Weight Comparison Bars in Chapter 2 */
+.predicted-bar-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.bar-title {
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  color: #0F172A !important;
+}
+
+.bar-val {
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  color: #1D4ED8 !important;
+}
+
+.predicted-bar-track {
+  width: 100% !important;
+  height: 12px !important;
+  background: #E2E8F0 !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.predicted-bar-fill {
+  height: 100% !important;
+  border-radius: 9999px !important;
+  background: #1D4ED8 !important;
+  transition: width 0.4s ease !important;
+}
+
+.predicted-bar-fill.bar-fill-mph {
+  background: #3B82F6 !important;
+}
+
+.predicted-bar-fill.bar-fill-alert {
+  background: #64748B !important;
+}
+
+.predicted-bar-fill.bar-fill-mint {
+  background: #1D4ED8 !important;
+}
+
+.predicted-bar-caption {
+  font-size: 0.82rem !important;
+  color: #475569 !important;
+  line-height: 1.45 !important;
 }
 
 html body[data-theme="dark"] .quiz-card,

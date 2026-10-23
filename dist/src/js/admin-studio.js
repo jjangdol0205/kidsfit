@@ -457,7 +457,7 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
             <strong style="font-size: 0.84rem; color: #38BDF8;">🇺🇸 EN 1: TikTok / Reels 60s Clinical Script &amp; Hook</strong>
             <button type="button" class="btn btn-primary btn-sm btn-copy-target" data-target="osmu-text-en-tiktok" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;">📋 원클릭 복사</button>
           </div>
-          <textarea id="osmu-text-en-tiktok" readonly style="width: 100%; height: 160px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #0F172A; color: #E2E8F0; resize: vertical; box-sizing: border-box;">${bundle.enTikTokScript}</textarea>
+          <textarea id="osmu-text-en-tiktok" readonly style="width: 100%; height: 160px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; resize: vertical; box-sizing: border-box;">${bundle.enTikTokScript}</textarea>
         </div>
 
         <!-- Channel 2: KO Naver Clip 30s -->
@@ -466,7 +466,7 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
             <strong style="font-size: 0.84rem; color: #10B981;">🇰🇷 KO 1: 네이버 클립 30초 숏폼 대본</strong>
             <button type="button" class="btn btn-primary btn-sm btn-copy-target" data-target="osmu-text-ko-clip" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;">📋 원클릭 복사</button>
           </div>
-          <textarea id="osmu-text-ko-clip" readonly style="width: 100%; height: 140px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #0F172A; color: #E2E8F0; resize: vertical; box-sizing: border-box;">${bundle.koClipScript}</textarea>
+          <textarea id="osmu-text-ko-clip" readonly style="width: 100%; height: 140px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; resize: vertical; box-sizing: border-box;">${bundle.koClipScript}</textarea>
         </div>
 
         <!-- Channel 3: KO Naver Blog 2,000-char Column -->
@@ -475,7 +475,7 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
             <strong style="font-size: 0.84rem; color: #F59E0B;">🇰🇷 KO 2: 네이버 블로그 2,000자 전문 칼럼 (비교표 &amp; 브릿지)</strong>
             <button type="button" class="btn btn-primary btn-sm btn-copy-target" data-target="osmu-text-ko-blog" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;">📋 원클릭 복사</button>
           </div>
-          <textarea id="osmu-text-ko-blog" readonly style="width: 100%; height: 180px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #0F172A; color: #E2E8F0; resize: vertical; box-sizing: border-box;">${bundle.koBlogColumn}</textarea>
+          <textarea id="osmu-text-ko-blog" readonly style="width: 100%; height: 180px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; resize: vertical; box-sizing: border-box;">${bundle.koBlogColumn}</textarea>
         </div>
 
         <!-- Channel 4: KO Naver Cafe Q&A Post -->
@@ -484,7 +484,7 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
             <strong style="font-size: 0.84rem; color: #EC4899;">🇰🇷 KO 3: 네이버 카페 공감 Q&amp;A 및 나눔글</strong>
             <button type="button" class="btn btn-primary btn-sm btn-copy-target" data-target="osmu-text-ko-cafe" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;">📋 원클릭 복사</button>
           </div>
-          <textarea id="osmu-text-ko-cafe" readonly style="width: 100%; height: 140px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #0F172A; color: #E2E8F0; resize: vertical; box-sizing: border-box;">${bundle.koCafePost}</textarea>
+          <textarea id="osmu-text-ko-cafe" readonly style="width: 100%; height: 140px; font-family: monospace; font-size: 0.8rem; padding: 0.65rem; border: 1px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; resize: vertical; box-sizing: border-box;">${bundle.koCafePost}</textarea>
         </div>
       </div>
     `;
