@@ -257,24 +257,18 @@ def ensure_clean_cdp_browser(p):
         except Exception:
             cdp_ok = False
 
-    print("🔄 [영구 프로필 브라우저 기동] 기존 크롬 잠금을 해제하고 로그인 프로필 세션을 연결합니다...", flush=True)
-    subprocess.run(["taskkill", "/F", "/IM", "chrome.exe", "/T"], capture_output=True)
-    time.sleep(1.5)
-    for lock_name in ["SingletonLock", "SingletonCookie", "SingletonSocket"]:
-        lock_file = PROFILE_DIR / lock_name
-        if lock_file.exists():
-            try:
-                lock_file.unlink()
-            except Exception:
-                pass
-    context = p.chromium.launch_persistent_context(
-        user_data_dir=str(PROFILE_DIR),
-        channel="chrome",
-        headless=False,
-        args=["--disable-blink-features=AutomationControlled", "--start-maximized"],
-        no_viewport=True,
-    )
-    return None, context, True
+    print("🔄 [영구 프로필 브라우저 기동] WinSta0\\Default 데스크톱에서 CDP 9222 세션을 연결합니다...", flush=True)
+    from naver_browser_daemon import launch_chrome_on_default_desktop
+    launch_chrome_on_default_desktop()
+    for _ in range(15):
+        try:
+            with urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2) as r:
+                if r.status == 200:
+                    break
+        except Exception:
+            time.sleep(1)
+    browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=10000)
+    return browser, browser.contexts[0], False
 
 
 def try_safe_naver_kin_answer(context, item: dict, answered_urls: list) -> dict:

@@ -27,6 +27,7 @@ GEN_IMG_DIR = ROOT / "samples" / "9_naver_brand_assets" / "daily_auto_cards"
 CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"
 KB_PATH = ROOT / "src" / "data" / "research-knowledge-base.json"
 ENV_PATH = ROOT / ".env"
+PROFILE_DIR = ROOT / ".naver-browser-profile"
 
 
 def load_env():
@@ -691,39 +692,25 @@ def main():
     c_board, c_title, c_body, c_tags, c_img = get_next_cafe_content(next_cafe_seq)
 
     with sync_playwright() as p:
-        should_close = False
         try:
             browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=5000)
             context = browser.contexts[0]
         except Exception:
-            import subprocess
-            subprocess.run(["taskkill", "/F", "/IM", "chrome.exe", "/T"], capture_output=True)
-            time.sleep(1.5)
-            for lock_name in ["SingletonLock", "SingletonCookie", "SingletonSocket"]:
-                lf = PROFILE_DIR / lock_name
-                if lf.exists():
-                    try:
-                        lf.unlink()
-                    except Exception:
-                        pass
-            context = p.chromium.launch_persistent_context(
-                user_data_dir=str(PROFILE_DIR),
-                channel="chrome",
-                headless=False,
-                args=["--disable-blink-features=AutomationControlled", "--start-maximized"],
-                no_viewport=True,
-            )
-            should_close = True
-
-        try:
-            blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img)
-            cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
-        finally:
-            if should_close:
+            sys.path.insert(0, str(ROOT / "scripts"))
+            from naver_browser_daemon import launch_chrome_on_default_desktop
+            launch_chrome_on_default_desktop()
+            for _ in range(15):
                 try:
-                    context.close()
+                    with urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2) as r:
+                        if r.status == 200:
+                            break
                 except Exception:
-                    pass
+                    time.sleep(1)
+            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=10000)
+            context = browser.contexts[0]
+
+        blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img)
+        cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
 
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
     cursor["lastBlogSeq"] = next_blog_seq
@@ -739,7 +726,7 @@ def main():
     msg = (
         f"✅ [키즈핏 네이버 블로그 & 카페 1일 3회(06시·12시·17시) 자동 발행 완료]\n"
         f"━━━━━━━━━━━━━━━━━━━━\n"
-        f"말씀해주신 대로 블로그 하루 3편 + 카페 하루 3편(06:00 / 12:00 / 17:00 KST) 자동 업로드 시스템을 가동하고, 지금 즉시 첫 동시 발행을 완료했습니다!\n\n"
+        f"말씀해주신 대로 블로그 하루 3편 + 카페 하루 3편(06:00 / 12:00 / 17:00 KST) 자동 업로드 스케줄에 따라 이번 회차 동시 발행을 완료했습니다!\n\n"
         f"📝 1. 네이버 블로그 새 글 발행 (#{next_blog_seq}회차)\n"
         f"• 제목: {b_title}\n"
         f"• 직링크: {blog_url}\n\n"
@@ -750,7 +737,7 @@ def main():
         f"• 06:00 (아침) : 블로그 1편 + 카페 1편 자동 발행 (인스타·쓰레드 동시 발송)\n"
         f"• 12:00 (점심) : 블로그 1편 + 카페 1편 자동 발행\n"
         f"• 17:00 (저녁) : 블로그 1편 + 카페 1편 자동 발행\n"
-        f"👉 오늘 17:00에도 다음 회차 블로그 1편 + 카페 1편이 자동 업로드됩니다!"
+        f"👉 다음 스케줄에도 자동으로 새 블로그 칼럼 1편 + 카페 칼럼 1편이 업로드됩니다!"
     )
     status = send_telegram_message(msg)
     print(f"Telegram notification status: {status}", flush=True)
