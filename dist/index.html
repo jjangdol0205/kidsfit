@@ -10,10 +10,10 @@
 
   <!-- OpenGraph Metadata (High-CTR KakaoTalk / Social Share Preview) -->
   <meta property="og:title" content="KIDS-FIT — 우리 아이 숨은 키 &amp; 두뇌·학습 골든타임 리포트">
-  <meta property="og:description" content="질병관리청 성장도표 · 학술논문 2,918편 기반 | 생년월일과 생활 습관으로 확인하는 예상 성인키 3단 비교 &amp; 연령별 맞춤 학습 리포트">
+  <meta property="og:description" content="질병관리청 성장도표 · 학술논문 2,929편 기반 | 생년월일과 생활 습관으로 확인하는 예상 성인키 3단 비교 &amp; 연령별 맞춤 학습 리포트">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kidsfit.co.kr/">
-  <meta property="og:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvkj7gop">
+  <meta property="og:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvkkaeoh">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -21,19 +21,19 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KIDS-FIT — 우리 아이 숨은 키 &amp; 두뇌·학습 골든타임 리포트">
   <meta property="twitter:description" content="생년월일과 생활 습관으로 확인하는 신체 성장 궤적 &amp; 연령별 맞춤 학습 리포트">
-  <meta property="twitter:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvkj7gop">
+  <meta property="twitter:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvkkaeoh">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mvkj7gop">
+  <link rel="manifest" href="manifest.json?v=20261022_mvkkaeoh">
   <meta name="theme-color" content="#05070B">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KIDS-FIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mvkj7gop">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mvkkaeoh">
 
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mvkj7gop">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mvkkaeoh">
   <script>
     window.__deferredKidsFitPrompt = null;
     window.addEventListener('beforeinstallprompt', function(e) {
@@ -47,7 +47,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mvkj7gop').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mvkkaeoh').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -82,12 +82,12 @@
 </head>
 <body data-theme="dark">
 
-  <!-- Minimal Floating Glass Header -->
+  <!-- Minimal Clinical Medical Header -->
   <header class="clinic-header">
     <!-- Hidden in visual layout to keep top header ultra-clean; preserved in DOM for standard compliance -->
     <div class="header-trust-bar" style="display: none;">
       <div class="header-trust-badge" id="trust-badge">
-        <span class="trust-badge-icon">🏛️</span>
+        <span class="trust-badge-icon">KDCA</span>
         <span class="trust-badge-text" data-i18n="trust.badge">Built on Official Standards: 질병관리청 소아청소년 성장도표 &amp; 보건복지부 영유아 발달선별검사(K-DST) 기준 적용</span>
       </div>
     </div>
@@ -98,20 +98,20 @@
           <span class="brand-title">
             <span data-i18n="brand.title">KIDS-FIT</span>
           </span>
-          <span class="brand-tagline" data-i18n="brand.tagline">키 · 육체적 · 정신적 성장 &amp; 맞춤 학습 가이드 플랫폼</span>
+          <span class="brand-tagline" data-i18n="brand.tagline">소아·청소년 신체 성장 · 골연령 및 신경인지 학습 정밀 진단 센터</span>
         </div>
       </div>
       <div class="header-actions" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
         <button type="button" id="btn-header-app-download" class="app-download-header-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" aria-label="키즈핏 앱 다운로드">
-          📲 앱 다운로드
+          전용 앱 설치
         </button>
-        <a href="#homepage-intro-growth-report" id="nav-header-growth-report" data-i18n="nav.forWhom" style="display: none;">신체 성장 보고서</a>
-        <a href="#homepage-intro-learning-report" id="nav-header-learning-report" data-i18n="nav.services" style="display: none;">두뇌·학습 보고서</a>
+        <a href="#homepage-intro-growth-report" id="nav-header-growth-report" data-i18n="nav.forWhom" style="display: none;">신체 성장 정밀 진단</a>
+        <a href="#homepage-intro-learning-report" id="nav-header-learning-report" data-i18n="nav.services" style="display: none;">두뇌·학습 정밀 진단</a>
         <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language">
           🇺🇸 EN
         </button>
         <button type="button" class="header-control-btn" id="btn-theme-toggle" aria-label="Toggle theme" style="display: none;">
-          <span class="theme-icon">🌙</span> <span class="theme-text">Dark</span>
+          <span class="theme-icon"></span> <span class="theme-text">Dark</span>
         </button>
       </div>
     </div>
@@ -120,112 +120,277 @@
   <main class="main-container">
 
     <!-- =========================================================================
-         FIRST SCREEN: CLEAN SINGLE-LINE, LIGHT-WEIGHT TYPOGRAPHY HOMEPAGE
+         FIRST SCREEN: CLINICAL MEDICAL WHITE & BLUE + ABOVE-THE-FOLD PARENT HOOK
          ========================================================================= -->
-    <section class="hero-section compact-hero" id="hero-section" aria-label="키즈핏 성장 및 학습 플랫폼 소개" style="padding: 2.2rem 0.8rem 2rem;">
+    <section class="hero-section compact-hero" id="hero-section" aria-label="키즈핏 소아 성장 및 신경인지 학습 정밀 진단 센터" style="padding: 1.8rem 0.8rem 2.2rem;">
 
-      <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width: 820px; margin: 0 auto 0.7rem; color: #FFFFFF; font-weight: 700; font-size: clamp(1.32rem, 4.2vw, 2.25rem); line-height: 1.36; letter-spacing: -0.025em;">
-        <span class="hero-single-line">우리 아이 키 성장과 두뇌 학습,</span><br>
-        <span class="hero-headline-highlight hero-single-line" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 55%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">1분 설문으로 각각 맞춤 보고서를 받아보세요</span>
-      </h1>
-
-      <p class="hero-subtitle hero-single-line" data-i18n="hero.subtitle" style="color: rgba(255, 255, 255, 0.82); font-weight: 500; max-width: 660px; margin: 0 auto 1.3rem; font-size: clamp(0.88rem, 2.4vw, 0.98rem); line-height: 1.5;">
-        원하는 진단을 선택해 설문을 마치면 해당 영역의 전문 분석 보고서를 바로 발행합니다.
-      </p>
-
-      <!-- Clean Dual Entry CTA Buttons (No Parent/Student Split) -->
-      <div class="editorial-cta-bar" style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 0 auto 1.6rem;">
-        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" id="btn-enter-studio-top" data-i18n="hero.cta.parent" style="font-size: clamp(0.95rem, 2.6vw, 1.02rem); font-weight: 800; padding: 0.9rem 1.4rem;">
-          📏 신체 성장 진단 시작 →
-        </button>
-        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" id="btn-enter-studio-learning" data-i18n="hero.cta.learning" style="font-size: clamp(0.95rem, 2.6vw, 1.02rem); font-weight: 800; padding: 0.9rem 1.4rem; background: rgba(168, 85, 247, 0.24); border: 1.5px solid rgba(192, 132, 252, 0.7); color: #F3E8FF;">
-          🧠 두뇌·학습 진단 시작 →
-        </button>
-        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-glass" id="btn-enter-studio-youth" data-i18n="hero.cta.youth" style="display: none;">
-          ⚡ 1분 맞춤 진단 시작 →
-        </button>
+      <!-- Above-the-Fold Clinical Authority Pill -->
+      <div class="clinical-authority-pill" style="display: inline-flex; align-items: center; gap: 0.45rem; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 700; padding: 0.36rem 0.9rem; border-radius: 9999px; margin: 0 auto 0.9rem; letter-spacing: -0.01em;">
+        <span>CLINICAL STANDARD</span>
+        <span style="color: #93C5FD;">|</span>
+        <span>질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 학술논문 2,929편 교차 검증</span>
       </div>
 
-      <!-- Dedicated Smartphone & PC App Download Banner -->
-      <div id="hero-app-download-bar" class="hero-app-download-bar">
-        <!-- PC View: Natural Wide Horizontal Bar -->
-        <div class="pc-view-block" style="width: 100%;">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
-            <div class="hero-app-download-info">
-              <img src="samples/app-icon-192.png?v=20261022_mvkj7gop" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon">
-              <div class="hero-app-download-text">
-                <div class="hero-app-download-title">📲 KIDS-FIT 스마트폰·PC 전용 앱(App) 무료 다운로드</div>
-                <div class="hero-app-download-desc">홈 화면에 앱으로 설치하고 언제든 1초 만에 성장·학습 리포트를 확인하세요</div>
-              </div>
-            </div>
-            <div class="hero-app-download-actions">
-              <button type="button" id="btn-hero-app-install" class="hero-app-install-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();">
-                📲 앱으로 다운받기 / 홈화면 설치
-              </button>
-            </div>
-          </div>
-        </div>
-        <!-- Smartphone View: Sleek 1-Row Compact Native Pill Bar (Zero ugly multi-line wrapping) -->
-        <div class="mobile-view-block" style="width: 100%;">
-          <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
-            <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-              <img src="samples/app-icon-192.png?v=20261022_mvkj7gop" alt="KIDS-FIT" style="width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.6); flex-shrink: 0;">
-              <div style="min-width: 0; text-align: left;">
-                <div style="font-size: 0.86rem; font-weight: 800; color: #FFFFFF; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">KIDS-FIT 전용 앱 설치</div>
-                <div style="font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.68); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">홈 화면에서 1초 만에 바로 실행</div>
-              </div>
-            </div>
-            <button type="button" class="mobile-app-pill-btn" onclick="event.stopPropagation(); if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="flex-shrink: 0; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.55); color: #7DD3FC; font-size: 0.78rem; font-weight: 800; padding: 0.42rem 0.78rem; border-radius: 9999px; cursor: pointer; white-space: nowrap;">
-              📲 앱 받기
-            </button>
-          </div>
-        </div>
+      <!-- Above-the-Fold Parent Psychological Hook (Loss Aversion + Golden Time + Hidden Potential) -->
+      <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width: 860px; margin: 0 auto 0.75rem; color: #0F172A; font-weight: 800; font-size: clamp(1.38rem, 4.2vw, 2.3rem); line-height: 1.34; letter-spacing: -0.03em;">
+        <span class="hero-single-line">"설마 크겠지" 미루는 사이,</span><br>
+        <span class="hero-headline-highlight hero-single-line" style="color: #1D4ED8; font-weight: 800;">아이의 성장판과 전두엽 골든타임은 매년 닫혀가고 있습니다</span>
+      </h1>
+
+      <p class="hero-subtitle" data-i18n="hero.subtitle" style="color: #334155; font-weight: 500; max-width: 740px; margin: 0 auto 1.15rem; font-size: clamp(0.9rem, 2.4vw, 1.02rem); line-height: 1.6;">
+        또래보다 작은 키와 줄어들지 않는 학습 격차, 유전 탓만은 아닙니다. 수면·영양·자세 결손에 묶여 있던 숨은 잠재키(+6.7cm)와 5각 두뇌 학습 병목을 성장판이 닫히기 전에 1분 설문 데이터로 확인하세요.
+      </p>
+
+      <!-- Survey Simplicity & High Clinical Reliability Assurance Bar -->
+      <div class="clinical-survey-trust-bar" style="max-width: 780px; margin: 0 auto 1.25rem; background: #F8FAFC; border: 1px solid #DBEAFE; border-radius: 14px; padding: 0.75rem 1.1rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.6rem 1.4rem; font-size: 0.84rem; color: #1E293B; font-weight: 600;">
+        <span><strong style="color: #1D4ED8;">간편한 1분 객관식 설문 진단</strong> · 병원 방문 없이 평소 생활·학습 습관 체크만으로 즉시 분석</span>
+        <span style="color: #CBD5E1;" class="pc-view-block">|</span>
+        <span><strong style="color: #1D4ED8;">의학·학술 기준 고신뢰도 판독</strong> · KDCA 월령별 백분위 · Tanner 유전키 · 논문 2,929편 대조</span>
+      </div>
+
+      <!-- Immediate Primary Clinical Blue CTA Buttons Below Hook (Fitts's Law & High Affordance) -->
+      <div class="editorial-cta-bar" style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 0 auto 1.7rem; max-width: 780px;">
+        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" id="btn-enter-studio-top" data-i18n="hero.cta.parent" style="flex: 1 1 280px; font-size: clamp(0.95rem, 2.5vw, 1.04rem); font-weight: 800; padding: 1rem 1.4rem; background: #1D4ED8; color: #FFFFFF; border: 1.5px solid #1E40AF; border-radius: 12px; box-shadow: 0 8px 20px rgba(29, 78, 216, 0.22); cursor: pointer;">
+          소아 신체 성장 · 최종 예상키 1분 진단 시작하기
+        </button>
+        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" id="btn-enter-studio-learning" data-i18n="hero.cta.learning" style="flex: 1 1 280px; font-size: clamp(0.95rem, 2.5vw, 1.04rem); font-weight: 800; padding: 1rem 1.4rem; background: #FFFFFF; border: 1.5px solid #1D4ED8; color: #1D4ED8; border-radius: 12px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06); cursor: pointer;">
+          5각 두뇌 밸런스 · 학습 병목 1분 진단 시작하기
+        </button>
+        <button type="button" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-glass" id="btn-enter-studio-youth" data-i18n="hero.cta.youth" style="display: none;">
+          1분 맞춤 정밀 진단 시작하기
+        </button>
       </div>
 
       <!-- =====================================================================
-           ULTRA-CONCISE 2-CARD OVERVIEW (#brand-editorial-showcase)
+           VISUAL CHART PREVIEWS + CONSUMER-PERSPECTIVE PARENT BENEFITS
            ===================================================================== -->
-      <div id="brand-editorial-showcase" style="text-align: left; max-width: 920px; margin: 0 auto;">
+      <div id="brand-editorial-showcase" style="text-align: left; max-width: 980px; margin: 0 auto;">
 
-        <div id="dual-pillar-intro-showcase" style="padding: 1.1rem 0 0.8rem; border-top: 1px solid rgba(255,255,255,0.10);">
-          <div class="home-dual-report-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
-            <!-- Report 1 Intro Card: Physical Growth -->
-            <div id="homepage-intro-growth-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.1rem; border: 1.5px solid rgba(56, 189, 248, 0.42); background: linear-gradient(180deg, rgba(14, 116, 144, 0.16) 0%, rgba(15, 23, 42, 0.85) 100%);">
+        <div id="dual-pillar-intro-showcase" style="padding: 1.2rem 0 0.8rem; border-top: 1px solid #E2E8F0;">
+          <div style="text-align: center; margin-bottom: 1.15rem;">
+            <span style="display: inline-block; font-size: 0.75rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.7rem; border-radius: 9999px; margin-bottom: 0.4rem;">
+              CLINICAL REPORT PREVIEW &amp; PARENT BENEFITS
+            </span>
+            <h2 style="font-size: clamp(1.14rem, 3vw, 1.42rem); font-weight: 800; color: #0F172A; margin: 0 0 0.3rem; letter-spacing: -0.02em;">
+              1분 설문 진단으로 부모님이 즉시 확인하게 되는 핵심 결과와 해답
+            </h2>
+            <p style="font-size: 0.88rem; color: #475569; margin: 0;">
+              막연한 불안감 대신, 의학·학술 데이터로 검증된 시각적 지표와 가정 내 실천 솔루션을 바로 확보하실 수 있습니다.
+            </p>
+          </div>
+
+          <div class="home-dual-report-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem;">
+            <!-- Report 1 Intro Card: Physical Growth (Matches og-kidsfit-studio-v3.png) -->
+            <div id="homepage-intro-growth-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.4rem 1.25rem; border: 1.5px solid #BFDBFE; border-radius: 18px; background: #FFFFFF; box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);">
               <div>
-                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.5rem;">
-                  REPORT 01 · PHYSICAL GROWTH
-                </span>
-                <h3 style="font-size: clamp(1.06rem, 3vw, 1.18rem); font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">
-                  📏 신체 성장 분석 보고서
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <span style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                    DIAGNOSIS 01 · 소아 신체 성장 · 골연령 정밀 판독
+                  </span>
+                  <span style="font-size: 0.74rem; font-weight: 700; color: #475569;">KDCA 표준 기준</span>
+                </div>
+                <h3 style="font-size: clamp(1.08rem, 2.8vw, 1.22rem); font-weight: 800; color: #0F172A; margin: 0 0 0.35rem 0; letter-spacing: -0.02em;">
+                  우리아이 최종 성인 예상키 및 성장판 골든타임 진단
                 </h3>
-                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.05rem 0; padding: 0; font-size: clamp(0.84rem, 2.3vw, 0.92rem); color: rgba(255,255,255,0.88); line-height: 1.75; font-weight: 500;">
-                  <li>• 키·몸무게 백분위 &amp; 유전키·방치키·잠재키 그래프</li>
-                  <li>• 수면 호르몬 골든타임 &amp; 체중 비례 맞춤 영양</li>
-                  <li>• 숨은 키 +1.8cm 척추 감압 &amp; 연령별 성장 큐레이션</li>
+                <p style="font-size: 0.83rem; color: #475569; margin: 0 0 0.85rem 0; line-height: 1.45;">
+                  생년월일 일수 보정 백분위와 부모 유전키(MPH) 및 생활 습관을 교차 분석합니다.
+                </p>
+
+                <!-- Visual Preview 1: Clinical 3-Tier Height Trajectory & Percentile Chart SVG (og-kidsfit-studio-v3.png style) -->
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.8rem 0.85rem; margin-bottom: 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; font-size: 0.76rem; font-weight: 700; color: #1E293B;">
+                    <span>3단 성인 예상키 시뮬레이션 &amp; 성장 궤적 미리보기</span>
+                    <span style="color: #1D4ED8; background: #EFF6FF; padding: 0.12rem 0.5rem; border-radius: 9999px; border: 1px solid #BFDBFE;">잠재키 +6.7cm</span>
+                  </div>
+                  <svg viewBox="0 0 420 155" style="width: 100%; height: auto; display: block;" role="img" aria-label="3단 예상키 및 성장 궤적 차트 미리보기">
+                    <!-- Grid lines -->
+                    <line x1="24" y1="25" x2="225" y2="25" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="24" y1="65" x2="225" y2="65" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="24" y1="105" x2="225" y2="105" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="24" y1="130" x2="225" y2="130" stroke="#CBD5E1" stroke-width="1.2"/>
+                    <!-- Shaded potential area -->
+                    <path d="M 30 118 Q 110 86, 215 24 L 215 68 Q 110 102, 30 118 Z" fill="#DBEAFE" opacity="0.65"/>
+                    <!-- Unmanaged dashed curve -->
+                    <path d="M 30 118 Q 110 106, 215 84" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4,3"/>
+                    <!-- Genetic MPH curve -->
+                    <path d="M 30 118 Q 110 98, 215 62" fill="none" stroke="#64748B" stroke-width="2"/>
+                    <!-- Managed Optimal Blue curve -->
+                    <path d="M 30 118 Q 110 82, 215 24" fill="none" stroke="#1D4ED8" stroke-width="3"/>
+                    <circle cx="30" cy="118" r="3.5" fill="#1D4ED8"/>
+                    <circle cx="122" cy="76" r="3.5" fill="#1D4ED8"/>
+                    <circle cx="215" cy="24" r="4.5" fill="#1D4ED8"/>
+                    <rect x="116" y="8" width="90" height="16" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="0.8"/>
+                    <text x="161" y="19" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1D4ED8">밀착 관리 180.2cm</text>
+                    <rect x="128" y="47" width="80" height="15" rx="4" fill="#FFFFFF" fill-opacity="0.92" stroke="#CBD5E1" stroke-width="0.8"/>
+                    <text x="168" y="58" text-anchor="middle" font-size="9" font-weight="700" fill="#334155">유전키 173.5cm</text>
+                    <rect x="128" y="84" width="80" height="15" rx="4" fill="#FFFFFF" fill-opacity="0.92" stroke="#E2E8F0" stroke-width="0.8"/>
+                    <text x="168" y="95" text-anchor="middle" font-size="9" font-weight="600" fill="#64748B">방치 시 170.7cm</text>
+                    <text x="26" y="144" font-size="9" font-weight="600" fill="#64748B">만 7세</text>
+                    <text x="110" y="144" font-size="9" font-weight="600" fill="#64748B">만 12세(PHV)</text>
+                    <text x="192" y="144" font-size="9" font-weight="600" fill="#64748B">만 18세</text>
+
+                    <!-- Right side 3-Tier Bar Comparison -->
+                    <line x1="242" y1="15" x2="242" y2="140" stroke="#E2E8F0" stroke-width="1"/>
+                    <!-- Bar 1: Genetic -->
+                    <rect x="258" y="56" width="36" height="74" rx="5" fill="#CBD5E1"/>
+                    <text x="276" y="50" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">173.5</text>
+                    <text x="276" y="144" text-anchor="middle" font-size="9" font-weight="700" fill="#475569">유전키</text>
+                    <!-- Bar 2: Unmanaged -->
+                    <rect x="308" y="72" width="36" height="58" rx="5" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1"/>
+                    <text x="326" y="66" text-anchor="middle" font-size="9.5" font-weight="700" fill="#64748B">170.7</text>
+                    <text x="326" y="144" text-anchor="middle" font-size="9" font-weight="700" fill="#64748B">방치키</text>
+                    <!-- Bar 3: Optimized -->
+                    <rect x="358" y="24" width="42" height="106" rx="5" fill="#1D4ED8"/>
+                    <text x="379" y="18" text-anchor="middle" font-size="10" font-weight="800" fill="#1D4ED8">180.2</text>
+                    <text x="379" y="144" text-anchor="middle" font-size="9" font-weight="800" fill="#1D4ED8">잠재키</text>
+                  </svg>
+                </div>
+
+                <!-- Consumer-Perspective Questions & What Parents Gain -->
+                <div style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.45rem;">
+                  이 신체 성장 진단을 통해 부모님이 바로 얻게 되는 해답
+                </div>
+                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.15rem 0; padding: 0; font-size: 0.85rem; color: #1E293B; line-height: 1.55;">
+                  <li style="margin-bottom: 0.55rem; padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"우리 아이가 성인이 되었을 때 최종 몇 cm까지 클 수 있을까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">부모 유전키 한계를 넘어 생활 습관 교정 시 추가로 확보 가능한 숨은 잠재키(+6.7cm)와 현재 또래 백분위를 정확히 파악합니다.</span>
+                  </li>
+                  <li style="margin-bottom: 0.55rem; padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"지금 먹이는 영양제와 수면 시간, 실제로 키로 가고 있을까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">성장판이 닫히기 전 남은 급성장 골든타임 개월 수와 성장호르몬 피크 수면 시각, 체중 비례 필수 영양 기준을 얻습니다.</span>
+                  </li>
+                  <li style="padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"비싼 클리닉 결제 전, 집에서 오늘 당장 무엇부터 바꿔야 할까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">낮 동안 눌린 척추 디스크를 펴서 숨은 키 1.8~2.5cm를 복원하는 가정 내 감압 루틴과 체질별 맞춤 솔루션을 확보합니다.</span>
+                  </li>
                 </ul>
               </div>
-              <button type="button" id="btn-home-start-growth-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" style="width: 100%; padding: 0.82rem 1rem; font-size: 0.92rem; font-weight: 800;">
-                📏 신체 성장 진단 시작 →
+              <button type="button" id="btn-home-start-growth-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" style="width: 100%; padding: 0.9rem 1rem; font-size: 0.94rem; font-weight: 800; background: #1D4ED8; color: #FFFFFF; border: 1px solid #1E40AF; border-radius: 10px; cursor: pointer;">
+                우리 아이 예상키 · 성장판 골든타임 1분 진단하기
               </button>
             </div>
 
-            <!-- Report 2 Intro Card: Brain & Learning -->
-            <div id="homepage-intro-learning-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem 1.1rem; border: 1.5px solid rgba(168, 85, 247, 0.48); background: linear-gradient(180deg, rgba(88, 28, 135, 0.22) 0%, rgba(15, 23, 42, 0.85) 100%);">
+            <!-- Report 2 Intro Card: Brain & Learning (Visual 5-Axis Brain Radar Chart + Parent Benefits) -->
+            <div id="homepage-intro-learning-report" class="mf-glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.4rem 1.25rem; border: 1.5px solid #BFDBFE; border-radius: 18px; background: #FFFFFF; box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);">
               <div>
-                <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #C084FC; background: rgba(168, 85, 247, 0.18); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-bottom: 0.5rem;">
-                  REPORT 02 · BRAIN &amp; LEARNING
-                </span>
-                <h3 style="font-size: clamp(1.06rem, 3vw, 1.18rem); font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">
-                  🧠 두뇌·학습 분석 보고서
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <span style="display: inline-block; font-size: 0.74rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+                    DIAGNOSIS 02 · 아동 신경인지 · 학습 역량 정밀 판독
+                  </span>
+                  <span style="font-size: 0.74rem; font-weight: 700; color: #475569;">K-DST · 뇌과학 기준</span>
+                </div>
+                <h3 style="font-size: clamp(1.08rem, 2.8vw, 1.22rem); font-weight: 800; color: #0F172A; margin: 0 0 0.35rem 0; letter-spacing: -0.02em;">
+                  5각 두뇌 밸런스 차트 및 전두엽 학습 병목 진단
                 </h3>
-                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.05rem 0; padding: 0; font-size: clamp(0.84rem, 2.3vw, 0.92rem); color: rgba(255,255,255,0.88); line-height: 1.75; font-weight: 500;">
-                  <li>• 5각 두뇌 밸런스 차트 &amp; 6개월 학습 성장 곡선</li>
-                  <li>• 유망 진로·직업 매칭 &amp; 3단계 두뇌 기억코팅 가이드</li>
-                  <li>• 연령별 맞춤 교구·도서 &amp; 주말 박물관 체험 코스</li>
+                <p style="font-size: 0.83rem; color: #475569; margin: 0 0 0.85rem 0; line-height: 1.45;">
+                  설문조사로 간단히 진단 가능하며, 보건복지부 K-DST 및 뇌인지 논문 2,929편에 기반한 고신뢰도 판독입니다.
+                </p>
+
+                <!-- Visual Preview 2: 5-Axis Brain & Learning Balance Radar Chart SVG -->
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.8rem 0.85rem; margin-bottom: 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem; font-size: 0.76rem; font-weight: 700; color: #1E293B;">
+                    <span style="white-space: nowrap;">5각 두뇌 밸런스 &amp; 6개월 확장 궤적 미리보기</span>
+                    <span style="color: #1D4ED8; background: #EFF6FF; padding: 0.12rem 0.5rem; border-radius: 9999px; border: 1px solid #BFDBFE; white-space: nowrap; flex-shrink: 0;">병목 구간 자동 탐지</span>
+                  </div>
+                  <svg viewBox="0 0 420 155" style="width: 100%; height: auto; display: block;" role="img" aria-label="5각 두뇌 밸런스 레이더 차트 미리보기">
+                    <!-- Pentagon Radar Center at (125, 82), R=54 -->
+                    <!-- Outer Pentagon (100pt) -->
+                    <polygon points="125,28 176,65 157,126 93,126 74,65" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+                    <!-- Mid Pentagon (66pt) -->
+                    <polygon points="125,46 159,71 146,111 104,111 91,71" fill="none" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2,2"/>
+                    <!-- Axis spokes -->
+                    <line x1="125" y1="82" x2="125" y2="28" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="125" y1="82" x2="176" y2="65" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="125" y1="82" x2="157" y2="126" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="125" y1="82" x2="93" y2="126" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="125" y1="82" x2="74" y2="65" stroke="#E2E8F0" stroke-width="1"/>
+                    <!-- 6-Month Coaching Target Polygon (Expanded Blue Dashed) -->
+                    <polygon points="125,32 172,66 154,121 97,120 79,67" fill="#DBEAFE" fill-opacity="0.38" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="3,2"/>
+                    <!-- Current Child 5-Axis Polygon (Shows clear bottleneck on bottom-right/left axes) -->
+                    <polygon points="125,37 167,68 144,107 106,109 82,68" fill="#1D4ED8" fill-opacity="0.22" stroke="#1D4ED8" stroke-width="2.4"/>
+                    <circle cx="125" cy="37" r="3" fill="#1D4ED8"/>
+                    <circle cx="167" cy="68" r="3" fill="#1D4ED8"/>
+                    <circle cx="144" cy="107" r="3.5" fill="#1E40AF"/>
+                    <circle cx="106" cy="109" r="3.5" fill="#1E40AF"/>
+                    <circle cx="82" cy="68" r="3" fill="#1D4ED8"/>
+                    <!-- Radar Labels -->
+                    <text x="125" y="19" text-anchor="middle" font-size="9" font-weight="800" fill="#0F172A">문해력·어휘(88)</text>
+                    <text x="182" y="64" text-anchor="start" font-size="9" font-weight="800" fill="#0F172A">수리·도형(84)</text>
+                    <text x="142" y="142" text-anchor="start" font-size="8.8" font-weight="800" fill="#1D4ED8">집중력(62·병목)</text>
+                    <text x="108" y="142" text-anchor="end" font-size="8.8" font-weight="800" fill="#1D4ED8">메타인지(65·병목)</text>
+                    <text x="68" y="64" text-anchor="end" font-size="9" font-weight="800" fill="#0F172A">탐구력(86)</text>
+
+                    <!-- Right side Summary Metrics -->
+                    <line x1="254" y1="18" x2="254" y2="140" stroke="#E2E8F0" stroke-width="1"/>
+                    <rect x="266" y="22" width="144" height="34" rx="6" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="1"/>
+                    <text x="274" y="36" font-size="8.8" font-weight="700" fill="#475569">강점 두뇌 축</text>
+                    <text x="274" y="49" font-size="9.8" font-weight="800" fill="#0F172A">문해력·수리추론 상위 14%</text>
+
+                    <rect x="266" y="62" width="144" height="34" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+                    <text x="274" y="76" font-size="8.8" font-weight="700" fill="#1D4ED8">핵심 교정 병목</text>
+                    <text x="274" y="89" font-size="9.8" font-weight="800" fill="#1E3A8A">전두엽 작업기억 · 백지복습</text>
+
+                    <rect x="266" y="102" width="144" height="34" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                    <text x="274" y="116" font-size="8.8" font-weight="700" fill="#475569">6개월 맞춤 코칭 시</text>
+                    <text x="274" y="129" font-size="9.8" font-weight="800" fill="#1D4ED8">종합 학습역량(LQ) +21점 상승</text>
+                  </svg>
+                </div>
+
+                <!-- Consumer-Perspective Questions & What Parents Gain from Learning Diagnosis -->
+                <div style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.45rem;">
+                  이 두뇌·학습 진단을 통해 부모님이 바로 얻게 되는 해답
+                </div>
+                <ul class="hero-one-line-list" style="list-style: none; margin: 0 0 1.15rem 0; padding: 0; font-size: 0.85rem; color: #1E293B; line-height: 1.55;">
+                  <li style="margin-bottom: 0.55rem; padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"머리는 좋은 것 같은데 왜 문장제 수학이나 긴 글만 보면 막힐까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">5각 두뇌 밸런스 차트를 통해 성적 정체 원인이 어휘력 부족인지, 전두엽 작업기억 과부하인지, 메타인지 부재인지 정확한 병목을 찾아냅니다.</span>
+                  </li>
+                  <li style="margin-bottom: 0.55rem; padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"비싼 학원과 전집 사교육비, 밑 빠진 독에 물 붓기 아닐까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">아이의 두뇌 흡수 성향에 맞지 않는 중복 사교육 지출을 멈추고, 현재 연령에 가장 효과가 높은 1:1 자기주도 공부법과 교재·교구만 선별합니다.</span>
+                  </li>
+                  <li style="padding-left: 0.65rem; border-left: 2.5px solid #1D4ED8;">
+                    <strong style="color: #0F172A; display: block;">"우리 아이 강점 두뇌를 살려주면 앞으로 어떤 분야에서 두각을 나타낼까?"</strong>
+                    <span style="color: #475569; font-size: 0.81rem;">학습 병목 교정 시 6개월 뒤 변화할 학업 성취도 성장 곡선과 강점 지능 기반 유망 진로 로드맵을 한눈에 파악합니다.</span>
+                  </li>
                 </ul>
               </div>
-              <button type="button" id="btn-home-start-learning-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" style="width: 100%; padding: 0.82rem 1rem; font-size: 0.92rem; font-weight: 800; background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%); border: 1px solid #C4B5FD; color: #FFFFFF;">
-                🧠 두뇌·학습 진단 시작 →
+              <button type="button" id="btn-home-start-learning-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" style="width: 100%; padding: 0.9rem 1rem; font-size: 0.94rem; font-weight: 800; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; border-radius: 10px; cursor: pointer;">
+                우리 아이 5각 두뇌 밸런스 · 학습 병목 1분 진단하기
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact Clinical App Access Bar (Moved below primary cards so Hook & Charts stay #1 priority) -->
+        <div id="hero-app-download-bar" class="hero-app-download-bar" style="margin-top: 0.9rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.8rem 1.1rem;">
+          <div class="pc-view-block" style="width: 100%;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
+              <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="samples/app-icon-192.png?v=20261022_mvkkaeoh" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <div class="hero-app-download-text">
+                  <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">KIDS-FIT 스마트폰·PC 전용 임상 리포트 앱 무료 설치</div>
+                  <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">홈 화면에 설치하고 아이의 분기별 성장 백분위와 5각 두뇌 밸런스 추이를 지속 관리하세요</div>
+                </div>
+              </div>
+              <div class="hero-app-download-actions">
+                <button type="button" id="btn-hero-app-install" class="hero-app-install-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="background: #FFFFFF; color: #1D4ED8; border: 1.5px solid #1D4ED8; border-radius: 10px; padding: 0.55rem 1rem; font-size: 0.84rem; font-weight: 800; cursor: pointer;">
+                  홈 화면 앱 설치 안내
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-view-block" style="width: 100%;">
+            <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mvkkaeoh" alt="KIDS-FIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <div style="min-width: 0; text-align: left;">
+                  <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">KIDS-FIT 전용 앱 홈 화면 설치</div>
+                  <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">설치 없이 1초 만에 진단 리포트 열람</div>
+                </div>
+              </div>
+              <button type="button" class="mobile-app-pill-btn" onclick="event.stopPropagation(); if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="flex-shrink: 0; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.76rem; font-weight: 800; padding: 0.4rem 0.75rem; border-radius: 9999px; cursor: pointer; white-space: nowrap;">
+                앱 설치
               </button>
             </div>
           </div>
@@ -233,7 +398,7 @@
 
         <!-- Hidden legacy containers preserved for programmatic compatibility -->
         <div id="for-whom-section" style="display: none;">
-          <button type="button" id="btn-enter-studio-parent" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');">1:1 맞춤 진단 시작 →</button>
+          <button type="button" id="btn-enter-studio-parent" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');">1:1 맞춤 진단 시작</button>
         </div>
         <div id="taller-hero-showcase" style="display: none;"></div>
 
@@ -241,28 +406,28 @@
     </section>
 
     <!-- Studio Mode Return Bar (Visible when inside the Interactive Survey Studio) -->
-    <div id="studio-utility-return-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 0.5rem; margin-bottom: 0.55rem; padding: 0.45rem 0.9rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 9999px;">
-      <span data-i18n="studio.bar.title" style="font-size: 0.76rem; font-weight: 700; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-        ✦ 우리 아이 1:1 성장·학습 진단
+    <div id="studio-utility-return-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 0.5rem; margin-bottom: 0.55rem; padding: 0.5rem 0.95rem; background: #FFFFFF; border: 1px solid #DBEAFE; border-radius: 9999px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);">
+      <span data-i18n="studio.bar.title" style="font-size: 0.78rem; font-weight: 800; color: #1E3A8A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+        KIDS-FIT 임상 데이터 기반 1:1 정밀 설문 진단
       </span>
-      <button type="button" id="btn-back-to-brand" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.exitStudioMode();" data-i18n="studio.bar.back" style="background: rgba(255,255,255,0.1); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.3rem 0.75rem; font-size: 0.74rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
-        ← 첫 화면으로
+      <button type="button" id="btn-back-to-brand" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.exitStudioMode();" data-i18n="studio.bar.back" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 9999px; padding: 0.32rem 0.8rem; font-size: 0.75rem; font-weight: 800; cursor: pointer; white-space: nowrap;">
+        첫 화면으로 돌아가기
       </button>
     </div>
 
     <!-- Compact Quick Presets Bar (Preserves preset-card-1 through 5 IDs & data-preset-id for compatibility) -->
     <div class="quick-presets-wrapper" id="quick-presets-bar">
       <div class="quick-presets-inner">
-        <span class="quick-presets-label" data-i18n="presets.bar.label">⚡ 1초 연령 예시:</span>
-        <button type="button" class="preset-chip preset-card" data-preset-id="preset-1" id="preset-card-1" data-i18n="preset.chip.1">👶 만 3세</button>
-        <button type="button" class="preset-chip preset-card" data-preset-id="preset-2" id="preset-card-2" data-i18n="preset.chip.2">🧒 만 7세</button>
-        <button type="button" class="preset-chip preset-card" data-preset-id="preset-3" id="preset-card-3" data-i18n="preset.chip.3">👦 만 10세</button>
-        <button type="button" class="preset-chip preset-card" data-preset-id="preset-4" id="preset-card-4" data-i18n="preset.chip.4">⚡ 만 13세</button>
-        <button type="button" class="preset-chip preset-card" data-preset-id="preset-5" id="preset-card-5" data-i18n="preset.chip.5">🌟 만 16세</button>
+        <span class="quick-presets-label" data-i18n="presets.bar.label">연령별 표준 임상 데이터 예시:</span>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-1" id="preset-card-1" data-i18n="preset.chip.1">만 3세 (영유아기)</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-2" id="preset-card-2" data-i18n="preset.chip.2">만 7세 (학령기 진입)</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-3" id="preset-card-3" data-i18n="preset.chip.3">만 10세 (사춘기 진입)</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-4" id="preset-card-4" data-i18n="preset.chip.4">만 13세 (급성장 피크)</button>
+        <button type="button" class="preset-chip preset-card" data-preset-id="preset-5" id="preset-card-5" data-i18n="preset.chip.5">만 16세 (체형 완성기)</button>
       </div>
     </div>
 
-    <!-- 6-Stage M:FFERENCE Dark Glass Onboarding Form Section -->
+    <!-- 6-Stage Clinical Medical White & Blue Onboarding Form Section -->
     <section class="quiz-section" id="quiz-section" aria-label="6단계 맞춤 성장 가이드북 진단">
       <div class="quiz-card bento-card">
         
@@ -281,8 +446,8 @@
             <div class="taller-seg-pill" data-seg="5"></div>
             <div class="taller-seg-pill" data-seg="6"></div>
           </div>
-          <h2 class="quiz-step-title" id="quiz-step-title" data-i18n="wizard.step1.title">우리 아이 기본 정보 (성별 · 생년월일)</h2>
-          <p class="quiz-step-subtitle" id="quiz-step-subtitle" data-i18n="wizard.step1.sub">생년월일 일수까지 계산해 또래 평균키와 비교해 드립니다.</p>
+          <h2 class="quiz-step-title" id="quiz-step-title" data-i18n="wizard.step1.title">기본 인적 사항 및 생년월일 정밀 산출</h2>
+          <p class="quiz-step-subtitle" id="quiz-step-subtitle" data-i18n="wizard.step1.sub">생년월일 일수까지 정밀 보정하여 질병관리청(KDCA) 월령별 표준 백분위와 대조합니다.</p>
           <div class="quiz-progress-track">
             <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 16.7%;"></div>
           </div>
@@ -297,29 +462,29 @@
                 <!-- Integrated Single Mode (No Parent/Student separation) -->
                 <input type="hidden" name="target-subject" value="child" id="target-child">
                 <input type="hidden" id="target-self" value="self">
-                <div id="guidebook-mode-banner" style="margin-bottom: 1.1rem; font-size: 0.82rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 0.65rem 0.9rem;">
-                  ✦ <strong>[1:1 맞춤 정밀 진단]</strong> 질병관리청(KDCA) 및 학술 논문 기반 개인화 분석 가이드북을 발행합니다.
+                <div id="guidebook-mode-banner" style="margin-bottom: 1.1rem; font-size: 0.82rem; font-weight: 700; color: #1E3A8A; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.65rem 0.9rem;">
+                  <strong>[1:1 임상 정밀 진단]</strong> 질병관리청(KDCA) 표준 성장도표 및 학술논문 2,929편 기반 개인화 분석 보고서를 발행합니다.
                 </div>
 
                 <div class="form-grid-2">
                   <div class="form-group">
-                    <label class="form-label form-label-required" data-i18n="label.gender">아이 성별</label>
+                    <label class="form-label form-label-required" data-i18n="label.gender">성별 구분</label>
                     <div class="choice-chips-grid">
                       <label class="chip-label">
                         <input type="radio" name="child-gender" value="boy" class="chip-input" id="gender-boy" checked>
-                        <span class="chip-pill">👦 <span data-i18n="label.gender.boy">남아 (Boy)</span></span>
+                        <span class="chip-pill"><span data-i18n="label.gender.boy">남아 (Male)</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="radio" name="child-gender" value="girl" class="chip-input" id="gender-girl">
-                        <span class="chip-pill">👧 <span data-i18n="label.gender.girl">여아 (Girl)</span></span>
+                        <span class="chip-pill"><span data-i18n="label.gender.girl">여아 (Female)</span></span>
                       </label>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
-                      <label for="child-birth-year" class="form-label form-label-required" data-i18n="label.age">아이 생년월일 (정밀 개월·일수 산출)</label>
-                      <span id="child-age-display" style="font-size: 0.92rem; font-weight: 800; color: #38BDF8;">생후 120개월 6일 (정밀 120.2개월 · 만 10세)</span>
+                      <label for="child-birth-year" class="form-label form-label-required" data-i18n="label.age">생년월일 (정밀 월령·일수 산출)</label>
+                      <span id="child-age-display" style="font-size: 0.9rem; font-weight: 800; color: #1D4ED8;">생후 120개월 6일 (정밀 120.2개월 · 만 10세)</span>
                     </div>
 
                     <!-- 3-Column DOB Picker (Year / Month / Day) -->
@@ -396,12 +561,12 @@
                     </div>
 
                     <!-- Live DOB Precision & Auto-Growth Stage Feedback Pill -->
-                    <div id="dob-precision-badge" style="background: rgba(56, 189, 248, 0.10); border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 12px; padding: 0.65rem 0.85rem;">
-                      <div data-i18n="quiz.dob.hint1" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; margin-bottom: 0.2rem;">
-                        ✨ 같은 해에 태어나도 1월생과 12월생은 평균 키가 최대 4.8cm 차이 납니다 (생년월일 일수 정밀 보정 완료)
+                    <div id="dob-precision-badge" style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.65rem 0.85rem;">
+                      <div data-i18n="quiz.dob.hint1" style="font-size: 0.78rem; color: #1E3A8A; font-weight: 700; margin-bottom: 0.2rem;">
+                        동일 연도 출생아도 1월생과 12월생은 표준 신장이 최대 4.8cm 차이 납니다 (생년월일 일수 정밀 보정 적용)
                       </div>
-                      <div id="dob-auto-stage-preview" style="font-size: 0.78rem; color: #10B981; font-weight: 800;">
-                        ✓ 성장단계·골연령 자동 설정됨: Phase 2 · 사춘기 진입 &amp; 제2급성장 피크기 (PHV)
+                      <div id="dob-auto-stage-preview" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800;">
+                        성장단계·골연령 진행도 자동 산출 완료: Phase 2 · 사춘기 진입 및 제2급성장 피크기 (PHV)
                       </div>
                     </div>
 
@@ -445,32 +610,32 @@
                 <!-- Mode 2: Brain & Learning (Reading Literacy & Cognitive Linguistics) -->
                 <div class="mode-learning-field" style="display: none;">
                   <div class="form-group">
-                    <label class="form-label form-label-required" style="color: #C084FC; font-weight: 800; font-size: 0.95rem;">
-                      📖 평소 독서 습관 &amp; 문해력 이해 패턴 (복수 선택 · 인지언어학 진단)
+                    <label class="form-label form-label-required" style="color: #1D4ED8; font-weight: 800; font-size: 0.95rem;">
+                      독서 습관 및 언어·문해력 정보 처리 패턴 (복수 선택 · 인지언어학 진단)
                     </label>
-                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #CBD5E1;">
-                      긴 글 읽기, 문장제 문제 이해, 어휘력 유추 등 언어 뇌인지 발달 패턴을 논문 기반으로 진단합니다.
+                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #475569;">
+                      긴 지문 독해, 문장제 문제 구조 파악, 문맥 어휘 유추 등 언어 뇌인지 발달 패턴을 학술 논문 기반으로 진단합니다.
                     </p>
                     <div class="choice-chips-grid trait-multi-grid" id="learning-reading-literacy-group">
                       <label class="chip-label">
                         <input type="checkbox" name="learning-literacy" value="reading_comprehension" class="chip-input" checked>
-                        <span class="chip-pill">📄 <span>긴 글이나 서술형 문장제 문제를 읽고 핵심 파악을 어려워해요</span></span>
+                        <span class="chip-pill"><span>긴 글이나 서술형 문장제 문제를 읽고 핵심 파악을 어려워해요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-literacy" value="vocab_context" class="chip-input">
-                        <span class="chip-pill">📚 <span>모르는 어휘가 나오면 앞뒤 문맥 유추를 못 하고 글 전체를 놓쳐요</span></span>
+                        <span class="chip-pill"><span>모르는 어휘가 나오면 앞뒤 문맥 유추를 못 하고 글 전체를 놓쳐요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-literacy" value="slow_subvocal" class="chip-input">
-                        <span class="chip-pill">⏱️ <span>책을 읽는 속도가 지나치게 느리거나 입술로 웅얼거리며 읽어요(음독)</span></span>
+                        <span class="chip-pill"><span>책을 읽는 속도가 지나치게 느리거나 입술로 웅얼거리며 읽어요(음독)</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-literacy" value="summary_expression" class="chip-input">
-                        <span class="chip-pill">✍️ <span>책을 다 읽은 후 줄거리 요약이나 느낀 점을 말·글로 표현하기 힘들어요</span></span>
+                        <span class="chip-pill"><span>책을 다 읽은 후 줄거리 요약이나 느낀 점을 말·글로 표현하기 힘들어요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-literacy" value="active_reader" class="chip-input">
-                        <span class="chip-pill">✨ <span>스스로 책을 찾아 읽고 글의 행간이나 문맥을 잘 파악해요</span></span>
+                        <span class="chip-pill"><span>스스로 책을 찾아 읽고 글의 행간이나 문맥을 잘 파악해요</span></span>
                       </label>
                     </div>
                   </div>
@@ -483,7 +648,7 @@
                 <div class="mode-growth-field">
                   <div class="form-grid-2">
                     <div class="form-group">
-                      <label for="father-height" class="form-label form-label-required" data-i18n="label.fatherHeight">아버지 신장 (유전 표적키용)</label>
+                      <label for="father-height" class="form-label form-label-required" data-i18n="label.fatherHeight">아버지 신장 (유전 표적키 산출용)</label>
                       <div class="input-suffix-wrapper">
                         <input type="number" id="father-height" name="father-height" step="0.1" class="form-input" placeholder="173.5" min="100" max="240" value="173.5">
                         <span class="input-suffix unit-label-height">cm</span>
@@ -491,7 +656,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="mother-height" class="form-label form-label-required" data-i18n="label.motherHeight">어머니 신장 (유전 표적키용)</label>
+                      <label for="mother-height" class="form-label form-label-required" data-i18n="label.motherHeight">어머니 신장 (유전 표적키 산출용)</label>
                       <div class="input-suffix-wrapper">
                         <input type="number" id="mother-height" name="mother-height" step="0.1" class="form-input" placeholder="160.5" min="100" max="240" value="160.5">
                         <span class="input-suffix unit-label-height">cm</span>
@@ -501,7 +666,7 @@
 
                   <!-- Real-time MPH Preview Badge -->
                   <div class="mph-preview-badge" id="mph-preview-badge">
-                    <div class="mph-badge-icon">🧬</div>
+                    <div class="mph-badge-icon" style="font-size: 0.78rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.35rem 0.55rem; border-radius: 8px;">MPH</div>
                     <div class="mph-badge-content">
                       <span class="mph-badge-label" data-i18n="quiz.mph.label">실시간 부모 유전 표적키 (Tanner MPH)</span>
                       <span class="mph-badge-value" id="mph-badge-value">173.5 cm <span class="mph-badge-range">(±8.5cm: 165.0cm ~ 182.0cm)</span></span>
@@ -509,7 +674,7 @@
                   </div>
 
                   <div class="form-group" style="margin-top: 1rem;">
-                    <label for="user-region" class="form-label" data-i18n="quiz.region.label">거주 지역 (지역 환경 &amp; 탐구 코스 연동)</label>
+                    <label for="user-region" class="form-label" data-i18n="quiz.region.label">거주 지역 (지역 교육·탐구 인프라 연동)</label>
                     <select id="user-region" name="user-region" class="form-select">
                       <option value="서울 강남·서초·송파">서울 강남·서초·송파</option>
                       <option value="서울 강북·마포·용산">서울 강북·마포·용산</option>
@@ -526,32 +691,32 @@
                 <!-- Mode 2: Brain & Learning (Math Logic & Spatial Reasoning) -->
                 <div class="mode-learning-field" style="display: none;">
                   <div class="form-group">
-                    <label class="form-label form-label-required" style="color: #C084FC; font-weight: 800; font-size: 0.95rem;">
-                      📐 수학·수리사고 &amp; 도형 추론 패턴 (복수 선택 · 수학교육 인지심리학 진단)
+                    <label class="form-label form-label-required" style="color: #1D4ED8; font-weight: 800; font-size: 0.95rem;">
+                      수리·공간 지각 및 도형·논리 추론 패턴 (복수 선택 · 수학교육 인지심리학 진단)
                     </label>
-                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #CBD5E1;">
+                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #475569;">
                       단순 연산에서 응용·사고력 수학으로 넘어가는 뇌인지 전환점과 공간추론 병목을 진단합니다.
                     </p>
                     <div class="choice-chips-grid trait-multi-grid" id="learning-math-logic-group">
                       <label class="chip-label">
                         <input type="checkbox" name="learning-math" value="applied_math_block" class="chip-input" checked>
-                        <span class="chip-pill">🧮 <span>단순 계산·연산은 빠르지만, 문장제 응용문제에서 식을 못 세워요</span></span>
+                        <span class="chip-pill"><span>단순 계산·연산은 빠르지만, 문장제 응용문제에서 식을 못 세워요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-math" value="spatial_logic_difficulty" class="chip-input">
-                        <span class="chip-pill">🧊 <span>도형 돌리기, 입체 전개도, 공간 지각 문제를 유독 어려워해요</span></span>
+                        <span class="chip-pill"><span>도형 돌리기, 입체 전개도, 공간 지각 문제를 유독 어려워해요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-math" value="formula_memorizer" class="chip-input">
-                        <span class="chip-pill">📝 <span>원리나 개념 증명보다 공식 암기에만 의존해 조금만 변형되어도 틀려요</span></span>
+                        <span class="chip-pill"><span>원리나 개념 증명보다 공식 암기에만 의존해 조금만 변형되어도 틀려요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-math" value="error_transfer_gap" class="chip-input">
-                        <span class="chip-pill">🔁 <span>틀린 문제를 설명해줘도 비슷한 유형의 문제에서 똑같이 반복 오답이 나와요</span></span>
+                        <span class="chip-pill"><span>틀린 문제를 설명해줘도 비슷한 유형의 문제에서 똑같이 반복 오답이 나와요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-math" value="math_explorer" class="chip-input">
-                        <span class="chip-pill">💡 <span>규칙 찾기나 논리 퍼즐, 새로운 수학 원리를 스스로 탐구하는 편이에요</span></span>
+                        <span class="chip-pill"><span>규칙 찾기나 논리 퍼즐, 새로운 수학 원리를 스스로 탐구하는 편이에요</span></span>
                       </label>
                     </div>
                   </div>
@@ -564,132 +729,132 @@
                 <div class="mode-growth-field">
                   
                 <div class="form-group">
-                  <div id="auto-growth-stage-banner" style="background: rgba(16, 185, 129, 0.12); border: 1.5px solid #10B981; border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 1rem;">
-                    <div data-i18n="quiz.autostage.badge" style="font-size: 0.78rem; font-weight: 800; color: #10B981; margin-bottom: 0.25rem;">
-                      ✓ 질병관리청 성장도표 기반 【성장단계 &amp; 골연령 진행도】 자동 설정 완료!
+                  <div id="auto-growth-stage-banner" style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 1rem;">
+                    <div data-i18n="quiz.autostage.badge" style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.25rem;">
+                      질병관리청 성장도표 기반 [성장단계 및 골연령 진행도] 자동 산출 완료
                     </div>
-                    <div id="auto-growth-stage-title" style="font-size: 1rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.25rem;">
-                      Phase 2 · 사춘기 진입 &amp; 제2급성장 피크기 (PHV 골든타임)
+                    <div id="auto-growth-stage-title" style="font-size: 1rem; font-weight: 800; color: #0F172A; margin-bottom: 0.25rem;">
+                      Phase 2 · 사춘기 진입 및 제2급성장 피크기 (PHV 골든타임)
                     </div>
-                    <div id="auto-growth-stage-desc" style="font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.45;">
-                      굳이 직접 선택하실 필요가 없습니다! 입력하신 생년월일 월령에 맞춰 최적의 성장단계가 자동 선택되었으니 바로 <strong>[다음 단계 →]</strong>를 눌러주세요. (병원 골연령 진단 결과가 다른 경우에만 아래에서 변경 가능)
+                    <div id="auto-growth-stage-desc" style="font-size: 0.8rem; color: #334155; line-height: 1.45;">
+                      입력하신 생년월일 월령에 맞춰 최적의 성장단계가 자동 설정되었으니 바로 <strong>[다음 단계]</strong>를 눌러주세요. (병원 골연령 판독 결과가 다른 경우에만 아래에서 변경 가능)
                     </div>
                   </div>
 
-                  <label class="form-label" data-i18n="quiz.autostage.manualLabel">자동 매핑된 성장 단계 확인 (필요 시 터치하여 수동 변경 가능)</label>
+                  <label class="form-label" data-i18n="quiz.autostage.manualLabel">자동 산출된 성장 단계 확인 (필요 시 터치하여 수동 변경 가능)</label>
                   <div class="bento-choice-grid">
                     <label class="bento-choice-label">
                       <input type="radio" name="tanner-phase" value="phase_1" class="chip-input" id="phase-1">
                       <div class="bento-choice-card">
-                        <span class="bento-choice-icon">🌱</span>
-                        <h4 class="bento-choice-title" data-i18n="phase.1.title">Phase 1. 기초 성장기</h4>
-                        <p class="bento-choice-desc" data-i18n="phase.1.desc">성장판 개방률 90%+, 연 5~6cm 꾸준한 성장 구간</p>
+                        <span class="bento-choice-icon" style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8;">PHASE 01</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.1.title">Phase 1. 기초 성장기 (Pre-Pubertal)</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.1.desc">성장판 개방률 90% 이상, 연간 5~6cm 안정적 성장 구간</p>
                       </div>
                     </label>
 
                     <label class="bento-choice-label">
                       <input type="radio" name="tanner-phase" value="phase_2" class="chip-input" id="phase-2" checked>
                       <div class="bento-choice-card">
-                        <span class="bento-choice-icon">⚡</span>
-                        <h4 class="bento-choice-title" data-i18n="phase.2.title">Phase 2. 급성장 피크기 (PHV)</h4>
-                        <p class="bento-choice-desc" data-i18n="phase.2.desc">성장호르몬 및 IGF-1 분비 폭발, 골든타임 최대 가속 구간</p>
+                        <span class="bento-choice-icon" style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8;">PHASE 02</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.2.title">Phase 2. 급성장 피크기 (PHV Golden Time)</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.2.desc">성장호르몬 및 IGF-1 분비 극대화, 연간 7~10cm 최대 가속 구간</p>
                       </div>
                     </label>
 
                     <label class="bento-choice-label">
                       <input type="radio" name="tanner-phase" value="phase_3" class="chip-input" id="phase-3">
                       <div class="bento-choice-card">
-                        <span class="bento-choice-icon">⏳</span>
-                        <h4 class="bento-choice-title" data-i18n="phase.3.title">Phase 3. 감속·성숙기</h4>
-                        <p class="bento-choice-desc" data-i18n="phase.3.desc">변성기·초경 이후, 성장판 닫히기 전 마지막 잔여 잠재력 4~7cm 구간</p>
+                        <span class="bento-choice-icon" style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8;">PHASE 03</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.3.title">Phase 3. 감속·성숙기 (Deceleration Phase)</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.3.desc">2차 성징 후기, 성장판 폐쇄 전 잔여 잠재력 4~7cm 집중 확보 구간</p>
                       </div>
                     </label>
 
                     <label class="bento-choice-label">
                       <input type="radio" name="tanner-phase" value="phase_4" class="chip-input" id="phase-4">
                       <div class="bento-choice-card">
-                        <span class="bento-choice-icon">🧘</span>
-                        <h4 class="bento-choice-title" data-i18n="phase.4.title">Phase 4. 체형·자세 완성기</h4>
-                        <p class="bento-choice-desc" data-i18n="phase.4.desc">척추 디스크 감압 및 거북목·골반 교정으로 숨은 키 1.5~2.5cm 복원 구간</p>
+                        <span class="bento-choice-icon" style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8;">PHASE 04</span>
+                        <h4 class="bento-choice-title" data-i18n="phase.4.title">Phase 4. 체형·자세 완성기 (Postural Recovery)</h4>
+                        <p class="bento-choice-desc" data-i18n="phase.4.desc">추간판 디스크 감압 및 척추·골반 정렬로 숨은 키 1.5~2.5cm 복원 구간</p>
                       </div>
                     </label>
                   </div>
 
                   <!-- Deep Trait Question 1: Sleep Quality & Diet/Digestion Pattern (Multi-Select Touch Chips) -->
-                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(255,255,255,0.12);">
-                    <label class="form-label form-label-required" data-i18n="quiz.trait.sleep.label">🌙 평소 수면 &amp; 아침 기상 습관 (복수 선택)</label>
-                    <p class="section-hint" data-i18n="quiz.trait.sleep.hint" style="margin-bottom: 0.65rem;">우리 아이에게 해당하는 모습을 편하게 모두 골라주세요.</p>
+                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed #CBD5E1;">
+                    <label class="form-label form-label-required" data-i18n="quiz.trait.sleep.label">수면 개시 시각 및 야간 숙면 품질 점검 (복수 선택)</label>
+                    <p class="section-hint" data-i18n="quiz.trait.sleep.hint" style="margin-bottom: 0.65rem;">성장호르몬(GH)의 65~70%가 분비되는 야간 서파수면(SWS) 효율을 평가합니다.</p>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-sleep-quality">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="late_bedtime" class="chip-input" checked>
-                        <span class="chip-pill">🕙 <span data-i18n="quiz.trait.sleep.opt2">밤 10시 반 이후 늦게 자요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt2">22시 30분 이후 늦게 입면하는 경우가 잦음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="toss_mouth" class="chip-input">
-                        <span class="chip-pill">😮 <span data-i18n="quiz.trait.sleep.opt3">자주 뒤척이고 입 벌려 자요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt3">수면 중 잦은 뒤척임 또는 구강호흡(입 벌림)이 관찰됨</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="hard_wakeup" class="chip-input">
-                        <span class="chip-pill">😴 <span data-i18n="quiz.trait.sleep.opt5">아침에 깨워도 일어나기 힘들어해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt5">아침 기상 시 피로감이 크고 깨우기 어려움</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="night_sweat" class="chip-input">
-                        <span class="chip-pill">💦 <span data-i18n="quiz.trait.sleep.opt6">잘 때 머리·목에 땀이 많아요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt6">입면 초기 두경부(머리·목) 다한증이 나타남</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="night_snack" class="chip-input">
-                        <span class="chip-pill">🥛 <span data-i18n="quiz.trait.sleep.opt4">자기 직전 우유·간식을 찾아요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt4">취침 직전 우유·간식 등 야식 섭취 습관이 있음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="light_dream" class="chip-input">
-                        <span class="chip-pill">💭 <span data-i18n="quiz.trait.sleep.opt7">작은 소리에 깨고 잠꼬대해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt7">작은 소음에도 쉽게 각성하거나 잠꼬대가 잦음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="weekend_oversleep" class="chip-input">
-                        <span class="chip-pill">🛌 <span data-i18n="quiz.trait.sleep.opt8">주말에 몰아서 늦잠을 자요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt8">주중 수면 부족으로 주말에 장시간 보충 수면을 취함</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-sleep-quality" value="deep_early" class="chip-input">
-                        <span class="chip-pill">✨ <span data-i18n="quiz.trait.sleep.opt1">밤 9시 반 전 일찍 푹 잘 자요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.sleep.opt1">21시 30분 이전 취침하며 깊은 숙면을 유지함</span></span>
                       </label>
                     </div>
                   </div>
 
-                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(255,255,255,0.12);">
-                    <label class="form-label form-label-required" data-i18n="quiz.trait.diet.label">🍽️ 평소 식사량 &amp; 소화 체질 (복수 선택)</label>
-                    <p class="section-hint" data-i18n="quiz.trait.diet.hint" style="margin-bottom: 0.65rem;">입이 짧은 아이도 맛있게 잘 먹는 맞춤 성분을 찾아드립니다.</p>
+                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed #CBD5E1;">
+                    <label class="form-label form-label-required" data-i18n="quiz.trait.diet.label">식이 섭취량 및 위장관 소화·흡수 특성 점검 (복수 선택)</label>
+                    <p class="section-hint" data-i18n="quiz.trait.diet.hint" style="margin-bottom: 0.65rem;">골기질 합성에 필수적인 단백질·칼슘·아연·철분의 생체이용률을 평가합니다.</p>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-diet-digestion">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="small_appetite" class="chip-input" checked>
-                        <span class="chip-pill">🍚 <span data-i18n="quiz.trait.diet.opt1">입이 짧고 밥을 조금만 먹어요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt1">1회 식사량이 적고 조기 포만감을 호소함</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="meat_veggie_picky" class="chip-input">
-                        <span class="chip-pill">🥩 <span data-i18n="quiz.trait.diet.opt2">고기·채소는 골라내고 안 먹어요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt2">육류(철분·아연) 및 채소류 편식 경향이 뚜렷함</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="dairy_sensitive" class="chip-input">
-                        <span class="chip-pill">🥛 <span data-i18n="quiz.trait.diet.opt3">우유 마시면 배앓이·설사를 해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt3">우유·유제품 섭취 시 복통 또는 설사(유당불내증 의심)가 있음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="constipation_hard" class="chip-input">
-                        <span class="chip-pill">🚽 <span data-i18n="quiz.trait.diet.opt5">변비가 있거나 배변이 힘들어요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt5">배변 주기가 불규칙하거나 기능성 변비 경향이 있음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="sweet_carb" class="chip-input">
-                        <span class="chip-pill">🍞 <span data-i18n="quiz.trait.diet.opt6">밥보다 빵·면·단 간식을 찾아요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt6">정제 탄수화물(빵·면류) 및 단순당 간식 선호도가 높음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="fast_indigestion" class="chip-input">
-                        <span class="chip-pill">⚡ <span data-i18n="quiz.trait.diet.opt7">밥을 오래 물거나 자주 체해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt7">저작(씹기) 시간이 길거나 식후 소화불량이 잦음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="water_low" class="chip-input">
-                        <span class="chip-pill">💧 <span data-i18n="quiz.trait.diet.opt8">물을 하루 3컵도 안 마셔요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt8">일일 순수 수분 섭취량이 3컵(600ml) 미만임</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-diet-digestion" value="balanced_good" class="chip-input">
-                        <span class="chip-pill">✨ <span data-i18n="quiz.trait.diet.opt4">가리는 것 없이 골고루 잘 먹어요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.diet.opt4">주요 영양군을 편식 없이 균형 있게 섭취함</span></span>
                       </label>
                     </div>
                   </div>
@@ -700,32 +865,32 @@
                 <!-- Mode 2: Brain & Learning (Executive Focus & Media/Screen Habits) -->
                 <div class="mode-learning-field" style="display: none;">
                   <div class="form-group">
-                    <label class="form-label form-label-required" style="color: #C084FC; font-weight: 800; font-size: 0.95rem;">
-                      ⏱️ 책상 앞 집중 시간 &amp; 미디어·스마트폰 사용 습관 (복수 선택 · 신경과학 진단)
+                    <label class="form-label form-label-required" style="color: #1D4ED8; font-weight: 800; font-size: 0.95rem;">
+                      전두엽 주의집중 지속 시간 및 디지털 미디어 습관 (복수 선택 · 신경과학 진단)
                     </label>
-                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #CBD5E1;">
+                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #475569;">
                       전두엽 실행기능(작업기억, 충동억제, 인지유연성)과 도파민 보상 회로 패턴을 진단합니다.
                     </p>
                     <div class="choice-chips-grid trait-multi-grid" id="learning-focus-dopamine-group">
                       <label class="chip-label">
                         <input type="checkbox" name="learning-focus" value="distracted_desk" class="chip-input" checked>
-                        <span class="chip-pill">🪑 <span>책상에 15~20분 이상 앉아 있기 힘들고 주변 작은 소리나 물건에 산만해져요</span></span>
+                        <span class="chip-pill"><span>책상에 15~20분 이상 앉아 있기 힘들고 주변 작은 소리나 물건에 산만해져요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-focus" value="dopamine_media" class="chip-input">
-                        <span class="chip-pill">📱 <span>스마트폰 숏폼·유튜브·게임 자극에 익숙해 글자나 공부에 쉽게 지루해해요</span></span>
+                        <span class="chip-pill"><span>스마트폰 숏폼·유튜브·게임 자극에 익숙해 글자나 공부에 쉽게 지루해해요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-focus" value="procrastination" class="chip-input">
-                        <span class="chip-pill">⏳ <span>숙제나 공부를 해야 할 때 자꾸 뒤로 미루고 시작하기까지 딴짓이 많아요</span></span>
+                        <span class="chip-pill"><span>숙제나 공부를 해야 할 때 자꾸 뒤로 미루고 시작하기까지 딴짓이 많아요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-focus" value="impulsive_mistakes" class="chip-input">
-                        <span class="chip-pill">💨 <span>문제를 꼼꼼히 끝까지 안 읽고 건너뛰거나 계산 부호를 잘못 보는 실수가 잦아요</span></span>
+                        <span class="chip-pill"><span>문제를 꼼꼼히 끝까지 안 읽고 건너뛰거나 계산 부호를 잘못 보는 실수가 잦아요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-focus" value="deep_focus" class="chip-input">
-                        <span class="chip-pill">🎯 <span>흥미 있는 분야나 문제에 30~40분 이상 스스로 깊이 몰입해요</span></span>
+                        <span class="chip-pill"><span>흥미 있는 분야나 문제에 30~40분 이상 스스로 깊이 몰입해요</span></span>
                       </label>
                     </div>
                   </div>
@@ -738,66 +903,66 @@
                 <div class="mode-growth-field">
                   
                 <div class="form-group">
-                  <label class="form-label form-label-required" data-i18n="quiz.habits.label">키 성장을 방해하는 생활 습관 체크 (복수 선택)</label>
-                  <p class="section-hint" data-i18n="quiz.habits.hint" style="margin-bottom: 0.85rem;">해당하는 습관을 고쳐주면 숨은 키를 최대 5cm 더 찾을 수 있습니다.</p>
+                  <label class="form-label form-label-required" data-i18n="quiz.habits.label">신체 성장을 저해하는 생활 습관 점검 (복수 선택)</label>
+                  <p class="section-hint" data-i18n="quiz.habits.hint" style="margin-bottom: 0.85rem;">성장 방해 요인을 교정하면 유전적 한계를 넘어 숨은 잠재키를 최대 5~6.7cm 추가 확보할 수 있습니다.</p>
                   <div class="choice-chips-grid" id="habits-group">
                     <label class="chip-label">
                       <input type="checkbox" name="growth-habits" value="late_sleep" class="chip-input" id="habit-late-sleep" checked>
-                      <span class="chip-pill">🌙 <span data-i18n="habit.late_sleep">밤 10시 반 이후 늦은 취침</span></span>
+                      <span class="chip-pill"><span data-i18n="habit.late_sleep">22시 30분 이후 취침 (서파수면 성장호르몬 감소)</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="growth-habits" value="night_carbs" class="chip-input" id="habit-night-carbs">
-                      <span class="chip-pill">🍩 <span data-i18n="habit.night_carbs">자기 전 야식·단 간식 섭취</span></span>
+                      <span class="chip-pill"><span data-i18n="habit.night_carbs">취침 전 야식·당류 섭취 (인슐린 분비로 성장호르몬 억제)</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="growth-habits" value="poor_posture" class="chip-input" id="habit-poor-posture">
-                      <span class="chip-pill">📱 <span data-i18n="habit.poor_posture">스마트폰·책상 거북목 자세</span></span>
+                      <span class="chip-pill"><span data-i18n="habit.poor_posture">스마트폰·책상 거북목 및 흉추 후만 자세</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="growth-habits" value="picky_eater" class="chip-input" id="habit-picky-eater">
-                      <span class="chip-pill">🥦 <span data-i18n="habit.picky_eater">고기·채소 편식 &amp; 영양 부족</span></span>
+                      <span class="chip-pill"><span data-i18n="habit.picky_eater">단백질·채소 편식 및 미량영양소 불균형</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="growth-habits" value="sedentary" class="chip-input" id="habit-sedentary">
-                      <span class="chip-pill">🪑 <span data-i18n="habit.sedentary">하루 30분 미만 운동 부족</span></span>
+                      <span class="chip-pill"><span data-i18n="habit.sedentary">일일 30분 미만 신체 활동 부족 (성장판 자극 부족)</span></span>
                     </label>
                   </div>
 
                   <!-- Deep Trait Question 2: Posture & Physical Activity Pattern (Multi-Select Touch Chips) -->
-                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(255,255,255,0.12);">
-                    <label class="form-label form-label-required" data-i18n="quiz.trait.posture.label">🦴 평소 앉는 자세 &amp; 성장통 체크 (복수 선택)</label>
+                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed #CBD5E1;">
+                    <label class="form-label form-label-required" data-i18n="quiz.trait.posture.label">척추·골반 정렬 상태 및 성장통 유무 점검 (복수 선택)</label>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-posture-type" style="margin-bottom: 1rem;">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="turtle_slouch" class="chip-input" checked>
-                        <span class="chip-pill">📱 <span data-i18n="quiz.trait.posture.opt1">책상·영상 볼 때 거북목·굽은 등</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt1">착석 및 스마트기기 시청 시 경추 전방전위(거북목)·흉추 후만</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="leg_cross_pelvis" class="chip-input">
-                        <span class="chip-pill">🪑 <span data-i18n="quiz.trait.posture.opt2">다리 꼬기·짝다리·W자 앉기</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt2">다리 꼬기·편측 체중 지지(짝다리)·W자 좌식 습관</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="growing_pains" class="chip-input">
-                        <span class="chip-pill">⚡ <span data-i18n="quiz.trait.posture.opt3">밤마다 무릎·종아리 성장통 호소</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt3">야간 슬관절(무릎)·하퇴부(종아리) 성장통 호소</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="chin_lean" class="chip-input">
-                        <span class="chip-pill">🙋 <span data-i18n="quiz.trait.posture.opt5">턱 괴기·한쪽으로 기대어 앉기</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt5">착석 시 턱 괴기 또는 편측 기대기 자세 습관</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="flat_foot" class="chip-input">
-                        <span class="chip-pill">👟 <span data-i18n="quiz.trait.posture.opt6">조금만 걸어도 발 피로·평발</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt6">보행 시 족부 피로감 호소 또는 편평족(평발) 경향</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-posture-type" value="upright_good" class="chip-input">
-                        <span class="chip-pill">✨ <span data-i18n="quiz.trait.posture.opt4">허리와 목을 곧게 펴고 바른 자세</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.posture.opt4">경추 및 요추의 정상 생리적 만곡과 바른 착석 자세 유지</span></span>
                       </label>
                     </div>
 
-                    <label class="form-label form-label-required" for="trait-exercise-freq" data-i18n="quiz.trait.exercise.label">🏃 일주일 동안 땀 흘리며 뛰어노는 횟수</label>
+                    <label class="form-label form-label-required" for="trait-exercise-freq" data-i18n="quiz.trait.exercise.label">주간 중강도 이상 신체 활동(성장판 압전 자극) 빈도</label>
                     <select class="form-select" id="trait-exercise-freq" name="trait-exercise-freq">
-                      <option value="low_indoor" selected data-i18n="quiz.trait.exercise.opt1">주 1회 이하 · 집에서 정적 활동 위주</option>
-                      <option value="moderate_2_3" data-i18n="quiz.trait.exercise.opt2">주 2~3회 체육·태권도·줄넘기 수준</option>
-                      <option value="active_4_plus" data-i18n="quiz.trait.exercise.opt3">주 4회 이상 매일 땀 흘리는 활동형</option>
+                      <option value="low_indoor" selected data-i18n="quiz.trait.exercise.opt1">주 1회 이하 · 실내 정적 활동 위주</option>
+                      <option value="moderate_2_3" data-i18n="quiz.trait.exercise.opt2">주 2~3회 · 체육 수업·줄넘기 등 중등도 활동</option>
+                      <option value="active_4_plus" data-i18n="quiz.trait.exercise.opt3">주 4회 이상 · 규칙적인 유산소·점프 운동 수행</option>
                     </select>
                   </div>
                 </div>
@@ -807,32 +972,32 @@
                 <!-- Mode 2: Brain & Learning (Metacognition & SWS Sleep Memory Consolidation) -->
                 <div class="mode-learning-field" style="display: none;">
                   <div class="form-group">
-                    <label class="form-label form-label-required" style="color: #C084FC; font-weight: 800; font-size: 0.95rem;">
-                      🧠 배운 내용 복습 습관 &amp; 메타인지 기억 패턴 (복수 선택 · 기억과학 진단)
+                    <label class="form-label form-label-required" style="color: #1D4ED8; font-weight: 800; font-size: 0.95rem;">
+                      메타인지 인출 습관 및 수면 장기기억 공고화 패턴 (복수 선택 · 기억과학 진단)
                     </label>
-                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #CBD5E1;">
+                    <p class="section-hint" style="margin-bottom: 0.85rem; color: #475569;">
                       해마에서 대뇌피질로 전환되는 수면 장기기억 공고화 및 백지복습(자기설명) 습관을 진단합니다.
                     </p>
                     <div class="choice-chips-grid trait-multi-grid" id="learning-metacognition-group">
                       <label class="chip-label">
                         <input type="checkbox" name="learning-meta" value="passive_illusion" class="chip-input" checked>
-                        <span class="chip-pill">🗣️ <span>학원·선생님 설명을 들을 땐 알겠는데 혼자 풀면 백지 상태가 돼요</span></span>
+                        <span class="chip-pill"><span>학원·선생님 설명을 들을 땐 알겠는데 혼자 풀면 백지 상태가 돼요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-meta" value="metacognition_lack" class="chip-input">
-                        <span class="chip-pill">🗒️ <span>배운 내용을 책을 덮고 내 말로 설명하거나 정리(백지복습)하지 못해요</span></span>
+                        <span class="chip-pill"><span>배운 내용을 책을 덮고 내 말로 설명하거나 정리(백지복습)하지 못해요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-meta" value="cramming_forget" class="chip-input">
-                        <span class="chip-pill">⚡ <span>시험 전날 벼락치기로 외우고, 시험이 끝나면 배운 내용을 금방 잊어버려요</span></span>
+                        <span class="chip-pill"><span>시험 전날 벼락치기로 외우고, 시험이 끝나면 배운 내용을 금방 잊어버려요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-meta" value="sleep_consolidation_loss" class="chip-input">
-                        <span class="chip-pill">🌙 <span>밤늦게까지 공부하거나 늦게 자서 아침에 멍하고 낮에 뇌 피로감이 커요</span></span>
+                        <span class="chip-pill"><span>밤늦게까지 공부하거나 늦게 자서 아침에 멍하고 낮에 뇌 피로감이 커요</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="learning-meta" value="daily_retrieval_active" class="chip-input">
-                        <span class="chip-pill">✨ <span>그날 배운 핵심 내용을 15분 스스로 정리하고 질문하는 습관이 있어요</span></span>
+                        <span class="chip-pill"><span>그날 배운 핵심 내용을 15분 스스로 정리하고 질문하는 습관이 있어요</span></span>
                       </label>
                     </div>
                   </div>
@@ -844,172 +1009,172 @@
                 <div class="form-group">
                   <div id="step-6-choices-view">
                   <div class="mode-learning-field">
-                  <label class="form-label form-label-required" data-i18n="quiz.cog.label">키워주고 싶은 두뇌·학습 영역 (복수 선택)</label>
-                  <p class="section-hint" data-i18n="quiz.cog.hint" style="margin-bottom: 0.85rem;">아이 나이에 딱 맞는 교구와 도서를 추천해 드립니다.</p>
+                  <label class="form-label form-label-required" data-i18n="quiz.cog.label">중점 강화 희망 두뇌·학습 영역 (복수 선택)</label>
+                  <p class="section-hint" data-i18n="quiz.cog.hint" style="margin-bottom: 0.85rem;">현재 연령의 뇌 발달 주기에 부합하는 학습법과 교구·도서를 매칭합니다.</p>
                   <div class="choice-chips-grid">
                     <label class="chip-label">
                       <input type="checkbox" name="cognitive-axes" value="math_logic" class="chip-input" id="cog-math">
-                      <span class="chip-pill">📐 <span data-i18n="cog.math_logic">수리·공간·도형 사고력</span></span>
+                      <span class="chip-pill"><span data-i18n="cog.math_logic">수리·공간·도형 추론 역량</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="cognitive-axes" value="language_reading" class="chip-input" id="cog-lang">
-                      <span class="chip-pill">📚 <span data-i18n="cog.language_reading">어휘·문해력·독서 습관</span></span>
+                      <span class="chip-pill"><span data-i18n="cog.language_reading">어휘·문해력·독해 역량</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="cognitive-axes" value="science_nature" class="chip-input" id="cog-science" checked>
-                      <span class="chip-pill">🔬 <span data-i18n="cog.science_nature">과학·자연·원리 탐구력</span></span>
+                      <span class="chip-pill"><span data-i18n="cog.science_nature">과학·수리 원리 탐구 역량</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="cognitive-axes" value="sensory_arts" class="chip-input" id="cog-arts">
-                      <span class="chip-pill">🎨 <span data-i18n="cog.sensory_arts">감각·미술·창의 표현력</span></span>
+                      <span class="chip-pill"><span data-i18n="cog.sensory_arts">시공간 감각·창의 융합 역량</span></span>
                     </label>
                     <label class="chip-label">
                       <input type="checkbox" name="cognitive-axes" value="executive_focus" class="chip-input" id="cog-exec">
-                      <span class="chip-pill">🎯 <span data-i18n="cog.executive_focus">전두엽 집중력·자기조절</span></span>
+                      <span class="chip-pill"><span data-i18n="cog.executive_focus">전두엽 작업기억·집중 지속력</span></span>
                     </label>
                   </div>
 
                   <!-- Deep Trait Question 3: Child Temperament (Multi-Select) & Focus Span -->
-                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(255,255,255,0.12);">
-                    <label class="form-label form-label-required" data-i18n="quiz.trait.temp.label">🧩 우리 아이 평소 기질 &amp; 성향 (복수 선택)</label>
+                  <div style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed #CBD5E1;">
+                    <label class="form-label form-label-required" data-i18n="quiz.trait.temp.label">아동 신경인지 기질 및 과제 수행 성향 (복수 선택)</label>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-temperament" style="margin-bottom: 1rem;">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="explorer" class="chip-input" checked>
-                        <span class="chip-pill">🚀 <span data-i18n="quiz.trait.temp.opt1">몸으로 직접 부딪히는 활동·탐구형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt1">신체 활동 및 직접 실험을 통한 탐색 선호형</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="builder" class="chip-input">
-                        <span class="chip-pill">🧱 <span data-i18n="quiz.trait.temp.opt2">손끝으로 조립·만들기 좋아하는 몰입형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt2">소근육 조작·조립·구조화 과제에 높은 몰입을 보이는 유형</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="questioner" class="chip-input">
-                        <span class="chip-pill">💬 <span data-i18n="quiz.trait.temp.opt3">"왜?" 질문과 대화를 좋아하는 사고형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt3">원리 질문 및 언어적 상호작용(문답)을 선호하는 분석형</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="cautious" class="chip-input">
-                        <span class="chip-pill">🔍 <span data-i18n="quiz.trait.temp.opt4">신중하게 관찰하고 시작하는 섬세형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt4">충분한 사전 관찰 후 신중하게 과제를 수행하는 숙고형</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="creative_art" class="chip-input">
-                        <span class="chip-pill">🎨 <span data-i18n="quiz.trait.temp.opt5">음악·역할극·상상 좋아하는 감성형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt5">시각적 이미지·스토리텔링·예술적 표현에 강점을 보이는 유형</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-temperament" value="reward_goal" class="chip-input">
-                        <span class="chip-pill">🏆 <span data-i18n="quiz.trait.temp.opt6">칭찬·미션 스티커에 불타는 성취형</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.temp.opt6">명확한 단기 목표와 성취 피드백이 주어질 때 동기화되는 유형</span></span>
                       </label>
                     </div>
 
-                    <label class="form-label form-label-required" for="trait-focus-span" data-i18n="quiz.trait.focus.label">⏱️ 한 가지 놀이나 공부에 집중하는 시간</label>
+                    <label class="form-label form-label-required" for="trait-focus-span" data-i18n="quiz.trait.focus.label">단일 학습 과제에 대한 전두엽 주의집중 지속 시간</label>
                     <select class="form-select" id="trait-focus-span" name="trait-focus-span">
-                      <option value="under_10m" data-i18n="quiz.trait.focus.opt1">10분 미만 · 짧은 성취감 놀이가 필요해요</option>
-                      <option value="15_20m" selected data-i18n="quiz.trait.focus.opt2">15~20분 집중 · 단계별 미션이 잘 맞아요</option>
-                      <option value="30m_plus" data-i18n="quiz.trait.focus.opt3">30분 이상 · 깊은 독서·프로젝트가 맞아요</option>
+                      <option value="under_10m" data-i18n="quiz.trait.focus.opt1">10분 미만 · 짧은 단위의 모듈형 성취 과제가 필요함</option>
+                      <option value="15_20m" selected data-i18n="quiz.trait.focus.opt2">15~20분 유지 · 단계별 구조화된 학습 루틴이 적합함</option>
+                      <option value="30m_plus" data-i18n="quiz.trait.focus.opt3">30분 이상 유지 · 심화 독해 및 프로젝트형 탐구가 가능함</option>
                     </select>
                   </div>
                   </div><!-- /.mode-learning-field -->
 
                   <!-- Deep Trait Question 3-B: 1:1 Learning & Study Counseling Questionnaire (Bottlenecks & Learning Style) -->
-                  <div id="learning-counseling-quiz-block" class="mode-learning-field" style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed rgba(167, 139, 250, 0.3);">
+                  <div id="learning-counseling-quiz-block" class="mode-learning-field" style="margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px dashed #CBD5E1;">
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.35rem;">
-                      <label class="form-label form-label-required" data-i18n="quiz.trait.learning.label" style="margin: 0; color: #C4B5FD;">📚 현재 가장 고민되는 학습·공부 병목 (복수 선택 · 1:1 학습 상담 연동)</label>
-                      <span style="background: rgba(139, 92, 246, 0.2); color: #DDD6FE; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(139, 92, 246, 0.4);">
-                        🧠 뇌인지 학습 논문 기반 처방
+                      <label class="form-label form-label-required" data-i18n="quiz.trait.learning.label" style="margin: 0; color: #1D4ED8;">현재 가장 두드러진 학습·인지 병목 구간 (복수 선택)</label>
+                      <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.55rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
+                        뇌인지 학술논문 기반 판독
                       </span>
                     </div>
-                    <p class="section-hint" data-i18n="quiz.trait.learning.hint" style="margin-bottom: 0.65rem;">선택하신 학습 고민의 뇌과학적 원인을 진단하고 딱 맞는 공부법·도서·워크북을 큐레이팅해 드립니다.</p>
+                    <p class="section-hint" data-i18n="quiz.trait.learning.hint" style="margin-bottom: 0.65rem;">선택하신 학습 병목의 신경인지적 원인을 규명하고 1:1 교정 학습법과 교재를 처방합니다.</p>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-learning-concern" style="margin-bottom: 1rem;">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="reading_literacy" class="chip-input" checked>
-                        <span class="chip-pill">📖 <span data-i18n="quiz.trait.learning.opt1">긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt1">긴 지문 및 서술형 문장제 문제의 핵심 구조 파악(문해력) 병목</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="math_concept" class="chip-input">
-                        <span class="chip-pill">📐 <span data-i18n="quiz.trait.learning.opt2">단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt2">단순 연산은 가능하나 도형·공간추론·응용 수학 전환 병목</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="passive_forget" class="chip-input">
-                        <span class="chip-pill">🧠 <span data-i18n="quiz.trait.learning.opt3">학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt3">수업 청취 후 자기주도 인출(백지복습) 및 장기기억 정착 병목</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="screen_dopamine" class="chip-input">
-                        <span class="chip-pill">📱 <span data-i18n="quiz.trait.learning.opt4">스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt4">디지털 미디어(숏폼·게임) 도파민 과노출로 인한 텍스트 몰입 저하</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="desk_endurance" class="chip-input">
-                        <span class="chip-pill">🪑 <span data-i18n="quiz.trait.learning.opt5">책상에 15~20분 이상 바른 자세로 앉아 있기 힘들고 산만해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt5">착석 지구력(15~20분 미만) 부족 및 외부 자극에 의한 주의 분산</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="vocab_expression" class="chip-input">
-                        <span class="chip-pill">🗣️ <span data-i18n="quiz.trait.learning.opt6">어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt6">어휘 인출 부족 및 논리적 말하기·서술형 답안 작성 병목</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="test_mistake_anxiety" class="chip-input">
-                        <span class="chip-pill">📝 <span data-i18n="quiz.trait.learning.opt7">아는 문제도 문제집·시험에서 덤벙대며 실수하거나 긴장해서 틀려요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt7">개념은 이해하나 문제 풀이 시 절차 누락·실수 및 시험 불안</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-learning-concern" value="habit_self_directed" class="chip-input">
-                        <span class="chip-pill">📅 <span data-i18n="quiz.trait.learning.opt8">스스로 분량을 정해 매일 꾸준히 실천하는 자기주도 습관이 부족해요</span></span>
+                        <span class="chip-pill"><span data-i18n="quiz.trait.learning.opt8">일일 학습 분량 계획 수립 및 규칙적 자기주도 실행 습관 부재</span></span>
                       </label>
                     </div>
 
-                    <label class="form-label form-label-required" for="trait-study-style" data-i18n="quiz.trait.studystyle.label" style="color: #C4B5FD;">✍️ 우리 아이가 가장 잘 흡수하는 학습·독서 스타일</label>
+                    <label class="form-label form-label-required" for="trait-study-style" data-i18n="quiz.trait.studystyle.label" style="color: #1D4ED8;">아동의 인지 정보 처리 및 학습 흡수 우세 유형</label>
                     <select class="form-select" id="trait-study-style" name="trait-study-style">
-                      <option value="dialogue_question" selected data-i18n="quiz.trait.studystyle.opt1">🗣️ 부모·선생님과 질문하고 말로 설명해 볼 때(하브루타·백지복습) 제일 잘 배워요</option>
-                      <option value="play_manipulative" data-i18n="quiz.trait.studystyle.opt2">🧩 손으로 만지는 입체교구·실험·보드게임으로 체험할 때 제일 잘 흡수해요</option>
-                      <option value="visual_story" data-i18n="quiz.trait.studystyle.opt3">🎨 만화·그림 도감·시각 마인드맵과 스토리텔링으로 볼 때 쉽게 이해해요</option>
-                      <option value="goal_workbook" data-i18n="quiz.trait.studystyle.opt4">✅ 하루 분량이 명확한 일일 워크북·체크리스트를 하나씩 끝낼 때 성취감을 느껴요</option>
+                      <option value="dialogue_question" selected data-i18n="quiz.trait.studystyle.opt1">질문·인출형 — 학습 내용을 말로 설명하고 문답할 때 장기기억 전환율이 가장 높음</option>
+                      <option value="play_manipulative" data-i18n="quiz.trait.studystyle.opt2">조작·체험형 — 입체 교구·실험·구체물을 직접 조작할 때 개념 이해도가 가장 높음</option>
+                      <option value="visual_story" data-i18n="quiz.trait.studystyle.opt3">시각·구조화형 — 도표·다이어그램·마인드맵으로 시각화할 때 정보 처리가 가장 빠름</option>
+                      <option value="goal_workbook" data-i18n="quiz.trait.studystyle.opt4">목표·완수형 — 일일 정량 과업(워크북·체크리스트)을 완수할 때 학습 효능감이 극대화됨</option>
                     </select>
                   </div>
 
                   <!-- Deep Trait Question 3-C: Detailed Physical Growth Click-Click Options (Pure Physical Growth Step 6) -->
                   <div id="growth-detail-quiz-block" class="mode-growth-field" style="margin-top: 0; padding-top: 0;">
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.35rem;">
-                      <label class="form-label" style="margin: 0; color: #7DD3FC;">🩺 추가로 체크할 신체 성장·체중·체질 고민 (복수 클릭 선택)</label>
-                      <span style="background: rgba(56, 189, 248, 0.16); color: #BAE6FD; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.4);">
-                        📏 클릭 항목 1:1 정밀 반영
+                      <label class="form-label" style="margin: 0; color: #1D4ED8;">추가 점검할 신체 성장 · 체중 · 체질 임상 항목 (복수 선택)</label>
+                      <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.72rem; font-weight: 800; padding: 0.16rem 0.55rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
+                        선택 항목 1:1 정밀 반영
                       </span>
                     </div>
-                    <p class="section-hint" style="margin-bottom: 0.65rem;">직접 길게 타이핑하실 필요 없이 우리 아이에게 해당하는 항목만 클릭해 주시면 키·몸무게·골연령 보고서에 정확하게 반영합니다.</p>
+                    <p class="section-hint" style="margin-bottom: 0.65rem;">해당하는 항목을 선택해 주시면 신장·체중·골연령 분석 보고서에 정밀 반영됩니다.</p>
                     <div class="choice-chips-grid trait-multi-grid" id="trait-growth-detail-group">
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="growing_pain_night" class="chip-input" checked>
-                        <span class="chip-pill">🦵 <span>밤마다 무릎·종아리·발목 성장통을 호소하거나 다리를 주물러줘요</span></span>
+                        <span class="chip-pill"><span>야간 슬관절(무릎)·종아리·발목 성장통을 호소하거나 하체 피로감이 잦음</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="underweight_thin" class="chip-input">
-                        <span class="chip-pill">⚖️ <span>밥을 잘 안 먹거나 살이 안 쪄서 또래보다 마르고 몸무게가 적게 나가요</span></span>
+                        <span class="chip-pill"><span>식사량이 적고 체중 증가가 더뎌 또래 표준 대비 저체중 경향을 보임</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="overweight_fat_gain" class="chip-input">
-                        <span class="chip-pill">🍔 <span>키보다 몸무게(뱃살·체지방)가 먼저 늘어 성조숙증·성장판 조기 폐쇄가 걱정돼요</span></span>
+                        <span class="chip-pill"><span>신장 대비 체중(체지방) 증가가 빨라 골연령 가속 및 성장판 조기 폐쇄가 우려됨</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="rhinitis_mouth" class="chip-input">
-                        <span class="chip-pill">😮 <span>비염·코막힘·아데노이드 비대로 입을 벌리고 자거나 잠귀가 밝아요</span></span>
+                        <span class="chip-pill"><span>알레르기 비염·코막힘·구강호흡으로 인해 깊은 서파수면 유지가 어려움</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="early_puberty_worry" class="chip-input">
-                        <span class="chip-pill">⏳ <span>가슴멍울·머리냄새·체모 등 사춘기 신호가 또래보다 빨라 걱정돼요</span></span>
+                        <span class="chip-pill"><span>유방 발달·체모·두피 피지 등 2차 성징 징후가 또래보다 빠르게 관찰됨</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="bone_age_delay" class="chip-input">
-                        <span class="chip-pill">📏 <span>또래 평균보다 키가 작고 최근 1년 성장 속도가 연간 5cm 미만이에요</span></span>
+                        <span class="chip-pill"><span>또래 평균보다 신장이 작고 최근 1년 성장 속도가 연간 5cm 미만으로 정체됨</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="dairy_calcium_lack" class="chip-input">
-                        <span class="chip-pill">🥛 <span>우유·치즈를 잘 안 먹거나 소화력이 약해 칼슘·단백질 흡수가 걱정돼요</span></span>
+                        <span class="chip-pill"><span>유제품 섭취가 부족하거나 소화 흡수력이 약해 칼슘·단백질 결핍이 우려됨</span></span>
                       </label>
                       <label class="chip-label">
                         <input type="checkbox" name="trait-growth-detail" value="slouch_disc_loss" class="chip-input">
-                        <span class="chip-pill">🪑 <span>책상·스마트폰을 볼 때 목이 앞으로 빠지고 등이 굽어 숨은 키 손실이 걱정돼요</span></span>
+                        <span class="chip-pill"><span>착석 시 경추 전방전위(거북목) 및 흉추 후만으로 인한 추간판 숨은 키 손실 우려</span></span>
                       </label>
                     </div>
                   </div>
 
                   <!-- Primary Submit CTA Button (Directly visible on Step 6 after Click-Click selections) -->
                   <div style="margin-top: 1.5rem; text-align: center;">
-                    <button type="submit" onclick="if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.submitQuiz === 'function') window.TallerOnboardingWizard.submitQuiz(event);" class="btn btn-submit btn-block-cta mf-btn-white" id="btn-submit-quiz" data-i18n="quiz.submit.btn" style="width: 100%; max-width: 540px; padding: 1.05rem 1.4rem; font-size: 1.02rem; font-weight: 900; border-radius: 9999px; white-space: nowrap; box-shadow: 0 10px 28px rgba(16, 185, 129, 0.35); cursor: pointer;">
-                      ✦ 선택한 설문 항목 기반 맞춤 보고서 즉시 보기 →
+                    <button type="submit" onclick="if(window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.submitQuiz === 'function') window.TallerOnboardingWizard.submitQuiz(event);" class="btn btn-submit btn-block-cta mf-btn-white" id="btn-submit-quiz" data-i18n="quiz.submit.btn" style="width: 100%; max-width: 540px; padding: 1.05rem 1.4rem; font-size: 1.02rem; font-weight: 800; border-radius: 12px; background: #1D4ED8; color: #FFFFFF; border: 1px solid #1E40AF; white-space: nowrap; box-shadow: 0 8px 22px rgba(29, 78, 216, 0.25); cursor: pointer;">
+                      설문 응답 기반 정밀 진단 보고서 발행하기
                     </button>
                     <button
                       type="button"
@@ -1051,9 +1216,9 @@
 
           <!-- Stepper Navigation Bar -->
           <div class="quiz-nav-bar">
-            <button type="button" class="btn btn-secondary" id="btn-prev-step" style="display: none;" data-i18n="label.prev">← 이전 단계</button>
+            <button type="button" class="btn btn-secondary" id="btn-prev-step" style="display: none;" data-i18n="label.prev">이전 단계</button>
             <div style="flex: 1;"></div>
-            <button type="button" class="btn btn-primary" id="btn-next-step" data-i18n="label.next">다음 단계 →</button>
+            <button type="button" class="btn btn-primary" id="btn-next-step" data-i18n="label.next">다음 단계</button>
           </div>
 
         </form>
@@ -1064,12 +1229,12 @@
     <div class="analysis-overlay" id="analysis-overlay" style="display: none;" aria-hidden="true">
       <div class="analysis-modal" style="max-width: 660px; width: 95%; max-height: 92vh; overflow-y: auto;">
         <div class="analysis-spinner" id="analysis-spinner"></div>
-        <h3 class="analysis-title" id="analysis-title" data-i18n="loader.step1">질병관리청 성장도표 &amp; 발달 파라미터 대조 중...</h3>
-        <p class="analysis-desc" id="analysis-desc" data-i18n="loader.desc">생년월일 일수 보정 데이터와 학술 논문 코퍼스를 대조하여 맞춤 가이드북을 편찬하고 있습니다.</p>
+        <h3 class="analysis-title" id="analysis-title" data-i18n="loader.step1">질병관리청(KDCA) 성장도표 및 K-DST 발달 지표 대조 중...</h3>
+        <p class="analysis-desc" id="analysis-desc" data-i18n="loader.desc">생년월일 일수 보정 데이터와 학술 논문 2,929편 코퍼스를 대조하여 정밀 진단 보고서를 생성하고 있습니다.</p>
         <div class="analysis-progress-bar">
           <div class="analysis-progress-bar-fill" id="analysis-bar-fill"></div>
         </div>
-        <button type="button" class="btn-skip-scan" id="btn-skip-scan" data-i18n="loader.skip" style="margin-top: 0.85rem;">⚡ 기다리지 않고 분석 결과 즉시 보기 ↗</button>
+        <button type="button" class="btn-skip-scan" id="btn-skip-scan" data-i18n="loader.skip" style="margin-top: 0.85rem;">대기 없이 진단 결과 즉시 확인하기</button>
       </div>
     </div>
 
@@ -1081,15 +1246,15 @@
         <div class="prescription-banner-left">
           <div class="prescription-avatar" id="rx-avatar">K</div>
           <div class="prescription-child-info">
-            <h2 id="rx-header-title">만 10세 남아 KIDS-FIT 맞춤형 성장 가이드북</h2>
-            <p id="rx-header-subtitle" data-i18n="rx.standard.kdca">질병관리청(KDCA 2017) 소아청소년 성장도표 &amp; K-DST 발달기준 정밀 분석 완료</p>
+            <h2 id="rx-header-title">만 10세 남아 KIDS-FIT 임상 정밀 진단 보고서</h2>
+            <p id="rx-header-subtitle" data-i18n="rx.standard.kdca">질병관리청(KDCA 2017) 소아청소년 성장도표 및 K-DST 발달기준 정밀 판독 완료</p>
           </div>
         </div>
         <div class="report-mode-switcher" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-          <button type="button" class="prescription-retest-btn" id="btn-switch-report-growth" style="display: none !important;">📏 신체 성장 보고서</button>
-          <button type="button" class="prescription-retest-btn" id="btn-switch-report-learning" style="display: none !important;">🧠 두뇌·학습 보고서</button>
-          <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ try { var app = window.KidsFitApp; var gt = window.KidsFitGrowthTracker || window.TallerGrowthTracker; if(gt && typeof gt.preparePrintReport === 'function'){ gt.preparePrintReport(app && app.state ? app.state.profile : {}); } window.print(); } catch(e){ window.print(); } })()" style="background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%); color: #0F172A; font-weight: 900; border: 1.5px solid #38BDF8;">🖨️ 보고서 출력 (인쇄 / PDF)</button>
-          <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">🔄 정보 다시 입력하기</button>
+          <button type="button" class="prescription-retest-btn" id="btn-switch-report-growth" style="display: none !important;">신체 성장 보고서</button>
+          <button type="button" class="prescription-retest-btn" id="btn-switch-report-learning" style="display: none !important;">두뇌·학습 보고서</button>
+          <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ try { var app = window.KidsFitApp; var gt = window.KidsFitGrowthTracker || window.TallerGrowthTracker; if(gt && typeof gt.preparePrintReport === 'function'){ gt.preparePrintReport(app && app.state ? app.state.profile : {}); } window.print(); } catch(e){ window.print(); } })()" style="background: #1D4ED8; color: #FFFFFF; font-weight: 800; border: 1.5px solid #1E40AF;">보고서 인쇄 / PDF 저장</button>
+          <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">설문 정보 다시 입력하기</button>
         </div>
       </div>
 
@@ -1203,27 +1368,27 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/admin-osmu.js?v=20261022_mvkj7gop"></script>
-  <script src="src/js/admin-db-dashboard.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/admin-studio.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mvkj7gop" defer></script>
-  <script src="src/js/app.js?v=20261022_mvkj7gop" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/admin-osmu.js?v=20261022_mvkkaeoh"></script>
+  <script src="src/js/admin-db-dashboard.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/admin-studio.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mvkkaeoh" defer></script>
+  <script src="src/js/app.js?v=20261022_mvkkaeoh" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -1238,7 +1403,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mvkj7gop')
+          window.fetch('src/data/data-bundle.js?v=20261022_mvkkaeoh')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -1266,49 +1431,49 @@
        KIDS-FIT OFFICIAL APP DOWNLOAD & PWA INSTALL MODAL (MINIMAL & CLEAN)
        ========================================================================= -->
   <div id="kidsfit-app-install-modal" class="kidsfit-app-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="app-modal-title" onclick="if(event.target === this) window.closeKidsFitAppDownloadModal();" style="display: none;">
-    <div class="kidsfit-app-modal-card">
+    <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mvkj7gop" alt="KIDS-FIT 앱 아이콘" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(56,189,248,0.6); flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mvkkaeoh" alt="KIDS-FIT 앱 아이콘" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
-            <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 700; color: #38BDF8;">KIDS-FIT OFFICIAL APP</span>
-            <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #FFFFFF; line-height: 1.3;">홈 화면에 키즈핏 앱 추가</h3>
+            <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KIDS-FIT OFFICIAL APP</span>
+            <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">홈 화면에 키즈핏 앱 추가</h3>
           </div>
         </div>
-        <button type="button" onclick="window.closeKidsFitAppDownloadModal();" aria-label="닫기" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #FFFFFF; width: 32px; height: 32px; border-radius: 9999px; font-size: 0.9rem; font-weight: 800; cursor: pointer; flex-shrink: 0;">✕</button>
+        <button type="button" onclick="window.closeKidsFitAppDownloadModal();" aria-label="닫기" style="background: #F1F5F9; border: 1px solid #CBD5E1; color: #0F172A; width: 32px; height: 32px; border-radius: 9999px; font-size: 0.9rem; font-weight: 800; cursor: pointer; flex-shrink: 0;">✕</button>
       </div>
 
-      <p id="app-modal-env-notice" style="margin: 0.65rem 0 0.85rem; font-size: 0.85rem; color: rgba(255,255,255,0.82); line-height: 1.5;">
-        바탕화면에 <strong>KIDS-FIT 아이콘</strong>을 추가하면 주소창 없이 앱처럼 1초 만에 열립니다.
+      <p id="app-modal-env-notice" style="margin: 0.65rem 0 0.85rem; font-size: 0.85rem; color: #334155; line-height: 1.5;">
+        바탕화면에 <strong>KIDS-FIT 아이콘</strong>을 추가하면 주소창 없이 전용 앱으로 즉시 실행됩니다.
       </p>
 
       <!-- Clean Primary Action Button -->
       <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
-        <button type="button" id="btn-modal-pwa-install" onclick="window.triggerKidsFitNativeInstall();" style="width: 100%; padding: 0.85rem 1rem; border-radius: 12px; border: none; background: #FFFFFF; color: #05070B; font-size: 0.94rem; font-weight: 800; cursor: pointer; text-align: center;">
-          📲 홈 화면에 앱 바로 설치하기
+        <button type="button" id="btn-modal-pwa-install" onclick="window.triggerKidsFitNativeInstall();" style="width: 100%; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid #1E40AF; background: #1D4ED8; color: #FFFFFF; font-size: 0.94rem; font-weight: 800; cursor: pointer; text-align: center;">
+          홈 화면에 전용 앱 바로 설치하기
         </button>
 
-        <button type="button" id="btn-modal-open-chrome" onclick="window.openInExternalChromeForAppInstall();" style="display: none; width: 100%; padding: 0.82rem 1rem; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.55); background: rgba(56, 189, 248, 0.14); color: #7DD3FC; font-size: 0.88rem; font-weight: 800; cursor: pointer; text-align: center;">
-          🌐 Chrome 브라우저로 열어서 설치하기 →
+        <button type="button" id="btn-modal-open-chrome" onclick="window.openInExternalChromeForAppInstall();" style="display: none; width: 100%; padding: 0.82rem 1rem; border-radius: 12px; border: 1px solid #BFDBFE; background: #EFF6FF; color: #1D4ED8; font-size: 0.88rem; font-weight: 800; cursor: pointer; text-align: center;">
+          Chrome 브라우저로 열어서 설치하기
         </button>
 
-        <button type="button" id="btn-modal-file-download" onclick="window.downloadKidsFitAppLauncher();" style="width: 100%; padding: 0.72rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.85); font-size: 0.84rem; font-weight: 700; cursor: pointer; text-align: center;">
-          📥 바로가기 파일(KIDS-FIT_App.html) 저장
+        <button type="button" id="btn-modal-file-download" onclick="window.downloadKidsFitAppLauncher();" style="width: 100%; padding: 0.72rem 1rem; border-radius: 12px; border: 1px solid #CBD5E1; background: #F8FAFC; color: #334155; font-size: 0.84rem; font-weight: 700; cursor: pointer; text-align: center;">
+          바로가기 실행 파일(KIDS-FIT_App.html) 저장
         </button>
       </div>
 
       <!-- Concise Single-Device Guide (Only shows the relevant OS card) -->
-      <div id="android-install-guide-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem 0.85rem;">
-        <div style="font-size: 0.82rem; font-weight: 800; color: #93C5FD; margin-bottom: 0.25rem;">📱 안드로이드 홈 화면 추가 팁</div>
-        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5;">
-          브라우저 우측 상단 <strong>[⋮ 메뉴] ➔ [앱 설치]</strong> 또는 <strong>[홈 화면에 추가]</strong>를 누르면 설치됩니다.
+      <div id="android-install-guide-card" style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.7rem 0.85rem;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.25rem;">안드로이드 홈 화면 추가 안내</div>
+        <div style="font-size: 0.8rem; color: #334155; line-height: 1.5;">
+          브라우저 우측 상단 <strong>[메뉴] - [앱 설치]</strong> 또는 <strong>[홈 화면에 추가]</strong>를 선택하시면 설치됩니다.
         </div>
       </div>
 
-      <div id="ios-install-guide-card" style="display: none; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.7rem 0.85rem;">
-        <div style="font-size: 0.82rem; font-weight: 800; color: #6EE7B7; margin-bottom: 0.25rem;">🍎 아이폰(Safari) 홈 화면 추가 팁</div>
-        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5;">
-          Safari 하단 <strong>[⬆️ 공유] ➔ [➕ 홈 화면에 추가]</strong>를 누르면 바탕화면에 앱이 생성됩니다.
+      <div id="ios-install-guide-card" style="display: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.7rem 0.85rem;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.25rem;">아이폰(Safari) 홈 화면 추가 안내</div>
+        <div style="font-size: 0.8rem; color: #334155; line-height: 1.5;">
+          Safari 하단 <strong>[공유] - [홈 화면에 추가]</strong>를 선택하시면 바탕화면에 앱이 생성됩니다.
         </div>
       </div>
     </div>

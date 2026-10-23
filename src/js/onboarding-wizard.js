@@ -121,44 +121,44 @@
   const WIZARD_STEPS_GROWTH = [
     {
       step: 1,
-      titleKo: '우리 아이 기본 정보 (성별 · 생년월일)',
+      titleKo: '기본 인적 사항 (성별 · 생년월일 정밀 산출)',
       titleEn: 'Basic Demographics (Sex · Date of Birth)',
-      subKo: '생년월일 일수까지 계산해 또래 평균키와 골연령을 정밀 비교합니다.',
+      subKo: '생년월일 일수까지 정밀 보정하여 질병관리청(KDCA) 월령별 표준 신장·골연령과 대조합니다.',
       subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
     },
     {
       step: 2,
-      titleKo: '현재 키 · 몸무게 · 최근 6개월 성장폭',
+      titleKo: '현재 신장 · 체중 · 최근 6개월 성장 속도 입력',
       titleEn: 'Current Stature & Growth Velocity',
-      subKo: '요즘 얼마나 자랐는지 입력하면 숨은 잠재키를 정확히 찾아냅니다.',
+      subKo: '현재 신체 백분위(Z-Score)와 연간 성장 속도(cm/yr)를 기반으로 잠재 신장을 산출합니다.',
       subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
     },
     {
       step: 3,
-      titleKo: '엄마·아빠 키 & 실시간 유전 예상키',
+      titleKo: '부모 신장 입력 및 유전 표적키(MPH) 산출',
       titleEn: 'Mid-Parental Height (MPH) & Genetic Potential',
-      subKo: '부모님 키를 바탕으로 유전 예상키와 관리 후 최대 키를 계산합니다.',
+      subKo: 'Tanner 공식 기반 유전 예상키와 생활 습관 교정 시 최대 잠재키를 계산합니다.',
       subEn: 'Calculates Tanner Mid-Parental Target Height and clinical margin in real-time.'
     },
     {
       step: 4,
-      titleKo: '성장단계 확인 & 평소 수면·식습관 체크',
+      titleKo: '골연령 성장 단계 확인 및 수면·영양 대사 점검',
       titleEn: 'Growth Stage & Sleep/Diet Habits',
-      subKo: '해당하는 습관을 골라주시면 아이에게 딱 맞는 맞춤 영양을 찾아드립니다.',
+      subKo: '야간 서파수면 성장호르몬 분비 효율과 체중 비례 필수 영양 흡수 특성을 진단합니다.',
       subEn: 'Evaluates epiphyseal plate open ratio and sleep/diet traits.'
     },
     {
       step: 5,
-      titleKo: '평소 앉는 자세 & 운동 습관 체크',
+      titleKo: '성장 저해 요인 및 척추 정렬 · 신체 활동량 점검',
       titleEn: 'Posture Alignment & Physical Activity',
-      subKo: '거북목이나 다리 성장통이 있는지 체크해 숨은 키 2cm를 찾아드립니다.',
+      subKo: '경추·흉추 정렬 상태와 성장판 압전 자극 빈도를 분석하여 숨은 키 복원폭을 산출합니다.',
       subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
     },
     {
       step: 6,
-      titleKo: '성장·체질 세부 체크 & 맞춤 보고서 발행',
+      titleKo: '신체 성장·체질 세부 점검 및 정밀 보고서 발행',
       titleEn: 'Growth Details & Personalized Report',
-      subKo: '우리 아이에게 해당하는 항목을 클릭하면 1:1 신체 성장 보고서를 즉시 발행합니다.',
+      subKo: '해당하는 임상 항목을 선택하시면 1:1 소아 신체 성장 정밀 보고서를 즉시 발행합니다.',
       subEn: 'Generates tailored clinical growth guidance and supplement/exercise prescriptions.'
     }
   ];
@@ -166,44 +166,44 @@
   const WIZARD_STEPS_LEARNING = [
     {
       step: 1,
-      titleKo: '기본 정보 (성별 · 생년월일)',
+      titleKo: '기본 인적 사항 (성별 · 생년월일 정밀 산출)',
       titleEn: 'Basic Demographics (Sex · Date of Birth)',
-      subKo: '연령 및 발달 단계에 맞춰 질문과 추천 기준을 자동으로 세팅합니다.',
+      subKo: '아동의 연령 및 뇌 발달 주기에 맞춰 진단 문항과 규준 데이터를 자동 설정합니다.',
       subEn: 'Classifies neuro-developmental stage and cognitive baseline.'
     },
     {
       step: 2,
-      titleKo: '📖 평소 독서 습관 & 언어·문해력 패턴',
+      titleKo: '독서 습관 및 언어·문해력 정보 처리 패턴',
       titleEn: 'Reading Habits & Literacy Comprehension',
-      subKo: '아이 나이에 맞춘 그림책·줄글 읽기 및 언어 이해 패턴을 진단합니다.',
+      subKo: '연령별 텍스트 독해, 문맥 어휘 추론 및 언어 인지 처리 속도를 진단합니다.',
       subEn: 'Pinpoints language cognitive processing and reading comprehension gaps.'
     },
     {
       step: 3,
-      titleKo: '📐 수리·공간 감각 & 도형 추론 패턴',
+      titleKo: '수리·공간 지각 및 도형·논리 추론 패턴',
       titleEn: 'Mathematical Logic & Spatial Reasoning',
-      subKo: '아이 연령에 맞는 수 감각, 도형·공간 지각, 응용 사고력을 진단합니다.',
+      subKo: '단순 연산에서 응용·도형·사고력 수학으로 전환되는 인지 추론 역량을 진단합니다.',
       subEn: 'Evaluates conceptual mathematics transfer and spatial logic capacity.'
     },
     {
       step: 4,
-      titleKo: '⏱️ 놀이·학습 집중 시간 & 미디어 습관',
+      titleKo: '전두엽 주의집중 지속 시간 및 디지털 미디어 습관',
       titleEn: 'Executive Focus & Dopamine Regulation',
-      subKo: '전두엽 자기조절력, 착석 몰입 시간, 미디어 노출 습관을 진단합니다.',
+      subKo: '전두엽 실행기능(작업기억·충동억제)과 착석 몰입 지속력, 도파민 노출도를 진단합니다.',
       subEn: 'Measures prefrontal executive function and digital distraction resilience.'
     },
     {
       step: 5,
-      titleKo: '🧠 기억·표현 습관 & 자기주도 패턴',
+      titleKo: '메타인지 인출 습관 및 수면 장기기억 공고화 패턴',
       titleEn: 'Metacognition & SWS Memory Consolidation',
-      subKo: '배운 내용을 기억하고 스스로 말·행동으로 표현하는 습관을 진단합니다.',
+      subKo: '배운 내용을 자기 언어로 인출(백지복습)하고 장기기억으로 정착시키는 역량을 진단합니다.',
       subEn: 'Assesses hippocampal long-term consolidation and self-explanation mastery.'
     },
     {
       step: 6,
-      titleKo: '🧩 아이 성향·병목 클릭 & 맞춤 보고서 발행',
+      titleKo: '학습 병목·기질 최종 점검 및 정밀 보고서 발행',
       titleEn: 'Study Temperament & Personalized Report',
-      subKo: '해당하는 성향과 고민을 클릭하면 아이 나이에 맞춘 1:1 두뇌·학습 보고서를 발행합니다.',
+      subKo: '해당하는 인지 성향과 학습 병목을 선택하시면 5각 두뇌 밸런스 정밀 보고서를 즉시 발행합니다.',
       subEn: 'Synthesizes personalized learning roadmap, study methodology, and workbook curation.'
     }
   ];
@@ -463,8 +463,8 @@
     const previewEl = document.getElementById('dob-auto-stage-preview');
     if (previewEl) {
       previewEl.textContent = isEn
-        ? `✓ Auto-Detected Growth Stage & Bone Age: ${autoStage.stageNameEn} (Expected Velocity: ${autoStage.expectedVelStrEn || autoStage.expectedVelStr})`
-        : `✓ 성장단계·골연령 진행도 자동 설정됨: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
+        ? `Auto-Detected Growth Stage & Bone Age: ${autoStage.stageNameEn} (Expected Velocity: ${autoStage.expectedVelStrEn || autoStage.expectedVelStr})`
+        : `성장단계·골연령 진행도 자동 산출 완료: ${autoStage.stageNameKo} (기대 성장속도 ${autoStage.expectedVelStr})`;
     }
     const stageTitleEl = document.getElementById('auto-growth-stage-title');
     if (stageTitleEl) {
@@ -475,8 +475,8 @@
     const stageDescEl = document.getElementById('auto-growth-stage-desc');
     if (stageDescEl) {
       stageDescEl.innerHTML = isEn
-        ? `${autoStage.boneAgeNoteEn || autoStage.stageNameEn}<br><strong style="color:#10B981;">✓ Automatically selected based on Date of Birth — proceed directly to [Next Step →] or adjust below if needed.</strong>`
-        : `${autoStage.boneAgeNoteKo}<br><strong style="color:#10B981;">✓ 생년월일에 맞춰 자동 선택되었으므로 굳이 고민하실 필요 없이 바로 [다음 단계 →]로 이동하시면 됩니다.</strong>`;
+        ? `${autoStage.boneAgeNoteEn || autoStage.stageNameEn}<br><strong style="color:#1D4ED8;">Automatically selected based on Date of Birth — proceed directly to [Next Step] or adjust below if needed.</strong>`
+        : `${autoStage.boneAgeNoteKo}<br><strong style="color:#1D4ED8;">입력하신 생년월일 월령에 맞춰 최적 성장 단계가 자동 설정되었으므로 바로 [다음 단계]로 이동하시면 됩니다.</strong>`;
     }
 
     const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
@@ -721,8 +721,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 2,918 Cognitive Neuroscience & Literacy Papers...' : 'Matching 2,918 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '2,918편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '2,918편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 2,929 Cognitive Neuroscience & Literacy Papers...' : 'Matching 2,929 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '2,929편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '2,929편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -750,7 +750,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 2,918 research papers for active bio-inhibitors...'
+            ? 'Filtering 2,929 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -1221,33 +1221,33 @@
     const bannerEl = document.getElementById('guidebook-mode-banner');
     if (bannerEl) {
       if (isSelf) {
-        bannerEl.style.color = '#E2E8F0';
-        bannerEl.style.background = 'rgba(139, 92, 246, 0.12)';
-        bannerEl.style.borderColor = 'rgba(139, 92, 246, 0.35)';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEn
-          ? '🙋 <strong>[Youth & Student Self-Coaching Guidebook]</strong> Hidden Height Recovery Routine & Supplement/Book Guide.'
-          : '🙋 <strong>[학생·본인용 맞춤 가이드북]</strong> 내 잠재키·수면·자세·영양 및 자기주도 학습 루틴을 안내해 드립니다.';
+          ? '<strong>[Youth & Student Self-Coaching Guidebook]</strong> Hidden Height Recovery Routine & Supplement/Book Guide.'
+          : '<strong>[청소년·본인용 정밀 진단]</strong> 잠재 신장 회복 루틴 및 자기주도 학습 처방 보고서를 발행합니다.';
       } else if (prefMode === 'growth') {
-        bannerEl.style.color = '#BAE6FD';
-        bannerEl.style.background = 'rgba(14, 116, 144, 0.2)';
-        bannerEl.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEn
-          ? '📏 <strong>[Report 1: Physical Growth Master Mode]</strong> Dedicated physical growth, bone-age & nutrition report.'
-          : '📏 <strong>[별도 보고서 1 · 신체 성장 진단 모드]</strong> 진단 완료 시 【아이 신체 성장 마스터 분석 보고서】가 먼저 단독으로 열립니다.';
+          ? '<strong>[Report 1: Physical Growth Master Mode]</strong> Dedicated physical growth, bone-age & nutrition report.'
+          : '<strong>[DIAGNOSIS 01 · 소아 신체 성장 정밀 진단 모드]</strong> 설문 완료 시 질병관리청(KDCA) 기준 신체 성장·예상키·골연령 분석 보고서가 발행됩니다.';
       } else if (prefMode === 'learning') {
-        bannerEl.style.color = '#E9D5FF';
-        bannerEl.style.background = 'rgba(88, 28, 135, 0.24)';
-        bannerEl.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEn
-          ? '🧠 <strong>[Report 2: Brain & Learning Master Mode]</strong> Dedicated 5-axis LQ, study bottlenecks & textbook roadmap report.'
-          : '🧠 <strong>[별도 보고서 2 · 두뇌·학습 진단 모드]</strong> 진단 완료 시 【아이 두뇌·학습 마스터 분석 보고서】가 먼저 단독으로 열립니다.';
+          ? '<strong>[Report 2: Brain & Learning Master Mode]</strong> Dedicated 5-axis LQ, study bottlenecks & textbook roadmap report.'
+          : '<strong>[DIAGNOSIS 02 · 아동 신경인지·학습 정밀 진단 모드]</strong> 설문 완료 시 5각 두뇌 밸런스 차트 및 학습 병목 1:1 처방 보고서가 발행됩니다.';
       } else {
-        bannerEl.style.color = '#E2E8F0';
-        bannerEl.style.background = 'rgba(59, 130, 246, 0.1)';
-        bannerEl.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEn
-          ? '📘 <strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Height Growth, Brain Roadmap & Pinpoint Supplements/Toys/Books.'
-          : '📘 <strong>[학부모용 가이드북]</strong> 【보고서 1: 신체 성장】과 【보고서 2: 두뇌·학습】을 각각 정밀 발행합니다.';
+          ? '<strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Height Growth, Brain Roadmap & Pinpoint Supplements/Toys/Books.'
+          : '<strong>[소아·청소년 정밀 진단]</strong> 신체 성장 및 두뇌·학습 영역별 맞춤 분석 보고서를 발행합니다.';
       }
     }
   }
@@ -1281,23 +1281,23 @@
     const bannerEl = document.getElementById('guidebook-mode-banner');
     if (bannerEl) {
       if (activeMode === 'learning') {
-        bannerEl.style.color = '#DDD6FE';
-        bannerEl.style.background = 'rgba(168, 85, 247, 0.15)';
-        bannerEl.style.borderColor = 'rgba(192, 132, 252, 0.45)';
-        bannerEl.innerHTML = '🧠 <strong>[두뇌·학습 뇌과학 정밀 진단]</strong> K-DST 발달검사 & 뇌인지 과학 논문 기반 문해력·수리사고·집중력·공부법 가이드북을 발행합니다.';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
+        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 2,929편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
-        bannerEl.style.color = '#38BDF8';
-        bannerEl.style.background = 'rgba(56, 189, 248, 0.12)';
-        bannerEl.style.borderColor = 'rgba(56, 189, 248, 0.35)';
-        bannerEl.innerHTML = '📏 <strong>[신체 성장 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 성장도표 & 논문 기반 키·골연령·성장판 가이드북을 발행합니다.';
+        bannerEl.style.color = '#1E3A8A';
+        bannerEl.style.background = '#EFF6FF';
+        bannerEl.style.borderColor = '#BFDBFE';
+        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 2,929편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
       submitBtnEl.textContent = (activeMode === 'learning')
-        ? '✦ 선택한 설문 항목 기반 두뇌·학습 보고서 보기 →'
-        : '✦ 선택한 설문 항목 기반 신체 성장 보고서 보기 →';
+        ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기'
+        : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기';
     }
 
     if (document.body && document.body.classList) {

@@ -54,29 +54,29 @@
   --butter-yellow: #F59E0B;
   --butter-yellow-sub: #FFFBEB;
 
-  /* Active Theme Mapping (Default: Dark Obsidian) */
-  --theme-bg: var(--bg-obsidian);
-  --theme-surface: var(--bg-glass-card);
-  --theme-surface-solid: #0A0F1D;
-  --theme-surface-sub: var(--bg-glass-sub);
-  --theme-border: var(--border-glass);
-  --theme-border-subtle: rgba(255, 255, 255, 0.05);
-  --theme-accent: var(--cyan-pulse);
-  --theme-accent-hover: #0284C7;
-  --theme-accent-sub: rgba(56, 189, 248, 0.12);
-  --theme-accent-glow: var(--cyan-pulse-glow);
+  /* Active Theme Mapping (Clinical Medical White & Trustworthy Blue) */
+  --theme-bg: #F8FAFC;
+  --theme-surface: #FFFFFF;
+  --theme-surface-solid: #FFFFFF;
+  --theme-surface-sub: #F1F5F9;
+  --theme-border: #E2E8F0;
+  --theme-border-subtle: #F1F5F9;
+  --theme-accent: #1D4ED8;
+  --theme-accent-hover: #1E40AF;
+  --theme-accent-sub: #EFF6FF;
+  --theme-accent-glow: rgba(29, 78, 216, 0.15);
 
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
   --text-muted: #64748B;
   --text-light: #FFFFFF;
 
   /* Elevation Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-  --shadow-card-hover: 0 16px 36px rgba(0, 0, 0, 0.55);
-  --shadow-glow-cyan: 0 0 25px rgba(56, 189, 248, 0.2);
-  --shadow-glow-emerald: 0 0 25px rgba(16, 185, 129, 0.2);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 10px 28px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 16px 36px rgba(15, 23, 42, 0.09);
+  --shadow-glow-cyan: 0 4px 16px rgba(29, 78, 216, 0.16);
+  --shadow-glow-emerald: 0 4px 16px rgba(29, 78, 216, 0.14);
 
   /* Border Radii */
   --radius-card: 24px;
@@ -2978,12 +2978,468 @@ html[data-device-view="mobile"] .hero-app-download-bar,
   .app-download-header-btn {
     font-size: 0.73rem !important;
     padding: 0.28rem 0.58rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.22) !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #E2E8F0 !important;
+    border: 1px solid #BFDBFE !important;
+    background: #EFF6FF !important;
+    color: #1D4ED8 !important;
     box-shadow: none !important;
   }
 }
+
+/* ============================================================================
+   28. CLINICAL MEDICAL WHITE & TRUSTWORTHY BLUE DESIGN SYSTEM (og-kidsfit-studio-v3.png)
+   ============================================================================ */
+
+html,
+body,
+html[data-theme="dark"],
+body[data-theme="dark"],
+html[data-theme="light"],
+body[data-theme="light"] {
+  background: #F8FAFC !important;
+  background-image: radial-gradient(circle at 50% 0%, #EFF6FF 0%, #F8FAFC 55%, #F1F5F9 100%) !important;
+  color: #0F172A !important;
+}
+
+.clinic-header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+.brand-logo-icon {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1E40AF !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2) !important;
+  font-weight: 900 !important;
+}
+
+.brand-title,
+.brand-title span {
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+}
+
+.brand-tagline {
+  color: #475569 !important;
+}
+
+.app-download-header-btn,
+.header-control-btn {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+.app-download-header-btn:hover,
+.header-control-btn:hover {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border-color: #1E40AF !important;
+}
+
+/* Hero Section & Dual Report Cards */
+#hero-section {
+  background: transparent !important;
+  color: #0F172A !important;
+}
+
+.hero-headline {
+  color: #0F172A !important;
+}
+
+.hero-headline-highlight {
+  color: #1D4ED8 !important;
+  background: none !important;
+  -webkit-text-fill-color: #1D4ED8 !important;
+}
+
+.hero-subtitle {
+  color: #334155 !important;
+}
+
+/* Quick Presets Bar */
+.quick-presets-wrapper {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03) !important;
+}
+
+.quick-presets-label {
+  color: #475569 !important;
+  font-weight: 700 !important;
+}
+
+.preset-chip,
+.preset-card {
+  background: #F8FAFC !important;
+  color: #334155 !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 700 !important;
+}
+
+.preset-chip:hover,
+.preset-card:hover,
+.preset-chip.active,
+.preset-card.active {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border-color: #1E40AF !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2) !important;
+}
+
+/* Onboarding Survey Card & Form Controls */
+.quiz-card,
+.bento-card,
+.mf-glass-card {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #DBEAFE !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05) !important;
+}
+
+.quiz-step-tag {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+  font-weight: 800 !important;
+}
+
+.quiz-progress-text {
+  color: #1D4ED8 !important;
+  font-weight: 800 !important;
+}
+
+.taller-seg-pill {
+  background: #E2E8F0 !important;
+}
+
+.taller-seg-pill.active,
+.taller-seg-pill.completed {
+  background: #1D4ED8 !important;
+  box-shadow: none !important;
+}
+
+.quiz-progress-track {
+  background: #E2E8F0 !important;
+}
+
+.quiz-progress-fill {
+  background: #1D4ED8 !important;
+}
+
+.quiz-step-title {
+  color: #0F172A !important;
+}
+
+.quiz-step-subtitle,
+.section-hint {
+  color: #475569 !important;
+}
+
+.form-label {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+.form-input,
+.form-select {
+  background: #F8FAFC !important;
+  color: #0F172A !important;
+  border: 1.5px solid #CBD5E1 !important;
+  font-weight: 700 !important;
+}
+
+.form-input:focus,
+.form-select:focus {
+  background: #FFFFFF !important;
+  border-color: #1D4ED8 !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12) !important;
+}
+
+.input-suffix {
+  color: #475569 !important;
+  font-weight: 700 !important;
+}
+
+.mph-preview-badge {
+  background: #F8FAFC !important;
+  border: 1.5px solid #BFDBFE !important;
+  color: #0F172A !important;
+}
+
+.mph-badge-label {
+  color: #475569 !important;
+}
+
+.mph-badge-value {
+  color: #1D4ED8 !important;
+}
+
+.mph-badge-range {
+  color: #64748B !important;
+}
+
+/* Survey Touch Chips & Bento Choice Cards */
+.chip-pill,
+.bento-choice-card {
+  background: #F8FAFC !important;
+  color: #1E293B !important;
+  border: 1.5px solid #CBD5E1 !important;
+  box-shadow: none !important;
+}
+
+.chip-pill span,
+.bento-choice-title {
+  color: #0F172A !important;
+}
+
+.bento-choice-desc {
+  color: #475569 !important;
+}
+
+.chip-pill:hover,
+.bento-choice-card:hover {
+  background: #F1F5F9 !important;
+  border-color: #93C5FD !important;
+}
+
+.chip-input:checked + .chip-pill,
+.chip-input:checked + .bento-choice-card {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1.5px solid #1D4ED8 !important;
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.12) !important;
+}
+
+.chip-input:checked + .chip-pill span,
+.chip-input:checked + .bento-choice-card .bento-choice-title {
+  color: #1D4ED8 !important;
+  font-weight: 800 !important;
+}
+
+/* Stepper Buttons */
+.quiz-nav-bar {
+  border-top: 1px solid #E2E8F0 !important;
+}
+
+#btn-prev-step,
+.btn-secondary {
+  background: #F1F5F9 !important;
+  color: #334155 !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 700 !important;
+}
+
+#btn-next-step,
+.btn-primary {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1E40AF !important;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.22) !important;
+  font-weight: 800 !important;
+}
+
+/* Analysis Overlay Modal */
+.analysis-overlay {
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+
+.analysis-modal {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #BFDBFE !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18) !important;
+}
+
+.analysis-title {
+  color: #0F172A !important;
+}
+
+.analysis-desc {
+  color: #475569 !important;
+}
+
+.analysis-progress-bar {
+  background: #E2E8F0 !important;
+}
+
+.analysis-progress-bar-fill {
+  background: #1D4ED8 !important;
+}
+
+.btn-skip-scan {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1.5px solid #1D4ED8 !important;
+  font-weight: 800 !important;
+}
+
+/* Results Dashboard Banner & Cards */
+.prescription-banner {
+  background: #FFFFFF !important;
+  border: 1.5px solid #BFDBFE !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+.prescription-avatar {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1E40AF !important;
+}
+
+#rx-header-title {
+  color: #0F172A !important;
+}
+
+#rx-header-subtitle {
+  color: #475569 !important;
+}
+
+.prescription-retest-btn {
+  background: #F8FAFC !important;
+  color: #1E293B !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 700 !important;
+}
+
+#btn-print-report-top {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border-color: #1E40AF !important;
+}
+
+/* Master Briefing Report Containers & Inner Cards -> Clean Medical White & Trustworthy Blue */
+#results-dashboard #master-briefing-card-content,
+#results-dashboard #pillar-1-container,
+#results-dashboard #pillar-2-container,
+#results-dashboard .taller-height-reveal-hero,
+#results-dashboard .taller-learning-reveal-hero,
+#results-dashboard #taller-potential-reveal-hero,
+#results-dashboard #taller-weight-reveal-hero,
+#results-dashboard #briefing-status-section,
+#results-dashboard #bespoke-parent-note-section,
+#results-dashboard #briefing-actions-section,
+#results-dashboard #expected-outcomes-section,
+#results-dashboard #learning-step-1-style,
+#results-dashboard #learning-step-2-strengths,
+#results-dashboard #learning-step-3-weaknesses,
+#results-dashboard #learning-step-4-careers,
+#results-dashboard #learning-step-5-boost,
+#results-dashboard #learning-step-6-remedy,
+#results-dashboard #learning-step-7-items,
+#results-dashboard #learning-step-8-links,
+#results-dashboard #learning-visual-brain-illustration-card,
+#results-dashboard #learning-visual-charts-showcase,
+#results-dashboard .pillar-section-header,
+#results-dashboard .sws-memory-consolidation-box,
+#results-dashboard .pinpoint-category-box,
+#results-dashboard .pinpoint-item-card,
+#results-dashboard .stat-card,
+#results-dashboard #learning-bento-stats-grid > div {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #DBEAFE !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05) !important;
+}
+
+#results-dashboard h1,
+#results-dashboard h2,
+#results-dashboard h3,
+#results-dashboard h4,
+#results-dashboard strong,
+#results-dashboard .taller-giant-height-number,
+#results-dashboard .briefing-title,
+#results-dashboard .briefing-section-title {
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+}
+
+#results-dashboard p,
+#results-dashboard li,
+#results-dashboard td,
+#results-dashboard th,
+#results-dashboard .action-desc {
+  color: #334155 !important;
+}
+
+#results-dashboard .section-badge-pill,
+#results-dashboard .tab-badge {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+}
+
+#results-dashboard a[href*="coupang"],
+#results-dashboard a[href*="linkprice"],
+#results-dashboard a[href*="yes24"],
+#results-dashboard a[href*="11st"],
+#results-dashboard a[href*="myrealtrip"],
+#results-dashboard a[href*="klook"],
+#results-dashboard a[href*="adpick"],
+#results-dashboard .mobile-touch-btn-primary {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1E40AF !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2) !important;
+}
+
+/* Primary & Secondary Clinical Blue CTA Buttons (Override legacy .mf-btn-white / .mf-btn-glass text colors) */
+.mf-btn-white,
+#btn-enter-studio-top,
+#btn-home-start-growth-report,
+#btn-home-start-learning-report,
+#btn-submit-quiz {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 1.5px solid #1E40AF !important;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.22) !important;
+}
+
+.mf-btn-white *,
+#btn-enter-studio-top *,
+#btn-home-start-growth-report *,
+#btn-home-start-learning-report *,
+#btn-submit-quiz * {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.mf-btn-glass,
+#btn-enter-studio-learning {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  -webkit-text-fill-color: #1D4ED8 !important;
+  border: 1.5px solid #1D4ED8 !important;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.1) !important;
+}
+
+.mf-btn-glass *,
+#btn-enter-studio-learning * {
+  color: #1D4ED8 !important;
+  -webkit-text-fill-color: #1D4ED8 !important;
+}
+
+/* Footer */
+.clinic-footer {
+  background: #F1F5F9 !important;
+  border-top: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+.footer-disclaimer {
+  color: #475569 !important;
+}
+
+.footer-copyright {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+
 
 
 
