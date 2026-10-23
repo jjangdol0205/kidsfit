@@ -2263,13 +2263,13 @@
                   </svg>
 
                   <div style="display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed #BFDBFE;">
-                    <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.75rem; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
-                      <span style="font-size: 0.84rem; color: #1D4ED8; font-weight: 900; white-space: nowrap;">6개월 맞춤 코칭 시</span>
-                      <span style="font-size: 0.96rem; font-weight: 900; color: #0F172A; white-space: nowrap;">LQ ${lqData.trajectory.coached.lqScore}점 · 몰입 ${lqData.trajectory.coached.focusMinutes}분</span>
+                    <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.5rem 0.65rem; display: flex; justify-content: space-between; align-items: center; gap: 0.3rem;">
+                      <span style="font-size: 0.78rem; color: #1D4ED8; font-weight: 900; white-space: nowrap;">6개월 맞춤 코칭 시</span>
+                      <span style="font-size: 0.86rem; font-weight: 900; color: #0F172A; white-space: nowrap;">LQ ${lqData.trajectory.coached.lqScore}점 · 몰입 ${lqData.trajectory.coached.focusMinutes}분</span>
                     </div>
-                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
-                      <span style="font-size: 0.82rem; color: #475569; font-weight: 800; white-space: nowrap;">현재 병목 방치 시</span>
-                      <span style="font-size: 0.92rem; font-weight: 900; color: #475569; white-space: nowrap;">LQ ${lqData.trajectory.unmanaged.lqScore}점 · 몰입 ${lqData.trajectory.current.focusMinutes}분</span>
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.48rem 0.65rem; display: flex; justify-content: space-between; align-items: center; gap: 0.3rem;">
+                      <span style="font-size: 0.78rem; color: #475569; font-weight: 800; white-space: nowrap;">현재 병목 방치 시</span>
+                      <span style="font-size: 0.84rem; font-weight: 900; color: #475569; white-space: nowrap;">LQ ${lqData.trajectory.unmanaged.lqScore}점 · 몰입 ${lqData.trajectory.current.focusMinutes}분</span>
                     </div>
                   </div>
                 </div>
