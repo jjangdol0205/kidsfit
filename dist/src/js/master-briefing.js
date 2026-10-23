@@ -2370,52 +2370,86 @@
             </h3>
 
             <!-- Schematic SVG Bar Chart Comparing Child's Top 3 Strengths vs Peer Average (78) -->
-            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 0.9rem; margin-bottom: 0.65rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
-                <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">강점 3대 영역 시냅스 활성도 vs 또래 평균(78점)</span>
-                <div style="display: flex; gap: 0.55rem; font-size: 0.75rem; font-weight: 800;">
+            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 0.95rem; margin-bottom: 0.65rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8;">강점 3대 영역 시냅스 활성도 vs 또래 평균(78점)</span>
+                <div style="display: flex; gap: 0.55rem; font-size: 0.78rem; font-weight: 800;">
                   <span style="color: #1D4ED8;">■ 우리 아이 강점</span>
                   <span style="color: #475569;">--- 또래 평균(78점)</span>
                 </div>
               </div>
-              <svg id="learning-step2-strength-chart-svg" viewBox="0 0 560 192" style="width: 100%; height: auto; display: block;">
-                <defs>
-                  <linearGradient id="strBarGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#1D4ED8" />
-                    <stop offset="100%" stop-color="#2563EB" />
-                  </linearGradient>
-                </defs>
-                <!-- Baseline & Peer Average Dashed Line (Non-overlapping top-left reference badge) -->
-                <line x1="20" y1="154" x2="540" y2="154" stroke="#E2E8F0" stroke-width="1.8" />
-                <line x1="20" y1="78" x2="540" y2="78" stroke="#64748B" stroke-width="1.6" stroke-dasharray="5,4" />
-                <rect x="16" y="6" width="106" height="20" rx="6" fill="#EFF6FF" stroke="#E2E8F0" />
-                <text x="69" y="20" fill="#0F172A" font-size="10.5" font-weight="800" text-anchor="middle">┄ 기준: 평균 78점</text>
 
-                ${strengthsList.map((s, idx) => {
-                  const colX = 105 + idx * 175;
-                  const barH = Math.max(42, Math.min(104, Math.round((s.score - 45) * 1.88)));
-                  const barY = 154 - barH;
-                  const pillY = Math.max(28, barY - 24);
-                  const shortTitle = s.shortLabel || (s.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
-                  return `
-                    <!-- Peer Avg Reference Bar -->
-                    <rect x="${colX - 42}" y="78" width="34" height="76" rx="6" fill="rgba(148,163,184,0.22)" stroke="#E2E8F0" />
-                    <text x="${colX - 25}" y="96" fill="#0F172A" font-size="10.5" font-weight="800" text-anchor="middle">78</text>
-                    <!-- Child Strength Bar -->
-                    <rect x="${colX}" y="${barY}" width="44" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#1D4ED8" stroke-width="1.8" />
-                    <rect x="${colX - 25}" y="${pillY}" width="94" height="20" rx="10" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.3" />
-                    <text x="${colX + 22}" y="${pillY + 14}" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78})</text>
-                    <text x="${colX + 2}" y="176" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
-                  `;
-                }).join('')}
-              </svg>
+              <!-- PC Wide Bar Chart (Fixed Proportional Scaling: Child >78 is visibly taller than 78-pt bar) -->
+              <div class="pc-view-block">
+                <svg id="learning-step2-strength-chart-svg" viewBox="0 0 560 204" style="width: 100%; height: auto; display: block;">
+                  <defs>
+                    <linearGradient id="strBarGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#1D4ED8" />
+                      <stop offset="100%" stop-color="#2563EB" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Baseline (y=164) & Peer Average 78-pt Line (y=112, height=52) -->
+                  <line x1="20" y1="164" x2="540" y2="164" stroke="#CBD5E1" stroke-width="2" />
+                  <line x1="20" y1="112" x2="540" y2="112" stroke="#64748B" stroke-width="1.8" stroke-dasharray="5,4" />
+                  <rect x="16" y="8" width="122" height="24" rx="7" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" />
+                  <text x="77" y="24" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">┄ 또래 평균: 78점</text>
+
+                  ${strengthsList.map((s, idx) => {
+                    const colX = 105 + idx * 175;
+                    const peerH = 52;
+                    const peerY = 164 - peerH; // 112
+                    const barH = Math.min(118, peerH + Math.max(16, Math.round((s.score - 78) * 4.2)));
+                    const barY = 164 - barH;
+                    const pillY = Math.max(10, barY - 27);
+                    const shortTitle = s.shortLabel || (s.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
+                    return `
+                      <!-- Peer Avg Reference Bar (78점, height=52) -->
+                      <rect x="${colX - 46}" y="${peerY}" width="38" height="${peerH}" rx="6" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.2" />
+                      <text x="${colX - 27}" y="${peerY - 7}" fill="#475569" font-size="11.5" font-weight="900" text-anchor="middle">평균 78</text>
+                      <!-- Child Strength Bar (s.score > 78, visibly taller!) -->
+                      <rect x="${colX}" y="${barY}" width="48" height="${barH}" rx="7" fill="url(#strBarGrad)" stroke="#1D4ED8" stroke-width="1.8" />
+                      <rect x="${colX - 26}" y="${pillY}" width="100" height="22" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5" />
+                      <text x="${colX + 24}" y="${pillY + 15}" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">${s.score}점 (+${s.score - 78}점)</text>
+                      <text x="${colX + 2}" y="188" fill="#0F172A" font-size="13" font-weight="900" text-anchor="middle">${s.icon} ${shortTitle}</text>
+                    `;
+                  }).join('')}
+                </svg>
+              </div>
+
+              <!-- Mobile Large-Font Bar Chart (340px ViewBox so text & bars are 2x larger on smartphones) -->
+              <div class="mobile-view-block">
+                <svg viewBox="0 0 340 210" style="width: 100%; height: auto; display: block;">
+                  <line x1="10" y1="168" x2="330" y2="168" stroke="#CBD5E1" stroke-width="2" />
+                  <line x1="10" y1="116" x2="330" y2="116" stroke="#64748B" stroke-width="1.8" stroke-dasharray="5,4" />
+                  <rect x="10" y="6" width="128" height="24" rx="7" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" />
+                  <text x="74" y="22" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">┄ 또래 평균: 78점</text>
+
+                  ${strengthsList.map((s, idx) => {
+                    const colX = 62 + idx * 108;
+                    const peerH = 52;
+                    const peerY = 168 - peerH; // 116
+                    const barH = Math.min(114, peerH + Math.max(18, Math.round((s.score - 78) * 4.2)));
+                    const barY = 168 - barH;
+                    const pillY = Math.max(32, barY - 26);
+                    const shortTitle = (s.shortLabel || (s.title || '').replace(/\s*\(.*?\)/g, '')).slice(0, 10);
+                    return `
+                      <rect x="${colX - 32}" y="${peerY}" width="26" height="${peerH}" rx="5" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.2" />
+                      <text x="${colX - 19}" y="${peerY - 6}" fill="#475569" font-size="11" font-weight="900" text-anchor="middle">78</text>
+                      <rect x="${colX - 2}" y="${barY}" width="34" height="${barH}" rx="6" fill="#1D4ED8" />
+                      <rect x="${colX - 30}" y="${pillY}" width="86" height="22" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
+                      <text x="${colX + 13}" y="${pillY + 15}" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">${s.score}점(+${s.score - 78})</text>
+                      <text x="${colX}" y="192" fill="#0F172A" font-size="11.2" font-weight="900" text-anchor="middle">${shortTitle}</text>
+                    `;
+                  }).join('')}
+                </svg>
+              </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.42rem;">
               ${strengthsList.map((s) => `
                 <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-left: 4px solid #93C5FD; border-radius: 11px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
                   <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">
-                    ${s.icon} ${s.title} <span style="color: #1D4ED8; font-size:0.8rem;">(${s.score}점)</span>
+                    ${s.icon} ${s.title} <span style="color: #1D4ED8; font-size:0.8rem;">(${s.score}점 · 평균 대비 +${s.score - 78}점)</span>
                   </span>
                   <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700;">
                     ${s.goodTrait}
@@ -2440,51 +2474,80 @@
             </h3>
 
             <!-- Schematic SVG Before vs After Jump Chart -->
-            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 0.9rem; margin-bottom: 0.65rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
-                <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">보완 타겟 3대 영역 [현재 점수 → 6개월 코칭 목표]</span>
-                <div style="display: flex; gap: 0.55rem; font-size: 0.75rem; font-weight: 800;">
+            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 0.95rem; margin-bottom: 0.65rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8;">보완 타겟 3대 영역 [현재 점수 → 6개월 코칭 목표]</span>
+                <div style="display: flex; gap: 0.55rem; font-size: 0.78rem; font-weight: 800;">
                   <span style="color: #64748B;">■ 현재 점수</span>
-                  <span style="color: #1D4ED8;">■ 6개월 코칭 목표 (+16점↑)</span>
+                  <span style="color: #1D4ED8;">■ 6개월 코칭 목표 (+16점 향상)</span>
                 </div>
               </div>
-              <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 560 192" style="width: 100%; height: auto; display: block;">
-                <defs>
-                  <linearGradient id="weakBeforeGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#94A3B8" />
-                    <stop offset="100%" stop-color="#64748B" />
-                  </linearGradient>
-                  <linearGradient id="weakAfterGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#1D4ED8" />
-                    <stop offset="100%" stop-color="#2563EB" />
-                  </linearGradient>
-                </defs>
-                <line x1="20" y1="154" x2="540" y2="154" stroke="#E2E8F0" stroke-width="1.8" />
-                ${weaknessesList.map((w, idx) => {
-                  const colX = 100 + idx * 180;
-                  const targetScore = Math.min(96, w.score + 16);
-                  const curH = Math.max(36, Math.min(82, Math.round((w.score - 40) * 1.65)));
-                  const tarH = Math.max(62, Math.min(108, Math.round((targetScore - 40) * 1.65)));
-                  const curY = 154 - curH;
-                  const tarY = 154 - tarH;
-                  const curPillY = Math.max(24, curY - 22);
-                  const tarPillY = Math.max(8, tarY - 23);
-                  const shortTitle = w.shortLabel || (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
-                  return `
-                    <!-- Current Score Bar (Left of pair) -->
-                    <rect x="${colX - 46}" y="${curY}" width="34" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#64748B" stroke-width="1.4" />
-                    <rect x="${colX - 53}" y="${curPillY}" width="48" height="18" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1" />
-                    <text x="${colX - 29}" y="${curPillY + 13}" fill="#0F172A" font-size="10.5" font-weight="900" text-anchor="middle">${w.score}점</text>
-                    <!-- Non-overlapping Jump Arrow Between Bars -->
-                    <text x="${colX - 2}" y="${Math.round((curY + tarY) / 2 + 12)}" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">↗</text>
-                    <!-- Coached Target Bar (Right of pair) -->
-                    <rect x="${colX + 10}" y="${tarY}" width="38" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#1D4ED8" stroke-width="1.8" />
-                    <rect x="${colX + 2}" y="${tarPillY}" width="64" height="19" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.3" />
-                    <text x="${colX + 34}" y="${tarPillY + 13}" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
-                    <text x="${colX + 2}" y="176" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
-                  `;
-                }).join('')}
-              </svg>
+
+              <!-- PC Wide Before-After Jump Chart -->
+              <div class="pc-view-block">
+                <svg id="learning-step3-weakness-chart-svg" viewBox="0 0 560 204" style="width: 100%; height: auto; display: block;">
+                  <defs>
+                    <linearGradient id="weakBeforeGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#94A3B8" />
+                      <stop offset="100%" stop-color="#64748B" />
+                    </linearGradient>
+                    <linearGradient id="weakAfterGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#1D4ED8" />
+                      <stop offset="100%" stop-color="#2563EB" />
+                    </linearGradient>
+                  </defs>
+                  <line x1="20" y1="164" x2="540" y2="164" stroke="#CBD5E1" stroke-width="2" />
+                  ${weaknessesList.map((w, idx) => {
+                    const colX = 100 + idx * 180;
+                    const targetScore = Math.min(96, w.score + 16);
+                    const curH = Math.max(44, Math.min(72, Math.round((w.score - 50) * 2.2)));
+                    const tarH = Math.min(118, curH + 42);
+                    const curY = 164 - curH;
+                    const tarY = 164 - tarH;
+                    const curPillY = Math.max(24, curY - 24);
+                    const tarPillY = Math.max(8, tarY - 25);
+                    const shortTitle = w.shortLabel || (w.title || '').replace(/\s*\(.*?\)/g, '').slice(0, 10);
+                    return `
+                      <!-- Current Score Bar (Left of pair) -->
+                      <rect x="${colX - 48}" y="${curY}" width="38" height="${curH}" rx="6" fill="url(#weakBeforeGrad)" stroke="#64748B" stroke-width="1.4" />
+                      <rect x="${colX - 55}" y="${curPillY}" width="52" height="20" rx="6" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.2" />
+                      <text x="${colX - 29}" y="${curPillY + 14}" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${w.score}점</text>
+                      <!-- Jump Arrow Between Bars -->
+                      <text x="${colX - 2}" y="${Math.round((curY + tarY) / 2 + 10)}" fill="#1D4ED8" font-size="15" font-weight="900" text-anchor="middle">↗</text>
+                      <!-- Coached Target Bar (Right of pair) -->
+                      <rect x="${colX + 10}" y="${tarY}" width="42" height="${tarH}" rx="7" fill="url(#weakAfterGrad)" stroke="#1D4ED8" stroke-width="1.8" />
+                      <rect x="${colX}" y="${tarPillY}" width="72" height="22" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5" />
+                      <text x="${colX + 36}" y="${tarPillY + 15}" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
+                      <text x="${colX + 2}" y="188" fill="#0F172A" font-size="13" font-weight="900" text-anchor="middle">${w.icon} ${shortTitle}</text>
+                    `;
+                  }).join('')}
+                </svg>
+              </div>
+
+              <!-- Mobile Large-Font Before-After Jump Chart -->
+              <div class="mobile-view-block">
+                <svg viewBox="0 0 340 205" style="width: 100%; height: auto; display: block;">
+                  <line x1="10" y1="164" x2="330" y2="164" stroke="#CBD5E1" stroke-width="2" />
+                  ${weaknessesList.map((w, idx) => {
+                    const colX = 62 + idx * 108;
+                    const targetScore = Math.min(96, w.score + 16);
+                    const curH = Math.max(44, Math.min(70, Math.round((w.score - 50) * 2.2)));
+                    const tarH = Math.min(116, curH + 42);
+                    const curY = 164 - curH;
+                    const tarY = 164 - tarH;
+                    const tarPillY = Math.max(8, tarY - 24);
+                    const shortTitle = (w.shortLabel || (w.title || '').replace(/\s*\(.*?\)/g, '')).slice(0, 10);
+                    return `
+                      <rect x="${colX - 32}" y="${curY}" width="26" height="${curH}" rx="5" fill="#94A3B8" stroke="#64748B" stroke-width="1.2" />
+                      <text x="${colX - 19}" y="${curY - 6}" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${w.score}</text>
+                      <rect x="${colX - 2}" y="${tarY}" width="32" height="${tarH}" rx="6" fill="#1D4ED8" />
+                      <rect x="${colX - 24}" y="${tarPillY}" width="76" height="21" rx="7" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
+                      <text x="${colX + 14}" y="${tarPillY + 15}" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">목표 ${targetScore}점</text>
+                      <text x="${colX}" y="188" fill="#0F172A" font-size="11.2" font-weight="900" text-anchor="middle">${shortTitle}</text>
+                    `;
+                  }).join('')}
+                </svg>
+              </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.42rem;">
@@ -2521,35 +2584,57 @@
               4. 우리 아이 두뇌 강점 × 미래 진로 적성 매칭도
             </h3>
 
-            <!-- Schematic SVG Brain-to-Career Aptitude Mapping Diagram -->
-            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.8rem 0.9rem; margin-bottom: 0.65rem;">
-              <svg id="learning-step4-career-diagram-svg" viewBox="0 0 560 148" style="width: 100%; height: auto; display: block;">
-                <!-- Left Node: Child's Core Brain Circuit -->
-                <rect x="8" y="24" width="168" height="98" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
-                <text x="92" y="49" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">핵심 두뇌 강점 회로</text>
-                <text x="92" y="74" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
-                <text x="92" y="99" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">1위: ${strengthsList[0].shortLabel || (strengthsList[0].title || '').slice(0, 10)}</text>
+            <!-- Schematic SVG Brain-to-Career Aptitude Mapping Diagram (PC SVG vs Mobile Full-Width Flow) -->
+            <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 0.95rem; margin-bottom: 0.65rem;">
+              <div class="pc-view-block">
+                <svg id="learning-step4-career-diagram-svg" viewBox="0 0 560 156" style="width: 100%; height: auto; display: block;">
+                  <!-- Left Node: Child's Core Brain Circuit -->
+                  <rect x="8" y="22" width="174" height="108" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
+                  <text x="95" y="48" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">핵심 두뇌 강점 회로</text>
+                  <text x="95" y="76" fill="#0F172A" font-size="13" font-weight="900" text-anchor="middle">${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')}</text>
+                  <text x="95" y="104" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">1위: ${strengthsList[0].shortLabel || (strengthsList[0].title || '').slice(0, 10)}</text>
 
-                <!-- Connecting Flow Lines -->
-                <path d="M 176 73 C 206 73, 210 28, 238 28" fill="none" stroke="#1D4ED8" stroke-width="2.8" />
-                <path d="M 176 73 L 238 73" fill="none" stroke="#3B82F6" stroke-width="2.8" />
-                <path d="M 176 73 C 206 73, 210 118, 238 118" fill="none" stroke="#64748B" stroke-width="2.8" />
+                  <!-- Connecting Flow Lines -->
+                  <path d="M 182 76 C 210 76, 212 28, 238 28" fill="none" stroke="#1D4ED8" stroke-width="2.8" />
+                  <path d="M 182 76 L 238 76" fill="none" stroke="#3B82F6" stroke-width="2.8" />
+                  <path d="M 182 76 C 210 76, 212 124, 238 124" fill="none" stroke="#64748B" stroke-width="2.8" />
 
-                <!-- Right 3 Career Target Nodes -->
-                ${recommendedCareers.map((c, idx) => {
-                  const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
-                  const boxY = 9 + idx * 45;
-                  const strokeCol = idx === 0 ? '#1D4ED8' : idx === 1 ? '#3B82F6' : '#64748B';
-                  const shortGroup = (c.group || '').replace(/\s*\(.*?\)/g, '');
-                  const shortJob = c.shortJob || ((c.jobs || '').split('·')[0] || '').trim().slice(0, 10);
-                  return `
-                    <rect x="238" y="${boxY}" width="314" height="38" rx="10" fill="#EFF6FF" stroke="${strokeCol}" stroke-width="1.8" />
-                    <text x="250" y="${boxY + 24}" fill="#1D4ED8" font-size="11.5" font-weight="900">${c.icon} ${shortGroup} · ${shortJob}</text>
-                    <rect x="472" y="${boxY + 7}" width="72" height="24" rx="7" fill="#FFFFFF" stroke="${strokeCol}" />
-                    <text x="508" y="${boxY + 23}" fill="#0F172A" font-size="11" font-weight="900" text-anchor="middle">${matchPct}% 매칭</text>
-                  `;
-                }).join('')}
-              </svg>
+                  <!-- Right 3 Career Target Nodes -->
+                  ${recommendedCareers.map((c, idx) => {
+                    const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
+                    const boxY = 8 + idx * 48;
+                    const strokeCol = idx === 0 ? '#1D4ED8' : idx === 1 ? '#3B82F6' : '#64748B';
+                    const shortGroup = (c.group || '').replace(/\s*\(.*?\)/g, '');
+                    const shortJob = c.shortJob || ((c.jobs || '').split('·')[0] || '').trim().slice(0, 10);
+                    return `
+                      <rect x="238" y="${boxY}" width="314" height="40" rx="10" fill="#EFF6FF" stroke="${strokeCol}" stroke-width="1.8" />
+                      <text x="252" y="${boxY + 25}" fill="#0F172A" font-size="12.5" font-weight="900">${c.icon} ${shortGroup} · ${shortJob}</text>
+                      <rect x="468" y="${boxY + 7}" width="76" height="26" rx="8" fill="#FFFFFF" stroke="${strokeCol}" stroke-width="1.4" />
+                      <text x="506" y="${boxY + 24}" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">${matchPct}% 매칭</text>
+                    `;
+                  }).join('')}
+                </svg>
+              </div>
+              <div class="mobile-view-block">
+                <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                  <div style="background: #EFF6FF; border: 1.5px solid #1D4ED8; border-radius: 12px; padding: 0.6rem 0.85rem; text-align: center;">
+                    <div style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">핵심 두뇌 강점 회로 (${(activeStyleInfo.badge || '').replace(/\s*\(.*?\)/g, '')})</div>
+                    <div style="font-size: 0.94rem; font-weight: 900; color: #0F172A; margin-top: 0.1rem;">1순위 강점: ${strengthsList[0].shortLabel || strengthsList[0].title} (${strengthsList[0].score}점)</div>
+                  </div>
+                  <div style="text-align: center; font-size: 0.85rem; font-weight: 900; color: #1D4ED8; line-height: 1;">▼ 유망 진로 적성 매칭 TOP 3</div>
+                  ${recommendedCareers.map((c, idx) => {
+                    const matchPct = idx === 0 ? 96 : idx === 1 ? 92 : 89;
+                    const shortGroup = (c.group || '').replace(/\s*\(.*?\)/g, '');
+                    const shortJob = c.shortJob || ((c.jobs || '').split('·')[0] || '').trim();
+                    return `
+                      <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
+                        <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">${idx + 1}위 · ${shortGroup} (${shortJob})</span>
+                        <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; border: 1px solid #93C5FD; padding: 0.18rem 0.55rem; border-radius: 9999px; white-space: nowrap;">적성 ${matchPct}%</span>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.42rem;">
@@ -2622,7 +2707,7 @@
                 <rect x="464" y="8" width="188" height="138" rx="14" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" />
                 <circle cx="504" cy="44" r="20" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="1.6" />
                 <text x="504" y="49" fill="#1D4ED8" font-size="13" font-weight="900" text-anchor="middle">03</text>
-                <text x="536" y="38" fill="#1D4ED8" font-size="11" font-weight="900">STEP 3 · 대뇌피질 코팅</text>
+                <text x="536" y="38" fill="#1D4ED8" font-size="10.5" font-weight="900">STEP 3 · 대뇌 수면코팅</text>
                 <text x="536" y="56" fill="#0F172A" font-size="12.5" font-weight="900">밤 10시 서파수면</text>
                 <text x="478" y="88" fill="#0F172A" font-size="10.8" font-weight="700">• 수면 중 해마→대뇌 장기기억 전송</text>
                 <rect x="478" y="106" width="160" height="24" rx="6" fill="#FFFFFF" stroke="#BFDBFE" />
@@ -2663,30 +2748,48 @@
               5. 강점 성향 200% 살리는 3단계 가속 다이어그램
             </h3>
 
-            <!-- Visual SVG Boost Schematic Diagram -->
+            <!-- Visual SVG Boost Schematic Diagram (PC SVG vs Mobile Full-Width Cards) -->
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.6rem;">
-              <svg id="learning-step5-boost-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
-                <rect x="6" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="86" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">① 강점 채널 개방</text>
-                <text x="86" y="58" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
-                <text x="86" y="82" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">흥미 자극 도입 (5분)</text>
+              <div class="pc-view-block">
+                <svg id="learning-step5-boost-svg" viewBox="0 0 540 116" style="width: 100%; height: auto; display: block;">
+                  <rect x="6" y="8" width="160" height="100" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="86" y="34" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">① 강점 채널 개방</text>
+                  <text x="86" y="60" fill="#0F172A" font-size="13.5" font-weight="900" text-anchor="middle">${activeStyleInfo.badge}</text>
+                  <text x="86" y="86" fill="#1D4ED8" font-size="11.5" font-weight="800" text-anchor="middle">흥미 자극 도입 (5분)</text>
 
-                <path d="M 168 56 L 184 56" stroke="#1D4ED8" stroke-width="3" />
-                <polygon points="182,50 190,56 182,62" fill="#1D4ED8" />
+                  <path d="M 168 58 L 184 58" stroke="#1D4ED8" stroke-width="3" />
+                  <polygon points="182,52 190,58 182,64" fill="#1D4ED8" />
 
-                <rect x="192" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="272" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">② 주도적 탐색·표현</text>
-                <text x="272" y="58" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">${isToddlerAge ? '손끝·그림책 10분 놀이' : '직접 조작·3줄 설명'}</text>
-                <text x="272" y="82" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">전두엽 도파민 활성</text>
+                  <rect x="192" y="8" width="160" height="100" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="272" y="34" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">② 주도적 탐색·표현</text>
+                  <text x="272" y="60" fill="#0F172A" font-size="13.5" font-weight="900" text-anchor="middle">${isToddlerAge ? '손끝·그림책 10분 놀이' : '직접 조작·3줄 설명'}</text>
+                  <text x="272" y="86" fill="#1D4ED8" font-size="11.5" font-weight="800" text-anchor="middle">전두엽 도파민 활성</text>
 
-                <path d="M 354 56 L 370 56" stroke="#1D4ED8" stroke-width="3" />
-                <polygon points="368,50 376,56 368,62" fill="#1D4ED8" />
+                  <path d="M 354 58 L 370 58" stroke="#1D4ED8" stroke-width="3" />
+                  <polygon points="368,52 376,58 368,64" fill="#1D4ED8" />
 
-                <rect x="378" y="8" width="156" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="456" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">③ 상위권 회로 완성</text>
-                <text x="456" y="58" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">시냅스 흡수율 200% 향상</text>
-                <text x="456" y="82" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">자기주도 성취감 정착</text>
-              </svg>
+                  <rect x="378" y="8" width="156" height="100" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="456" y="34" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">③ 상위권 회로 완성</text>
+                  <text x="456" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">시냅스 흡수율 200% 향상</text>
+                  <text x="456" y="86" fill="#1D4ED8" font-size="11.5" font-weight="800" text-anchor="middle">자기주도 성취감 정착</text>
+                </svg>
+              </div>
+              <div class="mobile-view-block">
+                <div style="display: flex; flex-direction: column; gap: 0.42rem;">
+                  <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">① 강점 채널 개방</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">${activeStyleInfo.badge} (5분 도입)</span>
+                  </div>
+                  <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">② 주도적 탐색·표현</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">${isToddlerAge ? '손끝·그림책 10분 놀이' : '직접 조작·3줄 설명'}</span>
+                  </div>
+                  <div style="background: #EFF6FF; border: 1.5px solid #1D4ED8; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">③ 상위권 회로 완성</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8;">시냅스 흡수율 200% 향상</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.42rem;">
@@ -2717,30 +2820,48 @@
               6. 보완 포인트 1:1 교정 &amp; 일일 루틴 도식도
             </h3>
 
-            <!-- Visual SVG Remedy Flow Diagram -->
+            <!-- Visual SVG Remedy Flow Diagram (PC SVG vs Mobile Full-Width Cards) -->
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.6rem;">
-              <svg id="learning-step6-remedy-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
-                <rect x="6" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#64748B" stroke-width="1.8" />
-                <text x="86" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">현재 학습 병목</text>
-                <text x="86" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${weaknessesList[0].shortLabel || (weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</text>
-                <text x="86" y="82" fill="#475569" font-size="10.5" font-weight="800" text-anchor="middle">작업기억 피로 · 산만</text>
+              <div class="pc-view-block">
+                <svg id="learning-step6-remedy-svg" viewBox="0 0 540 116" style="width: 100%; height: auto; display: block;">
+                  <rect x="6" y="8" width="160" height="100" rx="12" fill="#F8FAFC" stroke="#64748B" stroke-width="1.8" />
+                  <text x="86" y="34" fill="#475569" font-size="12.5" font-weight="900" text-anchor="middle">① 현재 학습 병목</text>
+                  <text x="86" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">${weaknessesList[0].shortLabel || (weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</text>
+                  <text x="86" y="86" fill="#475569" font-size="11.5" font-weight="800" text-anchor="middle">작업기억 피로 · 산만</text>
 
-                <path d="M 168 56 L 184 56" stroke="#1D4ED8" stroke-width="3" />
-                <polygon points="182,50 190,56 182,62" fill="#1D4ED8" />
+                  <path d="M 168 58 L 184 58" stroke="#1D4ED8" stroke-width="3" />
+                  <polygon points="182,52 190,58 182,64" fill="#1D4ED8" />
 
-                <rect x="192" y="8" width="160" height="96" rx="12" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.8" />
-                <text x="272" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">맞춤형 환경 처방</text>
-                <text x="272" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">독서대 15°+${lqData.trajectory.coached.focusMinutes}분 타이머</text>
-                <text x="272" y="82" fill="#1D4ED8" font-size="10.5" font-weight="800" text-anchor="middle">소단위 분할 · 구조화</text>
+                  <rect x="192" y="8" width="160" height="100" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="272" y="34" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">② 맞춤형 환경 처방</text>
+                  <text x="272" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">독서대 15°+${lqData.trajectory.coached.focusMinutes}분 타이머</text>
+                  <text x="272" y="86" fill="#1D4ED8" font-size="11.5" font-weight="800" text-anchor="middle">소단위 분할 · 구조화</text>
 
-                <path d="M 354 56 L 370 56" stroke="#1D4ED8" stroke-width="3" />
-                <polygon points="368,50 376,56 368,62" fill="#1D4ED8" />
+                  <path d="M 354 58 L 370 58" stroke="#1D4ED8" stroke-width="3" />
+                  <polygon points="368,52 376,58 368,64" fill="#1D4ED8" />
 
-                <rect x="378" y="8" width="156" height="96" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="456" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">6개월 코칭 목표</text>
-                <text x="456" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점 향상)</text>
-                <text x="456" y="82" fill="#1D4ED8" font-size="10.5" font-weight="800" text-anchor="middle">착석 지구력 · 자신감</text>
-              </svg>
+                  <rect x="378" y="8" width="156" height="100" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="456" y="34" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">③ 6개월 코칭 목표</text>
+                  <text x="456" y="60" fill="#0F172A" font-size="13" font-weight="900" text-anchor="middle">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점 향상)</text>
+                  <text x="456" y="86" fill="#1D4ED8" font-size="11.5" font-weight="800" text-anchor="middle">착석 지구력 · 자신감</text>
+                </svg>
+              </div>
+              <div class="mobile-view-block">
+                <div style="display: flex; flex-direction: column; gap: 0.42rem;">
+                  <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #475569;">① 현재 학습 병목</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">${weaknessesList[0].shortLabel || (weaknessesList[0].title || '').slice(0, 10)} (${weaknessesList[0].score}점)</span>
+                  </div>
+                  <div style="background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8;">② 맞춤형 환경 처방</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">독서대 15° + ${lqData.trajectory.coached.focusMinutes}분 타이머</span>
+                  </div>
+                  <div style="background: #EFF6FF; border: 1.5px solid #1D4ED8; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8;">③ 6개월 코칭 목표</span>
+                    <span style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8;">목표 ${Math.min(96, weaknessesList[0].score + 16)}점 (+16점 향상)</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.42rem; margin-bottom: 0.65rem;">
@@ -2758,30 +2879,32 @@
 
             <!-- 4-Stage Self-Directed Study Timetable (#bespoke-learning-timetable-box) -->
             <div id="bespoke-learning-timetable-box" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.9rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.86rem; font-weight: 900; color: #1D4ED8;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem;">
+                <span style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8;">
                   만 ${ageYears}세 하루 4단계 두뇌 루틴 타임라인 그래프
                 </span>
-                <span style="font-size: 0.74rem; color: #1D4ED8; font-weight: 800;">
+                <span style="font-size: 0.76rem; color: #1D4ED8; font-weight: 800;">
                   오전 워밍업 → 오후 몰입 → 저녁 인출 → 밤 수면코팅
                 </span>
               </div>
-              <svg id="learning-timetable-clock-svg" viewBox="0 0 540 72" style="width: 100%; height: auto; display: block; margin-bottom: 0.45rem;">
-                <line x1="36" y1="26" x2="504" y2="26" stroke="#93C5FD" stroke-width="3.5" />
-                <circle cx="72" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
-                <text x="72" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">① 오전 워밍업</text>
-                <circle cx="204" cy="26" r="10" fill="#64748B" stroke="#FFFFFF" stroke-width="2" />
-                <text x="204" y="54" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">② 오후 집중몰입</text>
-                <circle cx="338" cy="26" r="10" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
-                <text x="338" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">③ 저녁 3줄 인출</text>
-                <circle cx="468" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
-                <text x="468" y="54" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">④ 밤 10시 수면코팅</text>
-              </svg>
-              <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.38rem; font-size: 0.79rem; color: #0F172A; line-height: 1.35;">
-                <div style="background: #EFF6FF; border-left: 3px solid #93C5FD; padding: 0.38rem 0.55rem; border-radius: 7px;">${bespokeNote.learningDailyRoutine.stage1}</div>
-                <div style="background: #EFF6FF; border-left: 3px solid #93C5FD; padding: 0.38rem 0.55rem; border-radius: 7px;">${bespokeNote.learningDailyRoutine.stage2}</div>
-                <div style="background: #EFF6FF; border-left: 3px solid #93C5FD; padding: 0.38rem 0.55rem; border-radius: 7px;">${bespokeNote.learningDailyRoutine.stage3}</div>
-                <div style="background: #EFF6FF; border-left: 3px solid #93C5FD; padding: 0.38rem 0.55rem; border-radius: 7px;">${bespokeNote.learningDailyRoutine.stage4}</div>
+              <div class="pc-view-block">
+                <svg id="learning-timetable-clock-svg" viewBox="0 0 540 72" style="width: 100%; height: auto; display: block; margin-bottom: 0.45rem;">
+                  <line x1="36" y1="26" x2="504" y2="26" stroke="#93C5FD" stroke-width="3.5" />
+                  <circle cx="72" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="72" y="56" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">① 오전 워밍업</text>
+                  <circle cx="204" cy="26" r="10" fill="#64748B" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="204" y="56" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">② 오후 집중몰입</text>
+                  <circle cx="338" cy="26" r="10" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="338" y="56" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">③ 저녁 3줄 인출</text>
+                  <circle cx="468" cy="26" r="10" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="468" y="56" fill="#1D4ED8" font-size="12.5" font-weight="900" text-anchor="middle">④ 밤 10시 수면코팅</text>
+                </svg>
+              </div>
+              <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.42rem; font-size: 0.84rem; color: #0F172A; line-height: 1.42; font-weight: 700;">
+                <div style="background: #EFF6FF; border-left: 3.5px solid #1D4ED8; padding: 0.48rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage1}</div>
+                <div style="background: #EFF6FF; border-left: 3.5px solid #1D4ED8; padding: 0.48rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage2}</div>
+                <div style="background: #EFF6FF; border-left: 3.5px solid #1D4ED8; padding: 0.48rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage3}</div>
+                <div style="background: #EFF6FF; border-left: 3.5px solid #1D4ED8; padding: 0.48rem 0.65rem; border-radius: 8px;">${bespokeNote.learningDailyRoutine.stage4}</div>
               </div>
             </div>
           </div>
@@ -2806,36 +2929,58 @@
               7. 진단 결과와 직결된 3대 맞춤 솔루션 시너지 도식도
             </h3>
 
-            <!-- Schematic SVG 3-Pillar Synergy Diagram -->
+            <!-- Schematic SVG 3-Pillar Synergy Diagram (PC SVG vs Mobile Full-Width Cards) -->
             <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.75rem 0.85rem; margin-bottom: 0.6rem;">
-              <svg id="learning-step7-synergy-svg" viewBox="0 0 540 112" style="width: 100%; height: auto; display: block;">
-                <rect x="6" y="8" width="126" height="96" rx="11" fill="#EFF6FF" stroke="#64748B" stroke-width="1.8" />
-                <text x="69" y="34" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">1. 맞춤 교구</text>
-                <text x="69" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">타이머 · 독서대</text>
-                <text x="69" y="82" fill="#475569" font-size="10" font-weight="800" text-anchor="middle">전두엽 몰입 세팅</text>
+              <div class="pc-view-block">
+                <svg id="learning-step7-synergy-svg" viewBox="0 0 540 116" style="width: 100%; height: auto; display: block;">
+                  <rect x="6" y="8" width="126" height="100" rx="11" fill="#EFF6FF" stroke="#64748B" stroke-width="1.8" />
+                  <text x="69" y="34" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">1. 맞춤 교구</text>
+                  <text x="69" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">타이머 · 독서대</text>
+                  <text x="69" y="86" fill="#475569" font-size="11" font-weight="800" text-anchor="middle">전두엽 몰입 세팅</text>
 
-                <text x="142" y="62" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
+                  <text x="142" y="64" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
 
-                <rect x="152" y="8" width="126" height="96" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="215" y="34" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">2. 맞춤 도서</text>
-                <text x="215" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">필독서 · 사고력</text>
-                <text x="215" y="82" fill="#1D4ED8" font-size="10" font-weight="800" text-anchor="middle">문해 · 수리 확장</text>
+                  <rect x="152" y="8" width="126" height="100" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="215" y="34" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">2. 맞춤 도서</text>
+                  <text x="215" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">필독서 · 사고력</text>
+                  <text x="215" y="86" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">문해 · 수리 확장</text>
 
-                <text x="288" y="62" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
+                  <text x="288" y="64" fill="#1D4ED8" font-size="18" font-weight="900" text-anchor="middle">+</text>
 
-                <rect x="298" y="8" width="124" height="96" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="360" y="34" fill="#1D4ED8" font-size="11" font-weight="900" text-anchor="middle">3. 주말 체험</text>
-                <text x="360" y="58" fill="#0F172A" font-size="11.5" font-weight="900" text-anchor="middle">${(profile.region || '수도권').slice(0, 6)} 체험</text>
-                <text x="360" y="82" fill="#1D4ED8" font-size="10" font-weight="800" text-anchor="middle">배경지식 코팅</text>
+                  <rect x="298" y="8" width="124" height="100" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="360" y="34" fill="#1D4ED8" font-size="12" font-weight="900" text-anchor="middle">3. 주말 체험</text>
+                  <text x="360" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">${(profile.region || '수도권').slice(0, 6)} 체험</text>
+                  <text x="360" y="86" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">배경지식 코팅</text>
 
-                <path d="M 426 56 L 440 56" stroke="#1D4ED8" stroke-width="3" />
-                <polygon points="438,50 446,56 438,62" fill="#1D4ED8" />
+                  <path d="M 426 58 L 440 58" stroke="#1D4ED8" stroke-width="3" />
+                  <polygon points="438,52 446,58 438,64" fill="#1D4ED8" />
 
-                <rect x="448" y="8" width="86" height="96" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
-                <text x="491" y="34" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">시너지</text>
-                <text x="491" y="58" fill="#0F172A" font-size="12" font-weight="900" text-anchor="middle">LQ ${lqData.trajectory.coached.lqScore}점</text>
-                <text x="491" y="82" fill="#1D4ED8" font-size="10.5" font-weight="900" text-anchor="middle">+${lqData.trajectory.coached.gainLq}점 향상</text>
-              </svg>
+                  <rect x="448" y="8" width="86" height="100" rx="11" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.8" />
+                  <text x="491" y="34" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">시너지</text>
+                  <text x="491" y="60" fill="#0F172A" font-size="12.5" font-weight="900" text-anchor="middle">LQ ${lqData.trajectory.coached.lqScore}점</text>
+                  <text x="491" y="86" fill="#1D4ED8" font-size="11.5" font-weight="900" text-anchor="middle">+${lqData.trajectory.coached.gainLq}점 향상</text>
+                </svg>
+              </div>
+              <div class="mobile-view-block">
+                <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                  <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8;">1. 맞춤 교구 (타이머·독서대)</span>
+                    <span style="font-size: 0.82rem; font-weight: 800; color: #0F172A;">전두엽 몰입 세팅</span>
+                  </div>
+                  <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8;">2. 맞춤 도서 (필독서·사고력)</span>
+                    <span style="font-size: 0.82rem; font-weight: 800; color: #0F172A;">문해·수리 확장</span>
+                  </div>
+                  <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8;">3. 주말 체험 (${(profile.region || '수도권').slice(0, 6)})</span>
+                    <span style="font-size: 0.82rem; font-weight: 800; color: #0F172A;">배경지식 코팅</span>
+                  </div>
+                  <div style="background: #EFF6FF; border: 1.5px solid #1D4ED8; border-radius: 10px; padding: 0.55rem 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.84rem; font-weight: 900; color: #1D4ED8;">▶ 3축 결합 시너지 목표</span>
+                    <span style="font-size: 0.92rem; font-weight: 900; color: #1D4ED8;">LQ ${lqData.trajectory.coached.lqScore}점 (+${lqData.trajectory.coached.gainLq}점 향상)</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem;">
