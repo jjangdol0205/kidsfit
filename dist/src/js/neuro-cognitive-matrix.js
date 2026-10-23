@@ -1066,7 +1066,7 @@
 
         <!-- Reference Archival Chip -->
         <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-          <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25ED%2595%2598%25EB%25B8%258C%25EB%25A3%25A8%25ED%2583%2580%2B%25EA%25B3%25BC%25ED%2595%2599" 
+          <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%2525ED%252595%252598%2525EB%2525B8%25258C%2525EB%2525A3%2525A8%2525ED%252583%252580%252B%2525EA%2525B3%2525BC%2525ED%252595%252599" 
              target="_blank" 
              rel="noopener noreferrer" 
              class="reference-chip" 

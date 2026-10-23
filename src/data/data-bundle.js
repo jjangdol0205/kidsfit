@@ -356,7 +356,7 @@
         "price": 18500,
         "coupangPath": "vp/products/moka-art-package"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctsa1",
+      "mrtShortUrl": "https://myrealt.rip/xwYYc9",
       "klookQuery": "서울 어린이 미술관 전시 체험",
       "ageBandGuides": {
         "age_1_3": "현대어린이책미술관(MOKA) 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -384,7 +384,7 @@
         "price": 16800,
         "coupangPath": "vp/products/folk-museum-history-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctOaf",
+      "mrtShortUrl": "https://myrealt.rip/xwYZcd",
       "klookQuery": "롯데월드 민속박물관 어드벤처",
       "ageBandGuides": {
         "age_1_3": "롯데월드 민속박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -412,7 +412,7 @@
         "price": 21000,
         "coupangPath": "vp/products/ocean-magnetic-encyclopedia"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctNfd",
+      "mrtShortUrl": "https://myrealt.rip/xwYQee",
       "klookQuery": "코엑스 아쿠아리움 입장권",
       "ageBandGuides": {
         "age_1_3": "코엑스 아쿠아리움 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -440,7 +440,7 @@
         "price": 32000,
         "coupangPath": "vp/products/smart-sensor-coding-pack"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctu9d",
+      "mrtShortUrl": "https://myrealt.rip/xwYa45",
       "klookQuery": "서울 과학 키즈 체험",
       "ageBandGuides": {
         "age_1_3": "LG디스커버리랩 서울 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -468,7 +468,7 @@
         "price": 19500,
         "coupangPath": "vp/products/8tone-xylophone-storybook"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctv93",
+      "mrtShortUrl": "https://myrealt.rip/xwYb29",
       "klookQuery": "서울 어린이 뮤지컬 공연",
       "ageBandGuides": {
         "age_1_3": "예술의전당 어린이예술문화원 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -496,7 +496,7 @@
         "price": 23500,
         "coupangPath": "vp/products/washable-paint-easel-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctw4a",
+      "mrtShortUrl": "https://myrealt.rip/xwYc25",
       "klookQuery": "서울 홍대 전시 체험",
       "ageBandGuides": {
         "age_1_3": "KT 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -524,7 +524,7 @@
         "price": 17900,
         "coupangPath": "vp/products/national-museum-3d-puzzle"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctPa2",
+      "mrtShortUrl": "https://myrealt.rip/xwYWc4",
       "klookQuery": "경복궁 국립중앙박물관 투어",
       "ageBandGuides": {
         "age_1_3": "국립중앙박물관 어린이박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -552,7 +552,7 @@
         "price": 15900,
         "coupangPath": "vp/products/dino-fossil-dig-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctR7f",
+      "mrtShortUrl": "https://myrealt.rip/xwYS16",
       "klookQuery": "서울 자연사박물관 공룡 체험",
       "ageBandGuides": {
         "age_1_3": "서대문자연사박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -580,7 +580,7 @@
         "price": 28000,
         "coupangPath": "vp/products/gravity-marble-run-120p"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctx67",
+      "mrtShortUrl": "https://myrealt.rip/xwYd08",
       "klookQuery": "서울 과학관 천문대 체험",
       "ageBandGuides": {
         "age_1_3": "서울시립과학관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -608,7 +608,7 @@
         "price": 19800,
         "coupangPath": "vp/products/korean-drum-soundbook"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctyfb",
+      "mrtShortUrl": "https://myrealt.rip/xwYg3b",
       "klookQuery": "서울 어린이 공연 뮤지컬",
       "ageBandGuides": {
         "age_1_3": "국립극장 하늘극장 어린이 판소리·동화 뮤지컬 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -636,7 +636,7 @@
         "price": 17000,
         "coupangPath": "vp/products/nature-collage-sketchbook"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctz98",
+      "mrtShortUrl": "https://myrealt.rip/xwYh34",
       "klookQuery": "수원 미술관 화성 투어",
       "ageBandGuides": {
         "age_1_3": "경기상상캠퍼스 디자인1978 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -664,7 +664,7 @@
         "price": 22000,
         "coupangPath": "vp/products/suwon-geojunggi-wood-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctT73",
+      "mrtShortUrl": "https://myrealt.rip/xwYi97",
       "klookQuery": "수원화성 한국민속촌 입장권",
       "ageBandGuides": {
         "age_1_3": "수원화성 화성행궁 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -692,7 +692,7 @@
         "price": 24500,
         "coupangPath": "vp/products/safari-animals-encyclopedia"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctSa3",
+      "mrtShortUrl": "https://myrealt.rip/xwYR65",
       "klookQuery": "에버랜드 종일권 사파리",
       "ageBandGuides": {
         "age_1_3": "에버랜드 로스트밸리 생태체험관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -720,7 +720,7 @@
         "price": 18900,
         "coupangPath": "vp/products/solar-system-glow-mobile"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctV46",
+      "mrtShortUrl": "https://myrealt.rip/xwYj56",
       "klookQuery": "과천과학관 서울랜드 입장권",
       "ageBandGuides": {
         "age_1_3": "국립과천과학관 미래상상SF관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -748,7 +748,7 @@
         "price": 21500,
         "coupangPath": "vp/products/classic-fairy-tale-music-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu032",
+      "mrtShortUrl": "https://myrealt.rip/xwYke5",
       "klookQuery": "경기 용인 키즈 체험",
       "ageBandGuides": {
         "age_1_3": "경기아트센터 소극장 어린이 클래식 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -776,7 +776,7 @@
         "price": 16500,
         "coupangPath": "vp/products/clay-sculpting-tool-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctX9c",
+      "mrtShortUrl": "https://myrealt.rip/xwYT81",
       "klookQuery": "파주 헤이리 예술마을 체험",
       "ageBandGuides": {
         "age_1_3": "인천 청라 키즈드로잉 까페 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -804,7 +804,7 @@
         "price": 15800,
         "coupangPath": "vp/products/prehistoric-hut-wood-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu194",
+      "mrtShortUrl": "https://myrealt.rip/xwYlea",
       "klookQuery": "강화도 루지 역사 투어",
       "ageBandGuides": {
         "age_1_3": "강화도 고인돌유적지 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -832,7 +832,7 @@
         "price": 14200,
         "coupangPath": "vp/products/aqua-sticker-magnifier-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctW3e",
+      "mrtShortUrl": "https://myrealt.rip/xwYn5e",
       "klookQuery": "아쿠아플라넷 일산 입장권",
       "ageBandGuides": {
         "age_1_3": "아쿠아플라넷 일산 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -860,7 +860,7 @@
         "price": 19800,
         "coupangPath": "vp/products/air-rocket-launcher-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu2d7",
+      "mrtShortUrl": "https://myrealt.rip/xwYo3a",
       "klookQuery": "인천 강화도 우주 과학 체험",
       "ageBandGuides": {
         "age_1_3": "인천어린이과학관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -888,7 +888,7 @@
         "price": 18200,
         "coupangPath": "vp/products/vocal-soundbook-xylophone"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu392",
+      "mrtShortUrl": "https://myrealt.rip/xwYpd9",
       "klookQuery": "파주 출판단지 박물관 체험",
       "ageBandGuides": {
         "age_1_3": "부평아트센터 어린이 뮤지컬 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -916,7 +916,7 @@
         "price": 15000,
         "coupangPath": "vp/products/eco-kraft-sculpture-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu40a",
+      "mrtShortUrl": "https://myrealt.rip/xwYqcd",
       "klookQuery": "부산 현대미술관 전시 투어",
       "ageBandGuides": {
         "age_1_3": "부산현대미술관(MOCA 부산) 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -944,7 +944,7 @@
         "price": 16000,
         "coupangPath": "vp/products/gaya-crown-craft-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu597",
+      "mrtShortUrl": "https://myrealt.rip/xwYrec",
       "klookQuery": "부산 역사 투어 박물관",
       "ageBandGuides": {
         "age_1_3": "부산박물관 어린이박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -972,7 +972,7 @@
         "price": 17500,
         "coupangPath": "vp/products/dino-footprint-stamp-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctb0a",
+      "mrtShortUrl": "https://myrealt.rip/xwYsdd",
       "klookQuery": "부산 씨라이프 아쿠아리움",
       "ageBandGuides": {
         "age_1_3": "부산해양자연사박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1000,7 +1000,7 @@
         "price": 28900,
         "coupangPath": "vp/products/stem-gears-assembly-set"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu697",
+      "mrtShortUrl": "https://myrealt.rip/xwYt10",
       "klookQuery": "부산 롯데월드 기장 과학관",
       "ageBandGuides": {
         "age_1_3": "국립부산과학관 (기장) 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1028,7 +1028,7 @@
         "price": 17000,
         "coupangPath": "vp/products/rainstick-sound-craft-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu781",
+      "mrtShortUrl": "https://myrealt.rip/xwYu37",
       "klookQuery": "부산 해운대 요트 투어 공연",
       "ageBandGuides": {
         "age_1_3": "부산문화회관 사랑채극장 어린이 음악극 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1056,7 +1056,7 @@
         "price": 19000,
         "coupangPath": "vp/products/shadow-theater-marker-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu87a",
+      "mrtShortUrl": "https://myrealt.rip/xwYv79",
       "klookQuery": "대구 미술관 전시 체험",
       "ageBandGuides": {
         "age_1_3": "대구미술관 어린이아트랩 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1084,7 +1084,7 @@
         "price": 16900,
         "coupangPath": "vp/products/silla-crown-beads-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctd8e",
+      "mrtShortUrl": "https://myrealt.rip/xwYw00",
       "klookQuery": "경주 역사 해설 투어 국립경주박물관",
       "ageBandGuides": {
         "age_1_3": "국립대구박물관 어린이박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1112,7 +1112,7 @@
         "price": 14500,
         "coupangPath": "vp/products/herbivore-magnifier-book"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcte31",
+      "mrtShortUrl": "https://myrealt.rip/xwYx64",
       "klookQuery": "대구 이월드 네이처파크 입장권",
       "ageBandGuides": {
         "age_1_3": "네이처파크 스파밸리 교감 동물원 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1140,7 +1140,7 @@
         "price": 18000,
         "coupangPath": "vp/products/water-mill-physics-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcu922",
+      "mrtShortUrl": "https://myrealt.rip/xwYy4e",
       "klookQuery": "대구 과학관 앞산 케이블카",
       "ageBandGuides": {
         "age_1_3": "국립대구과학관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1168,7 +1168,7 @@
         "price": 19500,
         "coupangPath": "vp/products/kids-echo-mic-opera-book"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuAec",
+      "mrtShortUrl": "https://myrealt.rip/xwYza0",
       "klookQuery": "대구 어린이 공연 아쿠아리움",
       "ageBandGuides": {
         "age_1_3": "대구오페라하우스 키즈 오페라 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1196,7 +1196,7 @@
         "price": 17500,
         "coupangPath": "vp/products/hanji-brush-pen-art-set"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuB55",
+      "mrtShortUrl": "https://myrealt.rip/xwZ1b7",
       "klookQuery": "대전 엑스포 아쿠아리움 미술관",
       "ageBandGuides": {
         "age_1_3": "대전시립미술관 DMA아트센터 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1224,7 +1224,7 @@
         "price": 18200,
         "coupangPath": "vp/products/baekje-stone-guardian-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctgae",
+      "mrtShortUrl": "https://myrealt.rip/xwZ2ad",
       "klookQuery": "공주 부여 백제 역사 투어",
       "ageBandGuides": {
         "age_1_3": "공주 국립공주박물관 무령왕릉관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1252,7 +1252,7 @@
         "price": 15500,
         "coupangPath": "vp/products/bird-feather-magnifier-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xctfcd",
+      "mrtShortUrl": "https://myrealt.rip/xwZ3f1",
       "klookQuery": "대전 오월드 입장권 사파리",
       "ageBandGuides": {
         "age_1_3": "대전 오월드 쥬랜드 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1280,7 +1280,7 @@
         "price": 23000,
         "coupangPath": "vp/products/maglev-train-physics-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuCaf",
+      "mrtShortUrl": "https://myrealt.rip/xwZ50f",
       "klookQuery": "대전 국립중앙과학관 엑스포",
       "ageBandGuides": {
         "age_1_3": "국립중앙과학관 (과학기술관·창의나래관·천문대) 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1308,7 +1308,7 @@
         "price": 18500,
         "coupangPath": "vp/products/kids-8handbell-set"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuD9f",
+      "mrtShortUrl": "https://myrealt.rip/xwZ7fb",
       "klookQuery": "대전 키즈 체험 공연",
       "ageBandGuides": {
         "age_1_3": "대전어린이회관 오감놀이 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1336,7 +1336,7 @@
         "price": 17800,
         "coupangPath": "vp/products/mini-loom-weaving-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuEcf",
+      "mrtShortUrl": "https://myrealt.rip/xwZ88b",
       "klookQuery": "광주 어린이 전시 체험",
       "ageBandGuides": {
         "age_1_3": "국립아시아문화전당(ACC) 어린이문화원 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1364,7 +1364,7 @@
         "price": 21000,
         "coupangPath": "vp/products/hanok-building-blocks-history"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcthaf",
+      "mrtShortUrl": "https://myrealt.rip/xwZ91d",
       "klookQuery": "전주 한옥마을 경기전 체험",
       "ageBandGuides": {
         "age_1_3": "전주 경기전 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1392,7 +1392,7 @@
         "price": 16500,
         "coupangPath": "vp/products/dino-fossil-casting-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuF60",
+      "mrtShortUrl": "https://myrealt.rip/xwZA83",
       "klookQuery": "목포 해상케이블카 공룡박물관",
       "ageBandGuides": {
         "age_1_3": "목포자연사박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1420,7 +1420,7 @@
         "price": 17500,
         "coupangPath": "vp/products/optical-prism-light-lab"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcuG66",
+      "mrtShortUrl": "https://myrealt.rip/xwZBa3",
       "klookQuery": "여수 아쿠아플라넷 예술랜드",
       "ageBandGuides": {
         "age_1_3": "국립광주과학관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -1448,7 +1448,7 @@
         "price": 22500,
         "coupangPath": "vp/products/mini-gayageum-diy-kit"
       },
-      "mrtShortUrl": "https://myrealt.rip/xcti9a",
+      "mrtShortUrl": "https://myrealt.rip/xwZCde",
       "klookQuery": "제주 아쿠아플라넷 스누피가든",
       "ageBandGuides": {
         "age_1_3": "광주문예회관 어린이 국악 창작극 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -2247,7 +2247,7 @@
     {
       "id": "PMID:29166664",
       "pmid": "29166664",
-      "doi": "10.3345/kjp.2017.60.11.340",
+      "doi": "10.3345/kjp.2018.06863",
       "pillar": "growth_endocrinology",
       "title": "2017 Korean National Growth Charts for children and adolescents: development, improvements, and prospects",
       "title_ko": "2017 소아청소년 성장도표(질병관리청·대한소아과학회) 개발 및 한국 아동 백분위수 표준 규준",

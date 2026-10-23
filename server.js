@@ -746,15 +746,23 @@ const server = http.createServer((req, res) => {
 
     // 1-F. Adpick Campaign & Shopping JSON API Proxy with 60-Second Cache (/api/adpick/offers & /api/adpick/go)
     if (pathname === '/api/adpick/go') {
+      recordAffiliateClickEvent();
       const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '4d31d3';
       const mall = (parsedUrl.searchParams.get('mall') || '11st').toLowerCase();
       const q = parsedUrl.searchParams.get('q') || '';
+      if (mall === '11st') {
+        const st11Target = `https://search.11st.co.kr/pc/total-search?kwd=${encodeURIComponent(q || '어린이 영양제')}`;
+        const redirectUrl = `https://click.linkprice.com/click.php?m=11st&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(st11Target)}`;
+        res.writeHead(302, { 'Location': redirectUrl, 'X-Robots-Tag': 'noindex, nofollow', ...NO_CACHE_HEADERS });
+        res.end(`Redirecting to 11st via LinkPrice: ${redirectUrl}`);
+        return;
+      }
       const offerMap = { '11st': 'c16a2', 'kkday': 'b796d', 'tripcom': '2f07c', 'lotteimall': '7676b', 'cjthemarket': 'f5ff7' };
-      const offer = parsedUrl.searchParams.get('offer') || offerMap[mall] || 'c16a2';
+      const offer = parsedUrl.searchParams.get('offer') || offerMap[mall] || 'b796d';
       const destUrl = parsedUrl.searchParams.get('url') || (
         mall === 'kkday'
           ? `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(q || '박물관')}`
-          : `https://www.11st.co.kr/search/search.tmall?kwd=${encodeURIComponent(q || '어린이 영양제')}`
+          : `https://search.11st.co.kr/pc/total-search?kwd=${encodeURIComponent(q || '어린이 영양제')}`
       );
       const redirectUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${encodeURIComponent(affid)}&offer=${encodeURIComponent(offer)}&url=${encodeURIComponent(destUrl)}`;
       res.writeHead(302, { 'Location': redirectUrl, 'X-Robots-Tag': 'noindex, nofollow', ...NO_CACHE_HEADERS });

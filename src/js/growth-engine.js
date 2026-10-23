@@ -964,7 +964,7 @@
     return `
       <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <span style="font-size: 0.86rem; font-weight: 800; color: #93C5FD;">🔬 동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
-        <a href="https://pubmed.ncbi.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
       </div>
 
       <!-- Bottom Recommended Products for Core 1 (Age-Tailored & Hidden by default so pure report shows first) -->

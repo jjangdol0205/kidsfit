@@ -146,7 +146,7 @@
     const cfg = Object.assign({}, getAffiliateConfig(), config);
     const cat = CATEGORY_SEARCH_QUERIES[categoryKey] || CATEGORY_SEARCH_QUERIES.nutrients;
     const query = isGlobalMode ? cat.en : cat.ko;
-    const encodedQ = encodeURIComponent(query);
+    const encodedQ = encodeURIComponent(query).replace(/'/g, '%27');
 
     switch (merchant.toLowerCase()) {
       case 'iherb': {
@@ -160,7 +160,8 @@
       }
       case 'linkprice': {
         const affId = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
-        const target = cat.linkpriceTarget || `https://www.yes24.com/Product/Search?domain=ALL&query=${encodedQ}`;
+        const rawTarget = cat.linkpriceTarget || `https://www.yes24.com/Product/Search?domain=ALL&query=${encodedQ}`;
+        const target = rawTarget.replace(/([?&]query=)([^&]+)/, (_m, p1, p2) => p1 + encodeURIComponent(p2));
         return `https://click.linkprice.com/click.php?m=yes24&a=${encodeURIComponent(affId)}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(target)}`;
       }
       case 'amazon': {
@@ -174,9 +175,7 @@
         return `https://affiliate.klook.com/redirect?aid=${encodeURIComponent(aid)}&aff_adid=${encodeURIComponent(adid)}&k_site=${encodeURIComponent(kSite)}`;
       }
       case 'myrealtrip': {
-        const mylinkId = cfg.myrealtripMylinkId || DEFAULT_AFFILIATE_CONFIG.myrealtripMylinkId || '6226316';
-        const mrtRet = `https://www.myrealtrip.com/search?q=${encodedQ}&mylink_id=${encodeURIComponent(mylinkId)}&t_scope=604800&utm_source=mktpartner`;
-        return `https://www.myrealtrip.com/main/bridge/marketing?return_url=${encodeURIComponent(mrtRet)}`;
+        return 'https://myrealt.rip/xwYQee';
       }
       case 'tenping': {
         return cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';

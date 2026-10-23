@@ -327,15 +327,15 @@
     const amzTag = encodeURIComponent(cfg.amazon || DEFAULT_AFF.amazon);
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
 
-    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(coupangQuery)}`;
-    const ihUrl = `https://kr.iherb.com/search?kw=${encodeURIComponent(iherbQuery)}&rcode=${ihCode}`;
-    const amzUrl = `https://www.amazon.com/s?k=${encodeURIComponent(iherbQuery)}&tag=${amzTag}`;
-    const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yes24Query || coupangQuery)}`;
-    const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
-    const naverUrl = `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(coupangQuery)}`;
-    const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
-    const st11Target = `https://www.11st.co.kr/search/search.tmall?kwd=${encodeURIComponent(coupangQuery)}`;
-    const adpickShoppingUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=c16a2&url=${encodeURIComponent(st11Target)}`;
+    const enc = (s) => encodeURIComponent(s || '').replace(/'/g, '%27');
+    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${enc(coupangQuery)}`;
+    const ihUrl = `https://kr.iherb.com/search?kw=${enc(iherbQuery)}&rcode=${ihCode}`;
+    const amzUrl = `https://www.amazon.com/s?k=${enc(iherbQuery)}&tag=${amzTag}`;
+    const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${enc(enc(yes24Query || coupangQuery))}`;
+    const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${enc(yesTarget)}`;
+    const naverUrl = `https://search.shopping.naver.com/search/all?query=${enc(coupangQuery)}`;
+    const st11Target = `https://search.11st.co.kr/pc/total-search?kwd=${enc(coupangQuery)}`;
+    const adpickShoppingUrl = `https://click.linkprice.com/click.php?m=11st&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${enc(st11Target)}`;
 
     return {
       coupangUrl: cpUrl,
@@ -1889,7 +1889,7 @@
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
       const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(q)}`;
       const adpickKkdayUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=b796d&url=${encodeURIComponent(kkdayTarget)}`;
-      const mrtUrl = c.mrtShortUrl || 'https://myrealt.rip/xctNfd';
+      const mrtUrl = c.mrtShortUrl || 'https://myrealt.rip/xwYQee';
       const ageTip = (c.ageBandGuides && c.ageBandGuides[ageKey])
         ? c.ageBandGuides[ageKey]
         : `${c.destination} — 만 ${ageYears}세 눈높이 맞춤 관람 및 체험 코스`;
@@ -1933,10 +1933,9 @@
 
     const makeTourUrls = (cpQuery, yesQuery, tourQuery, mrtShortUrl, klookDestUrl) => {
       const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(cpQuery)}`;
-      const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(yesQuery)}`;
+      const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(encodeURIComponent(yesQuery))}`;
       const yesUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
-      const mrtReturnUrl = `https://www.myrealtrip.com/search?q=${encodeURIComponent(tourQuery)}&mylink_id=${mrtMylinkId}&t_scope=604800&utm_source=mktpartner`;
-      const myrealtripUrl = mrtShortUrl || `https://www.myrealtrip.com/main/bridge/marketing?return_url=${encodeURIComponent(mrtReturnUrl)}`;
+      const myrealtripUrl = mrtShortUrl || 'https://myrealt.rip/xwYQee';
       const kSite = klookDestUrl || `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(tourQuery)}`;
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
       const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(tourQuery)}`;
@@ -1999,7 +1998,7 @@
           titleEn: 'Safari Theme Park Pass & Kids Binoculars Animal Encyclopedia Set',
           descKo: '만 4~6세는 동물의 생김새와 서식지 이유("기린은 왜 목과 혀가 길까?")를 추론하며 전두엽 인과 사고가 열리는 시기입니다. 야외 걷기로 하지 성장판에도 최적의 자극을 줍니다.',
           missionKo: '💬 사파리 하브루타 미션: "기린과 얼룩말은 왜 줄무늬와 점무늬 모양이 서로 다를까?"'
-        }, makeTourUrls('어린이 쌍안경 동물 백과사전 피규어 세트', '유아 동물 대백과 도감', '에버랜드 종일권', 'https://myrealt.rip/xctSa3', 'https://www.klook.com/ko/search/result/?query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C')),
+        }, makeTourUrls('어린이 쌍안경 동물 백과사전 피규어 세트', '유아 동물 대백과 도감', '에버랜드 종일권', 'https://myrealt.rip/xwYR65', 'https://www.klook.com/ko/search/result/?query=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C')),
         Object.assign({
           badgeKo: '✨ 만 4~6세 시그니처 2위 · 국립과학관 어린이관 & 공룡 탐사',
           badgeEn: '✨ Age 4–6 Pick #2 · Kids Science & Dinosaur Museum',
@@ -2009,7 +2008,7 @@
           titleEn: 'Dinosaur & Science Museum Tour + Home Fossil Digging Kit',
           descKo: '거대한 공룡 골격의 스케일을 체감하고 도르래·기어·물길 장치를 손으로 직접 돌려보는 체험이 두정엽 3차원 공간지각력을 폭발적으로 깨워줍니다.',
           missionKo: '💬 박물관 하브루타 미션: "티라노사우루스의 이빨은 뾰족한데 브라키오사우루스는 왜 평평할까?"'
-        }, makeTourUrls('어린이 공룡 화석 발굴 키트 공룡 뼈대 조립', '어스본 공룡 대백과 플랩북', '서대문자연사박물관 투어', 'https://myrealt.rip/xctR7f', 'https://www.klook.com/ko/search/result/?query=%EA%B3%BC%ED%95%99%EA%B4%80')),
+        }, makeTourUrls('어린이 공룡 화석 발굴 키트 공룡 뼈대 조립', '어스본 공룡 대백과 플랩북', '서대문자연사박물관 투어', 'https://myrealt.rip/xwYS16', 'https://www.klook.com/ko/search/result/?query=%EA%B3%BC%ED%95%99%EA%B4%80')),
         Object.assign({
           badgeKo: '💎 만 4~6세 시그니처 3위 · 예술마을 공방 & 어린이박물관',
           badgeEn: '💎 Age 4–6 Pick #3 · Art Village & Children\'s Museum',
@@ -2019,7 +2018,7 @@
           titleEn: 'Kids Art/Pottery Workshop Ticket & Creative Clay Activity Set',
           descKo: '취학 전 아이가 자기 손으로 흙을 빚고 색을 섞어 작품을 완성해 보는 경험은 소근육 정교성과 자기효능감(Self-Efficacy)을 동시에 높여줍니다.',
           missionKo: '💬 미술관 하브루타 미션: "오늘 네가 만든 작품에 이름을 붙여준다면 어떤 제목이 좋을까?"'
-        }, makeTourUrls('어린이 도자기 클레이 만들기 키트 워셔블 물감', '유아 미술 놀이 그림책', '파주 헤이리 예술마을 체험', 'https://myrealt.rip/xctX9c', 'https://www.klook.com/ko/search/result/?query=%ED%8C%8C%EC%A3%BC+%ED%97%A4%EC%9D%B4%EB%A6%AC'))
+        }, makeTourUrls('어린이 도자기 클레이 만들기 키트 워셔블 물감', '유아 미술 놀이 그림책', '파주 헤이리 예술마을 체험', 'https://myrealt.rip/xwYT81', 'https://www.klook.com/ko/search/result/?query=%ED%8C%8C%EC%A3%BC+%ED%97%A4%EC%9D%B4%EB%A6%AC'))
       ];
     }
 
@@ -2055,7 +2054,7 @@
           titleEn: 'Jeju Family Tour Pass & Kids Outdoor Ecology Guidebook',
           descKo: '화산 지형과 해안 생태계를 직접 걸으며 하루 8,000보 이상 하지 성장판을 건강하게 자극하고, 가족과 함께 자연 현상의 원리를 대화로 풀어보는 최고의 방학 코스입니다.',
           missionKo: '💬 제주 하브루타 미션: "제주도의 현무암 돌에는 왜 구멍이 송송 뚫려 있고 비가 와도 물이 고이지 않을까?"'
-        }, makeTourUrls('어린이 쌍안경 나침반 자연관찰 탐험 키트', '제주도 어린이 생태 지질 여행책', '제주 아쿠아플라넷 스누피가든', 'https://myrealt.rip/xctjf8', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%EC%95%84%EC%BF%A0%EC%95%84%ED%94%8C%EB%9E%98%EB%8B%9B'))
+        }, makeTourUrls('어린이 쌍안경 나침반 자연관찰 탐험 키트', '제주도 어린이 생태 지질 여행책', '제주 아쿠아플라넷 스누피가든', 'https://myrealt.rip/xwYU1a', 'https://www.klook.com/ko/search/result/?query=%EC%A0%9C%EC%A3%BC+%EC%95%84%EC%BF%A0%EC%95%84%ED%94%8C%EB%9E%98%EB%8B%9B'))
       ];
     }
 
@@ -2091,7 +2090,7 @@
           titleEn: 'Overseas Family Theme Park/Airport Pass & World Culture Guidebook',
           descKo: '방학 기간 가까운 일본(도쿄 오다이바 미래과학관·오사카)·싱가포르의 세계적 과학관과 테마파크를 경험하며 글로벌 시야를 넓히고 가족 유대감을 깊게 다지는 코스입니다.',
           missionKo: '💬 해외여행 하브루타 미션: "다른 나라의 박물관과 교통시스템에서 우리나라와 가장 다른 점과 배울 점은 무엇이었니?"'
-        }, makeTourUrls('어린이 세계 여러나라 백과 일본 싱가포르 가족여행 가이드북', '아이와 일본 도쿄 오사카 싱가포르 여행', '도쿄 디즈니랜드 나리타 리무진', 'https://myrealt.rip/xctk64', 'https://www.klook.com/ko/activity/2274-narita-airport-limousine-bus-tokyo'))
+        }, makeTourUrls('어린이 세계 여러나라 백과 일본 싱가포르 가족여행 가이드북', '아이와 일본 도쿄 오사카 싱가포르 여행', '도쿄 디즈니랜드 나리타 리무진', 'https://myrealt.rip/xwYVbc', 'https://www.klook.com/ko/activity/2274-narita-airport-limousine-bus-tokyo'))
       ];
     }
 
@@ -2106,7 +2105,7 @@
         titleEn: 'Youth Humanities/Architecture Docent Tour & Cornell Research Note',
         descKo: '학업 스트레스와 진로 고민이 깊어지는 만 14세 이상 청소년에게 깊이 있는 박물관 사유 공간과 명문 캠퍼스·역사 건축 해설 투어는 지적 호기심과 생기부 심화 탐구 주제를 동시에 선물합니다.',
         missionKo: '💬 인문 탐방 대화 포인트: "반가사유상과 조선 궁궐 건축이 수백 년이 지나도 사람들에게 깊은 울림을 주는 이유는 무엇일까?"'
-      }, makeTourUrls('청소년 코넬식 탐구 보고서 노트 한국사 인문학 필독서', '청소년을 위한 박물관 인문학 건축 교양서', '국립중앙박물관 어린이 투어', 'https://myrealt.rip/xctPa2', 'https://www.klook.com/ko/search/result/?query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')),
+      }, makeTourUrls('청소년 코넬식 탐구 보고서 노트 한국사 인문학 필독서', '청소년을 위한 박물관 인문학 건축 교양서', '국립중앙박물관 어린이 투어', 'https://myrealt.rip/xwYWc4', 'https://www.klook.com/ko/search/result/?query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')),
       Object.assign({
         badgeKo: '✨ 만 14세+ 시그니처 2위 · 글로벌 과학·문화 도시 인사이트 투어',
         badgeEn: '✨ Age 14+ Pick #2 · Global City Science & Cultural Insight',
@@ -2116,7 +2115,7 @@
         titleEn: 'Global City Rail/Attraction Pass & Youth World History/Science Book',
         descKo: '시험이 끝난 방학·연휴에 세계적인 과학·문화 도시를 아이가 직접 동선과 교통패스(나리타 리무진·라피트·메트로패스)까지 계획해 다녀오면 자기주도 문제해결력이 비약적으로 성장합니다.',
         missionKo: '💬 글로벌 탐방 미션: "오늘 하루 이동 동선과 예산을 네가 직접 캡틴이 되어 가이드해 볼래?"'
-      }, makeTourUrls('청소년 세계사 교양서 글로벌 진로 탐색 도서', '십대를 위한 세계문화 역사 기행', '오사카 유니버설 스튜디오 재팬', 'https://myrealt.rip/xctl66', 'https://www.klook.com/ko/search/result/?query=%EC%98%A4%EC%82%AC%EC%B9%B4+%ED%8C%A8%EC%8A%A4')),
+      }, makeTourUrls('청소년 세계사 교양서 글로벌 진로 탐색 도서', '십대를 위한 세계문화 역사 기행', '오사카 유니버설 스튜디오 재팬', 'https://myrealt.rip/xwYX53', 'https://www.klook.com/ko/search/result/?query=%EC%98%A4%EC%82%AC%EC%B9%B4+%ED%8C%A8%EC%8A%A4')),
       Object.assign({
         badgeKo: '💎 만 14세+ 시그니처 3위 · 척추 감압 & 코르티솔 리셋 액티브 트레킹',
         badgeEn: '💎 Age 14+ Pick #3 · Spinal Decompression & Cortisol Reset Trip',
@@ -2386,6 +2385,7 @@
         iherbUrl: items[0].iherbUrl,
         amazonUrl: items[0].amazonUrl,
         yes24Url: items[0].yes24Url,
+        adpickShoppingUrl: items[0].adpickShoppingUrl,
         naverUrl: items[0].naverUrl,
         naverBrandConnectHealthUrl: items[0].naverBrandConnectHealthUrl,
         tenpingUrl: items[0].tenpingUrl,
@@ -2406,6 +2406,7 @@
         iherbUrl: items[1].iherbUrl,
         amazonUrl: items[1].amazonUrl,
         yes24Url: items[1].yes24Url,
+        adpickShoppingUrl: items[1].adpickShoppingUrl,
         naverUrl: items[1].naverUrl,
         naverBrandConnectHealthUrl: items[1].naverBrandConnectHealthUrl,
         tenpingUrl: items[1].tenpingUrl,
@@ -2427,6 +2428,7 @@
         iherbUrl: items[2].iherbUrl,
         amazonUrl: items[2].amazonUrl,
         yes24Url: items[2].yes24Url,
+        adpickShoppingUrl: items[2].adpickShoppingUrl,
         naverUrl: items[2].naverUrl,
         naverBrandConnectHealthUrl: items[2].naverBrandConnectHealthUrl,
         tenpingUrl: items[2].tenpingUrl,
@@ -2495,7 +2497,7 @@
               ${categoryType === 'supplement'
                 ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="iherb" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.42); color: #A7F3D0; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">🌿 iHerb 직구 ↗</a>`
                 : `<a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(167, 139, 250, 0.45); color: #EDE9FE; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">📚 YES24 도서 ↗</a>`}
-              <a href="${sub.adpickShoppingUrl || `https://adpick.co.kr/apis/goshopping.php?affid=4d31d3&offer=c16a2&url=${encodeURIComponent('https://www.11st.co.kr/search/search.tmall?kwd=' + encodeURIComponent(sub.cpQuery || ''))}`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="adpick" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #FBCFE8; font-size: 0.78rem; font-weight: 800; padding: 0.38rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">🛒 11번가 ↗</a>
+              <a href="${sub.adpickShoppingUrl || `https://click.linkprice.com/click.php?m=11st&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent('https://search.11st.co.kr/pc/total-search?kwd=' + encodeURIComponent(sub.cpQuery || item.coupangQuery || item.name || ''))}`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice-11st" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #FBCFE8; font-size: 0.78rem; font-weight: 800; padding: 0.38rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">🛒 11번가 ↗</a>
             </div>
           </div>
         `).join('')}
