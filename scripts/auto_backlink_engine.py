@@ -68,7 +68,20 @@ def get_recent_naver_posts():
                     cafe_posts.append({"title": c.get("title", ""), "url": c["url"], "date": h.get("publishedAt", "")})
         except Exception:
             pass
-    return blog_posts[:6], cafe_posts[:6]
+    if BACKLOG_STATE_PATH.exists():
+        try:
+            st = json.loads(BACKLOG_STATE_PATH.read_text(encoding="utf-8"))
+            for h in reversed(st.get("history", [])):
+                b_url = h.get("blog_url") or ""
+                c_url = h.get("cafe_url") or ""
+                ts = h.get("timestamp", "")
+                if b_url and "blog.naver.com" in b_url:
+                    blog_posts.append({"title": f"[Q&A 백로그] {h.get('item_id', '')}", "url": b_url, "date": ts})
+                if c_url and "cafe.naver.com" in c_url:
+                    cafe_posts.append({"title": f"[Q&A 백로그] {h.get('item_id', '')}", "url": c_url, "date": ts})
+        except Exception:
+            pass
+    return blog_posts[:10], cafe_posts[:10]
 
 
 def generate_rss_and_json_feeds(total_papers: int):
@@ -253,6 +266,7 @@ def ping_websub_and_indexnow():
         ("indexnow_global", "https://api.indexnow.org/indexnow"),
         ("indexnow_bing", "https://www.bing.com/indexnow"),
         ("indexnow_yandex", "https://yandex.com/indexnow"),
+        ("indexnow_seznam", "https://search.seznam.cz/indexnow"),
     ]:
         try:
             req = urllib.request.Request(

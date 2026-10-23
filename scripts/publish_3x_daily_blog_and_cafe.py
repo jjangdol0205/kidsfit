@@ -424,24 +424,46 @@ def build_dynamic_blog_post(seq_num: int):
 
 
 def append_triangular_backlink_mesh(body: str, seq_num: int, source_type: str = "blog") -> str:
-    topic_idx = ((seq_num - 1) % 10) + 1
+    topic_idx = ((seq_num - 1) % 25) + 1
     qna_deep_url = f"https://kidsfit.co.kr/qna/topic-{topic_idx:02d}.html"
+    presets = ["toddler_2_3", "child_4_5", "elem_low", "elem_high", "infant_1", "working_mom"]
+    preset_id = presets[(seq_num - 1) % len(presets)]
+    preset_url = f"https://kidsfit.co.kr/?preset={preset_id}&utm_source=naver_{source_type}"
     if qna_deep_url in body:
         return body
-    cross_line = (
-        "☕ 공식 학부모 카페(무료 워크지·질문방): https://cafe.naver.com/moneyfitlab"
-        if source_type == "blog"
-        else "📝 공식 연구소 블로그(일자별 심층 칼럼): https://blog.naver.com/expertise333"
+
+    top_inflow_box = (
+        "⚡ [바쁜 부모님을 위한 10초 무료 진단 바로가기]\n"
+        "우리 아이 생년월일·키·몸무게만 넣으면 질병관리청(KDCA) 백분위·3단 예상키 & 두뇌 5대 역량(LQ) 처방전이 10초 만에 무료 출력됩니다 👇\n"
+        "https://kidsfit.co.kr\n"
+        "──────────────────────────────\n\n"
     )
+
+    cross_label = (
+        "☕ 공식 학부모 카페 (월령별 무료 워크지 PDF & 질문방 바로가기)"
+        if source_type == "blog"
+        else "📝 공식 연구소 블로그 (일자별 소아성장·뇌과학 칼럼 바로가기)"
+    )
+    cross_url = (
+        "https://cafe.naver.com/moneyfitlab"
+        if source_type == "blog"
+        else "https://blog.naver.com/expertise333"
+    )
+
     mesh_footer = (
         f"\n\n──────────────────────────────\n"
-        f"🔗 [키즈핏 학술 백과사전 & 1분 맞춤 진단 바로가기]\n"
-        f"• 📏🧠 우리 아이 예상키·두뇌 1분 무료 진단: https://kidsfit.co.kr\n"
-        f"• 📚 오늘 주제 심층 Q&A 백과사전: {qna_deep_url}\n"
-        f"• {cross_line}\n"
+        f"🔗 [키즈핏 무료 진단 스튜디오 & 학술 백과사전 바로가기]\n\n"
+        f"1️⃣ 우리 아이 예상키·두뇌 밸런스 1분 무료 진단 스튜디오 👇\n"
+        f"https://kidsfit.co.kr\n\n"
+        f"2️⃣ 연령별 원클릭 빠른 진단 프리셋 바로 열기 👇\n"
+        f"{preset_url}\n\n"
+        f"3️⃣ 오늘 주제 심층 학술 Q&A 백과사전 팩트체크 👇\n"
+        f"{qna_deep_url}\n\n"
+        f"4️⃣ {cross_label} 👇\n"
+        f"{cross_url}\n"
         f"──────────────────────────────"
     )
-    return body + mesh_footer
+    return top_inflow_box + body + mesh_footer
 
 
 def get_next_blog_content(blog_seq: int):
@@ -474,6 +496,12 @@ def type_multiline_into_se_one(page, body: str):
         clean = line.strip()
         if clean:
             page.keyboard.insert_text(clean)
+            if clean.startswith("https://") or clean.startswith("http://"):
+                page.keyboard.press("Space")
+                time.sleep(0.15)
+                page.keyboard.press("Enter")
+                time.sleep(0.65)
+                continue
         page.keyboard.press("Enter")
         time.sleep(0.02)
 

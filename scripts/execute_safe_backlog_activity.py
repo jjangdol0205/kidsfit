@@ -33,6 +33,8 @@ ENV_PATH = ROOT / ".env"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from publish_3x_daily_blog_and_cafe import (
+    append_triangular_backlink_mesh,
+    ensure_naver_session_cookies,
     generate_summary_card_png,
     load_env,
     publish_blog_post,
@@ -423,11 +425,12 @@ def main():
     st = load_state()
     now_ts = int(time.time())
 
-    # 1. Anti-Ban Cooldown Guard (at least 5 hours between runs unless --force-once)
-    if not force_once and (now_ts - st.get("last_run_epoch", 0)) < 5 * 3600:
-        print("⏳ [안전 쿨다운 작동] 최근 5시간 내 백로그 활동이 실행되어 계정 보호를 위해 스킵합니다.")
+    # 1. Anti-Ban Cooldown Guard (at least 2.5 hours between runs unless --force-once)
+    if not force_once and (now_ts - st.get("last_run_epoch", 0)) < int(2.5 * 3600):
+        print("⏳ [안전 쿨다운 작동] 최근 2.5시간 내 백로그 활동이 실행되어 계정 보호를 위해 스킵합니다.")
         return
 
+    seq_num = st.get("cursor", 0) + 1
     idx = st.get("cursor", 0) % len(SAFE_BACKLOG_ITEMS)
     item = SAFE_BACKLOG_ITEMS[idx]
 
@@ -445,15 +448,19 @@ def main():
     cafe_url = None
     kin_result = {"status": "skipped", "reason": "미실행"}
 
+    blog_body_enriched = append_triangular_backlink_mesh(item["cafe_body"], seq_num, "blog")
+    cafe_body_enriched = append_triangular_backlink_mesh(item["cafe_body"], seq_num, "cafe")
+
     with sync_playwright() as p:
         browser, context, should_close = ensure_clean_cdp_browser(p)
         try:
+            ensure_naver_session_cookies(context)
             # Step A: Publish 1 Search-Indexed Parent Q&A Backlog Post to Naver Blog (0% ban risk, Naver VIEW indexed)
             print("📝 [백로그 1/3] 네이버 블로그 검색공개 Q&A 백로그 자동 발행 중...", flush=True)
             blog_url = publish_blog_post(
                 context=context,
                 title=item["cafe_title"],
-                body=item["cafe_body"],
+                body=blog_body_enriched,
                 tags=item["cafe_tags"],
                 img_path=str(card_path),
             )
@@ -465,7 +472,7 @@ def main():
                 context=context,
                 board_name=item["cafe_board"],
                 title=item["cafe_title"],
-                body=item["cafe_body"],
+                body=cafe_body_enriched,
                 tags=item["cafe_tags"],
                 img_path=str(card_path),
             )

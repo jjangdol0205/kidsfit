@@ -191,6 +191,246 @@ TOPICS = [
         "cta_mode": "learning",
         "keywords": "메타인지공부법, 백지복습, 파인만기법, 자기주도학습, 초등복습습관, 장기기억, 키즈핏",
     },
+    {
+        "slug": "topic-11",
+        "pillar": "연령별 성장·발달 · 만 2~3세(24~47개월)",
+        "badge": "KDCA 영유아 성장도표 · 손끝 민감기",
+        "title": "만 2~3세(24~47개월) 남아·여아 평균키·몸무게 백분위 & 소근육 몬테소리 교구 처방",
+        "question": "만 3세 아이가 혼자 단추 끼우고 물 따르겠다고 고집을 부리고 키도 또래보다 작은 편인데 어떻게 도와줘야 할까요?",
+        "one_line_verdict": "만 24~47개월의 고집은 대뇌 운동피질 30%와 직결된 '손끝 소근육 민감기' 신호입니다. 일상 소근육 자율놀이와 밤 9시 30분 조기 숙면을 결합하면 전두엽 실행기능과 키 백분위가 함께 도약합니다.",
+        "bullets": [
+            "① 질병관리청(KDCA) 월령별 LMS 키·체중 백분위를 점검하고 유당 부담 없는 칼슘·비타민D3 보충",
+            "② 비싼 가베보다 집게 옮기기·구슬 꿰기·안전가위 오리기 등 세 손가락(삼지집기) 일상교구 우선 제공",
+            "③ 낮 시간 손끝 몰입과 촉각 놀이가 밤 시간 깊은 서파수면(성장호르몬 65% 분비) 유도",
+        ],
+        "citation": "KDCA 2017 성장도표 (PMID:30253690) · Lillard 몬테소리 임상 (PMID:17008512)",
+        "cta_mode": "growth",
+        "keywords": "만2세평균키, 만3세평균키, 36개월발달, 소근육발달놀이, 몬테소리교구, 영유아키백분위, 키즈핏",
+    },
+    {
+        "slug": "topic-12",
+        "pillar": "연령별 성장·발달 · 만 4~5세(48~71개월)",
+        "badge": "공간·수리 창발기 · 편식 아연 처방",
+        "title": "만 4~5세(48~71개월) 남아·여아 평균키·몸무게 백분위 & 프뢰벨 가베·자석교구 시기",
+        "question": "5세 아이가 고기·채소 편식이 심해 키가 안 크는 것 같고, 은물·가베나 자석교구는 언제 시작해야 효과가 좋나요?",
+        "one_line_verdict": "만 48~71개월은 손끝 소근육이 안정되고 3차원 공간 회전·수리 개념이 폭발하는 '가베·자석블록 최적기'이며, 편식은 미각세포 재생을 돕는 아연·초유 보충과 푸드브릿지로 해결합니다.",
+        "bullets": [
+            "① 교구 골든타임: 만 4~5세부터 프뢰벨 은물·가베 및 자석교구로 대칭·분수·입체 공간지각력 자극",
+            "② 미각 방어기제 해소: 억지 식사 강요 대신 아연(Zinc)·초유 단백질·어골칼슘으로 식욕 수용체 회복",
+            "③ 저녁 10분 실내 트램폴린 점핑으로 하체 성장판 기계적 자극 및 숙면 유도",
+        ],
+        "citation": "Verdine 블록 공간추론 연구 (PMID:24294891) · 소아 아연 결핍과 성장 임상 (PMID:12036814)",
+        "cta_mode": "growth",
+        "keywords": "만4세평균키, 만5세평균키, 5세교구추천, 가베시작시기, 자석교구, 5세편식영양제, 키즈핏",
+    },
+    {
+        "slug": "topic-13",
+        "pillar": "연령별 성장·발달 · 만 6~7세(유치원~초1)",
+        "badge": "초등 입학 준비도 · 착석 지구력",
+        "title": "만 6~7세(초등 1학년) 평균키·몸무게 백분위 & 입학 전 한글·수리 전두엽 집중력 루틴",
+        "question": "초등학교 입학 전후 아이가 15분도 책상에 못 앉아 있고 또래보다 키도 작아 학교생활 적응이 걱정됩니다.",
+        "one_line_verdict": "초등 입학기에는 '20분 시각 타이머 단일 과업 루틴'으로 전두엽 착석 지구력을 기르고, 눈높이 독서대와 밤 10시 이전 취침으로 초등 저학년 연간 5.5~6cm 성장 궤적을 확보해야 합니다.",
+        "bullets": [
+            "① 무소음 시각 타이머로 '딱 15분·2쪽 완수' 작은 성공 경험(Small-Win)을 쌓아 전두엽 도파민 회로 강화",
+            "② 고개 숙임 30도 거북목 예방을 위해 15도 원목 독서대와 발받침 의자로 바른 착석 자세 세팅",
+            "③ 초1 단체생활 면역·성장을 위한 비타민D3(1,000 IU)·아연·칼슘 아침/저녁 루틴 확립",
+        ],
+        "citation": "Grissmer 초등 입학 준비도 연구 (PMID:20677859) · KDCA 초등 성장도표 (PMID:30253690)",
+        "cta_mode": "learning",
+        "keywords": "만6세평균키, 만7세평균키, 초1평균키, 초등입학준비, 초1집중력, 초등독서대, 키즈핏",
+    },
+    {
+        "slug": "topic-14",
+        "pillar": "연령별 성장·발달 · 만 8~9세(초2~초3)",
+        "badge": "사춘기 전 기초키 · 성조숙증 체크",
+        "title": "만 8~9세(초2~초3) 남아·여아 평균키·몸무게 백분위 & 성조숙증 초기 신호 체크표",
+        "question": "초2~초3인데 벌써 머리 정수리 냄새가 나거나 가슴 멍울이 잡히는 것 같아요. 성장판이 일찍 닫히면 어떡하죠?",
+        "one_line_verdict": "여아 만 8세·남아 만 9세 이전의 2차 성징 신호는 골연령(뼈나이)을 앞당겨 성장 기간을 단축시키므로, 체지방률(BMI 85백분위 이하) 관리와 야간 블루라이트 차단이 최우선입니다.",
+        "bullets": [
+            "① 사춘기 조기 진행 신호(머리냄새·피지·가슴멍울·급격한 체중 증가) 발견 시 키 대비 적정 체중 즉시 점검",
+            "② 저녁 8시 이후 야식·액상과당을 끊어 야간 인슐린 분비로 인한 성장호르몬(GH) 억제 차단",
+            "③ 줄넘기·트램폴린 유산소 점프 운동 주 4회로 체지방 감량과 성장판 자극을 동시에 달성",
+        ],
+        "citation": "소아 비만과 성조숙증 내분비 기전 (PMID:28324075) · KDCA 소아청소년 BMI 기준 (PMID:30253690)",
+        "cta_mode": "growth",
+        "keywords": "만8세평균키, 만9세평균키, 초2평균키, 초3평균키, 성조숙증초기증상, 가슴멍울, 어린이비만키성장, 키즈핏",
+    },
+    {
+        "slug": "topic-15",
+        "pillar": "연령별 성장·발달 · 만 10~11세(초4~초5)",
+        "badge": "급성장기(PHV) 골든타임 · 숨은 키 7cm",
+        "title": "만 10~11세(초4~초5) 사춘기 급성장기(PHV) 숨은 키 7cm 도약 골든타임 집중 처방",
+        "question": "초4~초5 아이가 최근 6개월 사이 훌쩍 크기 시작했어요. 성장판 닫히기 전 가장 많이 클 수 있는 방법이 뭔가요?",
+        "one_line_verdict": "사춘기 최대성장속도기(PHV) 18~24개월은 평생 최종 키의 마지막 +5~7cm를 결정짓는 골든타임으로, 뼈 재료(칼슘·D3·K2·아연) 증량과 밤 10시 서파수면·척추 감압 스트레칭이 필수입니다.",
+        "bullets": [
+            "① 급성장기 뼈 무기질 요구량 폭증 대비: 체중 비례 고흡수 칼슘·비타민D3·오스테오칼신 활성 비타민K2 보충",
+            "② 학원 과제 후 밤 10시 전 입면 사수: 수면 첫 90분 서파수면(SWS) 주기에 하루 성장호르몬 70% 분비",
+            "③ 저녁 문틀 철봉 데드행(30초×3세트)으로 낮 동안 학원 책상에서 눌린 척추 디스크 감압(+1.8cm 복원)",
+        ],
+        "citation": "Tanner PHV 급성장기 모델 (PMID:4958180) · 비타민D3·K2 골대사 시너지 (PMID:28919845)",
+        "cta_mode": "growth",
+        "keywords": "만10세평균키, 만11세평균키, 초4평균키, 초5평균키, 사춘기급성장기, 성장판골든타임, 숨은키찾기, 키즈핏",
+    },
+    {
+        "slug": "topic-16",
+        "pillar": "연령별 성장·발달 · 만 12~15세(초6~중학생)",
+        "badge": "성장판 후기 · 척추 감압 & 메타인지",
+        "title": "만 12~15세(초6~중학생) 성장판 후기 마지막 숨은 키 3cm 척추 감압 & 중등 백지복습법",
+        "question": "초6~중학생이라 성장판이 거의 닫혀 간다는데 지금이라도 2~3cm 더 클 수 있는 방법과 중등 내신 공부법이 궁금합니다.",
+        "one_line_verdict": "다리 성장판이 닫혀가는 후기에도 척추 추간판 감압·거북목 교정으로 체형 숨은 키 +2cm를 즉시 복원할 수 있으며, 중등 성적은 '코넬노트 3줄 백지인출 + 수면 기억공고화'로 결정됩니다.",
+        "bullets": [
+            "① 척추 잔여 성장 & 디스크 감압: 독서대 시선 교정 + 문틀 철봉 매달리기 + 흉추 폼롤러 신전 스트레칭",
+            "② 인강·학원 가짜기억 타파: 수강 직후 책을 덮고 핵심 개념 3줄을 백지에 인출하는 메타인지 복습",
+            "③ 새벽 벼락치기 금지: 해마 단기기억을 대뇌피질 장기기억으로 옮기는 최소 7.5~8시간 숙면 확보",
+        ],
+        "citation": "척추 디스크 수분 감압 생체역학 (PMID:19858758) · Roediger 인출연습 효과 (PMID:16507066)",
+        "cta_mode": "growth",
+        "keywords": "만12세평균키, 초6평균키, 중학생키크는법, 성장판닫혀도키크는법, 거북목교정키, 중등공부법, 백지복습, 키즈핏",
+    },
+    {
+        "slug": "topic-17",
+        "pillar": "신체 성장 · 키성장 영양소 팩트체크",
+        "badge": "식약처 개별인정형 원료 · 임상논문 분석",
+        "title": "HT042(황기추출물 등 복합물) 어린이 키성장 영양제 임상논문 팩트체크 & 효과 보는 복용 시기",
+        "question": "광고에 많이 나오는 HT042 어린이 키성장 영양제, 실제 대학병원 임상논문 결과는 어떤가요? 언제 먹어야 효과적인가요?",
+        "one_line_verdict": "경희대 한방병원 무작위 대조 임상시험(RCT)에서 HT042 섭취군은 대조군 대비 12~24주간 신장 증가량과 성장인자(IGF-1, IGFBP-3)가 유의미하게 상승했으며, 기본 칼슘·비타민D3·수면 루틴과 병행할 때 시너지가 극대화됩니다.",
+        "bullets": [
+            "① 기전 확인: 간에서 성장인자(IGF-1)와 결합단백질(IGFBP-3) 생성을 촉진해 성장판 연골세포 증식 지원",
+            "② 적정 대상: 키 백분위가 하위 25% 미만이거나 최근 6개월간 연간 성장 속도가 4~5cm 미만으로 둔화된 시기",
+            "③ 필수 병행: 뼈의 실제 건축 재료인 구연산·어골칼슘, 비타민D3, 아연 및 밤 10시 숙면이 뒷받침되어야 함",
+        ],
+        "citation": "HT042 소아 신장 성장 무작위 대조 임상시험 (Phytotherapy Research / PMID:25044061)",
+        "cta_mode": "growth",
+        "keywords": "HT042, 황기추출물, 어린이키성장영양제, 키크는영양제팩트체크, IGF1성장인자, 키즈핏",
+    },
+    {
+        "slug": "topic-18",
+        "pillar": "신체 성장 · 칼슘·비타민D3·K2 생체이용률",
+        "badge": "영양소 흡수 역학 · 위장 장애 제로",
+        "title": "어린이 구연산칼슘·어골칼슘 vs 탄산칼슘 흡수율 비교 & 비타민D3·K2 황금 배합비",
+        "question": "아이 칼슘 영양제를 먹이면 변비가 생기거나 속이 더부룩하대요. 흡수 잘 되고 키로 바로 가는 칼슘 고르는 법이 뭔가요?",
+        "one_line_verdict": "위산 분비가 성인보다 적은 어린이에게는 탄산칼슘보다 위산 없이도 부드럽게 이온화되는 '구연산칼슘·어골칼슘'에 장내 흡수 스위치(비타민D3)와 뼈 접착 스위치(비타민K2)를 배합한 제품이 가장 우수합니다.",
+        "bullets": [
+            "① 구연산·어골칼슘 선택: 공복이나 식후 언제 먹어도 가스·변비 부작용이 적고 생체이용률이 약 1.8~2.2배 우수",
+            "② 비타민D3 동시 섭취: 장 점막의 칼슘 수송 단백질(Calbindin)을 활성화해 칼슘 흡수율을 30~40% 이상 견인",
+            "③ 비타민K2(MK-7) 시너지: 혈중 칼슘을 뼈 기질(오스테오칼신)에 단단히 결합시켜 골밀도와 신장 성장 촉진",
+        ],
+        "citation": "소아 칼슘 염 형태별 생체이용률 비교 (PMID:11087484) · 보건복지부 2020 한국인 영양소 섭취기준(KDRIs)",
+        "cta_mode": "growth",
+        "keywords": "어린이칼슘추천, 구연산칼슘, 어골칼슘, 비타민D3K2, 키성장영양제배합, 어린이변비없는칼슘, 키즈핏",
+    },
+    {
+        "slug": "topic-19",
+        "pillar": "신체 성장 · 자세 생체역학 & 척추 감압",
+        "badge": "경추 하중 역학 · 숨은 체형 키 복원",
+        "title": "초등 거북목·말린 어깨 교정 독서대 각도 & 문틀 철봉 데드행 숨은 키 2cm 복원 루틴",
+        "question": "아이가 책 읽거나 태블릿 볼 때 등이 동그랗게 말리고 목이 앞으로 빠져요. 자세만 펴도 숨은 키를 찾을 수 있나요?",
+        "one_line_verdict": "고개를 30도 숙일 때 경추에 가해지는 18kg의 압박 하중을 '15~30도 각도조절 독서대'와 '저녁 문틀 철봉 30초 매달리기(Dead-Hang)'로 해소하면 숨은 체형 키 1.5~2.0cm와 뇌 산소 공급량이 동시에 복원됩니다.",
+        "bullets": [
+            "① 책상 시선 15도 거상: 평평한 책상 대신 각도조절 원목 독서대를 사용해 경추 C자 커브와 흉곽 호흡량 확보",
+            "② 저녁 문틀 철봉 데드행: 취침 전 30초씩 3세트 매달리기로 낮 동안 압축된 척추 추간판 수분 재흡수 촉진",
+            "③ 발바닥 접지 의자: 발이 허공에 뜨지 않도록 발받침 높이를 맞춰 골반 전방경사와 척추 측만 예방",
+        ],
+        "citation": "Hansraj 경추 굴곡 각도별 척추 하중 역학 (PMID:25393825) · 추간판 감압 임상 (PMID:19858758)",
+        "cta_mode": "growth",
+        "keywords": "초등거북목교정, 어린이독서대추천, 실내문틀철봉, 데드행키성장, 숨은키2cm, 바른자세의자, 키즈핏",
+    },
+    {
+        "slug": "topic-20",
+        "pillar": "두뇌·학습 · 도파민 디톡스 & 전두엽 회복",
+        "badge": "실행기능 복원 · 14일 환경 설계",
+        "title": "스마트폰·유튜브 쇼츠 도파민 과몰입 아이 전두엽 회복 '14일 도파민 디톡스 루틴'",
+        "question": "유튜브 쇼츠나 게임은 2시간도 눈 안 깜빡이고 보면서 책만 펴면 5분 만에 지루해하고 짜증을 내요. 전두엽이 망가진 걸까요?",
+        "one_line_verdict": "초고속 영상 자극에 노출된 뇌는 기저 도파민 역치가 높아져 느린 텍스트 보상에 반응하지 못하는 상태로, 강제 압수 대신 '시각 타이머 15분 몰입 + 거실 충전 독 격리 + 손끝 조립 교구 대체' 14일 루틴으로 전두엽 수용체를 100% 회복할 수 있습니다.",
+        "bullets": [
+            "① 거실 충전 스테이션 원칙: 공부방과 침실에는 스마트폰 반입을 금지하고 거실 지정 독(Dock)에서만 충전",
+            "② 능동적 손끝 도파민 대체: 수동적 영상 시청 대신 그래비트랙스·레고·퍼즐 등 손으로 조작하는 성취 보상 제공",
+            "③ 15분 타임타이머 스몰윈: 눈으로 줄어드는 빨간 디스크 타이머로 15분 단일 과업 완수 시 즉각 칭찬 스티커 부여",
+        ],
+        "citation": "소아 스크린타임과 대뇌피질·실행기능 연구 (JAMA Pediatrics / PMID:31682712)",
+        "cta_mode": "learning",
+        "keywords": "초등스마트폰중독, 유튜브쇼츠중독, 도파민디톡스, 전두엽회복, 타임타이머, 그래비트랙스, 키즈핏",
+    },
+    {
+        "slug": "topic-21",
+        "pillar": "두뇌·학습 · 문해력 & 하브루타 대화법",
+        "badge": "어휘 스키마 확장 · 전두엽 추론",
+        "title": "초등 어휘력·문해력 상위 1% 만드는 저녁 식탁 15분 '하브루타 열린 질문법 3단계'",
+        "question": "책을 많이 읽히는 것 같은데도 어려운 어휘나 비문학 지문이 나오면 무슨 뜻인지 전혀 이해를 못 해요. 어떻게 읽혀야 하나요?",
+        "one_line_verdict": "눈으로 글자만 훑는 다독(多讀)보다 책 한 권을 읽은 뒤 부모와 '왜(Why)·만약에(What if)' 열린 질문을 주고받는 15분 정독·하브루타 대화가 전두엽 추론 회로와 어휘 인출력을 2.4배 빠르게 키웁니다.",
+        "bullets": [
+            "① 사실 확인 질문 줄이기: '주인공 이름이 뭐야?' 대신 '주인공은 왜 그런 선택을 했을까?'로 인과관계 추론 유도",
+            "② 입장 바꿔 생각하기: '만약 네가 그 상황이었다면 어떻게 다르게 행동했을까?'로 전두엽 가설 사고 확장",
+            "③ 오늘의 새 어휘 1개 식탁 대화: 책에서 만난 낯선 단어 1개를 저녁 식탁에서 가족 문장으로 만들어 써보기",
+        ],
+        "citation": "Haden & Callanan 부모-자녀 정교화 대화와 인지 발달 연구 (PMID:20184369)",
+        "cta_mode": "learning",
+        "keywords": "초등문해력, 초등어휘력, 하브루타질문법, 독서토론, 비문학독해, 엄마표독서, 키즈핏",
+    },
+    {
+        "slug": "topic-22",
+        "pillar": "두뇌·학습 · 수리·공간 추론 코칭",
+        "badge": "구체물 조작기 → 도식화 전환",
+        "title": "초등 수학 연산은 빨라도 응용·도형·입체 문제만 막힐 때 '3단계 구체물·도식화 처방'",
+        "question": "더하기·빼기·구구단 연산 학습지는 하루 3장씩 척척 푸는데 도형 회전이나 사고력 응용문제만 나오면 손도 못 대요.",
+        "one_line_verdict": "피아제 인지발달 단계상 초등 저·중학년은 추상적 수식보다 손으로 만지는 구체물(패턴블록·소마큐브·기하판)과 여백 그림 도식화를 거쳐야 두정엽 공간·수리 신경망이 완성됩니다.",
+        "bullets": [
+            "① 기계적 연산지 축소: 이미 90점 이상 나오는 단순 연산 반복은 하루 1쪽으로 줄여 수학 피로도 차단",
+            "② 3D 도형 직접 조작: 칠교·펜토미노·소마큐브·자석블록으로 도형을 직접 돌리고 합쳐보며 심상 회전력 구축",
+            "③ 문제지 여백 도식화: 응용 문장제는 식부터 쓰지 않고 수직선·표·막대그림으로 조건을 먼저 그리게 코칭",
+        ],
+        "citation": "두정엽 공간추론 훈련이 수학 성취도에 미치는 영향 (Developmental Science / PMID:24118548)",
+        "cta_mode": "learning",
+        "keywords": "초등도형문제, 사고력수학, 소마큐브, 칠교놀이, 초등수학공부법, 공간지각력, 키즈핏",
+    },
+    {
+        "slug": "topic-23",
+        "pillar": "영유아 발달 · 보건복지부 K-DST 기준",
+        "badge": "6대 발달영역 자가점검 · 0원 홈놀이",
+        "title": "보건복지부 K-DST 영유아 발달선별검사 6대 영역(대근육·소근육·인지·언어·사회성·자조) 체크리스트",
+        "question": "영유아 건강검진 K-DST 발달검사에서 특정 영역이 '추적검사 요망' 근처로 나왔어요. 집에서 어떻게 자극해 줄 수 있나요?",
+        "one_line_verdict": "K-DST 6대 영역 중 상대적으로 점수가 낮은 영역은 뇌 가소성이 가장 활발한 시기에 하루 15분 '가정 내 0원 소근육·상호작용 놀이'와 맞춤 발달 교구로 집중 자극해 주면 8~12주 내에 빠르게 균형을 회복합니다.",
+        "bullets": [
+            "① 소근육·자조 영역 보강: 나무 빨래집게 집기, 물티슈 캡에 병뚜껑 넣기, 스스로 숟가락질·단추 끼우기 격려",
+            "② 언어·사회성 영역 보강: 영상 노출을 멈추고 아이의 행동을 아나운서처럼 중계해 주는 '반응적 상호작용' 실천",
+            "③ 인지·대근육 영역 보강: 색깔·크기 분류 놀이와 거실 베개 징검다리 건너기로 고유수용성 감각 자극",
+        ],
+        "citation": "보건복지부·질병관리청 한국 영유아 발달선별검사(K-DST) 표준화 연구 (PMID:29628965)",
+        "cta_mode": "learning",
+        "keywords": "KDST발달검사, 영유아발달선별검사, 소근육발달지연, 언어발달자극, 영유아검진문진표, 0원엄마표놀이, 키즈핏",
+    },
+    {
+        "slug": "topic-24",
+        "pillar": "주말 체험·배경지식 · 서울·수도권 코스 20선",
+        "badge": "교과 스키마 확장 · 도슨트 투어",
+        "title": "서울·경기·수도권 주말 아이와 가볼만한 국립과학관·박물관·미술관 도슨트 코스 20선",
+        "question": "주말마다 키즈카페나 쇼핑몰만 가다 보니 아이한테 미안해요. 서울·수도권에서 아이 두뇌와 호기심을 키워줄 나들이 코스가 어디인가요?",
+        "one_line_verdict": "국립과천과학관·국립중앙박물관 어린이박물관·서대문자연사박물관·현대어린이책미술관 등 아이 관심사(공룡·우주·역사·미술)와 매칭된 전시 체험 전후에 연계 도서 1권과 하브루타 질문 3개를 결합하면 교과 배경지식(Schema)이 3배 깊어집니다.",
+        "bullets": [
+            "① 서울 핵심 코스: 국립중앙박물관 어린이박물관(역사), 서대문자연사박물관(공룡·자연), 국립어린이과학관(우주·탐구)",
+            "② 경기·수도권 코스: 국립과천과학관(창의과학), 현대어린이책미술관 MOKA(그림·예술), 경기도어린이박물관(오감체험)",
+            "③ 200% 관람 효과 공식: 출발 전 연계 그림책·도감 15분 훑기 → 관람 중 열린 질문 2개 → 귀가 후 그림 일기 3줄",
+        ],
+        "citation": "박물관 가족 탐구 대화와 아동 과학 개념 형성 연구 (Developmental Psychology / PMID:24660676)",
+        "cta_mode": "learning",
+        "keywords": "서울아이와가볼만한곳, 주말아이와가볼만한곳, 국립과천과학관, 어린이박물관예약, 서대문자연사박물관, 박물관도슨트, 키즈핏",
+    },
+    {
+        "slug": "topic-25",
+        "pillar": "주말 체험·배경지식 · 부산·대구·대전·광주 전국 코스",
+        "badge": "권역별 맞춤 큐레이션 · 역사·과학 체험",
+        "title": "부산·대구·대전·광주·전국 권역별 주말 아이와 가볼만한 역사·과학·자연 체험 학습 코스 20선",
+        "question": "지방 광역시·거점 도시에 거주 중인데 주말에 아이 성향(과학·역사·자연·미술)에 맞춰 다녀올 수 있는 알찬 교육 나들이 코스를 추천해 주세요.",
+        "one_line_verdict": "대전 국립중앙과학관·부산 국립해양박물관&부산과학관·경주 국립경주박물관·광주 국립광주과학관 등 전국 8대 권역 대표 과학관·박물관을 아이 연령·관심사별로 매칭해 방문하면 살아있는 교과서 체험이 완성됩니다.",
+        "bullets": [
+            "① 대전·충청 & 대구·경북: 국립중앙과학관 창의나래관(대전), 국립부여박물관(백제역사), 국립대구과학관·국립경주박물관",
+            "② 부산·경남 & 광주·전라: 국립부산과학관·국립해양박물관(부산), 국립광주과학관·국립전주박물관·순천만국가정원",
+            "③ 키즈핏 지역×관심사 자동 매칭: 거주 지역(8대 권역)과 아이 관심사(5대 테마) 선택 시 최적 동선·예약팁 즉시 출력",
+        ],
+        "citation": "문화체육관광부·국립박물관 어린이 체험전시 교육 효과 연구 · K-DST 탐구·사회성 발달 기준",
+        "cta_mode": "learning",
+        "keywords": "부산아이와가볼만한곳, 대전아이와가볼만한곳, 대구아이와가볼만한곳, 국립중앙과학관, 국립부산과학관, 경주아이와가볼만한곳, 키즈핏",
+    },
 ]
 
 
@@ -249,9 +489,24 @@ def render_topic_html(t: dict, all_topics: list) -> str:
 </head>
 <body>
   <div class="wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.85rem;flex-wrap:wrap;gap:0.5rem;">
       <a href="/" style="font-weight:900;font-size:1.05rem;color:#1D4ED8;text-decoration:none;">KIDS-FIT 키즈핏 그로스 스튜디오</a>
-      <a href="/qna/index.html" style="font-size:0.84rem;font-weight:800;color:#475569;text-decoration:none;">전체 Q&amp;A 백과 보기 →</a>
+      <div style="display:flex;gap:0.65rem;align-items:center;">
+        <a href="https://blog.naver.com/expertise333" target="_blank" rel="noopener" style="font-size:0.8rem;font-weight:800;color:#059669;text-decoration:none;">공식 블로그 ↗</a>
+        <a href="https://cafe.naver.com/moneyfitlab" target="_blank" rel="noopener" style="font-size:0.8rem;font-weight:800;color:#4F46E5;text-decoration:none;">공식 카페 ↗</a>
+        <a href="/qna/index.html" style="font-size:0.84rem;font-weight:800;color:#475569;text-decoration:none;">전체 Q&amp;A 25선 →</a>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,#EEF2FF 0%,#F0FDF4 100%);border:1.5px solid #A5B4FC;border-radius:16px;padding:0.9rem 1rem;margin-bottom:1.1rem;">
+      <div style="font-size:0.82rem;font-weight:900;color:#3730A3;margin-bottom:0.5rem;">⚡ 내 아이 연령대 1초 빠른 무료 진단 바로가기 (클릭 시 즉시 계산)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+        <a href="/?preset=infant_1&amp;utm_source=qna_top" style="background:#FFFFFF;border:1px solid #C7D2FE;border-radius:999px;padding:0.32rem 0.72rem;font-size:0.78rem;font-weight:800;color:#1E293B;text-decoration:none;">🍼 만 1세(12~23개월)</a>
+        <a href="/?preset=toddler_2_3&amp;utm_source=qna_top" style="background:#FFFFFF;border:1px solid #C7D2FE;border-radius:999px;padding:0.32rem 0.72rem;font-size:0.78rem;font-weight:800;color:#1E293B;text-decoration:none;">👶 만 2~3세 소근육·성장</a>
+        <a href="/?preset=child_4_5&amp;utm_source=qna_top" style="background:#FFFFFF;border:1px solid #C7D2FE;border-radius:999px;padding:0.32rem 0.72rem;font-size:0.78rem;font-weight:800;color:#1E293B;text-decoration:none;">🧒 만 4~5세 편식·가베</a>
+        <a href="/?preset=elem_low&amp;utm_source=qna_top" style="background:#FFFFFF;border:1px solid #C7D2FE;border-radius:999px;padding:0.32rem 0.72rem;font-size:0.78rem;font-weight:800;color:#1E293B;text-decoration:none;">👧 초등 저학년(7~9세)</a>
+        <a href="/?preset=elem_high&amp;utm_source=qna_top" style="background:#FFFFFF;border:1px solid #C7D2FE;border-radius:999px;padding:0.32rem 0.72rem;font-size:0.78rem;font-weight:800;color:#1E293B;text-decoration:none;">👦 초등 고학년(10~13세)</a>
+        <a href="/?preset=working_mom&amp;utm_source=qna_top" style="background:#1D4ED8;border:1px solid #1D4ED8;border-radius:999px;padding:0.32rem 0.75rem;font-size:0.78rem;font-weight:800;color:#FFFFFF;text-decoration:none;">👩‍💼 워킹맘 주말 3시간 코스</a>
+      </div>
     </div>
     <article class="card">
       <span class="badge">{t["pillar"]} · {t["badge"]}</span>
@@ -273,7 +528,7 @@ def render_topic_html(t: dict, all_topics: list) -> str:
       <a href="/?mode={t["cta_mode"]}" class="cta-btn">{cta_label}</a>
     </article>
     <div class="card">
-      <h3 style="font-size:0.98rem;font-weight:900;color:#0F172A;margin:0 0 0.65rem;">학부모 다빈도 질문 TOP 10 바로가기</h3>
+      <h3 style="font-size:0.98rem;font-weight:900;color:#0F172A;margin:0 0 0.65rem;">학부모 다빈도 질문 TOP 25 전체 바로가기</h3>
       <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.45rem;font-size:0.88rem;">
         {related_links}
       </ul>
@@ -308,8 +563,8 @@ def render_hub_html(all_topics: list) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>소아 키 성장 &amp; 두뇌·학습 임상 Q&amp;A 백과 TOP 10 | KIDS-FIT</title>
-  <meta name="description" content="질병관리청(KDCA) 성장도표, 보건복지부 K-DST, 학술논문 3,120편 기반 학부모 다빈도 질문 TOP 10 핵심 1줄 결론과 실천 처방">
+  <title>소아 키 성장 &amp; 두뇌·학습 임상 Q&amp;A 백과 TOP 25 | KIDS-FIT</title>
+  <meta name="description" content="질병관리청(KDCA) 성장도표, 보건복지부 K-DST, 학술논문 3,405편 기반 학부모 다빈도 질문 TOP 25 핵심 1줄 결론과 실천 처방">
   <link rel="canonical" href="{SITE_URL}/qna/index.html">
   <script type="application/ld+json">{json.dumps(faq_schema, ensure_ascii=False)}</script>
   <style>
@@ -323,8 +578,8 @@ def render_hub_html(all_topics: list) -> str:
       <a href="/" style="font-weight:900;font-size:1.1rem;color:#1D4ED8;text-decoration:none;">KIDS-FIT 키즈핏 그로스 스튜디오</a>
       <a href="/" style="background:#1D4ED8;color:#FFFFFF;font-size:0.84rem;font-weight:800;padding:0.45rem 0.9rem;border-radius:9999px;text-decoration:none;">1분 무료 진단 시작 →</a>
     </div>
-    <h1 style="font-size:1.45rem;font-weight:900;margin:0 0 0.4rem;">소아 키 성장 &amp; 두뇌·학습 임상 Q&amp;A 백과 TOP 10</h1>
-    <p style="font-size:0.9rem;color:#475569;margin:0 0 1.2rem;">질병관리청(KDCA) 성장도표 · 보건복지부 K-DST · 학술논문 3,120편 기반 1줄 핵심 해답</p>
+    <h1 style="font-size:1.45rem;font-weight:900;margin:0 0 0.4rem;">소아 키 성장 &amp; 두뇌·학습 임상 Q&amp;A 백과 TOP 25</h1>
+    <p style="font-size:0.9rem;color:#475569;margin:0 0 1.2rem;">질병관리청(KDCA) 성장도표 · 보건복지부 K-DST · 학술논문 3,405편 기반 1줄 핵심 해답</p>
     {cards_html}
   </div>
 </body>
