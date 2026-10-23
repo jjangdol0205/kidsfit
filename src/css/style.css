@@ -1816,15 +1816,16 @@ body:not(.studio-mode-active) #studio-utility-return-bar {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* Survey & Results Cards Styled in M:FFERENCE Dark Glass Aesthetic */
+/* Survey & Results Cards Styled in Clean Medical White & Trustworthy Blue Aesthetic */
 body[data-theme="dark"] .quiz-card,
+body[data-theme="light"] .quiz-card,
 .quiz-card,
 .bento-card {
-  background: linear-gradient(155deg, rgba(15, 18, 28, 0.92) 0%, rgba(8, 10, 16, 0.96) 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 26px !important;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7) !important;
-  color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid #DBEAFE !important;
+  border-radius: 22px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+  color: #0F172A !important;
 }
 
 .taller-segmented-bar {
@@ -1837,90 +1838,88 @@ body[data-theme="dark"] .quiz-card,
 .taller-seg-pill {
   height: 6px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: #E2E8F0;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .taller-seg-pill.completed {
-  background: #10B981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  background: #3B82F6;
 }
 
 .taller-seg-pill.active {
-  background: linear-gradient(90deg, #3B82F6 0%, #38BDF8 100%);
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.65);
+  background: #1D4ED8;
   transform: scaleY(1.25);
 }
 
 .chip-pill {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
-  color: rgba(255, 255, 255, 0.88) !important;
+  background: #F8FAFC !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #1E293B !important;
   font-weight: 700 !important;
   border-radius: 14px !important;
 }
 
 .chip-input:checked + .chip-pill {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(16, 185, 129, 0.18) 100%) !important;
-  border-color: #38BDF8 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.28) !important;
+  background: #EFF6FF !important;
+  border-color: #1D4ED8 !important;
+  color: #1D4ED8 !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.14) !important;
   transform: translateY(-1px);
 }
 
 .bento-choice-card {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
-  color: #FFFFFF !important;
+  background: #F8FAFC !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #0F172A !important;
 }
 
 .chip-input:checked + .bento-choice-card {
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.22) 0%, rgba(16, 185, 129, 0.14) 100%) !important;
-  border: 2px solid #38BDF8 !important;
-  box-shadow: 0 12px 32px rgba(56, 189, 248, 0.22) !important;
+  background: #EFF6FF !important;
+  border: 2px solid #1D4ED8 !important;
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.14) !important;
 }
 
 .form-input,
 .form-select {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
-  color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #0F172A !important;
   border-radius: 14px !important;
 }
 
 .form-select option {
-  background: #0B0E17;
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: #0F172A;
 }
 
 .form-input:focus,
 .form-select:focus {
-  border-color: #38BDF8 !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22) !important;
+  border-color: #1D4ED8 !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.16) !important;
 }
 
 .btn-primary {
-  background: #FFFFFF !important;
-  color: #000000 !important;
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
   border-radius: 9999px !important;
   font-weight: 800 !important;
-  box-shadow: 0 0 28px rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.22) !important;
 }
 
 .btn-primary:hover {
-  background: #3B82F6 !important;
+  background: #1E40AF !important;
   color: #FFFFFF !important;
 }
 
-/* M:FFERENCE Potential Height Hero Card in Results */
+/* Clean Medical Potential Height Hero Card in Results */
 .taller-height-reveal-hero {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(59, 130, 246, 0.08) 55%, rgba(16, 185, 129, 0.08) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 24px;
+  background: #FFFFFF;
+  border: 1.5px solid #BFDBFE;
+  border-radius: 22px;
   padding: 1.65rem 1.75rem;
   margin-bottom: 1.35rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
   position: relative;
   overflow: hidden;
 }
@@ -1930,9 +1929,8 @@ body[data-theme="dark"] .quiz-card,
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 55%, #10B981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #1D4ED8 !important;
+  -webkit-text-fill-color: #1D4ED8 !important;
   font-family: var(--font-mono);
 }
 
@@ -1960,16 +1958,16 @@ body[data-theme="dark"] .quiz-card,
   font-weight: 800;
   white-space: nowrap;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #F8FAFC;
+  color: #1E293B;
+  border: 1px solid #CBD5E1;
   transition: var(--transition-smooth);
 }
 
 .guidebook-chapter-pill:hover {
-  border-color: #38BDF8;
-  background: rgba(56, 189, 248, 0.16);
-  color: #FFFFFF;
+  border-color: #1D4ED8;
+  background: #EFF6FF;
+  color: #1D4ED8;
   transform: translateY(-1px);
 }
 
@@ -3423,6 +3421,42 @@ body[data-theme="light"] {
   -webkit-text-fill-color: #1D4ED8 !important;
 }
 
+/* Global CSS Variables & High-Specificity Medical White & Blue Unification for Survey & Reports */
+:root,
+html,
+body,
+html[data-theme="dark"],
+body[data-theme="dark"],
+html[data-theme="light"],
+body[data-theme="light"] {
+  --theme-bg: #F8FAFC !important;
+  --theme-bg-gradient: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%) !important;
+  --theme-surface-card: #FFFFFF !important;
+  --theme-surface-sub: #F8FAFC !important;
+  --theme-surface-hover: #EFF6FF !important;
+  --theme-border: #DBEAFE !important;
+  --theme-border-highlight: #1D4ED8 !important;
+  --theme-text-primary: #0F172A !important;
+  --theme-text-secondary: #334155 !important;
+  --theme-text-muted: #475569 !important;
+  --theme-accent: #1D4ED8 !important;
+  --cyan-pulse: #1D4ED8 !important;
+  --bio-emerald: #1D4ED8 !important;
+  --clinical-amber: #1E40AF !important;
+  --alert-coral: #1E3A8A !important;
+}
+
+html body[data-theme="dark"] .quiz-card,
+html body[data-theme="light"] .quiz-card,
+html body .quiz-card,
+html body .quiz-card.bento-card,
+html body .bento-card {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #DBEAFE !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06) !important;
+}
+
 /* Footer */
 .clinic-footer {
   background: #F1F5F9 !important;
@@ -3438,6 +3472,7 @@ body[data-theme="light"] {
   color: #334155 !important;
   font-weight: 700 !important;
 }
+
 
 
 

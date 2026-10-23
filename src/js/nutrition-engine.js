@@ -79,12 +79,12 @@
     const ratio = targets.bioavailabilityRatio || 2.05;
 
     return `
-      <div class="bioavailability-gauge-card" style="background: var(--theme-surface-sub, rgba(30, 41, 59, 0.6)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.25rem; margin-top: 1rem;">
+      <div class="bioavailability-gauge-card" style="background: #F8FAFC; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.25rem; margin-top: 1rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <h5 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-            🧪 칼슘 원료별 생체 흡수율(Bioavailability) 비교 게이지
+            칼슘 원료별 생체 흡수율(Bioavailability) 비교 게이지
           </h5>
-          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-size: 0.78rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px;">
+          <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.2rem 0.65rem; border-radius: 9999px;">
             흡수 효율 약 ${ratio}배 우수
           </span>
         </div>
@@ -92,13 +92,13 @@
         <!-- Gauge 1: Citrate / MCHA (~45%) -->
         <div style="margin-bottom: 0.75rem;">
           <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.3rem;">
-            <span style="font-weight: 700; color: #38BDF8;">
+            <span style="font-weight: 700; color: #1D4ED8;">
               ① 구연산 칼슘 / 어골칼슘 (MCHA, Calcium Citrate)
             </span>
-            <span style="font-weight: 800; color: #10B981;">~${citratePct}% 흡수 (공복 흡수·변비 없음)</span>
+            <span style="font-weight: 800; color: #1D4ED8;">~${citratePct}% 흡수 (공복 흡수·변비 없음)</span>
           </div>
-          <div style="background: rgba(15, 23, 42, 0.6); border-radius: 9999px; height: 12px; overflow: hidden; position: relative;">
-            <div style="background: linear-gradient(90deg, #38BDF8, #10B981); height: 100%; width: ${citratePct * 1.8}%; border-radius: 9999px;"></div>
+          <div style="background: #FFFFFF; border-radius: 9999px; height: 12px; overflow: hidden; position: relative;">
+            <div style="background: #F8FAFC; height: 100%; width: ${citratePct * 1.8}%; border-radius: 9999px;"></div>
           </div>
         </div>
 
@@ -108,9 +108,9 @@
             <span style="font-weight: 700; color: var(--text-secondary);">
               ② 일반 탄산칼슘 (Calcium Carbonate, 조개/석회 유래)
             </span>
-            <span style="font-weight: 800; color: #F59E0B;">~${carbonatePct}% 흡수 (식후 위산 필요)</span>
+            <span style="font-weight: 800; color: #1D4ED8;">~${carbonatePct}% 흡수 (식후 위산 필요)</span>
           </div>
-          <div style="background: rgba(15, 23, 42, 0.6); border-radius: 9999px; height: 12px; overflow: hidden; position: relative;">
+          <div style="background: #FFFFFF; border-radius: 9999px; height: 12px; overflow: hidden; position: relative;">
             <div style="background: #64748B; height: 100%; width: ${carbonatePct * 1.8}%; border-radius: 9999px;"></div>
           </div>
         </div>
@@ -130,7 +130,7 @@
         <!-- Header -->
         <div style="margin-bottom: 1rem;">
           <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-            🥗 체중(${targets.weightKg}kg) · 만 ${targets.ageYears}세 하루 권장 영양 정량 요약
+            체중(${targets.weightKg}kg) · 만 ${targets.ageYears}세 하루 권장 영양 정량 요약
           </h4>
         </div>
 
@@ -138,57 +138,57 @@
         <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.15rem;">
           
           <!-- Card 1: Calcium -->
-          <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-              <span style="font-size: 0.9rem; font-weight: 800; color: #F8FAFC;">🥛 원소 칼슘</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.12); padding: 0.18rem 0.5rem; border-radius: 6px;">뼈 광물화</span>
+              <span style="font-size: 0.9rem; font-weight: 800; color: #0F172A;">원소 칼슘</span>
+              <span style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.5rem; border-radius: 6px;">뼈 광물화</span>
             </div>
-            <div style="font-size: 1.5rem; font-weight: 900; color: #38BDF8; margin: 0.2rem 0;">
+            <div style="font-size: 1.5rem; font-weight: 900; color: #1D4ED8; margin: 0.2rem 0;">
               ${targets.calciumMg} <span style="font-size: 0.88rem; font-weight: 600;">mg/일</span>
             </div>
-            <p style="font-size: 0.85rem; color: #E2E8F0; line-height: 1.45; margin: 0;">
+            <p style="font-size: 0.85rem; color: #0F172A; line-height: 1.45; margin: 0;">
               • 속 쓰림 없는 구연산·어골칼슘 1회 400mg 이하 분할 섭취
             </p>
           </div>
 
           <!-- Card 2: Vitamin D3 + K2 -->
-          <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-              <span style="font-size: 0.9rem; font-weight: 800; color: #F8FAFC;">☀️ 비타민 D3 + K2</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: #F59E0B; background: rgba(245, 158, 11, 0.12); padding: 0.18rem 0.5rem; border-radius: 6px;">칼슘 뼈 침착</span>
+              <span style="font-size: 0.9rem; font-weight: 800; color: #0F172A;">비타민 D3 + K2</span>
+              <span style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.5rem; border-radius: 6px;">칼슘 뼈 침착</span>
             </div>
-            <div style="font-size: 1.5rem; font-weight: 900; color: #F59E0B; margin: 0.2rem 0;">
+            <div style="font-size: 1.5rem; font-weight: 900; color: #1D4ED8; margin: 0.2rem 0;">
               ${targets.vitDIU} <span style="font-size: 0.85rem; font-weight: 600;">IU</span> + ${targets.vitK2Mcg} <span style="font-size: 0.85rem; font-weight: 600;">mcg</span>
             </div>
-            <p style="font-size: 0.85rem; color: #E2E8F0; line-height: 1.45; margin: 0;">
+            <p style="font-size: 0.85rem; color: #0F172A; line-height: 1.45; margin: 0;">
               • 장내 칼슘 흡수를 돕고 성장판 뼈 기질로 직접 운반
             </p>
           </div>
 
           <!-- Card 3: Zinc + Magnesium -->
-          <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-              <span style="font-size: 0.9rem; font-weight: 800; color: #F8FAFC;">⚡ 아연 + 마그네슘</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: #10B981; background: rgba(16, 185, 129, 0.12); padding: 0.18rem 0.5rem; border-radius: 6px;">IGF-1 &amp; 숙면</span>
+              <span style="font-size: 0.9rem; font-weight: 800; color: #0F172A;">아연 + 마그네슘</span>
+              <span style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.5rem; border-radius: 6px;">IGF-1 &amp; 숙면</span>
             </div>
-            <div style="font-size: 1.5rem; font-weight: 900; color: #10B981; margin: 0.2rem 0;">
+            <div style="font-size: 1.5rem; font-weight: 900; color: #1D4ED8; margin: 0.2rem 0;">
               ${targets.zincMg} <span style="font-size: 0.85rem; font-weight: 600;">mg</span> + ${targets.magMg} <span style="font-size: 0.85rem; font-weight: 600;">mg</span>
             </div>
-            <p style="font-size: 0.85rem; color: #E2E8F0; line-height: 1.45; margin: 0;">
+            <p style="font-size: 0.85rem; color: #0F172A; line-height: 1.45; margin: 0;">
               • 성장인자(IGF-1) 합성 촉진 및 밤 10시 깊은 서파수면 유도
             </p>
           </div>
 
           <!-- Card 4: Bone Matrix Protein -->
-          <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 18px; padding: 1.1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-              <span style="font-size: 0.9rem; font-weight: 800; color: #F8FAFC;">🥩 뼈 기질 단백질</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: #EC4899; background: rgba(236, 72, 153, 0.12); padding: 0.18rem 0.5rem; border-radius: 6px;">체중 × 1.3g</span>
+              <span style="font-size: 0.9rem; font-weight: 800; color: #0F172A;">뼈 기질 단백질</span>
+              <span style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.5rem; border-radius: 6px;">체중 × 1.3g</span>
             </div>
-            <div style="font-size: 1.5rem; font-weight: 900; color: #EC4899; margin: 0.2rem 0;">
+            <div style="font-size: 1.5rem; font-weight: 900; color: #1D4ED8; margin: 0.2rem 0;">
               ${targets.proteinG} <span style="font-size: 0.88rem; font-weight: 600;">g/일</span>
             </div>
-            <p style="font-size: 0.85rem; color: #E2E8F0; line-height: 1.45; margin: 0;">
+            <p style="font-size: 0.85rem; color: #0F172A; line-height: 1.45; margin: 0;">
               • 성장판 연골·콜라겐 뼈대를 세우는 필수 아미노산 공급
             </p>
           </div>
@@ -225,7 +225,7 @@
                  class="reference-chip" 
                  id="ref-chip-nutrition"
                  style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
-                <span>🌿</span>
+                <span></span>
                 <span>${isGlobalMode ? '[Ingredient Spec Reference (iHerb) ↗]' : '[성분 스펙 레퍼런스 (iHerb) ↗]'}</span>
               </a>
             `;

@@ -245,23 +245,23 @@
     let bmiStatus = '표준 균형 체형 (정상 5~84백분위)';
     let bmiShortStatus = '키 성장 최적 표준 체중';
     let bmiNote = '현재 키 대비 체중 밸런스가 이상적입니다. 체지방 과다 없이 근육과 뼈 성장을 위한 양질의 단백질·칼슘 섭취를 유지해주세요.';
-    let bmiBadgeColor = '#10B981';
+    let bmiBadgeColor = '#1D4ED8';
 
     if (bmi < ((lms && lms.bmiP5) || 13.8) || wKg < optimalWeightForHeight * 0.88) {
       bmiStatus = '저체중 · 영양 보충 필요 (<5백분위)';
       bmiShortStatus = '저체중 · 골밀도 영양 보충 필요';
       bmiNote = `현재 키(${hVal}cm) 맞춤 적정 체중(${optimalWeightForHeight}kg)보다 ${Math.abs(weightVsHeightDelta).toFixed(1)}kg 부족합니다. 키 성장의 재료가 되는 단백질·칼슘·아연·초유 보강이 우선입니다.`;
-      bmiBadgeColor = '#F59E0B';
+      bmiBadgeColor = '#1D4ED8';
     } else if (bmi >= ((lms && lms.bmiP95) || 21.0) || wKg > optimalWeightForHeight * 1.2) {
       bmiStatus = '과체중·성조숙 주의 (≥95백분위)';
       bmiShortStatus = '과체중 · 성장판 조기 골화 주의';
       bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg)보다 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg 높습니다. 과도한 체지방(렙틴 호르몬)은 사춘기와 성장판 골화를 앞당길 수 있으므로 야식·단 음료를 줄이고 줄넘기·점핑 운동으로 전환해주세요.`;
-      bmiBadgeColor = '#F43F5E';
+      bmiBadgeColor = '#1D4ED8';
     } else if (bmi >= ((lms && lms.bmiP85) || 18.8) || wKg > optimalWeightForHeight * 1.1) {
       bmiStatus = '과체중 경계 (85~94백분위)';
       bmiShortStatus = '과체중 경계 · 체지방 관리 권장';
       bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg) 대비 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg입니다. 체중 증가 속도가 키 성장 속도보다 빠르지 않도록 야식과 액상과당 음료를 조절해주세요.`;
-      bmiBadgeColor = '#F59E0B';
+      bmiBadgeColor = '#1D4ED8';
     }
 
     return {
@@ -639,7 +639,7 @@
       <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 360px;" aria-label="3중 인터랙티브 임상 성장 곡선 차트">
         <defs>
           <linearGradient id="optZoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.22" />
+            <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.22" />
             <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.05" />
           </linearGradient>
           <filter id="glowPulse" x="-30%" y="-30%" width="160%" height="160%">
@@ -661,65 +661,65 @@
         <!-- Normative Reference Background Curves (P3, P50, P97) with non-overlapping mid-chart badges -->
         <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p97" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
-        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#94A3B8" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
 
         <path d="${pathP50}" fill="none" stroke="#475569" stroke-width="1.8" id="curve-p50" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#0F172A" opacity="0.85" />
-        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#CBD5E1" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
 
         <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p3" />
         <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#0F172A" opacity="0.85" />
-        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#94A3B8" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
 
         <!-- 3 Color-Coded Trajectory Path Lines & Anti-Collision Right Badges -->
         <!-- 1. Optimized Intervention Trajectory (Cyan Blue #38BDF8) -->
-        <path d="${pathOptimized}" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" id="curve-optimized" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYOpt.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYOpt.toFixed(1)}" stroke="#38BDF8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#38BDF8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYOpt + 3).toFixed(1)}" font-size="11" fill="#38BDF8" font-weight="900" text-anchor="middle">최대 잠재 ${traj.optimized.height}cm</text>
+        <path d="${pathOptimized}" fill="none" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" id="curve-optimized" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYOpt.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYOpt.toFixed(1)}" stroke="#1D4ED8" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYOpt + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="900" text-anchor="middle">최대 잠재 ${traj.optimized.height}cm</text>
 
         <!-- 2. Genetic Baseline Trajectory (Amber #F59E0B) -->
-        <path d="${pathBaseline}" fill="none" stroke="#F59E0B" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#F59E0B" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#F59E0B" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#FBBF24" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
+        <path d="${pathBaseline}" fill="none" stroke="#94A3B8" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
 
         <!-- 3. Current Unmanaged Trajectory (Coral/Rose #F43F5E) -->
-        <path d="${pathUnmanaged}" fill="none" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#F43F5E" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="rgba(15, 23, 42, 0.94)" stroke="#F43F5E" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#FDA4AF" font-weight="800" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
+        <path d="${pathUnmanaged}" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
 
         <!-- Axes -->
         <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
         <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
 
         <!-- X-Axis Age Ticks (1 to 20 yrs) -->
-        <text x="${scaleX(24)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">2세</text>
-        <text x="${scaleX(72)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">6세</text>
-        <text x="${scaleX(120)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">10세</text>
-        <text x="${scaleX(168)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">14세</text>
-        <text x="${scaleX(216)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">18세</text>
-        <text x="${scaleX(240)}" y="${height - 14}" font-size="11" font-weight="700" fill="#CBD5E1" text-anchor="middle">20세</text>
+        <text x="${scaleX(24)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">2세</text>
+        <text x="${scaleX(72)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">6세</text>
+        <text x="${scaleX(120)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">10세</text>
+        <text x="${scaleX(168)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">14세</text>
+        <text x="${scaleX(216)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">18세</text>
+        <text x="${scaleX(240)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">20세</text>
 
         <!-- Y-Axis Height Ticks -->
-        <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">80cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">100cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(120) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">120cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">140cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(160) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">160cm</text>
-        <text x="${padding.left - 8}" y="${scaleY(180) + 4}" font-size="10.5" font-weight="700" fill="#CBD5E1" text-anchor="end">180cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">80cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(100) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">100cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(120) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">120cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(140) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">140cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(160) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">160cm</text>
+        <text x="${padding.left - 8}" y="${scaleY(180) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">180cm</text>
 
         <!-- Current Child Coordinate: Pulsing Bio-Emerald Point (#10B981) -->
-        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="14" fill="#10B981" fill-opacity="0.25">
+        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="14" fill="#1D4ED8" fill-opacity="0.25">
           <animate attributeName="r" values="7;15;7" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="2.5" filter="url(#glowPulse)" />
+        <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2.5" filter="url(#glowPulse)" />
 
         <!-- Tooltip Badge -->
         <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 140, curX - 68))}, ${Math.max(padding.top + 4, curY - 38)})">
-          <rect x="0" y="0" width="136" height="26" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.4" opacity="0.96" />
-          <text x="68" y="17" font-size="11" font-weight="900" fill="#6EE7B7" text-anchor="middle">
+          <rect x="0" y="0" width="136" height="26" rx="6" fill="#0F172A" stroke="#1D4ED8" stroke-width="1.4" opacity="0.96" />
+          <text x="68" y="17" font-size="11" font-weight="900" fill="#1D4ED8" text-anchor="middle">
             현재 ${curH}cm (${curZ.percentile}th Pct)
           </text>
         </g>
@@ -787,9 +787,9 @@
     return `
       <div class="coaching-cards-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
         <!-- Card 1: Nutrition -->
-        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #10B981; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #6EE7B7; margin-bottom: 0.35rem;">🥛 ① 식단 &amp; 뼈성장 영양 핵심</div>
-          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
+        <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">① 식단 &amp; 뼈성장 영양 핵심</div>
+          <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasMilk 
               ? '• <strong>구연산 칼슘 · 어골칼슘(흡수율 45%)</strong> + 비타민D3·K2를 아침·저녁 보충해 우유 배앓이 없이 뼈 기질을 채워주세요.' 
               : '• <strong>구연산 칼슘 · 비타민D3(1000~2000IU) · 아연 · 초유</strong>를 아침·저녁 꾸준히 보충해 성장판 연골 증식을 돕습니다.'}
@@ -797,9 +797,9 @@
         </div>
 
         <!-- Card 2: Sleep -->
-        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #38BDF8; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #93C5FD; margin-bottom: 0.35rem;">🌙 ② 밤 10시 수면 골든타임</div>
-          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
+        <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">② 밤 10시 수면 골든타임</div>
+          <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasLateSleep 
               ? '• 밤 10시~새벽 2시에 일일 성장호르몬의 <strong>65%가 분비</strong>됩니다. 21:45 소등 &amp; 취침 2시간 전 금식을 지켜주세요.' 
               : '• 취침 후 첫 90분 깊은 서파수면(SWS)에서 성장호르몬이 폭발합니다. 잠들기 전 5분 다리 마사지로 숙면을 유도하세요.'}
@@ -807,9 +807,9 @@
         </div>
 
         <!-- Card 3: Posture -->
-        <div class="bento-card-sub" style="background: rgba(15, 23, 42, 0.88); border-left: 4px solid #A855F7; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #D8B4FE; margin-bottom: 0.35rem;">🧘 ③ 숨은 키 2cm 감압 &amp; 점핑</div>
-          <div style="font-size: 0.92rem; color: #F8FAFC; line-height: 1.55;">
+        <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">③ 숨은 키 2cm 감압 &amp; 점핑</div>
+          <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasPosture 
               ? '• 저녁 <strong>문틀 철봉 매달리기(30초×3세트)</strong>로 눌린 척추 디스크를 펴주면 <strong>숨은 키 2cm(1.5~2.2cm)</strong>가 복원됩니다.' 
               : '• 하루 15분 <strong>실내 트램폴린·줄넘기 점핑</strong>은 성장판 연골세포를 자극해 숨은 키 2cm와 골성장을 깨웁니다.'}
@@ -831,27 +831,27 @@
     };
 
     return `
-      <div style="background: rgba(15, 23, 42, 0.88); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 18px; padding: 1.2rem; margin-top: 1.15rem;">
+      <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.2rem; margin-top: 1.15rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-          <h4 style="font-size: 1.02rem; font-weight: 900; color: #FFFFFF; margin: 0;">
-            🏛️ 대한소아내분비학회 · 미국수면재단(NSF) 핵심 기준 요약
+          <h4 style="font-size: 1.02rem; font-weight: 900; color: #0F172A; margin: 0;">
+            대한소아내분비학회 · 미국수면재단(NSF) 핵심 기준 요약
           </h4>
-          <span style="background: rgba(56, 189, 248, 0.15); color: #93C5FD; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+          <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px;">
             ${velocityGuide.ageRangeLabel}
           </span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">📏 정상 성장속도 기준</span>
-            <span style="font-size: 0.98rem; font-weight: 900; color: #34D399;">${velocityGuide.normalVelocityCmPerYear}</span>
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">정상 성장속도 기준</span>
+            <span style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">${velocityGuide.normalVelocityCmPerYear}</span>
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">🌙 연령 권장 수면시간</span>
-            <span style="font-size: 0.95rem; font-weight: 900; color: #38BDF8;">${velocityGuide.sleepRecommendation}</span>
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">연령 권장 수면시간</span>
+            <span style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8;">${velocityGuide.sleepRecommendation}</span>
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #94A3B8; font-weight: 800;">⚖️ 체질량지수 (BMI ${bmiInfo.bmi})</span>
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">체질량지수 (BMI ${bmiInfo.bmi})</span>
             <span style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor};">${bmiInfo.bmiStatus} (연 4cm 미만 시 진료 권장)</span>
           </div>
         </div>
@@ -870,119 +870,119 @@
     if (ageYears <= 3) {
       ageBandTitle = `만 ${ageYears}세(영유아기) 맞춤`;
       prod1 = {
-        badge: `🍼 만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
+        badge: `만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
         title: '차일드라이프 액상 구연산 칼슘·마그네슘 오렌지맛 & 비타민D3 1000IU 드롭',
         desc: `생후 ${ageMonths}개월 영유아는 정제 알약 대신 위산과 무관하게 흡수되는 액상 구연산 칼슘과 비타민D3 드롭으로 기초 골격을 다져주어야 합니다.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84',
-        btnText: `📦 쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
+        btnText: `쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
       };
       prod2 = {
-        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
+        badge: `만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
         title: '일동후디스 하이키즈 초유 분말 / 영유아 글루콘산 아연·초유 스틱',
         desc: '편식·입짧음을 예방하고 성장호르몬 수용체(IGF-1) 활성과 기초 면역력을 동시에 챙겨주는 영유아 맞춤 초유·아연입니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C',
-        btnText: `📦 쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
+        btnText: `쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
       };
       prod3 = {
-        badge: `🏃 만 ${ageYears}세 맞춤 3위 · 안전 손잡이 트램폴린`,
+        badge: `만 ${ageYears}세 맞춤 3위 · 안전 손잡이 트램폴린`,
         title: '멜킨 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 & 초음파 신장계',
         desc: '영유아 소뇌 평형감각 발달과 하지 성장판 미세자극을 층간소음 없이 안전하게 도와주는 손잡이형 점핑 기구입니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88+%EC%9C%A0%EC%95%84+%EC%95%88%EC%A0%84+%EC%86%90%EC%9E%A1%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0',
-        btnText: `📦 쿠팡에서 유아 손잡이 트램폴린 보기 ↗`
+        btnText: `쿠팡에서 유아 손잡이 트램폴린 보기 ↗`
       };
     } else if (ageYears <= 6) {
       ageBandTitle = `만 ${ageYears}세(유아·유치원기) 맞춤`;
       prod1 = {
-        badge: `🏆 만 ${ageYears}세 맞춤 1위 · 키성장 기능성 젤리/분말`,
+        badge: `만 ${ageYears}세 맞춤 1위 · 키성장 기능성 젤리/분말`,
         title: '종근당건강 아이커 / 키클래오042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
         desc: `만 ${ageYears}세 유아기 하지 성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 우유나 간식처럼 맛있게 챙기는 1위 제품입니다.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `📦 쿠팡에서 만 ${ageYears}세 HT042 키성장 영양제 보기 ↗`
+        btnText: `쿠팡에서 만 ${ageYears}세 HT042 키성장 영양제 보기 ↗`
       };
       prod2 = {
-        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 츄어블 칼슘 올인원`,
+        badge: `만 ${ageYears}세 맞춤 2위 · 츄어블 칼슘 올인원`,
         title: '뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블',
         desc: '알약을 삼키기 힘든 유아도 사탕처럼 맛있게 씹어 먹으며 칼슘·초유·비타민D3·아연을 한 번에 채우는 스테디셀러입니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94',
-        btnText: `📦 쿠팡에서 유아 초유·칼슘 츄어블 보기 ↗`
+        btnText: `쿠팡에서 유아 초유·칼슘 츄어블 보기 ↗`
       };
       prod3 = {
-        badge: `⚡ 만 ${ageYears}세 맞춤 3위 · 무소음 점핑 트램폴린`,
+        badge: `만 ${ageYears}세 맞춤 3위 · 무소음 점핑 트램폴린`,
         title: '층간소음 방어 어린이 실내 무소음 점핑 트램폴린 & 초음파 디지털 신장계',
         desc: '하루 15분 수직 점핑(볼프의 법칙)으로 대퇴골·경골 성장판을 자극하고 매달 1일 아침 키를 0.1cm 단위로 측정합니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A0%90%ED%95%91%EB%A7%A4%ED%8A%B8',
-        btnText: `📦 쿠팡에서 어린이 무소음 트램폴린 보기 ↗`
+        btnText: `쿠팡에서 어린이 무소음 트램폴린 보기 ↗`
       };
     } else if (ageYears <= 10) {
       ageBandTitle = `만 ${ageYears}세(초등 학령기) 맞춤`;
       prod1 = {
-        badge: `🏆 만 ${ageYears}세 맞춤 1위 · 사춘기 전 기초키 확보`,
+        badge: `만 ${ageYears}세 맞춤 1위 · 사춘기 전 기초키 확보`,
         title: '종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
         desc: `사춘기 급성장기 진입 전 기초 신장을 최대한 높여주어야 하는 만 ${ageYears}세 초등 핵심 기능성 원료입니다.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `📦 쿠팡에서 초등 HT042 키성장 영양제 보기 ↗`
+        btnText: `쿠팡에서 초등 HT042 키성장 영양제 보기 ↗`
       };
       prod2 = {
-        badge: `✨ 만 ${ageYears}세 맞춤 2위 · 고흡수 어골·연골칼슘`,
+        badge: `만 ${ageYears}세 맞춤 2위 · 고흡수 어골·연골칼슘`,
         title: '초등 고흡수 비소성 어골·연골칼슘(800mg) + 비타민D3·K2·아연·마그네슘',
         desc: '초등 시기 급격히 늘어나는 뼈 길이 성장을 단단한 골기질로 채워주는 생체흡수율 45% 칼슘·D3·K2 배합입니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EC%97%B0%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3+K2+%EC%95%84%EC%97%B0',
-        btnText: `📦 쿠팡에서 초등 어골·연골칼슘 보기 ↗`
+        btnText: `쿠팡에서 초등 어골·연골칼슘 보기 ↗`
       };
       prod3 = {
-        badge: `💎 만 ${ageYears}세 맞춤 3위 · 초음파 신장계 & 카운터 줄넘기`,
+        badge: `만 ${ageYears}세 맞춤 3위 · 초음파 신장계 & 카운터 줄넘기`,
         title: '인바디 초음파 디지털 신장계(1초 정밀 키재기) & 초등 디지털 카운터 줄넘기',
         desc: '초등 줄넘기 급수제 대비 하루 500회 점핑으로 성장판을 자극하고, 매월 1일 아침 성장속도(cm/년)를 정밀 측정합니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0',
-        btnText: `📦 쿠팡에서 초음파 신장계·줄넘기 보기 ↗`
+        btnText: `쿠팡에서 초음파 신장계·줄넘기 보기 ↗`
       };
     } else {
       ageBandTitle = `만 ${ageYears}세(초등 고학년·청소년 급성장기) 맞춤`;
       prod1 = {
-        badge: `🏆 만 ${ageYears}세 급성장 1위 · HT042 & 고함량 칼슘`,
+        badge: `만 ${ageYears}세 급성장 1위 · HT042 & 고함량 칼슘`,
         title: '식약처 인정 HT042 황기추출물 + 청소년 고함량 어골·연골칼슘(1100mg)·아르기닌',
         desc: `성장판이 닫히기 전 마지막 골든타임(만 ${ageYears}세)에 폭발하는 뼈 성장 요구량을 채워주는 고함량 집중 배합입니다.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `📦 쿠팡에서 청소년 HT042·고함량 칼슘 보기 ↗`
+        btnText: `쿠팡에서 청소년 HT042·고함량 칼슘 보기 ↗`
       };
       prod2 = {
-        badge: `🌙 만 ${ageYears}세 맞춤 2위 · 심야 수면·성장통 마그네슘`,
+        badge: `만 ${ageYears}세 맞춤 2위 · 심야 수면·성장통 마그네슘`,
         title: '청소년 킬레이트 글리시네이트 마그네슘·타트체리 슬립케어 & 비타민D3·K2',
         desc: '학원·학업 스트레스로 늦게 자는 청소년의 서파수면(SWS) 성장호르몬 피크를 회복시키고 다리 성장통을 완화합니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%AD%EC%86%8C%EB%85%84+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%ED%83%80%ED%8A%B8%EC%B2%B4%EB%A6%AC+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD',
-        btnText: `📦 쿠팡에서 청소년 수면·마그네슘 칼슘 보기 ↗`
+        btnText: `쿠팡에서 청소년 수면·마그네슘 칼슘 보기 ↗`
       };
       prod3 = {
-        badge: `🦴 만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
+        badge: `만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
         title: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 고밀도 EPP 폼롤러',
         desc: '하루 종일 책상에 앉아 눌린 척추 디스크를 저녁 90초 매달리기(Dead Hang)로 감압해 숨은 키 1.8~2.2cm를 즉시 복원합니다.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC',
-        btnText: `📦 쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
+        btnText: `쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
       };
     }
 
     return `
-      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-        <span style="font-size: 0.86rem; font-weight: 800; color: #93C5FD;">🔬 동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #38BDF8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+      <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <span style="font-size: 0.86rem; font-weight: 800; color: #1D4ED8;">동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
       </div>
 
       <!-- Bottom Recommended Products for Core 1 (Age-Tailored & Hidden by default so pure report shows first) -->
-      <div id="core-1-recommended-products" class="curated-product-recommendation-section growth-product-section" style="display: none; background: rgba(15, 23, 42, 0.94); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
+      <div id="core-1-recommended-products" class="curated-product-recommendation-section growth-product-section" style="display: none; background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-          <h4 style="font-size: 1.1rem; font-weight: 900; color: #38BDF8; margin: 0;">
-            🎁 [${ageBandTitle}] 신체성장 · 숨은 키 목표 달성 엄선 추천 상품 TOP 3
+          <h4 style="font-size: 1.1rem; font-weight: 900; color: #1D4ED8; margin: 0;">
+            [${ageBandTitle}] 신체성장 · 숨은 키 목표 달성 엄선 추천 상품 TOP 3
           </h4>
-          <span style="font-size: 0.8rem; color: #6EE7B7; font-weight: 800;">✓ 만 ${ageYears}세(${ageMonths}개월) 연령별 발달 단계 1:1 맞춤 큐레이션</span>
+          <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 800;">만 ${ageYears}세(${ageMonths}개월) 연령별 발달 단계 1:1 맞춤 큐레이션</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.85rem;">
           <!-- Product 1 -->
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #FBBF24; background: rgba(251,191,36,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod1.badge}</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod1.title}</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod1.desc}</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod1.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #0F172A; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod1.title}</div>
+              <p style="font-size: 0.86rem; color: #0F172A; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod1.desc}</p>
             </div>
             <a href="${prod1.url}" target="_blank" rel="noopener noreferrer" id="ref-chip-growth" class="reference-chip mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #FFFFFF; color: #0F172A; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
               ${prod1.btnText}
@@ -990,32 +990,32 @@
           </div>
 
           <!-- Product 2 -->
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #6EE7B7; background: rgba(16,185,129,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod2.badge}</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod2.title}</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod2.desc}</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod2.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #0F172A; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod2.title}</div>
+              <p style="font-size: 0.86rem; color: #0F172A; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod2.desc}</p>
             </div>
-            <a href="${prod2.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+            <a href="${prod2.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #93C5FD; color: #1D4ED8; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
               ${prod2.btnText}
             </a>
           </div>
 
           <!-- Product 3 -->
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1.05rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <span style="font-size: 0.76rem; font-weight: 900; color: #D8B4FE; background: rgba(168,85,247,0.15); padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod3.badge}</span>
-              <div style="font-size: 1.0rem; font-weight: 900; color: #FFFFFF; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod3.title}</div>
-              <p style="font-size: 0.86rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod3.desc}</p>
+              <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.18rem 0.55rem; border-radius: 9999px;">${prod3.badge}</span>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #0F172A; margin: 0.45rem 0 0.35rem; line-height: 1.4;">${prod3.title}</div>
+              <p style="font-size: 0.86rem; color: #0F172A; line-height: 1.5; margin: 0 0 0.75rem 0;">${prod3.desc}</p>
             </div>
-            <a href="${prod3.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: rgba(168, 85, 247, 0.22); border: 1px solid #A855F7; color: #E9D5FF; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
+            <a href="${prod3.url}" target="_blank" rel="noopener noreferrer" class="mobile-touch-btn" style="display: flex; min-height: 44px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #93C5FD; color: #1D4ED8; font-size: 0.88rem; font-weight: 900; padding: 0.55rem 0.85rem; border-radius: 10px; text-decoration: none;">
               ${prod3.btnText}
             </a>
           </div>
         </div>
-        <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255,255,255,0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.76rem; color: #94A3B8;">
-          <span>📚 학술 레퍼런스: Kim JH et al. (2018) 2017 Korean National Growth Charts · Lee D et al. HT042 Clinical Trial</span>
-          <a href="https://pubmed.ncbi.nlm.nih.gov/29628905/" target="_blank" rel="noopener noreferrer" style="color: #93C5FD; text-decoration: underline;">PubMed PMID: 29628905 ↗</a>
+        <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed #BFDBFE; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.76rem; color: #475569;">
+          <span>학술 레퍼런스: Kim JH et al. (2018) 2017 Korean National Growth Charts · Lee D et al. HT042 Clinical Trial</span>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/29628905/" target="_blank" rel="noopener noreferrer" style="color: #1D4ED8; text-decoration: underline;">PubMed PMID: 29628905 ↗</a>
         </div>
       </div>
     `;
@@ -1045,17 +1045,17 @@
     const wTargetPct = calcWWidth(target6mW);
 
     return `
-      <div id="weight-3tier-analysis-card" style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+      <div id="weight-3tier-analysis-card" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div>
             <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: var(--text-primary);">
-              ⚖️ 우리 아이 몸무게 &amp; 체질량(BMI) 3단 밸런스 비교 (키 성장 연동 진단)
+              우리 아이 몸무게 &amp; 체질량(BMI) 3단 밸런스 비교 (키 성장 연동 진단)
             </h4>
             <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
               질병관리청(KDCA) 또래 평균 몸무게 · 현재 키(${curH}cm) 맞춤 적정 몸무게 · 6개월 후 목표 몸무게
             </p>
           </div>
-          <span style="background: rgba(16, 185, 129, 0.16); border: 1px solid ${bmiInfo.bmiBadgeColor}; color: ${bmiInfo.bmiBadgeColor}; font-size: 0.8rem; font-weight: 900; padding: 0.28rem 0.75rem; border-radius: 9999px;">
+          <span style="background: #EFF6FF; border: 1px solid ${bmiInfo.bmiBadgeColor}; color: ${bmiInfo.bmiBadgeColor}; font-size: 0.8rem; font-weight: 900; padding: 0.28rem 0.75rem; border-radius: 9999px;">
             BMI ${bmiInfo.bmi} · ${bmiInfo.bmiShortStatus || bmiInfo.bmiStatus}
           </span>
         </div>
@@ -1089,7 +1089,7 @@
           <div class="predicted-bar-row" style="margin-top: 1rem;">
             <div class="predicted-bar-header">
               <span class="bar-title">③ 현재 키(${curH}cm) 맞춤 적정 몸무게 → 6개월 후 목표</span>
-              <span class="bar-val bar-val-mint">적정 ${optW}kg <small style="color: #38BDF8; font-size: 0.88rem; font-weight: 800;">→ 6개월 후 ${target6mW}kg</small></span>
+              <span class="bar-val bar-val-mint">적정 ${optW}kg <small style="color: #1D4ED8; font-size: 0.88rem; font-weight: 800;">→ 6개월 후 ${target6mW}kg</small></span>
             </div>
             <div class="predicted-bar-track">
               <div class="predicted-bar-fill bar-fill-mint" style="width: ${Math.max(wOptPct, wTargetPct)}%;"></div>
@@ -1124,60 +1124,60 @@
 
         <!-- Big Stats Bento Header (2x2 Grid — 2 Cards Per Row Filling the Screen Cleanly) -->
         <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 0.85rem;">
-          <div class="stat-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">📏 키·몸무게 백분위</span>
+          <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">키·몸무게 백분위</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: var(--cyan-pulse, #38BDF8); margin: 0.3rem 0;">키 상위 ${kdca.topPercent}%</div>
-            <span style="font-size: 0.8rem; color: #E2E8F0; font-weight: 700; display: block;">몸무게 상위 ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
+            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">몸무게 상위 ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
             <span style="font-size: 0.75rem; color: var(--text-secondary);">키 ${kdca.percentile}th · 체중 ${bmiInfo.weightPercentile}th Pct</span>
           </div>
 
-          <div class="stat-card" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--growth-mint, #10B981);">🚀 연간 성장속도</span>
-            <div style="font-size: 1.55rem; font-weight: 900; color: ${vel.alert ? '#F43F5E' : 'var(--growth-mint, #10B981)'}; margin: 0.3rem 0;">
+          <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--growth-mint, #10B981);">연간 성장속도</span>
+            <div style="font-size: 1.55rem; font-weight: 900; color: ${vel.alert ? '#1D4ED8' : 'var(--growth-mint, #10B981)'}; margin: 0.3rem 0;">
               ${vel.velocityCmPerYear} cm/년
             </div>
-            <span style="font-size: 0.8rem; color: #E2E8F0; font-weight: 700; display: block;">적정체중 ${bmiInfo.optimalWeightForHeight}kg 기준</span>
-            <span style="font-size: 0.75rem; color: ${vel.alert ? '#FDA4AF' : 'var(--text-secondary)'};">
-              ${vel.alert ? '🚨 저성장 주의 (<4.0cm/yr)' : vel.status === 'accelerated' ? '⚡ 급성장 가속 피크' : '✓ 정상 성장 궤도'}
+            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">적정체중 ${bmiInfo.optimalWeightForHeight}kg 기준</span>
+            <span style="font-size: 0.75rem; color: ${vel.alert ? '#1D4ED8' : 'var(--text-secondary)'};">
+              ${vel.alert ? '저성장 주의 (<4.0cm/yr)' : vel.status === 'accelerated' ? '급성장 가속 피크' : '정상 성장 궤도'}
             </span>
           </div>
 
-          <div class="stat-card" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">🧬 유전 표적키 (MPH)</span>
+          <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">유전 표적키 (MPH)</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: var(--amber-caution, #F59E0B); margin: 0.3rem 0;">${mphObj.mph}cm</div>
-            <span style="font-size: 0.8rem; color: #FDE68A; font-weight: 700; display: block;">잠재키 최대 ${pred.potentialHeight}cm</span>
+            <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700; display: block;">잠재키 최대 ${pred.potentialHeight}cm</span>
             <span style="font-size: 0.75rem; color: var(--text-secondary);">${mphObj.rangeStr} (±8.5cm)</span>
           </div>
 
-          <div class="stat-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--rose-alert, #F43F5E);">⏳ 성장판 잔여 기간</span>
+          <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--rose-alert, #F43F5E);">성장판 잔여 기간</span>
             <div style="font-size: 1.35rem; font-weight: 900; color: var(--rose-alert, #F43F5E); margin: 0.35rem 0;">
               ${pred.windowHeadline || pred.monthsRemaining.split('(')[0].trim()}
             </div>
-            <span style="font-size: 0.78rem; color: #FECDD3; font-weight: 700; display: block;">${pred.windowSubLabel || ''}</span>
+            <span style="font-size: 0.78rem; color: #1D4ED8; font-weight: 700; display: block;">${pred.windowSubLabel || ''}</span>
           </div>
         </div>
 
         <!-- Clear Clinical Explanation of Growth Plate Remaining Window -->
-        <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 14px; padding: 0.8rem 1rem; margin-bottom: 1.25rem; font-size: 0.84rem; color: #F8FAFC; line-height: 1.55;">
-          <strong style="color: #FDA4AF;">💡 [골든타임 성장판 잔여 기간이란?]</strong> 뼈 끝의 연골 성장판이 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 <strong>실제로 키가 더 자랄 수 있는 남은 시간</strong>입니다. ${pred.windowMeaningKo || ''}
+        <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.8rem 1rem; margin-bottom: 1.25rem; font-size: 0.84rem; color: #0F172A; line-height: 1.55;">
+          <strong style="color: #1D4ED8;">[골든타임 성장판 잔여 기간이란?]</strong> 뼈 끝의 연골 성장판이 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 <strong>실제로 키가 더 자랄 수 있는 남은 시간</strong>입니다. ${pred.windowMeaningKo || ''}
         </div>
 
         <!-- High-Resolution Interactive 3-Curve SVG Chart Card -->
-        <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <div>
               <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0; color: var(--text-primary);">
-                📈 3중 성인 예측키 성장 궤적 곡선 (Auxology Trajectory)
+                3중 성인 예측키 성장 궤적 곡선 (Auxology Trajectory)
               </h4>
               <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0.2rem 0 0 0;">
                 현재 나이(${Math.round(ageMonths / 12)}세)부터 만 20세까지 3가지 성장 경로 시뮬레이션
               </p>
             </div>
             <div style="display: flex; gap: 0.85rem; font-size: 0.78rem; font-weight: 700;">
-              <span style="color: #38BDF8;">● 최대 잠재 궤적</span>
-              <span style="color: #F59E0B;">● 유전 기준(MPH)</span>
-              <span style="color: #F43F5E;">● 방치 손실 궤적</span>
+              <span style="color: #1D4ED8;">● 최대 잠재 궤적</span>
+              <span style="color: #1D4ED8;">● 유전 기준(MPH)</span>
+              <span style="color: #1D4ED8;">● 방치 손실 궤적</span>
             </div>
           </div>
           ${renderSvgGrowthCurve(gender, ageMonths, profile.currentHeight, {
@@ -1189,9 +1189,9 @@
         </div>
 
         <!-- 3-Tier Predicted Height Bar Chart -->
-        <div style="background: var(--theme-surface-card, rgba(15, 23, 42, 0.74)); border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: #FFFFFF; border: 1px solid var(--border-clinic, rgba(255, 255, 255, 0.08)); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
           <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 1rem 0; color: var(--text-primary);">
-            📊 성인 예측키 3단 비교 (유전 MPH vs 현재 습관 유지 vs 골든타임 최적화)
+            성인 예측키 3단 비교 (유전 MPH vs 현재 습관 유지 vs 골든타임 최적화)
           </h4>
           ${render3TierBarChart(pred)}
         </div>
@@ -1205,7 +1205,7 @@
         <!-- 3 Habit Prescriptive Coaching Cards -->
         <div style="margin-top: 1.5rem;">
           <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: var(--text-primary);">
-            🩺 성장 방해 생체 요인별 임상 프로토콜
+            성장 방해 생체 요인별 임상 프로토콜
           </h4>
           ${renderCoachingCards(profile.habits)}
         </div>

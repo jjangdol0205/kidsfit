@@ -275,7 +275,7 @@
         `).join('')}
 
         <!-- Data Polygon -->
-        <polygon points="${polygonPoints}" fill="#10B981" fill-opacity="0.32" stroke="#059669" stroke-width="2.5" />
+        <polygon points="${polygonPoints}" fill="#1D4ED8" fill-opacity="0.32" stroke="#059669" stroke-width="2.5" />
 
         <!-- Data Vertices -->
         ${polygonPoints.split(' ').map((pt) => {
@@ -302,7 +302,7 @@
       <div class="pedagogy-decision-card" style="background: #FFFFFF; border: 1.5px solid var(--growth-mint); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.4rem;">🎯</span>
+            <span style="font-size: 1.4rem;"></span>
             <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">월령별 교육법 판정 (워킹맘 지갑 지킴이 가이드)</h4>
           </div>
           <span class="tab-badge tab-badge-mint" style="font-size: 0.82rem; font-weight: 700;">${verdict.badge}</span>
@@ -317,9 +317,9 @@
           </p>
         </div>
 
-        <div style="background: #FFFBEB; border-radius: 16px; padding: 0.9rem 1.15rem; border-left: 4px solid #F59E0B;">
+        <div style="background: #FFFBEB; border-radius: 16px; padding: 0.9rem 1.15rem; border-left: 4px solid #93C5FD;">
           <div style="font-weight: 700; color: #92400E; font-size: 0.88rem; margin-bottom: 0.25rem;">
-            💡 중복 지출 방지 핵심 조언:
+            중복 지출 방지 핵심 조언:
           </div>
           <p style="font-size: 0.85rem; color: #78350F; line-height: 1.55; margin: 0;">
             ${verdict.preventOverspendingTip}
@@ -349,13 +349,13 @@
               ${detail.label} &amp; 가정 내 0원 일상 놀이 처방
             </h4>
           </div>
-          <span style="font-size: 0.8rem; color: #4F46E5; font-weight: 700;">🧠 손끝 전두엽 시냅스 골든타임</span>
+          <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700;">손끝 전두엽 시냅스 골든타임</span>
         </div>
 
         <!-- K-DST Milestones Grid -->
         <div style="margin-bottom: 1.25rem;">
           <div style="font-weight: 800; font-size: 0.92rem; color: #1E293B; margin-bottom: 0.6rem;">
-            ✅ 이 시기 보건복지부 K-DST 중점 관찰 이정표 (가정 점검표)
+            이 시기 보건복지부 K-DST 중점 관찰 이정표 (가정 점검표)
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
             ${milestonesList.map((ms) => `
@@ -367,9 +367,9 @@
         </div>
 
         <!-- Zero-cost Home Plays -->
-        <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 16px; padding: 1.1rem 1.25rem; margin-bottom: 1.15rem;">
+        <div style="background: #FFFBEB; border: 1px solid #93C5FD; border-radius: 16px; padding: 1.1rem 1.25rem; margin-bottom: 1.15rem;">
           <div style="font-weight: 800; font-size: 0.95rem; color: #92400E; margin-bottom: 0.5rem;">
-            🏠 교구 사기 전 오늘 저녁 거실에서 바로 해보는 '0원 일상 놀이' 3선
+            교구 사기 전 오늘 저녁 거실에서 바로 해보는 '0원 일상 놀이' 3선
           </div>
           <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.86rem; color: #78350F; line-height: 1.65;">
             ${playsList.map((play) => `<li>${play}</li>`).join('')}
@@ -378,12 +378,12 @@
 
         <!-- Parent-Child Empathy Conversation Script -->
         ${script ? `
-          <div style="background: #EEF2FF; border-radius: 16px; padding: 1.1rem 1.25rem; border-left: 4px solid #4F46E5;">
+          <div style="background: #EEF2FF; border-radius: 16px; padding: 1.1rem 1.25rem; border-left: 4px solid #1D4ED8;">
             <div style="font-weight: 800; font-size: 0.92rem; color: #312E81; margin-bottom: 0.45rem;">
-              💬 아이의 자존감과 전두엽을 깨우는 엄마·아빠 공감 대화 처방 ${script.situation ? `(${script.situation})` : ''}
+              아이의 자존감과 전두엽을 깨우는 엄마·아빠 공감 대화 처방 ${script.situation ? `(${script.situation})` : ''}
             </div>
             <div style="font-size: 0.84rem; color: #991B1B; margin-bottom: 0.35rem; line-height: 1.5;">
-              ❌ 피해야 할 말: “${script.avoid || script.before || ''}”
+              피해야 할 말: “${script.avoid || script.before || ''}”
             </div>
             <div style="font-size: 0.86rem; color: #1E40AF; font-weight: 700; line-height: 1.55;">
               ⭕ 권장 공감 대화: “${script.recommend || script.after || ''}”
@@ -426,7 +426,7 @@
 
                 <div>
                   <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.84rem; padding: 0.55rem 0.75rem; display: block; box-sizing: border-box;">
-                    📋 이 성장단계 맞춤 교구·상세 스펙 확인하기
+                    이 성장단계 맞춤 교구·상세 스펙 확인하기
                   </a>
                 </div>
               </div>
@@ -488,10 +488,10 @@
     if (!papers.length) return '';
 
     return `
-      <div style="background: #F8FAFC; border: 1.5px solid #A7F3D0; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+      <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🧠</span>
+            <span style="font-size: 1.35rem;"></span>
             <h4 style="font-size: 1.05rem; font-weight: 800; color: #064E3B; margin: 0;">
               소근육·전두엽 신경과학 &amp; 몬테소리·가베 교육학 동료심사 논문 근거
             </h4>
@@ -504,10 +504,10 @@
           ${papers.map((p) => `
             <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.74rem; font-weight: 800; color: #059669; background: #ECFDF5; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8; background: #ECFDF5; padding: 0.15rem 0.5rem; border-radius: 999px;">
                   ${p.journal} (${p.year})
                 </span>
-                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #4F46E5; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #1D4ED8; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
               </div>
               <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
                 ${p.title_ko || p.title}
@@ -516,7 +516,7 @@
                 <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
               </p>
               <div style="font-size: 0.79rem; color: #312E81; background: #EEF2FF; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
-                <strong>💡 양육 적용:</strong> ${p.parenting_prescription_ko || ''}
+                <strong>양육 적용:</strong> ${p.parenting_prescription_ko || ''}
               </div>
             </div>
           `).join('')}

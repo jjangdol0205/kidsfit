@@ -297,27 +297,27 @@
     const subjectLabel = isYouthSelf ? (isEn ? 'Your' : '청소년·본인') : (isEn ? 'Child' : '학부모(우리 아이)');
 
     const historyRowsHtml = comp.localHistory.map((h, idx) => `
-      <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #60A5FA; font-weight: 800;">#${idx + 1} ${idx === 0 ? `<span style="background:rgba(16,185,129,0.2);color:#34D399;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">${isEn ? 'Saved Now' : '방금 저장됨'}</span>` : ''}</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #CBD5E1; font-weight: 700;">${h.birthDateStr || (isEn ? `Age ${h.ageYears}` : `만 ${h.ageYears}세`)} (${h.exactMonths} ${isEn ? 'mos' : '개월'})</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #FFFFFF; font-weight: 800;">${h.currentHeight}cm / ${h.currentWeight}kg</td>
-        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #34D399; font-weight: 800;">${h.optimizedHeight}cm (+${h.potentialGainCm}cm)</td>
+      <tr style="border-bottom: 1px solid #BFDBFE;">
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #1D4ED8; font-weight: 800;">#${idx + 1} ${idx === 0 ? `<span style="background: #EFF6FF;color: #1D4ED8;padding:0.08rem 0.35rem;border-radius:4px;font-size:0.66rem;">${isEn ? 'Saved Now' : '방금 저장됨'}</span>` : ''}</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #475569; font-weight: 700;">${h.birthDateStr || (isEn ? `Age ${h.ageYears}` : `만 ${h.ageYears}세`)} (${h.exactMonths} ${isEn ? 'mos' : '개월'})</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #0F172A; font-weight: 800;">${h.currentHeight}cm / ${h.currentWeight}kg</td>
+        <td style="padding: 0.45rem 0.5rem; font-size: 0.76rem; color: #1D4ED8; font-weight: 800;">${h.optimizedHeight}cm (+${h.potentialGainCm}cm)</td>
       </tr>
     `).join('');
 
     return `
-      <div id="user-cohort-self-improve-section" class="guidebook-chapter-block" style="margin-top: 1.35rem; padding-top: 1.15rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: left;">
-        <div style="background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0.9rem 1rem;">
+      <div id="user-cohort-self-improve-section" class="guidebook-chapter-block" style="margin-top: 1.35rem; padding-top: 1.15rem; border-top: 1px solid #BFDBFE; text-align: left;">
+        <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.9rem 1rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-            <span style="font-size: 0.82rem; font-weight: 800; color: #FFFFFF;">📒 ${isEn ? 'My Cumulative Growth & Learning Log (Auto-Saved)' : '나의 성장·학습 진단 기록장 (자동 저장됨)'}</span>
-            <span style="font-size: 0.72rem; color: #34D399; font-weight: 700;">
-              ✓ ${isEn ? `Cohort Benchmark (n=${comp.bandSampleSize}): Avg +${comp.benchmark.avg_potential_gain_cm}cm vs Yours +${comp.userPotentialGainCm}cm` : `동일 연령(n=${comp.bandSampleSize}) 평균 잠재 도약 +${comp.benchmark.avg_potential_gain_cm}cm vs 현재 +${comp.userPotentialGainCm}cm`}
+            <span style="font-size: 0.82rem; font-weight: 800; color: #0F172A;">${isEn ? 'My Cumulative Growth & Learning Log (Auto-Saved)' : '나의 성장·학습 진단 기록장 (자동 저장됨)'}</span>
+            <span style="font-size: 0.72rem; color: #1D4ED8; font-weight: 700;">
+              ${isEn ? `Cohort Benchmark (n=${comp.bandSampleSize}): Avg +${comp.benchmark.avg_potential_gain_cm}cm vs Yours +${comp.userPotentialGainCm}cm` : `동일 연령(n=${comp.bandSampleSize}) 평균 잠재 도약 +${comp.benchmark.avg_potential_gain_cm}cm vs 현재 +${comp.userPotentialGainCm}cm`}
             </span>
           </div>
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
               <thead>
-                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.72rem; color: #94A3B8;">
+                <tr style="border-bottom: 1px solid #BFDBFE; font-size: 0.72rem; color: #475569;">
                   <th style="padding: 0.35rem 0.5rem;">${isEn ? 'Entry' : '회차'}</th>
                   <th style="padding: 0.35rem 0.5rem;">${isEn ? 'DOB (Exact Age)' : '생년월일 (정밀 월령)'}</th>
                   <th style="padding: 0.35rem 0.5rem;">${isEn ? 'Height / Weight' : '계측 키 / 체중'}</th>

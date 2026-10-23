@@ -65,9 +65,9 @@
         exercise: true
       },
       badges: [
-        { id: 'starter_7d', days: 7, nameKo: '🥉 7-Day Protocol Starter', nameEn: '🥉 7-Day Starter', unlocked: true, date: '2026-10-13' },
-        { id: 'accelerator_30d', days: 30, nameKo: '🥈 30-Day Growth Accelerator', nameEn: '🥈 30-Day Accelerator', unlocked: false, date: null },
-        { id: 'master_90d', days: 90, nameKo: '🥇 90-Day Epiphyseal Master', nameEn: '🥇 90-Day Master', unlocked: false, date: null }
+        { id: 'starter_7d', days: 7, nameKo: '7-Day Protocol Starter', nameEn: '7-Day Starter', unlocked: true, date: '2026-10-13' },
+        { id: 'accelerator_30d', days: 30, nameKo: '30-Day Growth Accelerator', nameEn: '30-Day Accelerator', unlocked: false, date: null },
+        { id: 'master_90d', days: 90, nameKo: '90-Day Epiphyseal Master', nameEn: '90-Day Master', unlocked: false, date: null }
       ],
       logs: [
         { date: '2026-10-14', height: Math.round((currentH - 0.5) * 10) / 10, weight: currentW - 0.2, sleep: true, nutrition: true, exercise: true, note: '기준 진단 계측' },
@@ -170,7 +170,7 @@
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="tab-badge tab-badge-indigo" style="display: inline-block; margin-bottom: 0.5rem;">
-                📊 Core 5 · Tracker &amp; Clinical PDF
+                Core 5 · Tracker &amp; Clinical PDF
               </span>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
                 ${titleStr}
@@ -181,7 +181,7 @@
             </div>
             <div>
               <button type="button" class="btn btn-primary" id="btn-print-clinic-pdf" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 800; padding: 0.75rem 1.25rem;">
-                🖨️ ${isGlobal ? '[Save / Print 2-Page Clinical PDF]' : '[A4 정밀 리포트 PDF 저장 / 인쇄]'}
+                ${isGlobal ? '[Save / Print 2-Page Clinical PDF]' : '[A4 정밀 리포트 PDF 저장 / 인쇄]'}
               </button>
             </div>
           </div>
@@ -195,7 +195,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                 <span style="font-size: 0.75rem; font-weight: 700; color: var(--theme-accent); text-transform: uppercase;">
-                  🔥 ${isGlobal ? 'Active Routine Streak' : '연속 프로토콜 달성 스트릭'}
+                  ${isGlobal ? 'Active Routine Streak' : '연속 프로토콜 달성 스트릭'}
                 </span>
                 <span style="font-size: 0.75rem; color: var(--text-muted);">
                   ${isGlobal ? 'Target: 90 Days' : '최종 목표: 90일'}
@@ -219,7 +219,7 @@
             <!-- Milestone Badges Shelf -->
             <div style="padding-top: 1rem; border-top: 1px solid var(--theme-border-subtle);">
               <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 0.5rem;">
-                🏆 ${isGlobal ? 'Milestone Badges' : '마일스톤 달성 배지'}
+                ${isGlobal ? 'Milestone Badges' : '마일스톤 달성 배지'}
               </span>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
                 ${data.badges.map(b => `
@@ -242,7 +242,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                 <span style="font-size: 0.75rem; font-weight: 700; color: var(--bio-emerald); text-transform: uppercase;">
-                  📋 ${isGlobal ? 'Today\'s 3 Bio-Protocols' : '오늘의 3대 바이오 프로토콜'}
+                  ${isGlobal ? 'Today\'s 3 Bio-Protocols' : '오늘의 3대 바이오 프로토콜'}
                 </span>
                 <span style="font-size: 0.75rem; color: var(--text-secondary);">
                   ${new Date().toISOString().split('T')[0]}
@@ -259,7 +259,7 @@
                 <!-- Sleep -->
                 <label style="display: flex; align-items: center; justify-content: space-between; background: var(--theme-surface-sub); padding: 0.75rem 1rem; border-radius: var(--radius-inner); border: 1px solid var(--theme-border-subtle); cursor: pointer;">
                   <div style="display: flex; align-items: center; gap: 0.65rem;">
-                    <span style="font-size: 1.25rem;">🌙</span>
+                    <span style="font-size: 1.25rem;"></span>
                     <div>
                       <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
                         ${isGlobal ? 'Sleep Protocol: Deep SWS Bedtime' : '수면 프로토콜: 밤 10:30 전 취침'}
@@ -275,7 +275,7 @@
                 <!-- Nutrition -->
                 <label style="display: flex; align-items: center; justify-content: space-between; background: var(--theme-surface-sub); padding: 0.75rem 1rem; border-radius: var(--radius-inner); border: 1px solid var(--theme-border-subtle); cursor: pointer;">
                   <div style="display: flex; align-items: center; gap: 0.65rem;">
-                    <span style="font-size: 1.25rem;">🥛</span>
+                    <span style="font-size: 1.25rem;"></span>
                     <div>
                       <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
                         ${isGlobal ? 'Nutrition Protocol: Bio-Available Nutrients' : '임상 영양 프로토콜: 흡수율 45% 영양소'}
@@ -291,7 +291,7 @@
                 <!-- Exercise -->
                 <label style="display: flex; align-items: center; justify-content: space-between; background: var(--theme-surface-sub); padding: 0.75rem 1rem; border-radius: var(--radius-inner); border: 1px solid var(--theme-border-subtle); cursor: pointer;">
                   <div style="display: flex; align-items: center; gap: 0.65rem;">
-                    <span style="font-size: 1.25rem;">🏃</span>
+                    <span style="font-size: 1.25rem;"></span>
                     <div>
                       <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
                         ${isGlobal ? 'Biomechanics Routine: Traction & Jumping' : '생체역학 루틴: 척추 감압 & 점핑 완료'}
@@ -309,7 +309,7 @@
 
             <!-- Auto-save note -->
             <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-muted); text-align: right;">
-              🔒 ${isGlobal ? 'Saved securely to local browser storage' : '체크 즉시 브라우저 보안 스토리지에 자동 저장됩니다.'}
+              ${isGlobal ? 'Saved securely to local browser storage' : '체크 즉시 브라우저 보안 스토리지에 자동 저장됩니다.'}
             </div>
           </div>
 
@@ -320,7 +320,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
             <div>
               <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.25rem 0;">
-                📅 ${isGlobal ? 'Date-Stamped Growth Measurement Logs' : '날짜별 신장·체중 계측 로그'}
+                ${isGlobal ? 'Date-Stamped Growth Measurement Logs' : '날짜별 신장·체중 계측 로그'}
               </h4>
               <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
                 ${isGlobal ? 'Regular date-stamped records compute real-time growth velocity (cm/yr).' : '주기적인 신장·체중 기록은 연간 성장속도(cm/yr)의 임상적 추이를 정확히 검증합니다.'}
@@ -357,9 +357,9 @@
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.8rem;">${l.date}</td>
                     <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${l.height} cm</td>
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono);">${l.weight} kg</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '✅' : '⚪'}</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '✅' : '⚪'}</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.exercise ? '✅' : '⚪'}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '' : ''}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '' : ''}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.exercise ? '' : ''}</td>
                     <td style="padding: 0.65rem 0.75rem; font-size: 0.78rem; color: var(--text-secondary);">${l.note || '-'}</td>
                   </tr>
                 `).join('')}
@@ -514,11 +514,11 @@
               <tbody>
                 <tr style="border-bottom: 1px solid #E2E8F0;">
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">신장 (Height)</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #0284C7;">${height} cm</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${height} cm</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${medianHeight.toFixed(1)} cm</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${hDeltaStr}</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${hZStr}</td>
-                  <td style="padding: 6px; font-weight: 700; color: #0284C7;">${hPctStr}</td>
+                  <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${hPctStr}</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #E2E8F0;">
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">체중 (Weight)</td>
@@ -530,11 +530,11 @@
                 </tr>
                 <tr>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">연간 성장속도</td>
-                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #059669;">${velocityVal} cm/yr</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${velocityVal} cm/yr</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">5.0 ~ 7.0 cm/yr</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${velCalc.alert ? '관찰 필요' : '정상 범위'}</td>
                   <td style="padding: 6px; border-right: 1px solid #E2E8F0;">-</td>
-                  <td style="padding: 6px; font-weight: 700; color: #059669;">${velStatusText}</td>
+                  <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${velStatusText}</td>
                 </tr>
               </tbody>
             </table>
@@ -554,15 +554,15 @@
               </div>
 
               <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
-                <div style="font-size: 8pt; font-weight: 700; color: #E11D48;">저해 요인 방치 시 예측키</div>
-                <div style="font-size: 14pt; font-weight: 900; color: #E11D48; margin: 4px 0;">${unmanagedHeight} cm</div>
-                <div style="font-size: 7.5pt; color: #E11D48;">수면·자세 손실: -${unmanagedPenalty} cm</div>
+                <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">저해 요인 방치 시 예측키</div>
+                <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${unmanagedHeight} cm</div>
+                <div style="font-size: 7.5pt; color: #1D4ED8;">수면·자세 손실: -${unmanagedPenalty} cm</div>
               </div>
 
-              <div style="border: 1px solid #A7F3D0; border-radius: 6px; padding: 10px; background: #ECFDF5;">
-                <div style="font-size: 8pt; font-weight: 700; color: #059669;">골든타임 개입 시 최대 잠재키</div>
-                <div style="font-size: 14pt; font-weight: 900; color: #059669; margin: 4px 0;">${potentialHeight} cm</div>
-                <div style="font-size: 7.5pt; color: #059669;">영양·감압 복원: +${potentialBoost} cm 잠재력</div>
+              <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #ECFDF5;">
+                <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">골든타임 개입 시 최대 잠재키</div>
+                <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${potentialHeight} cm</div>
+                <div style="font-size: 7.5pt; color: #1D4ED8;">영양·감압 복원: +${potentialBoost} cm 잠재력</div>
               </div>
 
             </div>
@@ -637,7 +637,7 @@
                 <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">취침 시각 / 공복 시간</td>
                 <td style="padding: 6px 10px; width: 25%; border-right: 1px solid #CBD5E1;">밤 22:30 / 2.5시간 공복</td>
                 <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">성장호르몬 분비 손실률</td>
-                <td style="padding: 6px 10px; font-weight: 800; color: #E11D48;">-14% (야간 스파이크 억제)</td>
+                <td style="padding: 6px 10px; font-weight: 800; color: #1D4ED8;">-14% (야간 스파이크 억제)</td>
               </tr>
               <tr>
                 <td style="padding: 6px 10px; font-weight: 700; border-right: 1px solid #CBD5E1; background: #F8FAFC;">서파수면(SWS) 피크 구간</td>
@@ -698,17 +698,17 @@
             </h2>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: 8pt;">
               <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
-                <div style="font-weight: 800; color: #E11D48;">1. 척추 감압 데드행</div>
+                <div style="font-weight: 800; color: #1D4ED8;">1. 척추 감압 데드행</div>
                 <div>30초 x 3세트 (휴식 30초)</div>
                 <div style="color: #64748B; font-size: 7.5pt;">추간판 L1~L5 수핵 감압 (+0.8cm)</div>
               </div>
               <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
-                <div style="font-weight: 800; color: #E11D48;">2. 흉추 신전 &amp; 장요근 정렬</div>
+                <div style="font-weight: 800; color: #1D4ED8;">2. 흉추 신전 &amp; 장요근 정렬</div>
                 <div>45초 x 2세트 (양측)</div>
                 <div style="color: #64748B; font-size: 7.5pt;">거북목·골반 전방경사 교정 (+1.8cm)</div>
               </div>
               <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
-                <div style="font-weight: 800; color: #E11D48;">3. 플라이오메트릭 점핑</div>
+                <div style="font-weight: 800; color: #1D4ED8;">3. 플라이오메트릭 점핑</div>
                 <div>15분 인터벌 (45s 점핑/15s 보행)</div>
                 <div style="color: #64748B; font-size: 7.5pt;">1.5~2.5G 미세 압전 전류 (Runx2/Sox9)</div>
               </div>
@@ -722,15 +722,15 @@
             </h2>
             <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8pt; margin-bottom: 8px;">
               <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
-                <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #0284C7;">⚡ 단기 지도 (1~4주)</th>
+                <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #1D4ED8;">단기 지도 (1~4주)</th>
                 <td style="padding: 5px 8px;">밤 21:45 입면 · 취침 3시간 전 무당류 공복(GH 억제 0%) · 저녁 데드행 30초×3세트(디스크 숨은 키 +1.8cm 복원)</td>
               </tr>
               <tr style="border-bottom: 1px solid #CBD5E1;">
-                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #059669;">📈 중기 지도 (1~3개월)</th>
+                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">중기 지도 (1~3개월)</th>
                 <td style="padding: 5px 8px;">구연산칼슘(흡수율 45%)+D3+K2(MK-7)+단백질(${Math.round(weight * 1.3 * 10) / 10}g) · 주 5회 15분 줄넘기 점핑 · 격주 박물관 하브루타 대화</td>
               </tr>
               <tr>
-                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #D97706;">🏆 장기 지도 (6개월~성인)</th>
+                <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">장기 지도 (6개월~성인)</th>
                 <td style="padding: 5px 8px;">매 3~6개월 LMS 백분위 추적 · 표준 BMI 유지로 성조숙 방어 · 유전 표적키(${mph}cm) 넘어 잠재 최대키(${potentialHeight}cm) 도달</td>
               </tr>
             </table>
@@ -751,7 +751,7 @@
                 <div style="font-size: 8.5pt; font-weight: 800; color: #0F172A;">책임 소아내분비·성장 전문의</div>
                 <div style="font-size: 8pt; color: #64748B;">Senior Pediatric Endocrinology Specialist</div>
               </div>
-              <div style="width: 60px; height: 60px; border: 2px dashed #94A3B8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8pt; font-weight: 800; color: #0284C7;">
+              <div style="width: 60px; height: 60px; border: 2px dashed #94A3B8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8pt; font-weight: 800; color: #1D4ED8;">
                 [인/서명]
               </div>
             </div>

@@ -140,7 +140,7 @@
           <!-- Viewpoints -->
           <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem 1.15rem;">
             <div style="font-weight: 700; color: #1E293B; font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
-              <span>👀</span> 발달 관람 포인트
+              <span></span> 발달 관람 포인트
             </div>
             <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.55;">
               ${outing.viewPoints.map((vp) => `<li>${vp}</li>`).join('')}
@@ -150,7 +150,7 @@
           <!-- Booking Tips & Route -->
           <div style="background: #FFF7ED; border: 1px solid #FFEDD5; border-radius: 16px; padding: 1rem 1.15rem;">
             <div style="font-weight: 700; color: #9A3412; font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
-              <span>🎫</span> 사전 예약 &amp; 추천 동선
+              <span></span> 사전 예약 &amp; 추천 동선
             </div>
             <p style="margin: 0 0 0.5rem 0; font-size: 0.84rem; color: #7C2D12; line-height: 1.5;">
               <strong>예약 꿀팁:</strong> ${outing.bookingTips}
@@ -165,7 +165,7 @@
         <div style="background: #F0FDF4; border: 1.5px solid #86EFAC; border-radius: 18px; padding: 1.25rem; margin-bottom: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
             <div style="font-weight: 800; color: #065F46; font-size: 0.96rem;">
-              🗣️ [공신력 가이드] 전시 효과를 3배 키우는 부모-아이 3단계 하브루타 대화법
+              [공신력 가이드] 전시 효과를 3배 키우는 부모-아이 3단계 하브루타 대화법
             </div>
             <span style="font-size: 0.75rem; color: #047857; font-weight: 700; background: #DCFCE7; padding: 0.2rem 0.55rem; border-radius: 9999px;">${havruta.agency}</span>
           </div>
@@ -191,7 +191,7 @@
             <div>
               <span style="font-size: 0.74rem; color: #4338CA; font-weight: 700; display: block; margin-bottom: 0.15rem;">[선택형 보조 도서 가이드 — 도서관 대출 또는 가정 소장 시 참고]</span>
               <div style="font-weight: 800; color: var(--primary-indigo); font-size: 0.98rem; display: flex; align-items: center; gap: 0.4rem;">
-                <span>📚</span> 전시 전후 활용 연계 도서·교구 패키지
+                <span></span> 전시 전후 활용 연계 도서·교구 패키지
               </div>
             </div>
           </div>
@@ -201,7 +201,7 @@
           </p>
 
           <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; text-decoration: none; font-size: 0.9rem; padding: 0.7rem 1rem; box-sizing: border-box;">
-            📖 전시 전후 활용 연계 도서 세트 보기
+            전시 전후 활용 연계 도서 세트 보기
           </a>
         </div>
       </div>
@@ -240,10 +240,10 @@
     if (!papers.length) return '';
 
     return `
-      <div style="background: #F8FAFC; border: 1.5px solid #FDE68A; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+      <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🏛️</span>
+            <span style="font-size: 1.35rem;"></span>
             <h4 style="font-size: 1.05rem; font-weight: 800; color: #78350F; margin: 0;">
               박물관 하브루타 대화법 &amp; 자율성 지지 양육 발달심리학 논문 근거
             </h4>
@@ -256,10 +256,10 @@
           ${papers.map((p) => `
             <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.74rem; font-weight: 800; color: #D97706; background: #FFFBEB; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8; background: #FFFBEB; padding: 0.15rem 0.5rem; border-radius: 999px;">
                   ${p.journal} (${p.year})
                 </span>
-                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #4F46E5; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #1D4ED8; font-weight: 700; text-decoration: none;">원문 보기 ↗</a>` : ''}
               </div>
               <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
                 ${p.title_ko || p.title}
@@ -268,7 +268,7 @@
                 <strong>핵심 수치:</strong> ${p.key_statistics || p.clinical_summary_ko || ''}
               </p>
               <div style="font-size: 0.79rem; color: #065F46; background: #F0FDF4; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
-                <strong>💡 양육 적용:</strong> ${p.parenting_prescription_ko || ''}
+                <strong>양육 적용:</strong> ${p.parenting_prescription_ko || ''}
               </div>
             </div>
           `).join('')}

@@ -129,7 +129,7 @@
     return `
       <div class="bio-share-container" style="margin: 2rem 0; text-align: center;">
         <button type="button" class="btn btn-secondary btn-share-prescription" id="btn-share-rx" onclick="if(navigator.clipboard){navigator.clipboard.writeText(window.location.href);alert('임상 처방전 링크가 클립보드에 복사되었습니다.');}" style="font-size: 0.9rem; padding: 0.75rem 1.25rem;">
-          📋 ${childGender} 바이오 분석 처방전 링크 공유하기
+          ${childGender} 바이오 분석 처방전 링크 공유하기
         </button>
       </div>
     `;

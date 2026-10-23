@@ -490,7 +490,7 @@
       key: 'literacy_vocab',
       nameKo: '문해력 (독해·어휘력)',
       nameEn: 'Reading Literacy & Vocabulary',
-      icon: '📖',
+      icon: '',
       targetCortexKo: '좌측 후두-측두엽 시각단어형태영역(VWFA) & 베르니케 영역',
       descKo: '어휘 다양성, 문맥 인과 추론, 비문학 요약 및 서술형 문맥 이해력',
       baseScoreDefault: 76,
@@ -501,7 +501,7 @@
       key: 'math_spatial',
       nameKo: '수리·공간 추론력',
       nameEn: 'Mathematical & Spatial Reasoning',
-      icon: '📐',
+      icon: '',
       targetCortexKo: '두정엽 하두정소엽(IPL) 3차원 심상 회전(Mental Rotation) 신경망',
       descKo: '도형 위상 감각, 3D 심상 회전, 규칙 발견 및 문장제 조건 시각화',
       baseScoreDefault: 78,
@@ -512,7 +512,7 @@
       key: 'working_memory_focus',
       nameKo: '전두엽 작업기억 & 집중 지속력',
       nameEn: 'Working Memory & Sustained Focus',
-      icon: '⏳',
+      icon: '',
       targetCortexKo: '배외측 전전두엽(DLPFC) & 전대상회(ACC) 충동 억제 회로',
       descKo: '다단계 조건 동시 파지, 시각·청각 분산 억제 및 착석 유지 지속력',
       baseScoreDefault: 72,
@@ -523,7 +523,7 @@
       key: 'metacognition_retrieval',
       nameKo: '메타인지 & 자기주도 인출력',
       nameEn: 'Metacognition & Active Retrieval',
-      icon: '🧠',
+      icon: '',
       targetCortexKo: '전두극 피질(Frontopolar Cortex) & 해마-신피질 인출 회로',
       descKo: '유창성 착각 제거, 아는 것/모르는 것 판별 및 백지 인출(Active Recall)력',
       baseScoreDefault: 70,
@@ -534,7 +534,7 @@
       key: 'inquiry_creative',
       nameKo: '탐구·창의 표현력',
       nameEn: 'Inquiry, Science & Creative Expression',
-      icon: '🔬',
+      icon: '',
       targetCortexKo: '기본모드신경망(DMN)-집중신경망(CEN) 동적 전환 회로',
       descKo: '경험적 가설 설정, 인과 질문, 하브루타 토론 참여도 및 창의적 표현',
       baseScoreDefault: 80,
@@ -739,7 +739,7 @@
         <text x="${lx.toFixed(1)}" y="${(ly - 7).toFixed(1)}" text-anchor="${anchor}" font-size="13" font-weight="900" fill="#0F172A" dominant-baseline="central">
           ${meta.icon} ${labelText}
         </text>
-        <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="12" font-weight="900" fill="#4F46E5" dominant-baseline="central">
+        <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="12" font-weight="900" fill="#1D4ED8" dominant-baseline="central">
           ${scores[key]}점
         </text>
       `;
@@ -761,7 +761,7 @@
     let verticesSvg = '';
     childPoints.forEach(p => {
       verticesSvg += `
-        <circle cx="${p.x}" cy="${p.y}" r="6" fill="#4F46E5" stroke="#FFFFFF" stroke-width="2.2">
+        <circle cx="${p.x}" cy="${p.y}" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2.2">
           <title>${p.label}: ${p.score}점</title>
         </circle>
       `;
@@ -772,7 +772,7 @@
         <defs>
           <radialGradient id="childLqRadarGrad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="rgba(79, 70, 229, 0.42)" />
-            <stop offset="100%" stop-color="rgba(14, 165, 233, 0.22)" />
+            <stop offset="100%" stop-color="#F8FAFC" />
           </radialGradient>
         </defs>
 
@@ -786,7 +786,7 @@
         <path d="${baselinePath}" fill="rgba(148, 163, 184, 0.12)" stroke="#64748B" stroke-width="1.6" stroke-dasharray="4,4" />
 
         <!-- Child LQ Profile Polygon (Vibrant Indigo) -->
-        <path d="${childPath}" fill="url(#childLqRadarGrad)" stroke="#4F46E5" stroke-width="3" />
+        <path d="${childPath}" fill="url(#childLqRadarGrad)" stroke="#1D4ED8" stroke-width="3" />
 
         <!-- Vertex Point Pins -->
         ${verticesSvg}
@@ -824,7 +824,7 @@
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="tab-badge tab-badge-mint" style="display: inline-block; margin-bottom: 0.5rem;">
-                🧠 Core 4 · Neuro-Cognitive Architecture
+                Core 4 · Neuro-Cognitive Architecture
               </span>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
                 ${titleStr}
@@ -833,7 +833,7 @@
                 ${subStr}
               </p>
             </div>
-            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-inner); padding: 0.75rem 1.25rem; text-align: center;">
+            <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--radius-inner); padding: 0.75rem 1.25rem; text-align: center;">
               <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block;">
                 ${isGlobal ? 'Neuroplasticity Golden Age' : '현재 두뇌 발달 골든타임'}
               </span>
@@ -852,7 +852,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                 <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-                  📊 ${isGlobal ? '5-Axis Cognitive Balance Radar' : '5각 뇌인지 밸런스 레이더 차트'}
+                  ${isGlobal ? '5-Axis Cognitive Balance Radar' : '5각 뇌인지 밸런스 레이더 차트'}
                 </h4>
                 <div style="font-size: 0.75rem; color: var(--text-secondary); display: flex; gap: 0.75rem;">
                   <span style="display: inline-flex; align-items: center; gap: 0.25rem;">
@@ -879,7 +879,7 @@
                 const isHigh = s >= 85;
                 const name = isGlobal ? p.nameEn : p.nameKo;
                 return `
-                  <div style="background: var(--theme-surface-sub); padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid ${isHigh ? 'rgba(56, 189, 248, 0.3)' : 'var(--theme-border-subtle)'}; text-align: center;">
+                  <div style="background: var(--theme-surface-sub); padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid ${isHigh ? '#EFF6FF' : 'var(--theme-border-subtle)'}; text-align: center;">
                     <div style="font-size: 0.72rem; color: var(--text-secondary);">${name}</div>
                     <div style="font-size: 1.05rem; font-weight: 800; color: ${isHigh ? 'var(--cyan-pulse)' : 'var(--text-primary)'}; font-family: var(--font-mono);">
                       ${s} <span style="font-size: 0.7rem; font-weight: 500; color: var(--text-muted);">/100</span>
@@ -894,8 +894,8 @@
           <div class="bento-card rewiring-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <span style="font-size: 0.75rem; font-weight: 700; color: var(--bio-emerald); background: rgba(16, 185, 129, 0.12); padding: 0.2rem 0.6rem; border-radius: 9999px;">
-                  🔬 ${isGlobal ? 'Cortical Rewiring Science' : '대뇌 피질 신경가소성'}
+                <span style="font-size: 0.75rem; font-weight: 700; color: var(--bio-emerald); background: #EFF6FF; padding: 0.2rem 0.6rem; border-radius: 9999px;">
+                  ${isGlobal ? 'Cortical Rewiring Science' : '대뇌 피질 신경가소성'}
                 </span>
                 <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
                   ${goldenWindow.ageRangeStr}
@@ -913,7 +913,7 @@
               <!-- Daily Regimen Box -->
               <div style="background: var(--theme-surface-sub); border-left: 3px solid var(--bio-emerald); border-radius: 0 var(--radius-inner) var(--radius-inner) 0; padding: 0.85rem 1rem; margin-bottom: 1rem;">
                 <span style="font-size: 0.75rem; font-weight: 800; color: var(--bio-emerald); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">
-                  ⏱️ ${isGlobal ? 'Daily 15~25 Min Regimen' : '매일 15~25분 가정 두뇌 훈련법'}
+                  ${isGlobal ? 'Daily 15~25 Min Regimen' : '매일 15~25분 가정 두뇌 훈련법'}
                 </span>
                 <p style="font-size: 0.82rem; color: var(--text-primary); margin: 0; line-height: 1.5;">
                   ${isGlobal ? goldenWindow.dailyRegimenEn : goldenWindow.dailyRegimenKo}
@@ -923,7 +923,7 @@
               <!-- Tools Category -->
               <div style="background: var(--theme-surface-sub); border-radius: var(--radius-inner); padding: 0.85rem 1rem;">
                 <span style="font-size: 0.75rem; font-weight: 800; color: var(--theme-accent); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">
-                  🧩 ${isGlobal ? 'Recommended Development Tools' : '추천 두뇌·탐구 도구 카테고리'}
+                  ${isGlobal ? 'Recommended Development Tools' : '추천 두뇌·탐구 도구 카테고리'}
                 </span>
                 <p style="font-size: 0.82rem; color: var(--text-primary); margin: 0; line-height: 1.5;">
                   ${isGlobal ? goldenWindow.recommendedToolsEn : goldenWindow.recommendedToolsKo}
@@ -940,30 +940,30 @@
         </div>
 
         <!-- Transparent 5-Axis Radar Scoring Criteria & Child Survey Input Breakdown Box -->
-        <div class="bento-card" id="neuro-radar-criteria-audit-box" style="margin-bottom: 1.5rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.88)); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 20px;">
+        <div class="bento-card" id="neuro-radar-criteria-audit-box" style="margin-bottom: 1.5rem; padding: 1.35rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.85rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.15rem;">🔍</span>
-              <h4 style="font-size: 1.04rem; font-weight: 900; color: #FFFFFF; margin: 0;">
+              <span style="font-size: 1.15rem;"></span>
+              <h4 style="font-size: 1.04rem; font-weight: 900; color: #0F172A; margin: 0;">
                 ${isGlobal
                   ? '5-Axis Radar Chart Scoring Methodology & Child Survey Input Audit'
                   : '[신뢰성 검증] 5각 뇌인지 밸런스 차트는 무슨 기준으로 산출되나요?'}
               </h4>
             </div>
-            <span style="font-size: 0.75rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              ${isGlobal ? 'K-DST Standard + 5 Survey Factors Linked' : '✓ 보건복지부 K-DST 기준선 + 우리 아이 설문 5대 변수 100% 연동'}
+            <span style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+              ${isGlobal ? 'K-DST Standard + 5 Survey Factors Linked' : '보건복지부 K-DST 기준선 + 우리 아이 설문 5대 변수 100% 연동'}
             </span>
           </div>
 
-          <p style="font-size: 0.86rem; color: #CBD5E1; line-height: 1.58; margin: 0 0 0.9rem 0;">
+          <p style="font-size: 0.86rem; color: #475569; line-height: 1.58; margin: 0 0 0.9rem 0;">
             ${isGlobal
               ? 'This 5-axis radar chart is NOT a fixed or arbitrary graphic. Every vertex is dynamically computed by combining (1) the Korean National Developmental Screening Test (K-DST) normative median baseline (70 pts) with (2) your child’s prioritized cognitive axes (+20 pts), (3) temperament traits, (4) single-session focus span, and (5) sleep/screen & narrative signals.'
               : '위 5각 레이더 차트는 임의로 그려진 고정 그래픽이 아닙니다. <strong>① 보건복지부 영유아·아동 발달선별검사(K-DST) 또래 표준 중위값(점선 오각형 = 70점)</strong>을 기준선으로 삼고, 부모님이 설문에서 직접 입력하신 <strong>② 중점 두뇌 발달축(+20점) · ③ 평소 기질(6종) · ④ 1회 집중 지속시간 · ⑤ 수면·미디어 습관 및 서술형 고민 키워드</strong>를 실시간 가감산하여 각 꼭짓점 좌표를 산출합니다.'}
           </p>
 
           <!-- Formula Bar -->
-          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 12px; padding: 0.7rem 0.95rem; margin-bottom: 0.95rem; font-size: 0.82rem; color: #E2E8F0; line-height: 1.5;">
-            <strong style="color: #38BDF8;">📐 ${isGlobal ? 'Exact Scoring Formula' : '산출 공식'}:</strong>
+          <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.7rem 0.95rem; margin-bottom: 0.95rem; font-size: 0.82rem; color: #0F172A; line-height: 1.5;">
+            <strong style="color: #1D4ED8;">${isGlobal ? 'Exact Scoring Formula' : '산출 공식'}:</strong>
             ${isGlobal
               ? 'Final Axis Score = Normative Baseline (70 pts) + Selected Priority Axis (+20 pts) + Temperament/Focus/Sleep/Narrative Delta (±pts)'
               : '영역별 최종 점수 = 또래 표준 기준선(70점) + 설문 선택 중점 발달축(+20점) + 기질·집중시간·수면습관·서술형 보정치(±점수)'}
@@ -975,13 +975,13 @@
               const b = breakdown[p.id];
               const isHigh = b.finalScore >= 85;
               const factorsList = (isGlobal ? b.factorsEn : b.factorsKo)
-                .map(f => `<div style="font-size: 0.76rem; color: #CBD5E1; line-height: 1.4;">• ${f}</div>`)
+                .map(f => `<div style="font-size: 0.76rem; color: #475569; line-height: 1.4;">• ${f}</div>`)
                 .join('');
               return `
-                <div style="background: rgba(15, 23, 42, 0.78); border: 1px solid ${isHigh ? 'rgba(56, 189, 248, 0.4)' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 0.75rem 0.85rem;">
+                <div style="background: #FFFFFF; border: 1px solid ${isHigh ? '#EFF6FF' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 0.75rem 0.85rem;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                    <span style="font-size: 0.84rem; font-weight: 800; color: ${isHigh ? '#38BDF8' : '#F8FAFC'};">${isGlobal ? p.nameEn : p.nameKo}</span>
-                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#34D399' : '#E2E8F0'};">${b.finalScore}점</span>
+                    <span style="font-size: 0.84rem; font-weight: 800; color: ${isHigh ? '#1D4ED8' : '#F8FAFC'};">${isGlobal ? p.nameEn : p.nameKo}</span>
+                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#1D4ED8' : '#E2E8F0'};">${b.finalScore}점</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 0.18rem;">
                     ${factorsList}
@@ -997,13 +997,13 @@
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
             <div>
               <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.25rem 0;">
-                🏛️ ${isGlobal ? 'Weekend Cultural / Science Exploration & Havruta 3-Question Sets' : '주말 박물관·과학관 현장 탐구 & 부모-자녀 하브루타 대화 질문 3선'}
+                ${isGlobal ? 'Weekend Cultural / Science Exploration & Havruta 3-Question Sets' : '주말 박물관·과학관 현장 탐구 & 부모-자녀 하브루타 대화 질문 3선'}
               </h4>
               <p style="font-size: 0.83rem; color: var(--text-secondary); margin: 0;">
                 ${isGlobal ? 'Transform weekend outings into critical scientific deductions using Socratic Havruta dialogue.' : '단순 관람을 넘어 아이의 비판적 인과 추론과 전두엽 사고력을 폭발시키는 3단계 문답 모델입니다.'}
               </p>
             </div>
-            <span class="spec-tag" style="font-size: 0.75rem; padding: 0.25rem 0.65rem; background: rgba(56, 189, 248, 0.12); color: var(--cyan-pulse); border-radius: 9999px;">
+            <span class="spec-tag" style="font-size: 0.75rem; padding: 0.25rem 0.65rem; background: #EFF6FF; color: var(--cyan-pulse); border-radius: 9999px;">
               ${isGlobal ? 'Socratic Dialogue' : '하브루타 문답법'}
             </span>
           </div>
@@ -1072,7 +1072,7 @@
              class="reference-chip" 
              id="ref-chip-neuro"
              style="font-size: 12px; color: var(--text-secondary); border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
-            <span>📚</span>
+            <span></span>
             <span>${isGlobal ? '[Cognitive Tools & Books Archive Reference (Yes24) ↗]' : '[관련 도구·도서 아카이브 참고 ↗]'}</span>
           </a>
         </div>

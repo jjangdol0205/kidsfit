@@ -8,7 +8,7 @@
  *    - Android/Mobile: navigator.vibrate() patterns
  *    - iOS/Desktop/All: Web Audio API synthesized mechanical/clinical micro-tick & chimes
  *    - Visual Haptic Pulse: CSS spring bounce & neon cursor glow
- *    - User Toggle: 📳 햅틱·진동 ON/OFF safety switch
+ *    - User Toggle: 햅틱·진동 ON/OFF safety switch
  * 2. Taller-Style Typewriter Streamer:
  *    - Streams clinical analysis headlines character-by-character with punctuation micro-pauses
  *    - Fires subtle tactile ticks every 3 characters
@@ -145,7 +145,7 @@
     }
 
     let idx = 0;
-    el.innerHTML = `<span class="tw-text"></span><span class="tw-cursor" style="display:inline-block;margin-left:3px;color:#38BDF8;font-weight:900;">▋</span>`;
+    el.innerHTML = `<span class="tw-text"></span><span class="tw-cursor" style="display:inline-block;margin-left:3px;color: #1D4ED8;font-weight:900;">▋</span>`;
     const textSpan = el.querySelector('.tw-text');
 
     state.activeTypewriterTimer = setInterval(() => {
@@ -214,40 +214,40 @@
 
       return [
         {
-          badge: `🧠 학습 브리핑 1/6 · 만 ${ageYears}세 두뇌 발달 민감기 정밀 매핑`,
+          badge: `학습 브리핑 1/6 · 만 ${ageYears}세 두뇌 발달 민감기 정밀 매핑`,
           title: `${dobDisplay} (생후 ${exactMonths}개월) ${genderKo}, 지금 가장 활발한 두뇌 회로는?`,
           body: `만 ${ageYears}세는 <strong>[${brainStageFocus}]</strong>입니다. 아이의 연령에 맞지 않는 어려운 문제집이나 단순 암기 대신 지금 깨어나는 뇌 회로를 자극해야 학습 효율이 2배 이상 높아집니다.`,
-          highlight: `💡 2,081편 인지신경과학·교육심리학 논문 기준으로 만 ${ageYears}세 맞춤 학습지수(LQ)를 산출 중입니다.`
+          highlight: `2,081편 인지신경과학·교육심리학 논문 기준으로 만 ${ageYears}세 맞춤 학습지수(LQ)를 산출 중입니다.`
         },
         {
-          badge: `📊 학습 브리핑 2/6 · 5각 두뇌·학습 역량 레이더 & 강약점 판정`,
+          badge: `학습 브리핑 2/6 · 5각 두뇌·학습 역량 레이더 & 강약점 판정`,
           title: `문해력 · 수리공간 · 집중력 · 메타인지 · 탐구력 5대 지표 분석 중`,
           body: `설문에서 선택하신 독서·수학·집중·기억 패턴을 분석하여 <strong>우리 아이가 가장 잘하는 강점 TOP 3</strong>와 <strong>지금 바로 보완해주어야 할 학습 병목 TOP 3</strong>를 1순위부터 3순위까지 도출하고 있습니다.`,
-          highlight: `🎯 강점 영역은 자신감 부스터로 키우고, 약점 병목은 아이 성향에 맞는 1:1 공부법으로 길을 열어드립니다.`
+          highlight: `강점 영역은 자신감 부스터로 키우고, 약점 병목은 아이 성향에 맞는 1:1 공부법으로 길을 열어드립니다.`
         },
         {
-          badge: `✍️ 학습 브리핑 3/6 · 백지복습(인출학습)과 전두엽 작업기억의 비밀`,
+          badge: `학습 브리핑 3/6 · 백지복습(인출학습)과 전두엽 작업기억의 비밀`,
           title: `눈으로 4번 다시 읽기보다 '책 덮고 3분 말하기'가 기억을 2.4배 오래 남깁니다`,
           body: `Roediger & Karpicke(2006)의 뇌과학 연구에 따르면, 공부를 마친 직후 책을 덮고 <strong>오늘 배운 핵심 3가지를 스스로 말하거나 적어보는 인출 연습</strong>만으로도 1주일 뒤 장기기억 보존율이 <strong>48% → 92%</strong>로 도약합니다.`,
-          highlight: `📋 잠시 후 열리는 학습 보고서에서 우리 아이 맞춤형 4단계 일일 자기주도 학습 루틴을 확인하세요!`
+          highlight: `잠시 후 열리는 학습 보고서에서 우리 아이 맞춤형 4단계 일일 자기주도 학습 루틴을 확인하세요!`
         },
         {
-          badge: `🌙 학습 브리핑 4/6 · 밤 10시 수면 기억 공고화 (해마 → 대뇌피질)`,
+          badge: `학습 브리핑 4/6 · 밤 10시 수면 기억 공고화 (해마 → 대뇌피질)`,
           title: `낮에 배운 공부가 진짜 실력이 되는 시간은 '밤 10시 깊은 잠'입니다`,
           body: `낮 동안 해마(단기기억 임시저장소)에 들어온 어휘와 수학 개념은 <strong>밤 10시~새벽 2시 깊은 서파수면(SWS)</strong> 동안 대뇌 신피질로 전송되어 영구적인 장기기억으로 코팅됩니다.`,
-          highlight: `⚡ 취침 1시간 전 스마트폰 차단과 충분한 숙면이 집중시간을 ${ageYears <= 4 ? '10분 → 20분' : '15분 → 35분'}으로 늘려줍니다.`
+          highlight: `취침 1시간 전 스마트폰 차단과 충분한 숙면이 집중시간을 ${ageYears <= 4 ? '10분 → 20분' : '15분 → 35분'}으로 늘려줍니다.`
         },
         {
-          badge: `🎓 학습 브리핑 5/6 · 강점 성향 기반 미래 유망 진로 & 전공 매칭`,
+          badge: `학습 브리핑 5/6 · 강점 성향 기반 미래 유망 진로 & 전공 매칭`,
           title: `우리 아이의 두뇌 강점이 가장 빛날 미래 직업 1위~3위는 무엇일까요?`,
           body: `아이의 최상위 강점 역량과 학습 흡수 스타일(문답형·조작형·시각형·성취형)을 결합하여, <strong>미래 핵심 진로 TOP 3와 연계 전공 로드맵</strong>을 함께 설계하고 있습니다.`,
-          highlight: `🧭 만 ${ageYears}세 → 만 ${nextAge1}세 → 만 ${nextAge2}세로 이어지는 3개년 교과·사고력 전환 로드맵이 곧 공개됩니다.`
+          highlight: `만 ${ageYears}세 → 만 ${nextAge1}세 → 만 ${nextAge2}세로 이어지는 3개년 교과·사고력 전환 로드맵이 곧 공개됩니다.`
         },
         {
-          badge: `✨ 학습 브리핑 6/6 · 만 ${ageYears}세 맞춤 교구·도서·주말 박물관 코스 완성`,
+          badge: `학습 브리핑 6/6 · 만 ${ageYears}세 맞춤 교구·도서·주말 박물관 코스 완성`,
           title: `우리 아이만을 위한 1:1 두뇌·학습 시각 그래프 & 처방전이 완성됩니다!`,
           body: `5각 두뇌 레이더 차트, 6개월 학습·집중력 3중 성장 곡선, 그림으로 보는 3단계 공부법 가이드, 그리고 연령에 딱 맞는 <strong>사고력 교구·필독서·주말 체험 코스</strong>가 곧 열립니다.`,
-          highlight: `🏆 결과 화면 상단에서 [5각 두뇌 밸런스 차트 & 6개월 학습 성장 곡선]을 바로 확인하세요!`
+          highlight: `결과 화면 상단에서 [5각 두뇌 밸런스 차트 & 6개월 학습 성장 곡선]을 바로 확인하세요!`
         }
       ];
     }
@@ -268,40 +268,40 @@
 
     return [
       {
-        badge: `📏 성장 브리핑 1/6 · 생년월일 일수 단위 키·몸무게 백분위 보정`,
+        badge: `성장 브리핑 1/6 · 생년월일 일수 단위 키·몸무게 백분위 보정`,
         title: `${dobDisplay} (생후 ${exactMonths}개월) ${genderKo}, 키(${height}cm)와 몸무게(${weight}kg) 정밀 대조 중`,
         body: `같은 만 ${ageYears}세라도 1월생과 12월생은 평균 키가 최대 <strong>4.2~5.5cm</strong>, 몸무게는 <strong>2.5~3.8kg</strong> 차이 납니다. 입력하신 <strong>${height}cm / ${weight}kg</strong>을 생후 ${exactMonths}개월 일수 단위 질병관리청(KDCA) 표준 성장도표로 정밀 분석하고 있습니다.`,
-        highlight: `💡 부모 유전 표적키(Tanner MPH): ${mph}cm (±8.5cm 범위 내에서 수면·영양·자세 관리가 최대 17cm 차이를 만듭니다)`
+        highlight: `부모 유전 표적키(Tanner MPH): ${mph}cm (±8.5cm 범위 내에서 수면·영양·자세 관리가 최대 17cm 차이를 만듭니다)`
       },
       {
-        badge: `⚖️ 성장 브리핑 2/6 · 현재 키 맞춤 적정 몸무게 & 체질량(BMI) 분석`,
+        badge: `성장 브리핑 2/6 · 현재 키 맞춤 적정 몸무게 & 체질량(BMI) 분석`,
         title: `키가 잘 크려면 '몸무게 밸런스'가 먼저 맞아야 합니다`,
         body: `현재 키(${height}cm) 대비 몸무게(${weight}kg)가 저체중이면 뼈·근육을 만드는 재료가 부족하고, 과체중(체지방 과다)이면 렙틴 호르몬이 사춘기와 성장판 폐쇄를 앞당깁니다. <strong>우리 아이 키에 딱 맞는 적정 체중과 6개월 목표 체중</strong>을 계산하고 있습니다.`,
-        highlight: `🎯 잠시 후 결과 화면에서 키 그래프와 함께 [몸무게 3단 밸런스 비교 그래프]가 함께 공개됩니다!`
+        highlight: `잠시 후 결과 화면에서 키 그래프와 함께 [몸무게 3단 밸런스 비교 그래프]가 함께 공개됩니다!`
       },
       {
-        badge: `⏳ 성장 브리핑 3/6 · 만 ${ageYears}세 성장판 잔여 기간 & 골든타임 산출`,
+        badge: `성장 브리핑 3/6 · 만 ${ageYears}세 성장판 잔여 기간 & 골든타임 산출`,
         title: `우리 아이 성장판이 닫히는 만 ${closureAge}세까지 남은 시간은 약 ${remYearsMin}~${remYearsMax}년입니다`,
         body: `성장판 잔여 기간이란 뼈 끝 연골 성장판이 완전히 닫혀 키 성장이 멈추는 시기(${genderKo} 평균 만 ${closureAge}세)까지 실제로 더 자랄 수 있는 시간입니다. 지금 만 ${ageYears}세는 <strong>[${growthStageFocus}]</strong>에 집중해야 할 황금기입니다.`,
-        highlight: `📋 현재 습관(${habits.length}개 요인) 교정 시 방치 예측키 대비 숨은 잠재키가 얼마나 더 자라는지 시뮬레이션 중입니다.`
+        highlight: `현재 습관(${habits.length}개 요인) 교정 시 방치 예측키 대비 숨은 잠재키가 얼마나 더 자라는지 시뮬레이션 중입니다.`
       },
       {
-        badge: `🧪 성장 브리핑 4/6 · 체중(${weight}kg) 비례 맞춤 칼슘·단백질·영양 성분 매칭`,
+        badge: `성장 브리핑 4/6 · 체중(${weight}kg) 비례 맞춤 칼슘·단백질·영양 성분 매칭`,
         title: `아이 체중과 식습관에 맞춘 고흡수 성장 영양소 조합 도출 중`,
         body: `현재 ${weight}kg ${genderKo}의 골격 성장 속도와 식습관 데이터를 분석한 결과, 흡수율이 낮은 일반 탄산칼슘(22%) 대신 흡수율 45%의 <strong>[${keyIngredient}]</strong>을 아침·저녁으로 보충해 주는 것이 가장 효과적입니다.`,
-        highlight: `🔬 대한소아내분비학회지·경희대 임상 논문(PMID:25374566) 및 한국인 영양소 섭취기준(KDRIs)을 적용했습니다.`
+        highlight: `대한소아내분비학회지·경희대 임상 논문(PMID:25374566) 및 한국인 영양소 섭취기준(KDRIs)을 적용했습니다.`
       },
       {
-        badge: `🌙 성장 브리핑 5/6 · 밤 10시 성장호르몬 & 숨은 척추 키 +1.8cm 복원`,
+        badge: `성장 브리핑 5/6 · 밤 10시 성장호르몬 & 숨은 척추 키 +1.8cm 복원`,
         title: `밤 10시 첫 서파수면(SWS) 90분이 하루 성장호르몬의 65%를 분비합니다`,
         body: `취침 2시간 전 야식·단 간식은 인슐린과 소마토스타틴을 분비해 성장호르몬을 최대 <strong>-52% 억제</strong>하며, 낮 동안 눌린 척추 추간판 디스크는 저녁 <strong>문틀 철봉 매달리기 30초×3세트와 점핑 운동</strong>으로 최대 <strong>+1.8cm</strong> 복원됩니다.`,
-        highlight: `⚡ 아침·방과후·저녁·취침 전 4단계로 나눈 하루 밀착 신체 성장 시간표를 생성하고 있습니다.`
+        highlight: `아침·방과후·저녁·취침 전 4단계로 나눈 하루 밀착 신체 성장 시간표를 생성하고 있습니다.`
       },
       {
-        badge: `✨ 성장 브리핑 6/6 · 1:1 신체 성장(키·몸무게·골연령) 정밀 보고서 완성`,
+        badge: `성장 브리핑 6/6 · 1:1 신체 성장(키·몸무게·골연령) 정밀 보고서 완성`,
         title: `우리 아이 맞춤형 3중 예측키 성장 곡선 & 몸무게 진단서가 곧 열립니다!`,
         body: `질병관리청 키·몸무게 백분위, 부모 유전키(MPH) vs 방치키 vs 맞춤 관리 잠재키 3중 비교 그래프, 그리고 <strong>그림으로 보는 성장판 마사지·스트레칭 가이드</strong>가 모두 준비되었습니다.`,
-        highlight: `🏆 결과 화면 첫 화면에서 [기대 잠재키 스포트라이트 그래프 & 몸무게 정밀 진단 카드]를 바로 확인하세요!`
+        highlight: `결과 화면 첫 화면에서 [기대 잠재키 스포트라이트 그래프 & 몸무게 정밀 진단 카드]를 바로 확인하세요!`
       }
     ];
   }
@@ -313,7 +313,7 @@
     {
       q: 'Q1. 아이의 최종 성인 키는 부모 유전이 70% 이상 절대적으로 결정한다?',
       answer: 'X',
-      explain: '정답은 ❌ 아닙니다! 일란성 쌍둥이 종단 연구에 따르면 유전 영향은 약 23~30%에 불과하며, 밤 10시 수면(GH 분비)·흡수율 높은 칼슘/황기추출물 영양·점프 운동이 최대 ±8.5cm(총 17cm 폭)를 좌우합니다.'
+      explain: '정답은 아닙니다! 일란성 쌍둥이 종단 연구에 따르면 유전 영향은 약 23~30%에 불과하며, 밤 10시 수면(GH 분비)·흡수율 높은 칼슘/황기추출물 영양·점프 운동이 최대 ±8.5cm(총 17cm 폭)를 좌우합니다.'
     },
     {
       q: 'Q2. 키보다 몸무게(체지방)가 너무 빨리 늘어나면 성장판이 일찍 닫힐 수 있다?',
@@ -323,12 +323,12 @@
     {
       q: 'Q3. 어린이 칼슘 영양제는 탄산칼슘이나 구연산·어골칼슘이나 흡수율이 똑같다?',
       answer: 'X',
-      explain: '정답은 ❌ 아닙니다! 일반 탄산칼슘은 위산이 필요해 흡수율이 22%에 그치고 변비를 유발하기 쉽지만, 구연산·어골·연골칼슘(MCHA)은 흡수율이 약 45%(2.05배)로 높고 속쓰림이 없습니다.'
+      explain: '정답은 아닙니다! 일반 탄산칼슘은 위산이 필요해 흡수율이 22%에 그치고 변비를 유발하기 쉽지만, 구연산·어골·연골칼슘(MCHA)은 흡수율이 약 45%(2.05배)로 높고 속쓰림이 없습니다.'
     },
     {
       q: 'Q4. 밤에 잠들기 1시간 전에 과일이나 달콤한 우유·간식을 먹고 자면 키가 더 잘 큰다?',
       answer: 'X',
-      explain: '정답은 ❌ 아닙니다! 취침 2~3시간 이내 당류·탄수화물 섭취는 인슐린과 소마토스타틴을 분비시켜 밤 10시~2시 성장호르몬 피크를 최대 52%까지 억제합니다.'
+      explain: '정답은 아닙니다! 취침 2~3시간 이내 당류·탄수화물 섭취는 인슐린과 소마토스타틴을 분비시켜 밤 10시~2시 성장호르몬 피크를 최대 52%까지 억제합니다.'
     }
   ];
 
@@ -341,7 +341,7 @@
     {
       q: 'Q2. 단순 연산은 100점인데 수학 문장제 응용문제만 틀리는 아이는 연산 문제집을 더 많이 풀어야 한다?',
       answer: 'X',
-      explain: '정답은 ❌ 아닙니다! 문장제 수학에서 막히는 원인은 연산 부족이 아니라 긴 조건을 머릿속에만 담아두려는 전두엽 작업기억 과부하 때문입니다. 여백에 조건을 그림·수직선으로 그리는 습관이 해결책입니다.'
+      explain: '정답은 아닙니다! 문장제 수학에서 막히는 원인은 연산 부족이 아니라 긴 조건을 머릿속에만 담아두려는 전두엽 작업기억 과부하 때문입니다. 여백에 조건을 그림·수직선으로 그리는 습관이 해결책입니다.'
     },
     {
       q: 'Q3. 유아·아동기 때 손끝으로 블록·입체도형을 직접 만지고 조립하는 경험이 수학·공간 추론 성적을 높인다?',
@@ -351,7 +351,7 @@
     {
       q: 'Q4. 밤잠을 줄여 늦게까지 공부하면 낮에 배운 내용이 뇌에 더 오래 기억된다?',
       answer: 'X',
-      explain: '정답은 ❌ 아닙니다! 낮에 해마에 저장된 단기기억은 밤 10시~2시 깊은 서파수면(SWS) 동안 대뇌피질로 이동해 장기기억으로 코팅됩니다(Diekelmann & Born, 2010). 늦게 자면 어제 배운 내용의 절반 이상이 휘발됩니다.'
+      explain: '정답은 아닙니다! 낮에 해마에 저장된 단기기억은 밤 10시~2시 깊은 서파수면(SWS) 동안 대뇌피질로 이동해 장기기억으로 코팅됩니다(Diekelmann & Born, 2010). 늦게 자면 어제 배운 내용의 절반 이상이 휘발됩니다.'
     }
   ];
 
@@ -459,8 +459,8 @@
     const countdownEl = document.getElementById('analysis-countdown-badge');
     if (countdownEl) {
       countdownEl.textContent = isLearning
-        ? `🧠 두뇌·학습 정밀 연산 중 · 약 ${remainingSec}초 남음`
-        : `📏 신체 성장 정밀 연산 중 · 약 ${remainingSec}초 남음`;
+        ? `두뇌·학습 정밀 연산 중 · 약 ${remainingSec}초 남음`
+        : `신체 성장 정밀 연산 중 · 약 ${remainingSec}초 남음`;
     }
 
     // Update 6 step pills proportionally to durationMs (e.g. 2.5s per step for 15s total)
@@ -470,15 +470,15 @@
       const pill = document.getElementById(`theatre-stage-pill-${i + 1}`);
       if (pill) {
         if (i < activeStageIdx) {
-          pill.style.background = 'rgba(16, 185, 129, 0.16)';
-          pill.style.borderColor = '#10B981';
-          pill.style.color = '#34D399';
-          pill.textContent = `✓ Step ${i + 1}`;
+          pill.style.background = '#EFF6FF';
+          pill.style.borderColor = '#1D4ED8';
+          pill.style.color = '#1D4ED8';
+          pill.textContent = `Step ${i + 1}`;
         } else if (i === activeStageIdx) {
-          pill.style.background = 'rgba(59, 130, 246, 0.22)';
+          pill.style.background = '#EFF6FF';
           pill.style.borderColor = '#3B82F6';
           pill.style.color = '#60A5FA';
-          pill.textContent = `✦ Step ${i + 1} 분석중`;
+          pill.textContent = `Step ${i + 1} 분석중`;
         } else {
           pill.style.background = 'rgba(255, 255, 255, 0.04)';
           pill.style.borderColor = 'rgba(255, 255, 255, 0.12)';
@@ -493,21 +493,21 @@
       cardBodyEl.setAttribute('data-card-idx', String(cardIdx));
       cardBodyEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; flex-wrap: wrap;">
-          <span style="background: rgba(59, 130, 246, 0.16); color: #60A5FA; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px; border: 1px solid rgba(59, 130, 246, 0.35);">
+          <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
             ${currentCard.badge}
           </span>
           <div style="display: flex; gap: 0.35rem;">
-            <button type="button" id="btn-theatre-prev-card" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16); color: #E2E8F0; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">◀ 이전</button>
+            <button type="button" id="btn-theatre-prev-card" style="background: #F8FAFC; border: 1px solid #BFDBFE; color: #0F172A; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">◀ 이전</button>
             <button type="button" id="btn-theatre-next-card" style="background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 800; cursor: pointer;">다음 브리핑 ▶</button>
           </div>
         </div>
-        <h4 style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; margin: 0 0 0.5rem 0; line-height: 1.4;">
+        <h4 style="font-size: 1.05rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0; line-height: 1.4;">
           ${currentCard.title}
         </h4>
-        <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.58; margin: 0 0 0.65rem 0;">
+        <p style="font-size: 0.88rem; color: #475569; line-height: 1.58; margin: 0 0 0.65rem 0;">
           ${currentCard.body}
         </p>
-        <div style="background: rgba(16, 185, 129, 0.12); border-left: 3.5px solid #10B981; padding: 0.55rem 0.75rem; border-radius: 6px; font-size: 0.81rem; color: #6EE7B7; font-weight: 800;">
+        <div style="background: #EFF6FF; border-left: 3.5px solid #93C5FD; padding: 0.55rem 0.75rem; border-radius: 6px; font-size: 0.81rem; color: #1D4ED8; font-weight: 800;">
           ${currentCard.highlight}
         </div>
       `;
@@ -539,22 +539,22 @@
       quizBoxEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
           <span style="font-size: 0.76rem; font-weight: 800; color: #C4B5FD;">
-            ⚡ ${isLearning ? '두뇌·학습 뇌과학' : '키·체중 신체성장'} 1초 O/X 논문 팩트 퀴즈 (${quizIdx + 1}/${activeQuizzes.length})
+            ${isLearning ? '두뇌·학습 뇌과학' : '키·체중 신체성장'} 1초 O/X 논문 팩트 퀴즈 (${quizIdx + 1}/${activeQuizzes.length})
           </span>
-          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #94A3B8; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">다른 퀴즈 보기 ↻</button>
+          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #475569; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">다른 퀴즈 보기 ↻</button>
         </div>
-        <div style="font-size: 0.92rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.65rem; line-height: 1.4;">
+        <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; margin-bottom: 0.65rem; line-height: 1.4;">
           ${currentQuiz.q}
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
-          <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #10B981; background: rgba(16, 185, 129, 0.14); color: #34D399;">
+          <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #93C5FD; background: #EFF6FF; color: #1D4ED8;">
             ⭕ 맞다 (O)
           </button>
-          <button type="button" id="btn-ox-x" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #F43F5E; background: rgba(244, 63, 94, 0.14); color: #FB7185;">
-            ❌ 아니다 (X)
+          <button type="button" id="btn-ox-x" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #93C5FD; background: #EFF6FF; color: #1D4ED8;">
+            아니다 (X)
           </button>
         </div>
-        <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.65rem 0.8rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #10B981; border-radius: 8px; font-size: 0.8rem; color: #E2E8F0; line-height: 1.48;">
+        <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.65rem 0.8rem; background: #FFFFFF; border: 1px solid #93C5FD; border-radius: 8px; font-size: 0.8rem; color: #0F172A; line-height: 1.48;">
           ${currentQuiz.explain}
         </div>
       `;
@@ -619,18 +619,18 @@
         theatreDiv.style.cssText = 'margin-top: 1rem; text-align: left; width: 100%;';
         theatreDiv.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; flex-wrap: wrap;">
-            <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.22rem 0.65rem; border-radius: 9999px;">
+            <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
               정밀 맞춤 연산 중 · 약 4초 남음
             </span>
-            <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #60A5FA; background: rgba(59, 130, 246, 0.14); border: 1px solid rgba(59, 130, 246, 0.35); padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
-              📳 햅틱·진동 ON
+            <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
+              햅틱·진동 ON
             </button>
           </div>
           <div id="theatre-stage-pills" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.3rem; margin-bottom: 0.85rem;">
-            ${[1, 2, 3, 4, 5, 6].map(n => `<div id="theatre-stage-pill-${n}" style="font-size: 0.68rem; font-weight: 800; text-align: center; padding: 0.25rem 0.15rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12);">Step ${n}</div>`).join('')}
+            ${[1, 2, 3, 4, 5, 6].map(n => `<div id="theatre-stage-pill-${n}" style="font-size: 0.68rem; font-weight: 800; text-align: center; padding: 0.25rem 0.15rem; border-radius: 6px; border: 1px solid #BFDBFE;">Step ${n}</div>`).join('')}
           </div>
-          <div id="theatre-dynamic-card" data-card-idx="-1" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 1rem; margin-bottom: 0.85rem;"></div>
-          <div id="theatre-ox-quiz-box" data-quiz-idx="-1" style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.28); border-radius: 14px; padding: 0.85rem;"></div>
+          <div id="theatre-dynamic-card" data-card-idx="-1" style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; margin-bottom: 0.85rem;"></div>
+          <div id="theatre-ox-quiz-box" data-quiz-idx="-1" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.85rem;"></div>
         `;
         const skipBtn = document.getElementById('btn-skip-scan');
         if (skipBtn && skipBtn.parentNode === modal) {
@@ -643,7 +643,7 @@
         if (hapticBtn) {
           hapticBtn.onclick = () => {
             state.hapticEnabled = !state.hapticEnabled;
-            hapticBtn.textContent = state.hapticEnabled ? '📳 햅틱·진동 ON' : '🔇 햅틱·진동 OFF';
+            hapticBtn.textContent = state.hapticEnabled ? '햅틱·진동 ON' : '햅틱·진동 OFF';
             hapticBtn.style.opacity = state.hapticEnabled ? '1' : '0.6';
             if (state.hapticEnabled) triggerHaptic('tick', hapticBtn);
           };
@@ -674,8 +674,8 @@
     }
     if (descEl) {
       descEl.textContent = isLearning
-        ? `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 3,001편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`
-        : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 3,001편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
+        ? `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 3,008편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`
+        : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 3,008편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
     }
     currentStageIdx = 0;
 

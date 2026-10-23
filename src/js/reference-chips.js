@@ -208,14 +208,14 @@
           label: '[Ingredient Spec Reference (iHerb) ↗]',
           url: buildMerchantUrl('iHerb', categoryKey, true, config),
           tag: config.iherb || 'IPZ1547',
-          icon: '🌿'
+          icon: ''
         },
         {
           merchant: 'Amazon',
           label: `[Biomechanical Tool Spec (Amazon ${config.amazon || 'kidfit-20'}) ↗]`,
           url: buildMerchantUrl('amazon', categoryKey, true, config),
           tag: config.amazon || 'kidfit-20',
-          icon: '📦'
+          icon: ''
         }
       ];
     }
@@ -227,21 +227,21 @@
         label: '[성분 스펙 레퍼런스 (iHerb) ↗]',
         url: buildMerchantUrl('iHerb', categoryKey, false, config),
         tag: config.iherb || 'IPZ1547',
-        icon: '🌿'
+        icon: ''
       },
       {
         merchant: 'Coupang',
         label: '[도구·도서 아카이브 (Coupang) ↗]',
         url: buildMerchantUrl('coupang', categoryKey, false, config),
         tag: config.coupang || 'AF7865143',
-        icon: '📦'
+        icon: ''
       },
       {
         merchant: 'LinkPrice',
         label: `[도서·교구 아카이브 (LinkPrice ${config.linkprice || 'A100708867'}) ↗]`,
         url: buildMerchantUrl('linkprice', categoryKey, false, config),
         tag: config.linkprice || 'A100708867',
-        icon: '📚'
+        icon: ''
       }
     ];
   }
@@ -263,7 +263,7 @@
            class="reference-chip" 
            data-merchant="${c.merchant.toLowerCase()}"
            data-category="${categoryKey}"
-           style="font-size: 12px; color: var(--text-secondary, #94A3B8); border: 1px solid var(--theme-border, rgba(255, 255, 255, 0.12)); padding: 0.28rem 0.65rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub, rgba(15, 23, 42, 0.6)); transition: all 0.2s ease;">
+           style="font-size: 12px; color: var(--text-secondary, #94A3B8); border: 1px solid var(--theme-border, rgba(255, 255, 255, 0.12)); padding: 0.28rem 0.65rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: #F8FAFC; transition: all 0.2s ease;">
           <span style="font-size: 11px;">${c.icon}</span>
           <span style="letter-spacing: -0.01em;">${c.label}</span>
         </a>
@@ -329,16 +329,16 @@
     const totalCount = (kb.metadata && kb.metadata.total_papers) || kb.papers.length;
 
     const cardsHtml = matched.map((p) => {
-      const pmidLink = p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #38BDF8; font-weight: 800; text-decoration: none; background: rgba(56, 189, 248, 0.14); padding: 0.15rem 0.5rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : '';
-      const doiLink = p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #10B981; font-weight: 800; text-decoration: none; background: rgba(16, 185, 129, 0.14); padding: 0.15rem 0.5rem; border-radius: 4px;">DOI ↗</a>` : '';
+      const pmidLink = p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #1D4ED8; font-weight: 800; text-decoration: none; background: #EFF6FF; padding: 0.15rem 0.5rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : '';
+      const doiLink = p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #1D4ED8; font-weight: 800; text-decoration: none; background: #EFF6FF; padding: 0.15rem 0.5rem; border-radius: 4px;">DOI ↗</a>` : '';
       const shortFact = isGlobal
         ? (p.title || p.key_statistics || '')
         : (p.plain_fact_ko || p.title_ko || p.key_statistics || p.title || '');
 
       return `
-        <div class="citation-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.75rem 0.95rem; display: flex; justify-content: space-between; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
-          <div style="font-size: 0.86rem; font-weight: 700; color: #F8FAFC; line-height: 1.45; flex: 1 1 240px;">
-            <span style="color: #38BDF8; font-weight: 800;">• [${p.journal} ${p.year}]</span> ${shortFact}
+        <div class="citation-card" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.95rem; display: flex; justify-content: space-between; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+          <div style="font-size: 0.86rem; font-weight: 700; color: #0F172A; line-height: 1.45; flex: 1 1 240px;">
+            <span style="color: #1D4ED8; font-weight: 800;">• [${p.journal} ${p.year}]</span> ${shortFact}
           </div>
           <div style="display: flex; gap: 0.35rem; align-items: center;">
             ${pmidLink}
@@ -349,19 +349,19 @@
     }).join('');
 
     return `
-      <details class="academic-citations-container clinical-source-details" style="background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 0.85rem 1.15rem; margin-top: 1.1rem;">
+      <details class="academic-citations-container clinical-source-details" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 16px; padding: 0.85rem 1.15rem; margin-top: 1.1rem;">
         <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; outline: none;">
           <div style="display: flex; align-items: center; gap: 0.4rem;">
-            <span style="font-size: 1.05rem;">🔬</span>
-            <h5 style="font-size: 0.9rem; font-weight: 800; color: #FFFFFF; margin: 0;">
+            <span style="font-size: 1.05rem;"></span>
+            <h5 style="font-size: 0.9rem; font-weight: 800; color: #0F172A; margin: 0;">
               ${isGlobal ? 'Peer-Reviewed Clinical Research Citations (Click to expand ▼)' : '동료심사(Peer-Reviewed) 학술 논문 임상 근거 (출처 접음 · 클릭 시 펼침 ▼)'}
             </h5>
           </div>
-          <span style="background: rgba(56, 189, 248, 0.15); color: #38BDF8; font-size: 0.74rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;">
+          <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.74rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;">
             ${isGlobal ? `PubMed & Crossref (${totalCount} Indexed Papers)` : `PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동`}
           </span>
         </summary>
-        <div style="display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed rgba(255, 255, 255, 0.12);">
+        <div style="display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed #BFDBFE;">
           ${cardsHtml}
         </div>
       </details>

@@ -721,8 +721,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,001 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,001 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,001편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,001편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 3,008 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,008 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '3,008편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,008편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -750,7 +750,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,001 research papers for active bio-inhibitors...'
+            ? 'Filtering 3,008 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -1284,12 +1284,12 @@
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,001편 기반 학습 병목·공부법 보고서를 발행합니다.';
+        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,008편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,001편 기반 예상키·골든타임 보고서를 발행합니다.';
+        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,008편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
@@ -1559,9 +1559,9 @@
             freeNoteTextarea.value = cur ? `${cur} ${snippet}` : snippet;
           }
           wizardState.profile.parentFreeNote = freeNoteTextarea.value.trim();
-          btn.style.borderColor = '#34D399';
-          btn.style.background = 'rgba(16, 185, 129, 0.18)';
-          btn.style.color = '#6EE7B7';
+          btn.style.borderColor = '#1D4ED8';
+          btn.style.background = '#EFF6FF';
+          btn.style.color = '#1D4ED8';
           if (HapticEngine && typeof HapticEngine.triggerHaptic === 'function') {
             HapticEngine.triggerHaptic('tick', btn);
           }
@@ -1619,7 +1619,7 @@
     const prevBtn = document.getElementById('btn-prev-step');
 
     if (tagEl) tagEl.textContent = '추가 심층 단계 (진단 6단계 + 아이 특징 합산)';
-    if (titleEl) titleEl.textContent = '💬 우리 아이 특징·잘하는 점·부족한 점을 길게 적어주세요';
+    if (titleEl) titleEl.textContent = '우리 아이 특징·잘하는 점·부족한 점을 길게 적어주세요';
     if (subtitleEl) subtitleEl.textContent = '진단 1~6단계 객관식 결과와 부모님이 적어주신 아이 특징을 더해서 세상에 하나뿐인 맞춤 보고서를 만듭니다.';
     if (prevBtn) prevBtn.style.display = 'none';
 
