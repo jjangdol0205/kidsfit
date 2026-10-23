@@ -7,21 +7,69 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kidsfit.co.kr/?mode=growth</loc>
+    <loc>https://kidsfit.co.kr/qna/index.html</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kidsfit.co.kr/?mode=learning</loc>
+    <loc>https://kidsfit.co.kr/qna/topic-01.html</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://truthofmarket.com/</loc>
+    <loc>https://kidsfit.co.kr/qna/topic-02.html</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-03.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-04.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-05.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-06.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-07.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-08.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-09.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kidsfit.co.kr/qna/topic-10.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

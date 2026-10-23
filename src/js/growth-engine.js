@@ -244,7 +244,7 @@
 
     let bmiStatus = '표준 균형 체형 (정상 5~84백분위)';
     let bmiShortStatus = '키 성장 최적 표준 체중';
-    let bmiNote = '현재 키 대비 체중 밸런스가 이상적입니다. 체지방 과다 없이 근육과 뼈 성장을 위한 양질의 단백질·칼슘 섭취를 유지해주세요.';
+    let bmiNote = '키 대비 체중 밸런스가 이상적입니다. 단백질·칼슘 섭취를 꾸준히 유지하세요.';
     let bmiBadgeColor = '#1D4ED8';
 
     if (bmi < ((lms && lms.bmiP5) || 13.8) || wKg < optimalWeightForHeight * 0.88) {
@@ -446,7 +446,7 @@
         shortBadge: '약 6~12개월 잔여',
         subLabel: '성장판 마감 단계 · 척추 디스크 감압(+1.8cm) 집중 구간',
         fullText: '약 6~12개월 (성장판 마감 단계 / 척추 디스크 수분 복원 및 숨은 키 +1.8cm 교정 구간)',
-        meaningKo: `성장판이 거의 닫혀가는 시기(${isBoy ? '남아 만 16.5~17세' : '여아 만 14.5~15세'} 기준)로, 거북목·척추 디스크 감압 스트레칭을 통해 숨은 키 1.5~2.2cm를 복원하는 마지막 골든타임입니다.`
+        meaningKo: `성장판 마감 단계로, 거북목·척추 디스크 감압으로 숨은 키 1.5~2.2cm를 복원하는 골든타임입니다.`
       };
     }
 
@@ -487,7 +487,7 @@
       shortBadge: `약 ${remMinYr}~${remMaxYr}년 남음 (급성장 피크 PHV)`,
       subLabel: `만 ${closureAge}세 성장판 폐쇄 전 최대 가속 골든타임`,
       fullText: `약 ${remMinYr}~${remMaxYr}년 남음 (사춘기 급성장 피크 PHV · 만 ${closureAge}세 성장판 닫히기 전 1cm가 아쉬운 핵심 골든타임)`,
-      meaningKo: `일생 중 키가 가장 폭발적으로 자라는 급성장 피크(PHV) 구간으로, 성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년 남았습니다. 지금 칼슘·단백질·밤 10시 숙면을 챙기면 잠재키를 최대 +7~9cm까지 끌어올릴 수 있습니다.`
+      meaningKo: `사춘기 급성장 피크(PHV) 구간 → 칼슘·단백질·밤 10시 숙면으로 잠재키를 최대 +7~9cm 끌어올릴 시기입니다.`
     };
   }
 

@@ -383,9 +383,9 @@
         recordInsight({
           badgeKo: '야간 성장통 & 골단판 미세피로 완화 처방',
           badgeEn: 'Growing Pains Relief',
-          answerKo: `낮 동안 뼈가 자라며 골막 신경이 당겨지는 신호입니다. 잠들기 전 <strong>무릎·종아리·발목 5분 온찜질 마사지</strong>를 해주시고, 저녁 식후에 <strong>구연산 칼슘(${nutTargets.calciumMg}mg)·킬레이트 마그네슘(${nutTargets.magnesiumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)</strong>를 챙겨주시면 신경·근육 흥분이 가라앉아 밤새 깨지 않고 깊은 서파수면에 진입합니다.`,
+          answerKo: `뼈 급성장기 골막 신경 긴장 → <strong>취침 전 무릎·종아리 5분 온찜질 마사지 + 저녁 식후 구연산 칼슘(${nutTargets.calciumMg}mg)·마그네슘(${nutTargets.magnesiumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)</strong> 보충으로 숙면을 유도하세요.`,
           answerEn: `Do a 5-min warm knee/calf massage before bed and give Calcium (${nutTargets.calciumMg}mg) + Magnesium (${nutTargets.magnesiumMg}mg) + D3 after dinner for deep pain-free sleep!`,
-          sourceKo: '근거: 소아 성장통 및 칼슘·마그네슘·비타민D 보충 임상 (대한소아과학회지 · PMID:24709624)'
+          sourceKo: '근거: 대한소아과학회지 · PMID:24709624'
         }, 'growth', '야간 하지 성장통·근막 긴장');
       }
 
@@ -394,9 +394,9 @@
         recordInsight({
           badgeKo: '부모 유전키(MPH) +8.5cm 돌파 후성유전학 솔루션',
           badgeEn: 'Overcoming Genetic MPH',
-          answerKo: `부모 유전 표적키(<strong>${mphVal}cm</strong>)는 유전적 중간값일 뿐, 후천적 환경(수면·영양·기계적 자극)으로 <strong>±8.5cm</strong>까지 바뀝니다. 밤 10시 숙면과 아침·저녁 맞춤 영양(초유·칼슘·HT042)을 6개월 이상 밀착 실천하시면 <strong>최대 ${optimizedHeight}cm (+${potentialGainCm}cm 추가 성장)</strong>까지 충분히 도약할 수 있습니다.`,
+          answerKo: `유전 표적키(<strong>${mphVal}cm</strong>)는 후천 관리로 <strong>±8.5cm</strong> 변동 → <strong>밤 10시 숙면 + 아침·저녁 초유·칼슘·HT042 6개월 실천</strong> 시 최대 <strong>${optimizedHeight}cm (+${potentialGainCm}cm)</strong> 도약 가능합니다.`,
           answerEn: `Genetic MPH (${mphVal}cm) has a ±8.5cm environmental window! With 10 PM sleep and daily nutrition for 6+ months, your child can reach up to ${optimizedHeight}cm (+${potentialGainCm}cm)!`,
-          sourceKo: '근거: 대한소아내분비학회지 성장호르몬·IGF-1 연구 (김윤철 등 1998 · Yakar et al. 2018)'
+          sourceKo: '근거: 대한소아내분비학회지 · Yakar et al. 2018'
         }, 'growth', '부모 유전키(MPH) 한계 돌파');
       }
 
@@ -405,9 +405,9 @@
         recordInsight({
           badgeKo: '운동 싫어하는 아이 전용 10분 실내 루틴',
           badgeEn: 'Fun Indoor Jumping Routine',
-          answerKo: `억지 줄넘기 대신 좋아하는 음악을 틀고 <strong>거실 무소음 트램폴린 10분 점핑</strong>이나 <strong>취침 전 문틀 철봉 30초×3세트 매달리기(데드행)</strong>로 바꿔보세요. 체력 부담 없이 척추 추간판 디스크가 감압되어 숨은 키 <strong>+1.8cm</strong>가 쑥 살아납니다.`,
+          answerKo: `억지 줄넘기 대신 <strong>거실 무소음 트램폴린 10분 점핑 + 취침 전 문틀 철봉 30초×3세트 매달리기(데드행)</strong>로 척추 디스크를 감압해 숨은 키 <strong>+1.8cm</strong>를 깨워주세요.`,
           answerEn: `Replace forced rope-skipping with 10 mins of indoor silent trampoline jumping and 30s×3 doorway bar hanging to unlock +1.8cm!`,
-          sourceKo: '근거: 성장판 기계적 자극(Wolff\'s Law) 및 척추 감압 임상 (대한소아과학회지 박신영·김호연 2011 · PMID:30897641)'
+          sourceKo: '근거: 대한소아과학회지 · PMID:30897641'
         }, 'growth', '실내 저피로 성장판 자극 운동');
       }
 
@@ -416,9 +416,9 @@
         recordInsight({
           badgeKo: '우유 거부·입 짧은 아이 고밀도 영양 처방',
           badgeEn: 'Picky Eater Nutrition',
-          answerKo: `억지로 우유나 고기를 먹이느라 식사 시간을 전쟁터로 만들지 마세요. 우유 대신 유당이 없는 <strong>어골·구연산칼슘(${nutTargets.calciumMg}mg) + 비타민D3(${nutTargets.vitDIU}IU) + 뉴질랜드초유(단백질 ${nutTargets.proteinG}g 보조) + 미각세포 정상화 아연(${nutTargets.zincMg}mg)</strong>을 아침·저녁 오렌지맛 츄어블/스틱으로 챙겨주시면 자연스럽게 식욕과 흡수율이 올라옵니다.`,
+          answerKo: `식사 강요 대신 유당 없는 <strong>어골·구연산칼슘(${nutTargets.calciumMg}mg) + 비타민D3(${nutTargets.vitDIU}IU) + 초유단백(${nutTargets.proteinG}g 보조) + 미각 정상화 아연(${nutTargets.zincMg}mg)</strong>을 아침·저녁 츄어블/스틱으로 보충하세요.`,
           answerEn: `Give lactose-free Citrate/Fish Calcium (${nutTargets.calciumMg}mg) + NZ Colostrum + Vit D3 + Zinc (${nutTargets.zincMg}mg) morning and night to restore taste bud sensitivity!`,
-          sourceKo: '근거: 소아 영양 불균형 및 칼슘·아연·초유 보충 임상 (한국영양학회지 정광호·이근재 2023 · BMC Pediatr 2023)'
+          sourceKo: '근거: 한국영양학회지 2023 · BMC Pediatr 2023'
         }, 'growth', '편식·우유거부 고밀도 미량영양 보충');
       }
 
@@ -427,9 +427,9 @@
         recordInsight({
           badgeKo: '비염·구강호흡 & 늦은 취침 숙면 복원 처방',
           badgeEn: 'Deep Sleep Recovery',
-          answerKo: `${mentionedTime ? `적어주신 <strong>${mentionedTime}</strong> 취침/수면 패턴을 조율하기 위해 ` : ''}잠들기 30분 전 <strong>미온수 비강 세척과 침실 습도 50~55%·온도 21℃ 유지</strong>로 코호흡을 열어주세요. 밤 10시~새벽 2시 깊은 서파수면(SWS) 동안 성장호르몬의 <strong>65% 이상이 맥동 분비</strong>되어 아침 기상이 훨씬 가벼워집니다.`,
+          answerKo: `${mentionedTime ? `<strong>${mentionedTime}</strong> 수면 교정 → ` : ''}취침 30분 전 <strong>미온수 비강 세척 + 침실 습도 50%·온도 21℃ 유지</strong>로 밤 10시~2시 서파수면(SWS) 성장호르몬 피크(65%)를 확보하세요.`,
           answerEn: `Use nasal saline rinse 30 mins before bed and keep 50% bedroom humidity to restore deep slow-wave sleep GH pulses!`,
-          sourceKo: '근거: 소아 서파수면 및 야간 성장호르몬 분비 기전 (대한의사협회지 곽이성·박종대·양재혁 2024)'
+          sourceKo: '근거: 대한의사협회지 2024 (서파수면 GH 기전)'
         }, 'growth', '비염·구강호흡 교정 & 서파수면(SWS) 복원');
       }
 
@@ -438,9 +438,9 @@
         recordInsight({
           badgeKo: '사춘기·골연령(뼈나이) 진행 속도 조절 & 골든타임 처방',
           badgeEn: 'Pubertal Golden-Time Care',
-          answerKo: `사춘기 신호나 뼈나이 앞서감이 걱정될 때는 <strong>① 밤 9시 이후 야식·액상과당 완전 차단(인슐린·렙틴 억제), ② 체지방률 관리, ③ 성장판 개방기 아침·저녁 HT042·연골칼슘 집중 보충</strong>이 핵심입니다. 골연령 시계를 늦추면서 연간 성장속도를 극대화해 주세요.`,
+          answerKo: `골연령 가속 방어 → <strong>① 밤 9시 이후 야식·액상과당 차단(인슐린·렙틴 억제), ② 적정 체지방 유지, ③ 아침·저녁 HT042·연골칼슘 집중 보충</strong>을 병행하세요.`,
           answerEn: `Stop snacks after 9 PM to suppress insulin/leptin spikes, manage body fat, and combine HT042 + Cartilage Calcium while growth plates are open!`,
-          sourceKo: '근거: 사춘기 골연령 및 성장인자(IGF-1) 임상 (대한소아내분비학회지 김광민·김인락 2000)'
+          sourceKo: '근거: 대한소아내분비학회지 (골연령·IGF-1 임상)'
         }, 'growth', '사춘기 골연령(Bone Age) 급속 진행 방어');
       }
 
@@ -450,10 +450,10 @@
           badgeKo: '스마트폰·유튜브 과몰입 리셋 & 전두엽 작업기억 집중 처방',
           badgeEn: 'Prefrontal Working Memory & Screen Dopamine Reset',
           answerKo: ageYears <= 6
-            ? `무소음 시각 타이머로 <strong>15분 소근육·입체 교구 및 질문독서 완수 후 미디어 허용</strong> 원칙을 세우고, 취침 1시간 전 화면을 차단해 전두엽 도파민 수용체 피로를 회복해 주세요.`
-            : `무소음 시각 타이머로 <strong>20~25분 단일 과업(독해·수학 2쪽) 완수 후 미디어 허용</strong> 원칙을 세우고, 책상 위 스마트폰 격리 및 취침 1시간 전 블루라이트 차단으로 배외측 전두엽(DLPFC) 주의집중 회로를 복원해 주세요.`,
+            ? `무소음 시각 타이머로 <strong>15분 소근육·입체 교구 및 질문독서 완수 후 미디어 허용</strong> + 취침 1시간 전 화면 차단으로 전두엽 회로를 보호하세요.`
+            : `무소음 시각 타이머로 <strong>20분 단일 과업(독해·수학 2쪽) 완수 후 미디어 허용</strong> + 책상 스마트폰 격리로 배외측 전두엽(DLPFC) 집중력을 복원하세요.`,
           answerEn: `Use a visual timer for 20-minute single-task deep work before screen access, and block blue light 1 hour before sleep to restore DLPFC attention circuits.`,
-          sourceKo: '근거: 야간 블루라이트 차단 및 전두엽 실행기능·주의집중 임상 (Higuchi et al. · PMID:12970330 / Diamond · PMID:23012271)'
+          sourceKo: '근거: Higuchi et al. PMID:12970330 · Diamond PMID:23012271'
         }, 'learning', '미디어 도파민 디톡스 & 전두엽 작업기억 제어');
       }
 
@@ -463,10 +463,10 @@
           badgeKo: '정서 안정 & 자존감·자기효능감 강화 코칭 처방',
           badgeEn: 'Autonomy Support & Academic Self-Efficacy Prescription',
           answerKo: ageYears <= 6
-            ? `정답 여부 대신 <strong>'끝까지 스스로 시도한 과정'을 구체적으로 피드백</strong>하고, 주말 체험학습에서 아이에게 '일일 도슨트' 역할을 맡겨 자율성과 발표 자신감을 높여주세요.`
-            : `결과 중심 평가를 멈추고 <strong>'오답 원인을 스스로 찾아낸 추론 과정'을 구체적으로 인정</strong>해 주며, 부모님께 하루 1문제를 가르쳐보는 역할 바꾸기(Protégé Effect)로 학업 자기효능감을 강화해 주세요.`,
+            ? `정답 대신 <strong>스스로 시도한 과정을 칭찬</strong>하고, 주말 체험에서 '일일 도슨트' 역할을 맡겨 자율성·발표 자신감을 키워주세요.`
+            : `점수 평가 대신 <strong>오답 원인을 찾은 추론 과정을 인정</strong>하고, 하루 1문제 부모님께 설명하기(Protégé 효과)로 자기효능감을 높여주세요.`,
           answerEn: `Focus feedback on problem-solving strategies rather than scores, and build self-efficacy through peer/parent teaching roles.`,
-          sourceKo: '근거: 자율성 지지 양육과 아동 전두엽 실행기능 발달 (Bernier et al., Child Dev · PMID:20331667)'
+          sourceKo: '근거: Bernier et al., Child Dev · PMID:20331667'
         }, 'learning', '정서 자율성 지지 & 학업 자기효능감 코칭');
       }
 
@@ -475,9 +475,9 @@
         recordInsight({
           badgeKo: '거북목·구부정한 자세 교정 & 숨은 키 +1.8cm 처방',
           badgeEn: 'Posture & Spinal Decompression',
-          answerKo: `고개를 30도 숙일 때 경추에는 18kg의 하중이 걸려 성장기 척추 디스크가 눌립니다. 공부·독서 시 <strong>높이·각도조절 원목 독서대</strong>로 시선을 눈높이에 맞추고, 매일 저녁 <strong>폼롤러 흉추 펴기 3분 + 문틀 철봉 매달리기 30초</strong>를 실천하면 숨어 있던 체형 키 1.8cm가 즉시 복원됩니다.`,
+          answerKo: `경추 30도 굴곡 시 18kg 디스크 압박 발생 → <strong>눈높이 원목 독서대 사용 + 저녁 폼롤러 흉추 신전 3분·문틀 철봉 매달리기 30초</strong>로 숨은 키 <strong>+1.8cm</strong>를 복원하세요.`,
           answerEn: `Use an eye-level ergonomic book stand and practice 3-min thoracic foam rolling + 30s doorway dead-hangs daily!`,
-          sourceKo: '근거: 경추 굴곡 생체역학 하중 및 추간판 감압 복원 연구 (Hansraj 2014 · PMID:25393825)'
+          sourceKo: '근거: Hansraj 2014 · PMID:25393825'
         }, 'growth', '경추·척추 정렬 교정 & 숨은 키 복원');
       }
 
@@ -486,9 +486,9 @@
         recordInsight({
           badgeKo: '장 면역·소화 흡수율(Gut-Bone Axis) 개선 처방',
           badgeEn: 'Gut-Bone Axis Absorption Care',
-          answerKo: `아무리 좋은 영양제를 먹어도 장 점막이 약하면 흡수율이 절반 이하로 떨어집니다. 아침 공복에 <strong>미온수 반 컵 + 프로바이오틱스·초유</strong>로 장내 산도를 맞추고, 위산 없이도 부드럽게 흡수되는 <strong>구연산·액상 칼슘</strong> 형태로 바꿔주시면 배변 활동과 뼈 성장 속도가 동시에 좋아집니다.`,
+          answerKo: `장 점막 흡수율 개선 → <strong>아침 공복 미온수 + 프로바이오틱스·초유</strong>로 장내 환경을 맞추고 위산 부담 없는 <strong>구연산·액상 칼슘</strong>으로 전환하세요.`,
           answerEn: `Support the Gut-Bone Axis with morning probiotics + colostrum and switch to stomach-friendly Calcium Citrate!`,
-          sourceKo: '근거: 장내 미생물총과 골밀도·칼슘 생체이용률 상관성 (Weaver et al., J Bone Miner Res · PMID:26174539)'
+          sourceKo: '근거: Weaver et al., J Bone Miner Res · PMID:26174539'
         }, 'growth', '장-뼈 축(Gut-Bone Axis) 칼슘 흡수율 강화');
       }
 
@@ -498,10 +498,10 @@
           badgeKo: '책 읽기 거부 & 문해력·어휘 스키마 구조화 처방',
           badgeEn: 'Reading Literacy & Schema Structuring Prescription',
           answerKo: ageYears <= 6
-            ? `하루 15분 <strong>그림책 핵심 낱말 짚어 읽기 + 부모님과 '왜 그랬을까?' 인과 대화 3턴</strong>을 실천하면 좌뇌 브로카 영역 활성과 어휘 스키마가 +42% 확장됩니다.`
-            : `눈으로만 훑는 수동적 독서를 멈추고 하루 15분 <strong>단락별 핵심어 표시(구조화 독해) + 읽은 직후 인과관계 질문 3턴 대화</strong>를 실천하면 비문학·문장제 독해 정확도가 +42% 향상됩니다.`,
+            ? `하루 15분 <strong>그림책 핵심 낱말 짚어 읽기 + '왜 그랬을까?' 인과 대화 3턴</strong>으로 브로카 언어 회로와 어휘 스키마를 +42% 확장하세요.`
+            : `하루 15분 <strong>단락별 핵심어 표시(구조화 독해) + 읽은 직후 인과 질문 3턴 대화</strong>로 비문학·문장제 독해 정확도를 +42% 높이세요.`,
           answerEn: `Practice 15-minute daily paragraph keyword structuring and 3-turn causal inquiry dialogue to boost reading comprehension by 42%.`,
-          sourceKo: '근거: 독서 매튜효과 메타분석(Mol & Bus 2011 · PMID:21219058) 및 MIT·하버드 대화 턴 뇌영상 연구(Romeo et al. 2018 · PMID:29648612)'
+          sourceKo: '근거: Mol & Bus PMID:21219058 · Romeo et al. PMID:29648612'
         }, 'learning', '독서 매튜효과 문해력·어휘 스키마 구조화');
       }
 
@@ -510,9 +510,9 @@
         recordInsight({
           badgeKo: '단순 연산에서 막히는 도형·응용·사고력 수학 돌파 처방',
           badgeEn: 'Spatial Reasoning & Working-Memory Offloading Prescription',
-          answerKo: `머릿속 암산으로 풀려는 습관이 전두엽 작업기억 과부하를 유발합니다. <strong>① 구하는 조건 끊어 읽기 → ② 여백에 조건 도식화(표·수직선·그림) → ③ 입체 기하·사고력 문항 하루 2문제 풀이</strong>로 두정엽 공간추론 회로를 활성화해 주세요.`,
+          answerKo: `암산에 의한 작업기억 과부하 차단 → <strong>① 조건 끊어 읽기 → ② 여백에 표·수직선·도형 그리기 → ③ 입체·사고력 하루 2문제 풀이</strong>로 공간추론 회로를 깨우세요.`,
           answerEn: `Stop mental calculation: offload working memory by drawing problem conditions visually and solving 2 spatial-reasoning problems daily.`,
-          sourceKo: '근거: 공간-수리 발달 구조방정식(Mix et al. 2016 · DOI:10.1037/edu0000105) 및 작업기억과 수학 성취도 연구(Gathercole et al. 2004 · PMID:14979759)'
+          sourceKo: '근거: Mix et al. 2016 · Gathercole et al. PMID:14979759'
         }, 'learning', '두정엽 시공간 추론 & 작업기억 외재화 수학 처방');
       }
 
@@ -521,9 +521,9 @@
         recordInsight({
           badgeKo: '학원 수강 후 망각 차단 → 자기주도 메타인지 백지복습 처방',
           badgeEn: 'Metacognitive Active Recall & Sleep Memory Consolidation',
-          answerKo: `수업 직후 교재를 덮고 <strong>핵심 개념 3줄 백지 인출(Active Recall) + 1분 구술 설명(파인만 기법) + 밤 10시 서파수면(SWS)</strong>을 결합하면 해마-대뇌피질 시냅스 공고화로 장기기억 보존율이 92%까지 상승합니다.`,
+          answerKo: `수업 직후 책을 덮고 <strong>핵심 3줄 백지 인출(Active Recall) + 1분 구술 설명(파인만 기법) + 밤 10시 서파수면</strong>으로 장기기억 보존율을 92%까지 높이세요.`,
           answerEn: `Combine post-lesson 3-line active recall, 1-minute Feynman verbal explanation, and pre-10 PM slow-wave sleep to reach 92% memory retention.`,
-          sourceKo: '근거: 인출학습 장기기억 보존 임상(Roediger & Karpicke 2006 · PMID:16507066) 및 서파수면 기억 공고화(Diekelmann & Born 2010 · PMID:20046194)'
+          sourceKo: '근거: Roediger & Karpicke PMID:16507066 · Diekelmann PMID:20046194'
         }, 'learning', '메타인지 백지 인출(Active Recall) & 수면 기억 공고화');
       }
 
@@ -581,12 +581,12 @@
       precisionLevelKo = '핵심 지표 판독 · 신뢰도 88%';
     }
 
-    // Physical Growth Daily Routine
+    // Physical Growth Daily Routine (Concise 1-Line Schedule)
     const physicalDailyRoutine = {
-      morning: `아침 기상 직후 (07:30): 커튼을 열어 햇빛으로 생체시계를 깨우고, 미온수 반 컵 후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 비타민D3 ${nutTargets.vitDIU}IU + 초유 단백질] 아침 1회분 섭취`,
-      afterSchool: `방과 후·오후 (16:30): 성장판 자극 운동 [${ageYears <= 4 ? '실내 트램폴린·공놀이 15분' : (/운동|줄넘기|싫어/.test(effectiveRaw) ? '실내 무소음 트램폴린 10분 점핑' : '줄넘기·점핑 15분')}] 및 하체 스트레칭`,
-      dinner: `저녁 식탁 (18:30): 취침 3시간 전 식사 완료 (살코기·두부·계란 단백질 ${nutTargets.proteinG}g/일 목표) + 저녁 식후 [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg + 마그네슘 ${nutTargets.magnesiumMg}mg + 아연 ${nutTargets.zincMg}mg] 섭취`,
-      bedtime: `취침 골든타임 (${ageYears <= 5 ? '21:00~21:30' : '21:30~22:00'}): 미디어 화면 차단 후 ${/비염|코|입 벌/.test(effectiveRaw) ? '미온수 코 세척 · 침실 습도 50% 유지 + ' : ''}${ageYears <= 4 ? '무릎·종아리 5분 성장판 마사지' : '문틀 철봉 30초 매달리기 및 무릎·종아리 5분 마사지'}로 깊은 숙면 진입`
+      morning: `07:30 아침 기상: 햇빛 노출 + 미온수 반 컵 + [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg · 비타민D3 ${nutTargets.vitDIU}IU · 초유단백] 섭취`,
+      afterSchool: `16:30 오후 운동: [${ageYears <= 4 ? '실내 트램폴린·공놀이 15분' : (/운동|줄넘기|싫어/.test(effectiveRaw) ? '실내 무소음 트램폴린 10분 점핑' : '줄넘기·점핑 15분')}] + 하체 스트레칭`,
+      dinner: `18:30 저녁 식사: 취침 3시간 전 식사 완료(단백질 ${nutTargets.proteinG}g/일) + [칼슘 ${Math.round(nutTargets.calciumMg / 2)}mg · 마그네슘 ${nutTargets.magnesiumMg}mg · 아연 ${nutTargets.zincMg}mg] 섭취`,
+      bedtime: `${ageYears <= 5 ? '21:15' : '21:45'} 취침 준비: 화면 차단 + ${/비염|코|입 벌/.test(effectiveRaw) ? '비강 세척·습도 50% + ' : ''}${ageYears <= 4 ? '무릎·종아리 5분 마사지' : '문틀 철봉 30초 데드행 & 다리 마사지 5분'} 후 숙면`
     };
 
     // 4-Stage Age-Appropriate Daily Learning Routine (Concise 1-line badges)
@@ -900,35 +900,35 @@
     // Trait-specific custom routine lines (combining multi-selected traits)
     const sleepRoutines = [];
     if (traitSleepList.includes('toss_mouth') || traitSleepList.includes('wake_middle') || traitSleepList.includes('light_dream') || traitSleepList.includes('night_sweat')) {
-      sleepRoutines.push('취침 전 비강 세척·침실 온습도(20~22℃, 50%) 조절로 입호흡·식은땀·중도각성을 줄이고 깊은 서파수면 유도');
+      sleepRoutines.push('취침 전 비강 세척·침실 온습도(21℃, 50%) 유지로 깊은 서파수면 유도');
     }
     if (traitSleepList.includes('night_snack')) {
-      sleepRoutines.push('취침 2~3시간 전 야식·우유 중단(인슐린에 의한 성장호르몬 억제 차단)');
+      sleepRoutines.push('취침 3시간 전 야식·우유 중단(인슐린 GH 억제 차단)');
     }
     if (traitSleepList.includes('hard_wakeup') || traitSleepList.includes('morning_fatigue') || traitSleepList.includes('weekend_oversleep')) {
-      sleepRoutines.push('아침 기상 즉시 햇빛 노출 및 주말 기상 시간 편차 1시간 이내 고정');
+      sleepRoutines.push('기상 즉시 햇빛 노출 및 주말 기상 편차 1시간 이내 고정');
     }
     if (sleepRoutines.length === 0 || traitSleepList.includes('late_bedtime') || traitSleepList.includes('bedtime_screen')) {
-      sleepRoutines.push('매일 밤 21:45 소등 · 취침 1시간 전 스마트폰 차단으로 밤 10시~2시 성장호르몬 피크 확보');
+      sleepRoutines.push('21:45 소등 · 취침 1시간 전 화면 차단으로 밤 10시~2시 성장호르몬 피크 확보');
     }
     const customSleepRoutineKo = sleepRoutines.slice(0, 2).join(' + ');
 
     const dietRoutines = [];
     if (traitDietList.includes('dairy_sensitive') || traitDietList.includes('weak_stomach') || traitDietList.includes('constipation_hard')) {
-      dietRoutines.push(`우유 배앓이·변비 해소를 위해 무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·유산균 보충`);
+      dietRoutines.push(`무유당 구연산·연골칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·유산균 보충`);
     }
     if (traitDietList.includes('meat_veggie_picky') || traitDietList.includes('sweet_carb') || traitDietList.includes('fast_carb_sweet')) {
-      dietRoutines.push(`빵·면·단 간식을 줄이고 소고기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 세포를 깨우는 아연·초유 보충`);
+      dietRoutines.push(`단 간식을 줄이고 살코기·계란 단백질(${nutTargets.proteinG}g/일)과 미각 정상화 아연·초유 보충`);
     }
     if (traitDietList.includes('fast_indigestion') || traitDietList.includes('water_low')) {
-      dietRoutines.push('식사 중 물 대신 식간 하루 5컵 수분 섭취 및 20번 꼭꼭 씹기 습관화');
+      dietRoutines.push('식간 하루 5컵 수분 섭취 및 20번 꼭꼭 씹기');
     }
     if (dietRoutines.length === 0 || traitDietList.includes('small_appetite') || traitDietList.includes('slow_hold_mouth')) {
-      dietRoutines.push(`입이 짧은 아이를 위해 적은 양으로도 흡수율이 높은 황기추출물(HT042)·고밀도 칼슘(${nutTargets.calciumMg}mg) 보충`);
+      dietRoutines.push(`입 짧은 아이 맞춤 황기추출물(HT042)·고밀도 칼슘(${nutTargets.calciumMg}mg) 보충`);
     }
     const customDietRoutineKo = dietRoutines.slice(0, 2).join(' + ');
 
-    const customPostureStudyRoutineKo = `${(traitPostureList.includes('growing_pains') || traitPostureList.includes('flat_foot')) ? '저녁 무릎·종아리 온찜질 마사지 및' : '높이조절 독서대·바른 착석으로 거북목·턱괴기·골반 틀어짐을 예방하고'} 매일 저녁 철봉·점프 30초×3세트 + [${tempTraitLabelKo} · ${focusTraitLabelKo}] 맞춤 하루 20분 자기주도 탐구`;
+    const customPostureStudyRoutineKo = `${(traitPostureList.includes('growing_pains') || traitPostureList.includes('flat_foot')) ? '저녁 무릎·종아리 5분 온찜질 마사지 +' : '눈높이 독서대 바른 착석 +'} 저녁 문틀 철봉 30초×3세트 & 실내 점핑 10분`;
 
     const bespokeNote = analyzeParentFreeNote(
       (profile && (profile.parentFreeNote || profile.freeNote)) || '',
@@ -1727,28 +1727,28 @@
               </span>
             </div>
 
-            <div style="grid-column: 1 / -1; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="grid-column: 1 / -1; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.25rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
-                <span style="font-size: 0.92rem; color: #1D4ED8; font-weight: 900;">${isEn ? 'Remaining Epiphyseal Growth Window' : '골든타임 성장판 잔여 기간 (키가 더 자랄 수 있는 남은 시간)'}</span>
+                <span style="font-size: 0.92rem; color: #1D4ED8; font-weight: 900;">${isEn ? 'Remaining Epiphyseal Growth Window' : '골든타임 성장판 잔여 기간'}</span>
                 <span id="briefing-goldentime" style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">
                   ${goldenTimeLabel}
                 </span>
               </div>
-              <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.5;">
-                <strong>‘골든타임 성장판 잔여 기간’이란?</strong> ${windowInfo.meaningExplanation} (${windowInfo.detailExplanation})
+              <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">
+                <strong>핵심 의미:</strong> ${windowInfo.meaningExplanation}
               </div>
             </div>
           </div>
 
           <!-- Transparent Growth Score & 3-Tier Height Calculation Formula Box -->
-          <div id="growth-score-formula-box" style="margin-top: 0.85rem; background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.95rem 1.1rem; font-size: 0.86rem; color: #0F172A; line-height: 1.65;">
-            <div style="font-size: 0.92rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.4rem;">
-              [키·몸무게 백분위 &amp; 예측키 산출 공식 안내] 위 수치는 어떻게 계산되었나요?
+          <div id="growth-score-formula-box" style="margin-top: 0.85rem; background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 1rem; font-size: 0.84rem; color: #0F172A; line-height: 1.55;">
+            <div style="font-size: 0.9rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">
+              [수치 산출 기준 요약]
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
-              <div>• <strong>① 현재 키 백분위 (상위 ${kdcaTop}%) &amp; 몸무게 백분위 (상위 ${weightEval.weightTopPercent}%):</strong> 질병관리청(KDCA 2017) 표준 성장도표에서 동성·동월령(${exactMonths.toFixed(1)}개월) 표준 정규분포(LMS Z-Score) 공식을 적용해 또래 100명 중 키 위치(${deltaStr})와 몸무게 위치(${weightDeltaStr}, 현재 키 대비 적정 체중 ${weightEval.optimalWeightForHeight}kg)를 산출했습니다.</div>
-              <div>• <strong>② 부모 유전 표적키 (${mphVal}cm):</strong> 소아내분비학 국제 표준 Tanner 공식 <code>(${profile.gender === 'girl' ? '아빠키 + 엄마키 - 13cm' : '아빠키 + 엄마키 + 13cm'}) ÷ 2</code>로 계산된 유전 기준값입니다.</div>
-              <div>• <strong>③ 방치 시 예측키 (${unmanagedHeight}cm) vs 맞춤 관리 잠재키 (${optimizedHeight}cm):</strong> 유전키(${mphVal}cm)와 현재 골연령 성장궤적에 설문에서 선택하신 방해습관(${Math.max(1, (profile.habits || []).length)}개 항목 감점)을 반영하면 <strong>${unmanagedHeight}cm</strong>로 예측되며, 남은 성장판 기간(<strong>${windowInfo.shortBadge}</strong>) 동안 밤 10시 수면·체중비례 영양·척추 감압(+1.8cm) 실천 시 후천적 가산점(<strong>+${potentialGainCm}cm</strong>)이 더해져 <strong>${optimizedHeight}cm</strong>까지 도약할 수 있습니다.</div>
+            <div style="display: flex; flex-direction: column; gap: 0.22rem;">
+              <div>• <strong>① 현재 백분위:</strong> 질병관리청(KDCA 2017) ${exactMonths.toFixed(1)}개월 LMS 표준 기준 키 상위 ${kdcaTop}%(${deltaStr}) · 체중 상위 ${weightEval.weightTopPercent}%(적정 ${weightEval.optimalWeightForHeight}kg)</div>
+              <div>• <strong>② 유전 표적키 (${mphVal}cm):</strong> 국제 소아내분비학 Tanner 공식 <code>(${profile.gender === 'girl' ? '아빠키+엄마키-13cm' : '아빠키+엄마키+13cm'}) ÷ 2</code></div>
+              <div>• <strong>③ 3단 예측키:</strong> 방해습관 방치 시 <strong>${unmanagedHeight}cm</strong> → 잔여 골든타임(${windowInfo.shortBadge}) 수면·영양·감압 관리 시 <strong>${optimizedHeight}cm (+${potentialGainCm}cm)</strong></div>
             </div>
           </div>
         </div>
@@ -1759,7 +1759,7 @@
         <div id="bespoke-parent-note-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; text-align: left;">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <span style="font-size: 1.04rem; font-weight: 900; color: #1D4ED8;">
-              ${isEn ? '1:1 Survey-Based Custom Growth Prescription' : '설문 클릭 항목 기반 1:1 맞춤 신체 성장 처방 (핵심 순서대로 1줄씩 정리)'}
+              ${isEn ? '1:1 Survey-Based Custom Growth Prescription' : '설문 기반 1:1 맞춤 신체 성장 핵심 처방'}
             </span>
             <span style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
               ${bespokeNote.precisionLevelKo}
@@ -1768,32 +1768,32 @@
 
           ${bespokeNote.hasNote ? `
             <div style="margin-bottom: 0.75rem; font-size: 0.82rem; color: #475569; background: #F8FAFC; border-radius: 10px; padding: 0.55rem 0.85rem;">
-              <strong style="color: #1D4ED8;">설문 클릭으로 선택된 신체 성장 핵심 포인트 (${bespokeNote.growthKeywords.length}건):</strong> ${bespokeNote.growthKeywords.join(' · ')}
+              <strong style="color: #1D4ED8;">감지된 핵심 성장 포인트 (${bespokeNote.growthKeywords.length}건):</strong> ${bespokeNote.growthKeywords.join(' · ')}
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.9rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 0.9rem;">
               ${bespokeNote.growthInsights.map((ins, idx) => `
-                <div class="bespoke-single-insight-card" style="display: block; background: #F8FAFC; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
-                  <div style="font-size: 1.02rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">
+                <div class="bespoke-single-insight-card" style="display: block; background: #F8FAFC; border-left: 4px solid #1D4ED8; border-radius: 14px; padding: 0.95rem 1.1rem;">
+                  <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.28rem;">
                     처방 ${idx + 1}순위 · ${isEn ? ins.badgeEn : ins.badgeKo}
                   </div>
-                  <div style="font-size: 0.95rem; color: #0F172A; line-height: 1.6; margin-bottom: 0.35rem;">
+                  <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.52; margin-bottom: 0.25rem;">
                     ${isEn ? ins.answerEn : ins.answerKo}
                   </div>
-                  <div style="font-size: 0.78rem; color: #1D4ED8;">${ins.sourceKo}</div>
+                  <div style="font-size: 0.76rem; color: #1D4ED8; font-weight: 700;">${ins.sourceKo}</div>
                 </div>
               `).join('')}
             </div>
 
             <!-- 4-Slot Hyper-Personalized Daily Timetable -->
-            <div id="bespoke-daily-timetable-box" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.95rem 1.1rem;">
-              <div style="font-size: 0.92rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.5rem;">
-                [신체 성장 4단계 루틴] 만 ${ageYears}세 맞춤 하루 밀착 스케줄
+            <div id="bespoke-daily-timetable-box" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.9rem 1.05rem;">
+              <div style="font-size: 0.9rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.45rem;">
+                [신체 성장 하루 4단계 핵심 루틴]
               </div>
-              <div style="display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.86rem; color: #0F172A; line-height: 1.55;">
-                <div>${bespokeNote.physicalDailyRoutine.morning}</div>
-                <div>${bespokeNote.physicalDailyRoutine.afterSchool}</div>
-                <div>${bespokeNote.physicalDailyRoutine.dinner}</div>
-                <div>${bespokeNote.physicalDailyRoutine.bedtime}</div>
+              <div style="display: flex; flex-direction: column; gap: 0.38rem; font-size: 0.85rem; color: #0F172A; line-height: 1.5;">
+                <div>• ${bespokeNote.physicalDailyRoutine.morning}</div>
+                <div>• ${bespokeNote.physicalDailyRoutine.afterSchool}</div>
+                <div>• ${bespokeNote.physicalDailyRoutine.dinner}</div>
+                <div>• ${bespokeNote.physicalDailyRoutine.bedtime}</div>
               </div>
             </div>
           ` : ''}
@@ -1808,45 +1808,45 @@
         <!-- ================================================================== -->
         <!-- STEP 02: DAILY MORNING & EVENING ROUTINE (Clean 1-Column List)      -->
         <!-- ================================================================== -->
-        <div class="briefing-section briefing-actions" id="briefing-actions-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.25rem 1.35rem; margin-bottom: 1.15rem;">
-          <h3 class="briefing-section-title" style="font-size: 1.18rem; font-weight: 900; color: #0F172A; margin: 0 0 0.85rem 0;">
-            ${isEn ? '2. Daily Morning & Evening Growth Roadmap (3 Easy Steps)' : '2. 오늘부터 아침·저녁으로 챙겨주실 맞춤 지도 방향 (하루 3가지 실천 처방)'}
+        <div class="briefing-section briefing-actions" id="briefing-actions-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem;">
+          <h3 class="briefing-section-title" style="font-size: 1.15rem; font-weight: 900; color: #0F172A; margin: 0 0 0.75rem 0;">
+            ${isEn ? '2. Daily Morning & Evening Growth Roadmap (3 Easy Steps)' : '2. 오늘부터 실천할 하루 3대 핵심 처방'}
           </h3>
 
-          <div id="briefing-horizon-roadmap" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div id="briefing-horizon-roadmap" style="display: flex; flex-direction: column; gap: 0.65rem;">
             <!-- Routine 1: Sleep & Hormone -->
-            <div class="briefing-action-item horizon-card" id="horizon-short-term" style="border-left: 4px solid #3B82F6; padding: 0.95rem 1.1rem; background: #F8FAFC; border-radius: 12px;">
-              <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">
-                ① ${isEn ? 'Bedtime 10 PM Deep Sleep Routine' : `밤 10시 숙면 & 수면 습관 맞춤 루틴 (${sleepTraitLabelKo})`}
+            <div class="briefing-action-item horizon-card" id="horizon-short-term" style="border-left: 4px solid #1D4ED8; padding: 0.85rem 1.05rem; background: #F8FAFC; border-radius: 12px;">
+              <div style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">
+                ① ${isEn ? 'Bedtime 10 PM Deep Sleep Routine' : `수면 호르몬 처방 (${sleepTraitLabelKo})`}
               </div>
-              <div class="action-desc" id="briefing-action-sleep" style="font-size: 0.95rem; line-height: 1.58; color: #0F172A;">
+              <div class="action-desc" id="briefing-action-sleep" style="font-size: 0.9rem; line-height: 1.5; color: #0F172A;">
                 ${isEn
                   ? `Sleep by 21:45–22:00 & stop snacks 2–3 hrs before bed to maximize peak nocturnal growth hormone (65% of daily output).`
-                  : `밤 10시~새벽 2시에 성장호르몬의 65%가 분비됩니다. <strong>${customSleepRoutineKo}</strong> + <strong>잠들기 전 5분 무릎·종아리 마사지</strong>로 깊은 숙면을 유도해 주세요.`}
+                  : `<strong>${customSleepRoutineKo}</strong> + 취침 전 5분 다리 성장판 마사지`}
               </div>
             </div>
 
             <!-- Routine 2: Morning & Evening All-in-One Nutrition -->
-            <div class="briefing-action-item horizon-card" id="horizon-mid-term" style="border-left: 4px solid #93C5FD; padding: 0.95rem 1.1rem; background: #F8FAFC; border-radius: 12px;">
-              <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">
-                ② ${isEn ? 'Morning & Evening Tailored Nutrition' : `아침·저녁 하루 2번 식습관 맞춤 영양 보충 (${dietTraitLabelKo})`}
+            <div class="briefing-action-item horizon-card" id="horizon-mid-term" style="border-left: 4px solid #1D4ED8; padding: 0.85rem 1.05rem; background: #F8FAFC; border-radius: 12px;">
+              <div style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">
+                ② ${isEn ? 'Morning & Evening Tailored Nutrition' : `아침·저녁 맞춤 영양 처방 (${dietTraitLabelKo})`}
               </div>
-              <div class="action-desc" id="briefing-action-nutrition" style="font-size: 0.95rem; line-height: 1.58; color: #0F172A;">
+              <div class="action-desc" id="briefing-action-nutrition" style="font-size: 0.9rem; line-height: 1.5; color: #0F172A;">
                 ${isEn
                   ? `Supplement daily Calcium (${nutTargets.calciumMg}mg) + Vit D3 (${nutTargets.vitDIU}IU) + NZ Colostrum + Zinc + Magnesium morning and night for 6+ months.`
-                  : `<strong>${customDietRoutineKo}</strong>. 매일 <strong>칼슘(${nutTargets.calciumMg}mg) + 비타민D3(${nutTargets.vitDIU}IU) + 초유·단백질(${nutTargets.proteinG}g) + 아연(${nutTargets.zincMg}mg)·마그네슘(${nutTargets.magnesiumMg}mg)</strong>을 아침·저녁으로 6개월 이상 꾸준히 챙겨주세요.`}
+                  : `<strong>${customDietRoutineKo}</strong> (일일 칼슘 ${nutTargets.calciumMg}mg · D3 ${nutTargets.vitDIU}IU · 단백질 ${nutTargets.proteinG}g · 아연 ${nutTargets.zincMg}mg)`}
               </div>
             </div>
 
             <!-- Routine 3: 10-Min Spine Stretch & Jumping -->
-            <div class="briefing-action-item horizon-card" id="horizon-long-term" style="border-left: 4px solid #93C5FD; padding: 0.95rem 1.1rem; background: #F8FAFC; border-radius: 12px;">
-              <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">
-                ③ ${isEn ? '10-Min Spine Decompression & Play Focus' : `하루 10분 숨은 키 +1.8cm 스트레칭 & 기질 맞춤 몰입 (${postureTraitLabelKo})`}
+            <div class="briefing-action-item horizon-card" id="horizon-long-term" style="border-left: 4px solid #1D4ED8; padding: 0.85rem 1.05rem; background: #F8FAFC; border-radius: 12px;">
+              <div style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">
+                ③ ${isEn ? '10-Min Spine Decompression & Play Focus' : `척추 감압(+1.8cm) & 점핑 처방 (${postureTraitLabelKo})`}
               </div>
-              <div class="action-desc" id="briefing-action-exercise" style="font-size: 0.95rem; line-height: 1.58; color: #0F172A;">
+              <div class="action-desc" id="briefing-action-exercise" style="font-size: 0.9rem; line-height: 1.5; color: #0F172A;">
                 ${isEn
                   ? `Evening doorway bar hang (30s×3), indoor forefoot jumping (10 mins), and 20-min hands-on focus matched to [${tempTraitLabelKo}].`
-                  : `${customPostureStudyRoutineKo} 루틴으로 숨은 척추 키 <strong>+1.8cm</strong>와 두뇌 집중력을 동시에 키워주세요.`}
+                  : `<strong>${customPostureStudyRoutineKo}</strong>으로 숨은 척추 키 +1.8cm 복원`}
               </div>
             </div>
           </div>
@@ -1855,14 +1855,14 @@
         <!-- ================================================================== -->
         <!-- STEP 03: 6-MONTH EXPECTED OUTCOMES                                  -->
         <!-- ================================================================== -->
-        <div id="expected-outcomes-section" style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; text-align: left;">
-          <h3 style="font-size: 1.14rem; font-weight: 900; color: #0F172A; margin: 0 0 0.65rem 0;">
-            ${isEn ? '3. Expected Outcomes After 6 Months of Consistent Care' : '3. 6개월 이상 꾸준히 챙겨주셨을 때 기대되는 변화'}
+        <div id="expected-outcomes-section" style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.1rem 1.3rem; margin-bottom: 1.15rem; text-align: left;">
+          <h3 style="font-size: 1.1rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            ${isEn ? '3. Expected Outcomes After 6 Months of Consistent Care' : '3. 6개월 실천 시 기대 변화'}
           </h3>
-          <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.98rem; color: #0F172A; line-height: 1.75;">
-            <li><strong>${isEn ? 'Height Trajectory:' : '목표 잠재키 달성:'}</strong> ${unmanagedHeight}cm(방치 시) → <strong style="color: #1D4ED8;">${optimizedHeight}cm (+${potentialGainCm}cm 추가 성장)</strong> 및 연간 성장속도 <strong>+1.5~1.8cm/년</strong> 가속.</li>
-            <li><strong>${isEn ? 'Deep Sleep & Posture:' : '숙면 & 숨은 키 복원:'}</strong> 밤마다 깨던 다리 성장통이 줄어들고, 거북목·굽은 등이 펴지면서 <strong>숨은 키 +1.8cm</strong>가 바로 살아납니다.</li>
-            <li><strong>${isEn ? 'Focus & Confidence:' : '두뇌 집중력 & 자존감:'}</strong> 스마트폰 대신 손끝 교구·독서 습관이 잡히면서 집중 시간이 <strong>2배 이상</strong> 길어집니다.</li>
+          <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.92rem; color: #0F172A; line-height: 1.65;">
+            <li><strong>${isEn ? 'Height Trajectory:' : '예측키 도약:'}</strong> 방치 시 ${unmanagedHeight}cm → <strong style="color: #1D4ED8;">${optimizedHeight}cm (+${potentialGainCm}cm)</strong> 및 연간 성장속도 <strong>+1.5~1.8cm/년</strong> 상승</li>
+            <li><strong>${isEn ? 'Deep Sleep & Posture:' : '체형·숙면 복원:'}</strong> 야간 성장통 완화 및 거북목·척추 감압으로 <strong>숨은 키 +1.8cm</strong> 즉시 복원</li>
+            <li><strong>${isEn ? 'Focus & Confidence:' : '집중력·자존감 향상:'}</strong> 수면-기억 공고화로 주간 학습 집중 지속시간 <strong>2배 이상</strong> 연장</li>
           </ul>
         </div>
         </div><!-- /#report-ch-1 -->

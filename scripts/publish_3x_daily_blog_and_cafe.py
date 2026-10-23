@@ -691,20 +691,39 @@ def main():
     c_board, c_title, c_body, c_tags, c_img = get_next_cafe_content(next_cafe_seq)
 
     with sync_playwright() as p:
-        browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
-        context = browser.contexts[0]
-
-        blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img)
-        cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
-
-        # Refresh visible tabs if open
+        should_close = False
         try:
-            if len(context.pages) > 0:
-                context.pages[0].goto("https://cafe.naver.com/moneyfitlab", wait_until="commit")
-            if len(context.pages) > 1:
-                context.pages[1].goto("https://blog.naver.com/expertise333", wait_until="commit")
+            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=5000)
+            context = browser.contexts[0]
         except Exception:
-            pass
+            import subprocess
+            subprocess.run(["taskkill", "/F", "/IM", "chrome.exe", "/T"], capture_output=True)
+            time.sleep(1.5)
+            for lock_name in ["SingletonLock", "SingletonCookie", "SingletonSocket"]:
+                lf = PROFILE_DIR / lock_name
+                if lf.exists():
+                    try:
+                        lf.unlink()
+                    except Exception:
+                        pass
+            context = p.chromium.launch_persistent_context(
+                user_data_dir=str(PROFILE_DIR),
+                channel="chrome",
+                headless=False,
+                args=["--disable-blink-features=AutomationControlled", "--start-maximized"],
+                no_viewport=True,
+            )
+            should_close = True
+
+        try:
+            blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img)
+            cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
+        finally:
+            if should_close:
+                try:
+                    context.close()
+                except Exception:
+                    pass
 
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
     cursor["lastBlogSeq"] = next_blog_seq

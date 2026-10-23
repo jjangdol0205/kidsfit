@@ -106,11 +106,26 @@ function build() {
     console.log('[5/5] Copied samples/ -> dist/samples/');
   }
 
-  // Copy robots.txt, sitemap.xml, manifest.json, and sw.js if they exist
-  ['robots.txt', 'sitemap.xml', 'manifest.json', 'sw.js'].forEach((file) => {
+  const qnaDir = path.join(ROOT_DIR, 'qna');
+  if (fs.existsSync(qnaDir)) {
+    copyRecursiveSync(qnaDir, path.join(DIST_DIR, 'qna'));
+    console.log('Copied qna/ -> dist/qna/');
+  }
+
+  // Copy robots.txt, sitemap.xml, manifest.json, and sw.js if they exist (with EBUSY retry)
+  ['robots.txt', 'sitemap.xml', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
-      fs.copyFileSync(fPath, path.join(DIST_DIR, file));
+      for (let attempt = 0; attempt < 5; attempt++) {
+        try {
+          fs.copyFileSync(fPath, path.join(DIST_DIR, file));
+          break;
+        } catch (e) {
+          if (attempt === 4) throw e;
+          const waitTill = Date.now() + 80;
+          while (Date.now() < waitTill) {}
+        }
+      }
       console.log(`Copied ${file} -> dist/${file}`);
     }
   });
