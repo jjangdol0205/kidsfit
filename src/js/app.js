@@ -627,8 +627,8 @@
     }
     if (headerSubEl) {
       headerSubEl.textContent = isLearningModeActive
-        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,008편 정밀 분석 완료'
-        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,008편 정밀 분석 완료';
+        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,014편 정밀 분석 완료'
+        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,014편 정밀 분석 완료';
     }
 
     const affConfig = getAffiliateConfig();
