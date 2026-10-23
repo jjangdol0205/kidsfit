@@ -423,6 +423,27 @@ def build_dynamic_blog_post(seq_num: int):
     return title, body, topic["tags"], str(img_out)
 
 
+def append_triangular_backlink_mesh(body: str, seq_num: int, source_type: str = "blog") -> str:
+    topic_idx = ((seq_num - 1) % 10) + 1
+    qna_deep_url = f"https://kidsfit.co.kr/qna/topic-{topic_idx:02d}.html"
+    if qna_deep_url in body:
+        return body
+    cross_line = (
+        "☕ 공식 학부모 카페(무료 워크지·질문방): https://cafe.naver.com/moneyfitlab"
+        if source_type == "blog"
+        else "📝 공식 연구소 블로그(일자별 심층 칼럼): https://blog.naver.com/expertise333"
+    )
+    mesh_footer = (
+        f"\n\n──────────────────────────────\n"
+        f"🔗 [키즈핏 학술 백과사전 & 1분 맞춤 진단 바로가기]\n"
+        f"• 📏🧠 우리 아이 예상키·두뇌 1분 무료 진단: https://kidsfit.co.kr\n"
+        f"• 📚 오늘 주제 심층 Q&A 백과사전: {qna_deep_url}\n"
+        f"• {cross_line}\n"
+        f"──────────────────────────────"
+    )
+    return body + mesh_footer
+
+
 def get_next_blog_content(blog_seq: int):
     """Returns (title, body, tags, img_path) for the given blog sequence number."""
     folders = sorted([d for d in PACK_DIR.iterdir() if d.is_dir()]) if PACK_DIR.exists() else []
@@ -433,8 +454,9 @@ def get_next_blog_content(blog_seq: int):
         tags = (folder / "03_블로그_해시태그.txt").read_text(encoding="utf-8").strip().split()
         imgs = list(folder.glob("04_블로그_대표이미지_*.png"))
         img_path = str(imgs[0]) if imgs else ""
-        return title, body, tags, img_path
-    return build_dynamic_blog_post(blog_seq)
+        return title, append_triangular_backlink_mesh(body, blog_seq, "blog"), tags, img_path
+    title, body, tags, img_path = build_dynamic_blog_post(blog_seq)
+    return title, append_triangular_backlink_mesh(body, blog_seq, "blog"), tags, img_path
 
 
 def get_next_cafe_content(cafe_seq: int):
@@ -444,7 +466,7 @@ def get_next_cafe_content(cafe_seq: int):
     title = item["title"] if cycle_num == 1 else f"{item['title']} (심화 #{cafe_seq})"
     img_out = GEN_IMG_DIR / f"cafe_auto_seq_{cafe_seq:03d}.png"
     generate_summary_card_png(img_out, f"키즈핏 카페 양육가이드 #{cafe_seq}", item.get("card_title") or title, item["points"], accent_rgb=(16, 185, 129))
-    return item["board"], title, item["body"], item["tags"], str(img_out)
+    return item["board"], title, append_triangular_backlink_mesh(item["body"], cafe_seq, "cafe"), item["tags"], str(img_out)
 
 
 def type_multiline_into_se_one(page, body: str):
