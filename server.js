@@ -77,17 +77,49 @@ const NO_CACHE_HEADERS = {
 };
 
 const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'X-Frame-Options': 'SAMEORIGIN',
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-XSS-Protection': '1; mode=block',
-  'Content-Security-Policy': "frame-ancestors 'self';"
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
+  'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+  'Content-Security-Policy': "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self';"
 };
 
-const BLOCKED_SCRAPER_UA_REGEX = /(HTTrack|WebCopier|SiteSucker|Teleport|WebZIP|Offline Explorer|WebStripper|BlackWidow|Website Quester)/i;
-const PROTECTED_INTERNAL_PATH_REGEX = /^\/(scripts|tests|logs|docs|\.git|\.github|\.env|server\.js|package\.json|package-lock\.json)(\/|$)/i;
+const BLOCKED_SCRAPER_UA_REGEX = /(HTTrack|WebCopier|SiteSucker|Teleport|WebZIP|Offline Explorer|WebStripper|BlackWidow|Website Quester|sqlmap|nikto|nmap|masscan|zgrab)/i;
+const PROTECTED_INTERNAL_PATH_REGEX = /^\/(scripts|tests|logs|docs|node_modules|\.flow-browser-profile|\.git|\.github|\.env|server\.js|package\.json|package-lock\.json|README\.md|CLAUDE\.md)(\/|$)/i;
+
+const apiRateLimitMap = new Map();
+function isRateLimited(req, maxPerMinute = 60) {
+  const ip = getClientIp(req);
+  if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1') return false;
+  const now = Date.now();
+  const entry = apiRateLimitMap.get(ip) || { count: 0, resetAt: now + 60000 };
+  if (now > entry.resetAt) {
+    entry.count = 1;
+    entry.resetAt = now + 60000;
+  } else {
+    entry.count += 1;
+  }
+  apiRateLimitMap.set(ip, entry);
+  if (apiRateLimitMap.size > 5000) apiRateLimitMap.clear();
+  return entry.count > maxPerMinute;
+}
+
+function sanitizeText(input, maxLen = 1000) {
+  return String(input || '')
+    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
+    .replace(/on\w+\s*=\s*(['"]?)[^'"]*\1/gi, '')
+    .replace(/javascript\s*:/gi, '')
+    .replace(/[<>]/g, '')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
+    .trim()
+    .slice(0, maxLen);
+}
 
 function resolveSafeFile(baseDir, relPath) {
+  if (!relPath || relPath.includes('\0') || relPath.includes('..')) return null;
   const safeRel = path.normalize(relPath).replace(/^(\.\.(\/|\\|$))+/, '');
   const fullPath = path.resolve(baseDir, safeRel);
   if (!fullPath.startsWith(path.resolve(baseDir))) {
@@ -283,9 +315,15 @@ const server = http.createServer((req, res) => {
     const parsedUrl = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
     let pathname = decodeURIComponent(parsedUrl.pathname);
 
-    if (PROTECTED_INTERNAL_PATH_REGEX.test(pathname)) {
+    if (pathname.includes('\0') || pathname.includes('..') || PROTECTED_INTERNAL_PATH_REGEX.test(pathname)) {
       res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS });
       res.end('403 Forbidden: Access to internal server resources is denied.');
+      return;
+    }
+
+    if (req.method === 'POST' && isRateLimited(req, 60)) {
+      res.writeHead(429, { 'Content-Type': 'application/json; charset=utf-8', ...SECURITY_HEADERS });
+      res.end(JSON.stringify({ ok: false, error: 'Too Many Requests' }));
       return;
     }
 
@@ -412,7 +450,7 @@ const server = http.createServer((req, res) => {
               unmanagedHeight: Number(incoming.unmanagedHeight) || 171.2,
               optimizedHeight: Number(incoming.optimizedHeight) || 180.5,
               potentialGainCm: Number(incoming.potentialGainCm) || 7.2,
-              parentFreeNote: String(incoming.parentFreeNote || '').slice(0, 1000)
+              parentFreeNote: sanitizeText(incoming.parentFreeNote, 1000)
             };
 
             if (!cohortDb.metadata) cohortDb.metadata = {};
@@ -467,9 +505,9 @@ const server = http.createServer((req, res) => {
             const entry = {
               id: `NOTE-${Date.now().toString(36).toUpperCase()}`,
               timestamp: new Date().toISOString(),
-              parentFreeNote: String(payload.parentFreeNote || '').slice(0, 1000),
+              parentFreeNote: sanitizeText(payload.parentFreeNote, 1000),
               ageYears: payload.profile && payload.profile.ageYears ? Number(payload.profile.ageYears) : 10,
-              gender: payload.profile && payload.profile.gender ? String(payload.profile.gender) : 'boy'
+              gender: payload.profile && payload.profile.gender ? sanitizeText(payload.profile.gender, 16) : 'boy'
             };
             try {
               fs.mkdirSync(path.dirname(notesLogPath), { recursive: true });
@@ -504,7 +542,7 @@ const server = http.createServer((req, res) => {
             const timestamp = new Date().toISOString();
             const profile = payload.profile || {};
             const mode = payload.mode || profile.preferredReportMode || 'growth';
-            const rawNote = String(payload.parentFreeNote || profile.parentFreeNote || '').trim();
+            const rawNote = sanitizeText(payload.parentFreeNote || profile.parentFreeNote || '', 1000);
             const ageYears = Math.max(1, Math.min(20, Math.floor((Number(profile.ageMonths) || 120) / 12)));
             const genderKo = profile.gender === 'girl' ? '여아' : '남아';
 
