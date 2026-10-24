@@ -761,10 +761,19 @@
     const p2 = document.getElementById('pillar-2-container');
     const heightCm = parseFloat(profile.currentHeight) || 137.0;
     const weightKg = parseFloat(profile.currentWeight) || 35.5;
+    const fatherCm = parseFloat(profile.fatherHeight) || 175.0;
+    const motherCm = parseFloat(profile.motherHeight) || 162.0;
+    const isBoy = profile.gender !== 'girl';
     const ageY = Math.max(1, Math.min(20, Math.floor((profile.ageMonths || 120) / 12)));
     const genderLabel = profile.gender === 'girl' ? 'Girl' : 'Boy';
     const heightImp = cmToFtInStr(heightCm);
     const weightLbs = (weightKg * 2.20462262).toFixed(1);
+    const mphCm = isBoy ? ((fatherCm + motherCm + 13) / 2) : ((fatherCm + motherCm - 13) / 2);
+    const optimizedCm = Number((mphCm + 4.8).toFixed(1));
+    const unmanagedCm = Number((mphCm - 1.9).toFixed(1));
+    const hiddenGainCm = Math.max(3.5, Number((optimizedCm - unmanagedCm).toFixed(1)));
+    const hiddenGainIn = (hiddenGainCm / 2.54).toFixed(1);
+    const optimizedImp = cmToFtInStr(optimizedCm);
 
     if (isReportUnlocked()) {
       [p1, p2].forEach((el) => {
@@ -836,10 +845,10 @@
         <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:0.85rem 1rem;">
           <div style="font-size:0.75rem;font-weight:800;color:#475569;">① Final Predicted Adult Height</div>
           <div style="font-size:1.35rem;font-weight:900;color:#1D4ED8;margin-top:0.2rem;letter-spacing:-0.02em;">
-            🔒 <span style="filter:blur(5px);user-select:none;">5' 10.8"</span> <span style="font-size:0.82rem;color:#DC2626;font-weight:800;">(Locked)</span>
+            🔒 <span style="filter:blur(5px);user-select:none;">${optimizedImp}</span> <span style="font-size:0.82rem;color:#DC2626;font-weight:800;">(Locked)</span>
           </div>
           <div style="font-size:0.76rem;color:#059669;font-weight:800;margin-top:0.2rem;">
-            ▲ +2.6 in (+6.7 cm) Hidden Gain Detected!
+            ▲ +${hiddenGainIn} in (+${hiddenGainCm} cm) Hidden Gain Detected!
           </div>
         </div>
 
@@ -935,9 +944,9 @@
 
         <!-- Promo / VIP Access Code Bar -->
         <div style="margin-top:0.8rem;padding-top:0.75rem;border-top:1px dashed #E2E8F0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
-          <span style="font-size:0.78rem;font-weight:700;color:#475569;">Have a Clinic Partner or VIP Passcode?</span>
+          <span style="font-size:0.78rem;font-weight:700;color:#475569;">Have a Clinic Partner Passcode?</span>
           <div style="display:flex;gap:0.4rem;align-items:center;">
-            <input type="text" id="input-global-vip-code" placeholder="Enter code (e.g. VIP2026)" style="padding:0.38rem 0.65rem;border:1px solid #CBD5E1;border-radius:8px;font-size:0.8rem;color:#0F172A;background:#F8FAFC;width:170px;">
+            <input type="text" id="input-global-vip-code" placeholder="Enter clinic partner code" style="padding:0.38rem 0.65rem;border:1px solid #CBD5E1;border-radius:8px;font-size:0.8rem;color:#0F172A;background:#F8FAFC;width:170px;">
             <button type="button" onclick="window.applyKidsFitGlobalVipCode()" style="padding:0.4rem 0.8rem;border-radius:8px;border:1px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.78rem;font-weight:800;cursor:pointer;">
               Apply Code
             </button>

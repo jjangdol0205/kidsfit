@@ -2499,11 +2499,11 @@
             onclick="window.MasterBriefingEngine && window.MasterBriefingEngine.toggleProductDrawer(this, 'growth')"
             style="cursor: pointer; width: 100%; max-width: 560px; min-height: 52px; background: #1D4ED8; border: 1.5px solid #1E40AF; color: #FFFFFF; font-weight: 900; font-size: 0.98rem; padding: 0.8rem 1.25rem; border-radius: 14px; box-shadow: 0 6px 16px rgba(29, 78, 216, 0.2);"
           >
-            분석 기반 맞춤형 신체 성장 추천 상품 보기 (영양제 · 철봉 · 트램폴린) ▼
+            맞춤형 신체 성장 추천 상품 접기 (영양제 · 철봉 · 트램폴린) ▲
           </button>
         </div>
 
-        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" style="display: none; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 20px;">
+        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" style="display: block; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px dashed #BFDBFE;">
             <span style="font-size: 0.96rem; font-weight: 900; color: #1D4ED8;">
               [만 ${ageYears}세 × ${dietTraitLabelKo} · ${postureTraitLabelKo}] 분석 연동 맞춤 추천
@@ -3575,12 +3575,12 @@
               onclick="window.MasterBriefingEngine && window.MasterBriefingEngine.toggleProductDrawer(this, 'learning')"
               style="cursor: pointer; width: 100%; max-width: 560px; min-height: 50px; background: #1D4ED8; border: 1.5px solid #1E40AF; color: #FFFFFF; font-weight: 900; font-size: 0.96rem; padding: 0.75rem 1.15rem; border-radius: 14px; box-shadow: 0 6px 16px rgba(29, 78, 216, 0.2);"
             >
-              분석 기반 맞춤형 두뇌·학습 추천 상품 보기 (교구 · 도서 · 주말 체험) ▼
+              맞춤형 두뇌·학습 추천 상품 접기 (교구 · 도서 · 주말 체험) ▲
             </button>
           </div>
 
-          <!-- ==================== STEP 8: 분석 기반 간결 추천 상품 카드 (버튼 클릭 시 열림) ==================== -->
-          <div id="learning-curated-products-drawer" class="curated-product-recommendation-section" style="display: none; margin-top: 1rem;">
+          <!-- ==================== STEP 8: 분석 기반 간결 추천 상품 카드 (즉시 노출) ==================== -->
+          <div id="learning-curated-products-drawer" class="curated-product-recommendation-section" style="display: block; margin-top: 1rem;">
             <div id="learning-step-8-links" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 20px; padding: 1.1rem 1.2rem; margin-bottom: 1.15rem; text-align: left;">
               <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; padding-bottom: 0.6rem; border-bottom: 1px dashed #BFDBFE;">
                 <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">

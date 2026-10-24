@@ -641,6 +641,12 @@ def main():
         out_file.write_text(render_topic_html(t, TOPICS), encoding="utf-8")
         generated_urls.append(f"{SITE_URL}/qna/{t['slug']}.html")
 
+    # Preserve additional Q&A / Omni-channel / Worksheet landing pages in sitemap.xml
+    for extra_file in sorted(QNA_DIR.glob("*.html")):
+        extra_url = f"{SITE_URL}/qna/{extra_file.name}"
+        if extra_url not in generated_urls:
+            generated_urls.append(extra_url)
+
     seo_res = update_sitemap_and_indexnow(generated_urls)
 
     # Run build.js so dist/ includes qna/, updated sitemap.xml, and IndexNow key

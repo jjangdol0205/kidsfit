@@ -3240,7 +3240,7 @@
                   <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     마이리얼트립 ↗
                   </a>
-                  <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: rgba(249, 115, 22, 0.16); border: 1px solid #BFDBFE; border-radius: 8px; color: #FDBA74; font-size: 0.78rem; font-weight: 800; text-decoration: none; text-align: center;">
+                  <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #FFF7ED; border: 1.5px solid #FB923C; border-radius: 8px; color: #C2410C; font-size: 0.78rem; font-weight: 900; text-decoration: none; text-align: center;">
                     클룩(Klook) ↗
                   </a>
                 </div>

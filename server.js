@@ -215,7 +215,24 @@ function mergeDayBucket(target, src) {
           visitorStats.total.pv = Math.max(visitorStats.total.pv || 0, loaded.total.pv || 0);
           visitorStats.total.bots = Math.max(visitorStats.total.bots || 0, loaded.total.bots || 0);
           visitorStats.total.affiliateClicks = Math.max(visitorStats.total.affiliateClicks || 0, loaded.total.affiliateClicks || 0);
+          if (loaded.total.diagnoses) {
+            visitorStats.total.diagnoses.total = Math.max(visitorStats.total.diagnoses.total || 0, loaded.total.diagnoses.total || 0);
+            visitorStats.total.diagnoses.growth = Math.max(visitorStats.total.diagnoses.growth || 0, loaded.total.diagnoses.growth || 0);
+            visitorStats.total.diagnoses.learning = Math.max(visitorStats.total.diagnoses.learning || 0, loaded.total.diagnoses.learning || 0);
+          }
         }
+        // Ensure total.diagnoses is at least the sum of daily.diagnoses
+        let sumDiagTotal = 0, sumDiagGrowth = 0, sumDiagLearning = 0;
+        Object.values(visitorStats.daily).forEach((dBucket) => {
+          if (dBucket && dBucket.diagnoses) {
+            sumDiagTotal += (dBucket.diagnoses.total || 0);
+            sumDiagGrowth += (dBucket.diagnoses.growth || 0);
+            sumDiagLearning += (dBucket.diagnoses.learning || 0);
+          }
+        });
+        visitorStats.total.diagnoses.total = Math.max(visitorStats.total.diagnoses.total || 0, sumDiagTotal);
+        visitorStats.total.diagnoses.growth = Math.max(visitorStats.total.diagnoses.growth || 0, sumDiagGrowth);
+        visitorStats.total.diagnoses.learning = Math.max(visitorStats.total.diagnoses.learning || 0, sumDiagLearning);
       }
     }
   } catch (_) {}
@@ -248,15 +265,16 @@ function getClientIp(req) {
   return String((req.socket && req.socket.remoteAddress) || '0.0.0.0');
 }
 
-function classifyReferrer(refStr) {
+function classifyReferrer(refStr, reqUrlStr) {
   const r = String(refStr || '').toLowerCase();
-  if (!r) return 'direct';
-  if (r.includes('instagram.com') || r.includes('ig.me')) return 'instagram';
-  if (r.includes('threads.net') || r.includes('threads.com')) return 'threads';
-  if (r.includes('blog.naver.com')) return 'naver_blog';
-  if (r.includes('cafe.naver.com')) return 'naver_cafe';
-  if (r.includes('naver.com') || r.includes('clip')) return 'naver_search_clip';
-  if (r.includes('google.') || r.includes('daum.net') || r.includes('kakao')) return 'google_daum_kakao';
+  const u = String(reqUrlStr || '').toLowerCase();
+  const combined = `${r} ${u}`;
+  if (combined.includes('instagram') || combined.includes('ig.me') || combined.includes('utm_source=insta')) return 'instagram';
+  if (combined.includes('threads.net') || combined.includes('threads.com') || combined.includes('utm_source=threads')) return 'threads';
+  if (combined.includes('blog.naver.com') || combined.includes('utm_source=naver_blog') || combined.includes('ref=blog')) return 'naver_blog';
+  if (combined.includes('cafe.naver.com') || combined.includes('utm_source=naver_cafe') || combined.includes('ref=cafe')) return 'naver_cafe';
+  if (combined.includes('kin.naver.com') || combined.includes('naver.com') || combined.includes('clip') || combined.includes('utm_source=naver')) return 'naver_search_clip';
+  if (combined.includes('google.') || combined.includes('daum.net') || combined.includes('kakao') || combined.includes('bing.')) return 'google_daum_kakao';
   return 'direct';
 }
 
@@ -303,7 +321,7 @@ function recordVisitorPageview(req, customRef) {
       day.devices.desktop = (day.devices.desktop || 0) + 1;
     }
 
-    const refSource = classifyReferrer(customRef || req.headers['referer'] || req.headers['referrer'] || '');
+    const refSource = classifyReferrer(customRef || req.headers['referer'] || req.headers['referrer'] || '', req.url || '');
     day.referrers[refSource] = (day.referrers[refSource] || 0) + 1;
 
     saveVisitorStats();

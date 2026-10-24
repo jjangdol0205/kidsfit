@@ -191,9 +191,19 @@ def try_safe_naver_kin_answer(context, item: dict, answered_urls: list) -> dict:
             return out;
         }""")
 
-        candidates = [q for q in q_links if q["url"] not in answered_urls]
+        relevant_kw = [
+            "키", "성장", "아이", "초등", "중학", "유아", "개월", "살", "공부", "수학", "독서",
+            "문해력", "집중", "수면", "영양", "칼슘", "우유", "교구", "가베", "몬테소리",
+            "박물관", "사춘기", "성조숙", "거북목", "자세", "체중", "몸무게", "아들", "딸"
+        ]
+        filtered_links = [
+            q for q in q_links
+            if any(k in q.get("title", "") for k in relevant_kw)
+        ] or q_links
+
+        candidates = [q for q in filtered_links if q["url"] not in answered_urls]
         if not candidates:
-            candidates = q_links[:3]
+            candidates = filtered_links[:3]
         if not candidates:
             return {"status": "skipped_no_target", "reason": "최신 질문 후보 없음"}
 

@@ -154,6 +154,57 @@ def pin_first_comment_on_own_latest_cafe_post(context, commented_own: list) -> d
         page.close()
 
 
+def pin_first_comment_on_own_latest_blog_post(context, commented_own: list) -> dict:
+    """Leaves a helpful first comment with direct clickable deep-links on our own latest Naver Blog post (expertise333)."""
+    if not BLOG_CURSOR_PATH.exists():
+        return {"status": "skipped", "reason": "커서 파일 없음"}
+    try:
+        cur = json.loads(BLOG_CURSOR_PATH.read_text(encoding="utf-8"))
+        hist = cur.get("history", [])
+        if not hist:
+            return {"status": "skipped", "reason": "최근 발행글 없음"}
+        latest_blog_url = (hist[-1].get("blog") or {}).get("url", "")
+        m = re.search(r"blog\.naver\.com/([a-zA-Z0-9_-]+)/(\d+)", latest_blog_url)
+        if not m or latest_blog_url in commented_own:
+            return {"status": "already_commented", "url": latest_blog_url}
+        blog_id, log_no = m.group(1), m.group(2)
+    except Exception as e:
+        return {"status": "error", "reason": str(e)[:40]}
+
+    page = context.new_page()
+    try:
+        comment_url = f"https://m.blog.naver.com/CommentList.naver?blogId={blog_id}&logNo={log_no}"
+        page.goto(comment_url, wait_until="domcontentloaded", timeout=20000)
+        time.sleep(2.8)
+
+        comment_text = (
+            "📌 [방문자 안내 · 우리 아이 1분 무료 진단 & A4 워크지 바로가기]\n"
+            "본문에 소개된 질병관리청(KDCA) 성장도표 기준 3단 예상키 & 두뇌 5각 밸런스(LQ) 무료 진단은 아래 공식 주소에서 회원가입 없이 바로 확인하실 수 있습니다 👇\n"
+            "👉 신체 성장 & 숨은키 1분 진단: https://kidsfit.co.kr/?mode=growth\n"
+            "👉 두뇌 5각 밸런스 & 공부법 진단: https://kidsfit.co.kr/?mode=learning\n"
+            "👉 A4 출력용 소근육·문장제·백지복습 워크지 3종 무료 인쇄: https://kidsfit.co.kr/qna/free-worksheets.html"
+        )
+
+        c_box = page.locator("#naverComment__write_textarea, div.u_cbox_text, textarea.u_cbox_text").first
+        if c_box.count() > 0:
+            c_box.scroll_into_view_if_needed()
+            c_box.click(force=True)
+            time.sleep(0.5)
+            page.keyboard.insert_text(comment_text)
+            time.sleep(0.8)
+            submit_btn = page.locator("button.u_cbox_btn_upload.__uis_naverComment_writeButton, button.u_cbox_btn_upload").first
+            if submit_btn.count() > 0:
+                submit_btn.click(force=True)
+                time.sleep(2.5)
+                commented_own.append(latest_blog_url)
+                return {"status": "blog_comment_pinned", "url": latest_blog_url}
+        return {"status": "checked_ok", "url": latest_blog_url}
+    except Exception as e:
+        return {"status": "warn", "url": latest_blog_url, "reason": str(e)[:40]}
+    finally:
+        page.close()
+
+
 def try_naver_blog_buddy_add(page, blog_id: str) -> str:
     """
     Attempts to send a Mutual Neighbor request (서로이웃 신청) or Neighbor addition (이웃 추가)
@@ -329,8 +380,10 @@ def main():
         try:
             ensure_naver_session_cookies(context)
 
-            # 1. Pin first comment on our own latest Naver Cafe post
+            # 1. Pin first comment on our own latest Naver Cafe & Blog posts
             own_pin_res = pin_first_comment_on_own_latest_cafe_post(context, st.setdefault("commented_own_posts", []))
+            own_blog_pin_res = pin_first_comment_on_own_latest_blog_post(context, st.setdefault("commented_own_posts", []))
+            own_pin_res["blog_pin"] = own_blog_pin_res
 
             # 2. External Naver Blog Sympathy + Comment Tour (2 target parenting blogs)
             blog_tour_res = execute_external_blog_sympathy_and_comment_tour(

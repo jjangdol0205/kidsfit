@@ -1172,12 +1172,63 @@
     }
     syncStateToForm(state.profile);
 
-    // Support direct URL view parameter (?view=growth-report | ?view=learning-report | ?view=survey)
+    // Support direct URL view, preset, and mode parameters (?view=... | ?preset=... | ?mode=growth|learning)
     if (typeof window !== 'undefined' && window.location && window.location.search) {
       try {
         const params = new URLSearchParams(window.location.search);
         const viewParam = params.get('view');
-        if (viewParam === 'growth-report' || viewParam === 'learning-report') {
+        const presetParam = params.get('preset');
+        const modeParam = params.get('mode');
+
+        const PRESET_ALIAS_MAP = {
+          'preset-1': 'preset-1',
+          'infant_1': 'preset-1',
+          'infant_12_23': 'preset-1',
+          'toddler_2_3': 'preset-1',
+          'preset-2': 'preset-2',
+          'child_4_5': 'preset-2',
+          'elem_low': 'preset-2',
+          'elem_low_7_9': 'preset-2',
+          'preset-3': 'preset-3',
+          'elem_high': 'preset-3',
+          'elem_high_10_13': 'preset-3',
+          'working_mom': 'preset-3',
+          'working_mom_weekend': 'preset-3',
+          'preset-4': 'preset-4',
+          'preset-5': 'preset-5'
+        };
+
+        if (modeParam === 'growth' || modeParam === 'learning') {
+          window.__KIDSFIT_PREFERRED_REPORT_MODE = modeParam;
+          state.profile.preferredReportMode = modeParam;
+        }
+
+        if (presetParam && PRESET_ALIAS_MAP[presetParam]) {
+          const mappedPreset = PRESET_ALIAS_MAP[presetParam];
+          if (PRESETS[mappedPreset]) {
+            state.activePresetId = mappedPreset;
+            state.profile = Object.assign({}, JSON.parse(JSON.stringify(PRESETS[mappedPreset])), {
+              preferredReportMode: (modeParam === 'learning' || viewParam === 'learning-report') ? 'learning' : 'growth'
+            });
+            syncStateToForm(state.profile);
+          }
+          if (document.body && document.body.classList) {
+            document.body.classList.add('studio-mode-active');
+          }
+          const quizSec = document.getElementById('quiz-section');
+          if (quizSec) quizSec.style.display = 'none';
+          const heroSec = document.getElementById('hero-section');
+          if (heroSec) heroSec.style.display = 'none';
+          const presetsBar = document.getElementById('quick-presets-bar');
+          if (presetsBar) presetsBar.style.display = 'none';
+          const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+          if (dashboard) {
+            dashboard.classList.remove('hidden');
+            dashboard.style.display = 'block';
+          }
+          state.isPrescriptionIssued = true;
+          renderPrescriptionResults(state.profile);
+        } else if (viewParam === 'growth-report' || viewParam === 'learning-report') {
           const mode = viewParam === 'learning-report' ? 'learning' : 'growth';
           window.__KIDSFIT_PREFERRED_REPORT_MODE = mode;
           state.profile.preferredReportMode = mode;
@@ -1195,9 +1246,10 @@
           }
           state.isPrescriptionIssued = true;
           renderPrescriptionResults(state.profile);
-        } else if (viewParam === 'survey') {
+        } else if (viewParam === 'survey' || modeParam === 'growth' || modeParam === 'learning') {
+          const targetMode = modeParam === 'learning' ? 'learning' : 'growth';
           if (global.TallerOnboardingWizard && typeof global.TallerOnboardingWizard.enterStudioMode === 'function') {
-            global.TallerOnboardingWizard.enterStudioMode('child', 'growth');
+            global.TallerOnboardingWizard.enterStudioMode('child', targetMode);
           }
         }
       } catch (_) {}
