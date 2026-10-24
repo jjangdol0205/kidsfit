@@ -246,6 +246,7 @@ def ping_websub_and_indexnow():
         results["websub_google"] = f"warn: {str(e)[:50]}"
 
     # 2. IndexNow Multi-Engine Push (api.indexnow.org, www.bing.com, yandex.com, search.seznam.cz)
+    seq_urls = [f"{SITE_URL}/qna/{p.name}" for p in sorted((ROOT / "qna").glob("post-seq-*.html"))] if (ROOT / "qna").exists() else []
     url_list = [
         f"{SITE_URL}/",
         f"{SITE_URL}/qna/",
@@ -256,7 +257,7 @@ def ping_websub_and_indexnow():
         f"{SITE_URL}/llms.txt",
         f"{SITE_URL}/llms-full.txt",
         f"{SITE_URL}/sitemap.xml",
-    ] + [f"{SITE_URL}/qna/{t['slug']}.html" for t in QNA_TOPICS]
+    ] + [f"{SITE_URL}/qna/{t['slug']}.html" for t in QNA_TOPICS] + seq_urls
 
     payload = json.dumps({
         "host": "kidsfit.co.kr",
