@@ -135,6 +135,7 @@ function resolveSafeFile(baseDir, relPath) {
 // Real-Time Homepage Visitor & Funnel Analytics Engine (KST Daily + Cumulative)
 // ============================================================================
 const VISITOR_ANALYTICS_PATH = path.join(ROOT_DIR, 'logs', 'visitor_analytics.json');
+const VISITOR_SNAPSHOT_PATH = path.join(ROOT_DIR, 'src', 'data', 'visitor-analytics-snapshot.json');
 const BOT_UA_REGEX = /(bot|crawler|spider|slurp|yeti|daumoa|mediapartners|facebookexternalhit|telegrambot|kakaotalk-scrap|curl|python|headless|monitor|uptime)/i;
 const recentPageviewMap = new Map();
 
@@ -177,14 +178,48 @@ let visitorStats = {
   daily: {}
 };
 
-try {
-  if (fs.existsSync(VISITOR_ANALYTICS_PATH)) {
-    const loaded = JSON.parse(fs.readFileSync(VISITOR_ANALYTICS_PATH, 'utf8'));
-    if (loaded && typeof loaded === 'object' && loaded.daily) {
-      visitorStats = loaded;
-    }
+function mergeDayBucket(target, src) {
+  if (!src || typeof src !== 'object') return target;
+  target.uv = Math.max(target.uv || 0, src.uv || 0);
+  target.pv = Math.max(target.pv || 0, src.pv || 0);
+  target.bots = Math.max(target.bots || 0, src.bots || 0);
+  target.affiliateClicks = Math.max(target.affiliateClicks || 0, src.affiliateClicks || 0);
+  if (src.devices) {
+    target.devices.mobile = Math.max(target.devices.mobile || 0, src.devices.mobile || 0);
+    target.devices.desktop = Math.max(target.devices.desktop || 0, src.devices.desktop || 0);
   }
-} catch (_) {}
+  if (src.referrers) {
+    Object.keys(target.referrers).forEach((k) => {
+      target.referrers[k] = Math.max(target.referrers[k] || 0, src.referrers[k] || 0);
+    });
+  }
+  if (src.diagnoses) {
+    target.diagnoses.total = Math.max(target.diagnoses.total || 0, src.diagnoses.total || 0);
+    target.diagnoses.growth = Math.max(target.diagnoses.growth || 0, src.diagnoses.growth || 0);
+    target.diagnoses.learning = Math.max(target.diagnoses.learning || 0, src.diagnoses.learning || 0);
+  }
+  return target;
+}
+
+[VISITOR_SNAPSHOT_PATH, VISITOR_ANALYTICS_PATH].forEach((p) => {
+  try {
+    if (fs.existsSync(p)) {
+      const loaded = JSON.parse(fs.readFileSync(p, 'utf8'));
+      if (loaded && typeof loaded === 'object' && loaded.daily) {
+        Object.keys(loaded.daily).forEach((d) => {
+          if (!visitorStats.daily[d]) visitorStats.daily[d] = createEmptyDayBucket(d);
+          mergeDayBucket(visitorStats.daily[d], loaded.daily[d]);
+        });
+        if (loaded.total) {
+          visitorStats.total.uv = Math.max(visitorStats.total.uv || 0, loaded.total.uv || 0);
+          visitorStats.total.pv = Math.max(visitorStats.total.pv || 0, loaded.total.pv || 0);
+          visitorStats.total.bots = Math.max(visitorStats.total.bots || 0, loaded.total.bots || 0);
+          visitorStats.total.affiliateClicks = Math.max(visitorStats.total.affiliateClicks || 0, loaded.total.affiliateClicks || 0);
+        }
+      }
+    }
+  } catch (_) {}
+});
 
 function saveVisitorStats() {
   try {

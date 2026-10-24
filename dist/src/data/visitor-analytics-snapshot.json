@@ -1,0 +1,42 @@
+{
+  "startedAt": "2026-10-23T00:00:00.000Z",
+  "total": {
+    "uv": 5,
+    "pv": 5,
+    "diagnoses": {
+      "total": 0,
+      "growth": 0,
+      "learning": 0
+    },
+    "affiliateClicks": 0,
+    "bots": 8
+  },
+  "daily": {
+    "2026-10-24": {
+      "date": "2026-10-24",
+      "uv": 5,
+      "pv": 5,
+      "uniqueHashes": [],
+      "devices": {
+        "mobile": 2,
+        "desktop": 3
+      },
+      "referrers": {
+        "instagram": 0,
+        "threads": 0,
+        "naver_blog": 0,
+        "naver_cafe": 0,
+        "naver_search_clip": 0,
+        "google_daum_kakao": 0,
+        "direct": 5
+      },
+      "diagnoses": {
+        "total": 0,
+        "growth": 0,
+        "learning": 0
+      },
+      "affiliateClicks": 0,
+      "bots": 8
+    }
+  }
+}
