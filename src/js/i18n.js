@@ -33,7 +33,7 @@
       'lang.toggle': 'EN (CDC)',
 
       // Hero (Psychological Hook + Clinical Authority + Immediate CTA)
-      'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,645편 교차 검증',
+      'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,655편 교차 검증',
       'hero.headline': '<span class="hero-single-line">"설마 크겠지" 미루는 사이,</span><br><span class="hero-headline-highlight hero-single-line">아이의 성장판과 전두엽 골든타임은 매년 닫혀가고 있습니다</span>',
       'hero.subtitle': '또래보다 작은 키와 줄어들지 않는 학습 격차, 유전 탓만은 아닙니다. 수면·영양·자세 결손에 묶여 있던 숨은 잠재키(+6.7cm)와 5각 두뇌 학습 병목을 성장판이 닫히기 전에 1분 설문 데이터로 확인하세요.',
       'nav.forWhom': '신체 성장 정밀 진단',
@@ -69,7 +69,7 @@
       'services.s2.desc': '문해력·수리추론·전두엽 집중력 병목 진단과 자기주도 공부법을 제시합니다.',
       'services.s3.title': '체질별 맞춤 영양·운동 기구 & 두뇌 성향별 교재·교구 매칭',
       'services.s3.desc': '불필요한 지출 없이 아이의 현재 상태에 검증된 핵심 솔루션만 선별합니다.',
-      'services.basis': '대한소아내분비학회지 · 대한소아과학회지 · 질병관리청(KDCA) · 학술논문 3,645편 기반',
+      'services.basis': '대한소아내분비학회지 · 대한소아과학회지 · 질병관리청(KDCA) · 학술논문 3,655편 기반',
 
       // Studio & Quiz Extra Keys
       'studio.bar.title': 'KIDS-FIT 임상 데이터 기반 1:1 정밀 설문 진단',
@@ -93,7 +93,7 @@
       'quiz.cog.label': '중점 강화 희망 두뇌·학습 영역 (복수 선택)',
       'quiz.cog.hint': '현재 연령의 뇌 발달 주기에 부합하는 학습법과 교구·도서를 매칭합니다.',
       'quiz.submit.btn': '설문 응답 기반 정밀 진단 보고서 발행하기',
-      'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 3,645편 코퍼스를 대조하여 정밀 진단 보고서를 생성하고 있습니다.',
+      'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 3,655편 코퍼스를 대조하여 정밀 진단 보고서를 생성하고 있습니다.',
       'results.tab1.title': '신체 성장 백분위 & 골연령 예측 궤적 (Auxology)',
       'results.tab1.desc': '질병관리청(KDCA) 성장도표 기반 Z-Score, 연간 성장속도(cm/yr), 부모 유전 표적키(MPH ±8.5cm) 및 3단 성인 예측키 시뮬레이션입니다.',
       'results.tab2.title': '24시간 호르몬 궤적 & 임상 영양 생체이용률',
@@ -268,7 +268,7 @@
       'lang.toggle': '🇰🇷 한국어',
 
       // Hero
-      'hero.badge': '🌱 Powered by KDCA Growth Standards & 3,645 Clinical Papers · K-GROWTH AI™',
+      'hero.badge': '🌱 Powered by KDCA Growth Standards & 3,655 Clinical Papers · K-GROWTH AI™',
       'hero.headline': 'How Tall Will Your Child Grow?\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 60%, #A7F3D0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Separate Physical Growth Report & Brain Learning Report in 1 Min</span>',
       'hero.subtitle': '1-Min Input → Independent [Physical Growth Report] & [Brain Learning Report]',
       'nav.forWhom': 'Who It\'s For',
@@ -304,7 +304,7 @@
       'services.s2.desc': 'Auto-detects growth stage and maps out 4 years of brain & self-directed study focus.',
       'services.s3.title': 'Pinpoint Supplements · Toys · Books · Edu Travel',
       'services.s3.desc': 'Matches verified specific products directly to your child\'s appetite, sleep & temperament.',
-      'services.basis': 'Clinical Basis: KDCA Growth Charts · US CDC 2000 · K-DST Milestones · 3,645-Paper DB',
+      'services.basis': 'Clinical Basis: KDCA Growth Charts · US CDC 2000 · K-DST Milestones · 3,655-Paper DB',
 
       // Studio & Quiz Extra Keys
       'studio.bar.title': '✦ KIDS-FIT AI · 1:1 Personalized Growth & Learning Diagnosis',
@@ -328,7 +328,7 @@
       'quiz.cog.label': 'Core Brain & Learning Focus Domains (Select all that apply)',
       'quiz.cog.hint': 'Generates age-specific neuroplasticity and inquiry learning protocols.',
       'quiz.submit.btn': '✦ Generate My Growth & Learning Guidebook →',
-      'loader.desc': 'Cross-referencing day-calibrated birth data with 3,645 peer-reviewed studies to compile your guidebook.',
+      'loader.desc': 'Cross-referencing day-calibrated birth data with 3,655 peer-reviewed studies to compile your guidebook.',
       'results.tab1.title': 'Physical Growth Percentile & Bone Age Trajectory (Auxology)',
       'results.tab1.desc': 'K-GROWTH AI™ Z-Score, annual growth velocity, Tanner Mid-Parental Height (MPH ±8.5 cm), and 3-tier adult height simulation.',
       'results.tab2.title': '24-Hour Hormone Curve & Clinical Bio-Nutrition',
@@ -339,7 +339,7 @@
       'results.tab4.desc': '5-axis neuro-cognitive balance radar chart, age-specific cortical development guide, and 3-step inquiry dialogue prompts.',
       'results.tab5.title': '90-Day Growth Tracker & Hospital-Style A4 Clinical Report',
       'results.tab5.desc': 'Continuous height/weight streak tracker and 1-click printable 2-page A4 clinical report.',
-      'footer.disclaimer': 'Powered by proprietary K-GROWTH AI™ algorithms and official US CDC 2000, WHO Growth Standards, KDCA 2017 Growth Charts, and K-DST developmental milestones (3,645 papers). This guidebook is for educational and wellness guidance and does not replace medical diagnosis. Product recommendation links on this service are part of Coupang Partners and affiliate marketing programs, through which we may receive a commission.',
+      'footer.disclaimer': 'Powered by proprietary K-GROWTH AI™ algorithms and official US CDC 2000, WHO Growth Standards, KDCA 2017 Growth Charts, and K-DST developmental milestones (3,655 papers). This guidebook is for educational and wellness guidance and does not replace medical diagnosis. Product recommendation links on this service are part of Coupang Partners and affiliate marketing programs, through which we may receive a commission.',
 
       // Presets
       'presets.badge': 'Clinical Demo Presets',
