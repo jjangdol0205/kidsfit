@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24 13:16:15 KST",
+  "updated_at": "2026-10-24 14:00:21 KST",
   "total_books_mastered": 8,
   "supplementary_research_count": 6,
   "books": [
@@ -127,8 +127,8 @@
       "journal": "Advances in Marketing, Customer Relationship Management, and E-Services"
     }
   ],
-  "cycle": 4,
-  "total_learned_insights": 9,
+  "cycle": 5,
+  "total_learned_insights": 11,
   "learned_insights": [
     {
       "source": "Crossref",
@@ -210,13 +210,31 @@
       "year": 2024,
       "learned_at": "2026-10-24 13:16",
       "actionable_takeaway": "[권위·사회적 증거 기반 초신뢰 퍼널 설계] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
+    },
+    {
+      "source": "Crossref",
+      "domain_ko": "탈단일채널(Omni-Channel) 트랙션 그로스 해킹",
+      "title": "TRACTION by Gabriel Weinberg",
+      "author": "AMBER – ABBS Management Business and Entrepreneurship Review",
+      "year": 2024,
+      "learned_at": "2026-10-24 14:00",
+      "actionable_takeaway": "[탈단일채널(Omni-Channel) 트랙션 그로스 해킹] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
+    },
+    {
+      "source": "Crossref",
+      "domain_ko": "탈단일채널(Omni-Channel) 트랙션 그로스 해킹",
+      "title": "From theory to traction: embedding growth hacking in entrepreneurship curricula",
+      "author": "EUREKA: Social and Humanities",
+      "year": 2024,
+      "learned_at": "2026-10-24 14:00",
+      "actionable_takeaway": "[탈단일채널(Omni-Channel) 트랙션 그로스 해킹] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
     }
   ],
   "latest_system_audit": {
-    "audited_at": "2026-10-24 13:16:16 KST",
+    "audited_at": "2026-10-24 14:00:22 KST",
     "total_qna_and_seq_pages": 27,
     "pages_auto_patched_with_cro_bar": 27,
-    "live_paper_authority_count": 3538,
+    "live_paper_authority_count": 3549,
     "scores": {
       "hook_clarity_3sec_score": 98,
       "cialdini_authority_social_proof_score": 99,
@@ -226,7 +244,7 @@
     },
     "active_optimizations": [
       "Value Ladder Step 1: 전 채널 상단 3초 무료 진단 직링크 박스 가동 중",
-      "Authority Badge: 질병관리청(KDCA) + 보건복지부(K-DST) + 논문 3,538편 실시간 배지 동기화",
+      "Authority Badge: 질병관리청(KDCA) + 보건복지부(K-DST) + 논문 3,549편 실시간 배지 동기화",
       "Choice Architecture: 6종 연령·상황별 1초 프리셋 캡슐 바 전 페이지 상단 고정",
       "STEPPS Viral Loop: 카톡·당근 동네생활·블라인드·다음카페 원클릭 공유 바 전 페이지 장착 완료"
     ]
