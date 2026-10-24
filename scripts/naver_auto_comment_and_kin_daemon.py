@@ -321,4 +321,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    from execute_32_community_conquest_daemon import main as run_conquest
+    run_conquest()
