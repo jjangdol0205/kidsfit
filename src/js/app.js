@@ -219,16 +219,29 @@
       tagEl.textContent = `Step ${stepNumber} / ${totalSteps}`;
     }
 
+    const isEn = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
     const info = STEP_INFO[stepNumber - 1];
     const titleEl = document.getElementById('quiz-step-title');
-    if (titleEl && info) titleEl.textContent = info.title;
+    if (titleEl && info) {
+      if (isEn && global.TallerI18n && typeof global.TallerI18n.t === 'function') {
+        titleEl.textContent = global.TallerI18n.t(`quiz.step${stepNumber}.title`) || info.title;
+      } else {
+        titleEl.textContent = info.title;
+      }
+    }
 
     const subtitleEl = document.getElementById('quiz-step-subtitle');
-    if (subtitleEl && info) subtitleEl.textContent = info.subtitle;
+    if (subtitleEl && info) {
+      if (isEn && global.TallerI18n && typeof global.TallerI18n.t === 'function') {
+        subtitleEl.textContent = global.TallerI18n.t(`quiz.step${stepNumber}.subtitle`) || info.subtitle;
+      } else {
+        subtitleEl.textContent = info.subtitle;
+      }
+    }
 
     const percent = Math.round((stepNumber / state.maxStep) * 100);
     const progressTextEl = document.getElementById('quiz-progress-text');
-    if (progressTextEl) progressTextEl.textContent = `${percent}% 완료`;
+    if (progressTextEl) progressTextEl.textContent = isEn ? `${percent}% Complete` : `${percent}% 완료`;
 
     const progressFillEl = document.getElementById('quiz-progress-fill');
     if (progressFillEl) progressFillEl.style.width = `${percent}%`;
@@ -392,17 +405,18 @@
     if (genderRadio) genderRadio.checked = true;
 
     // Numeric inputs
+    const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
     const setVal = (id, val) => {
       const el = document.getElementById(id);
       if (el && val !== undefined) el.value = val;
     };
     setVal('child-age-months', profile.ageMonths);
     setVal('child-age-slider', profile.ageYears || Math.round(profile.ageMonths / 12));
-    setVal('child-height', profile.currentHeight);
-    setVal('child-weight', profile.currentWeight);
-    setVal('child-recent-gain', profile.recentGrowth6m || 3.0);
-    setVal('father-height', profile.fatherHeight);
-    setVal('mother-height', profile.motherHeight);
+    setVal('child-height', isImperial ? Number((profile.currentHeight / 2.54).toFixed(1)) : profile.currentHeight);
+    setVal('child-weight', isImperial ? Number((profile.currentWeight * 2.20462262).toFixed(1)) : profile.currentWeight);
+    setVal('child-recent-gain', isImperial ? Number(((profile.recentGrowth6m || 3.0) / 2.54).toFixed(1)) : (profile.recentGrowth6m || 3.0));
+    setVal('father-height', isImperial ? Number((profile.fatherHeight / 2.54).toFixed(1)) : profile.fatherHeight);
+    setVal('mother-height', isImperial ? Number((profile.motherHeight / 2.54).toFixed(1)) : profile.motherHeight);
 
     // Region
     const regionSelect = document.getElementById('user-region');
@@ -569,7 +583,10 @@
           const headerTitle = document.getElementById('rx-header-title');
           const avatarEl = document.getElementById('rx-avatar');
           if (headerTitle) {
-            headerTitle.textContent = `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
+            const isEn = document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
+            headerTitle.textContent = isEn
+              ? `Custom Growth & Learning Master Report (${state.profile.ageMonths} mos · ${state.profile.gender === 'boy' ? 'Male' : 'Female'})`
+              : `만 ${state.profile.ageMonths}개월 ${state.profile.gender === 'boy' ? '남아' : '여아'} 맞춤 처방전`;
           }
           if (avatarEl) {
             avatarEl.textContent = state.profile.gender === 'boy' ? '👦' : '👧';
@@ -626,9 +643,14 @@
           : `만 ${Math.max(1, Math.floor((state.profile.ageMonths || 120) / 12))}세(${state.profile.ageMonths}개월) ${state.profile.gender === 'boy' ? '남아' : '여아'} 신체 성장 맞춤 보고서`);
     }
     if (headerSubEl) {
-      headerSubEl.textContent = isLearningModeActive
-        ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,681편 정밀 분석 완료'
-        : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,681편 정밀 분석 완료';
+      const isEn = document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
+      headerSubEl.textContent = isEn
+        ? (isLearningModeActive
+          ? '6-Step Clinical Scan + Phenotype Synthesis · US CDC & 3,681 Neuro-Cognitive Studies Analyzed'
+          : '6-Step Clinical Scan + Phenotype Synthesis · US CDC 2000 & 3,681 Pediatric Endocrine Studies Analyzed')
+        : (isLearningModeActive
+          ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,681편 정밀 분석 완료'
+          : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,681편 정밀 분석 완료');
     }
 
     const affConfig = getAffiliateConfig();
@@ -726,6 +748,9 @@
             : 'growth';
           MasterBriefingEngine.switchActiveReport(activeMode);
         }
+      }
+      if (global.KidsFitGlobalPaywall && typeof global.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && global.KidsFitGlobalPaywall.isGlobalPaidEdition()) {
+        global.KidsFitGlobalPaywall.transformGlobalReportAndApplyPaywall();
       }
       // Bind interactive 24h hormone sliders (Chapter 3) & biomechanics routine timers (Chapter 4) inside the One-Page 7-Chapter Report
       attachHormoneSliderListeners();

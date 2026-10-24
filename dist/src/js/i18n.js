@@ -533,7 +533,7 @@
   function isGlobalPaidEditionLock() {
     try {
       if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
-      if (typeof document !== 'undefined' && document.documentElement) {
+      if (typeof document !== 'undefined' && document.documentElement && typeof document.documentElement.getAttribute === 'function') {
         if (document.documentElement.getAttribute('data-edition') === 'global-paid') return true;
       }
       if (typeof window !== 'undefined' && window.location) {
@@ -541,7 +541,7 @@
         const search = String(window.location.search || '').toLowerCase();
         if (search.indexOf('edition=ko') !== -1) return false;
         if (search.indexOf('edition=global') !== -1 || search.indexOf('paywall=1') !== -1) return true;
-        if (host.indexOf('truthofmarket.com') !== -1 && typeof document !== 'undefined' && document.getElementById('hero-section')) {
+        if (host.indexOf('truthofmarket.com') !== -1 && typeof navigator !== 'undefined' && navigator.userAgent) {
           return true;
         }
       }

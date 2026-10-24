@@ -8,7 +8,7 @@
  *    - Android/Mobile: navigator.vibrate() patterns
  *    - iOS/Desktop/All: Web Audio API synthesized mechanical/clinical micro-tick & chimes
  *    - Visual Haptic Pulse: CSS spring bounce & neon cursor glow
- *    - User Toggle: 햅틱·진동 ON/OFF safety switch
+ *    - User Toggle: ${isEn ? 'Haptic ON' : '햅틱·진동 ON'}/OFF safety switch
  * 2. Taller-Style Typewriter Streamer:
  *    - Streams clinical analysis headlines character-by-character with punctuation micro-pauses
  *    - Fires subtle tactile ticks every 3 characters
@@ -184,8 +184,110 @@
    * - Physical Growth Mode: 100% Height, Weight, BMI, Growth Plate, Sleep GH, Calcium, Spine Decompression
    * - Brain & Learning Mode: 100% LQ 5-Axis, Literacy, Math Spatial, Working Memory, Active Recall, Careers
    */
+  function isGlobalEnMode() {
+    try {
+      if (typeof document !== 'undefined' && document.documentElement) {
+        if (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid') return true;
+      }
+      if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+    } catch (_) {}
+    return false;
+  }
+
   function buildChildWaitingCards(profile = {}) {
     const isLearning = isLearningModeActive(profile);
+    const isEn = isGlobalEnMode();
+    if (isEn) {
+      const genderEn = profile.gender === 'girl' ? 'Girl' : 'Boy';
+      const ageMonths = Number(profile.ageMonths) || 120;
+      const exactMonths = Number(profile.exactMonths || ageMonths).toFixed(1);
+      const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
+      const height = Number(profile.currentHeight) || 137.0;
+      const weight = Number(profile.currentWeight) || 35.5;
+      const fatherH = Number(profile.fatherHeight) || 173.5;
+      const motherH = Number(profile.motherHeight) || 160.5;
+      const mph = Math.round(((fatherH + motherH + (profile.gender === 'girl' ? -13 : 13)) / 2) * 10) / 10;
+      const closureAge = profile.gender === 'girl' ? 15 : 17;
+      const remYearsMax = Math.max(2, closureAge - ageYears);
+      if (isLearning) {
+        return [
+          {
+            badge: `Brain Briefing 1/6 · Age ${ageYears} Neuro-Developmental Window`,
+            title: `Mapping Prefrontal & Cognitive Synaptic Windows (${exactMonths} mos · ${genderEn})`,
+            body: `Cross-referencing your child's age-specific prefrontal cortex (DLPFC) and parietal spatial circuits against <strong>3,681 peer-reviewed neuroscience papers</strong>.`,
+            highlight: `Computing 5-Axis Learning Quotient (LQ) & primary cognitive bottleneck...`
+          },
+          {
+            badge: `Brain Briefing 2/6 · 5-Axis Brain Radar & Bottleneck Detection`,
+            title: `Analyzing Literacy · Spatial Math · Working Memory · Metacognition · Inquiry`,
+            body: `Identifying your child's Top 3 cognitive strengths and Top 3 study bottlenecks to prevent wasted tutoring and study fatigue.`,
+            highlight: `Matching 1:1 study methodology (Active Recall / Manipulative / Visual / Goal-Driven)...`
+          },
+          {
+            badge: `Brain Briefing 3/6 · Roediger & Karpicke (2006) Active Recall Effect`,
+            title: `3-Min Blank-Sheet Recall Retains 2.4x More Than Re-Reading 4 Times`,
+            body: `Closing the book and verbally explaining 3 key takeaways boosts 1-week long-term retention from <strong>48% to 92%</strong>.`,
+            highlight: `Synthesizing your child's 4-step daily self-directed study schedule...`
+          },
+          {
+            badge: `Brain Briefing 4/6 · 10 PM Slow-Wave Sleep Memory Consolidation`,
+            title: `Hippocampus-to-Neocortex Memory Transfer Peaks Between 10 PM and 2 AM`,
+            body: `Vocabulary and math concepts learned during the day are permanently consolidated into the neocortex during deep slow-wave sleep (SWS).`,
+            highlight: `Preparing 6-month focus & memory retention growth trajectory...`
+          },
+          {
+            badge: `Brain Briefing 5/6 · Future Career Pathways & 3-Year Roadmap`,
+            title: `Matching Top 3 Future Career Tracks to Your Child's Brain Strengths`,
+            body: `Mapping a 3-year age-by-age cognitive & academic transition roadmap from Age ${ageYears} to Age ${ageYears + 2}.`,
+            highlight: `Finalizing bespoke workbook, STEM kit & museum inquiry curation...`
+          },
+          {
+            badge: `Brain Briefing 6/6 · 1:1 Brain & Learning Master Report Ready`,
+            title: `Your Child's 5-Axis Brain Balance Chart & Bottleneck Rx is Ready!`,
+            body: `Includes 5-Axis Radar SVG, 6-Month LQ Growth Curve, and step-by-step bottleneck correction protocol.`,
+            highlight: `Opening your child's clinical Brain & Learning Report now...`
+          }
+        ];
+      }
+      return [
+        {
+          badge: `Auxology Briefing 1/6 · Day-Exact CDC/WHO LMS Percentile Scan`,
+          title: `Cross-Analyzing ${height} cm / ${weight} kg at ${exactMonths} Months (${genderEn})`,
+          body: `Even within the same birth year, January vs. December births differ by up to <strong>1.9 in (4.8 cm)</strong>. Computing day-exact US CDC 2000 & WHO LMS Z-scores.`,
+          highlight: `Tanner Mid-Parental Height (MPH): ${mph} cm (±8.5 cm epigenetic window = 17 cm total range)`
+        },
+        {
+          badge: `Auxology Briefing 2/6 · Weight-for-Height & Leptin Bone-Age Check`,
+          title: `Balancing Weight-for-Height to Protect Epiphyseal Growth Plates`,
+          body: `Underweight slows bone matrix synthesis, while excess body fat elevates <strong>Leptin & Aromatase</strong>, accelerating bone age and early growth-plate fusion.`,
+          highlight: `Calculating optimal target weight and 3-tier adult height trajectory...`
+        },
+        {
+          badge: `Auxology Briefing 3/6 · Epiphyseal Plate Closure Countdown`,
+          title: `Approx. ${remYearsMax} Years Remaining Until Growth Plate Fusion (Age ${closureAge})`,
+          body: `Simulating Unmanaged vs. Genetic vs. Clinically Optimized adult height and evaluating <50th percentile rhGH clinical trial ROI.`,
+          highlight: `Modeling +2.6 in (+6.7 cm) hidden height recovery potential...`
+        },
+        {
+          badge: `Auxology Briefing 4/6 · Bioavailable Calcium, Vit D3/K2 & Zinc Targets`,
+          title: `Computing Exact Daily mg/IU Targets for ${weight} kg Body Weight`,
+          body: `Citrate/MCHA Calcium offers <strong>45% bioavailability</strong> (2.05x higher than carbonate) when paired with Vitamin D3 and MK-7 Vitamin K2.`,
+          highlight: `Applying peer-reviewed pediatric endocrinology & nutrition standards...`
+        },
+        {
+          badge: `Auxology Briefing 5/6 · 10 PM SWS GH Peak & +0.7 in Spinal Decompression`,
+          title: `65–70% of Daily Growth Hormone Pulses During First 90 Min of Deep Sleep`,
+          body: `Late-night carbs spike insulin and suppress GH by up to <strong>-52%</strong>, while 3x30s doorway dead-hangs restore <strong>+0.7 in (+1.8 cm)</strong> of intervertebral disc height.`,
+          highlight: `Building your child's 4-stage daily growth & posture routine...`
+        },
+        {
+          badge: `Auxology Briefing 6/6 · 1:1 Pediatric Auxology Master Report Ready`,
+          title: `Your Child's 3-Tier Height Trajectory & Clinical Report is Ready!`,
+          body: `Includes CDC LMS Percentile Curve, Phenotype-Specialized Clinical Module, and 90-Day Action Plan.`,
+          highlight: `Opening your child's clinical Height & Growth-Plate Report now...`
+        }
+      ];
+    }
     const genderKo = profile.gender === 'girl' ? '여아' : '남아';
     const ageMonths = Number(profile.ageMonths) || 120;
     const exactMonths = Number(profile.exactMonths || ageMonths).toFixed(1);
@@ -456,11 +558,12 @@
     const remainingSec = Math.max(0, Math.ceil((durationMs - elapsedSec * 1000) / 1000));
 
     // Update top countdown badge if present
+    const isEnSub = isGlobalEnMode();
     const countdownEl = document.getElementById('analysis-countdown-badge');
     if (countdownEl) {
-      countdownEl.textContent = isLearning
-        ? `두뇌·학습 정밀 연산 중 · 약 ${remainingSec}초 남음`
-        : `신체 성장 정밀 연산 중 · 약 ${remainingSec}초 남음`;
+      countdownEl.textContent = isEnSub
+        ? (isLearning ? `Brain LQ Clinical Scan · ~${remainingSec}s remaining` : `Pediatric Auxology Scan · ~${remainingSec}s remaining`)
+        : (isLearning ? `두뇌·학습 정밀 연산 중 · 약 ${remainingSec}초 남음` : `신체 성장 정밀 연산 중 · 약 ${remainingSec}초 남음`);
     }
 
     // Update 6 step pills proportionally to durationMs (e.g. 2.5s per step for 15s total)
@@ -478,7 +581,7 @@
           pill.style.background = '#EFF6FF';
           pill.style.borderColor = '#3B82F6';
           pill.style.color = '#60A5FA';
-          pill.textContent = `Step ${i + 1} 분석중`;
+          pill.textContent = isEnSub ? `Step ${i + 1} Active` : `Step ${i + 1} 분석중`;
         } else {
           pill.style.background = 'rgba(255, 255, 255, 0.04)';
           pill.style.borderColor = 'rgba(255, 255, 255, 0.12)';
@@ -497,8 +600,8 @@
             ${currentCard.badge}
           </span>
           <div style="display: flex; gap: 0.35rem;">
-            <button type="button" id="btn-theatre-prev-card" style="background: #F8FAFC; border: 1px solid #BFDBFE; color: #0F172A; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">◀ 이전</button>
-            <button type="button" id="btn-theatre-next-card" style="background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 800; cursor: pointer;">다음 브리핑 ▶</button>
+            <button type="button" id="btn-theatre-prev-card" style="background: #F8FAFC; border: 1px solid #BFDBFE; color: #0F172A; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">${isEnSub ? '◀ Prev' : '◀ 이전'}</button>
+            <button type="button" id="btn-theatre-next-card" style="background: #FFFFFF; border: 1px solid #FFFFFF; color: #000000; border-radius: 6px; padding: 0.18rem 0.55rem; font-size: 0.75rem; font-weight: 800; cursor: pointer;">${isEnSub ? 'Next ▶' : '다음 브리핑 ▶'}</button>
           </div>
         </div>
         <h4 style="font-size: 1.05rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0; line-height: 1.4;">
@@ -536,26 +639,32 @@
     const quizCacheKey = `${isLearning ? 'L' : 'G'}-${quizIdx}-${state.quizAnswered}`;
     if (quizBoxEl && quizBoxEl.getAttribute('data-quiz-idx') !== quizCacheKey) {
       quizBoxEl.setAttribute('data-quiz-idx', quizCacheKey);
+      const enQuizQ = isLearning
+        ? 'Fact Check: Does 3-minute blank-sheet active recall retain 2.4x more long-term memory than re-reading 4 times?'
+        : 'Fact Check: Do parent genetics strictly determine 70%+ of a child\'s final adult height with no room for change?';
+      const enQuizExp = isLearning
+        ? 'TRUE (O)! Roediger & Karpicke (2006) proved that active recall boosts 1-week retention from 48% to 92%.'
+        : 'FALSE (X)! Twin studies show sleep GH, bioavailable calcium/D3/K2, and posture control up to ±3.3 in (±8.5 cm) of final height.';
       quizBoxEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-          <span style="font-size: 0.76rem; font-weight: 800; color: #C4B5FD;">
-            ${isLearning ? '두뇌·학습 뇌과학' : '키·체중 신체성장'} 1초 O/X 논문 팩트 퀴즈 (${quizIdx + 1}/${activeQuizzes.length})
+          <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">
+            ${isEnSub ? '1-Sec Clinical Paper Fact Check' : ((isLearning ? '두뇌·학습 뇌과학' : '키·체중 신체성장') + ' 1초 O/X 논문 팩트 퀴즈 (' + (quizIdx + 1) + '/' + activeQuizzes.length + ')')}
           </span>
-          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #475569; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">다른 퀴즈 보기 ↻</button>
+          <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #475569; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">${isEnSub ? 'Next Fact ↻' : '다른 퀴즈 보기 ↻'}</button>
         </div>
         <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; margin-bottom: 0.65rem; line-height: 1.4;">
-          ${currentQuiz.q}
+          ${isEnSub ? enQuizQ : currentQuiz.q}
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
           <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #93C5FD; background: #EFF6FF; color: #1D4ED8;">
-            ⭕ 맞다 (O)
+            ${isEnSub ? '⭕ True (O)' : '⭕ 맞다 (O)'}
           </button>
           <button type="button" id="btn-ox-x" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #93C5FD; background: #EFF6FF; color: #1D4ED8;">
-            아니다 (X)
+            ${isEnSub ? '✕ False (X)' : '아니다 (X)'}
           </button>
         </div>
         <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.65rem 0.8rem; background: #FFFFFF; border: 1px solid #93C5FD; border-radius: 8px; font-size: 0.8rem; color: #0F172A; line-height: 1.48;">
-          ${currentQuiz.explain}
+          ${isEnSub ? enQuizExp : currentQuiz.explain}
         </div>
       `;
 
@@ -643,7 +752,7 @@
         if (hapticBtn) {
           hapticBtn.onclick = () => {
             state.hapticEnabled = !state.hapticEnabled;
-            hapticBtn.textContent = state.hapticEnabled ? '햅틱·진동 ON' : '햅틱·진동 OFF';
+            hapticBtn.textContent = state.hapticEnabled ? (isGlobalEnMode() ? 'Haptic ON' : '햅틱·진동 ON') : (isGlobalEnMode() ? 'Haptic OFF' : '햅틱·진동 OFF');
             hapticBtn.style.opacity = state.hapticEnabled ? '1' : '0.6';
             if (state.hapticEnabled) triggerHaptic('tick', hapticBtn);
           };

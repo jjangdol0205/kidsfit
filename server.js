@@ -889,6 +889,82 @@ const server = http.createServer((req, res) => {
       return;
     }
 
+    // 1-G. Lemon Squeezy Store #296100 Public Config & Webhook Endpoints (/api/lemonsqueezy-config & /api/lemonsqueezy-webhook)
+    if (pathname === '/api/lemonsqueezy-config') {
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({
+        ok: true,
+        storeId: Number(process.env.LEMONSQUEEZY_STORE_ID || 296100),
+        storeName: 'KIDS-FIT Global Studio',
+        accountHolder: process.env.LEMONSQUEEZY_ACCOUNT_HOLDER || '이윤주 (Yoonju Lee)',
+        storeUrl: 'https://truthofmarket.lemonsqueezy.com',
+        currency: 'USD',
+        products: {
+          singlePass: {
+            productId: Number(process.env.LEMONSQUEEZY_SINGLE_PRODUCT_ID || 1468224),
+            priceUsd: 8.99,
+            checkoutUrl: process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599'
+          },
+          trackerPass: {
+            productId: Number(process.env.LEMONSQUEEZY_TRACKER_PRODUCT_ID || 1468243),
+            priceUsd: 19.99,
+            checkoutUrl: process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895'
+          }
+        },
+        webhookId: Number(process.env.LEMONSQUEEZY_WEBHOOK_ID || 145796)
+      }));
+      return;
+    }
+
+    if (pathname === '/api/lemonsqueezy-webhook') {
+      if (req.method === 'POST') {
+        let rawBody = '';
+        req.on('data', (chunk) => {
+          if (rawBody.length < 131072) rawBody += chunk.toString('utf8');
+        });
+        req.on('end', () => {
+          try {
+            const crypto = require('crypto');
+            const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET || 'kf_ls_whsec_2026_truthofmarket';
+            const signature = String(req.headers['x-signature'] || '');
+            const expectedSig = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
+            const sigValid = !signature || signature === expectedSig;
+
+            const payload = JSON.parse(rawBody || '{}');
+            const eventName = (payload.meta && payload.meta.event_name) || String(req.headers['x-event-name'] || 'unknown');
+            const orderLogPath = path.join(ROOT_DIR, 'logs', 'lemonsqueezy_orders.jsonl');
+            const entry = {
+              timestamp: new Date().toISOString(),
+              eventName,
+              signatureValid: sigValid,
+              orderId: payload.data && payload.data.id ? payload.data.id : null,
+              email: payload.data && payload.data.attributes ? payload.data.attributes.user_email : null,
+              totalUsd: payload.data && payload.data.attributes ? payload.data.attributes.total_formatted : null,
+              status: payload.data && payload.data.attributes ? payload.data.attributes.status : null
+            };
+            try {
+              fs.mkdirSync(path.dirname(orderLogPath), { recursive: true });
+              fs.appendFileSync(orderLogPath, JSON.stringify(entry) + '\n', 'utf8');
+            } catch (_) {}
+
+            if (eventName === 'order_created' || eventName === 'subscription_payment_success') {
+              recordAffiliateClickEvent();
+            }
+
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: true, received: true, eventName, signatureValid: sigValid }));
+          } catch (err) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false, error: 'Invalid webhook payload' }));
+          }
+        });
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({ ok: true, endpoint: '/api/lemonsqueezy-webhook', storeId: 296100 }));
+      return;
+    }
+
     // 2. Official KIDS-FIT PWA Service Worker & App Download Endpoints
     if (pathname === '/sw.js' || pathname === '/service-worker.js') {
       const swFile = resolveSafeFile(DIST_DIR, 'sw.js') || resolveSafeFile(ROOT_DIR, 'sw.js');

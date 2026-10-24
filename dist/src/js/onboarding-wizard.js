@@ -948,7 +948,8 @@
       }
 
       if (ageYearsSlider) ageYearsSlider.value = preset.ageYears;
-      if (ageYearsDisplay) ageYearsDisplay.textContent = `${preset.ageYears}세 (${preset.ageMonths}개월)`;
+      const isEnPreset = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      if (ageYearsDisplay) ageYearsDisplay.textContent = isEnPreset ? `Age ${preset.ageYears} yrs (${preset.ageMonths} mos)` : `${preset.ageYears}세 (${preset.ageMonths}개월)`;
       if (ageMonthsInput) ageMonthsInput.value = preset.ageMonths;
 
       // Height & Weight
@@ -1295,9 +1296,10 @@
 
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
-      submitBtnEl.textContent = (activeMode === 'learning')
-        ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기'
-        : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기';
+      const isEnBtn = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      submitBtnEl.textContent = isEnBtn
+        ? ((activeMode === 'learning') ? 'Generate My Child\'s 5-Axis Brain & Learning Report →' : 'Generate My Child\'s Height & Growth-Plate Report →')
+        : ((activeMode === 'learning') ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기' : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기');
     }
 
     if (document.body && document.body.classList) {
