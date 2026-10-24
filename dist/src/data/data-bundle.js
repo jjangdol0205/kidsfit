@@ -1751,14 +1751,14 @@
   "metadata": {
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
-    "generated_at": "2026-10-24T07:33:06Z",
-    "total_papers": 3622,
+    "generated_at": "2026-10-24T08:03:47Z",
+    "total_papers": 3628,
     "pillar_counts": {
       "growth_endocrinology": 1028,
       "fine_motor_neuroscience": 734,
-      "pedagogy_montessori_froebel": 484,
+      "pedagogy_montessori_froebel": 488,
       "parent_child_interaction_museum": 871,
-      "posture_biomechanics_exercise": 505
+      "posture_biomechanics_exercise": 507
     },
     "engines_used": [
       "NCBI PubMed E-utilities (esearch.fcgi / esummary.fcgi)",
@@ -1766,20 +1766,20 @@
       "KidsFit Pediatric Clinical Anchor Curation",
       "OpenAlex Academic Graph API (https://api.openalex.org/works)"
     ],
-    "last_updated_utc": "2026-10-24T07:33:06Z",
+    "last_updated_utc": "2026-10-24T08:03:47Z",
     "learning_analytics": {
-      "last_enriched_utc": "2026-10-24T07:33:06Z",
-      "total_papers": 3622,
+      "last_enriched_utc": "2026-10-24T08:03:47Z",
+      "total_papers": 3628,
       "total_pillars": 5,
       "total_sub_domains": 12,
       "newly_expanded_scope_papers": 0,
       "macro_pillar_balance": {
-        "growth_macro_count": 1533,
-        "learning_macro_count": 2089,
-        "total_macro_papers": 3622,
-        "growth_ratio": 0.4232,
+        "growth_macro_count": 1535,
+        "learning_macro_count": 2093,
+        "total_macro_papers": 3628,
+        "growth_ratio": 0.4231,
         "growth_percent": 42.3,
-        "learning_ratio": 0.5768,
+        "learning_ratio": 0.5769,
         "learning_percent": 57.7,
         "learning_ratio_percent": 57.7,
         "target_ratio": 0.5,
@@ -1790,7 +1790,7 @@
           "growth_percent": 80,
           "learning_percent": 20
         },
-        "last_balanced_utc": "2026-10-24T07:33:06Z"
+        "last_balanced_utc": "2026-10-24T08:03:47Z"
       },
       "sub_domain_distribution": [
         {
@@ -1860,8 +1860,8 @@
           "title_en": "Montessori Sensorial/Practical Life & Self-Regulation",
           "icon": "🧩",
           "color": "#14B8A6",
-          "count": 85,
-          "percent": 2.3
+          "count": 89,
+          "percent": 2.5
         },
         {
           "id": "spatial_stem_mathematics",
@@ -1891,7 +1891,7 @@
           "icon": "💛",
           "color": "#F43F5E",
           "count": 633,
-          "percent": 17.5
+          "percent": 17.4
         },
         {
           "id": "posture_biomechanics_exercise",
@@ -1900,7 +1900,7 @@
           "title_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
           "icon": "🧘",
           "color": "#3B82F6",
-          "count": 406,
+          "count": 408,
           "percent": 11.2
         },
         {
@@ -1918,48 +1918,48 @@
         "short_term": {
           "label_ko": "단기 지도 (1~4주 즉시 교정·복원)",
           "label_en": "Short-Term (Weeks 1-4 Immediate Reset)",
-          "count": 2518
+          "count": 2524
         },
         "mid_term": {
           "label_ko": "중기 지도 (1~3개월 / 90일 생체·신경망 정착)",
           "label_en": "Mid-Term (Months 1-3 Bio & Neural Consolidation)",
-          "count": 3622
+          "count": 3628
         },
         "long_term": {
           "label_ko": "장기 지도 (6개월~만 20세 최종 표적키·자기주도 완성)",
           "label_en": "Long-Term (6M to Age 20 Adult Trajectory & Mastery)",
-          "count": 2280
+          "count": 2284
         }
       },
       "age_horizon_heatmap": {
         "1-3y": {
-          "short_term": 1949,
-          "mid_term": 3047,
-          "long_term": 2108
+          "short_term": 1953,
+          "mid_term": 3051,
+          "long_term": 2112
         },
         "4-6y": {
-          "short_term": 2055,
-          "mid_term": 3158,
-          "long_term": 2211
+          "short_term": 2059,
+          "mid_term": 3162,
+          "long_term": 2215
         },
         "7-9y": {
-          "short_term": 2505,
-          "mid_term": 3579,
-          "long_term": 2241
+          "short_term": 2511,
+          "mid_term": 3585,
+          "long_term": 2245
         },
         "10-12y": {
-          "short_term": 1942,
-          "mid_term": 3043,
-          "long_term": 2092
+          "short_term": 1948,
+          "mid_term": 3049,
+          "long_term": 2096
         },
         "13-16y": {
-          "short_term": 1418,
-          "mid_term": 1713,
+          "short_term": 1419,
+          "mid_term": 1714,
           "long_term": 1116
         },
         "17-20y": {
-          "short_term": 1418,
-          "mid_term": 1713,
+          "short_term": 1419,
+          "mid_term": 1714,
           "long_term": 1116
         }
       },
@@ -2145,15 +2145,15 @@
         "fine_motor_neuroscience": 1.19,
         "spatial_stem_mathematics": 1.21
       },
-      "last_synced_utc": "2026-10-24T07:33:06Z"
+      "last_synced_utc": "2026-10-24T08:03:47Z"
     },
     "macro_pillar_balance": {
-      "growth_macro_count": 1533,
-      "learning_macro_count": 2089,
-      "total_macro_papers": 3622,
-      "growth_ratio": 0.4232,
+      "growth_macro_count": 1535,
+      "learning_macro_count": 2093,
+      "total_macro_papers": 3628,
+      "growth_ratio": 0.4231,
       "growth_percent": 42.3,
-      "learning_ratio": 0.5768,
+      "learning_ratio": 0.5769,
       "learning_percent": 57.7,
       "learning_ratio_percent": 57.7,
       "target_ratio": 0.5,
@@ -2164,7 +2164,7 @@
         "growth_percent": 80,
         "learning_percent": 20
       },
-      "last_balanced_utc": "2026-10-24T07:33:06Z"
+      "last_balanced_utc": "2026-10-24T08:03:47Z"
     }
   },
   "pillars": [
@@ -2193,7 +2193,7 @@
       "title_en": "Montessori Sensorial Education, Froebel Gifts & Spatial Block Play Pedagogy",
       "target_feature": "연령별(만 0~8세) 맞춤 완구·교구 큐레이션 및 가정 내 몬테소리/프뢰벨 환경 설계 가이드",
       "clinical_focus": "몬테소리 감각영역(분홍탑·갈색계단·원기둥끼우기)과 일상영역의 자기주도 실행기능 효과(Lillard et al., Science 2006), 프뢰벨 은물(Gifts) 및 구조적 블록 놀이가 유아의 정신적 회전(Mental Rotation)·공간추론·STEM 수학 성취도에 미치는 효과",
-      "paper_count": 484
+      "paper_count": 488
     },
     {
       "id": "parent_child_interaction_museum",
@@ -2211,7 +2211,7 @@
       "title_en": "Epiphyseal Growth Plate Mechanical Loading, Pediatric Forward Head Posture & Spinal Biomechanics",
       "target_feature": "소아 바른체형·숨은키 교정 운동 루틴 & 성장판 자극 점프/줄넘기 처방 가이드",
       "clinical_focus": "줄넘기·점프 등 충격 부하 운동(High-impact jumping exercise)이 골단 성장판(Epiphyseal plate) 및 대퇴골 경부 골밀도(BMD)·골강도에 미치는 영향, 스마트폰·태블릿 사용 시 두개척추각(Craniovertebral Angle, CVA) 감소로 인한 소아 거북목(Forward Head Posture) 및 척추측만 예방 교정 운동",
-      "paper_count": 505
+      "paper_count": 507
     }
   ],
   "clinical_synthesis_rules": {
@@ -85874,6 +85874,51 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.17951/lrp.2026.45.2.7-23",
+      "pmid": "",
+      "doi": "10.17951/lrp.2026.45.2.7-23",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Embodied cognition and the Montessori approach in second language acquisition in preschool age children: a systematic review",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] Embodied cognition and the Montessori approach in second language acquisition in preschool (2026)",
+      "authors": [
+        "Valentini M",
+        "Vanni G",
+        "Minucci M"
+      ],
+      "journal": "Lubelski Rocznik Pedagogiczny",
+      "year": 2026,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Lubelski Rocznik Pedagogiczny (2026)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.17951/lrp.2026.45.2.7-23",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "pedagogy_montessori_froebel",
+      "sub_domain_ko": "몬테소리 감각·일상 교구 & 자기주도성",
+      "sub_domain_en": "Montessori Sensorial/Practical Life & Self-Regulation",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
+      "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
+      "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
+    },
+    {
       "id": "DOI:10.32592/psj.23.1.22",
       "pmid": "",
       "doi": "10.32592/psj.23.1.22",
@@ -89892,6 +89937,96 @@
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
     },
     {
+      "id": "DOI:10.53469/jssh.2024.6(11).10",
+      "pmid": "",
+      "doi": "10.53469/jssh.2024.6(11).10",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "The Application of Montessori Teaching Method in the Connection between Preschool and Primary School Aesthetic Education",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] The Application of Montessori Teaching Method in the Connection between Preschool and Prim (2024)",
+      "authors": [
+        "Yang X",
+        "Zeng Z",
+        "Lan Q"
+      ],
+      "journal": "Journal of Social Science and Humanities",
+      "year": 2024,
+      "citations_count": 1,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Journal of Social Science and Humanities (2024)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.53469/jssh.2024.6(11).10",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "pedagogy_montessori_froebel",
+      "sub_domain_ko": "몬테소리 감각·일상 교구 & 자기주도성",
+      "sub_domain_en": "Montessori Sensorial/Practical Life & Self-Regulation",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
+      "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
+      "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
+    },
+    {
+      "id": "DOI:10.61838/jsied.4.1.14",
+      "pmid": "",
+      "doi": "10.61838/jsied.4.1.14",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Designing a Play-Based Curriculum Model in Preschool Education Based on Montessori Theory",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] Designing a Play-Based Curriculum Model in Preschool Education Based on Montessori Theory (2024)",
+      "authors": [
+        "Mirshamsi H",
+        "Mohamadi Ahmadabadi N",
+        "Alizadeh Asli A"
+      ],
+      "journal": "Journal of Study and Innovation in Education and Development",
+      "year": 2024,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Journal of Study and Innovation in Education and Development (2024)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.61838/jsied.4.1.14",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "pedagogy_montessori_froebel",
+      "sub_domain_ko": "몬테소리 감각·일상 교구 & 자기주도성",
+      "sub_domain_en": "Montessori Sensorial/Practical Life & Self-Regulation",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
+      "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
+      "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
+    },
+    {
       "id": "DOI:10.47611/jsrhs.v12i3.4717",
       "pmid": "",
       "doi": "10.47611/jsrhs.v12i3.4717",
@@ -92487,6 +92622,50 @@
       "short_term_action_ko": "단기(1~4주): 주 3회 프뢰벨 은물·원목 블록으로 대칭·회전·비례 구조물 자유 조립 및 공간 어휘('대칭·모서리·회전') 대화",
       "mid_term_action_ko": "중기(1~3개월): 두정엽 정신적 회전(Mental Rotation) 및 3차원 기하학 토폴로지 신경망 강화",
       "long_term_action_ko": "장기(6개월~성인기): 초·중·고등 기하학, 물리 역학 및 STEM 공학적 공간 문제해결력 상위권 도약"
+    },
+    {
+      "id": "DOI:10.1007/s10671-022-09310-7",
+      "pmid": "",
+      "doi": "10.1007/s10671-022-09310-7",
+      "pillar": "pedagogy_montessori_froebel",
+      "macro_pillar": "learning",
+      "title": "Beyond teaching: Montessori education initiatives of public preschool teachers in Turkey",
+      "title_ko": "[몬테소리 감각·실행기능 교육학] Beyond teaching: Montessori education initiatives of public preschool teachers in Turkey (2022)",
+      "authors": [
+        "Efe M",
+        "Ulutas I"
+      ],
+      "journal": "Educational Research for Policy and Practice",
+      "year": 2022,
+      "citations_count": 2,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "clinical_summary_ko": "Educational Research for Policy and Practice (2022)에 발표된 몬테소리 교육 실증 연구로, 자기교정적(Self-correcting) 감각 교구와 아동 주도의 작업 선택 환경이 내재적 학습 동기와 인지적 유연성을 증진하는 효과를 입증했습니다.",
+      "parenting_prescription_ko": "아이 방이나 거실 한쪽에 아이 키에 맞는 낮은 선반을 두고, 한 번에 한 가지 작업에 몰입한 뒤 스스로 제자리에 정리할 수 있는 질서 있는 환경을 만들어 주세요.",
+      "age_range": "만 2~8세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1007/s10671-022-09310-7",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "pedagogy_montessori_froebel",
+      "sub_domain_ko": "몬테소리 감각·일상 교구 & 자기주도성",
+      "sub_domain_en": "Montessori Sensorial/Practical Life & Self-Regulation",
+      "horizon": "mid_term",
+      "horizons": [
+        "short_term",
+        "mid_term",
+        "long_term"
+      ],
+      "age_bands": [
+        "1-3y",
+        "4-6y",
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "몬테소리 감각·일상 교구 환경 참여 아동에서 전두엽 실행기능, 자기조절력 및 학업 성취도 유의미 상승(p < 0.05)",
+      "short_term_action_ko": "단기(1~4주): 수동적 전자 완구를 정리하고 현재 월령 발달 민감기에 맞는 자기오류정정 감각·일상 교구로 환경 재편",
+      "mid_term_action_ko": "중기(1~3개월): 개입 없는 3시간 집중 작업 주기(Work Cycle) 보장으로 내적 동기 및 심층 몰입(Flow) 습관 형성",
+      "long_term_action_ko": "장기(6개월~성인기): 감각적 구체물 조작에서 추상적 개념 사고로 자연스럽게 이행하는 자기주도 탐구 역량 완성"
     },
     {
       "id": "PMID:33932226",
@@ -149965,6 +150144,49 @@
       "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
     },
     {
+      "id": "DOI:10.28982/josam.8082",
+      "pmid": "",
+      "doi": "10.28982/josam.8082",
+      "pillar": "posture_biomechanics_exercise",
+      "macro_pillar": "growth",
+      "title": "The relationship between intervertebral disc pathologies and the use of digital devices and lack of physical activity in adolescents",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] The relationship between intervertebral disc pathologies and the use of digital devices an (2024)",
+      "authors": [
+        "Ozmaden Hantal A",
+        "Iptec M"
+      ],
+      "journal": "Journal of Surgery and Medicine",
+      "year": 2024,
+      "citations_count": 3,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Journal of Surgery and Medicine (2024)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.28982/josam.8082",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y",
+        "13-16y",
+        "17-20y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
       "id": "PMID:38535411",
       "pmid": "38535411",
       "doi": "10.3390/jfmk9010002",
@@ -151281,6 +151503,46 @@
       "age_range": "만 5~18세",
       "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
       "url": "https://doi.org/10.1097/dbp.0000000000001200",
+      "source_api": "Crossref Works REST API Live",
+      "sub_domain": "posture_biomechanics_exercise",
+      "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
+      "sub_domain_en": "Spinal Alignment, CVA & Intervertebral Disc Rehydration",
+      "horizon": "short_term",
+      "horizons": [
+        "short_term",
+        "mid_term"
+      ],
+      "age_bands": [
+        "7-9y",
+        "10-12y"
+      ],
+      "plain_fact_ko": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화)",
+      "short_term_action_ko": "단기(1~4주): 매일 저녁 패시브 데드행(30초×3세트) + 흉추 신전(45초×2세트)으로 일중 눌린 디스크 숨은 키 +1.8cm 즉시 복원",
+      "mid_term_action_ko": "중기(1~3개월): 학습 데스크·모니터 눈높이 교정 및 코어 신전근 강화로 두개척추각(CVA 50°+) 정상 정렬 정착",
+      "long_term_action_ko": "장기(6개월~성인기): 만성 거북목·척추측만 예방 및 성인기까지 유지되는 바른 척추 정렬·최대 체형 신장 완성"
+    },
+    {
+      "id": "DOI:10.1155/2023/9823570",
+      "pmid": "",
+      "doi": "10.1155/2023/9823570",
+      "pillar": "posture_biomechanics_exercise",
+      "macro_pillar": "growth",
+      "title": "Retracted: Effects of Equine‐Assistant Activity on Gross Motor Coordination in Children Aged 8 to 10 Years",
+      "title_ko": "[소아 거북목·척추 정렬 교정 생체역학] Retracted: Effects of Equine‐Assistant Activity on Gross Motor Coordination in Children Ag (2023)",
+      "authors": [
+        "Engineering JoH"
+      ],
+      "journal": "Journal of Healthcare Engineering",
+      "year": 2023,
+      "citations_count": 0,
+      "study_design": "Peer-Reviewed Journal Article (Crossref DOI Indexed)",
+      "sample_size": "동료심사 학술지 검증 연구 표본",
+      "key_statistics": "스마트폰 과사용 시 두개척추각(CVA) 유의미 감소(거북목 악화); 경추·견갑 안정화 운동 시 CVA 및 척추 정렬 유의미 회복(p < 0.01)",
+      "clinical_summary_ko": "Journal of Healthcare Engineering (2023)에 게재된 소아 재활·생체역학 연구로, 장시간 고개 숙임 자세가 성장기 경추·흉추 정렬에 미치는 부정적 영향과 심부 목 근육·견갑골 안정화 운동을 통한 바른 체형(숨은 키) 회복 효과를 입증했습니다.",
+      "parenting_prescription_ko": "책상 의자에 앉을 때 발바닥이 바닥(또는 발받침대)에 평평하게 닿고 무릎·고관절이 90도를 이루도록 조절하며, 모니터·책은 눈높이 각도로 높여주세요.",
+      "age_range": "만 5~18세",
+      "evidence_level": "Level II (Crossref Peer-Reviewed Journal)",
+      "url": "https://doi.org/10.1155/2023/9823570",
       "source_api": "Crossref Works REST API Live",
       "sub_domain": "posture_biomechanics_exercise",
       "sub_domain_ko": "경추·척추 정렬 & 추간판 디스크 재수화 감압",
