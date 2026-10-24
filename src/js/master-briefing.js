@@ -631,6 +631,395 @@
   }
 
   /**
+   * Builds the Phenotype-Driven Bespoke Growth Specialization Section + <50th Percentile rhGH Paper Report
+   * - Short child (kdcaPct < 50.0): Intensive height catch-up + 3-tier rhGH injection clinical paper report
+   * - Tall child (kdcaPct >= 75.0 or rapid puberty): Precocious puberty & bone-age acceleration defense report
+   * - Overweight for height: Pediatric fat reduction without stunting linear growth (leptin/aromatase/insulin defense)
+   * - Underweight for height: Bone-matrix & lean-mass bulk-up + zinc taste-bud regeneration protocol
+   * - Balanced height & weight: Survey lifestyle bottleneck pinpoint optimization for top 15% leap
+   */
+  function buildPhenotypeSpecializedGrowthHtml(ctx) {
+    const {
+      ageYears,
+      exactMonths,
+      genderKo,
+      height,
+      weight,
+      standardMean,
+      deltaStr,
+      kdcaPct,
+      kdcaTop,
+      mphVal,
+      unmanagedHeight,
+      optimizedHeight,
+      potentialGainCm,
+      velocityPerYear,
+      targetHeight6m,
+      weightEval,
+      optimalWeightForHeight,
+      weightVsHeightDelta,
+      weightVsHeightStr,
+      targetWeight6m,
+      lmsObj,
+      tanner,
+      habits,
+      traitSleepList,
+      traitDietList,
+      sleepTraitLabelKo,
+      dietTraitLabelKo,
+      postureTraitLabelKo,
+      customSleepRoutineKo,
+      customDietRoutineKo,
+      customPostureStudyRoutineKo,
+      nutTargets
+    } = ctx;
+
+    const isShortChild = kdcaPct < 50.0;
+    const isTallOrEarlyPuberty = kdcaPct >= 72.0 || (kdcaPct >= 50.0 && (tanner === 'phase_3' || tanner === 'phase_4' || velocityPerYear >= 7.0));
+    const isOverweightForHeight =
+      weightVsHeightDelta >= 1.8 ||
+      (weightEval && weightEval.weightPercentile >= 78) ||
+      (weightEval && lmsObj && weightEval.bmi >= (lmsObj.bmiP85 || 20.0) * 0.95) ||
+      (Array.isArray(habits) && (habits.includes('overweight') || habits.includes('obesity_risk'))) ||
+      (Array.isArray(traitDietList) && (traitDietList.includes('sweet_carb') || traitDietList.includes('fast_carb_sweet')) && weightVsHeightDelta >= 0.5);
+    const isUnderweightForHeight =
+      !isOverweightForHeight && (
+        weightVsHeightDelta <= -1.4 ||
+        (weightEval && weightEval.weightPercentile <= 30) ||
+        (Array.isArray(habits) && habits.includes('picky_eater')) ||
+        (Array.isArray(traitDietList) && (traitDietList.includes('small_appetite') || traitDietList.includes('meat_veggie_picky')) && weightVsHeightDelta <= 0.3)
+      );
+
+    const blocks = [];
+
+    // 1. Height Specialization Block
+    if (isShortChild) {
+      let rhghTierBadge = '';
+      let rhghTierVerdict = '';
+      if (kdcaPct < 3.0) {
+        rhghTierBadge = `구간 A (하위 3% 미만 · 현재 ${kdcaPct.toFixed(1)}백분위) — 대학병원 정밀검사 및 건강보험 급여 주사 검토 구간`;
+        rhghTierVerdict = `현재 키가 동월령 하위 3백분위수(-2.0 SD) 미만이므로 대학병원 소아내분비과에서 골연령(X-ray) 및 성장호르몬 유발검사를 받아 건강보험 급여 적용(본인부담 10%) 여부를 확인하는 것이 권장됩니다. 동시에 야간 서파수면·영양·감압 루틴을 병행해야 주사 반응성이 극대화됩니다.`;
+      } else if (kdcaPct < 25.0) {
+        rhghTierBadge = `구간 B (하위 3~25% 미만 · 현재 ${kdcaPct.toFixed(1)}백분위) — 비급여 특발성 저신장(ISS) 주사 최대 고민 구간`;
+        rhghTierVerdict = `호르몬 결핍이 없는 일반 작은 키(특발성 저신장 경계) 구간으로, 학부모님들이 연 1,000만 원대 비급여 주사를 가장 많이 고민하는 위치입니다. 그러나 BMJ 메타분석 결과 비급여 주사 4년 투여 시 최종 성인키 순증가는 평균 +3.5~5.0cm(1cm당 약 800만 원)에 그치므로, 최소 12주간 비약물 수면·영양·자세 골든타임 루틴으로 연간 성장속도(+1.5~2.2cm/년) 회복 여부를 먼저 확인하는 것이 과학적 순서입니다.`;
+      } else {
+        rhghTierBadge = `구간 C (하위 25~50% 미만 · 현재 ${kdcaPct.toFixed(1)}백분위) — 비약물 골든타임 루틴으로 상위 30% 자력 역전 구간`;
+        rhghTierVerdict = `또래 평균(${standardMean}cm)보다 소폭 작은 평균 근접 구간으로, 병적 호르몬 결핍이 아니라 수면(${sleepTraitLabelKo})·영양(${dietTraitLabelKo})·자세(${postureTraitLabelKo}) 손실로 숨은 키가 눌려 있는 상태입니다. 비급여 주사 없이도 밤 10시 내인성 성장호르몬 피크(70% 자가분비)와 칼슘·D3·HT042·척추 감압 루틴만으로 6~12개월 내 평균 이상(상위 25~30%권) 자력 도약이 충분히 가능합니다.`;
+      }
+
+      blocks.push(`
+        <div id="short-child-intensive-height-report" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+              신장 특성 맞춤 집중 분석 · 또래 대비 작은 키 (하위 50% 미만)
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8;">
+              현재 ${height}cm (하위 ${kdcaPct.toFixed(1)}% / 상위 ${kdcaTop}% · 표준 대비 ${deltaStr})
+            </span>
+          </div>
+          <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            또래 평균(${standardMean}cm) 대비 작은 키 원인 분해 &amp; 숨은 키 +${potentialGainCm.toFixed(1)}cm 집중 추격 처방
+          </h4>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0 0 0.75rem 0;">
+            현재 만 ${ageYears}세 ${genderKo}의 키는 동월령 표준 평균(${standardMean}cm) 대비 <strong>${deltaStr}</strong> 위치에 있습니다. 부모 유전 표적키(<strong>${mphVal}cm</strong>) 대비 현재 방해습관(<strong>${sleepTraitLabelKo} · ${dietTraitLabelKo} · ${postureTraitLabelKo}</strong>)을 방치하면 <strong>${unmanagedHeight}cm</strong>에 머물 위험이 있으나, 지금부터 골든타임 집중 관리를 통해 연간 성장속도를 현재 <strong>연 ${velocityPerYear}cm → 목표 연 ${(velocityPerYear + 1.8).toFixed(1)}cm</strong>로 끌어올리면 최대 <strong>${optimizedHeight}cm</strong>까지 역전할 수 있습니다.
+          </p>
+
+          <!-- Paper-Based Detailed rhGH Injection Clinical Report (< 50th Percentile) -->
+          <div id="rhgh-injection-paper-report" style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 1rem 1.1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.96rem; font-weight: 900; color: #1D4ED8;">
+                [하위 50% 미만 전용 심층 리포트] 성장호르몬(rhGH) 주사 효과 · 비용 · 한계 학술 논문 팩트체크
+              </span>
+              <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.75rem; font-weight: 800; padding: 0.18rem 0.6rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
+                BMJ · Cochrane · JCEM 논문 근거
+              </span>
+            </div>
+
+            <div style="background: #EFF6FF; border-left: 4px solid #1D4ED8; border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 0.7rem; font-size: 0.84rem; color: #0F172A; line-height: 1.52;">
+              <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">우리 아이 백분위 구간 판정: ${rhghTierBadge}</div>
+              <div>${rhghTierVerdict}</div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.7rem; font-size: 0.84rem; color: #0F172A; line-height: 1.5;">
+              <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+                <strong style="color: #1D4ED8;">① [임상 효과 비교] 결핍증(GHD) vs 일반 작은 키(비급여 ISS) 최종 성인키 증가폭:</strong><br/>
+                • <strong>성장호르몬 결핍증(하위 3% 미만 &amp; 호르몬 수치 10ng/mL 미만):</strong> 주사 1년 차 연 8.5~11.0cm 급성장, 최종 성인키 평균 <strong>+7.5 ~ +10.5cm</strong> 증가 (건강보험 급여 적용 · <em>Ranke et al., JCEM</em>).<br/>
+                • <strong>일반 작은 키·특발성 저신장(하위 3~50% 정상 분비 아동):</strong> 3.5~5.4년간 매일 주사 투여 시 대조군 대비 최종 성인키 순증가는 평균 <strong>+3.5cm ~ +5.0cm (연 +0.8~1.1cm)</strong> 수준에 그침 (<em>Deodati &amp; Cianfarani, BMJ 2011 · PMID:21402719 / Cochrane Review</em>).
+              </div>
+              <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+                <strong style="color: #1D4ED8;">② [비용 대비 효율 &amp; 골연령 주의점] 1cm당 약 700만~1,000만 원 &amp; 뼈나이 진행 현상:</strong><br/>
+                • 비급여 주사는 체중에 비례해 <strong>연 800만~1,200만 원(4년 총 3,500만~4,800만 원 · 약 1,300회 자가주사)</strong>이 소요되며, 사춘기 전후 과량 투여 시 초기 1~2년은 빨리 자라나 <strong>골연령(뼈나이)도 함께 가속되어 후기 성장판이 일찍 닫히는 상쇄 효과</strong>가 보고됨 (<em>Kamp et al., JCEM / Finkelstein et al.</em>).
+              </div>
+              <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+                <strong style="color: #1D4ED8;">③ [주사 전 필수 선행 12주 프로토콜] 내 몸의 천연 성장호르몬 70% 깨우기:</strong><br/>
+                • 하루 성장호르몬의 <strong>65~70%는 밤 10시~새벽 2시 깊은 서파수면(SWS)</strong>에서 무료로 자가 분비됩니다 (<em>Takahashi et al., J Clin Invest</em>). 주사 여부를 결정하기 전 최소 12주간 <strong>① 21:45 소등 및 야간 당분·우유 중단, ② 체중 맞춤 칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU)·아연(${nutTargets.zincMg}mg)·HT042(황기추출물, RCT +17% 성장 가속), ③ 저녁 문틀 철봉 감압·점프 15분</strong>을 먼저 실천해 자력 성장속도 회복을 점검하세요.
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+    } else if (isTallOrEarlyPuberty) {
+      blocks.push(`
+        <div id="tall-child-precocious-puberty-report" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+              신장 특성 맞춤 집중 분석 · 또래 대비 큰 키 &amp; 성조숙증·골연령 방어
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8;">
+              현재 ${height}cm (상위 ${kdcaTop}% · 표준 대비 ${deltaStr})
+            </span>
+          </div>
+          <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            큰 키 아이 필수 점검: '초기 큰 키 → 조기 성장판 폐쇄' 역설 방어 &amp; 성조숙증 차단 리포트
+          </h4>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0 0 0.7rem 0;">
+            현재 만 ${ageYears}세 ${genderKo}는 또래 상위 <strong>${kdcaTop}% (${height}cm)</strong>로 키가 잘 자라고 있습니다. 하지만 소아내분비학에서 가장 경계하는 케이스가 바로 <strong>"어릴 때 또래보다 커서 안심했다가 성호르몬 조기 분비로 뼈나이(골연령)가 1.5~2년 앞서 나가면서 성장판이 일찍 닫혀 최종 성인키가 유전키(${mphVal}cm)보다 작아지는 현상"</strong>입니다 (<em>Carel &amp; Léger, NEJM 2008 · PMID:18499569</em>).
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem; color: #0F172A; line-height: 1.5;">
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">① [성조숙증·골연령 가속 4대 조기 신호 점검]:</strong> 여아 만 8세·남아 만 9세 이전에 <strong>가슴 멍울/통증, 고환 커짐, 정수리 머리 냄새·땀 냄새 변화, 좁쌀 여드름</strong>이 나타나거나 최근 6개월간 키가 4~5cm 이상(연 8~10cm 속도) 과속 성장했다면 6개월 주기로 손목 골연령(X-ray) 판독이 필요합니다.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">② [야간 멜라토닌으로 사춘기 시계 늦추기]:</strong> 밤 9시 45분 완전 암막 수면 시 뇌 송과선에서 분비되는 <strong>멜라토닌(Melatonin)은 시상하부의 성선자극호르몬(GnRH) 분비를 억제하는 천연 사춘기 브레이크</strong> 역할을 합니다 (<em>Waldhauser et al., JCEM</em>). 취침 전 스마트폰 빛 노출을 철저히 차단하세요.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">③ [에스트로겐 전환 억제 식단 &amp; 성장판 수명 연장]:</strong> 플라스틱 온열 용기(환경호르몬 BPA), 액상과당 음료, 튀김류 섭취를 줄이고 살코기·채소·칼슘(${nutTargets.calciumMg}mg)·비타민D3(${nutTargets.vitDIU}IU) 위주 식단과 줄넘기/점프 운동으로 골연령 진행을 늦추면 최대 잠재키 <strong>${optimizedHeight}cm</strong>까지 안정적으로 도달합니다.
+            </div>
+          </div>
+        </div>
+      `);
+    }
+
+    // 2. Weight-for-Height Specialization Block
+    if (isOverweightForHeight) {
+      blocks.push(`
+        <div id="weight-reduction-growth-report" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+            <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #93C5FD;">
+              체중 특성 맞춤 집중 분석 · 키 대비 과체중 경향 &amp; 체지방 감량 처방
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8;">
+              현재 ${weight}kg (키 ${height}cm 적정체중 ${optimalWeightForHeight}kg 대비 ${weightVsHeightStr})
+            </span>
+          </div>
+          <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            키는 쑥 키우고 체지방만 낮추는 '소아 맞춤형 몸무게 감소·체중 홀딩' 집중 프로토콜
+          </h4>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0 0 0.7rem 0;">
+            현재 키(${height}cm) 대비 몸무게가 높은 편(BMI ${weightEval.bmi})입니다. 소아비만·과체중에서 가장 위험한 것은 <strong>① 과도한 지방세포의 아로마타제 효소와 렙틴(Leptin) 호르몬이 성호르몬 분비를 자극해 성장판 닫히는 속도를 1~2년 앞당기는 것</strong>과 <strong>② 혈중 유리지방산·인슐린이 밤 10시 성장호르몬(GH) 분비를 최대 40% 억제하는 것</strong>입니다 (<em>Shalitin &amp; Phillip, Int J Obes; Fennoy, JCEM</em>).
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem; color: #0F172A; line-height: 1.5;">
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">① [절식 금지 · '키로 가는 체중 홀딩(Growing into Weight)' 전략]:</strong> 성인처럼 밥을 굶기면 뼈 성장부터 멈춥니다. 향후 6개월간 몸무게를 <strong>${targetWeight6m}kg</strong> 수준으로 완만히 조정·유지하면서 키를 <strong>${targetHeight6m}cm</strong>로 키우면 성장 손실 없이 체지방률이 정상화됩니다.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">② [야간 인슐린 차단 식단]:</strong> 단백질(하루 ${nutTargets.proteinG}g: 살코기·생선·두부·달걀)은 충분히 먹이되, <strong>액상과당 음료·밀가루 간식·취침 3시간 전 야식/우유를 전면 중단</strong>해 밤사이 성장호르몬 분비 억제(고인슐린혈증)를 해제하세요.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">③ [식후 15분 점프 유산소 &amp; 지용성 비타민D3 보충]:</strong> 저녁 식후 30분 뒤 실내 점핑·줄넘기 15분을 실천해 혈당 스파이크를 막고, 지방조직에 갇혀 결핍되기 쉬운 <strong>비타민D3(${nutTargets.vitDIU}IU)와 칼슘(${nutTargets.calciumMg}mg)</strong>을 보충하세요.
+            </div>
+          </div>
+        </div>
+      `);
+    } else if (isUnderweightForHeight) {
+      blocks.push(`
+        <div id="weight-gain-growth-report" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+            <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #93C5FD;">
+              체중 특성 맞춤 집중 분석 · 키 대비 저체중·소식형 &amp; 몸무게 증가 처방
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8;">
+              현재 ${weight}kg (키 ${height}cm 적정체중 ${optimalWeightForHeight}kg 대비 ${weightVsHeightStr})
+            </span>
+          </div>
+          <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            마른 아이 키 성장을 깨우는 '건강한 몸무게 증가(골기질·근골격 벌크업)' 집중 프로토콜
+          </h4>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0 0 0.7rem 0;">
+            현재 키(${height}cm)의 이상적 적정 체중은 <strong>${optimalWeightForHeight}kg</strong>이나 현재 <strong>${weight}kg (${weightVsHeightStr})</strong>으로 에너지 비축량이 부족한 상태입니다. 소아 성장학에서 <strong>"마른 아이는 체중이 먼저 1~2kg 늘어나야 간에서 IGF-1(성장인자)이 합성되어 2~3개월 뒤 키가 폭발적으로 자란다"</strong>는 법칙이 적용됩니다 (<em>Lifshitz, J Am Coll Nutr · PMID:19366985</em>). 6개월 내 <strong>목표 체중 ${targetWeight6m}kg</strong> 증량이 핵심입니다.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem; color: #0F172A; line-height: 1.5;">
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">① [미각세포 재생 아연(${nutTargets.zincMg}mg) &amp; 장 흡수율 개선]:</strong> 입이 짧고 편식(${dietTraitLabelKo})하는 아이는 혀의 미각 수용체 재생을 돕는 <strong>아연(Zinc)·철분·초유 단백질·유산균</strong>을 4주간 먼저 공급해 자연스러운 공복감과 식욕 스위치를 켜주어야 합니다.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">② [위장 부담 없는 '고밀도 압축 식단'으로 체중 증가]:</strong> 식사 중 물·국물 섭취를 줄이고, <strong>소고기 다짐육·달걀노른자·치즈·두부·들기름 토핑</strong>으로 한 숟가락당 열량·단백질(목표 ${nutTargets.proteinG}g/일) 밀도를 2배 높이세요. 오후 간식으로 그릭요거트·산양유 단백질을 추가하세요.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">③ [무유당 구연산 칼슘(${nutTargets.calciumMg}mg) &amp; 식전 15분 운동]:</strong> 우유 배앓이를 피하는 흡수율 높은 구연산·해조 칼슘과 비타민D3(${nutTargets.vitDIU}IU)로 뼈 무게(골밀도)를 먼저 채워주세요.
+            </div>
+          </div>
+        </div>
+      `);
+    }
+
+    // 3. Balanced / Survey-Habit-Focused Block (Always shown as primary if standard height & weight, or as survey summary)
+    if (blocks.length === 0) {
+      blocks.push(`
+        <div id="balanced-child-survey-focus-report" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+              표준 밸런스 특성 맞춤 분석 · 설문 응답 생활습관 병목 집중 처방
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8;">
+              현재 키 상위 ${kdcaTop}% (${height}cm) · 체중 ${weight}kg (적정 밸런스)
+            </span>
+          </div>
+          <h4 style="font-size: 1.12rem; font-weight: 900; color: #0F172A; margin: 0 0 0.5rem 0;">
+            키·체중 균형 우수 아동 전용: 설문 선택 3대 생활습관 감점 제거로 최대 잠재키(${optimizedHeight}cm) 도약
+          </h4>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0 0 0.7rem 0;">
+            현재 만 ${ageYears}세 ${genderKo}는 키(${height}cm · 상위 ${kdcaTop}%)와 몸무게(${weight}kg · 적정 ${optimalWeightForHeight}kg)가 매우 이상적인 균형을 이루고 있습니다. 이 체형에서는 인위적인 체중 증감이나 주사 고민보다, <strong>설문에서 체크하신 수면·식습관·자세의 미세 병목만 교정해도 유전 표적키(${mphVal}cm)를 넘어 최대 잠재키 ${optimizedHeight}cm(+${potentialGainCm.toFixed(1)}cm)</strong>까지 가장 효율적으로 도약할 수 있습니다.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem; color: #0F172A; line-height: 1.5;">
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">① [설문 수면 특성: ${sleepTraitLabelKo} 집중 교정]:</strong> ${customSleepRoutineKo}을 통해 밤 10시~새벽 2시 서파수면 성장호르몬 피크를 100% 확보하세요.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">② [설문 식습관 특성: ${dietTraitLabelKo} 집중 교정]:</strong> ${customDietRoutineKo}으로 연골 증식에 필요한 골기질 원료를 빈틈없이 공급하세요.
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.8rem;">
+              <strong style="color: #1D4ED8;">③ [설문 자세·체형 특성: ${postureTraitLabelKo} 집중 교정]:</strong> ${customPostureStudyRoutineKo}으로 디스크 압박 숨은 키 +1.8cm를 즉시 복원하세요.
+            </div>
+          </div>
+        </div>
+      `);
+    }
+
+    return `
+      <div id="phenotype-specialized-growth-section" style="margin-bottom: 1.15rem;">
+        ${blocks.join('\n')}
+      </div>
+    `;
+  }
+
+  /**
+   * Builds the Domain-Specific Learning Problem & 4-Week Improvement Spotlight in Pillar 2
+   * Emphasizes the exact learning bottleneck(s) selected in the survey and how to fix them step by step.
+   */
+  function buildBottleneckSpecializedLearningHtml(ctx) {
+    const {
+      ageYears,
+      isToddlerAge,
+      isKinderAge,
+      concernsArr,
+      rawNoteLower,
+      activeStyleInfo,
+      weaknessesList
+    } = ctx;
+
+    const domainCards = [];
+
+    if (isToddlerAge) {
+      domainCards.push({
+        badge: '영유아 소근육·자율성·언어 폭발 분야 집중 개선',
+        problemTitle: '만 1~3세 손끝 소근육 조절 답답함 & 말문·주의 지속 시간 병목',
+        causeKo: '만 2~3세는 대뇌 운동피질의 30%를 차지하는 손끝 신경망과 전두엽 자율성이 폭발하는 시기이나, 세 손가락(엄지·검지·중지) 협응력이 아직 미숙해 뜻대로 안 되면 고집을 부리거나 다른 놀잇감으로 쉽게 옮겨갑니다 (Diamond 2000; Lillard 2017).',
+        mistakeVsFixKo: '부모님이 답답해서 대신 단추를 끼워주거나 긴 글자 책을 읽어주기보다, 아이 손 크기에 맞는 원목 집게·구슬 꿰기·플랩북 사물 짚기로 하루 10분 손끝 성공 경험과 의성어 대화 턴을 주고받는 것이 핵심입니다.',
+        fourWeekPlanKo: '1주차(나무 빨래집게·원목 집게로 폼폼이 옮기기 10분) → 2주차(물티슈 캡·병뚜껑 넣기 및 안전가위 1번 오리기) → 3~4주차(플랩 그림책 손가락으로 짚으며 하루 15턴 말놀이 주고받기)'
+      });
+    } else {
+      if (concernsArr.includes('reading_literacy') || /문해력|독해|긴 글|책|줄글/.test(rawNoteLower)) {
+        domainCards.push({
+          badge: '특정 분야 집중 타격 ① · 국어 문해력 & 긴 줄글 독해 분야',
+          problemTitle: '글자는 읽지만 긴 줄글 정독을 피하고 문장제 핵심 조건을 놓치는 문제',
+          causeKo: '단순 글자 해독(Decoding)은 가능하나 문장 간 인과관계(원인→결과)를 연결하는 어휘 스키마와 전두엽 작업기억 유지력이 부족해, 줄글이 5줄만 넘어가도 뇌가 피로를 느끼고 아는 단어만 대충 조합해 짐작 독해를 하는 현상입니다 (Mol & Bus 2011 · PMID:21219058).',
+          mistakeVsFixKo: '무조건 독서 권수를 늘리거나 긴 독후감을 강요하면 독서 거부감만 커집니다. 하루 15분 짧은 지문 1편에서 [핵심어 3개 동그라미 → 접속사(그러나·따라서) 표시 → 책을 덮고 부모님께 3문장으로 말로 요약]하는 정밀 정독 훈련으로 전환해야 합니다.',
+          fourWeekPlanKo: `1주차(하루 1장 짧은 지문 소리 내어 끊어 읽기 & 낯선 어휘 2개 뜻 짐작하기) → 2주차(문단마다 가장 중요한 핵심 단어 1개에 동그라미 치기) → 3~4주차([${activeStyleInfo.badge}] 맞춤: 읽은 내용을 3줄로 요약하거나 부모님께 1분간 설명하기)`
+        });
+      }
+      if (concernsArr.includes('math_concept') || /수학|응용|도형|사고력|연산|문장제/.test(rawNoteLower)) {
+        domainCards.push({
+          badge: '특정 분야 집중 타격 ② · 응용·도형·문장제 수학 분야',
+          problemTitle: '단순 연산은 풀지만 응용·서술형 문장제나 입체 도형 회전에서 막히는 문제',
+          causeKo: '기계적 계산(절차기억)은 숙달되어 있으나, 문제 속 언어적 조건을 두정엽 시공간 스케치패드(Visuospatial Sketchpad) 위에서 그림·도식으로 변환하지 못하고 머릿속 암산으로만 해결하려다 작업기억 용량(4±1개)이 과부하되는 현상입니다 (Mix et al. 2016 · DOI:10.1037/edu0000105).',
+          mistakeVsFixKo: '비슷한 유형 문제집을 많이 풀리는 양치기 학습은 응용력을 키우지 못합니다. 암산을 멈추고 하루 단 2문제라도 문제 여백에 [구하려는 것에 밑줄 + 조건을 막대그림·수직선·도형 단면도로 직접 그리기(도해 수학)]와 입체 블록 조작을 병행해야 합니다.',
+          fourWeekPlanKo: isKinderAge
+            ? '1주차(구체물 블록·은물로 10 가르기·모으기 손끝 체험) → 2주차(칠교·입체 블록으로 모양 대칭·회전 직접 만들기) → 3~4주차(그림으로 수의 크기를 비교하고 말로 원리 설명하기)'
+            : '1주차(문장제 문제에서 숫자 조건 동그라미 + 구하는 것 밑줄 긋기) → 2주차(여백에 막대그림·수직선·표 직접 그려서 식 세우기) → 3~4주차(틀린 응용문제를 해답지 없이 내 말로 풀이 순서 2줄 적기)'
+        });
+      }
+      if (concernsArr.includes('passive_forget') || concernsArr.includes('habit_self_directed') || /학원|까먹|잊어|복습|백지|기억|자기주도/.test(rawNoteLower)) {
+        domainCards.push({
+          badge: '특정 분야 집중 타격 ③ · 장기기억 전환 & 메타인지 백지복습 분야',
+          problemTitle: '수업·설명을 들을 땐 아는 것 같지만 며칠 뒤 잊어버리고 혼자 풀면 막히는 문제',
+          causeKo: '선생님이나 부모님의 설명을 눈과 귀로 듣기만 할 때 뇌가 "이미 다 안다"고 착각하는 유창성 착각(Illusion of Competence) 때문입니다. 해마의 단기기억을 스스로 끄집어내는 인출(Retrieval) 자극이 없으면 24시간 내 65%가 소멸됩니다 (Roediger & Karpicke 2006 · PMID:16507066).',
+          mistakeVsFixKo: '학원 수를 늘리거나 개념서를 눈으로 여러 번 다시 읽는 재학습(Rereading)은 효과가 매우 낮습니다. 공부 직후 딱 3분간 책을 덮고 백지에 핵심 3줄을 적거나 부모님께 선생님처럼 설명하는 백지 인출 복습이 기억 보존율을 48%→92%로 끌어올립니다.',
+          fourWeekPlanKo: '1주차(공부 끝난 직후 책을 덮고 오늘 배운 핵심 키워드 3개 말하기) → 2주차(코넬식 노트에 3줄 백지 요약 적고 빠진 부분만 파란 펜으로 보충) → 3~4주차(오답 문제를 다음 날 백지에 처음부터 끝까지 스스로 설명하며 재풀이)'
+        });
+      }
+      if (concernsArr.includes('screen_dopamine') || concernsArr.includes('desk_endurance') || /스마트폰|유튜브|집중|산만|책상|미디어|게임/.test(rawNoteLower)) {
+        domainCards.push({
+          badge: '특정 분야 집중 타격 ④ · 전두엽 착석 지구력 & 미디어 도파민 조절 분야',
+          problemTitle: '미디어 자극엔 강하게 반응하지만 책상 앞 15~20분 단일 과제 집중이 흐트러지는 문제',
+          causeKo: '빠른 화면 전환의 즉각적 도파민 보상에 뇌 선조체가 익숙해지면, 보상 주기가 긴 독서·문제 풀이 시 전두엽 실행기능(억제 조절·지속 주의력)이 쉽게 피로해져 10분 만에 자세가 무너지고 딴생각을 하게 됩니다 (Diamond 2013 · PMID:23020641).',
+          mistakeVsFixKo: '무작정 1시간 동안 의자에 앉아 있으라고 강요하면 책상 자체가 스트레스 공간이 됩니다. 스마트폰을 거실에 격리하고, 무소음 시각 타이머(타임타이머)로 아이가 무조건 성공할 수 있는 15~20분 초단기 몰입 블록부터 성취 도파민을 쌓아주어야 합니다.',
+          fourWeekPlanKo: '1주차(공부 시작 전 스마트폰 거실 보관 + 시각 타이머 15분 단판 미션 완수) → 2주차(눈높이 독서대 착석 + 타이머 20분 집중 후 5분 철봉·점프 휴식) → 3~4주차(오늘 할 일 3가지 체크리스트 스스로 지우며 30분 몰입 정착)'
+        });
+      }
+      if (concernsArr.includes('vocab_expression') || concernsArr.includes('test_mistake_anxiety') || /어휘|서술형|글쓰기|표현|발표|실수|불안/.test(rawNoteLower)) {
+        domainCards.push({
+          badge: '특정 분야 집중 타격 ⑤ · 어휘 확장·서술형 논리 표현 & 실수 방지 분야',
+          problemTitle: '머릿속 생각은 있으나 서술형 문장으로 조리 있게 쓰지 못하거나 실수로 감점되는 문제',
+          causeKo: '수용 어휘(듣고 이해하는 단어)에 비해 표현 어휘(직접 인출해 쓰는 단어) 연결망이 약하거나, 빨리 풀려는 조급함으로 문제 조건을 끝까지 점검하지 않는 전두엽 자기점검(Self-Monitoring) 병목입니다.',
+          mistakeVsFixKo: '처음부터 긴 글쓰기를 시키거나 실수를 혼내면 불안감(편도체 활성)만 커집니다. 부모님과 질문 대화로 먼저 말을 완성한 뒤 ["결론은 ~이다. 왜냐하면 ~이기 때문이다"] 2문장 구조로 적는 훈련과 조건 번호 매기기 습관이 즉효약입니다.',
+          fourWeekPlanKo: '1주차(하루 1개 교과 핵심 어휘로 짧은 문장 말하기 게임) → 2주차("왜냐하면 ~이기 때문이다" 인과 틀로 하루 2줄 생각 노트 쓰기) → 3~4주차(서술형 문제 조건에 ①, ② 번호 매기고 답안 작성 후 스스로 체크하기)'
+        });
+      }
+    }
+
+    if (domainCards.length === 0 && weaknessesList && weaknessesList.length > 0) {
+      const topW = weaknessesList[0];
+      domainCards.push({
+        badge: `특정 분야 집중 타격 · ${topW.shortLabel} 분야`,
+        problemTitle: topW.title,
+        causeKo: topW.weakTrait,
+        mistakeVsFixKo: `${topW.howToFix} 특히 우리 아이의 우세 흡수 채널인 [${activeStyleInfo.badge}] 방식을 결합할 때 개선 속도가 2배 빨라집니다.`,
+        fourWeekPlanKo: `1주차(${topW.helpfulTools} 준비 및 하루 15분 부담 없는 워밍업) → 2주차([${activeStyleInfo.badge}] 기반 핵심 개념 1가지 말/그림 인출) → 3~4주차(주 5일 규칙적 루틴으로 현재 ${topW.score}점 → 목표 ${Math.min(96, topW.score + 16)}점 도약)`
+      });
+    }
+
+    return `
+      <div id="specialized-learning-bottleneck-spotlight" style="background: #FFFFFF; border: 2px solid #1D4ED8; border-radius: 20px; padding: 1.15rem 1.25rem; margin-bottom: 1.2rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.6rem;">
+          <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+            특정 학습 분야 문제점 1:1 집중 해부 &amp; 4주 개선 마스터플랜
+          </span>
+          <span style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
+            설문 선택 취약 분야 × [${activeStyleInfo.badge}] 맞춤 처방
+          </span>
+        </div>
+        <h3 style="font-size: 1.16rem; font-weight: 900; color: #0F172A; margin: 0 0 0.65rem 0;">
+          만 ${ageYears}세 우리 아이 특정 학습 문제점 정밀 진단 &amp; 단계별 해결 솔루션
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+          ${domainCards.slice(0, 3).map((card) => `
+            <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 0.9rem 1rem;">
+              <div style="font-size: 0.82rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">
+                ${card.badge}
+              </div>
+              <div style="font-size: 1.0rem; font-weight: 900; color: #0F172A; margin-bottom: 0.45rem;">
+                문제 현상: ${card.problemTitle}
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.38rem; font-size: 0.85rem; color: #0F172A; line-height: 1.52;">
+                <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.55rem 0.75rem;">
+                  <strong style="color: #1D4ED8;">• 뇌인지 과학적 원인:</strong> ${card.causeKo}
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.55rem 0.75rem;">
+                  <strong style="color: #1D4ED8;">• 핵심 개선 방안 (How-To Fix):</strong> ${card.mistakeVsFixKo}
+                </div>
+                <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.75rem;">
+                  <strong style="color: #1D4ED8;">• 4주 완치 실천 로드맵:</strong> ${card.fourWeekPlanKo}
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
    * Renders the complete HTML for Master Briefing Card
    * - Section 1: Fact-Based Comprehensive Precision Diagnosis
    * - Section 2: Matched Paper Fact Cards (Zero Fluff)
@@ -1382,6 +1771,51 @@
       if (navHeaderLearning && navHeaderLearning.style) navHeaderLearning.style.display = 'none';
     }
 
+    const phenotypeSpecializedGrowthHtml = buildPhenotypeSpecializedGrowthHtml({
+      ageYears,
+      exactMonths,
+      genderKo,
+      height,
+      weight,
+      standardMean,
+      deltaStr,
+      kdcaPct,
+      kdcaTop,
+      mphVal,
+      unmanagedHeight,
+      optimizedHeight,
+      potentialGainCm,
+      velocityPerYear,
+      targetHeight6m,
+      weightEval,
+      optimalWeightForHeight,
+      weightVsHeightDelta,
+      weightVsHeightStr,
+      targetWeight6m,
+      lmsObj,
+      tanner,
+      habits,
+      traitSleepList,
+      traitDietList,
+      sleepTraitLabelKo,
+      dietTraitLabelKo,
+      postureTraitLabelKo,
+      customSleepRoutineKo,
+      customDietRoutineKo,
+      customPostureStudyRoutineKo,
+      nutTargets
+    });
+
+    const bottleneckSpecializedLearningHtml = buildBottleneckSpecializedLearningHtml({
+      ageYears,
+      isToddlerAge,
+      isKinderAge,
+      concernsArr,
+      rawNoteLower,
+      activeStyleInfo,
+      weaknessesList
+    });
+
     return `
       <!-- Master Briefing Card: Crisp Clinical Diagnosis Sheet -->
       <div class="bento-card master-briefing-card" id="master-briefing-card-content" style="border-left: 5px solid ${isLearningDefault ? '#1D4ED8' : '#3B82F6'}; text-align: left; padding: 1.5rem;">
@@ -1684,6 +2118,11 @@
             </div>
           </div>
         </div>
+
+        <!-- ================================================================== -->
+        <!-- PHENOTYPE-DRIVEN SPECIALIZED GROWTH REPORT (키/몸무게 특성 맞춤 집중) -->
+        <!-- ================================================================== -->
+        ${phenotypeSpecializedGrowthHtml}
 
         <!-- ================================================================== -->
         <!-- STEP 01: CRISP CLINICAL DIAGNOSIS SHEET (High-Contrast Table)       -->
@@ -2354,6 +2793,9 @@
               </div>
             ` : ''}
           </div>
+
+          <!-- ==================== SPECIALIZED LEARNING BOTTLENECK SPOTLIGHT ==================== -->
+          ${bottleneckSpecializedLearningHtml}
 
           <!-- ==================== STEP 2: 아이가 잘하는 강점 성향 (도식화 비교 막대그래프 & 1줄 요약) ==================== -->
           <div id="learning-step-2-strengths" class="learning-step-card" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 22px; padding: 1.15rem 1.25rem; margin-bottom: 1.15rem; text-align: left;">
@@ -3874,6 +4316,8 @@
     matchPapers,
     matchHorizonPapers,
     analyzeParentFreeNote,
+    buildPhenotypeSpecializedGrowthHtml,
+    buildBottleneckSpecializedLearningHtml,
     renderMasterBriefingCard,
     render: renderMasterBriefingCard,
     switchActiveReport,
