@@ -292,7 +292,7 @@ function recordVisitorPageview(req, customRef) {
     if (!Array.isArray(day.uniqueHashes)) day.uniqueHashes = [];
     if (!day.uniqueHashes.includes(vHash)) {
       day.uniqueHashes.push(vHash);
-      day.uv = day.uniqueHashes.length;
+      day.uv = Math.max((day.uv || 0) + 1, day.uniqueHashes.length);
       visitorStats.total.uv += 1;
     }
 

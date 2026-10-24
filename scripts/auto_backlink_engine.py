@@ -28,6 +28,8 @@ KB_PATH = ROOT / "src" / "data" / "research-knowledge-base.json"
 BLOG_CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"
 BACKLOG_STATE_PATH = ROOT / "logs" / "safe_backlog_state.json"
 BACKLINK_LOG_PATH = ROOT / "logs" / "auto_backlink_status.json"
+EXT_BACKLINK_REGISTRY_PATH = ROOT / "logs" / "external_backlinks_registry.json"
+TELEGRAPH_TOKEN_PATH = ROOT / "logs" / "telegraph_account.json"
 
 SITE_URL = "https://kidsfit.co.kr"
 ALT_SITE_URL = "https://truthofmarket.com"
@@ -226,7 +228,127 @@ def update_github_readme_backlink_hub(total_papers: int, g_cnt: int, l_cnt: int,
     (ROOT / "README.md").write_text(readme_content, encoding="utf-8")
 
 
-def ping_websub_and_indexnow():
+def get_or_create_telegraph_token() -> str:
+    if TELEGRAPH_TOKEN_PATH.exists():
+        try:
+            obj = json.loads(TELEGRAPH_TOKEN_PATH.read_text(encoding="utf-8"))
+            if obj.get("access_token"):
+                return obj["access_token"]
+        except Exception:
+            pass
+    req_data = urllib.parse.urlencode({
+        "short_name": "KidsFitLab",
+        "author_name": "키즈핏 소아성장·두뇌발달 연구소",
+        "author_url": SITE_URL,
+    }).encode("utf-8")
+    req = urllib.request.Request("https://api.telegra.ph/createAccount", data=req_data)
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        res = json.loads(resp.read().decode("utf-8"))
+        token = res.get("result", {}).get("access_token", "")
+        if token:
+            TELEGRAPH_TOKEN_PATH.parent.mkdir(parents=True, exist_ok=True)
+            TELEGRAPH_TOKEN_PATH.write_text(json.dumps(res["result"], ensure_ascii=False, indent=2), encoding="utf-8")
+        return token
+
+
+def publish_telegraph_external_backlink_article(total_papers: int) -> dict:
+    """
+    Publishes a high-DA (DA 88 telegra.ph) external Korean clinical parenting article containing
+    contextual DoFollow anchor backlinks (<a href="https://kidsfit.co.kr/...">) to our root domain,
+    A4 printable worksheet hub, and 3 rotating deep Q&A pages.
+    """
+    reg = {"total_published": 0, "articles": []}
+    if EXT_BACKLINK_REGISTRY_PATH.exists():
+        try:
+            reg = json.loads(EXT_BACKLINK_REGISTRY_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    seq_idx = int(reg.get("total_published", 0))
+    primary_topic = QNA_TOPICS[seq_idx % len(QNA_TOPICS)]
+    sub_topic_1 = QNA_TOPICS[(seq_idx + 3) % len(QNA_TOPICS)]
+    sub_topic_2 = QNA_TOPICS[(seq_idx + 7) % len(QNA_TOPICS)]
+
+    primary_url = f"{SITE_URL}/qna/{primary_topic['slug']}.html"
+    sub1_url = f"{SITE_URL}/qna/{sub_topic_1['slug']}.html"
+    sub2_url = f"{SITE_URL}/qna/{sub_topic_2['slug']}.html"
+    worksheet_url = f"{SITE_URL}/qna/free-worksheets.html"
+
+    try:
+        token = get_or_create_telegraph_token()
+        title = f"[임상 팩트체크 #{seq_idx + 1}] {primary_topic['title']} — 질병관리청(KDCA) & 논문 {total_papers:,}편 해법"
+        verdict = primary_topic.get("one_line_verdict") or primary_topic.get("short_answer") or ""
+        citation = primary_topic.get("citation") or "질병관리청 2017 소아청소년 성장도표 및 보건복지부 K-DST"
+
+        content_nodes = [
+            {"tag": "h4", "children": [f"💡 3초 핵심 결론: {verdict}"]},
+            {"tag": "p", "children": [
+                f"본 리포트는 대한민국 질병관리청(KDCA) 2017 소아청소년 성장도표(LMS 수식), 보건복지부 영유아 발달선별검사(K-DST), 그리고 PubMed·SCI급 피어리뷰 학술논문 {total_papers:,}편({citation})을 교차 검증하여 작성된 부모용 팩트체크 가이드입니다."
+            ]},
+            {"tag": "h4", "children": ["📊 1. 우리 아이 신체 성장(예상키·백분위) & 두뇌 5각 밸런스(LQ) 무료 정밀 진단"]},
+            {"tag": "p", "children": [
+                "아이의 생년월일, 현재 키·체중, 부모 키, 수면 및 학습 습관을 입력하면 병원 방문이나 회원가입 없이 1분 만에 유전 예상키(MPH) 대비 숨은 잠재키(+6.7cm)와 두뇌 5각 발달 리포트를 확인할 수 있습니다: ",
+                {"tag": "a", "attrs": {"href": f"{SITE_URL}/"}, "children": ["👉 키즈핏 그로스 스튜디오 1분 무료 성장·두뇌 진단 바로가기 (kidsfit.co.kr)"]}
+            ]},
+            {"tag": "h4", "children": ["🖨️ 2. A4 출력용 홈스쿨링 소근육·문장제·백지복습 워크지 3종 무료 인쇄"]},
+            {"tag": "p", "children": [
+                "만 2~4세 소근육 가위질·선긋기 워크지, 초등 문장제 수학 10초 막대그림 도해 노트, 파인만 3줄 백지복습 & 밤 10시 수면 체크표를 집 프린터로 즉시 인쇄해 활용하세요: ",
+                {"tag": "a", "attrs": {"href": worksheet_url}, "children": ["👉 키즈핏 A4 무료 출력 워크지 3종 인쇄 스튜디오 바로가기"]}
+            ]},
+            {"tag": "h4", "children": ["🔬 3. 연령·증상별 심층 학술 Q&A 백과사전 문맥 백링크 (Contextual Deep-Links)"]},
+            {"tag": "ul", "children": [
+                {"tag": "li", "children": [
+                    {"tag": "a", "attrs": {"href": primary_url}, "children": [f"[핵심 분석] {primary_topic['title']} 전문 보기"]}
+                ]},
+                {"tag": "li", "children": [
+                    {"tag": "a", "attrs": {"href": sub1_url}, "children": [f"[연관 논문 1] {sub_topic_1['title']}"]}
+                ]},
+                {"tag": "li", "children": [
+                    {"tag": "a", "attrs": {"href": sub2_url}, "children": [f"[연관 논문 2] {sub_topic_2['title']}"]}
+                ]},
+                {"tag": "li", "children": [
+                    {"tag": "a", "attrs": {"href": BLOG_URL}, "children": ["[공식 네이버 블로그] 키즈핏 소아성장·두뇌발달 연구소 칼럼 모음"]}
+                ]},
+                {"tag": "li", "children": [
+                    {"tag": "a", "attrs": {"href": CAFE_URL}, "children": ["[공식 네이버 카페] 키즈핏 학부모 월령별 처방전 커뮤니티"]}
+                ]}
+            ]}
+        ]
+
+        page_data = urllib.parse.urlencode({
+            "access_token": token,
+            "title": title[:120],
+            "author_name": "키즈핏 그로스 스튜디오 (kidsfit.co.kr)",
+            "author_url": f"{SITE_URL}/",
+            "content": json.dumps(content_nodes, ensure_ascii=False),
+            "return_content": "false"
+        }).encode("utf-8")
+
+        req = urllib.request.Request("https://api.telegra.ph/createPage", data=page_data, method="POST")
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            res = json.loads(resp.read().decode("utf-8"))
+            if res.get("ok") and res.get("result", {}).get("url"):
+                ext_url = res["result"]["url"]
+                entry = {
+                    "seq": seq_idx + 1,
+                    "publishedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S KST"),
+                    "domain": "telegra.ph (DA 88)",
+                    "externalUrl": ext_url,
+                    "title": title,
+                    "targetBacklinks": [f"{SITE_URL}/", worksheet_url, primary_url, sub1_url, sub2_url]
+                }
+                reg["total_published"] = seq_idx + 1
+                reg.setdefault("articles", []).insert(0, entry)
+                reg["articles"] = reg["articles"][:100]
+                EXT_BACKLINK_REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
+                EXT_BACKLINK_REGISTRY_PATH.write_text(json.dumps(reg, ensure_ascii=False, indent=2), encoding="utf-8")
+                return entry
+    except Exception as e:
+        return {"error": str(e)[:60]}
+    return {}
+
+
+def ping_websub_and_indexnow(extra_external_url: str = ""):
     results = {}
     # 1. Google WebSub / PubSubHubbub Hub Ping for immediate RSS discovery
     try:
@@ -251,6 +373,7 @@ def ping_websub_and_indexnow():
         f"{SITE_URL}/",
         f"{SITE_URL}/qna/",
         f"{SITE_URL}/qna/index.html",
+        f"{SITE_URL}/qna/free-worksheets.html",
         f"{SITE_URL}/qna/omni-channel-kit.html",
         f"{SITE_URL}/rss.xml",
         f"{SITE_URL}/feed.json",
@@ -286,10 +409,10 @@ def ping_websub_and_indexnow():
         except Exception as e:
             results[engine_name] = f"warn: {str(e)[:40]}"
 
-    # 3. Ping Wayback Machine availability/archive check for root domain authority
+    # 3. Ping Wayback Machine availability/archive check for root domain & new external backlink article
     try:
         wb_req = urllib.request.Request(
-            f"https://archive.org/wayback/available?url={urllib.parse.quote(SITE_URL)}",
+            f"https://archive.org/wayback/available?url={urllib.parse.quote(extra_external_url or SITE_URL)}",
             headers={"User-Agent": "KidsFitBacklinkBot/1.0"}
         )
         with urllib.request.urlopen(wb_req, timeout=8) as resp:
@@ -304,14 +427,16 @@ def main():
     total_papers, g_cnt, l_cnt = get_paper_counts()
     blog_posts, cafe_posts = get_recent_naver_posts()
 
+    ext_article = publish_telegraph_external_backlink_article(total_papers)
     generate_rss_and_json_feeds(total_papers)
     update_github_readme_backlink_hub(total_papers, g_cnt, l_cnt, blog_posts, cafe_posts)
-    ping_results, total_urls = ping_websub_and_indexnow()
+    ping_results, total_urls = ping_websub_and_indexnow(ext_article.get("externalUrl", ""))
 
     status_obj = {
         "executedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S KST"),
         "totalPapersLinked": total_papers,
         "totalDeepLinksSyndicated": total_urls,
+        "latestExternalBacklinkArticle": ext_article,
         "recentBlogBacklinks": len(blog_posts),
         "recentCafeBacklinks": len(cafe_posts),
         "pingResults": ping_results

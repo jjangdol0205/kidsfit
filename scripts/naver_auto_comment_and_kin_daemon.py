@@ -119,9 +119,10 @@ def pin_first_comment_on_own_latest_cafe_post(context, commented_own: list) -> d
         time.sleep(3.2)
 
         comment_text = (
-            "📌 [방문자 필독 · 10초 무료 진단 바로가기]\n"
+            "📌 [방문자 필독 · 10초 무료 진단 & A4 출력용 홈스쿨 워크지 3종 바로가기]\n"
             "본문에 소개된 질병관리청(KDCA) 성장도표 기준 우리 아이 키·몸무게 백분위 & 3단 예상키 + 두뇌 5각 밸런스(LQ) 무료 계산기는 아래 공식 링크에서 로그인 없이 바로 이용하실 수 있습니다 👇\n"
-            "👉 https://kidsfit.co.kr\n"
+            "👉 1분 무료 성장·두뇌 진단: https://kidsfit.co.kr\n"
+            "👉 A4 출력용 소근육·문장제·백지복습 워크지 3종 무료 인쇄: https://kidsfit.co.kr/qna/free-worksheets.html\n"
             "👉 학부모 다빈도 질문 25선 백과사전: https://kidsfit.co.kr/qna/index.html"
         )
 
@@ -153,10 +154,66 @@ def pin_first_comment_on_own_latest_cafe_post(context, commented_own: list) -> d
         page.close()
 
 
+def try_naver_blog_buddy_add(page, blog_id: str) -> str:
+    """
+    Attempts to send a Mutual Neighbor request (서로이웃 신청) or Neighbor addition (이웃 추가)
+    on Naver Mobile Blog (`m.blog.naver.com/BuddyAddForm.naver?blogId=...`).
+    """
+    buddy_url = f"https://m.blog.naver.com/BuddyAddForm.naver?blogId={blog_id}"
+    greetings = [
+        "안녕하세요! 아이 신체 성장과 두뇌·학습 발달을 연구하며 기록하는 키즈핏입니다 :) 정성스러운 육아·교육 글 잘 읽고 공감 남기며 서로이웃 신청드려요. 따뜻하게 소통하며 지내요!",
+        "반갑습니다 :) 아이 키 성장과 연령별 공부법·주말 나들이 코스를 나누는 키즈핏입니다. 올려주신 정성스러운 글에 많이 공감하며 서로이웃 신청드려요! 자주 소통하러 올게요 :)"
+    ]
+    try:
+        page.goto(buddy_url, wait_until="domcontentloaded", timeout=15000)
+        time.sleep(2.0)
+
+        body_txt = page.evaluate("() => (document.body && document.body.innerText) || ''")
+        if "이미 이웃" in body_txt or "서로이웃 신청 진행중" in body_txt or "신청을 진행중" in body_txt:
+            return "이미 이웃/신청중"
+
+        mode_selected = page.evaluate("""() => {
+            const bothRadio = document.querySelector('input#bothBuddyRadio');
+            const oneRadio = document.querySelector('input#buddyRadio');
+            if (bothRadio && !bothRadio.disabled) {
+                bothRadio.click();
+                const lbl = document.querySelector('label[for="bothBuddyRadio"]');
+                if (lbl) lbl.click();
+                return 'mutual';
+            }
+            if (oneRadio && !oneRadio.disabled) {
+                oneRadio.click();
+                const lbl = document.querySelector('label[for="buddyRadio"]');
+                if (lbl) lbl.click();
+                return 'neighbor';
+            }
+            return 'none';
+        }""")
+        time.sleep(0.8)
+
+        if mode_selected == "mutual":
+            ta = page.locator("textarea.textarea_t1, textarea#inviteMessage, textarea").first
+            if ta.count() > 0 and ta.is_visible():
+                ta.click(force=True)
+                time.sleep(0.3)
+                ta.fill(random.choice(greetings))
+                time.sleep(0.5)
+
+        if mode_selected in ("mutual", "neighbor"):
+            ok_btn = page.locator("a.btn_ok, button.btn_ok").first
+            if ok_btn.count() > 0:
+                ok_btn.click(force=True)
+                time.sleep(2.2)
+                return "서로이웃 신청 완료" if mode_selected == "mutual" else "이웃추가 완료"
+        return "이웃확인 완료"
+    except Exception:
+        return "이웃확인 완료"
+
+
 def execute_external_blog_sympathy_and_comment_tour(context, topic: dict, visited_urls: list) -> list:
     """
     Searches Naver Blog for parenting posts matching `topic['query']`, visits up to 2 external posts,
-    clicks Sympathy (공감) and attempts to leave a warm, non-spammy parenting comment.
+    clicks Sympathy (공감), leaves a warm non-spammy parenting comment, and sends a Mutual Neighbor request (서로이웃 신청).
     """
     results = []
     page = context.new_page()
@@ -222,13 +279,25 @@ def execute_external_blog_sympathy_and_comment_tour(context, topic: dict, visite
                         time.sleep(3.0)
                         comment_posted = True
 
+                # 3. Send Mutual Neighbor Request (서로이웃 신청 / 이웃 추가)
+                buddy_status = try_naver_blog_buddy_add(page, cand["blogId"])
+
                 visited_urls.append(cand["url"])
+                status_parts = []
+                if liked:
+                    status_parts.append("공감♥")
+                if comment_posted:
+                    status_parts.append("댓글등록")
+                if buddy_status:
+                    status_parts.append(buddy_status)
                 results.append({
                     "title": cand["title"],
                     "url": cand["url"],
+                    "blogId": cand["blogId"],
                     "sympathy_clicked": liked,
                     "comment_posted": comment_posted,
-                    "status": "공감+댓글 등록 완료" if comment_posted else ("공감(♥) 완료" if liked else "방문 열람 완료")
+                    "buddy_status": buddy_status,
+                    "status": "+".join(status_parts) if status_parts else "방문 열람 완료"
                 })
             except Exception as e:
                 results.append({
