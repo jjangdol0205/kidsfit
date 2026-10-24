@@ -1,8 +1,8 @@
 {
-  "startedAt": "2026-10-23T00:00:00.000Z",
+  "startedAt": "2026-10-24T06:07:01.108Z",
   "total": {
-    "uv": 5,
-    "pv": 5,
+    "uv": 9,
+    "pv": 12,
     "diagnoses": {
       "total": 0,
       "growth": 0,
@@ -14,12 +14,11 @@
   "daily": {
     "2026-10-24": {
       "date": "2026-10-24",
-      "uv": 5,
-      "pv": 5,
-      "uniqueHashes": [],
+      "uv": 4,
+      "pv": 12,
       "devices": {
-        "mobile": 2,
-        "desktop": 3
+        "mobile": 3,
+        "desktop": 9
       },
       "referrers": {
         "instagram": 0,
@@ -28,7 +27,7 @@
         "naver_cafe": 0,
         "naver_search_clip": 0,
         "google_daum_kakao": 0,
-        "direct": 5
+        "direct": 12
       },
       "diagnoses": {
         "total": 0,
