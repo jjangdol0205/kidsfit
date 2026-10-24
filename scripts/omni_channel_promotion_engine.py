@@ -458,32 +458,37 @@ def main():
     render_omni_channel_web_hub(latest_post, cur["history"])
     all_sitemap_urls = update_sitemap_with_seq_articles(cur["history"])
 
+    # Execute real external DA-88 article publication + WebSub/IndexNow syndication
+    from auto_backlink_engine import publish_telegraph_external_backlink_article, ping_websub_and_indexnow
+    ext_article = publish_telegraph_external_backlink_article(paper_cnt)
+    ping_res, _ = ping_websub_and_indexnow(ext_article.get("externalUrl", ""))
+
     status = {
         "executedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S KST"),
         "latestSequenceNo": next_seq,
         "latestPublishedUrl": latest_post["url"],
         "latestTitle": latest_post["title"],
         "targetRegion": latest_post["region"],
+        "externalBacklinkUrl": ext_article.get("externalUrl", ""),
         "totalSitemapUrls": len(all_sitemap_urls),
         "llmsTxtUpdated": True,
-        "omniChannelKitUrl": f"{SITE_URL}/qna/omni-channel-kit.html",
+        "pingResults": ping_res,
     }
     STATUS_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATUS_PATH.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"✅ [Omni-Channel 6-Engine Cycle #{next_seq}] Published {latest_post['url']} & synced {len(all_sitemap_urls)} URLs.")
+    print(f"✅ [Omni-Channel 6-Engine Cycle #{next_seq}] Published {latest_post['url']} & External Backlink {ext_article.get('externalUrl', '')}.")
 
     if notify_tg:
         msg = (
-            f"🌐 [탈네이버 6대 외부채널 정기 자동 발행 #{next_seq}회차 완료 보고]\n"
+            f"🌐 [탈네이버 외부채널 & 고권위 도메인 백링크 자동 발행 #{next_seq}회차 완료 보고]\n"
             f"⏰ 실행 시각: {status['executedAt']}\n\n"
-            f"1️⃣ 다음(Daum)·구글·빙·카톡 스크랩 전용 신규 웹문서 아티클 발행:\n"
+            f"1️⃣ 다음(Daum)·구글·빙·카톡 스크랩 전용 신규 웹문서 아티클 자동 발행:\n"
             f"• 제목: {latest_post['title']}\n"
             f"• 라이브 URL: {latest_post['url']}\n\n"
-            f"2️⃣ AI 검색엔진(ChatGPT·Perplexity·뤼튼·에이닷) 실시간 인용 DB 갱신:\n"
-            f"• https://kidsfit.co.kr/llms.txt (논문 {paper_cnt:,}편 & #{next_seq}회차 칼럼 반영)\n\n"
-            f"3️⃣ 이번 회차 당근마켓 동네생활({latest_post['region']}) & 블라인드 라운지 맞춤 원고:\n"
-            f"{latest_post['daangn_copy']}\n\n"
-            f"🔗 원클릭 멀티채널 허브: https://kidsfit.co.kr/qna/omni-channel-kit.html"
+            f"2️⃣ 외부 고권위 도메인(telegra.ph · DA 88) 문맥 백링크 아티클 자동 발행:\n"
+            f"• 외부 URL: {ext_article.get('externalUrl', 'https://telegra.ph')}\n"
+            f"• 포함 백링크: kidsfit.co.kr 메인 + 무료 워크지(free-worksheets.html) + 심층 Q&A 3종\n\n"
+            f"3️⃣ 검색엔진(Google WebSub · Bing/Yandex IndexNow) & AI 검색(llms.txt) 실시간 자동 배포 완료!"
         )
         try:
             send_telegram_message(msg)

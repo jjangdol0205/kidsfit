@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24 16:01:49 KST",
+  "updated_at": "2026-10-24 16:48:47 KST",
   "total_books_mastered": 8,
   "supplementary_research_count": 6,
   "books": [
@@ -127,8 +127,8 @@
       "journal": "Advances in Marketing, Customer Relationship Management, and E-Services"
     }
   ],
-  "cycle": 6,
-  "total_learned_insights": 13,
+  "cycle": 7,
+  "total_learned_insights": 15,
   "learned_insights": [
     {
       "source": "Crossref",
@@ -246,13 +246,31 @@
       "year": 2024,
       "learned_at": "2026-10-24 16:01",
       "actionable_takeaway": "[스토리브랜드(SB7) 3단계 고객 여정 단순화] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
+    },
+    {
+      "source": "Crossref",
+      "domain_ko": "가치 사다리(Value Ladder) & 무료 진단 리드 마그넷",
+      "title": "Figure 1: Sales funnel.",
+      "author": "Journal of Marketing Research",
+      "year": 2024,
+      "learned_at": "2026-10-24 16:48",
+      "actionable_takeaway": "[가치 사다리(Value Ladder) & 무료 진단 리드 마그넷] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
+    },
+    {
+      "source": "Crossref",
+      "domain_ko": "가치 사다리(Value Ladder) & 무료 진단 리드 마그넷",
+      "title": "Sales Funnel",
+      "author": "101 Management Models",
+      "year": 2024,
+      "learned_at": "2026-10-24 16:48",
+      "actionable_takeaway": "[가치 사다리(Value Ladder) & 무료 진단 리드 마그넷] 학술 근거 배지(KDCA·K-DST·논문 수)와 사회적 증거(동일 월령 학부모 선택 TOP 4) 결합 시 제휴 클릭률(CTR) 상승 검증"
     }
   ],
   "latest_system_audit": {
-    "audited_at": "2026-10-24 16:01:50 KST",
-    "total_qna_and_seq_pages": 27,
-    "pages_auto_patched_with_cro_bar": 27,
-    "live_paper_authority_count": 3602,
+    "audited_at": "2026-10-24 16:48:47 KST",
+    "total_qna_and_seq_pages": 28,
+    "pages_auto_patched_with_cro_bar": 28,
+    "live_paper_authority_count": 3622,
     "scores": {
       "hook_clarity_3sec_score": 98,
       "cialdini_authority_social_proof_score": 99,
@@ -262,7 +280,7 @@
     },
     "active_optimizations": [
       "Value Ladder Step 1: 전 채널 상단 3초 무료 진단 직링크 박스 가동 중",
-      "Authority Badge: 질병관리청(KDCA) + 보건복지부(K-DST) + 논문 3,602편 실시간 배지 동기화",
+      "Authority Badge: 질병관리청(KDCA) + 보건복지부(K-DST) + 논문 3,622편 실시간 배지 동기화",
       "Choice Architecture: 6종 연령·상황별 1초 프리셋 캡슐 바 전 페이지 상단 고정",
       "STEPPS Viral Loop: 카톡·당근 동네생활·블라인드·다음카페 원클릭 공유 바 전 페이지 장착 완료"
     ]
