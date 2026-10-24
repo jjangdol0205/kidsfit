@@ -245,13 +245,16 @@ def ping_websub_and_indexnow():
     except Exception as e:
         results["websub_google"] = f"warn: {str(e)[:50]}"
 
-    # 2. IndexNow Multi-Engine Push (api.indexnow.org, www.bing.com, yandex.com)
+    # 2. IndexNow Multi-Engine Push (api.indexnow.org, www.bing.com, yandex.com, search.seznam.cz)
     url_list = [
         f"{SITE_URL}/",
         f"{SITE_URL}/qna/",
         f"{SITE_URL}/qna/index.html",
+        f"{SITE_URL}/qna/omni-channel-kit.html",
         f"{SITE_URL}/rss.xml",
         f"{SITE_URL}/feed.json",
+        f"{SITE_URL}/llms.txt",
+        f"{SITE_URL}/llms-full.txt",
         f"{SITE_URL}/sitemap.xml",
     ] + [f"{SITE_URL}/qna/{t['slug']}.html" for t in QNA_TOPICS]
 
