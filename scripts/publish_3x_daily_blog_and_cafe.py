@@ -32,7 +32,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 PACK_DIR = ROOT / "samples" / "7_naver_blog_daily_pack" / "폴더별_글모음"
 GEN_IMG_DIR = ROOT / "samples" / "9_naver_brand_assets" / "daily_auto_cards"
 CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"

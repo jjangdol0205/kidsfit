@@ -23,7 +23,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 STATE_PATH = ROOT / "logs" / "naver_auto_comment_state.json"
 BLOG_CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"
 ENV_PATH = ROOT / ".env"

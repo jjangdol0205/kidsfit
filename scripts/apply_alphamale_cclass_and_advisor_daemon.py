@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 QNA_DIR = ROOT / "qna"
 DIST_QNA_DIR = ROOT / "dist" / "qna"
 ADVISOR_LOG_PATH = ROOT / "logs" / "promotion_advisor_history.json"

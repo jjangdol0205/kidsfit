@@ -93,7 +93,7 @@ class TestF01HourlyBenchmarkPaperKB(unittest.TestCase):
         """F01-1: Verify KB script exists and target docs directory exists"""
         self.assertTrue(
             (ROOT_DIR / "docs").exists(),
-            "Target documentation directory d:\\사업아이템\\docs must exist"
+            "Target documentation directory d:\\키즈핏\\docs must exist"
         )
         self.assertTrue(
             self.script_path.exists(),

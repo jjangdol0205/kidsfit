@@ -1,4 +1,4 @@
-# 📏🧠 키즈핏 그로스 스튜디오 (KidsFit Growth Studio)
+# 📏🧠 키즈핏 (KidsFit)
 
 > **대한민국 소아·청소년 신체 성장(예상키·백분위) × 두뇌·학습 역량(5각 LQ·메타인지) 학술 데이터 기반 무료 진단 플랫폼**
 > - 🌐 **공식 웹사이트 (1분 무료 진단)**: **[https://kidsfit.co.kr](https://kidsfit.co.kr/)** (미러: [https://truthofmarket.com](https://truthofmarket.com/))

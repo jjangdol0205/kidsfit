@@ -35,7 +35,7 @@ Key Capabilities:
    - `--dry-run`: Runs the immediate cycle or daemon in simulation mode.
 
 3. Execution Report & Metric Persistence:
-   - Writes structured JSON reports to `d:\\사업아이템\\logs\\unified_scheduler_cycle_report.json`.
+   - Writes structured JSON reports to `d:\\키즈핏\\logs\\unified_scheduler_cycle_report.json`.
 """
 
 import os

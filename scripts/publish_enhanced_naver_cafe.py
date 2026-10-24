@@ -17,7 +17,7 @@ Responsibilities:
    - menuid=7: 자유수다·육아고민 (반가운 가입인사)
 3. Strict non-promotional tone: zero commercial affiliate codes, zero sales links.
 4. Generates high-resolution 1080x1080 PNG summary and checklist cards via Pillow.
-   Saved to: d:\\사업아이템\\samples\\enhanced_blog_images\\
+   Saved to: d:\\키즈핏\\samples\\enhanced_blog_images\\
 5. Scheduled publishing cadence: 3x/day at 10:30 (morning coffee), 14:30 (school pick-up), 21:00 (late-night talk).
 6. Writes publication audit logs containing articleId and timestamp to logs/ directory.
 7. Supports CLI flags:
@@ -48,7 +48,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 ENHANCED_IMG_DIR = ROOT / "samples" / "enhanced_blog_images"
 CURSOR_PATH = ROOT / "logs" / "cafe_publishing_cursor.json"
 AUDIT_LOG_PATH = ROOT / "logs" / "cafe_publishing_audit.json"

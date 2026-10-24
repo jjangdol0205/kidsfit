@@ -21,7 +21,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 SAMPLES_DIR = ROOT / "samples"
 BLOG_DIR = SAMPLES_DIR / "1_blog_sample"
 WEBTOON_DIR = SAMPLES_DIR / "2_webtoon_sample"

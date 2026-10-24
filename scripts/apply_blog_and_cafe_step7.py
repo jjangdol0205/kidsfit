@@ -4,7 +4,7 @@ import time
 import urllib.request
 from playwright.sync_api import sync_playwright
 
-ASSET_DIR = r"d:\사업아이템\samples\9_naver_brand_assets"
+ASSET_DIR = r"d:\키즈핏\samples\9_naver_brand_assets"
 PROFILE_CLEAN = os.path.join(ASSET_DIR, "kidsfitprofile500.png")
 COVER_CLEAN = os.path.join(ASSET_DIR, "kidsfitcover1080.png")
 TITLE_CLEAN = os.path.join(ASSET_DIR, "kidsfittitle1080.png")
@@ -94,7 +94,7 @@ def main():
                     return bg && bg !== 'none' && bg.includes('http');
                 }).map(el => ({cls: el.className, bg: window.getComputedStyle(el).backgroundImage}))
             })""")
-            page.screenshot(path=r"d:\사업아이템\logs\verify_m_blog_fixed.png", full_page=False)
+            page.screenshot(path=r"d:\키즈핏\logs\verify_m_blog_fixed.png", full_page=False)
         except Exception as e:
             report["verify_m_blog_err"] = str(e)
 
@@ -186,7 +186,7 @@ def main():
         report["dialogs"] = dialogs
         page.close()
 
-    with open(r"d:\사업아이템\logs\profile_and_cover_step7.json", "w", encoding="utf-8") as f:
+    with open(r"d:\키즈핏\logs\profile_and_cover_step7.json", "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print("Saved logs/profile_and_cover_step7.json")
 

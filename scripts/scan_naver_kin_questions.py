@@ -15,7 +15,7 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 OUT_FILE = ROOT / "samples" / "10_kin_community_backlog_pack" / "04_실시간_지식iN_타겟질문_매칭리스트.md"
 ENV_PATH = ROOT / ".env"
 

@@ -4,10 +4,10 @@ import time
 import urllib.request
 from playwright.sync_api import sync_playwright
 
-PROFILE_IMG = r"d:\사업아이템\samples\9_naver_brand_assets\kidsfit_profile_500.png"
-CAFE_GATE_IMG = r"d:\사업아이템\samples\9_naver_brand_assets\kidsfit_cafe_gate_1080x520.png"
-CAFE_TITLE_IMG = r"d:\사업아이템\samples\9_naver_brand_assets\kidsfit_cafe_title_1080x240.png"
-BLOG_SKIN_IMG = r"d:\사업아이템\samples\9_naver_brand_assets\kidsfit_blog_skin_966x260.png"
+PROFILE_IMG = r"d:\키즈핏\samples\9_naver_brand_assets\kidsfit_profile_500.png"
+CAFE_GATE_IMG = r"d:\키즈핏\samples\9_naver_brand_assets\kidsfit_cafe_gate_1080x520.png"
+CAFE_TITLE_IMG = r"d:\키즈핏\samples\9_naver_brand_assets\kidsfit_cafe_title_1080x240.png"
+BLOG_SKIN_IMG = r"d:\키즈핏\samples\9_naver_brand_assets\kidsfit_blog_skin_966x260.png"
 
 def main():
     report = {}
@@ -167,7 +167,7 @@ def main():
         report["dialogs"] = dialogs
         page.close()
 
-    with open(r"d:\사업아이템\logs\profile_and_cover_step1.json", "w", encoding="utf-8") as f:
+    with open(r"d:\키즈핏\logs\profile_and_cover_step1.json", "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print("Saved logs/profile_and_cover_step1.json")
 

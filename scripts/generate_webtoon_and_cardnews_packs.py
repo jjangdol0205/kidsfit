@@ -3,11 +3,11 @@
 r"""
 scripts/generate_webtoon_and_cardnews_packs.py
 Generates sensuous, high-contrast, editorial-grade Webtoon & Cardnews packs:
-1. Webtoon Series (3 Episodes, each in its own dedicated folder under d:\사업아이템\웹툰_모음\ and samples/8_insta_threads_webtoon_pack/):
+1. Webtoon Series (3 Episodes, each in its own dedicated folder under d:\키즈핏\웹툰_모음\ and samples/8_insta_threads_webtoon_pack/):
    - 1화_만3세소근육민감기_웹툰 (4-cut Instagram/Threads + 6-cut full)
    - 2화_초등문장제수학작업기억_웹툰 (4-cut Instagram/Threads)
    - 3화_밤10시숙면숨은키7cm_웹툰 (4-cut Instagram/Threads)
-2. Cardnews Series (3 Themes, each in its own dedicated folder under d:\사업아이템\카드뉴스_모음\ and samples/9_cardnews_series_pack/):
+2. Cardnews Series (3 Themes, each in its own dedicated folder under d:\키즈핏\카드뉴스_모음\ and samples/9_cardnews_series_pack/):
    - 1탄_만3세고집과소근육발달_카드뉴스 (6 full-bleed 1080x1350 slides, zero outer margin)
    - 2탄_초등문장제수학과백지복습_카드뉴스 (4 full-bleed 1080x1350 slides, zero outer margin)
    - 3탄_밤10시숙면과숨은키7cm_카드뉴스 (4 full-bleed 1080x1350 slides, zero outer margin)

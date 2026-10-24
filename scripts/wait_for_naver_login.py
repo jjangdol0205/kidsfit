@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 LOG_DIR = ROOT / "logs"
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 LOGIN_INFO_FILE = LOG_DIR / "naver_login_detected.json"

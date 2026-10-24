@@ -20,7 +20,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 MKT_KB_PATH = ROOT / "src" / "data" / "marketing-books-knowledge-base.json"
 LIVE_OPT_PATH = ROOT / "src" / "data" / "live-marketing-optimization.json"
 MKT_DOC_PATH = ROOT / "docs" / "키즈핏_온라인마케팅_명저_자가학습_지식베이스.md"

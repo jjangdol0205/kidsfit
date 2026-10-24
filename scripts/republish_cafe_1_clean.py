@@ -12,7 +12,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 sys.path.insert(0, str(ROOT))
 
 from scripts.publish_3x_daily_blog_and_cafe import (

@@ -20,7 +20,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 PROFILE_DIR = ROOT / ".naver-browser-profile"
 STATE_PATH = ROOT / "logs" / "safe_backlog_state.json"
 GEN_IMG_DIR = ROOT / "samples" / "9_naver_brand_assets" / "daily_auto_cards"

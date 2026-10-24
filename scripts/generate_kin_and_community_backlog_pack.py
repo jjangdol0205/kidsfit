@@ -3,7 +3,7 @@
 scripts/generate_kin_and_community_backlog_pack.py
 1. Sends the updated STEP 2~7 schematic diagram verification screenshots (PC & Mobile) to Telegram.
 2. Generates the Naver Kin (지식iN) & Parenting Community Backlog Pack in:
-   d:\사업아이템\samples\10_kin_community_backlog_pack\
+   d:\키즈핏\samples\10_kin_community_backlog_pack\
 3. Sends the Naver Kin & Community Backlog Strategy + Actionable Pack briefing to Telegram.
 """
 
@@ -12,7 +12,7 @@ import os
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 OUT_DIR = ROOT / "samples" / "10_kin_community_backlog_pack"
 ARTIFACT_DIR = Path(r"C:\Users\jjang\.gemini\antigravity\brain\efdd0412-2586-40cf-bb28-0fa8976613df")
 ENV_PATH = ROOT / ".env"
@@ -460,7 +460,7 @@ def main():
         "━━━━━━━━━━━━━━━━━━━━\n"
         "📦 2. 즉시 활용 가능하도록 구축 완료한 백로그 패키지\n"
         "━━━━━━━━━━━━━━━━━━━━\n"
-        "폴더 위치: d:\\사업아이템\\samples\\10_kin_community_backlog_pack\\\n"
+        "폴더 위치: d:\\키즈핏\\samples\\10_kin_community_backlog_pack\\\n"
         "1) 01_네이버_지식iN_실시간_스나이핑_명품답변_10선.md\n"
         "   - 예상키·백분위 / 사춘기 골든타임 / 우유 배앓이 칼슘 / 만2~3세 고집·소근육 / 문장제 수학 작업기억 / 메타인지 3줄 인출 / 스마트폰 집중력 / 거북목 숨은키 2cm / 편식 아연 / 주말 박물관 하브루타 10대 핵심 답변 완비\n"
         "2) 02_맘카페_학부모커뮤니티_네이티브_백로그_원고_6선.md\n"

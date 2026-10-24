@@ -1,7 +1,9 @@
 {
-  "name": "kidsfit-growth-studio",
+  "name": "kidsfit",
+  "displayName": "키즈핏",
+  "projectName": "키즈핏",
   "version": "1.0.0",
-  "description": "KidsFit Growth Studio — 우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시·역사 코스 맞춤 처방소",
+  "description": "키즈핏 (KidsFit) — 우리 아이 신체 성장 × 두뇌·소근육 발달 × 주말 전시·역사 코스 맞춤 처방소",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
@@ -12,12 +14,13 @@
     "self-improve": "node scripts/self-improve-engine.js"
   },
   "keywords": [
+    "키즈핏",
     "kidsfit",
     "growth-studio",
     "kdst",
     "kdca",
     "pediatric-growth"
   ],
-  "author": "KidsFit Studio",
+  "author": "키즈핏 (KidsFit)",
   "license": "ISC"
 }

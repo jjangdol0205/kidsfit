@@ -5,7 +5,7 @@ import urllib.request
 from PIL import Image, ImageDraw
 from playwright.sync_api import sync_playwright
 
-ASSET_DIR = r"d:\사업아이템\samples\9_naver_brand_assets"
+ASSET_DIR = r"d:\키즈핏\samples\9_naver_brand_assets"
 BLOG_COVER_CLEAN = os.path.join(ASSET_DIR, "kidsfitblogcover1080.png")
 NEW_BLOG_PROFILE_PATH = "/MjAyNjEwMjNfMjYx/MDAxNzkyNzAxNzU5NTkx.qw2lUs7E0NMtvfx8TCEzZ36TWU4qNgObj6Pgam6HGeog.3BjoUB6dOg377qhpzp29RPd_dGj3KRtoUrSqgEvo2lMg.PNG/kidsfitprofile500.png/kidsfitprofile500.png"
 NEW_BLOG_PROFILE_SIZE = "23234"
@@ -110,7 +110,7 @@ def main():
             page.set_viewport_size({"width": 390, "height": 844})
             page.goto("https://m.blog.naver.com/expertise333", wait_until="networkidle", timeout=30000)
             time.sleep(3.0)
-            page.screenshot(path=r"d:\사업아이템\logs\verify_m_blog_clean.png", full_page=False)
+            page.screenshot(path=r"d:\키즈핏\logs\verify_m_blog_clean.png", full_page=False)
         except Exception as e:
             report["verify_m_blog_clean_err"] = str(e)
 
@@ -158,7 +158,7 @@ def main():
 
         page.close()
 
-    with open(r"d:\사업아이템\logs\profile_and_cover_step8.json", "w", encoding="utf-8") as f:
+    with open(r"d:\키즈핏\logs\profile_and_cover_step8.json", "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print("Saved logs/profile_and_cover_step8.json")
 

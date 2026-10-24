@@ -1,7 +1,7 @@
 {
   "id": "/?source=pwa",
-  "name": "KIDS-FIT 키즈핏 — 아이 키 성장 & 두뇌·학습 맞춤 리포트",
-  "short_name": "KIDS-FIT",
+  "name": "키즈핏 (KIDS-FIT) — 아이 키 성장 & 두뇌·학습 맞춤 리포트",
+  "short_name": "키즈핏",
   "description": "질병관리청 성장도표 & 학술논문 2,081편 기반 우리 아이 신체 성장·예상키 및 두뇌·학습 맞춤 처방 앱",
   "start_url": "/?source=pwa",
   "scope": "/",

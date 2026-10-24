@@ -9,7 +9,7 @@ import os
 import webbrowser
 from pathlib import Path
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 RAW_DIR = ROOT / "samples" / "2_webtoon_sample" / "raw"
 HELPER_HTML = ROOT / "samples" / "4_webtoon_video_sample" / "google_flow_launcher.html"
 

@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 DIST = ROOT / "dist"
 KB_PATH = ROOT / "src" / "data" / "research-knowledge-base.json"
 BLOG_CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"

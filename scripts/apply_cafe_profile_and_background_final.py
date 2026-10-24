@@ -113,7 +113,7 @@ def main():
 
         page.close()
 
-    with open(r"d:\사업아이템\logs\profile_and_cover_step9.json", "w", encoding="utf-8") as f:
+    with open(r"d:\키즈핏\logs\profile_and_cover_step9.json", "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print("Saved logs/profile_and_cover_step9.json")
 

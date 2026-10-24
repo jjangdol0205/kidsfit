@@ -32,7 +32,7 @@ Responsibilities:
    - Exported Interface: send_telegram_event(event_type: str, title: str, details: dict = None, photo_path: str = None)
 
 4. Audit Logging:
-   - Records all audit actions and DOM checks to d:\\사업아이템\\logs\\qa_audit_log.json.
+   - Records all audit actions and DOM checks to d:\\키즈핏\\logs\\qa_audit_log.json.
 """
 
 import os

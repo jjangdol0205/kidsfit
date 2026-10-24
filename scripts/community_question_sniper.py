@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 CAPTURE_DIR = ROOT / "samples" / "10_stealth_seeding_captures"
 SNIPER_LOG_PATH = ROOT / "logs" / "community_question_sniper_latest.json"
 

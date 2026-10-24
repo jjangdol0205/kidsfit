@@ -3,7 +3,7 @@
 1. Removes remaining 2 legacy tags ('생활비절약', '전기세절약') on Cafe Studio and adds KidsFit tags
 2. Configures KidsFit Cafe Boards on https://cafe.naver.com/ca-fe/admin/cafes/31805224/menu-management
 3. Configures KidsFit Cafe Member Levels on https://cafe.naver.com/ManageMemberLevel.nhn?clubid=31805224
-4. Lists available KidsFit Blog & Cafe content files in d:\\사업아이템\\samples
+4. Lists available KidsFit Blog & Cafe content files in d:\\키즈핏\\samples
 """
 
 import json
@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 LOG_DIR = ROOT / "logs"
 
 

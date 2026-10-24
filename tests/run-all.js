@@ -30,7 +30,7 @@ function runAllTests() {
         name: 'package.json syntax & required fields',
         fn: () => {
           const pkg = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'package.json'), 'utf8'));
-          if (pkg.name !== 'kidsfit-growth-studio') throw new Error('Invalid package name');
+          if (!['kidsfit', 'kidsfit-growth-studio', '키즈핏'].includes(pkg.name)) throw new Error('Invalid package name');
           if (!pkg.scripts || !pkg.scripts.build || !pkg.scripts.test || !pkg.scripts.verify) {
             throw new Error('Missing required npm scripts (build, test, verify)');
           }

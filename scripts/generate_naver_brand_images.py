@@ -14,7 +14,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 OUT_DIR = ROOT / "samples" / "9_naver_brand_assets"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 

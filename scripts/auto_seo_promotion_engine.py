@@ -23,7 +23,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 QNA_DIR = ROOT / "qna"
 STATUS_PATH = ROOT / "logs" / "auto_seo_promotion_status.json"
 INDEXNOW_KEY = "bb7865143f912a88c04d31d3921a0988"

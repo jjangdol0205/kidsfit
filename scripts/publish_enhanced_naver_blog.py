@@ -20,7 +20,7 @@ Responsibilities:
    - Image 1: Representative Thumbnail (Brand emblem, badge, title, 3 key takeaways)
    - Image 2: Inline Clinical Data Chart & Academic Paper Summary Infographic
    - Image 3: Inline Practical Checklist & 3-Step Homecare Routine Infographic
-   Saved to: d:\\사업아이템\\samples\\enhanced_blog_images\\
+   Saved to: d:\\키즈핏\\samples\\enhanced_blog_images\\
 5. Visual palette and branding:
    - Background: Warm ivory (#FAF8F5 / RGB 250, 248, 245) or clean white (#FFFFFF)
    - Accent Primary: Soft violet / royal indigo (#4F46E5 / RGB 79, 70, 229)
@@ -57,7 +57,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 KB_PATH = ROOT / "docs" / "hourly_benchmark_paper_kb.json"
 FALLBACK_KB_PATH = ROOT / "src" / "data" / "research-knowledge-base.json"
 ENHANCED_IMG_DIR = ROOT / "samples" / "enhanced_blog_images"

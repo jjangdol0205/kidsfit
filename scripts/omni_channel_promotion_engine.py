@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 PACK_DIR = ROOT / "samples" / "10_non_naver_omni_channel_pack"
 QNA_DIR = ROOT / "qna"
 DOC_PATH = ROOT / "docs" / "탈네이버_전채널_홍보_마스터플랜_다음_커뮤니티_SNS.md"

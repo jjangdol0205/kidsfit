@@ -2,8 +2,8 @@
 """
 Google Flow Login & Automation Daemon (scripts/flow_login_daemon.py)
 Opens a visible Google Chrome window at Google Sign-In -> Google Flow (https://labs.google/fx/tools/flow)
-with a persistent profile (`d:/사업아이템/.flow-browser-profile`) and remote debugging port 9222.
-Monitors login state and logs status to `d:/사업아이템/logs/flow_daemon_status.json`.
+with a persistent profile (`d:/키즈핏/.flow-browser-profile`) and remote debugging port 9222.
+Monitors login state and logs status to `d:/키즈핏/logs/flow_daemon_status.json`.
 """
 
 import json
@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-ROOT = Path(r"d:\사업아이템")
+ROOT = Path(r"d:\키즈핏")
 PROFILE_DIR = ROOT / ".flow-browser-profile"
 LOG_DIR = ROOT / "logs"
 STATUS_FILE = LOG_DIR / "flow_daemon_status.json"
