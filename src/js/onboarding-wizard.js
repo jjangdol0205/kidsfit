@@ -721,8 +721,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,672 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,672 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,672편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,672편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 3,681 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,681 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '3,681편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,681편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -750,7 +750,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,672 research papers for active bio-inhibitors...'
+            ? 'Filtering 3,681 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -948,7 +948,8 @@
       }
 
       if (ageYearsSlider) ageYearsSlider.value = preset.ageYears;
-      if (ageYearsDisplay) ageYearsDisplay.textContent = `${preset.ageYears}세 (${preset.ageMonths}개월)`;
+      const isEnPreset = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      if (ageYearsDisplay) ageYearsDisplay.textContent = isEnPreset ? `Age ${preset.ageYears} yrs (${preset.ageMonths} mos)` : `${preset.ageYears}세 (${preset.ageMonths}개월)`;
       if (ageMonthsInput) ageMonthsInput.value = preset.ageMonths;
 
       // Height & Weight
@@ -1284,20 +1285,21 @@
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,672편 기반 학습 병목·공부법 보고서를 발행합니다.';
+        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,681편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,672편 기반 예상키·골든타임 보고서를 발행합니다.';
+        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,681편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
-      submitBtnEl.textContent = (activeMode === 'learning')
-        ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기'
-        : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기';
+      const isEnBtn = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      submitBtnEl.textContent = isEnBtn
+        ? ((activeMode === 'learning') ? 'Generate My Child\'s 5-Axis Brain & Learning Report →' : 'Generate My Child\'s Height & Growth-Plate Report →')
+        : ((activeMode === 'learning') ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기' : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기');
     }
 
     if (document.body && document.body.classList) {

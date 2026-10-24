@@ -33,7 +33,7 @@
       'lang.toggle': 'EN (CDC)',
 
       // Hero (Psychological Hook + Clinical Authority + Immediate CTA)
-      'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,672편 교차 검증',
+      'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,681편 교차 검증',
       'hero.headline': '<span class="hero-single-line">"설마 크겠지" 미루는 사이,</span><br><span class="hero-headline-highlight hero-single-line">아이의 성장판과 전두엽 골든타임은 매년 닫혀가고 있습니다</span>',
       'hero.subtitle': '또래보다 작은 키와 줄어들지 않는 학습 격차, 유전 탓만은 아닙니다. 수면·영양·자세 결손에 묶여 있던 숨은 잠재키(+6.7cm)와 5각 두뇌 학습 병목을 성장판이 닫히기 전에 1분 설문 데이터로 확인하세요.',
       'nav.forWhom': '신체 성장 정밀 진단',
@@ -69,7 +69,7 @@
       'services.s2.desc': '문해력·수리추론·전두엽 집중력 병목 진단과 자기주도 공부법을 제시합니다.',
       'services.s3.title': '체질별 맞춤 영양·운동 기구 & 두뇌 성향별 교재·교구 매칭',
       'services.s3.desc': '불필요한 지출 없이 아이의 현재 상태에 검증된 핵심 솔루션만 선별합니다.',
-      'services.basis': '대한소아내분비학회지 · 대한소아과학회지 · 질병관리청(KDCA) · 학술논문 3,672편 기반',
+      'services.basis': '대한소아내분비학회지 · 대한소아과학회지 · 질병관리청(KDCA) · 학술논문 3,681편 기반',
 
       // Studio & Quiz Extra Keys
       'studio.bar.title': 'KIDS-FIT 임상 데이터 기반 1:1 정밀 설문 진단',
@@ -93,7 +93,7 @@
       'quiz.cog.label': '중점 강화 희망 두뇌·학습 영역 (복수 선택)',
       'quiz.cog.hint': '현재 연령의 뇌 발달 주기에 부합하는 학습법과 교구·도서를 매칭합니다.',
       'quiz.submit.btn': '설문 응답 기반 정밀 진단 보고서 발행하기',
-      'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 3,672편 코퍼스를 대조하여 정밀 진단 보고서를 생성하고 있습니다.',
+      'loader.desc': '생년월일 일수 보정 데이터와 학술 논문 3,681편 코퍼스를 대조하여 정밀 진단 보고서를 생성하고 있습니다.',
       'results.tab1.title': '신체 성장 백분위 & 골연령 예측 궤적 (Auxology)',
       'results.tab1.desc': '질병관리청(KDCA) 성장도표 기반 Z-Score, 연간 성장속도(cm/yr), 부모 유전 표적키(MPH ±8.5cm) 및 3단 성인 예측키 시뮬레이션입니다.',
       'results.tab2.title': '24시간 호르몬 궤적 & 임상 영양 생체이용률',
@@ -268,7 +268,7 @@
       'lang.toggle': '🇰🇷 한국어',
 
       // Hero
-      'hero.badge': '🌱 Powered by KDCA Growth Standards & 3,672 Clinical Papers · K-GROWTH AI™',
+      'hero.badge': '🌱 Powered by KDCA Growth Standards & 3,681 Clinical Papers · K-GROWTH AI™',
       'hero.headline': 'How Tall Will Your Child Grow?\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 60%, #A7F3D0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Separate Physical Growth Report & Brain Learning Report in 1 Min</span>',
       'hero.subtitle': '1-Min Input → Independent [Physical Growth Report] & [Brain Learning Report]',
       'nav.forWhom': 'Who It\'s For',
@@ -304,7 +304,7 @@
       'services.s2.desc': 'Auto-detects growth stage and maps out 4 years of brain & self-directed study focus.',
       'services.s3.title': 'Pinpoint Supplements · Toys · Books · Edu Travel',
       'services.s3.desc': 'Matches verified specific products directly to your child\'s appetite, sleep & temperament.',
-      'services.basis': 'Clinical Basis: KDCA Growth Charts · US CDC 2000 · K-DST Milestones · 3,672-Paper DB',
+      'services.basis': 'Clinical Basis: KDCA Growth Charts · US CDC 2000 · K-DST Milestones · 3,681-Paper DB',
 
       // Studio & Quiz Extra Keys
       'studio.bar.title': '✦ KIDS-FIT AI · 1:1 Personalized Growth & Learning Diagnosis',
@@ -328,7 +328,7 @@
       'quiz.cog.label': 'Core Brain & Learning Focus Domains (Select all that apply)',
       'quiz.cog.hint': 'Generates age-specific neuroplasticity and inquiry learning protocols.',
       'quiz.submit.btn': '✦ Generate My Growth & Learning Guidebook →',
-      'loader.desc': 'Cross-referencing day-calibrated birth data with 3,672 peer-reviewed studies to compile your guidebook.',
+      'loader.desc': 'Cross-referencing day-calibrated birth data with 3,681 peer-reviewed studies to compile your guidebook.',
       'results.tab1.title': 'Physical Growth Percentile & Bone Age Trajectory (Auxology)',
       'results.tab1.desc': 'K-GROWTH AI™ Z-Score, annual growth velocity, Tanner Mid-Parental Height (MPH ±8.5 cm), and 3-tier adult height simulation.',
       'results.tab2.title': '24-Hour Hormone Curve & Clinical Bio-Nutrition',
@@ -339,7 +339,7 @@
       'results.tab4.desc': '5-axis neuro-cognitive balance radar chart, age-specific cortical development guide, and 3-step inquiry dialogue prompts.',
       'results.tab5.title': '90-Day Growth Tracker & Hospital-Style A4 Clinical Report',
       'results.tab5.desc': 'Continuous height/weight streak tracker and 1-click printable 2-page A4 clinical report.',
-      'footer.disclaimer': 'Powered by proprietary K-GROWTH AI™ algorithms and official US CDC 2000, WHO Growth Standards, KDCA 2017 Growth Charts, and K-DST developmental milestones (3,672 papers). This guidebook is for educational and wellness guidance and does not replace medical diagnosis. Product recommendation links on this service are part of Coupang Partners and affiliate marketing programs, through which we may receive a commission.',
+      'footer.disclaimer': 'Powered by proprietary K-GROWTH AI™ algorithms and official US CDC 2000, WHO Growth Standards, KDCA 2017 Growth Charts, and K-DST developmental milestones (3,681 papers). This guidebook is for educational and wellness guidance and does not replace medical diagnosis. Product recommendation links on this service are part of Coupang Partners and affiliate marketing programs, through which we may receive a commission.',
 
       // Presets
       'presets.badge': 'Clinical Demo Presets',
@@ -530,12 +530,44 @@
   }
 
   // 3. State Management
-  let currentLang = 'ko';
-  let currentUnitSystem = 'metric'; // 'metric' (cm, kg) or 'imperial' (ft/in, lbs)
+  function isGlobalPaidEditionLock() {
+    try {
+      if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+      if (typeof document !== 'undefined' && document.documentElement) {
+        if (document.documentElement.getAttribute('data-edition') === 'global-paid') return true;
+      }
+      if (typeof window !== 'undefined' && window.location) {
+        const host = String(window.location.hostname || '').toLowerCase();
+        const search = String(window.location.search || '').toLowerCase();
+        if (search.indexOf('edition=ko') !== -1) return false;
+        if (search.indexOf('edition=global') !== -1 || search.indexOf('paywall=1') !== -1) return true;
+        if (host.indexOf('truthofmarket.com') !== -1 && typeof document !== 'undefined' && document.getElementById('hero-section')) {
+          return true;
+        }
+      }
+    } catch (_) {}
+    return false;
+  }
+
+  let currentLang = isGlobalPaidEditionLock() ? 'en' : 'ko';
+  let currentUnitSystem = isGlobalPaidEditionLock() ? 'imperial' : 'metric'; // 'metric' (cm, kg) or 'imperial' (ft/in, lbs)
   let prevUnitSystem = 'metric';
 
   function initI18n() {
-    if (typeof window !== 'undefined' && window.localStorage) {
+    if (isGlobalPaidEditionLock()) {
+      currentLang = 'en';
+      if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+          window.localStorage.setItem('taller_lang', 'en');
+          const savedUnit = window.localStorage.getItem('taller_unit');
+          currentUnitSystem = (savedUnit === 'metric' || savedUnit === 'imperial') ? savedUnit : 'imperial';
+        } catch (e) {
+          currentUnitSystem = 'imperial';
+        }
+      } else {
+        currentUnitSystem = 'imperial';
+      }
+    } else if (typeof window !== 'undefined' && window.localStorage) {
       try {
         const savedLang = window.localStorage.getItem('taller_lang');
         if (savedLang === 'en' || savedLang === 'ko') {
@@ -569,7 +601,7 @@
   }
 
   function getLanguage() {
-    return currentLang;
+    return isGlobalPaidEditionLock() ? 'en' : currentLang;
   }
 
   function getUnitSystem() {
@@ -578,6 +610,9 @@
 
   function setLanguage(lang) {
     if (lang !== 'ko' && lang !== 'en') return;
+    if (isGlobalPaidEditionLock()) {
+      lang = 'en';
+    }
     currentLang = lang;
     currentUnitSystem = lang === 'en' ? 'imperial' : 'metric';
 
@@ -593,6 +628,10 @@
   }
 
   function toggleLanguage() {
+    if (isGlobalPaidEditionLock()) {
+      setUnitSystem(currentUnitSystem === 'imperial' ? 'metric' : 'imperial');
+      return;
+    }
     setLanguage(currentLang === 'ko' ? 'en' : 'ko');
   }
 
@@ -660,8 +699,87 @@
     // 3. Language button
     const langBtn = document.getElementById('btn-lang-toggle');
     if (langBtn) {
-      langBtn.textContent = currentLang === 'ko' ? '🇺🇸 EN (CDC)' : '🇰🇷 KO (KDCA)';
-      langBtn.title = currentLang === 'ko' ? 'Switch to Global Mode (EN / CDC / Imperial)' : '한국어 모드로 전환 (KDCA / Metric)';
+      if (isGlobalPaidEditionLock()) {
+        langBtn.textContent = currentUnitSystem === 'imperial' ? '🇺🇸 Units: ft/in · lbs' : '🌐 Units: cm · kg';
+        langBtn.title = 'Toggle between Imperial (ft/in, lbs) and Metric (cm, kg)';
+      } else {
+        langBtn.textContent = currentLang === 'ko' ? '🇺🇸 EN (CDC)' : '🇰🇷 KO (KDCA)';
+        langBtn.title = currentLang === 'ko' ? 'Switch to Global Mode (EN / CDC / Imperial)' : '한국어 모드로 전환 (KDCA / Metric)';
+      }
+    }
+
+    // 3a. Translate extra quiz checkboxes & headers when in English
+    if (currentLang === 'en') {
+      const extraCheckboxMapEn = {
+        'learning-literacy:reading_comprehension': 'Struggles to grasp the core structure of long passages or word problems',
+        'learning-literacy:vocab_context': 'Gets stuck on unfamiliar vocabulary instead of inferring meaning from context',
+        'learning-literacy:slow_subvocal': 'Reads very slowly or subvocalizes (moves lips while reading)',
+        'learning-literacy:summary_expression': 'Finds it hard to summarize a book or express thoughts in words/writing after reading',
+        'learning-literacy:active_reader': 'Actively enjoys reading books and understands context & subtext well',
+        'learning-math:applied_math_block': 'Fast at basic arithmetic, but struggles to set up equations for word problems',
+        'learning-math:spatial_logic_difficulty': 'Finds mental rotation, 3D nets, and spatial geometry problems especially difficult',
+        'learning-math:formula_memorizer': 'Relies on rote formula memorization rather than conceptual proof; misses modified problems',
+        'learning-math:error_transfer_gap': 'Repeats the same mistakes on similar problem types even after reviewing explanations',
+        'learning-math:math_explorer': 'Enjoys finding patterns, logic puzzles, and exploring new mathematical principles',
+        'learning-focus:distracted_desk': 'Finds it hard to sit at a desk for 15–20+ minutes; easily distracted by small noises or objects',
+        'learning-focus:dopamine_media': 'Used to high-dopamine short-form video/games; gets bored quickly with text or study',
+        'learning-focus:procrastination': 'Procrastinates starting homework or study tasks with frequent off-task behavior',
+        'learning-focus:impulsive_mistakes': 'Skips reading full problem statements or makes frequent careless sign/calculation errors',
+        'learning-focus:deep_focus': 'Immerses deeply for 30–40+ minutes when working on interesting topics or problems',
+        'learning-meta:passive_illusion': 'Understands when listening to a teacher/tutor, but goes blank when solving alone',
+        'learning-meta:metacognition_lack': 'Cannot close the book and explain or summarize what was just learned in their own words',
+        'learning-meta:cramming_forget': 'Crams the night before tests and quickly forgets the material right after',
+        'learning-meta:sleep_consolidation_loss': 'Studies or sleeps late at night, resulting in morning brain fog and daytime fatigue',
+        'learning-meta:daily_retrieval_active': 'Has a habit of spending 15 minutes reviewing and asking questions about daily lessons',
+        'trait-growth-detail:growing_pain_night': 'Frequent nighttime knee, calf, or ankle growing pains or lower-body fatigue',
+        'trait-growth-detail:underweight_thin': 'Small meal volume and slow weight gain; tends to be underweight compared to peers',
+        'trait-growth-detail:overweight_fat_gain': 'Weight (body fat) gaining faster than height; concerned about bone-age acceleration',
+        'trait-growth-detail:rhinitis_mouth': 'Allergic rhinitis, nasal congestion, or mouth breathing disrupting deep slow-wave sleep',
+        'trait-growth-detail:early_puberty_worry': 'Early pubertal signs (breast buds, body hair, scalp oil/odor) appearing earlier than peers',
+        'trait-growth-detail:bone_age_delay': 'Shorter than peer average with annual height velocity slowing below 5 cm/yr (<2 in/yr)',
+        'trait-growth-detail:dairy_calcium_lack': 'Low dairy intake or weak digestion raising concern for Calcium, Vitamin D3 & protein deficit',
+        'trait-growth-detail:slouch_disc_loss': 'Forward head posture (tech neck) and slouched spine when seated causing hidden height loss'
+      };
+      Object.keys(extraCheckboxMapEn).forEach((k) => {
+        const parts = k.split(':');
+        const input = document.querySelector(`input[name="${parts[0]}"][value="${parts[1]}"]`);
+        if (input && input.parentElement) {
+          const pill = input.parentElement.querySelector('.chip-pill');
+          if (pill) {
+            const spans = pill.querySelectorAll('span');
+            const targetSpan = spans.length > 0 ? spans[spans.length - 1] : pill;
+            if (targetSpan) targetSpan.textContent = extraCheckboxMapEn[k];
+          }
+        }
+      });
+
+      const groupHeadersEn = [
+        { id: 'learning-reading-literacy-group', label: 'Reading Habits & Cognitive Literacy Processing (Multi-Select)', hint: 'Evaluates long-passage comprehension, contextual vocabulary inference, and reading fluency based on cognitive linguistics.' },
+        { id: 'learning-math-logic-group', label: 'Mathematical Logic & 3D Spatial Reasoning (Multi-Select)', hint: 'Diagnoses the cognitive transition from basic arithmetic to applied word problems and 3D spatial geometry.' },
+        { id: 'learning-focus-dopamine-group', label: 'Prefrontal Attention Span & Digital Dopamine Habits (Multi-Select)', hint: 'Assesses prefrontal executive function (working memory, impulse control) and digital reward-circuit sensitivity.' },
+        { id: 'learning-metacognition-group', label: 'Metacognitive Active Recall & SWS Memory Consolidation (Multi-Select)', hint: 'Evaluates hippocampal-to-neocortical sleep memory consolidation and blank-sheet self-explanation habits.' },
+        { id: 'trait-growth-detail-group', label: 'Additional Auxology, Weight-for-Height & Endocrine Checkpoints (Multi-Select)', hint: 'Selected clinical checkpoints are directly integrated into your child\'s bespoke growth & bone-age report.' }
+      ];
+      groupHeadersEn.forEach((g) => {
+        const grp = document.getElementById(g.id);
+        if (grp && grp.parentElement) {
+          const lbl = grp.parentElement.querySelector('.form-label');
+          const hnt = grp.parentElement.querySelector('.section-hint');
+          if (lbl) lbl.textContent = g.label;
+          if (hnt) hnt.textContent = g.hint;
+        }
+      });
+
+      const printTopBtn = document.getElementById('btn-print-report-top');
+      if (printTopBtn) printTopBtn.textContent = '🖨️ Print / Save PDF Report';
+      const rxTitle = document.getElementById('rx-header-title');
+      if (rxTitle && /[가-힣]/.test(rxTitle.textContent)) {
+        rxTitle.textContent = 'KIDS-FIT Personalized Clinical Growth & Brain LQ Report';
+      }
+      const progText = document.getElementById('quiz-progress-text');
+      if (progText && progText.textContent.indexOf('완료') !== -1) {
+        progText.textContent = progText.textContent.replace('완료', 'Completed');
+      }
     }
 
     // 3b. Translate DOB & Region select option labels
