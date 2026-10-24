@@ -154,14 +154,13 @@ def audit_naver_blog_and_cafe_live() -> dict:
                     if is_valid_url:
                         try:
                             page.goto(url, wait_until="domcontentloaded", timeout=20000)
-                            time.sleep(2.2)
-                            full_txt = page.evaluate("""() => {
-                                let t = document.body ? document.body.innerText : '';
-                                for (const f of window.frames) {
-                                    try { t += ' ' + (f.document.body ? f.document.body.innerText : ''); } catch(e) {}
-                                }
-                                return t;
-                            }""")
+                            time.sleep(2.5)
+                            full_txt = ""
+                            for f in page.frames:
+                                try:
+                                    full_txt += " " + f.evaluate("() => document.body ? document.body.innerText : ''")
+                                except Exception:
+                                    pass
                             char_len = len(full_txt.strip())
                             has_backlink = ("kidsfit.co.kr" in full_txt) or ("키즈핏" in full_txt)
                             has_forbidden_tokens = any(tok in full_txt for tok in ["undefined", "NaN", "[object Object]"])
