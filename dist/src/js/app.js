@@ -647,10 +647,10 @@
       headerSubEl.textContent = isEn
         ? (isLearningModeActive
           ? '6-Step Clinical Scan + Phenotype Synthesis · US CDC & 3,681 Neuro-Cognitive Studies Analyzed'
-          : '6-Step Clinical Scan + Phenotype Synthesis · US CDC 2000 & 3,685 Pediatric Endocrine Studies Analyzed')
+          : '6-Step Clinical Scan + Phenotype Synthesis · US CDC 2000 & 3,691 Pediatric Endocrine Studies Analyzed')
         : (isLearningModeActive
-          ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,685편 정밀 분석 완료'
-          : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,685편 정밀 분석 완료');
+          ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,691편 정밀 분석 완료'
+          : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,691편 정밀 분석 완료');
     }
 
     const affConfig = getAffiliateConfig();
