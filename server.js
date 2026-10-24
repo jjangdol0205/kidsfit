@@ -1030,6 +1030,32 @@ const server = http.createServer((req, res) => {
       headers['Cache-Control'] = 'public, max-age=3600';
     }
 
+    const reqHost = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+    const isGlobalHost =
+      parsedUrl.searchParams.get('edition') !== 'ko' &&
+      (reqHost.includes('truthofmarket.com') || parsedUrl.searchParams.get('edition') === 'global' || parsedUrl.searchParams.get('paywall') === '1');
+
+    if (finalExt === '.html' && path.basename(filePath) === 'index.html' && isGlobalHost) {
+      let htmlBody = fs.readFileSync(filePath, 'utf8');
+      htmlBody = htmlBody
+        .replace('<html lang="ko" data-theme="dark">', '<html lang="en" data-theme="dark" data-edition="global-paid">')
+        .replace('<title>KIDS-FIT — 아이의 키·신체·정신 성장 &amp; 맞춤 학습 가이드 플랫폼</title>', '<title>KIDS-FIT BIO LABS — US CDC &amp; 3,639-Paper Pediatric Height &amp; Brain LQ Clinical Report</title>')
+        .replace('<meta name="description" content="아이의 키와 육체적·정신적 성장, 시기별 학습 방향이 고민인 학부모와 키가 더 크고 싶은 초·중·고 학생을 위한 맞춤형 성장 가이드북 플랫폼.">', '<meta name="description" content="1-Minute Pediatric Auxology &amp; Neuro-Cognitive Brain LQ Scan powered by US CDC 2000 Growth Charts, Tanner MPH, and 3,639 Peer-Reviewed PubMed Studies.">')
+        .replace('<link rel="canonical" href="https://kidsfit.co.kr/">', '<link rel="canonical" href="https://truthofmarket.com/">')
+        .replace('<meta property="og:title" content="KIDS-FIT — 우리 아이 숨은 키 &amp; 두뇌·학습 골든타임 리포트">', '<meta property="og:title" content="KIDS-FIT BIO LABS — Predicted Adult Height &amp; 5-Axis Brain LQ Clinical Report">')
+        .replace('<meta property="og:description" content="질병관리청 성장도표 · 학술논문 3,655편 기반 | 생년월일과 생활 습관으로 확인하는 예상 성인키 3단 비교 &amp; 연령별 맞춤 학습 리포트">', '<meta property="og:description" content="US CDC 2000 Growth Charts &amp; 3,639 PubMed Papers | Discover your child\'s 3-Tier Predicted Adult Height, rhGH Clinical Paper Verdict &amp; 5-Axis Brain LQ.">')
+        .replace('<meta property="og:url" content="https://kidsfit.co.kr/">', '<meta property="og:url" content="https://truthofmarket.com/">');
+      const buf = Buffer.from(htmlBody, 'utf8');
+      headers['Content-Length'] = buf.length;
+      res.writeHead(200, headers);
+      if (req.method === 'HEAD') {
+        res.end();
+        return;
+      }
+      res.end(buf);
+      return;
+    }
+
     res.writeHead(200, headers);
     if (req.method === 'HEAD') {
       res.end();
