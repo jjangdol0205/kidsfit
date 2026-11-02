@@ -1,11 +1,6 @@
 /**
  * src/js/qna-human-rl-curator.js
- * High-Conversion Dual-Engine Monetization Renderer for Q&A & Worksheet Pages:
- * 1. Primary Engine (94% Net Margin Intangible Digital Asset):
- *    - 1:1 Clinical Masterbook PDF ($8.99) & VIP All-in-One 4-Workbook Bundle ($19.99) via Lemon Squeezy Store #296100
- * 2. Secondary Engine (Contextual Multi-Armed Bandit UCB1 Affiliate Curation):
- *    - Coupang Partners (AF7865143) Spec Comparison & Rocket Delivery
- * 3. Sticky Thumb-Zone Conversion Bar at the bottom of mobile/desktop viewports
+ * High-Conversion Affiliate Spec Comparison & Free Diagnostic Bridge for Q&A & Worksheet Pages (kidsfit.co.kr)
  */
 (function () {
   'use strict';
@@ -50,25 +45,6 @@
     var spec = CATALOG_SPECS[cat] || CATALOG_SPECS.growth;
 
     slot.innerHTML =
-      '<section style="margin:26px 0 18px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#1E3A8A 0%,#1D4ED8 60%,#0F172A 100%);color:#FFFFFF;box-shadow:0 12px 28px rgba(29,78,216,0.22);border:1.5px solid #60A5FA;">' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;">' +
-          '<span style="background:rgba(255,255,255,0.16);color:#DBEAFE;font-weight:900;font-size:12px;padding:4px 11px;border-radius:999px;">💎 KIDS-FIT 공식 무형 디지털 자산 스토어 (즉시 발급)</span>' +
-          '<span style="background:#10B981;color:#FFFFFF;font-weight:900;font-size:11.5px;padding:3px 10px;border-radius:999px;">학부모 만족도 98.4% · 평생 소장 PDF</span>' +
-        '</div>' +
-        '<h3 style="font-size:19px;font-weight:900;color:#FFFFFF;margin:0 0 6px 0;line-height:1.4;word-break:keep-all;">우리 아이 1:1 병원 차트형 정밀 처방전 PDF + 가정용 A4 코칭 워크북 4종 풀세트</h3>' +
-        '<p style="font-size:13.5px;color:#DBEAFE;margin:0 0 14px 0;line-height:1.55;">질병관리청(KDCA) 성장도표 · 보건복지부 K-DST · SCI 논문 3,894편 기반 <strong>골연령·체중 비례 영양소 mg 정량 식단표 + 문장제 10초 여백 도식화 &amp; 파인만 3줄 백지복습 프린트 교재</strong>를 즉시 다운로드하세요.</p>' +
-        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:10px;">' +
-          '<a href="https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895" data-product-category="digital_asset" data-rl-arm-id="digital_asset_lemonsqueezy" data-rl-cta-arm="arm_digital_masterbook" data-rl-reward-weight="4.75" data-product-name="[무형자산 VIP 올인원 $19.99] 1:1 마스터북 PDF + 프린트 워크북 4종 풀세트" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;padding:13px 15px;border-radius:12px;background:#10B981;color:#FFFFFF;font-weight:900;font-size:14px;text-decoration:none;box-shadow:0 6px 16px rgba(16,185,129,0.3);">' +
-            '🏆 [VIP 올인원 $19.99] 마스터북 PDF + 워크북 4종 즉시 다운로드 →' +
-          '</a>' +
-          '<a href="https://app.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599" data-product-category="digital_asset" data-rl-arm-id="digital_asset_lemonsqueezy" data-rl-cta-arm="arm_digital_masterbook" data-rl-reward-weight="2.75" data-product-name="[무형자산 단건 $8.99] 1:1 정밀 마스터북 PDF 소장 패스" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;padding:13px 15px;border-radius:12px;background:rgba(255,255,255,0.14);border:1.5px solid #93C5FD;color:#FFFFFF;font-weight:800;font-size:13.5px;text-decoration:none;">' +
-            '📄 [단건 패스 $8.99] 1:1 정밀 마스터북 PDF 바로 소장 →' +
-          '</a>' +
-        '</div>' +
-        '<div style="text-align:center;">' +
-          '<button type="button" onclick="if(window.openKoreanDigitalAssetModal){window.openKoreanDigitalAssetModal();}else{window.location.href=\'/\';}" style="background:transparent;border:none;color:#BFDBFE;font-size:12.5px;font-weight:800;text-decoration:underline;cursor:pointer;">👀 4종 A4 코칭 워크북 상세 구성 미리보기 &amp; 이용권 코드 입력 →</button>' +
-        '</div>' +
-      '</section>' +
       '<section style="margin:24px 0;padding:22px;border-radius:20px;background:#FFFFFF;border:1.5px solid #E0E7FF;box-shadow:0 8px 24px rgba(79,70,229,0.06);">' +
         '<div style="display:inline-block;background:#EEF2FF;color:#4F46E5;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:999px;margin-bottom:8px;">' +
           spec.badge +
@@ -112,7 +88,6 @@
         '</p>' +
       '</section>';
 
-    // Inject Mobile & Desktop Sticky Bottom Thumb-Zone Bar on Q&A / Worksheet pages
     if (typeof document !== 'undefined' && document.body && !document.getElementById('kf-qna-sticky-bottom-bar')) {
       var sticky = document.createElement('div');
       sticky.id = 'kf-qna-sticky-bottom-bar';
@@ -121,12 +96,12 @@
       sticky.innerHTML =
         '<div style="max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">' +
           '<div style="color:#FFFFFF;font-size:13px;font-weight:800;line-height:1.35;">' +
-            '<span style="color:#60A5FA;font-weight:900;">[무형 디지털 자산]</span> 내 아이 1:1 정밀 마스터북 PDF &amp; A4 코칭 워크북 4종' +
+            '<span style="color:#60A5FA;font-weight:900;">[키즈핏 무료 진단 &amp; 셀렉트샵]</span> 내 아이 1:1 정밀 성장·두뇌 리포트 &amp; A4 코칭 워크북' +
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;">' +
-            '<button type="button" onclick="if(window.openKoreanDigitalAssetModal){window.openKoreanDigitalAssetModal();}else{window.open(\'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895\',\'_blank\');}" style="background:#10B981;color:#FFFFFF;border:none;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:900;cursor:pointer;white-space:nowrap;">' +
-              '📘 마스터북·워크북 받기 ($8.99~) →' +
-            '</button>' +
+            '<a href="/qna/free-worksheets.html" style="background:#10B981;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:900;white-space:nowrap;">' +
+              '🖨️ 무료 A4 워크북 인쇄 →' +
+            '</a>' +
             '<a href="/?mode=' + cat + '" style="background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:9px 13px;font-size:13px;font-weight:900;white-space:nowrap;">' +
               '⚡ 1분 무료 진단 →' +
             '</a>' +
@@ -140,45 +115,5 @@
     document.addEventListener('DOMContentLoaded', renderHumanCuration);
   } else {
     renderHumanCuration();
-  }
-
-  if (!window.__kfQnaClickBound) {
-    window.__kfQnaClickBound = true;
-    document.addEventListener('click', function (e) {
-      try {
-        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-        if (!a) return;
-        var h = String(a.getAttribute('href') || '');
-        if (/coupang\.com|linkprice\.com|yes24\.com|11st\.co\.kr|myrealtrip\.com|klook\.com|kkday\.com|adpick\.co\.kr|iherb\.com|amazon\.com|lemonsqueezy\.com|naver\.me|iryan\.kr|\/(api)\/(coupang|klook|adpick)/.test(h)) {
-          var cat = a.getAttribute('data-product-category') || 'growth';
-          var pName = a.getAttribute('data-product-name') || (a.innerText ? a.innerText.trim() : 'Q&A 추천 상품');
-          var rlArmId = a.getAttribute('data-rl-arm-id') || (cat === 'learning' ? 'cognitive_learning_problem_solver' : 'growth_nutrition_repeat_cart');
-          var rlCtaArm = a.getAttribute('data-rl-cta-arm') || 'arm_rocket_review';
-          var rlWeight = parseFloat(a.getAttribute('data-rl-reward-weight') || '1.65') || 1.65;
-          var sessionClicks = (Number(window.__kfSessionAffClicks) || 0) + 1;
-          window.__kfSessionAffClicks = sessionClicks;
-          var rlReward = Math.round((20.0 * rlWeight + (sessionClicks >= 2 ? 25.0 : 0)) * 10) / 10;
-          if (typeof window.fetch === 'function') {
-            window.fetch('/api/visit', {
-              method: 'POST',
-              keepalive: true,
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                event: cat === 'learning' ? 'learning_product_click' : 'growth_product_click',
-                category: cat,
-                product_name: String(pName).replace(/\s+/g, ' ').slice(0, 90),
-                href: h.slice(0, 240),
-                domain: window.location.hostname || 'kidsfit.co.kr',
-                utm_source: 'qna_page',
-                rl_arm_id: rlArmId,
-                rl_cta_arm: rlCtaArm,
-                rl_reward: rlReward,
-                session_clicks: sessionClicks
-              })
-            }).catch(function () {});
-          }
-        }
-      } catch (_) {}
-    });
   }
 })();

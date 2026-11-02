@@ -375,21 +375,18 @@ $$\\text{여아 MPH} = \\frac{\\text{아빠 키} + \\text{엄마 키} - 13}{2} \
           <button type="button" id="btn-close-admin" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:9999px;width:34px;height:34px;font-weight:900;cursor:pointer;">✕</button>
         </div>
 
-        <!-- Global Paywall & Store #296100 Admin Controls -->
+        <!-- Korean Select-Shop & Report Unlock Admin Controls -->
         <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.1rem;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.65rem;">
-            <strong style="font-size:0.9rem;color:#1E3A8A;">💳 Lemon Squeezy Store #296100 &amp; Paywall Master Controls</strong>
-            <span style="font-size:0.75rem;font-weight:800;color:#059669;background:#ECFDF5;border:1px solid #A7F3D0;padding:0.18rem 0.6rem;border-radius:9999px;">Webhook #145796 Active</span>
+            <strong style="font-size:0.9rem;color:#1E3A8A;">🛍️ 키즈핏 육아 셀렉트샵 &amp; 리포트 잠금해제 관리자 컨트롤</strong>
+            <span style="font-size:0.75rem;font-weight:800;color:#059669;background:#ECFDF5;border:1px solid #A7F3D0;padding:0.18rem 0.6rem;border-radius:9999px;">Select-Shop Active</span>
           </div>
           <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
-            <button type="button" onclick="try{localStorage.setItem('kidsfit_global_report_unlocked_v1','true');}catch(e){} if(window.KidsFitGlobalPaywall)window.KidsFitGlobalPaywall.transformGlobalReportAndApplyPaywall(); alert('Admin Unlock Activated: Full clinical report is now unlocked in this browser.');" style="padding:0.55rem 0.95rem;border-radius:10px;border:none;background:#059669;color:#FFFFFF;font-size:0.82rem;font-weight:800;cursor:pointer;">
+            <button type="button" onclick="try{localStorage.setItem('kidsfit_diagnostic_full_unlock_v1','true');}catch(e){} if(window.unlockKidsFitDiagnosticTests)window.unlockKidsFitDiagnosticTests('AdminBypass'); alert('Admin Unlock Activated: Full clinical report is now unlocked in this browser.');" style="padding:0.55rem 0.95rem;border-radius:10px;border:none;background:#059669;color:#FFFFFF;font-size:0.82rem;font-weight:800;cursor:pointer;">
               🔓 Unlock Full Report (Admin Bypass)
             </button>
-            <button type="button" onclick="try{localStorage.removeItem('kidsfit_global_report_unlocked_v1');}catch(e){} if(window.KidsFitGlobalPaywall)window.KidsFitGlobalPaywall.transformGlobalReportAndApplyPaywall(); alert('Paywall Re-Locked: Report is now in locked teaser state.');" style="padding:0.55rem 0.95rem;border-radius:10px;border:1px solid #DC2626;background:#FEF2F2;color:#DC2626;font-size:0.82rem;font-weight:800;cursor:pointer;">
-              🔒 Re-Lock Paywall (Test Locked State)
-            </button>
-            <button type="button" onclick="window.open('/api/lemonsqueezy-config','_blank');" style="padding:0.55rem 0.95rem;border-radius:10px;border:1px solid #1D4ED8;background:#FFFFFF;color:#1D4ED8;font-size:0.82rem;font-weight:800;cursor:pointer;">
-              🔍 View Store #296100 JSON Config
+            <button type="button" onclick="try{localStorage.removeItem('kidsfit_diagnostic_full_unlock_v1');}catch(e){} alert('Report Re-Locked: Refresh to test select-shop unlock gate.');" style="padding:0.55rem 0.95rem;border-radius:10px;border:1px solid #DC2626;background:#FEF2F2;color:#DC2626;font-size:0.82rem;font-weight:800;cursor:pointer;">
+              🔒 Re-Lock Gate (Test Locked State)
             </button>
           </div>
         </div>

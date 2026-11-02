@@ -4508,7 +4508,7 @@
               var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
               if (!a) return;
               var h = String(a.getAttribute('href') || '');
-              if (/coupang\.com|linkprice\.com|yes24\.com|11st\.co\.kr|myrealtrip\.com|klook\.com|kkday\.com|adpick\.co\.kr|iherb\.com|amazon\.com|lemonsqueezy\.com|naver\.me|iryan\.kr|\/api\/(coupang|klook|adpick)/.test(h)) {
+              if (/coupang\.com|linkprice\.com|yes24\.com|11st\.co\.kr|myrealtrip\.com|klook\.com|kkday\.com|adpick\.co\.kr|iherb\.com|amazon\.com|naver\.me|iryan\.kr|\/api\/(coupang|klook|adpick)/.test(h)) {
                 if (!a.getAttribute('target')) {
                   a.setAttribute('target', '_blank');
                 }
