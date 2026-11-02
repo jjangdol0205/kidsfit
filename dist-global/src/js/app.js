@@ -1357,7 +1357,9 @@
           'working_mom': 'preset-3',
           'working_mom_weekend': 'preset-3',
           'preset-4': 'preset-4',
-          'preset-5': 'preset-5'
+          'preset-5': 'preset-5',
+          'teen': 'preset-5',
+          'teen_13_18': 'preset-5'
         };
 
         if (modeParam === 'growth' || modeParam === 'learning') {
