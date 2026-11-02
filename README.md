@@ -1,7 +1,7 @@
 # 📏🧠 키즈핏 (KidsFit)
 
 > **대한민국 소아·청소년 신체 성장(예상키·백분위) × 두뇌·학습 역량(5각 LQ·메타인지) 학술 데이터 기반 무료 진단 플랫폼**
-> - 🌐 **공식 웹사이트 (1분 무료 진단)**: **[https://kidsfit.co.kr](https://kidsfit.co.kr/)** (미러: [https://truthofmarket.com](https://truthofmarket.com/))
+> - 🌐 **공식 웹사이트 (1분 무료 진단)**: **[https://kidsfit.co.kr](https://kidsfit.co.kr/)** (미러: [https://kisfitglobal.com](https://kisfitglobal.com/))
 > - 📚 **학부모 다빈도 Q&A 학술 백과사전**: **[https://kidsfit.co.kr/qna/](https://kidsfit.co.kr/qna/)**
 > - 📡 **표준 RSS / JSON 피드**: **[RSS 2.0 피드](https://kidsfit.co.kr/rss.xml)** · **[JSON Feed 1.1](https://kidsfit.co.kr/feed.json)** · **[XML 사이트맵](https://kidsfit.co.kr/sitemap.xml)**
 > - 📝 **공식 네이버 블로그**: **[키즈핏 소아성장·두뇌발달 양육 연구소 (blog.naver.com/expertise333)](https://blog.naver.com/expertise333)**

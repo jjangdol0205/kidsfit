@@ -1,0 +1,1330 @@
+{
+  "metadata": {
+    "db_name": "Taller Bio Labs — User Input Cohort & Autonomous Self-Improvement DB",
+    "db_version": "2.4.0",
+    "last_updated_utc": "2026-10-25T10:51:28.531Z",
+    "total_records": 164,
+    "subject_mode_counts": {
+      "child": 125,
+      "self": 39
+    },
+    "gender_counts": {
+      "boy": 71,
+      "girl": 57
+    },
+    "age_band_distribution": {
+      "1-3y": 22,
+      "4-6y": 26,
+      "7-9y": 36,
+      "10-12y": 47,
+      "13-16y": 27,
+      "17-20y": 6
+    },
+    "bottleneck_habit_frequencies": {
+      "late_sleep": 113,
+      "picky_eater": 61,
+      "poor_posture": 65,
+      "sedentary": 49,
+      "night_carbs": 50
+    },
+    "cognitive_axis_frequencies": {
+      "science_nature": 52,
+      "math_logic": 48,
+      "executive_focus": 44,
+      "sensory_arts": 36,
+      "language_reading": 31
+    },
+    "auto_learning_weights": {
+      "chronobiology_sleep_architecture": 1.42,
+      "clinical_nutrigenomics_microbiome": 1.31,
+      "posture_biomechanics_exercise": 1.28,
+      "epiphyseal_wolff_loading": 1.22,
+      "growth_endocrinology_core": 1.35,
+      "executive_function_longitudinal": 1.24,
+      "fine_motor_neuroscience": 1.19,
+      "spatial_stem_mathematics": 1.21
+    },
+    "self_improvement_actions": [
+      {
+        "cycle_id": "SI-COHORT-01",
+        "triggered_by": "밤 10:30 이후 취침(late_sleep) 저해 요인 전체 입력자의 65.6% 도달",
+        "action_taken": "서파수면(SWS) 첫 90분 성장호르몬 피크 및 소마토스타틴 억제 논문 가중치 1.42x 상향 & 마그네슘·타트체리 수면 루틴 처방 정교화",
+        "status": "ACTIVE"
+      },
+      {
+        "cycle_id": "SI-COHORT-02",
+        "triggered_by": "만 7~12세 학령기 코호트(46.9%)에서 거북목·구부정한 자세(poor_posture) 및 편식(picky_eater) 복합 발생",
+        "action_taken": "척추 디스크 감압(패시브 데드행 30초×3) 및 HT042 황기추출물·어골칼슘 핀셋 매칭 우선순위 자동 보정",
+        "status": "ACTIVE"
+      },
+      {
+        "cycle_id": "SI-COHORT-03",
+        "triggered_by": "청소년·본인(self) 진단 모드 유입 30.5% 돌파 (만 13~18세 급성장 후기·체형 완성기)",
+        "action_taken": "청소년 자기주도 성장 가이드북(수면 호르몬·척추 감압 숨은 키 +2.2cm·전두엽 메타인지) 전용 챕터 자동 분기 엔진 활성화",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "cohort_benchmarks": {
+    "1-3y": {
+      "label_ko": "영유아기 (만 1~3세)",
+      "sample_size": 22,
+      "avg_percentile": 51.4,
+      "avg_potential_gain_cm": 6.8,
+      "top_habit_ko": "단백질·철분·아연 편식 (68%)",
+      "top_pinpoint_rx_ko": "액상 비타민D3 1000IU + 징크 시럽 & 원목 집게·구슬꿰기 소근육 교구",
+      "guidebook_focus_ko": "대뇌 운동피질 30% 손끝 시냅스 폭발기 & 기초 골기질 형성"
+    },
+    "4-6y": {
+      "label_ko": "유아기 (만 4~6세)",
+      "sample_size": 26,
+      "avg_percentile": 48.9,
+      "avg_potential_gain_cm": 7.1,
+      "top_habit_ko": "채소·단백질 편식 및 늦은 취침 (62%)",
+      "top_pinpoint_rx_ko": "어골칼슘·비타민D3·K2 츄어블 & 프뢰벨식 원목 가베·자석블록",
+      "guidebook_focus_ko": "두정엽 3차원 공간 도형 회전력 & 연간 5.5~6.5cm 정속 성장 방어"
+    },
+    "7-9y": {
+      "label_ko": "초등 저학년 (만 7~9세)",
+      "sample_size": 29,
+      "avg_percentile": 46.2,
+      "avg_potential_gain_cm": 7.4,
+      "top_habit_ko": "책상·스마트폰 거북목 자세 불균형 (64%)",
+      "top_pinpoint_rx_ko": "식약처 인정 황기추출물(HT042) & 어린이 각도조절 독서대·줄넘기",
+      "guidebook_focus_ko": "사춘기 전 기초키 극대화 & 학령기 바른 척추 정렬·작업기억 정착"
+    },
+    "10-12y": {
+      "label_ko": "초등 고학년 (만 10~12세)",
+      "sample_size": 31,
+      "avg_percentile": 47.8,
+      "avg_potential_gain_cm": 7.6,
+      "top_habit_ko": "밤 10:30 이후 취침 & 야간 혈당 스파이크 (74%)",
+      "top_pinpoint_rx_ko": "HT042 황기추출물 + 초유 CBP 단백질 & 실내 철봉 데드행·점핑매트",
+      "guidebook_focus_ko": "제2급성장기(PHV) 골든타임 최대 가속(연 7~10cm) & 성조숙증 방어"
+    },
+    "13-16y": {
+      "label_ko": "청소년기 (만 13~16세)",
+      "sample_size": 14,
+      "avg_percentile": 49.1,
+      "avg_potential_gain_cm": 5.2,
+      "top_habit_ko": "학업 수면 지연 & 신체활동 부족 (79%)",
+      "top_pinpoint_rx_ko": "고함량 아르기닌·L-오르니틴·칼슘·마그네슘 & 문틀 철봉 데드행 루틴",
+      "guidebook_focus_ko": "성장판 폐쇄 전 마지막 4~7cm 스퍼트 & 추간판 감압 숨은 키 복원"
+    },
+    "17-20y": {
+      "label_ko": "후기 청소년·성인초기 (만 17~20세)",
+      "sample_size": 6,
+      "avg_percentile": 52,
+      "avg_potential_gain_cm": 2.4,
+      "top_habit_ko": "장시간 좌식 거북목·라운드숄더 (83%)",
+      "top_pinpoint_rx_ko": "구연산 칼슘·마그네슘·비타민D3·K2 & 폼롤러 흉추 신전·철봉 감압",
+      "guidebook_focus_ko": "척추 디스크 수분 복원(+1.8~2.5cm) & 성인 골밀도 피크(Peak Bone Mass) 완성"
+    }
+  },
+  "records": [
+    {
+      "id": "USR-MVNPJKWD",
+      "timestamp": "2026-10-25T10:51:28.531Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.9,
+      "currentWeight": 23.7,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163.1,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNPJI7K",
+      "timestamp": "2026-10-25T10:51:25.137Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.8,
+      "currentWeight": 23.6,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNPD2Y9",
+      "timestamp": "2026-10-25T10:46:25.334Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.9,
+      "currentWeight": 23.7,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163.1,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNPCZWH",
+      "timestamp": "2026-10-25T10:46:22.180Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.8,
+      "currentWeight": 23.6,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNOY82Y",
+      "timestamp": "2026-10-25T10:34:52.408Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.9,
+      "currentWeight": 23.7,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163.1,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNOXYO1",
+      "timestamp": "2026-10-25T10:34:40.958Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.8,
+      "currentWeight": 23.6,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVNMY75A",
+      "timestamp": "2026-10-25T09:38:51.895Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-10-15",
+      "exactMonths": 84.3,
+      "ageYears": 7,
+      "currentHeight": 120.8,
+      "currentWeight": 23.6,
+      "recentGrowth6m": 2.8,
+      "fatherHeight": 176,
+      "motherHeight": 163,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "Canada",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 160.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWGIC7",
+      "timestamp": "2026-10-23T11:41:44.028Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWGHLV",
+      "timestamp": "2026-10-23T11:41:43.083Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWGEMU",
+      "timestamp": "2026-10-23T11:41:39.227Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWGDTX",
+      "timestamp": "2026-10-23T11:41:38.193Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWCZGC",
+      "timestamp": "2026-10-23T11:38:59.586Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWCYN5",
+      "timestamp": "2026-10-23T11:38:58.538Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWCVBU",
+      "timestamp": "2026-10-23T11:38:54.237Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKWCUP8",
+      "timestamp": "2026-10-23T11:38:53.429Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV4JWJ",
+      "timestamp": "2026-10-23T11:04:26.568Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV4J6D",
+      "timestamp": "2026-10-23T11:04:25.628Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV4GM3",
+      "timestamp": "2026-10-23T11:04:22.304Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV4FYP",
+      "timestamp": "2026-10-23T11:04:21.465Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV2IEE",
+      "timestamp": "2026-10-23T11:02:51.307Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV2HPJ",
+      "timestamp": "2026-10-23T11:02:50.414Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV2EVS",
+      "timestamp": "2026-10-23T11:02:46.748Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKV2E8E",
+      "timestamp": "2026-10-23T11:02:45.910Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUZ2J5",
+      "timestamp": "2026-10-23T11:00:10.773Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUZ1LH",
+      "timestamp": "2026-10-23T11:00:09.565Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUYXTL",
+      "timestamp": "2026-10-23T11:00:04.682Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUYWRK",
+      "timestamp": "2026-10-23T11:00:03.308Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUTJ8O",
+      "timestamp": "2026-10-23T10:55:52.491Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUTIE6",
+      "timestamp": "2026-10-23T10:55:51.397Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUTFPO",
+      "timestamp": "2026-10-23T10:55:47.920Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUTF1A",
+      "timestamp": "2026-10-23T10:55:47.049Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-06-15",
+      "exactMonths": 120,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 172,
+      "optimizedHeight": 177.8,
+      "potentialGainCm": 5.8,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKUOTVQ",
+      "timestamp": "2026-10-23T10:52:13.013Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2013-06-15",
+      "exactMonths": 156,
+      "ageYears": 13,
+      "currentHeight": 155.6,
+      "currentWeight": 51,
+      "recentGrowth6m": 4.5,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 174,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 177.7,
+      "potentialGainCm": 6.4,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKP9D87",
+      "timestamp": "2026-10-23T08:20:13.520Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKO1M4O",
+      "timestamp": "2026-10-23T07:46:12.189Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKNX1S7",
+      "timestamp": "2026-10-23T07:42:39.198Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "USR-MVKNKJ3O",
+      "timestamp": "2026-10-23T07:32:55.115Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.3,
+      "ageYears": 10,
+      "currentHeight": 137.1,
+      "currentWeight": 35.6,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "science_nature"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 50,
+      "zScore": 0,
+      "mph": 173.5,
+      "unmanagedHeight": 171.2,
+      "optimizedHeight": 180.5,
+      "potentialGainCm": 7.2,
+      "parentFreeNote": ""
+    },
+    {
+      "id": "COHORT-SEED-101",
+      "timestamp": "2026-10-20T11:20:00Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2023-05-14",
+      "exactMonths": 41.2,
+      "ageYears": 3,
+      "currentHeight": 96.5,
+      "currentWeight": 14.8,
+      "recentGrowth6m": 3.5,
+      "fatherHeight": 175,
+      "motherHeight": 162,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "picky_eater"
+      ],
+      "cognitiveAxes": [
+        "sensory_arts",
+        "fine_motor"
+      ],
+      "region": "서울 강남·서초·송파",
+      "kdcaPercentile": 54.2,
+      "zScore": 0.11,
+      "mph": 175,
+      "unmanagedHeight": 173.5,
+      "optimizedHeight": 180.8,
+      "potentialGainCm": 7.3
+    },
+    {
+      "id": "COHORT-SEED-102",
+      "timestamp": "2026-10-20T14:05:00Z",
+      "targetSubject": "child",
+      "gender": "girl",
+      "birthDateStr": "2019-08-22",
+      "exactMonths": 86,
+      "ageYears": 7,
+      "currentHeight": 121.2,
+      "currentWeight": 23.4,
+      "recentGrowth6m": 2.9,
+      "fatherHeight": 176,
+      "motherHeight": 163,
+      "tannerPhase": "phase_1",
+      "habits": [
+        "poor_posture",
+        "picky_eater"
+      ],
+      "cognitiveAxes": [
+        "math_logic"
+      ],
+      "region": "경기 남부(분당·수원·용인·동탄)",
+      "kdcaPercentile": 58.1,
+      "zScore": 0.2,
+      "mph": 163,
+      "unmanagedHeight": 160.8,
+      "optimizedHeight": 168.4,
+      "potentialGainCm": 7.6
+    },
+    {
+      "id": "COHORT-SEED-103",
+      "timestamp": "2026-10-20T18:40:00Z",
+      "targetSubject": "child",
+      "gender": "boy",
+      "birthDateStr": "2016-10-15",
+      "exactMonths": 120.2,
+      "ageYears": 10,
+      "currentHeight": 137,
+      "currentWeight": 35.5,
+      "recentGrowth6m": 3.2,
+      "fatherHeight": 173.5,
+      "motherHeight": 160.5,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "poor_posture"
+      ],
+      "cognitiveAxes": [
+        "science_nature",
+        "executive_focus"
+      ],
+      "region": "서울 강북·마포·용산",
+      "kdcaPercentile": 46.5,
+      "zScore": -0.09,
+      "mph": 173.5,
+      "unmanagedHeight": 171.3,
+      "optimizedHeight": 180.7,
+      "potentialGainCm": 9.4
+    },
+    {
+      "id": "COHORT-SEED-104",
+      "timestamp": "2026-10-20T21:12:00Z",
+      "targetSubject": "self",
+      "gender": "boy",
+      "birthDateStr": "2013-03-10",
+      "exactMonths": 163.4,
+      "ageYears": 13,
+      "currentHeight": 158.4,
+      "currentWeight": 52,
+      "recentGrowth6m": 4.4,
+      "fatherHeight": 174,
+      "motherHeight": 161,
+      "tannerPhase": "phase_2",
+      "habits": [
+        "late_sleep",
+        "night_carbs"
+      ],
+      "cognitiveAxes": [
+        "executive_focus"
+      ],
+      "region": "경기 북부·인천",
+      "kdcaPercentile": 49.2,
+      "zScore": -0.02,
+      "mph": 174,
+      "unmanagedHeight": 171.6,
+      "optimizedHeight": 179.8,
+      "potentialGainCm": 8.2
+    },
+    {
+      "id": "COHORT-SEED-105",
+      "timestamp": "2026-10-21T01:30:00Z",
+      "targetSubject": "self",
+      "gender": "girl",
+      "birthDateStr": "2010-06-18",
+      "exactMonths": 196.1,
+      "ageYears": 16,
+      "currentHeight": 160.2,
+      "currentWeight": 53.8,
+      "recentGrowth6m": 0.9,
+      "fatherHeight": 177,
+      "motherHeight": 164,
+      "tannerPhase": "phase_4",
+      "habits": [
+        "poor_posture",
+        "late_sleep"
+      ],
+      "cognitiveAxes": [
+        "language_reading",
+        "executive_focus"
+      ],
+      "region": "부산·경남",
+      "kdcaPercentile": 51.8,
+      "zScore": 0.05,
+      "mph": 164,
+      "unmanagedHeight": 161.8,
+      "optimizedHeight": 166.2,
+      "potentialGainCm": 4.4
+    }
+  ]
+}

@@ -759,13 +759,13 @@
         }
         if (stateEl) {
           if (data.state === 'running') {
-            stateEl.textContent = data.isRestPhase ? 'REST INTERVAL (휴식 중)' : 'RUNNING (진행 중)';
+            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? (data.isRestPhase ? 'REST INTERVAL' : 'RUNNING') : (data.isRestPhase ? 'REST INTERVAL (휴식 중)' : 'RUNNING (진행 중)');
             stateEl.style.color = data.isRestPhase ? 'var(--amber-caution)' : 'var(--rose-alert)';
           } else if (data.state === 'paused') {
-            stateEl.textContent = 'PAUSED (일시정지)';
+            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'PAUSED' : 'PAUSED (일시정지)';
             stateEl.style.color = 'var(--amber-caution)';
           } else if (data.state === 'completed') {
-            stateEl.textContent = 'COMPLETED (완료)';
+            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'COMPLETED' : 'COMPLETED (완료)';
             stateEl.style.color = 'var(--bio-emerald)';
           } else {
             stateEl.textContent = 'READY TO START';
@@ -773,7 +773,7 @@
           }
         }
         if (setBadgeEl) {
-          setBadgeEl.innerHTML = `세트 <span class="current-set">${data.currentSet}</span> / ${data.totalSets}`;
+          setBadgeEl.innerHTML = `${(typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'Set' : '세트'} <span class="current-set">${data.currentSet}</span> / ${data.totalSets}`;
         }
       });
 

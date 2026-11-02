@@ -803,7 +803,7 @@ test('F10.6: Layer 4 Naver Cafe lock-in banner includes PDF worksheet free givea
 
 // Feature 11: Secret Admin Trigger & Storage Sync
 test('F11.1: URL ?admin=1 query parameter activates admin modal trigger', () => {
-  const url = 'https://truthofmarket.com/?admin=1';
+  const url = 'https://kisfitglobal.com/?admin=1';
   const hasAdmin = url.includes('admin=1');
   assert.strictEqual(hasAdmin, true);
 });

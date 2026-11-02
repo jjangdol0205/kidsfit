@@ -1,6 +1,6 @@
 /**
  * server.js
- * Production HTTP Server for KidsFit Growth Studio (https://truthofmarket.com)
+ * Production HTTP Server for KidsFit Growth Studio (https://kidsfit.co.kr)
  * Zero external dependencies. Designed for Render / cloud Node.js web service deployment.
  */
 
@@ -16,6 +16,7 @@ const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
 const ROOT_DIR = __dirname;
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
+const DIST_GLOBAL_DIR = path.join(ROOT_DIR, 'dist-global');
 
 // Load .env variables into process.env if present
 try {
@@ -136,7 +137,7 @@ function resolveSafeFile(baseDir, relPath) {
 // ============================================================================
 const VISITOR_ANALYTICS_PATH = path.join(ROOT_DIR, 'logs', 'visitor_analytics.json');
 const VISITOR_SNAPSHOT_PATH = path.join(ROOT_DIR, 'src', 'data', 'visitor-analytics-snapshot.json');
-const BOT_UA_REGEX = /(bot|crawler|spider|slurp|yeti|daumoa|mediapartners|facebookexternalhit|telegrambot|kakaotalk-scrap|curl|python|headless|monitor|uptime)/i;
+const BOT_UA_REGEX = /(bot|crawler|spider|slurp|yeti|daumoa|mediapartners|facebookexternalhit|telegrambot|kakaotalk-scrap|curl|python|headless|monitor|uptime|kidsfit|auditor|advisor|ia_archiver|archive\.org|wayback|indexnow|preview|fetcher|go-http-client|axios|okhttp|lighthouse|pagespeed|phantomjs)/i;
 const recentPageviewMap = new Map();
 
 function getKstDateString(offsetDays = 0) {
@@ -162,6 +163,11 @@ function createEmptyDayBucket(dateStr) {
     },
     diagnoses: { total: 0, growth: 0, learning: 0 },
     affiliateClicks: 0,
+    productClicks: {
+      growth: 0,
+      learning: 0,
+      byReferrer: {}
+    },
     bots: 0
   };
 }
@@ -173,6 +179,11 @@ let visitorStats = {
     pv: 0,
     diagnoses: { total: 0, growth: 0, learning: 0 },
     affiliateClicks: 0,
+    productClicks: {
+      growth: 0,
+      learning: 0,
+      byReferrer: {}
+    },
     bots: 0
   },
   daily: {}
@@ -198,6 +209,25 @@ function mergeDayBucket(target, src) {
     target.diagnoses.growth = Math.max(target.diagnoses.growth || 0, src.diagnoses.growth || 0);
     target.diagnoses.learning = Math.max(target.diagnoses.learning || 0, src.diagnoses.learning || 0);
   }
+  if (src.productClicks && typeof src.productClicks === 'object') {
+    if (!target.productClicks) target.productClicks = { growth: 0, learning: 0, byReferrer: {} };
+    target.productClicks.growth = Math.max(target.productClicks.growth || 0, src.productClicks.growth || 0);
+    target.productClicks.learning = Math.max(target.productClicks.learning || 0, src.productClicks.learning || 0);
+    if (src.productClicks.byReferrer && typeof src.productClicks.byReferrer === 'object') {
+      if (!target.productClicks.byReferrer) target.productClicks.byReferrer = {};
+      Object.keys(src.productClicks.byReferrer).forEach((r) => {
+        if (!target.productClicks.byReferrer[r]) target.productClicks.byReferrer[r] = { growth: 0, learning: 0 };
+        target.productClicks.byReferrer[r].growth = Math.max(
+          target.productClicks.byReferrer[r].growth || 0,
+          src.productClicks.byReferrer[r].growth || 0
+        );
+        target.productClicks.byReferrer[r].learning = Math.max(
+          target.productClicks.byReferrer[r].learning || 0,
+          src.productClicks.byReferrer[r].learning || 0
+        );
+      });
+    }
+  }
   return target;
 }
 
@@ -220,19 +250,32 @@ function mergeDayBucket(target, src) {
             visitorStats.total.diagnoses.growth = Math.max(visitorStats.total.diagnoses.growth || 0, loaded.total.diagnoses.growth || 0);
             visitorStats.total.diagnoses.learning = Math.max(visitorStats.total.diagnoses.learning || 0, loaded.total.diagnoses.learning || 0);
           }
+          if (loaded.total.productClicks) {
+            if (!visitorStats.total.productClicks) visitorStats.total.productClicks = { growth: 0, learning: 0, byReferrer: {} };
+            visitorStats.total.productClicks.growth = Math.max(visitorStats.total.productClicks.growth || 0, loaded.total.productClicks.growth || 0);
+            visitorStats.total.productClicks.learning = Math.max(visitorStats.total.productClicks.learning || 0, loaded.total.productClicks.learning || 0);
+          }
         }
         // Ensure total.diagnoses is at least the sum of daily.diagnoses
         let sumDiagTotal = 0, sumDiagGrowth = 0, sumDiagLearning = 0;
+        let sumProdGrowth = 0, sumProdLearning = 0;
         Object.values(visitorStats.daily).forEach((dBucket) => {
           if (dBucket && dBucket.diagnoses) {
             sumDiagTotal += (dBucket.diagnoses.total || 0);
             sumDiagGrowth += (dBucket.diagnoses.growth || 0);
             sumDiagLearning += (dBucket.diagnoses.learning || 0);
           }
+          if (dBucket && dBucket.productClicks) {
+            sumProdGrowth += (dBucket.productClicks.growth || 0);
+            sumProdLearning += (dBucket.productClicks.learning || 0);
+          }
         });
         visitorStats.total.diagnoses.total = Math.max(visitorStats.total.diagnoses.total || 0, sumDiagTotal);
         visitorStats.total.diagnoses.growth = Math.max(visitorStats.total.diagnoses.growth || 0, sumDiagGrowth);
         visitorStats.total.diagnoses.learning = Math.max(visitorStats.total.diagnoses.learning || 0, sumDiagLearning);
+        if (!visitorStats.total.productClicks) visitorStats.total.productClicks = { growth: 0, learning: 0, byReferrer: {} };
+        visitorStats.total.productClicks.growth = Math.max(visitorStats.total.productClicks.growth || 0, sumProdGrowth);
+        visitorStats.total.productClicks.learning = Math.max(visitorStats.total.productClicks.learning || 0, sumProdLearning);
       }
     }
   } catch (_) {}
@@ -284,7 +327,11 @@ function recordVisitorPageview(req, customRef) {
     const todayStr = getKstDateString(0);
     const day = ensureDayBucket(todayStr);
 
-    if (BOT_UA_REGEX.test(ua)) {
+    const acceptHdr = String(req.headers['accept'] || '');
+    const langHdr = String(req.headers['accept-language'] || '');
+    const isLikelyAutomatedGet = req.method === 'GET' && (!langHdr || !acceptHdr.includes('text/html'));
+
+    if (BOT_UA_REGEX.test(ua) || isLikelyAutomatedGet) {
       day.bots = (day.bots || 0) + 1;
       visitorStats.total.bots = (visitorStats.total.bots || 0) + 1;
       saveVisitorStats();
@@ -332,10 +379,14 @@ function recordDiagnosisEvent(mode) {
   try {
     const todayStr = getKstDateString(0);
     const day = ensureDayBucket(todayStr);
-    const isLearning = mode === 'learning';
     day.diagnoses.total += 1;
     visitorStats.total.diagnoses.total += 1;
-    if (isLearning) {
+    if (mode === 'both') {
+      day.diagnoses.growth += 1;
+      day.diagnoses.learning += 1;
+      visitorStats.total.diagnoses.growth += 1;
+      visitorStats.total.diagnoses.learning += 1;
+    } else if (mode === 'learning') {
       day.diagnoses.learning += 1;
       visitorStats.total.diagnoses.learning += 1;
     } else {
@@ -346,14 +397,198 @@ function recordDiagnosisEvent(mode) {
   } catch (_) {}
 }
 
-function recordAffiliateClickEvent() {
+const recentAffiliateClickMap = new Map();
+
+function classifyAffiliatePlatform(hrefStr) {
+  const h = String(hrefStr || '').toLowerCase();
+  if (h.includes('lemonsqueezy')) return 'Lemon Squeezy 글로벌 결제 ($8.99/$19.99)';
+  if (h.includes('coupang') || h.includes('/api/coupang')) return '쿠팡 파트너스 (AF7865143)';
+  if (h.includes('yes24') || h.includes('linkprice') || h.includes('11st')) return '링크프라이스·YES24/11번가 (A100708867)';
+  if (h.includes('iherb')) return '아이허브 (IPZ1547)';
+  if (h.includes('amazon')) return '아마존 (kidfit-20)';
+  if (h.includes('myrealtrip')) return '마이리얼트립 (6226316)';
+  if (h.includes('klook') || h.includes('/api/klook')) return '클룩 Klook (140161)';
+  if (h.includes('adpick') || h.includes('kkday') || h.includes('/api/adpick')) return '애드픽 쇼핑메이트 (4d31d3)';
+  if (h.includes('naver.me')) return '네이버 브랜드커넥트';
+  if (h.includes('iryan.kr')) return '텐핑 (유아교육전·베이비페어)';
+  return '제휴 큐레이션 상품';
+}
+
+function sendInstantPurchaseClickTelegram(clickRecord, dayStats, totalStats) {
   try {
+    const botToken = process.env.TELEGRAM_BOT_TOKEN || '';
+    const chatId = process.env.TELEGRAM_CHAT_ID || '755033799';
+    if (!botToken || !chatId) return false;
+
+    const catLabel = clickRecord.category === 'learning'
+      ? '🧠 두뇌·학습·교구·나들이'
+      : clickRecord.category === 'global_paywall'
+      ? '🌎 영문판 유료 리포트 결제창'
+      : '📏 신체 성장·영양·바른자세';
+
+    const msgLines = [
+      `🛒 <b>[실시간 구매·제휴상품 버튼 클릭 발생!]</b>`,
+      `━━━━━━━━━━━━━━━━━━`,
+      `⏰ <b>클릭 시각</b>: <code>${clickRecord.timestampKst}</code>`,
+      `🌐 <b>도메인</b>: <code>${clickRecord.domain}</code>`,
+      `📂 <b>영역</b>: <b>${catLabel}</b>`,
+      `🏷 <b>클릭한 상품/버튼</b>: <b>${sanitizeText(clickRecord.productName || '추천 제휴 상품 버튼', 100)}</b>`,
+      `🛍 <b>연결 제휴사</b>: <code>${clickRecord.platform}</code>`,
+      `🤖 <b>강화학습(RL) 보상</b>: <b>+${clickRecord.rlReward || 33.0} pt</b> (<code>${clickRecord.rlArmId || 'growth'}</code> · <code>${clickRecord.rlCtaArm || 'arm_rocket_review'}</code> 정책 가중치 즉시 강화!)`,
+      `📱 <b>접속 기기 / 유입경로</b>: ${clickRecord.device === 'mobile' ? '📱 모바일' : '💻 PC'} / <code>${clickRecord.utmSource}</code>`,
+      `━━━━━━━━━━━━━━━━━━`,
+      `📊 <b>오늘 누적 구매버튼 클릭</b>: <b>${dayStats.affiliateClicks || 1}건</b> (신체성장 ${dayStats.productClicks.growth || 0}건 / 두뇌학습 ${dayStats.productClicks.learning || 0}건)`,
+      `📈 <b>전체 누적 구매버튼 클릭</b>: <b>${totalStats.affiliateClicks || 1}건</b> (오늘 방문자 UV ${dayStats.uv || 0}명 · 진단완료 ${(dayStats.diagnoses && dayStats.diagnoses.total) || 0}건)`
+    ];
+
+    const postData = Buffer.from(JSON.stringify({
+      chat_id: chatId,
+      text: msgLines.join('\n'),
+      parse_mode: 'HTML',
+      disable_web_page_preview: true
+    }), 'utf8');
+
+    const req = https.request({
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: `/bot${botToken}/sendMessage`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Length': postData.length
+      }
+    }, (res) => { res.resume(); });
+    req.on('error', () => {});
+    req.write(postData);
+    req.end();
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function recordAffiliateClickEvent(category, utmSource, details = {}) {
+  try {
+    const req = details.req || null;
+    const ua = req ? String(req.headers['user-agent'] || '') : '';
+    if (ua && BOT_UA_REGEX.test(ua) && !details.forceNotify) {
+      return null;
+    }
+
+    const ip = req ? getClientIp(req) : '0.0.0.0';
+    const href = sanitizeText(details.href || '', 240);
+    const productName = sanitizeText(details.productName || details.query || '', 100);
+    const dedupKey = `${ip}|${category || 'growth'}`;
+    const now = Date.now();
+    const prev = recentAffiliateClickMap.get(dedupKey);
+    if (prev && (now - prev.time < 2500)) {
+      if (productName && (!prev.record.productName || prev.record.productName === '추천 제휴 상품 바로가기')) {
+        prev.record.productName = productName;
+        saveVisitorStats();
+      }
+      return prev.record;
+    }
+
     const todayStr = getKstDateString(0);
     const day = ensureDayBucket(todayStr);
     day.affiliateClicks = (day.affiliateClicks || 0) + 1;
     visitorStats.total.affiliateClicks = (visitorStats.total.affiliateClicks || 0) + 1;
+
+    const catKey = category === 'learning' ? 'learning' : 'growth';
+    const refKey = utmSource || 'direct';
+
+    if (!day.productClicks) day.productClicks = { growth: 0, learning: 0, byReferrer: {} };
+    if (typeof day.productClicks.growth !== 'number') day.productClicks.growth = 0;
+    if (typeof day.productClicks.learning !== 'number') day.productClicks.learning = 0;
+    if (!day.productClicks.byReferrer || typeof day.productClicks.byReferrer !== 'object') day.productClicks.byReferrer = {};
+
+    day.productClicks[catKey] += 1;
+    if (!day.productClicks.byReferrer[refKey]) day.productClicks.byReferrer[refKey] = { growth: 0, learning: 0 };
+    day.productClicks.byReferrer[refKey][catKey] = (day.productClicks.byReferrer[refKey][catKey] || 0) + 1;
+
+    if (!visitorStats.total.productClicks) visitorStats.total.productClicks = { growth: 0, learning: 0, byReferrer: {} };
+    if (typeof visitorStats.total.productClicks.growth !== 'number') visitorStats.total.productClicks.growth = 0;
+    if (typeof visitorStats.total.productClicks.learning !== 'number') visitorStats.total.productClicks.learning = 0;
+    if (!visitorStats.total.productClicks.byReferrer || typeof visitorStats.total.productClicks.byReferrer !== 'object') visitorStats.total.productClicks.byReferrer = {};
+
+    visitorStats.total.productClicks[catKey] += 1;
+    if (!visitorStats.total.productClicks.byReferrer[refKey]) visitorStats.total.productClicks.byReferrer[refKey] = { growth: 0, learning: 0 };
+    visitorStats.total.productClicks.byReferrer[refKey][catKey] = (visitorStats.total.productClicks.byReferrer[refKey][catKey] || 0) + 1;
+
+    const kstIso = new Date(now + 9 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' KST';
+    const isMobile = /(Mobile|Android|iPhone|iPad|iPod)/i.test(ua);
+    const reqHost = req ? String(req.headers['x-forwarded-host'] || req.headers.host || 'kidsfit.co.kr') : 'kidsfit.co.kr';
+    const clickRecord = {
+      id: `CLK-${now}-${Math.floor(Math.random() * 899 + 100)}`,
+      timestampKst: kstIso,
+      category: category || 'growth',
+      platform: classifyAffiliatePlatform(href || details.platformHint || ''),
+      productName: productName || '추천 제휴 상품 바로가기',
+      href: href || '',
+      utmSource: refKey,
+      device: isMobile ? 'mobile' : 'desktop',
+      domain: sanitizeText(details.domain || reqHost, 60),
+      notifiedByServer: false
+    };
+
+    clickRecord.rlArmId = sanitizeText(details.rlArmId || (catKey === 'learning' ? 'cognitive_learning_problem_solver' : 'growth_nutrition_repeat_cart'), 60);
+    clickRecord.rlCtaArm = sanitizeText(details.rlCtaArm || 'arm_rocket_review', 60);
+    clickRecord.rlReward = Number(details.rlReward) || 33.0;
+    clickRecord.sessionClicks = Number(details.sessionClicks) || 1;
+    try {
+      const rlPolicyPath = path.join(ROOT_DIR, 'src', 'data', 'coupang-rl-policy.json');
+      if (fs.existsSync(rlPolicyPath)) {
+        const rlPolicy = JSON.parse(fs.readFileSync(rlPolicyPath, 'utf8'));
+        if (rlPolicy && rlPolicy.category_arms && rlPolicy.category_arms[clickRecord.rlArmId]) {
+          const cArm = rlPolicy.category_arms[clickRecord.rlArmId];
+          cArm.clicks = (Number(cArm.clicks) || 0) + 1;
+          cArm.alpha = Number(((Number(cArm.alpha) || 30) + (clickRecord.rlReward / 8.0)).toFixed(2));
+          cArm.cumulative_reward = Number(((Number(cArm.cumulative_reward) || 0) + clickRecord.rlReward).toFixed(1));
+        }
+        if (rlPolicy && rlPolicy.cta_arms && rlPolicy.cta_arms[clickRecord.rlCtaArm]) {
+          const tArm = rlPolicy.cta_arms[clickRecord.rlCtaArm];
+          tArm.clicks = (Number(tArm.clicks) || 0) + 1;
+          tArm.alpha = Number(((Number(tArm.alpha) || 25) + (clickRecord.rlReward / 10.0)).toFixed(2));
+          tArm.cumulative_reward = Number(((Number(tArm.cumulative_reward) || 0) + clickRecord.rlReward).toFixed(1));
+        }
+        if (rlPolicy && rlPolicy.metadata) {
+          rlPolicy.metadata.total_episodes = (Number(rlPolicy.metadata.total_episodes) || 0) + 1;
+          rlPolicy.metadata.total_cumulative_reward = Number(((Number(rlPolicy.metadata.total_cumulative_reward) || 0) + clickRecord.rlReward).toFixed(1));
+          rlPolicy.metadata.last_updated_kst = kstIso;
+        }
+        if (!Array.isArray(rlPolicy.recent_reward_history)) rlPolicy.recent_reward_history = [];
+        rlPolicy.recent_reward_history.unshift({
+          timestampKst: kstIso,
+          armId: clickRecord.rlArmId,
+          ctaArm: clickRecord.rlCtaArm,
+          productName: clickRecord.productName,
+          reward: clickRecord.rlReward,
+          utmSource: clickRecord.utmSource
+        });
+        if (rlPolicy.recent_reward_history.length > 40) rlPolicy.recent_reward_history = rlPolicy.recent_reward_history.slice(0, 40);
+        fs.writeFileSync(rlPolicyPath, JSON.stringify(rlPolicy, null, 2), 'utf8');
+      }
+      const rlEventsPath = path.join(ROOT_DIR, 'logs', 'coupang_rl_events.jsonl');
+      fs.appendFileSync(rlEventsPath, JSON.stringify(clickRecord) + '\n', 'utf8');
+    } catch (_) {}
+    clickRecord.notifiedByServer = sendInstantPurchaseClickTelegram(clickRecord, day, visitorStats.total);
+
+    if (!Array.isArray(day.recentClicks)) day.recentClicks = [];
+    day.recentClicks.unshift(clickRecord);
+    if (day.recentClicks.length > 30) day.recentClicks = day.recentClicks.slice(0, 30);
+
+    if (!Array.isArray(visitorStats.total.recentClicks)) visitorStats.total.recentClicks = [];
+    visitorStats.total.recentClicks.unshift(clickRecord);
+    if (visitorStats.total.recentClicks.length > 50) visitorStats.total.recentClicks = visitorStats.total.recentClicks.slice(0, 50);
+
+    recentAffiliateClickMap.set(dedupKey, { time: now, record: clickRecord });
+    if (recentAffiliateClickMap.size > 1000) recentAffiliateClickMap.clear();
+
     saveVisitorStats();
-  } catch (_) {}
+    return clickRecord;
+  } catch (_) {
+    return null;
+  }
 }
 
 const server = http.createServer((req, res) => {
@@ -395,14 +630,16 @@ const server = http.createServer((req, res) => {
         referrers: b.referrers || {},
         diagnoses: b.diagnoses || { total: 0, growth: 0, learning: 0 },
         affiliateClicks: b.affiliateClicks || 0,
+        productClicks: b.productClicks || { growth: 0, learning: 0, byReferrer: {} },
+        recentClicks: Array.isArray(b.recentClicks) ? b.recentClicks.slice(0, 20) : [],
         bots: b.bots || 0
       });
 
       const payload = JSON.stringify({
         ok: true,
-        service: 'KidsFit Growth Studio (kidsfit.co.kr / truthofmarket.com)',
+        service: 'KidsFit Growth Studio (kidsfit.co.kr / kisfitglobal.com)',
         primaryDomain: 'https://kidsfit.co.kr',
-        domains: ['kidsfit.co.kr', 'www.kidsfit.co.kr', 'truthofmarket.com', 'www.truthofmarket.com'],
+        domains: ['kidsfit.co.kr', 'www.kidsfit.co.kr', 'kidsfit.kr', 'kisfitglobal.com'],
         version: '2.5.0',
         timestamp: new Date().toISOString(),
         analytics: {
@@ -421,6 +658,18 @@ const server = http.createServer((req, res) => {
       return;
     }
 
+    // 1-RL. Coupang Partners Reinforcement Learning Policy Endpoint (/api/rl-policy)
+    if (pathname === '/api/rl-policy') {
+      const rlPolicyPath = path.join(ROOT_DIR, 'src', 'data', 'coupang-rl-policy.json');
+      let rlPolicy = {};
+      try {
+        if (fs.existsSync(rlPolicyPath)) rlPolicy = JSON.parse(fs.readFileSync(rlPolicyPath, 'utf8'));
+      } catch (_) {}
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({ ok: true, policy: rlPolicy }));
+      return;
+    }
+
     // 1-0. Client Beacon Endpoint (/api/visit) for accurate referrer & funnel events
     if (pathname === '/api/visit') {
       if (req.method === 'POST') {
@@ -432,8 +681,20 @@ const server = http.createServer((req, res) => {
             const ev = String(data.event || 'pageview');
             if (ev === 'diagnosis') {
               recordDiagnosisEvent(data.mode || 'growth');
-            } else if (ev === 'affiliate_click') {
-              recordAffiliateClickEvent();
+            } else if (ev === 'affiliate_click' || ev === 'growth_product_click' || ev === 'learning_product_click') {
+              const category = data.category || (ev === 'learning_product_click' ? 'learning' : 'growth');
+              const utmSource = data.utm_source || 'direct';
+              recordAffiliateClickEvent(category, utmSource, {
+                req,
+                href: data.href || '',
+                productName: data.product_name || data.productName || '',
+                domain: data.domain || '',
+                rlArmId: data.rl_arm_id || '',
+                rlCtaArm: data.rl_cta_arm || '',
+                rlSlotRank: Number(data.rl_slot_rank) || 1,
+                rlReward: Number(data.rl_reward) || 33.0,
+                sessionClicks: Number(data.session_clicks) || 1
+              });
             } else {
               recordVisitorPageview(req, data.referrer || '');
             }
@@ -496,13 +757,14 @@ const server = http.createServer((req, res) => {
               tannerPhase: String(incoming.tannerPhase || 'phase_2'),
               habits: Array.isArray(incoming.habits) ? incoming.habits.slice(0, 5) : ['late_sleep'],
               cognitiveAxes: Array.isArray(incoming.cognitiveAxes) ? incoming.cognitiveAxes.slice(0, 5) : ['science_nature'],
-              region: String(incoming.region || '서울 강남·서초·송파'),
+              region: String(incoming.region || 'United States — Northeast (NY · NJ · MA · PA)'),
               kdcaPercentile: Number(incoming.kdcaPercentile) || 50.0,
               zScore: Number(incoming.zScore) || 0.0,
               mph: Number(incoming.mph) || 173.5,
               unmanagedHeight: Number(incoming.unmanagedHeight) || 171.2,
               optimizedHeight: Number(incoming.optimizedHeight) || 180.5,
               potentialGainCm: Number(incoming.potentialGainCm) || 7.2,
+              isOwnerTest: Boolean(incoming.isOwnerTest),
               parentFreeNote: sanitizeText(incoming.parentFreeNote, 1000)
             };
 
@@ -528,7 +790,9 @@ const server = http.createServer((req, res) => {
               fs.writeFileSync(cohortDbPath, JSON.stringify(cohortDb, null, 2), 'utf8');
             } catch (_) {}
 
-            recordDiagnosisEvent(incoming.preferredReportMode || 'growth');
+            if (!incoming.isOwnerTest) {
+              recordDiagnosisEvent(incoming.preferredReportMode || 'growth');
+            }
 
             res.writeHead(200, {
               'Content-Type': 'application/json; charset=utf-8',
@@ -692,7 +956,8 @@ const server = http.createServer((req, res) => {
 
     // 1-B. Coupang Partners Redirect & Search Proxy Route
     if (pathname === '/api/coupang') {
-      recordAffiliateClickEvent();
+      const cat = parsedUrl.searchParams.get('cat') || parsedUrl.searchParams.get('category') || 'growth';
+      const utm = parsedUrl.searchParams.get('utm_source') || 'direct';
       const q = parsedUrl.searchParams.get('q') || 
                 parsedUrl.searchParams.get('kw') || 
                 parsedUrl.searchParams.get('keyword') || '';
@@ -719,6 +984,8 @@ const server = http.createServer((req, res) => {
         }));
         return;
       }
+
+      recordAffiliateClickEvent(cat, utm, { req, href: redirectUrl, query: q || '쿠팡 추천 상품', platformHint: 'coupang' });
 
       // HTTP 302 Found Redirect
       res.writeHead(302, {
@@ -775,6 +1042,8 @@ const server = http.createServer((req, res) => {
 
     // 1-D. Klook Affiliate Dynamic Redirect Proxy (/api/klook)
     if (pathname === '/api/klook') {
+      const cat = parsedUrl.searchParams.get('cat') || parsedUrl.searchParams.get('category') || 'learning';
+      const utm = parsedUrl.searchParams.get('utm_source') || 'direct';
       const aid = parsedUrl.searchParams.get('aid') || '140161';
       const adid = parsedUrl.searchParams.get('aff_adid') || '1514603';
       const q = parsedUrl.searchParams.get('q') || '';
@@ -790,6 +1059,8 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({ ok: true, aid, aff_adid: adid, k_site: kSite, redirectUrl }));
         return;
       }
+
+      recordAffiliateClickEvent(cat, utm, { req, href: redirectUrl, query: q || '클룩 주말 체험 티켓', platformHint: 'klook' });
 
       res.writeHead(302, { 'Location': redirectUrl, 'X-Robots-Tag': 'noindex, nofollow', ...NO_CACHE_HEADERS });
       res.end(`Redirecting to Klook Affiliate: ${redirectUrl}`);
@@ -837,10 +1108,12 @@ const server = http.createServer((req, res) => {
 
     // 1-F. Adpick Campaign & Shopping JSON API Proxy with 60-Second Cache (/api/adpick/offers & /api/adpick/go)
     if (pathname === '/api/adpick/go') {
-      recordAffiliateClickEvent();
+      const cat = parsedUrl.searchParams.get('cat') || parsedUrl.searchParams.get('category') || 'learning';
+      const utm = parsedUrl.searchParams.get('utm_source') || 'direct';
       const affid = parsedUrl.searchParams.get('affid') || process.env.ADPICK_AFFID || '4d31d3';
       const mall = (parsedUrl.searchParams.get('mall') || '11st').toLowerCase();
       const q = parsedUrl.searchParams.get('q') || '';
+      recordAffiliateClickEvent(cat, utm, { req, href: req.url, query: q || `${mall} 추천 상품`, platformHint: mall === '11st' ? 'linkprice' : 'adpick' });
       if (mall === '11st') {
         const st11Target = `https://search.11st.co.kr/pc/total-search?kwd=${encodeURIComponent(q || '어린이 영양제')}`;
         const redirectUrl = `https://click.linkprice.com/click.php?m=11st&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(st11Target)}`;
@@ -913,18 +1186,20 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify({
         ok: true,
         storeId: Number(process.env.LEMONSQUEEZY_STORE_ID || 296100),
-        storeName: 'KIDS-FIT Global Studio',
+        storeName: 'KISFIT Bio Labs',
         accountHolder: process.env.LEMONSQUEEZY_ACCOUNT_HOLDER || '이윤주 (Yoonju Lee)',
         storeUrl: 'https://truthofmarket.lemonsqueezy.com',
         currency: 'USD',
         products: {
           singlePass: {
             productId: Number(process.env.LEMONSQUEEZY_SINGLE_PRODUCT_ID || 1468224),
+            variantId: Number(process.env.LEMONSQUEEZY_SINGLE_VARIANT_ID || 2289754),
             priceUsd: 8.99,
             checkoutUrl: process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599'
           },
           trackerPass: {
             productId: Number(process.env.LEMONSQUEEZY_TRACKER_PRODUCT_ID || 1468243),
+            variantId: Number(process.env.LEMONSQUEEZY_TRACKER_VARIANT_ID || 2289779),
             priceUsd: 19.99,
             checkoutUrl: process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895'
           }
@@ -932,6 +1207,212 @@ const server = http.createServer((req, res) => {
         webhookId: Number(process.env.LEMONSQUEEZY_WEBHOOK_ID || 145796)
       }));
       return;
+    }
+
+    // 1-H. Lemon Squeezy Live Checkout Creation, Order Verification, Auto-Provisioning & Member Authentication
+    const usersDbPath = path.join(ROOT_DIR, 'logs', 'users_db.json');
+    const ordersLogPath = path.join(ROOT_DIR, 'logs', 'lemonsqueezy_orders.jsonl');
+    const authSecret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET || 'kf_ls_whsec_2026_truthofmarket';
+    const lsApiKey = process.env.LEMONSQUEEZY_API_KEY || '';
+
+    function loadUsersDb() {
+      try {
+        if (fs.existsSync(usersDbPath)) {
+          const parsed = JSON.parse(fs.readFileSync(usersDbPath, 'utf8'));
+          if (parsed && Array.isArray(parsed.users)) return parsed;
+        }
+      } catch (_) {}
+      return { users: [] };
+    }
+
+    function saveUsersDb(db) {
+      try {
+        fs.mkdirSync(path.dirname(usersDbPath), { recursive: true });
+        fs.writeFileSync(usersDbPath, JSON.stringify(db, null, 2) + '\n', 'utf8');
+      } catch (_) {}
+    }
+
+    function createAuthToken(email) {
+      const crypto = require('crypto');
+      const norm = String(email || '').trim().toLowerCase();
+      const sig = crypto.createHmac('sha256', authSecret).update(norm).digest('hex').slice(0, 32);
+      return Buffer.from(`${norm}:${sig}`, 'utf8').toString('base64');
+    }
+
+    function verifyAuthToken(token) {
+      try {
+        const crypto = require('crypto');
+        const decoded = Buffer.from(String(token || ''), 'base64').toString('utf8');
+        const idx = decoded.lastIndexOf(':');
+        if (idx === -1) return null;
+        const email = decoded.slice(0, idx);
+        const sig = decoded.slice(idx + 1);
+        const expected = crypto.createHmac('sha256', authSecret).update(email).digest('hex').slice(0, 32);
+        return sig === expected ? email : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function detectOrderPlanType(orderEntry) {
+      if (!orderEntry) return 'single';
+      const totalStr = String(orderEntry.totalUsd || '');
+      const vId = String(orderEntry.variantId || '');
+      const pId = String(orderEntry.productId || '');
+      const pName = String(orderEntry.productName || '').toLowerCase();
+      if (
+        totalStr.includes('19.99') ||
+        totalStr.includes('1999') ||
+        vId === '2289779' ||
+        pId === '1468243' ||
+        pName.includes('6-month') ||
+        pName.includes('tracker') ||
+        orderEntry.planType === 'pass'
+      ) {
+        return 'pass';
+      }
+      return 'single';
+    }
+
+    function provisionPaidOrderAndNotify(orderEntry, notifyTelegram = true) {
+      if (!orderEntry) return null;
+      const normEmail = String(orderEntry.email || '').trim().toLowerCase();
+      const orderId = String(orderEntry.orderId || ('ORD-' + Date.now())).trim();
+      const planType = detectOrderPlanType(orderEntry);
+      const isPass = planType === 'pass';
+      const rlReward = isPass ? 100.0 : 45.0;
+      const nowIso = new Date().toISOString();
+      const kstIso = new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' KST';
+      const expiresAt = new Date(Date.now() + (isPass ? 180 : 365) * 86400 * 1000).toISOString();
+
+      // 1. Auto-Provision / Unlock Member Account in users_db.json
+      const db = loadUsersDb();
+      let user = normEmail ? db.users.find(u => u.email === normEmail) : null;
+      let newlyUnlocked = false;
+      if (normEmail) {
+        if (!user) {
+          const crypto = require('crypto');
+          const salt = crypto.randomBytes(16).toString('hex');
+          const defaultPass = 'VIP2026';
+          const passwordHash = crypto.pbkdf2Sync(defaultPass, salt, 10000, 32, 'sha256').toString('hex');
+          user = {
+            id: 'usr_' + Date.now().toString(36),
+            name: normEmail.split('@')[0],
+            email: normEmail,
+            salt,
+            passwordHash,
+            unlockedPass: true,
+            planType,
+            lastOrderId: orderId,
+            unlockedAt: nowIso,
+            expiresAt,
+            autoProvisioned: true,
+            childProfiles: [],
+            createdAt: nowIso
+          };
+          db.users.push(user);
+          newlyUnlocked = true;
+          saveUsersDb(db);
+        } else if (!user.unlockedPass || user.lastOrderId !== orderId || user.planType !== planType) {
+          user.unlockedPass = true;
+          user.planType = planType;
+          user.lastOrderId = orderId;
+          user.unlockedAt = nowIso;
+          user.expiresAt = expiresAt;
+          newlyUnlocked = true;
+          saveUsersDb(db);
+        }
+      }
+
+      const magicUnlockUrl = normEmail
+        ? `https://kisfitglobal.com/?unlock=1&payment=success&email=${encodeURIComponent(normEmail)}&order_id=${encodeURIComponent(orderId)}&plan=${planType}`
+        : `https://kisfitglobal.com/?unlock=1&payment=success&order_id=${encodeURIComponent(orderId)}&plan=${planType}`;
+
+      // 2. Reinforce Paid-Member Revenue RL Policy (dist-global & src/data)
+      if (newlyUnlocked) {
+        [
+          path.join(DIST_GLOBAL_DIR, 'src', 'data', 'rl-paid-conversion-policy.json'),
+          path.join(ROOT_DIR, 'src', 'data', 'rl-paid-conversion-policy.json')
+        ].forEach((rlPath) => {
+          try {
+            if (fs.existsSync(rlPath)) {
+              const pol = JSON.parse(fs.readFileSync(rlPath, 'utf8'));
+              if (pol && pol.global_metrics) {
+                if (isPass) {
+                  pol.global_metrics.orders_pass_1999 = (Number(pol.global_metrics.orders_pass_1999) || 0) + 1;
+                  pol.global_metrics.estimated_revenue_usd = Number(((Number(pol.global_metrics.estimated_revenue_usd) || 0) + 19.99).toFixed(2));
+                } else {
+                  pol.global_metrics.orders_single_899 = (Number(pol.global_metrics.orders_single_899) || 0) + 1;
+                  pol.global_metrics.estimated_revenue_usd = Number(((Number(pol.global_metrics.estimated_revenue_usd) || 0) + 8.99).toFixed(2));
+                }
+                pol.global_metrics.total_reward_points = Number(((Number(pol.global_metrics.total_reward_points) || 0) + rlReward).toFixed(1));
+              }
+              if (pol && pol.paywall_arms && pol.paywall_arms.A1_CLINIC_ANCHOR_PASS_FIRST) {
+                const arm = pol.paywall_arms.A1_CLINIC_ANCHOR_PASS_FIRST;
+                arm.paid_orders = (Number(arm.paid_orders) || 0) + 1;
+                arm.total_reward = Number(((Number(arm.total_reward) || 0) + rlReward).toFixed(1));
+              }
+              fs.writeFileSync(rlPath, JSON.stringify(pol, null, 2) + '\n', 'utf8');
+            }
+          } catch (_) {}
+        });
+      }
+
+      // 3. Send Real-Time Paid Order & Auto-Progression Report to Owner's Telegram (Chat ID 755033799)
+      if (notifyTelegram && newlyUnlocked) {
+        try {
+          const botToken = process.env.TELEGRAM_BOT_TOKEN || '';
+          const chatId = process.env.TELEGRAM_CHAT_ID || '755033799';
+          if (botToken && chatId) {
+            const planLabelKo = isPass
+              ? '💎 $19.99 USD — 6개월 무제한 성장·두뇌 케어 패스 (180일 무제한 재진단)'
+              : '📄 $8.99 USD — 단건 정밀 임상 리포트 & 2페이지 PDF 패스';
+            const msgLines = [
+              `🎉 <b>[KISFIT 글로벌 유료 결제 발생 &amp; 전 과정 자동 진행 완료!]</b>`,
+              `━━━━━━━━━━━━━━━━━━`,
+              `⏰ <b>결제 시각</b>: <code>${kstIso}</code>`,
+              `👤 <b>구매 고객 이메일</b>: <code>${sanitizeText(normEmail || '비회원/이메일미상', 80)}</code>`,
+              `🏷 <b>결제 플랜</b>: <b>${planLabelKo}</b>`,
+              `🧾 <b>주문 번호(Order ID)</b>: <code>#${sanitizeText(orderId, 40)}</code>`,
+              `💵 <b>결제 금액</b>: <b>${sanitizeText(orderEntry.totalUsd || (isPass ? '$19.99' : '$8.99'), 30)}</b>`,
+              `━━━━━━━━━━━━━━━━━━`,
+              `⚙️ <b>[서버 자율 매니저 자동 후속 조치 완료 내역]</b>`,
+              `1️⃣ <b>회원 DB 자동 승격</b>: <code>users_db.json</code> 내 <code>${sanitizeText(normEmail || orderId, 60)}</code> 계정 <b>PRO 권한(unlockedPass=true)</b> 즉시 부여 완료`,
+              `2️⃣ <b>리포트 &amp; PDF 자동 잠금 해제</b>: 01~05 전체 정밀 처방 + 병원용 2페이지 인쇄용 PDF 즉시 오픈`,
+              `3️⃣ <b>플랜별 맞춤 진행 세팅</b>: ${isPass ? '6개월(180일) 월별 키·두뇌 재진단 트래커 활성화 완료' : '단건 정밀 처방 및 영구 열람 매직링크 발급 완료'}`,
+              `4️⃣ <b>유료전환 강화학습(RL) 보상</b>: <b>+${rlReward} pt</b> 즉시 반영 완료`
+            ];
+            const postData = Buffer.from(JSON.stringify({
+              chat_id: chatId,
+              text: msgLines.join('\n'),
+              parse_mode: 'HTML',
+              disable_web_page_preview: true
+            }), 'utf8');
+            const tgReq = https.request({
+              hostname: 'api.telegram.org',
+              port: 443,
+              path: `/bot${botToken}/sendMessage`,
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Length': postData.length
+              }
+            }, (tgRes) => { tgRes.resume(); });
+            tgReq.on('error', () => {});
+            tgReq.write(postData);
+            tgReq.end();
+          }
+        } catch (_) {}
+      }
+
+      return {
+        user,
+        planType,
+        orderId,
+        expiresAt,
+        magicUnlockUrl,
+        token: normEmail ? createAuthToken(normEmail) : null
+      };
     }
 
     if (pathname === '/api/lemonsqueezy-webhook') {
@@ -950,27 +1431,48 @@ const server = http.createServer((req, res) => {
 
             const payload = JSON.parse(rawBody || '{}');
             const eventName = (payload.meta && payload.meta.event_name) || String(req.headers['x-event-name'] || 'unknown');
-            const orderLogPath = path.join(ROOT_DIR, 'logs', 'lemonsqueezy_orders.jsonl');
+            const attr = (payload.data && payload.data.attributes) || {};
+            const firstItem = attr.first_order_item || {};
             const entry = {
               timestamp: new Date().toISOString(),
               eventName,
               signatureValid: sigValid,
-              orderId: payload.data && payload.data.id ? payload.data.id : null,
-              email: payload.data && payload.data.attributes ? payload.data.attributes.user_email : null,
-              totalUsd: payload.data && payload.data.attributes ? payload.data.attributes.total_formatted : null,
-              status: payload.data && payload.data.attributes ? payload.data.attributes.status : null
+              orderId: payload.data && payload.data.id ? String(payload.data.id) : null,
+              email: attr.user_email ? String(attr.user_email).trim().toLowerCase() : null,
+              totalUsd: attr.total_formatted || null,
+              status: attr.status || null,
+              variantId: firstItem.variant_id || attr.variant_id || null,
+              productId: firstItem.product_id || attr.product_id || null,
+              productName: firstItem.product_name || ''
             };
+            entry.planType = detectOrderPlanType(entry);
             try {
-              fs.mkdirSync(path.dirname(orderLogPath), { recursive: true });
-              fs.appendFileSync(orderLogPath, JSON.stringify(entry) + '\n', 'utf8');
+              fs.mkdirSync(path.dirname(ordersLogPath), { recursive: true });
+              fs.appendFileSync(ordersLogPath, JSON.stringify(entry) + '\n', 'utf8');
             } catch (_) {}
 
-            if (eventName === 'order_created' || eventName === 'subscription_payment_success') {
-              recordAffiliateClickEvent();
+            let provisioned = null;
+            if (sigValid && (eventName === 'order_created' || eventName === 'subscription_payment_success' || entry.status === 'paid')) {
+              provisioned = provisionPaidOrderAndNotify(entry, true);
+              recordAffiliateClickEvent('global_paywall', 'lemonsqueezy_webhook', {
+                req,
+                productName: entry.planType === 'pass' ? 'PAID ORDER: $19.99 6-Month Pass' : 'PAID ORDER: $8.99 Single Pass',
+                href: 'https://kisfitglobal.com/en',
+                domain: 'kisfitglobal.com',
+                rlReward: entry.planType === 'pass' ? 100.0 : 45.0
+              });
             }
 
             res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
-            res.end(JSON.stringify({ ok: true, received: true, eventName, signatureValid: sigValid }));
+            res.end(JSON.stringify({
+              ok: true,
+              received: true,
+              eventName,
+              signatureValid: sigValid,
+              autoProvisioned: Boolean(provisioned),
+              planType: entry.planType,
+              magicUnlockUrl: provisioned ? provisioned.magicUnlockUrl : null
+            }));
           } catch (err) {
             res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
             res.end(JSON.stringify({ ok: false, error: 'Invalid webhook payload' }));
@@ -979,7 +1481,479 @@ const server = http.createServer((req, res) => {
         return;
       }
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
-      res.end(JSON.stringify({ ok: true, endpoint: '/api/lemonsqueezy-webhook', storeId: 296100 }));
+      res.end(JSON.stringify({ ok: true, endpoint: '/api/lemonsqueezy-webhook', storeId: 296100, autoProvisioning: true }));
+      return;
+    }
+
+    function findVerifiedOrderForEmailOrId(email, orderId) {
+      const normEmail = String(email || '').trim().toLowerCase();
+      const normOrder = String(orderId || '').trim();
+      try {
+        if (fs.existsSync(ordersLogPath)) {
+          const lines = fs.readFileSync(ordersLogPath, 'utf8').trim().split('\n').filter(Boolean);
+          for (let i = lines.length - 1; i >= 0; i--) {
+            try {
+              const row = JSON.parse(lines[i]);
+              if (!row || row.signatureValid === false) continue;
+              const isPaidEvent =
+                row.status === 'paid' ||
+                row.eventName === 'order_created' ||
+                row.eventName === 'subscription_payment_success' ||
+                row.eventName === 'api_live_verified';
+              if (!isPaidEvent) continue;
+              if (normOrder && String(row.orderId || '').trim() === normOrder) {
+                return row;
+              }
+              if (normEmail && String(row.email || '').trim().toLowerCase() === normEmail) {
+                return row;
+              }
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
+      return null;
+    }
+
+    function fetchLiveLemonSqueezyPaidOrder(email, orderId, cb) {
+      const normEmail = String(email || '').trim().toLowerCase();
+      const normOrder = String(orderId || '').trim();
+      if (!lsApiKey || (!normEmail && !normOrder)) return cb(null);
+      const queryPath = normEmail
+        ? `/v1/orders?filter[store_id]=296100&filter[user_email]=${encodeURIComponent(normEmail)}`
+        : `/v1/orders?filter[store_id]=296100`;
+      const lsReq = https.request({
+        hostname: 'api.lemonsqueezy.com',
+        path: queryPath,
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.api+json',
+          'Authorization': `Bearer ${lsApiKey}`
+        },
+        timeout: 6000
+      }, (lsRes) => {
+        let raw = '';
+        lsRes.on('data', c => { if (raw.length < 131072) raw += c.toString('utf8'); });
+        lsRes.on('end', () => {
+          try {
+            const parsed = JSON.parse(raw || '{}');
+            const list = Array.isArray(parsed.data) ? parsed.data : [];
+            for (const item of list) {
+              const attr = (item && item.attributes) || {};
+              const firstItem = attr.first_order_item || {};
+              const isPaid = attr.status === 'paid';
+              const itemEmail = String(attr.user_email || '').trim().toLowerCase();
+              const itemId = String(item.id || '');
+              const itemNum = String(attr.order_number || '');
+              if (isPaid && ((normEmail && itemEmail === normEmail) || (normOrder && (itemId === normOrder || itemNum === normOrder)))) {
+                const entry = {
+                  timestamp: new Date().toISOString(),
+                  eventName: 'api_live_verified',
+                  signatureValid: true,
+                  orderId: itemId,
+                  email: itemEmail,
+                  totalUsd: attr.total_formatted || null,
+                  status: 'paid',
+                  variantId: firstItem.variant_id || null,
+                  productId: firstItem.product_id || null,
+                  productName: firstItem.product_name || ''
+                };
+                entry.planType = detectOrderPlanType(entry);
+                try {
+                  fs.mkdirSync(path.dirname(ordersLogPath), { recursive: true });
+                  fs.appendFileSync(ordersLogPath, JSON.stringify(entry) + '\n', 'utf8');
+                } catch (_) {}
+                return cb(entry);
+              }
+            }
+          } catch (_) {}
+          cb(null);
+        });
+      });
+      lsReq.on('error', () => cb(null));
+      lsReq.on('timeout', () => { lsReq.destroy(); cb(null); });
+      lsReq.end();
+    }
+
+    if (pathname === '/api/lemonsqueezy-checkout') {
+      const handleCreateCheckout = (planParam, emailParam) => {
+        const isPass = String(planParam || '').toLowerCase() === 'pass';
+        const variantId = isPass
+          ? String(process.env.LEMONSQUEEZY_TRACKER_VARIANT_ID || '2289779')
+          : String(process.env.LEMONSQUEEZY_SINGLE_VARIANT_ID || '2289754');
+        const fallbackUrl = isPass
+          ? (process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895')
+          : (process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599');
+        const cleanEmail = String(emailParam || '').trim();
+        const returnRedirectUrl = `https://kisfitglobal.com/?unlock=1&payment=success&plan=${isPass ? 'pass' : 'single'}${cleanEmail ? '&email=' + encodeURIComponent(cleanEmail) : ''}`;
+
+        if (!lsApiKey) {
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: true, checkoutUrl: fallbackUrl, variantId, mode: 'static_fallback' }));
+          return;
+        }
+
+        const payloadObj = {
+          data: {
+            type: 'checkouts',
+            attributes: {
+              product_options: {
+                name: isPass ? 'KISFIT Bio Labs — 6-Month Growth & Brain Monthly Care Pass' : 'KISFIT Bio Labs — Pediatric Growth & Brain Clinical Report (Single Pass)',
+                description: 'Instant 100% Full Unlock on https://kisfitglobal.com/ (US CDC/WHO Height Predictor, Bone-Age Window & 5-Axis Brain LQ Report)',
+                redirect_url: returnRedirectUrl,
+                receipt_button_text: 'Open Unlocked KISFIT Bio Labs Clinical Report',
+                receipt_link_url: returnRedirectUrl
+              },
+              checkout_options: {
+                embed: true,
+                media: true,
+                logo: true,
+                button_color: '#2563EB'
+              },
+              checkout_data: cleanEmail && cleanEmail.includes('@') ? { email: cleanEmail } : {}
+            },
+            relationships: {
+              store: { data: { type: 'stores', id: String(process.env.LEMONSQUEEZY_STORE_ID || '296100') } },
+              variant: { data: { type: 'variants', id: variantId } }
+            }
+          }
+        };
+        const payloadStr = JSON.stringify(payloadObj);
+        const chkReq = https.request({
+          hostname: 'api.lemonsqueezy.com',
+          path: '/v1/checkouts',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': `Bearer ${lsApiKey}`,
+            'Content-Length': Buffer.byteLength(payloadStr)
+          },
+          timeout: 7000
+        }, (chkRes) => {
+          let raw = '';
+          chkRes.on('data', c => { if (raw.length < 65536) raw += c.toString('utf8'); });
+          chkRes.on('end', () => {
+            try {
+              const parsed = JSON.parse(raw || '{}');
+              const signedUrl = parsed && parsed.data && parsed.data.attributes && parsed.data.attributes.url;
+              if (signedUrl) {
+                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+                res.end(JSON.stringify({ ok: true, checkoutUrl: signedUrl, variantId, mode: 'live_api_signed' }));
+                return;
+              }
+            } catch (_) {}
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: true, checkoutUrl: fallbackUrl, variantId, mode: 'static_fallback' }));
+          });
+        });
+        chkReq.on('error', () => {
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: true, checkoutUrl: fallbackUrl, variantId, mode: 'static_fallback' }));
+        });
+        chkReq.on('timeout', () => {
+          chkReq.destroy();
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: true, checkoutUrl: fallbackUrl, variantId, mode: 'static_fallback' }));
+        });
+        chkReq.write(payloadStr);
+        chkReq.end();
+      };
+
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', c => { if (body.length < 16384) body += c.toString('utf8'); });
+        req.on('end', () => {
+          try {
+            const d = JSON.parse(body || '{}');
+            handleCreateCheckout(d.plan, d.email);
+          } catch (_) {
+            handleCreateCheckout('single', '');
+          }
+        });
+        return;
+      }
+      handleCreateCheckout(parsedUrl.searchParams.get('plan') || 'single', parsedUrl.searchParams.get('email') || '');
+      return;
+    }
+
+    if (pathname === '/api/lemonsqueezy-orders/verify') {
+      const finalizeVerify = (matchedOrder, emailParam) => {
+        let normEmail = String(emailParam || (matchedOrder && matchedOrder.email) || '').trim().toLowerCase();
+        let provisioned = null;
+        if (matchedOrder) {
+          provisioned = provisionPaidOrderAndNotify(matchedOrder, true);
+        }
+        const db = loadUsersDb();
+        const userRecord = normEmail ? db.users.find(u => u.email === normEmail) : null;
+        const verified = Boolean(matchedOrder || (userRecord && userRecord.unlockedPass));
+        const resolvedPlan = (provisioned && provisioned.planType) || (userRecord && userRecord.planType) || (matchedOrder && detectOrderPlanType(matchedOrder)) || 'single';
+        const resolvedOrderId = matchedOrder ? matchedOrder.orderId : (userRecord ? userRecord.lastOrderId || null : null);
+        const magicUnlockUrl = verified
+          ? `https://kisfitglobal.com/?unlock=1&payment=success${normEmail ? '&email=' + encodeURIComponent(normEmail) : ''}${resolvedOrderId ? '&order_id=' + encodeURIComponent(resolvedOrderId) : ''}&plan=${resolvedPlan}`
+          : null;
+
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(JSON.stringify({
+          ok: true,
+          verified,
+          email: normEmail || null,
+          planType: verified ? resolvedPlan : null,
+          orderId: resolvedOrderId,
+          totalUsd: matchedOrder ? matchedOrder.totalUsd : null,
+          magicUnlockUrl,
+          token: (verified && normEmail) ? createAuthToken(normEmail) : null,
+          user: (verified && userRecord) ? {
+            id: userRecord.id,
+            name: userRecord.name,
+            email: userRecord.email,
+            unlockedPass: true,
+            planType: resolvedPlan,
+            lastOrderId: resolvedOrderId,
+            expiresAt: userRecord.expiresAt || null
+          } : null
+        }));
+      };
+
+      const handleVerify = (emailParam, orderIdParam) => {
+        const localMatch = findVerifiedOrderForEmailOrId(emailParam, orderIdParam);
+        if (localMatch) {
+          finalizeVerify(localMatch, emailParam);
+          return;
+        }
+        fetchLiveLemonSqueezyPaidOrder(emailParam, orderIdParam, (liveMatch) => {
+          finalizeVerify(liveMatch, emailParam);
+        });
+      };
+
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', c => { if (body.length < 32768) body += c.toString('utf8'); });
+        req.on('end', () => {
+          try {
+            const data = JSON.parse(body || '{}');
+            handleVerify(data.email, data.orderId || data.order_id);
+          } catch (_) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: false, error: 'Invalid JSON payload' }));
+          }
+        });
+        return;
+      }
+
+      handleVerify(parsedUrl.searchParams.get('email'), parsedUrl.searchParams.get('orderId') || parsedUrl.searchParams.get('order_id'));
+      return;
+    }
+
+    if (pathname === '/api/homepage-manager/status') {
+      const db = loadUsersDb();
+      const proUsers = db.users.filter(u => u && u.unlockedPass);
+      let orderCount = 0;
+      try {
+        if (fs.existsSync(ordersLogPath)) {
+          orderCount = fs.readFileSync(ordersLogPath, 'utf8').trim().split('\n').filter(Boolean).length;
+        }
+      } catch (_) {}
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({
+        ok: true,
+        manager: 'KISFIT Autonomous Homepage & Paid-Order Manager v2.0',
+        timestamp: new Date().toISOString(),
+        globalIndexExists: fs.existsSync(path.join(DIST_GLOBAL_DIR, 'index.html')),
+        totalRegisteredUsers: db.users.length,
+        activeProMembers: proUsers.length,
+        loggedWebhookEvents: orderCount
+      }));
+      return;
+    }
+
+    if (pathname === '/api/auth/register' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => { if (body.length < 65536) body += c.toString('utf8'); });
+      req.on('end', () => {
+        try {
+          const crypto = require('crypto');
+          const data = JSON.parse(body || '{}');
+          const email = String(data.email || '').trim().toLowerCase();
+          const name = String(data.name || '').trim() || email.split('@')[0];
+          const password = String(data.password || '');
+
+          if (!email || email.length < 3 || password.length < 4) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: false, error: 'Please provide a valid User ID (min 3 characters) and password (min 4 characters).' }));
+            return;
+          }
+
+          const db = loadUsersDb();
+          if (db.users.some(u => u.email === email)) {
+            res.writeHead(409, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: false, error: 'An account with this User ID already exists. Please Sign In.' }));
+            return;
+          }
+
+          const salt = crypto.randomBytes(16).toString('hex');
+          const passwordHash = crypto.pbkdf2Sync(password, salt, 10000, 32, 'sha256').toString('hex');
+          const matchedOrder = findVerifiedOrderForEmailOrId(email, '');
+          const newUser = {
+            id: 'usr_' + Date.now().toString(36),
+            name,
+            email,
+            salt,
+            passwordHash,
+            unlockedPass: Boolean(matchedOrder),
+            lastOrderId: matchedOrder ? matchedOrder.orderId : null,
+            childProfiles: data.childProfile ? [data.childProfile] : [],
+            createdAt: new Date().toISOString()
+          };
+          db.users.push(newUser);
+          saveUsersDb(db);
+
+          const token = createAuthToken(email);
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({
+            ok: true,
+            token,
+            user: {
+              id: newUser.id,
+              name: newUser.name,
+              email: newUser.email,
+              unlockedPass: newUser.unlockedPass,
+              lastOrderId: newUser.lastOrderId,
+              childProfiles: newUser.childProfiles
+            }
+          }));
+        } catch (err) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: false, error: 'Invalid registration payload' }));
+        }
+      });
+      return;
+    }
+
+    if (pathname === '/api/auth/login' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => { if (body.length < 32768) body += c.toString('utf8'); });
+      req.on('end', () => {
+        try {
+          const crypto = require('crypto');
+          const data = JSON.parse(body || '{}');
+          const rawId = String(data.email || '').trim();
+          const email = rawId.toLowerCase();
+          const password = String(data.password || '');
+
+          // Check zero-plaintext Admin Credential Digest
+          const adminPayload = 'KISFIT_ADMIN_SALT_2026_V2|' + rawId + '|' + password + '|BIO_ATELIER_99';
+          let h1 = 0x811c9dc5, h2 = 0x9e3779b9, h3 = 0x85ebca6b, h4 = 0xc2b2ae35;
+          for (let round = 0; round < 4096; round++) {
+            for (let i = 0; i < adminPayload.length; i++) {
+              const c = adminPayload.charCodeAt(i) ^ (round & 0xff);
+              h1 = Math.imul(h1 ^ c, 0x01000193);
+              h2 = Math.imul(h2 ^ ((h1 >>> 13) + c), 0x85ebca6b);
+              h3 = Math.imul(h3 ^ ((h2 >>> 16) + i), 0xc2b2ae35);
+              h4 = Math.imul(h4 ^ ((h3 >>> 11) + round), 0x27d4eb2f);
+            }
+          }
+          const adminDigest = [h1, h2, h3, h4].map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+          if (adminDigest === 'a86cfdc57a9f8d167c0546a365722330') {
+            const token = createAuthToken(email);
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({
+              ok: true,
+              isAdmin: true,
+              token,
+              user: {
+                id: 'usr_admin',
+                name: 'Administrator',
+                email: rawId,
+                isAdmin: true,
+                unlockedPass: true,
+                lastOrderId: 'ADMIN_BYPASS',
+                childProfiles: []
+              }
+            }));
+            return;
+          }
+
+          const db = loadUsersDb();
+          const user = db.users.find(u => u.email === email);
+          if (!user) {
+            res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: false, error: 'Invalid User ID or Password. Please check your ID or Sign Up first.' }));
+            return;
+          }
+
+          const checkHash = crypto.pbkdf2Sync(password, user.salt, 10000, 32, 'sha256').toString('hex');
+          if (checkHash !== user.passwordHash) {
+            res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+            res.end(JSON.stringify({ ok: false, error: 'Incorrect password. Please try again.' }));
+            return;
+          }
+
+          const matchedOrder = findVerifiedOrderForEmailOrId(email, '');
+          if (matchedOrder && !user.unlockedPass) {
+            user.unlockedPass = true;
+            user.lastOrderId = matchedOrder.orderId || null;
+            saveUsersDb(db);
+          }
+
+          const token = createAuthToken(email);
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({
+            ok: true,
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              unlockedPass: Boolean(user.unlockedPass),
+              lastOrderId: user.lastOrderId || null,
+              childProfiles: user.childProfiles || []
+            }
+          }));
+        } catch (err) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+          res.end(JSON.stringify({ ok: false, error: 'Invalid login payload' }));
+        }
+      });
+      return;
+    }
+
+    if (pathname === '/api/auth/me') {
+      const authHeader = String(req.headers['authorization'] || '');
+      const rawToken = authHeader.startsWith('Bearer ')
+        ? authHeader.slice(7).trim()
+        : (parsedUrl.searchParams.get('token') || '');
+      const email = verifyAuthToken(rawToken);
+      if (!email) {
+        res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(JSON.stringify({ ok: false, authenticated: false }));
+        return;
+      }
+      const db = loadUsersDb();
+      const user = db.users.find(u => u.email === email);
+      if (!user) {
+        res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+        res.end(JSON.stringify({ ok: false, authenticated: false }));
+        return;
+      }
+      const matchedOrder = findVerifiedOrderForEmailOrId(email, '');
+      if (matchedOrder && !user.unlockedPass) {
+        user.unlockedPass = true;
+        user.lastOrderId = matchedOrder.orderId || null;
+        saveUsersDb(db);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...NO_CACHE_HEADERS });
+      res.end(JSON.stringify({
+        ok: true,
+        authenticated: true,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          unlockedPass: Boolean(user.unlockedPass),
+          lastOrderId: user.lastOrderId || null,
+          childProfiles: user.childProfiles || []
+        }
+      }));
       return;
     }
 
@@ -999,7 +1973,9 @@ const server = http.createServer((req, res) => {
     }
 
     if (pathname === '/manifest.json' || pathname === '/manifest.webmanifest') {
-      const mfFile = resolveSafeFile(DIST_DIR, 'manifest.json') || resolveSafeFile(ROOT_DIR, 'manifest.json');
+      const reqHostMf = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+      const isGlobalMf = reqHostMf.includes('kisfitglobal.com') || reqHostMf.includes('kidsfitglobal.com');
+      const mfFile = (isGlobalMf && resolveSafeFile(DIST_GLOBAL_DIR, 'manifest.json')) || resolveSafeFile(DIST_DIR, 'manifest.json') || resolveSafeFile(ROOT_DIR, 'manifest.json');
       if (mfFile) {
         res.writeHead(200, {
           'Content-Type': 'application/manifest+json; charset=utf-8',
@@ -1012,23 +1988,23 @@ const server = http.createServer((req, res) => {
 
     if (pathname === '/download/kidsfit-app') {
       const appLauncherHtml = `<!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#05070B">
+  <meta name="theme-color" content="#F8FAFC">
   <title>KIDS-FIT 앱 실행기</title>
   <link rel="icon" href="https://kidsfit.co.kr/samples/app-icon-192.png">
   <link rel="apple-touch-icon" href="https://kidsfit.co.kr/samples/apple-touch-icon.png">
   <style>
-    body { margin: 0; background: #05070B; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; box-sizing: border-box; }
-    .card { max-width: 400px; width: 100%; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 24px; padding: 28px 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.65); }
-    .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 16px; border: 2px solid #38BDF8; }
-    h1 { font-size: 22px; font-weight: 900; margin: 0 0 8px; color: #FFFFFF; }
-    p { font-size: 14.5px; color: #CBD5E1; line-height: 1.55; margin: 0 0 20px; }
-    .btn { display: block; width: 100%; padding: 15px 18px; border-radius: 14px; background: linear-gradient(90deg, #0284C7 0%, #10B981 100%); color: #FFFFFF; font-weight: 900; font-size: 16px; text-decoration: none; box-sizing: border-box; margin-bottom: 10px; }
+    body { margin: 0; background: #F8FAFC; color: #0F172A; font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; box-sizing: border-box; }
+    .card { max-width: 400px; width: 100%; background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 24px; padding: 28px 22px; box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08); }
+    .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 16px; border: 2px solid #1D4ED8; }
+    h1 { font-size: 22px; font-weight: 900; margin: 0 0 8px; color: #0F172A; }
+    p { font-size: 14.5px; color: #475569; line-height: 1.55; margin: 0 0 20px; }
+    .btn { display: block; width: 100%; padding: 15px 18px; border-radius: 14px; background: #1D4ED8; color: #FFFFFF; font-weight: 900; font-size: 16px; text-decoration: none; box-sizing: border-box; margin-bottom: 10px; }
   </style>
   <script>
     setTimeout(function() {
@@ -1055,26 +2031,50 @@ const server = http.createServer((req, res) => {
     }
 
     // 3. Normalize root & directory index paths
-    if (pathname === '/' || pathname === '') {
+    if (pathname === '/' || pathname === '' || pathname === '/en' || pathname === '/en/' || pathname === '/us' || pathname === '/us/') {
       pathname = '/index.html';
     }
-    if (pathname === '/index.html' && req.method === 'GET') {
+    if ((pathname === '/index.html' || (pathname.startsWith('/qna/') && pathname.endsWith('.html'))) && req.method === 'GET') {
       recordVisitorPageview(req, parsedUrl.searchParams.get('utm_source') || '');
     }
 
     const relPath = pathname.replace(/^\/+/, '');
+    const reqHost = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+    const isGlobalHost =
+      parsedUrl.searchParams.get('edition') !== 'ko' &&
+      (reqHost.includes('kisfitglobal.com') || reqHost.includes('kidsfitglobal.com') || parsedUrl.searchParams.get('edition') === 'global' || parsedUrl.searchParams.get('paywall') === '1');
 
-    // Look up file in DIST_DIR first, then ROOT_DIR
-    let filePath =
-      resolveSafeFile(DIST_DIR, relPath) ||
-      resolveSafeFile(ROOT_DIR, relPath) ||
-      resolveSafeFile(DIST_DIR, path.join(relPath, 'index.html')) ||
-      resolveSafeFile(ROOT_DIR, path.join(relPath, 'index.html'));
+    // Look up file in DIST_GLOBAL_DIR first when serving Global English edition (kisfitglobal.com).
+    // Strictly prevent kisfitglobal.com from falling back to Korean DIST_DIR for HTML/text/script routes.
+    const reqExt = path.extname(pathname).toLowerCase();
+    const isSharedMediaAsset = ['.mp4', '.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.woff2', '.woff', '.ttf'].includes(reqExt);
+    const hasGlobalDist = fs.existsSync(path.join(DIST_GLOBAL_DIR, 'index.html'));
+    let filePath = null;
+    if (isGlobalHost && hasGlobalDist) {
+      filePath =
+        resolveSafeFile(DIST_GLOBAL_DIR, relPath) ||
+        resolveSafeFile(DIST_GLOBAL_DIR, path.join(relPath, 'index.html'));
+      if (!filePath && pathname.startsWith('/qna/')) {
+        filePath = resolveSafeFile(DIST_GLOBAL_DIR, 'qna/topic-01.html') || resolveSafeFile(DIST_GLOBAL_DIR, 'qna/index.html');
+      }
+      if (!filePath && isSharedMediaAsset) {
+        filePath = resolveSafeFile(DIST_DIR, relPath) || resolveSafeFile(ROOT_DIR, relPath);
+      }
+    } else {
+      filePath =
+        resolveSafeFile(DIST_DIR, relPath) ||
+        resolveSafeFile(ROOT_DIR, relPath) ||
+        resolveSafeFile(DIST_DIR, path.join(relPath, 'index.html')) ||
+        resolveSafeFile(ROOT_DIR, path.join(relPath, 'index.html'));
+    }
 
-    // Fallback to index.html for legacy HTML routes so old MoneyFit links land cleanly on KidsFit
+    // Fallback to index.html for legacy HTML routes
     const ext = path.extname(filePath || pathname).toLowerCase();
     if (!filePath && (ext === '' || ext === '.html')) {
-      filePath = resolveSafeFile(DIST_DIR, 'index.html') || resolveSafeFile(ROOT_DIR, 'index.html');
+      filePath =
+        (isGlobalHost && hasGlobalDist && resolveSafeFile(DIST_GLOBAL_DIR, 'index.html')) ||
+        resolveSafeFile(DIST_DIR, 'index.html') ||
+        resolveSafeFile(ROOT_DIR, 'index.html');
     }
 
     if (!filePath) {
@@ -1124,21 +2124,14 @@ const server = http.createServer((req, res) => {
       headers['Cache-Control'] = 'public, max-age=3600';
     }
 
-    const reqHost = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
-    const isGlobalHost =
-      parsedUrl.searchParams.get('edition') !== 'ko' &&
-      (reqHost.includes('truthofmarket.com') || parsedUrl.searchParams.get('edition') === 'global' || parsedUrl.searchParams.get('paywall') === '1');
-
-    if (finalExt === '.html' && path.basename(filePath) === 'index.html' && isGlobalHost) {
+    if (finalExt === '.html' && pathname === '/index.html' && isGlobalHost) {
       let htmlBody = fs.readFileSync(filePath, 'utf8');
+      const canonicalRootUrl = 'https://kisfitglobal.com/';
       htmlBody = htmlBody
-        .replace('<html lang="ko" data-theme="dark">', '<html lang="en" data-theme="dark" data-edition="global-paid">')
-        .replace('<title>KIDS-FIT — 아이의 키·신체·정신 성장 &amp; 맞춤 학습 가이드 플랫폼</title>', '<title>KIDS-FIT BIO LABS — US CDC &amp; 3,639-Paper Pediatric Height &amp; Brain LQ Clinical Report</title>')
-        .replace('<meta name="description" content="아이의 키와 육체적·정신적 성장, 시기별 학습 방향이 고민인 학부모와 키가 더 크고 싶은 초·중·고 학생을 위한 맞춤형 성장 가이드북 플랫폼.">', '<meta name="description" content="1-Minute Pediatric Auxology &amp; Neuro-Cognitive Brain LQ Scan powered by US CDC 2000 Growth Charts, Tanner MPH, and 3,639 Peer-Reviewed PubMed Studies.">')
-        .replace('<link rel="canonical" href="https://kidsfit.co.kr/">', '<link rel="canonical" href="https://truthofmarket.com/">')
-        .replace('<meta property="og:title" content="KIDS-FIT — 우리 아이 숨은 키 &amp; 두뇌·학습 골든타임 리포트">', '<meta property="og:title" content="KIDS-FIT BIO LABS — Predicted Adult Height &amp; 5-Axis Brain LQ Clinical Report">')
-        .replace('<meta property="og:description" content="질병관리청 성장도표 · 학술논문 3,655편 기반 | 생년월일과 생활 습관으로 확인하는 예상 성인키 3단 비교 &amp; 연령별 맞춤 학습 리포트">', '<meta property="og:description" content="US CDC 2000 Growth Charts &amp; 3,639 PubMed Papers | Discover your child\'s 3-Tier Predicted Adult Height, rhGH Clinical Paper Verdict &amp; 5-Axis Brain LQ.">')
-        .replace('<meta property="og:url" content="https://kidsfit.co.kr/">', '<meta property="og:url" content="https://truthofmarket.com/">');
+        .replace('<html lang="ko" data-theme="dark">', '<html lang="en" data-theme="light" data-edition="global-paid">')
+        .replace(/<link rel="canonical" href="https:\/\/(kidsfit\.co\.kr|kisfitglobal\.com)(\/en)?\/?">/g, '<link rel="canonical" href="' + canonicalRootUrl + '">')
+        .replace(/<meta property="og:url" content="https:\/\/(kidsfit\.co\.kr|kisfitglobal\.com)(\/en)?\/?">/g, '<meta property="og:url" content="' + canonicalRootUrl + '">')
+        .replace(/https:\/\/kisfitglobal\.com\/samples\/og-kisfit-global-en-v5\.png(?!\?)/g, 'https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261028');
       const buf = Buffer.from(htmlBody, 'utf8');
       headers['Content-Length'] = buf.length;
       res.writeHead(200, headers);

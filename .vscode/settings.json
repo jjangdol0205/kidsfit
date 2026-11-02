@@ -1,0 +1,59 @@
+{
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/dist-global/**": true,
+    "**/static_api/**": true,
+    "**/assets/**": true,
+    "**/data/**": true,
+    "**/data_stocks/**": true,
+    "**/ai_shorts_output/**": true,
+    "**/.git/**": true,
+    "**/.venv/**": true,
+    "**/venv/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.flow-browser-profile/**": true,
+    "**/.naver-browser-profile/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/dist-global": true,
+    "**/static_api": true,
+    "**/assets": true,
+    "**/data": true,
+    "**/data_stocks": true,
+    "**/ai_shorts_output": true,
+    "**/.git": true,
+    "**/.venv": true,
+    "**/venv": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.flow-browser-profile": true,
+    "**/.naver-browser-profile": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true
+  },
+  "python.analysis.exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/dist-global",
+    "**/static_api",
+    "**/assets",
+    "**/data",
+    "**/data_stocks",
+    "**/ai_shorts_output",
+    "**/.git",
+    "**/.venv",
+    "**/venv",
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/.flow-browser-profile",
+    "**/.naver-browser-profile"
+  ],
+  "python.analysis.indexing": false,
+  "typescript.tsserver.maxTsServerMemory": 1024
+}

@@ -367,7 +367,7 @@ it('verifies DIA+ blog column has comparison table and bridge copy leading to Ki
   const bundle = AdminOsmu.generateOsmuBundle('scenario-1');
   assert.ok(bundle.blogColumn.length >= 1500, `Blog column too short (${bundle.blogColumn.length} chars)`);
   assert.ok(bundle.blogColumn.includes('|'), 'Missing markdown table');
-  assert.ok(bundle.blogColumn.includes('truthofmarket.com'), 'Missing bridge link');
+  assert.ok(bundle.blogColumn.includes('kisfitglobal.com'), 'Missing bridge link');
 });
 
 it('verifies shortform 15s script has 4 distinct time intervals (0~3s, 4~8s, 9~12s, 13~15s)', () => {

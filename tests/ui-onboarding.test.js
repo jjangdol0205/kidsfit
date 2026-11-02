@@ -79,8 +79,12 @@ function runSuite() {
 
   it('includes official KDCA and K-DST header trust badge', () => {
     assert(indexHtml.includes('Built on Official Standards: 질병관리청 소아청소년 성장도표 &amp; 보건복지부 영유아 발달선별검사(K-DST) 기준 적용') ||
-           indexHtml.includes('Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용'),
-           'Missing official KDCA & K-DST trust badge text');
+           indexHtml.includes('Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용') ||
+           indexHtml.includes('Built on Official Standards: CDC / WHO Pediatric Growth Charts &amp; AAP Developmental Guidelines') ||
+           indexHtml.includes('Built on Official Standards: CDC / WHO Pediatric Growth Charts & AAP Developmental Guidelines') ||
+           indexHtml.includes('Built on Official Standards: CDC / WHO Pediatric Growth Standards &amp; AAP Developmental Surveillance Guidelines') ||
+           indexHtml.includes('Built on Official Standards: CDC / WHO Pediatric Growth Standards & AAP Developmental Surveillance Guidelines'),
+           'Missing official KDCA & K-DST or CDC & AAP trust badge text');
   });
 
   it('renders clinical capsule navigation tabs for the 5 cores', () => {
@@ -89,8 +93,10 @@ function runSuite() {
     assert(indexHtml.includes('data-tab="tab-biomechanics"'), 'Missing Tab 3 (tab-biomechanics)');
     assert(indexHtml.includes('data-tab="tab-neuro"'), 'Missing Tab 4 (tab-neuro)');
     assert(indexHtml.includes('data-tab="tab-tracker"'), 'Missing Tab 5 (tab-tracker)');
-    assert(indexHtml.includes('신체 성장 &amp; 골연령 궤적') || indexHtml.includes('신체 성장 & 골연령 궤적'), 'Missing Auxology tab label');
-    assert(indexHtml.includes('호르몬·수면 &amp; 임상 영양') || indexHtml.includes('호르몬·수면 & 임상 영양'), 'Missing Endocrinology tab label');
+    assert(indexHtml.includes('신체 성장 &amp; 골연령 궤적') || indexHtml.includes('신체 성장 & 골연령 궤적') ||
+           indexHtml.includes('Auxology &amp; Bone Age Trajectory') || indexHtml.includes('Auxology & Bone Age Trajectory'), 'Missing Auxology tab label');
+    assert(indexHtml.includes('호르몬·수면 &amp; 임상 영양') || indexHtml.includes('호르몬·수면 & 임상 영양') ||
+           indexHtml.includes('Endocrinology, Sleep &amp; Clinical Nutrition') || indexHtml.includes('Endocrinology, Sleep & Clinical Nutrition'), 'Missing Endocrinology tab label');
   });
 
   it('guarantees 100% ad-free initial onboarding screen (no discount/commercial tags)', () => {
@@ -164,16 +170,23 @@ function runSuite() {
     assert(!indexHtml.includes('id="step-content-6"'), 'Step 6 budget tier container must be absent');
   });
 
-  it('contains Step 1 profile fields (gender, age, heights, weight, 8 regions)', () => {
+  it('contains Step 1 profile fields (gender, age, heights, weight, 5 global regions / 8 regions)', () => {
     assert(indexHtml.includes('name="child-gender"'), 'Missing gender input');
-    assert(indexHtml.includes('id="child-age-months"'), 'Missing ageMonths input');
+    assert(indexHtml.includes('id="child-age-months"') || indexHtml.includes('id="child-birth-year"'), 'Missing ageMonths/DOB input');
     assert(indexHtml.includes('id="child-height"'), 'Missing child height input');
     assert(indexHtml.includes('id="child-weight"'), 'Missing child weight input');
     assert(indexHtml.includes('id="father-height"'), 'Missing father height input');
     assert(indexHtml.includes('id="mother-height"'), 'Missing mother height input');
     assert(indexHtml.includes('id="user-region"'), 'Missing region select');
 
-    const regions = [
+    const globalRegions = [
+      'United States',
+      'Canada',
+      'United Kingdom & Europe',
+      'Australia & New Zealand',
+      'Asia-Pacific & Global'
+    ];
+    const koreanRegions = [
       '서울 강남·서초·송파',
       '서울 강북·마포·용산',
       '경기 남부(분당·수원·용인·동탄)',
@@ -183,9 +196,9 @@ function runSuite() {
       '대전·충청',
       '광주·전라·기타'
     ];
-    regions.forEach(r => {
-      assert(indexHtml.includes(r), `Missing region option: ${r}`);
-    });
+    const hasGlobal = globalRegions.every(r => indexHtml.includes(r));
+    const hasKorean = koreanRegions.every(r => indexHtml.includes(r));
+    assert(hasGlobal || hasKorean, 'Missing region options (expected 5 global regions or 8 Korean regions)');
   });
 
   it('contains Step 2 Tanner stage & puberty phase and recent growth rate', () => {

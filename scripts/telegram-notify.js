@@ -36,14 +36,17 @@ function loadDotEnv() {
 
 function getTelegramConfig() {
   const dotEnv = loadDotEnv();
-  const botToken = (process.env.TELEGRAM_BOT_TOKEN || dotEnv.TELEGRAM_BOT_TOKEN || '').trim();
-  const chatId = String(process.env.TELEGRAM_CHAT_ID || dotEnv.TELEGRAM_CHAT_ID || '').trim();
+  const botToken = (dotEnv.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN || '').trim();
+  const chatId = String(dotEnv.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || '').trim();
+  const cliConvArg = process.argv.find(a => a.startsWith('--conversation='));
+  const cliConvId = cliConvArg ? cliConvArg.split('=')[1].trim() : '';
   const conversationId = (
-    process.env.ANTIGRAVITY_CONVERSATION_ID ||
+    cliConvId ||
     dotEnv.ANTIGRAVITY_CONVERSATION_ID ||
-    'efdd0412-2586-40cf-bb28-0fa8976613df'
+    process.env.ANTIGRAVITY_CONVERSATION_ID ||
+    '278ac9cd-25e2-4d75-93ae-f407a1e6de5d'
   ).trim();
-  const siteUrl = 'https://truthofmarket.com';
+  const siteUrl = 'https://kisfitglobal.com/en';
   const isConfigured = Boolean(
     botToken &&
     botToken !== 'YOUR_TELEGRAM_BOT_TOKEN' &&
@@ -76,6 +79,15 @@ function saveTelegramConfig(updates = {}) {
 
 function telegramApiRequestSingle(botToken, method, payload = null) {
   return new Promise((resolve, reject) => {
+    if (method === 'sendMessage' && payload && typeof payload === 'object') {
+      if (!payload.disable_web_page_preview && !payload.link_preview_options && typeof payload.text === 'string' && payload.text.includes('kisfitglobal.com')) {
+        payload.link_preview_options = {
+          is_disabled: false,
+          url: 'https://kisfitglobal.com/en',
+          prefer_large_media: true
+        };
+      }
+    }
     const bodyStr = payload ? JSON.stringify(payload) : '';
     const bodyBuf = payload ? Buffer.from(bodyStr, 'utf8') : null;
     const options = {
@@ -189,7 +201,7 @@ function loadResearchStatus() {
 
 function buildCompletionMessageHtml(metrics = {}) {
   const cfg = getTelegramConfig();
-  const siteUrl = metrics.siteUrl || cfg.siteUrl || 'https://truthofmarket.com';
+  const siteUrl = metrics.siteUrl || cfg.siteUrl || 'https://kisfitglobal.com';
   const now = new Date();
   const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   const research = loadResearchStatus();
@@ -249,8 +261,10 @@ async function sendTelegramReport(metrics = {}, options = {}) {
     text: htmlMessage
   };
 
-  fs.writeFileSync(path.join(LOGS_DIR, 'telegram_last_report.json'), JSON.stringify(previewPayload, null, 2) + '\n', 'utf8');
-  fs.writeFileSync(PREVIEW_MD_PATH, htmlMessage, 'utf8');
+  try {
+    fs.writeFileSync(path.join(LOGS_DIR, 'telegram_last_report.json'), JSON.stringify(previewPayload, null, 2) + '\n', 'utf8');
+    fs.writeFileSync(PREVIEW_MD_PATH, htmlMessage, 'utf8');
+  } catch (_) {}
 
   if (forceDryRun || !cfg.isConfigured) {
     return { sent: false, mode: 'DRY_RUN', previewPath: PREVIEW_MD_PATH };

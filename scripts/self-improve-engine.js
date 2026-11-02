@@ -487,7 +487,7 @@ function auditStage7ScopeAndGuidance() {
                                    youthGuidebookHtml.includes('id="user-cohort-self-improve-section"') &&
                                    youthGuidebookHtml.includes('청소년·본인 전용') &&
                                    indexHtmlContent.includes('id="brand-editorial-showcase"') &&
-                                   (indexHtmlContent.includes('KIDS-FIT') || indexHtmlContent.includes('K-GROWTH AI')) &&
+                                   (indexHtmlContent.includes('KISFIT') || indexHtmlContent.includes('KIDS-FIT') || indexHtmlContent.includes('K-GROWTH AI')) &&
                                    !indexHtmlContent.toLowerCase().includes('taller.xyz');
     recordCheck('Stage 7: Scope & Guidance', 'User Input Cohort DB Persists Inputs & Computes Dynamic Self-Improvement Weights', isCohortValid, `Total cohort records: ${cohortAnalytics.totalRecords}`);
     recordCheck('Stage 7: Scope & Guidance', 'Proprietary K-GROWTH AI™ Editorial Brand Showcase & 5-Chapter Growth Guidebook Active (Zero taller.xyz)', isTallerGuidebookValid, 'Brand Showcase, Proprietary AI & 5-Chapter Guidebook verified');

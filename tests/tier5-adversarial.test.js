@@ -499,7 +499,7 @@ function runTier5HardeningSuite() {
 
       assert(blog.length >= 1500, `${scId} blog column must be at least 1,500 chars, got ${blog.length}`);
       assert(blog.includes('|') && blog.includes('---'), `${scId} blog column must contain a Markdown comparison table`);
-      assert(blog.includes('truthofmarket.com'), `${scId} blog column must contain bridge link to truthofmarket.com`);
+      assert(blog.includes('kisfitglobal.com'), `${scId} blog column must contain bridge link to kisfitglobal.com`);
       assert(blog.includes(customCafe), `${scId} blog column must dynamically inject custom cafe URL`);
     }
   });
@@ -510,7 +510,7 @@ function runTier5HardeningSuite() {
       const cafe = bundle.cafePost;
 
       assert(cafe.includes('[제목]'), `${scId} cafe post must contain [제목] tag`);
-      assert(cafe.includes('truthofmarket.com'), `${scId} cafe post must contain KidsFit app URL`);
+      assert(cafe.includes('kisfitglobal.com'), `${scId} cafe post must contain KidsFit app URL`);
       assert(cafe.includes('공구') || cafe.includes('나눔') || cafe.includes('PDF'), `${scId} cafe post must contain viral lead magnet (group buy, free PDF share)`);
     }
   });

@@ -46,11 +46,11 @@ function verifyMilestone1() {
     }
   });
 
-  check('CNAME exists at root and contains truthofmarket.com', () => {
+  check('CNAME exists at root and contains kisfitglobal.com', () => {
     const cnamePath = path.join(ROOT_DIR, 'CNAME');
     if (!fs.existsSync(cnamePath)) throw new Error('CNAME missing');
     const content = fs.readFileSync(cnamePath, 'utf8').trim();
-    if (!['kidsfit.co.kr', 'truthofmarket.com'].includes(content)) {
+    if (content !== 'kisfitglobal.com') {
       throw new Error(`CNAME contains unexpected content: "${content}"`);
     }
   });
@@ -137,7 +137,7 @@ function verifyMilestone1() {
     const distCname = path.join(distDir, 'CNAME');
     if (!fs.existsSync(distCname)) throw new Error('dist/CNAME is missing');
     const distCnameContent = fs.readFileSync(distCname, 'utf8').trim();
-    if (!['kidsfit.co.kr', 'truthofmarket.com'].includes(distCnameContent)) {
+    if (distCnameContent !== 'kisfitglobal.com') {
       throw new Error(`dist/CNAME has invalid domain: ${distCnameContent}`);
     }
   });
@@ -163,13 +163,13 @@ function verifyMilestone2() {
   });
 
   console.log('\n[Group 5: Ad-Free Onboarding, Trust Badge & Capsule Tabs]');
-  check('index.html contains KDCA/K-DST trust badge, capsule tabs, and 0 ads', () => {
+  check('index.html contains official pediatric trust badge, capsule tabs, and 0 ads', () => {
     const indexPath = path.join(ROOT_DIR, 'index.html');
     if (!fs.existsSync(indexPath)) throw new Error('index.html missing');
     const html = fs.readFileSync(indexPath, 'utf8');
 
-    if (!html.includes('질병관리청 소아청소년 성장도표') || !html.includes('K-DST')) {
-      throw new Error('Missing official KDCA/K-DST trust badge in index.html');
+    if (!html.includes('CDC') && !html.includes('AAP') && !html.includes('Pediatric Growth Charts')) {
+      throw new Error('Missing official CDC/WHO/AAP pediatric trust badge in index.html');
     }
     const hasCoreTabs = html.includes('data-tab="tab-auxology"') && html.includes('data-tab="tab-endocrinology"');
     const hasLegacyTabs = html.includes('data-tab="tab-growth"') && html.includes('data-tab="tab-development"');
@@ -517,43 +517,162 @@ function verifyMilestone5() {
     }
   });
 
-  console.log('\n[Group 16: Naver Blog & Cafe Reset + Management Masterplan]');
-  check('Naver Blog/Cafe reset script, status manifest, and masterplan exist', () => {
-    const requiredDocs = [
-      path.join(ROOT_DIR, 'scripts', 'reset-naver-blog-cafe.js'),
-      path.join(ROOT_DIR, 'docs', 'naver_reset_status.json'),
-      path.join(ROOT_DIR, 'docs', '네이버_카페_블로그_초기화_및_운영관리_마스터플랜.md'),
-      path.join(ROOT_DIR, 'docs', '안티그래비티_구글Flow_영상제작_완벽가이드.md')
+  console.log('\n[Group 16: Global Customer Marketing Masterplan & Ready-to-Publish Content Packs]');
+  check('docs/global_marketing contains all 5 authoritative GTM playbooks', () => {
+    const playbooks = [
+      '01_reddit_gtm_playbook.md',
+      '02_instagram_threads_playbook.md',
+      '03_tiktok_youtube_shorts_playbook.md',
+      '04_quora_x_threads_playbook.md',
+      '05_global_seo_geo_playbook.md'
     ];
-    requiredDocs.forEach((p) => {
-      if (!fs.existsSync(p)) throw new Error(`Missing required file: ${p}`);
+    playbooks.forEach((f) => {
+      const p = path.join(ROOT_DIR, 'docs', 'global_marketing', f);
+      if (!fs.existsSync(p)) throw new Error(`Missing global marketing playbook: ${f}`);
+      const stat = fs.statSync(p);
+      if (stat.size < 2000) throw new Error(`Playbook ${f} is too short (<2KB)`);
+      const content = fs.readFileSync(p, 'utf8');
+      if (!content.includes('kisfitglobal.com')) {
+        throw new Error(`Playbook ${f} missing target domain kisfitglobal.com`);
+      }
     });
   });
 
-  console.log('\n[Group 17: All 5 Tangible Parenting Samples (Blog, 6-Cut Webtoon, 6-Cut CardNews, 2 MP4 Videos)]');
-  check('All 5 sample directories contain complete viewable/playable files in samples/ and dist/samples/', () => {
-    const sampleFiles = [
-      path.join(ROOT_DIR, 'samples', '1_blog_sample', 'blog_post_sample.md'),
-      path.join(ROOT_DIR, 'samples', '1_blog_sample', 'blog_post_sample.html'),
-      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_cut_01.png'),
-      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_cut_06.png'),
-      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_full_6cut.png'),
-      path.join(ROOT_DIR, 'samples', '2_webtoon_sample', 'webtoon_preview.html'),
-      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_01.png'),
-      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_06.png'),
-      path.join(ROOT_DIR, 'samples', '3_cardnews_sample', 'cardnews_preview.html'),
-      path.join(ROOT_DIR, 'samples', '4_webtoon_video_sample', 'webtoon_parenting_video.mp4'),
-      path.join(ROOT_DIR, 'samples', '5_cardnews_video_sample', 'cardnews_parenting_video.mp4'),
-      path.join(ROOT_DIR, 'dist', 'samples', '4_webtoon_video_sample', 'webtoon_parenting_video.mp4'),
-      path.join(ROOT_DIR, 'dist', 'samples', '5_cardnews_video_sample', 'cardnews_parenting_video.mp4')
+  check('global_marketing_packs contains ready-to-publish content across all 4 channels and 6-slide card news', () => {
+    // 01 Reddit
+    const redditDir = path.join(ROOT_DIR, 'global_marketing_packs', '01_reddit_posts');
+    if (!fs.existsSync(redditDir)) throw new Error('Missing 01_reddit_posts/');
+    const redditPosts = fs.readdirSync(redditDir).filter(f => f.endsWith('.md'));
+    if (redditPosts.length < 5) throw new Error(`Expected at least 5 Reddit posts, found ${redditPosts.length}`);
+
+    // 02 Instagram / Threads / Card News
+    const instaDir = path.join(ROOT_DIR, 'global_marketing_packs', '02_instagram_threads_carousels');
+    if (!fs.existsSync(instaDir)) throw new Error('Missing 02_instagram_threads_carousels/');
+    if (!fs.existsSync(path.join(instaDir, 'carousel_captions.md'))) throw new Error('Missing carousel_captions.md');
+    if (!fs.existsSync(path.join(instaDir, 'threads_posts.md'))) throw new Error('Missing threads_posts.md');
+
+    const slidesDir = path.join(instaDir, 'card_news_slides');
+    if (!fs.existsSync(slidesDir)) throw new Error('Missing card_news_slides/');
+    for (let i = 1; i <= 6; i++) {
+      const slidePath = path.join(slidesDir, `slide_${i}.png`);
+      if (!fs.existsSync(slidePath)) throw new Error(`Missing card news slide_${i}.png`);
+      const stat = fs.statSync(slidePath);
+      if (stat.size < 50000) throw new Error(`slide_${i}.png too small (${stat.size} bytes)`);
+    }
+
+    // 03 TikTok / Shorts
+    const tiktokDir = path.join(ROOT_DIR, 'global_marketing_packs', '03_tiktok_shorts_scripts');
+    if (!fs.existsSync(tiktokDir)) throw new Error('Missing 03_tiktok_shorts_scripts/');
+    const tiktokScripts = fs.readdirSync(tiktokDir).filter(f => f.endsWith('.md'));
+    if (tiktokScripts.length < 5) throw new Error(`Expected at least 5 TikTok scripts, found ${tiktokScripts.length}`);
+
+    // 04 Quora / X
+    const quoraDir = path.join(ROOT_DIR, 'global_marketing_packs', '04_quora_x_threads');
+    if (!fs.existsSync(quoraDir)) throw new Error('Missing 04_quora_x_threads/');
+    const quoraFiles = fs.readdirSync(quoraDir).filter(f => f.endsWith('.md'));
+    if (quoraFiles.length < 7) throw new Error(`Expected at least 7 Quora/X thread files, found ${quoraFiles.length}`);
+  });
+
+  console.log('\n[Group 17: 28 Clinical Q&A Articles, 0 Hangul across Web/Feeds, Lemon Squeezy Store #296100 & @kidsfittbot]');
+  check('qna/ and dist/qna/ contain 28 clinical Q&A guides and directory index with kisfitglobal.com canonical URLs', () => {
+    ['qna', 'dist/qna'].forEach((dirRel) => {
+      const qnaDir = path.join(ROOT_DIR, dirRel);
+      if (!fs.existsSync(qnaDir)) throw new Error(`Directory ${dirRel} missing`);
+
+      // 25 topics
+      for (let i = 1; i <= 25; i++) {
+        const fname = `topic-${String(i).padStart(2, '0')}.html`;
+        const fpath = path.join(qnaDir, fname);
+        if (!fs.existsSync(fpath)) throw new Error(`Missing ${fname} in ${dirRel}`);
+        const c = fs.readFileSync(fpath, 'utf8');
+        if (!c.includes('https://kisfitglobal.com/qna/')) {
+          throw new Error(`${fname} in ${dirRel} missing canonical kisfitglobal.com URL`);
+        }
+        if (!c.includes('FAQPage')) {
+          throw new Error(`${fname} in ${dirRel} missing FAQPage JSON-LD schema`);
+        }
+      }
+
+      // 3 post-seq files
+      for (let i = 1; i <= 3; i++) {
+        const fname = `post-seq-${String(i).padStart(3, '0')}.html`;
+        const fpath = path.join(qnaDir, fname);
+        if (!fs.existsSync(fpath)) throw new Error(`Missing ${fname} in ${dirRel}`);
+      }
+
+      // index.html
+      const indexPath = path.join(qnaDir, 'index.html');
+      if (!fs.existsSync(indexPath)) throw new Error(`Missing index.html in ${dirRel}`);
+    });
+  });
+
+  check('Strictly 0 Hangul characters across all HTML pages, Q&A guides, feeds, and AI manifests', () => {
+    const hangulRegex = /[\uAC00-\uD7AF]/;
+    const targetFiles = [
+      path.join(ROOT_DIR, 'index.html'),
+      path.join(ROOT_DIR, 'dist', 'index.html'),
+      path.join(ROOT_DIR, 'llms.txt'),
+      path.join(ROOT_DIR, 'dist', 'llms.txt'),
+      path.join(ROOT_DIR, 'llms-full.txt'),
+      path.join(ROOT_DIR, 'dist', 'llms-full.txt'),
+      path.join(ROOT_DIR, 'feed.json'),
+      path.join(ROOT_DIR, 'dist', 'feed.json'),
+      path.join(ROOT_DIR, 'rss.xml'),
+      path.join(ROOT_DIR, 'dist', 'rss.xml'),
+      path.join(ROOT_DIR, 'sitemap.xml'),
+      path.join(ROOT_DIR, 'dist', 'sitemap.xml')
     ];
-    sampleFiles.forEach((f) => {
-      if (!fs.existsSync(f)) throw new Error(`Missing sample file: ${f}`);
-      const stat = fs.statSync(f);
-      if (f.endsWith('.mp4') && stat.size < 1000000) {
-        throw new Error(`Video sample too small (<1MB): ${f}`);
+
+    // Add all qna files
+    ['qna', 'dist/qna'].forEach((dirRel) => {
+      const qnaDir = path.join(ROOT_DIR, dirRel);
+      if (fs.existsSync(qnaDir)) {
+        fs.readdirSync(qnaDir).filter(f => f.endsWith('.html')).forEach(f => {
+          targetFiles.push(path.join(qnaDir, f));
+        });
       }
     });
+
+    targetFiles.forEach((file) => {
+      if (!fs.existsSync(file)) throw new Error(`Target file missing for Hangul scan: ${file}`);
+      const content = fs.readFileSync(file, 'utf8');
+      const matches = content.match(hangulRegex);
+      if (matches) {
+        throw new Error(`Hangul detected in ${path.relative(ROOT_DIR, file)}: "${matches[0]}"`);
+      }
+    });
+  });
+
+  check('Lemon Squeezy Store #296100 hard-paywall, webhook HMAC, and @kidsfittbot bridge configured', () => {
+    // Check paywall script
+    const paywallPath = path.join(ROOT_DIR, 'src', 'js', 'global-paywall-edition.js');
+    if (!fs.existsSync(paywallPath)) throw new Error('src/js/global-paywall-edition.js missing');
+    const paywallContent = fs.readFileSync(paywallPath, 'utf8');
+    if (!paywallContent.includes('296100') || !paywallContent.includes('app.lemonsqueezy.com')) {
+      throw new Error('Lemon Squeezy Store #296100 URL missing from global-paywall-edition.js');
+    }
+
+    // Check server webhook endpoint
+    const serverPath = path.join(ROOT_DIR, 'server.js');
+    if (!fs.existsSync(serverPath)) throw new Error('server.js missing');
+    const serverContent = fs.readFileSync(serverPath, 'utf8');
+    if (!serverContent.includes('/api/lemonsqueezy-webhook') || !serverContent.includes('/api/lemonsqueezy-config')) {
+      throw new Error('Lemon Squeezy webhook/config endpoints missing from server.js');
+    }
+    if (!serverContent.includes('1468224') || !serverContent.includes('1468243')) {
+      throw new Error('Lemon Squeezy Store #296100 product IDs (1468224, 1468243) missing from server.js');
+    }
+
+    // Check .env configuration
+    const envPath = path.join(ROOT_DIR, '.env');
+    if (!fs.existsSync(envPath)) throw new Error('.env missing');
+    const envContent = fs.readFileSync(envPath, 'utf8');
+    if (!envContent.includes('TELEGRAM_BOT_TOKEN=8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw')) {
+      throw new Error('@kidsfittbot token missing from .env');
+    }
+    if (!envContent.includes('ANTIGRAVITY_CONVERSATION_ID=')) {
+      throw new Error('English Antigravity conversation ID missing from .env');
+    }
   });
 }
 

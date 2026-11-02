@@ -37,7 +37,7 @@
       cognitiveAxes: ['sensory_arts'],
       traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
       traitStudyStyle: 'play_manipulative',
-      region: '서울 강남·서초·송파'
+      region: 'United States'
     },
     'preset-2': {
       id: 'preset-2',
@@ -56,7 +56,7 @@
       cognitiveAxes: ['math_logic'],
       traitLearningConcerns: ['math_concept', 'reading_literacy'],
       traitStudyStyle: 'play_manipulative',
-      region: '경기 남부(분당·수원·용인·동탄)'
+      region: 'Canada'
     },
     'preset-3': {
       id: 'preset-3',
@@ -75,7 +75,7 @@
       cognitiveAxes: ['science_nature'],
       traitLearningConcerns: ['reading_literacy', 'passive_forget'],
       traitStudyStyle: 'dialogue_question',
-      region: '서울 강북·마포·용산'
+      region: 'United Kingdom & Europe'
     },
     'preset-4': {
       id: 'preset-4',
@@ -94,7 +94,7 @@
       cognitiveAxes: ['executive_focus'],
       traitLearningConcerns: ['passive_forget', 'screen_dopamine'],
       traitStudyStyle: 'goal_workbook',
-      region: '경기 북부·인천'
+      region: 'Australia & New Zealand'
     },
     'preset-5': {
       id: 'preset-5',
@@ -113,7 +113,102 @@
       cognitiveAxes: ['language_reading'],
       traitLearningConcerns: ['reading_literacy', 'passive_forget'],
       traitStudyStyle: 'dialogue_question',
-      region: '대구·경북'
+      region: 'Asia-Pacific & Global'
+    },
+    'infant_1': {
+      id: 'infant_1',
+      labelKo: '영아기 1세 (만 18개월) — 영유아 초기 성장 & 감각 발달',
+      labelEn: 'Infant 1.5 Yrs (18 Mo) — Early Auxology & Sensory Milestones',
+      gender: 'boy',
+      ageYears: 1,
+      ageMonths: 18,
+      currentHeight: 82.3,
+      currentWeight: 11.1,
+      recentGrowth6m: 6.0,
+      fatherHeight: 175.0,
+      motherHeight: 162.0,
+      tannerPhase: 'phase_1',
+      habits: ['picky_eater'],
+      cognitiveAxes: ['sensory_arts'],
+      traitLearningConcerns: ['vocab_expression'],
+      traitStudyStyle: 'play_manipulative',
+      region: 'United States'
+    },
+    'toddler_2_3': {
+      id: 'toddler_2_3',
+      labelKo: '영유아기 3세 (만 36개월) — 기초 성장기 & 소근육 감각 협응',
+      labelEn: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
+      gender: 'boy',
+      ageYears: 3,
+      ageMonths: 36,
+      currentHeight: 96.5,
+      currentWeight: 14.7,
+      recentGrowth6m: 3.5,
+      fatherHeight: 175.0,
+      motherHeight: 162.0,
+      tannerPhase: 'phase_1',
+      habits: ['picky_eater'],
+      cognitiveAxes: ['sensory_arts'],
+      traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
+      traitStudyStyle: 'play_manipulative',
+      region: 'United States'
+    },
+    'child_4_5': {
+      id: 'child_4_5',
+      labelKo: '유아기 5세 (만 60개월) — 취학 전 성장 & 수리·언어 기초',
+      labelEn: 'Preschool 5 Yrs (60 Mo) — Pre-K Growth Velocity & Early Literacy',
+      gender: 'girl',
+      ageYears: 5,
+      ageMonths: 60,
+      currentHeight: 109.2,
+      currentWeight: 18.6,
+      recentGrowth6m: 3.2,
+      fatherHeight: 175.5,
+      motherHeight: 162.5,
+      tannerPhase: 'phase_1',
+      habits: ['picky_eater', 'late_sleep'],
+      cognitiveAxes: ['language_reading'],
+      traitLearningConcerns: ['desk_endurance', 'reading_literacy'],
+      traitStudyStyle: 'play_manipulative',
+      region: 'United States'
+    },
+    'elem_low': {
+      id: 'elem_low',
+      labelKo: '초등 저학년 8세 (만 96개월) — 수리·공간 논리 & 척추 바른 정렬',
+      labelEn: 'Lower Elementary 8 Yrs (96 Mo) — Spatial Logic & Postural Alignment',
+      gender: 'girl',
+      ageYears: 8,
+      ageMonths: 96,
+      currentHeight: 127.5,
+      currentWeight: 26.4,
+      recentGrowth6m: 2.9,
+      fatherHeight: 176.0,
+      motherHeight: 163.0,
+      tannerPhase: 'phase_1',
+      habits: ['poor_posture', 'late_sleep'],
+      cognitiveAxes: ['math_logic'],
+      traitLearningConcerns: ['math_concept', 'reading_literacy'],
+      traitStudyStyle: 'dialogue_question',
+      region: 'United States'
+    },
+    'elem_high': {
+      id: 'elem_high',
+      labelKo: '초등 고학년·사춘기 11세 (만 132개월) — 사춘기 급성장 & 메타인지',
+      labelEn: 'Upper Elementary & Puberty 11 Yrs (132 Mo) — PHV Window & Executive LQ',
+      gender: 'boy',
+      ageYears: 11,
+      ageMonths: 132,
+      currentHeight: 143.5,
+      currentWeight: 38.2,
+      recentGrowth6m: 3.4,
+      fatherHeight: 174.0,
+      motherHeight: 161.0,
+      tannerPhase: 'phase_2',
+      habits: ['late_sleep', 'poor_posture'],
+      cognitiveAxes: ['executive_focus'],
+      traitLearningConcerns: ['passive_forget', 'math_concept'],
+      traitStudyStyle: 'goal_workbook',
+      region: 'United States'
     }
   };
 
@@ -231,7 +326,7 @@
       cognitiveAxes: ['science_nature'],
       traitLearningConcerns: ['reading_literacy'],
       traitStudyStyle: 'dialogue_question',
-      region: '서울 강남·서초·송파'
+      region: 'US National (CDC/AAP Standard)'
     }
   };
 
@@ -259,7 +354,26 @@
     const min = Math.round((mph - 8.5) * 10) / 10;
     const max = Math.round((mph + 8.5) * 10) / 10;
 
-    badgeVal.innerHTML = `${roundedMph.toFixed(1)} cm <span class="mph-badge-range">(±8.5cm: ${min.toFixed(1)}cm ~ ${max.toFixed(1)}cm)</span>`;
+    if (isImperial) {
+      const mphIn = mph / 2.54;
+      let ft = Math.floor(mphIn / 12);
+      let inch = Math.round((mphIn - ft * 12) * 10) / 10;
+      if (inch >= 12) { ft += 1; inch = 0; }
+
+      const minIn = (mph - 8.5) / 2.54;
+      let minFt = Math.floor(minIn / 12);
+      let minInch = Math.round((minIn - minFt * 12) * 10) / 10;
+      if (minInch >= 12) { minFt += 1; minInch = 0; }
+
+      const maxIn = (mph + 8.5) / 2.54;
+      let maxFt = Math.floor(maxIn / 12);
+      let maxInch = Math.round((maxIn - maxFt * 12) * 10) / 10;
+      if (maxInch >= 12) { maxFt += 1; maxInch = 0; }
+
+      badgeVal.innerHTML = `${ft}' ${inch.toFixed(1)}" (${mphIn.toFixed(1)} in) <span class="mph-badge-range">(±3.3 in: ${minFt}' ${minInch.toFixed(1)}" ~ ${maxFt}' ${maxInch.toFixed(1)}")</span>`;
+    } else {
+      badgeVal.innerHTML = `${roundedMph.toFixed(1)} cm <span class="mph-badge-range">(±8.5cm: ${min.toFixed(1)}cm ~ ${max.toFixed(1)}cm)</span>`;
+    }
   }
 
   // 4. Stepper Navigation Functions
@@ -326,7 +440,7 @@
       progressFillEl.style.width = `${percent}%`;
     }
 
-    // Update Taller.xyz 6-Segment Glowing Progress Bar
+    // Update 6-Segment Glowing Progress Bar
     const segBar = document.getElementById('quiz-segmented-bar');
     if (segBar && typeof segBar.querySelectorAll === 'function') {
       const pills = segBar.querySelectorAll('.taller-seg-pill');
@@ -379,8 +493,9 @@
   /**
    * Synchronizes Date of Birth (Year/Month/Day) -> Exact Months/Days + Auto Growth Stage (Phase 1~4)
    */
-  function syncDobAndAutoStage() {
+  function syncDobAndAutoStage(options = {}) {
     if (typeof document === 'undefined') return;
+    const preserveUserInputs = Boolean(options && options.preserveUserInputs);
     if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
       PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
     }
@@ -411,7 +526,13 @@
     const boyRadio = document.getElementById('gender-boy');
     const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
     const recentInput = document.getElementById('child-recent-gain');
-    const recent6m = recentInput ? parseFloat(recentInput.value) || 3.2 : 3.2;
+    const isImpGain = typeof isCurrentImperial === 'function'
+      ? isCurrentImperial()
+      : (typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial');
+    const rawRecent = recentInput ? parseFloat(recentInput.value) : NaN;
+    const recent6m = !isNaN(rawRecent) && rawRecent > 0
+      ? (isImpGain ? Math.round(rawRecent * 2.54 * 10) / 10 : rawRecent)
+      : 3.2;
 
     const dobInfo = PinpointCurator.calculateExactAgeFromDob(yearEl.value, monthEl.value, dayEl.value);
     const autoStage = PinpointCurator.autoDetectGrowthStage(dobInfo.exactMonths, gender, recent6m);
@@ -426,26 +547,35 @@
     wizardState.profile.exactMonths = dobInfo.exactMonths;
     wizardState.profile.remainderDays = dobInfo.remainderDays;
     wizardState.profile.ageYears = dobInfo.ageYears;
-    wizardState.profile.tannerPhase = autoStage.tannerPhase;
+    if (!preserveUserInputs) {
+      wizardState.profile.tannerPhase = autoStage.tannerPhase;
+    }
 
-    // Auto-sync KDCA 50th percentile standard height & weight unless user manually edited
+    // Auto-sync KDCA 50th percentile standard height & weight unless user manually edited or preserveUserInputs is true
     if (!GrowthEngine && (global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine)) {
       GrowthEngine = global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine;
     }
-    if (GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function') {
+    if (!preserveUserInputs && GrowthEngine && typeof GrowthEngine.getLmsForMonth === 'function') {
       const lms = GrowthEngine.getLmsForMonth(gender, dobInfo.exactMonths || dobInfo.ageMonths);
       if (lms) {
         const heightInput = document.getElementById('child-height');
         const weightInput = document.getElementById('child-weight');
         const roundedH = Math.round((Number(lms.M) || 137.0) * 10) / 10;
         const roundedW = Math.round((Number(lms.wM) || 35.5) * 10) / 10;
+        const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+        const displayH = isImperial ? (Math.round((roundedH / 2.54) * 10) / 10).toFixed(1) : roundedH.toFixed(1);
+        const displayW = isImperial ? (Math.round(roundedW * 2.20462262 * 10) / 10).toFixed(1) : roundedW.toFixed(1);
+
         if (heightInput && !(heightInput.dataset && heightInput.dataset.userEdited === 'true')) {
-          heightInput.value = roundedH.toFixed(1);
+          heightInput.value = displayH;
           wizardState.profile.currentHeight = roundedH;
         }
         if (weightInput && !(weightInput.dataset && weightInput.dataset.userEdited === 'true')) {
-          weightInput.value = roundedW.toFixed(1);
+          weightInput.value = displayW;
           wizardState.profile.currentWeight = roundedW;
+        }
+        if (typeof syncCompanionInputs === 'function') {
+          syncCompanionInputs();
         }
       }
     }
@@ -479,11 +609,13 @@
         : `${autoStage.boneAgeNoteKo}<br><strong style="color:#1D4ED8;">입력하신 생년월일 월령에 맞춰 최적 성장 단계가 자동 설정되었으므로 바로 [다음 단계]로 이동하시면 됩니다.</strong>`;
     }
 
-    const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
-    if (phaseRadios && phaseRadios.forEach) {
-      phaseRadios.forEach((r) => {
-        r.checked = (r.value === autoStage.tannerPhase);
-      });
+    if (!preserveUserInputs) {
+      const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
+      if (phaseRadios && phaseRadios.forEach) {
+        phaseRadios.forEach((r) => {
+          r.checked = (r.value === autoStage.tannerPhase);
+        });
+      }
     }
 
     syncAgeAppropriateQuizOptions(dobInfo.ageYears);
@@ -495,8 +627,7 @@
    */
   function syncAgeAppropriateQuizOptions(ageYears) {
     if (typeof document === 'undefined') return;
-    const isEn = document.documentElement.lang === 'en';
-    if (isEn) return;
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
 
     const age = Number(ageYears) || 10;
     const isToddler = age <= 4;
@@ -514,94 +645,242 @@
 
     if (isToddler) {
       // Ages 1~4: Play, Picture Books, Sensory & Autonomy
-      setCheckboxLabel('learning-literacy', 'reading_comprehension', '그림책을 읽어줄 때 끝까지 집중하지 못하고 금방 다른 장난감을 찾아요');
-      setCheckboxLabel('learning-literacy', 'vocab_context', '또래보다 새로운 단어를 따라 말하거나 뜻을 이해하는 속도가 느린 편이에요');
-      setCheckboxLabel('learning-literacy', 'slow_subvocal', '말소리를 정확하게 발음하거나 두세 문장으로 이어 말하는 게 아직 서툴러요');
-      setCheckboxLabel('learning-literacy', 'summary_expression', '자기가 원하는 것이나 감정을 말 대신 떼쓰기·울음·행동으로 먼저 표현해요');
-      setCheckboxLabel('learning-literacy', 'active_reader', '그림책 보는 것을 좋아하고 그림 속 사물 이름을 손가락으로 짚으며 잘 말해요');
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', isEn
+        ? 'Loses focus quickly during picture book reading and shifts to other toys'
+        : '그림책을 읽어줄 때 끝까지 집중하지 못하고 금방 다른 장난감을 찾아요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', isEn
+        ? 'Slower than peers in repeating new words or acquiring vocabulary'
+        : '또래보다 새로운 단어를 따라 말하거나 뜻을 이해하는 속도가 느린 편이에요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', isEn
+        ? 'Pronunciation is unclear or struggles to string 2–3 words into sentences'
+        : '말소리를 정확하게 발음하거나 두세 문장으로 이어 말하는 게 아직 서툴러요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', isEn
+        ? 'Expresses wants or frustration through crying/tantrums rather than speech'
+        : '자기가 원하는 것이나 감정을 말 대신 떼쓰기·울음·행동으로 먼저 표현해요');
+      setCheckboxLabel('learning-literacy', 'active_reader', isEn
+        ? 'Loves looking at picture books and points out familiar objects eagerly'
+        : '그림책 보는 것을 좋아하고 그림 속 사물 이름을 손가락으로 짚으며 잘 말해요');
 
-      setCheckboxLabel('learning-math', 'applied_math_block', '하나·둘·셋 숫자 이름은 말하지만 실제 사물 개수와 일대일로 짝짓기 어려워해요');
-      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '모양 맞추기 퍼즐이나 블록을 위아래·앞뒤로 쌓고 조립하는 걸 힘들어해요');
-      setCheckboxLabel('learning-math', 'formula_memorizer', '크다·작다, 길다·짧다, 많다·적다 같은 기초 비교 개념을 헷갈려해요');
-      setCheckboxLabel('learning-math', 'error_transfer_gap', '장난감 정리나 색깔·모양별로 끼리끼리 분류하는 놀이를 혼자 하기 어려워해요');
-      setCheckboxLabel('learning-math', 'math_explorer', '블록 쌓기나 모양 맞추기, 규칙적인 배열 놀이에 큰 흥미를 보여요');
+      setCheckboxLabel('learning-math', 'applied_math_block', isEn
+        ? 'Can count 1-2-3 aloud but struggles to pair numbers one-to-one with objects'
+        : '하나·둘·셋 숫자 이름은 말하지만 실제 사물 개수와 일대일로 짝짓기 어려워해요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', isEn
+        ? 'Struggles with shape sorting puzzles, stacking blocks, or 3D construction'
+        : '모양 맞추기 퍼즐이나 블록을 위아래·앞뒤로 쌓고 조립하는 걸 힘들어해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', isEn
+        ? 'Confuses basic comparative concepts (big/small, long/short, more/less)'
+        : '크다·작다, 길다·짧다, 많다·적다 같은 기초 비교 개념을 헷갈려해요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', isEn
+        ? 'Finds it difficult to sort or categorize toys by color or shape independently'
+        : '장난감 정리나 색깔·모양별로 끼리끼리 분류하는 놀이를 혼자 하기 어려워해요');
+      setCheckboxLabel('learning-math', 'math_explorer', isEn
+        ? 'Demonstrates high curiosity in block stacking, shape sorting, and patterns'
+        : '블록 쌓기나 모양 맞추기, 규칙적인 배열 놀이에 큰 흥미를 보여요');
 
-      setCheckboxLabel('learning-focus', 'distracted_desk', '한 가지 놀잇감에 5~10분 이상 머무르지 못하고 이리저리 자주 옮겨 다녀요');
-      setCheckboxLabel('learning-focus', 'dopamine_media', '식사할 때나 이동할 때 스마트폰·태블릿 영상을 봐야만 가만히 있어요');
-      setCheckboxLabel('learning-focus', 'procrastination', '손끝을 써야 하는 단추 끼우기·집게 집기·가위질 놀이를 답답해하며 피하려 해요');
-      setCheckboxLabel('learning-focus', 'impulsive_mistakes', '기다리는 것을 힘들어하고 마음이 급해 장난감을 던지거나 먼저 손이 나가요');
-      setCheckboxLabel('learning-focus', 'deep_focus', '좋아하는 블록이나 촉감·역할 놀이를 할 때는 15분 이상 깊게 빠져들어요');
+      setCheckboxLabel('learning-focus', 'distracted_desk', isEn
+        ? 'Shifts rapidly between play activities every 3–5 minutes without sustained focus'
+        : '한 가지 놀잇감에 5~10분 이상 머무르지 못하고 이리저리 자주 옮겨 다녀요');
+      setCheckboxLabel('learning-focus', 'dopamine_media', isEn
+        ? 'Requires smartphone/tablet videos to stay seated during meals or transit'
+        : '식사할 때나 이동할 때 스마트폰·태블릿 영상을 봐야만 가만히 있어요');
+      setCheckboxLabel('learning-focus', 'procrastination', isEn
+        ? 'Avoids fine-motor activities like buttoning, picking beads, or child scissors'
+        : '손끝을 써야 하는 단추 끼우기·집게 집기·가위질 놀이를 답답해하며 피하려 해요');
+      setCheckboxLabel('learning-focus', 'impulsive_mistakes', isEn
+        ? 'Has difficulty waiting; snatches toys impulsively or throws them when rushed'
+        : '기다리는 것을 힘들어하고 마음이 급해 장난감을 던지거나 먼저 손이 나가요');
+      setCheckboxLabel('learning-focus', 'deep_focus', isEn
+        ? 'Stays immersed for 15+ minutes when engaged in favorite sensory or block play'
+        : '좋아하는 블록이나 촉감·역할 놀이를 할 때는 15분 이상 깊게 빠져들어요');
 
-      setCheckboxLabel('learning-meta', 'passive_illusion', '엄마·아빠가 옆에서 같이 해줄 때만 놀고 혼자서는 놀이를 이어가지 못해요');
-      setCheckboxLabel('learning-meta', 'metacognition_lack', '낮에 다녀온 곳이나 방금 읽은 그림책 이야기를 물어보면 대답하기 어려워해요');
-      setCheckboxLabel('learning-meta', 'cramming_forget', '어제 배운 단어나 생활 약속(장난감 정리 등)을 다음 날이면 금방 잊어버려요');
-      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', '낮잠 시간이 불규칙하거나 밤 10시 넘어 늦게 자서 낮에 짜증·피로가 많아요');
-      setCheckboxLabel('learning-meta', 'daily_retrieval_active', '"이거 왜 그래요?" 질문을 자주 하고 배운 단어를 일상에서 바로 써먹어요');
+      setCheckboxLabel('learning-meta', 'passive_illusion', isEn
+        ? 'Only plays when parents initiate and guide; rarely explores independently'
+        : '엄마·아빠가 옆에서 같이 해줄 때만 놀고 혼자서는 놀이를 이어가지 못해요');
+      setCheckboxLabel('learning-meta', 'metacognition_lack', isEn
+        ? 'Struggles to recount where they went today or what happened in a storybook'
+        : '낮에 다녀온 곳이나 방금 읽은 그림책 이야기를 물어보면 대답하기 어려워해요');
+      setCheckboxLabel('learning-meta', 'cramming_forget', isEn
+        ? 'Quickly forgets words or routine habits (e.g. putting toys away) learned yesterday'
+        : '어제 배운 단어나 생활 약속(장난감 정리 등)을 다음 날이면 금방 잊어버려요');
+      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', isEn
+        ? 'Irregular naps or bedtimes past 10 PM cause frequent daytime irritability'
+        : '낮잠 시간이 불규칙하거나 밤 10시 넘어 늦게 자서 낮에 짜증·피로가 많아요');
+      setCheckboxLabel('learning-meta', 'daily_retrieval_active', isEn
+        ? 'Frequently asks "Why?" questions and immediately uses new words in daily life'
+        : '"이거 왜 그래요?" 질문을 자주 하고 배운 단어를 일상에서 바로 써먹어요');
 
-      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '그림책에 집중하는 시간이 짧고 이야기 흐름을 따라가기 어려워해요');
-      setCheckboxLabel('trait-learning-concern', 'math_concept', '수 세기, 모양 맞추기, 블록 조립 같은 기초 공간·수 감각 놀이를 어색해해요');
-      setCheckboxLabel('trait-learning-concern', 'passive_forget', '엄마가 도와주지 않으면 혼자 스스로 해보려는 자율성이 부족해요');
-      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '스마트폰·영상 자극에 익숙해져서 손으로 만지는 놀이를 심심해해요');
-      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '자리에 앉아 손끝 소근육 놀이(집게·구슬·퍼즐)에 집중하기 힘들어해요');
-      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '단어 표현력이 부족하거나 자기 생각을 말로 표현하기 어려워해요');
-      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '낯선 환경이나 새로운 놀이를 만났을 때 실패할까 봐 쉽게 위축돼요');
-      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '매일 정해진 시간에 그림책을 보거나 스스로 정리하는 생활 루틴이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', isEn
+        ? 'Short listening attention span for picture books; difficulty following stories'
+        : '그림책에 집중하는 시간이 짧고 이야기 흐름을 따라가기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', isEn
+        ? 'Awkward with early spatial and quantitative play (counting, shape sorting)'
+        : '수 세기, 모양 맞추기, 블록 조립 같은 기초 공간·수 감각 놀이를 어색해해요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', isEn
+        ? 'Relies heavily on parental assistance; lacks autonomous exploration habits'
+        : '엄마가 도와주지 않으면 혼자 스스로 해보려는 자율성이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', isEn
+        ? 'Over-reliant on mobile video dopamine; gets bored quickly with tactile toys'
+        : '스마트폰·영상 자극에 익숙해져서 손으로 만지는 놀이를 심심해해요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', isEn
+        ? 'Difficulty sitting still for 10–15 minutes of fine-motor table activity'
+        : '자리에 앉아 손끝 소근육 놀이(집게·구슬·퍼즐)에 집중하기 힘들어해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', isEn
+        ? 'Limited expressive vocabulary; struggles to express thoughts verbally'
+        : '단어 표현력이 부족하거나 자기 생각을 말로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', isEn
+        ? 'Easily intimidated or hesitant when facing new environments or unfamiliar play'
+        : '낯선 환경이나 새로운 놀이를 만났을 때 실패할까 봐 쉽게 위축돼요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', isEn
+        ? 'Lacks a daily routine of reading picture books or tidying up at set hours'
+        : '매일 정해진 시간에 그림책을 보거나 스스로 정리하는 생활 루틴이 부족해요');
     } else if (isKinder) {
       // Ages 5~6: Kindergarten / Preschool Readiness
-      setCheckboxLabel('learning-literacy', 'reading_comprehension', '한글 낱글자는 읽지만 문장 단위로 뜻을 이해하는 속도가 느려요');
-      setCheckboxLabel('learning-literacy', 'vocab_context', '모르는 단어가 나오면 앞뒤 그림·이야기 맥락으로 유추하기 어려워해요');
-      setCheckboxLabel('learning-literacy', 'slow_subvocal', '글자보다 그림만 대충 넘겨 보거나 소리 내어 읽기를 부담스러워해요');
-      setCheckboxLabel('learning-literacy', 'summary_expression', '동화책을 읽고 난 뒤 "왜 그랬을까?" 질문에 자기 생각을 말하기 힘들어해요');
-      setCheckboxLabel('learning-literacy', 'active_reader', '이야기책을 즐겨 보고 등장인물의 마음이나 줄거리를 말로 잘 표현해요');
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', isEn
+        ? 'Decodes alphabet/letters but slow to comprehend sentence-level meaning'
+        : '한글 낱글자는 읽지만 문장 단위로 뜻을 이해하는 속도가 느려요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', isEn
+        ? 'Struggles to infer unknown words from surrounding illustrations and narrative context'
+        : '모르는 단어가 나오면 앞뒤 그림·이야기 맥락으로 유추하기 어려워해요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', isEn
+        ? 'Skims only picture illustrations or feels burdened when asked to read aloud'
+        : '글자보다 그림만 대충 넘겨 보거나 소리 내어 읽기를 부담스러워해요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', isEn
+        ? 'Struggles to express personal thoughts when asked "Why do you think that happened?"'
+        : '동화책을 읽고 난 뒤 "왜 그랬을까?" 질문에 자기 생각을 말하기 힘들어해요');
+      setCheckboxLabel('learning-literacy', 'active_reader', isEn
+        ? 'Enjoys storybooks and articulates characters feelings and main plot points clearly'
+        : '이야기책을 즐겨 보고 등장인물의 마음이나 줄거리를 말로 잘 표현해요');
 
-      setCheckboxLabel('learning-math', 'applied_math_block', '손가락으로 숫자는 더하지만 이야기 속 수 놀이(가르기·모으기)를 어려워해요');
-      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '칠교놀이·가베·자석블록으로 입체 모양을 똑같이 만드는 공간 놀이를 힘들어해요');
-      setCheckboxLabel('learning-math', 'formula_memorizer', '10 만들기나 수의 크기 비교를 원리보다 단순 순서 외우기로만 해결하려 해요');
-      setCheckboxLabel('learning-math', 'error_transfer_gap', '조금만 문제 모양이 바뀌어도 "모르겠어요" 하고 먼저 도움을 요청해요');
-      setCheckboxLabel('learning-math', 'math_explorer', '퍼즐 맞추기, 규칙 찾기, 입체 블록 구조물 만들기를 스스로 즐겨요');
+      setCheckboxLabel('learning-math', 'applied_math_block', isEn
+        ? 'Adds numbers on fingers accurately but struggles with word problem part-whole reasoning'
+        : '손가락으로 숫자는 더하지만 이야기 속 수 놀이(가르기·모으기)를 어려워해요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', isEn
+        ? 'Finds 3D block recreation, tangrams, and geometric puzzle replication challenging'
+        : '칠교놀이·가베·자석블록으로 입체 모양을 똑같이 만드는 공간 놀이를 힘들어해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', isEn
+        ? 'Relies on rote memorization for making-10 or comparisons rather than visual intuition'
+        : '10 만들기나 수의 크기 비교를 원리보다 단순 순서 외우기로만 해결하려 해요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', isEn
+        ? 'Immediately asks for help as soon as the problem format or layout changes slightly'
+        : '조금만 문제 모양이 바뀌어도 "모르겠어요" 하고 먼저 도움을 요청해요');
+      setCheckboxLabel('learning-math', 'math_explorer', isEn
+        ? 'Independently engages in solving puzzles, identifying patterns, and 3D construction'
+        : '퍼즐 맞추기, 규칙 찾기, 입체 블록 구조물 만들기를 스스로 즐겨요');
 
-      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '한글 읽기 유창성과 짧은 동화책 내용 이해력을 키워주고 싶어요');
-      setCheckboxLabel('trait-learning-concern', 'math_concept', '수 가르기·모으기와 도형·공간 감각(칠교·은물·블록)을 탄탄히 잡아주고 싶어요');
-      setCheckboxLabel('trait-learning-concern', 'passive_forget', '배운 내용을 엄마에게 말로 설명해 보는 표현·기억 습관이 부족해요');
-      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '영상·미디어 자극에 익숙해져 종이책이나 보드게임에 흥미가 덜해요');
-      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '초등학교 입학 전 15~20분 바른 자세로 앉아 집중하는 연습이 필요해요');
-      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '어휘력이 부족하거나 자기 생각을 조리 있게 말로 표현하기 어려워해요');
-      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '조금만 어려운 퍼즐이나 활동지가 나오면 틀릴까 봐 시도를 피하려 해요');
-      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '매일 15분씩 스스로 책 읽고 활동지를 끝내는 성취 습관을 길러주고 싶어요');
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', isEn
+        ? 'Want to strengthen early reading fluency and short story comprehension skills'
+        : '한글 읽기 유창성과 짧은 동화책 내용 이해력을 키워주고 싶어요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', isEn
+        ? 'Want to build solid number sense, spatial geometry, and tactile block intuition'
+        : '수 가르기·모으기와 도형·공간 감각(칠교·은물·블록)을 탄탄히 잡아주고 싶어요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', isEn
+        ? 'Lacks the habit of explaining or retelling learned concepts back to parents'
+        : '배운 내용을 엄마에게 말로 설명해 보는 표현·기억 습관이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', isEn
+        ? 'Prefers screen media over physical books and tactile board games'
+        : '영상·미디어 자극에 익숙해져 종이책이나 보드게임에 흥미가 덜해요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', isEn
+        ? 'Needs practice sitting with good posture and focus for 15–20 minutes before elementary'
+        : '초등학교 입학 전 15~20분 바른 자세로 앉아 집중하는 연습이 필요해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', isEn
+        ? 'Needs to enrich vocabulary and practice organizing thoughts verbally'
+        : '어휘력이 부족하거나 자기 생각을 조리 있게 말로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', isEn
+        ? 'Avoids challenging worksheets or puzzles due to fear of making errors'
+        : '조금만 어려운 퍼즐이나 활동지가 나오면 틀릴까 봐 시도를 피하려 해요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', isEn
+        ? 'Want to nurture a self-directed habit of completing 15-minute daily reading and tasks'
+        : '매일 15분씩 스스로 책 읽고 활동지를 끝내는 성취 습관을 길러주고 싶어요');
     } else {
       // Ages 7+: Elementary / Middle / High School
-      setCheckboxLabel('learning-literacy', 'reading_comprehension', '긴 글이나 서술형 문장제 문제를 읽고 핵심 파악을 어려워해요');
-      setCheckboxLabel('learning-literacy', 'vocab_context', '모르는 어휘가 나오면 앞뒤 문맥 유추를 못 하고 글 전체를 놓쳐요');
-      setCheckboxLabel('learning-literacy', 'slow_subvocal', '책을 읽는 속도가 지나치게 느리거나 눈으로만 대충 훑어 읽어요');
-      setCheckboxLabel('learning-literacy', 'summary_expression', '책을 다 읽은 후 줄거리 요약이나 느낀 점을 말·서술형 글로 표현하기 힘들어요');
-      setCheckboxLabel('learning-literacy', 'active_reader', '스스로 책을 찾아 읽고 글의 행간이나 핵심 문맥을 잘 파악해요');
+      setCheckboxLabel('learning-literacy', 'reading_comprehension', isEn
+        ? 'Struggles to extract the core message from long texts or descriptive word problems'
+        : '긴 글이나 서술형 문장제 문제를 읽고 핵심 파악을 어려워해요');
+      setCheckboxLabel('learning-literacy', 'vocab_context', isEn
+        ? 'Stumbles on unfamiliar vocabulary and loses overall comprehension of the text'
+        : '모르는 어휘가 나오면 앞뒤 문맥 유추를 못 하고 글 전체를 놓쳐요');
+      setCheckboxLabel('learning-literacy', 'slow_subvocal', isEn
+        ? 'Reading speed is excessively slow or merely skims superficially without retention'
+        : '책을 읽는 속도가 지나치게 느리거나 눈으로만 대충 훑어 읽어요');
+      setCheckboxLabel('learning-literacy', 'summary_expression', isEn
+        ? 'Difficult to summarize main plots or formulate personal insights in written form'
+        : '책을 다 읽은 후 줄거리 요약이나 느낀 점을 말·서술형 글로 표현하기 힘들어요');
+      setCheckboxLabel('learning-literacy', 'active_reader', isEn
+        ? 'Reads books independently and readily grasps subtext and nuanced context'
+        : '스스로 책을 찾아 읽고 글의 행간이나 핵심 문맥을 잘 파악해요');
 
-      setCheckboxLabel('learning-math', 'applied_math_block', '단순 계산·연산은 빠르지만, 문장제 응용문제에서 식을 못 세워요');
-      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', '도형 돌리기, 입체 전개도, 기하·공간 추론 문제를 유독 어려워해요');
-      setCheckboxLabel('learning-math', 'formula_memorizer', '원리나 개념 이해보다 공식 암기에만 의존해 조금만 변형되어도 틀려요');
-      setCheckboxLabel('learning-math', 'error_transfer_gap', '틀린 문제를 설명해줘도 비슷한 유형의 문제에서 똑같이 반복 오답이 나와요');
-      setCheckboxLabel('learning-math', 'math_explorer', '규칙 찾기나 논리 추론, 새로운 수학 원리를 스스로 탐구하는 편이에요');
+      setCheckboxLabel('learning-math', 'applied_math_block', isEn
+        ? 'Fast at mechanical arithmetic but blocked when setting up equations for word problems'
+        : '단순 계산·연산은 빠르지만, 문장제 응용문제에서 식을 못 세워요');
+      setCheckboxLabel('learning-math', 'spatial_logic_difficulty', isEn
+        ? 'Particularly struggles with rotated shapes, 3D net unfolding, and geometric reasoning'
+        : '도형 돌리기, 입체 전개도, 기하·공간 추론 문제를 유독 어려워해요');
+      setCheckboxLabel('learning-math', 'formula_memorizer', isEn
+        ? 'Relies on formula memorization; fails when problem presentations are modified slightly'
+        : '원리나 개념 이해보다 공식 암기에만 의존해 조금만 변형되어도 틀려요');
+      setCheckboxLabel('learning-math', 'error_transfer_gap', isEn
+        ? 'Repeats the exact same errors in analogous problems even after mistake explanations'
+        : '틀린 문제를 설명해줘도 비슷한 유형의 문제에서 똑같이 반복 오답이 나와요');
+      setCheckboxLabel('learning-math', 'math_explorer', isEn
+        ? 'Spontaneously enjoys finding mathematical patterns, logical reasoning, and principles'
+        : '규칙 찾기나 논리 추론, 새로운 수학 원리를 스스로 탐구하는 편이에요');
 
-      setCheckboxLabel('learning-focus', 'distracted_desk', '책상에 15~20분 이상 앉아 있기 힘들고 주변 작은 소리나 물건에 산만해져요');
-      setCheckboxLabel('learning-focus', 'dopamine_media', '스마트폰 숏폼·유튜브·게임 자극에 익숙해 글자나 공부에 쉽게 지루해해요');
-      setCheckboxLabel('learning-focus', 'procrastination', '숙제나 공부를 해야 할 때 자꾸 뒤로 미루고 시작하기까지 딴짓이 많아요');
-      setCheckboxLabel('learning-focus', 'impulsive_mistakes', '문제를 꼼꼼히 끝까지 안 읽고 건너뛰거나 계산 부호를 잘못 보는 실수가 잦아요');
-      setCheckboxLabel('learning-focus', 'deep_focus', '흥미 있는 분야나 문제에 30~40분 이상 스스로 깊이 몰입해요');
+      setCheckboxLabel('learning-focus', 'distracted_desk', isEn
+        ? 'Cannot stay seated for 15–20 minutes; easily distracted by ambient sounds or objects'
+        : '책상에 15~20분 이상 앉아 있기 힘들고 주변 작은 소리나 물건에 산만해져요');
+      setCheckboxLabel('learning-focus', 'dopamine_media', isEn
+        ? 'Accustomed to short-form video/gaming dopamine; gets quickly bored with study and text'
+        : '스마트폰 숏폼·유튜브·게임 자극에 익숙해 글자나 공부에 쉽게 지루해해요');
+      setCheckboxLabel('learning-focus', 'procrastination', isEn
+        ? 'Habitually procrastinates homework and study with extensive avoidance behaviors'
+        : '숙제나 공부를 해야 할 때 자꾸 뒤로 미루고 시작하기까지 딴짓이 많아요');
+      setCheckboxLabel('learning-focus', 'impulsive_mistakes', isEn
+        ? 'Skims over problem stems and makes frequent careless calculation or sign errors'
+        : '문제를 꼼꼼히 끝까지 안 읽고 건너뛰거나 계산 부호를 잘못 보는 실수가 잦아요');
+      setCheckboxLabel('learning-focus', 'deep_focus', isEn
+        ? 'Maintains deep, sustained immersion in areas of interest for 30–40+ minutes'
+        : '흥미 있는 분야나 문제에 30~40분 이상 스스로 깊이 몰입해요');
 
-      setCheckboxLabel('learning-meta', 'passive_illusion', '학원·선생님 설명을 들을 땐 알겠는데 혼자 풀면 백지 상태가 돼요');
-      setCheckboxLabel('learning-meta', 'metacognition_lack', '배운 내용을 책을 덮고 내 말로 설명하거나 정리(백지복습)하지 못해요');
-      setCheckboxLabel('learning-meta', 'cramming_forget', '시험 전날 벼락치기로 외우고, 시험이 끝나면 배운 내용을 금방 잊어버려요');
-      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', '밤늦게까지 공부하거나 늦게 자서 아침에 멍하고 낮에 뇌 피로감이 커요');
-      setCheckboxLabel('learning-meta', 'daily_retrieval_active', '그날 배운 핵심 내용을 15분 스스로 정리하고 질문하는 습관이 있어요');
+      setCheckboxLabel('learning-meta', 'passive_illusion', isEn
+        ? 'Follows teacher explanations easily but goes blank when solving problems alone'
+        : '학원·선생님 설명을 들을 땐 알겠는데 혼자 풀면 백지 상태가 돼요');
+      setCheckboxLabel('learning-meta', 'metacognition_lack', isEn
+        ? 'Unable to summarize or explain learned material in own words after closing the book'
+        : '배운 내용을 책을 덮고 내 말로 설명하거나 정리(백지복습)하지 못해요');
+      setCheckboxLabel('learning-meta', 'cramming_forget', isEn
+        ? 'Crams right before exams and forgets the core material almost immediately after'
+        : '시험 전날 벼락치기로 외우고, 시험이 끝나면 배운 내용을 금방 잊어버려요');
+      setCheckboxLabel('learning-meta', 'sleep_consolidation_loss', isEn
+        ? 'Late-night studying or sleeping past midnight causes morning fog and high daytime fatigue'
+        : '밤늦게까지 공부하거나 늦게 자서 아침에 멍하고 낮에 뇌 피로감이 커요');
+      setCheckboxLabel('learning-meta', 'daily_retrieval_active', isEn
+        ? 'Maintains a habit of independently summarizing key concepts for 15 minutes daily'
+        : '그날 배운 핵심 내용을 15분 스스로 정리하고 질문하는 습관이 있어요');
 
-      setCheckboxLabel('trait-learning-concern', 'reading_literacy', '긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요');
-      setCheckboxLabel('trait-learning-concern', 'math_concept', '단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요');
-      setCheckboxLabel('trait-learning-concern', 'passive_forget', '학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요');
-      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', '스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요');
-      setCheckboxLabel('trait-learning-concern', 'desk_endurance', '책상에 20분 이상 바른 자세로 앉아 있기 힘들고 산만해요');
-      setCheckboxLabel('trait-learning-concern', 'vocab_expression', '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요');
-      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', '아는 문제도 문제집·시험에서 덤벙대며 실수하거나 긴장해서 틀려요');
-      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', '스스로 분량을 정해 매일 꾸준히 실천하는 자기주도 습관이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'reading_literacy', isEn
+        ? 'Reading literacy bottleneck: struggles to comprehend complex descriptive texts'
+        : '긴 글·문장제 문제를 읽고 이해하는 문해력이 부족해요');
+      setCheckboxLabel('trait-learning-concern', 'math_concept', isEn
+        ? 'Blocked by word problems, geometry, and application despite computational skills'
+        : '단순 연산은 해도 도형·응용·사고력 수학에서 막혀해요');
+      setCheckboxLabel('trait-learning-concern', 'passive_forget', isEn
+        ? 'Forgets quickly after lectures and lacks self-directed retrieval practice'
+        : '학원·설명을 들어도 금방 잊어버리고 자기주도 복습이 안 돼요');
+      setCheckboxLabel('trait-learning-concern', 'screen_dopamine', isEn
+        ? 'Overstimulated by smartphone and gaming dopamine; disinterested in book study'
+        : '스마트폰·유튜브 자극에 익숙해 책·공부에 흥미가 없어요');
+      setCheckboxLabel('trait-learning-concern', 'desk_endurance', isEn
+        ? 'Low desk endurance: fidgety and restless after 20 minutes of seated study'
+        : '책상에 20분 이상 바른 자세로 앉아 있기 힘들고 산만해요');
+      setCheckboxLabel('trait-learning-concern', 'vocab_expression', isEn
+        ? 'Limited vocabulary; struggles to articulate ideas in speech or written essays'
+        : '어휘력이 부족하거나 생각을 말·서술형 글로 표현하기 어려워해요');
+      setCheckboxLabel('trait-learning-concern', 'test_mistake_anxiety', isEn
+        ? 'Careless mistakes or test anxiety on problems the child actually knows how to solve'
+        : '아는 문제도 문제집·시험에서 덤벙대며 실수하거나 긴장해서 틀려요');
+      setCheckboxLabel('trait-learning-concern', 'habit_self_directed', isEn
+        ? 'Lacks self-directed study routines to set daily goals and execute them steadily'
+        : '스스로 분량을 정해 매일 꾸준히 실천하는 자기주도 습관이 부족해요');
     }
   }
 
@@ -612,7 +891,36 @@
       return true; // Skip physical height/weight check in learning mode
     }
 
-    if (stepNumber === 1 || stepNumber === 2) {
+    const yearEl = document.getElementById('child-birth-year');
+    const monthEl = document.getElementById('child-birth-month');
+    const dayEl = document.getElementById('child-birth-day');
+    const hasDobSelects = Boolean(yearEl && monthEl && dayEl);
+
+    if (stepNumber === 1) {
+      if (hasDobSelects) {
+        // Full DOM environment: Step 1 validates ONLY Gender & DOB
+        const boyEl = document.getElementById('gender-boy');
+        const girlEl = document.getElementById('gender-girl');
+        if (boyEl && girlEl && !boyEl.checked && !girlEl.checked) {
+          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+          alert(isEn ? 'Please select a gender.' : '성별을 선택해 주세요.');
+          return false;
+        }
+
+        const y = (yearEl.value !== '' && yearEl.value !== undefined) ? parseInt(yearEl.value, 10) : 2016;
+        const m = (monthEl.value !== '' && monthEl.value !== undefined) ? parseInt(monthEl.value, 10) : 10;
+        const d = (dayEl.value !== '' && dayEl.value !== undefined) ? parseInt(dayEl.value, 10) : 15;
+        if (isNaN(y) || y < 2005 || y > 2026 || isNaN(m) || m < 1 || m > 12 || isNaN(d) || d < 1 || d > 31) {
+          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+          alert(isEn ? 'Please enter a valid date of birth.' : '생년월일을 올바르게 선택해 주세요.');
+          return false;
+        }
+        return true;
+      }
+      // Legacy mock DOM fallback where DOB selects don't exist: fall through to height/weight check below
+    }
+
+    if (stepNumber === 2 || (stepNumber === 1 && !hasDobSelects)) {
       const heightInput = document.getElementById('child-height');
       const weightInput = document.getElementById('child-weight');
       const recentInput = document.getElementById('child-recent-gain');
@@ -626,37 +934,89 @@
         let fh = fatherInput ? parseFloat(fatherInput.value) : 173.5;
         let mh = motherInput ? parseFloat(motherInput.value) : 160.5;
 
-        // Handle Imperial mode conversion if active
-        const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
-        if (isImperial) {
-          h = h * 2.54;
-          w = w / 2.20462262;
-          r = r * 2.54;
-          fh = fh * 2.54;
-          mh = mh * 2.54;
+        // Fallback: If primary inputs were empty, resolve from companion inputs
+        if (isNaN(h) || h <= 0) {
+          const chFt = document.getElementById('child-height-ft');
+          const chIn = document.getElementById('child-height-in');
+          if (chFt || chIn) {
+            const ft = parseFloat(chFt ? chFt.value : 0) || 0;
+            const inch = parseFloat(chIn ? chIn.value : 0) || 0;
+            const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+            if (totIn > 0) {
+              heightInput.value = totIn.toFixed(1);
+              h = totIn;
+            }
+          }
+        }
+        if ((isNaN(w) || w <= 0) && weightInput) {
+          const chWlbs = document.getElementById('child-weight-lbs');
+          if (chWlbs && chWlbs.value) {
+            const lbs = parseFloat(chWlbs.value) || 0;
+            if (lbs > 0) {
+              weightInput.value = lbs.toFixed(1);
+              w = lbs;
+            }
+          }
         }
 
-        // Bound checks against standard clinical metric ranges:
-        if (isNaN(h) || h < 45 || h > 230) {
-          alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.');
-          heightInput.focus();
-          return false;
-        }
-        if (isNaN(w) || w < 2 || w > 160) {
-          alert(isImperial ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.');
-          if (weightInput) weightInput.focus();
-          return false;
-        }
-        if (isNaN(r) || r < 0 || r > 20) {
-          alert(isImperial ? 'Please enter recent 6-month growth (0 to 8 inches).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
-          if (recentInput) recentInput.focus();
-          return false;
-        }
-        if (isNaN(fh) || fh < 100 || fh > 240) {
-          if (fatherInput) fatherInput.value = isImperial ? 68.3 : 173.5;
-        }
-        if (isNaN(mh) || mh < 100 || mh > 240) {
-          if (motherInput) motherInput.value = isImperial ? 63.2 : 160.5;
+        // Strict boundary checks against authoritative clinical ranges:
+        // Imperial mode: [18.0, 90.0] inches, [5.0, 350.0] lbs, [0.0, 8.0] inches
+        // Metric mode:   [45.0, 230.0] cm,    [2.0, 160.0] kg,   [0.0, 20.0] cm
+        const isImperial = typeof isCurrentImperial === 'function'
+          ? isCurrentImperial()
+          : (typeof global.TallerI18n !== 'undefined' && typeof global.TallerI18n.getUnitSystem === 'function'
+              ? global.TallerI18n.getUnitSystem() === 'imperial'
+              : false);
+
+        if (isImperial) {
+          // Explicit Imperial boundary validation BEFORE any unit scaling
+          if (isNaN(h) || h < 18.0 || h > 90.0) {
+            alert('Please enter a valid height (18 to 90 inches / 45 to 230 cm).');
+            heightInput.focus();
+            return false;
+          }
+          if (isNaN(w) || w < 5.0 || w > 350.0) {
+            alert('Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).');
+            if (weightInput) weightInput.focus();
+            return false;
+          }
+          if (isNaN(r) || r < 0.0 || r > 8.0) {
+            alert('Please enter recent 6-month growth (0 to 8 inches).');
+            if (recentInput) recentInput.focus();
+            return false;
+          }
+          if (isNaN(fh) || fh < 40.0 || fh > 95.0) {
+            if (fatherInput) fatherInput.value = 68.3;
+          }
+          if (isNaN(mh) || mh < 40.0 || mh > 95.0) {
+            if (motherInput) motherInput.value = 63.2;
+          }
+        } else {
+          // Explicit Metric boundary validation
+          if (isNaN(h) || h < 45.0 || h > 230.0) {
+            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
+            alert(isEn ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.');
+            heightInput.focus();
+            return false;
+          }
+          if (isNaN(w) || w < 2.0 || w > 160.0) {
+            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
+            alert(isEn ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.');
+            if (weightInput) weightInput.focus();
+            return false;
+          }
+          if (isNaN(r) || r < 0.0 || r > 20.0) {
+            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
+            alert(isEn ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
+            if (recentInput) recentInput.focus();
+            return false;
+          }
+          if (isNaN(fh) || fh < 100.0 || fh > 240.0) {
+            if (fatherInput) fatherInput.value = 173.5;
+          }
+          if (isNaN(mh) || mh < 100.0 || mh > 240.0) {
+            if (motherInput) motherInput.value = 160.5;
+          }
         }
       }
     }
@@ -667,6 +1027,32 @@
       if (fatherInput && motherInput) {
         let fh = parseFloat(fatherInput.value);
         let mh = parseFloat(motherInput.value);
+        if (isNaN(fh) || fh <= 0) {
+          const fhFt = document.getElementById('father-height-ft');
+          const fhIn = document.getElementById('father-height-in');
+          if (fhFt || fhIn) {
+            const ft = parseFloat(fhFt ? fhFt.value : 0) || 0;
+            const inch = parseFloat(fhIn ? fhIn.value : 0) || 0;
+            const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+            if (totIn > 0) {
+              fatherInput.value = totIn.toFixed(1);
+              fh = totIn;
+            }
+          }
+        }
+        if (isNaN(mh) || mh <= 0) {
+          const mhFt = document.getElementById('mother-height-ft');
+          const mhIn = document.getElementById('mother-height-in');
+          if (mhFt || mhIn) {
+            const ft = parseFloat(mhFt ? mhFt.value : 0) || 0;
+            const inch = parseFloat(mhIn ? mhIn.value : 0) || 0;
+            const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+            if (totIn > 0) {
+              motherInput.value = totIn.toFixed(1);
+              mh = totIn;
+            }
+          }
+        }
         const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
         if (isImperial) {
           fh = fh * 2.54;
@@ -721,8 +1107,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,714 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,714 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,714편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,714편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 3,722 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,722 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '3,722편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,722편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -750,7 +1136,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,714 research papers for active bio-inhibitors...'
+            ? 'Filtering 3,722 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -812,13 +1198,24 @@
     const presetsBar = document.getElementById('quick-presets-bar');
     if (presetsBar) presetsBar.style.display = 'none';
 
-    // Show Phase 2 Results Dashboard
+    // Show Phase 2 Results Dashboard & force viewport to the very top of the report
+    const scrollToReportTop = () => {
+      try {
+        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+          window.scrollTo(0, 0);
+        }
+        if (typeof document !== 'undefined') {
+          if (document.documentElement) document.documentElement.scrollTop = 0;
+          if (document.body) document.body.scrollTop = 0;
+        }
+      } catch (_) {}
+    };
     const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
     if (dashboard) {
       dashboard.classList.remove('hidden');
       dashboard.style.display = 'block';
-      dashboard.scrollIntoView({ behavior: 'smooth' });
     }
+    scrollToReportTop();
 
     // Record user input into Cohort DB for autonomous self-improvement
     if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
@@ -833,15 +1230,19 @@
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
     if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
-        window.fetch('/api/bespoke-note', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            timestamp: new Date().toISOString(),
-            profile: wizardState.profile,
-            parentFreeNote: wizardState.profile.parentFreeNote
-          })
-        }).catch(() => {});
+        const host = (window.location && String(window.location.hostname || '').toLowerCase()) || '';
+        const isStatic = (host.includes('kisfitglobal.com') || host.includes('kidsfitglobal.com') || host.includes('github.io')) && String(window.fetch).includes('[native code]');
+        if (!isStatic) {
+          window.fetch('/api/bespoke-note', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toISOString(),
+              profile: wizardState.profile,
+              parentFreeNote: wizardState.profile.parentFreeNote
+            })
+          }).catch(() => {});
+        }
       } catch (_) {}
     }
 
@@ -871,6 +1272,11 @@
       window.dispatchEvent(new CustomEvent('taller-scan-completed', {
         detail: { profile: wizardState.profile }
       }));
+    }
+    scrollToReportTop();
+    if (typeof setTimeout === 'function') {
+      setTimeout(scrollToReportTop, 20);
+      setTimeout(scrollToReportTop, 100);
     }
   }
 
@@ -948,7 +1354,7 @@
       }
 
       if (ageYearsSlider) ageYearsSlider.value = preset.ageYears;
-      const isEnPreset = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      const isEnPreset = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
       if (ageYearsDisplay) ageYearsDisplay.textContent = isEnPreset ? `Age ${preset.ageYears} yrs (${preset.ageMonths} mos)` : `${preset.ageYears}세 (${preset.ageMonths}개월)`;
       if (ageMonthsInput) ageMonthsInput.value = preset.ageMonths;
 
@@ -959,17 +1365,24 @@
       const fatherInput = document.getElementById('father-height');
       const motherInput = document.getElementById('mother-height');
 
+      const isImperialPreset = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+
       if (heightInput) {
-        heightInput.value = preset.currentHeight;
+        heightInput.value = isImperialPreset ? (Math.round((preset.currentHeight / 2.54) * 10) / 10).toFixed(1) : preset.currentHeight;
         if (heightInput.dataset) delete heightInput.dataset.userEdited;
       }
       if (weightInput) {
-        weightInput.value = preset.currentWeight;
+        weightInput.value = isImperialPreset ? (Math.round(preset.currentWeight * 2.20462262 * 10) / 10).toFixed(1) : preset.currentWeight;
         if (weightInput.dataset) delete weightInput.dataset.userEdited;
       }
-      if (recentInput) recentInput.value = preset.recentGrowth6m;
-      if (fatherInput) fatherInput.value = preset.fatherHeight;
-      if (motherInput) motherInput.value = preset.motherHeight;
+      if (recentInput) recentInput.value = isImperialPreset ? (Math.round((preset.recentGrowth6m / 2.54) * 10) / 10).toFixed(1) : preset.recentGrowth6m;
+      if (fatherInput) fatherInput.value = isImperialPreset ? (Math.round((preset.fatherHeight / 2.54) * 10) / 10).toFixed(1) : preset.fatherHeight;
+      if (motherInput) motherInput.value = isImperialPreset ? (Math.round((preset.motherHeight / 2.54) * 10) / 10).toFixed(1) : preset.motherHeight;
+
+      if (typeof syncCompanionInputs === 'function') {
+        syncCompanionInputs();
+      }
+      updateMphPreview();
 
       // Tanner Phase Radio
       const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
@@ -1045,8 +1458,8 @@
     const boyRadio = document.getElementById('gender-boy');
     const gender = (boyRadio && boyRadio.checked) ? 'boy' : 'girl';
 
-    // Sync DOB -> exactMonths & Auto Growth Stage first
-    syncDobAndAutoStage();
+    // Sync DOB -> exactMonths & Auto Growth Stage first (preserve user's manual tanner-phase & height/weight inputs)
+    syncDobAndAutoStage({ preserveUserInputs: true });
 
     const ageSlider = document.getElementById('child-age-slider');
     const ageMonthsEl = document.getElementById('child-age-months');
@@ -1063,12 +1476,14 @@
     const recentInput = document.getElementById('child-recent-gain');
     const fatherInput = document.getElementById('father-height');
     const motherInput = document.getElementById('mother-height');
+    const targetHeightInput = document.getElementById('target-height');
 
     let currentHeight = heightInput ? parseFloat(heightInput.value) || 137.0 : 137.0;
     let currentWeight = weightInput ? parseFloat(weightInput.value) || 35.5 : 35.5;
     let recentGrowth6m = recentInput ? parseFloat(recentInput.value) || 3.0 : 3.0;
     let fatherHeight = fatherInput ? parseFloat(fatherInput.value) || 173.5 : 173.5;
     let motherHeight = motherInput ? parseFloat(motherInput.value) || 160.5 : 160.5;
+    let targetHeight = targetHeightInput ? parseFloat(targetHeightInput.value) || 180.0 : 180.0;
 
     const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
     if (isImperial) {
@@ -1077,6 +1492,9 @@
       recentGrowth6m = Math.round(recentGrowth6m * 2.54 * 10) / 10;
       fatherHeight = Math.round(fatherHeight * 2.54 * 10) / 10;
       motherHeight = Math.round(motherHeight * 2.54 * 10) / 10;
+      if (targetHeight < 110) {
+        targetHeight = Math.round(targetHeight * 2.54 * 10) / 10;
+      }
     }
 
     // Tanner Phase
@@ -1095,9 +1513,11 @@
     cogCheckboxes.forEach((cb) => cognitiveAxes.push(cb.value));
     if (cognitiveAxes.length === 0) cognitiveAxes.push('science_nature');
 
-    // Region
+    // Region & Ethnicity
     const regionSelect = document.getElementById('user-region');
-    const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
+    const region = regionSelect ? regionSelect.value : 'US National (CDC/AAP Standard)';
+    const ethnicitySelect = document.getElementById('child-ethnicity');
+    const ethnicity = (ethnicitySelect && ethnicitySelect.value) ? ethnicitySelect.value : 'us_general';
 
     // Child-Specific Deep Traits (Multi-Select Checkboxes + Fallback Select)
     const readMultiTrait = (name, idFallback, defaultVal) => {
@@ -1183,10 +1603,12 @@
       recentGrowth6m,
       fatherHeight,
       motherHeight,
+      targetHeight,
       tannerPhase,
       habits,
       cognitiveAxes,
       region,
+      ethnicity,
       traitSleep,
       traitSleepList,
       traitDiet,
@@ -1279,29 +1701,37 @@
       formEl.className = (activeMode === 'learning') ? 'wizard-mode-learning' : 'wizard-mode-growth';
     }
 
+    const isEnBanner = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
     const bannerEl = document.getElementById('guidebook-mode-banner');
     if (bannerEl) {
       if (activeMode === 'learning') {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,714편 기반 학습 병목·공부법 보고서를 발행합니다.';
+        bannerEl.innerHTML = isEnBanner
+          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 3,722 peer-reviewed publications.'
+          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,722편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
-        bannerEl.innerHTML = '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,714편 기반 예상키·골든타임 보고서를 발행합니다.';
+        bannerEl.innerHTML = isEnBanner
+          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 3,722 peer-reviewed publications.'
+          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,722편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
     const submitBtnEl = document.getElementById('btn-submit-quiz');
     if (submitBtnEl) {
-      const isEnBtn = typeof document !== 'undefined' && (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid');
+      const isEnBtn = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
       submitBtnEl.textContent = isEnBtn
         ? ((activeMode === 'learning') ? 'Generate My Child\'s 5-Axis Brain & Learning Report →' : 'Generate My Child\'s Height & Growth-Plate Report →')
         : ((activeMode === 'learning') ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기' : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기');
     }
 
+    if (typeof window !== 'undefined' && typeof window.loadKidsFitAcademicDataBundle === 'function') {
+      try { window.loadKidsFitAcademicDataBundle(); } catch (_) {}
+    }
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
     }
@@ -1371,6 +1801,435 @@
     }
   }
 
+  // 8b. Interactive Dual-Unit Selector Engine
+  function isCurrentImperial() {
+    if (typeof global.TallerI18n !== 'undefined' && typeof global.TallerI18n.getUnitSystem === 'function') {
+      return global.TallerI18n.getUnitSystem() === 'imperial';
+    }
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const u = window.localStorage.getItem('taller_unit');
+        if (u === 'metric' || u === 'imperial') return u === 'imperial';
+      } catch (_) {}
+    }
+    if (typeof document !== 'undefined' && document.documentElement) {
+      const u = typeof document.documentElement.getAttribute === 'function' ? document.documentElement.getAttribute('data-unit-system') : null;
+      if (u) return u === 'imperial';
+      return document.documentElement.lang === 'en';
+    }
+    return true;
+  }
+
+  let _isSyncingUnits = false;
+
+  function syncCompanionInputs(direction, sourceId) {
+    if (typeof document === 'undefined') return;
+    if (_isSyncingUnits) return;
+    _isSyncingUnits = true;
+    try {
+      const isImperial = isCurrentImperial();
+
+      // 1. Child Height
+      const chH = document.getElementById('child-height');
+      const chFt = document.getElementById('child-height-ft');
+      const chIn = document.getElementById('child-height-in');
+      if (chH && (chFt || chIn)) {
+        if (sourceId === 'child-height-ft' || sourceId === 'child-height-in') {
+          const ft = parseFloat(chFt ? chFt.value : 0) || 0;
+          const inch = parseFloat(chIn ? chIn.value : 0) || 0;
+          const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+          chH.value = isImperial
+            ? (totIn > 0 ? totIn.toFixed(1) : '')
+            : (totIn > 0 ? (Math.round(totIn * 2.54 * 10) / 10).toFixed(1) : '');
+          if (chH.dataset) chH.dataset.userEdited = 'true';
+        } else if (sourceId === 'child-height' || !sourceId) {
+          const v = parseFloat(chH.value) || 0;
+          if (v > 0) {
+            const totIn = isImperial ? v : Math.round((v / 2.54) * 10) / 10;
+            let ft = Math.floor(totIn / 12);
+            let inch = Math.round((totIn - ft * 12) * 10) / 10;
+            if (inch >= 12) { ft += 1; inch = 0; }
+            if (chFt) chFt.value = String(ft);
+            if (chIn) chIn.value = inch.toFixed(1);
+          }
+        }
+      }
+
+      // 2. Child Weight
+      const chW = document.getElementById('child-weight');
+      const chWlbs = document.getElementById('child-weight-lbs');
+      if (chW && chWlbs) {
+        if (sourceId === 'child-weight-lbs') {
+          const lbs = parseFloat(chWlbs.value) || 0;
+          chW.value = isImperial
+            ? (lbs > 0 ? lbs.toFixed(1) : '')
+            : (lbs > 0 ? (Math.round((lbs / 2.20462262) * 10) / 10).toFixed(1) : '');
+          if (chW.dataset) chW.dataset.userEdited = 'true';
+        } else if (sourceId === 'child-weight' || !sourceId) {
+          const v = parseFloat(chW.value) || 0;
+          if (v > 0) {
+            const lbs = isImperial ? v : Math.round(v * 2.20462262 * 10) / 10;
+            chWlbs.value = lbs.toFixed(1);
+          }
+        }
+      }
+
+      // 3. Father Height
+      const fhH = document.getElementById('father-height');
+      const fhFt = document.getElementById('father-height-ft');
+      const fhIn = document.getElementById('father-height-in');
+      if (fhH && (fhFt || fhIn)) {
+        if (sourceId === 'father-height-ft' || sourceId === 'father-height-in') {
+          const ft = parseFloat(fhFt ? fhFt.value : 0) || 0;
+          const inch = parseFloat(fhIn ? fhIn.value : 0) || 0;
+          const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+          fhH.value = isImperial
+            ? (totIn > 0 ? totIn.toFixed(1) : '')
+            : (totIn > 0 ? (Math.round(totIn * 2.54 * 10) / 10).toFixed(1) : '');
+          if (fhH.dataset) fhH.dataset.userEdited = 'true';
+          updateMphPreview();
+        } else if (sourceId === 'father-height' || !sourceId) {
+          const v = parseFloat(fhH.value) || 0;
+          if (v > 0) {
+            const totIn = isImperial ? v : Math.round((v / 2.54) * 10) / 10;
+            let ft = Math.floor(totIn / 12);
+            let inch = Math.round((totIn - ft * 12) * 10) / 10;
+            if (inch >= 12) { ft += 1; inch = 0; }
+            if (fhFt) fhFt.value = String(ft);
+            if (fhIn) fhIn.value = inch.toFixed(1);
+          }
+        }
+      }
+
+      // 4. Mother Height
+      const mhH = document.getElementById('mother-height');
+      const mhFt = document.getElementById('mother-height-ft');
+      const mhIn = document.getElementById('mother-height-in');
+      if (mhH && (mhFt || mhIn)) {
+        if (sourceId === 'mother-height-ft' || sourceId === 'mother-height-in') {
+          const ft = parseFloat(mhFt ? mhFt.value : 0) || 0;
+          const inch = parseFloat(mhIn ? mhIn.value : 0) || 0;
+          const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+          mhH.value = isImperial
+            ? (totIn > 0 ? totIn.toFixed(1) : '')
+            : (totIn > 0 ? (Math.round(totIn * 2.54 * 10) / 10).toFixed(1) : '');
+          if (mhH.dataset) mhH.dataset.userEdited = 'true';
+          updateMphPreview();
+        } else if (sourceId === 'mother-height' || !sourceId) {
+          const v = parseFloat(mhH.value) || 0;
+          if (v > 0) {
+            const totIn = isImperial ? v : Math.round((v / 2.54) * 10) / 10;
+            let ft = Math.floor(totIn / 12);
+            let inch = Math.round((totIn - ft * 12) * 10) / 10;
+            if (inch >= 12) { ft += 1; inch = 0; }
+            if (mhFt) mhFt.value = String(ft);
+            if (mhIn) mhIn.value = inch.toFixed(1);
+          }
+        }
+      }
+
+      // Target / Dream Height: ft/in <-> #target-height
+      const thFt = document.getElementById('target-height-ft');
+      const thIn = document.getElementById('target-height-in');
+      const thH = document.getElementById('target-height');
+      if (thH && (thFt || thIn)) {
+        if (direction === 'from-companion' && (sourceId === 'target-height-ft' || sourceId === 'target-height-in')) {
+          const ft = parseFloat(thFt && thFt.value) || 0;
+          const inch = parseFloat(thIn && thIn.value) || 0;
+          const totIn = Math.round((ft * 12 + inch) * 10) / 10;
+          thH.value = isImperial
+            ? (totIn > 0 ? totIn.toFixed(1) : '')
+            : (totIn > 0 ? (Math.round(totIn * 2.54 * 10) / 10).toFixed(1) : '');
+        } else if (sourceId === 'target-height' || !sourceId) {
+          const v = parseFloat(thH.value) || 0;
+          if (v > 0) {
+            const totIn = (isImperial && v < 110) ? v : Math.round((v / 2.54) * 10) / 10;
+            let ft = Math.floor(totIn / 12);
+            let inch = Math.round((totIn - ft * 12) * 10) / 10;
+            if (inch >= 12) { ft += 1; inch = 0; }
+            if (thFt) thFt.value = String(ft);
+            if (thIn) thIn.value = inch.toFixed(1);
+          }
+        }
+      }
+    } finally {
+      _isSyncingUnits = false;
+    }
+  }
+
+  let _isSwitchingUnits = false;
+  function applyUnitSwitch(newUnit) {
+    if (newUnit !== 'imperial' && newUnit !== 'metric') return;
+    if (_isSwitchingUnits) return;
+    _isSwitchingUnits = true;
+    try {
+      if (typeof document === 'undefined') return;
+
+      const curUnit = isCurrentImperial() ? 'imperial' : 'metric';
+      const unitChanged = curUnit !== newUnit;
+
+      if (typeof global.TallerI18n !== 'undefined' && typeof global.TallerI18n.setUnitSystem === 'function') {
+        if (typeof global.TallerI18n.getUnitSystem === 'function') {
+          if (global.TallerI18n.getUnitSystem() !== newUnit) {
+            global.TallerI18n.setUnitSystem(newUnit);
+          }
+        } else {
+          global.TallerI18n.setUnitSystem(newUnit);
+        }
+      } else if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+          window.localStorage.setItem('taller_unit', newUnit);
+        } catch (_) {}
+      }
+
+      if (document.documentElement && typeof document.documentElement.setAttribute === 'function') {
+        document.documentElement.setAttribute('data-unit-system', newUnit);
+      }
+      const isImperial = newUnit === 'imperial';
+
+      if (unitChanged) {
+        const childH = document.getElementById('child-height');
+        const childW = document.getElementById('child-weight');
+        const childR = document.getElementById('child-recent-gain');
+        const fatH = document.getElementById('father-height');
+        const motH = document.getElementById('mother-height');
+        const tarH = document.getElementById('target-height');
+
+        if (isImperial) {
+          if (childH && childH.value) {
+            const v = parseFloat(childH.value);
+            if (!isNaN(v) && v > 0) childH.value = (Math.round((v / 2.54) * 10) / 10).toFixed(1);
+            childH.min = '18'; childH.max = '90'; childH.placeholder = '54.0';
+          }
+          if (childW && childW.value) {
+            const v = parseFloat(childW.value);
+            if (!isNaN(v) && v > 0) childW.value = (Math.round(v * 2.20462262 * 10) / 10).toFixed(1);
+            childW.min = '5'; childW.max = '350'; childW.placeholder = '78.0';
+          }
+          if (childR && childR.value) {
+            const v = parseFloat(childR.value);
+            if (!isNaN(v) && v >= 0) childR.value = (Math.round((v / 2.54) * 10) / 10).toFixed(1);
+            childR.min = '0'; childR.max = '8'; childR.placeholder = '1.3';
+          }
+          if (fatH && fatH.value) {
+            const v = parseFloat(fatH.value);
+            if (!isNaN(v) && v > 0) fatH.value = (Math.round((v / 2.54) * 10) / 10).toFixed(1);
+            fatH.min = '40'; fatH.max = '95'; fatH.placeholder = '68.3';
+          }
+          if (motH && motH.value) {
+            const v = parseFloat(motH.value);
+            if (!isNaN(v) && v > 0) motH.value = (Math.round((v / 2.54) * 10) / 10).toFixed(1);
+            motH.min = '40'; motH.max = '95'; motH.placeholder = '63.2';
+          }
+          if (tarH && tarH.value) {
+            const v = parseFloat(tarH.value);
+            if (!isNaN(v) && v >= 110) tarH.value = (Math.round((v / 2.54) * 10) / 10).toFixed(1);
+            tarH.min = '45'; tarH.max = '95'; tarH.placeholder = '70.9';
+          }
+        } else {
+          if (childH && childH.value) {
+            const v = parseFloat(childH.value);
+            if (!isNaN(v) && v > 0) childH.value = (Math.round(v * 2.54 * 10) / 10).toFixed(1);
+            childH.min = '45'; childH.max = '230'; childH.placeholder = '137.0';
+          }
+          if (childW && childW.value) {
+            const v = parseFloat(childW.value);
+            if (!isNaN(v) && v > 0) childW.value = (Math.round((v / 2.20462262) * 10) / 10).toFixed(1);
+            childW.min = '2'; childW.max = '160'; childW.placeholder = '35.5';
+          }
+          if (childR && childR.value) {
+            const v = parseFloat(childR.value);
+            if (!isNaN(v) && v >= 0) childR.value = (Math.round(v * 2.54 * 10) / 10).toFixed(1);
+            childR.min = '0'; childR.max = '20'; childR.placeholder = '3.2';
+          }
+          if (fatH && fatH.value) {
+            const v = parseFloat(fatH.value);
+            if (!isNaN(v) && v > 0) fatH.value = (Math.round(v * 2.54 * 10) / 10).toFixed(1);
+            fatH.min = '100'; fatH.max = '240'; fatH.placeholder = '173.5';
+          }
+          if (motH && motH.value) {
+            const v = parseFloat(motH.value);
+            if (!isNaN(v) && v > 0) motH.value = (Math.round(v * 2.54 * 10) / 10).toFixed(1);
+            motH.min = '100'; motH.max = '240'; motH.placeholder = '160.5';
+          }
+          if (tarH && tarH.value) {
+            const v = parseFloat(tarH.value);
+            if (!isNaN(v) && v > 0 && v < 110) tarH.value = (Math.round(v * 2.54 * 10) / 10).toFixed(1);
+            tarH.min = '120'; tarH.max = '230'; tarH.placeholder = '180.0';
+          }
+        }
+      }
+
+      // Suffixes
+      const heightSuffixes = document.querySelectorAll('.unit-label-height');
+      heightSuffixes.forEach((el) => {
+        el.textContent = isImperial ? 'in' : 'cm';
+      });
+      const weightSuffixes = document.querySelectorAll('.unit-label-weight');
+      weightSuffixes.forEach((el) => {
+        el.textContent = isImperial ? 'lbs' : 'kg';
+      });
+
+      // Synchronize all 3 Toggle Buttons UI
+      const btnHeaderUnit = document.getElementById('btn-unit-toggle');
+      if (btnHeaderUnit) {
+        btnHeaderUnit.textContent = isImperial ? '🇺🇸 Imperial: ft/in · lbs' : '🌐 Metric: cm · kg';
+      }
+
+      const btnStep2Imp = document.getElementById('btn-step2-unit-imperial');
+      const btnStep2Met = document.getElementById('btn-step2-unit-metric');
+      if (btnStep2Imp && btnStep2Imp.classList) btnStep2Imp.classList.toggle('active', isImperial);
+      if (btnStep2Met && btnStep2Met.classList) btnStep2Met.classList.toggle('active', !isImperial);
+
+      const btnStep3Imp = document.getElementById('btn-step3-unit-imperial');
+      const btnStep3Met = document.getElementById('btn-step3-unit-metric');
+      if (btnStep3Imp && btnStep3Imp.classList) btnStep3Imp.classList.toggle('active', isImperial);
+      if (btnStep3Met && btnStep3Met.classList) btnStep3Met.classList.toggle('active', !isImperial);
+
+      // Containers
+      const imperialContainers = document.querySelectorAll('.unit-imperial-only');
+      imperialContainers.forEach((el) => {
+        el.style.display = isImperial ? 'flex' : 'none';
+      });
+      const metricContainers = document.querySelectorAll('.unit-metric-only');
+      metricContainers.forEach((el) => {
+        el.style.display = isImperial ? 'none' : 'flex';
+      });
+
+      syncCompanionInputs();
+      updateMphPreview();
+
+      if (typeof global.KidsFitGlobalPaywall !== 'undefined') {
+        if (typeof global.KidsFitGlobalPaywall.applyGlobalHomepageEnglishDOM === 'function') {
+          global.KidsFitGlobalPaywall.applyGlobalHomepageEnglishDOM();
+        }
+        if (typeof global.KidsFitGlobalPaywall.transformGlobalReportAndApplyPaywall === 'function') {
+          global.KidsFitGlobalPaywall.transformGlobalReportAndApplyPaywall();
+        }
+      }
+    } finally {
+      _isSwitchingUnits = false;
+    }
+  }
+
+  function initDualUnitSelector() {
+    if (typeof document === 'undefined') return;
+
+    // 1. Header Unit Toggle Button
+    const headerToggle = document.getElementById('btn-unit-toggle');
+    if (headerToggle && !headerToggle._hasUnitListener) {
+      headerToggle._hasUnitListener = true;
+      headerToggle.addEventListener('click', (e) => {
+        if (e && typeof e.preventDefault === 'function') e.preventDefault();
+        const next = isCurrentImperial() ? 'metric' : 'imperial';
+        applyUnitSwitch(next);
+      });
+    }
+
+    // 2. Step 2 Segmented Tabs
+    const step2Imp = document.getElementById('btn-step2-unit-imperial');
+    const step2Met = document.getElementById('btn-step2-unit-metric');
+    if (step2Imp && !step2Imp._hasUnitListener) {
+      step2Imp._hasUnitListener = true;
+      step2Imp.addEventListener('click', () => applyUnitSwitch('imperial'));
+    }
+    if (step2Met && !step2Met._hasUnitListener) {
+      step2Met._hasUnitListener = true;
+      step2Met.addEventListener('click', () => applyUnitSwitch('metric'));
+    }
+
+    // 3. Step 3 Segmented Tabs
+    const step3Imp = document.getElementById('btn-step3-unit-imperial');
+    const step3Met = document.getElementById('btn-step3-unit-metric');
+    if (step3Imp && !step3Imp._hasUnitListener) {
+      step3Imp._hasUnitListener = true;
+      step3Imp.addEventListener('click', () => applyUnitSwitch('imperial'));
+    }
+    if (step3Met && !step3Met._hasUnitListener) {
+      step3Met._hasUnitListener = true;
+      step3Met.addEventListener('click', () => applyUnitSwitch('metric'));
+    }
+
+    // 4. Wire Companion Inputs bidirectional event listeners
+    const chFt = document.getElementById('child-height-ft');
+    const chIn = document.getElementById('child-height-in');
+    const chH = document.getElementById('child-height');
+    if (chFt && !chFt._hasSyncListener) {
+      chFt._hasSyncListener = true;
+      chFt.addEventListener('input', () => syncCompanionInputs('from-companion', 'child-height-ft'));
+    }
+    if (chIn && !chIn._hasSyncListener) {
+      chIn._hasSyncListener = true;
+      chIn.addEventListener('input', () => syncCompanionInputs('from-companion', 'child-height-in'));
+    }
+    if (chH && !chH._hasSyncListener) {
+      chH._hasSyncListener = true;
+      chH.addEventListener('input', () => syncCompanionInputs('to-companion', 'child-height'));
+    }
+
+    const chWlbs = document.getElementById('child-weight-lbs');
+    const chW = document.getElementById('child-weight');
+    if (chWlbs && !chWlbs._hasSyncListener) {
+      chWlbs._hasSyncListener = true;
+      chWlbs.addEventListener('input', () => syncCompanionInputs('from-companion', 'child-weight-lbs'));
+    }
+    if (chW && !chW._hasSyncListener) {
+      chW._hasSyncListener = true;
+      chW.addEventListener('input', () => syncCompanionInputs('to-companion', 'child-weight'));
+    }
+
+    const fhFt = document.getElementById('father-height-ft');
+    const fhIn = document.getElementById('father-height-in');
+    const fhH = document.getElementById('father-height');
+    if (fhFt && !fhFt._hasSyncListener) {
+      fhFt._hasSyncListener = true;
+      fhFt.addEventListener('input', () => syncCompanionInputs('from-companion', 'father-height-ft'));
+    }
+    if (fhIn && !fhIn._hasSyncListener) {
+      fhIn._hasSyncListener = true;
+      fhIn.addEventListener('input', () => syncCompanionInputs('from-companion', 'father-height-in'));
+    }
+    if (fhH && !fhH._hasSyncListener) {
+      fhH._hasSyncListener = true;
+      fhH.addEventListener('input', () => syncCompanionInputs('to-companion', 'father-height'));
+    }
+
+    const mhFt = document.getElementById('mother-height-ft');
+    const mhIn = document.getElementById('mother-height-in');
+    const mhH = document.getElementById('mother-height');
+    if (mhFt && !mhFt._hasSyncListener) {
+      mhFt._hasSyncListener = true;
+      mhFt.addEventListener('input', () => syncCompanionInputs('from-companion', 'mother-height-ft'));
+    }
+    if (mhIn && !mhIn._hasSyncListener) {
+      mhIn._hasSyncListener = true;
+      mhIn.addEventListener('input', () => syncCompanionInputs('from-companion', 'mother-height-in'));
+    }
+    if (mhH && !mhH._hasSyncListener) {
+      mhH._hasSyncListener = true;
+      mhH.addEventListener('input', () => syncCompanionInputs('to-companion', 'mother-height'));
+    }
+
+    const thFt = document.getElementById('target-height-ft');
+    const thIn = document.getElementById('target-height-in');
+    const thH = document.getElementById('target-height');
+    if (thFt && !thFt._hasSyncListener) {
+      thFt._hasSyncListener = true;
+      thFt.addEventListener('input', () => syncCompanionInputs('from-companion', 'target-height-ft'));
+    }
+    if (thIn && !thIn._hasSyncListener) {
+      thIn._hasSyncListener = true;
+      thIn.addEventListener('input', () => syncCompanionInputs('from-companion', 'target-height-in'));
+    }
+    if (thH && !thH._hasSyncListener) {
+      thH._hasSyncListener = true;
+      thH.addEventListener('input', () => syncCompanionInputs('to-companion', 'target-height'));
+    }
+
+    // Initial sync
+    applyUnitSwitch(isCurrentImperial() ? 'imperial' : 'metric');
+  }
+
   // 9. Initialize Event Listeners
   function initWizard() {
     if (typeof document === 'undefined') return;
@@ -1380,13 +2239,15 @@
     const nextBtn = document.getElementById('btn-next-step');
     const form = document.getElementById('diagnosis-form');
 
-    if (prevBtn) {
+    if (prevBtn && !prevBtn._hasWizardListener) {
+      prevBtn._hasWizardListener = true;
       prevBtn.addEventListener('click', () => {
         goToStep(wizardState.currentStep - 1);
       });
     }
 
-    if (nextBtn) {
+    if (nextBtn && !nextBtn._hasWizardListener) {
+      nextBtn._hasWizardListener = true;
       nextBtn.addEventListener('click', () => {
         if (validateStep(wizardState.currentStep)) {
           goToStep(wizardState.currentStep + 1);
@@ -1421,10 +2282,12 @@
       }
     };
 
-    if (form) {
+    if (form && !form._hasWizardListener) {
+      form._hasWizardListener = true;
       form.addEventListener('submit', triggerFinalSubmission);
     }
-    if (submitBtn) {
+    if (submitBtn && !submitBtn._hasWizardListener) {
+      submitBtn._hasWizardListener = true;
       submitBtn.addEventListener('click', triggerFinalSubmission);
     }
 
@@ -1436,7 +2299,8 @@
       ageSlider.addEventListener('input', (e) => {
         const val = parseInt(e.target.value, 10);
         const months = val * 12;
-        if (ageDisplay) ageDisplay.textContent = `${val}세 (${months}개월)`;
+        const isEnAge = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
+        if (ageDisplay) ageDisplay.textContent = isEnAge ? `${val} yrs (${months} mos)` : `${val}세 (${months}개월)`;
         if (ageMonthsInput) ageMonthsInput.value = months;
       });
     }
@@ -1500,13 +2364,17 @@
     });
 
     // Initial MPH & DOB auto-stage calculation
+    initDualUnitSelector();
     updateMphPreview();
     syncDobAndAutoStage();
     syncTargetSubjectMode();
 
     // Listen to language switch events so dynamic wizard labels update immediately
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
-      window.addEventListener('taller-language-change', () => {
+      window.addEventListener('taller-language-change', (e) => {
+        if (_isSwitchingUnits) return;
+        const nextUnit = (e && e.detail && e.detail.unitSystem) || (global.TallerI18n && typeof global.TallerI18n.getUnitSystem === 'function' ? global.TallerI18n.getUnitSystem() : (isCurrentImperial() ? 'imperial' : 'metric'));
+        applyUnitSwitch(nextUnit);
         goToStep(wizardState.currentStep);
         syncDobAndAutoStage();
         syncTargetSubjectMode();
@@ -1606,6 +2474,20 @@
         });
       }
     }
+
+    // Auto-start preset wizard & clinical scan when URL contains ?preset=... (from Q&A or external links)
+    try {
+      if (typeof window !== 'undefined' && window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const rawPreset = String(params.get('preset') || '').trim();
+        const rawMode = String(params.get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
+        if (rawPreset && PRESETS[rawPreset] && !window._kidsfitUrlPresetApplied) {
+          window._kidsfitUrlPresetApplied = true;
+          enterStudioMode('child', rawMode);
+          applyPreset(rawPreset);
+        }
+      }
+    } catch (_) {}
   }
 
   function openAdditionalNarrativeStep() {
@@ -1620,9 +2502,10 @@
     const subtitleEl = document.getElementById('quiz-step-subtitle');
     const prevBtn = document.getElementById('btn-prev-step');
 
-    if (tagEl) tagEl.textContent = '추가 심층 단계 (진단 6단계 + 아이 특징 합산)';
-    if (titleEl) titleEl.textContent = '우리 아이 특징·잘하는 점·부족한 점을 길게 적어주세요';
-    if (subtitleEl) subtitleEl.textContent = '진단 1~6단계 객관식 결과와 부모님이 적어주신 아이 특징을 더해서 세상에 하나뿐인 맞춤 보고서를 만듭니다.';
+    const isEnNarrative = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
+    if (tagEl) tagEl.textContent = isEnNarrative ? 'In-Depth Step (Step 6 Responses + Child Characteristics)' : '추가 심층 단계 (진단 6단계 + 아이 특징 합산)';
+    if (titleEl) titleEl.textContent = isEnNarrative ? 'Describe your child\'s unique traits, strengths, and areas of concern' : '우리 아이 특징·잘하는 점·부족한 점을 길게 적어주세요';
+    if (subtitleEl) subtitleEl.textContent = isEnNarrative ? 'Combines objective survey responses with personalized parent notes to synthesize an individualized clinical report.' : '진단 1~6단계 객관식 결과와 부모님이 적어주신 아이 특징을 더해서 세상에 하나뿐인 맞춤 보고서를 만듭니다.';
     if (prevBtn) prevBtn.style.display = 'none';
 
     const noteEl = document.getElementById('parent-free-note');
@@ -1683,6 +2566,10 @@
     openAdditionalNarrativeStep,
     closeAdditionalNarrativeStep,
     submitQuiz,
+    setUnitSystem: applyUnitSwitch,
+    getUnitSystem: () => (isCurrentImperial() ? 'imperial' : 'metric'),
+    syncCompanionInputs,
+    initDualUnitSelector,
     initWizard
   };
 
@@ -1690,6 +2577,7 @@
     module.exports = OnboardingWizard;
   } else {
     global.TallerOnboardingWizard = OnboardingWizard;
+    global.KidsFitOnboardingWizard = OnboardingWizard;
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       if (document.readyState === 'loading') {
         window.addEventListener('DOMContentLoaded', () => {

@@ -1507,49 +1507,23 @@ body {
     page-break-after: always;
   }
 
-  /* Learning Report Print Mode Support */
-  body.print-mode-learning #clinic-print-report-container,
-  body.print-mode-learning #clinic-print-report,
-  body.print-mode-learning .clinic-print-report,
+  /* Learning Report Print Mode Support (Unified 2-Page Clinical PDF) */
+  body.print-mode-learning .results-dashboard,
+  body.print-mode-learning #master-briefing-container,
+  body.print-mode-learning .master-briefing-card,
   body.print-mode-learning #pillar-1-container,
+  body.print-mode-learning #pillar-2-container,
   body.print-mode-learning .report-mode-switcher {
     display: none !important;
   }
 
-  body.print-mode-learning .results-dashboard,
-  body.print-mode-learning #master-briefing-container,
-  body.print-mode-learning .master-briefing-card,
-  body.print-mode-learning #pillar-2-container {
+  body.print-mode-learning #clinic-print-report-container,
+  body.print-mode-learning #clinic-print-report,
+  body.print-mode-learning .clinic-print-report {
     display: block !important;
     width: 100% !important;
-    background: #FFFFFF !important;
-    color: #0F172A !important;
-    box-shadow: none !important;
-  }
-
-  body.print-mode-learning #pillar-2-container,
-  body.print-mode-learning #pillar-2-container div,
-  body.print-mode-learning #pillar-2-container section,
-  body.print-mode-learning #pillar-2-container article {
-    background: #FFFFFF !important;
-    color: #0F172A !important;
-    border-color: #CBD5E1 !important;
-    box-shadow: none !important;
-  }
-
-  body.print-mode-learning #pillar-2-container h1,
-  body.print-mode-learning #pillar-2-container h2,
-  body.print-mode-learning #pillar-2-container h3,
-  body.print-mode-learning #pillar-2-container h4,
-  body.print-mode-learning #pillar-2-container p,
-  body.print-mode-learning #pillar-2-container span,
-  body.print-mode-learning #pillar-2-container li,
-  body.print-mode-learning #pillar-2-container strong {
-    color: #0F172A !important;
-  }
-
-  body.print-mode-learning #pillar-2-container button {
-    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -3082,6 +3056,14 @@ body[data-theme="light"] {
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2) !important;
 }
 
+.preset-chip:hover *,
+.preset-card:hover *,
+.preset-chip.active *,
+.preset-card.active * {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
 /* Onboarding Survey Card & Form Controls */
 .quiz-card,
 .bento-card,
@@ -3337,6 +3319,21 @@ body[data-theme="light"] {
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05) !important;
 }
 
+#results-dashboard .briefing-header {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%) !important;
+  color: #0F172A !important;
+  border: 2px solid #93C5FD !important;
+  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.08) !important;
+}
+
+#results-dashboard #global-report-child-conditions-box,
+#results-dashboard #global-report-child-conditions-footer {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 2px solid #93C5FD !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05) !important;
+}
+
 #results-dashboard h1,
 #results-dashboard h2,
 #results-dashboard h3,
@@ -3558,9 +3555,317 @@ html body .bento-card {
   font-weight: 700 !important;
 }
 
+/* ==========================================================================
+   27. INTERACTIVE DUAL-UNIT SELECTOR (IMPERIAL ft/in, lbs <-> METRIC cm, kg)
+   ========================================================================== */
+
+/* Header Navbar Unit Switcher */
+.header-unit-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  border: 1px solid #BFDBFE;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-unit-toggle-btn:hover {
+  background: #DBEAFE;
+  border-color: #93C5FD;
+}
+
+[data-theme="dark"] .header-unit-toggle-btn {
+  background: rgba(30, 58, 138, 0.35);
+  border-color: #1E3A8A;
+  color: #93C5FD;
+}
+
+[data-theme="dark"] .header-unit-toggle-btn:hover {
+  background: rgba(30, 58, 138, 0.55);
+  border-color: #3B82F6;
+}
+
+/* Form Embedded Unit Selector Container (Step 2 & Step 3) */
+.form-unit-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: #F8FAFC;
+  border: 1px solid #BFDBFE;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+[data-theme="dark"] .form-unit-selector-container {
+  background: #0B132B;
+  border-color: #1E3A8A;
+}
+
+.unit-selector-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1E3A8A;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .unit-selector-label {
+  color: #93C5FD;
+}
+
+.unit-segmented-tabs {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.btn-unit-tab {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-unit-tab:hover {
+  border-color: #93C5FD;
+  color: #1D4ED8;
+}
+
+.btn-unit-tab.active {
+  border-color: #1D4ED8;
+  background: #1D4ED8;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+}
+
+[data-theme="dark"] .btn-unit-tab {
+  background: #1E293B;
+  border-color: #334155;
+  color: #94A3B8;
+}
+
+[data-theme="dark"] .btn-unit-tab:hover {
+  border-color: #3B82F6;
+  color: #DBEAFE;
+}
+
+[data-theme="dark"] .btn-unit-tab.active {
+  background: #2563EB;
+  border-color: #3B82F6;
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+}
+
+/* Compound Imperial Height Inputs (ft + in) */
+.imperial-height-dual-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.imperial-height-dual-row .input-suffix-wrapper {
+  flex: 1;
+}
+
+/* Unit Mode Declarative Visibility */
+[data-unit-system="imperial"] .unit-imperial-only {
+  display: flex !important;
+}
+
+[data-unit-system="imperial"] .unit-metric-only {
+  display: none !important;
+}
+
+[data-unit-system="metric"] .unit-imperial-only {
+  display: none !important;
+}
+
+[data-unit-system="metric"] .unit-metric-only {
+  display: flex !important;
+}
+
+@media (max-width: 480px) {
+  .form-unit-selector-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .unit-segmented-tabs {
+    width: 100%;
+  }
+  .btn-unit-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.74rem;
+  }
+}
+
+/* ==========================================================================
+   28. US SILICON VALLEY HEALTHTECH & BENTO DESIGN SYSTEM (kisfitglobal.com)
+   Inspired by Function Health, Levels, Hims, Whoop & Taller App
+   ========================================================================== */
+
+html[data-edition="global-paid"],
+html[data-edition="global-paid"] body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  background:
+    radial-gradient(1100px 520px at 50% -110px, rgba(37, 99, 235, 0.09), transparent 70%),
+    linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 42%, #F8FAFC 100%) !important;
+  color: #0F172A !important;
+  letter-spacing: -0.011em;
+}
+
+html[data-edition="global-paid"] h1,
+html[data-edition="global-paid"] h2,
+html[data-edition="global-paid"] h3,
+html[data-edition="global-paid"] h4,
+html[data-edition="global-paid"] .brand-title,
+html[data-edition="global-paid"] .hero-headline {
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  letter-spacing: -0.032em !important;
+}
+
+/* US Frosted Glass Sticky Header */
+html[data-edition="global-paid"] .clinic-header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.035) !important;
+}
+
+html[data-edition="global-paid"] .brand-logo-icon {
+  background: linear-gradient(135deg, #0F172A 0%, #2563EB 100%) !important;
+  color: #FFFFFF !important;
+  border-radius: 10px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.24) !important;
+}
+
+html[data-edition="global-paid"] .brand-title {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+  font-size: 1.12rem !important;
+}
+
+html[data-edition="global-paid"] .brand-tagline {
+  color: #64748B !important;
+  font-weight: 600 !important;
+  font-size: 0.76rem !important;
+}
+
+html[data-edition="global-paid"] .header-unit-toggle-btn {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1E293B !important;
+  padding: 0.45rem 0.95rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12) !important;
+}
+
+html[data-edition="global-paid"] .header-unit-toggle-btn:hover {
+  background: #1D4ED8 !important;
+  border-color: #1D4ED8 !important;
+}
+
+html[data-edition="global-paid"] .app-download-header-btn {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  padding: 0.42rem 0.85rem !important;
+}
+
+/* US Bento Card Elevation & Hover Micro-Interactions */
+html[data-edition="global-paid"] .mf-glass-card,
+html[data-edition="global-paid"] .us-bento-card {
+  border-radius: 22px !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 14px 34px -12px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease !important;
+}
+
+html[data-edition="global-paid"] .mf-glass-card:hover,
+html[data-edition="global-paid"] .us-bento-card:hover {
+  transform: translateY(-3px);
+  border-color: #93C5FD !important;
+  box-shadow: 0 22px 44px -12px rgba(37, 99, 235, 0.12), 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* US Direct-to-Consumer Assessment Funnel (#quiz-section) */
+html[data-edition="global-paid"] .quiz-card {
+  border-radius: 24px !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 20px 50px -15px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-edition="global-paid"] .form-input,
+html[data-edition="global-paid"] select.form-input {
+  border-radius: 12px !important;
+  border: 1.5px solid #CBD5E1 !important;
+  background: #F8FAFC !important;
+  color: #0F172A !important;
+  font-weight: 600 !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease !important;
+}
+
+html[data-edition="global-paid"] .form-input:focus,
+html[data-edition="global-paid"] select.form-input:focus {
+  background: #FFFFFF !important;
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
+  outline: none !important;
+}
 
 
 
 
 
 
+
+
+
+
+/* ==========================================================================
+   29. PAYWALL PRINT GUARD (@media print protection for unpaid reports)
+   ========================================================================== */
+@media screen {
+  #clinic-print-report-container,
+  .locked-print-notice {
+    display: none !important;
+  }
+}
+
+@media print {
+  html[data-edition="global-paid"][data-paywall-state="locked"] #results-dashboard,
+  html[data-edition="global-paid"][data-paywall-state="locked"] #master-briefing-card,
+  html[data-edition="global-paid"][data-paywall-state="locked"] #pillar-1-container,
+  html[data-edition="global-paid"][data-paywall-state="locked"] #pillar-2-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  html[data-edition="global-paid"][data-paywall-state="locked"] #clinic-print-report-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}

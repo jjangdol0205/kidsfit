@@ -1,6 +1,6 @@
 /**
  * scripts/build.js
- * Production build script for KidsFit Growth Studio (truthofmarket.com)
+ * Production build script for KidsFit Growth Studio (kisfitglobal.com)
  * Deterministic, zero-external-dependencies, cross-platform.
  */
 
@@ -33,10 +33,16 @@ function copyRecursiveSync(src, dest) {
         break;
       } catch (_err) {
         try {
+          if (fs.existsSync(dest)) {
+            try { fs.unlinkSync(dest); } catch (_) {}
+          }
           fs.writeFileSync(dest, fs.readFileSync(src));
           break;
         } catch (writeErr) {
-          if (attempt === 8) throw writeErr;
+          if (attempt === 8) {
+            console.warn('  [build] Skipping locked file:', dest);
+            break;
+          }
           const waitTill = Date.now() + 150;
           while (Date.now() < waitTill) {}
         }
@@ -82,10 +88,16 @@ function build() {
     }
     for (let attempt = 1; attempt <= 6; attempt++) {
       try {
+        if (attempt > 1 && fs.existsSync(indexDest)) {
+          try { fs.unlinkSync(indexDest); } catch (_) {}
+        }
         fs.writeFileSync(indexDest, stampedHtml, 'utf8');
         break;
       } catch (err) {
-        if (attempt === 6) throw err;
+        if (attempt === 6) {
+          console.warn('  [build] Could not overwrite dist/index.html (transient lock), keeping existing dist/index.html');
+          break;
+        }
         const waitTill = Date.now() + 150;
         while (Date.now() < waitTill) {}
       }
@@ -112,22 +124,33 @@ function build() {
     console.log('Copied qna/ -> dist/qna/');
   }
 
-  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, and sw.js if they exist (with EBUSY retry)
-  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt'].forEach((file) => {
+  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, sw.js, and legal policy pages if they exist (with EBUSY retry)
+  ['about.html', 'privacy.html', 'terms.html', 'contact.html', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
-      for (let attempt = 0; attempt < 5; attempt++) {
-        try {
-          fs.copyFileSync(fPath, path.join(DIST_DIR, file));
-          break;
-        } catch (e) {
-          if (attempt === 4) throw e;
-          const waitTill = Date.now() + 80;
-          while (Date.now() < waitTill) {}
-        }
-      }
+      copyRecursiveSync(fPath, path.join(DIST_DIR, file));
       console.log(`Copied ${file} -> dist/${file}`);
     }
+  });
+
+  // Sync lightweight Global English assets to dist-global/ (local & sibling Render repo if present)
+  [
+    path.join(ROOT_DIR, 'dist-global'),
+    path.resolve(ROOT_DIR, '..', '사업아이템', 'dist-global')
+  ].forEach((targetGlobalDir) => {
+    try {
+      const parentWorkspace = path.dirname(targetGlobalDir);
+      if (!fs.existsSync(parentWorkspace)) return;
+      fs.mkdirSync(targetGlobalDir, { recursive: true });
+      ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js'].forEach((f) => {
+        const srcF = path.join(DIST_DIR, f);
+        if (fs.existsSync(srcF)) copyRecursiveSync(srcF, path.join(targetGlobalDir, f));
+      });
+      ['src/css', 'src/js', 'src/data', 'qna'].forEach((subDir) => {
+        const srcSub = path.join(DIST_DIR, subDir);
+        if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
+      });
+    } catch (_) {}
   });
 
   const duration = Date.now() - startTime;

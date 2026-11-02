@@ -1,6 +1,6 @@
 /**
  * Taller Bio Labs (키즈핏 바이오 랩)
- * Core 5: 90-Day Growth & Routine Tracker & Hospital Clinic A4 PDF Report
+ * Core 5: 90-Day Growth & Routine Tracker & Hospital Clinic Clinical PDF Report
  * 
  * Features:
  * 1. 90-Day Longitudinal Growth & Daily Habit Streak Tracker:
@@ -9,7 +9,7 @@
  *    - Tracks date-stamped biometrics (height, weight, growth velocity)
  *    - Daily 3-Protocol tracking: Sleep (수면), Bio-Nutrition (영양), Biomechanics (운동)
  *    - Milestone streak badges: 7 days, 30 days, 90 days
- * 2. Dedicated 2-Page Hospital Clinic Style A4 PDF Report:
+ * 2. Dedicated 2-Page Hospital Clinic Style Clinical PDF Report:
  *    - Page 1: Auxology & Trajectory (Demographics, CDC/KDCA percentiles, Tanner MPH, 3-curve trajectory SVG)
  *    - Page 2: Endocrinology, Nutrition, Biomechanics & Neuro-Cognitive Matrix + Doctor Signature
  *    - Pure white `#FFFFFF` background, `#0F172A` typography, `page-break-after: always;`
@@ -329,8 +329,8 @@
 
             <!-- Mini Input Form -->
             <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-              <input type="number" step="0.1" id="input-log-height" placeholder="키 cm" value="${profile.currentHeight || 137.0}" style="width: 100px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
-              <input type="number" step="0.1" id="input-log-weight" placeholder="체중 kg" value="${profile.currentWeight || 35.5}" style="width: 100px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
+              <input type="number" step="0.1" id="input-log-height" placeholder="${isGlobal ? 'Height (cm)' : '키 cm'}" value="${profile.currentHeight || 137.0}" style="width: 110px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
+              <input type="number" step="0.1" id="input-log-weight" placeholder="${isGlobal ? 'Weight (kg)' : '체중 kg'}" value="${profile.currentWeight || 35.5}" style="width: 110px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
               <button type="button" class="btn btn-secondary" id="btn-add-log" style="padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
                 + ${isGlobal ? 'Add Measurement' : '계측 기록 추가'}
               </button>
@@ -343,8 +343,8 @@
               <thead>
                 <tr style="border-bottom: 1px solid var(--theme-border); color: var(--text-secondary); font-size: 0.78rem;">
                   <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Date' : '측정 날짜'}</th>
-                  <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Height (cm)' : '신장 (cm)'}</th>
-                  <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Weight (kg)' : '체중 (kg)'}</th>
+                  <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Height (ft/in · cm)' : '신장 (cm)'}</th>
+                  <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Weight (lbs · kg)' : '체중 (kg)'}</th>
                   <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Sleep' : '수면'}</th>
                   <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Nutrition' : '영양'}</th>
                   <th style="padding: 0.65rem 0.75rem;">${isGlobal ? 'Exercise' : '운동'}</th>
@@ -355,12 +355,12 @@
                 ${logs.slice(-6).reverse().map(l => `
                   <tr style="border-bottom: 1px solid var(--theme-border-subtle); color: var(--text-primary);">
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.8rem;">${l.date}</td>
-                    <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${l.height} cm</td>
-                    <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono);">${l.weight} kg</td>
+                    <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${isGlobal ? `${Math.floor((Number(l.height) / 2.54) / 12)}'${Math.round(((Number(l.height) / 2.54) % 12) * 10) / 10}" (${l.height} cm)` : `${l.height} cm`}</td>
+                    <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono);">${isGlobal ? `${Math.round(Number(l.weight) * 2.20462262 * 10) / 10} lbs (${l.weight} kg)` : `${l.weight} kg`}</td>
                     <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '' : ''}</td>
                     <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '' : ''}</td>
                     <td style="padding: 0.65rem 0.75rem;">${l.exercise ? '' : ''}</td>
-                    <td style="padding: 0.65rem 0.75rem; font-size: 0.78rem; color: var(--text-secondary);">${l.note || '-'}</td>
+                    <td style="padding: 0.65rem 0.75rem; font-size: 0.78rem; color: var(--text-secondary);">${isGlobal ? ({ '기준 진단 계측': 'Baseline Auxology Scan', '데드행 3세트 완주': '3x30s Dead Hang Completed', '구연산칼슘 & D3 섭취': 'Calcium Citrate & D3 Dose', '오늘 정밀 바이오 측정': 'Today Bio-Measurement', '수동 계측 입력': 'Manual Measurement Log', '정기 생체 계측': 'Routine Bio-Measurement' }[l.note] || (/[\uAC00-\uD7A3]/.test(l.note || '') ? 'Clinical Bio-Log' : (l.note || '-'))) : (l.note || '-')}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -374,7 +374,7 @@
     return html;
   }
 
-  // 3. 2-Page Hospital Clinic Style A4 PDF Document Generator
+  // 3. 2-Page Hospital Clinic Style Clinical PDF Document Generator
   function renderClinicalPdfReport(profile = {}) {
     const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
     const ageMonths = Number(profile.ageMonths || profile.exactMonths) || 120;
@@ -451,6 +451,561 @@
     const potentialBoost = traj && traj.optimized ? traj.optimized.gainOverUnmanaged : 6.4;
     const bmi = Math.round((weight / Math.pow(height / 100, 2)) * 10) / 10;
     const patientId = `TB-2026-${Math.abs((ageMonths * 73 + Math.round(height * 11)) % 9000 + 1000)}`;
+    const todayStrEn = new Date().toISOString().split('T')[0];
+    if (isGlobal) {
+      const formEl = (typeof document !== 'undefined') ? document.getElementById('diagnosis-form') : null;
+      const isLearningMode = (profile.preferredReportMode === 'learning') ||
+        (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning') ||
+        Boolean(formEl && formEl.className && formEl.className.includes('wizard-mode-learning'));
+
+      if (isLearningMode) {
+        const cogAxes = Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes.length ? profile.cognitiveAxes : ['science_nature', 'math_logic'];
+        const concerns = Array.isArray(profile.traitLearningConcerns) && profile.traitLearningConcerns.length ? profile.traitLearningConcerns : ['reading_literacy', 'passive_forget'];
+        const focusSpanVal = profile.traitFocusSpan || (typeof document !== 'undefined' && document.getElementById('trait-focus-span') ? document.getElementById('trait-focus-span').value : '15_20m');
+        const studyStyleVal = profile.traitStudyStyle || (typeof document !== 'undefined' && document.getElementById('trait-study-style') ? document.getElementById('trait-study-style').value : 'dialogue_question');
+        const focusSpanMap = {
+          under_10m: 'Under 10 mins (Short Modular Sprint Tasks)',
+          '15_20m': '15-20 mins (Structured Step-by-Step Routine)',
+          '30m_plus': '30+ mins (Deep Inquiry & Project Immersion)'
+        };
+        const studyStyleMap = {
+          dialogue_question: 'Socratic Dialogue & Feynman Active Explanation',
+          play_manipulative: 'Hands-On 3D Manipulative & Experimental Modeling',
+          visual_story: 'Visual Schema, Diagram & Mind-Map Structuring',
+          goal_workbook: '15-Minute Timed Micro-Mission & Milestone Checklist'
+        };
+        const focusSpanLabel = focusSpanMap[focusSpanVal] || focusSpanMap['15_20m'];
+        const studyStyleLabel = studyStyleMap[studyStyleVal] || studyStyleMap.dialogue_question;
+
+        const literacyScore = concerns.includes('reading_literacy') ? 72 : (cogAxes.includes('language_reading') ? 89 : 82);
+        const mathSpatialScore = concerns.includes('math_concept') ? 74 : (cogAxes.includes('math_logic') ? 91 : 84);
+        const workingMemoryScore = focusSpanVal === 'under_10m' ? 66 : (focusSpanVal === '30m_plus' ? 88 : 75);
+        const activeRecallScore = concerns.includes('passive_forget') ? 68 : 83;
+        const scientificInquiryScore = cogAxes.includes('science_nature') ? 90 : 85;
+        const overallLQ = Number(((literacyScore + mathSpatialScore + workingMemoryScore + activeRecallScore + scientificInquiryScore) / 5).toFixed(1));
+        const coachedLQ = Math.min(98.5, Number((overallLQ + 14.5).toFixed(1)));
+        const lqTopPct = Math.max(4, Math.min(45, Math.round(100 - overallLQ)));
+        const exactAgeMonths = Math.max(24, Math.min(216, Math.round(Number(ageMonths) || (ageYears * 12))));
+        const ageMonthFocusMinutes = Math.min(50, Math.max(8, Math.round(exactAgeMonths * 0.22)));
+        const ageMonthWmChunks = exactAgeMonths < 84 ? '3 ± 1 chunks' : (exactAgeMonths < 144 ? '4 ± 1 chunks' : '5 ± 1 chunks');
+        const zincMg = ageYears >= 9 ? 11 : 8;
+
+        return `
+        <div id="clinic-print-report" class="clinic-print-report" style="display: none;" data-report-mode="learning">
+          <div class="print-page print-page-1" style="page-break-after: always; padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="border-bottom: 2.5px solid #1D4ED8; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+              <div>
+                <div style="font-size: 10pt; font-weight: 800; color: #1D4ED8; letter-spacing: 0.08em; text-transform: uppercase;">
+                  KISFIT BIO LABS · HARVARD / WASHU NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0
+                </div>
+                <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                  5-Axis Brain Learning Quotient (LQ) &amp; Executive Function Clinical Report (Page 1/2)
+                </h1>
+              </div>
+              <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+                <div><strong>Reference Standard:</strong> Harvard / WashU Neuro-Pedagogy &amp; NIH ODS</div>
+                <div><strong>Issued Date:</strong> ${todayStrEn}</div>
+              </div>
+            </div>
+
+            <table style="width: 100%; border: 1.5px solid #CBD5E1; border-collapse: collapse; margin-bottom: 16px; font-size: 9.5pt;">
+              <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Patient ID</th>
+                <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700; font-family: monospace;">${patientId}</td>
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Sex / Age</th>
+                <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700;">${gender} / Age ${ageYears} (${exactAgeMonths} mos)</td>
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Division</th>
+                <td style="padding: 6px 10px; font-weight: 700; color: #1D4ED8;">Developmental Cognitive Neuroscience</td>
+              </tr>
+              <tr>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">Overall Brain LQ</th>
+                <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 800; color: #1D4ED8;">${overallLQ} pts (Top ${lqTopPct}%)</td>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">Desk Focus Span</th>
+                <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 700;">${focusSpanLabel}</td>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">Absorption Style</th>
+                <td style="padding: 6px 10px; font-weight: 700;">${studyStyleLabel}</td>
+              </tr>
+            </table>
+
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #1D4ED8; padding-left: 8px; margin: 0 0 8px 0;">
+                1. 5-Axis Brain Learning Quotient (LQ) Percentile &amp; Neural Circuit Breakdown
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 9pt; text-align: left;">
+                <thead>
+                  <tr style="background: #EFF6FF; border-bottom: 1px solid #CBD5E1; color: #1E3A8A;">
+                    <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1;">Neural Circuit Axis</th>
+                    <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1; text-align: center;">Baseline Score</th>
+                    <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1; text-align: center;">6-Mo Coached Target</th>
+                    <th style="padding: 6px 8px;">Clinical Neuro-Cognitive Assessment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">1. Reading Comprehension &amp; Literacy</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${literacyScore} / 100</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(98, literacyScore + 14)} / 100</td>
+                    <td style="padding: 6px 8px;">Semantic chunking &amp; 3-sentence paragraph synthesis</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">2. Spatial-Mathematical Reasoning</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${mathSpatialScore} / 100</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(99, mathSpatialScore + 12)} / 100</td>
+                    <td style="padding: 6px 8px;">Parietal visual bar-modeling before algebraic equations</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">3. Prefrontal Working Memory &amp; Focus</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #DC2626;">${workingMemoryScore} / 100</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(96, workingMemoryScore + 18)} / 100</td>
+                    <td style="padding: 6px 8px;">Dorsolateral prefrontal sustained attention (${ageMonthWmChunks} buffer)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">4. Metacognitive Active Recall</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #DC2626;">${activeRecallScore} / 100</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(97, activeRecallScore + 19)} / 100</td>
+                    <td style="padding: 6px 8px;">Hippocampal retrieval practice &amp; Feynman blank-page recall</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">5. Scientific Inquiry &amp; Creative Transfer</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${scientificInquiryScore} / 100</td>
+                    <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(99, scientificInquiryScore + 10)} / 100</td>
+                    <td style="padding: 6px 8px;">Hypothesis testing &amp; cross-domain STEM conceptual transfer</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
+                2. 3-Tier Brain LQ Trajectory &amp; Customized Neuro-Study Strategy
+              </h2>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-bottom: 10px;">
+                <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #1E3A8A;">Current 5-Axis Brain LQ</div>
+                  <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${overallLQ} pts (Top ${lqTopPct}%)</div>
+                  <div style="font-size: 7.5pt; color: #64748B;">Age ${ageYears} Norm: 78.0 pts</div>
+                </div>
+                <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #DC2626;">Primary Cognitive Bottleneck</div>
+                  <div style="font-size: 11pt; font-weight: 900; color: #DC2626; margin: 6px 0;">Working Memory &amp; Active Recall</div>
+                  <div style="font-size: 7.5pt; color: #475569;">Sprint Ceiling: ${ageMonthFocusMinutes} mins/block</div>
+                </div>
+                <div style="border: 1px solid #6EE7B7; border-radius: 6px; padding: 10px; background: #ECFDF5;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #047857;">6-Month Coached Potential LQ</div>
+                  <div style="font-size: 14pt; font-weight: 900; color: #059669; margin: 4px 0;">${coachedLQ} pts (Top 4%)</div>
+                  <div style="font-size: 7.5pt; color: #059669;">+${(coachedLQ - overallLQ).toFixed(1)} Pts Synaptic Efficiency Gain</div>
+                </div>
+              </div>
+              <div style="border: 1px solid #BFDBFE; border-radius: 6px; padding: 10px; background: #EFF6FF; font-size: 8.5pt; line-height: 1.5;">
+                <strong>• Protocol A (Feynman 3-Min Blank-Page Recall):</strong> Close the textbook after 20 minutes of study and write/explain 3 core concepts from memory (+150% 30-day retention).<br>
+                <strong>• Protocol B (Visual Bar-Modeling Offload):</strong> Externalize multi-step math &amp; reading variables into a 3-box diagram before writing equations to bypass the ${ageMonthWmChunks} working-memory ceiling.<br>
+                <strong>• Protocol C (N3 Sleep Hippocampal Consolidation + Neuro-Nutrition):</strong> 10-min pre-sleep review + Triglyceride DHA (600-800 mg), Phosphatidylcholine, and evening Magnesium Glycinate + Chelated Zinc (${zincMg} mg).
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+              <span>KISFIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0</span>
+              <span>Page 1 of 2 (Continued on Page 2)</span>
+            </div>
+          </div>
+
+          <div class="print-page print-page-2" style="padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="border-bottom: 2.5px solid #1D4ED8; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+              <div>
+                <div style="font-size: 10pt; font-weight: 800; color: #1D4ED8; letter-spacing: 0.08em; text-transform: uppercase;">
+                  KISFIT BIO LABS · HARVARD / WASHU NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0
+                </div>
+                <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                  6-Month Monthly Neuro-Study Roadmap &amp; 4 Printable Cognitive Worksheets (Page 2/2)
+                </h1>
+              </div>
+              <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+                <div><strong>Patient ID:</strong> <span style="font-family: monospace;">${patientId}</span></div>
+                <div><strong>Patient / Track:</strong> Age ${ageYears} (${gender}) · Brain &amp; Learning</div>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #1D4ED8; padding-left: 8px; margin: 0 0 8px 0;">
+                3. 6-Month Month-by-Month Prefrontal Myelination &amp; Study Care Roadmap (Months ${exactAgeMonths} to ${exactAgeMonths + 5})
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8.5pt;">
+                <thead>
+                  <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1;">
+                    <th style="padding: 6px; width: 18%; border-right: 1px solid #CBD5E1;">Month / Age</th>
+                    <th style="padding: 6px; width: 16%; border-right: 1px solid #CBD5E1; text-align: center;">Target Brain LQ</th>
+                    <th style="padding: 6px;">Monthly Executive Function, Study Habit &amp; Neuro-Nutrition Action Plan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 1 (${exactAgeMonths}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 2.4).toFixed(1)} pts</td>
+                    <td style="padding: 6px;">Lock in ${ageMonthFocusMinutes}-min timed micro-sprints + 60m pre-study screen lockbox + morning DHA/Choline.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 2 (${exactAgeMonths + 1}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 5.1).toFixed(1)} pts</td>
+                    <td style="padding: 6px;">Transition from passive reading to Feynman 3-Min Blank-Page Recall (Worksheet 01) + Phosphatidylserine (100 mg).</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 3 (${exactAgeMonths + 2}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 7.8).toFixed(1)} pts</td>
+                    <td style="padding: 6px;">Apply 3-Box Visual Bar-Modeling (Worksheet 02) on multi-step math &amp; ELA problems; audit 90-day error reduction.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 4 (${exactAgeMonths + 3}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 10.2).toFixed(1)} pts</td>
+                    <td style="padding: 6px;">Cornell 3-Color Error Tagging ([Careless Skip] vs [Concept Gap]) with mandatory 72-hr blind re-testing.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 5 (${exactAgeMonths + 4}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 12.5).toFixed(1)} pts</td>
+                    <td style="padding: 6px;">Socratic 3-Step Deep Transfer ([Observation] → [Why Hypothesis] → [STEM Application]); extend sprint to ${ageMonthFocusMinutes + 8} mins.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Month 6 (${exactAgeMonths + 5}m)</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${coachedLQ} pts</td>
+                    <td style="padding: 6px;">180-Day 5-Axis Brain LQ Audit; verify autonomous self-directed study habit at ${ageMonthFocusMinutes + 12} mins.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
+                4. 4 Printable Cognitive &amp; Working-Memory Worksheets (US Letter 8.5&quot; × 11&quot; Desk Templates)
+              </h2>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 8.5pt;">
+                <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">Worksheet 01 · Feynman 3-Min Blank-Page Recall</div>
+                  <div>1. Core Concept Learned Today: ____________________________</div>
+                  <div>2. Explain It to a Younger Student: ________________________</div>
+                  <div>3. 1 Self-Check Question / Gap: ___________________________</div>
+                </div>
+                <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">Worksheet 02 · Visual Math Bar-Modeling Canvas</div>
+                  <div>[Given Part A: ______ ] + [Given Part B: ______ ] = [Total: ______ ]</div>
+                  <div>Comparison Difference Bar: _______________________________</div>
+                  <div>Target Equation &amp; Units: _________________________________</div>
+                </div>
+                <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">Worksheet 03 · ${ageMonthFocusMinutes}-Min Prefrontal Focus Sprint Log</div>
+                  <div>Sprint Goal (3 Tasks): □ Task 1  □ Task 2  □ Task 3</div>
+                  <div>Distraction Tally Marks: __________________________________</div>
+                  <div>Completion Time &amp; Accuracy: ________ mins / _____%</div>
+                </div>
+                <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">Worksheet 04 · Socratic 3-Step Inquiry Organizer</div>
+                  <div>Step 1 (Observation): What did you notice? _________________</div>
+                  <div>Step 2 (Hypothesis): Why does this rule work? ______________</div>
+                  <div>Step 3 (Transfer): Real-World STEM Example: _______________</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+              <span>KISFIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0 (kisfitglobal.com)</span>
+              <span>Page 2 of 2 (End of Clinical Report)</span>
+            </div>
+          </div>
+        </div>
+        `;
+      }
+      const isImp = typeof window !== 'undefined' && (window.__KIDSFIT_UNIT_SYSTEM__ === 'imperial' || (window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function' && window.TallerI18n.getUnitSystem() === 'imperial'));
+      const cmToFtIn = (cmVal) => {
+        const totIn = (Number(cmVal) || 0) / 2.54;
+        const ft = Math.floor(totIn / 12);
+        const inch = Math.round((totIn - ft * 12) * 10) / 10;
+        return `${ft}'${inch}"`;
+      };
+      const fmtH = (cmVal) => {
+        const c = Number(cmVal) || 0;
+        if (!isImp) return `${c} cm`;
+        const totIn = c / 2.54;
+        const ft = Math.floor(totIn / 12);
+        const inch = Math.round((totIn - ft * 12) * 10) / 10;
+        return `${ft}'${inch}" (${c} cm)`;
+      };
+      const fmtW = (kgVal) => {
+        const k = Number(kgVal) || 0;
+        if (!isImp) return `${k} kg`;
+        const lbs = Math.round(k * 2.20462262 * 10) / 10;
+        return `${lbs} lbs (${k} kg)`;
+      };
+      const hPctEn = `${Number(hKdca.percentile || 50.0).toFixed(1)}th (Top ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`;
+      const wPctEn = `${Number(wKdca.percentile || 50.0).toFixed(1)}th (Top ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`;
+      const velStatusEn = velCalc.alert ? 'Sub-optimal Velocity (<4.0 cm/yr)' : (Number(velocityVal) >= 7.0 ? 'Accelerated Growth Trajectory' : 'Normal Growth Trajectory');
+      return `
+        <div id="clinic-print-report" class="clinic-print-report" style="display: none;">
+          <div class="print-page print-page-1" style="page-break-after: always; padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+              <div>
+                <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
+                  KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0 CLINICAL ATELIER
+                </div>
+                <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                  Pediatric Auxology &amp; Bone-Age Precision Clinical Report (Page 1/2)
+                </h1>
+              </div>
+              <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+                <div><strong>Reference Standards:</strong> US CDC 2000 &amp; WHO MGRS</div>
+                <div><strong>Issued Date:</strong> ${todayStrEn}</div>
+              </div>
+            </div>
+            <table style="width: 100%; border: 1.5px solid #CBD5E1; border-collapse: collapse; margin-bottom: 16px; font-size: 9.5pt;">
+              <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Patient ID</th>
+                <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700; font-family: monospace;">${patientId}</td>
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Sex / Age</th>
+                <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700;">${gender} / Age ${ageYears} (${ageMonths} mos)</td>
+                <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">Division</th>
+                <td style="padding: 6px 10px; font-weight: 700; color: #0F172A;">Pediatric Auxology &amp; Endocrinology</td>
+              </tr>
+              <tr>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">Height / Weight</th>
+                <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 700;">${fmtH(height)} / ${fmtW(weight)}</td>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">BMI</th>
+                <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 700;">${bmi} kg/m²</td>
+                <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">Parents (F/M)</th>
+                <td style="padding: 6px 10px; font-weight: 700;">${fmtH(fatherH)} / ${fmtH(motherH)}</td>
+              </tr>
+            </table>
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 8px 0;">
+                1. Standardized Pediatric Growth Percentiles &amp; LMS Z-Score (Auxology Assessment)
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 9pt; text-align: center;">
+                <thead>
+                  <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1;">
+                    <th style="padding: 6px; border-right: 1px solid #CBD5E1;">Biometric Metric</th>
+                    <th style="padding: 6px; border-right: 1px solid #CBD5E1;">Measured Value</th>
+                    <th style="padding: 6px; border-right: 1px solid #CBD5E1;">Age Peer Median</th>
+                    <th style="padding: 6px; border-right: 1px solid #CBD5E1;">Delta from Median</th>
+                    <th style="padding: 6px; border-right: 1px solid #CBD5E1;">Z-Score</th>
+                    <th style="padding: 6px;">CDC/WHO Percentile</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Height</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${fmtH(height)}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${fmtH(medianHeight.toFixed(1))}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? `${hDeltaVal >= 0 ? '+' : ''}${(hDeltaVal / 2.54).toFixed(1)} in (${hDeltaStr})` : hDeltaStr}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${hZStr}</td>
+                    <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${hPctEn}</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Weight</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">${fmtW(weight)}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${fmtW(medianWeight.toFixed(1))}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? `${wDeltaVal >= 0 ? '+' : ''}${(wDeltaVal * 2.20462262).toFixed(1)} lbs (${wDeltaStr})` : wDeltaStr}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${wZStr}</td>
+                    <td style="padding: 6px; font-weight: 700;">${wPctEn}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Annual Growth Velocity</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${isImp ? `${(Number(velocityVal) / 2.54).toFixed(1)} in/yr (${velocityVal} cm/yr)` : `${velocityVal} cm/yr`}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? '2.0 ~ 2.8 in/yr (5.0 ~ 7.0 cm/yr)' : '5.0 ~ 7.0 cm/yr'}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${velCalc.alert ? 'Clinical Watch' : 'Normal Range'}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">-</td>
+                    <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${velStatusEn}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
+                2. Genetic Target Height (Tanner MPH) &amp; 3-Tier Adult Height Trajectory Simulation
+              </h2>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px; background: #F8FAFC;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #64748B;">Genetic Target Height (Tanner MPH)</div>
+                  <div style="font-size: 14pt; font-weight: 900; color: #0F172A; margin: 4px 0;">${fmtH(mph)}</div>
+                  <div style="font-size: 7.5pt; color: #64748B;">Range: ${isImp ? `${cmToFtIn(mphMin)} ~ ${cmToFtIn(mphMax)} (${mphMin} ~ ${mphMax} cm)` : `${mphMin} ~ ${mphMax} cm`}</div>
+                </div>
+                <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Unmanaged Habits Trajectory</div>
+                  <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(unmanagedHeight)}</div>
+                  <div style="font-size: 7.5pt; color: #1D4ED8;">Sleep &amp; Posture Loss: -${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in (-${unmanagedPenalty} cm)` : `${unmanagedPenalty} cm`}</div>
+                </div>
+                <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #ECFDF5;">
+                  <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Clinically Optimized Potential</div>
+                  <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(potentialHeight)}</div>
+                  <div style="font-size: 7.5pt; color: #1D4ED8;">Nutrition &amp; Decompression: +${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in (+${potentialBoost} cm)` : `${potentialBoost} cm`}</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #D97706; padding-left: 8px; margin: 0 0 8px 0;">
+                3. Multi-Curve Longitudinal Growth Trajectory (Ages 1 to 20)
+              </h2>
+              <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px; background: #FFFFFF; text-align: center;">
+                <svg viewBox="0 0 600 180" style="width: 100%; height: 160px;">
+                  <rect width="600" height="180" fill="#F8FAFC" rx="4" />
+                  <line x1="50" y1="30" x2="560" y2="30" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="75" x2="560" y2="75" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="120" x2="560" y2="120" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="150" x2="560" y2="150" stroke="#CBD5E1" stroke-width="1.5" />
+                  <path d="M 50,150 Q 250,90 560,35" fill="none" stroke="#0284C7" stroke-width="2.5" />
+                  <path d="M 50,150 Q 250,100 560,55" fill="none" stroke="#D97706" stroke-width="2" />
+                  <path d="M 50,150 Q 250,110 560,70" fill="none" stroke="#E11D48" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <circle cx="280" cy="98" r="5" fill="#059669" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="280" y="88" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Current Patient (${fmtH(height)})</text>
+                  <text x="60" y="22" font-size="8" fill="#0284C7">― Optimized Trajectory (+${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in / +${potentialBoost} cm` : `${potentialBoost}cm`})</text>
+                  <text x="235" y="22" font-size="8" fill="#D97706">― Genetic Baseline (MPH ${isImp ? `${cmToFtIn(mph)} / ${mph} cm` : `${mph}cm`})</text>
+                  <text x="405" y="22" font-size="8" fill="#E11D48">--- Unmanaged Habits (-${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in / -${unmanagedPenalty} cm` : `${unmanagedPenalty}cm`})</text>
+                </svg>
+              </div>
+            </div>
+            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+              <span>KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0</span>
+              <span>Page 1 of 2 (Continued on Page 2)</span>
+            </div>
+          </div>
+          <div class="print-page print-page-2" style="padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+              <div>
+                <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
+                  KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0 CLINICAL ATELIER
+                </div>
+                <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                  Endocrinology, Bio-Nutrition, Biomechanics &amp; Neuro Prescription (Page 2/2)
+                </h1>
+              </div>
+              <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+                <div><strong>Patient ID:</strong> <span style="font-family: monospace;">${patientId}</span></div>
+                <div><strong>Patient / Sex:</strong> Pediatric Patient (${gender})</div>
+              </div>
+            </div>
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #D97706; padding-left: 8px; margin: 0 0 6px 0;">
+                4. 24-Hour Circadian Endocrinology &amp; Growth Hormone (GH) Suppression Analysis
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 9pt;">
+                <tr style="background: #F8FAFC;">
+                  <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">Bedtime / Fasting Window</td>
+                  <td style="padding: 6px 10px; width: 25%; border-right: 1px solid #CBD5E1;">22:30 PM / 2.5h Fasting</td>
+                  <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">GH Pulsatile Loss Rate</td>
+                  <td style="padding: 6px 10px; font-weight: 800; color: #1D4ED8;">-14% (Nocturnal Spike Suppression)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 10px; font-weight: 700; border-right: 1px solid #CBD5E1; background: #F8FAFC;">Slow-Wave Sleep (SWS) Peak</td>
+                  <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1;">22:00 PM ~ 02:00 AM</td>
+                  <td style="padding: 6px 10px; font-weight: 700; border-right: 1px solid #CBD5E1; background: #F8FAFC;">Clinical Protocol</td>
+                  <td style="padding: 6px 10px; font-size: 8.5pt;">Zero-carb fasting 3h before bed &amp; sleep onset by 22:00 achieves 0% GH loss</td>
+                </tr>
+              </table>
+            </div>
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 6px 0;">
+                5. Weight-Proportional Bio-Nutrition Prescription &amp; Bioavailability
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8.5pt; text-align: left;">
+                <thead>
+                  <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1;">
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Essential Nutrient</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Daily Target Dose</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Preferred Chelated Form</th>
+                    <th style="padding: 5px 8px;">Bioavailability &amp; Clinical Mechanism</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Elemental Calcium</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">1,000 mg/day</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Calcium Citrate / MCHA</td>
+                    <td style="padding: 5px 8px;">~45% absorption (acid-independent, prevents GI discomfort)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Vitamin D3 + K2</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">2,000 IU + 60 mcg</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Cholecalciferol D3 + MK-7</td>
+                    <td style="padding: 5px 8px;">Osteocalcin carboxylation directs calcium into epiphyseal bone matrix</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Zinc &amp; Magnesium</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">12 mg + 160 mg</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Zinc Picolinate + Glycinate</td>
+                    <td style="padding: 5px 8px;">Hepatic GHR phosphorylation (IGF-1 synthesis) &amp; SWS delta sleep depth</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Bone Matrix Protein</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">${Math.round(weight * 1.3 * 10) / 10} g/day</td>
+                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">WPI / Colostrum Peptides</td>
+                    <td style="padding: 5px 8px;">Accelerates Type-I/II collagen matrix synthesis (30% of bone volume)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #E11D48; padding-left: 8px; margin: 0 0 6px 0;">
+                6. Biomechanical Spinal Decompression &amp; Wolff's Law 3-Core Protocol
+              </h2>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: 8pt;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                  <div style="font-weight: 800; color: #1D4ED8;">1. Passive Spinal Dead Hang</div>
+                  <div>30s x 3 sets (30s rest)</div>
+                  <div style="color: #64748B; font-size: 7.5pt;">L1–L5 intervertebral disc unloading (+0.3 in (+0.8 cm))</div>
+                </div>
+                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                  <div style="font-weight: 800; color: #1D4ED8;">2. Thoracic &amp; Pelvic Alignment</div>
+                  <div>45s x 2 sets (bilateral)</div>
+                  <div style="color: #64748B; font-size: 7.5pt;">Text-neck &amp; pelvic tilt correction (+0.7 in (+1.8 cm))</div>
+                </div>
+                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                  <div style="font-weight: 800; color: #1D4ED8;">3. Plyometric Micro-Loading</div>
+                  <div>15-min interval (45s jump / 15s walk)</div>
+                  <div style="color: #64748B; font-size: 7.5pt;">1.5–2.5G piezoelectric pulse (Runx2/Sox9)</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 6px 0;">
+                7. Peer-Reviewed 【Short · Mid · Long-Term】 Clinical Roadmap &amp; Socratic Inquiry
+              </h2>
+              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8pt; margin-bottom: 8px;">
+                <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
+                  <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #1D4ED8;">Short-Term (Weeks 1–4)</th>
+                  <td style="padding: 5px 8px;">21:45 bedtime · 3h pre-sleep zero-carb fasting (0% GH suppression) · Evening 3x30s dead hang (+0.7 in (+1.8 cm) disc recovery)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #CBD5E1;">
+                  <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">Mid-Term (Months 1–3)</th>
+                  <td style="padding: 5px 8px;">iHerb USP/NSF Calcium Citrate (45% absorption)+D3+K2(MK-7)+Protein (${Math.round(weight * 1.3 * 10) / 10}g) · 5x/wk 15-min plyometrics · Daily Feynman active recall</td>
+                </tr>
+                <tr>
+                  <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">Long-Term (6M–Adult)</th>
+                  <td style="padding: 5px 8px;">Quarterly CDC LMS percentile tracking · Optimal BMI maintenance against early bone-age fusion · Reach ${fmtH(potentialHeight)} potential</td>
+                </tr>
+              </table>
+              <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 10px; background: #F8FAFC; font-size: 7.8pt; line-height: 1.45;">
+                <div><strong>[Observation &amp; Inquiry]</strong> "What is the most unexpected or non-uniform structural pattern in this exhibit?"</div>
+                <div><strong>[Hypothesis &amp; Reasoning]</strong> "If the primary physical condition were reversed, how would the outcome change?"</div>
+                <div><strong>[Transfer &amp; Application]</strong> "How can we apply the principle discovered today to solve a real-world engineering problem?"</div>
+              </div>
+            </div>
+            <div style="border-top: 1.5px solid #0F172A; padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 8pt; color: #475569; max-width: 380px;">
+                This clinical report is synthesized in accordance with US CDC 2000, WHO MGRS, AAP, PES, and NIH ODS peer-reviewed pediatric standards.
+              </div>
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="text-align: right;">
+                  <div style="font-size: 8.5pt; font-weight: 800; color: #0F172A;">Attending Pediatric Endocrinology &amp; Auxology Board</div>
+                  <div style="font-size: 8pt; color: #64748B;">Senior Pediatric Endocrinology Specialist</div>
+                </div>
+                <div style="width: 60px; height: 60px; border: 2px dashed #94A3B8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8pt; font-weight: 800; color: #1D4ED8;">
+                  [VERIFIED]
+                </div>
+              </div>
+            </div>
+            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; margin-top: 12px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+              <span>KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0</span>
+              <span>Page 2 of 2 (End of Clinical Assessment Report)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
     const todayStr = new Date().toISOString().split('T')[0];
 
     return `
@@ -463,7 +1018,7 @@
           <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div>
               <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
+                KISFIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
               </div>
               <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
                 소아청소년 신체성장·골연령 정밀 진단 결과지 (Page 1/2)
@@ -602,7 +1157,7 @@
 
           <!-- Page 1 Footer -->
           <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-            <span>KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
+            <span>KISFIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
             <span>Page 1 of 2 (다음 페이지에 계속)</span>
           </div>
 
@@ -615,7 +1170,7 @@
           <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div>
               <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
+                KISFIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0 CLINICAL ATELIER
               </div>
               <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
                 내분비·임상영양·생체역학 &amp; 뇌인지 처방전 (Page 2/2)
@@ -759,7 +1314,7 @@
 
           <!-- Page 2 Footer -->
           <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; margin-top: 12px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-            <span>KIDS-FIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
+            <span>KISFIT AI STUDIO · PROPRIETARY K-GROWTH AI™ v4.0</span>
             <span>Page 2 of 2 (End of Clinical Assessment Report)</span>
           </div>
 
@@ -770,8 +1325,16 @@
   }
 
   // 4. Print Report Pre-population & Trigger
-  function preparePrintReport(profile = {}) {
+    function preparePrintReport(profile = {}) {
     if (typeof document === 'undefined') return;
+    if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
+      let lockedContainer = document.getElementById('clinic-print-report-container');
+      if (lockedContainer) {
+        lockedContainer.innerHTML = '';
+        lockedContainer.style.display = 'none';
+      }
+      return;
+    }
 
     const activeMode = profile.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'growth';
     if (document.body && document.body.classList) {
@@ -787,7 +1350,14 @@
     printContainer.innerHTML = renderClinicalPdfReport(profile);
   }
 
-  function printClinicReport(profile = {}) {
+    function printClinicReport(profile = {}) {
+    if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
+      preparePrintReport(profile);
+      if (typeof window.openKidsFitGlobalCheckoutModal === 'function') {
+        window.openKidsFitGlobalCheckoutModal();
+      }
+      return;
+    }
     preparePrintReport(profile);
     if (typeof window !== 'undefined' && typeof window.print === 'function') {
       window.print();
@@ -824,7 +1394,7 @@
         const wInput = document.getElementById('input-log-weight');
         const h = hInput ? parseFloat(hInput.value) : 137.0;
         const w = wInput ? parseFloat(wInput.value) : 35.5;
-        addLogEntry(h, w, '수동 계측 입력', profile);
+        addLogEntry(h, w, (typeof document !== 'undefined' && document.documentElement.lang === 'en') ? 'Manual Measurement Log' : '수동 계측 입력', profile);
         // Re-render tracker
         const container = document.getElementById('core-5-container');
         if (container) {

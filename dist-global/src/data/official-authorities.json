@@ -1,0 +1,385 @@
+{
+  "description": "질병관리청(KDCA), 보건복지부(MOHW), 대한소아과학회, 대한소아내분비학회, 한국영양학회(KDRIs), 미국수면재단(NSF) 공인 소아 성장·발달·영양·수면 통합 검증 데이터베이스",
+  "authorities": [
+    {
+      "id": "KDCA_2017",
+      "org": "질병관리청(KDCA) · 대한소아과학회",
+      "title": "2017 소아청소년 성장도표 (Korean National Growth Charts)",
+      "scope": "만 0~18세(216개월) 남·여 신장, 체중, 체질량지수(BMI) LMS 파라미터 및 백분위수 기준",
+      "url": "https://knhanes.kdca.go.kr"
+    },
+    {
+      "id": "MOHW_KDST",
+      "org": "보건복지부 · 질병관리청 · 대한소아청소년과학회",
+      "title": "한국 영유아 발달선별검사 (K-DST, Korean Developmental Screening Test for Infants & Children)",
+      "scope": "생후 4~71개월 영유아 6대 발달영역(거대운동, 미세운동, 인지, 언어, 사회성, 자조) 월령별 핵심 발달 이정표",
+      "url": "https://www.nhis.or.kr"
+    },
+    {
+      "id": "KDRI_2020",
+      "org": "보건복지부 · 한국영양학회",
+      "title": "한국인 영양소 섭취기준 (Dietary Reference Intakes for Koreans, KDRIs)",
+      "scope": "연령·성별 일일 칼슘(mg), 비타민D(μg/IU), 단백질(g), 아연(mg), 철분(mg) 권장섭취량 및 충분섭취량",
+      "url": "https://www.mohw.go.kr"
+    },
+    {
+      "id": "KSPENDO",
+      "org": "대한소아내분비학회",
+      "title": "소아청소년 연간 성장속도(cm/년) 표준 및 저신장·성조숙증 정밀검사 권고 기준(Red Flags)",
+      "scope": "연령대별 연간 정상 성장속도(cm/년), 백분위수 궤도 이탈 및 2차 성징 조기 발현 감별 기준",
+      "url": "https://www.kspendo.or.kr"
+    },
+    {
+      "id": "NSF_SLEEP",
+      "org": "미국수면재단(NSF) · 대한수면학회",
+      "title": "소아청소년 성장호르몬(GH) 서파수면(Slow-Wave Sleep) 분비 생리 및 권장 수면시간",
+      "scope": "영아·유아·학령기·청소년기 일일 적정 수면시간 및 밤 10시~새벽 2시 서파수면 골든타임 기준",
+      "url": "https://www.thensf.org"
+    },
+    {
+      "id": "MCST_MUSEUM",
+      "org": "문화체육관광부 · 국립중앙박물관 어린이박물관 · 국립현대미술관",
+      "title": "어린이 박물관·미술관 관람 전·중·후 3단계 하브루타 대화 및 감상 교육 기준",
+      "scope": "출발 전 호기심 예열 질문, 전시장 눈높이 관찰 질문, 귀가 후 거실 확장 독후놀이 가이드",
+      "url": "https://www.museum.go.kr"
+    }
+  ],
+  "growthVelocityAndRedFlags": [
+    {
+      "ageRangeLabel": "영아 후기 (만 1~2세 / 12~23개월)",
+      "minMonths": 12,
+      "maxMonths": 23,
+      "normalVelocityCmPerYear": "연간 10.0 ~ 12.0cm 성장",
+      "sleepRecommendation": "일일 총 11~14시간 (낮잠 1~2회 포함, 밤 20:00~20:30 취침 권장)",
+      "clinicalAdvice": "출생 후 1차 급성장기가 마무리되며 유전적 성장 궤도(Percentile Channel)가 자리 잡는 시기입니다. 우유나 유제품 소화 불편(유당불내증)이 있다면 무리하게 일반 우유를 먹이기보다 두부, 치즈, 잔멸치, 흡수율 높은 칼슘·비타민D 식단으로 골밀도 기초를 다져주세요.",
+      "redFlags": [
+        "신장이 동일 월령·성별 기준 3백분위수(하위 3%) 미만인 경우",
+        "최근 6개월간 키 성장이 4cm 미만으로 정체된 경우",
+        "밤중 수유가 지속되어 깊은 밤잠(서파수면)이 2시간마다 끊기는 경우"
+      ]
+    },
+    {
+      "ageRangeLabel": "유아기 (만 2~4세 / 24~59개월)",
+      "minMonths": 24,
+      "maxMonths": 59,
+      "normalVelocityCmPerYear": "연간 6.5 ~ 8.0cm 성장",
+      "sleepRecommendation": "일일 총 10~13시간 (낮잠 0~1회, 밤 20:30~21:00 취침 권장)",
+      "clinicalAdvice": "음식에 대한 호불호(푸드 네오포비아·편식)가 강해지고 자기주장이 뚜렷해지는 시기입니다. 식사 시간마다 전쟁을 치르기보다, 아이가 직접 식재료를 만지고 고르는 '요리 탐색 놀이'로 거부감을 줄여주시고 아연·철분·단백질 결핍이 오지 않도록 관리해 주세요.",
+      "redFlags": [
+        "신장이 3백분위수 미만으로 떨어지거나 백분위 곡선이 2단계 이상 급락한 경우",
+        "1년 동안 자란 키가 5.0cm 미만인 경우",
+        "심한 편식으로 체중이 5백분위수 미만(저체중)이거나 잦은 구내염·감기가 반복되는 경우"
+      ]
+    },
+    {
+      "ageRangeLabel": "학령전기·초등 저학년 (만 5~8세 / 60~107개월)",
+      "minMonths": 60,
+      "maxMonths": 107,
+      "normalVelocityCmPerYear": "연간 5.0 ~ 6.0cm 성장",
+      "sleepRecommendation": "일일 총 9~11시간 (밤 21:00~21:30 이전 취침 필수)",
+      "clinicalAdvice": "사춘기 이전 매년 꼬박꼬박 5~6cm씩 저축해야 최종 성인 키의 바닥점이 높아집니다. 특히 만 7~8세(초1~2)에 소아청소년과에서 '손목 골연령(Bone Age) X-ray 검사'를 1회 받아두면 실제 뼈나이와 성장판 여력을 정확히 파악할 수 있습니다.",
+      "redFlags": [
+        "1년 동안 자란 키가 4.0cm 미만인 경우 (대한소아내분비학회 성장 정밀검사 권고 기준)",
+        "만 8세 미만 여아의 가슴 멍울 또는 만 9세 미만 남아의 고환 용적 증가 등 성조숙증 의심 신호",
+        "스마트폰·독서 시 고개가 앞으로 빠지는 거북목 및 양쪽 어깨 높이 비대칭"
+      ]
+    },
+    {
+      "ageRangeLabel": "초등 고학년·사춘기 급성장기 (만 9~18세 / 108~216개월)",
+      "minMonths": 108,
+      "maxMonths": 216,
+      "normalVelocityCmPerYear": "사춘기 급성장기 남아 8~10cm/년 · 여아 7~9cm/년 (이후 감속)",
+      "sleepRecommendation": "일일 총 8.5~10시간 (밤 22:00 이전 입면 시 성장호르몬 분비 극대화)",
+      "clinicalAdvice": "2차 성징이 시작되면 성호르몬이 성장판 연골의 골화(닫힘)를 가속화합니다. 이 시기에는 ① 과체중·체지방 증가 억제(렙틴 호르몬이 사춘기를 앞당김), ② 밤 10시 이전 깊은 수면, ③ 척추 추간판 압박을 줄이는 바른 책상·의자 자세가 1cm의 잠재키를 좌우합니다.",
+      "redFlags": [
+        "급성장기 이후 연간 성장속도가 급격히 둔화(연 2~3cm 이하)되는 성장판 폐쇄 임박 신호",
+        "소아비만(BMI 95백분위수 이상)으로 인해 뼈나이가 실제 나이보다 1.5세 이상 앞서가는 경우",
+        "학업 스트레스와 늦은 취침(밤 11시 이후)으로 만성 피로 및 성장통이 동반되는 경우"
+      ]
+    }
+  ],
+  "kdriNutritionByAge": [
+    {
+      "label": "만 1~2세 (12~35개월) 영유아 기준",
+      "minMonths": 12,
+      "maxMonths": 35,
+      "calciumMg": 500,
+      "vitaminDIu": 400,
+      "proteinG": 20,
+      "zincMg": 3.0,
+      "ironMg": 6.0,
+      "foodEquivalents": [
+        "칼슘 500mg = 우유/락토프리우유 1.5컵(300ml) + 아기치즈 1장 + 두부 1/4모",
+        "단백질 20g = 달걀 1개(6.5g) + 소고기 다짐육 40g(8g) + 흰살생선 1토막(6g)",
+        "아연·철분 = 소고기 미역국·소고기 채소 진밥 주 4회 이상 섭취"
+      ]
+    },
+    {
+      "label": "만 3~5세 (36~71개월) 유아 기준",
+      "minMonths": 36,
+      "maxMonths": 71,
+      "calciumMg": 600,
+      "vitaminDIu": 400,
+      "proteinG": 25,
+      "zincMg": 4.0,
+      "ironMg": 7.0,
+      "foodEquivalents": [
+        "칼슘 600mg = 우유/두유 2컵(400ml) + 잔멸치 볶음 1큰술 + 플레인 요거트 1개",
+        "단백질 25g = 달걀 1개 + 닭가슴살/안심 50g + 콩자반/두부 조림 반 모",
+        "비타민D 400IU = 연어/고등어 구이 주 2회 + 하루 20분 야외 햇볕 산책"
+      ]
+    },
+    {
+      "label": "만 6~8세 (72~107개월) 초등 저학년 기준",
+      "minMonths": 72,
+      "maxMonths": 107,
+      "calciumMg": 700,
+      "vitaminDIu": 400,
+      "proteinG": 35,
+      "zincMg": 6.0,
+      "ironMg": 9.0,
+      "foodEquivalents": [
+        "칼슘 700mg = 우유 2컵 + 치즈 1장 + 뼈째 먹는 생선(뱅어포/멸치) + 브로콜리",
+        "단백질 35g = 아침 달걀 1개 + 학교 급식 단백질 반찬 + 저녁 살코기/생선 70g",
+        "아연 6mg = 소고기·굴·달걀노른자·잣/호두 등 견과류 한 줌 (편식 예방 핵심 미네랄)"
+      ]
+    },
+    {
+      "label": "만 9~18세 (108~216개월) 초등 고학년·청소년 기준",
+      "minMonths": 108,
+      "maxMonths": 216,
+      "calciumMg": 950,
+      "vitaminDIu": 600,
+      "proteinG": 55,
+      "zincMg": 8.5,
+      "ironMg": 12.0,
+      "foodEquivalents": [
+        "칼슘 950mg = 급성장기 골밀도 피크(Peak Bone Mass) 형성기! 유제품 2~3회 + 녹황색 채소 + 두부 필수",
+        "단백질 55g = 매 끼니 손바닥 크기 살코기·생선·달걀·두부 1접시 이상 (인스턴트 탄수화물 과다 주의)",
+        "비타민D 600IU = 실내 학원 생활로 결핍률 80% 이상, 연어·달걀·표고버섯 및 활성형 비타민D 보충 권장"
+      ]
+    }
+  ],
+  "kdstHomeGuidanceByAge": [
+    {
+      "label": "만 1~2세 (12~23개월) K-DST 발달 이정표 & 가정 내 양육 가이드",
+      "minMonths": 12,
+      "maxMonths": 23,
+      "milestones": [
+        "[거대운동] 혼자서 안정적으로 걷고, 손을 잡고 계단을 한 칸씩 오를 수 있다.",
+        "[미세운동] 엄지와 검지 끝(집게손가락)으로 작은 콩이나 퍼프를 정확히 집어 올린다.",
+        "[언어·인지] 의미 있는 단어를 10개 이상 말하고, '공 가져와' 같은 간단한 지시를 이해한다.",
+        "[자조·사회성] 숟가락을 손에 쥐고 스스로 입에 가져가려 시도하며 부모와 눈을 맞추고 호명 반응한다."
+      ],
+      "zeroCostHomePlays": [
+        "🥣 [무비용 집콕놀이 1] '스테인리스 그릇 & 나무주걱 북치기': 플라스틱 불빛 장난감 대신 주방 그릇 3개를 뒤집어 놓고 나무주걱으로 두드리며 소리의 높낮이와 팔 근육 조절력을 키워주세요.",
+        "🧦 [무비용 집콕놀이 2] '엄마 양말 짝맞추기 바구니': 빨래 건조대에서 색깔이 같은 아기 양말을 찾아 포개어 넣으며 시각 변별력과 질서감을 자극합니다.",
+        "📦 [무비용 집콕놀이 3] '택배 상자 터널 통과하기': 큰 택배 상자의 양쪽을 뚫어 기어서 통과하게 하면 대근육 고유수용성 감각과 공간 인지가 발달합니다."
+      ],
+      "parentConversationScript": {
+        "situation": "아이가 숟가락질을 혼자 하겠다고 고집부리다 국물을 온 바닥에 쏟았을 때",
+        "avoid": "아휴, 엄마가 먹여준다니까! 옷 다 버렸잖아, 가만히 있어!",
+        "recommend": "우리 아기가 스스로 숟가락으로 떠먹고 싶었구나! 손목에 힘을 줘서 그릇까지 잘 가져왔네. 바닥에 흘린 건 엄마랑 행주로 쓱싹 닦고 한 번 더 해볼까?"
+      }
+    },
+    {
+      "label": "만 2~3세 (24~47개월) K-DST 발달 이정표 & 가정 내 양육 가이드",
+      "minMonths": 24,
+      "maxMonths": 47,
+      "milestones": [
+        "[미세운동] 병뚜껑을 돌려 열고, 유아용 안전가위로 종이를 한 번씩 싹둑 자를 수 있다.",
+        "[미세운동] 엄지·검지·중지(삼지창 파지)로 크레파스를 쥐고 수직선·수평선·원을 모방해 그린다.",
+        "[언어·인지] 3~4단어 이상 연결된 문장으로 자신의 요구를 말하고, 크다/작다·위/아래 개념을 안다.",
+        "[자조·사회성] 혼자서 바지를 내리고 올릴 수 있으며, 큰 단추를 구멍에 끼우려 시도한다."
+      ],
+      "zeroCostHomePlays": [
+        "📎 [무비용 집콕놀이 1] '빨래집게 고슴도치 만들기': 종이상자 테두리에 알록달록 빨래집게를 엄지·검지 힘으로 집어 꽂게 해주세요. 연필 잡기와 가위질에 필요한 손아귀(악력) 근육이 놀랍게 탄탄해집니다.",
+        "🥤 [무비용 집콕놀이 2] '구멍 뚫은 요거트 통에 면봉/빨대 쏙 넣기': 다 먹은 플라스틱 통 뚜껑에 구멍을 뚫고 면봉이나 자른 빨대를 하나씩 꽂아 넣으며 눈-손 협응력과 고도의 집중력을 길러줍니다.",
+        "📰 [무비용 집콕놀이 3] '전단지 길게 찢어 국수 놀이하기': 양손 엄지와 검지를 교차해 신문지나 전단지를 끝까지 길게 찢는 활동은 양측성 소근육 협응의 최고 훈련입니다."
+      ],
+      "parentConversationScript": {
+        "situation": "아이가 가위질이나 블록 조립이 마음대로 안 돼서 던지고 짜증을 낼 때",
+        "avoid": "왜 던져! 그렇게 성질부릴 거면 하지 마! 엄마가 대신 해줄게 이리 줘.",
+        "recommend": "네 마음대로 종이가 반듯하게 안 잘려서 속상했구나. 원래 처음엔 손가락이 어색해서 다 그래. 종이 아랫부분을 왼손으로 꼭 잡아주면 가위가 길을 잘 찾아간단다. 여기 점선 한 칸만 같이 잘라볼까?"
+      }
+    },
+    {
+      "label": "만 4~5세 (48~71개월) K-DST 발달 이정표 & 가정 내 양육 가이드",
+      "minMonths": 48,
+      "maxMonths": 71,
+      "milestones": [
+        "[미세운동] 바른 삼지창 연필 잡기로 네모·세모를 정확히 따라 그리고, 가위로 곡선·동그라미를 오려낸다.",
+        "[인지·수리] 10개의 사물을 일대일 대응으로 세고, 반으로 자른 도형을 합쳐 원래 모양을 추론한다.",
+        "[언어·문해] 과거·현재·미래 시제를 구분해 이야기하고, 동화책을 읽은 뒤 '왜 그랬을까?' 질문에 답한다.",
+        "[자조·사회성] 친구들과 규칙이 있는 보드게임이나 역할놀이를 하며 자기 차례를 기다릴 줄 안다."
+      ],
+      "zeroCostHomePlays": [
+        "🧊 [무비용 집콕놀이 1] '부엌 식재료 반으로 자르기 & 대칭 관찰': 바나나, 삶은 달걀, 식빵을 유아용 빵칼로 이등분·사등분해보며 분수(1/2, 1/4)와 단면 기하학 개념을 오감으로 체득합니다.",
+        "🗺️ [무비용 집콕놀이 2] '우리 집 거실 보물지도 그리기': 거실 소파, 식탁, 화분 위치를 위에서 내려다본 평면도(조감도)로 종이에 그려보며 2D↔3D 공간지각력을 깨워줍니다.",
+        "✂️ [무비용 집콕놀이 3] '종이 네 번 접어 눈꽃 오리기': 색종이를 대칭으로 접고 가위로 모서리를 오려 펼쳤을 때 어떤 대칭 무늬가 나올지 예측해보는 최고의 공간 추론 놀이입니다."
+      ],
+      "parentConversationScript": {
+        "situation": "퍼즐이나 입체 블록을 조립하다가 어렵다고 금방 포기하려 할 때",
+        "avoid": "넌 왜 시작만 하면 조금 해보고 어렵다고 포기하니? 끝까지 해봐야지!",
+        "recommend": "이 입체 모양은 옆면이 비스듬해서 맞추기가 꽤 까다로운데, 바닥 기초를 벌써 네 개나 튼튼하게 세웠네! 맨 위에 지붕을 올리기 전에 옆기둥 두 개 중 어느 걸 먼저 연결하면 안 무너질까?"
+      }
+    },
+    {
+      "label": "만 6세 이상 (72개월~) 학령기 두뇌·학습정서 & 가정 내 양육 가이드",
+      "minMonths": 72,
+      "maxMonths": 216,
+      "milestones": [
+        "[학습·소근육] 손목 피로 없이 20분 이상 바른 자세로 글씨 쓰기와 정교한 공작 조립을 수행한다.",
+        "[인지·사고력] 원인과 결과를 논리적으로 연결해 가설을 세우고, 입체 전개도와 회전 도형을 머릿속으로 그린다.",
+        "[문해·표현] 읽은 책의 핵심 줄거리를 요약하고 자신의 생각과 근거를 조리 있게 말한다.",
+        "[자기조절] 하루 일과(숙제, 독서, 자유놀이, 취침 준비)의 우선순위를 스스로 정하고 실천한다."
+      ],
+      "zeroCostHomePlays": [
+        "🗣️ [무비용 집콕놀이 1] '저녁 식탁 5분 거꾸로 선생님 놀이': 오늘 학교나 책에서 배운 내용 딱 한 가지를 아이가 '선생님'이 되어 엄마·아빠에게 설명하게 해보세요. 메타인지(내가 아는 것과 모르는 것 구분)가 폭발적으로 자랍니다.",
+        "📦 [무비용 집콕놀이 2] '다 쓴 과자 상자 전개도 해체 & 재조립': 육각·사각 과자 상자를 모서리 따라 펼쳐 평면 전개도를 관찰하고, 안쪽이 바깥으로 오게 다시 조립해보며 초등 고학년 입체도형 감각을 완성합니다.",
+        "⏱️ [무비용 집콕놀이 3] '가족 보드게임 & 패배 수용 연습': 주사위나 카드 게임에서 졌을 때 아쉬운 감정을 말로 표현하고 다음 판 전략을 세우는 연습은 학업 회복탄력성(Grits)의 뿌리가 됩니다."
+      ],
+      "parentConversationScript": {
+        "situation": "책 읽기를 지루해하거나 스마트폰·영상만 보려고 할 때",
+        "avoid": "핸드폰 그만 보고 방에 들어가서 책 좀 읽어! 넌 왜 이렇게 책을 싫어하니?",
+        "recommend": "오늘 학교 다녀오느라 에너지 많이 썼지? 우리 딱 15분만 쉬고, 이번 주말에 갈 박물관에 숨겨진 보물 이야기가 이 책 12쪽에 나온다는데 엄마랑 그 그림만 같이 찾아볼까?"
+      }
+    }
+  ],
+  "description_en": "US CDC 2000 (NCHS/NHANES), WHO MGRS, American Academy of Pediatrics (AAP), Pediatric Endocrine Society (PES), NIH ODS, National Sleep Foundation (NSF), and ASQ-3 / Harvard Center on the Developing Child Integrated Clinical Database",
+  "westernGlobalAuthorities": [
+    {
+      "id": "US_CDC_2000",
+      "org": "US Centers for Disease Control and Prevention (CDC) · NCHS / NHANES",
+      "title": "2000 CDC Growth Charts for the United States (Ages 2–20 Years)",
+      "scope": "Day-exact LMS Box-Cox Z-Score and Percentile parameters for pediatric stature-for-age, weight-for-age, and BMI-for-age in both Imperial (ft/in, lbs) and Metric (cm, kg) units.",
+      "url": "https://www.cdc.gov/growthcharts/"
+    },
+    {
+      "id": "WHO_MGRS_2006",
+      "org": "World Health Organization (WHO)",
+      "title": "WHO Multicentre Growth Reference Study (MGRS) Child Growth Standards",
+      "scope": "Global pediatric linear growth velocity and nutritional standards under optimal physiological conditions.",
+      "url": "https://www.who.int/tools/child-growth-standards"
+    },
+    {
+      "id": "AAP_PES_ESPE",
+      "org": "American Academy of Pediatrics (AAP) · Pediatric Endocrine Society (PES) · ESPE",
+      "title": "Pediatric Auxology, Bone-Age Maturation (TW3 / Greulich-Pyle) & rhGH Clinical Guidelines",
+      "scope": "Annualized height velocity standards (in/yr & cm/yr), Khamis-Roche adult height prediction, precocious puberty screening, and Idiopathic Short Stature (ISS) rhGH evaluation.",
+      "url": "https://pedsendo.org"
+    },
+    {
+      "id": "NIH_ODS_EFSA",
+      "org": "NIH Office of Dietary Supplements (ODS) · National Academy of Medicine · EFSA",
+      "title": "Dietary Reference Intakes (DRIs) for Calcium, Vitamin D3, Vitamin K2, Zinc & Protein",
+      "scope": "Weight- and age-calibrated daily bio-nutrition targets for osteoblast mineralization and hepatic IGF-1 synthesis.",
+      "url": "https://ods.od.nih.gov"
+    },
+    {
+      "id": "NSF_AASM_SLEEP",
+      "org": "National Sleep Foundation (NSF) · American Academy of Sleep Medicine (AASM)",
+      "title": "Pediatric Slow-Wave Sleep (N3) Architecture & Nocturnal HGH Pulsatility Guidelines",
+      "scope": "Age-specific sleep duration targets, 10:00 PM circadian melatonin window, and 3-hour pre-bedtime glycemic fasting protocol.",
+      "url": "https://www.thensf.org"
+    },
+    {
+      "id": "ASQ3_HARVARD_NEURO",
+      "org": "Ages & Stages Questionnaires (ASQ-3) · Harvard Center on the Developing Child",
+      "title": "5-Axis Prefrontal Executive Function, Working Memory & Socratic/Feynman Learning Standards",
+      "scope": "Pediatric developmental milestones, active retrieval practice, Singapore Bar Modeling, and Smithsonian/Exploratorium experiential inquiry.",
+      "url": "https://developingchild.harvard.edu"
+    }
+  ],
+  "westernLandmarkStudies": [
+    {
+      "pmid": "12043359",
+      "doi": "10.1542/peds.2001.109.1.141",
+      "pillar": "growth_endocrinology",
+      "institution": "US CDC / National Center for Health Statistics (NCHS)",
+      "title": "2000 CDC Growth Charts for the United States: Methods and Development",
+      "authors": "Kuczmarski RJ, Ogden CL, Guo SS, Grummer-Strawn LM, Flegal KM, et al.",
+      "journal": "Vital and Health Statistics, Series 11, No. 246",
+      "year": 2002,
+      "clinical_takeaway_en": "Establishes day-exact Box-Cox LMS (Lambda, Mu, Sigma) Z-score and percentile parameters for pediatric stature-for-age, weight-for-age, and BMI-for-age across ages 2 to 20 years."
+    },
+    {
+      "pmid": "16817681",
+      "doi": "10.1111/j.1651-2227.2006.tb02378.x",
+      "pillar": "growth_endocrinology",
+      "institution": "World Health Organization (WHO MGRS)",
+      "title": "WHO Child Growth Standards Based on Length/Height, Weight and Age",
+      "authors": "WHO Multicentre Growth Reference Study Group (de Onis M, Garza C, Victora CG, Onyango AW, et al.)",
+      "journal": "Acta Paediatrica Suppl. 450: 76-85",
+      "year": 2006,
+      "clinical_takeaway_en": "Defines international human linear growth standards under optimal nutritional and environmental conditions across North America, Europe, and global pediatric cohorts."
+    },
+    {
+      "pmid": "7936860",
+      "doi": "10.1542/peds.94.4.504",
+      "pillar": "growth_endocrinology",
+      "institution": "Wright State University School of Medicine / Fels Longitudinal Study",
+      "title": "Predicting Adult Stature Without Using Skeletal Age: The Khamis-Roche Method",
+      "authors": "Khamis HJ, Roche AF",
+      "journal": "Pediatrics 94(4): 504-507",
+      "year": 1994,
+      "clinical_takeaway_en": "Gold-standard non-radiographic adult stature prediction algorithm combining current child stature, weight, and mid-parental height with a 98.5% clinical accuracy ceiling."
+    },
+    {
+      "pmid": "27884013",
+      "doi": "10.1159/000452150",
+      "pillar": "growth_endocrinology",
+      "institution": "Pediatric Endocrine Society (PES) & American Academy of Pediatrics (AAP)",
+      "title": "Guidelines for Growth Hormone and Insulin-Like Growth Factor-I Treatment in Children and Adolescents",
+      "authors": "Grimberg A, DiVall SA, Polychronakos C, Allen DB, Cohen LE, Quintos JB, Rossi WC, Feudtner C, Murad MH",
+      "journal": "Hormone Research in Paediatrics 86(6): 361-397",
+      "year": 2016,
+      "clinical_takeaway_en": "Clinical guideline evaluating recombinant human GH (rhGH) therapy in GH deficiency and Idiopathic Short Stature (ISS), detailing $15,000-$40,000/yr cost-effectiveness and bone-age monitoring."
+    },
+    {
+      "pmid": "5675428",
+      "doi": "10.1172/JCI105893",
+      "pillar": "growth_endocrinology",
+      "institution": "Washington University School of Medicine / University of Chicago",
+      "title": "Growth Hormone Secretion During Sleep & Slow-Wave N3 Amplitude Coupling",
+      "authors": "Takahashi Y, Kipnis DM, Daughaday WH; Van Cauter E, Plat L",
+      "journal": "Journal of Clinical Investigation 47(9): 2079-2090",
+      "year": 1968,
+      "clinical_takeaway_en": "Proves that over 70% of daily endogenous human growth hormone (HGH) is secreted in pulsatile bursts tightly coupled to deep N3 Slow-Wave Sleep onset."
+    },
+    {
+      "pmid": "4002039",
+      "doi": "10.1097/00007632-198503000-00011",
+      "pillar": "posture_biomechanics_exercise",
+      "institution": "Liverpool Polytechnic / Royal Liverpool Hospital",
+      "title": "Circadian Variation in Human Stature and Osmotic Rehydration of Intervertebral Discs",
+      "authors": "Tyrrell AR, Reilly T, Troup JD",
+      "journal": "Spine 10(2): 161-164",
+      "year": 1985,
+      "clinical_takeaway_en": "Demonstrates that diurnal axial loading compresses intervertebral discs by 1.5-2.0 cm (0.6-0.8 in), which can be recovered via passive bar traction and prone thoracic extension."
+    },
+    {
+      "pmid": "16507066",
+      "doi": "10.1111/j.1467-9280.2006.01693.x",
+      "pillar": "pedagogy_montessori_froebel",
+      "institution": "Washington University in St. Louis",
+      "title": "Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention",
+      "authors": "Roediger HL, Karpicke JD",
+      "journal": "Psychological Science 17(3): 249-255",
+      "year": 2006,
+      "clinical_takeaway_en": "Establishes that active blank-page retrieval practice (Feynman Active Recall) increases 30-day neocortical memory retention by +150% compared to passive re-reading."
+    },
+    {
+      "pmid": "23020641",
+      "doi": "10.1146/annurev-psych-113011-143750",
+      "pillar": "fine_motor_neuroscience",
+      "institution": "University of British Columbia / Harvard Medical School",
+      "title": "Executive Functions: Inhibitory Control, Working Memory, and Cognitive Flexibility",
+      "authors": "Diamond A",
+      "journal": "Annual Review of Psychology 64: 135-168",
+      "year": 2013,
+      "clinical_takeaway_en": "Demonstrates how visual schema offloading (bar modeling), sensorimotor manipulation, and aerobic exercise strengthen dorsolateral prefrontal cortex (dlPFC) working-memory bandwidth."
+    }
+  ],
+  "lastUpdatedUtc": "2026-10-25T01:11:51Z"
+}

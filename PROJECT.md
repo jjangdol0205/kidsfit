@@ -1,87 +1,74 @@
-# Project: Taller Bio Labs 2-Phase Immersive Funnel & Master Briefing
+# Project: KidsFit English Global Upgrade (`kisfitglobal.com`)
 
 ## Architecture
-Taller Bio Labs is structured as a 2-Phase clinical pediatric growth and development analytics platform:
-1. **Phase 1: Input Funnel Only**:
-   - Focused single-slide card viewport with step progress bar (`Step 1 ~ Step 6`).
-   - Central card transition via smooth `translateX`.
-   - Results dashboard (`#results-dashboard`) and capsule tabs (`#capsule-tabs`) are 100% hidden (`display: none` / `.hidden`) on initial page load.
-   - Compact quick preset chip bar (`preset-card-1` ~ `preset-card-5`) for 1-second clinical simulation.
-   - 2.5~3s scanning animation sequence (KDCA/CDC LMS check -> 800+ academic papers matching -> 90-day actionable roadmap generation).
-2. **Phase 2: Master Briefing & Single Active Tab Results**:
-   - Patient summary bar with `[🔄 정보 다시 입력하기]` button to return to Phase 1.
-   - Master Briefing Card:
-     1) Current clinical status diagnosis (KDCA 2017, CDC 2000, K-DST, KDRIs percentiles, Z-score, ±cm vs standard, growth velocity trajectory, growth plate golden time).
-     2) Core causes & academic paper matching: Realtime filtering against `research-knowledge-base.json` (803 papers DB) showing actual paper title, authors, year, PMID/DOI link, and core statistical numbers for the user's inhibitors & age.
-     3) Actionable Roadmap (Top 3 Priorities): #1 Sleep/Hormone guidance, #2 Clinical Nutrition guidance (exact mg/g targets), #3 Decompression Exercise & Age-appropriate Brain/Habruta guidance.
-   - Single Active Tab View: Exactly 1 core tab rendered/visible at a time (other 4 tab panels `.hidden`).
-     - Core 1: Growth Trajectory & Prediction.
-     - Core 2: Hormones, Sleep & Clinical Nutrition.
-     - Core 3: Spinal Decompression & Growth Plate Coaching (timers).
-     - Core 4: Cognitive Development & Habruta Inquiry.
-     - Core 5: 90-day Tracker & A4 Report.
-   - Complete 2-page A4 print view (`@media print`) via `#clinic-print-report-container`.
-
-## Code Layout
-- `index.html`: Main HTML entry point, containing Phase 1 slide funnel and Phase 2 Master Briefing + 5 tab panes.
-- `src/css/style.css`: Design system, slide funnel viewport/track styles, Master Briefing card styles, single active tab rules, and print rules.
-- `src/js/app.js`: Main application controller, state management, tab switching, and rendering coordinator.
-- `src/js/onboarding-wizard.js`: 6-step slide funnel controller, validation, `translateX` stepper navigation, preset loader, 2.5~3s scanning animation.
-- `src/js/master-briefing.js` (or integrated into `growth-engine.js` / `app.js`): Dynamic academic paper matching against `window.KIDSFIT_RESEARCH_DATA` (803 papers) and 3-tier briefing generation.
-- `src/js/growth-engine.js`: Core 1 clinical calculations (KDCA 2017, US CDC 2000 LMS Z-scores, percentiles, MPH, velocity, 3-tier prediction curves).
-- `src/js/endocrinology-engine.js`: Core 2 circadian 24h GH simulation, SWS delta curve, insulin suppression.
-- `src/js/nutrition-engine.js`: Core 2 weight-proportional nutrient targets and bioavailability gauges.
-- `src/js/biomechanics-studio.js`: Core 3 decompression exercise timers.
-- `src/js/neuro-cognitive-matrix.js`: Core 4 5-axis radar chart and Habruta questions.
-- `src/js/growth-tracker.js`: Core 5 90-day tracking and 2-page A4 print generator.
-- `src/data/research-knowledge-base.json`: 803 peer-reviewed academic papers.
-- `scripts/build.js`: Asset copying and data inlining into `dist/`.
-- `scripts/verify-acceptance.js`: Acceptance test verification script.
-- `scripts/self-improve-engine.js`: 6-stage autonomous quality assurance and self-healing engine.
-- `tests/`: Pure Node.js CommonJS unit, integration, and adversarial tests.
+- **Client Frontend**: Single-page application (`index.html`) with modular vanilla JS engines (`src/js/`), dark/light theme switcher, multi-step onboarding wizard (`onboarding-wizard.js`), auxology calculation engine (`growth-engine.js`), neuro-cognitive matrix (`neuro-cognitive-matrix.js`), and paywall gate (`global-paywall-edition.js`).
+- **Unit System & Internationalization**: `src/js/i18n.js` providing `TallerI18n` with unit system (`imperial` vs `metric`) and language (`en`). Live bidirectional synchronization between imperial inputs (`ft/in`, `lbs`) and metric primary inputs (`cm`, `kg`).
+- **Clinical Report & Paywall**: `buildNativeEnglishClinicalReportHTML` rendering 7-chapter pediatric growth report. Hard-paywall gate wired to Lemon Squeezy Store #296100 ($8.99 single pass / $19.99 6-month tracker pass).
+- **Global Knowledge & SEO**: 28 peer-reviewed English Q&A articles in `qna/` and `dist/qna/`, AI-crawler manifests (`llms.txt`, `llms-full.txt`), JSON Feed (`feed.json`), RSS feed (`rss.xml`), and XML sitemap (`sitemap.xml`) targeting `https://kisfitglobal.com`.
+- **Marketing & Content**: Global GTM masterplan (`docs/global_marketing/`) and ready-to-publish content packs (`global_marketing_packs/`) with 6-slide 1080x1350 card-news visuals.
+- **Bridge & Verification**: Telegram bridge `@kidsfittbot` (`scripts/telegram-notify.js`, `scripts/telegram-antigravity-bridge.js`), automated test suites (`tests/run-all.js`), acceptance verifier (`scripts/verify-acceptance.js`), and build pipeline (`scripts/build.js`).
 
 ## Feature Inventory
 | # | Feature | Description | Milestone | Source |
 |---|---------|-------------|-----------|--------|
-| 1 | Initial Dashboard Hide | `#results-dashboard` & `#capsule-tabs` 100% hidden (`display: none` / `.hidden`) on initial page load | M1 | Survey R1 |
-| 2 | 6-Slide Funnel Track | Central card viewport with smooth `translateX` sliding across Step 1 to 6 | M1 | Survey R1 |
-| 3 | Step 1 Inputs | Subject (Child/Self), Gender (Boy/Girl), Age slider (1~20) & months | M1 | Survey R1 |
-| 4 | Step 2 Inputs | Current Height, Weight, 6-month growth velocity (cm/yr) | M1 | Survey R1 |
-| 5 | Step 3 Inputs | Father & Mother height + realtime MPH preview badge | M1 | Survey R1 |
-| 6 | Step 4 Inputs | Tanner Phase 1~4 large touch cards | M1 | Survey R1 |
-| 7 | Step 5 Inputs | 5 biological inhibitors multi-select touch cards | M1 | Survey R1 |
-| 8 | Step 6 Inputs | 5-domain cognitive/inquiry axes + CTA button | M1 | Survey R1 |
-| 9 | 1-Sec Quick Presets Bar | Compact preset chip row (`preset-card-1` ~ `preset-card-5`) for 1-sec simulation | M1 | Survey R1 |
-| 10 | 2.5~3s Scan Animation | 3-stage scanning overlay (KDCA/CDC -> 800+ papers -> 90-day roadmap) | M1 | Survey R1 |
-| 11 | Funnel Re-Entry Button | User summary bar with `[🔄 정보 다시 입력하기]` button restoring Phase 1 | M1 | Survey R1 |
-| 12 | Master Briefing Card | Diagnostic overview card rendered at top of Phase 2 | M1 | Survey R2 |
-| 13 | MB Section 1: Clinical Diagnosis | KDCA/CDC Z-scores, percentiles, ±cm vs standard, velocity, golden time | M1 | Survey R2 |
-| 14 | MB Section 2: Realtime Papers Match | Realtime dynamic matching of 803 papers DB by user inhibitors & age with titles, authors, PMID/DOI links, statistics | M1 | Survey R2 |
-| 15 | MB Section 3: Actionable Roadmap | Top 3 Priorities: #1 Sleep/Hormone, #2 Nutrition exact mg/g, #3 Decompression & Habruta | M1 | Survey R2 |
-| 16 | Single Active Tab Navigation | Exactly 1 of the 5 Core tabs visible at a time (`.active`), other 4 hidden (`.hidden`) | M1 | Survey R3 |
-| 17 | 2-Page A4 Print View | Complete 2-page A4 clinic report rendered via `#clinic-print-report-container` in `@media print` | M1 | Survey R3 |
-| 18 | Feature & System Preservation | EN/KO, Dark/Light, reference chips, admin modal, 803 papers DB, 6-stage self-improve engine | M2 | Survey R4 |
-| 19 | Test Suite Alignment & Extension | Update tests to remove legacy `step-content-6` blocker and add tests for Phase 1, Phase 2, Single Tab | M2 | Survey R4 |
-| 20 | Build, Verify & Deploy | Pass `npm test`, `npm run verify`, `self-improve-engine.js`, commit and push to `origin/main` | M3 | Survey R4 |
+| 1 | Step 1 Validation Fix | Decouple Step 1 validation so `validateStep(1)` tests only DOB and Gender, removing false biometric alerts | M1 | Survey 1 & 2 |
+| 2 | Step 2 & 3 Validation & Normalization | `validateStep(2)` tests child height/weight with unit-aware ranges; `validateStep(3)` tests parents | M1 | Survey 1 & 2 |
+| 3 | Unit-Aware LMS & Presets | `syncDobAndAutoStage()` and `applyPreset()` update input values unit-aware without resetting imperial inputs to raw cm | M1 | Survey 1 & 2 |
+| 4 | 100% English HTML & Zero Hangul | Convert `index.html` static markup completely to native English; zero Hangul (`/[가-힣]/` = 0) | M1 | Survey 1 |
+| 5 | Dynamic Age-Appropriate English Options | Update `syncAgeAppropriateQuizOptions()` with English options for Toddler, Kindergarten, School-age | M1 | Survey 1 |
+| 6 | Global DOB & Region Pickers | Month/Day/Year picker order and 5 global regions (US, CA, UK/EU, AU/NZ, Global) | M1 | Survey 1 |
+| 7 | Suppress Domestic Korean Feeds | `master-briefing.js` omits Coupang, KakaoTalk, and Naver links in English mode | M1 | Survey 1 |
+| 8 | Header Interactive Unit Selector | Top navbar unit selector (`🇺🇸 Imperial: ft/in · lbs` ↔ `🌐 Metric: cm · kg`) syncing across application | M2 | Survey 2 |
+| 9 | Form Embedded Unit Selectors | Interactive unit selector switches in Step 2 (Child) and Step 3 (Parents) | M2 | Survey 2 |
+| 10 | Live Bidirectional Height & Weight Sync | Live binding between `ft + in` inputs and primary `cm` inputs, and `lbs` and `kg` | M2 | Survey 2 |
+| 11 | Live Imperial MPH Preview Badge | Step 3 live Mid-Parental Height badge formats in `ft/in` (Imperial) or `cm` (Metric) | M2 | Survey 2 |
+| 12 | Unit-Prioritized Clinical Report | Clinical report cards, tables, and SVG trajectory prioritize Imperial or Metric according to active mode | M2 | Survey 2 |
+| 13 | Global Marketing Masterplan | Strategy documents for Reddit, Instagram/Threads, TikTok/Shorts, Quora/X, and SEO/GEO in `docs/global_marketing/` | M3 | Survey 3 |
+| 14 | Ready-to-Publish Content Packs | Copy-paste English marketing copy across 4 channels in `global_marketing_packs/` | M3 | Survey 3 |
+| 15 | 6-Slide English Card-News PNGs | Render 1080x1350 editorial card-news slides using Python Pillow 12.2.0 | M3 | Survey 3 |
+| 16 | 28 English Q&A Pages | Full clinical Q&A pages `topic-01.html` through `topic-25.html`, `post-seq-001.html` through `003.html`, and `index.html` in `qna/` with 0 Hangul | M3 | Survey 3 |
+| 17 | Global Feeds & AI-Search Manifests | `llms.txt`, `llms-full.txt`, `feed.json`, `rss.xml`, `sitemap.xml` converted to English and `kisfitglobal.com` | M3 | Survey 3 |
+| 18 | Acceptance Verifier English Adaptation | Update `scripts/verify-acceptance.js` to assert English workspace deliverables with 0 errors | M4 | Survey 3 |
+| 19 | Build Pipeline Execution | `npm run build` succeeds cleanly and outputs `dist/index.html` and `dist/qna/` with 0 Hangul | M4 | Survey 3 |
+| 20 | Test Suite Pass (18/18 Suites) | `npm test` runs 18 test suites with 0 failures | M4 | Survey 3 |
+| 21 | Lemon Squeezy Paywall & Telegram Verification | Verify Store #296100 paywall and send completion notification via `@kidsfittbot` | M4 | Survey 3 |
+| 22 | Git Safety Rule | Strictly no `git push` | M4 | Dispatch |
 
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| M1 | 2-Phase UX Transformation (Slide Funnel, Master Briefing, Single Tab) | Features 1-17: R1 (6-slide funnel, quick presets, scanning overlay, initial dashboard hide), R2 (Master Briefing card, 803 papers dynamic matching, Top 3 roadmap), R3 (Single active tab view, 2-page A4 print view) | none | DONE |
-| M2 | Test Suite Alignment, Verification & Self-Improvement Loop | Features 18-19: R4 (Fix legacy step-content-6 blockers, write comprehensive phase 1-2 tests, verify 33/33 checks, run 6-stage self-improve engine) | M1 | IN_PROGRESS |
-| M3 | Production Build, Verification & GitHub Deployment | Feature 20: R4 (Run npm run build, full test verification, git commit, push to origin/main, live verification) | M2 | PLANNED |
+| M1 | Survey Flow & 100% English UI | Fix Step 1-6 navigation, `validateStep`, `syncDobAndAutoStage`, `syncAgeAppropriateQuizOptions`, 100% English `index.html`, global DOB/region | none | DONE |
+| M2 | Interactive Dual-Unit Selector | Header & Form unit switches, live `ft/in` ↔ `cm` and `lbs` ↔ `kg` bidirectional sync, live MPH badge, unit-prioritized report | M1 | DONE |
+| M3 | Global Marketing, Packs & 28 Q&A Pages | Masterplan (`docs/global_marketing/`), content packs (`global_marketing_packs/`), 6 card-news PNGs, 28 Q&A pages, feeds (`llms.txt`, `feed.json`, `rss.xml`, `sitemap.xml`) | none (parallel) | DONE |
+| M4 | Integration Build, Tests & Telegram Verification | Update `scripts/verify-acceptance.js`, `npm run build`, `npm test`, `npm run verify`, `@kidsfittbot` notification | M1, M2, M3 | DONE |
 
 ## Interface Contracts
-### OnboardingWizard ↔ AppCoordinator (`src/js/onboarding-wizard.js` ↔ `src/js/app.js`)
-- `OnboardingWizard.init(formSelector, onSubmitCallback)`: Initializes stepper, sets step=1, hides `#results-dashboard` and `#capsule-tabs`.
-- `OnboardingWizard.goToStep(stepNumber)`: Clamps between 1 and 6, translates track by `-((step-1)*100)%`, updates progress bar text and width.
-- `OnboardingWizard.getFormData()`: Returns `{ subject, gender, ageYears, ageMonths, height, weight, recentGrowth6m, fatherHeight, motherHeight, region, tannerPhase, habits: [], cognitiveAxes: [] }`.
-- `OnboardingWizard.startScan(callback)`: Executes 2.5~3s animation with KDCA/CDC -> 800+ papers -> 90-day roadmap steps, then invokes callback.
+### `TallerI18n` ↔ `OnboardingWizard`
+- `TallerI18n.getUnitSystem()`: returns `'imperial'` | `'metric'`.
+- `TallerI18n.setUnitSystem(unit)`: updates localStorage `taller_unit`, dispatches `'taller:unit-changed'` CustomEvent with `{ unitSystem }`.
+- `TallerI18n.applyTranslations()`: applies translations to all `data-i18n` elements.
 
-### MasterBriefingEngine ↔ AppCoordinator (`src/js/master-briefing.js` ↔ `src/js/app.js`)
-- `MasterBriefingEngine.matchPapers(habits, ageYears, tannerPhase, limit = 3)`: Returns array of `{ paper, matchedCause }` with valid PMID/DOI links.
-- `MasterBriefingEngine.render(profile)`: Returns complete HTML string for `#master-briefing-card` containing Sections 1, 2, and 3.
+### Unit Converter ↔ Form Inputs
+- Imperial to Metric:
+  - Height: `cm = (feet * 12 + inches) * 2.54`
+  - Weight: `kg = lbs / 2.20462`
+  - Velocity: `cm = inches * 2.54`
+- Metric to Imperial:
+  - Total inches: `totalIn = cm / 2.54` -> `feet = Math.floor(totalIn / 12)`, `inches = Math.round((totalIn % 12) * 10) / 10`
+  - Weight: `lbs = Math.round(kg * 2.20462 * 10) / 10`
+  - Velocity: `inches = Math.round((cm / 2.54) * 10) / 10`
+- Event Handlers:
+  - Typing in `#child-height-ft` or `#child-height-in` updates `#child-height` (in inches in imperial mode, or cm in metric mode) and triggers `input` event.
+  - Typing in `#child-weight-lbs` updates `#child-weight` (in lbs in imperial mode, or kg in metric mode) and triggers `input` event.
 
-### TabNavigation ↔ AppCoordinator (`src/js/app.js`)
-- `switchTab(tabId)`: Sets active capsule tab button, activates corresponding `#tab-pane-*`, adds `.hidden` (`display: none`) to all other 4 tab panes.
-- `retest()`: Triggered by `#btn-retest`, hides `#results-dashboard` and `#capsule-tabs`, shows `#quiz-section`, and calls `OnboardingWizard.goToStep(1)`.
+### Build Pipeline ↔ Distribution
+- `scripts/build.js` copies `qna/` to `dist/qna/` recursively.
+- `scripts/build.js` copies `CNAME` (`kisfitglobal.com`) to `dist/CNAME`.
+- `scripts/build.js` copies and transforms `index.html` to `dist/index.html`.
+
+## Code Layout
+- Exclusive Write Ownership:
+  - **Milestone 1 Worker**: `index.html`, `src/js/onboarding-wizard.js`, `src/js/i18n.js`, `src/js/app.js`, `src/js/master-briefing.js`, `tests/ui-onboarding.test.js`
+  - **Milestone 2 Worker**: `index.html` (unit selector controls & inputs), `src/js/onboarding-wizard.js` (unit sync & live MPH preview), `src/js/global-paywall-edition.js` (report unit formatting), `src/css/style.css` (unit selector styling)
+  - **Milestone 3 Worker**: `docs/global_marketing/*`, `global_marketing_packs/*`, `qna/*`, `llms.txt`, `llms-full.txt`, `feed.json`, `rss.xml`, `sitemap.xml`
+  - **Milestone 4 Worker**: `scripts/verify-acceptance.js`, `scripts/telegram-notify.js`

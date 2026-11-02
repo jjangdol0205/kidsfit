@@ -1,0 +1,40 @@
+User-agent: *
+Allow: /
+
+# Korean Portal Crawlers (Naver Yeti, Daum/Kakao Daumoa, Zum)
+User-agent: Yeti
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+User-agent: kakaotalk-scrap
+Allow: /
+
+# Global Search & AI Answer Engine Crawlers (ChatGPT, Perplexity, Claude, Google, Bing)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://kisfitglobal.com/sitemap.xml
+# Syndication & AI Grounding Feeds:
+# RSS 2.0: https://kisfitglobal.com/rss.xml
+# JSON Feed: https://kisfitglobal.com/feed.json
+# LLMs Guide: https://kisfitglobal.com/llms.txt

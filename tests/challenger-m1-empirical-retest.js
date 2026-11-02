@@ -222,7 +222,7 @@ function setupEnvironment(isSimulatedBrowser = false) {
   if (isSimulatedBrowser) {
     sandbox.window.location = {
       protocol: 'https:',
-      host: 'truthofmarket.com',
+      host: 'kisfitglobal.com',
       pathname: '/',
       search: ''
     };
@@ -243,7 +243,7 @@ function setupEnvironment(isSimulatedBrowser = false) {
 // -----------------------------------------------------------------------------
 console.log('\n--- SECTION 2: Cross-Environment 6-Slide Progression Parity ---');
 
-['Headless / Mock Environment (no window.location)', 'Live Browser Environment (https://truthofmarket.com)'].forEach((envLabel, idx) => {
+['Headless / Mock Environment (no window.location)', 'Live Browser Environment (https://kisfitglobal.com)'].forEach((envLabel, idx) => {
   const isBrowser = idx === 1;
 
   runTest(`2.${idx + 1} Step 1 to 6 progression in ${envLabel}`, () => {

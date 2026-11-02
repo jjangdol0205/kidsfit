@@ -173,11 +173,12 @@ async function runAllSuites() {
   // ---------------------------------------------------------------------------
   console.log('\n[Suite 2: Server Proxy Route (/api/coupang)]');
 
-  const TEST_PORT = 33891;
+  let TEST_PORT;
   let testServer;
 
   await new Promise((resolve) => {
-    testServer = server.listen(TEST_PORT, '127.0.0.1', () => {
+    testServer = server.listen(0, '127.0.0.1', () => {
+      TEST_PORT = testServer.address().port;
       resolve();
     });
   });
@@ -336,7 +337,7 @@ async function runAllSuites() {
     assert.ok(bundle.enTikTokScript.includes('60s Clinical Script & Viral Hook'));
     assert.ok(bundle.enTikTokScript.includes('Viral Hook'));
     assert.ok(bundle.enTikTokScript.includes('Growth Hormone'));
-    assert.ok(bundle.enTikTokScript.includes('truthofmarket.com'));
+    assert.ok(bundle.enTikTokScript.includes('kisfitglobal.com'));
     assert.ok(bundle.enShortsScript.includes('YouTube Shorts 60s Scientific Breakdown Script'));
   });
 
@@ -346,8 +347,8 @@ async function runAllSuites() {
     assert.ok(bundle.koBlogColumn.includes('부모 유전 표적키'));
     assert.ok(bundle.koBlogColumn.length >= 1500, `Expected blog column >= 1500 chars, got ${bundle.koBlogColumn.length}`);
     assert.ok(bundle.koBlogColumn.includes('|'), 'Blog column must contain markdown comparison table');
-    assert.ok(bundle.koBlogColumn.includes('truthofmarket.com'), 'Blog column must contain platform bridge link');
-    assert.ok(bundle.koCafePost.includes('truthofmarket.com'));
+    assert.ok(bundle.koBlogColumn.includes('kisfitglobal.com'), 'Blog column must contain platform bridge link');
+    assert.ok(bundle.koCafePost.includes('kisfitglobal.com'));
   });
 
   it('supports 3 distinct real-world pediatric scenarios', () => {

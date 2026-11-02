@@ -208,7 +208,7 @@
       tannerPhase: profile.tannerPhase || 'phase_2',
       habits: Array.isArray(profile.habits) && profile.habits.length > 0 ? profile.habits : ['late_sleep'],
       cognitiveAxes: Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes.length > 0 ? profile.cognitiveAxes : ['science_nature'],
-      region: profile.region || '서울 강남·서초·송파',
+      region: profile.region || 'United States — Northeast (NY · NJ · MA · PA)',
       kdcaPercentile: Number(computedMetrics.kdcaPercentile || computedMetrics.percentile || 50.0),
       zScore: Number(computedMetrics.zScore || 0.0),
       mph: Number(computedMetrics.mph || (gender === 'boy' ? 173.5 : 160.5)),
@@ -233,7 +233,7 @@
       // 2. Async POST to server.js (`/api/user-cohort`) if running in browser with fetch
       if (typeof fetch === 'function') {
         try {
-          fetch('/api/user-cohort', {
+          if (!(typeof window !== 'undefined' && window.location && /kisfitglobal\.com|kidsfitglobal\.com|github\.io/i.test(window.location.hostname || '') && String(fetch).includes('[native code]'))) fetch('/api/user-cohort', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(record)

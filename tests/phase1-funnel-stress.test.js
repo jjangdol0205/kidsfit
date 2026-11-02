@@ -252,10 +252,10 @@ function createFunnelEnvironment() {
     },
     location: {
       protocol: 'https:',
-      hostname: 'truthofmarket.com',
+      hostname: 'kisfitglobal.com',
       pathname: '/',
       search: '',
-      href: 'https://truthofmarket.com/'
+      href: 'https://kisfitglobal.com/'
     },
     alert: (msg) => { alertLog.push(msg); },
     addEventListener: (evt, fn) => {

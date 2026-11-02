@@ -223,7 +223,7 @@
         <!-- SWS Growth Hormone Gold Window Highlight (22:00 ~ 02:00) -->
         <rect x="${swsX1.toFixed(1)}" y="${padding.top}" width="${swsWidth.toFixed(1)}" height="${height - padding.top - padding.bottom}" fill="url(#swsWindowGrad)" stroke="#1D4ED8" stroke-width="1" stroke-dasharray="3,3" opacity="0.85" rx="4" />
         <text x="${(swsX1 + swsWidth / 2).toFixed(1)}" y="${padding.top - 10}" font-size="11" font-weight="900" fill="#1D4ED8" text-anchor="middle">
-          SWS 성장호르몬 골든 피크 (22:00 ~ 02:00)
+          ${(typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'SWS GH Golden Peak (22:00 ~ 02:00)' : 'SWS 성장호르몬 골든 피크 (22:00 ~ 02:00)'}
         </text>
 
         <!-- Grid Lines -->
@@ -248,14 +248,14 @@
         <line x1="${mealX.toFixed(1)}" y1="${padding.top}" x2="${mealX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#94A3B8" stroke-width="1.8" stroke-dasharray="3,3" />
         <rect x="${(mealLabelX - 48).toFixed(1)}" y="${padding.top + 6}" width="96" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
         <text x="${mealLabelX.toFixed(1)}" y="${padding.top + 20}" font-size="10.5" font-weight="800" fill="#1D4ED8" text-anchor="middle">
-          식사 ${sim.mealStr}
+          ${(typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? `Meal ${sim.mealStr}` : `식사 ${sim.mealStr}`}
         </text>
 
         <!-- Marker: Bedtime Line & Pill Badge (Row 2 - never overlaps Meal badge) -->
         <line x1="${bedX.toFixed(1)}" y1="${padding.top}" x2="${bedX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#64748B" stroke-width="2" />
         <rect x="${(bedLabelX - 48).toFixed(1)}" y="${padding.top + 32}" width="96" height="20" rx="6" fill="#EFF6FF" stroke="#64748B" stroke-width="1.2" />
         <text x="${bedLabelX.toFixed(1)}" y="${padding.top + 46}" font-size="10.5" font-weight="800" fill="#0F172A" text-anchor="middle">
-          취침 ${sim.bedtimeStr}
+          ${(typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? `Sleep ${sim.bedtimeStr}` : `취침 ${sim.bedtimeStr}`}
         </text>
 
         <!-- Axes -->

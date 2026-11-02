@@ -45,7 +45,7 @@ function runAllTests() {
             }
           });
           const cname = fs.readFileSync(path.join(ROOT_DIR, 'CNAME'), 'utf8').trim();
-          if (!['kidsfit.co.kr', 'truthofmarket.com'].includes(cname)) throw new Error(`Unexpected CNAME: ${cname}`);
+          if (!['kidsfit.co.kr', 'kisfitglobal.com', 'kisfitglobal.com'].includes(cname)) throw new Error(`Unexpected CNAME: ${cname}`);
         }
       },
       {
