@@ -43,7 +43,7 @@
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%96%B4%EB%A6%B0%EC%9D%B4+%ED%82%A4%EC%84%B1%EC%9E%A5+%EC%98%81%EC%96%91'
     },
     cartilage_calcium: {
-      ko: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml 어린이 어골칼슘',
+      ko: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml',
       en: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange 16 fl oz',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%86%8C%EC%95%84+%EC%B9%BC%EC%8A%98+%EC%98%81%EC%96%91%ED%95%99'
     },
@@ -58,7 +58,7 @@
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%B9%84%ED%83%80%EB%AF%BCD'
     },
     zinc: {
-      ko: '일동후디스 하이키즈 초유 플러스 아연 노르딕내추럴스 마그네슘 구미',
+      ko: '일동후디스 하이키즈 초유 플러스 아연',
       en: 'Nature\'s Way Sambucus Kids Gummies Zinc Elderberry',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%AF%B8%EB%84%A4%EB%9E%84+%EC%98%81%EC%96%91'
     },
@@ -68,7 +68,7 @@
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%8B%A8%EB%B0%B1%EC%A7%88+%EC%98%81%EC%96%91%ED%95%99'
     },
     nutrients: {
-      ko: '종근당건강 아이커 HT042 황기추출물 차일드라이프 액상 칼슘 마그네슘',
+      ko: '종근당건강 아이커 HT042 황기추출물 30포',
       en: 'ChildLife Liquid Calcium with Magnesium Vitamin D3 Kids',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%86%8C%EC%95%84%EC%98%81%EC%96%91%ED%95%99'
     },
@@ -90,7 +90,7 @@
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EC%A4%84%EB%84%98%EA%B8%B0+%EC%9A%B4%EB%8F%99'
     },
     biomechanics: {
-      ko: '위즈독서대 높이조절 원목 2단 독서대 코멧 문틀 철봉',
+      ko: '위즈독서대 높이조절 원목 2단 독서대',
       en: 'Wishacc Adjustable Bamboo Book Stand Ergonomic Posture',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%B0%94%EB%A5%B8+%EC%9E%90%EC%84%B8+%EA%B3%B5%EB%B6%80%EB%B2%95'
     },
@@ -102,17 +102,17 @@
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B8%B0%EC%A0%81%EC%9D%98+%EB%8F%85%EC%84%9C+%EB%85%BC%EC%88%A0'
     },
     montessori: {
-      ko: '러닝리소스 소근육 핀셋 집게 멜리사앤더그 원목 구슬꿰기',
+      ko: '멜리사앤더그 원목 대형 구슬꿰기 교구',
       en: 'Learning Resources Helping Hands Fine Motor Tool Set',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EB%AA%AC%ED%85%8C%EC%86%8C%EB%A6%AC+%EC%86%8C%EA%B7%BC%EC%9C%A1'
     },
     science: {
-      ko: '라벤스부르거 그래비트랙스 코어 스타터 세트 내셔널지오그래픽 현미경',
+      ko: '라벤스부르거 그래비트랙스 코어 스타터 세트 정품',
       en: 'Ravensburger GraviTrax Starter Set Marble Run STEM',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B7%B8%EB%9E%98%EB%B9%84%ED%8A%B8%EB%9E%99%EC%8A%A4'
     },
     neuro: {
-      ko: '맥포머스 매그나타일즈 자석블록 100피스 스마트게임즈 아이큐 퍼즐 프로',
+      ko: '매그나타일즈 클리어 컬러 투명 자석블록 100피스',
       en: 'Magna-Tiles Clear Colors 100 Piece Magnetic Building Set',
       linkpriceTarget: 'https://www.yes24.com/Product/Search?domain=ALL&query=%EA%B8%B8%EB%B2%97%EC%8A%A4%EC%BF%A8+%EA%B8%B0%EC%A0%81%EC%9D%98+%EC%9C%A0%EC%95%84+%EC%88%98%ED%95%99'
     }
@@ -161,7 +161,7 @@
       case 'linkprice': {
         const affId = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
         const rawTarget = cat.linkpriceTarget || `https://www.yes24.com/Product/Search?domain=ALL&query=${encodedQ}`;
-        const target = rawTarget.replace(/([?&]query=)([^&]+)/, (_m, p1, p2) => p1 + encodeURIComponent(p2));
+        const target = rawTarget;
         return `https://click.linkprice.com/click.php?m=yes24&a=${encodeURIComponent(affId)}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(target)}`;
       }
       case 'amazon': {

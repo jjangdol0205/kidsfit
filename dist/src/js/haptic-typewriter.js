@@ -187,33 +187,11 @@
   function isGlobalEnMode() {
     try {
       if (typeof document !== 'undefined' && document.documentElement) {
-        if (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')) return true;
+        if (document.documentElement.lang === 'en' || document.documentElement.getAttribute('data-edition') === 'global-paid') return true;
       }
       if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
     } catch (_) {}
     return false;
-  }
-
-  function formatHeightUnit(cmVal) {
-    const cm = Number(cmVal) || 137.0;
-    const isImp = typeof window !== 'undefined' && (window.__KIDSFIT_UNIT_SYSTEM__ === 'imperial' || (window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function' && window.TallerI18n.getUnitSystem() === 'imperial'));
-    if (isImp) {
-      const totalIn = cm / 2.54;
-      const ft = Math.floor(totalIn / 12);
-      const inch = Math.round((totalIn - ft * 12) * 10) / 10;
-      return `${ft}'${inch}" (${cm.toFixed(1)} cm)`;
-    }
-    return `${cm.toFixed(1)} cm`;
-  }
-
-  function formatWeightUnit(kgVal) {
-    const kg = Number(kgVal) || 35.5;
-    const isImp = typeof window !== 'undefined' && (window.__KIDSFIT_UNIT_SYSTEM__ === 'imperial' || (window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function' && window.TallerI18n.getUnitSystem() === 'imperial'));
-    if (isImp) {
-      const lbs = Math.round(kg * 2.20462262 * 10) / 10;
-      return `${lbs} lbs (${kg.toFixed(1)} kg)`;
-    }
-    return `${kg.toFixed(1)} kg`;
   }
 
   function buildChildWaitingCards(profile = {}) {
@@ -231,15 +209,12 @@
       const mph = Math.round(((fatherH + motherH + (profile.gender === 'girl' ? -13 : 13)) / 2) * 10) / 10;
       const closureAge = profile.gender === 'girl' ? 15 : 17;
       const remYearsMax = Math.max(2, closureAge - ageYears);
-      const hDisp = formatHeightUnit(height);
-      const wDisp = formatWeightUnit(weight);
-      const mphDisp = formatHeightUnit(mph);
       if (isLearning) {
         return [
           {
             badge: `Brain Briefing 1/6 · Age ${ageYears} Neuro-Developmental Window`,
             title: `Mapping Prefrontal & Cognitive Synaptic Windows (${exactMonths} mos · ${genderEn})`,
-            body: `Cross-referencing your child's age-specific prefrontal cortex (DLPFC) and parietal spatial circuits against <strong>3,722 peer-reviewed neuroscience papers</strong>.`,
+            body: `Cross-referencing your child's age-specific prefrontal cortex (DLPFC) and parietal spatial circuits against <strong>3,894 peer-reviewed neuroscience papers</strong>.`,
             highlight: `Computing 5-Axis Learning Quotient (LQ) & primary cognitive bottleneck...`
           },
           {
@@ -277,9 +252,9 @@
       return [
         {
           badge: `Auxology Briefing 1/6 · Day-Exact CDC/WHO LMS Percentile Scan`,
-          title: `Cross-Analyzing ${hDisp} / ${wDisp} at ${exactMonths} Months (${genderEn})`,
+          title: `Cross-Analyzing ${height} cm / ${weight} kg at ${exactMonths} Months (${genderEn})`,
           body: `Even within the same birth year, January vs. December births differ by up to <strong>1.9 in (4.8 cm)</strong>. Computing day-exact US CDC 2000 & WHO LMS Z-scores.`,
-          highlight: `Tanner Mid-Parental Height (MPH): ${mphDisp} (±3.3 in / ±8.5 cm epigenetic window = 6.7 in / 17 cm total range)`
+          highlight: `Tanner Mid-Parental Height (MPH): ${mph} cm (±8.5 cm epigenetic window = 17 cm total range)`
         },
         {
           badge: `Auxology Briefing 2/6 · Weight-for-Height & Leptin Bone-Age Check`,
@@ -295,7 +270,7 @@
         },
         {
           badge: `Auxology Briefing 4/6 · Bioavailable Calcium, Vit D3/K2 & Zinc Targets`,
-          title: `Computing Exact Daily mg/IU Targets for ${wDisp} Body Weight`,
+          title: `Computing Exact Daily mg/IU Targets for ${weight} kg Body Weight`,
           body: `Citrate/MCHA Calcium offers <strong>45% bioavailability</strong> (2.05x higher than carbonate) when paired with Vitamin D3 and MK-7 Vitamin K2.`,
           highlight: `Applying peer-reviewed pediatric endocrinology & nutrition standards...`
         },
@@ -344,7 +319,7 @@
           badge: `학습 브리핑 1/6 · 만 ${ageYears}세 두뇌 발달 민감기 정밀 매핑`,
           title: `${dobDisplay} (생후 ${exactMonths}개월) ${genderKo}, 지금 가장 활발한 두뇌 회로는?`,
           body: `만 ${ageYears}세는 <strong>[${brainStageFocus}]</strong>입니다. 아이의 연령에 맞지 않는 어려운 문제집이나 단순 암기 대신 지금 깨어나는 뇌 회로를 자극해야 학습 효율이 2배 이상 높아집니다.`,
-          highlight: `3,714편 인지신경과학·교육심리학 논문 기준으로 만 ${ageYears}세 맞춤 학습지수(LQ)를 산출 중입니다.`
+          highlight: `2,081편 인지신경과학·교육심리학 논문 기준으로 만 ${ageYears}세 맞춤 학습지수(LQ)를 산출 중입니다.`
         },
         {
           badge: `학습 브리핑 2/6 · 5각 두뇌·학습 역량 레이더 & 강약점 판정`,
@@ -438,47 +413,47 @@
    */
   const GROWTH_OX_QUIZZES = [
     {
-      q: 'Q1. Do parent genetics strictly determine 70%+ of a child\'s final adult height with no room for change?',
+      q: 'Q1. 아이의 최종 성인 키는 부모 유전이 70% 이상 절대적으로 결정한다?',
       answer: 'X',
-      explain: 'FALSE (X)! Longitudinal twin studies (CDC/NIH) show epigenetic & lifestyle factors—10 PM Slow-Wave Sleep (GH surge), bioavailable Calcium Citrate + D3/K2, and spinal decompression—shift final adult stature by up to ±3.3 in (±8.5 cm, a 6.7 in total window).'
+      explain: '정답은 아닙니다! 일란성 쌍둥이 종단 연구에 따르면 유전 영향은 약 23~30%에 불과하며, 밤 10시 수면(GH 분비)·흡수율 높은 칼슘/황기추출물 영양·점프 운동이 최대 ±8.5cm(총 17cm 폭)를 좌우합니다.'
     },
     {
-      q: 'Q2. Can rapid weight or body-fat gain relative to height cause growth plates to fuse earlier?',
+      q: 'Q2. 키보다 몸무게(체지방)가 너무 빨리 늘어나면 성장판이 일찍 닫힐 수 있다?',
       answer: 'O',
-      explain: 'TRUE (⭕)! Excess adipose tissue secretes Leptin and increases aromatase activity, which accelerates bone-age maturation and premature epiphyseal plate fusion (AAP / Pediatric Endocrine Society guidelines).'
+      explain: '정답은 ⭕ 맞습니다! 과도한 체지방에서 분비되는 렙틴(Leptin) 호르몬은 성호르몬 분비와 골연령(뼈나이) 진행을 앞당겨 성장판 조기 폐쇄를 유발할 수 있으므로 키에 맞는 적정 체중 관리가 매우 중요합니다.'
     },
     {
-      q: 'Q3. Do all children\'s calcium supplements (Carbonate vs. Citrate/MCHA) have the exact same absorption rate?',
+      q: 'Q3. 어린이 칼슘 영양제는 탄산칼슘이나 구연산·어골칼슘이나 흡수율이 똑같다?',
       answer: 'X',
-      explain: 'FALSE (X)! Standard Calcium Carbonate requires high stomach acid (~22% absorption) and often causes constipation, whereas Calcium Citrate & MCHA deliver ~45% bioavailability (2.05x higher) without GI distress (NIH ODS).'
+      explain: '정답은 아닙니다! 일반 탄산칼슘은 위산이 필요해 흡수율이 22%에 그치고 변비를 유발하기 쉽지만, 구연산·어골·연골칼슘(MCHA)은 흡수율이 약 45%(2.05배)로 높고 속쓰림이 없습니다.'
     },
     {
-      q: 'Q4. Does drinking sweet milk or eating fruit/carbs within 1 hour before bed help a child grow taller overnight?',
+      q: 'Q4. 밤에 잠들기 1시간 전에 과일이나 달콤한 우유·간식을 먹고 자면 키가 더 잘 큰다?',
       answer: 'X',
-      explain: 'FALSE (X)! Consuming sugars or refined carbs within 2–3 hours before sleep spikes insulin and somatostatin, suppressing the 10 PM–2 AM nocturnal Growth Hormone (GH) peak by up to -52% (JCEM clinical studies).'
+      explain: '정답은 아닙니다! 취침 2~3시간 이내 당류·탄수화물 섭취는 인슐린과 소마토스타틴을 분비시켜 밤 10시~2시 성장호르몬 피크를 최대 52%까지 억제합니다.'
     }
   ];
 
   const LEARNING_OX_QUIZZES = [
     {
-      q: 'Q1. Does closing the book and explaining what you learned for 3 minutes (Active Recall) beat re-reading 4 times?',
+      q: 'Q1. 공부를 마친 뒤 책을 덮고 배운 내용을 3분간 말해보는 것(백지복습)이 눈으로 4번 다시 읽는 것보다 효과적이다?',
       answer: 'O',
-      explain: 'TRUE (⭕)! Roediger & Karpicke (2006, WashU) proved that blank-page retrieval practice (Active Recall / Feynman method) boosts 1-week long-term memory retention 2.4x (from 48% to 92%) compared to passive re-reading.'
+      explain: '정답은 ⭕ 맞습니다! Roediger & Karpicke(2006) 연구에 따르면 스스로 기억을 꺼내어 말해보는 인출학습(Active Recall)은 단순 반복 독서보다 1주일 뒤 장기기억 보존율을 2.4배(48% → 92%) 높여줍니다.'
     },
     {
-      q: 'Q2. If a child scores 100% on basic arithmetic but misses math word problems, should they drill more calculation worksheets?',
+      q: 'Q2. 단순 연산은 100점인데 수학 문장제 응용문제만 틀리는 아이는 연산 문제집을 더 많이 풀어야 한다?',
       answer: 'X',
-      explain: 'FALSE (X)! Getting stuck on multi-step word problems is caused by prefrontal working-memory overload, not arithmetic weakness. Externalizing conditions via Visual Bar Modeling (Singapore Math) offloads working memory.'
+      explain: '정답은 아닙니다! 문장제 수학에서 막히는 원인은 연산 부족이 아니라 긴 조건을 머릿속에만 담아두려는 전두엽 작업기억 과부하 때문입니다. 여백에 조건을 그림·수직선으로 그리는 습관이 해결책입니다.'
     },
     {
-      q: 'Q3. Does hands-on 3D block & geometric manipulative play in early/middle childhood boost later STEM & spatial math scores?',
+      q: 'Q3. 유아·아동기 때 손끝으로 블록·입체도형을 직접 만지고 조립하는 경험이 수학·공간 추론 성적을 높인다?',
       answer: 'O',
-      explain: 'TRUE (⭕)! Over 30% of the motor-sensory cortex maps to the fingertips; rotating and assembling 3D spatial blocks directly myelinates intraparietal sulcus (IPS) mental-rotation circuits critical for geometry and physics.'
+      explain: '정답은 ⭕ 맞습니다! 대뇌 운동피질의 30%가 손끝에 연결되어 있으며, 입체 교구를 손으로 회전·조립하는 경험은 두정엽 3D 심상회전 회로를 직접 발달시켜 도형·기하 문제 해결력을 크게 높입니다.'
     },
     {
-      q: 'Q4. Does cutting back on sleep to study late at night help the brain retain daytime lessons longer?',
+      q: 'Q4. 밤잠을 줄여 늦게까지 공부하면 낮에 배운 내용이 뇌에 더 오래 기억된다?',
       answer: 'X',
-      explain: 'FALSE (X)! Daytime short-term memories stored in the hippocampus are transferred and consolidated into the neocortex during 10 PM–2 AM deep Slow-Wave Sleep (Diekelmann & Born, 2010, Nature Reviews Neuroscience).'
+      explain: '정답은 아닙니다! 낮에 해마에 저장된 단기기억은 밤 10시~2시 깊은 서파수면(SWS) 동안 대뇌피질로 이동해 장기기억으로 코팅됩니다(Diekelmann & Born, 2010). 늦게 자면 어제 배운 내용의 절반 이상이 휘발됩니다.'
     }
   ];
 
@@ -489,7 +464,7 @@
       step: 1,
       rangeSec: [0, 10],
       titleKo: 'Step 1/6 · 생년월일 일수 단위 정밀 월령 산출 및 질병관리청(KDCA) 키·몸무게 백분위 대조 중...',
-      titleEn: 'Step 1/6 · Computing Exact Chronological Age & US CDC 2000 / WHO LMS Height/Weight Percentiles...'
+      titleEn: 'Step 1/6 · Computing Exact Chronological Age & KDCA/CDC Height/Weight Percentiles...'
     },
     {
       step: 2,
@@ -673,12 +648,12 @@
       quizBoxEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
           <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">
-            ${isEnSub ? ((isLearning ? "Brain & Learning Neuroscience" : "Pediatric Growth & Auxology") + " 1-Sec Clinical Fact Check (" + (quizIdx + 1) + "/" + activeQuizzes.length + ")") : ((isLearning ? "두뇌·학습 뇌과학" : "키·체중 신체성장") + " 1초 O/X 논문 팩트 퀴즈 (" + (quizIdx + 1) + "/" + activeQuizzes.length + ")")}
+            ${isEnSub ? '1-Sec Clinical Paper Fact Check' : ((isLearning ? '두뇌·학습 뇌과학' : '키·체중 신체성장') + ' 1초 O/X 논문 팩트 퀴즈 (' + (quizIdx + 1) + '/' + activeQuizzes.length + ')')}
           </span>
           <button type="button" id="btn-theatre-next-quiz" style="background: transparent; border: none; color: #475569; font-size: 0.74rem; font-weight: 700; cursor: pointer; text-decoration: underline;">${isEnSub ? 'Next Fact ↻' : '다른 퀴즈 보기 ↻'}</button>
         </div>
         <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; margin-bottom: 0.65rem; line-height: 1.4;">
-          ${currentQuiz.q}
+          ${isEnSub ? enQuizQ : currentQuiz.q}
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
           <button type="button" id="btn-ox-o" style="padding: 0.6rem; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; border: 1.5px solid #93C5FD; background: #EFF6FF; color: #1D4ED8;">
@@ -689,7 +664,7 @@
           </button>
         </div>
         <div id="theatre-ox-answer" style="display: ${state.quizAnswered ? 'block' : 'none'}; margin-top: 0.6rem; padding: 0.65rem 0.8rem; background: #FFFFFF; border: 1px solid #93C5FD; border-radius: 8px; font-size: 0.8rem; color: #0F172A; line-height: 1.48;">
-          ${currentQuiz.explain}
+          ${isEnSub ? enQuizExp : currentQuiz.explain}
         </div>
       `;
 
@@ -754,10 +729,10 @@
         theatreDiv.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; flex-wrap: wrap;">
             <span id="analysis-countdown-badge" style="font-size: 0.8rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              ${isEn ? 'Pediatric Auxology Scan · ~4s remaining' : '정밀 맞춤 연산 중 · 약 4초 남음'}
+              정밀 맞춤 연산 중 · 약 4초 남음
             </span>
             <button type="button" id="btn-haptic-toggle" style="font-size: 0.75rem; font-weight: 700; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.2rem 0.6rem; border-radius: 9999px; cursor: pointer;">
-              ${isEn ? 'Haptic ON' : '햅틱·진동 ON'}
+              햅틱·진동 ON
             </button>
           </div>
           <div id="theatre-stage-pills" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.3rem; margin-bottom: 0.85rem;">
@@ -808,8 +783,8 @@
     }
     if (descEl) {
       descEl.textContent = isLearning
-        ? (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) prefrontal executive & cognitive metrics against 3,722 peer-reviewed neuroscience papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 3,722편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`)
-        : (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) height, weight & epiphyseal plate data against US CDC 2000, WHO & 3,714 pediatric endocrine papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 3,722편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`);
+        ? `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 3,894편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`
+        : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 3,894편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`;
     }
     currentStageIdx = 0;
 

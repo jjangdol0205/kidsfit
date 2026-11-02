@@ -114,103 +114,131 @@
       traitLearningConcerns: ['reading_literacy', 'passive_forget'],
       traitStudyStyle: 'dialogue_question',
       region: 'Asia-Pacific & Global'
-    },
-    'infant_1': {
-      id: 'infant_1',
-      labelKo: '영아기 1세 (만 18개월) — 영유아 초기 성장 & 감각 발달',
-      labelEn: 'Infant 1.5 Yrs (18 Mo) — Early Auxology & Sensory Milestones',
-      gender: 'boy',
-      ageYears: 1,
-      ageMonths: 18,
-      currentHeight: 82.3,
-      currentWeight: 11.1,
-      recentGrowth6m: 6.0,
-      fatherHeight: 175.0,
-      motherHeight: 162.0,
-      tannerPhase: 'phase_1',
-      habits: ['picky_eater'],
-      cognitiveAxes: ['sensory_arts'],
-      traitLearningConcerns: ['vocab_expression'],
-      traitStudyStyle: 'play_manipulative',
-      region: 'United States'
-    },
-    'toddler_2_3': {
-      id: 'toddler_2_3',
-      labelKo: '영유아기 3세 (만 36개월) — 기초 성장기 & 소근육 감각 협응',
-      labelEn: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
-      gender: 'boy',
-      ageYears: 3,
-      ageMonths: 36,
-      currentHeight: 96.5,
-      currentWeight: 14.7,
-      recentGrowth6m: 3.5,
-      fatherHeight: 175.0,
-      motherHeight: 162.0,
-      tannerPhase: 'phase_1',
-      habits: ['picky_eater'],
-      cognitiveAxes: ['sensory_arts'],
-      traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
-      traitStudyStyle: 'play_manipulative',
-      region: 'United States'
-    },
-    'child_4_5': {
-      id: 'child_4_5',
-      labelKo: '유아기 5세 (만 60개월) — 취학 전 성장 & 수리·언어 기초',
-      labelEn: 'Preschool 5 Yrs (60 Mo) — Pre-K Growth Velocity & Early Literacy',
-      gender: 'girl',
-      ageYears: 5,
-      ageMonths: 60,
-      currentHeight: 109.2,
-      currentWeight: 18.6,
-      recentGrowth6m: 3.2,
-      fatherHeight: 175.5,
-      motherHeight: 162.5,
-      tannerPhase: 'phase_1',
-      habits: ['picky_eater', 'late_sleep'],
-      cognitiveAxes: ['language_reading'],
-      traitLearningConcerns: ['desk_endurance', 'reading_literacy'],
-      traitStudyStyle: 'play_manipulative',
-      region: 'United States'
-    },
-    'elem_low': {
-      id: 'elem_low',
-      labelKo: '초등 저학년 8세 (만 96개월) — 수리·공간 논리 & 척추 바른 정렬',
-      labelEn: 'Lower Elementary 8 Yrs (96 Mo) — Spatial Logic & Postural Alignment',
-      gender: 'girl',
-      ageYears: 8,
-      ageMonths: 96,
-      currentHeight: 127.5,
-      currentWeight: 26.4,
-      recentGrowth6m: 2.9,
-      fatherHeight: 176.0,
-      motherHeight: 163.0,
-      tannerPhase: 'phase_1',
-      habits: ['poor_posture', 'late_sleep'],
-      cognitiveAxes: ['math_logic'],
-      traitLearningConcerns: ['math_concept', 'reading_literacy'],
-      traitStudyStyle: 'dialogue_question',
-      region: 'United States'
-    },
-    'elem_high': {
-      id: 'elem_high',
-      labelKo: '초등 고학년·사춘기 11세 (만 132개월) — 사춘기 급성장 & 메타인지',
-      labelEn: 'Upper Elementary & Puberty 11 Yrs (132 Mo) — PHV Window & Executive LQ',
-      gender: 'boy',
-      ageYears: 11,
-      ageMonths: 132,
-      currentHeight: 143.5,
-      currentWeight: 38.2,
-      recentGrowth6m: 3.4,
-      fatherHeight: 174.0,
-      motherHeight: 161.0,
-      tannerPhase: 'phase_2',
-      habits: ['late_sleep', 'poor_posture'],
-      cognitiveAxes: ['executive_focus'],
-      traitLearningConcerns: ['passive_forget', 'math_concept'],
-      traitStudyStyle: 'goal_workbook',
-      region: 'United States'
     }
   };
+
+  Object.defineProperties(PRESETS, {
+    'infant_1': {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: {
+        id: 'infant_1',
+        labelKo: '영아기 1세 (만 18개월) — 영유아 초기 성장 & 감각 발달',
+        labelEn: 'Infant 1.5 Yrs (18 Mo) — Early Auxology & Sensory Milestones',
+        gender: 'boy',
+        ageYears: 1,
+        ageMonths: 18,
+        currentHeight: 82.3,
+        currentWeight: 11.1,
+        recentGrowth6m: 6.0,
+        fatherHeight: 175.0,
+        motherHeight: 162.0,
+        tannerPhase: 'phase_1',
+        habits: ['picky_eater'],
+        cognitiveAxes: ['sensory_arts'],
+        traitLearningConcerns: ['vocab_expression'],
+        traitStudyStyle: 'play_manipulative',
+        region: 'United States'
+      }
+    },
+    'toddler_2_3': {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: {
+        id: 'toddler_2_3',
+        labelKo: '영유아기 3세 (만 36개월) — 기초 성장기 & 소근육 감각 협응',
+        labelEn: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
+        gender: 'boy',
+        ageYears: 3,
+        ageMonths: 36,
+        currentHeight: 96.5,
+        currentWeight: 14.7,
+        recentGrowth6m: 3.5,
+        fatherHeight: 175.0,
+        motherHeight: 162.0,
+        tannerPhase: 'phase_1',
+        habits: ['picky_eater'],
+        cognitiveAxes: ['sensory_arts'],
+        traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
+        traitStudyStyle: 'play_manipulative',
+        region: 'United States'
+      }
+    },
+    'child_4_5': {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: {
+        id: 'child_4_5',
+        labelKo: '유아기 5세 (만 60개월) — 취학 전 성장 & 수리·언어 기초',
+        labelEn: 'Preschool 5 Yrs (60 Mo) — Pre-K Growth Velocity & Early Literacy',
+        gender: 'girl',
+        ageYears: 5,
+        ageMonths: 60,
+        currentHeight: 109.2,
+        currentWeight: 18.6,
+        recentGrowth6m: 3.2,
+        fatherHeight: 175.5,
+        motherHeight: 162.5,
+        tannerPhase: 'phase_1',
+        habits: ['picky_eater', 'late_sleep'],
+        cognitiveAxes: ['language_reading'],
+        traitLearningConcerns: ['desk_endurance', 'reading_literacy'],
+        traitStudyStyle: 'play_manipulative',
+        region: 'United States'
+      }
+    },
+    'elem_low': {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: {
+        id: 'elem_low',
+        labelKo: '초등 저학년 8세 (만 96개월) — 수리·공간 논리 & 척추 바른 정렬',
+        labelEn: 'Lower Elementary 8 Yrs (96 Mo) — Spatial Logic & Postural Alignment',
+        gender: 'girl',
+        ageYears: 8,
+        ageMonths: 96,
+        currentHeight: 127.5,
+        currentWeight: 26.4,
+        recentGrowth6m: 2.9,
+        fatherHeight: 176.0,
+        motherHeight: 163.0,
+        tannerPhase: 'phase_1',
+        habits: ['poor_posture', 'late_sleep'],
+        cognitiveAxes: ['math_logic'],
+        traitLearningConcerns: ['math_concept', 'reading_literacy'],
+        traitStudyStyle: 'dialogue_question',
+        region: 'United States'
+      }
+    },
+    'elem_high': {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: {
+        id: 'elem_high',
+        labelKo: '초등 고학년·사춘기 11세 (만 132개월) — 사춘기 급성장 & 메타인지',
+        labelEn: 'Upper Elementary & Puberty 11 Yrs (132 Mo) — PHV Window & Executive LQ',
+        gender: 'boy',
+        ageYears: 11,
+        ageMonths: 132,
+        currentHeight: 143.5,
+        currentWeight: 38.2,
+        recentGrowth6m: 3.4,
+        fatherHeight: 174.0,
+        motherHeight: 161.0,
+        tannerPhase: 'phase_2',
+        habits: ['late_sleep', 'poor_posture'],
+        cognitiveAxes: ['executive_focus'],
+        traitLearningConcerns: ['passive_forget', 'math_concept'],
+        traitStudyStyle: 'goal_workbook',
+        region: 'United States'
+      }
+    }
+  });
 
   // 2. Wizard Steps Meta Definition
   const WIZARD_STEPS_GROWTH = [
@@ -326,7 +354,7 @@
       cognitiveAxes: ['science_nature'],
       traitLearningConcerns: ['reading_literacy'],
       traitStudyStyle: 'dialogue_question',
-      region: 'US National (CDC/AAP Standard)'
+      region: '서울 강남·서초·송파'
     }
   };
 
@@ -1107,8 +1135,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,722 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,722 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,722편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,722편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 3,894 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,894 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '3,894편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,894편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -1136,7 +1164,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,722 research papers for active bio-inhibitors...'
+            ? 'Filtering 3,894 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -1173,6 +1201,110 @@
     }
   }
 
+  function openMonthlyProductsOnlyModal(customYear, customMonth, opts = {}) {
+    if (typeof document === 'undefined') return;
+    const mainY = document.getElementById('child-birth-year');
+    const mainM = document.getElementById('child-birth-month');
+    const mainD = document.getElementById('child-birth-day');
+    if (customYear && mainY) mainY.value = String(customYear);
+    if (customMonth && mainM) mainM.value = String(customMonth);
+
+    try {
+      syncDobAndAutoStage({ preserveUserInputs: true });
+      readProfileFromForm();
+    } catch (_) {}
+
+    if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
+      PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
+    }
+    const finalY = parseInt(customYear || (mainY && mainY.value) || wizardState.profile.birthYear || 2016, 10);
+    const finalM = parseInt(customMonth || (mainM && mainM.value) || wizardState.profile.birthMonth || 10, 10);
+    const finalD = parseInt((mainD && mainD.value) || wizardState.profile.birthDay || 15, 10);
+    if (PinpointCurator && typeof PinpointCurator.calculateExactAgeFromDob === 'function') {
+      const dobInfo = PinpointCurator.calculateExactAgeFromDob(finalY, finalM, finalD);
+      wizardState.profile.birthYear = dobInfo.birthYear;
+      wizardState.profile.birthMonth = dobInfo.birthMonth;
+      wizardState.profile.birthDay = dobInfo.birthDay;
+      wizardState.profile.ageMonths = dobInfo.ageMonths;
+      wizardState.profile.exactMonths = dobInfo.exactMonths;
+      wizardState.profile.ageYears = dobInfo.ageYears;
+      wizardState.profile.birthDateStr = dobInfo.birthDateStr;
+      wizardState.profile.birthDateKo = dobInfo.birthDateKo;
+    }
+
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) quizSection.style.display = 'none';
+    const heroSection = document.getElementById('hero-section');
+    if (heroSection) heroSection.style.display = 'none';
+    const presetsBar = document.getElementById('quick-presets-bar');
+    if (presetsBar) presetsBar.style.display = 'none';
+
+    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+    if (dashboard) {
+      dashboard.classList.remove('hidden');
+      dashboard.style.display = 'block';
+    }
+
+    const printBtnTop = document.getElementById('btn-print-report-top');
+    if (printBtnTop) printBtnTop.style.display = 'none';
+
+    const rxTitle = document.getElementById('rx-header-title');
+    const rxSub = document.getElementById('rx-header-subtitle');
+    const exactM = Math.max(12, Math.min(216, Math.round(Number(wizardState.profile.exactMonths || wizardState.profile.ageMonths) || 120)));
+    const yrs = Math.floor(exactM / 12);
+    const remM = exactM % 12;
+    if (rxTitle) {
+      rxTitle.textContent = `${finalY}년 ${finalM}월생 · 생후 ${exactM}개월(만 ${yrs}세 ${remM}개월) 월령별 추천템 전용관`;
+    }
+    if (rxSub) {
+      rxSub.textContent = '설문 생략 모드 · 선택하신 생년월일(월령) 기준 엄선된 영양제·운동기구·두뇌교구·필독서 추천 리스트입니다.';
+    }
+
+    const mbEl = document.getElementById('master-briefing-card');
+    if (mbEl && PinpointCurator && typeof PinpointCurator.renderMonthlyProductsOnlyCatalog === 'function') {
+      mbEl.innerHTML = PinpointCurator.renderMonthlyProductsOnlyCatalog(wizardState.profile);
+    }
+    if (!opts.skipScroll && dashboard && typeof dashboard.scrollIntoView === 'function') {
+      dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function updateMonthlyProductsOnlyAge(presetYear, presetMonth) {
+    if (typeof document === 'undefined') return;
+    const yEl = document.getElementById('quick-catalog-birth-year');
+    const mEl = document.getElementById('quick-catalog-birth-month');
+    const selY = presetYear ? parseInt(presetYear, 10) : (yEl ? parseInt(yEl.value, 10) : 2016);
+    const selM = presetMonth ? parseInt(presetMonth, 10) : (mEl ? parseInt(mEl.value, 10) : 10);
+    const mainY = document.getElementById('child-birth-year');
+    const mainM = document.getElementById('child-birth-month');
+    if (mainY && selY) mainY.value = String(selY);
+    if (mainM && selM) mainM.value = String(selM);
+    openMonthlyProductsOnlyModal(selY, selM, { skipScroll: true });
+  }
+
+  function returnToSurveyFromProducts() {
+    if (typeof document === 'undefined') return;
+    const printBtnTop = document.getElementById('btn-print-report-top');
+    if (printBtnTop) printBtnTop.style.display = '';
+    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+    if (dashboard) {
+      dashboard.classList.add('hidden');
+      dashboard.style.display = 'none';
+    }
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) quizSection.style.display = 'block';
+    const presetsBar = document.getElementById('quick-presets-bar');
+    if (presetsBar) presetsBar.style.display = 'block';
+    goToStep(1);
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function quickCompleteFromCurrentStep() {
+    openMonthlyProductsOnlyModal();
+  }
+
   function completeScan(onComplete) {
     if (scanTimer) {
       clearInterval(scanTimer);
@@ -1198,24 +1330,15 @@
     const presetsBar = document.getElementById('quick-presets-bar');
     if (presetsBar) presetsBar.style.display = 'none';
 
-    // Show Phase 2 Results Dashboard & force viewport to the very top of the report
-    const scrollToReportTop = () => {
-      try {
-        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-          window.scrollTo(0, 0);
-        }
-        if (typeof document !== 'undefined') {
-          if (document.documentElement) document.documentElement.scrollTop = 0;
-          if (document.body) document.body.scrollTop = 0;
-        }
-      } catch (_) {}
-    };
+    // Show Phase 2 Results Dashboard
+    const printBtnTop = document.getElementById('btn-print-report-top');
+    if (printBtnTop) printBtnTop.style.display = '';
     const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
     if (dashboard) {
       dashboard.classList.remove('hidden');
       dashboard.style.display = 'block';
+      dashboard.scrollIntoView({ behavior: 'smooth' });
     }
-    scrollToReportTop();
 
     // Record user input into Cohort DB for autonomous self-improvement
     if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
@@ -1230,19 +1353,15 @@
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
     if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
-        const host = (window.location && String(window.location.hostname || '').toLowerCase()) || '';
-        const isStatic = (host.includes('kisfitglobal.com') || host.includes('kidsfitglobal.com') || host.includes('github.io')) && String(window.fetch).includes('[native code]');
-        if (!isStatic) {
-          window.fetch('/api/bespoke-note', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              timestamp: new Date().toISOString(),
-              profile: wizardState.profile,
-              parentFreeNote: wizardState.profile.parentFreeNote
-            })
-          }).catch(() => {});
-        }
+        window.fetch('/api/bespoke-note', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            profile: wizardState.profile,
+            parentFreeNote: wizardState.profile.parentFreeNote
+          })
+        }).catch(() => {});
       } catch (_) {}
     }
 
@@ -1272,11 +1391,6 @@
       window.dispatchEvent(new CustomEvent('taller-scan-completed', {
         detail: { profile: wizardState.profile }
       }));
-    }
-    scrollToReportTop();
-    if (typeof setTimeout === 'function') {
-      setTimeout(scrollToReportTop, 20);
-      setTimeout(scrollToReportTop, 100);
     }
   }
 
@@ -1470,6 +1584,9 @@
     const exactMonths = wizardState.profile.exactMonths || ageMonths;
     const birthDateStr = wizardState.profile.birthDateStr || '';
     const birthDateKo = wizardState.profile.birthDateKo || '';
+    const birthYear = wizardState.profile.birthYear || (document.getElementById('child-birth-year') ? parseInt(document.getElementById('child-birth-year').value, 10) : 2016);
+    const birthMonth = wizardState.profile.birthMonth || (document.getElementById('child-birth-month') ? parseInt(document.getElementById('child-birth-month').value, 10) : 10);
+    const birthDay = wizardState.profile.birthDay || (document.getElementById('child-birth-day') ? parseInt(document.getElementById('child-birth-day').value, 10) : 15);
 
     const heightInput = document.getElementById('child-height');
     const weightInput = document.getElementById('child-weight');
@@ -1515,7 +1632,7 @@
 
     // Region & Ethnicity
     const regionSelect = document.getElementById('user-region');
-    const region = regionSelect ? regionSelect.value : 'US National (CDC/AAP Standard)';
+    const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
     const ethnicitySelect = document.getElementById('child-ethnicity');
     const ethnicity = (ethnicitySelect && ethnicitySelect.value) ? ethnicitySelect.value : 'us_general';
 
@@ -1596,6 +1713,9 @@
       ageYears,
       ageMonths,
       exactMonths,
+      birthYear,
+      birthMonth,
+      birthDay,
       birthDateStr,
       birthDateKo,
       currentHeight,
@@ -1709,15 +1829,15 @@
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 3,722 peer-reviewed publications.'
-          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,722편 기반 학습 병목·공부법 보고서를 발행합니다.';
+          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 3,894 peer-reviewed publications.'
+          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,894편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 3,722 peer-reviewed publications.'
-          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,722편 기반 예상키·골든타임 보고서를 발행합니다.';
+          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 3,894 peer-reviewed publications.'
+          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,894편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
@@ -1729,9 +1849,6 @@
         : ((activeMode === 'learning') ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기' : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기');
     }
 
-    if (typeof window !== 'undefined' && typeof window.loadKidsFitAcademicDataBundle === 'function') {
-      try { window.loadKidsFitAcademicDataBundle(); } catch (_) {}
-    }
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
     }
@@ -1778,6 +1895,7 @@
     if (typeof document === 'undefined') return;
     if (document.body && document.body.classList) {
       document.body.classList.remove('studio-mode-active');
+      document.body.classList.remove('diagnosis-lounge-active');
     }
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
@@ -2478,17 +2596,18 @@
     // Auto-start preset wizard & clinical scan when URL contains ?preset=... (from Q&A or external links)
     try {
       if (typeof window !== 'undefined' && window.location && window.location.search) {
-        const params = new URLSearchParams(window.location.search);
-        const rawPreset = String(params.get('preset') || '').trim();
-        const rawMode = String(params.get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
-        if (rawPreset && PRESETS[rawPreset] && !window._kidsfitUrlPresetApplied) {
+        const urlPreset = String(new URLSearchParams(window.location.search).get('preset') || '').trim();
+        const rawMode = String(new URLSearchParams(window.location.search).get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
+        if (urlPreset && PRESETS[urlPreset] && !window._kidsfitUrlPresetApplied) {
           window._kidsfitUrlPresetApplied = true;
           enterStudioMode('child', rawMode);
-          applyPreset(rawPreset);
+          loadPreset(urlPreset);
         }
       }
     } catch (_) {}
   }
+
+  const loadPreset = applyPreset;
 
   function openAdditionalNarrativeStep() {
     if (typeof document === 'undefined') return;
@@ -2560,8 +2679,13 @@
     enterStudioMode,
     exitStudioMode,
     applyPreset,
+    loadPreset: applyPreset,
     start3SecondScan,
     completeScan,
+    quickCompleteFromCurrentStep,
+    openMonthlyProductsOnlyModal,
+    updateMonthlyProductsOnlyAge,
+    returnToSurveyFromProducts,
     readProfileFromForm,
     openAdditionalNarrativeStep,
     closeAdditionalNarrativeStep,
@@ -2590,3 +2714,32 @@
   }
 
 })(typeof window !== 'undefined' ? window : global);
+
+
+    // Dispatch unified diagnosis completion telemetry to /api/visit & /api/user-cohort
+    try {
+      if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
+        const urlParams = new URLSearchParams(window.location.search || '');
+        const utmSource = urlParams.get('utm_source') || 'direct';
+        window.fetch('/api/visit', {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'diagnosis',
+            mode: 'both',
+            preferredReportMode: 'both',
+            utm_source: utmSource
+          })
+        }).catch(function () {});
+        window.fetch('/api/user-cohort', {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            preferredReportMode: 'both',
+            utm_source: utmSource
+          })
+        }).catch(function () {});
+      }
+    } catch (_) {}

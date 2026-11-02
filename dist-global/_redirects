@@ -1,0 +1,10 @@
+/api/health /api/health.json 200
+/api/stats /api/stats.json 200
+/api/visit /api/visit.json 200
+/api/lemonsqueezy-orders/verify /api/lemonsqueezy-orders/verify.json 200
+/api/lemonsqueezy-checkout /api/lemonsqueezy-checkout.json 200
+/api/auth/login /api/auth/login.json 200
+/api/auth/register /api/auth/register.json 200
+/api/adpick-offers /api/adpick-offers.json 200
+/en /en/index.html 200
+/* /index.html 200

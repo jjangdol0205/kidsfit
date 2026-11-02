@@ -1,6 +1,6 @@
 /**
  * scripts/build.js
- * Production build script for KidsFit Growth Studio (kisfitglobal.com)
+ * Production build script for KidsFit Growth Studio (kidsfit.co.kr)
  * Deterministic, zero-external-dependencies, cross-platform.
  */
 
@@ -27,21 +27,26 @@ function copyRecursiveSync(src, dest) {
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
+    if (/\.(png|jpg|jpeg|webp|mp4|zip|pdf)$/i.test(src) && fs.existsSync(dest)) {
+      try {
+        const destStats = fs.statSync(dest);
+        if (destStats.size === stats.size && destStats.mtimeMs >= stats.mtimeMs - 1000) {
+          return;
+        }
+      } catch (_) {}
+    }
     for (let attempt = 1; attempt <= 8; attempt++) {
       try {
         fs.copyFileSync(src, dest);
         break;
       } catch (_err) {
         try {
-          if (fs.existsSync(dest)) {
-            try { fs.unlinkSync(dest); } catch (_) {}
-          }
           fs.writeFileSync(dest, fs.readFileSync(src));
           break;
         } catch (writeErr) {
           if (attempt === 8) {
-            console.warn('  [build] Skipping locked file:', dest);
-            break;
+            if (fs.existsSync(dest)) return;
+            throw writeErr;
           }
           const waitTill = Date.now() + 150;
           while (Date.now() < waitTill) {}
@@ -88,16 +93,10 @@ function build() {
     }
     for (let attempt = 1; attempt <= 6; attempt++) {
       try {
-        if (attempt > 1 && fs.existsSync(indexDest)) {
-          try { fs.unlinkSync(indexDest); } catch (_) {}
-        }
         fs.writeFileSync(indexDest, stampedHtml, 'utf8');
         break;
       } catch (err) {
-        if (attempt === 6) {
-          console.warn('  [build] Could not overwrite dist/index.html (transient lock), keeping existing dist/index.html');
-          break;
-        }
+        if (attempt === 6) throw err;
         const waitTill = Date.now() + 150;
         while (Date.now() < waitTill) {}
       }
@@ -124,37 +123,180 @@ function build() {
     console.log('Copied qna/ -> dist/qna/');
   }
 
-  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, sw.js, and legal policy pages if they exist (with EBUSY retry)
-  ['about.html', 'privacy.html', 'terms.html', 'contact.html', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt'].forEach((file) => {
+  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, and sw.js if they exist (with EBUSY retry)
+  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt',
+    'about.html',
+    'privacy.html',
+    'terms.html',
+    'contact.html'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
-      copyRecursiveSync(fPath, path.join(DIST_DIR, file));
+      for (let attempt = 0; attempt < 5; attempt++) {
+        try {
+          fs.copyFileSync(fPath, path.join(DIST_DIR, file));
+          break;
+        } catch (e) {
+          if (attempt === 4) throw e;
+          const waitTill = Date.now() + 80;
+          while (Date.now() < waitTill) {}
+        }
+      }
       console.log(`Copied ${file} -> dist/${file}`);
     }
   });
 
-  // Sync lightweight Global English assets to dist-global/ (local & sibling Render repo if present)
-  [
-    path.join(ROOT_DIR, 'dist-global'),
-    path.resolve(ROOT_DIR, '..', '사업아이템', 'dist-global')
-  ].forEach((targetGlobalDir) => {
-    try {
-      const parentWorkspace = path.dirname(targetGlobalDir);
-      if (!fs.existsSync(parentWorkspace)) return;
+  // Sync Global English edition from sibling workspace (d:\키즈핏 영문\dist -> dist-global/) if present
+  try {
+    const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '키즈핏 영문', 'dist');
+    const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
+    if (fs.existsSync(siblingGlobalDist)) {
       fs.mkdirSync(targetGlobalDir, { recursive: true });
-      ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js'].forEach((f) => {
-        const srcF = path.join(DIST_DIR, f);
-        if (fs.existsSync(srcF)) copyRecursiveSync(srcF, path.join(targetGlobalDir, f));
+      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json'].forEach((f) => {
+        const srcF = path.join(siblingGlobalDist, f);
+        if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
       });
-      ['src/css', 'src/js', 'src/data', 'qna'].forEach((subDir) => {
-        const srcSub = path.join(DIST_DIR, subDir);
+      ['src/css', 'src/js', 'qna'].forEach((subDir) => {
+        const srcSub = path.join(siblingGlobalDist, subDir);
         if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
       });
-    } catch (_) {}
-  });
+      console.log('Synced Global English assets from d:\\키즈핏 영문\\dist -> dist-global/');
+    }
+  } catch (_) {}
+
+  generateStaticApiEndpoints();
 
   const duration = Date.now() - startTime;
   console.log(`Build complete in ${duration}ms! Target: ${DIST_DIR}`);
+}
+
+function generateStaticApiEndpoints() {
+  try {
+    const apiDir = path.join(DIST_DIR, 'api');
+    fs.mkdirSync(apiDir, { recursive: true });
+    const globalDir = path.join(ROOT_DIR, 'dist-global');
+    const globalApiDir = path.join(globalDir, 'api');
+    if (fs.existsSync(globalDir)) {
+      fs.mkdirSync(globalApiDir, { recursive: true });
+    }
+
+    const kbPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
+    let totalPapers = 3894;
+    if (fs.existsSync(kbPath)) {
+      try {
+        const kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));
+        totalPapers = Number((kb.metadata && kb.metadata.total_papers) || (Array.isArray(kb.papers) ? kb.papers.length : 3894));
+      } catch (_) {}
+    }
+
+    const healthPayload = JSON.stringify({
+      status: 'ok',
+      service: 'KidsFit Growth Studio (Render Static Site)',
+      mode: 'static',
+      domain: 'kidsfit.co.kr',
+      total_papers: totalPapers,
+      timestamp: new Date().toISOString()
+    }, null, 2);
+    fs.writeFileSync(path.join(apiDir, 'health'), healthPayload, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'health.json'), healthPayload, 'utf8');
+
+    let statsData = {
+      status: 'ok',
+      mode: 'static',
+      analytics: {
+        today: { date: new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10), uv: 0, pv: 0, diagnoses: { total: 0, growth: 0, learning: 0 }, affiliateClicks: 0, recentClicks: [] },
+        total: { uv: 0, pv: 0, diagnoses: { total: 0, growth: 0, learning: 0 }, affiliateClicks: 0 }
+      }
+    };
+    const snapPath = path.join(ROOT_DIR, 'src', 'data', 'visitor-analytics-snapshot.json');
+    const logStatsPath = path.join(ROOT_DIR, 'logs', 'visitor_analytics.json');
+    const sourceStatsPath = fs.existsSync(logStatsPath) ? logStatsPath : (fs.existsSync(snapPath) ? snapPath : null);
+    if (sourceStatsPath) {
+      try {
+        const rawStats = JSON.parse(fs.readFileSync(sourceStatsPath, 'utf8'));
+        const kstToday = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+        const days = rawStats.days || {};
+        const todayBucket = days[kstToday] || Object.values(days).slice(-1)[0] || statsData.analytics.today;
+        statsData = {
+          status: 'ok',
+          mode: 'static',
+          analytics: {
+            today: todayBucket,
+            total: rawStats.total || statsData.analytics.total
+          }
+        };
+      } catch (_) {}
+    }
+    const statsJson = JSON.stringify(statsData, null, 2);
+    fs.writeFileSync(path.join(apiDir, 'stats'), statsJson, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'stats.json'), statsJson, 'utf8');
+    if (fs.existsSync(globalApiDir)) {
+      fs.writeFileSync(path.join(globalApiDir, 'health'), healthPayload, 'utf8');
+      fs.writeFileSync(path.join(globalApiDir, 'health.json'), healthPayload, 'utf8');
+      fs.writeFileSync(path.join(globalApiDir, 'stats'), statsJson, 'utf8');
+      fs.writeFileSync(path.join(globalApiDir, 'stats.json'), statsJson, 'utf8');
+    }
+
+    const visitJson = JSON.stringify({ ok: true, mode: 'static' }, null, 2);
+    const verifyJson = JSON.stringify({ ok: true, verified: false, __staticFallback: true, mode: 'static_client_verify' }, null, 2);
+    const checkoutJson = JSON.stringify({
+      ok: true,
+      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1'
+    }, null, 2);
+    const authJson = JSON.stringify({ ok: true, __fallbackLocal: true, mode: 'client_local' }, null, 2);
+
+    [apiDir, globalApiDir].forEach((dir) => {
+      if (!dir || !fs.existsSync(dir)) return;
+      fs.writeFileSync(path.join(dir, 'visit'), visitJson, 'utf8');
+      fs.writeFileSync(path.join(dir, 'visit.json'), visitJson, 'utf8');
+      fs.writeFileSync(path.join(dir, 'lemonsqueezy-checkout'), checkoutJson, 'utf8');
+      fs.writeFileSync(path.join(dir, 'lemonsqueezy-checkout.json'), checkoutJson, 'utf8');
+      const lsDir = path.join(dir, 'lemonsqueezy-orders');
+      fs.mkdirSync(lsDir, { recursive: true });
+      fs.writeFileSync(path.join(lsDir, 'verify'), verifyJson, 'utf8');
+      fs.writeFileSync(path.join(lsDir, 'verify.json'), verifyJson, 'utf8');
+      const authSubDir = path.join(dir, 'auth');
+      fs.mkdirSync(authSubDir, { recursive: true });
+      fs.writeFileSync(path.join(authSubDir, 'login'), authJson, 'utf8');
+      fs.writeFileSync(path.join(authSubDir, 'login.json'), authJson, 'utf8');
+      fs.writeFileSync(path.join(authSubDir, 'register'), authJson, 'utf8');
+      fs.writeFileSync(path.join(authSubDir, 'register.json'), authJson, 'utf8');
+    });
+
+
+    const adpickJson = JSON.stringify({
+      status: 'ok',
+      source: 'static-curated',
+      offers: [
+        { id: 'coupang-calc', title: '어린이 구연산·어골칼슘 & 비타민D3 로켓배송', url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3&channel=user&lptag=AF7865143', platform: 'Coupang Partners' },
+        { id: 'iherb-zinc', title: '아이허브 어린이 액상 글루콘산 아연 & 유기농 D3', url: 'https://kr.iherb.com/search?kw=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%95%84%EC%97%B0+%EB%B9%84%ED%83%80%EB%AF%BCD3&rcode=IPZ1547', platform: 'iHerb' }
+      ]
+    }, null, 2);
+    fs.writeFileSync(path.join(apiDir, 'adpick-offers'), adpickJson, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'adpick-offers.json'), adpickJson, 'utf8');
+
+    const shareSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420"><rect width="800" height="420" rx="28" fill="#1E3A8A"/><text x="50" y="95" fill="#93C5FD" font-family="sans-serif" font-size="22" font-weight="bold">KIDS-FIT GROWTH &amp; BRAIN STUDIO (kidsfit.co.kr)</text><text x="50" y="165" fill="#FFFFFF" font-family="sans-serif" font-size="38" font-weight="bold">우리 아이 맞춤형 키성장 · 두뇌발달 정밀 처방전</text><text x="50" y="235" fill="#DBEAFE" font-family="sans-serif" font-size="24">질병관리청(KDCA) 성장도표 · K-DST · 학술논문 ${totalPapers.toLocaleString('en-US')}편 기반</text><rect x="50" y="295" width="380" height="64" rx="32" fill="#10B981"/><text x="90" y="336" fill="#FFFFFF" font-family="sans-serif" font-size="24" font-weight="bold">https://kidsfit.co.kr 무료 진단</text></svg>`;
+    fs.writeFileSync(path.join(apiDir, 'share-card.svg'), shareSvg, 'utf8');
+
+        const redirectsContent = [
+      '/api/health /api/health.json 200',
+      '/api/stats /api/stats.json 200',
+      '/api/visit /api/visit.json 200',
+      '/api/lemonsqueezy-orders/verify /api/lemonsqueezy-orders/verify.json 200',
+      '/api/lemonsqueezy-checkout /api/lemonsqueezy-checkout.json 200',
+      '/api/auth/login /api/auth/login.json 200',
+      '/api/auth/register /api/auth/register.json 200',
+      '/api/adpick-offers /api/adpick-offers.json 200',
+      '/en /en/index.html 200',
+      '/* /index.html 200'
+    ].join('\n') + '\n';
+    fs.writeFileSync(path.join(DIST_DIR, '_redirects'), redirectsContent, 'utf8');
+    if (fs.existsSync(globalDir)) {
+      fs.writeFileSync(path.join(globalDir, '_redirects'), redirectsContent, 'utf8');
+    }
+    console.log('[Build] Generated static API endpoints (dist/api/health, stats, adpick-offers, share-card.svg) & dist/_redirects for Render Static Site.');
+  } catch (e) {
+    console.warn('[Build] Static API generation warning:', e.message);
+  }
 }
 
 function syncLiveResearchCountToSourceFiles() {
@@ -227,6 +369,7 @@ function generateDataBundle() {
   const authPath = path.join(ROOT_DIR, 'src', 'data', 'official-authorities.json');
   const researchPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
   const cohortPath = path.join(ROOT_DIR, 'src', 'data', 'user-cohort-db.json');
+  const rlPolicyPath = path.join(ROOT_DIR, 'src', 'data', 'coupang-rl-policy.json');
 
   if (!fs.existsSync(growthPath) || !fs.existsSync(kdstPath) || !fs.existsSync(catalogPath)) {
     return;
@@ -238,6 +381,7 @@ function generateDataBundle() {
   const authJson = fs.existsSync(authPath) ? fs.readFileSync(authPath, 'utf8').trim() : '{}';
   const researchJson = fs.existsSync(researchPath) ? fs.readFileSync(researchPath, 'utf8').trim() : '{}';
   const cohortJson = fs.existsSync(cohortPath) ? fs.readFileSync(cohortPath, 'utf8').trim() : '{}';
+  const rlPolicyJson = fs.existsSync(rlPolicyPath) ? fs.readFileSync(rlPolicyPath, 'utf8').trim() : '{}';
 
   const bundleContent = `/**
  * KidsFit Growth Studio - Client-Side Data Bundle
@@ -256,6 +400,7 @@ function generateDataBundle() {
   var authoritiesData = ${authJson};
   var researchData = ${researchJson};
   var userCohortData = ${cohortJson};
+  var coupangRlPolicy = ${rlPolicyJson};
 
   if (typeof window !== 'undefined') {
     window.KIDSFIT_GROWTH_DATA = growthData;
@@ -264,6 +409,7 @@ function generateDataBundle() {
     window.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
     window.KIDSFIT_RESEARCH_DATA = researchData;
     window.KIDSFIT_USER_COHORT_DB = userCohortData;
+    window.KIDSFIT_COUPANG_RL_POLICY = coupangRlPolicy;
   }
   if (typeof global !== 'undefined' && typeof window === 'undefined') {
     global.KIDSFIT_GROWTH_DATA = growthData;
@@ -272,10 +418,11 @@ function generateDataBundle() {
     global.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
     global.KIDSFIT_RESEARCH_DATA = researchData;
     global.KIDSFIT_USER_COHORT_DB = userCohortData;
+    global.KIDSFIT_COUPANG_RL_POLICY = coupangRlPolicy;
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { growthData, kdstData, catalogData, authoritiesData, researchData, userCohortData };
+    module.exports = { growthData, kdstData, catalogData, authoritiesData, researchData, userCohortData, coupangRlPolicy };
   }
 })(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));
 `;

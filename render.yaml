@@ -1,0 +1,58 @@
+services:
+  - type: web
+    name: kidsfit-kr-static
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /api/health
+        destination: /api/health.json
+      - type: rewrite
+        source: /api/stats
+        destination: /api/stats.json
+      - type: rewrite
+        source: /api/adpick-offers
+        destination: /api/adpick-offers.json
+      - type: rewrite
+        source: /api/visit
+        destination: /api/visit.json
+      - type: rewrite
+        source: /api/lemonsqueezy-orders/verify
+        destination: /api/lemonsqueezy-orders/verify.json
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  - type: web
+    name: kisfit-global-static
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./dist-global
+    domains:
+      - kisfitglobal.com
+      - www.kisfitglobal.com
+    routes:
+      - type: rewrite
+        source: /api/health
+        destination: /api/health.json
+      - type: rewrite
+        source: /api/stats
+        destination: /api/stats.json
+      - type: rewrite
+        source: /api/visit
+        destination: /api/visit.json
+      - type: rewrite
+        source: /api/lemonsqueezy-orders/verify
+        destination: /api/lemonsqueezy-orders/verify.json
+      - type: rewrite
+        source: /api/lemonsqueezy-checkout
+        destination: /api/lemonsqueezy-checkout.json
+      - type: rewrite
+        source: /api/auth/login
+        destination: /api/auth/login.json
+      - type: rewrite
+        source: /api/auth/register
+        destination: /api/auth/register.json
+      - type: rewrite
+        source: /*
+        destination: /index.html

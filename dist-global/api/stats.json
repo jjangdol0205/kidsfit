@@ -1,0 +1,58 @@
+{
+  "status": "ok",
+  "mode": "static",
+  "analytics": {
+    "today": {
+      "date": "2026-11-02",
+      "uv": 0,
+      "pv": 0,
+      "diagnoses": {
+        "total": 0,
+        "growth": 0,
+        "learning": 0
+      },
+      "affiliateClicks": 0,
+      "recentClicks": []
+    },
+    "total": {
+      "uv": 82,
+      "pv": 88,
+      "diagnoses": {
+        "total": 45,
+        "growth": 45,
+        "learning": 16
+      },
+      "affiliateClicks": 536,
+      "productClicks": {
+        "growth": 238,
+        "learning": 49,
+        "byReferrer": {
+          "direct": {
+            "growth": 1,
+            "learning": 0
+          }
+        }
+      },
+      "bots": 71,
+      "recentClicks": [
+        {
+          "id": "CLK-1793420042259-223",
+          "timestampKst": "2026-10-31 13:14:02 KST",
+          "category": "growth",
+          "platform": "coupang",
+          "productName": "칼슴",
+          "href": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B9%BC%EC%8A%B4",
+          "utmSource": "direct",
+          "device": "desktop",
+          "domain": "127.0.0.1:33891",
+          "status": "SUCCESS",
+          "notifiedByServer": true,
+          "rlArmId": "growth_nutrition_repeat_cart",
+          "rlCtaArm": "arm_rocket_review",
+          "rlReward": 33,
+          "sessionClicks": 1
+        }
+      ]
+    }
+  }
+}

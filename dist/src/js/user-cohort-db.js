@@ -77,13 +77,58 @@
     return '17-20y';
   }
 
+  function computeDynamicRecordTrajectory(rec = {}, computedMetrics = {}) {
+    if (computedMetrics && Number(computedMetrics.optimizedHeight) > 0 && Number(computedMetrics.potentialGainCm) > 0) {
+      return {
+        mph: Number(computedMetrics.mph) || (rec.gender === 'girl' ? 160.5 : 173.5),
+        unmanagedHeight: Number(computedMetrics.unmanagedHeight) || 171.2,
+        optimizedHeight: Number(computedMetrics.optimizedHeight),
+        potentialGainCm: Number(computedMetrics.potentialGainCm)
+      };
+    }
+    const ge = (typeof global !== 'undefined' && (global.GrowthEngine || global.KidsFitGrowthEngine || global.TallerGrowthEngine)) ||
+               (typeof window !== 'undefined' && (window.GrowthEngine || window.KidsFitGrowthEngine || window.TallerGrowthEngine)) ||
+               (typeof require === 'function' ? (function () { try { return require('./growth-engine'); } catch (_) { return null; } })() : null);
+    if (ge && typeof ge.predictAdultHeightTrajectories === 'function') {
+      try {
+        const traj = ge.predictAdultHeightTrajectories(rec);
+        return {
+          mph: traj.baselineMPH.height,
+          unmanagedHeight: traj.unmanaged.height,
+          optimizedHeight: traj.optimized.height,
+          potentialGainCm: traj.optimized.gainOverUnmanaged
+        };
+      } catch (_) {}
+    }
+    const fatherH = Number(rec.fatherHeight) || 173.5;
+    const motherH = Number(rec.motherHeight) || 160.5;
+    const mph = Math.round(((rec.gender === 'girl' ? (fatherH + motherH - 13) : (fatherH + motherH + 13)) / 2) * 10) / 10;
+    const curH = Number(rec.currentHeight) || 137.0;
+    const exactM = Number(rec.exactMonths || rec.ageMonths || (rec.ageYears || 10) * 12) || 120;
+    const habitsLen = Array.isArray(rec.habits) ? rec.habits.length : 1;
+    const unmanagedHeight = Math.round((mph - Math.min(4.8, 1.0 + habitsLen * 0.9) + (curH - (exactM * 0.65 + 60)) * 0.25) * 10) / 10;
+    const potentialGainCm = Math.max(2.5, Math.min(9.2, Math.round((4.5 + habitsLen * 0.65 + Math.max(0, (192 - exactM) / 36)) * 10) / 10));
+    const optimizedHeight = Math.round((unmanagedHeight + potentialGainCm) * 10) / 10;
+    return { mph, unmanagedHeight, optimizedHeight, potentialGainCm };
+  }
+
   function getLocalRecords() {
     if (typeof localStorage === 'undefined') return [];
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
+      if (!Array.isArray(parsed)) return [];
+      return parsed.map((rec) => {
+        if (!rec || typeof rec !== 'object') return rec;
+        const dyn = computeDynamicRecordTrajectory(rec);
+        return Object.assign({}, rec, {
+          mph: dyn.mph,
+          unmanagedHeight: dyn.unmanagedHeight,
+          optimizedHeight: dyn.optimizedHeight,
+          potentialGainCm: dyn.potentialGainCm
+        });
+      });
     } catch (_) {
       return [];
     }
@@ -208,16 +253,17 @@
       tannerPhase: profile.tannerPhase || 'phase_2',
       habits: Array.isArray(profile.habits) && profile.habits.length > 0 ? profile.habits : ['late_sleep'],
       cognitiveAxes: Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes.length > 0 ? profile.cognitiveAxes : ['science_nature'],
-      region: profile.region || 'United States — Northeast (NY · NJ · MA · PA)',
+      region: profile.region || '서울 강남·서초·송파',
+      preferredReportMode: (profile.preferredReportMode === 'learning') ? 'learning' : 'growth',
       kdcaPercentile: Number(computedMetrics.kdcaPercentile || computedMetrics.percentile || 50.0),
       zScore: Number(computedMetrics.zScore || 0.0),
-      mph: Number(computedMetrics.mph || (gender === 'boy' ? 173.5 : 160.5)),
-      unmanagedHeight: Number(computedMetrics.unmanagedHeight || 171.2),
-      optimizedHeight: Number(computedMetrics.optimizedHeight || 180.5),
-      potentialGainCm: Number(computedMetrics.potentialGainCm || 7.2)
+      mph: computeDynamicRecordTrajectory(profile, computedMetrics).mph,
+      unmanagedHeight: computeDynamicRecordTrajectory(profile, computedMetrics).unmanagedHeight,
+      optimizedHeight: computeDynamicRecordTrajectory(profile, computedMetrics).optimizedHeight,
+      potentialGainCm: computeDynamicRecordTrajectory(profile, computedMetrics).potentialGainCm
     };
 
-    // 1. Save to client localStorage (deduplicate if identical submission within last 15 seconds)
+    // 1. Save to client localStorage (update existing record if identical submission within last 15 seconds)
     const local = getLocalRecords();
     const last = local.length > 0 ? local[local.length - 1] : null;
     const isDuplicateInstant = last &&
@@ -226,14 +272,17 @@
       last.currentHeight === record.currentHeight &&
       (Date.now() - new Date(last.timestamp).getTime() < 15000);
 
-    if (!isDuplicateInstant) {
+    if (isDuplicateInstant) {
+      local[local.length - 1] = Object.assign({}, last, record);
+      saveLocalRecords(local);
+    } else {
       local.push(record);
       saveLocalRecords(local);
 
       // 2. Async POST to server.js (`/api/user-cohort`) if running in browser with fetch
       if (typeof fetch === 'function') {
         try {
-          if (!(typeof window !== 'undefined' && window.location && /kisfitglobal\.com|kidsfitglobal\.com|github\.io/i.test(window.location.hostname || '') && String(fetch).includes('[native code]'))) fetch('/api/user-cohort', {
+          fetch('/api/user-cohort', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(record)

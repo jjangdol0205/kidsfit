@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>신생아 척추 보호 3D 통기성 에어메쉬 두상 베개</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <g transform="translate(60, 100)" filter="url(#card-shadow)">
+    <!-- Pillow Outer Pillow Shape -->
+    <rect x="20" y="20" width="240" height="180" rx="60" fill="#F8FAFC" stroke="#A7F3D0" stroke-width="4"/>
+    
+    <!-- Honeycomb 3D Air Mesh Texture grid -->
+    <g opacity="0.35" stroke="#94A3B8" stroke-width="1">
+      <line x1="50" y1="50" x2="230" y2="50" stroke-dasharray="4,6"/>
+      <line x1="40" y1="75" x2="240" y2="75" stroke-dasharray="4,6"/>
+      <line x1="35" y1="100" x2="245" y2="100" stroke-dasharray="4,6"/>
+      <line x1="35" y1="125" x2="245" y2="125" stroke-dasharray="4,6"/>
+      <line x1="40" y1="150" x2="240" y2="150" stroke-dasharray="4,6"/>
+      <line x1="50" y1="175" x2="230" y2="175" stroke-dasharray="4,6"/>
+    </g>
+
+    <!-- Center Concave Well for Newborn Cranial Protection -->
+    <ellipse cx="140" cy="110" rx="48" ry="38" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="2"/>
+    <ellipse cx="140" cy="110" rx="36" ry="28" fill="#F1F5F9"/>
+    <ellipse cx="140" cy="112" rx="20" ry="14" fill="#CBD5E1" opacity="0.6"/>
+
+    <!-- Neck support curve zone -->
+    <path d="M100,185 Q140,175 180,185" stroke="#34D399" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <text x="140" y="196" font-family="-apple-system, sans-serif" font-size="8" font-weight="600" fill="#059669" text-anchor="middle">0.5cm 경추 C자 지지대</text>
+
+    <!-- Tag -->
+    <rect x="235" y="130" width="22" height="12" rx="2" fill="#10B981"/>
+    <text x="246" y="139" font-family="-apple-system, sans-serif" font-size="6" font-weight="700" fill="#FFFFFF" text-anchor="middle">AIR</text>
+  </g>
+
+</svg>

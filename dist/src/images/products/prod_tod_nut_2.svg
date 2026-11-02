@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>스마트팬츠 키즈 컴플리트 데일리 멀티구미</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <g transform="translate(120, 70)" filter="url(#card-shadow)">
+    <!-- Clear Transparent Bottle -->
+    <rect x="15" y="75" width="130" height="185" rx="24" fill="#F8FAFC" fill-opacity="0.85" stroke="#94A3B8" stroke-width="2"/>
+    <rect x="50" y="40" width="60" height="35" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+
+    <!-- Gummy Bears visible through bottle -->
+    <!-- Red Bear -->
+    <ellipse cx="50" cy="190" rx="14" ry="18" fill="#EF4444"/>
+    <circle cx="50" cy="165" r="10" fill="#EF4444"/>
+    <!-- Yellow Bear -->
+    <ellipse cx="80" cy="200" rx="14" ry="18" fill="#FBBF24"/>
+    <circle cx="80" cy="175" r="10" fill="#FBBF24"/>
+    <!-- Orange Bear -->
+    <ellipse cx="110" cy="190" rx="14" ry="18" fill="#FB923C"/>
+    <circle cx="110" cy="165" r="10" fill="#FB923C"/>
+
+    <!-- Bottle Label -->
+    <rect x="15" y="95" width="130" height="65" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="80" y="115" font-family="-apple-system, sans-serif" font-size="12" font-weight="900" fill="#3B82F6" text-anchor="middle">SmartyPants</text>
+    <text x="80" y="130" font-family="-apple-system, sans-serif" font-size="10" font-weight="800" fill="#EF4444" text-anchor="middle">KIDS COMPLETE</text>
+    <text x="80" y="145" font-family="-apple-system, sans-serif" font-size="8" font-weight="700" fill="#10B981" text-anchor="middle">Daily Multi + Omega-3 DHA</text>
+  </g>
+
+  <!-- Gummy Bears spilled on table in front -->
+  <g transform="translate(80, 275)" filter="url(#card-shadow)">
+    <!-- Strawberry Bear -->
+    <ellipse cx="30" cy="30" rx="12" ry="16" fill="#F43F5E"/>
+    <circle cx="30" cy="12" r="8" fill="#F43F5E"/>
+    <circle cx="24" cy="6" r="3.5" fill="#F43F5E"/>
+    <circle cx="36" cy="6" r="3.5" fill="#F43F5E"/>
+    <!-- Sugar crystal dots -->
+    <circle cx="28" cy="25" r="1" fill="#FFFFFF"/>
+    <circle cx="34" cy="28" r="1" fill="#FFFFFF"/>
+    <circle cx="30" cy="35" r="1" fill="#FFFFFF"/>
+    <!-- Lemon Bear -->
+    <ellipse cx="65" cy="32" rx="12" ry="16" fill="#FACC15"/>
+    <circle cx="65" cy="14" r="8" fill="#FACC15"/>
+    <circle cx="59" cy="8" r="3.5" fill="#FACC15"/>
+    <circle cx="71" cy="8" r="3.5" fill="#FACC15"/>
+  </g>
+
+</svg>
