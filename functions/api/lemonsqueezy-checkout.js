@@ -4,8 +4,8 @@ export async function onRequest(context) {
   const plan = body.plan === "pass" ? "pass" : "single";
   const email = (body.email || "").trim();
   const base = plan === "pass"
-    ? "https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895"
-    : "https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599";
+    ? "https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde"
+    : "https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b";
   const checkoutUrl = email ? `${base}?embed=1&checkout[email]=${encodeURIComponent(email)}` : `${base}?embed=1`;
   return new Response(JSON.stringify({ ok: true, plan, checkoutUrl }), {
     status: 200,

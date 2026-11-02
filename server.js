@@ -1195,13 +1195,13 @@ const server = http.createServer((req, res) => {
             productId: Number(process.env.LEMONSQUEEZY_SINGLE_PRODUCT_ID || 1468224),
             variantId: Number(process.env.LEMONSQUEEZY_SINGLE_VARIANT_ID || 2289754),
             priceUsd: 8.99,
-            checkoutUrl: process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599'
+            checkoutUrl: process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b'
           },
           trackerPass: {
             productId: Number(process.env.LEMONSQUEEZY_TRACKER_PRODUCT_ID || 1468243),
             variantId: Number(process.env.LEMONSQUEEZY_TRACKER_VARIANT_ID || 2289779),
             priceUsd: 19.99,
-            checkoutUrl: process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895'
+            checkoutUrl: process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde'
           }
         },
         webhookId: Number(process.env.LEMONSQUEEZY_WEBHOOK_ID || 145796)
@@ -1581,8 +1581,8 @@ const server = http.createServer((req, res) => {
           ? String(process.env.LEMONSQUEEZY_TRACKER_VARIANT_ID || '2289779')
           : String(process.env.LEMONSQUEEZY_SINGLE_VARIANT_ID || '2289754');
         const fallbackUrl = isPass
-          ? (process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895')
-          : (process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599');
+          ? (process.env.LEMONSQUEEZY_TRACKER_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde')
+          : (process.env.LEMONSQUEEZY_SINGLE_PASS_URL || 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b');
         const cleanEmail = String(emailParam || '').trim();
         const returnRedirectUrl = `https://kisfitglobal.com/?unlock=1&payment=success&plan=${isPass ? 'pass' : 'single'}${cleanEmail ? '&email=' + encodeURIComponent(cleanEmail) : ''}`;
 
