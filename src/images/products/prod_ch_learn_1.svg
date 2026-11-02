@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>아이스크림 홈런 초등 전과목 AI 학습 10일 무료체험</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <!-- Stack of Elementary Diagnostic Workbooks -->
+  <g transform="translate(70, 150)" filter="url(#card-shadow)">
+    <rect x="0" y="40" width="130" height="90" rx="6" fill="#EC4899"/>
+    <rect x="5" y="20" width="130" height="90" rx="6" fill="#3B82F6"/>
+    <rect x="10" y="0" width="130" height="90" rx="6" fill="#10B981"/>
+    <text x="75" y="30" font-family="-apple-system, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF" text-anchor="middle">아이스크림 홈런</text>
+    <text x="75" y="48" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" fill="#FEF08A" text-anchor="middle">초등 전과목 진단평가</text>
+  </g>
+
+  <!-- Cone-shaped Stand & Dual-Screen Tablet -->
+  <g transform="translate(180, 80)" filter="url(#card-shadow)">
+    <!-- Cone Pedestal Stand -->
+    <path d="M40,190 L90,190 L75,130 L55,130 Z" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
+    <ellipse cx="65" cy="190" rx="35" ry="10" fill="#E2E8F0"/>
+
+    <!-- Upper Main Screen -->
+    <rect x="0" y="20" width="130" height="85" rx="10" fill="#0F172A"/>
+    <rect x="6" y="26" width="118" height="73" rx="6" fill="#EEF2FF"/>
+    <text x="65" y="55" font-family="-apple-system, sans-serif" font-size="10" font-weight="900" fill="#4338CA" text-anchor="middle">AI 1:1 맞춤 학습관</text>
+    <rect x="25" y="65" width="80" height="16" rx="8" fill="#4F46E5"/>
+    <text x="65" y="76" font-family="-apple-system, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">10일 무료체험 시작</text>
+
+    <!-- Lower Secondary Touch Screen (Angled) -->
+    <polygon points="5,110 125,110 115,145 15,145" fill="#1E293B"/>
+    <polygon points="12,114 118,114 110,140 20,140" fill="#FEF9C3"/>
+    <text x="65" y="130" font-family="-apple-system, sans-serif" font-size="7" font-weight="800" fill="#854D0E" text-anchor="middle">디지털 터치 필기 패드</text>
+
+    <!-- Smart Stylus Pen resting beside -->
+    <g transform="translate(135, 60) rotate(15)">
+      <rect x="0" y="0" width="6" height="80" rx="3" fill="#E2E8F0"/>
+      <polygon points="0,80 6,80 3,92" fill="#0F172A"/>
+    </g>
+  </g>
+
+</svg>

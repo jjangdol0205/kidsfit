@@ -110,7 +110,7 @@
       price: 16800,
       coupangPath: 'vp/products/default-package'
     };
-    const coupangUrl = `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(coupangId)}&subid=kidsfit&pageKey=${encodeURIComponent(pkg.title)}`;
+    const coupangUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(pkg.title)}&channel=user&lptag=${encodeURIComponent(coupangId)}&subid=kidsfit`;
     const havruta = HAVRUTA_BY_THEME[outing.themeKey] || HAVRUTA_BY_THEME.art_making;
 
     return `

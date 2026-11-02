@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>차일드라이프 액상 칼슘 마그네슘 &amp; 비타민D3</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <!-- Orange Slices -->
+  <g transform="translate(60, 240)">
+    <circle cx="60" cy="60" r="45" fill="#F97316"/>
+    <circle cx="60" cy="60" r="40" fill="#FED7AA"/>
+    <circle cx="60" cy="60" r="37" fill="#EA580C"/>
+    <!-- Segments -->
+    <path d="M60,60 L60,25 A35,35 0 0,1 85,35 Z" fill="#FDBA74"/>
+    <path d="M60,60 L85,35 A35,35 0 0,1 95,60 Z" fill="#FDBA74"/>
+    <path d="M60,60 L95,60 A35,35 0 0,1 85,85 Z" fill="#FDBA74"/>
+    <path d="M60,60 L85,85 A35,35 0 0,1 60,95 Z" fill="#FDBA74"/>
+    <path d="M60,60 L60,95 A35,35 0 0,1 35,85 Z" fill="#FDBA74"/>
+    <path d="M60,60 L35,85 A35,35 0 0,1 25,60 Z" fill="#FDBA74"/>
+    <path d="M60,60 L25,60 A35,35 0 0,1 35,35 Z" fill="#FDBA74"/>
+    <path d="M60,60 L35,35 A35,35 0 0,1 60,25 Z" fill="#FDBA74"/>
+  </g>
+
+  <!-- Large Amber Bottle (ChildLife Style) -->
+  <g transform="translate(140, 70)" filter="url(#card-shadow)">
+    <!-- Bottle Body -->
+    <rect x="20" y="80" width="105" height="175" rx="20" fill="url(#amber-glass)"/>
+    <rect x="28" y="86" width="16" height="163" rx="8" fill="url(#amber-highlight)"/>
+    <!-- Bottle Cap -->
+    <rect x="52" y="45" width="42" height="35" rx="6" fill="#1E293B"/>
+
+    <!-- Bottle Label -->
+    <rect x="20" y="115" width="105" height="110" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/>
+    <rect x="20" y="125" width="105" height="18" fill="#1E3A8A"/>
+    <text x="72" y="138" font-family="-apple-system, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF" text-anchor="middle">ChildLife</text>
+    <text x="72" y="162" font-family="-apple-system, sans-serif" font-size="11" font-weight="800" fill="#C2410C" text-anchor="middle">Liquid Calcium</text>
+    <text x="72" y="176" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#1E293B" text-anchor="middle">with Magnesium</text>
+    <text x="72" y="195" font-family="-apple-system, sans-serif" font-size="8" fill="#64748B" text-anchor="middle">Natural Orange Flavor</text>
+    <text x="72" y="210" font-family="-apple-system, sans-serif" font-size="8" font-weight="700" fill="#059669" text-anchor="middle">16 fl oz (473ml)</text>
+  </g>
+
+  <!-- Measuring Spoon with Creamy Orange Liquid -->
+  <g transform="translate(235, 230)" filter="url(#card-shadow)">
+    <!-- Clear Handle -->
+    <rect x="40" y="30" width="60" height="12" rx="6" fill="#E2E8F0" opacity="0.8"/>
+    <!-- Spoon Bowl -->
+    <ellipse cx="30" cy="36" rx="28" ry="18" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <ellipse cx="30" cy="36" rx="23" ry="14" fill="#FED7AA"/>
+    <ellipse cx="28" cy="35" rx="18" ry="10" fill="#FDBA74"/>
+  </g>
+
+</svg>

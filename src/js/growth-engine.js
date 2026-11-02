@@ -350,6 +350,7 @@
     let tannerPhase = 'phase_1';
     let curAgeYears = 10;
     let curHeight = 137.0;
+    let isRichProfile = false;
 
     if (typeof childData === 'number') {
       mph = childData;
@@ -359,12 +360,19 @@
       if (childData.fatherHeight && childData.motherHeight) {
         mph = calculateMPH(childData.fatherHeight, childData.motherHeight, childData.gender).mph;
       } else if (childData.mph) {
-        mph = childData.mph;
+        mph = Number(childData.mph) || 175.0;
       }
       habits = childData.habits || inhibitionFactors || [];
       tannerPhase = childData.tannerPhase || childData.pubertyStage || 'phase_1';
       curAgeYears = childData.ageYears || (childData.ageMonths ? Math.round(childData.ageMonths / 12) : 10);
-      curHeight = childData.currentHeight || 137.0;
+      curHeight = Number(childData.currentHeight) || 137.0;
+      isRichProfile = Boolean(
+        childData.fatherHeight ||
+        childData.exactMonths ||
+        childData.ageMonths ||
+        childData.currentWeight ||
+        childData.recentGrowth6m
+      );
     }
 
     habits = Array.isArray(habits) ? habits : [];
@@ -372,21 +380,102 @@
     for (const h of habits) {
       if (HABIT_LOSS_MAP[h]) totalPenalty += HABIT_LOSS_MAP[h];
     }
-    const cappedPenalty = Math.min(5.0, Math.round(totalPenalty * 10) / 10);
-    const unmanaged = Math.round((mph - cappedPenalty) * 10) / 10;
 
-    let goldenBoost = 6.0;
-    if (tannerPhase === 'phase_2') goldenBoost = 5.0;
-    else if (tannerPhase === 'phase_3') goldenBoost = 4.0;
-    else if (tannerPhase === 'phase_4') goldenBoost = 1.8;
+    let cappedPenalty = Math.min(5.0, Math.round(totalPenalty * 10) / 10);
+    let unmanaged = Math.round((mph - cappedPenalty) * 10) / 10;
+    let optimizedGain = 6.0;
+    let optimized = Math.round((unmanaged + optimizedGain) * 10) / 10;
 
-    let optimizedGain;
-    if (tannerPhase === 'phase_4') {
-      optimizedGain = Math.min(2.5, Math.max(1.5, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+    if (!isRichProfile) {
+      let goldenBoost = 6.0;
+      if (tannerPhase === 'phase_2') goldenBoost = 5.0;
+      else if (tannerPhase === 'phase_3') goldenBoost = 4.0;
+      else if (tannerPhase === 'phase_4') goldenBoost = 1.8;
+
+      if (tannerPhase === 'phase_4') {
+        optimizedGain = Math.min(2.5, Math.max(1.5, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+      } else {
+        optimizedGain = Math.min(9.2, Math.max(5.0, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+      }
+      optimized = Math.round((unmanaged + optimizedGain) * 10) / 10;
     } else {
-      optimizedGain = Math.min(9.2, Math.max(5.0, Math.round((goldenBoost + cappedPenalty * 0.5) * 10) / 10));
+      // Child-Specific Clinical Auxology Projection (Integrates Current KDCA Z-Score Channel + MPH + Exact Age + Weight/BMI + Velocity + Deep Traits)
+      const gender = normalizeSex(childData.gender || 'boy');
+      const exactMonths = Math.max(12, Math.min(240, Number(childData.exactMonths || childData.ageMonths || curAgeYears * 12) || 120));
+      curAgeYears = Math.max(1, Math.min(20, Math.round(exactMonths / 12)));
+      const curWeight = Number(childData.currentWeight) || 0;
+      const recent6m = Number(childData.recentGrowth6m) || 3.0;
+
+      const curLms = getLmsForMonth(gender, exactMonths, 'KDCA');
+      const curKdca = calculateKdcaPercentile(curHeight, curLms.L, curLms.M, curLms.S);
+      const clampedZ = Math.max(-2.5, Math.min(2.5, Number(curKdca.zScore) || 0));
+
+      const lms240 = getLmsForMonth(gender, 240, 'KDCA');
+      const channelAdultHeight = lms240.L !== 0
+        ? lms240.M * Math.pow(1 + lms240.L * lms240.S * clampedZ, 1 / lms240.L)
+        : lms240.M * Math.exp(lms240.S * clampedZ);
+
+      // Older children track their current percentile channel more closely; younger children regress more toward genetic MPH
+      const channelWeight = Math.min(0.76, Math.max(0.45, 0.38 + (exactMonths / 240) * 0.40));
+      const blendedBaseline = channelAdultHeight * channelWeight + mph * (1 - channelWeight);
+
+      // Velocity momentum adjustment
+      const expected6m = exactMonths < 36 ? 4.5 : (exactMonths < 60 ? 3.5 : (exactMonths < 120 ? 2.8 : (exactMonths < 168 ? 3.3 : 1.0)));
+      const velAdj = Math.max(-1.8, Math.min(2.2, (recent6m - expected6m) * 0.52));
+
+      // Weight & BMI endocrine balance adjustment
+      let bmiAdj = 0;
+      if (curWeight > 0) {
+        const bmiInfo = evaluateWeightAndBmi(curHeight, curWeight, curLms);
+        const wDelta = Number(bmiInfo.weightVsHeightDelta) || 0;
+        if (Math.abs(wDelta) <= 2.2) {
+          bmiAdj = 0.4; // Optimal bone-matrix weight balance
+        } else if (wDelta > 4.5) {
+          bmiAdj = -Math.min(1.4, (wDelta - 3.5) * 0.22); // Excess adiposity aromatase bone-age acceleration risk
+        } else if (wDelta < -3.5) {
+          bmiAdj = -Math.min(1.1, Math.abs(wDelta + 2.5) * 0.20); // Caloric/protein deficit risk
+        }
+      }
+
+      // Deep trait sub-items fine-tuning
+      let extraTraitLoss = 0;
+      if (Array.isArray(childData.traitSleepList)) {
+        extraTraitLoss += childData.traitSleepList.filter(x => x !== 'good_sleep').length * 0.25;
+      }
+      if (Array.isArray(childData.traitDietList)) {
+        extraTraitLoss += childData.traitDietList.filter(x => x !== 'balanced_diet').length * 0.22;
+      }
+      if (Array.isArray(childData.traitPostureList)) {
+        extraTraitLoss += childData.traitPostureList.filter(x => x !== 'good_posture').length * 0.22;
+      }
+      if (childData.traitExercise === 'none') extraTraitLoss += 0.35;
+
+      cappedPenalty = Math.min(5.4, Math.max(0.8, Math.round((totalPenalty + extraTraitLoss) * 10) / 10));
+      unmanaged = Math.max(
+        Math.round((curHeight + (exactMonths >= 204 ? 0.4 : 1.5)) * 10) / 10,
+        Math.round((blendedBaseline + velAdj * 0.35 + bmiAdj - cappedPenalty) * 10) / 10
+      );
+
+      // Age-, sex-, and Tanner-stage-specific remaining epiphyseal potential gain
+      const closureMonths = gender === 'boy' ? 204 : 180;
+      const remMonths = Math.max(6, closureMonths - exactMonths);
+      const remFactor = Math.min(1.18, Math.max(0.22, remMonths / 108));
+
+      let stageBaseBoost = 5.6;
+      if (tannerPhase === 'phase_2' || tannerPhase === 'growth_spurt') stageBaseBoost = 5.1;
+      else if (tannerPhase === 'phase_3' || tannerPhase === 'urgent_secondary_signs') stageBaseBoost = 3.7;
+      else if (tannerPhase === 'phase_4') stageBaseBoost = 1.7;
+
+      const rawOptGain = stageBaseBoost * (0.62 + 0.38 * remFactor) + (cappedPenalty * 0.56) + Math.max(0, velAdj * 0.3) + (bmiAdj > 0 ? 0.25 : 0);
+      if (tannerPhase === 'phase_4' || exactMonths >= closureMonths) {
+        optimizedGain = Math.min(3.2, Math.max(1.5, Math.round(rawOptGain * 10) / 10));
+      } else {
+        optimizedGain = Math.min(9.4, Math.max(3.6, Math.round(rawOptGain * 10) / 10));
+      }
+
+      optimized = Math.round((unmanaged + optimizedGain) * 10) / 10;
+      optimizedGain = Math.round((optimized - unmanaged) * 10) / 10;
     }
-    const optimized = Math.round((unmanaged + optimizedGain) * 10) / 10;
 
     // Generate curve points from current age to 20
     const startAge = Math.max(1, Math.min(19, curAgeYears));
@@ -417,7 +506,7 @@
       optimized: {
         height: optimized,
         gainOverUnmanaged: optimizedGain,
-        potentialGain: [5.0, 9.2]
+        potentialGain: [Math.max(1.5, Math.round((optimizedGain - 1.2) * 10) / 10), Math.round((optimizedGain + 1.4) * 10) / 10]
       },
       curvePoints: {
         ageArray,
@@ -491,15 +580,15 @@
     };
   }
 
-  // Legacy calculateHeightPrediction for compatibility (now age & sex aware!)
-  function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none', ageMonths = null, sex = 'boy') {
+  // Legacy calculateHeightPrediction for compatibility (now age, sex & child-profile aware!)
+  function calculateHeightPrediction(mph, habits = [], pubertyStage = 'none', ageMonths = null, sex = 'boy', profileContext = null) {
     habits = Array.isArray(habits) ? habits : [];
     let loss = 0;
     habits.forEach((h) => {
       if (HABIT_LOSS_MAP[h]) loss += HABIT_LOSS_MAP[h];
     });
-    const unmanagedLoss = Math.min(5.0, Math.round(loss * 10) / 10);
-    const unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
+    let unmanagedLoss = Math.min(5.0, Math.round(loss * 10) / 10);
+    let unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
 
     let goldenBoost = 5.0;
     let legacyStageMonths = '약 36~48개월 여유';
@@ -521,8 +610,22 @@
       : `${windowInfo.fullText} (${legacyStageMonths})`;
 
     const rawGain = Math.round((mph + goldenBoost + (unmanagedLoss * 0.5) - unmanagedHeight) * 10) / 10;
-    const goldenTimeGain = Math.min(9.5, Math.max(0, rawGain));
-    const potentialHeight = Math.round((unmanagedHeight + goldenTimeGain) * 10) / 10;
+    let goldenTimeGain = Math.min(9.5, Math.max(0, rawGain));
+    let potentialHeight = Math.round((unmanagedHeight + goldenTimeGain) * 10) / 10;
+
+    if (profileContext && typeof profileContext === 'object') {
+      const traj = predictAdultHeightTrajectories(Object.assign({}, profileContext, {
+        mph,
+        habits,
+        tannerPhase: pubertyStage,
+        ageMonths: effectiveAgeMonths,
+        gender: sex
+      }));
+      unmanagedLoss = traj.unmanaged.penalty;
+      unmanagedHeight = traj.unmanaged.height;
+      potentialHeight = traj.optimized.height;
+      goldenTimeGain = traj.optimized.gainOverUnmanaged;
+    }
 
     return {
       geneticMph: mph,
@@ -873,14 +976,14 @@
         badge: `만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
         title: '차일드라이프 액상 구연산 칼슘·마그네슘 오렌지맛 & 비타민D3 1000IU 드롭',
         desc: `생후 ${ageMonths}개월 영유아는 정제 알약 대신 위산과 무관하게 흡수되는 액상 구연산 칼슘과 비타민D3 드롭으로 기초 골격을 다져주어야 합니다.`,
-        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+474ml',
         btnText: `쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
       };
       prod2 = {
         badge: `만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
         title: '일동후디스 하이키즈 초유 분말 / 영유아 글루콘산 아연·초유 스틱',
         desc: '편식·입짧음을 예방하고 성장호르몬 수용체(IGF-1) 활성과 기초 면역력을 동시에 챙겨주는 영유아 맞춤 초유·아연입니다.',
-        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9D%BC%EB%8F%99%ED%9B%84%EB%94%94%EC%8A%A4+%ED%95%98%EC%9D%B4%ED%82%A4%EC%A6%88+%EC%B4%88%EC%9C%A0+%ED%94%8C%EB%9F%AC%EC%8A%A4',
         btnText: `쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
       };
       prod3 = {
@@ -956,7 +1059,7 @@
         badge: `만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
         title: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 고밀도 EPP 폼롤러',
         desc: '하루 종일 책상에 앉아 눌린 척추 디스크를 저녁 90초 매달리기(Dead Hang)로 감압해 숨은 키 1.8~2.2cm를 즉시 복원합니다.',
-        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%BD%94%EB%A9%A7+%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%88%98%ED%8F%89%EA%B3%84+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89',
         btnText: `쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
       };
     }
@@ -1111,7 +1214,7 @@
     const kdca = calculateKdcaPercentile(profile.currentHeight, lms.L, lms.M, lms.S);
     const bmiInfo = evaluateWeightAndBmi(profile.currentHeight, profile.currentWeight, lms);
     const mphObj = calculateMPH(profile.fatherHeight, profile.motherHeight, gender);
-    const pred = calculateHeightPrediction(mphObj.mph, profile.habits, profile.tannerPhase || profile.pubertyStage, ageMonths, gender);
+    const pred = calculateHeightPrediction(mphObj.mph, profile.habits, profile.tannerPhase || profile.pubertyStage, ageMonths, gender, profile);
 
     const deltaSign = kdca.deltaMedian >= 0 ? `+${kdca.deltaMedian}` : `${kdca.deltaMedian}`;
     const wDeltaSign = bmiInfo.weightDelta >= 0 ? `+${bmiInfo.weightDelta}` : `${bmiInfo.weightDelta}`;

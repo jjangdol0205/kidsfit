@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>어린이 성장판 수직 자극 무소음 번지코드 트램폴린</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <g transform="translate(60, 80)" filter="url(#card-shadow)">
+    <!-- Handlebar Post -->
+    <path d="M140,50 L140,165" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+    <!-- Foam Grip Handlebar -->
+    <rect x="90" y="42" width="100" height="16" rx="8" fill="#3B82F6"/>
+
+    <!-- Hexagonal Trampoline Frame (Isometric 3D) -->
+    <!-- Elastic Bungee Orange Loops around edge -->
+    <polygon points="140,140 230,165 230,195 140,225 50,195 50,165" fill="#F97316" stroke="#EA580C" stroke-width="2"/>
+    
+    <!-- Black Jump Mat with Honeycomb Hexagon print -->
+    <polygon points="140,148 218,170 218,190 140,215 62,190 62,170" fill="#0F172A"/>
+    <polygon points="140,160 190,174 190,186 140,200 90,186 90,174" fill="none" stroke="#38BDF8" stroke-width="2"/>
+
+    <!-- Steel Legs with Rubber Vibration Dampener Caps -->
+    <!-- Leg 1 (Left) -->
+    <rect x="52" y="195" width="8" height="55" rx="3" fill="#475569"/>
+    <rect x="48" y="240" width="16" height="15" rx="4" fill="#0F172A"/>
+    <!-- Leg 2 (Center Left) -->
+    <rect x="95" y="210" width="8" height="55" rx="3" fill="#475569"/>
+    <rect x="91" y="255" width="16" height="15" rx="4" fill="#0F172A"/>
+    <!-- Leg 3 (Center Right) -->
+    <rect x="175" y="210" width="8" height="55" rx="3" fill="#475569"/>
+    <rect x="171" y="255" width="16" height="15" rx="4" fill="#0F172A"/>
+    <!-- Leg 4 (Right) -->
+    <rect x="220" y="195" width="8" height="55" rx="3" fill="#475569"/>
+    <rect x="216" y="240" width="16" height="15" rx="4" fill="#0F172A"/>
+
+    <text x="140" y="186" font-family="-apple-system, sans-serif" font-size="8" font-weight="800" fill="#38BDF8" text-anchor="middle">무소음 번지코드</text>
+  </g>
+
+</svg>

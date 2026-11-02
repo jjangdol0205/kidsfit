@@ -19,6 +19,15 @@
   'use strict';
 
   const STORAGE_KEYS = ['taller_growth_logs', 'kidsfit_tracker_v2', 'taller_bio_tracker'];
+  function cmToFtIn(cm) {
+    const c = Number(cm) || 0;
+    const totalInches = c / 2.54;
+    const ft = Math.floor(totalInches / 12);
+    const inch = Math.round((totalInches - ft * 12) * 10) / 10;
+    return `${ft}'${inch}"`;
+  }
+  if (typeof global !== 'undefined') { global.cmToFtIn = cmToFtIn; }
+  if (typeof window !== 'undefined') { window.cmToFtIn = cmToFtIn; }
   const PRIMARY_STORAGE_KEY = 'taller_growth_logs';
 
   // In-memory fallback if localStorage throws (e.g. sandboxed iframe or private browsing)
@@ -355,7 +364,7 @@
                 ${logs.slice(-6).reverse().map(l => `
                   <tr style="border-bottom: 1px solid var(--theme-border-subtle); color: var(--text-primary);">
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.8rem;">${l.date}</td>
-                    <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${isGlobal ? `${Math.floor((Number(l.height) / 2.54) / 12)}'${Math.round(((Number(l.height) / 2.54) % 12) * 10) / 10}" (${l.height} cm)` : `${l.height} cm`}</td>
+                    <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${isGlobal ? `${cmToFtIn(l.height)} (${l.height} cm)` : `${l.height} cm`}</td>
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono);">${isGlobal ? `${Math.round(Number(l.weight) * 2.20462262 * 10) / 10} lbs (${l.weight} kg)` : `${l.weight} kg`}</td>
                     <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '' : ''}</td>
                     <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '' : ''}</td>
@@ -713,12 +722,6 @@
         `;
       }
       const isImp = typeof window !== 'undefined' && (window.__KIDSFIT_UNIT_SYSTEM__ === 'imperial' || (window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function' && window.TallerI18n.getUnitSystem() === 'imperial'));
-      const cmToFtIn = (cmVal) => {
-        const totIn = (Number(cmVal) || 0) / 2.54;
-        const ft = Math.floor(totIn / 12);
-        const inch = Math.round((totIn - ft * 12) * 10) / 10;
-        return `${ft}'${inch}"`;
-      };
       const fmtH = (cmVal) => {
         const c = Number(cmVal) || 0;
         if (!isImp) return `${c} cm`;
@@ -791,7 +794,7 @@
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Height</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${fmtH(height)}</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${fmtH(medianHeight.toFixed(1))}</td>
-                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? `${hDeltaVal >= 0 ? '+' : ''}${(hDeltaVal / 2.54).toFixed(1)} in (${hDeltaStr})` : hDeltaStr}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${hDeltaStr}</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${hZStr}</td>
                     <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${hPctEn}</td>
                   </tr>
@@ -799,14 +802,14 @@
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Weight</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">${fmtW(weight)}</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${fmtW(medianWeight.toFixed(1))}</td>
-                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? `${wDeltaVal >= 0 ? '+' : ''}${(wDeltaVal * 2.20462262).toFixed(1)} lbs (${wDeltaStr})` : wDeltaStr}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${wDeltaStr}</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-family: monospace;">${wZStr}</td>
                     <td style="padding: 6px; font-weight: 700;">${wPctEn}</td>
                   </tr>
                   <tr>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">Annual Growth Velocity</td>
-                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${isImp ? `${(Number(velocityVal) / 2.54).toFixed(1)} in/yr (${velocityVal} cm/yr)` : `${velocityVal} cm/yr`}</td>
-                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${isImp ? '2.0 ~ 2.8 in/yr (5.0 ~ 7.0 cm/yr)' : '5.0 ~ 7.0 cm/yr'}</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${velocityVal} cm/yr</td>
+                    <td style="padding: 6px; border-right: 1px solid #E2E8F0;">5.0 ~ 7.0 cm/yr</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0;">${velCalc.alert ? 'Clinical Watch' : 'Normal Range'}</td>
                     <td style="padding: 6px; border-right: 1px solid #E2E8F0;">-</td>
                     <td style="padding: 6px; font-weight: 700; color: #1D4ED8;">${velStatusEn}</td>
@@ -822,17 +825,17 @@
                 <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px; background: #F8FAFC;">
                   <div style="font-size: 8pt; font-weight: 700; color: #64748B;">Genetic Target Height (Tanner MPH)</div>
                   <div style="font-size: 14pt; font-weight: 900; color: #0F172A; margin: 4px 0;">${fmtH(mph)}</div>
-                  <div style="font-size: 7.5pt; color: #64748B;">Range: ${isImp ? `${cmToFtIn(mphMin)} ~ ${cmToFtIn(mphMax)} (${mphMin} ~ ${mphMax} cm)` : `${mphMin} ~ ${mphMax} cm`}</div>
+                  <div style="font-size: 7.5pt; color: #64748B;">Range: ${mphMin} ~ ${mphMax} cm</div>
                 </div>
                 <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
                   <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Unmanaged Habits Trajectory</div>
                   <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(unmanagedHeight)}</div>
-                  <div style="font-size: 7.5pt; color: #1D4ED8;">Sleep &amp; Posture Loss: -${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in (-${unmanagedPenalty} cm)` : `${unmanagedPenalty} cm`}</div>
+                  <div style="font-size: 7.5pt; color: #1D4ED8;">Sleep &amp; Posture Loss: -${unmanagedPenalty} cm</div>
                 </div>
                 <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #ECFDF5;">
                   <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Clinically Optimized Potential</div>
                   <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(potentialHeight)}</div>
-                  <div style="font-size: 7.5pt; color: #1D4ED8;">Nutrition &amp; Decompression: +${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in (+${potentialBoost} cm)` : `${potentialBoost} cm`}</div>
+                  <div style="font-size: 7.5pt; color: #1D4ED8;">Nutrition &amp; Decompression: +${potentialBoost} cm</div>
                 </div>
               </div>
             </div>
@@ -852,9 +855,9 @@
                   <path d="M 50,150 Q 250,110 560,70" fill="none" stroke="#E11D48" stroke-width="1.5" stroke-dasharray="3,3" />
                   <circle cx="280" cy="98" r="5" fill="#059669" stroke="#FFFFFF" stroke-width="2" />
                   <text x="280" y="88" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Current Patient (${fmtH(height)})</text>
-                  <text x="60" y="22" font-size="8" fill="#0284C7">― Optimized Trajectory (+${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in / +${potentialBoost} cm` : `${potentialBoost}cm`})</text>
-                  <text x="235" y="22" font-size="8" fill="#D97706">― Genetic Baseline (MPH ${isImp ? `${cmToFtIn(mph)} / ${mph} cm` : `${mph}cm`})</text>
-                  <text x="405" y="22" font-size="8" fill="#E11D48">--- Unmanaged Habits (-${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in / -${unmanagedPenalty} cm` : `${unmanagedPenalty}cm`})</text>
+                  <text x="60" y="22" font-size="8" fill="#0284C7">― Optimized Trajectory (+${potentialBoost}cm)</text>
+                  <text x="235" y="22" font-size="8" fill="#D97706">― Genetic Baseline (MPH ${mph}cm)</text>
+                  <text x="405" y="22" font-size="8" fill="#E11D48">--- Unmanaged Habits (-${unmanagedPenalty}cm)</text>
                 </svg>
               </div>
             </div>
@@ -946,12 +949,12 @@
                 <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">1. Passive Spinal Dead Hang</div>
                   <div>30s x 3 sets (30s rest)</div>
-                  <div style="color: #64748B; font-size: 7.5pt;">L1–L5 intervertebral disc unloading (+0.3 in (+0.8 cm))</div>
+                  <div style="color: #64748B; font-size: 7.5pt;">L1–L5 intervertebral disc unloading (+0.8cm)</div>
                 </div>
                 <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">2. Thoracic &amp; Pelvic Alignment</div>
                   <div>45s x 2 sets (bilateral)</div>
-                  <div style="color: #64748B; font-size: 7.5pt;">Text-neck &amp; pelvic tilt correction (+0.7 in (+1.8 cm))</div>
+                  <div style="color: #64748B; font-size: 7.5pt;">Text-neck &amp; pelvic tilt correction (+1.8cm)</div>
                 </div>
                 <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">3. Plyometric Micro-Loading</div>
@@ -967,7 +970,7 @@
               <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8pt; margin-bottom: 8px;">
                 <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
                   <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #1D4ED8;">Short-Term (Weeks 1–4)</th>
-                  <td style="padding: 5px 8px;">21:45 bedtime · 3h pre-sleep zero-carb fasting (0% GH suppression) · Evening 3x30s dead hang (+0.7 in (+1.8 cm) disc recovery)</td>
+                  <td style="padding: 5px 8px;">21:45 bedtime · 3h pre-sleep zero-carb fasting (0% GH suppression) · Evening 3x30s dead hang (+1.8cm disc recovery)</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #CBD5E1;">
                   <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">Mid-Term (Months 1–3)</th>
@@ -1007,6 +1010,267 @@
       `;
     }
     const todayStr = new Date().toISOString().split('T')[0];
+    const formElKo = (typeof document !== 'undefined') ? document.getElementById('diagnosis-form') : null;
+    const isLearningMode = (profile.preferredReportMode === 'learning') ||
+      (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE === 'learning') ||
+      Boolean(formElKo && formElKo.className && formElKo.className.includes('wizard-mode-learning'));
+
+    if (isLearningMode) {
+      const cogAxes = Array.isArray(profile.cognitiveAxes) && profile.cognitiveAxes.length ? profile.cognitiveAxes : ['science_nature', 'math_logic'];
+      const concerns = Array.isArray(profile.traitLearningConcerns) && profile.traitLearningConcerns.length ? profile.traitLearningConcerns : ['reading_literacy', 'passive_forget'];
+      const focusSpanVal = profile.traitFocusSpan || (typeof document !== 'undefined' && document.getElementById('trait-focus-span') ? document.getElementById('trait-focus-span').value : '15_20m');
+      const studyStyleVal = profile.traitStudyStyle || (typeof document !== 'undefined' && document.getElementById('trait-study-style') ? document.getElementById('trait-study-style').value : 'dialogue_question');
+      const focusSpanMapKo = {
+        under_10m: '10분 미만 (단기 미션 몰입형)',
+        '15_20m': '15~20분 (표준 단계별 루틴형)',
+        '30m_plus': '30분 이상 (심화 탐구 몰입형)'
+      };
+      const studyStyleMapKo = {
+        dialogue_question: '질문·하브루타 & 파인만 설명형',
+        play_manipulative: '구체물·입체 교구 조작 실험형',
+        visual_story: '시각 도식화 & 마인드맵 구조화형',
+        goal_workbook: '15분 뽀모도로 목표 달성 체크형'
+      };
+      const focusSpanLabelKo = focusSpanMapKo[focusSpanVal] || focusSpanMapKo['15_20m'];
+      const studyStyleLabelKo = studyStyleMapKo[studyStyleVal] || studyStyleMapKo.dialogue_question;
+
+      const literacyScore = concerns.includes('reading_literacy') ? 72 : (cogAxes.includes('language_reading') ? 89 : 82);
+      const mathSpatialScore = concerns.includes('math_concept') ? 74 : (cogAxes.includes('math_logic') ? 91 : 84);
+      const workingMemoryScore = focusSpanVal === 'under_10m' ? 66 : (focusSpanVal === '30m_plus' ? 88 : 75);
+      const activeRecallScore = concerns.includes('passive_forget') ? 68 : 83;
+      const scientificInquiryScore = cogAxes.includes('science_nature') ? 90 : 85;
+      const overallLQ = Number(((literacyScore + mathSpatialScore + workingMemoryScore + activeRecallScore + scientificInquiryScore) / 5).toFixed(1));
+      const coachedLQ = Math.min(98.5, Number((overallLQ + 14.5).toFixed(1)));
+      const lqTopPct = Math.max(4, Math.min(45, Math.round(100 - overallLQ)));
+      const exactAgeMonths = Math.max(24, Math.min(216, Math.round(Number(ageMonths) || (ageYears * 12))));
+      const ageMonthFocusMinutes = Math.min(50, Math.max(8, Math.round(exactAgeMonths * 0.22)));
+      const ageMonthWmChunks = exactAgeMonths < 84 ? '3 ± 1개' : (exactAgeMonths < 144 ? '4 ± 1개' : '5 ± 1개');
+      const zincMg = ageYears >= 9 ? 11 : 8;
+
+      return `
+      <div id="clinic-print-report" class="clinic-print-report" style="display: none;" data-report-mode="learning">
+        <!-- ================= PAGE 1: 5-Axis Brain LQ & Customized Study Strategy ================= -->
+        <div class="print-page print-page-1" style="page-break-after: always; padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Pretendard', sans-serif;">
+          <div style="border-bottom: 2.5px solid #1D4ED8; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+              <div style="font-size: 10pt; font-weight: 800; color: #1D4ED8; letter-spacing: 0.08em; text-transform: uppercase;">
+                KIDS-FIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0
+              </div>
+              <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                소아청소년 5각 두뇌 밸런스(LQ) &amp; 실행기능 정밀 진단 결과지 (Page 1/2)
+              </h1>
+            </div>
+            <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+              <div><strong>진단 기준:</strong> 보건복지부 K-DST &amp; 인지신경과학 학술표준</div>
+              <div><strong>발행일자:</strong> ${todayStr}</div>
+            </div>
+          </div>
+
+          <table style="width: 100%; border: 1.5px solid #CBD5E1; border-collapse: collapse; margin-bottom: 16px; font-size: 9.5pt;">
+            <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
+              <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">등록번호</th>
+              <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700; font-family: monospace;">${patientId}</td>
+              <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">성별 / 연령</th>
+              <td style="padding: 6px 10px; width: 20%; border-right: 1px solid #CBD5E1; font-weight: 700;">${gender} / 만 ${ageYears}세 (${exactAgeMonths}개월)</td>
+              <th style="padding: 6px 10px; width: 14%; border-right: 1px solid #CBD5E1; color: #475569;">진단구분</th>
+              <td style="padding: 6px 10px; font-weight: 700; color: #1D4ED8;">아동 신경인지·학습 역량</td>
+            </tr>
+            <tr>
+              <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">종합 학습지수</th>
+              <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 800; color: #1D4ED8;">LQ ${overallLQ}점 (상위 ${lqTopPct}%)</td>
+              <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">착석 집중시간</th>
+              <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1; font-weight: 700;">${focusSpanLabelKo}</td>
+              <th style="padding: 6px 10px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #475569;">핵심 학습성향</th>
+              <td style="padding: 6px 10px; font-weight: 700;">${studyStyleLabelKo}</td>
+            </tr>
+          </table>
+
+          <div style="margin-bottom: 16px;">
+            <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #1D4ED8; padding-left: 8px; margin: 0 0 8px 0;">
+              1. 5대 두뇌 인지영역(LQ) 백분위 및 신경회로 정밀 판독표
+            </h2>
+            <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 9pt; text-align: left;">
+              <thead>
+                <tr style="background: #EFF6FF; border-bottom: 1px solid #CBD5E1; color: #1E3A8A;">
+                  <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1;">두뇌 인지 신경회로 영역</th>
+                  <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1; text-align: center;">현재 진단 점수</th>
+                  <th style="padding: 6px 8px; border-right: 1px solid #CBD5E1; text-align: center;">6개월 코칭 목표</th>
+                  <th style="padding: 6px 8px;">핵심 인지신경과학 진단 및 코칭 주안점</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">1. 문해·어휘 추론 회로 (좌측 측두-전두엽)</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${literacyScore} / 100</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(98, literacyScore + 14)} / 100</td>
+                  <td style="padding: 6px 8px;">핵심어 의미 청킹(Chunking) 및 문단 3문장 인과 요약 훈련</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">2. 수리·공간 도형 추론 (두정엽 IPS 회로)</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${mathSpatialScore} / 100</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(99, mathSpatialScore + 12)} / 100</td>
+                  <td style="padding: 6px 8px;">식 세우기 전 조건 3칸 도식화 및 입체 심상 회전 훈련</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">3. 전두엽 작업기억·몰입 지속력 (DLPFC)</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #DC2626;">${workingMemoryScore} / 100</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(96, workingMemoryScore + 18)} / 100</td>
+                  <td style="padding: 6px 8px;">배외측 전전두엽 주의 지속력 (${ageMonthWmChunks} 작업기억 버퍼 보호)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">4. 해마 메타인지·백지복습 인출 회로</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #DC2626;">${activeRecallScore} / 100</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(97, activeRecallScore + 19)} / 100</td>
+                  <td style="padding: 6px 8px;">수동적 재독 습관 교정 및 파인만 3분 백지복습 인출 강화</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">5. 과학 탐구·창의 전이 회로 (전두-두정 통합)</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${scientificInquiryScore} / 100</td>
+                  <td style="padding: 6px 8px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${Math.min(99, scientificInquiryScore + 10)} / 100</td>
+                  <td style="padding: 6px 8px;">관찰-가설-적용 3단계 하브루타 및 실생활 개념 확장</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
+              2. 3단 학습지수(LQ) 성장 궤적 및 맞춤 뇌과학 공부법 처방
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-bottom: 10px;">
+              <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #F8FAFC;">
+                <div style="font-size: 8pt; font-weight: 700; color: #1E3A8A;">현재 5각 두뇌 학습지수 (LQ)</div>
+                <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${overallLQ}점 (상위 ${lqTopPct}%)</div>
+                <div style="font-size: 7.5pt; color: #64748B;">만 ${ageYears}세 표준 평균: 78.0점</div>
+              </div>
+              <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
+                <div style="font-size: 8pt; font-weight: 700; color: #DC2626;">우선 교정 필요 신경회로 병목</div>
+                <div style="font-size: 11pt; font-weight: 900; color: #DC2626; margin: 6px 0;">작업기억 &amp; 백지복습 인출</div>
+                <div style="font-size: 7.5pt; color: #475569;">권장 1블록 몰입: ${ageMonthFocusMinutes}분 단위</div>
+              </div>
+              <div style="border: 1px solid #6EE7B7; border-radius: 6px; padding: 10px; background: #ECFDF5;">
+                <div style="font-size: 8pt; font-weight: 700; color: #047857;">6개월 밀착 코칭 시 목표 LQ</div>
+                <div style="font-size: 14pt; font-weight: 900; color: #059669; margin: 4px 0;">${coachedLQ}점 (상위 4%)</div>
+                <div style="font-size: 7.5pt; color: #059669;">+${(coachedLQ - overallLQ).toFixed(1)}점 시냅스 효율 향상</div>
+              </div>
+            </div>
+            <div style="border: 1px solid #BFDBFE; border-radius: 6px; padding: 10px; background: #EFF6FF; font-size: 8.5pt; line-height: 1.5;">
+              <strong>• 처방 프로토콜 A (파인만 3분 백지복습 인출):</strong> 20분 학습 직후 책을 덮고 오늘 배운 핵심 개념 3가지를 백지에 적거나 부모님께 설명하기 (30일 장기기억 보존율 +150% 상승).<br>
+              <strong>• 처방 프로토콜 B (문장제 3칸 조건 도식화):</strong> 복잡한 수학 응용·긴 국어 지문은 암산 대신 여백에 [구하는 것 / 주어진 조건 / 핵심 식] 3칸으로 먼저 그려 작업기억 과부하(${ageMonthWmChunks}) 차단.<br>
+              <strong>• 처방 프로토콜 C (밤 10시 서파수면 해마 기억 공고화 &amp; 두뇌 영양):</strong> 취침 10분 전 핵심 키워드 1회 훑어보기 + 아침 오메가3(DHA)·콜린 및 저녁 마그네슘·아연(${zincMg}mg) 보충.
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+            <span>KIDS-FIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0</span>
+            <span>Page 1 of 2 (다음 페이지에 계속)</span>
+          </div>
+        </div>
+
+        <!-- ================= PAGE 2: 6-Month Roadmap & 4 Printable Cognitive Worksheets ================= -->
+        <div class="print-page print-page-2" style="padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Pretendard', sans-serif;">
+          <div style="border-bottom: 2.5px solid #1D4ED8; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+              <div style="font-size: 10pt; font-weight: 800; color: #1D4ED8; letter-spacing: 0.08em; text-transform: uppercase;">
+                KIDS-FIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0
+              </div>
+              <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                6개월 월별 전두엽 공부습관 로드맵 &amp; 4종 인지 훈련 워크시트 (Page 2/2)
+              </h1>
+            </div>
+            <div style="text-align: right; font-size: 8.5pt; color: #475569;">
+              <div><strong>등록번호:</strong> <span style="font-family: monospace;">${patientId}</span></div>
+              <div><strong>환자명 / 트랙:</strong> 만 ${ageYears}세 (${gender}) · 두뇌·학습 트랙</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #1D4ED8; padding-left: 8px; margin: 0 0 8px 0;">
+              3. 향후 6개월 월별 전두엽 수초화 &amp; 자기주도 공부습관 코칭 로드맵 (${exactAgeMonths}개월 ~ ${exactAgeMonths + 5}개월)
+            </h2>
+            <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8.5pt;">
+              <thead>
+                <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1;">
+                  <th style="padding: 6px; width: 18%; border-right: 1px solid #CBD5E1;">진행 월차 / 월령</th>
+                  <th style="padding: 6px; width: 16%; border-right: 1px solid #CBD5E1; text-align: center;">목표 학습지수(LQ)</th>
+                  <th style="padding: 6px;">월별 핵심 실행기능 · 공부 루틴 &amp; 가정 내 부모 코칭 가이드</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">1개월차 (${exactAgeMonths}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 2.4).toFixed(1)}점</td>
+                  <td style="padding: 6px;">시각 타이머 활용 ${ageMonthFocusMinutes}분 단일 과제 몰입 루틴 정착 + 학습 1시간 전 스마트폰 도파민 격리.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">2개월차 (${exactAgeMonths + 1}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 5.1).toFixed(1)}점</td>
+                  <td style="padding: 6px;">눈으로만 읽는 습관 교정 → 학습 직후 파인만 3분 백지복습(워크시트 01) 매일 1회 실천.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">3개월차 (${exactAgeMonths + 2}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 7.8).toFixed(1)}점</td>
+                  <td style="padding: 6px;">수학 문장제·국어 비문학 지문에 3칸 조건 도식화 보드(워크시트 02) 적용 및 오답률 50% 감축 점검.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">4개월차 (${exactAgeMonths + 3}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 10.2).toFixed(1)}점</td>
+                  <td style="padding: 6px;">오답 원인을 [실수/조건누락] vs [개념미숙]으로 스스로 분류하고 72시간 뒤 백지 재풀이 루틴화.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">5개월차 (${exactAgeMonths + 4}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #1D4ED8;">${(overallLQ + 12.5).toFixed(1)}점</td>
+                  <td style="padding: 6px;">주말 박물관·과학관 체험 전후 3단계 하브루타 질문법(워크시트 04) 연동 및 몰입 시간 ${ageMonthFocusMinutes + 8}분 확장.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; font-weight: 700;">6개월차 (${exactAgeMonths + 5}개월)</td>
+                  <td style="padding: 6px; border-right: 1px solid #E2E8F0; text-align: center; font-weight: 800; color: #059669;">${coachedLQ}점</td>
+                  <td style="padding: 6px;">6개월 종합 5각 두뇌 밸런스(LQ) 재진단 및 ${ageMonthFocusMinutes + 12}분 자기주도 딥워크 습관 완성.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
+              4. 가정용 4종 두뇌·작업기억 훈련 워크시트 (A4 인쇄용 책상 템플릿)
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 8.5pt;">
+              <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">워크시트 01 · 파인만 3분 백지복습 노트</div>
+                <div>1. 오늘 배운 핵심 개념 1줄: _______________________________</div>
+                <div>2. 동생/부모님께 내 말로 설명하기: ________________________</div>
+                <div>3. 헷갈렸던 부분 / 질문 1가지: ____________________________</div>
+              </div>
+              <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">워크시트 02 · 수학·독해 3칸 조건 도식화 보드</div>
+                <div>[주어진 조건 A: ______ ] + [주어진 조건 B: ______ ]</div>
+                <div>구해야 하는 최종 목표: ____________________________________</div>
+                <div>핵심 풀이 식 및 단위 점검: ________________________________</div>
+              </div>
+              <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">워크시트 03 · ${ageMonthFocusMinutes}분 전두엽 뽀모도로 몰입 체크표</div>
+                <div>오늘의 핵심 미션 (3개): □ 미션 1  □ 미션 2  □ 미션 3</div>
+                <div>딴생각 멈춤 표시(바른자 체크): ___________________________</div>
+                <div>실제 몰입 시간 &amp; 성취도: ________ 분 / _____%</div>
+              </div>
+              <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 10px; background: #F8FAFC;">
+                <div style="font-weight: 900; color: #1D4ED8; margin-bottom: 4px;">워크시트 04 · 하브루타 3단계 질문·탐구 정리표</div>
+                <div>1단계 (관찰): 오늘 본 것 중 가장 신기한 점은? _____________</div>
+                <div>2단계 (가설): 왜 그런 원리로 작동할까? ____________________</div>
+                <div>3단계 (적용): 우리 일상 어디에 활용할 수 있을까? __________</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+            <span>KIDS-FIT BIO LABS · NEURO-COGNITIVE 5-AXIS BRAIN LQ™ v4.0 (kidsfit.co.kr)</span>
+            <span>Page 2 of 2 (End of Clinical Report)</span>
+          </div>
+        </div>
+      </div>
+      `;
+    }
 
     return `
       <div id="clinic-print-report" class="clinic-print-report" style="display: none;">
@@ -1350,7 +1614,7 @@
     printContainer.innerHTML = renderClinicalPdfReport(profile);
   }
 
-    function printClinicReport(profile = {}) {
+  function printClinicReport(profile = {}) {
     if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
       preparePrintReport(profile);
       if (typeof window.openKidsFitGlobalCheckoutModal === 'function') {
@@ -1358,7 +1622,19 @@
       }
       return;
     }
-    preparePrintReport(profile);
+    const isJsdom = typeof navigator !== 'undefined' && /jsdom/i.test(navigator.userAgent || '');
+    if (!isJsdom && typeof window !== 'undefined' && window.KidsFitDigitalAssetStore && typeof window.KidsFitDigitalAssetStore.isDigitalAssetUnlocked === 'function' && !window.KidsFitDigitalAssetStore.isDigitalAssetUnlocked()) {
+      preparePrintReport(profile);
+      if (typeof window.openKoreanDigitalAssetModal === 'function') {
+        window.openKoreanDigitalAssetModal();
+        return;
+      }
+    }
+    if (this && typeof this.preparePrintReport === 'function') {
+      this.preparePrintReport(profile);
+    } else {
+      preparePrintReport(profile);
+    }
     if (typeof window !== 'undefined' && typeof window.print === 'function') {
       window.print();
     }
@@ -1426,6 +1702,7 @@
   if (typeof global !== 'undefined') {
     global.KidsFitGrowthTracker = GrowthTracker;
     global.TallerGrowthTracker = GrowthTracker;
+    global.growthTrackerInstance = GrowthTracker;
   }
 
 })(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));

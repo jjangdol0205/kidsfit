@@ -1237,7 +1237,20 @@
     let potentialGainCm = Math.round((optimizedHeight - unmanagedHeight) * 10) / 10;
     if (GrowthEngine && typeof GrowthEngine.predictAdultHeightTrajectories === 'function') {
       try {
-        const traj = GrowthEngine.predictAdultHeightTrajectories(mphVal, habits, tanner);
+        const traj = GrowthEngine.predictAdultHeightTrajectories(Object.assign({}, profile, {
+          mph: mphVal,
+          habits,
+          tannerPhase: tanner,
+          exactMonths,
+          ageMonths: exactMonths,
+          ageYears,
+          gender,
+          currentHeight: height,
+          currentWeight: weight,
+          recentGrowth6m: recentGain,
+          fatherHeight: fatherH,
+          motherHeight: motherH
+        }));
         unmanagedHeight = traj.unmanaged.height;
         optimizedHeight = traj.optimized.height;
         potentialGainCm = traj.optimized.gainOverUnmanaged;
@@ -1936,7 +1949,7 @@
         <div class="briefing-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid #BFDBFE; padding-bottom: 0.9rem;">
           <div>
             <span id="master-report-header-badge" class="section-badge-pill" style="display: inline-flex; align-items: center; gap: 0.35rem; background: ${isLearningDefault ? '#EFF6FF' : '#EFF6FF'}; color: ${isLearningDefault ? '#1D4ED8' : '#1D4ED8'}; font-size: 0.82rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid ${isLearningDefault ? '#EFF6FF' : '#EFF6FF'}; margin-bottom: 0.35rem;">
-              ${isEn ? 'KISFIT · PRECISION REPORT' : (isLearningDefault ? `KISFIT · 만 ${ageYears}세 맞춤 두뇌·학습 시각 진단서` : guidebookEditionLabel)}
+              ${isEn ? 'KIDS-FIT · PRECISION REPORT' : (isLearningDefault ? `KIDS-FIT · 만 ${ageYears}세 맞춤 두뇌·학습 시각 진단서` : guidebookEditionLabel)}
             </span>
             <h2 id="master-report-header-title" class="briefing-title" style="font-size: 1.38rem; font-weight: 900; color: #0F172A; margin: 0.15rem 0; word-break: keep-all;">
               ${isEn
@@ -1948,7 +1961,7 @@
             <button
               type="button"
               id="btn-print-report-briefing"
-              onclick="(function(){ try { var app = window.KidsFitApp; var gt = window.KidsFitGrowthTracker || window.TallerGrowthTracker; if(gt && typeof gt.preparePrintReport === 'function'){ gt.preparePrintReport(app && app.state ? app.state.profile : {}); } window.print(); } catch(e){ window.print(); } })()"
+              onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else { window.print(); } })()"
               style="display: inline-flex; align-items: center; gap: 0.35rem; background: #F8FAFC; color: #0F172A; font-weight: 900; font-size: 0.84rem; padding: 0.48rem 0.95rem; border-radius: 9999px; border: 1.5px solid #93C5FD; cursor: pointer; box-shadow: 0 4px 14px #F8FAFC;"
             >
               ${isEn ? 'Print / Save A4 PDF' : '보고서 출력 (인쇄 / PDF 저장)'}
@@ -2175,6 +2188,9 @@
         </div>
 
         <!-- ================================================================== -->
+        <!-- First-Fold 3-Second Quick Purchase Bridge (Growth) -->
+        ${PinpointCurator && typeof PinpointCurator.renderFirstFoldQuickPurchaseBridge === 'function' ? PinpointCurator.renderFirstFoldQuickPurchaseBridge(profile, 'growth') : ''}
+
         <!-- VIVID WEIGHT & BMI BALANCE HERO CARD (몸무게도 키처럼 한눈에 진단!)   -->
         <!-- ================================================================== -->
         <div id="taller-weight-reveal-hero" style="margin-bottom: 1.15rem; padding: 1.25rem 1.35rem; background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 22px;">
@@ -2349,6 +2365,9 @@
             </div>
           ` : ''}
 
+          <!-- Monthly Micro-Cohort Detailed Analysis, 3-Step Solutions & Pinpoint Products (Growth) -->
+          ${PinpointCurator && typeof PinpointCurator.renderMonthlyMicroPrescriptionCard === 'function' ? PinpointCurator.renderMonthlyMicroPrescriptionCard(profile, 'growth') : ''}
+
           <!-- Hidden legacy live free-text input preserved in DOM for script safety -->
           <div style="display: none;">
             <input type="text" id="live-bespoke-note-input" value="${(bespokeNote.rawNote || '').replace(/"/g, '&quot;')}" />
@@ -2503,13 +2522,13 @@
           </button>
         </div>
 
-        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" style="display: block; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 20px;">
+        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" data-product-category="growth" style="display: block !important; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px dashed #BFDBFE;">
-            <span style="font-size: 0.96rem; font-weight: 900; color: #1D4ED8;">
-              [만 ${ageYears}세 × ${dietTraitLabelKo} · ${postureTraitLabelKo}] 분석 연동 맞춤 추천
+            <span style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">
+              우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 (Paper-Matched Product Prescription) · 신체 성장
             </span>
             <span style="font-size: 0.76rem; color: #1D4ED8; font-weight: 800;">
-              연령·체형에 맞는 핵심 품목만 간결 추천
+              [만 ${ageYears}세 × ${dietTraitLabelKo} · ${postureTraitLabelKo}] 결핍 분석 기반 학술 근거(PMID/KDCA) 맞춤 처방
             </span>
           </div>
 
@@ -2527,7 +2546,7 @@
             [신체 성장 마스터 분석 보고서] 진단 완료 · 진단 6단계 + 우리 아이 특징 서술형 종합 반영
           </span>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="window.print()" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
+            <button type="button" onclick="if(window.TallerGrowthTracker&&typeof window.TallerGrowthTracker.printClinicReport==='function'){window.TallerGrowthTracker.printClinicReport(Object.assign({},(window.TallerOnboardingWizard&&window.TallerOnboardingWizard.state&&window.TallerOnboardingWizard.state.profile)||{}, {preferredReportMode:'learning'}));}else{window.print();}" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
               신체 성장 보고서 인쇄 / PDF 저장
             </button>
           </div>
@@ -2838,6 +2857,9 @@
             </div>
           </div>
 
+          <!-- First-Fold 3-Second Quick Purchase Bridge (Learning) -->
+          ${PinpointCurator && typeof PinpointCurator.renderFirstFoldQuickPurchaseBridge === 'function' ? PinpointCurator.renderFirstFoldQuickPurchaseBridge(profile, 'learning') : ''}
+
           <!-- Bespoke Learning Q&A Section (#bespoke-learning-note-section: Responsive Circuit Summary + Clinical Insight Cards) -->
           <div id="bespoke-learning-note-section" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.15rem 1.25rem; margin-bottom: 1.2rem; text-align: left;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.65rem;">
@@ -2905,6 +2927,9 @@
               </div>
             ` : ''}
           </div>
+
+          <!-- ==================== MONTHLY MICRO-COHORT LEARNING ANALYSIS, SOLUTIONS & PINPOINT PRODUCTS ==================== -->
+          ${PinpointCurator && typeof PinpointCurator.renderMonthlyMicroPrescriptionCard === 'function' ? PinpointCurator.renderMonthlyMicroPrescriptionCard(profile, 'learning') : ''}
 
           <!-- ==================== SPECIALIZED LEARNING BOTTLENECK SPOTLIGHT ==================== -->
           ${bottleneckSpecializedLearningHtml}
@@ -3567,7 +3592,7 @@
               만 ${ageYears}세 · ${activeStyleInfo.badge} | 강점 [${strengthsList[0].title}] 분석 기반
             </div>
             <div style="font-size: 0.96rem; font-weight: 900; color: #0F172A; margin-bottom: 0.7rem; line-height: 1.42;">
-              위 두뇌·학습 진단 결과를 바탕으로 <strong>우리 아이에게 딱 필요한 맞춤 교구·도서·주말 체험</strong>만 간결하게 추렸습니다.
+              위 두뇌·학습 진단 결과를 바탕으로 <strong>우리 아이에게 딱 필요한 맞춤 교구·필독서·사고력 워크북</strong>만 간결하게 추렸습니다.
             </div>
             <button
               type="button"
@@ -3575,19 +3600,19 @@
               onclick="window.MasterBriefingEngine && window.MasterBriefingEngine.toggleProductDrawer(this, 'learning')"
               style="cursor: pointer; width: 100%; max-width: 560px; min-height: 50px; background: #1D4ED8; border: 1.5px solid #1E40AF; color: #FFFFFF; font-weight: 900; font-size: 0.96rem; padding: 0.75rem 1.15rem; border-radius: 14px; box-shadow: 0 6px 16px rgba(29, 78, 216, 0.2);"
             >
-              맞춤형 두뇌·학습 추천 상품 접기 (교구 · 도서 · 주말 체험) ▲
+              맞춤형 두뇌·학습 추천 상품 접기 (맞춤 교구 · 필독서 · 워크북) ▲
             </button>
           </div>
 
           <!-- ==================== STEP 8: 분석 기반 간결 추천 상품 카드 (즉시 노출) ==================== -->
-          <div id="learning-curated-products-drawer" class="curated-product-recommendation-section" style="display: block; margin-top: 1rem;">
+          <div id="learning-curated-products-drawer" class="curated-product-recommendation-section" data-product-category="learning" style="display: block !important; margin-top: 1rem;">
             <div id="learning-step-8-links" style="background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 20px; padding: 1.1rem 1.2rem; margin-bottom: 1.15rem; text-align: left;">
               <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; padding-bottom: 0.6rem; border-bottom: 1px dashed #BFDBFE;">
-                <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 9999px;">
-                  STEP 8 · 만 ${ageYears}세 × [${activeStyleInfo.badge}] 분석 연동 추천
+                <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.25rem 0.85rem; border-radius: 9999px;">
+                  우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 (Paper-Matched Product Prescription) · 두뇌·학습
                 </span>
                 <span style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">
-                  강점 강화 &amp; 보완점 교정용 핵심 품목만 간결 매칭
+                  만 ${ageYears}세 × [${activeStyleInfo.badge}] 뇌과학·인지 발달 분석 연동 맞춤 처방
                 </span>
               </div>
 
@@ -3600,7 +3625,9 @@
                 : ''}
               ${PinpointCurator && typeof PinpointCurator.renderCustomTravelChapter === 'function'
                 ? PinpointCurator.renderCustomTravelChapter(profile)
-                : ''}
+                : (typeof window !== 'undefined' && window.TallerPinpointCurator && typeof window.TallerPinpointCurator.renderCustomTravelChapter === 'function'
+                  ? window.TallerPinpointCurator.renderCustomTravelChapter(profile)
+                  : '')}
             </div>
           </div>
         </div><!-- /#report-ch-8 -->
@@ -3611,13 +3638,13 @@
             [두뇌·학습 마스터 분석 보고서] 시각 진단 완료
           </span>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="window.print()" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
+            <button type="button" onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else { window.print(); } })()" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
               두뇌·학습 보고서 인쇄 / PDF 저장
             </button>
           </div>
         </div>
         <template id="learning-clinical-archive-metadata" style="display:none" data-age="${ageYears}" data-style="${studyStyleKey}" data-temp="${tempKey}" data-axis="${cogAxisPrimary}">
-          [KISFIT NEURO-COGNITIVE CLINICAL ARCHIVE | 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) × ${activeStyleInfo.badge} × ${tempTraitLabelKo} × ${focusTraitLabelKo}]
+          [KIDS-FIT NEURO-COGNITIVE CLINICAL ARCHIVE | 만 ${ageYears}세(${exactMonths.toFixed(1)}개월) × ${activeStyleInfo.badge} × ${tempTraitLabelKo} × ${focusTraitLabelKo}]
           1. K-DST 및 뇌인지 신경과학 정밀 매트릭스: 문해·어휘(${lqData.scores.literacy_vocab}점), 수리·공간추론(${lqData.scores.math_spatial}점), 전두엽 작업기억·집중(${lqData.scores.working_memory_focus}점), 해마 메타인지·인출(${lqData.scores.metacognition_retrieval}점), 과학 탐구·창의표현(${lqData.scores.inquiry_creative}점) — 종합 LQ ${lqData.overallLQ.toFixed(1)}점(상위 ${lqData.topPercent}%).
           2. 강점 시냅스 회로 분석: ${strengthsList.map(s => s.title + '(' + s.score + '점): ' + s.goodTrait + ' -> ' + s.howToBoost + ' [' + s.helpfulTools + ']').join(' | ')}.
           3. 보완 타겟 회로 분석: ${weaknessesList.map(w => w.title + '(' + w.score + '점): ' + w.weakTrait + ' -> ' + w.howToFix + ' [' + w.helpfulTools + ']').join(' | ')}.
@@ -3629,9 +3656,9 @@
         </template>
       </div><!-- /#pillar-2-container -->
 
-        <!-- Mandatory FTC & Affiliate Disclosure (Always visible inside the report) -->
+        <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Always visible inside the report) -->
         <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.1rem; padding: 0.7rem 0.95rem; background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; font-size: 0.78rem; color: #475569; text-align: center; line-height: 1.45;">
-          ${isEn ? 'ℹ Links provided may earn an affiliate commission through partner affiliate programs at no additional cost to you.' : 'ℹ본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.'}
+          ℹ본 서비스의 추천 상품 링크는 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
         </div>
 
         <!-- ================================================================== -->
@@ -3833,7 +3860,7 @@
                 onclick="window.MasterBriefingEngine && window.MasterBriefingEngine.copyGrowthReminder(this)"
                 style="flex: 1 1 240px; min-height: 44px; background: #1D4ED8; color: #FFFFFF; border: 1.5px solid #1E40AF; border-radius: 12px; padding: 0.6rem 1rem; font-size: 0.88rem; font-weight: 900; cursor: pointer;"
               >
-                ${isEn ? 'Copy Growth Check-in Routine to Clipboard' : "내 카톡에 '신체 정기 재점검 루틴 알림' 복사해 두기"}
+                내 카톡에 '신체 정기 재점검 루틴 알림' 복사해 두기
               </button>
             </div>
           </div>
@@ -3842,27 +3869,27 @@
           <div id="learning-retention-repeat-loop" style="display: ${isLearningDefault ? 'block' : 'none'}; background: #F8FAFC; border: 2px solid #93C5FD; border-radius: 18px; padding: 1.25rem; text-align: left;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
               <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.82rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #93C5FD;">
-                ${isEn ? '[Brain & Learning] Periodic Check-in Routine' : '[두뇌·학습 전용] 정기 재점검 루틴'}
+                [두뇌·학습 전용] 정기 재점검 루틴
               </span>
               <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 800;">
-                ${isEn ? 'Periodic check-in guide to reinforce strengths and bridge gaps' : '강점은 키우고 보완점은 채우는 주기적 점검표'}
+                강점은 키우고 보완점은 채우는 주기적 점검표
               </span>
             </div>
             <h3 style="font-size: 1.1rem; font-weight: 900; color: #0F172A; margin: 0 0 0.65rem 0; line-height: 1.4;">
-              ${isEn ? 'Brain & Learning Periodic Check-in Checklist' : '우리 아이 두뇌·학습 정기 재점검 체크리스트'}
+              우리 아이 두뇌·학습 정기 재점검 체크리스트
             </h3>
             <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem; margin-bottom: 0.85rem;">
               <div style="background: #FFFFFF; border-top: 3px solid #93C5FD; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">${isEn ? '① Every Friday Evening' : '① 매주 금요일 저녁'}</div>
-                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">${isEn ? 'Lightly check weekly active recall review & sustained focus progress.' : `주간 ${isToddlerAge ? '그림책·손끝 놀이' : '백지복습 & 몰입 시간'} 변화를 가볍게 점검하세요.`}</div>
+                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">① 매주 금요일 저녁</div>
+                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">주간 ${isToddlerAge ? '그림책·손끝 놀이' : '백지복습 & 몰입 시간'} 변화를 가볍게 점검하세요.</div>
               </div>
               <div style="background: #FFFFFF; border-top: 3px solid #93C5FD; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">${isEn ? '② 1st of Every Month' : '② 매월 1일'}</div>
-                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">${isEn ? `Monitor changes in top strength (${strengthsList[0].title}) and focus area (${weaknessesList[0].title}).` : `강점(${strengthsList[0].title})과 보완점(${weaknessesList[0].title})의 LQ 지수 변화를 확인하세요.`}</div>
+                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">② 매월 1일</div>
+                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">강점(${strengthsList[0].title})과 보완점(${weaknessesList[0].title})의 LQ 지수 변화를 확인하세요.</div>
               </div>
               <div style="background: #FFFFFF; border-top: 3px solid #93C5FD; border-radius: 12px; padding: 0.8rem 0.9rem;">
-                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">${isEn ? '③ 3-Month Cycle' : '③ 3개월 주기'}</div>
-                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">${isEn ? 'Upgrade to next-tier reading books, workbooks, and experiential exploration courses.' : '발달 단계에 맞춰 다음 수준 도서·교구와 주말 체험 코스로 업그레이드하세요.'}</div>
+                <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">③ 3개월 주기</div>
+                <div style="font-size: 0.82rem; color: #0F172A; line-height: 1.45;">발달 단계에 맞춰 다음 수준 도서·교구와 주말 체험 코스로 업그레이드하세요.</div>
               </div>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
@@ -3875,7 +3902,7 @@
                 onclick="window.MasterBriefingEngine && window.MasterBriefingEngine.copyLearningReminder(this)"
                 style="flex: 1 1 240px; min-height: 44px; background: #1D4ED8; color: #FFFFFF; border: 1.5px solid #1E40AF; border-radius: 12px; padding: 0.6rem 1rem; font-size: 0.88rem; font-weight: 900; cursor: pointer;"
               >
-                ${isEn ? 'Copy Learning Check-in Routine to Clipboard' : "내 카톡에 '학습 정기 재점검 루틴 알림' 복사해 두기"}
+                내 카톡에 '학습 정기 재점검 루틴 알림' 복사해 두기
               </button>
             </div>
           </div>
@@ -3884,24 +3911,49 @@
         <!-- ================================================================== -->
         <!-- GOLDEN ZONE 4-CHANNEL OWNED MEDIA HUB (블로그·카페 심층글 / 인스타·쓰레드 4칸 웹툰) -->
         <!-- ================================================================== -->
-        ${isEn ? '' : `
         <div id="official-4channel-community-hub" style="margin-top: 1.2rem; margin-bottom: 1.2rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 20px; padding: 1.2rem 1.3rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
             <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.22rem 0.7rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
-              KISFIT 공식 4대 채널
+              KIDS-FIT 공식 4대 채널
             </span>
             <span style="font-size: 0.76rem; color: #475569; font-weight: 800;">
               블로그·카페 심층 칼럼 | 인스타·쓰레드 4칸 웹툰
             </span>
           </div>
           <h3 id="channel-hub-dynamic-title" style="font-size: 1.1rem; font-weight: 900; color: #0F172A; margin: 0 0 0.75rem 0; line-height: 1.4;">
-            \${isLearningDefault
+            ${isLearningDefault
               ? '공식 블로그·카페의 아이 학습 심층 글과 인스타·쓰레드 공감 4칸 웹툰'
               : '공식 블로그·카페의 아이 성장 심층 글과 인스타·쓰레드 공감 4칸 웹툰'}
           </h3>
           <div class="learning-mobile-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem;">
+            ${(function () {
+              let storedCfg = {};
+              if (typeof window !== 'undefined' && window.localStorage) {
+                try {
+                  const rawT = window.localStorage.getItem('taller_affiliate_config');
+                  const rawK = window.localStorage.getItem('kidsfit_affiliate_config');
+                  storedCfg = Object.assign(
+                    {},
+                    rawK ? JSON.parse(rawK) : {},
+                    rawT ? JSON.parse(rawT) : {}
+                  );
+                } catch (_) {}
+              } else if (typeof localStorage !== 'undefined') {
+                try {
+                  const rawT = localStorage.getItem('taller_affiliate_config');
+                  const rawK = localStorage.getItem('kidsfit_affiliate_config');
+                  storedCfg = Object.assign(
+                    {},
+                    rawK ? JSON.parse(rawK) : {},
+                    rawT ? JSON.parse(rawT) : {}
+                  );
+                } catch (_) {}
+              }
+              const hubBlogUrl = (storedCfg && storedCfg.blogUrl) || 'https://blog.naver.com/expertise333';
+              const hubCafeUrl = (storedCfg && storedCfg.cafeUrl) || 'https://cafe.naver.com/moneyfitlab';
+              return `
             <!-- 1. Naver Blog -->
-            <a href="https://blog.naver.com/expertise333" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="${hubBlogUrl}" target="_blank" rel="noopener noreferrer" id="hub-link-naver-blog" style="text-decoration: none; background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #1D4ED8;">공식 네이버 블로그</span>
@@ -3914,7 +3966,7 @@
             </a>
 
             <!-- 2. Naver Cafe -->
-            <a href="https://cafe.naver.com/moneyfitlab" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <a href="${hubCafeUrl}" target="_blank" rel="noopener noreferrer" id="hub-link-naver-cafe" style="text-decoration: none; background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #1D4ED8;">공식 네이버 카페</span>
@@ -3924,7 +3976,8 @@
                   연령별 무료 워크지 PDF &amp; 학부모 정보 나눔
                 </div>
               </div>
-            </a>
+            </a>`;
+            })()}
 
             <!-- 3. Instagram (4-Panel Webtoon) -->
             <a href="https://www.instagram.com/kids_fit1" target="_blank" rel="noopener noreferrer" id="hub-link-instagram" style="text-decoration: none; background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
@@ -3953,7 +4006,6 @@
             </a>
           </div>
         </div>
-        `}
 
         <!-- Physical Growth Cohort Section: Hidden when viewing Learning Report! -->
         <div id="growth-cohort-log-wrapper" style="display: ${isLearningDefault ? 'none' : 'block'};">
@@ -4272,17 +4324,21 @@
     const box = document.getElementById(boxId);
     const ftc = document.getElementById('affiliate-ftc-disclosure');
     if (!box) return;
-    const isHidden = (box.style.display === 'none' || !box.style.display);
-    box.style.display = isHidden ? 'block' : 'none';
+    const isHidden = (box.style.display === 'none' || (typeof window !== 'undefined' && window.getComputedStyle && window.getComputedStyle(box).display === 'none'));
+    if (isHidden) {
+      box.style.setProperty('display', 'block', 'important');
+    } else {
+      box.style.setProperty('display', 'none', 'important');
+    }
     if (ftc && isHidden) ftc.style.display = 'block';
     if (btn) {
       if (isLearning) {
         btn.innerHTML = isHidden
-          ? '맞춤형 두뇌·학습 추천 상품 접기 ▲'
+          ? '맞춤형 두뇌·학습 추천 상품 접기 (교구 · 도서 · 주말 체험) ▲'
           : '분석 기반 맞춤형 두뇌·학습 추천 상품 보기 (교구 · 도서 · 주말 체험) ▼';
       } else {
         btn.innerHTML = isHidden
-          ? '맞춤형 신체 성장 추천 상품 접기 ▲'
+          ? '맞춤형 신체 성장 추천 상품 접기 (영양제 · 철봉 · 트램폴린) ▲'
           : '분석 기반 맞춤형 신체 성장 추천 상품 보기 (영양제 · 철봉 · 트램폴린) ▼';
       }
     }
@@ -4399,19 +4455,15 @@
 
   function copyGrowthReminder(btn) {
     try {
-      const isEn = (typeof I18n !== 'undefined' && typeof I18n.getCurrentLanguage === 'function' && I18n.getCurrentLanguage() === 'en') ||
-                   (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
       const age = (btn && btn.getAttribute('data-age')) || '10';
       const height = (btn && btn.getAttribute('data-height')) || '137';
       const opt = (btn && btn.getAttribute('data-opt')) || '177';
-      const text = isEn
-        ? `[Periodic Growth Check-in Routine] Child (Age ${age}, Current ${height}cm) Target Potential ${opt}cm Action Plan! 1) 1st of every month: re-measure height. 2) Weekly 10 PM sleep & spine decompression check. 3) Every 3 months: update weight-proportional nutrition. https://kisfitglobal.com`
-        : `[신체 성장 정기 재점검 알림장] 우리 아이(만 ${age}세, 현재 ${height}cm) 목표 잠재키 ${opt}cm 달성 루틴! ①매월 1일 아침 키 재점검 ②매주 밤10시 수면·철봉 체크 ③3개월마다 체중비례 영양 재조정 https://kidsfit.co.kr`;
+      const text = `[신체 성장 정기 재점검 알림장] 우리 아이(만 ${age}세, 현재 ${height}cm) 목표 잠재키 ${opt}cm 달성 루틴! ①매월 1일 아침 키 재점검 ②매주 밤10시 수면·철봉 체크 ③3개월마다 체중비례 영양 재조정 https://kidsfit.co.kr`;
       if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text);
       }
       if (btn) {
-        btn.textContent = isEn ? 'Growth Check-in Routine copied to clipboard!' : '카톡 나에게 보내기용 [신체 정기 재점검 알림]이 복사되었습니다!';
+        btn.textContent = '카톡 나에게 보내기용 [신체 정기 재점검 알림]이 복사되었습니다!';
         btn.style.background = '#059669';
       }
     } catch (_) {}
@@ -4419,20 +4471,16 @@
 
   function copyLearningReminder(btn) {
     try {
-      const isEn = (typeof I18n !== 'undefined' && typeof I18n.getCurrentLanguage === 'function' && I18n.getCurrentLanguage() === 'en') ||
-                   (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
       const age = (btn && btn.getAttribute('data-age')) || '10';
       const style = (btn && btn.getAttribute('data-style')) || '맞춤 학습형';
       const lq = (btn && btn.getAttribute('data-lq')) || '78';
       const target = (btn && btn.getAttribute('data-target')) || '90';
-      const text = isEn
-        ? `[Periodic Brain & Learning Check-in Routine] Child (Age ${age}, ${style}) LQ ${lq} -> Target ${target} Action Plan! 1) Every Friday: review & focus check. 2) 1st of every month: evaluate strengths/weaknesses LQ scores. 3) Every 3 months: upgrade tailored reading & weekend learning courses. https://kisfitglobal.com`
-        : `[두뇌·학습 정기 재점검 알림장] 우리 아이(만 ${age}세, ${style}) LQ ${lq}점 → 목표 ${target}점 달성 루틴! ①매주 금요일 복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 https://kidsfit.co.kr`;
+      const text = `[두뇌·학습 정기 재점검 알림장] 우리 아이(만 ${age}세, ${style}) LQ ${lq}점 → 목표 ${target}점 달성 루틴! ①매주 금요일 복습·몰입시간 체크 ②매월 1일 강점·약점 LQ 재진단 ③3개월마다 맞춤 교재·주말체험 업그레이드 https://kidsfit.co.kr`;
       if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text);
       }
       if (btn) {
-        btn.textContent = isEn ? 'Learning Check-in Routine copied to clipboard!' : '카톡 나에게 보내기용 [학습 정기 재점검 알림]이 복사되었습니다!';
+        btn.textContent = '카톡 나에게 보내기용 [학습 정기 재점검 알림]이 복사되었습니다!';
         btn.style.background = '#1D4ED8';
       }
     } catch (_) {}

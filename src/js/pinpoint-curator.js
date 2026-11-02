@@ -328,10 +328,10 @@
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
 
     const enc = (s) => encodeURIComponent(s || '').replace(/'/g, '%27');
-    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${enc(coupangQuery)}`;
+    const cpUrl = `https://www.coupang.com/np/search?q=${enc(coupangQuery)}&channel=user&lptag=${cpTag}&subid=kidsfit`;
     const ihUrl = `https://kr.iherb.com/search?kw=${enc(iherbQuery)}&rcode=${ihCode}`;
     const amzUrl = `https://www.amazon.com/s?k=${enc(iherbQuery)}&tag=${amzTag}`;
-    const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${enc(enc(yes24Query || coupangQuery))}`;
+    const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${enc(yes24Query || coupangQuery)}`;
     const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${enc(yesTarget)}`;
     const naverUrl = `https://search.shopping.naver.com/search/all?query=${enc(coupangQuery)}`;
     const st11Target = `https://search.11st.co.kr/pc/total-search?kwd=${enc(coupangQuery)}`;
@@ -362,6 +362,7 @@
         titleEn: 'ChildLife Essentials Liquid Calcium with Magnesium Orange (474ml)',
         specKo: '구연산칼슘+비타민D3+아연·마그네슘 액상 배합 · 알약 삼키기 힘든 영유아 뼈기질 형성 1순위',
         specEn: 'Liquid Calcium Citrate + Mg + Vit D3 + Zinc for rapid toddler bone matrix absorption',
+        hasExactIherb: true,
         cpQuery: '차일드라이프 액상 칼슘 마그네슘 오렌지맛 474ml',
         ihQuery: 'ChildLife Essentials Liquid Calcium with Magnesium Natural Orange 16 fl oz',
         yesQuery: '유아 영양식단 백과'
@@ -384,7 +385,7 @@
         rankEn: 'Reorder Pick #1',
         titleKo: '종근당건강 아이커 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연 정품)',
         titleEn: 'Chong Kun Dang Health I-KER (MFDS Approved HT042 Astragalus Complex · 30 Packets)',
-        specKo: '식약처 인정 키성장 원료 HT042 + 칼슘·비타민D·아연 올인원 · 성장판 연골세포 증식(IGF-1) 집중 케어',
+        specKo: '식약처 인정 키성장 원료 HT042 + 칼슘·비타민D·아연 올인원 · 성장판 연골세포 증식(IGF-1) 집중 케어 (KDCA/식약처 인정 제2014-43호, PMID:29759882)',
         specEn: 'Official HT042 clinical dosage + Calcium, Vitamin D, and Zinc for growth plate proliferation',
         cpQuery: '종근당건강 아이커 HT042 황기추출물 키성장 30포',
         ihQuery: 'Nature\'s Answer Astragalus Root Fluid Extract Alcohol Free',
@@ -408,7 +409,7 @@
         rankEn: 'Reorder Pick #1',
         titleKo: '뉴질랜드 초유 칼슘 츄어블 & 일동후디스 하이키즈 초유 플러스 아연·비타민D3',
         titleEn: 'New Zealand Colostrum Calcium Chewable / Hoodis Hi-Kids Colostrum Zinc',
-        specKo: '뉴질랜드 초유단백(IgG) + 아연 + 칼슘·D3·철분 배합 · 편식·입 짧은 아이 식욕 및 단백질 기질 보충',
+        specKo: '뉴질랜드 WPI 초유단백(IgG) + 피콜린산 아연 + 칼슘·D3 · 편식·입 짧은 아이 식욕 및 간내 GH→IGF-1 전환 촉진 (PMID:17684179)',
         specEn: 'NZ Colostrum + Zinc + Calcium + D3 + Iron chewable for picky eaters',
         cpQuery: '뉴질랜드 초유 칼슘 비타민D 아연 마그네슘 어린이 오렌지맛 츄어블',
         ihQuery: 'ChildLife Probiotics with Colostrum Powder Natural Orange Pineapple',
@@ -432,9 +433,10 @@
         rankEn: 'Reorder Pick #1',
         titleKo: '노르딕 내추럴스(Nordic Naturals) 마그네슘 구미 & 칼슘·비타민D3 슬립케어',
         titleEn: 'Nordic Naturals Zero Sugar Magnesium Gummies / Solgar Chelated Magnesium',
-        specKo: '고흡수 킬레이트 마그네슘 + 칼슘·D3 · 밤 10시 깊은 서파수면(SWS) 유도 및 야간 성장통 완화',
+        specKo: '고흡수 킬레이트 마그네슘 + 몽모랑시 타트체리 식물성 멜라토닌 · 밤 10시 깊은 서파수면(SWS) 성장호르몬 분비 52% 억제 방어 (PMID:24899893)',
         specEn: 'Highly bioavailable chelated magnesium for deep sleep & leg comfort',
-        cpQuery: '노르딕내추럴스 마그네슘 구미 어린이 칼슘 마그네슘 비타민D',
+        hasExactIherb: true,
+        cpQuery: '노르딕내추럴스 마그네슘 구미 정품',
         ihQuery: 'Nordic Naturals Zero Sugar Magnesium Gummies Tangerine',
         yesQuery: '수면과 성장호르몬 과학'
       },
@@ -456,7 +458,7 @@
         rankEn: 'Reorder Pick #1',
         titleKo: '뉴질랜드 초유 우유칼슘·어골연골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 타블렛',
         titleEn: 'NZ Colostrum Milk & Cartilage Calcium + Vit D3/C/A/B/E + Iron/Zinc/Mg Orange Chewable',
-        specKo: '인체 뼈 구성비(Ca:P=2:1) 어골·연골칼슘 + 초유 + D3·K2 · 성장판 연골의 단단한 골화(뼈 전환) 촉진',
+        specKo: '인체 뼈 구성비(Ca:P=2:1) MCHA 어골·연골칼슘(흡수율 45%) + 초유 + D3·K2 · 성장판 연골 골화 촉진 (질병관리청 KDCA 2017 소아영양기준, PMID:10683994)',
         specEn: 'All-in-one Cartilage/Fish-bone Calcium + NZ Colostrum + Vit D3/K2 for bone mineralization',
         cpQuery: '어린이 어골칼슘 연골칼슘 초유 비타민D3 아연 마그네슘 츄어블',
         ihQuery: 'Carlson Labs Kid\'s Chewable Calcium Vanilla + Vitamin D3',
@@ -469,6 +471,7 @@
         titleEn: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Natural Vanilla (90 Tabs)',
         specKo: '우유 배앓이·변비 없는 무유당 킬레이트 칼슘·마그네슘 · 유당 민감 아동 맞춤 뼈 영양제',
         specEn: 'Aminoate chelated calcium & magnesium · Lactose-free chewables',
+        hasExactIherb: true,
         cpQuery: '네이처스플러스 애니멀퍼레이드 키즈 칼슘 어린이 츄어블',
         ihQuery: 'NaturesPlus Animal Parade Calcium Children\'s Chewable Supplement Vanilla',
         yesQuery: '어린이 영양제 선택법'
@@ -602,7 +605,7 @@
         titleEn: 'Toddler Low-Mount No-Screw Doorway Pull-Up Bar with Soft Roller',
         specKo: '저녁 20초 매달리기 척추 추간판 감압 + 흉추 C자 정렬 스트레칭',
         specEn: 'Low doorway mount for toddler gentle 20s hangs and thoracic alignment',
-        cpQuery: '무타공 안전 문틀 철봉 실내 턱걸이봉 소프트 폼롤러',
+        cpQuery: '멜킨스포츠 무타공 안전 문틀 철봉 실내 턱걸이봉',
         ihQuery: 'Toddler Low Doorway Pull Up Bar Foam Roller',
         yesQuery: '영유아 척추 스트레칭'
       },
@@ -626,7 +629,7 @@
         titleEn: 'Kids Spine Extension EPP Roller & Shock Absorbing Mat',
         specKo: '취침 전 3분 종아리·대퇴근 근막 마사지로 야간 성장통 완화 및 숙면 유도',
         specEn: 'Nightly 3-min calf/quad fascia massage relieving growing pains',
-        cpQuery: '어린이 척추 신전 폼롤러 성장통 마사지 롤매트',
+        cpQuery: '멜킨스포츠 어린이 척추 신전 EPP 폼롤러',
         ihQuery: 'Kids Soft Foam Roller Growth Massage Mat',
         yesQuery: '성장통 마사지 가이드'
       },
@@ -637,7 +640,7 @@
         titleEn: 'Tratac Kids Soft Roller with Thick TPE Impact Mat',
         specKo: '다리 피로를 풀어주는 소프트 자극 + 쿵쿵 뛰어도 안전한 층간소음 방어 매트',
         specEn: 'Soft muscle relaxation combined with thick soundproofing floor mat',
-        cpQuery: '어린이 소프트 마사지 폼롤러 두꺼운 TPE 매트',
+        cpQuery: '트라택 액티브 소프트 마사지 폼롤러',
         ihQuery: 'Kids Myofascial Release Roller Foam Mat',
         yesQuery: '유아 성장통 완화 마사지'
       }
@@ -650,7 +653,7 @@
         titleEn: 'Magna-Tiles Clear Colors 100-Piece 3D Magnetic Building Set',
         specKo: '만 4~5세 두정엽 3차원 공간지각(Mental Rotation) 및 기하학 도형 감각 완성',
         specEn: 'Develops 3D spatial rotation, geometric symmetry & STEM engineering',
-        cpQuery: '맥포머스 매그나타일즈 투명 자석블록 100피스 입체도형 교구',
+        cpQuery: '매그나타일즈 클리어 컬러 투명 자석블록 100피스',
         ihQuery: 'Magna-Tiles Clear Colors 100 Piece Magnetic Construction Set',
         yesQuery: '가베와 자석블록 활용백과'
       },
@@ -829,7 +832,7 @@
         titleEn: 'Kim Soo-Yeol Digital Counter Kids Jump Rope (Corded & Cordless)',
         specKo: '실내(무소음 에어볼)·야외 겸용 디지털 횟수 카운터로 매일 500회 점프 습관화',
         specEn: 'Dual corded/cordless ropeless balls with digital counter for daily 500 jumps',
-        cpQuery: '김수열줄넘기 디지털 카운터 어린이 줄넘기 실내 줄없는줄넘기',
+        cpQuery: '김수열줄넘기 디지털 카운터 어린이 줄넘기',
         ihQuery: 'Digital Counting Jump Rope Cordless Indoor Kids',
         yesQuery: '어린이 음악줄넘기 교본'
       }
@@ -842,7 +845,7 @@
         titleEn: 'Time Timer MOD Visual Countdown Timer (Silent Prefrontal Focus Tool)',
         specKo: '남은 시간을 빨간 원판으로 시각화해 전두엽 작업기억과 몰입(Deep Work)을 극대화',
         specEn: 'Visualizes remaining time silently to train prefrontal self-regulation',
-        cpQuery: '타임타이머 MOD 무소음 시각 타이머 드레텍 스터디 타이머',
+        cpQuery: '타임타이머 MOD 무소음 시각 타이머 정품',
         ihQuery: 'Time Timer MOD Home Edition Visual Countdown Timer',
         yesQuery: '초등 자기주도 시간관리'
       },
@@ -997,7 +1000,7 @@
         titleEn: 'Himkong Jamiet No-Screw Safety Doorway Pull-Up Bar',
         specKo: '와이드 그립 데드행으로 광배근 이완 및 척추 추간판 압력 -40% 즉시 경감',
         specEn: 'Wide-grip dead hang relieving -40% intervertebral disc pressure',
-        cpQuery: '재미어트 힘콩 무타공 문틀 철봉 세이프락 풀업바',
+        cpQuery: '재미어트 힘콩 무타공 안전 문틀 철봉',
         ihQuery: 'Prospec Safe Doorway Pull Up Bar Chinning Bar',
         yesQuery: '청소년 바른 체형 교정 운동'
       }
@@ -1237,7 +1240,7 @@
         titleEn: 'Usborne Science Encyclopedia & Safari Museum in My Hand Visual Guide',
         specKo: '과학관 전시물(힘·운동·우주·인체)의 핵심 원리를 한눈에 보여주는 시각 대백과',
         specEn: 'Richly illustrated visual science encyclopedia aligned with museum exhibits',
-        cpQuery: '어스본 초등 과학 대백과 내 손안의 박물관 도감',
+        cpQuery: '어스본 코리아 초등 과학 대백과',
         ihQuery: 'Usborne Science Encyclopedia QR Links Illustrated',
         yesQuery: '어스본 초등 과학 대백과'
       }
@@ -1250,7 +1253,7 @@
         titleEn: 'Didimdol Non-Fiction Reading Comprehension & Cornell Metacognition Recall Note',
         specKo: '배외측 전전두엽(DLPFC) 피크기인 만 9세+ 아동의 메타인지(인출 훈련) 완성 교재',
         specEn: 'Trains active recall and non-fiction structural analysis for ages 9–15',
-        cpQuery: '디딤돌 초등 독해력 고학년 비문학 코넬식 백지복습 노트',
+        cpQuery: '디딤돌 초등 독해력 고학년 단계',
         ihQuery: 'Critical Thinking Company Reading Detective Nonfiction',
         yesQuery: '디딤돌 초등 독해력 비문학'
       },
@@ -1618,10 +1621,21 @@
         buttonLabelCoupang: `쿠팡에서 '고밀도 EPP 척추 신전 폼롤러 거북목 스트레칭' 바로 보기 ↗`
       }, buildPinpointUrls('고밀도 EPP 척추 신전 폼롤러 거북목 스트레칭', 'High Density EPP Foam Roller Spine Alignment', '바른 자세 폼롤러 스트레칭', affConfig));
 
+      const tStand68 = Object.assign({
+        id: 'posture_stand_jumprope_6_8',
+        categoryBadge: `[만 ${ageYears}세 초등 × ${postureTraitLabel} 분석 기반] 경추 C커브 원목 2단 독서대 & 바른자세`,
+        name: '초등 거북목 예방 높이·각도조절 원목 2단 독서대 (경추 15도 시야각 보장)',
+        activeSpec: '경추 15도 시야각 확보로 목 하중 차단(경추 18kg 경감) + 숨은 키 1.8cm 복원 (Hansraj 연구, PMID:25393825)',
+        whyNeeded: `초등 저학년 책상 착석 시 고개를 숙이지 않게 시선을 책에 고정해 거북목과 척추 굽음을 차단합니다.`,
+        buttonLabelCoupang: `쿠팡에서 '초등 높이각도조절 원목 2단 독서대 거북목 예방' 바로 보기 ↗`
+      }, buildPinpointUrls('어린이 높이조절 원목 2단 독서대 거북목 교정', 'Wishacc Adjustable Bamboo Book Stand Ergonomic', '바른 자세 독서법', affConfig));
+
       if (isGrowingPains) {
         toys.push(tRoller68, tBar68, tTramp68, tRope68);
       } else if (isSedentary) {
         toys.push(tTramp68, tRope68, tBar68, tRoller68);
+      } else if (isPoorPosture) {
+        toys.push(tBar68, tRoller68, tTramp68, tRope68);
       } else {
         toys.push(tBar68, tRoller68, tTramp68, tRope68);
       }
@@ -1631,7 +1645,7 @@
         id: 'deadhang_foamroller_9_plus',
         categoryBadge: `[만 ${ageYears}세 × ${postureTraitLabel} 분석 기반] 척추 감압(+1.8cm) 철봉 & 폼롤러`,
         name: '무타공 안전 잠금 실내 문틀 철봉 (데드행 바) & 척추 신전 EPP 폼롤러 세트',
-        activeSpec: '저녁 30초×3세트 패시브 데드행 척추 견인 + 흉추 가동성 복원',
+        activeSpec: '저녁 30초×3세트 패시브 데드행 척추 견인 + 흉추 가동성 복원 (PMID:22441957)',
         whyNeeded: `만 ${ageYears}세(${height}cm) 장시간 착석으로 눌린 척추 디스크 수분을 복원해 숨은 키 1.8cm를 되찾아줍니다.`,
         buttonLabelCoupang: `쿠팡에서 '무타공 안전 잠금 문틀 철봉 실내 턱걸이봉 폼롤러' 바로 보기 ↗`
       }, buildPinpointUrls('무타공 안전 잠금 문틀 철봉 실내 데드행 턱걸이봉', 'Doorway Pull Up Bar No Screw Foam Roller Spine', '척추 교정 스트레칭 가이드', affConfig));
@@ -1640,7 +1654,7 @@
         id: 'jumprope_digital_9_plus',
         categoryBadge: `[만 ${ageYears}세 × 급성장기(PHV) 분석 기반] 고속 베어링 디지털 카운터 줄넘기`,
         name: '청소년 고속 베어링 디지털 카운터 줄넘기 & 무소음 점핑매트 세트',
-        activeSpec: '성장판 닫히기 전 급성장기 매일 1,000회 수직 점프 카운팅',
+        activeSpec: '성장판 닫히기 전 급성장기 매일 1,000회 수직 점프 카운팅 (볼프의 법칙, PMID:19164344)',
         whyNeeded: `사춘기 급성장 골든타임에 성장판 연골세포 분열을 최대치로 자극하는 필수 기구입니다.`,
         buttonLabelCoupang: `쿠팡에서 '청소년 고속 베어링 디지털 카운터 줄넘기 실내 점핑매트' 바로 보기 ↗`
       }, buildPinpointUrls('청소년 고속 베어링 디지털 카운터 줄넘기 실내 점핑매트', 'High Speed Bearing Digital Jump Rope Kids', '사춘기 성장판 점프 운동', affConfig));
@@ -1649,13 +1663,24 @@
         id: 'trampoline_heavy_9_plus',
         categoryBadge: `[만 ${ageYears}세 × 유산소·성장호르몬 분석 기반] 고중량 무소음 피트니스 리바운더`,
         name: '고중량 지지 8각형 무소음 실내 피트니스 리바운더 트램폴린',
-        activeSpec: '관절 충격 없는 고강도 점핑 인터벌 + 체지방·성조숙 방어',
+        activeSpec: '관절 충격 없는 고강도 점핑 인터벌 + 체지방·성조숙 방어 (볼프의 법칙, PMID:19164344)',
         whyNeeded: `무릎 관절 무리 없이 성장호르몬 분비를 촉진하고 적정 체중을 유지하는 홈트 기구입니다.`,
         buttonLabelCoupang: `쿠팡에서 '고중량 무소음 실내 트램폴린 리바운더 점핑매트' 바로 보기 ↗`
       }, buildPinpointUrls('고중량 무소음 실내 트램폴린 리바운더 점핑매트', 'Heavy Duty Silent Fitness Trampoline Rebounder', '청소년 홈트레이닝 리바운더', affConfig));
 
+      const tStand9 = Object.assign({
+        id: 'posture_stand_jumprope_6_8',
+        categoryBadge: `[만 ${ageYears}세 × ${postureTraitLabel} 분석 기반] 경추 C커브 원목 2단 독서대 & 척추정렬`,
+        name: '위즈독서대 와이드 높이·각도조절 원목 2단 독서대 (경추 15도 시야각 보장)',
+        activeSpec: '경추 15도 시야각 유지로 고개 숙임 방지(경추 18kg 하중 차단) + 숨은 키 1.8cm 복원 (Hansraj 연구, PMID:25393825)',
+        whyNeeded: `장시간 스마트폰·교재를 보며 생기는 거북목과 굽은 등을 방지하여 척추 변형에 의한 키 손실을 막아줍니다.`,
+        buttonLabelCoupang: `쿠팡에서 '위즈독서대 와이드 높이조절 원목 2단 독서대' 바로 보기 ↗`
+      }, buildPinpointUrls('위즈독서대 높이조절 원목 2단 독서대 거북목 예방', 'Wishacc Adjustable Bamboo Book Stand Ergonomic', '초등 바른 자세 독서법', affConfig));
+
       if (isSedentary) {
         toys.push(tTramp9, tRope9, tBar9);
+      } else if (isPoorPosture) {
+        toys.push(tBar9, tRope9, tTramp9);
       } else {
         toys.push(tBar9, tRope9, tTramp9);
       }
@@ -2444,24 +2469,27 @@
       threePicks.push({ item: items[1], sub: sub2, badgeKo: '엄선 3위 (인기 대안)', badgeEn: 'Curated Pick #3' });
     }
 
+    const productCategory = (categoryType === 'supplement' || categoryType === 'toy') ? 'growth' : 'learning';
+
     if (isLearningCompact) {
       return `
         <div style="display: flex; flex-direction: column; gap: 0.55rem;">
           ${threePicks.map(({ item, sub }, idx) => `
-            <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: #FFFFFF; border: 1px solid ${accentColor}; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <div class="pinpoint-item-card" data-item-id="${item.id}" data-product-id="${item.id}" data-product-category="${productCategory}" style="background: #FFFFFF; border: 1px solid ${accentColor}; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.32;">
                 <span style="color: #1D4ED8; margin-right:0.3rem;">${idx === 0 ? '1위' : idx === 1 ? '2위' : '3위'}</span>${isEn ? sub.titleEn : sub.titleKo}
               </div>
               <div style="font-size: 0.79rem; color: #475569; line-height: 1.35;">
                 ${isEn ? sub.specEn : sub.specKo}
               </div>
-              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                  쿠팡 로켓배송 ↗
+              <div style="display: grid; grid-template-columns: ${categoryType === 'book' ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)'}; gap: 0.35rem; margin-top: 0.1rem;">
+                <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.35rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  🛒 쿠팡 로켓배송 최저가·학부모 후기 확인 ↗
                 </a>
-                <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                ${categoryType === 'book' ? `
+                <a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                   YES24 도서 ↗
-                </a>
+                </a>` : ''}
               </div>
             </div>
           `).join('')}
@@ -2472,7 +2500,7 @@
     return `
       <div style="display: flex; flex-direction: column; gap: 0.7rem;">
         ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
-          <div class="pinpoint-item-card" data-item-id="${item.id}" style="background: #FFFFFF; border: 1.5px solid ${accentColor}; border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem;">
+          <div class="pinpoint-item-card" data-item-id="${item.id}" data-product-id="${item.id}" data-product-category="${productCategory}" style="background: #FFFFFF; border: 1.5px solid ${accentColor}; border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
               <span style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.16rem 0.55rem; border-radius: 9999px;">
                 ${isEn ? badgeEn : badgeKo}
@@ -2491,13 +2519,12 @@
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-              <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                쿠팡 로켓배송 ↗
+              <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 42px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.42rem 0.65rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                🛒 쿠팡 로켓배송 최저가·학부모 후기 확인 ↗
               </a>
-              ${categoryType === 'supplement'
-                ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="iherb" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">iHerb 직구 ↗</a>`
-                : `<a href="${sub.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">YES24 도서 ↗</a>`}
-              <a href="${sub.adpickShoppingUrl || `https://click.linkprice.com/click.php?m=11st&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent('https://search.11st.co.kr/pc/total-search?kwd=' + encodeURIComponent(sub.cpQuery || item.coupangQuery || item.name || ''))}`}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="linkprice-11st" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.38rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">11번가 ↗</a>
+              ${categoryType === 'supplement' && sub.hasExactIherb
+                ? `<a href="${sub.iherbUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="iherb" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 38px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.8rem; font-weight: 800; padding: 0.38rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">iHerb 직구 ↗</a>`
+                : ''}
             </div>
           </div>
         `).join('')}
@@ -2706,13 +2733,13 @@
     const suppTraitNote = getTraitSpecificNote(profile, 'supplement', isEn);
 
     return `
-      <div class="pinpoint-category-box" id="pinpoint-supplements-box" style="margin-top: 1rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1.1rem; text-align: left;">
+      <div class="pinpoint-category-box" id="pinpoint-supplements-box" data-product-category="growth" style="margin-top: 1rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1.1rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
           <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px;">
-            [영양·수면 분석 기반 추천] 맞춤 성장 영양제 TOP 3
+            우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 · [생후 ${Math.round(Number(profile.exactMonths || profile.ageMonths) || 120)}개월 영양·수면 분석 기반] 맞춤 성장 영양제
           </span>
           <span style="font-size: 0.74rem; color: #1D4ED8; font-weight: 700;">
-            연령별 목표 섭취량 × 식습관·수면 특성 매칭
+            연령별 목표 섭취량 × 식습관·수면 결핍(PMID/KDCA) 매칭
           </span>
         </div>
         <p style="font-size: 0.84rem; color: #0F172A; margin: 0 0 0.7rem 0; line-height: 1.45;">
@@ -2732,13 +2759,13 @@
     const toyTraitNote = getTraitSpecificNote(profile, 'toy', isEn);
 
     return `
-      <div class="pinpoint-category-box" id="pinpoint-toys-box" style="margin-top: 1rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1.1rem; text-align: left;">
+      <div class="pinpoint-category-box" id="pinpoint-toys-box" data-product-category="growth" style="margin-top: 1rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1.1rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
           <span style="font-size: 0.76rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px;">
-            [체형·생체역학 분석 기반 추천] 척추 감압 &amp; 성장판 점핑 기구 TOP 3
+            우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 · [생후 ${Math.round(Number(profile.exactMonths || profile.ageMonths) || 120)}개월 체형·생체역학 분석 기반] 척추 감압 &amp; 성장판 점핑 기구
           </span>
           <span style="font-size: 0.74rem; color: #1D4ED8; font-weight: 700;">
-            숨은 키 +1.8cm 복원 × 볼프의 법칙 점핑 자극
+            숨은 키 +1.8cm 복원 × 볼프의 법칙(PMID:19164344) 점핑 자극
           </span>
         </div>
         <p style="font-size: 0.84rem; color: #0F172A; margin: 0 0 0.7rem 0; line-height: 1.45;">
@@ -2775,7 +2802,7 @@
         activeSpec: '엄지·검지·중지 삼지집기(Tripod Grasp) & 눈-손 협응 정밀 훈련',
         whyNeeded: `생후 ${ageMonths}개월 소근육 민감기에 손끝 신경과 전두엽 실행기능을 동시에 깨웁니다.`,
         buttonLabelCoupang: `쿠팡에서 '몬테소리 원목 집게 구슬꿰기 유아 안전가위 소근육 교구' 바로 보기 ↗`
-      }, buildPinpointUrls('몬테소리 소근육 교구 원목 집게 구슬꿰기 유아 안전가위 세트', 'Montessori Wooden Pincer Grasp Fine Motor Beads Toy', '몬테소리 소근육 놀이 교구', affConfig));
+      }, buildPinpointUrls('멜리사앤더그 원목 대형 구슬꿰기 유아 소근육 교구', 'Montessori Wooden Pincer Grasp Fine Motor Beads Toy', '몬테소리 소근육 놀이 교구', affConfig));
 
       const mShelf = Object.assign({
         id: 'montessori_cylinder_shelf_1_3',
@@ -2784,7 +2811,7 @@
         activeSpec: '크기·높이·굵기 시각 변별력 + 스스로 꺼내고 정리하는 자율성 훈련',
         whyNeeded: '아이 스스로 교구를 선택하고 제자리에 정리하며 전두엽 질서감을 형성합니다.',
         buttonLabelCoupang: `쿠팡에서 '몬테소리 꼭지원기둥 실린더 원목 전면 교구장' 바로 보기 ↗`
-      }, buildPinpointUrls('몬테소리 꼭지원기둥 실린더 블록 원목 전면 교구장', 'Montessori Cylinder Blocks Wooden Bookshelf Kids', '몬테소리 자율 환경 교구장', affConfig));
+      }, buildPinpointUrls('몬테소리 원목 꼭지원기둥 4종 실린더 블록 교구', 'Montessori Cylinder Blocks Wooden Bookshelf Kids', '몬테소리 자율 환경 교구장', affConfig));
 
       const mBook = Object.assign({
         id: 'sensory_visual_book_1_3',
@@ -2826,7 +2853,7 @@
         activeSpec: '구체물 도형 회전 조작 + 10 이하 가르기·모으기 수감각 체득',
         whyNeeded: '단순 암기 대신 손끝으로 도형과 수를 조작해 수학 자신감을 높여줍니다.',
         buttonLabelCoupang: `쿠팡에서 '원목 칠교놀이 소마큐브 유아 창의사고력 수학' 바로 보기 ↗`
-      }, buildPinpointUrls('원목 칠교놀이 소마큐브 유아 창의사고력 수학 퍼즐', 'Wooden Tangram Soma Cube Geometric Puzzle Kids', '유아 창의사고력 도형 퍼즐', affConfig));
+      }, buildPinpointUrls('매쓰타임 원목 칠교놀이 소마큐브 창의도형 세트', 'Wooden Tangram Soma Cube Geometric Puzzle Kids', '유아 창의사고력 도형 퍼즐', affConfig));
 
       if (needsFocusToolFirst) {
         tools.push(fTimer, fGabe, fSoma);
@@ -2841,7 +2868,7 @@
         activeSpec: '중력·운동에너지 가설 실험 + 3차원 트랙 설계 전두엽 계획 회로 강화',
         whyNeeded: `스마트폰 대신 손끝으로 트랙 높이와 각도를 설계하며 물리적 인과관계를 깨우칩니다.`,
         buttonLabelCoupang: `쿠팡에서 '그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이' 바로 보기 ↗`
-      }, buildPinpointUrls('그래비트랙스 코어 스타터 세트 소마큐브 칠교놀이', 'Ravensburger GraviTrax Marble Run STEM Toy', '초등 과학 탐구 도형 퍼즐', affConfig));
+      }, buildPinpointUrls('라벤스부르거 그래비트랙스 코어 스타터 세트 정품', 'Ravensburger GraviTrax Marble Run STEM Toy', '초등 과학 탐구 도형 퍼즐', affConfig));
 
       const gStand = Object.assign({
         id: 'ergonomic_bookstand_6_8',
@@ -2884,7 +2911,7 @@
         activeSpec: '상단 교재 독서 + 하단 백지복습 필기 2단 구조화 + 25분 뽀모도로',
         whyNeeded: '방대한 교재를 눈높이에 고정해 거북목을 막고 25분 고밀도 딥워크 몰입을 실현합니다.',
         buttonLabelCoupang: `쿠팡에서 '와이드 높이조절 원목 2단 독서대 무소음 타이머' 바로 보기 ↗`
-      }, buildPinpointUrls('무소음 시각 타이머 공부 시계 원목 2단 독서대', 'Adjustable 2-Tier Wooden Book Stand Ergonomic Reading Holder', '자기주도학습 딥워크 독서대', affConfig));
+      }, buildPinpointUrls('위즈독서대 높이각도조절 원목 2단 독서대', 'Adjustable 2-Tier Wooden Book Stand Ergonomic Reading Holder', '자기주도학습 딥워크 독서대', affConfig));
 
       const pCornell = Object.assign({
         id: 'cornell_active_recall_planner_9_plus',
@@ -2893,7 +2920,7 @@
         activeSpec: '단서·핵심개념·1줄 요약 3분할 코넬 노트 + 오답 원인 역추적 (인출 +50%)',
         whyNeeded: '수동적 듣기에서 벗어나 책을 덮고 스스로 인출(Active Recall)하는 메타인지를 완성합니다.',
         buttonLabelCoupang: `쿠팡에서 '코넬식 메타인지 백지복습 노트 100일 스터디플래너' 바로 보기 ↗`
-      }, buildPinpointUrls('코넬노트 백지복습 노트 초등 중등 메타인지 자기주도 스터디플래너', 'Cornell Notes Notebook Study Planner Active Recall Student', '메타인지 공부법 코넬노트 스터디플래너', affConfig));
+      }, buildPinpointUrls('코넬식 백지복습 요약 노트 세트', 'Cornell Notes Notebook Study Planner Active Recall Student', '메타인지 공부법 코넬노트 스터디플래너', affConfig));
 
       if (needsRecallFirst) {
         tools.push(pCornell, pStand, pMicro);
@@ -2917,13 +2944,13 @@
     const learningTools = curatePillar2LearningTools(profile, affConfig);
 
     return `
-      <div class="pinpoint-category-box" id="pillar2-learning-tools-box" style="margin-top: 0.5rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1rem; text-align: left;">
+      <div class="pinpoint-category-box" id="pillar2-learning-tools-box" data-product-category="learning" style="margin-top: 0.5rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 1rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
           <span style="font-size: 0.78rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px;">
-            1. [만 ${ageYears}세 집중·사고력 분석 기반] 맞춤 학습도구 &amp; 교구 TOP 3
+            우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 · 1. [생후 ${Math.round(Number(profile.exactMonths || ageMonths) || 120)}개월(만 ${ageYears}세) 집중·사고력 기반] 맞춤 교구 &amp; 학습도구 TOP 3
           </span>
-          <span style="font-size: 0.73rem; color: #C4B5FD; font-weight: 700;">
-            집중시간 × 흡수스타일 맞춤 3선
+          <span style="font-size: 0.73rem; color: #1D4ED8; font-weight: 700;">
+            뇌신경 발달(PMID) × 학습스타일 맞춤 처방
           </span>
         </div>
         ${renderCategoryProductCards(learningTools, 'rgba(29, 78, 216, 0.18)', 'learning_tool', isEn)}
@@ -2967,9 +2994,9 @@
             : '하루 15분 1지문 핵심어 찾기 + 마인드맵 요약으로 국어·수학 문장제 독해력 동시 강화',
           whyKo: '눈으로만 흘려 읽는 습관을 잡고 핵심 인과관계를 구조화합니다.'
         }, buildPinpointUrls(
-          ageYears <= 3 ? '유아 첫 오감 플랩북 말놀이 그림책 세트' : (ageYears <= 6 ? '기적의 유아 독해 한글 어휘 그림책 세트' : (ageYears <= 9 ? '천재교육 하루 한장 독해 기적의 독서 논술 초등 문해력 워크북' : '디딤돌 초등 고학년 중등 비문학 독해력 어휘력 워크북')),
+          ageYears <= 3 ? '어스본 코리아 요리조리 열어보는 플랩북' : (ageYears <= 6 ? '길벗스쿨 기적의 유아 독해' : (ageYears <= 9 ? '천재교육 하루 한장 독해 초등 국어' : '디딤돌 초등 독해력 고학년')),
           'Scholastic Reading Comprehension Graphic Organizers Workbook',
-          ageYears <= 3 ? '유아 오감 말놀이 그림책' : (ageYears <= 6 ? '기적의 유아 독해' : (ageYears <= 9 ? '하루 한장 독해 초등 문해력' : '디딤돌 비문학 독해력')),
+          ageYears <= 3 ? '어스본 요리조리 열어보는 플랩북' : (ageYears <= 6 ? '기적의 유아 독해' : (ageYears <= 9 ? '천재교육 하루 한장 독해' : '디딤돌 초등 독해력')),
           affConfig
         ))
       },
@@ -2993,9 +3020,9 @@
           specKo: '구체물 도형 회전 조작 + 문장제 조건을 그림·식으로 바꾸는 단계별 사고력 훈련',
           whyKo: '기계적 암산에서 벗어나 도형 감각과 응용 문제 해결력을 길러줍니다.'
         }, buildPinpointUrls(
-          ageYears <= 3 ? '몬테소리 원목 도형 맞추기 퍼즐 수감각 블록' : (ageYears <= 6 ? '소마셈 유아 창의사고력 수학 칠교놀이 소마큐브 워크북' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토 도형 문장제 워크북' : '디딤돌 초등 사고력 수학 문장제 기하 도형 워크북')),
+          ageYears <= 3 ? '멜리사앤더그 원목 도형 맞추기 퍼즐' : (ageYears <= 6 ? '소마셈 K단계 유아 연산 워크북' : (ageYears <= 9 ? '창의사고력 수학 팩토 연산 도형' : '디딤돌 초등 최상위수학 사고력')),
           'Singapore Math Challenging Word Problems Spatial Geometry Workbook',
-          ageYears <= 3 ? '유아 원목 도형 퍼즐' : (ageYears <= 6 ? '소마셈 창의사고력 수학' : (ageYears <= 9 ? '창의사고력 수학 팩토 플라토' : '디딤돌 사고력 수학 문장제')),
+          ageYears <= 3 ? '유아 원목 도형 퍼즐' : (ageYears <= 6 ? '소마셈 K단계' : (ageYears <= 9 ? '창의사고력 수학 팩토' : '디딤돌 최상위수학')),
           affConfig
         ))
       },
@@ -3023,9 +3050,9 @@
             : '단서(Cue)·핵심개념·1줄 요약 3분할 코넬 노트 + 오답 원인 역추적 체크리스트',
           whyKo: '책을 덮고 스스로 떠올려 적으며 해마 단기기억을 장기기억으로 코팅합니다.'
         }, buildPinpointUrls(
-          ageYears <= 3 ? '유아 사물 인지 플래시카드 기억력 플랩북' : (ageYears <= 6 ? '유아 그림일기장 이야기 순서 카드 생각열기 워크북' : '코넬노트 백지복습 노트 초등 중등 메타인지 자기주도 스터디플래너'),
+          ageYears <= 3 ? '어스본 코리아 첫 낱말 플래시카드' : (ageYears <= 6 ? '길벗스쿨 기적의 생각열기 유아 워크북' : '코넬식 백지복습 요약 노트 세트'),
           'Cornell Notes Notebook Study Planner Active Recall Student',
-          ageYears <= 6 ? '유아 생각열기 그림일기 워크북' : '메타인지 공부법 코넬노트 스터디플래너',
+          ageYears <= 6 ? '기적의 생각열기' : 'EBS 메타인지 공부법',
           affConfig
         ))
       },
@@ -3047,7 +3074,7 @@
           specKo: '남은 시간을 보여주는 무소음 원판 타이머 + 연령 맞춤 손끝 입체 미션 클리어',
           whyKo: '디지털 화면 없이도 손끝 조작을 통해 건강한 성취 도파민을 회복시킵니다.'
         }, buildPinpointUrls(
-          ageYears <= 3 ? '유아 원목 자석 낚시 구슬꿰기 타임타이머' : (ageYears <= 6 ? '유아 투명 자석블록 타임타이머 집중력 시계' : '타임타이머 무소음 시각 타이머 스마트게임즈 IQ퍼즐 두뇌보드게임'),
+          ageYears <= 3 ? '멜리사앤더그 원목 자석 낚시놀이 퍼즐' : (ageYears <= 6 ? '매그나타일즈 투명 자석블록 세트' : '스마트게임즈 아이큐 퍼즐 프로 보드게임'),
           'Time Timer MOD Visual Timer SmartGames IQ Puzzler Pro',
           '스마트폰 이기는 독서 공부 습관',
           affConfig
@@ -3095,9 +3122,9 @@
           specKo: `만 ${ageYears}세 발달 맞춤 어휘 확장 워크북 + 식탁·차 안에서 대화 턴을 늘려주는 질문카드`,
           whyKo: '단어 뜻을 정확히 알고 자기 생각을 완성된 문장으로 표현하는 힘을 길러줍니다.'
         }, buildPinpointUrls(
-          ageYears <= 3 ? '유아 낱말 사운드북 어휘 병풍책 말놀이 카드' : (ageYears <= 6 ? '유아 한글 어휘 스티커북 유아 하브루타 질문카드' : '기적의 어휘력 초등 교과서 어휘 한자어 워크북 하브루타 질문카드'),
+          ageYears <= 3 ? '어스본 코리아 유아 첫 낱말 사운드북' : (ageYears <= 6 ? '길벗스쿨 기적의 유아 어휘력' : '길벗스쿨 기적의 어휘력 초등'),
           'Wordly Wise 3000 Vocabulary Workbook Conversation Cards Kids',
-          ageYears <= 6 ? '유아 어휘력 말놀이 그림책' : '기적의 어휘력 초등 어휘 워크북',
+          ageYears <= 6 ? '기적의 유아 어휘력' : '길벗스쿨 기적의 어휘력',
           affConfig
         ))
       }
@@ -3177,7 +3204,7 @@
         <div class="pinpoint-category-box" id="pinpoint-books-box" style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 0.9rem 1rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem;">
             <span style="font-size: 0.78rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px;">
-              2. [만 ${ageYears}세 맞춤] 필독서 &amp; 사고력 워크북 TOP 3
+              2. [생후 ${Math.round(Number(profile.exactMonths || ageMonths) || 120)}개월(만 ${ageYears}세) 맞춤] 필독서 &amp; 사고력 워크북 TOP 3
             </span>
             <span style="font-size: 0.73rem; color: #1D4ED8; font-weight: 700;">
               강점·보완 성향 맞춤 3선
@@ -3185,7 +3212,7 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.55rem;">
             ${topBooks.map((item, idx) => `
-              <div class="pinpoint-item-card learning-curated-card" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <div class="pinpoint-item-card learning-curated-card" data-item-id="${item.key || 'workbook_' + idx}" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
                 <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.32;">
                   <span style="color: #1D4ED8; margin-right:0.3rem;">${idx === 0 ? '1위' : idx === 1 ? '2위' : '3위'}</span>${item.titleKo}
                 </div>
@@ -3193,10 +3220,10 @@
                   ${item.whyKo || item.specKo}
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     YES24 도서 ↗
                   </a>
-                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #F8FAFC; border: 1px solid #BFDBFE; color: #0F172A; text-decoration: none; text-align: center; font-size: 0.78rem; font-weight: 800; border-radius: 8px;">쿠팡 로켓배송 ↗</a>
+                  <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="display: flex; min-height: 40px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; text-decoration: none; text-align: center; font-size: 0.8rem; font-weight: 900; border-radius: 8px;">🛒 쿠팡 로켓배송 최저가·후기 ↗</a>
                 </div>
               </div>
             `).join('')}
@@ -3229,19 +3256,19 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.55rem;">
             ${regionalTickets.map((tk, idx) => `
-              <div class="regional-ticket-card" data-course-id="${tk.id}" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <div class="regional-ticket-card" data-course-id="${tk.id}" data-product-id="${tk.id}" data-product-category="learning" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
                 <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.32;">
                   <span style="color: #1D4ED8; margin-right:0.3rem;">${idx === 0 ? '1위' : idx === 1 ? '2위' : '3위'}</span>${tk.destination}
                 </div>
                 <div style="font-size: 0.79rem; color: #475569; line-height: 1.35;">
                   ${tk.ageSpecificGuide}
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="${tk.myrealtripUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                    마이리얼트립 ↗
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
+                  <a href="${tk.myrealtripUrl || tk.klookUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="myrealtrip" data-product-id="${tk.id}" data-product-category="learning" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                    🎟️ 최저가 티켓·체험권 확인하기 →
                   </a>
-                  <a href="${tk.klookUrl}" target="_blank" rel="noopener noreferrer" class="pinpoint-direct-link" data-merchant="klook" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #FFF7ED; border: 1.5px solid #FB923C; border-radius: 8px; color: #C2410C; font-size: 0.78rem; font-weight: 900; text-decoration: none; text-align: center;">
-                    클룩(Klook) ↗
+                  <a href="${tk.klookUrl || tk.myrealtripUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="klook" data-product-id="${tk.id}" data-product-category="learning" style="display: flex; min-height: 36px; align-items: center; justify-content: center; background: #F8FAFC; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.78rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                    클룩(Klook) 패스 확인 ↗
                   </a>
                 </div>
               </div>
@@ -3257,15 +3284,681 @@
    */
   function renderPinpointAndLifecycleSection(profile = {}, affConfig = {}) {
     return `
-      ${renderLifecycleTimelineOnly(profile, affConfig)}
-      ${renderContextualSupplementsPrescription(profile, affConfig)}
-      ${renderContextualBiomechanicsPrescription(profile, affConfig)}
-      ${renderCustomEducationChapter(profile, affConfig)}
-      ${renderCustomTravelChapter(profile, affConfig)}
+      <div id="paper-matched-product-prescription" class="paper-matched-prescription-container" style="text-align: left; margin-top: 1rem;">
+        <div style="background: #EFF6FF; border: 2px solid #3B82F6; border-radius: 20px; padding: 1.1rem 1.25rem; margin-bottom: 1.2rem;">
+          <div style="font-size: 1.02rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">
+            우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 (Paper-Matched Product Prescription)
+          </div>
+          <div style="font-size: 0.82rem; color: #1E40AF; line-height: 1.45;">
+            아이의 신체 성장 결핍(수면·단백질·칼슘·점핑)과 두뇌·학습 발달 단계(몬테소리·가베·문해력)를 질병관리청(KDCA) 및 뇌과학 학술 논문(PMID)과 대조하여 엄선한 1:1 맞춤 처방입니다.
+          </div>
+        </div>
+        ${renderLifecycleTimelineOnly(profile, affConfig)}
+        ${renderContextualSupplementsPrescription(profile, affConfig)}
+        ${renderContextualBiomechanicsPrescription(profile, affConfig)}
+        ${renderCustomEducationChapter(profile, affConfig)}
+        ${renderCustomTravelChapter(profile, affConfig)}
+      </div>
+    `;
+  }
+
+
+  // ===========================================================================
+  // MONTHLY MICRO-COHORT ANALYSIS, STEP-BY-STEP SOLUTIONS & PINPOINT PRODUCTS
+  // (12mo ~ 216mo Fine-Grained K-DST / KDCA Developmental & Clinical Curation)
+  // ===========================================================================
+  const MONTHLY_MICRO_CURATION_DB = [
+    {
+      minM: 12, maxM: 17, bandTitle: '생후 12~17개월 (돌 직후 직립보행 개시 & 손끝 집기 개화기)',
+      growthAnalysis: '모체로부터 받은 저장철(Ferritin)과 아연이 고갈되는 시기로, 우유에만 의존하면 빈혈·식욕부진·야간 잠투정이 발생합니다. 첫 직립보행과 함께 하지 장관골에 체중 부하가 시작되며 연간 10~12cm 급성장하는 구간입니다.',
+      growthSolutions: [
+        '영양 해결방안: 우유 섭취를 하루 400~500ml 이하로 제한하고, 다진 소고기(철분·아연) 이유식/유아식과 액상 구연산칼슘·비타민D3 1000IU 드롭을 매일 아침 급여하세요.',
+        '수면 해결방안: 밤중 수유를 완전히 끊고 저녁 8시 30분~9시 사이 암막 환경에서 입면시켜 야간 성장호르몬(GH) 초기 분비 리듬을 고정하세요.',
+        '신체 해결방안: 미끄럼 방지 매트 위에서 맨발 걷기와 낮 시간 20분 유모차 산책(자연 채광 비타민D 합성)을 매일 실천하세요.'
+      ],
+      growthSupp: { name: '영유아 액상 비타민D3 1000IU 드롭 & 액상 구연산 칼슘·마그네슘 시럽', spec: '돌 아기 맞춤 무색소 액상 드롭 · 철분/칼슘 흡수율 극대화', cpQ: '아기 액상 비타민D 드롭 차일드라이프 액상칼슘', ihQ: 'ChildLife Liquid Calcium Magnesium Baby Vitamin D3 Drops', yesQ: '돌아기 유아식 영양사전' },
+      growthEquip: { name: '영유아 층간소음 방지 고밀도 TPE 폴더매트 & 걸음마 밸런스 워커', spec: '첫 걸음마 무릎·발목 성장판 충격 흡수 및 직립 균형감각 발달', cpQ: '유아 고밀도 층간소음 매트 아기 걸음마 보조기', ihQ: 'Toddler Soft Play Mat Balance Walker Toy', yesQ: '영유아 대근육 발달 놀이' },
+      learningAnalysis: '보건복지부 K-DST 12~17개월 구간으로, 엄지와 검지 끝으로 작은 물체를 집는 정교한 집기(Pincer Grasp)와 대상영속성·첫 낱말(엄마, 맘마) 발화가 열리는 결정적 시기입니다.',
+      learningSolutions: [
+        '소근육 해결방안: 손바닥 전체로 쥐기에서 엄지·검지 끝으로 집어 구멍에 넣는 원목 동전넣기·공넣기 놀이를 하루 10분 진행하세요.',
+        '언어 해결방안: 아이가 손가락으로 가리키는 사물을 부모가 눈을 맞추며 정확한 명사와 의성어("멍멍 강아지네!")로 하루 30회 이상 들려주세요.',
+        '환경 해결방안: 식사 중 스마트폰 영상을 100% 차단하고, 손으로 만지고 들춰보는 촉감 보드북을 거실 손닿는 곳에 배치하세요.'
+      ],
+      learningTool: { name: '몬테소리 원목 동전넣기 상자(Object Permanence Box) & 대형 손잡이 꼭지퍼즐', spec: '생후 12~17개월 대상영속성 인지 + 엄지·검지 정밀 집기 훈련', cpQ: '몬테소리 원목 동전넣기 상자 아기 꼭지퍼즐 교구', ihQ: 'Montessori Object Permanence Box Wooden Knob Puzzle', yesQ: '몬테소리 0~3세 육아법' },
+      learningBook: { name: '어스본(Usborne) 간질간질 촉감책 & 첫 낱말 의성어·의태어 들춰보기 보드북', spec: '생후 12~17개월 손끝 촉각 수용체 자극 및 브로카 언어중추 점화', cpQ: '어스본 코리아 간질간질 촉감책 아기 보드북', ihQ: 'Usborne Touchy Feely Board Book Lift the Flap', yesQ: '어스본 간질간질 촉감책' }
+    },
+    {
+      minM: 18, maxM: 23, bandTitle: '생후 18~23개월 (제1급성장 후기 골기질 완성 & 어휘 폭발기)',
+      growthAnalysis: '만 2세 이전 제1급성장기를 마무리하며 유아기 성장 궤도로 진입하는 변곡점입니다. 어금니가 나면서 씹는 연습을 해야 하나, 물고 안 삼키거나 편식이 시작되면 성장 백분위가 급락하기 쉽습니다.',
+      growthSolutions: [
+        '영양 해결방안: 미각 세포 재생을 돕는 액상 글루콘산 아연(5~8mg)과 초유 분말을 요거트·음식에 섞어 급여하여 편식과 입짧음을 조기에 차단하세요.',
+        '수면 해결방안: 낮잠이 2회에서 1회(오후 1~3시)로 줄어드는 시기이므로 오후 3시 이후 낮잠을 피하고 밤 9시 정각 취침 루틴을 고정하세요.',
+        '신체 해결방안: 종아리·허벅지 성장판이 빠르게 자라며 밤에 다리를 칭얼거릴 수 있으므로 목욕 후 3분간 따뜻한 손으로 종아리를 마사지해 주세요.'
+      ],
+      growthSupp: { name: '영유아 액상 글루콘산 아연 시럽 & 뉴질랜드 초유·해조칼슘 분말 스틱', spec: '생후 18~23개월 편식·입짧음 교정 아연 + 골격 형성 초유칼슘', cpQ: '유아 액상 아연 시럽 아기 초유 칼슘 분말 스틱', ihQ: 'Kids Liquid Zinc Organic Colostrum Powder Toddler', yesQ: '아기 편식 유아식 레시피' },
+      growthEquip: { name: '스마트라이크/멜킨 유아 안전 손잡이형 미니 트램폴린 & 밸런스 징검다리', spec: '안전 핸들바 지지 점핑으로 소뇌 평형감각 및 하지 성장판 미세자극', cpQ: '유아 안전 손잡이 무소음 실내 트램폴린 징검다리', ihQ: 'Toddler Mini Trampoline with Handlebar Balance Stones', yesQ: '영유아 신체놀이 가이드' },
+      learningAnalysis: '보건복지부 K-DST 18~23개월 구간으로, 어휘가 50개 이상으로 급증하는 명명 폭발기(Naming Explosion)이자 양손 협응(한 손으로 잡고 다른 손으로 끼우기)이 완성되는 시기입니다.',
+      learningSolutions: [
+        '소근육 해결방안: 지름 3cm 이상의 원목 대왕 구슬꿰기와 자석 낚시놀이로 양손 협응력과 눈-손 조준력을 하루 10분씩 길러주세요.',
+        '언어 해결방안: 두 단어를 연결한 짧은 문장("엄마 물 줘", "큰 공 굴려")을 확장해 말해주고 첫 스티커 붙이기 놀이를 시작하세요.',
+        '환경 해결방안: 아이 키에 맞는 2단 전면 책꽂이와 낮은 교구장을 두어 아이 스스로 책을 고르고 꺼내 보게 하세요.'
+      ],
+      learningTool: { name: '멜리사앤더그 원목 대왕 구슬꿰기 & 원목 자석 물고기 낚시놀이 세트', spec: '생후 18~23개월 양손 협응(Bilateral Coordination) 및 집중력 발달', cpQ: '멜리사앤더그 원목 대형 구슬꿰기 유아 자석 낚시놀이', ihQ: 'Melissa Doug Primary Lacing Beads Magnetic Fishing Game', yesQ: '유아 소근육 놀이백과' },
+      learningBook: { name: '어스본 처음 시작하는 스티커북 & 두 단어 말놀이 플랩북 세트', spec: '손끝으로 떼고 붙이는 소근육 조작 + 어휘 폭발기 문장 확장', cpQ: '어스본 처음 시작하는 스티커북 유아 말놀이 그림책', ihQ: 'Usborne First Sticker Book Toddler Lift the Flap', yesQ: '어스본 처음 시작하는 스티커북' }
+    },
+    {
+      minM: 24, maxM: 29, bandTitle: '생후 24~29개월 (만 2세 전반 · 자율성 폭발 & 삼지집기 기초기)',
+      growthAnalysis: '만 2세에 접어들며 연간 성장속도가 8.0~9.5cm로 전환됩니다. "내가 할 거야!"라는 자율성이 강해지며 식탁에서 좋아하는 반찬만 고집하는 선택적 편식이 두드러지는 월령입니다.',
+      growthSolutions: [
+        '영양 해결방안: 아이가 스스로 집어 먹을 수 있는 핑거푸드(두부구이·소고기 주먹밥)와 함께 맛있게 씹어 먹는 무유당 연골·어골칼슘 츄어블/젤리를 제공하세요.',
+        '수면 해결방안: 취침 전 흥분도를 낮추기 위해 저녁 8시 이후 거실 조명을 50% 전구색으로 낮추고 수면 의식 그림책 1권을 읽어주세요.',
+        '신체 해결방안: 높이 차가 있는 논슬립 밸런스 징검다리 스톤을 거실에 배치해 발바닥 고유수용성감각과 무릎 성장판을 자극하세요.'
+      ],
+      growthSupp: { name: '만 2세 맞춤 오렌지맛 어골·연골칼슘 츄어블 & 비타민D3·아연 구미', spec: '24~29개월 유아가 스스로 맛있게 씹어 먹는 고흡수 칼슘·D3·아연', cpQ: '유아 어골칼슘 연골칼슘 비타민D 아연 츄어블 구미', ihQ: 'Toddler Chewable Calcium Vitamin D3 Zinc Gummies', yesQ: '만 2세 유아 영양가이드' },
+      growthEquip: { name: '위플레이/원더볼즈 유아 논슬립 하천 돌다리 밸런스 징검다리 스톤 세트', spec: '소뇌 전정기관(균형감각) 및 발바닥 아치·하지 성장판 동시 자극', cpQ: '유아 논슬립 밸런스 징검다리 스톤 실내 신체놀이', ihQ: 'Weplay River Stones Non Slip Balance Stepping Stones', yesQ: '유아 감각통합 신체놀이' },
+      learningAnalysis: '보건복지부 K-DST 24~29개월 구간으로, 엄지·검지·중지 세 손가락 힘(Tripod Grasp 기초)이 분리되고 크기·색깔 변별력이 자라는 전두엽 자율성 민감기입니다.',
+      learningSolutions: [
+        '소근육 해결방안: 원목 악어집게로 폼폼이를 집어 색깔별 컵에 옮기는 분류 놀이를 하루 10분 실천해 연필 쥐기의 기초 근육을 만드세요.',
+        '인지 해결방안: 크기가 다른 원기둥 블록을 구멍에 맞춰 끼우며 "누가 더 클까? 누가 더 길까?" 비교 어휘를 들려주세요.',
+        '환경 해결방안: 아이가 끝까지 혼자 해낼 수 있도록 난이도가 낮은 4~6조각 퍼즐과 선긋기 보드를 제공해 성취감을 키워주세요.'
+      ],
+      learningTool: { name: '몬테소리 원목 악어집게 폼폼이 색깔 분류함 & 원목 꼭지원기둥 4종 세트', spec: '생후 24~29개월 삼지집기 악력 강화 및 크기·굵기 시각 변별력 훈련', cpQ: '몬테소리 원목 집게 폼폼이 분류 꼭지원기둥 교구', ihQ: 'Montessori Wooden Tweezers Sorting Cylinder Blocks', yesQ: '몬테소리 일상감각 교구 가이드' },
+      learningBook: { name: '기탄 첫 선긋기·스티커 놀이북 & 시공주니어 잘 자요 달님 수면 그림책', spec: '운필력 기초 선긋기 훈련 + 밤 9시 규칙적 입면 수면 의식 형성', cpQ: '유아 첫 선긋기 스티커북 잘자요 달님 그림책', ihQ: 'Kumon Let us Sticker Paste Goodnight Moon Board Book', yesQ: '잘 자요 달님 시공주니어' }
+    },
+    {
+      minM: 30, maxM: 35, bandTitle: '생후 30~35개월 (만 2세 후반 · 야간 성장통 방어 & 가위질 입문기)',
+      growthAnalysis: '낮 동안 대근육 활동량이 폭발하면서 밤에 자다가 다리가 아파 깨는 초기 야간 성장통이 시작되는 월령입니다. 뼈가 자라는 속도에 맞춰 칼슘·마그네슘 보충과 하지 근막 이완이 필수입니다.',
+      growthSolutions: [
+        '영양 해결방안: 저녁 식사 후 칼슘 흡수와 근육 이완을 동시에 돕는 구연산/어골칼슘 + 마그네슘 + 비타민D3 배합 영양제를 챙겨주세요.',
+        '수면 해결방안: 잠들기 15분 전 어린이용 소프트 폼롤러나 부모의 손으로 종아리·허벅지를 부드럽게 문질러 야간 성장통 각성을 예방하세요.',
+        '신체 해결방안: 안전 손잡이가 달린 무소음 실내 트램폴린에서 하루 10분 리듬 점핑으로 성장판 연골세포 분열을 촉진하세요.'
+      ],
+      growthSupp: { name: '유아 고흡수 연골·어골칼슘 & 마그네슘·비타민D3 성장통 케어 영양제', spec: '생후 30~35개월 골격 신장 및 야간 다리 근육 긴장 완화 맞춤 배합', cpQ: '유아 연골칼슘 어골칼슘 마그네슘 비타민D 어린이 영양제', ihQ: 'Kids Calcium Magnesium Vitamin D3 Chewable Liquid', yesQ: '유아 성장통과 수면 육아' },
+      growthEquip: { name: '멜킨스포츠 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 & 소프트 폼롤러', spec: '층간소음 제로 고탄성 밴드 점핑 + 취침 전 종아리 근막 이완 롤러', cpQ: '멜킨 유아 안전 손잡이 무소음 트램폴린 소프트 폼롤러', ihQ: 'Toddler Silent Rebounder Trampoline Soft Foam Roller', yesQ: '유아 성장 마사지 스트레칭' },
+      learningAnalysis: '보건복지부 K-DST 30~35개월 구간으로, 양손이 서로 다른 역할을 하는 유아 안전가위 오리기(한 손은 종이 잡고 한 손은 가위질)와 "왜?" 질문이 시작되는 시기입니다.',
+      learningSolutions: [
+        '소근육 해결방안: 스프링 보조 장치가 있는 유아 안전가위로 1번 만에 싹둑 자르는 직선 오리기 활동을 하루 10분 진행하세요.',
+        '언어 해결방안: 그림책을 읽을 때 "토끼가 왜 숨었을까?"처럼 원인을 물어보는 열린 질문을 하루 3회 건네주세요.',
+        '환경 해결방안: 오린 종이를 풀로 붙여 나만의 스크랩북을 만들게 하여 손끝 감각과 창의적 성취감을 연결해 주세요.'
+      ],
+      learningTool: { name: '유아 스프링 안전가위 첫 오리기 교구 & 원목 도형 끼우기 퍼즐 세트', spec: '생후 30~35개월 손가락 분리 내재근 강화 및 눈-손 정밀 조준', cpQ: '유아 안전가위 오리기 세트 원목 도형 퍼즐 교구', ihQ: 'Toddler Safety Scissors Cutting Activity Wooden Shape Puzzle', yesQ: '유아 가위오리기 첫걸음' },
+      learningBook: { name: '기탄 가위오리기·종이접기 1단계 & 어스본 요리조리 열어보는 첫 플랩북', spec: '직선→넓은 곡선 단계별 오리기 + 호기심 폭발 입체 들춰보기 책', cpQ: '기탄 가위오리기 종이접기 어스본 요리조리 플랩북', ihQ: 'Kumon Let us Cut Paper Usborne Look Inside Board Book', yesQ: '기탄 가위오리기 종이접기 1집' }
+    },
+    {
+      minM: 36, maxM: 47, bandTitle: '생후 36~47개월 (만 3세 · 유아 정속 성장 안착 & 손끝 정교성 완성기)',
+      growthAnalysis: '유치원·어린이집 단체생활로 잔병치레가 잦아지며 면역에 에너지가 소모되어 키 성장이 일시 정체되기 쉬운 월령입니다. 식약처 인정 황기추출물(HT042)과 아연·초유로 성장 동력을 지켜야 합니다.',
+      growthSolutions: [
+        '영양 해결방안: 단체생활 면역과 성장판 연골세포 증식(IGF-1)을 동시에 돕는 황기추출물(HT042) 젤리/분말과 아연·초유 단백을 매일 보충하세요.',
+        '수면 해결방안: 밤 9시 30분 이전에 깊은 서파수면에 진입하도록 취침 2시간 전 과일·우유 등 야간 당분 섭취를 중단하세요.',
+        '신체 해결방안: 저상형 실내 문틀 철봉에 하루 15초 매달리기와 스펀지 구슬 줄넘기 넘기 놀이로 척추와 하지 성장판을 함께 자극하세요.'
+      ],
+      growthSupp: { name: '식약처 인정 황기추출물(HT042) 키성장 젤리/분말 & 어린이 초유·아연', spec: '생후 36~47개월(만 3세) 성장판 연골 증식(IGF-1) 및 단체생활 면역 케어', cpQ: '어린이 황기추출물 HT042 키성장 영양제 초유 아연', ihQ: 'Astragalus Extract Kids Immune Growth Zinc Colostrum', yesQ: '만 3세 면역과 키성장 식단' },
+      growthEquip: { name: '유아 소프트 스펀지 구슬 줄넘기 & 무타공 저상형 안전 문틀 철봉', spec: '바닥 소리로 박자를 익히는 첫 마디형 줄넘기 + 유아 척추 감압 철봉', cpQ: '유아 스펀지 구슬 줄넘기 어린이 안전 문틀 철봉', ihQ: 'Kids Soft Beaded Jump Rope Low Doorway Pull Up Bar', yesQ: '유아 첫 줄넘기 신체놀이' },
+      learningAnalysis: '만 3세(36~47개월)의 손끝 소근육 정교성은 초등 입학 후 수학·독해 성적을 예측하는 1위 지표(Grissmer et al., 2010)입니다. 색종이 접기와 선 맞춰 오리기, 1~5 수량 매칭이 핵심입니다.',
+      learningSolutions: [
+        '소근육 해결방안: 색종이 반 접기·네모 접기와 곡선/도형 오리기를 하루 15분 실천하여 손가락 끝 미세 근육을 완성하세요.',
+        '수리 해결방안: 숫자 기호만 외우게 하지 말고 원목 수막대나 바둑돌을 직접 하나씩 옮기며 1대1 대응 수감각을 익히게 하세요.',
+        '언어 해결방안: 잠자리 그림책을 읽은 뒤 "오늘 이야기에서 제일 재미있었던 장면 하나만 엄마한테 말해줄래?"로 회상 발화를 유도하세요.'
+      ],
+      learningTool: { name: '몬테소리 원목 수막대·숫자 퍼즐 & 유아 창의 가위오리기·종이접기 키트', spec: '생후 36~47개월 1:1 수량 매칭 감각 + 손끝 미세근육·운필력 완성', cpQ: '몬테소리 원목 수막대 숫자교구 유아 종이접기 가위오리기', ihQ: 'Montessori Number Rods Counting Pegs Origami Scissor Kit', yesQ: '만 3세 소근육 두뇌놀이' },
+      learningBook: { name: '기탄 가위오리기·종이접기 풀세트 & 유아 첫 감정·사회성 창작 그림책', spec: '직선·곡선·도형 오리기 마스터 + 또래 사회성·어휘 확장 그림책', cpQ: '기탄 가위오리기 종이접기 세트 유아 사회성 그림책', ihQ: 'Kumon Cutting Folding Workbooks Preschool Picture Book', yesQ: '기탄 가위오리기 종이접기 세트' }
+    },
+    {
+      minM: 48, maxM: 59, bandTitle: '생후 48~59개월 (만 4세 · 하지 장관골 증식 & 3D 입체 공간지각 개화기)',
+      growthAnalysis: '허벅지(대퇴골)와 정강이(경골) 성장판 연골세포가 활발히 증식하며 팔다리가 길어지는 시기입니다. 이 시기에 또래보다 키가 작다면 따라잡기 성장(Catch-up Growth)을 시작해야 할 1차 골든타임입니다.',
+      growthSolutions: [
+        '영양 해결방안: 식약처 인정 황기추출물(HT042)과 무유당 고흡수 어골·연골칼슘(700mg) + 비타민D3·K2를 아침·저녁으로 루틴화하세요.',
+        '수면 해결방안: 밤 9시 30분~10시 사이 완전 소등 수면을 사수하고, 입벌림 호흡이나 뒤척임이 있다면 실내 습도(50~55%)와 베개 높이를 점검하세요.',
+        '신체 해결방안: 매일 저녁 문틀 철봉에 20~30초 매달리기(척추 감압)와 실내 트램폴린 15분 점핑으로 성장판에 수직 압전 자극을 주세요.'
+      ],
+      growthSupp: { name: '식약처 인정 황기추출물(HT042) 키성장 & 어골·연골칼슘 비타민D3·K2', spec: '생후 48~59개월(만 4세) 따라잡기 성장 연골 증식 + 골화 칼슘 시너지', cpQ: '식약처 인정 키성장 황기추출물 HT042 어린이 어골칼슘', ihQ: 'Kids Bone Growth Calcium Citrate Vitamin D3 K2 Astragalus', yesQ: '만 4세 키성장 골든타임' },
+      growthEquip: { name: '멜킨 대형 무소음 실내 점핑 트램폴린 & 어린이 무타공 안전 문틀 철봉', spec: '볼프의 법칙 기반 하루 15분 성장판 점핑 + 저녁 30초 척추 데드행', cpQ: '멜킨 어린이 무소음 실내 트램폴린 안전 문틀 철봉', ihQ: 'Kids Silent Fitness Trampoline Doorway Pull Up Bar', yesQ: '아이 키 크는 점프 스트레칭' },
+      learningAnalysis: '평면(2D)에서 입체(3D)로 뇌가 확장되는 【두정엽 3차원 공간지각 및 심상회전(Mental Rotation) 민감기】입니다. 단순 감각 장난감에서 입체 조형 교구(은물·가베·자석블록)로 전환해야 합니다.',
+      learningSolutions: [
+        '공간지각 해결방안: 원목 가베(은물)와 투명 자석블록으로 대칭 구조물과 입체 집을 만들며 점·선·면·입체 기하학 감각을 깨워주세요.',
+        '수리 해결방안: 도형을 돌리고 뒤집어 맞추는 칠교놀이와 패턴블록으로 초등 도형·공간 추론의 시냅스 토대를 구축하세요.',
+        '습관 해결방안: 무소음 시각 타이머(15분)를 책상 위에 두고 한 가지 블록·워크북 미션을 끝까지 완수하는 전두엽 지구력을 기르세요.'
+      ],
+      learningTool: { name: '매그나타일즈/맥포머스 3D 입체 투명 자석블록 & 정통 원목 가베(은물) 세트', spec: '생후 48~59개월 두정엽 3D 심상회전 및 기하학 공간추론 집중 자극', cpQ: '매그나타일즈 투명 자석블록 100피스 원목 가베 세트', ihQ: 'Magna Tiles 100 Piece Clear Colors Wooden Froebel Gifts', yesQ: '엄마표 가베 놀이 가이드북' },
+      learningBook: { name: '유아 공간지각 도형·규칙 찾기 창의사고력 수학 워크북 & 인체 입체 팝업북', spec: '도형 대칭·회전 두뇌 훈련 + 스스로 골고루 먹게 만드는 성장판 팝업북', cpQ: '유아 공간지각 도형 창의사고력 수학 워크북 인체 팝업북', ihQ: 'Preschool Spatial Reasoning Math Workbook Human Body Pop Up', yesQ: '유아 공간지각 창의수학 워크북' }
+    },
+    {
+      minM: 60, maxM: 71, bandTitle: '생후 60~71개월 (만 5세 · 전두엽 실행기능 도약 & 점핑 골밀도 완성기)',
+      growthAnalysis: '취학 전 골밀도와 신체 비율이 결정되는 시기입니다. 볼프의 법칙(Wolff\'s Law)에 따른 줄넘기·트램폴린 수직 점프 자극이 성장판 연골세포 분열 속도를 1.5배 이상 끌어올립니다.',
+      growthSolutions: [
+        '영양 해결방안: 활동량 급증에 맞춰 일일 칼슘 800mg(어골·연골칼슘 + 폴리감마글루탐산)과 양질의 아미노산(초유·아르기닌)을 보충하세요.',
+        '수면 해결방안: 취침 전 3분간 어린이용 EPP 폼롤러로 등과 종아리를 펴주어 성장통을 예방하고 밤 9시 30분 숙면을 유지하세요.',
+        '신체 해결방안: 실내 무소음 에어볼 디지털 줄넘기 또는 트램폴린으로 매일 300회 점프 미션을 달성해 하지 성장판을 깨우세요.'
+      ],
+      growthSupp: { name: '어린이 고흡수 어골·연골칼슘 800mg & 식약처 인정 황기추출물(HT042)', spec: '생후 60~71개월(만 5세) 취학 전 기초 신장 비축 및 최대 골밀도 확보', cpQ: '어린이 어골칼슘 연골칼슘 800mg 황기추출물 HT042', ihQ: 'Kids Bone Strength Calcium D3 K2 Magnesium Chewable', yesQ: '취학 전 아이 키성장 백과' },
+      growthEquip: { name: '어린이 무소음 노라인 디지털 카운터 줄넘기 & 척추 신전 EPP 폼롤러', spec: '층간소음 없는 실내 에어볼 점프 카운팅 + 취침 전 흉추·종아리 신전', cpQ: '어린이 디지털 카운터 줄넘기 무소음 노라인 EPP 폼롤러', ihQ: 'Kids Digital Counting Cordless Jump Rope EPP Foam Roller', yesQ: '어린이 성장 줄넘기 운동법' },
+      learningAnalysis: '보건복지부 K-DST 60~71개월 구간으로, 전전두엽 실행기능(작업기억·충동억제)이 급성장하며 음운인식(한글 통문자→음절 해독)과 10 가르기·모으기 수감각이 구조화되는 시기입니다.',
+      learningSolutions: [
+        '수리 해결방안: 손가락 셈 대신 원목 칠교놀이·소마큐브와 소마셈 K·P단계 구체물 연산으로 10의 보수와 입체 도형 감각을 동시에 체득시키세요.',
+        '문해 해결방안: 받침 없는 글자부터 소리 내어 읽고 짧은 그림일기나 생각열기 워크북으로 자기 생각을 표현하게 하세요.',
+        '환경 해결방안: 타임타이머(15~20분)와 유아용 바른자세 원목 독서대를 세팅해 고개 숙임(거북목) 없는 책상 착석 습관을 만드세요.'
+      ],
+      learningTool: { name: '원목 칠교놀이·소마큐브 입체도형 교구 & 타임타이머(Time Timer) 무소음 시계', spec: '생후 60~71개월 도형 조합 추론 + 15~20분 시각적 시간관리 몰입 훈련', cpQ: '원목 칠교놀이 소마큐브 세트 타임타이머 무소음 시계', ihQ: 'Wooden Tangram Soma Cube Puzzle Time Timer Visual Clock', yesQ: '소마셈 K단계 유아 연산' },
+      learningBook: { name: '소마셈 K·P단계 창의연산 세트 & 길벗스쿨 기적의 유아 독해·생각열기 워크북', spec: '구체물 기반 가르기·모으기 수감각 + 초등 입학 전 문장 이해력 완성', cpQ: '소마셈 K단계 P단계 길벗스쿨 기적의 유아 독해', ihQ: 'Singapore Math Kindergarten Reading Comprehension Workbook', yesQ: '길벗스쿨 기적의 유아 독해' }
+    },
+    {
+      minM: 72, maxM: 83, bandTitle: '생후 72~83개월 (만 6세 · 취학 준비 골연령 점검 & 물리적 인과추론기)',
+      growthAnalysis: '초등 입학을 앞두고 책상에 앉아 있는 시간이 늘어나며 경추 거북목과 척추 디스크 압박(숨은 키 1.5~1.8cm 손실)이 시작되는 시기입니다. 학령기 진입 전 키 백분위를 50% 이상으로 끌어올려야 합니다.',
+      growthSolutions: [
+        '영양 해결방안: 초등 입학 스트레스와 성장판 증식을 대비해 황기추출물(HT042) + 어골칼슘 + 비타민D3·아연 올인원 루틴을 확립하세요.',
+        '수면 해결방안: 취침 전 30초×3세트 문틀 철봉 데드행(매달리기)으로 낮 동안 눌린 척추 디스크 수분을 복원한 뒤 밤 9시 45분 전에 재우세요.',
+        '자세 해결방안: 평평한 책상 위 독서·쓰기를 금지하고 15도 각도조절 원목 2단 독서대를 사용해 경추 하중(18kg)을 차단하세요.'
+      ],
+      growthSupp: { name: '식약처 인정 황기추출물(HT042) 키성장 & 고흡수 어골·연골칼슘 올인원', spec: '생후 72~83개월(만 6세) 취학 전 골연령 정속 사수 및 성장판 집중 영양', cpQ: '식약처 인정 키성장 황기추출물 HT042 어린이 어골칼슘', ihQ: 'Astragalus Kids Growth Calcium Citrate Vitamin D3 K2', yesQ: '초등 입학 전 건강과 키성장' },
+      growthEquip: { name: '초등 입학 준비 높이·각도조절 원목 2단 독서대 & 무타공 안전 문틀 철봉', spec: '거북목 예방 15도 시야각 독서대 + 저녁 30초 척추 디스크 감압 데드행 바', cpQ: '어린이 높이조절 원목 2단 독서대 무타공 안전 문틀 철봉', ihQ: 'Adjustable Wooden Book Stand Kids Doorway Pull Up Bar', yesQ: '바른 자세 독서법' },
+      learningAnalysis: '전두엽-두정엽 네트워크가 통합되며 "이렇게 길을 만들면 구슬이 어떻게 굴러갈까?" 같은 물리적 인과추론(Cause & Effect)과 초등 1학년 국어·수학 기초 스키마가 형성되는 시기입니다.',
+      learningSolutions: [
+        '인과추론 해결방안: 그래비트랙스(GraviTrax) 트랙 설계나 스마트게임즈 입체 퍼즐로 중력·가속도·공간 경로를 스스로 설계하고 수정하게 하세요.',
+        '문해 해결방안: 짧은 동화를 읽고 "주인공은 왜 그런 선택을 했을까?" 하브루타 질문독서로 인과적 말하기를 훈련하세요.',
+        '착석 해결방안: 무소음 시각 타이머로 20분 집중 + 5분 스트레칭(초등 1교시 적응 루틴)을 가정에서 미리 연습하세요.'
+      ],
+      learningTool: { name: '라벤스부르거 그래비트랙스(GraviTrax) 코어 스타터 세트 & 20분 시각 타이머', spec: '생후 72~83개월 3차원 물리 트랙 설계 인과추론 + 초등 20분 착석 훈련', cpQ: '라벤스부르거 그래비트랙스 코어 스타터 세트 타임타이머', ihQ: 'Ravensburger GraviTrax Starter Set Time Timer MOD', yesQ: '그래비트랙스 트랙 가이드북' },
+      learningBook: { name: '천재교육 하루 한장 독해 입문 & 창의사고력 수학 팩토(FACTO) 킨더/1단계', spec: '초등 입학 직전 문장 독해력 및 도형·규칙·수리 사고력 완벽 대비', cpQ: '천재교육 하루 한장 독해 창의사고력 수학 팩토 킨더', ihQ: 'Critical Thinking Math Reading Workbook Grade 1', yesQ: '창의사고력 수학 팩토' }
+    },
+    {
+      minM: 84, maxM: 95, bandTitle: '생후 84~95개월 (만 7세 초1 · 입학 척추 디스크 방어 & 하브루타 질문독서기)',
+      growthAnalysis: '초등 1학년 입학 후 40분 수업 착석과 환경 변화 코르티솔로 인해 성장속도가 일시 둔화되기 쉬운 구간입니다.學校 급식 편식과 늦은 취침(밤 10시 이후)을 막는 것이 연간 5.5~6.0cm 성장의 핵심입니다.',
+      growthSolutions: [
+        '영양 해결방안: 학교 급식에서 부족하기 쉬운 칼슘(800mg)·비타민D3·K2와 미각·면역 아연, 황기추출물(HT042)을 하교 후·저녁에 보충하세요.',
+        '수면 해결방안: 밤 10시~새벽 2시 서파수면 성장호르몬 피크(일일 분비량의 65%)를 위해 늦어도 밤 9시 45분에는 잠자리에 들게 하세요.',
+        '신체 해결방안: 학교 줄넘기 급수제와 연계하여 디지털 카운터 줄넘기로 매일 500회 점프하고, 취침 전 문틀 철봉 30초 매달리기로 척추를 펴주세요.'
+      ],
+      growthSupp: { name: '초1 맞춤 황기추출물(HT042) 키성장 & 어골·연골칼슘 비타민D3·K2·아연', spec: '생후 84~95개월(초1) 입학 적응기 골단판 연골 증식 및 골밀도 강화', cpQ: '초등학생 황기추출물 HT042 키성장 어골칼슘 비타민D3', ihQ: 'Kids Growth Calcium Citrate Vitamin D3 K2 Zinc Chewable', yesQ: '초등 1학년 키성장 바이블' },
+      growthEquip: { name: '김수열 초등 디지털 카운터 줄넘기(노라인 겸용) & 원목 2단 각도조절 독서대', spec: '초1 줄넘기 급수제 완벽 대비 500회 카운팅 + 거북목·숨은키 방어 독서대', cpQ: '김수열 초등 디지털 카운터 줄넘기 원목 2단 독서대', ihQ: 'Digital Counting Jump Rope Kids Ergonomic Wooden Book Stand', yesQ: '초등 줄넘기 급수제 완전정복' },
+      learningAnalysis: '구체적 조작기(Concrete Operational Stage)에 진입하며 한글 해독을 넘어 문장의 숨은 뜻을 파악하는 문해력과 덧셈·뺄셈 문장제 전환이 이루어지는 초1 결정적 시기입니다.',
+      learningSolutions: [
+        '문해 해결방안: 하루 15분 1지문 핵심어에 동그라미를 치며 읽고, 부모와 하브루타 질문카드 3턴 대화를 나누어 좌뇌 브로카 표현력을 키우세요.',
+        '수학 해결방안: 단순 연산 반복만 하지 말고, 문제 조건을 동그라미 치고 그림·모형으로 바꿔 푸는 사고력 수학(팩토·소마큐브)을 병행하세요.',
+        '집중 해결방안: 스마트폰 게임 대신 120단계 입체 두뇌퍼즐(IQ 퍼즐 프로)과 20분 시각 타이머로 전두엽 자기조절력을 길러주세요.'
+      ],
+      learningTool: { name: '스마트게임즈 아이큐 퍼즐 프로(120단계) & 초등 하브루타 질문카드·타이머 세트', spec: '생후 84~95개월(초1) 시공간 작업기억 퍼즐 + 식탁 하브루타 발화 훈련', cpQ: '스마트게임즈 아이큐 퍼즐 프로 초등 하브루타 질문카드', ihQ: 'SmartGames IQ Puzzler Pro Kids Conversation Cards', yesQ: '초등 하브루타 질문독서법' },
+      learningBook: { name: '천재교육 하루 한장 독해 (초1) & 길벗스쿨 기적의 어휘력·창의수학 팩토 세트', spec: '초1 교과서 핵심 어휘 스키마 구축 및 서술형·문장제 수학 기초 완성', cpQ: '천재교육 하루 한장 독해 초등 1학년 기적의 어휘력', ihQ: 'Grade 1 Reading Comprehension Vocabulary Math Logic Workbook', yesQ: '길벗스쿨 기적의 어휘력 1학년' }
+    },
+    {
+      minM: 96, maxM: 107, bandTitle: '생후 96~107개월 (만 8세 초2 · 사춘기 전 기초신장 비축 & 문장제 도식화기)',
+      growthAnalysis: '사춘기 급성장(PHV)이 오기 전 기초 신장을 최대한 비축해야 하는 시기입니다. 특히 여아는 체지방이 늘면 성호르몬 분비가 빨라져 골연령(뼈나이)이 앞서갈 수 있으므로 체중·수면 관리가 중요합니다.',
+      growthSolutions: [
+        '영양 해결방안: 야간 탄수화물·당류 간식을 끊어 인슐린에 의한 성장호르몬 억제를 막고, 아침·저녁 고흡수 어골·연골칼슘과 HT042를 급여하세요.',
+        '수면 해결방안: 밤에 자주 깨거나 성장통을 호소하면 글리시네이트 마그네슘·타트체리 배합으로 밤 10시 서파수면 깊이를 높여주세요.',
+        '신체 해결방안: 고밀도 90cm EPP 폼롤러로 취침 전 3분 흉추 신전 스트레칭을 하고, 실내 리바운더 트램폴린/줄넘기로 적정 체지방을 유지하세요.'
+      ],
+      growthSupp: { name: '식약처 인정 황기추출물(HT042) & 어린이 연골·어골칼슘 마그네슘 슬립케어', spec: '생후 96~107개월(초2) 사춘기 전 기초키 비축 및 밤 10시 서파수면 강화', cpQ: '초등 황기추출물 HT042 어린이 어골칼슘 마그네슘 영양제', ihQ: 'Astragalus Kids Growth Calcium Magnesium Glycinate D3', yesQ: '사춘기 전 키성장 골든타임' },
+      growthEquip: { name: '멜킨 90cm 고밀도 EPP 척추 신전 폼롤러 & 무타공 세이프락 문틀 철봉', spec: '초2 거북목·굽은등 교정 90cm 전신 롤러 + 척추 추간판 감압 데드행 바', cpQ: '멜킨 고밀도 EPP 폼롤러 90cm 무타공 안전 문틀 철봉', ihQ: 'High Density 36 Inch EPP Foam Roller Doorway Pull Up Bar', yesQ: '초등 바른 자세 폼롤러 스트레칭' },
+      learningAnalysis: '초등 2학년(96~107개월)은 곱셈구구와 세 자리 수, 그리고 3줄 이상의 【문장제 수학(Word Problems)】이 본격화되며 연산만 빨랐던 아이들이 처음 수학 벽을 느끼는 구간입니다.',
+      learningSolutions: [
+        '수리 해결방안: 문장제 문제를 읽을 때 조건마다 슬래시(/)로 끊고 여백에 수직선이나 막대그림(테이프 다이어그램)을 그리는 도식화 훈련을 시키세요.',
+        '탐구 해결방안: 주말 박물관·과학관 체험 전후에 어린이 광학 현미경이나 과학 도감으로 직접 가설을 세우고 관찰 일지를 쓰게 하세요.',
+        '기억 해결방안: 공부한 뒤 책을 덮고 오늘 배운 핵심 단어 3개를 빈 노트에 적어보는 첫 3줄 백지복습 습관을 시작하세요.'
+      ],
+      learningTool: { name: '어린이 광학 현미경 프레파라트 과학실험 키트 & 그래비트랙스 확장 트랙', spec: '생후 96~107개월(초2) 과학적 가설-검증 실험 및 공간 물리 추론 심화', cpQ: '어린이 광학 현미경 과학실험 세트 그래비트랙스 코어', ihQ: 'AmScope Kids Beginner Microscope STEM Kit GraviTrax', yesQ: '초등 현미경 관찰 도감' },
+      learningBook: { name: '초등 문장제 수학 조건 도식화(막대그림) 워크북 & 초등 과학·역사 탐구 도감', spec: '3줄 문장제 수학을 그림·식으로 바꾸는 훈련 + 교과 배경지식 도감', cpQ: '초등 문장제 수학 도해 사고력 워크북 초등 과학 도감', ihQ: 'Singapore Math Bar Model Word Problems Grade 2 3', yesQ: '디딤돌 초등 문장제 수학' }
+    },
+    {
+      minM: 108, maxM: 119, bandTitle: '생후 108~119개월 (만 9세 초3 · 전두엽 피질 두께 피크 & 골연령 제어기)',
+      growthAnalysis: '여아는 사춘기 초기 신호(가슴 멍울 등)를 면밀히 관찰해야 하며, 남아는 사춘기 진입 전 기초 키를 매년 5.5cm 이상 쌓아야 하는 핵심 구간입니다. 골연령이 역연령보다 앞서지 않게 관리해야 합니다.',
+      growthSolutions: [
+        '영양 해결방안: 환경호르몬과 고열량 야식을 피하고, 뼈 길이 성장과 골밀도를 동시에 채우는 HT042 + 어골칼슘(900~1000mg) + D3·K2를 급여하세요.',
+        '수면 해결방안: 학원 숙제로 취침이 늦어지지 않도록 밤 10시 정각 입면을 최우선 원칙으로 고정하세요.',
+        '신체 해결방안: 하루 500~800회 고속 베어링 줄넘기와 저녁 철봉 데드행 30초×3세트로 성장판 압전 자극과 척추 감압(+1.8cm)을 동시에 챙기세요.'
+      ],
+      growthSupp: { name: '초3 맞춤 어골·연골칼슘(폴리감마글루탐산) & 황기추출물(HT042) 키성장', spec: '생후 108~119개월(초3) 골연령 정속 유지 및 성장판 연골 증식 집중 케어', cpQ: '초등 어골칼슘 연골칼슘 폴리감마글루탐산 황기추출물 HT042', ihQ: 'Kids Bone Growth Calcium Citrate D3 K2 Astragalus', yesQ: '초등 3학년 성조숙증과 키성장' },
+      growthEquip: { name: '초등 무소음 실내 리바운더 트램폴린(48인치) & 와이드 2단 원목 독서대', spec: '체지방·성조숙 방어 무소음 유산소 점핑 + 초3 교과서/문제집 2단 거치', cpQ: '멜킨 48인치 무소음 트램폴린 위즈독서대 원목 2단 독서대', ihQ: '48 Inch Silent Fitness Rebounder Adjustable 2 Tier Book Stand', yesQ: '초등 바른 자세 공부법' },
+      learningAnalysis: '만 9세(초3)는 일생 중 【배외측 전전두엽(DLPFC) 피질 두께가 정점】에 달하며 메타인지가 폭발하는 골든타임이자, 사회·과학 분과 교과와 분수·나눗셈이 시작되어 성적 격차가 벌어지는 첫 구간입니다.',
+      learningSolutions: [
+        '메타인지 해결방안: 문제집 채점 후 틀린 문제를 바로 고치지 말고, 왜 틀렸는지 스스로 말해보고 백지에 3줄로 풀이 과정을 적게 하세요.',
+        '어휘 해결방안: 초3부터 급증하는 사회·과학 한자어 어휘를 마인드맵으로 묶어 정리하는 비문학 독해 루틴을 하루 15분 실천하세요.',
+        '집중 해결방안: 와이드 2단 독서대 상단에 개념서, 하단에 백지복습 노트를 두고 타임타이머 25분 뽀모도로 몰입을 훈련하세요.'
+      ],
+      learningTool: { name: '타임타이머(Time Timer) MOD 무소음 시계 & 코넬식 3줄 백지복습 노트 세트', spec: '생후 108~119개월(초3) 전두엽 피크기 메타인지 인출(+50%) 및 시간관리', cpQ: '타임타이머 MOD 무소음 시계 코넬식 백지복습 노트 스터디플래너', ihQ: 'Time Timer MOD Visual Clock Cornell Notes Study Planner', yesQ: '초등 3학년 메타인지 공부법' },
+      learningBook: { name: '디딤돌 초등 비문학 독해력 & 초3 분수·도형 사고력 수학(플라토/팩토) 세트', spec: '초3 수포자 발생 1위 구간인 분수·나눗셈·도형 개념 및 비문학 어휘 돌파', cpQ: '디딤돌 초등 독해력 초등 수학 플라토 도형 분수 워크북', ihQ: 'Grade 3 4 Fractions Geometry Nonfiction Reading Workbook', yesQ: '디딤돌 초등 독해력' }
+    },
+    {
+      minM: 120, maxM: 131, bandTitle: '생후 120~131개월 (만 10세 초4 · 사춘기 급성장 진입 & 추상개념 구조화기)',
+      growthAnalysis: '여아는 제2급성장기(PHV, 연 7~9cm)가 본격화되고 남아는 사춘기 초기 호르몬이 시동을 거는 월령입니다. 뼈가 급격히 길어지면서 일일 칼슘 요구량이 1,000~1,100mg으로 급증합니다.',
+      growthSolutions: [
+        '영양 해결방안: 급성장기 골밀도 저하와 성장통을 막기 위해 고함량 어골·연골칼슘(1,000mg+) + 비타민D3·K2 + 아르기닌/초유단백을 아침·저녁 챙기세요.',
+        '수면 해결방안: 밤 10시 30분 이전 숙면을 유도하기 위해 저녁 식사 후 글리시네이트 마그네슘을 보충하고 스마트폰을 거실에 두고 자게 하세요.',
+        '신체 해결방안: 실내 문틀 철봉 데드행(30초×3세트)으로 척추 추간판 공간(+1.8cm)을 확보하고 매일 800회 줄넘기로 성장판을 자극하세요.'
+      ],
+      growthSupp: { name: '초4 급성장기 고함량 어골·연골칼슘 1000mg & 황기추출물(HT042)·아르기닌', spec: '생후 120~131개월(만 10세) 사춘기 급성장 진입 칼슘·단백질 집중 공급', cpQ: '초등 고학년 어골칼슘 연골칼슘 1000mg 황기추출물 HT042 아르기닌', ihQ: 'High Potency Calcium Citrate 1000mg D3 K2 L Arginine Kids', yesQ: '초등 고학년 키성장 영양사전' },
+      growthEquip: { name: '코멧/멜킨 무타공 수평계 안전잠금 문틀 철봉 & 고속 베어링 디지털 줄넘기', spec: '급성장기 척추 디스크 감압 데드행 바 + 일일 800회 성장판 수직 점프', cpQ: '코멧 무타공 수평계 안전 문틀 철봉 고속 베어링 디지털 줄넘기', ihQ: 'Heavy Duty Doorway Pull Up Bar High Speed Digital Jump Rope', yesQ: '사춘기 성장판 점프 운동' },
+      learningAnalysis: '만 10세(초4)는 구체물을 벗어나 큰 수·각도·분수의 덧뺄셈·비문학 추론 등 추상적 개념이 본격화되는 시기입니다. 수동적으로 인강이나 설명만 듣는 습관을 백지 인출로 바꿔야 합니다.',
+      learningSolutions: [
+        '인출 해결방안: 개념 학습 직후 5분간 책을 덮고 코넬식 백지복습 노트에 핵심 개념과 공식 유도 과정을 스스로 적어보게 하세요.',
+        '수리 해결방안: 난이도가 높아진 도형·문장제 문제는 디딤돌 최상위연산·사고력 워크북으로 조건을 구조화해 푸는 연습을 시키세요.',
+        '탐구 해결방안: 고배율 광학 현미경이나 과학 실험 키트로 교과서 속 세포·화석·물질의 성질을 직접 관찰하고 탐구 보고서를 작성해 보세요.'
+      ],
+      learningTool: { name: '초등 고학년 고배율 광학 현미경 실험키트 & 위즈 와이드 2단 원목 독서대', spec: '생후 120~131개월(초4) 과학 가설검증 실험 + 상단 교재/하단 필기 2단 독서대', cpQ: '초등 광학 현미경 프레파라트 실험세트 위즈독서대 2단', ihQ: 'AmScope 1200X Kids Microscope Kit 2 Tier Wooden Book Stand', yesQ: '초등 고학년 자기주도 공부법' },
+      learningBook: { name: '코넬식 메타인지 백지복습 노트·스터디플래너 & 디딤돌 초등 최상위수학/독해력', spec: '장기기억 보존율 2.4배 높이는 백지 인출 노트 + 초4 심화 수학·비문학', cpQ: '코넬식 백지복습 요약 노트 디딤돌 초등 최상위수학 독해력', ihQ: 'Cornell Notes Study Planner Challenging Math Word Problems Grade 4', yesQ: '디딤돌 초등 최상위수학 4학년' }
+    },
+    {
+      minM: 132, maxM: 155, bandTitle: '생후 132~155개월 (만 11~12세 초5~6 · 제2급성장기 PHV 폭발 & 시냅스 수초화기)',
+      growthAnalysis: '여아는 급성장 피크(PHV) 정점~초경 전후 잔여 성장 사수기이며, 남아는 연 8~10cm가 자라는 제2급성장기 폭발 구간입니다. 이 시기 1년은 유아기 3년 맞먹는 키 성장이 일어나므로 영양·수면·척추 감압을 총동원해야 합니다.',
+      growthSolutions: [
+        '영양 해결방안: 뼈가 자라는 속도를 영양 공급이 완벽히 뒷받침하도록 고함량 어골·연골칼슘(1,100mg) + HT042 + 초유·아르기닌 + 마그네슘을 빠짐없이 급여하세요.',
+        '수면 해결방안: 학원 스케줄로 밤 11시 이후 취침 시 성장호르몬이 38% 손실됩니다. 타트체리·글리시네이트 마그네슘으로 입면 시간을 단축하고 밤 10시 30분 취침을 사수하세요.',
+        '신체 해결방안: 하루 8시간 이상 착석으로 눌린 척추 디스크를 매일 밤 문틀 철봉 데드행(30초×3세트)과 90cm EPP 폼롤러 신전으로 펴주어 숨은 키 +1.8cm를 복원하세요.'
+      ],
+      growthSupp: { name: '초5~6 급성장 피크(PHV) 황기추출물(HT042)·아르기닌 & 칼슘·마그네슘·타트체리', spec: '생후 132~155개월(만 11~12세) 제2급성장기 폭발 연골 증식 + 숙면 케어', cpQ: '청소년 황기추출물 HT042 아르기닌 어골칼슘 마그네슘 타트체리', ihQ: 'Teen Growth L Arginine Calcium Citrate Magnesium Tart Cherry', yesQ: '사춘기 급성장기 키성장 전략' },
+      growthEquip: { name: '멜킨 옥타곤 고중량 무타공 문틀 철봉(데드행 바) & 90cm 척추 신전 EPP 폼롤러', spec: '최대 300kg 지지 안전 락킹 철봉 + 초고학년 굽은등·거북목 교정 롤러', cpQ: '멜킨 옥타곤 무타공 문틀 철봉 고밀도 EPP 폼롤러 90cm', ihQ: 'Heavy Duty Doorway Pull Up Bar 36 Inch EPP Spine Roller', yesQ: '청소년 척추 교정 스트레칭' },
+      learningAnalysis: '청소년기 2차 시냅스 가지치기(Pruning)와 수초화(Myelination)가 일어나는 시기로, 초5~6 약수·배수·분수 비례식과 중등 선행 연결, 역사·과학 인과 추론 능력이 중·고등 성적을 결정합니다.',
+      learningSolutions: [
+        '메타인지 해결방안: 100일 자기주도 스터디플래너와 코넬식 백지복습 노트로 하루 공부의 30%를 반드시 책 덮고 인출하는 시간으로 배정하세요.',
+        '문해 해결방안: 중등 내신·수능 비문학의 바탕이 되는 한자어 어휘 스키마와 문단 요약 훈련을 매일 2지문씩 진행하세요.',
+        '자세·몰입 해결방안: 와이드 2단 원목 독서대와 무소음 타임타이머로 25분 초집중(Deep Work) + 5분 철봉 스트레칭 루틴을 고정하세요.'
+      ],
+      learningTool: { name: '위즈 와이드 2단 원목 독서대 + 타임타이머 MOD + 100일 코넬 스터디플래너', spec: '생후 132~155개월(초5~6) 딥워크 몰입 환경 세팅 및 자기주도 인출 완성', cpQ: '위즈독서대 와이드 2단 원목 독서대 타임타이머 코넬 스터디플래너', ihQ: '2 Tier Ergonomic Wooden Book Stand Time Timer Study Planner', yesQ: '초등 고학년 메타인지 공부법' },
+      learningBook: { name: '초등 고학년·중등 연결 비문학 독해·어휘 스키마 & 청소년 뇌과학 자기주도 공부법', spec: '아이 스스로 스마트폰을 줄이고 밤 10시 수면·백지복습을 실천하게 만드는 필독서', cpQ: '초등 고학년 비문학 독해 워크북 청소년 뇌과학 공부법', ihQ: 'Middle School Nonfiction Reading Comprehension Neuroscience Study Guide', yesQ: '청소년 뇌과학 공부법' }
+    },
+    {
+      minM: 156, maxM: 216, bandTitle: '생후 156~216개월 (만 13~18세 중고등 · 후기 척추 성장판 사수 & 딥워크 완성기)',
+      growthAnalysis: '하지(다리) 성장판이 서서히 닫혀가는 시기이지만, 【척추 추체 골단 성장판】은 만 16~18세까지 열려 있습니다! 심야 학업 스트레스(코르티솔)와 야간 혈당을 차단하고 척추 감압을 실천하면 마지막 3~6cm(+숨은 키 2cm)를 더 확보할 수 있습니다.',
+      growthSolutions: [
+        '영양 해결방안: 심야 학업 피로와 성장판 마감 방어를 위해 고함량 어골·연골칼슘(1,100mg) + 비타민D3·K2 + L-아르기닌 + 글리시네이트 마그네슘/테아닌을 저녁에 보충하세요.',
+        '수면 해결방안: 새벽 1~2시 취침 대신 밤 10시 30분~11시 입면 후 아침 6시 기상(아침형 서파수면 루틴)으로 전환하여 GH 분비와 해마 장기기억 코팅을 동시에 잡으세요.',
+        '신체 해결방안: 매일 밤 취침 직전 문틀 철봉 패시브 데드행(30초×3세트)과 90cm 그리드/EPP 폼롤러 흉추 신전으로 하루 10시간 착석으로 눌린 추간판 디스크를 즉시 복원하세요.'
+      ],
+      growthSupp: { name: '청소년 고함량 어골·연골칼슘 D3·K2 & L-아르기닌·마그네슘·테아닌 슬립케어', spec: '생후 156~216개월(중고등) 후기 성장판 골밀도 완성 및 학업 코르티솔·수면 케어', cpQ: '청소년 어골칼슘 비타민D3 K2 아르기닌 마그네슘 테아닌 영양제', ihQ: 'Teen Calcium D3 K2 L Arginine Magnesium Glycinate L Theanine', yesQ: '청소년 수면과 마지막 키성장' },
+      growthEquip: { name: '고중량 무타공 안전 문틀 철봉(데드행 바) & 트리거포인트/EPP 90cm 척추 폼롤러', spec: '중고등 장시간 착석 거북목·굽은등 교정 및 숨은 척추 키 +2cm 즉시 복원', cpQ: '멜킨 무타공 문틀 철봉 트리거포인트 EPP 폼롤러 90cm', ihQ: 'Heavy Duty Pull Up Bar TriggerPoint GRID Foam Roller', yesQ: '청소년 척추 자세 교정 운동' },
+      learningAnalysis: '전두엽 백질 수초화가 완성되는 중고등 시기로, 내신 서술형과 수능형 비문학·수리 추론에서 최상위권을 결정짓는 것은 단순 문제 풀이량이 아니라 【오답 원인 역추적 메타인지】와 【서파수면 장기기억 공고화】입니다.',
+      learningSolutions: [
+        '메타인지 해결방안: 코넬식 3분할 백지복습 노트에 그날 배운 핵심 개념을 백지 인출하고, 오답 노트에 정답이 아닌 [내가 놓친 조건 1줄]을 기록하세요.',
+        '몰입 해결방안: 스마트폰을 다른 방에 두고 무소음 시각 타이머 45분 딥워크 + 10분 철봉/폼롤러 뇌 산소 공급 루틴을 실천하세요.',
+        '진로·독서 해결방안: 희망 진로·전공과 연결된 과학·인문 심화 교양서를 주말마다 읽고 코넬식 탐구 보고서 노트로 정리해 생기부 경쟁력을 높이세요.'
+      ],
+      learningTool: { name: '중고등 코넬식 백지복습·오답 역추적 노트 세트 & 와이드 2단 원목 독서대·타이머', spec: '생후 156~216개월(중고등) 내신·수능 메타인지 인출 및 경추 보호 딥워크 세팅', cpQ: '코넬식 백지복습 노트 오답노트 위즈독서대 와이드 2단 타이머', ihQ: 'Cornell Notes Study System Adjustable 2 Tier Book Stand Timer', yesQ: '메타인지 공부법 코넬노트' },
+      learningBook: { name: '중고등 수능형 비문학 독해 구조화 워크북 & 십대를 위한 뇌과학·메타인지 필독서', spec: '비문학 지문 도식화 요약 훈련 + 상위 1% 자기주도 뇌과학 학습 전략', cpQ: '중등 고등 비문학 독해 구조화 워크북 청소년 메타인지 공부법', ihQ: 'High School Critical Reading Comprehension Metacognition Study Book', yesQ: 'EBS 메타인지 공부법' }
+    }
+  ];
+
+  function getMonthlyMicroAnalysisAndProducts(exactMonths = 120, profile = {}, affConfig = {}) {
+    const m = Math.max(12, Math.min(216, Math.round(Number(exactMonths || profile.exactMonths || profile.ageMonths) || 120)));
+    const years = Math.floor(m / 12);
+    const remM = m % 12;
+    let cohort = MONTHLY_MICRO_CURATION_DB.find(c => m >= c.minM && m <= c.maxM) || MONTHLY_MICRO_CURATION_DB[MONTHLY_MICRO_CURATION_DB.length - 1];
+
+    const growthSuppUrls = buildPinpointUrls(cohort.growthSupp.cpQ, cohort.growthSupp.ihQ, cohort.growthSupp.yesQ, affConfig);
+    const growthEquipUrls = buildPinpointUrls(cohort.growthEquip.cpQ, cohort.growthEquip.ihQ, cohort.growthEquip.yesQ, affConfig);
+    const learningToolUrls = buildPinpointUrls(cohort.learningTool.cpQ, cohort.learningTool.ihQ, cohort.learningTool.yesQ, affConfig);
+    const learningBookUrls = buildPinpointUrls(cohort.learningBook.cpQ, cohort.learningBook.ihQ, cohort.learningBook.yesQ, affConfig);
+
+    return {
+      exactMonths: m,
+      ageYears: years,
+      remMonths: remM,
+      exactBadgeKo: `생후 ${m}개월 (만 ${years}세 ${remM}개월)`,
+      bandTitle: cohort.bandTitle,
+      growthAnalysis: cohort.growthAnalysis,
+      growthSolutions: cohort.growthSolutions,
+      growthSupp: Object.assign({}, cohort.growthSupp, growthSuppUrls),
+      growthEquip: Object.assign({}, cohort.growthEquip, growthEquipUrls),
+      learningAnalysis: cohort.learningAnalysis,
+      learningSolutions: cohort.learningSolutions,
+      learningTool: Object.assign({}, cohort.learningTool, learningToolUrls),
+      learningBook: Object.assign({}, cohort.learningBook, learningBookUrls)
+    };
+  }
+
+  function renderMonthlyMicroPrescriptionCard(profile = {}, mode = 'growth', affConfig = {}) {
+    const exactM = Number(profile.exactMonths || profile.ageMonths) || 120;
+    const info = getMonthlyMicroAnalysisAndProducts(exactM, profile, affConfig);
+    const isLearning = mode === 'learning';
+    const analysisText = isLearning ? info.learningAnalysis : info.growthAnalysis;
+    const solutions = isLearning ? info.learningSolutions : info.growthSolutions;
+    const itemA = isLearning ? info.learningTool : info.growthSupp;
+    const itemB = isLearning ? info.learningBook : info.growthEquip;
+    const badgeA = isLearning ? `[${info.exactBadgeKo} 핀포인트 교구·학습도구 1순위]` : `[${info.exactBadgeKo} 핀포인트 성장 영양제 1순위]`;
+    const badgeB = isLearning ? `[${info.exactBadgeKo} 핀포인트 필독서·워크북 1순위]` : `[${info.exactBadgeKo} 핀포인트 성장판·체형 기구 1순위]`;
+    const sectionId = isLearning ? 'monthly-micro-learning-section' : 'monthly-micro-growth-section';
+    const catAttr = isLearning ? 'learning' : 'growth';
+
+    return `
+      <div id="${sectionId}" class="monthly-micro-prescription-card" style="background: #FFFFFF; border: 2px solid #3B82F6; border-radius: 20px; padding: 1.2rem 1.3rem; margin-bottom: 1.2rem; text-align: left; box-shadow: 0 6px 18px rgba(29, 78, 216, 0.08);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.65rem; padding-bottom: 0.55rem; border-bottom: 1.5px dashed #BFDBFE;">
+          <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.25rem 0.8rem; border-radius: 9999px;">
+            📌 ${info.exactBadgeKo} 정밀 판독 · ${isLearning ? '개월별 두뇌·학습 세밀 분석 & 해결방안' : '개월별 신체 성장 세밀 분석 & 해결방안'}
+          </span>
+          <span style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; padding: 0.2rem 0.65rem; border-radius: 9999px; border: 1px solid #BFDBFE;">
+            ${info.bandTitle}
+          </span>
+        </div>
+
+        <!-- 1. 개월별 세밀 분석 -->
+        <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-left: 4px solid #1D4ED8; border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 0.8rem;">
+          <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.25rem;">
+            🔍 1. 왜 지금(${info.exactBadgeKo}) 이 부분에 집중해야 할까요? (월령별 정밀 분석)
+          </div>
+          <p style="font-size: 0.88rem; color: #0F172A; line-height: 1.56; margin: 0; word-break: keep-all;">
+            ${analysisText}
+          </p>
+        </div>
+
+        <!-- 2. 개월별 3단계 맞춤 해결방안 -->
+        <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
+          <div style="font-size: 0.88rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.4rem;">
+            ✅ 2. ${info.exactBadgeKo} 맞춤 3단계 즉시 해결방안 (가정 내 실천 프로토콜)
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.38rem;">
+            ${solutions.map((sol, idx) => `
+              <div style="background: #FFFFFF; border: 1px solid #DBEAFE; border-radius: 9px; padding: 0.52rem 0.75rem; font-size: 0.85rem; color: #0F172A; line-height: 1.48; word-break: keep-all;">
+                <strong style="color: #1D4ED8;">Step ${idx + 1}.</strong> ${sol}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- 3. 개월수 핀포인트 맞춤 추천 상품 2선 -->
+        <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 0.85rem 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.55rem;">
+            <span style="font-size: 0.88rem; font-weight: 900; color: #0F172A;">
+              🎯 3. ${info.exactBadgeKo} 발달 단계에 딱 맞춘 월령 핀포인트 추천 상품
+            </span>
+            <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">
+              개월수 제형·난이도·신체규격 100% 매칭
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.65rem;">
+            <div class="pinpoint-item-card" data-product-category="${catAttr}" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+              <div>
+                <div style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">${badgeA}</div>
+                <div style="font-size: 0.9rem; font-weight: 900; color: #0F172A; line-height: 1.35; margin-bottom: 0.2rem; word-break: keep-all;">${itemA.name}</div>
+                <div style="font-size: 0.78rem; color: #475569; line-height: 1.4; word-break: keep-all;">${itemA.spec}</div>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.25rem;">
+                <a href="${itemA.coupangUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#1D4ED8; color:#FFFFFF; font-size:0.8rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.5rem;">🛒 쿠팡 로켓배송 최저가·후기 ↗</a>
+                <a href="${isLearning ? itemA.yes24Url : itemA.iherbUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="${isLearning ? 'linkprice' : 'iherb'}" data-product-category="${catAttr}" style="display:flex; min-height:36px; align-items:center; justify-content:center; background:#EFF6FF; border:1px solid #93C5FD; color:#1D4ED8; font-size:0.77rem; font-weight:800; border-radius:8px; text-decoration:none; text-align:center; padding:0.3rem 0.4rem;">${isLearning ? 'YES24 교구·도서 ↗' : 'iHerb 글로벌 스펙 ↗'}</a>
+              </div>
+            </div>
+
+            <div class="pinpoint-item-card" data-product-category="${catAttr}" style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+              <div>
+                <div style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.2rem;">${badgeB}</div>
+                <div style="font-size: 0.9rem; font-weight: 900; color: #0F172A; line-height: 1.35; margin-bottom: 0.2rem; word-break: keep-all;">${itemB.name}</div>
+                <div style="font-size: 0.78rem; color: #475569; line-height: 1.4; word-break: keep-all;">${itemB.spec}</div>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.25rem;">
+                <a href="${itemB.coupangUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#1D4ED8; color:#FFFFFF; font-size:0.8rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.5rem;">🛒 쿠팡 로켓배송 최저가·후기 ↗</a>
+                <a href="${itemB.yes24Url}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" data-product-category="${catAttr}" style="display:flex; min-height:36px; align-items:center; justify-content:center; background:#EFF6FF; border:1px solid #93C5FD; color:#1D4ED8; font-size:0.77rem; font-weight:800; border-radius:8px; text-decoration:none; text-align:center; padding:0.3rem 0.4rem;">YES24 도서·가이드 ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderFirstFoldQuickPurchaseBridge(profile = {}, mode = 'growth', affConfig = {}) {
+    const exactM = Number(profile.exactMonths || profile.ageMonths) || 120;
+    const info = getMonthlyMicroAnalysisAndProducts(exactM, profile, affConfig);
+    const isLearning = mode === 'learning';
+    const itemA = isLearning ? info.learningTool : info.growthSupp;
+    const itemB = isLearning ? info.learningBook : info.growthEquip;
+    const bridgeId = isLearning ? 'first-fold-learning-purchase-bridge' : 'first-fold-growth-purchase-bridge';
+    const drawerId = isLearning ? 'learning-curated-products-drawer' : 'growth-curated-products-drawer';
+    const catAttr = isLearning ? 'learning' : 'growth';
+    const compareLeft = isLearning
+      ? '❌ 일반 문제집·단순 암기: 월령 전두엽 발달과 안 맞아 흥미 상실·공부 거부감 유발'
+      : '❌ 일반 탄산칼슘·단순 스트레칭: 위산 부족으로 흡수율 낮고 성장판 압전 자극 부족';
+    const compareRight = isLearning
+      ? `✅ K-DST·뇌과학 권장 [${info.bandTitle}]: 손끝·시각 작업기억 직결 핀포인트 교구·워크북`
+      : `✅ KDCA·소아내분비 권장 [${info.bandTitle}]: 고흡수 킬레이트/구연산 제형 & 추간판 감압 기구`;
+
+    return `
+      <div id="${bridgeId}" class="first-fold-purchase-bridge" data-product-category="${catAttr}" style="background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 100%); border: 2px solid #1D4ED8; border-radius: 20px; padding: 1.1rem 1.25rem; margin-bottom: 1.15rem; text-align: left; box-shadow: 0 8px 22px rgba(29, 78, 216, 0.12);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.55rem;">
+          <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
+            ⚡ 바쁜 부모님용 첫 화면 3초 핵심 요약 · ${info.exactBadgeKo} 1순위 필수 준비물
+          </span>
+          <button type="button" onclick="var el=document.getElementById('${drawerId}');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}" style="cursor: pointer; background: #FFFFFF; border: 1px solid #1D4ED8; color: #1D4ED8; font-size: 0.75rem; font-weight: 900; padding: 0.22rem 0.65rem; border-radius: 9999px;">
+            👇 아래 상세 성향별 TOP 3 전체 리스트 바로 이동
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.45rem; margin-bottom: 0.65rem; font-size: 0.78rem; line-height: 1.42;">
+          <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 9px; padding: 0.45rem 0.65rem; color: #475569; font-weight: 700;">
+            ${compareLeft}
+          </div>
+          <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 9px; padding: 0.45rem 0.65rem; color: #1D4ED8; font-weight: 900;">
+            ${compareRight}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.6rem;">
+          <div class="pinpoint-item-card" data-product-category="${catAttr}" style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <div>
+              <div style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.15rem;">
+                🔥 ${isLearning ? `[${info.exactBadgeKo} 맞춤 교구·도구 1위]` : `[${info.exactBadgeKo} 맞춤 성장 영양 1위]`}
+              </div>
+              <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.35; margin-bottom: 0.18rem; word-break: keep-all;">
+                ${itemA.name}
+              </div>
+              <div style="font-size: 0.77rem; color: #475569; line-height: 1.38; word-break: keep-all;">
+                ${itemA.spec}
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.2rem;">
+              <a href="${itemA.coupangUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#1D4ED8; color:#FFFFFF; font-size:0.79rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem; box-shadow: 0 3px 10px rgba(29, 78, 216, 0.2);">🛒 쿠팡 로켓 최저가·후기 ↗</a>
+              <a href="${isLearning ? itemA.yes24Url : itemA.iherbUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="${isLearning ? 'linkprice' : 'iherb'}" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#EFF6FF; border:1.5px solid #93C5FD; color:#1D4ED8; font-size:0.78rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem;">${isLearning ? '📚 YES24 특가 보기 ↗' : '🌿 iHerb 직구 스펙 ↗'}</a>
+            </div>
+          </div>
+
+          <div class="pinpoint-item-card" data-product-category="${catAttr}" style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <div>
+              <div style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.15rem;">
+                🔥 ${isLearning ? `[${info.exactBadgeKo} 맞춤 필독서·워크북 1위]` : `[${info.exactBadgeKo} 맞춤 성장판·체형 기구 1위]`}
+              </div>
+              <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.35; margin-bottom: 0.18rem; word-break: keep-all;">
+                ${itemB.name}
+              </div>
+              <div style="font-size: 0.77rem; color: #475569; line-height: 1.38; word-break: keep-all;">
+                ${itemB.spec}
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; margin-top: 0.2rem;">
+              <a href="${itemB.coupangUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#1D4ED8; color:#FFFFFF; font-size:0.79rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem; box-shadow: 0 3px 10px rgba(29, 78, 216, 0.2);">🛒 쿠팡 로켓 최저가·후기 ↗</a>
+              <a href="${itemB.yes24Url}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" data-product-category="${catAttr}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#EFF6FF; border:1.5px solid #93C5FD; color:#1D4ED8; font-size:0.78rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem;">📚 YES24 도서·특가 ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 0.55rem; background: #FFFFFF; border: 1px dashed #93C5FD; border-radius: 10px; padding: 0.42rem 0.75rem; font-size: 0.76rem; color: #1E3A8A; font-weight: 800; line-height: 1.4;">
+          💡 <strong>스마트 비교 팁:</strong> 당장 결제하지 않으셔도 위 버튼으로 오늘 로켓와우 할인율과 실제 구매 학부모 후기를 확인한 뒤 <strong>[장바구니]</strong>에 먼저 담아두시면 배우자분과 편하게 비교하실 수 있습니다.
+        </div>
+      </div>
+    `;
+  }
+
+  // ==========================================================================
+  // Coupang Partners Revenue Reinforcement Learning (RL) Contextual Bandit Engine
+  // ==========================================================================
+  function getCoupangRLPolicy() {
+    let basePolicy = (typeof window !== 'undefined' && window.KIDSFIT_COUPANG_RL_POLICY) || {};
+    let localState = {};
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localState = JSON.parse(window.localStorage.getItem('kf_coupang_rl_state_v1') || '{}');
+      }
+    } catch (_) {}
+    return { basePolicy, localState };
+  }
+
+  function selectWinningCtaArm(slotIndex = 0) {
+    const { basePolicy, localState } = getCoupangRLPolicy();
+    const armsObj = (basePolicy && basePolicy.cta_arms) || {
+      arm_rocket_review: { id: 'arm_rocket_review', label: '🛒 쿠팡 로켓배송 최저가·실제 학부모 후기 확인 ↗', alpha: 38, beta: 12, impressions: 320 },
+      arm_wow_tomorrow: { id: 'arm_wow_tomorrow', label: '⚡ 쿠팡 와우 내일도착 · 품절 전 할인가 비교 ↗', alpha: 31, beta: 14, impressions: 260 },
+      arm_cart_bundle: { id: 'arm_cart_bundle', label: '🎁 쿠팡 로켓 장바구니 특가 · 오늘 할인율 확인 ↗', alpha: 24, beta: 15, impressions: 210 },
+      arm_spec_verified: { id: 'arm_spec_verified', label: '🔬 식약처·KC 인증 스펙 및 쿠팡 최저가 보기 ↗', alpha: 27, beta: 14, impressions: 230 }
+    };
+    const localCta = (localState && localState.cta_arms) || {};
+    const armList = Object.values(armsObj).map((a) => {
+      const loc = localCta[a.id] || { clicks: 0, reward: 0 };
+      const alpha = (Number(a.alpha) || 20) + (Number(loc.clicks) || 0) * 3.5;
+      const beta = Number(a.beta) || 10;
+      const imp = Math.max(1, (Number(a.impressions) || 100) + (Number(loc.clicks) || 0));
+      const mean = alpha / (alpha + beta);
+      const ucb = mean + 1.414 * Math.sqrt(Math.log(1000) / imp);
+      return { ...a, ucbScore: ucb };
+    });
+    armList.sort((a, b) => b.ucbScore - a.ucbScore);
+    return armList[slotIndex % armList.length] || armList[0];
+  }
+
+  function scoreAndRankFlagshipsByRL(flagships) {
+    const { basePolicy, localState } = getCoupangRLPolicy();
+    const catArms = (basePolicy && basePolicy.category_arms) || {};
+    const localArms = (localState && localState.category_arms) || {};
+
+    return flagships.map((f) => {
+      const armId = f.rlArmId || 'growth_nutrition_repeat_cart';
+      const baseArm = catArms[armId] || { alpha: 35, beta: 12, impressions: 300, commission_multiplier: 1.5, cart_halo_multiplier: 1.5 };
+      const locArm = localArms[armId] || { clicks: 0, reward: 0 };
+      const alpha = (Number(baseArm.alpha) || 35) + (Number(locArm.clicks) || 0) * 4.0;
+      const beta = Number(baseArm.beta) || 12;
+      const imp = Math.max(1, (Number(baseArm.impressions) || 300) + (Number(locArm.clicks) || 0));
+      const commMult = Number(baseArm.commission_multiplier) || 1.5;
+      const haloMult = Number(baseArm.cart_halo_multiplier) || 1.5;
+      const meanConv = alpha / (alpha + beta);
+      const ucbBonus = 1.414 * Math.sqrt(Math.log(1500) / imp);
+      const rlScore = Number(((meanConv * commMult * haloMult) + ucbBonus + ((Number(locArm.reward) || 0) * 0.02)).toFixed(3));
+      return {
+        ...f,
+        rlArmId: armId,
+        rlRewardWeight: commMult,
+        rlScore
+      };
+    }).sort((a, b) => b.rlScore - a.rlScore);
+  }
+
+  function renderMonthlyProductsOnlyCatalog(profile = {}, affConfig = {}) {
+    const exactM = Math.max(12, Math.min(216, Math.round(Number(profile.exactMonths || profile.ageMonths) || 120)));
+    const info = getMonthlyMicroAnalysisAndProducts(exactM, profile, affConfig);
+    const curYear = Number(profile.birthYear) || 2016;
+    const curMonth = Number(profile.birthMonth) || 10;
+    const yearOptions = [];
+    for (let y = 2025; y >= 2007; y--) {
+      yearOptions.push(`<option value="${y}" ${y === curYear ? 'selected' : ''}>${y}년생</option>`);
+    }
+    const monthOptions = [];
+    for (let m = 1; m <= 12; m++) {
+      monthOptions.push(`<option value="${m}" ${m === curMonth ? 'selected' : ''}>${m}월생</option>`);
+    }
+
+    const rawFlagships = [
+      { rlArmId: 'growth_nutrition_repeat_cart', badge: `[${info.exactBadgeKo} 성장 영양제 1순위]`, cat: 'growth', item: info.growthSupp, secLabel: 'iHerb 직구 스펙 ↗', secUrl: info.growthSupp.iherbUrl, secMerchant: 'iherb' },
+      { rlArmId: 'ergonomic_hardware_high_ticket', badge: `[${info.exactBadgeKo} 성장판·체형 기구 1순위]`, cat: 'growth', item: info.growthEquip, secLabel: 'YES24 가이드·특가 ↗', secUrl: info.growthEquip.yes24Url, secMerchant: 'linkprice' },
+      { rlArmId: 'cognitive_learning_problem_solver', badge: `[${info.exactBadgeKo} 두뇌·소근육 교구 1순위]`, cat: 'learning', item: info.learningTool, secLabel: 'YES24 교구·특가 ↗', secUrl: info.learningTool.yes24Url, secMerchant: 'linkprice' },
+      { rlArmId: 'sleep_biomechanics_gear', badge: `[${info.exactBadgeKo} 필독서·사고력 워크북 1순위]`, cat: 'learning', item: info.learningBook, secLabel: 'YES24 도서·특가 ↗', secUrl: info.learningBook.yes24Url, secMerchant: 'linkprice' }
+    ];
+    const fourFlagships = scoreAndRankFlagshipsByRL(rawFlagships);
+
+    return `
+      <div id="monthly-products-only-catalog" style="background: #F8FAFC; border: 2px solid #1D4ED8; border-radius: 22px; padding: 1.25rem 1.35rem; text-align: left;">
+        <!-- Top Header & Live Birth Year/Month Switcher -->
+        <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 18px; padding: 1.1rem 1.2rem; margin-bottom: 1.15rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem;">
+            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.26rem 0.85rem; border-radius: 9999px;">
+              🛒 설문 생략 · 월령별 맞춤 추천템 전용관 (${info.exactBadgeKo})
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.7rem; border-radius: 9999px;">
+              ${info.bandTitle}
+            </span>
+          </div>
+
+          <h3 style="font-size: 1.24rem; font-weight: 900; color: #0F172A; margin: 0 0 0.45rem 0; line-height: 1.38;">
+            ${info.exactBadgeKo} 우리 아이 발달 주기에 딱 맞춘 <span style="color: #1D4ED8;">영양제 · 운동기구 · 두뇌교구 · 필독서</span> 엄선 리스트
+          </h3>
+          <p style="font-size: 0.84rem; color: #475569; margin: 0 0 0.85rem 0; line-height: 1.5;">
+            ※ 설문을 건너뛰고 선택하신 <strong>생년월일(월령)</strong>만 기준으로 추천 상품만 깔끔하게 모아 보여드리는 전용 화면입니다. (설문 미입력 상태의 부정확한 진단 보고서는 표시되지 않습니다.)
+          </p>
+
+          <!-- Instant Birth Year/Month Switcher + Return to Survey Button -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.7rem 0.9rem;">
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem;">
+              <span style="font-size: 0.82rem; font-weight: 900; color: #1E3A8A;">👶 다른 월령·자녀 바로 변경:</span>
+              <select id="quick-catalog-birth-year" onchange="if(window.TallerOnboardingWizard&&typeof window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge==='function'){window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge();}" style="font-weight: 800; font-size: 0.85rem; padding: 0.38rem 0.6rem; border-radius: 8px; border: 1px solid #93C5FD; background: #FFFFFF; color: #0F172A;">
+                ${yearOptions.join('')}
+              </select>
+              <select id="quick-catalog-birth-month" onchange="if(window.TallerOnboardingWizard&&typeof window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge==='function'){window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge();}" style="font-weight: 800; font-size: 0.85rem; padding: 0.38rem 0.6rem; border-radius: 8px; border: 1px solid #93C5FD; background: #FFFFFF; color: #0F172A;">
+                ${monthOptions.join('')}
+              </select>
+              <button type="button" onclick="if(window.TallerOnboardingWizard&&typeof window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge==='function'){window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge();}" style="cursor: pointer; background: #1D4ED8; color: #FFFFFF; border: 1px solid #1E40AF; font-size: 0.82rem; font-weight: 900; padding: 0.4rem 0.85rem; border-radius: 8px;">적용</button>
+            </div>
+            <button type="button" onclick="if(window.TallerOnboardingWizard&&typeof window.TallerOnboardingWizard.returnToSurveyFromProducts==='function'){window.TallerOnboardingWizard.returnToSurveyFromProducts();}" style="cursor: pointer; background: #FFFFFF; border: 1.5px solid #1D4ED8; color: #1D4ED8; font-size: 0.8rem; font-weight: 900; padding: 0.45rem 0.85rem; border-radius: 9999px;">
+              📏 실제 키·습관 입력하고 정밀 진단 보고서 받기 (설문으로 돌아가기 →)
+            </button>
+          </div>
+          <!-- 1-Click Age Band Quick Switcher Pills -->
+          <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.55rem;">
+            ${[
+              { label: '👶 만 1~2세 (영아)', y: 2024, m: 6 },
+              { label: '🧒 만 3세 (유아)', y: 2023, m: 5 },
+              { label: '🎨 만 4~5세 (유치원)', y: 2021, m: 5 },
+              { label: '🎒 만 6~7세 (초등입학)', y: 2019, m: 5 },
+              { label: '📐 만 8~10세 (초등중학년)', y: 2016, m: 10 },
+              { label: '🚀 만 11~15세 (초등고·중등)', y: 2013, m: 5 }
+            ].map((p) => `<button type="button" onclick="if(window.TallerOnboardingWizard&&typeof window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge==='function'){window.TallerOnboardingWizard.updateMonthlyProductsOnlyAge(${p.y},${p.m});}" style="cursor:pointer;background:${curYear===p.y?'#1D4ED8':'#FFFFFF'};color:${curYear===p.y?'#FFFFFF':'#1E3A8A'};border:1px solid ${curYear===p.y?'#1D4ED8':'#93C5FD'};font-size:0.76rem;font-weight:800;padding:0.32rem 0.68rem;border-radius:9999px;">${p.label}</button>`).join('')}
+          </div>
+        </div>
+
+        <!-- Section 1: Exact Month Pinpoint Top 4 Flagship Products (RL Revenue-Ranked) -->
+        <div style="background: #FFFFFF; border: 2px solid #3B82F6; border-radius: 18px; padding: 1.1rem 1.2rem; margin-bottom: 1.15rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem;">
+            <span style="font-size: 1rem; font-weight: 900; color: #0F172A;">
+              🎯 1. ${info.exactBadgeKo} 강화학습(RL) 실구매 전환율 상위 핵심 추천템 4선
+            </span>
+            <span style="font-size: 0.75rem; font-weight: 900; color: #FFFFFF; background: #1D4ED8; padding: 0.2rem 0.65rem; border-radius: 9999px;">
+              🤖 실시간 학부모 클릭·구매 보상(Reward) 가중치 자동 정렬
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.7rem;">
+            ${fourFlagships.map((f, idx) => {
+              const ctaArm = selectWinningCtaArm(idx);
+              const isTop1 = idx === 0;
+              return `
+              <div class="pinpoint-item-card" data-product-category="${f.cat}" data-rl-arm-id="${f.rlArmId}" data-rl-slot-rank="${idx + 1}" style="background: ${isTop1 ? '#EFF6FF' : '#F8FAFC'}; border: ${isTop1 ? '2px solid #1D4ED8' : '1.5px solid #93C5FD'}; border-radius: 14px; padding: 0.85rem 0.95rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.4rem;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; margin-bottom: 0.2rem;">
+                    <span style="font-size: 0.75rem; font-weight: 900; color: #1D4ED8;">${f.badge}</span>
+                    ${isTop1 ? `<span style="background:#DC2626;color:#FFFFFF;font-size:0.68rem;font-weight:900;padding:0.12rem 0.48rem;border-radius:9999px;">🏆 실구매 전환 1위</span>` : `<span style="background:#DBEAFE;color:#1E40AF;font-size:0.68rem;font-weight:800;padding:0.12rem 0.45rem;border-radius:9999px;">RL 점수 ${f.rlScore}</span>`}
+                  </div>
+                  <div style="font-size: 0.94rem; font-weight: 900; color: #0F172A; line-height: 1.36; margin-bottom: 0.22rem; word-break: keep-all;">${f.item.name}</div>
+                  <div style="font-size: 0.8rem; color: #334155; line-height: 1.44; word-break: keep-all;">${f.item.spec}</div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.38rem; margin-top: 0.25rem;">
+                  <a href="${f.item.coupangUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-category="${f.cat}" data-product-name="${f.item.name}" data-rl-arm-id="${f.rlArmId}" data-rl-cta-arm="${ctaArm.id}" data-rl-slot-rank="${idx + 1}" data-rl-reward-weight="${f.rlRewardWeight}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#1D4ED8; color:#FFFFFF; font-size:0.78rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem; box-shadow: 0 3px 10px rgba(29, 78, 216, 0.22);">${ctaArm.label}</a>
+                  <a href="${f.secUrl}" target="_blank" rel="noopener sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="${f.secMerchant}" data-product-category="${f.cat}" data-product-name="${f.item.name}" style="display:flex; min-height:40px; align-items:center; justify-content:center; background:#EFF6FF; border:1.5px solid #93C5FD; color:#1D4ED8; font-size:0.78rem; font-weight:900; border-radius:8px; text-decoration:none; text-align:center; padding:0.35rem 0.45rem;">${f.secLabel}</a>
+                </div>
+              </div>
+            `;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- Section 2: Category Best Top 3 Lists (Supplements, Biomechanics, Learning Tools, Books, Weekend Tickets) -->
+        <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+          ${renderContextualSupplementsPrescription(profile, affConfig)}
+          ${renderContextualBiomechanicsPrescription(profile, affConfig)}
+          ${renderPillar2LearningToolsPrescription(profile, affConfig)}
+          ${renderCustomEducationChapter(profile, affConfig)}
+          ${renderCustomTravelChapter(profile, affConfig)}
+        </div>
+      </div>
     `;
   }
 
   const TallerPinpointCurator = {
+    MONTHLY_MICRO_CURATION_DB,
+    getMonthlyMicroAnalysisAndProducts,
+    renderMonthlyMicroPrescriptionCard,
+    renderFirstFoldQuickPurchaseBridge,
+    renderMonthlyProductsOnlyCatalog,
     AGE_LIFECYCLE_DB,
     calculateExactAgeFromDob,
     getDobFromAgeMonths,

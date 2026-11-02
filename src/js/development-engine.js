@@ -410,7 +410,7 @@
 
         <div class="toys-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
           ${toys.map((t, idx) => {
-            const coupangUrl = `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(coupangId)}&subid=kidsfit&pageKey=${encodeURIComponent(t.name)}`;
+            const coupangUrl = `https://www.coupang.com/np/search?q=${encodeURIComponent(t.name)}&channel=user&lptag=${encodeURIComponent(coupangId)}&subid=kidsfit`;
             return `
               <div class="toy-card bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>

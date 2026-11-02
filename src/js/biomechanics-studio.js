@@ -679,28 +679,28 @@
                 <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">안전 고정형 실내 문틀 철봉 (데드행 스트레칭 바)</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">아침·저녁 30초 매달리기로 낮 동안 눌린 척추 디스크 간격을 안전하게 펴줍니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%8B%A4%EB%82%B4+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%96%B4%EB%A6%B0%EC%9D%B4" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
                 실내 문틀 철봉 보러가기 ↗
               </a>
             </div>
             <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
                 <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">엄선 2위 · 운동 2단계 필수템</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">소프트 EPP 폼롤러 &amp; 2단 각도조절 원목 독서대</div>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">멜킨스포츠 척추 신전 고밀도 EPP 폼롤러 90cm</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">흉추 신전 스트레칭과 책상 시선 각도 교정으로 숨은 키(+1.8cm)를 복원합니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%ED%8F%BC%EB%A1%A4%EB%9F%AC+%EA%B0%81%EB%8F%84%EC%A1%B0%EC%A0%88+%EB%8F%85%EC%84%9C%EB%8C%80" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                폼롤러 · 자세교정 독서대 보기 ↗
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EA%B3%A0%EB%B0%80%EB%8F%84+EPP+%ED%8F%BC%EB%A1%A4%EB%9F%AC+90cm" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                멜킨 고밀도 EPP 폼롤러 보기 ↗
               </a>
             </div>
             <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
                 <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">엄선 3위 · 운동 3단계 필수템</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">층간소음 방지 실내 점핑 트램폴린 · 카운트 줄넘기</div>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">멜킨스포츠 어린이 무소음 실내 점핑 트램폴린</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">관절 무리 없이 무릎 성장판에 탄성 미세 자극을 전달하는 실내 운동 기구입니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A4%84%EB%84%98%EA%B8%B0" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                무소음 트램폴린·줄넘기 보기 ↗
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                멜킨 무소음 실내 트램폴린 보기 ↗
               </a>
             </div>
           </div>
@@ -719,7 +719,7 @@
 
         <!-- Biomechanics Reference Archival Chip (Hidden by default in pure report) -->
         <div class="curated-product-recommendation-section growth-product-section" style="display: none; justify-content: flex-end; margin-top: 1rem;">
-          <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%B4%ED%98%95%EA%B5%90%EC%A0%95+%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4" 
+          <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%84%EC%A6%88%EB%8F%85%EC%84%9C%EB%8C%80+%EB%86%92%EC%9D%B4%EC%A1%B0%EC%A0%88+%EC%9B%90%EB%AA%A9+2%EB%8B%A8+%EB%8F%85%EC%84%9C%EB%8C%80" 
              target="_blank" 
              rel="noopener noreferrer" 
              class="reference-chip" 
@@ -759,13 +759,13 @@
         }
         if (stateEl) {
           if (data.state === 'running') {
-            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? (data.isRestPhase ? 'REST INTERVAL' : 'RUNNING') : (data.isRestPhase ? 'REST INTERVAL (휴식 중)' : 'RUNNING (진행 중)');
+            stateEl.textContent = data.isRestPhase ? 'REST INTERVAL (휴식 중)' : 'RUNNING (진행 중)';
             stateEl.style.color = data.isRestPhase ? 'var(--amber-caution)' : 'var(--rose-alert)';
           } else if (data.state === 'paused') {
-            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'PAUSED' : 'PAUSED (일시정지)';
+            stateEl.textContent = 'PAUSED (일시정지)';
             stateEl.style.color = 'var(--amber-caution)';
           } else if (data.state === 'completed') {
-            stateEl.textContent = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'COMPLETED' : 'COMPLETED (완료)';
+            stateEl.textContent = 'COMPLETED (완료)';
             stateEl.style.color = 'var(--bio-emerald)';
           } else {
             stateEl.textContent = 'READY TO START';
@@ -773,7 +773,7 @@
           }
         }
         if (setBadgeEl) {
-          setBadgeEl.innerHTML = `${(typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ? 'Set' : '세트'} <span class="current-set">${data.currentSet}</span> / ${data.totalSets}`;
+          setBadgeEl.innerHTML = `세트 <span class="current-set">${data.currentSet}</span> / ${data.totalSets}`;
         }
       });
 

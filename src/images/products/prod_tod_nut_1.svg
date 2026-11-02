@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>키즈 면역 생유산균 100억 CFU + 아연/초유 단백 성장단</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <!-- Probiotic Box in Gold -->
+  <g transform="translate(100, 70)" filter="url(#card-shadow)">
+    <defs>
+      <linearGradient id="gold-box" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FDE047"/>
+        <stop offset="50%" stop-color="#EAB308"/>
+        <stop offset="100%" stop-color="#CA8A04"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="160" height="220" rx="16" fill="url(#gold-box)" stroke="#A16207" stroke-width="1.5"/>
+    <rect x="15" y="15" width="130" height="190" rx="10" fill="#FFFFFF"/>
+
+    <text x="80" y="45" font-family="-apple-system, sans-serif" font-size="14" font-weight="900" fill="#A16207" text-anchor="middle">키즈 면역 생유산균</text>
+    <text x="80" y="65" font-family="-apple-system, sans-serif" font-size="16" font-weight="900" fill="#1E293B" text-anchor="middle">100억 CFU</text>
+    <text x="80" y="82" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#D97706" text-anchor="middle">+ 아연 / 뉴질랜드 초유단백</text>
+
+    <!-- Probiotic Capsule Burst Graphic -->
+    <circle cx="80" cy="130" r="30" fill="#FEF08A" stroke="#EAB308" stroke-dasharray="3,3"/>
+    <!-- Yogurt Swirl -->
+    <path d="M60,135 Q80,105 100,135 Q80,150 60,135 Z" fill="#E0F2FE"/>
+
+    <!-- Zinc Shield Emblem -->
+    <g transform="translate(60, 160)">
+      <path d="M20,0 L38,10 L38,25 C38,38 20,48 20,48 C20,48 2,38 2,25 L2,10 Z" fill="#EAB308" stroke="#A16207" stroke-width="1.5"/>
+      <text x="20" y="28" font-family="-apple-system, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">Zn</text>
+    </g>
+  </g>
+
+  <!-- Sachet Sticks lying in front -->
+  <g transform="translate(60, 240) rotate(-15)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="120" height="32" rx="6" fill="#FEF08A" stroke="#EAB308" stroke-width="1"/>
+    <text x="60" y="20" font-family="-apple-system, sans-serif" font-size="9" font-weight="800" fill="#854D0E" text-anchor="middle">이지컷 1일 1포 분유맛</text>
+  </g>
+
+</svg>

@@ -1,0 +1,584 @@
+{
+  "metadata": {
+    "engine": "KidsFit Coupang Partners Revenue Reinforcement Learning Engine (Contextual Bandit UCB1 + Thompson Sampling)",
+    "version": "1.0.0",
+    "partner_id": "AF7865143",
+    "ultimate_objective": "Maximize Coupang Partners Expected Commission Revenue + 24h Rocket Cart Halo Conversion",
+    "last_updated_kst": "2026-10-31 13:14:02 KST",
+    "total_episodes": 146,
+    "total_cumulative_reward": 6795,
+    "exploration_rate_epsilon": 0.18,
+    "ucb_exploration_constant_c": 1.414,
+    "winning_category_arm": "growth_nutrition_repeat_cart",
+    "winning_cta_arm": "arm_rocket_review"
+  },
+  "reward_function_spec": {
+    "catalog_open_or_bridge_view": 1,
+    "age_switch_or_category_filter": 3,
+    "single_coupang_click_base": 20,
+    "multi_item_session_click_bonus": 60,
+    "impression_without_click_penalty": -0.5,
+    "commission_multipliers": {
+      "ergonomic_hardware_high_ticket": 1.85,
+      "growth_nutrition_repeat_cart": 1.65,
+      "sleep_biomechanics_gear": 1.55,
+      "cognitive_learning_problem_solver": 1.45,
+      "literacy_math_workbook_tool": 1.35
+    }
+  },
+  "cta_arms": {
+    "arm_rocket_review": {
+      "id": "arm_rocket_review",
+      "label": "🛒 쿠팡 로켓배송 혜택가·실제 학부모 후기 확인 ↗",
+      "badge": "🚀 로켓와우 내일도착 · 학부모 실구매 후기 검증",
+      "alpha": 337.52,
+      "beta": 13.68,
+      "impressions": 345,
+      "clicks": 118,
+      "cumulative_reward": 3614,
+      "ucb_score": 2.277
+    },
+    "arm_wow_tomorrow": {
+      "id": "arm_wow_tomorrow",
+      "label": "⚡ 쿠팡 와우 내일도착 · 품절 전 할인가 비교하기 ↗",
+      "badge": "⚡ 오늘 주문 시 내일 도착 · 24시간 장바구니 혜택",
+      "alpha": 33.52,
+      "beta": 15.68,
+      "impressions": 285,
+      "clicks": 21,
+      "cumulative_reward": 472.5,
+      "ucb_score": 1.925
+    },
+    "arm_cart_bundle": {
+      "id": "arm_cart_bundle",
+      "label": "🎁 쿠팡 로켓 장바구니 추천 · 오늘 혜택가 확인 ↗",
+      "badge": "💡 쿠팡 팁: 장바구니에 담아두면 생필품과 함께 로켓묶음할인!",
+      "alpha": 26.52,
+      "beta": 16.68,
+      "impressions": 235,
+      "clicks": 15,
+      "cumulative_reward": 330,
+      "ucb_score": 1.779
+    },
+    "arm_spec_verified": {
+      "id": "arm_spec_verified",
+      "label": "🔬 식약처·KC 인증 스펙 확인 및 쿠팡 혜택가 보기 ↗",
+      "badge": "🏅 식약처 건강기능식품 · KC 안전인증 스펙 통과",
+      "alpha": 29.52,
+      "beta": 15.68,
+      "impressions": 255,
+      "clicks": 18,
+      "cumulative_reward": 396,
+      "ucb_score": 1.867
+    }
+  },
+  "category_arms": {
+    "growth_nutrition_repeat_cart": {
+      "id": "growth_nutrition_repeat_cart",
+      "name": "식약처 인증 성장기 칼슘·비타민D·아르기닌·영양제 (반복구매+장바구니 효과 1위)",
+      "keywords": [
+        "칼슘",
+        "비타민D",
+        "아연",
+        "아르기닌",
+        "영양제",
+        "유산균",
+        "오메가3",
+        "초유",
+        "단백질",
+        "밸런스",
+        "구미",
+        "츄어블"
+      ],
+      "commission_multiplier": 1.65,
+      "avg_order_value_krw": 38000,
+      "cart_halo_multiplier": 2.2,
+      "alpha": 421.25,
+      "beta": 12.1,
+      "impressions": 435,
+      "clicks": 125,
+      "cumulative_reward": 4125,
+      "ucb_score": 3.352,
+      "priority_rank": 1
+    },
+    "ergonomic_hardware_high_ticket": {
+      "id": "ergonomic_hardware_high_ticket",
+      "name": "바른자세 각도조절 책상·의자·발받침·LED 학습조명 (고단가 수수료 1위)",
+      "keywords": [
+        "책상",
+        "의자",
+        "발받침",
+        "독서대",
+        "스탠드",
+        "조명",
+        "자세",
+        "교정",
+        "높이조절",
+        "책장",
+        "칠판"
+      ],
+      "commission_multiplier": 1.85,
+      "avg_order_value_krw": 145000,
+      "cart_halo_multiplier": 1.3,
+      "alpha": 47.74,
+      "beta": 13.1,
+      "impressions": 405,
+      "clicks": 31,
+      "cumulative_reward": 1147,
+      "ucb_score": 2.077,
+      "priority_rank": 3
+    },
+    "cognitive_learning_problem_solver": {
+      "id": "cognitive_learning_problem_solver",
+      "name": "집중력 시각타이머·연필교정기·수학교구·보드게임 (즉시 결제 전환율 1위)",
+      "keywords": [
+        "타이머",
+        "시계",
+        "연필",
+        "교구",
+        "보드게임",
+        "블록",
+        "자석",
+        "퍼즐",
+        "칠교",
+        "큐브",
+        "플래너",
+        "노트"
+      ],
+      "commission_multiplier": 1.45,
+      "avg_order_value_krw": 26000,
+      "cart_halo_multiplier": 1.8,
+      "alpha": 43.48,
+      "beta": 14.1,
+      "impressions": 375,
+      "clicks": 29,
+      "cumulative_reward": 841,
+      "ucb_score": 2.169,
+      "priority_rank": 2
+    },
+    "sleep_biomechanics_gear": {
+      "id": "sleep_biomechanics_gear",
+      "name": "성장호르몬 숙면 경추베개·암막커튼·성장판 점프/스트레칭 기구",
+      "keywords": [
+        "베개",
+        "수면",
+        "암막",
+        "스트레칭",
+        "트램폴린",
+        "줄넘기",
+        "폼롤러",
+        "깔창",
+        "실내화",
+        "철봉",
+        "농구"
+      ],
+      "commission_multiplier": 1.55,
+      "avg_order_value_krw": 49000,
+      "cart_halo_multiplier": 1.5,
+      "alpha": 36.76,
+      "beta": 16.1,
+      "impressions": 315,
+      "clicks": 22,
+      "cumulative_reward": 682,
+      "ucb_score": 1.833,
+      "priority_rank": 4
+    }
+  },
+  "stage_top_pick_boosts": {
+    "toddler": [
+      "촉감",
+      "블록",
+      "비타민D",
+      "아연",
+      "유산균",
+      "균형",
+      "세이펜",
+      "원목"
+    ],
+    "preschool": [
+      "자석교구",
+      "밸런스보드",
+      "칼슘",
+      "비타민D",
+      "연필교정기",
+      "독서대",
+      "보드게임"
+    ],
+    "lower_elem": [
+      "각도조절",
+      "독서대",
+      "시각타이머",
+      "칼슘",
+      "비타민D",
+      "발받침",
+      "바른자세 의자"
+    ],
+    "mid_elem": [
+      "바른자세 의자",
+      "시각타이머",
+      "독서대",
+      "칼슘 마그네슘 비타민D",
+      "LED 스탠드",
+      "아르기닌"
+    ],
+    "upper_elem": [
+      "경추베개",
+      "바른자세 의자",
+      "아르기닌",
+      "칼슘 비타민D",
+      "LED 스탠드",
+      "폼롤러"
+    ],
+    "teen": [
+      "아르기닌",
+      "단백질",
+      "오메가3",
+      "테아닌",
+      "바른자세 의자",
+      "경추베개",
+      "LED 스탠드"
+    ]
+  },
+  "inflow_topic_arms": {
+    "topic_height_supplement_calc_vitd": {
+      "topic": "아이 키성장 칼슘·비타민D·아르기닌 흡수율 및 골든타임 비교",
+      "target_url": "https://kidsfit.co.kr/?open=catalog&utm_source=rl_top_reward",
+      "reward_score": 94.5,
+      "weight": 1.35
+    },
+    "topic_posture_desk_chair_timer": {
+      "topic": "초등 입학·고학년 거북목 방지 각도조절 책상·의자·시각타이머 실전 세팅",
+      "target_url": "https://kidsfit.co.kr/?open=catalog&utm_source=rl_top_reward",
+      "reward_score": 91.2,
+      "weight": 1.3
+    },
+    "topic_monthly_toys_boardgames": {
+      "topic": "개월수별 두뇌 자극 수학교구·보드게임·문해력 독서대 추천 리스트",
+      "target_url": "https://kidsfit.co.kr/qna/monthly-curation.html?utm_source=rl_top_reward",
+      "reward_score": 88.8,
+      "weight": 1.25
+    }
+  },
+  "recent_reward_history": [
+    {
+      "timestampKst": "2026-10-31 13:14:02 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 13:12:10 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:58:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:56:34 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:44:17 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:44:01 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:42:07 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:41:46 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:25:27 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:25:06 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:17:59 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:17:38 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:08:14 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 11:07:27 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:56:51 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:56:23 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:53:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:53:18 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:50:55 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:50:44 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:50:21 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:50:04 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:49:59 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:49:56 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:49:06 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:47:57 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:47:54 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:44:02 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:43:36 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:40:07 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:39:34 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:28:36 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:27:29 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:22:10 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:16:06 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:11:37 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:09:07 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 10:00:25 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 09:56:31 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-10-31 09:54:58 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    }
+  ]
+}
