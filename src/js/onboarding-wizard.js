@@ -1351,7 +1351,7 @@
     }
 
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
-    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
+    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || '')) && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
         window.fetch('/api/bespoke-note', {
           method: 'POST',
@@ -2714,32 +2714,3 @@
   }
 
 })(typeof window !== 'undefined' ? window : global);
-
-
-    // Dispatch unified diagnosis completion telemetry to /api/visit & /api/user-cohort
-    try {
-      if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
-        const urlParams = new URLSearchParams(window.location.search || '');
-        const utmSource = urlParams.get('utm_source') || 'direct';
-        window.fetch('/api/visit', {
-          method: 'POST',
-          keepalive: true,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            event: 'diagnosis',
-            mode: 'both',
-            preferredReportMode: 'both',
-            utm_source: utmSource
-          })
-        }).catch(function () {});
-        window.fetch('/api/user-cohort', {
-          method: 'POST',
-          keepalive: true,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            preferredReportMode: 'both',
-            utm_source: utmSource
-          })
-        }).catch(function () {});
-      }
-    } catch (_) {}

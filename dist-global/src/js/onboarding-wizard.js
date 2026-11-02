@@ -1228,7 +1228,7 @@
     }
 
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
-    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
+    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || '')) && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
         const host = (window.location && String(window.location.hostname || '').toLowerCase()) || '';
         const isStatic = (host.includes('kisfitglobal.com') || host.includes('kidsfitglobal.com') || host.includes('github.io')) && String(window.fetch).includes('[native code]');

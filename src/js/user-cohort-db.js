@@ -280,7 +280,7 @@
       saveLocalRecords(local);
 
       // 2. Async POST to server.js (`/api/user-cohort`) if running in browser with fetch
-      if (typeof fetch === 'function') {
+      if (typeof fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || ''))) {
         try {
           fetch('/api/user-cohort', {
             method: 'POST',

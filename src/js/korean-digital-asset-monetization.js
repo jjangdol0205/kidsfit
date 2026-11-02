@@ -244,28 +244,6 @@
           '</a>' +
         '</div>' +
 
-        '<!-- 상품 C: 키즈핏 육아 쇼핑몰 (공식 스토어 / 에디터 픽) 클릭·구매 시 검사결과 0원 잠금해제 -->' +
-        '<div style="background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:2px solid #F59E0B;border-radius:16px;padding:13px 15px;margin-bottom:12px;">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px;">' +
-            '<div style="font-size:14px;font-weight:900;color:#92400E;">🛍️ ③ [육아몰 클릭 시 0원 잠금해제] 추천 육아템 확인하고 검사결과·워크북 바로 열기</div>' +
-            '<span style="background:#D97706;color:#FFFFFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:999px;">클릭 즉시 검사결과 해금!</span>' +
-          '</div>' +
-          '<p style="margin:0 0 9px;font-size:12px;color:#78350F;line-height:1.45;">별도 결제 없이 아래 <strong>키즈핏 육아 쇼핑몰(공식 판매처 · 혜택가 확인 · 연령별 교구/도서 공식몰)</strong> 상품 중 하나만 클릭(또는 구매)하시면 <strong>맞춤 정밀 검사결과 전체와 A4 프린트 워크북이 즉시 무료로 잠금해제</strong>됩니다!</p>' +
-          '<div style="display:flex;flex-direction:column;gap:7px;">' +
-            '<a id="kf-btn-sponsored-coupang-unlock" href="https://www.coupang.com/vp/products/7335841617?itemId=29211153321&vendorItemId=96131097426&lptag=AF7865143" target="_blank" rel="noopener sponsored" style="display:block;text-align:center;background:#D97706;color:#FFFFFF;font-weight:900;font-size:13px;padding:10px 14px;border-radius:10px;text-decoration:none;box-shadow:0 4px 12px rgba(217,119,6,0.25);">' +
-              '🚀 [쿠팡 로켓 육아몰] 연령별 키성장 영양제·공룡쿠키틀·독서대 확인하고 검사결과 열기 →' +
-            '</a>' +
-            '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:7px;">' +
-              '<a id="kf-btn-sponsored-iherb-unlock" href="https://kr.iherb.com/search?kw=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%95%84%EC%97%B0+%EB%B9%84%ED%83%80%EB%AF%BCD3+%EC%B9%BC%EC%8A%98&rcode=IPZ1547" target="_blank" rel="noopener sponsored" style="display:block;text-align:center;background:#15803D;color:#FFFFFF;font-weight:900;font-size:12.5px;padding:9px 12px;border-radius:10px;text-decoration:none;">' +
-                '🌿 [글로벌 공식 스토어] 아기 액상 아연·D3 확인하고 결과 열기 →' +
-              '</a>' +
-              '<a id="kf-btn-sponsored-cpa-unlock" href="https://www.yes24.com/Product/Search?domain=ALL&query=%EC%B4%88%EB%93%B1+%EB%AC%B8%ED%95%B4%EB%A0%A5+%EB%91%90%EB%87%8C%EB%B0%9C%EB%8B%AC" target="_blank" rel="noopener sponsored" style="display:block;text-align:center;background:#1E40AF;color:#FFFFFF;font-weight:900;font-size:12.5px;padding:9px 12px;border-radius:10px;text-decoration:none;">' +
-                '📚 [육아 도서·교구 공식몰] 연령별 두뇌 워크북 확인하고 결과 열기 →' +
-              '</a>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
-
         '<!-- 이용권 코드 입력 / 결제 완료 확인 -->' +
         '<div style="background:#F1F5F9;border-radius:12px;padding:9px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">' +
           '<span style="font-size:12px;font-weight:800;color:#334155;">🔑 결제 주문번호(또는 이용권 코드):</span>' +
@@ -301,28 +279,7 @@
         trackDigitalAssetClick('[무형자산 단건 $8.99] 1:1 정밀 마스터북 PDF 소장 패스', SINGLE_CHECKOUT_URL, 8.99);
       });
     }
-    var btnSponsor = document.getElementById('kf-btn-sponsored-coupang-unlock');
-    if (btnSponsor) {
-      btnSponsor.addEventListener('click', function () {
-        trackDigitalAssetClick('[스폰서 무료인쇄 해금] 쿠팡 로켓 권장 준비물 확인 (AF7865143)', btnSponsor.getAttribute('href'), 0);
-        modal.style.display = 'none';
-        setTimeout(function () {
-          if (typeof window !== 'undefined' && typeof window.print === 'function') {
-            window.print();
-          }
-        }, 700);
-      });
-    }
-
-    ['kf-btn-sponsored-iherb-unlock', 'kf-btn-sponsored-cpa-unlock'].forEach(function (btnId) {
-      var el = document.getElementById(btnId);
-      if (el) {
-        el.addEventListener('click', function () {
-          unlockDigitalAssetsNow('MallClick:' + btnId);
-          trackDigitalAssetClick('[육아몰 클릭 검사결과 잠금해제] ' + btnId, el.getAttribute('href'), 0);
-          modal.style.display = 'none';
-        });
-      }
+}
     });
     var verifyBtn = document.getElementById('kf-btn-verify-passcode');
     if (verifyBtn) {
@@ -429,7 +386,7 @@
   function injectParentingShoppingMallSection() {
     if (typeof document === 'undefined' || isJsdomEnv()) return;
     if (document.getElementById('kf-parenting-shopping-mall')) return;
-    var targetContainer = document.getElementById('results-dashboard') || document.querySelector('main') || document.body;
+    var targetContainer = document.getElementById('results-dashboard');
     if (!targetContainer) return;
 
     var mall = document.createElement('section');
@@ -474,7 +431,7 @@
     for (var i = 0; i < links.length; i++) {
       (function (lnk) {
         lnk.addEventListener('click', function () {
-          unlockDigitalAssetsNow('ShoppingMallItemClick');
+          if (typeof window !== 'undefined' && typeof window.unlockKidsFitDiagnosticTests === 'function') { window.unlockKidsFitDiagnosticTests('ShoppingMallItemClick'); }
           trackDigitalAssetClick('[키즈핏 육아몰 상품 클릭 -> 검사결과 해금]', lnk.getAttribute('href'), 0);
         });
       })(links[i]);
@@ -506,7 +463,6 @@
   if (typeof window !== 'undefined' && typeof document !== 'undefined' && !isJsdomEnv()) {
     window.addEventListener('DOMContentLoaded', function () {
       injectReportDigitalAssetBanner();
-      injectParentingShoppingMallSection();
       var obs = typeof MutationObserver !== 'undefined' ? new MutationObserver(function () {
         injectReportDigitalAssetBanner();
       }) : null;

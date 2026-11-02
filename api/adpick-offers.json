@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "source": "static-curated",
+  "offers": [
+    {
+      "id": "coupang-calc",
+      "title": "어린이 구연산·어골칼슘 & 비타민D3 로켓배송",
+      "url": "https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3&channel=user&lptag=AF7865143",
+      "platform": "Coupang Partners"
+    },
+    {
+      "id": "iherb-zinc",
+      "title": "아이허브 어린이 액상 글루콘산 아연 & 유기농 D3",
+      "url": "https://kr.iherb.com/search?kw=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%95%84%EC%97%B0+%EB%B9%84%ED%83%80%EB%AF%BCD3&rcode=IPZ1547",
+      "platform": "iHerb"
+    }
+  ]
+}

@@ -4221,7 +4221,7 @@
       }
 
       // Sync to server /api/antigravity-report and /api/bespoke-note asynchronously
-      if (typeof window !== 'undefined' && typeof window.fetch === 'function' && newNote) {
+      if (typeof window !== 'undefined' && typeof window.fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || '')) && newNote) {
         try {
           window.fetch('/api/antigravity-report', {
             method: 'POST',
