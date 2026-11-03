@@ -3527,3 +3527,33 @@ ${isMasked ? `
     }
   } catch (e) {}
 })();
+
+/* === HQ KPI Conversion Tracker (2사업부: 유료회원 전환 클릭 & 결제 추적) === */
+(function(){
+  try {
+    if (typeof window === 'undefined' || window.__HQ_KPI_KFG__) return;
+    window.__HQ_KPI_KFG__ = true;
+    var host = (location && location.hostname) || '';
+    if (!host || host === 'localhost' || host === '127.0.0.1') return;
+    var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+    var ns = 'kfg_kisfitglobal';
+    if (location.search.indexOf('payment=success') !== -1 || location.search.indexOf('unlock=1') !== -1) {
+      if (localStorage.getItem('hq_paid_kfg_' + kst) !== '1') {
+        localStorage.setItem('hq_paid_kfg_' + kst, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_member_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_member_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+    }
+    document.addEventListener('click', function(e) {
+      var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+      if (!el) return;
+      var href = (el.getAttribute('href') || '').toLowerCase();
+      var txt = (el.innerText || el.textContent || '').toLowerCase();
+      var id = (el.id || '').toLowerCase();
+      if (href.indexOf('lemonsqueezy.com') !== -1 || id.indexOf('paywall') !== -1 || id.indexOf('checkout') !== -1 || /unlock|8\.99|19\.99|pass|report|checkout/.test(txt)) {
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+    }, true);
+  } catch (e) {}
+})();

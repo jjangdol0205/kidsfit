@@ -199,3 +199,36 @@
     }
   } catch (e) {}
 })();
+
+/* === HQ KPI Conversion Tracker (3사업부: 상품 구매 레퍼럴 클릭 추적) === */
+(function(){
+  try {
+    if (typeof window === 'undefined' || window.__HQ_KPI_KFK__) return;
+    window.__HQ_KPI_KFK__ = true;
+    var host = (location && location.hostname) || '';
+    if (!host || host === 'localhost' || host === '127.0.0.1') return;
+    var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+    var ns = 'kfk_kidsfitkr';
+    function hitRefClick() {
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+    }
+    var origRecord = window.recordKidsFitProductClick;
+    if (typeof origRecord === 'function') {
+      window.recordKidsFitProductClick = function() {
+        hitRefClick();
+        return origRecord.apply(this, arguments);
+      };
+    }
+    document.addEventListener('click', function(e) {
+      var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+      if (!el) return;
+      var href = (el.getAttribute('href') || '').toLowerCase();
+      var onclick = (el.getAttribute('onclick') || '').toLowerCase();
+      var txt = (el.innerText || el.textContent || '').toLowerCase();
+      if (href.indexOf('coupang.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /최저가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기/.test(txt)) {
+        hitRefClick();
+      }
+    }, true);
+  } catch (e) {}
+})();
