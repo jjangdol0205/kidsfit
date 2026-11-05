@@ -714,7 +714,7 @@
       const isOuter = ratio === 1.0;
       gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(238, 242, 255, 0.55)' : 'none'}" stroke="${isOuter ? 'rgba(99, 102, 241, 0.4)' : 'rgba(148, 163, 184, 0.32)'}" stroke-width="${isOuter ? '1.6' : '1'}" />`;
       if (ratio >= 0.4) {
-        gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10.5" font-weight="800" fill="#475569" font-family="Pretendard, sans-serif">${Math.round(ratio * 100)}</text>`;
+        gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10.5" font-weight="800" fill="#475569" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif">${Math.round(ratio * 100)}</text>`;
       }
     });
 
@@ -740,7 +740,7 @@
           ${meta.icon} ${labelText}
         </text>
         <text x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anchor}" font-size="12" font-weight="900" fill="#1D4ED8" dominant-baseline="central">
-          ${scores[key]}점
+          ${scores[key]}${isGlobal ? ' pts' : '점'}
         </text>
       `;
 
@@ -762,7 +762,7 @@
     childPoints.forEach(p => {
       verticesSvg += `
         <circle cx="${p.x}" cy="${p.y}" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2.2">
-          <title>${p.label}: ${p.score}점</title>
+          <title>${p.label}: ${p.score}${isGlobal ? ' pts' : '점'}</title>
         </circle>
       `;
     });
@@ -981,7 +981,7 @@
                 <div style="background: #FFFFFF; border: 1px solid ${isHigh ? '#93C5FD' : '#CBD5E1'}; border-radius: 12px; padding: 0.75rem 0.85rem;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
                     <span style="font-size: 0.84rem; font-weight: 800; color: ${isHigh ? '#1D4ED8' : '#0F172A'};">${isGlobal ? p.nameEn : p.nameKo}</span>
-                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#1D4ED8' : '#334155'};">${b.finalScore}점</span>
+                    <span style="font-size: 0.9rem; font-weight: 900; color: ${isHigh ? '#1D4ED8' : '#334155'};">${b.finalScore}${isGlobal ? ' pts' : '점'}</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 0.18rem;">
                     ${factorsList}

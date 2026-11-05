@@ -1107,8 +1107,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,722 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,722 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,722편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,722편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 117 Cognitive Neuroscience & Literacy Papers...' : 'Matching 117 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '117편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '117편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -1136,7 +1136,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,722 research papers for active bio-inhibitors...'
+            ? 'Filtering 117 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -1228,7 +1228,7 @@
     }
 
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
-    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || '')) && wizardState.profile && wizardState.profile.parentFreeNote) {
+    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
         const host = (window.location && String(window.location.hostname || '').toLowerCase()) || '';
         const isStatic = (host.includes('kisfitglobal.com') || host.includes('kidsfitglobal.com') || host.includes('github.io')) && String(window.fetch).includes('[native code]');
@@ -1709,15 +1709,15 @@
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 3,722 peer-reviewed publications.'
-          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,722편 기반 학습 병목·공부법 보고서를 발행합니다.';
+          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 117 peer-reviewed publications.'
+          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 117편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 3,722 peer-reviewed publications.'
-          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,722편 기반 예상키·골든타임 보고서를 발행합니다.';
+          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 117 peer-reviewed publications.'
+          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 117편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 

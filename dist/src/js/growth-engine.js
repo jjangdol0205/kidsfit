@@ -764,15 +764,15 @@
         <!-- Normative Reference Background Curves (P3, P50, P97) with non-overlapping mid-chart badges -->
         <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p97" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="Pretendard, -apple-system, sans-serif" font-variant-numeric="tabular-nums">P97 (97%)</text>
 
         <path d="${pathP50}" fill="none" stroke="#475569" stroke-width="1.8" id="curve-p50" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="Pretendard, -apple-system, sans-serif" font-variant-numeric="tabular-nums">P50 (50%)</text>
 
         <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p3" />
         <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="Pretendard, -apple-system, sans-serif" font-variant-numeric="tabular-nums">P3 (3%)</text>
 
         <!-- 3 Color-Coded Trajectory Path Lines & Anti-Collision Right Badges -->
         <!-- 1. Optimized Intervention Trajectory (Cyan Blue #38BDF8) -->
@@ -781,17 +781,17 @@
         <rect x="${(endX + 8).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.2" />
         <text x="${(endX + 73).toFixed(1)}" y="${(labelYOpt + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="900" text-anchor="middle">최대 잠재 ${traj.optimized.height}cm</text>
 
-        <!-- 2. Genetic Baseline Trajectory (Amber #F59E0B) -->
-        <path d="${pathBaseline}" fill="none" stroke="#94A3B8" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
+        <!-- 2. Genetic Baseline Trajectory (Slate #64748B) -->
+        <path d="${pathBaseline}" fill="none" stroke="#64748B" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#64748B" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#475569" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
 
-        <!-- 3. Current Unmanaged Trajectory (Coral/Rose #F43F5E) -->
-        <path d="${pathUnmanaged}" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
+        <!-- 3. Current Unmanaged Trajectory (Alert Rose #E11D48) -->
+        <path d="${pathUnmanaged}" fill="none" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
+        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#E11D48" stroke-width="1.2" />
+        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#FFF1F2" stroke="#E11D48" stroke-width="1.2" />
+        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#E11D48" font-weight="900" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
 
         <!-- Axes -->
         <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
@@ -858,7 +858,7 @@
         <div class="predicted-bar-row" style="margin-top: 1rem;">
           <div class="predicted-bar-header">
             <span class="bar-title">② 방해 습관 방치 시 예측키</span>
-            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--rose-alert, #F43F5E); font-size: 0.85rem;">(-${pred.unmanagedLoss}cm 손실)</small></span>
+            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--rose-alert, #E11D48); font-size: 0.85rem; font-weight: 800;">(-${pred.unmanagedLoss}cm 손실)</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-alert" style="width: ${wUnmanaged}%;"></div>
@@ -1279,8 +1279,8 @@
             </div>
             <div style="display: flex; gap: 0.85rem; font-size: 0.78rem; font-weight: 700;">
               <span style="color: #1D4ED8;">● 최대 잠재 궤적</span>
-              <span style="color: #1D4ED8;">● 유전 기준(MPH)</span>
-              <span style="color: #1D4ED8;">● 방치 손실 궤적</span>
+              <span style="color: #475569;">● 유전 기준(MPH)</span>
+              <span style="color: #E11D48;">● 방치 손실 궤적</span>
             </div>
           </div>
           ${renderSvgGrowthCurve(gender, ageMonths, profile.currentHeight, {

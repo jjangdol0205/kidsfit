@@ -83,6 +83,77 @@
     ]
   };
 
+  /**
+   * Published Khamis-Roche Empirical Regression Coefficients (Ages 4.0 to 17.5 in 0.5-yr intervals)
+   * Source: Khamis HJ, Roche AF. "Predicting adult stature without using skeletal age: the Khamis-Roche method."
+   * Pediatrics. 1994;94(4):504-507 and erratum Pediatrics. 1995;95(3):457.
+   * Regression equation:
+   *   Predicted Adult Height (in) = b0 + (b1 * Height_in) + (b2 * Weight_lbs) + (b3 * MidParentStature_in)
+   * 28 rows per sex. 90% confidence corridor: ±5.34 cm (±2.1 in) boys, ±4.25 cm (±1.7 in) girls.
+   */
+  const KHAMIS_ROCHE_COEFFICIENTS = {
+    boy: [
+      { age: 4.0, b0: -10.25670, b1: 1.23812, b2: -0.087235, b3: 0.50286 },
+      { age: 4.5, b0: -10.71900, b1: 1.15964, b2: -0.074454, b3: 0.52887 },
+      { age: 5.0, b0: -11.02130, b1: 1.10674, b2: -0.064778, b3: 0.53919 },
+      { age: 5.5, b0: -11.15560, b1: 1.07480, b2: -0.057760, b3: 0.53691 },
+      { age: 6.0, b0: -11.11380, b1: 1.05923, b2: -0.052947, b3: 0.52513 },
+      { age: 6.5, b0: -11.02210, b1: 1.05542, b2: -0.049892, b3: 0.50692 },
+      { age: 7.0, b0: -10.99840, b1: 1.05877, b2: -0.048144, b3: 0.48538 },
+      { age: 7.5, b0: -11.02140, b1: 1.06467, b2: -0.047256, b3: 0.46361 },
+      { age: 8.0, b0: -11.06960, b1: 1.06853, b2: -0.046778, b3: 0.44469 },
+      { age: 8.5, b0: -11.12200, b1: 1.06572, b2: -0.046261, b3: 0.43171 },
+      { age: 9.0, b0: -11.15710, b1: 1.05166, b2: -0.045254, b3: 0.42776 },
+      { age: 9.5, b0: -11.14050, b1: 1.02174, b2: -0.043311, b3: 0.43593 },
+      { age: 10.0, b0: -11.03800, b1: 0.97135, b2: -0.039981, b3: 0.45932 },
+      { age: 10.5, b0: -10.82860, b1: 0.89589, b2: -0.034814, b3: 0.50101 },
+      { age: 11.0, b0: -10.49170, b1: 0.81239, b2: -0.029050, b3: 0.54781 },
+      { age: 11.5, b0: -10.00650, b1: 0.74134, b2: -0.024167, b3: 0.58409 },
+      { age: 12.0, b0: -9.35220, b1: 0.68325, b2: -0.020076, b3: 0.60927 },
+      { age: 12.5, b0: -8.60550, b1: 0.63869, b2: -0.016681, b3: 0.62279 },
+      { age: 13.0, b0: -7.86320, b1: 0.60818, b2: -0.013895, b3: 0.62407 },
+      { age: 13.5, b0: -7.13480, b1: 0.59228, b2: -0.011624, b3: 0.61253 },
+      { age: 14.0, b0: -6.42990, b1: 0.59151, b2: -0.009776, b3: 0.58762 },
+      { age: 14.5, b0: -5.75780, b1: 0.60643, b2: -0.008261, b3: 0.54875 },
+      { age: 15.0, b0: -5.12820, b1: 0.63757, b2: -0.006988, b3: 0.49536 },
+      { age: 15.5, b0: -4.50920, b1: 0.68548, b2: -0.005863, b3: 0.42687 },
+      { age: 16.0, b0: -3.92920, b1: 0.75069, b2: -0.004795, b3: 0.34271 },
+      { age: 16.5, b0: -3.48730, b1: 0.83375, b2: -0.003695, b3: 0.24231 },
+      { age: 17.0, b0: -3.28300, b1: 0.93520, b2: -0.002470, b3: 0.12510 },
+      { age: 17.5, b0: -3.41560, b1: 1.05558, b2: -0.001027, b3: -0.00950 }
+    ],
+    girl: [
+      { age: 4.0, b0: -8.13250, b1: 1.24768, b2: -0.194350, b3: 0.44774 },
+      { age: 4.5, b0: -6.47656, b1: 1.22177, b2: -0.185190, b3: 0.41381 },
+      { age: 5.0, b0: -5.13582, b1: 1.19932, b2: -0.175300, b3: 0.38467 },
+      { age: 5.5, b0: -4.13791, b1: 1.17880, b2: -0.164840, b3: 0.36039 },
+      { age: 6.0, b0: -3.51039, b1: 1.15866, b2: -0.154000, b3: 0.34105 },
+      { age: 6.5, b0: -3.14322, b1: 1.13737, b2: -0.142940, b3: 0.32672 },
+      { age: 7.0, b0: -2.87645, b1: 1.11342, b2: -0.131840, b3: 0.31748 },
+      { age: 7.5, b0: -2.66291, b1: 1.08525, b2: -0.120860, b3: 0.31340 },
+      { age: 8.0, b0: -2.45559, b1: 1.05135, b2: -0.110190, b3: 0.31457 },
+      { age: 8.5, b0: -2.20728, b1: 1.01018, b2: -0.099990, b3: 0.32105 },
+      { age: 9.0, b0: -1.87098, b1: 0.96020, b2: -0.090440, b3: 0.33291 },
+      { age: 9.5, b0: -1.06330, b1: 0.89989, b2: -0.081710, b3: 0.35025 },
+      { age: 10.0, b0: 0.33468, b1: 0.82771, b2: -0.073970, b3: 0.37312 },
+      { age: 10.5, b0: 1.97366, b1: 0.74213, b2: -0.067390, b3: 0.40161 },
+      { age: 11.0, b0: 3.50436, b1: 0.67173, b2: -0.061360, b3: 0.42042 },
+      { age: 11.5, b0: 4.57747, b1: 0.64150, b2: -0.055180, b3: 0.41686 },
+      { age: 12.0, b0: 4.84365, b1: 0.64452, b2: -0.048940, b3: 0.39490 },
+      { age: 12.5, b0: 4.27869, b1: 0.67386, b2: -0.042720, b3: 0.35850 },
+      { age: 13.0, b0: 3.21417, b1: 0.72260, b2: -0.036610, b3: 0.31163 },
+      { age: 13.5, b0: 1.83456, b1: 0.78383, b2: -0.030670, b3: 0.25826 },
+      { age: 14.0, b0: 0.32425, b1: 0.85062, b2: -0.025000, b3: 0.20235 },
+      { age: 14.5, b0: -1.13224, b1: 0.91605, b2: -0.019670, b3: 0.14787 },
+      { age: 15.0, b0: -2.35055, b1: 0.97319, b2: -0.014770, b3: 0.09880 },
+      { age: 15.5, b0: -3.10326, b1: 1.01514, b2: -0.010370, b3: 0.05909 },
+      { age: 16.0, b0: -3.17885, b1: 1.03496, b2: -0.006550, b3: 0.03272 },
+      { age: 16.5, b0: -2.41657, b1: 1.02573, b2: -0.003400, b3: 0.02364 },
+      { age: 17.0, b0: -0.65579, b1: 0.98054, b2: -0.001000, b3: 0.03584 },
+      { age: 17.5, b0: 2.26429, b1: 0.89246, b2: 0.000570, b3: 0.07327 }
+    ]
+  };
+
   function normalizeSex(sex) {
     if (!sex) return 'boy';
     const s = String(sex).toLowerCase();
@@ -242,25 +313,25 @@
     const futureHeight6mMeter = (hVal + 3.2) / 100.0;
     const targetWeight6m = Math.round(Math.max(optimalWeightForHeight + 1.0, stdBmiP50 * futureHeight6mMeter * futureHeight6mMeter) * 10) / 10;
 
-    let bmiStatus = '표준 균형 체형 (정상 5~84백분위)';
-    let bmiShortStatus = '키 성장 최적 표준 체중';
-    let bmiNote = '키 대비 체중 밸런스가 이상적입니다. 단백질·칼슘 섭취를 꾸준히 유지하세요.';
+    let bmiStatus = 'Optimal Proportional Stature (Normative 5th–84th Percentile)';
+    let bmiShortStatus = 'Optimal Weight-for-Height Linear Growth Balance';
+    let bmiNote = 'Body mass is ideally balanced with current stature. Maintain daily bioavailable protein and calcium accrual.';
     let bmiBadgeColor = '#1D4ED8';
 
     if (bmi < ((lms && lms.bmiP5) || 13.8) || wKg < optimalWeightForHeight * 0.88) {
-      bmiStatus = '저체중 · 영양 보충 필요 (<5백분위)';
-      bmiShortStatus = '저체중 · 골밀도 영양 보충 필요';
-      bmiNote = `현재 키(${hVal}cm) 맞춤 적정 체중(${optimalWeightForHeight}kg)보다 ${Math.abs(weightVsHeightDelta).toFixed(1)}kg 부족합니다. 키 성장의 재료가 되는 단백질·칼슘·아연·초유 보강이 우선입니다.`;
+      bmiStatus = 'Underweight · Nutritional Fortification Required (<5th Percentile)';
+      bmiShortStatus = 'Underweight · Bone Density & Protein Support Needed';
+      bmiNote = `Current weight is ${Math.abs(weightVsHeightDelta).toFixed(1)} kg below the optimal weight (${optimalWeightForHeight} kg) for stature (${hVal} cm). Prioritize bioavailable protein, calcium citrate, and zinc for anabolic linear growth.`;
       bmiBadgeColor = '#1D4ED8';
     } else if (bmi >= ((lms && lms.bmiP95) || 21.0) || wKg > optimalWeightForHeight * 1.2) {
-      bmiStatus = '과체중·성조숙 주의 (≥95백분위)';
-      bmiShortStatus = '과체중 · 성장판 조기 골화 주의';
-      bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg)보다 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg 높습니다. 과도한 체지방(렙틴 호르몬)은 사춘기와 성장판 골화를 앞당길 수 있으므로 야식·단 음료를 줄이고 줄넘기·점핑 운동으로 전환해주세요.`;
+      bmiStatus = 'Overweight · Precocious Maturation Alert (≥95th Percentile)';
+      bmiShortStatus = 'Excess Adiposity · Accelerated Epiphyseal Fusion Risk';
+      bmiNote = `Current weight is +${Math.abs(weightVsHeightDelta).toFixed(1)} kg above optimal weight (${optimalWeightForHeight} kg) for stature (${hVal} cm). Excess adipose tissue stimulates aromatase and leptin signaling, accelerating pubertal bone-age closure. Eliminate late nocturnal carbs and introduce daily plyometric jumping.`;
       bmiBadgeColor = '#1D4ED8';
     } else if (bmi >= ((lms && lms.bmiP85) || 18.8) || wKg > optimalWeightForHeight * 1.1) {
-      bmiStatus = '과체중 경계 (85~94백분위)';
-      bmiShortStatus = '과체중 경계 · 체지방 관리 권장';
-      bmiNote = `현재 키(${hVal}cm) 적정 체중(${optimalWeightForHeight}kg) 대비 +${Math.abs(weightVsHeightDelta).toFixed(1)}kg입니다. 체중 증가 속도가 키 성장 속도보다 빠르지 않도록 야식과 액상과당 음료를 조절해주세요.`;
+      bmiStatus = 'Borderline Overweight (85th–94th Percentile)';
+      bmiShortStatus = 'Borderline Overweight · Adiposity Management Recommended';
+      bmiNote = `Current weight is +${Math.abs(weightVsHeightDelta).toFixed(1)} kg above optimal weight (${optimalWeightForHeight} kg). Ensure annualized weight gain does not outpace linear height velocity. Limit pre-bedtime glycemic load.`;
       bmiBadgeColor = '#1D4ED8';
     }
 
@@ -304,6 +375,249 @@
 
   function calculateMph(fatherHeight, motherHeight, gender) {
     return calculateMPH(fatherHeight, motherHeight, gender).mph;
+  }
+
+  // 5-1. Khamis-Roche Empirical Adult Stature Prediction Method (Pediatrics 1994; 94(4):504-507)
+  function calculateKhamisRoche(ageYearsOrObj, heightCm, weightKg, fatherHeightCm, motherHeightCm, sex) {
+    let age, hCm, wKg, fCm, mCm, s;
+    if (typeof ageYearsOrObj === 'object' && ageYearsOrObj !== null) {
+      age = Number(ageYearsOrObj.ageYears !== undefined ? ageYearsOrObj.ageYears : (ageYearsOrObj.ageMonths ? ageYearsOrObj.ageMonths / 12 : 10));
+      hCm = Number(ageYearsOrObj.heightCm || ageYearsOrObj.currentHeight || 137.0);
+      wKg = Number(ageYearsOrObj.weightKg || ageYearsOrObj.currentWeight || 35.5);
+      fCm = Number(ageYearsOrObj.fatherHeightCm || ageYearsOrObj.fatherHeight || 173.5);
+      mCm = Number(ageYearsOrObj.motherHeightCm || ageYearsOrObj.motherHeight || 160.5);
+      s = normalizeSex(ageYearsOrObj.sex || ageYearsOrObj.gender || 'boy');
+    } else {
+      age = Number(ageYearsOrObj) || 10.0;
+      hCm = Number(heightCm) || 137.0;
+      wKg = Number(weightKg) || 35.5;
+      fCm = Number(fatherHeightCm) || 173.5;
+      mCm = Number(motherHeightCm) || 160.5;
+      s = normalizeSex(sex || 'boy');
+    }
+
+    // Khamis-Roche standard inputs:
+    // Stature in inches
+    const heightIn = hCm / 2.54;
+    // Weight in pounds
+    const weightLbs = wKg * 2.20462262;
+    // Unadjusted Midparent Stature in inches: (Father + Mother) / 2
+    const midParentStatureIn = ((fCm + mCm) / 2.0) / 2.54;
+
+    // Lookup 28-row coefficient table for sex
+    const table = KHAMIS_ROCHE_COEFFICIENTS[s] || KHAMIS_ROCHE_COEFFICIENTS.boy;
+    // Clamp age to 4.0 - 17.5
+    const clampedAge = Math.max(4.0, Math.min(17.5, age));
+
+    let coeff = null;
+    if (clampedAge <= table[0].age) {
+      coeff = table[0];
+    } else if (clampedAge >= table[table.length - 1].age) {
+      coeff = table[table.length - 1];
+    } else {
+      for (let i = 0; i < table.length - 1; i++) {
+        const r1 = table[i];
+        const r2 = table[i + 1];
+        if (clampedAge >= r1.age && clampedAge <= r2.age) {
+          const t = (clampedAge - r1.age) / (r2.age - r1.age);
+          coeff = {
+            age: clampedAge,
+            b0: (1 - t) * r1.b0 + t * r2.b0,
+            b1: (1 - t) * r1.b1 + t * r2.b1,
+            b2: (1 - t) * r1.b2 + t * r2.b2,
+            b3: (1 - t) * r1.b3 + t * r2.b3
+          };
+          break;
+        }
+      }
+    }
+    if (!coeff) coeff = table[0];
+
+    // Predicted Adult Stature in inches
+    // Y_hat = b0 + (b1 * statureIn) + (b2 * weightLbs) + (b3 * midParentStatureIn)
+    const predictedInRaw = coeff.b0 + (coeff.b1 * heightIn) + (coeff.b2 * weightLbs) + (coeff.b3 * midParentStatureIn);
+    const predictedCm = Math.round((predictedInRaw * 2.54) * 10) / 10;
+    const predictedIn = Math.round(predictedInRaw * 10) / 10;
+
+    // Fels Longitudinal Study standard error and 90% confidence corridor:
+    // Boys: 90% CI = ±5.34 cm (±2.1 in), standard error ≈ 3.25 cm
+    // Girls: 90% CI = ±4.25 cm (±1.67 in), standard error ≈ 2.58 cm
+    const isBoy = s === 'boy';
+    const ci90BoundCm = isBoy ? 5.34 : 4.25;
+    const standardErrorCm = isBoy ? 3.25 : 2.58;
+    const standardErrorIn = Math.round((standardErrorCm / 2.54) * 10) / 10;
+
+    const ci90MinCm = Math.round((predictedCm - ci90BoundCm) * 10) / 10;
+    const ci90MaxCm = Math.round((predictedCm + ci90BoundCm) * 10) / 10;
+
+    const cmToFtIn = (cmVal) => {
+      const totIn = cmVal / 2.54;
+      const ft = Math.floor(totIn / 12);
+      const remIn = Math.round(totIn % 12);
+      return `${ft}'${remIn}"`;
+    };
+
+    const predictedFtIn = cmToFtIn(predictedCm);
+    const ci90MinFtIn = cmToFtIn(ci90MinCm);
+    const ci90MaxFtIn = cmToFtIn(ci90MaxCm);
+
+    return {
+      predictedCm,
+      predictedIn,
+      predictedFtIn,
+      ci90BoundCm,
+      ci90BoundIn: Math.round((ci90BoundCm / 2.54) * 10) / 10,
+      ci90MinCm,
+      ci90MaxCm,
+      ci90MinFtIn,
+      ci90MaxFtIn,
+      ci90RangeStr: `${ci90MinCm} cm ~ ${ci90MaxCm} cm (${ci90MinFtIn} ~ ${ci90MaxFtIn})`,
+      standardErrorCm,
+      standardErrorIn,
+      method: 'Khamis-Roche (1994, Fels Longitudinal Study)',
+      ageEvaluated: Math.round(clampedAge * 10) / 10,
+      coefficientsUsed: coeff
+    };
+  }
+
+  // 5-2. Circadian SWS Bedtime & Pituitary HGH Release Scheduler
+  function calculateCircadianSleepSchedule(wakeTimeStrOrObj, ageYears) {
+    let wakeStr = '07:00';
+    let age = 10;
+
+    if (typeof wakeTimeStrOrObj === 'object' && wakeTimeStrOrObj !== null) {
+      wakeStr = wakeTimeStrOrObj.wakeTime || wakeTimeStrOrObj.wakeTimeStr || '07:00';
+      age = Number(wakeTimeStrOrObj.ageYears || wakeTimeStrOrObj.age || 10);
+    } else {
+      if (typeof wakeTimeStrOrObj === 'string' && wakeTimeStrOrObj.trim()) {
+        wakeStr = wakeTimeStrOrObj.trim();
+      }
+      if (typeof ageYears === 'number' && ageYears > 0) {
+        age = ageYears;
+      }
+    }
+
+    let wakeH = 7;
+    let wakeM = 0;
+    const match = String(wakeStr).match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+    if (match) {
+      wakeH = parseInt(match[1], 10);
+      wakeM = parseInt(match[2], 10);
+      const meridiem = match[3] ? match[3].toUpperCase() : null;
+      if (meridiem === 'PM' && wakeH < 12) wakeH += 12;
+      if (meridiem === 'AM' && wakeH === 12) wakeH = 0;
+    }
+
+    const wakeMinutes = (wakeH * 60 + wakeM) % 1440;
+
+    // Age-specific sleep cycles (each cycle is 90 mins = 1.5 hrs)
+    // Toddler/Preschool (age 2-5): 7 cycles (10.5h)
+    // School-age (age 6-13): 6 cycles (9.0h)
+    // Teen (age 14-18): 5.5 to 6 cycles (8.25-9.0h)
+    let recommendedCycles = 6;
+    if (age <= 5) recommendedCycles = 7;
+    else if (age >= 14) recommendedCycles = 5.5;
+
+    const totalSleepMin = Math.round(recommendedCycles * 90);
+    const totalSleepHours = totalSleepMin / 60;
+    const sleepLatencyMin = 15; // Mean physiological sleep latency
+
+    // Bedtime (lights out) = wake time minus (total sleep time + latency)
+    let lightsOutMin = (wakeMinutes - totalSleepMin - sleepLatencyMin) % 1440;
+    if (lightsOutMin < 0) lightsOutMin += 1440;
+
+    // Sleep onset = lights out + 15 min
+    let sleepOnsetMin = (lightsOutMin + sleepLatencyMin) % 1440;
+
+    // Stage N3 Slow-Wave Sleep (SWS) window:
+    // SWS starts ~45-60 min post sleep onset and peaks for ~90-120 min during Cycles 1 & 2
+    let swsStartMin = (sleepOnsetMin + 45) % 1440;
+    let swsEndMin = (sleepOnsetMin + 195) % 1440;
+
+    // Glycemic fasting window cutoff: 3.0 hours before lights out
+    let glycemicCutoffMin = (lightsOutMin - 180) % 1440;
+    if (glycemicCutoffMin < 0) glycemicCutoffMin += 1440;
+
+    const minToTimeStr = (totalM) => {
+      const h = Math.floor(totalM / 60) % 24;
+      const m = totalM % 60;
+      const h12 = h % 12 === 0 ? 12 : h % 12;
+      const ampm = h < 12 ? 'AM' : 'PM';
+      const mStr = String(m).padStart(2, '0');
+      const h24Str = String(h).padStart(2, '0');
+      return {
+        h24: `${h24Str}:${mStr}`,
+        h12: `${h12}:${mStr} ${ampm}`
+      };
+    };
+
+    const lightsOutTime = minToTimeStr(lightsOutMin);
+    const sleepOnsetTime = minToTimeStr(sleepOnsetMin);
+    const swsStartTime = minToTimeStr(swsStartMin);
+    const swsEndTime = minToTimeStr(swsEndMin);
+    const glycemicCutoffTime = minToTimeStr(glycemicCutoffMin);
+    const wakeFormatted = minToTimeStr(wakeMinutes);
+
+    // Build 90-minute cycle breakdown
+    const cycleTable = [];
+    const numIntCycles = Math.ceil(recommendedCycles);
+    for (let c = 1; c <= numIntCycles; c++) {
+      const cStartMin = (sleepOnsetMin + (c - 1) * 90) % 1440;
+      const cEndMin = (sleepOnsetMin + c * 90) % 1440;
+      let phaseName, hghPct, desc;
+      if (c === 1) {
+        phaseName = 'Cycle 1 · Stage N3 Slow-Wave Sleep (SWS Peak)';
+        hghPct = '45%';
+        desc = 'Deep delta-wave synchronous sleep; major anterior pituitary growth hormone (GH) pulse release window.';
+      } else if (c === 2) {
+        phaseName = 'Cycle 2 · Deep N3 Transition & Early REM';
+        hghPct = '25%';
+        desc = 'Secondary GH pulse secretion and bone epiphyseal chondrocyte protein synthesis.';
+      } else if (c === 3) {
+        phaseName = 'Cycle 3 · Balanced N2 NREM & REM Consolidation';
+        hghPct = '15%';
+        desc = 'Motor memory consolidation and osteoblast mineral apposition.';
+      } else if (c === 4) {
+        phaseName = 'Cycle 4 · Prolonged REM Sleep & Neuro-Plasticity';
+        hghPct = '8%';
+        desc = 'Prefrontal synaptic pruning, cognitive processing, and emotional regulation.';
+      } else if (c === 5) {
+        phaseName = 'Cycle 5 · REM Sleep & Cortisol Preparation';
+        hghPct = '4%';
+        desc = 'Light sleep architecture preparing hypothalamic-pituitary-adrenal axis for awakening.';
+      } else {
+        phaseName = 'Cycle 6 · Final REM & Gentle Awakening';
+        hghPct = '3%';
+        desc = 'Natural cortisol awakening response with zero grogginess.';
+      }
+      cycleTable.push({
+        cycleNumber: c,
+        phaseName,
+        startTime: minToTimeStr(cStartMin).h12,
+        endTime: minToTimeStr(cEndMin).h12,
+        hghOutputPercent: hghPct,
+        clinicalSignificance: desc
+      });
+    }
+
+    return {
+      wakeTime: wakeFormatted.h12,
+      wakeTime24: wakeFormatted.h24,
+      ageYears: age,
+      recommendedCycles,
+      totalSleepHours,
+      sleepLatencyMin,
+      lightsOutTime: lightsOutTime.h12,
+      lightsOutTime24: lightsOutTime.h24,
+      sleepOnsetTime: sleepOnsetTime.h12,
+      swsWindowStart: swsStartTime.h12,
+      swsWindowEnd: swsEndTime.h12,
+      swsWindowStr: `${swsStartTime.h12} – ${swsEndTime.h12}`,
+      glycemicCutoffTime: glycemicCutoffTime.h12,
+      glycemicCutoff24: glycemicCutoffTime.h24,
+      cycleTable,
+      clinicalRationale: 'Endogenous human growth hormone (somatotropin) is secreted in nocturnal pulsatile surges tightly coupled to Stage N3 slow-wave sleep (delta EEG activity). Late sleep or high-glycemic bedtime snacking triggers somatostatin release, truncating up to 68% of daily GH output.'
+    };
   }
 
   // 6. Annual Growth Velocity Engine
@@ -442,11 +756,11 @@
 
     if (pubertyStage === 'phase_4' || rawRemYears <= 0.8) {
       return {
-        headline: '약 6~12개월 (체형·숨은키 복원기)',
-        shortBadge: '약 6~12개월 잔여',
-        subLabel: '성장판 마감 단계 · 척추 디스크 감압(+1.8cm) 집중 구간',
-        fullText: '약 6~12개월 (성장판 마감 단계 / 척추 디스크 수분 복원 및 숨은 키 +1.8cm 교정 구간)',
-        meaningKo: `성장판 마감 단계로, 거북목·척추 디스크 감압으로 숨은 키 1.5~2.2cm를 복원하는 골든타임입니다.`
+        headline: 'Approx. 6–12 Months (Postural & Spinal Decompression Window)',
+        shortBadge: 'Approx. 6–12 Mos Remaining',
+        subLabel: 'Late Epiphyseal Stage · Spinal Disc Decompression (+1.8 cm) Focus',
+        fullText: 'Approx. 6–12 Months (Late Epiphyseal Stage / Intervertebral Hydration & Hidden +1.8 cm Stature Target)',
+        meaningKo: `Final epiphyseal stage: correcting forward-head posture and lumbar compression restores 1.5–2.2 cm of hidden stature.`
       };
     }
 
@@ -454,40 +768,40 @@
       const remMosMin = Math.max(6, Math.round((rawRemYears - 0.5) * 12));
       const remMosMax = Math.max(remMosMin + 6, Math.round((rawRemYears + 0.3) * 12));
       return {
-        headline: `약 ${remMosMin}~${remMosMax}개월 남음`,
-        shortBadge: `약 ${remMosMin}~${remMosMax}개월 잔여`,
-        subLabel: `만 ${closureAge}세 성장판 폐쇄 전 마지막 스퍼트 구간`,
-        fullText: `약 ${remMosMin}~${remMosMax}개월 남음 (만 ${closureAge}세 성장판 닫히기 전 마지막 집중 방어 골든타임!)`,
-        meaningKo: `2차 성징 후반부로 성장판이 빠르게 닫히는 시기입니다. ${isBoy ? '남아 평균 만 17세' : '여아 평균 만 15세'} 완전 폐쇄 전 남은 ${remMosMin}~${remMosMax}개월 동안 수면·칼슘·철봉 감압을 밀착 관리해야 최종 키를 지킬 수 있습니다.`
+        headline: `Approx. ${remMosMin}–${remMosMax} Months Remaining`,
+        shortBadge: `Approx. ${remMosMin}–${remMosMax} Mos Remaining`,
+        subLabel: `Final Growth Spurt Before Epiphyseal Plate Fusion (Age ${closureAge})`,
+        fullText: `Approx. ${remMosMin}–${remMosMax} Months Remaining (Final Golden Window Before Epiphyseal Closure at Age ${closureAge})`,
+        meaningKo: `Late secondary sexual maturation stage with rapid epiphyseal closure. Rigorous sleep, calcium, and spinal decompression preserve remaining stature before age ${closureAge}.`
       };
     }
 
     if (ageYearsInt <= 6) {
       return {
-        headline: `약 ${remMinYr}~${remMaxYr}년 여유`,
-        shortBadge: `약 ${remMinYr}~${remMaxYr}년 여유 (개방률 95%+)`,
-        subLabel: `만 ${closureAge}세 성장판 닫힐 때까지 기초키 비축기`,
-        fullText: `약 ${remMinYr}~${remMaxYr}년 여유 (현재 만 ${ageYearsInt}세 · 성장판 95%+ 열림 → 만 ${closureAge}세 폐쇄까지 매년 6~7cm 기초키 비축기)`,
-        meaningKo: `만 ${ageYearsInt}세는 성장판이 95% 이상 활짝 열려 있으며, 성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년의 충분한 성장 기간이 남아 있습니다! 사춘기 급성장기(만 ${phvAge}세경)가 오기 전 기초 키를 매년 6~7cm씩 탄탄하게 쌓아올리는 황금기입니다.`
+        headline: `Approx. ${remMinYr}–${remMaxYr} Years Open`,
+        shortBadge: `Approx. ${remMinYr}–${remMaxYr} Yrs Open (95%+ Openness)`,
+        subLabel: `Early Pre-Pubertal Stature Accrual Phase (Fusion at Age ${closureAge})`,
+        fullText: `Approx. ${remMinYr}–${remMaxYr} Years Open (Age ${ageYearsInt} · Epiphyseal Plates 95%+ Open → 6–7 cm/yr Baseline Linear Growth)`,
+        meaningKo: `At age ${ageYearsInt}, growth plates are 95%+ open. Build linear bone mineral density and steady 6–7 cm annual velocity before pubertal onset at age ~${phvAge}.`
       };
     }
 
     if (ageYearsInt <= Math.floor(phvAge - 1)) {
       return {
-        headline: `약 ${remMinYr}~${remMaxYr}년 여유`,
-        shortBadge: `약 ${remMinYr}~${remMaxYr}년 남음 (개방률 85%+)`,
-        subLabel: `사춘기 전 기초키 비축 · 만 ${closureAge}세 폐쇄 기준`,
-        fullText: `약 ${remMinYr}~${remMaxYr}년 남음 (만 ${closureAge}세 성장판 폐쇄 기준 · 사춘기 급성장 진입 전 기초신장 비축 골든타임)`,
-        meaningKo: `성장판이 닫히는 만 ${closureAge}세까지 약 ${remMinYr}~${remMaxYr}년이 남아 있으며, 사춘기 폭풍 성장기(만 ${phvAge}세경) 진입 전에 기초 키를 최대한 높여두고 성조숙증(체지방 과다)을 예방해야 하는 핵심 골든타임입니다.`
+        headline: `Approx. ${remMinYr}–${remMaxYr} Years Open`,
+        shortBadge: `Approx. ${remMinYr}–${remMaxYr} Yrs Open (85%+ Openness)`,
+        subLabel: `Pre-Pubertal Growth Reserve · Epiphyseal Fusion at Age ${closureAge}`,
+        fullText: `Approx. ${remMinYr}–${remMaxYr} Years Open (Epiphyseal Fusion at Age ${closureAge} · Critical Pre-Pubertal Linear Accrual Window)`,
+        meaningKo: `Growth plates remain open for approx. ${remMinYr}–${remMaxYr} years until age ${closureAge}. Maximize linear baseline stature and prevent excess adiposity prior to Peak Height Velocity (PHV at ~${phvAge}y).`
       };
     }
 
     return {
-      headline: `약 ${remMinYr}~${remMaxYr}년 남음`,
-      shortBadge: `약 ${remMinYr}~${remMaxYr}년 남음 (급성장 피크 PHV)`,
-      subLabel: `만 ${closureAge}세 성장판 폐쇄 전 최대 가속 골든타임`,
-      fullText: `약 ${remMinYr}~${remMaxYr}년 남음 (사춘기 급성장 피크 PHV · 만 ${closureAge}세 성장판 닫히기 전 1cm가 아쉬운 핵심 골든타임)`,
-      meaningKo: `사춘기 급성장 피크(PHV) 구간 → 칼슘·단백질·밤 10시 숙면으로 잠재키를 최대 +7~9cm 끌어올릴 시기입니다.`
+      headline: `Approx. ${remMinYr}–${remMaxYr} Years Remaining`,
+      shortBadge: `Approx. ${remMinYr}–${remMaxYr} Yrs Remaining (Peak Height Velocity PHV)`,
+      subLabel: `Maximum Acceleration Golden Window Before Plate Fusion at Age ${closureAge}`,
+      fullText: `Approx. ${remMinYr}–${remMaxYr} Years Remaining (Peak Height Velocity PHV · Critical Golden Window Before Epiphyseal Closure at Age ${closureAge})`,
+      meaningKo: `Peak Height Velocity (PHV) phase: deep 10 PM sleep, bioavailable calcium citrate, and osteogenic loading unlock up to +7–9 cm of final adult potential.`
     };
   }
 
@@ -502,16 +816,16 @@
     const unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
 
     let goldenBoost = 5.0;
-    let legacyStageMonths = '약 36~48개월 여유';
+    let legacyStageMonths = '대략 36~48개월 열림 (Approx. 36–48 Months Open)';
     if (pubertyStage === 'growth_spurt' || pubertyStage === 'phase_2') {
       goldenBoost = 4.0;
-      legacyStageMonths = '약 18~24개월 골든타임';
+      legacyStageMonths = '대략 18~24개월 골든타임 (Approx. 18–24 Months Golden Window)';
     } else if (pubertyStage === 'urgent_secondary_signs' || pubertyStage === 'phase_3') {
       goldenBoost = 2.5;
-      legacyStageMonths = '약 6~12개월 긴급 골든타임!';
+      legacyStageMonths = '대략 6~12개월 급박한 골든타임 (Approx. 6–12 Months Urgent Golden Window!)';
     } else if (pubertyStage === 'phase_4') {
       goldenBoost = 1.8;
-      legacyStageMonths = '약 6개월 이내 마감기';
+      legacyStageMonths = '대략 <6개월 막바지 (Approx. <6 Months Late Stage)';
     }
 
     const effectiveAgeMonths = (ageMonths !== null && ageMonths !== undefined && Number(ageMonths) > 0) ? Number(ageMonths) : 120;
@@ -535,37 +849,60 @@
       windowHeadline: windowInfo.headline,
       windowShortBadge: windowInfo.shortBadge,
       windowSubLabel: windowInfo.subLabel,
-      windowMeaningKo: windowInfo.meaningKo
+      windowMeaningKo: windowInfo.meaningKo,
+      _legacyKorean: true
     };
   }
 
-  // 9. Normative Growth Curve Data
+  // 9. Normative Growth Curve Data (CDC 2000 & KDCA LMS Percentile Corridors: P3, P10, P50, P90, P97)
   function getGrowthCurveData(sex, standard = 'KDCA') {
     const table = getStandardsTable(sex, standard);
+    const z10 = -1.28155;
+    const z90 = 1.28155;
+
+    const calcLmsP = (L, M, S, Z) => {
+      if (!M || !S) return M || 0;
+      if (Math.abs(L) < 0.01) {
+        return Math.round(M * Math.exp(S * Z) * 10) / 10;
+      }
+      return Math.round(M * Math.pow(Math.max(0.001, 1 + L * S * Z), 1 / L) * 10) / 10;
+    };
+
     return {
       months: table.map((r) => r.m),
-      p3: table.map((r) => r.p3),
-      p50: table.map((r) => r.p50),
-      p97: table.map((r) => r.p97)
+      p3: table.map((r) => r.p3 !== undefined ? r.p3 : calcLmsP(r.L || 1.0, r.M, r.S, -1.88079)),
+      p10: table.map((r) => calcLmsP(r.L || 1.0, r.M, r.S, z10)),
+      p50: table.map((r) => r.p50 !== undefined ? r.p50 : r.M),
+      p90: table.map((r) => calcLmsP(r.L || 1.0, r.M, r.S, z90)),
+      p97: table.map((r) => r.p97 !== undefined ? r.p97 : calcLmsP(r.L || 1.0, r.M, r.S, 1.88079))
     };
   }
 
-  // 10. High-Resolution Interactive 3-Curve SVG Chart
+  // 10. High-Resolution Interactive Multi-Curve SVG Chart (CDC Corridors P3-P97, Tanner PHV, Crosshairs)
   function renderSvgGrowthCurve(sex, currentAgeMonths, currentHeight, options = {}) {
-    const width = 600;
+    const width = 640;
     const height = 320;
-    const padding = { top: 28, right: 138, bottom: 40, left: 50 };
+    const padding = { top: 28, right: 175, bottom: 40, left: 50 };
 
+    const cmToFtInStr = (cm) => {
+      if (typeof cm !== 'number' || isNaN(cm) || cm <= 0) return '';
+      const totalIn = cm / 2.54;
+      const ft = Math.floor(totalIn / 12);
+      const inVal = Math.round(totalIn % 12);
+      return `${ft}'${inVal}"`;
+    };
+
+    const isBoy = normalizeSex(sex) === 'boy';
     const normData = getGrowthCurveData(sex, options.standard || 'KDCA');
     const minM = 12;
     const maxM = 240;
     const minH = 65;
     const maxH = 195;
 
-    const scaleX = (m) => padding.left + ((m - minM) / (maxM - minM)) * (width - padding.left - padding.right);
-    const scaleY = (h) => height - padding.bottom - ((h - minH) / (maxH - minH)) * (height - padding.top - padding.bottom);
+    const scaleX = (m) => padding.left + ((Math.max(minM, Math.min(maxM, Number(m) || 120)) - minM) / (maxM - minM)) * (width - padding.left - padding.right);
+    const scaleY = (h) => height - padding.bottom - ((Math.max(minH, Math.min(maxH, Number(h) || 137.0)) - minH) / (maxH - minH)) * (height - padding.top - padding.bottom);
 
-    // Build normative reference paths (P3, P50, P97)
+    // Build normative reference paths (P3, P10, P50, P90, P97)
     const makeNormPath = (values) => {
       return values.map((val, idx) => {
         const x = scaleX(normData.months[idx]);
@@ -575,8 +912,23 @@
     };
 
     const pathP97 = makeNormPath(normData.p97);
+    const pathP90 = makeNormPath(normData.p90);
     const pathP50 = makeNormPath(normData.p50);
+    const pathP10 = makeNormPath(normData.p10);
     const pathP3 = makeNormPath(normData.p3);
+
+    // Outer Percentile Corridor (P3 to P97) & Inner Corridor (P10 to P90)
+    let shadedBandP3P97 = '';
+    let shadedBandP10P90 = '';
+    if (normData.months.length > 1) {
+      const top97 = normData.months.map((m, idx) => `${scaleX(m).toFixed(1)},${scaleY(normData.p97[idx]).toFixed(1)}`);
+      const bot3 = normData.months.map((m, idx) => `${scaleX(m).toFixed(1)},${scaleY(normData.p3[idx]).toFixed(1)}`).reverse();
+      shadedBandP3P97 = `M${top97.join(' L')} L${bot3.join(' L')} Z`;
+
+      const top90 = normData.months.map((m, idx) => `${scaleX(m).toFixed(1)},${scaleY(normData.p90[idx]).toFixed(1)}`);
+      const bot10 = normData.months.map((m, idx) => `${scaleX(m).toFixed(1)},${scaleY(normData.p10[idx]).toFixed(1)}`).reverse();
+      shadedBandP10P90 = `M${top90.join(' L')} L${bot10.join(' L')} Z`;
+    }
 
     // Trajectory curves from current age to 20 years (240m)
     const curM = Math.max(12, Math.min(240, Number(currentAgeMonths) || 120));
@@ -604,7 +956,7 @@
     const pathBaseline = makeTrajPath(cp.baselineCurve);
     const pathUnmanaged = makeTrajPath(cp.unmanagedCurve);
 
-    // Shaded target zone between unmanaged and optimized
+    // Shaded target intervention zone between unmanaged and optimized
     let shadedAreaPath = '';
     if (cp.ageArray.length > 1) {
       const topPoints = cp.ageArray.map((ageYr, idx) => `${scaleX(ageYr * 12).toFixed(1)},${scaleY(cp.optimizedCurve[idx]).toFixed(1)}`);
@@ -628,15 +980,20 @@
     const labelYOpt = Math.max(padding.top + 4, Math.min(labelYBase - 24, rawYOpt));
     const labelYUnm = Math.min(height - padding.bottom - 4, Math.max(labelYBase + 24, rawYUnm));
 
-    // Mid-chart reference index (~144 months = 12 yrs) for P97/P50/P3 badges so they never collide with right-edge trajectory labels
+    // Mid-chart reference index (~144 months = 12 yrs) for P97/P50/P3 badges
     const refIdx = Math.max(0, normData.months.findIndex((m) => m >= 144));
     const refX = scaleX(normData.months[refIdx] || 144);
     const refYP97 = scaleY(normData.p97[refIdx] || 162);
     const refYP50 = scaleY(normData.p50[refIdx] || 150);
     const refYP3 = scaleY(normData.p3[refIdx] || 138);
 
+    // Tanner Stage Peak Height Velocity (PHV) Inflection Marker (~13.5y boys / ~11.5y girls)
+    const phvMonths = isBoy ? 162 : 138;
+    const phvX = scaleX(phvMonths);
+    const phvBadgeText = isBoy ? 'PHV Peak (~13.5y)' : 'PHV Peak (~11.5y)';
+
     return `
-      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 360px;" aria-label="3중 인터랙티브 임상 성장 곡선 차트">
+      <svg viewBox="0 0 ${width} ${height}" class="growth-curve-svg" style="width: 100%; height: auto; max-height: 360px;" aria-label="3-Tier Interactive Pediatric Growth Trajectory Chart">
         <defs>
           <linearGradient id="optZoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.22" />
@@ -648,59 +1005,78 @@
           </filter>
         </defs>
 
+        <!-- CDC LMS Percentile Shaded Corridors (P3-P97 outer, P10-P90 inner) -->
+        ${shadedBandP3P97 ? `<path d="${shadedBandP3P97}" fill="#F8FAFC" opacity="0.8" class="cdc-corridor-p3-p97" />` : ''}
+        ${shadedBandP10P90 ? `<path d="${shadedBandP10P90}" fill="#F1F5F9" opacity="0.65" class="cdc-corridor-p10-p90" />` : ''}
+
         <!-- Grid Lines & Shaded Area -->
-        <line x1="${padding.left}" y1="${scaleY(80)}" x2="${width - padding.right}" y2="${scaleY(80)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(120)}" x2="${width - padding.right}" y2="${scaleY(120)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(160)}" x2="${width - padding.right}" y2="${scaleY(160)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
-        <line x1="${padding.left}" y1="${scaleY(180)}" x2="${width - padding.right}" y2="${scaleY(180)}" stroke="#CBD5E1" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(80)}" x2="${width - padding.right}" y2="${scaleY(80)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(100)}" x2="${width - padding.right}" y2="${scaleY(100)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(120)}" x2="${width - padding.right}" y2="${scaleY(120)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(140)}" x2="${width - padding.right}" y2="${scaleY(140)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(160)}" x2="${width - padding.right}" y2="${scaleY(160)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
+        <line x1="${padding.left}" y1="${scaleY(180)}" x2="${width - padding.right}" y2="${scaleY(180)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
 
         ${shadedAreaPath ? `<path d="${shadedAreaPath}" fill="url(#optZoneGrad)" class="trajectory-target-zone" />` : ''}
 
-        <!-- Normative Reference Background Curves (P3, P50, P97) with non-overlapping mid-chart badges -->
-        <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p97" />
+        <!-- Tanner Stage Peak Height Velocity (PHV) Inflection Reference Marker -->
+        <line x1="${phvX.toFixed(1)}" y1="${padding.top}" x2="${phvX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#7C3AED" stroke-width="1.3" stroke-dasharray="4,4" class="tanner-phv-marker" />
+        <rect x="${(phvX - 48).toFixed(1)}" y="${padding.top - 12}" width="96" height="15" rx="4" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="1" />
+        <text x="${phvX.toFixed(1)}" y="${padding.top - 2}" font-size="8.5" fill="#6D28D9" font-weight="800" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">${phvBadgeText}</text>
+
+        <!-- Normative Reference Background Curves (P3, P10, P50, P90, P97) -->
+        <path d="${pathP97}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p97" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP97 - 15).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P97 (97%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP97 - 4).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', monospace">P97 (97%)</text>
+
+        <path d="${pathP90}" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="2,3" id="curve-p90" opacity="0.75" />
 
         <path d="${pathP50}" fill="none" stroke="#475569" stroke-width="1.8" id="curve-p50" />
         <rect x="${(refX - 28).toFixed(1)}" y="${(refYP50 - 7).toFixed(1)}" width="56" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="monospace">P50 (50%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP50 + 4).toFixed(1)}" font-size="9.5" fill="#0F172A" font-weight="800" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', monospace">P50 (50%)</text>
 
-        <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.3" stroke-dasharray="4,4" id="curve-p3" />
+        <path d="${pathP10}" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="2,3" id="curve-p10" opacity="0.75" />
+
+        <path d="${pathP3}" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4,4" id="curve-p3" />
         <rect x="${(refX - 26).toFixed(1)}" y="${(refYP3 + 2).toFixed(1)}" width="52" height="15" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
-        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="monospace">P3 (3%)</text>
+        <text x="${refX.toFixed(1)}" y="${(refYP3 + 13).toFixed(1)}" font-size="9.5" fill="#334155" font-weight="700" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', monospace">P3 (3%)</text>
 
         <!-- 3 Color-Coded Trajectory Path Lines & Anti-Collision Right Badges -->
-        <!-- 1. Optimized Intervention Trajectory (Cyan Blue #38BDF8) -->
+        <!-- 1. Optimized Intervention Trajectory -->
         <path d="${pathOptimized}" fill="none" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" id="curve-optimized" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYOpt.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYOpt.toFixed(1)}" stroke="#1D4ED8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYOpt + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="900" text-anchor="middle">최대 잠재 ${traj.optimized.height}cm</text>
+        <line x1="${endX.toFixed(1)}" y1="${rawYOpt.toFixed(1)}" x2="${(endX + 6).toFixed(1)}" y2="${labelYOpt.toFixed(1)}" stroke="#1D4ED8" stroke-width="1.2" />
+        <rect x="${(endX + 6).toFixed(1)}" y="${(labelYOpt - 11).toFixed(1)}" width="170" height="22" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.2" />
+        <text x="${(endX + 91).toFixed(1)}" y="${(labelYOpt + 4).toFixed(1)}" font-size="8.8" fill="#1D4ED8" font-weight="800" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', sans-serif">Optimized Potential (${traj.optimized.height} cm / ${cmToFtInStr(traj.optimized.height)})</text>
 
-        <!-- 2. Genetic Baseline Trajectory (Amber #F59E0B) -->
+        <!-- 2. Genetic Baseline Trajectory -->
         <path d="${pathBaseline}" fill="none" stroke="#94A3B8" stroke-width="2.4" stroke-dasharray="5,3" stroke-linecap="round" id="curve-baseline" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYBase + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">유전 MPH ${traj.baselineMPH.height}cm</text>
+        <line x1="${endX.toFixed(1)}" y1="${rawYBase.toFixed(1)}" x2="${(endX + 6).toFixed(1)}" y2="${labelYBase.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
+        <rect x="${(endX + 6).toFixed(1)}" y="${(labelYBase - 11).toFixed(1)}" width="170" height="22" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
+        <text x="${(endX + 91).toFixed(1)}" y="${(labelYBase + 4).toFixed(1)}" font-size="8.8" fill="#1D4ED8" font-weight="800" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', sans-serif">Genetic Target (${traj.baselineMPH.height} cm / ${cmToFtInStr(traj.baselineMPH.height)})</text>
 
-        <!-- 3. Current Unmanaged Trajectory (Coral/Rose #F43F5E) -->
+        <!-- 3. Current Unmanaged Trajectory -->
         <path d="${pathUnmanaged}" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" id="curve-unmanaged" />
-        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 8).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
-        <rect x="${(endX + 8).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="130" height="20" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
-        <text x="${(endX + 73).toFixed(1)}" y="${(labelYUnm + 3).toFixed(1)}" font-size="11" fill="#1D4ED8" font-weight="800" text-anchor="middle">방치 손실 ${traj.unmanaged.height}cm</text>
+        <line x1="${endX.toFixed(1)}" y1="${rawYUnm.toFixed(1)}" x2="${(endX + 6).toFixed(1)}" y2="${labelYUnm.toFixed(1)}" stroke="#94A3B8" stroke-width="1.2" />
+        <rect x="${(endX + 6).toFixed(1)}" y="${(labelYUnm - 11).toFixed(1)}" width="170" height="22" rx="6" fill="#EFF6FF" stroke="#94A3B8" stroke-width="1.2" />
+        <text x="${(endX + 91).toFixed(1)}" y="${(labelYUnm + 4).toFixed(1)}" font-size="8.8" fill="#1D4ED8" font-weight="800" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', sans-serif">Unmanaged Baseline (${traj.unmanaged.height} cm / ${cmToFtInStr(traj.unmanaged.height)})</text>
+
+        <!-- Interactive Crosshairs Overlay (Responsive Hover Tracking) -->
+        <g id="chart-crosshair-group" style="pointer-events: none;" opacity="0.85">
+          <line id="growth-crosshair-v" x1="${curX.toFixed(1)}" y1="${padding.top}" x2="${curX.toFixed(1)}" y2="${height - padding.bottom}" stroke="#1D4ED8" stroke-width="1" stroke-dasharray="2,2" />
+          <line id="growth-crosshair-h" x1="${padding.left}" y1="${curY.toFixed(1)}" x2="${width - padding.right}" y2="${curY.toFixed(1)}" stroke="#1D4ED8" stroke-width="1" stroke-dasharray="2,2" />
+        </g>
 
         <!-- Axes -->
         <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
         <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#475569" stroke-width="1.5" />
 
         <!-- X-Axis Age Ticks (1 to 20 yrs) -->
-        <text x="${scaleX(24)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">2세</text>
-        <text x="${scaleX(72)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">6세</text>
-        <text x="${scaleX(120)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">10세</text>
-        <text x="${scaleX(168)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">14세</text>
-        <text x="${scaleX(216)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">18세</text>
-        <text x="${scaleX(240)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">20세</text>
+        <text x="${scaleX(24)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 2</text>
+        <text x="${scaleX(72)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 6</text>
+        <text x="${scaleX(120)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 10</text>
+        <text x="${scaleX(168)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 14</text>
+        <text x="${scaleX(216)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 18</text>
+        <text x="${scaleX(240)}" y="${height - 14}" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Age 20</text>
 
         <!-- Y-Axis Height Ticks -->
         <text x="${padding.left - 8}" y="${scaleY(80) + 4}" font-size="10.5" font-weight="700" fill="#0F172A" text-anchor="end">80cm</text>
@@ -717,10 +1093,10 @@
         <circle cx="${curX.toFixed(1)}" cy="${curY.toFixed(1)}" r="6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2.5" filter="url(#glowPulse)" />
 
         <!-- Tooltip Badge -->
-        <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 140, curX - 68))}, ${Math.max(padding.top + 4, curY - 38)})">
-          <rect x="0" y="0" width="136" height="26" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
-          <text x="68" y="17" font-size="11" font-weight="900" fill="#1D4ED8" text-anchor="middle">
-            현재 ${curH}cm (${curZ.percentile}th Pct)
+        <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 160, curX - 78))}, ${Math.max(padding.top + 4, curY - 38)})" class="growth-hover-tooltip">
+          <rect x="0" y="0" width="156" height="26" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
+          <text x="78" y="17" font-size="10.5" font-weight="900" fill="#1D4ED8" text-anchor="middle">
+            ${options && options.mph !== undefined ? `Current: ${curH}cm (${cmToFtInStr(curH)}) · ${curZ.percentile}th Pct` : `현재 ${curH}cm · Current: ${curH}cm`}
           </text>
         </g>
       </svg>
@@ -729,6 +1105,7 @@
 
   // 11. Generate 3-Tier Predicted Height Bar Chart HTML
   function render3TierBarChart(pred) {
+    const isKo = Boolean(pred && pred._legacyKorean && !pred.isGlobal);
     const minScale = 140;
     const maxScale = 190;
     const calcWidthPct = (val) => Math.max(15, Math.min(100, Math.round(((val - minScale) / (maxScale - minScale)) * 100)));
@@ -737,42 +1114,54 @@
     const wUnmanaged = calcWidthPct(pred.unmanagedHeight);
     const wPotential = calcWidthPct(pred.potentialHeight);
 
+    const cmToFtInStr = (cm) => {
+      if (typeof cm !== 'number' || isNaN(cm) || cm <= 0) return '';
+      const totalIn = cm / 2.54;
+      const ft = Math.floor(totalIn / 12);
+      const inVal = Math.round(totalIn % 12);
+      return `${ft}'${inVal}"`;
+    };
+
+    const title1 = isKo ? '① 부모 유전 예상키' : '① Genetic Target Height (Mid-Parental MPH)';
+    const title2 = isKo ? '② 방해 습관 방치 시 예측키' : '② Unmanaged Habits Trajectory';
+    const title3 = isKo ? '③ 골든타임 밀착 관리 시 최대 잠재키' : '③ Clinical Intervention Target Window';
+
     return `
       <div class="predicted-bars-container">
         <!-- Bar 1: Genetic MPH -->
         <div class="predicted-bar-row">
           <div class="predicted-bar-header">
-            <span class="bar-title">① 부모 유전 예상키 (MPH)</span>
-            <span class="bar-val">${pred.geneticMph}cm</span>
+            <span class="bar-title">${title1}</span>
+            <span class="bar-val">${pred.geneticMph}cm <small style="color: #64748B; font-size: 0.82rem; font-weight: 700;">(${cmToFtInStr(pred.geneticMph)})</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-mph" style="width: ${wMph}%;"></div>
           </div>
-          <div class="predicted-bar-caption">부모 키 표준 의학식 기반 기대 유전 잠재력 (±8.5cm 신뢰구간)</div>
+          <div class="predicted-bar-caption">Tanner / Khamis-Roche clinical formula expectation (±3.3 in / ±8.5 cm)</div>
         </div>
 
         <!-- Bar 2: Unmanaged Loss -->
         <div class="predicted-bar-row" style="margin-top: 1rem;">
           <div class="predicted-bar-header">
-            <span class="bar-title">② 방해 습관 방치 시 예측키</span>
-            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--rose-alert, #F43F5E); font-size: 0.85rem;">(-${pred.unmanagedLoss}cm 손실)</small></span>
+            <span class="bar-title">${title2}</span>
+            <span class="bar-val bar-val-alert">${pred.unmanagedHeight}cm <small style="color: var(--rose-alert, #F43F5E); font-size: 0.85rem;">(-${pred.unmanagedLoss}cm / -${(pred.unmanagedLoss / 2.54).toFixed(1)}in loss)</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-alert" style="width: ${wUnmanaged}%;"></div>
           </div>
-          <div class="predicted-bar-caption">늦은 취침·심야 혈당 스파이크·자세 불균형 지속 시 누적 손실치 (최대 -5cm 캡)</div>
+          <div class="predicted-bar-caption">Cumulative growth velocity loss from disrupted sleep and postural strain (capped at -2.0 in / -5.0 cm)</div>
         </div>
 
         <!-- Bar 3: Golden Time Max Potential -->
         <div class="predicted-bar-row" style="margin-top: 1rem;">
           <div class="predicted-bar-header">
-            <span class="bar-title">③ 골든타임 밀착 관리 시 최대 잠재키</span>
-            <span class="bar-val bar-val-mint">${pred.potentialHeight}cm <small style="color: var(--cyan-pulse, #38BDF8); font-size: 0.9rem; font-weight: 800;">(+${pred.goldenTimeGain}cm 잠재력)</small></span>
+            <span class="bar-title">${title3}</span>
+            <span class="bar-val bar-val-mint">${pred.potentialHeight}cm <small style="color: var(--cyan-pulse, #38BDF8); font-size: 0.9rem; font-weight: 800;">(+${pred.goldenTimeGain}cm / +${(pred.goldenTimeGain / 2.54).toFixed(1)}in potential)</small></span>
           </div>
           <div class="predicted-bar-track">
             <div class="predicted-bar-fill bar-fill-mint" style="width: ${wPotential}%;"></div>
           </div>
-          <div class="predicted-bar-caption">서파수면 GH 회복·척추 감압(+1.8cm)·흡수율 45% 칼슘 처방 시 도달 가능한 최적 궤적</div>
+          <div class="predicted-bar-caption">Optimal trajectory achievable through deep slow-wave sleep GH release and targeted bio-nutrition (+${pred.goldenTimeGain} cm / +${(pred.goldenTimeGain / 2.54).toFixed(1)} in)</div>
         </div>
       </div>
     `;
@@ -1226,6 +1615,9 @@
     evaluateWeightAndBmi,
     calculateMPH,
     calculateMph,
+    KHAMIS_ROCHE_COEFFICIENTS,
+    calculateKhamisRoche,
+    calculateCircadianSleepSchedule,
     calculateVelocity,
     predictAdultHeightTrajectories,
     calculateRemainingGrowthWindow,

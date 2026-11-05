@@ -86,7 +86,8 @@
 
   /* Layout */
   --max-width: 1080px;
-  --font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", Menlo, Consolas, Monaco, monospace;
   --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -100,10 +101,10 @@ body[data-theme="light"] {
   --theme-surface-sub: #F4F6FB;
   --theme-border: #E2E8F0;
   --theme-border-subtle: #EEF2F6;
-  --theme-accent: #5B4BFF;
-  --theme-accent-hover: #4F46E5;
-  --theme-accent-sub: #EEF2FF;
-  --theme-accent-glow: rgba(91, 75, 255, 0.15);
+  --theme-accent: #1D4ED8;
+  --theme-accent-hover: #1E40AF;
+  --theme-accent-sub: #EFF6FF;
+  --theme-accent-glow: rgba(29, 78, 216, 0.15);
 
   --text-primary: #0F172A;
   --text-secondary: #475569;
@@ -3535,8 +3536,9 @@ html body .quiz-card.bento-card,
 html body .bento-card {
   background: #FFFFFF !important;
   color: #0F172A !important;
-  border: 1.5px solid #DBEAFE !important;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 12px 28px -4px rgba(15, 23, 42, 0.06) !important;
 }
 
 /* Footer */
@@ -3798,10 +3800,10 @@ html[data-edition="global-paid"] .app-download-header-btn {
 /* US Bento Card Elevation & Hover Micro-Interactions */
 html[data-edition="global-paid"] .mf-glass-card,
 html[data-edition="global-paid"] .us-bento-card {
-  border-radius: 22px !important;
-  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
   background: #FFFFFF !important;
-  box-shadow: 0 14px 34px -12px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02) !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 12px 28px -4px rgba(15, 23, 42, 0.06) !important;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease !important;
 }
 
@@ -3809,14 +3811,15 @@ html[data-edition="global-paid"] .mf-glass-card:hover,
 html[data-edition="global-paid"] .us-bento-card:hover {
   transform: translateY(-3px);
   border-color: #93C5FD !important;
-  box-shadow: 0 22px 44px -12px rgba(37, 99, 235, 0.12), 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+  box-shadow: 0 20px 38px -10px rgba(37, 99, 235, 0.12), 0 4px 12px rgba(15, 23, 42, 0.04) !important;
 }
 
 /* US Direct-to-Consumer Assessment Funnel (#quiz-section) */
 html[data-edition="global-paid"] .quiz-card {
-  border-radius: 24px !important;
-  border: 1px solid #E2E8F0 !important;
-  box-shadow: 0 20px 50px -15px rgba(15, 23, 42, 0.08) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 12px 28px -4px rgba(15, 23, 42, 0.06) !important;
+  background: #FFFFFF !important;
 }
 
 html[data-edition="global-paid"] .form-input,
@@ -3835,6 +3838,44 @@ html[data-edition="global-paid"] select.form-input:focus {
   border-color: #2563EB !important;
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
   outline: none !important;
+}
+
+/* Responsive & Mobile Polishing for Overseas Commercial Grade (<640px) */
+@media (max-width: 640px) {
+  .header-actions {
+    gap: 0.35rem !important;
+  }
+
+  .header-control-btn,
+  .app-download-header-btn,
+  .header-unit-toggle-btn {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.65rem !important;
+  }
+
+  .dob-picker-grid {
+    grid-template-columns: 1.1fr 1fr 1.3fr !important;
+    gap: 0.4rem !important;
+  }
+
+  .dob-picker-grid select,
+  .dob-picker-grid .form-select {
+    padding: 0.6rem 0.35rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px !important;
+  }
+
+  .chip-pill,
+  .trait-multi-grid .chip-pill,
+  .choice-chips-grid .chip-pill {
+    min-height: 48px !important;
+  }
+
+  .chip-input:checked + .chip-pill,
+  .chip-input:checked + .bento-choice-card,
+  .preset-chip.active {
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15) !important;
+  }
 }
 
 
@@ -3869,3 +3910,250 @@ html[data-edition="global-paid"] select.form-input:focus {
     visibility: hidden !important;
   }
 }
+
+/* ==========================================================================
+   30. MILESTONE 1: COMMERCIAL & PAYWALL ARCHITECTURE OVERHAUL
+   ========================================================================== */
+
+/* Header Sample Report Preview Button */
+.header-sample-report-btn {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%) !important;
+  color: #1D4ED8 !important;
+  border: 1.5px solid #93C5FD !important;
+  font-weight: 800 !important;
+  padding: 0.42rem 0.85rem !important;
+  border-radius: 9999px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.12) !important;
+  font-size: 0.82rem !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.header-sample-report-btn:hover {
+  background: #DBEAFE !important;
+  border-color: #60A5FA !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2) !important;
+}
+
+/* High-Aesthetic Frosted-Glass Paywall Teaser Container */
+.paywall-frosted-teaser-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1.5px solid rgba(147, 197, 253, 0.65);
+  background: #FFFFFF;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.paywall-frosted-glass-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.55) 0%, rgba(239, 246, 255, 0.82) 28%, rgba(255, 255, 255, 0.97) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+.paywall-unlock-action-card {
+  background: #FFFFFF;
+  border: 2px solid #1D4ED8;
+  border-radius: 20px;
+  max-width: 560px;
+  width: 100%;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 20px 48px rgba(29, 78, 216, 0.22);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.paywall-blurred-chapters-content {
+  max-height: 520px;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  filter: blur(3.5px);
+  opacity: 0.72;
+}
+
+/* Paywall FAQ Accordion */
+.paywall-faq-accordion-section {
+  margin-top: 1.25rem;
+  border-top: 1.5px solid #E2E8F0;
+  padding-top: 1.1rem;
+  text-align: left;
+}
+
+.paywall-faq-item {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0.7rem 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paywall-faq-item:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+}
+
+.paywall-faq-item[open] {
+  background: #FFFFFF;
+  border-color: #93C5FD;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.08);
+}
+
+.paywall-faq-item summary {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #0F172A;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.paywall-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.paywall-faq-item .faq-chevron {
+  color: #1D4ED8;
+  font-size: 0.8rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.paywall-faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Sample Report Preview Floating / Sticky Banner */
+.sample-preview-banner-sticky {
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.28);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   31. MILESTONE 2: CLINICAL AUXOLOGY & STATURE PREDICTION STYLING
+   ========================================================================== */
+
+/* Pediatric Red-Flag Auxology Warning Card */
+.pediatric-red-flag-card {
+  position: relative;
+  background: #FEF2F2 !important;
+  border: 2px solid #DC2626 !important;
+  border-radius: 18px !important;
+  padding: 1.25rem 1.35rem !important;
+  box-shadow: 0 10px 28px rgba(220, 38, 38, 0.12) !important;
+  animation: pulseWarning 3s infinite ease-in-out;
+}
+
+@keyframes pulseWarning {
+  0%, 100% {
+    box-shadow: 0 10px 28px rgba(220, 38, 38, 0.12);
+  }
+  50% {
+    box-shadow: 0 12px 36px rgba(220, 38, 38, 0.22);
+  }
+}
+
+/* Khamis-Roche Prediction Card */
+.khamis-roche-card {
+  background: #F8FAFC !important;
+  border: 1.5px solid #3B82F6 !important;
+  border-radius: 18px !important;
+  padding: 1.25rem 1.35rem !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.khamis-roche-card:hover {
+  border-color: #1D4ED8 !important;
+  box-shadow: 0 12px 32px rgba(29, 78, 216, 0.08);
+}
+
+/* Circadian SWS Sleep & HGH Scheduler Card */
+.circadian-sleep-card {
+  background: #F0FDF4 !important;
+  border: 1.5px solid #86EFAC !important;
+  border-radius: 18px !important;
+  padding: 1.35rem 1.35rem !important;
+  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.06);
+}
+
+/* SVG Growth Curve Chart Container */
+.growth-chart-container {
+  background: #FFFFFF !important;
+  border: 1.5px solid #BFDBFE !important;
+  border-radius: 20px !important;
+  padding: 1.35rem 1.25rem !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.growth-curve-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.growth-curve-svg text {
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.growth-hover-tooltip {
+  transition: transform 0.15s ease-out;
+}
+
+.cdc-corridor-p3-p97 {
+  transition: fill-opacity 0.2s ease;
+}
+
+.cdc-corridor-p10-p90 {
+  transition: fill-opacity 0.2s ease;
+}
+
+.tanner-phv-marker {
+  animation: dashPulse 4s linear infinite;
+}
+
+@keyframes dashPulse {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+

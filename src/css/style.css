@@ -86,7 +86,7 @@
 
   /* Layout */
   --max-width: 1080px;
-  --font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-mono: "JetBrains Mono", Menlo, Consolas, Monaco, monospace;
   --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -94,27 +94,27 @@
 /* Light Clinic Alternate Theme Overrides */
 [data-theme="light"],
 body[data-theme="light"] {
-  --theme-bg: #FAF8F5;
+  --theme-bg: #F8FAFC;
   --theme-surface: #FFFFFF;
   --theme-surface-solid: #FFFFFF;
-  --theme-surface-sub: #F4F6FB;
+  --theme-surface-sub: #F1F5F9;
   --theme-border: #E2E8F0;
   --theme-border-subtle: #EEF2F6;
-  --theme-accent: #5B4BFF;
-  --theme-accent-hover: #4F46E5;
-  --theme-accent-sub: #EEF2FF;
-  --theme-accent-glow: rgba(91, 75, 255, 0.15);
+  --theme-accent: #1D4ED8;
+  --theme-accent-hover: #1E40AF;
+  --theme-accent-sub: #EFF6FF;
+  --theme-accent-glow: rgba(29, 78, 216, 0.15);
 
   --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
   --text-light: #FFFFFF;
 
-  --shadow-sm: 0 2px 8px rgba(20, 30, 55, 0.04);
-  --shadow-card: 0 10px 30px rgba(20, 30, 55, 0.05);
-  --shadow-card-hover: 0 16px 36px rgba(20, 30, 55, 0.08);
-  --shadow-glow-cyan: 0 0 20px rgba(91, 75, 255, 0.12);
-  --shadow-glow-emerald: 0 0 20px rgba(16, 185, 129, 0.12);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 16px 36px -4px rgba(29, 78, 216, 0.10);
+  --shadow-glow-cyan: 0 4px 16px rgba(29, 78, 216, 0.16);
+  --shadow-glow-emerald: 0 4px 16px rgba(16, 185, 129, 0.14);
 }
 
 /* Base Reset */
@@ -133,6 +133,7 @@ html {
   font-size: 16px;
   color: var(--text-primary);
   background-color: var(--theme-bg);
+  font-feature-settings: "tnum" 1, "cv05" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -3200,19 +3201,68 @@ body[data-theme="light"] {
 
 #btn-prev-step,
 .btn-secondary {
+  min-height: 50px;
+  border-radius: 14px;
   background: #F1F5F9 !important;
   color: #334155 !important;
   border: 1px solid #CBD5E1 !important;
   font-weight: 700 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#btn-prev-step:hover,
+.btn-secondary:hover {
+  background: #E2E8F0 !important;
+  border-color: #94A3B8 !important;
 }
 
 #btn-next-step,
 .btn-primary {
+  min-height: 50px;
+  border-radius: 14px;
   background: #1D4ED8 !important;
   color: #FFFFFF !important;
   border: 1px solid #1E40AF !important;
   box-shadow: 0 6px 18px rgba(29, 78, 216, 0.22) !important;
   font-weight: 800 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#btn-next-step:hover,
+.btn-primary:hover {
+  background: #1E40AF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.3) !important;
+}
+
+/* Stepper Form Inputs & Choice Chips Clinical Polish */
+.dob-picker-grid select:focus,
+.form-select:focus,
+.form-input:focus {
+  outline: none !important;
+  border-color: #1D4ED8 !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15) !important;
+}
+
+.trait-multi-grid .chip-input:checked + .chip-pill,
+.choice-chips-grid .chip-input:checked + .chip-pill {
+  border: 1.5px solid #1D4ED8 !important;
+  background: #EFF6FF !important;
+  color: #1E3A8A !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.12) !important;
+}
+
+#kf-shorts-format-tabs {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+#kf-shorts-format-tabs::-webkit-scrollbar {
+  display: none;
+}
+.kf-shorts-fmt-btn {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* Analysis Overlay Modal */
@@ -3872,7 +3922,9 @@ html[data-edition="global-paid"] select.form-input:focus {
 /* ==========================================================================
    30. KIDSFIT PARENTING SELECT SHOP & AFFILIATE CATALOG UI
    ========================================================================== */
-#kidsfit-parenting-select-shop {
+#kf-curated-mall-hero,
+#kidsfit-parenting-select-shop,
+.kidsfit-parenting-select-shop {
   margin-top: 1.25rem;
   background: #FFFFFF;
   border: 2px solid #DBEAFE;
@@ -4046,17 +4098,17 @@ html[data-edition="global-paid"] select.form-input:focus {
   gap: 1rem;
 }
 
-/* Product Card Bento Styling */
+/* Product Card Bento Styling (Nosurch x 29CM x Ohouse x BabyBilly) */
 .kf-product-card {
   text-decoration: none;
   background: #FFFFFF;
   border: 1.5px solid #E2E8F0;
-  border-radius: 16px;
-  padding: 1.05rem;
+  border-radius: 18px;
+  padding: 0.95rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.2s ease;
   position: relative;
   overflow: hidden;
 }
@@ -4065,6 +4117,59 @@ html[data-edition="global-paid"] select.form-input:focus {
   transform: translateY(-4px);
   border-color: #93C5FD;
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(37, 99, 235, 0.06);
+}
+
+/* Card Visual Hero Thumbnail Wrap */
+.kf-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F8FAFC;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kf-card-thumb-wrap .kf-card-thumb {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kf-card-thumb-wrap .kf-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.kf-product-card:hover .kf-card-thumb-wrap .kf-card-thumb img {
+  transform: scale(1.04);
+}
+
+/* Corner Badges Overlay (top-left & top-right) */
+.kf-card-thumb-wrap .kf-badge-platform {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(4px);
+}
+
+.kf-card-thumb-wrap .kf-card-stage-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(4px);
 }
 
 .kf-card-top {
@@ -4113,6 +4218,20 @@ html[data-edition="global-paid"] select.form-input:focus {
   border-radius: 4px;
 }
 
+.kf-card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+}
+
+.kf-card-category-label {
+  color: #64748B;
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+
 .kf-card-rating {
   font-size: 0.72rem;
   font-weight: 800;
@@ -4136,7 +4255,49 @@ html[data-edition="global-paid"] select.form-input:focus {
   font-weight: 800;
   color: #0F172A;
   margin-bottom: 0.35rem;
-  line-height: 1.4;
+  line-height: 1.38;
+}
+
+/* Nosurch Key Spec Chips */
+.kf-card-spec-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.kf-spec-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 0.14rem 0.42rem;
+  line-height: 1.2;
+}
+
+/* BabyBilly Milestone Badges */
+.kf-card-milestones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.kf-milestone-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.66rem;
+  font-weight: 800;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+  border-radius: 9999px;
+  padding: 0.12rem 0.42rem;
+  line-height: 1.2;
 }
 
 .kf-card-desc {
@@ -4150,7 +4311,7 @@ html[data-edition="global-paid"] select.form-input:focus {
   display: flex;
   align-items: baseline;
   gap: 0.45rem;
-  margin: 0.65rem 0 0.5rem;
+  margin: 0.55rem 0 0.5rem;
 }
 
 .kf-card-price {
@@ -4212,7 +4373,9 @@ html[data-edition="global-paid"] select.form-input:focus {
 
 /* Mobile Responsiveness for Shopping Mall */
 @media (max-width: 768px) {
-  #kidsfit-parenting-select-shop {
+  #kf-curated-mall-hero,
+  #kidsfit-parenting-select-shop,
+  .kidsfit-parenting-select-shop {
     padding: 1.1rem 0.9rem;
     border-radius: 16px;
   }
@@ -4235,8 +4398,59 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 
   #kf-shop-grid {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .kf-product-card {
+    padding: 0.65rem;
+    border-radius: 14px;
+  }
+
+  .kf-card-thumb-wrap {
+    border-radius: 10px;
+    margin-bottom: 0.45rem;
+  }
+
+  .kf-card-thumb-wrap .kf-badge-platform,
+  .kf-card-thumb-wrap .kf-card-stage-tag {
+    font-size: 0.58rem;
+    padding: 0.12rem 0.35rem;
+  }
+
+  .kf-card-title {
+    font-size: 0.82rem;
+    line-height: 1.32;
+    min-height: 2.6em;
+  }
+
+  .kf-spec-chip {
+    font-size: 0.62rem;
+    padding: 0.1rem 0.32rem;
+  }
+
+  .kf-milestone-badge {
+    font-size: 0.6rem;
+    padding: 0.08rem 0.32rem;
+  }
+
+  .kf-card-desc {
+    display: none;
+  }
+
+  .kf-card-price {
+    font-size: 0.94rem;
+  }
+
+  .kf-card-benefit-cue {
+    font-size: 0.65rem;
+    padding: 0.28rem 0.35rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .kf-card-action-btn {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.4rem;
   }
 
   .kf-stage-tab {
@@ -4247,10 +4461,6 @@ html[data-edition="global-paid"] select.form-input:focus {
   .kf-category-pill {
     font-size: 0.72rem;
     padding: 0.3rem 0.6rem;
-  }
-
-  .kf-card-title {
-    font-size: 0.9rem;
   }
 }
 
@@ -4598,10 +4808,117 @@ html[data-edition="global-paid"] select.form-input:focus {
   font-style: italic;
 }
 
+.kf-review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.kf-verified-buyer-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.66rem;
+  font-weight: 800;
+  background: #DCFCE7;
+  color: #166534;
+  border: 1px solid #BBF7D0;
+  padding: 0.12rem 0.42rem;
+  border-radius: 4px;
+}
+
+.kf-review-profile-chip {
+  font-size: 0.66rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #475569;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+}
+
 .kf-review-author {
   font-size: 0.72rem;
   font-weight: 700;
   color: #059669;
+}
+
+/* Nosurch 4-Axis Scorecard */
+.kf-modal-scorecard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+  margin: 0.55rem 0 0.75rem;
+}
+
+.kf-scorecard-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+}
+
+.kf-scorecard-pill.s {
+  background: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #065F46;
+}
+
+.kf-scorecard-pill.s .kf-sc-grade {
+  background: #10B981;
+  color: #FFFFFF;
+  padding: 0.08rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 0.72rem;
+}
+
+.kf-scorecard-pill.a {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1E40AF;
+}
+
+.kf-scorecard-pill.a .kf-sc-grade {
+  background: #3B82F6;
+  color: #FFFFFF;
+  padding: 0.08rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 0.72rem;
+}
+
+/* 29CM Curator Intro Quote */
+.kf-curator-quote {
+  background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+  border-left: 3.5px solid #2563EB;
+  border-radius: 0 12px 12px 0;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.kf-curator-quote-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #1D4ED8;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.kf-curator-quote-text {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1E293B;
+  line-height: 1.5;
+  font-style: italic;
 }
 
 .kf-modal-sticky-footer {
@@ -4609,10 +4926,10 @@ html[data-edition="global-paid"] select.form-input:focus {
   bottom: 0;
   background: #FFFFFF;
   border-top: 1px solid #E2E8F0;
-  padding: 0.85rem 1.4rem;
+  padding: 0.85rem 1.4rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.45rem;
   box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
 }
 
@@ -4648,7 +4965,47 @@ html[data-edition="global-paid"] select.form-input:focus {
   background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%);
 }
 
+.kf-modal-disclaimer {
+  margin: 0.35rem 0 0 0;
+  font-size: 0.68rem;
+  color: #94A3B8;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Return Bridge Toast Banner */
+.kf-return-bridge-toast {
+  background: linear-gradient(135deg, #ECFDF5 0%, #EFF6FF 100%);
+  border: 1.5px solid #10B981;
+  border-radius: 14px;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.14);
+  animation: kfToastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes kfToastSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kf-drawer-handle {
+  width: 44px;
+  height: 5px;
+  background: #CBD5E1;
+  border-radius: 9999px;
+  margin: 0.55rem auto 0.25rem;
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .kf-drawer-handle {
+    display: block;
+  }
   .kf-product-modal-backdrop {
     align-items: flex-end;
     padding: 0;
@@ -4698,8 +5055,12 @@ body:not(.studio-mode-active):not(.diagnosis-lounge-active) #results-dashboard {
   display: none !important;
 }
 
+body.diagnosis-lounge-active #kf-curated-mall-hero,
 body.diagnosis-lounge-active #kidsfit-parenting-select-shop,
-body.studio-mode-active #kidsfit-parenting-select-shop {
+body.diagnosis-lounge-active .kidsfit-parenting-select-shop,
+body.studio-mode-active #kf-curated-mall-hero,
+body.studio-mode-active #kidsfit-parenting-select-shop,
+body.studio-mode-active .kidsfit-parenting-select-shop {
   display: none !important;
 }
 

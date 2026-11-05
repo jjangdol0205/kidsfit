@@ -712,7 +712,7 @@
         polyPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
       }
       const isOuter = ratio === 1.0;
-      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(238, 242, 255, 0.55)' : 'none'}" stroke="${isOuter ? 'rgba(99, 102, 241, 0.4)' : 'rgba(148, 163, 184, 0.32)'}" stroke-width="${isOuter ? '1.6' : '1'}" />`;
+      gridSvg += `<polygon points="${polyPts.join(' ')}" fill="${ratio === 1.0 ? 'rgba(239, 246, 255, 0.65)' : 'none'}" stroke="${isOuter ? 'rgba(29, 78, 216, 0.28)' : 'rgba(148, 163, 184, 0.35)'}" stroke-width="${isOuter ? '1.6' : '1'}" />`;
       if (ratio >= 0.4) {
         gridSvg += `<text x="${cx + 5}" y="${(cy - r + 10).toFixed(1)}" font-size="10.5" font-weight="800" fill="#475569" font-family="Pretendard, sans-serif">${Math.round(ratio * 100)}</text>`;
       }
@@ -727,7 +727,7 @@
       const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
       const x = cx + maxR * Math.cos(angle);
       const y = cy + maxR * Math.sin(angle);
-      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(99, 102, 241, 0.3)" stroke-dasharray="3,3" />`;
+      spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(29, 78, 216, 0.22)" stroke-dasharray="3,3" />`;
 
       const meta = LEARNING_QUOTIENT_METRICS[key];
       const labelText = isGlobal ? meta.nameEn : (shortLabelsKo[key] || meta.nameKo);
@@ -771,7 +771,7 @@
       <svg id="lq-radar-svg" viewBox="0 0 480 400" class="radar-svg lq-radar-svg" style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto;" aria-label="5-Axis Learning Quotient (LQ) Radar Chart">
         <defs>
           <radialGradient id="childLqRadarGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(79, 70, 229, 0.42)" />
+            <stop offset="0%" stop-color="rgba(29, 78, 216, 0.22)" />
             <stop offset="100%" stop-color="#F8FAFC" />
           </radialGradient>
         </defs>

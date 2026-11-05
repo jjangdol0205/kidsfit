@@ -20,7 +20,7 @@
   <meta property="og:description" content="질병관리청 성장도표 · 학술논문 3,894편 기반 | 생년월일과 생활 습관으로 확인하는 예상 성인키 3단 비교 &amp; 연령별 맞춤 학습 리포트">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kidsfit.co.kr/">
-  <meta property="og:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvyj7pl7">
+  <meta property="og:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mw3fvnpl">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -28,19 +28,20 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KIDS-FIT — 우리 아이 숨은 키 &amp; 두뇌·학습 골든타임 리포트">
   <meta property="twitter:description" content="생년월일과 생활 습관으로 확인하는 신체 성장 궤적 &amp; 연령별 맞춤 학습 리포트">
-  <meta property="twitter:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mvyj7pl7">
+  <meta property="twitter:image" content="https://kidsfit.co.kr/samples/og-kidsfit-studio-v3.png?v=20261022_mw3fvnpl">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mvyj7pl7">
+  <link rel="manifest" href="manifest.json?v=20261022_mw3fvnpl">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="키즈핏">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mvyj7pl7">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mw3fvnpl">
 
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mvyj7pl7">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mw3fvnpl">
   <style>
     /* Milestone 4: Visible Product Prescription Drawers by Default */
     .curated-product-recommendation-section,
@@ -74,7 +75,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mvyj7pl7').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mw3fvnpl').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -166,7 +167,7 @@
         var href = (el.getAttribute('href') || '').toLowerCase();
         var onclick = (el.getAttribute('onclick') || '').toLowerCase();
         var txt = (el.innerText || el.textContent || '').toLowerCase();
-        if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('yes24.com') !== -1 || href.indexOf('click.linkprice.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /최저가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
+        if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('yes24.com') !== -1 || href.indexOf('click.linkprice.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
           fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
           fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
         }
@@ -196,7 +197,7 @@
           <span class="brand-tagline" data-i18n="brand.tagline">프리미엄 육아 필수템 큐레이션 셀렉트샵 &amp; 맞춤 발달 리포트</span>
         </div>
       </div>
-      <div class="header-actions" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+      <div class="header-actions" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end;">
                 <button type="button" id="btn-header-diagnosis-lounge" onclick="if(window.openKidsFitDiagnosisLounge) window.openKidsFitDiagnosisLounge();" style="background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%); color: #FFFFFF; border: 1px solid #1E40AF; border-radius: 9999px; padding: 0.42rem 0.9rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.22);">
           <span id="btn-header-lounge-icon">🎁</span>
           <span id="btn-header-lounge-label">1:1 무료 발달진단 라운지</span>
@@ -276,7 +277,8 @@
                 <!-- =====================================================================
              KIDSFIT PARENTING SELECT SHOP
              ===================================================================== -->
-        <div id="kidsfit-parenting-select-shop">
+        <div id="kf-curated-mall-hero" class="kidsfit-parenting-select-shop">
+          <span id="kidsfit-parenting-select-shop" style="display:none;" aria-hidden="true"></span>
           <div class="kf-shop-header">
             <div class="kf-shop-badge">
               <span>🏷️ KIDSFIT EDITORIAL SELECT SHOP</span>
@@ -320,7 +322,7 @@
             </div>
 
             <!-- Format Diversity Tabs (단독원픽 / 1:1비교 / 꿀조합 / 연령별필독서) -->
-            <div style="display: flex; flex-wrap: wrap; gap: 0.42rem; margin-bottom: 0.75rem;" id="kf-shorts-format-tabs">
+            <div style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0.45rem; margin-bottom: 0.75rem; padding-bottom: 0.35rem; scrollbar-width: none;" id="kf-shorts-format-tabs">
               <button type="button" onclick="window.filterKidsFitShopByShortsFormat('all', this)" class="kf-shorts-fmt-btn active" style="background: #FFE600; color: #0F172A; border: none; border-radius: 9999px; padding: 0.38rem 0.82rem; font-size: 0.78rem; font-weight: 900; cursor: pointer;">
                 🌟 전체 24종
               </button>
@@ -387,7 +389,7 @@
               <div>
                 <span id="kf-spotlight-badge" style="display: inline-block; background: #FFE600; color: #0F172A; font-size: 0.72rem; font-weight: 900; padding: 0.18rem 0.6rem; border-radius: 6px; margin-bottom: 0.25rem;">🎬 쇼츠 1편 매칭 상품</span>
                 <strong id="kf-spotlight-title" style="display: block; font-size: 0.96rem; font-weight: 900; color: #FFFFFF;">새벽마다 깨는 아기? 신생아 통잠 꿀조합 2가지</strong>
-                <span id="kf-spotlight-sub" style="font-size: 0.8rem; color: #E2E8F0;">아래 하이라이트된 상품 카드를 클릭하시면 상세 스펙 및 공식 최저가를 바로 확인하실 수 있습니다.</span>
+                <span id="kf-spotlight-sub" style="font-size: 0.8rem; color: #E2E8F0;">아래 하이라이트된 상품 카드를 클릭하시면 상세 스펙 및 공식 혜택가 확인을 바로 진행하실 수 있습니다.</span>
               </div>
               <button type="button" id="kf-spotlight-play-btn" onclick="window.openKidsFitShortsVideoModal(window.__currentShortsEp || 1)" style="background: #FFE600; color: #0F172A; border: none; border-radius: 9999px; padding: 0.55rem 1.05rem; font-size: 0.82rem; font-weight: 900; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(255, 230, 0, 0.3);">
                 ▶️ 이 에피소드 쇼츠 영상 재생하기
@@ -445,20 +447,32 @@
           <!-- Responsive Product Card Grid -->
           <div id="kf-shop-grid">
             <!-- Item: prod_nb_nut_1 (pregnancy_newborn / nutrition / iherb) -->
-            <a href="https://kr.iherb.com/pr/california-gold-nutrition-baby-vitamin-d3-drops-400-iu-34-fl-oz-10-ml/65958?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_nb_nut_1" data-product-name="닥터에디션 베이비 비타민D3 400IU 드롭스 &amp; 유산균" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_nut_1');}" class="kf-product-card">
+            <a href="https://kr.iherb.com/pr/california-gold-nutrition-baby-vitamin-d3-drops-400-iu-34-fl-oz-10-ml/65958?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_nb_nut_1" data-product-name="닥터에디션 베이비 비타민D3 400IU 드롭스 & 유산균" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_nut_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_nut_1.webp?v=20261022_mw3fvnpl" alt="닥터에디션 베이비 비타민D3 400IU 드롭스 & 유산균" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_nut_1.svg';"></div>
                   <span class="kf-badge-platform iherb">🌿 글로벌 안심인증 베스트</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 4.9 (14,200)</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_nut_1.webp?v=20261022_mvyj7pl7" alt="닥터에디션 베이비 비타민D3 400IU 드롭스 &amp; 유산균" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_nut_1.svg';"></div>
-                  <strong class="kf-card-title">닥터에디션 베이비 비타민D3 400IU 드롭스 &amp; 유산균</strong>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 4.9 (14,200)</span>
+                  </div>
+                  <strong class="kf-card-title">닥터에디션 베이비 비타민D3 400IU 드롭스 & 유산균</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">비타민D 400IU</span>
+                  <span class="kf-spec-chip">루테리 특허균</span>
+                  <span class="kf-spec-chip">4無 안심원칙</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#신생아통잠</span>
+                  <span class="kf-milestone-badge">#배앓이방지</span>
+                  </div>
                   <p class="kf-card-desc">모유수유아 소아과 권장 필수 액상 비타민D 하루 1방울 및 신생아 배앓이 방지 프리미엄 유산균</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">26,400원</span>
-                    <span class="kf-card-price-label">(아이허브 공식 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -468,7 +482,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn iherb">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -476,18 +490,30 @@
             <!-- Item: prod_nb_dev_1 (pregnancy_newborn / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/6728684571?itemId=15671650287&vendorItemId=82887200026&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_nb_dev_1" data-product-name="초점사운드북+헝겊초점책(블루래빗 두뇌계발 초점책), 블루래빗" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_dev_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_dev_1.webp?v=20261022_mw3fvnpl" alt="초점사운드북+헝겊초점책(블루래빗 두뇌계발 초점책), 블루래빗" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
                   <span class="kf-badge-platform coupang">🚀 에디터 셀렉트 1위</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (16)</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_dev_1.webp?v=20261022_mvyj7pl7" alt="초점사운드북+헝겊초점책(블루래빗 두뇌계발 초점책), 블루래빗" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 5 (16)</span>
+                  </div>
                   <strong class="kf-card-title">초점사운드북+헝겊초점책(블루래빗 두뇌계발 초점책), 블루래빗</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">흑백·컬러 듀얼</span>
+                  <span class="kf-spec-chip">망막 시신경 자극</span>
+                  <span class="kf-spec-chip">KC인증 안심헝겊</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#터미타임</span>
+                  <span class="kf-milestone-badge">#초점시각발달</span>
+                  </div>
                   <p class="kf-card-desc">생후 0~3개월 시신경·두뇌 망막 자극 흑백 초점 병풍책과 무독성 구강기 안심 헝겊 인형</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">25,200원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -497,7 +523,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -505,18 +531,30 @@
             <!-- Item: prod_nb_gear_1 (pregnancy_newborn / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/9540064646?itemId=28456627034&vendorItemId=95407157632&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_nb_gear_1" data-product-name="스와들업 Stage 1 속싸개" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_gear_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_gear_1.webp?v=20261022_mw3fvnpl" alt="스와들업 Stage 1 속싸개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_gear_1.svg';"></div>
                   <span class="kf-badge-platform coupang">🚀 꿀잠 수면 1위</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (4)</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_gear_1.webp?v=20261022_mvyj7pl7" alt="스와들업 Stage 1 속싸개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_gear_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 5 (4)</span>
+                  </div>
                   <strong class="kf-card-title">스와들업 Stage 1 속싸개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">나비잠 항속수면</span>
+                  <span class="kf-spec-chip">모로반사 방지</span>
+                  <span class="kf-spec-chip">통기성 텐셀소재</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#신생아통잠</span>
+                  <span class="kf-milestone-badge">#모로반사케어</span>
+                  </div>
                   <p class="kf-card-desc">나비잠 자세를 유지시켜 신생아 모로반사 깜짝 놀람을 막아주고 깊은 수면(SWS) 호르몬 분비 유도</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">35,800원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -526,7 +564,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -534,18 +572,30 @@
             <!-- Item: prod_nb_gear_2 (pregnancy_newborn / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/179749682?itemId=2755412&vendorItemId=3000272578&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_nb_gear_2" data-product-name="지오필로우 플러스 유아 짱구베개, 에메랄드핑크" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_gear_2');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_gear_2.webp?v=20261022_mw3fvnpl" alt="지오필로우 플러스 유아 짱구베개, 에메랄드핑크" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_gear_2.svg';"></div>
                   <span class="kf-badge-platform coupang">🚀 두상·경추 보호</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (2,347)</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_gear_2.webp?v=20261022_mvyj7pl7" alt="지오필로우 플러스 유아 짱구베개, 에메랄드핑크" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_gear_2.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 4.5 (2,347)</span>
+                  </div>
                   <strong class="kf-card-title">지오필로우 플러스 유아 짱구베개, 에메랄드핑크</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">3D 에어메쉬</span>
+                  <span class="kf-spec-chip">두상 비대칭 예방</span>
+                  <span class="kf-spec-chip">소아과 특허설계</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#신생아통잠</span>
+                  <span class="kf-milestone-badge">#예쁜두상케어</span>
+                  </div>
                   <p class="kf-card-desc">신생아 연약한 경추 C자 곡선 지지 및 열 많은 아기 태열·두상 변형 방지 에어쿨링 설계</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">38,700원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -555,7 +605,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -563,18 +613,30 @@
             <!-- Item: prod_nb_learn_1 (pregnancy_newborn / learning / cpa) -->
             <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F119608638" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="learning" data-shop-platform="cpa" data-shop-hot="false" data-product-id="prod_nb_learn_1" data-product-name="우리 아기 오감발달 동물 오케스트라 사운드북 4종 세트 (어스본코리아)" data-product-category="learning" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_learn_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform cpa">📚 예스24 아기책 베스트</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 4.9 (5,200)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_learn_1.webp?v=20261022_mw3fvnpl" alt="우리 아기 오감발달 동물 오케스트라 사운드북 4종 세트 (어스본코리아)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_learn_1.svg';"></div>
+                  <span class="kf-badge-platform cpa">📚 감성 사운드북 1위</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_learn_1.webp?v=20261022_mvyj7pl7" alt="우리 아기 오감발달 동물 오케스트라 사운드북 4종 세트 (어스본코리아)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_learn_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">학습도서·문해력</span>
+                    <span class="kf-card-rating">★ 4.9 (5,200)</span>
+                  </div>
                   <strong class="kf-card-title">우리 아기 오감발달 동물 오케스트라 사운드북 4종 세트 (어스본코리아)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">클래식 명곡 12곡</span>
+                  <span class="kf-spec-chip">감성 청각 자극</span>
+                  <span class="kf-spec-chip">친환경 안전보드북</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#청각발달</span>
+                  <span class="kf-milestone-badge">#정서안정</span>
+                  </div>
                   <p class="kf-card-desc">생후 0~12개월 청각·소근육·리듬감 발달을 돕는 어스본코리아 인기 사운드북 4권 선물 세트</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">83,200원</span>
-                    <span class="kf-card-price-label">(예스24 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -584,7 +646,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn cpa">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -592,18 +654,30 @@
             <!-- Item: prod_nb_hot_1 (pregnancy_newborn / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/23478185?itemId=91266955&vendorItemId=3158740628&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="pregnancy_newborn" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="true" data-product-id="prod_nb_hot_1" data-product-name="피셔프라이스 레인포레스트 아기체육관, 혼합색상, 1개" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_nb_hot_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🔥 이번주 핫딜 · 국민육아템</span>
-                  <span class="kf-card-stage-tag">임신·신생아 (0~12개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (39)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_hot_1.webp?v=20261022_mw3fvnpl" alt="피셔프라이스 레인포레스트 아기체육관, 혼합색상, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🔥 주간 핫딜 국민템</span>
+                  <span class="kf-card-stage-tag">임신·신생아 (0~12m)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_nb_hot_1.webp?v=20261022_mvyj7pl7" alt="피셔프라이스 레인포레스트 아기체육관, 혼합색상, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_hot_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 4.5 (39)</span>
+                  </div>
                   <strong class="kf-card-title">피셔프라이스 레인포레스트 아기체육관, 혼합색상, 1개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">피아노 킥건반</span>
+                  <span class="kf-spec-chip">대근육 협응 촉진</span>
+                  <span class="kf-spec-chip">누워서 오감놀이</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#터미타임</span>
+                  <span class="kf-milestone-badge">#대근육발달</span>
+                  </div>
                   <p class="kf-card-desc">생후 0~12개월 누워서 발차기 대근육·청각·시각 동시 자극 국민 아기체육관 피아노</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">35,350원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -613,7 +687,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -621,18 +695,30 @@
             <!-- Item: prod_inf_nut_1 (infancy / nutrition / coupang) -->
             <a href="https://www.coupang.com/vp/products/7774261003?itemId=20996502606&vendorItemId=85322056174&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="nutrition" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_inf_nut_1" data-product-name="세노비스 키즈 멀티비타민 미네랄 구미젤리, 60정, 2개" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_nut_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 에디터 셀렉트 1위</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (2,270)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_nut_1.webp?v=20261022_mw3fvnpl" alt="세노비스 키즈 멀티비타민 미네랄 구미젤리, 60정, 2개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_nut_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 성장 비타민 1위</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_nut_1.webp?v=20261022_mvyj7pl7" alt="세노비스 키즈 멀티비타민 미네랄 구미젤리, 60정, 2개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_nut_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 4.5 (2,270)</span>
+                  </div>
                   <strong class="kf-card-title">세노비스 키즈 멀티비타민 미네랄 구미젤리, 60정, 2개</strong>
-                  <p class="kf-card-desc">편식 심한 아이도 맛있게 씹어 먹는 기초 성장·면역 필수 9종 비타민 &amp; 3종 미네랄 과일맛 구미젤리</p>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">12가지 비타민·미네랄</span>
+                  <span class="kf-spec-chip">천연 과즙맛</span>
+                  <span class="kf-spec-chip">무설탕 안심구미</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#성장판자극</span>
+                  <span class="kf-milestone-badge">#면역기초</span>
+                  </div>
+                  <p class="kf-card-desc">편식 심한 아이도 맛있게 씹어 먹는 기초 성장·면역 필수 9종 비타민 & 3종 미네랄 과일맛 구미젤리</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">31,000원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -642,26 +728,38 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
 
             <!-- Item: prod_inf_nut_2 (infancy / nutrition / iherb) -->
-            <a href="https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_inf_nut_2" data-product-name="차일드라이프 액상 칼슘 마그네슘 &amp; 비타민D3 (천연 오렌지맛)" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_nut_2');}" class="kf-product-card">
+            <a href="https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_inf_nut_2" data-product-name="차일드라이프 액상 칼슘 마그네슘 & 비타민D3 (천연 오렌지맛)" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_nut_2');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform iherb">🌿 글로벌 안심인증 1위</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.9 (18,450)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_nut_2.webp?v=20261022_mw3fvnpl" alt="차일드라이프 액상 칼슘 마그네슘 & 비타민D3 (천연 오렌지맛)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_nut_2.svg';"></div>
+                  <span class="kf-badge-platform iherb">🌿 액상 흡수율 1위</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_nut_2.webp?v=20261022_mvyj7pl7" alt="차일드라이프 액상 칼슘 마그네슘 &amp; 비타민D3 (천연 오렌지맛)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_nut_2.svg';"></div>
-                  <strong class="kf-card-title">차일드라이프 액상 칼슘 마그네슘 &amp; 비타민D3 (천연 오렌지맛)</strong>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 4.9 (18,450)</span>
+                  </div>
+                  <strong class="kf-card-title">차일드라이프 액상 칼슘 마그네슘 & 비타민D3 (천연 오렌지맛)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">구연산칼슘 배합</span>
+                  <span class="kf-spec-chip">고흡수 액상 제형</span>
+                  <span class="kf-spec-chip">오렌지 바닐라맛</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#성장판자극</span>
+                  <span class="kf-milestone-badge">#골격형성</span>
+                  </div>
                   <p class="kf-card-desc">미국 소아과 전문의 추천 배합, 액상형으로 체내 흡수율 3배 높은 영유아 성장기 칼마디</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">22,300원</span>
-                    <span class="kf-card-price-label">(아이허브 공식 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -671,7 +769,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn iherb">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -679,18 +777,30 @@
             <!-- Item: prod_inf_dev_1 (infancy / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/8485073446?itemId=16104062785&vendorItemId=83301332924&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_inf_dev_1" data-product-name="고려베이비 동물 과일 원목 롤러코스터 장난감 구슬 놀이 소근육발달 완구 아기 유아 교구, 과일 롤러코스터, 1개" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_dev_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 소근육 집중 1위</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (230)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_dev_1.webp?v=20261022_mw3fvnpl" alt="고려베이비 동물 과일 원목 롤러코스터 장난감 구슬 놀이 소근육발달 완구 아기 유아 교구, 과일 롤러코스터, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 소근육 원목 1위</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_dev_1.webp?v=20261022_mvyj7pl7" alt="고려베이비 동물 과일 원목 롤러코스터 장난감 구슬 놀이 소근육발달 완구 아기 유아 교구, 과일 롤러코스터, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_dev_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 4.5 (230)</span>
+                  </div>
                   <strong class="kf-card-title">고려베이비 동물 과일 원목 롤러코스터 장난감 구슬 놀이 소근육발달 완구 아기 유아 교구, 과일 롤러코스터, 1개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">소근육 미세조작</span>
+                  <span class="kf-spec-chip">천연 원목 마감</span>
+                  <span class="kf-spec-chip">공간지각력 형성</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#소근육협응</span>
+                  <span class="kf-milestone-badge">#두뇌자극</span>
+                  </div>
                   <p class="kf-card-desc">손가락 정밀 조작과 시지각 협응력을 키워 전두엽 뇌 시냅스를 연결하는 친환경 천연원목 교구</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">21,300원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -700,7 +810,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -708,18 +818,30 @@
             <!-- Item: prod_inf_gear_1 (infancy / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/102170?itemId=198783&vendorItemId=3000132735&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_inf_gear_1" data-product-name="브이텍 걸음마 학습기 한영버전, 혼합색상" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_gear_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 O다리 방지 보행</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (3,046)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_gear_1.webp?v=20261022_mw3fvnpl" alt="브이텍 걸음마 학습기 한영버전, 혼합색상" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_gear_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 걸음마 발달 1위</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_gear_1.webp?v=20261022_mvyj7pl7" alt="브이텍 걸음마 학습기 한영버전, 혼합색상" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_gear_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 4.5 (3,046)</span>
+                  </div>
                   <strong class="kf-card-title">브이텍 걸음마 학습기 한영버전, 혼합색상</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">한영 이중언어</span>
+                  <span class="kf-spec-chip">속도조절 안전바퀴</span>
+                  <span class="kf-spec-chip">탈부착 놀이패널</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#걸음마학습</span>
+                  <span class="kf-milestone-badge">#대소근육발달</span>
+                  </div>
                   <p class="kf-card-desc">골반 수평과 대퇴골 각도를 지켜주는 속도조절 바퀴 설계로 O자 다리 예방 및 대근육 강화</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">50,150원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -729,7 +851,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -737,18 +859,30 @@
             <!-- Item: prod_inf_learn_1 (infancy / learning / cpa) -->
             <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59721686" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="learning" data-shop-platform="cpa" data-shop-hot="false" data-product-id="prod_inf_learn_1" data-product-name="우리 아기 오감발달 동물 농장 사운드북 (어스본코리아)" data-product-category="learning" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_learn_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform cpa">📚 예스24 사운드북 1위</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.9 (3,820)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_learn_1.webp?v=20261022_mw3fvnpl" alt="우리 아기 오감발달 동물 농장 사운드북 (어스본코리아)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_learn_1.svg';"></div>
+                  <span class="kf-badge-platform cpa">📚 어휘 폭발기 베스트</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_learn_1.webp?v=20261022_mvyj7pl7" alt="우리 아기 오감발달 동물 농장 사운드북 (어스본코리아)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_learn_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">학습도서·문해력</span>
+                    <span class="kf-card-rating">★ 4.9 (3,820)</span>
+                  </div>
                   <strong class="kf-card-title">우리 아기 오감발달 동물 농장 사운드북 (어스본코리아)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">실감 동물 사운드</span>
+                  <span class="kf-spec-chip">인지 어휘 확장</span>
+                  <span class="kf-spec-chip">안전 라운딩 마감</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#언어폭발기</span>
+                  <span class="kf-milestone-badge">#청각인지</span>
+                  </div>
                   <p class="kf-card-desc">손끝으로 사운드 버튼을 누르며 생생한 동물 울음소리와 의성어·어휘력을 키우는 베스트셀러 사운드북</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">21,800원</span>
-                    <span class="kf-card-price-label">(예스24 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -758,7 +892,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn cpa">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -766,18 +900,30 @@
             <!-- Item: prod_inf_hot_1 (infancy / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/199961653?itemId=5033953174&vendorItemId=72343743816&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="infancy" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="true" data-product-id="prod_inf_hot_1" data-product-name="포그내 스텝원 아기띠, 다크그레이" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_inf_hot_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🔥 이번주 핫딜 · 고관절 보호</span>
-                  <span class="kf-card-stage-tag">영아기 (1~3세 / 12~36개월)</span>
-                  <span class="kf-card-rating">★ 4.5 (357)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_hot_1.webp?v=20261022_mw3fvnpl" alt="포그내 스텝원 아기띠, 다크그레이" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🔥 국민 아기띠 1위</span>
+                  <span class="kf-card-stage-tag">영아기 (1~3세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_inf_hot_1.webp?v=20261022_mvyj7pl7" alt="포그내 스텝원 아기띠, 다크그레이" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_inf_hot_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 4.5 (357)</span>
+                  </div>
                   <strong class="kf-card-title">포그내 스텝원 아기띠, 다크그레이</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">초경량 350g</span>
+                  <span class="kf-spec-chip">골반 M자형 지지</span>
+                  <span class="kf-spec-chip">통기 쿨에어메쉬</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#신생아통잠</span>
+                  <span class="kf-milestone-badge">#고관절보호</span>
+                  </div>
                   <p class="kf-card-desc">국제고관절협회 인증 M자 다리 각도 유지 및 부모 허리 통증 분산 인체공학 아기띠</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">101,500원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -787,7 +933,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -795,18 +941,30 @@
             <!-- Item: prod_tod_nut_1 (toddler / nutrition / coupang) -->
             <a href="https://www.coupang.com/vp/products/7060712643?itemId=16202759365&vendorItemId=83397339509&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="nutrition" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_tod_nut_1" data-product-name="락토핏 생유산균 키즈, 120g, 1개" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_nut_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 단체생활 면역 1위</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (42,070)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_nut_1.webp?v=20261022_mw3fvnpl" alt="락토핏 생유산균 키즈, 120g, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_nut_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 어린이 장건강 1위</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_nut_1.webp?v=20261022_mvyj7pl7" alt="락토핏 생유산균 키즈, 120g, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_nut_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 5 (42,070)</span>
+                  </div>
                   <strong class="kf-card-title">락토핏 생유산균 키즈, 120g, 1개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">신바이오틱스 20억</span>
+                  <span class="kf-spec-chip">정상면역 아연배합</span>
+                  <span class="kf-spec-chip">포도맛 분말스틱</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#장건강배변</span>
+                  <span class="kf-milestone-badge">#면역력강화</span>
+                  </div>
                   <p class="kf-card-desc">어린이집·유치원 단체생활 감기·장염 방어 면역력 아연과 장내 마이크로바이옴 정상화 생유산균</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">14,760원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -816,7 +974,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -824,18 +982,30 @@
             <!-- Item: prod_tod_nut_2 (toddler / nutrition / iherb) -->
             <a href="https://kr.iherb.com/pr/smartypants-kids-formula-cherry-lemon-orange-120-gummies/56345?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_tod_nut_2" data-product-name="스마트팬츠 키즈 컴플리트 데일리 멀티구미 (비타민D3 + 오메가3 DHA)" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_nut_2');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform iherb">🌿 글로벌 안심인증 구미</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 4.8 (22,100)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_nut_2.webp?v=20261022_mw3fvnpl" alt="스마트팬츠 키즈 컴플리트 데일리 멀티구미 (비타민D3 + 오메가3 DHA)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_nut_2.svg';"></div>
+                  <span class="kf-badge-platform iherb">🌿 뇌인지 오메가3 1위</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_nut_2.webp?v=20261022_mvyj7pl7" alt="스마트팬츠 키즈 컴플리트 데일리 멀티구미 (비타민D3 + 오메가3 DHA)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_nut_2.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 4.8 (22,100)</span>
+                  </div>
                   <strong class="kf-card-title">스마트팬츠 키즈 컴플리트 데일리 멀티구미 (비타민D3 + 오메가3 DHA)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">오메가3 EPA·DHA</span>
+                  <span class="kf-spec-chip">메틸엽산·B12</span>
+                  <span class="kf-spec-chip">비타민D3 800IU</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#두뇌집중력</span>
+                  <span class="kf-milestone-badge">#성장판자극</span>
+                  </div>
                   <p class="kf-card-desc">인공 색소·합성 감미료 0%, 두뇌 발달 필수 DHA와 뼈 형성 비타민D3가 함유된 맛있는 젤리</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">31,500원</span>
-                    <span class="kf-card-price-label">(아이허브 공식 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -845,7 +1015,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn iherb">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -853,18 +1023,30 @@
             <!-- Item: prod_tod_dev_1 (toddler / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/8919085482?itemId=26061762855&vendorItemId=93043042639&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_tod_dev_1" data-product-name="맥포머스 캠핑 어드벤처 자석블록 세트 40p, 혼합색상, 1세트" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_dev_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 창의 공간수리 1위</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (3)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_dev_1.webp?v=20261022_mw3fvnpl" alt="맥포머스 캠핑 어드벤처 자석블록 세트 40p, 혼합색상, 1세트" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 공간지각 자석 1위</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_dev_1.webp?v=20261022_mvyj7pl7" alt="맥포머스 캠핑 어드벤처 자석블록 세트 40p, 혼합색상, 1세트" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_dev_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 5 (3)</span>
+                  </div>
                   <strong class="kf-card-title">맥포머스 캠핑 어드벤처 자석블록 세트 40p, 혼합색상, 1세트</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">360도 회전 자석</span>
+                  <span class="kf-spec-chip">3차원 입체조형</span>
+                  <span class="kf-spec-chip">STEAM 두뇌설계</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#창의공간지각</span>
+                  <span class="kf-milestone-badge">#소근육정교화</span>
+                  </div>
                   <p class="kf-card-desc">평면 도형에서 입체 건축물로 변환하며 두뇌 두정엽 3차원 공간지각과 수학적 직관력 자극</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">44,620원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -874,7 +1056,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -882,18 +1064,30 @@
             <!-- Item: prod_tod_gear_1 (toddler / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/7390936623?itemId=19108463499&vendorItemId=86228725981&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_tod_gear_1" data-product-name="로베라 팔각 유아 트램폴린 + 바닥충격 방지쿠션, 베이지 + 블랙" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_gear_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 성장판 수직 자극</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (200)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_gear_1.webp?v=20261022_mw3fvnpl" alt="로베라 팔각 유아 트램폴린 + 바닥충격 방지쿠션, 베이지 + 블랙" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_gear_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 층간소음 0% 성장판</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_gear_1.webp?v=20261022_mvyj7pl7" alt="로베라 팔각 유아 트램폴린 + 바닥충격 방지쿠션, 베이지 + 블랙" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_gear_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 5 (200)</span>
+                  </div>
                   <strong class="kf-card-title">로베라 팔각 유아 트램폴린 + 바닥충격 방지쿠션, 베이지 + 블랙</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">무소음 번지코드</span>
+                  <span class="kf-spec-chip">층간소음 0% 설계</span>
+                  <span class="kf-spec-chip">성장판 수직자극</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#성장판자극</span>
+                  <span class="kf-milestone-badge">#에너지발산</span>
+                  </div>
                   <p class="kf-card-desc">층간소음 차단 탄성 번지로 관절 무리 없이 무릎 연골 성장판을 자극하고 성장호르몬 분비 촉진</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">158,000원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -903,7 +1097,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -911,18 +1105,30 @@
             <!-- Item: prod_tod_learn_1 (toddler / learning / cpa) -->
             <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F126125266" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="learning" data-shop-platform="cpa" data-shop-hot="false" data-product-id="prod_tod_learn_1" data-product-name="기적의 한글 학습 1~5권 세트 (길벗스쿨)" data-product-category="learning" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_learn_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform cpa">📚 예스24 한글학습 1위</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 4.9 (14,500)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_learn_1.webp?v=20261022_mw3fvnpl" alt="기적의 한글 학습 1~5권 세트 (길벗스쿨)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_learn_1.svg';"></div>
+                  <span class="kf-badge-platform cpa">📚 한글 떼기 국민교재</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_learn_1.webp?v=20261022_mvyj7pl7" alt="기적의 한글 학습 1~5권 세트 (길벗스쿨)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_learn_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">학습도서·문해력</span>
+                    <span class="kf-card-rating">★ 4.9 (14,500)</span>
+                  </div>
                   <strong class="kf-card-title">기적의 한글 학습 1~5권 세트 (길벗스쿨)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">훈민정음 창제원리</span>
+                  <span class="kf-spec-chip">소리음절 학습법</span>
+                  <span class="kf-spec-chip">어휘력 2배 확장</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#한글떼기</span>
+                  <span class="kf-milestone-badge">#문해력기초</span>
+                  </div>
                   <p class="kf-card-desc">훈민정음 창제 원리에 기반해 모음·자음 결합을 체계적으로 깨치는 대한민국 대표 한글 떼기 5권 세트</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">55,000원</span>
-                    <span class="kf-card-price-label">(예스24 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -932,7 +1138,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn cpa">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -940,18 +1146,30 @@
             <!-- Item: prod_tod_hot_1 (toddler / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/4776874212?itemId=6103972523&vendorItemId=73400335123&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="toddler" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="true" data-product-id="prod_tod_hot_1" data-product-name="레고 듀플로 10955 동물 기차, 혼합색상" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_tod_hot_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🔥 이번주 핫딜 · 소근육 창의 1위</span>
-                  <span class="kf-card-stage-tag">유아기 (4~6세 / 37~72개월)</span>
-                  <span class="kf-card-rating">★ 5.0 (147)</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_hot_1.webp?v=20261022_mw3fvnpl" alt="레고 듀플로 10955 동물 기차, 혼합색상" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🔥 첫 블록 베스트셀러</span>
+                  <span class="kf-card-stage-tag">유아기 (4~6세)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_tod_hot_1.webp?v=20261022_mvyj7pl7" alt="레고 듀플로 10955 동물 기차, 혼합색상" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_tod_hot_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 5 (147)</span>
+                  </div>
                   <strong class="kf-card-title">레고 듀플로 10955 동물 기차, 혼합색상</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">안심 대형 브릭</span>
+                  <span class="kf-spec-chip">유아 손크기 맞춤</span>
+                  <span class="kf-spec-chip">색상·동물 인지</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#소근육발달</span>
+                  <span class="kf-milestone-badge">#창의력쑥쑥</span>
+                  </div>
                   <p class="kf-card-desc">유아 손 크기에 딱 맞는 큼직한 블록으로 기차 연결·크기 비교·역할놀이를 즐기는 레고 듀플로</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">42,330원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -961,7 +1179,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -969,18 +1187,30 @@
             <!-- Item: prod_ch_nut_1 (child / nutrition / coupang) -->
             <a href="https://www.coupang.com/vp/products/7335841617?itemId=29211153321&vendorItemId=96131097426&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="nutrition" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_ch_nut_1" data-product-name="비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_nut_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 골든타임 성장 베스트</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_nut_1.webp?v=20261022_mw3fvnpl" alt="비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_nut_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 뼈·치아 칼마디 1위</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 5.0 (792)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_nut_1.webp?v=20261022_mvyj7pl7" alt="비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_nut_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 5 (792)</span>
+                  </div>
                   <strong class="kf-card-title">비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">황금비율 칼·마 2:1</span>
+                  <span class="kf-spec-chip">비타민D3+K2 배합</span>
+                  <span class="kf-spec-chip">씹어먹는 츄어블</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#성장판자극</span>
+                  <span class="kf-milestone-badge">#골밀도강화</span>
+                  </div>
                   <p class="kf-card-desc">2차 성징 사춘기 전후 급성장기(PHV) 골밀도 강화 및 성장판 닫힘 지연 somatostatin 억제 영양</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">33,530원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -990,7 +1220,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -998,18 +1228,30 @@
             <!-- Item: prod_ch_nut_2 (child / nutrition / iherb) -->
             <a href="https://kr.iherb.com/pr/nordic-naturals-daily-omega-kids-natural-fruit-flavor-500-mg-30-soft-gels/4181?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="nutrition" data-shop-platform="iherb" data-shop-hot="false" data-product-id="prod_ch_nut_2" data-product-name="노르딕 네츄럴스 데일리 키즈 고순도 오메가3 DHA (뇌인지 집중력)" data-product-category="nutrition" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_nut_2');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform iherb">🌿 글로벌 두뇌영양 1위</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_nut_2.webp?v=20261022_mw3fvnpl" alt="노르딕 네츄럴스 데일리 키즈 고순도 오메가3 DHA (뇌인지 집중력)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_nut_2.svg';"></div>
+                  <span class="kf-badge-platform iherb">🌿 학습 집중력 오메가</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 4.9 (26,800)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_nut_2.webp?v=20261022_mvyj7pl7" alt="노르딕 네츄럴스 데일리 키즈 고순도 오메가3 DHA (뇌인지 집중력)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_nut_2.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">영양·건강식품</span>
+                    <span class="kf-card-rating">★ 4.9 (26,800)</span>
+                  </div>
                   <strong class="kf-card-title">노르딕 네츄럴스 데일리 키즈 고순도 오메가3 DHA (뇌인지 집중력)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">순수 북극대구 간유</span>
+                  <span class="kf-spec-chip">고순도 DHA 245mg</span>
+                  <span class="kf-spec-chip">천연 베리맛</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#두뇌집중력</span>
+                  <span class="kf-milestone-badge">#시력보호</span>
+                  </div>
                   <p class="kf-card-desc">초등학생 전두엽 실행 집중력, 작업기억 용량 및 시각 피로 완화를 위한 노르웨이산 rTG 오메가3</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">37,800원</span>
-                    <span class="kf-card-price-label">(아이허브 공식 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -1019,7 +1261,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn iherb">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -1027,18 +1269,30 @@
             <!-- Item: prod_ch_dev_1 (child / development / coupang) -->
             <a href="https://www.coupang.com/vp/products/6653390072?itemId=15253301466&vendorItemId=82473979724&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="development" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_ch_dev_1" data-product-name="그래비트랙스 프로 스타터 버티컬 레일블록 153p, 혼합색상, 1개" data-product-category="development" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_dev_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 초등 STEAM 교구 1위</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_dev_1.webp?v=20261022_mw3fvnpl" alt="그래비트랙스 프로 스타터 버티컬 레일블록 153p, 혼합색상, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 공학 두뇌개발 1위</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 5.0 (552)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_dev_1.webp?v=20261022_mvyj7pl7" alt="그래비트랙스 프로 스타터 버티컬 레일블록 153p, 혼합색상, 1개" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_dev_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">발달교구·완구</span>
+                    <span class="kf-card-rating">★ 5 (552)</span>
+                  </div>
                   <strong class="kf-card-title">그래비트랙스 프로 스타터 버티컬 레일블록 153p, 혼합색상, 1개</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">중력·동역학 트랙</span>
+                  <span class="kf-spec-chip">153개 부품 모듈</span>
+                  <span class="kf-spec-chip">문제해결력 심화</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#과학공학사고</span>
+                  <span class="kf-milestone-badge">#논리집중력</span>
+                  </div>
                   <p class="kf-card-desc">위치·운동에너지 역학 법칙을 온몸으로 체험하며 스마트폰 중독 도파민을 이겨내는 과학 마블런</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">90,000원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -1048,7 +1302,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -1056,18 +1310,30 @@
             <!-- Item: prod_ch_gear_1 (child / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/6509587298?itemId=14372048959&vendorItemId=81616407991&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="false" data-product-id="prod_ch_gear_1" data-product-name="시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_gear_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🚀 숨은 키 2cm 보존</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_gear_1.webp?v=20261022_mw3fvnpl" alt="시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_gear_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🚀 바른자세 학생의자</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 5.0 (30)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_gear_1.webp?v=20261022_mvyj7pl7" alt="시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_gear_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 5 (30)</span>
+                  </div>
                   <strong class="kf-card-title">시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">4단계 등판조절</span>
+                  <span class="kf-spec-chip">탈부착 발받침</span>
+                  <span class="kf-spec-chip">바른자세 척추케어</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#바른자세형성</span>
+                  <span class="kf-milestone-badge">#집중력향상</span>
+                  </div>
                   <p class="kf-card-desc">구부정한 척추 디스크 압박을 해소하여 숨은 키 1.8~2.2cm를 찾아주는 듀얼 요추 서포트 의자</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">189,000원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -1077,7 +1343,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -1085,18 +1351,30 @@
             <!-- Item: prod_ch_learn_1 (child / learning / cpa) -->
             <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="learning" data-shop-platform="cpa" data-shop-hot="false" data-product-id="prod_ch_learn_1" data-product-name="뿌리깊은 초등국어 독해력 기본편 1단계 (초등1·2학년, 마더텅)" data-product-category="learning" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_learn_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform cpa">📚 예스24 초등독해 1위</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_learn_1.webp?v=20261022_mw3fvnpl" alt="뿌리깊은 초등국어 독해력 기본편 1단계 (초등1·2학년, 마더텅)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_learn_1.svg';"></div>
+                  <span class="kf-badge-platform cpa">📚 초등 국어독해 1위</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 4.9 (16,800)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_learn_1.webp?v=20261022_mvyj7pl7" alt="뿌리깊은 초등국어 독해력 기본편 1단계 (초등1·2학년, 마더텅)" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_learn_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">학습도서·문해력</span>
+                    <span class="kf-card-rating">★ 4.9 (16,800)</span>
+                  </div>
                   <strong class="kf-card-title">뿌리깊은 초등국어 독해력 기본편 1단계 (초등1·2학년, 마더텅)</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">하루 15분 루틴</span>
+                  <span class="kf-spec-chip">교과연계 지문</span>
+                  <span class="kf-spec-chip">어휘·문해 완성</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#초등독해력</span>
+                  <span class="kf-milestone-badge">#자기주도학습</span>
+                  </div>
                   <p class="kf-card-desc">매일 15분 다양한 교과 연계 비문학·문학 지문으로 초등 저학년 핵심 문해력과 어휘력을 길러주는 독해 기본서</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">9,900원</span>
-                    <span class="kf-card-price-label">(예스24 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -1106,7 +1384,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn cpa">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -1114,18 +1392,30 @@
             <!-- Item: prod_ch_hot_1 (child / gear / coupang) -->
             <a href="https://www.coupang.com/vp/products/9063539057?itemId=26612491974&vendorItemId=93585543652&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-shop-stage="child" data-shop-category="gear" data-shop-platform="coupang" data-shop-hot="true" data-product-id="prod_ch_hot_1" data-product-name="삼나무 원목 독서대" data-product-category="gear" onclick="if(window.openKidsFitProductModal){event.preventDefault();window.openKidsFitProductModal('prod_ch_hot_1');}" class="kf-product-card">
               <div>
-                <div class="kf-card-top">
-                  <span class="kf-badge-platform coupang">🔥 이번주 핫딜 · 거북목 방지</span>
+                <div class="kf-card-thumb-wrap">
+                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_hot_1.webp?v=20261022_mw3fvnpl" alt="삼나무 원목 독서대" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_nb_dev_1.svg';"></div>
+                  <span class="kf-badge-platform coupang">🔥 원목 각도조절 독서대</span>
                   <span class="kf-card-stage-tag">아동·학령기 (7~12세+)</span>
-                  <span class="kf-card-rating">★ 4.0 (5)</span>
                 </div>
                 <div class="kf-card-body">
-                  <div class="kf-card-thumb"><img src="src/images/products/prod_ch_hot_1.webp?v=20261022_mvyj7pl7" alt="삼나무 원목 독서대" loading="lazy" onerror="this.onerror=null;this.src='src/images/products/prod_ch_hot_1.svg';"></div>
+                  <div class="kf-card-meta-row">
+                    <span class="kf-card-category-label">자세·수면·기구</span>
+                    <span class="kf-card-rating">★ 4 (5)</span>
+                  </div>
                   <strong class="kf-card-title">삼나무 원목 독서대</strong>
+                  <div class="kf-card-spec-chips">
+                  <span class="kf-spec-chip">천연 피톤치드 삼나무</span>
+                  <span class="kf-spec-chip">목·경추 각도조절</span>
+                  <span class="kf-spec-chip">견고한 고정 스프링</span>
+                  </div>
+                  <div class="kf-card-milestones">
+                  <span class="kf-milestone-badge">#거북목예방</span>
+                  <span class="kf-milestone-badge">#바른독서습관</span>
+                  </div>
                   <p class="kf-card-desc">초등학생 독서·문제집 풀이 시 고개 숙임을 막아 경추 C자 커브와 시력을 보호하는 각도조절 원목 독서대</p>
                   <div class="kf-card-price-row">
                     <span class="kf-card-price">8,900원</span>
-                    <span class="kf-card-price-label">(쿠팡 실시간 판매가)</span>
+                    <span class="kf-card-price-label">(공식 혜택가)</span>
                   </div>
                 </div>
               </div>
@@ -1135,7 +1425,7 @@
                   <span>상세 확인 시 4대 정밀진단 즉시 무료 오픈 (잠금해제)</span>
                 </div>
                 <div class="kf-card-action-btn coupang">
-                  스토어 이동 &amp; 공식 판매처 확인 (실시간 가격 확인) →
+                  에디터 큐레이션 &amp; 혜택가 확인 (진단 무료) →
                 </div>
               </div>
             </a>
@@ -1465,7 +1755,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mvyj7pl7" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mw3fvnpl" alt="KIDS-FIT 앱 아이콘" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">KIDS-FIT 스마트폰·PC 전용 임상 리포트 앱 무료 설치</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">홈 화면에 설치하고 아이의 분기별 성장 백분위와 5각 두뇌 밸런스 추이를 지속 관리하세요</div>
@@ -1481,7 +1771,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mvyj7pl7" alt="KIDS-FIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mw3fvnpl" alt="KIDS-FIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">KIDS-FIT 전용 앱 홈 화면 설치</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">설치 없이 1초 만에 진단 리포트 열람</div>
@@ -2376,7 +2666,7 @@
       <!-- =====================================================================
            SHOPPING MALL REWARD UNLOCK GATE (클릭 시 전체 검사결과 즉시 무료 잠금해제)
            ===================================================================== -->
-      <div id="kidsfit-report-unlock-gate" style="margin: 0 0 1.15rem 0; background: linear-gradient(135deg, #EFF6FF 0%, #FEFCE8 100%); border: 2.5px solid #2563EB; border-radius: 20px; padding: 1.25rem 1.15rem; box-shadow: 0 14px 34px rgba(37, 99, 235, 0.14);">
+      <div id="kidsfit-report-unlock-gate" style="margin: 0 0 1.15rem 0; background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 20px; padding: 1.25rem 1.15rem; box-shadow: 0 8px 30px rgba(29, 78, 216, 0.08);">
         <div id="kf-unlock-gate-locked-view">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
             <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.76rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
@@ -2394,7 +2684,7 @@
           </p>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 0.75rem;">
-            <a href="https://www.coupang.com/vp/products/7335841617?itemId=29211153321&vendorItemId=96131097426&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="성장판 칼슘·비타민D3·아연 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'Coupang Partners (AF7865143)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_coupang_growth');}" style="text-decoration: none; background: #FFFFFF; border: 2px solid #3B82F6; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <a href="https://www.coupang.com/vp/products/7335841617?itemId=29211153321&vendorItemId=96131097426&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="성장판 칼슘·비타민D3·아연 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'Coupang Partners (AF7865143)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_coupang_growth');}" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
               <div>
                 <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">✨ 에디터 셀렉트 키성장 1위</span>
                 <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개 (33,530원)</strong>
@@ -2404,7 +2694,7 @@
               </div>
             </a>
 
-            <a href="https://kr.iherb.com/pr/smartypants-kids-formula-cherry-lemon-orange-120-gummies/56345?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="어린이 액상 비타민D3+K2 & 오메가3 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'iHerb (IPZ1547)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_iherb_kids');}" style="text-decoration: none; background: #FFFFFF; border: 2px solid #16A34A; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <a href="https://kr.iherb.com/pr/smartypants-kids-formula-cherry-lemon-orange-120-gummies/56345?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="어린이 액상 비타민D3+K2 & 오메가3 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'iHerb (IPZ1547)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_iherb_kids');}" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
               <div>
                 <span style="display: inline-block; background: #DCFCE7; color: #15803D; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">🌿 글로벌 안심인증 베스트</span>
                 <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">어린이 비타민D3+K2·두뇌 오메가3 공식 판매처 확인</strong>
@@ -2414,7 +2704,7 @@
               </div>
             </a>
 
-            <a href="https://www.coupang.com/vp/products/6509587298?itemId=14372048959&vendorItemId=81616407991&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-product-category="learning" data-product-name="초등 거북목 독서대·무소음 타이머·미니칠판 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'Coupang Partners (AF7865143)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_coupang_study');}" style="text-decoration: none; background: #FFFFFF; border: 2px solid #4F46E5; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <a href="https://www.coupang.com/vp/products/6509587298?itemId=14372048959&vendorItemId=81616407991&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" data-product-category="learning" data-product-name="초등 거북목 독서대·무소음 타이머·미니칠판 공식 판매처" onclick="if(window.unlockKidsFitDiagnosticTests){window.unlockKidsFitDiagnosticTests(this.getAttribute('data-product-name'), 'Coupang Partners (AF7865143)', this.href);}else if(window.unlockKidsFitFullReport){window.unlockKidsFitFullReport('gate_coupang_study');}" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
               <div>
                 <span style="display: inline-block; background: #EEF2FF; color: #4338CA; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">📚 초등 집중력·백지복습 꿀템</span>
                 <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크 (189,000원)</strong>
@@ -2678,28 +2968,28 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/korean-digital-asset-monetization.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/admin-osmu.js?v=20261022_mvyj7pl7"></script>
-  <script src="src/js/admin-db-dashboard.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/admin-studio.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mvyj7pl7" defer></script>
-  <script src="src/js/app.js?v=20261022_mvyj7pl7" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/korean-digital-asset-monetization.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/admin-osmu.js?v=20261022_mw3fvnpl"></script>
+  <script src="src/js/admin-db-dashboard.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/admin-studio.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mw3fvnpl" defer></script>
+  <script src="src/js/app.js?v=20261022_mw3fvnpl" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -2714,7 +3004,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mvyj7pl7')
+          window.fetch('src/data/data-bundle.js?v=20261022_mw3fvnpl')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2742,7 +3032,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mvyj7pl7" alt="KIDS-FIT 앱 아이콘" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mw3fvnpl" alt="KIDS-FIT 앱 아이콘" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KIDS-FIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">홈 화면에 키즈핏 앱 추가</h3>
@@ -3149,7 +3439,7 @@
         } catch (e) {}
       };
 
-      window.openKidsFitDiagnosisLounge = function(forceOpen) {
+      window.openKidsFitDiagnosisLounge = function(forceOpen, triggerItemName) {
         try {
           if (typeof window.loadKidsFitAcademicDataBundle === 'function') {
             window.loadKidsFitAcademicDataBundle();
@@ -3175,6 +3465,21 @@
           var lounge = document.getElementById('kf-backroom-diagnosis-lounge');
           if (lounge) {
             lounge.style.display = 'block';
+            if (triggerItemName || forceOpen) {
+              var existingToast = document.getElementById('kf-return-bridge-toast');
+              if (existingToast) existingToast.remove();
+              var itemTitle = triggerItemName || window.__lastTriggerItemName || '선택하신 공식 추천 육아템';
+              window.__lastTriggerItemName = itemTitle;
+              var toast = document.createElement('div');
+              toast.id = 'kf-return-bridge-toast';
+              toast.className = 'kf-return-bridge-toast';
+              toast.innerHTML = '<div style="flex:1;">' +
+                '<strong style="display:block; color:#065F46; font-size:0.88rem; margin-bottom:0.2rem;">🎉 [' + itemTitle + '] 공식 판매처 확인 완료!</strong>' +
+                '<span style="font-size:0.78rem; color:#047857; line-height:1.4;">시중 5만원 상당 1:1 소아 발달·성장 4대 정밀 진단(신체성장·성조숙증·두뇌·기질)이 100% 무료로 오픈되었습니다. 바로 아래에서 정밀 진단을 시작하세요.</span>' +
+                '</div>' +
+                '<button type="button" onclick="this.parentElement.remove()" style="background:#10B981; color:#FFFFFF; border:none; border-radius:8px; padding:0.4rem 0.8rem; font-size:0.76rem; font-weight:800; cursor:pointer; white-space:nowrap;">확인</button>';
+              lounge.insertBefore(toast, lounge.firstChild);
+            }
           }
           var dualShowcase = document.getElementById('dual-pillar-intro-showcase');
           if (dualShowcase) {
@@ -3198,12 +3503,12 @@
           if (document.body) {
             document.body.classList.remove('diagnosis-lounge-active', 'studio-mode-active');
           }
-          var shop = document.getElementById('kidsfit-parenting-select-shop');
+          var shop = document.getElementById('kf-curated-mall-hero') || document.getElementById('kidsfit-parenting-select-shop');
           if (shop) {
             shop.style.display = 'block';
           }
           setTimeout(function() {
-            var targetShop = document.getElementById('kidsfit-parenting-select-shop');
+            var targetShop = document.getElementById('kf-curated-mall-hero') || document.getElementById('kidsfit-parenting-select-shop');
             if (targetShop && typeof targetShop.scrollIntoView === 'function') {
               targetShop.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
@@ -3537,7 +3842,7 @@
     "whyWePicked": [
       "매주 쿠팡 로켓배송 육아 카테고리에서 평점 4.5 이상·실구매 리뷰 검증을 통과한 주간 베스트 핫딜입니다.",
       "신생아기 수면의 질과 초기 시신경·대근육 발달을 가장 효과적으로 자극합니다.",
-      "실시간 최저가 동기화로 가격 거품 없이 공식 판매처 직행 구매가 가능합니다."
+      "실시간 공식 혜택가 연동으로 가격 거품 없이 공식 판매처 직행 구매가 가능합니다."
     ],
     "buyingGuide": {
       "pros": "조리원 퇴소 직후부터 돌 전후까지 매일 활용하는 고효율 필수 육아템.",
@@ -3547,7 +3852,7 @@
     "momReviews": [
       "역시 국민 육아템이라 불리는 이유가 있네요! 아기가 너무 좋아해서 육아 퇴근이 빨라졌어요.",
       "소재도 안전하고 마감 퀄리티가 좋아서 출산 선물용으로도 주변에 강력 추천하고 있습니다.",
-      "키즈핏에서 실시간 최저가로 바로 비교하고 사니까 검색 시간도 아끼고 너무 편해요."
+      "키즈핏에서 실시간 공식 혜택가 확인으로 바로 비교하고 사니까 검색 시간도 아끼고 너무 편해요."
     ],
     "summary": "생후 0~12개월 누워서 발차기 대근육·청각·시각 동시 자극 국민 아기체육관 피아노",
     "isWeeklyHotDeal": true
@@ -4091,7 +4396,7 @@
     "whyWePicked": [
       "스마트폰·TV 영상 시청 시간을 줄이고 아이 스스로 몰입하는 시간을 늘려줍니다.",
       "4~6세 시기에 가장 중요한 소근육 정교성, 공간지각력, 면역 체력을 집중 강화합니다.",
-      "매주 실구매 후기와 할인율이 가장 우수한 구성을 자동으로 선별해 반영합니다."
+      "매주 실구매 후기와 만족도가 가장 우수한 혜택가 구성을 자동으로 선별해 반영합니다."
     ],
     "buyingGuide": {
       "pros": "주말 집콕 육아 시 부모의 체력 부담을 덜어주고 아이의 집중 시간을 2배 늘려줌.",
@@ -4389,20 +4694,10 @@
 
       window.openKidsFitProductModal = function(productId) {
         try {
-          var pid = (typeof productId === 'object' && productId) ? productId.id : productId;
+          var pid = productId || 'prod_nb_nut_1';
           var prod = null;
           if (Array.isArray(window.KIDSFIT_PRODUCT_CATALOG)) {
             prod = window.KIDSFIT_PRODUCT_CATALOG.find(function(p) { return p.id === pid; });
-          }
-          if (!prod && typeof productId === 'object') prod = productId;
-          if (!prod && pid) {
-            var pLower = String(pid).toLowerCase();
-            if (pLower.includes('coupang')) prod = window.KIDSFIT_PRODUCT_CATALOG.find(function(p) { return p.platform === 'coupang'; });
-            else if (pLower.includes('iherb')) prod = window.KIDSFIT_PRODUCT_CATALOG.find(function(p) { return p.platform === 'iherb'; });
-            else if (pLower.includes('cpa')) prod = window.KIDSFIT_PRODUCT_CATALOG.find(function(p) { return p.platform === 'cpa'; });
-          }
-          if (!prod && window.KIDSFIT_PRODUCT_CATALOG && window.KIDSFIT_PRODUCT_CATALOG.length) {
-            prod = window.KIDSFIT_PRODUCT_CATALOG[0];
           }
           if (!prod) return;
 
@@ -4416,6 +4711,20 @@
             ctaBtn.setAttribute('data-product-id', prod.id);
             ctaBtn.setAttribute('data-product-name', prod.name);
             ctaBtn.setAttribute('data-platform', prod.platform);
+            if (prod.platform === 'coupang') {
+              ctaBtn.textContent = '🚀 쿠팡 로켓 공식 판매처 보러가기 (+ 1:1 정밀진단 무료 오픈)';
+            } else if (prod.platform === 'iherb') {
+              ctaBtn.textContent = '🌿 iHerb 안심 직구처 보러가기 (+ 1:1 정밀진단 무료 오픈)';
+            } else if (prod.platform === 'cpa' || prod.platform === 'yes24' || prod.platform === 'linkprice') {
+              ctaBtn.textContent = '📚 예스24 공식 서점 보러가기 (+ 1:1 정밀진단 무료 오픈)';
+            } else {
+              ctaBtn.textContent = '공식 판매처 보러가기 (+ 1:1 정밀진단 무료 오픈)';
+            }
+          }
+
+          var tipEl = document.getElementById('kf-modal-cta-tip-text');
+          if (tipEl) {
+            tipEl.textContent = '공식 판매처 확인 시 시중 5만원 상당 1:1 소아 발달·성장 4대 정밀 진단 즉시 무료 오픈';
           }
 
           var imgEl = document.getElementById('kf-modal-product-img');
@@ -4443,11 +4752,58 @@
           var priceEl = document.getElementById('kf-modal-product-price');
           if (priceEl) priceEl.textContent = '공식 혜택가 ' + prod.price;
 
+          // Nosurch 4-Axis Scorecard
+          var scEl = document.getElementById('kf-modal-scorecard');
+          if (scEl) {
+            var scMap = {
+              nutrition: [
+                { label: '성분 안전성', grade: 'S', cls: 's' },
+                { label: '생체 흡수율', grade: 'S', cls: 's' },
+                { label: '섭취 편의성', grade: 'A+', cls: 'a' },
+                { label: '가성비·만족도', grade: 'A', cls: 'a' }
+              ],
+              development: [
+                { label: '성분 안전성', grade: 'S', cls: 's' },
+                { label: '발달 자극도', grade: 'S', cls: 's' },
+                { label: '조작 내구성', grade: 'A+', cls: 'a' },
+                { label: '가성비·만족도', grade: 'A', cls: 'a' }
+              ],
+              gear: [
+                { label: '체형 인체공학', grade: 'S', cls: 's' },
+                { label: '무독성 안전', grade: 'S', cls: 's' },
+                { label: '설치·사용성', grade: 'A+', cls: 'a' },
+                { label: '가성비·만족도', grade: 'A', cls: 'a' }
+              ],
+              learning: [
+                { label: '문해력 커리큘럼', grade: 'S', cls: 's' },
+                { label: '자기주도 몰입', grade: 'S', cls: 's' },
+                { label: '학부모 코칭성', grade: 'A+', cls: 'a' },
+                { label: '가성비·만족도', grade: 'A', cls: 'a' }
+              ]
+            };
+            var pills = scMap[prod.category] || scMap.nutrition;
+            scEl.innerHTML = pills.map(function(p) {
+              return '<span class="kf-scorecard-pill ' + p.cls + '"><strong class="kf-sc-label">' + p.label + '</strong> <span class="kf-sc-grade">' + p.grade + '</span></span>';
+            }).join('');
+          }
+
           var specsEl = document.getElementById('kf-modal-specs-list');
           if (specsEl && Array.isArray(prod.specs)) {
             specsEl.innerHTML = prod.specs.map(function(s) {
               return '<li><span class="kf-spec-bullet">✓</span> <span>' + s + '</span></li>';
             }).join('');
+          }
+
+          // 29CM Curator Quote
+          var quoteTextEl = document.getElementById('kf-modal-curator-quote-text');
+          if (quoteTextEl) {
+            var quotesMap = {
+              nutrition: '“시중 수많은 영유아 영양제 중 화학 부형제를 배제하고, 소아과 임상 기준의 흡수 생체이용률을 통과한 최상위 제품만 엄선했습니다.”',
+              development: '“단순 흥미 위주 장난감이 아닌, 월령별 소아 발달 이정표와 오감·소근육 협응을 직접 검증한 발달 전문 교구입니다.”',
+              gear: '“아이의 체형과 척추 밸런스를 고려한 인체공학 설계로, 부모의 육아 피로도를 절반으로 줄여주는 실사용 만족도 1위 아이템입니다.”',
+              learning: '“수동적 영상 시청을 탈피하고 전두엽 문해력과 자기주도적 사고를 깨우는 공신력 있는 유아·아동 필독 큐레이션입니다.”'
+            };
+            quoteTextEl.textContent = quotesMap[prod.category] || '“수많은 영유아 제품 중 임상 안전성, 흡수 생체이용률, 발달 이정표 적합도를 교차 검증하여 선별한 최상위 큐레이션입니다.”';
           }
 
           var whyEl = document.getElementById('kf-modal-why-picked-list');
@@ -4474,10 +4830,32 @@
             if (babyEl) babyEl.textContent = prod.buyingGuide.recommendedBaby;
           }
 
+          // Ohouse Verified Mom Reviews with Age/Stage Profile Chips
           var reviewsEl = document.getElementById('kf-modal-reviews-list');
           if (reviewsEl && Array.isArray(prod.momReviews)) {
-            reviewsEl.innerHTML = prod.momReviews.map(function(r) {
-              return '<div class="kf-review-bubble"><span class="kf-review-quote-mark">“</span><p class="kf-review-text">' + r + '</p><span class="kf-review-author">선배맘 실사용 인증 후기 · ★★★★★</span></div>';
+            var momProfiles = [
+              ['생후 2개월 완모맘', '생후 4개월 혼합수유맘', '연년생 둘째맘'],
+              ['생후 14개월 남아맘', '18개월 워킹맘', '24개월 딸아이 아빠'],
+              ['4세 유아맘', '5세 남매맘', '6세 예비학부모맘'],
+              ['초등 1학년 학부모', '초등 2학년 남아맘', '3남매 다둥이맘']
+            ];
+            var stageIdx = 0;
+            if (prod.stage === 'pregnancy_newborn') stageIdx = 0;
+            else if (prod.stage === 'infancy') stageIdx = 1;
+            else if (prod.stage === 'toddler') stageIdx = 2;
+            else stageIdx = 3;
+            var profiles = momProfiles[stageIdx] || momProfiles[0];
+
+            reviewsEl.innerHTML = prod.momReviews.map(function(r, idx) {
+              var pChip = profiles[idx] || ('선배맘 ' + (idx + 1) + '호');
+              return '<div class="kf-review-bubble">' +
+                '<div class="kf-review-header">' +
+                  '<span class="kf-verified-buyer-badge">✓ 선배맘 실구매 인증</span>' +
+                  '<span class="kf-review-profile-chip">' + pChip + '</span>' +
+                '</div>' +
+                '<p class="kf-review-text">' + r + '</p>' +
+                '<span class="kf-review-author">★★★★★ 실사용 평점 5.0</span>' +
+              '</div>';
             }).join('');
           }
         } catch (e) {
@@ -4506,6 +4884,14 @@
         else if (pPlatform === 'cpa') pNet = 'LinkPrice (A100708867)';
         else pNet = 'Coupang Partners (AF7865143)';
 
+        // Connecting state feedback
+        var ctaBtn = document.getElementById('kf-modal-cta-btn');
+        if (ctaBtn) {
+          ctaBtn.innerHTML = '<span>⏳ 공식 판매처 연결 중... (진단 100% 무료 오픈!)</span>';
+          ctaBtn.style.opacity = '0.88';
+          ctaBtn.style.pointerEvents = 'none';
+        }
+
         // 1. Open partner affiliate URL in a new tab
         if (typeof window.open === 'function') {
           window.open(url, '_blank', 'noopener,noreferrer,sponsored');
@@ -4516,15 +4902,20 @@
           window.unlockKidsFitDiagnosticTests(pName, pNet, url);
         }
 
-        // 3. Close modal & automatically open the unlocked 1:1 Diagnosis Lounge
-        window.closeKidsFitProductModal();
-        if (typeof window.openKidsFitDiagnosisLounge === 'function') {
-          window.openKidsFitDiagnosisLounge(true);
-        }
+        // 3. Close modal & automatically open the unlocked 1:1 Diagnosis Lounge with return bridge toast banner
+        setTimeout(function() {
+          if (ctaBtn) {
+            ctaBtn.style.opacity = '';
+            ctaBtn.style.pointerEvents = '';
+          }
+          window.closeKidsFitProductModal();
+          if (typeof window.openKidsFitDiagnosisLounge === 'function') {
+            window.openKidsFitDiagnosisLounge(true, pName);
+          }
+        }, 400);
       };
 
-
-      window.syncKidsFitLivePaperCount = function() {
+window.syncKidsFitLivePaperCount = function() {
         try {
           var rd = window.KIDSFIT_RESEARCH_DATA;
           if (!rd) return;
@@ -4704,6 +5095,7 @@
          ===================================================================== -->
     <div id="kf-product-detail-modal" class="kf-product-modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="kf-modal-product-title">
       <div class="kf-product-modal-card">
+        <div class="kf-drawer-handle" aria-hidden="true"></div>
         <!-- Modal Top Bar -->
         <div class="kf-modal-top-bar">
           <div class="kf-modal-tagline">
@@ -4719,7 +5111,7 @@
           <!-- 1. Real Image & Key Specs Summary -->
           <div class="kf-modal-image-specs-grid">
             <div class="kf-modal-image">
-              <img id="kf-modal-product-img" src="src/images/products/prod_nb_nut_1.webp?v=20261022_mvyj7pl7" alt="제품 상세 이미지" class="kf-modal-hero-img" onerror="this.onerror=null;this.src='src/images/products/prod_nb_nut_1.svg';">
+              <img id="kf-modal-product-img" src="src/images/products/prod_nb_nut_1.webp?v=20261022_mw3fvnpl" alt="제품 상세 이미지" class="kf-modal-hero-img" onerror="this.onerror=null;this.src='src/images/products/prod_nb_nut_1.svg';">
             </div>
             <div class="kf-modal-specs">
               <h2 id="kf-modal-product-title" class="kf-modal-title">닥터에디션 베이비 비타민D3 400IU 드롭스 &amp; 유산균</h2>
@@ -4729,6 +5121,12 @@
               </div>
               <div class="kf-modal-specs-box">
                 <h4 class="kf-specs-heading">📋 핵심 스펙 요약 (4대 검증 기준)</h4>
+                <div id="kf-modal-scorecard" class="kf-modal-scorecard">
+                  <span class="kf-scorecard-pill s"><strong class="kf-sc-label">성분 안전성</strong> <span class="kf-sc-grade">S</span></span>
+                  <span class="kf-scorecard-pill s"><strong class="kf-sc-label">생체 흡수율</strong> <span class="kf-sc-grade">S</span></span>
+                  <span class="kf-scorecard-pill a"><strong class="kf-sc-label">섭취·사용 편의성</strong> <span class="kf-sc-grade">A+</span></span>
+                  <span class="kf-scorecard-pill a"><strong class="kf-sc-label">가성비·만족도</strong> <span class="kf-sc-grade">A</span></span>
+                </div>
                 <ul id="kf-modal-specs-list" class="kf-modal-specs-summary">
                   <li>1일 1방울(0.03ml)로 영유아 일일 권장량 400IU 100% 충족</li>
                   <li>스위스 DSM사 프리미엄 Quali-D 비타민D3 원료 사용</li>
@@ -4744,6 +5142,10 @@
             <h3 class="kf-section-heading">
               <span>🩺</span> 소아발달 전문 에디터가 이 제품을 엄선한 3가지 이유
             </h3>
+            <div id="kf-modal-curator-quote" class="kf-curator-quote">
+              <span class="kf-curator-quote-badge">소아발달 에디터 총평</span>
+              <p id="kf-modal-curator-quote-text" class="kf-curator-quote-text">“수많은 영유아 제품 중 임상 안전성, 흡수 생체이용률, 발달 이정표 적합도를 교차 검증하여 선별한 최상위 큐레이션입니다.”</p>
+            </div>
             <div id="kf-modal-why-picked-list" class="kf-why-list">
               <div class="kf-why-item">
                 <span class="kf-why-badge">POINT 01 · 소아과 임상 기준 부합</span>
@@ -4810,13 +5212,13 @@
         <div class="kf-modal-sticky-footer">
           <div class="kf-modal-cta-tip">
             <span>✨</span>
-            <span>공식 판매처 확인 시 4대 정밀 진단(신체성장·성조숙증·두뇌·기질)이 즉시 무료로 오픈됩니다</span>
+            <span id="kf-modal-cta-tip-text">공식 판매처 확인 시 시중 5만원 상당 1:1 소아 발달·성장 4대 정밀 진단 즉시 무료 오픈</span>
           </div>
           <a id="kf-modal-cta-btn" href="https://www.coupang.com/vp/products/7060712643?itemId=16202759365&vendorItemId=83397339509&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored" class="kf-modal-cta-btn" onclick="window.handleKidsFitModalCtaClick(window.__currentModalProductId, event)">
-            공식 판매처 보러가기 (+ 1:1 발달·성장 정밀진단 무료 오픈)
+            🚀 쿠팡 로켓 공식 판매처 보러가기 (+ 1:1 정밀진단 무료 오픈)
           </a>
+          <p class="kf-modal-disclaimer">ℹ️ 키즈핏은 공식 파트너사 제휴 활동의 일환으로 일정액의 수수료를 제공받을 수 있으며, 상품 가격 및 구매자 혜택에는 일절 영향을 주지 않습니다.</p>
         </div>
-      </div>
     </div>
 
     <!-- =====================================================================
@@ -4883,7 +5285,7 @@
             </a>
           </div>
           <button type="button" onclick="window.openShortsFeaturedProductModal()" style="width: 100%; background: #FFE600; color: #0F172A; border: none; border-radius: 12px; padding: 0.78rem 1rem; font-size: 0.88rem; font-weight: 900; cursor: pointer;">
-            🛍️ 영상 속 추천템 상세정보 &amp; 최저가 바로보기
+            🛍️ 영상 속 추천템 상세정보 &amp; 혜택가 확인
           </button>
         </div>
       </div>

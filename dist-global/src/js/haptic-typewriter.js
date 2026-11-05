@@ -239,7 +239,7 @@
           {
             badge: `Brain Briefing 1/6 · Age ${ageYears} Neuro-Developmental Window`,
             title: `Mapping Prefrontal & Cognitive Synaptic Windows (${exactMonths} mos · ${genderEn})`,
-            body: `Cross-referencing your child's age-specific prefrontal cortex (DLPFC) and parietal spatial circuits against <strong>3,722 peer-reviewed neuroscience papers</strong>.`,
+            body: `Cross-referencing your child's age-specific prefrontal cortex (DLPFC) and parietal spatial circuits against <strong>117 peer-reviewed neuroscience papers</strong>.`,
             highlight: `Computing 5-Axis Learning Quotient (LQ) & primary cognitive bottleneck...`
           },
           {
@@ -808,8 +808,8 @@
     }
     if (descEl) {
       descEl.textContent = isLearning
-        ? (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) prefrontal executive & cognitive metrics against 3,722 peer-reviewed neuroscience papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 3,722편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`)
-        : (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) height, weight & epiphyseal plate data against US CDC 2000, WHO & 3,714 pediatric endocrine papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 3,722편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`);
+        ? (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) prefrontal executive & cognitive metrics against 117 peer-reviewed neuroscience papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 두뇌 민감기·전두엽 작업기억·문해/수리 데이터를 117편 인지뇌과학 학술 DB와 1:1 정밀 매칭하고 있습니다.`)
+        : (isEn ? `Cross-referencing ${profile.birthDateStr || ''} (${profile.exactMonths || profile.ageMonths} mos, ${profile.gender === 'girl' ? 'Female' : 'Male'}) height, weight & epiphyseal plate data against US CDC 2000, WHO & 3,714 pediatric endocrine papers.` : `${profile.birthDateStr || ''} (생후 ${profile.exactMonths || profile.ageMonths}개월) ${profile.gender === 'girl' ? '여아' : '남아'}의 키·체중·성장판 데이터를 117편 소아내분비 학술 DB 및 국가 표준 성장도표와 1:1 정밀 매칭하고 있습니다.`);
     }
     currentStageIdx = 0;
 

@@ -1975,7 +1975,7 @@
         <!-- ====================================================================== -->
         <!-- 【축 1: 아이 신체 성장 마스터 분석 보고서 (Chapters 1~4)】              -->
         <!-- ====================================================================== -->
-        <div id="pillar-1-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'none' : 'block'}; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 24px; padding: 1.4rem; margin-bottom: 2rem;">
+        <div id="pillar-1-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'none' : 'block'}; background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); border-radius: 24px; padding: 1.4rem; margin-bottom: 2rem;">
           <!-- Official Standards Verification Banner -->
           <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 14px; padding: 0.75rem 1rem; margin-bottom: 1.15rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -2440,7 +2440,7 @@
         <!-- ================================================================== -->
         <!-- CHAPTER 2: 기본 신체성장 & 골연령 예측 궤적 (Auxology & Bone Age)    -->
         <!-- ================================================================== -->
-        <div id="report-ch-2" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid #BFDBFE;">
+        <div id="report-ch-2" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid #E2E8F0;">
           <div style="margin-bottom: 0.9rem;">
             <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #BFDBFE; margin-bottom: 0.35rem;">
               CHAPTER 02 · AUXOLOGY &amp; BONE AGE TRAJECTORY
@@ -2463,7 +2463,7 @@
         <!-- ================================================================== -->
         <!-- CHAPTER 3: 호르몬·수면 & 임상 영양 생체이용률 (+ 맞춤 영양 처방)      -->
         <!-- ================================================================== -->
-        <div id="report-ch-3" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid #BFDBFE;">
+        <div id="report-ch-3" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid #E2E8F0;">
           <div style="margin-bottom: 0.9rem;">
             <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #BFDBFE; margin-bottom: 0.35rem;">
               CHAPTER 03 · ENDOCRINOLOGY, SLEEP &amp; CLINICAL NUTRITION
@@ -2485,7 +2485,7 @@
         <!-- ================================================================== -->
         <!-- CHAPTER 4: 척추 감압 & 생체역학 스튜디오 (순수 분석 & 운동 루틴만 표시) -->
         <!-- ================================================================== -->
-        <div id="report-ch-4" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 2px solid #BFDBFE;">
+        <div id="report-ch-4" style="scroll-margin-top: 5.5rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid #E2E8F0;">
           <div style="margin-bottom: 0.9rem;">
             <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px; border: 1px solid #BFDBFE; margin-bottom: 0.35rem;">
               CHAPTER 04 · SPINAL DECOMPRESSION &amp; BIOMECHANICS
@@ -2522,7 +2522,7 @@
           </button>
         </div>
 
-        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" data-product-category="growth" style="display: block !important; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 20px;">
+        <div id="growth-curated-products-drawer" class="curated-product-recommendation-section" data-product-category="growth" style="display: block !important; margin-top: 1.1rem; padding: 1.15rem; background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04); border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px dashed #BFDBFE;">
             <span style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">
               우리 아이 맞춤 성장 &amp; 두뇌·학습 처방 솔루션 (Paper-Matched Product Prescription) · 신체 성장
@@ -2556,7 +2556,7 @@
       <!-- ====================================================================== -->
       <!-- 【축 2: 아이 두뇌·학습 마스터 분석 보고서 (시각 인포그래픽 & 간결 요약)】 -->
       <!-- ====================================================================== -->
-      <div id="pillar-2-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'block' : 'none'}; background: #FFFFFF; border: 2px solid #BFDBFE; border-radius: 24px; padding: 1.4rem; margin-top: 1.25rem; margin-bottom: 2rem;">
+      <div id="pillar-2-container" class="master-pillar-container" style="display: ${isLearningDefault ? 'block' : 'none'}; background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); border-radius: 24px; padding: 1.4rem; margin-top: 1.25rem; margin-bottom: 2rem;">
         <style>
           #pillar-2-container .learning-quick-nav-grid {
             display: grid;

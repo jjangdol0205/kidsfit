@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "rl_cycle": 27,
-  "updated_at_kst": "2026-11-01 05:44:01 KST",
+  "rl_cycle": 45,
+  "updated_at_kst": "2026-11-05 16:00:12 KST",
   "channels": {
     "youtube_shorts": "https://www.youtube.com/@kisfitglobal",
     "instagram_reels": "https://www.instagram.com/kisfitglobal"
   },
   "live_channel_totals": {
-    "youtube_uploaded_shorts": 5,
-    "youtube_total_views": 29,
-    "youtube_total_likes": 1,
+    "youtube_uploaded_shorts": 9,
+    "youtube_total_views": 1539,
+    "youtube_total_likes": 9,
     "instagram_synced_views": 0,
     "site_instagram_referral_clicks_today": 0,
     "site_threads_referral_clicks_today": 0
   },
   "champion_arm": {
-    "ep": 3,
-    "arm_id": "arm_ep3_math_working_memory",
-    "topic_ko": "3화: 연산은 빠른데 문장제 수학에서 멈추는 아이 (전두엽 작업기억)",
-    "yt_video_id": "qh6R0mRcCcc",
-    "yt_views": 14,
-    "yt_views_per_day": 3.55,
-    "raw_reward": 33.42,
+    "ep": 1,
+    "arm_id": "arm_ep1_sleep_hgh",
+    "topic_ko": "1화: 밤 10시 수면 골든타임 & 성장호르몬(HGH) 52% 감소 방어",
+    "yt_video_id": "Sx22K09QvAk",
+    "yt_views": 1509,
+    "yt_views_per_day": 929.67,
+    "raw_reward": 5571.34,
     "policy_weight": 1.8,
     "winning_hook_formula": "Why [Positive Kid Trait: Smart/Active/Tall Kids] [Unexpected Symptom: Freeze/Stop/Lose] (Biology/Stat Shock!) + #ParentingHacks"
   },
   "rl_insights_and_actions": [
-    "1. [1위 챔피언 영상]: 3화 'Why Smart Kids Freeze on Math Word Problems' (ID: qh6R0mRcCcc) — 조회수 14회 (일평균 3.55회/일, 1화 대비 +225% 높은 조회 속도 달성).",
+    "1. [1위 챔피언 영상]: 3화 'Why Smart Kids Freeze on Math Word Problems' (ID: Sx22K09QvAk) — 조회수 1509회 (일평균 929.67회/일, 1화 대비 +225% 높은 조회 속도 달성).",
     "2. [2위 우수 영상]: 2화 'Why Picky Eaters Refuse Meat & Green Veggies (It's Biology!)' (ID: b6zHOumwNIo) — 조회수 8회 ('훈육이 아니라 생물학적 아연 결핍'이라는 부모 죄책감 해소 훅이 1화 대비 2.0배 높은 조회수 기록).",
     "3. [강화학습(RL) 정책 전이 완료]: 조회수가 가장 높았던 'Why [긍정적 아이 특성: Smart/Active Kids] + [의외의 병목 증상] + (생물학적 수치 팩트!)' 공식과 #ParentingHacks 태그를 전 에피소드(1~5화)의 상단 2줄 타이틀 및 유튜브·릴스 제목에 자동 이식 완료!"
   ],
@@ -42,15 +42,15 @@
       "hook_formula": "Paradoxical Kid Trait + Quantitative Biology Shock (-52% HGH)",
       "yt_video_id": "Sx22K09QvAk",
       "yt_url": "https://www.youtube.com/shorts/Sx22K09QvAk",
-      "yt_views": 5,
-      "yt_likes": 1,
-      "yt_views_per_day": 0.95,
+      "yt_views": 1509,
+      "yt_likes": 9,
+      "yt_views_per_day": 929.67,
       "ig_views": 0,
       "ig_likes": 0,
-      "pulls": 2,
-      "raw_reward": 16.82,
-      "ucb1_score": 29.99,
-      "policy_weight": 1.33
+      "pulls": 6,
+      "raw_reward": 5571.34,
+      "ucb1_score": 5579.42,
+      "policy_weight": 1.8
     },
     {
       "ep": 2,
@@ -63,15 +63,15 @@
       "hook_formula": "Guilt-Reversal Biological Reframe (It's Biology, Not Behavior!)",
       "yt_video_id": "b6zHOumwNIo",
       "yt_url": "https://www.youtube.com/shorts/b6zHOumwNIo",
-      "yt_views": 9,
+      "yt_views": 11,
       "yt_likes": 0,
-      "yt_views_per_day": 1.83,
+      "yt_views_per_day": 1.18,
       "ig_views": 0,
       "ig_likes": 0,
       "pulls": 1,
-      "raw_reward": 19.91,
-      "ucb1_score": 38.52,
-      "policy_weight": 1.42
+      "raw_reward": 20.63,
+      "ucb1_score": 40.41,
+      "policy_weight": 0.85
     },
     {
       "ep": 3,
@@ -84,15 +84,15 @@
       "hook_formula": "CHAMPION ARM (#1 Views & Velocity): 'Why Smart Kids Freeze on [Task]'",
       "yt_video_id": "qh6R0mRcCcc",
       "yt_url": "https://www.youtube.com/shorts/qh6R0mRcCcc",
-      "yt_views": 14,
+      "yt_views": 15,
       "yt_likes": 0,
-      "yt_views_per_day": 3.55,
+      "yt_views_per_day": 1.79,
       "ig_views": 0,
       "ig_likes": 0,
       "pulls": 1,
-      "raw_reward": 33.42,
-      "ucb1_score": 52.04,
-      "policy_weight": 1.8
+      "raw_reward": 28.77,
+      "ucb1_score": 48.55,
+      "policy_weight": 0.85
     },
     {
       "ep": 4,
@@ -112,7 +112,7 @@
       "ig_likes": 0,
       "pulls": 0,
       "raw_reward": 0.0,
-      "ucb1_score": 18.61,
+      "ucb1_score": 19.78,
       "policy_weight": 1.25
     },
     {
@@ -126,61 +126,105 @@
       "hook_formula": "Transferred Champion Formula + Neuroscience Stat (30% Cortex Link)",
       "yt_video_id": "gbNtudUJhsU",
       "yt_url": "https://www.youtube.com/shorts/gbNtudUJhsU",
-      "yt_views": 1,
+      "yt_views": 4,
       "yt_likes": 0,
-      "yt_views_per_day": 0.52,
+      "yt_views_per_day": 0.63,
       "ig_views": 0,
       "ig_likes": 0,
       "pulls": 1,
-      "raw_reward": 3.32,
-      "ucb1_score": 21.93,
-      "policy_weight": 0.94
+      "raw_reward": 8.21,
+      "ucb1_score": 27.99,
+      "policy_weight": 0.85
     }
   ],
   "live_youtube_videos": [
     {
       "platform": "youtube_shorts",
+      "videoId": "ggAOk6Bbb7w",
+      "url": "https://www.youtube.com/shorts/ggAOk6Bbb7w",
+      "title": "How ",
+      "views": 8,
+      "likes": 0,
+      "publishDate": "2026-11-04T14:17:43-08:00",
+      "daysLive": 0.5,
+      "viewsPerDay": 16.0
+    },
+    {
+      "platform": "youtube_shorts",
+      "videoId": "MX-eUWpauNs",
+      "url": "https://www.youtube.com/shorts/MX-eUWpauNs",
+      "title": "Never Ignore a Child Sleeping With Their Mouth Open ð®âð¨ð§  #Shorts",
+      "views": 1227,
+      "likes": 7,
+      "publishDate": "2026-11-03T15:19:40-08:00",
+      "daysLive": 1.32,
+      "viewsPerDay": 929.67
+    },
+    {
+      "platform": "youtube_shorts",
+      "videoId": "LieQgXgYG8k",
+      "url": "https://www.youtube.com/shorts/LieQgXgYG8k",
+      "title": "Why 1 Sweet Drink Before Bed Stops Bone Growth for 4 Hours ð¥ð« #Shorts",
+      "views": 1,
+      "likes": 0,
+      "publishDate": "2026-11-02T15:12:37-08:00",
+      "daysLive": 2.32,
+      "viewsPerDay": 0.43
+    },
+    {
+      "platform": "youtube_shorts",
+      "videoId": "-E8RnzQuimU",
+      "url": "https://www.youtube.com/shorts/-E8RnzQuimU",
+      "title": "What Happens If Your Child Sleeps After 10 PM? ð¦´ð #Shorts",
+      "views": 265,
+      "likes": 1,
+      "publishDate": "2026-11-01T14:53:48-08:00",
+      "daysLive": 3.34,
+      "viewsPerDay": 79.39
+    },
+    {
+      "platform": "youtube_shorts",
       "videoId": "gbNtudUJhsU",
       "url": "https://www.youtube.com/shorts/gbNtudUJhsU",
       "title": "Why Finger Play Beats Flashcards for Smart Kids (30% Brain Cortex Link!) ðï¸ð§  #Shorts #ParentingHacks",
-      "views": 1,
+      "views": 4,
       "likes": 0,
       "publishDate": "2026-10-29T15:12:30-07:00",
-      "daysLive": 1.94,
-      "viewsPerDay": 0.52
+      "daysLive": 6.37,
+      "viewsPerDay": 0.63
     },
     {
       "platform": "youtube_shorts",
       "videoId": "jonIYd80k-E",
       "url": "https://www.youtube.com/shorts/jonIYd80k-E",
       "title": "0",
-      "views": 0,
+      "views": 3,
       "likes": 0,
-      "publishDate": "2026-10-31T20:44:02.705959+00:00",
+      "publishDate": "2026-11-05T07:00:13.020315+00:00",
       "daysLive": 0.5,
-      "viewsPerDay": 0.0
+      "viewsPerDay": 6.0
     },
     {
       "platform": "youtube_shorts",
       "videoId": "qh6R0mRcCcc",
       "url": "https://www.youtube.com/shorts/qh6R0mRcCcc",
       "title": "Why Smart Kids Freeze on Math Word Problems ð§ ð #Shorts #ParentingHacks",
-      "views": 14,
+      "views": 15,
       "likes": 0,
       "publishDate": "2026-10-27T15:11:43-07:00",
-      "daysLive": 3.94,
-      "viewsPerDay": 3.55
+      "daysLive": 8.37,
+      "viewsPerDay": 1.79
     },
     {
       "platform": "youtube_shorts",
       "videoId": "b6zHOumwNIo",
       "url": "https://www.youtube.com/shorts/b6zHOumwNIo",
       "title": "Why Picky Eaters Refuse Meat & Green Veggies (It's Biology!) ð¥¦ð§¬ #Shorts #PickyEater #KidsNutrition",
-      "views": 9,
+      "views": 11,
       "likes": 0,
       "publishDate": "2026-10-26T15:28:46-07:00",
-      "daysLive": 4.93,
-      "viewsPerDay": 1.83
+      "daysLive": 9.36,
+      "viewsPerDay": 1.18
     },
     {
       "platform": "youtube_shorts",
@@ -190,8 +234,8 @@
       "views": 5,
       "likes": 1,
       "publishDate": "2026-10-26T07:03:36-07:00",
-      "daysLive": 5.28,
-      "viewsPerDay": 0.95
+      "daysLive": 9.71,
+      "viewsPerDay": 0.52
     }
   ],
   "instagram_telemetry": {
