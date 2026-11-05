@@ -6,8 +6,8 @@
  * 2. Converts the language button into an Imperial (ft/in, lbs) <-> Metric (cm, kg) Unit Switcher.
  * 3. Translates the Homepage Dual-Pillar Showcase, SVG Chart Previews, Quiz, and Master Clinical Report into 100% native English (ZERO Korean text).
  * 4. Implements the Taller-Style Hard-Paywall Gate wired to Official Lemon Squeezy Store #296100 (truthofmarket.lemonsqueezy.com):
- *    - Single Report Pass ($8.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b
- *    - 6-Month Growth & Brain Tracker Pass ($19.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde
+ *    - Single Report Pass ($8.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599
+ *    - 6-Month Growth & Brain Tracker Pass ($19.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895
  *    - Supports Lemon.js Overlay Checkout + Direct Checkout Redirect + VIP Owner Passcode ('VIP2026').
  */
 
@@ -18,8 +18,8 @@
   const CHECKOUT_URLS_KEY = 'kidsfit_global_checkout_urls_v1';
 
   // Official Live Lemon Squeezy Store #296100 (KISFIT Bio Labs / truthofmarket.lemonsqueezy.com)
-  const DEFAULT_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b';
-  const DEFAULT_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde';
+  const DEFAULT_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599';
+  const DEFAULT_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
 
   function isStaticGitHubPagesHost() {
     try {
@@ -65,7 +65,7 @@
     try {
       if (typeof window !== 'undefined' && window.location) {
         const s = String(window.location.search || '').toLowerCase();
-        if (s.indexOf('lock=1') !== -1) {
+        if (/(?:^\?|&)lock=1(?:&|$)/.test(s)) {
           if (window.localStorage) window.localStorage.removeItem(UNLOCK_STORAGE_KEY);
           return false;
         }
@@ -211,6 +211,12 @@
             if (customUrl.indexOf('app.lemonsqueezy.com/checkout/buy/') !== -1) {
               customUrl = customUrl.replace('app.lemonsqueezy.com/checkout/buy/', 'truthofmarket.lemonsqueezy.com/checkout/buy/');
             }
+            if (customUrl.indexOf('00ba1a7a-3676-4110-a554-46dfb451a58b') !== -1) {
+              customUrl = DEFAULT_SINGLE_CHECKOUT_URL;
+            }
+            if (customUrl.indexOf('ce12a74d-b86d-4413-ac3c-dc80d9f5dfde') !== -1) {
+              customUrl = DEFAULT_PASS_CHECKOUT_URL;
+            }
             return customUrl;
           }
         }
@@ -239,8 +245,11 @@
                   try {
                     if (window.localStorage) window.localStorage.setItem(UNLOCK_STORAGE_KEY, 'true');
                   } catch (_) {}
+                  recordVerifiedPaidMemberConversion();
                   const modal = document.getElementById('kidsfit-global-checkout-modal');
                   if (modal) modal.remove();
+                  const iframeModal = document.getElementById('kidsfit-embedded-ls-iframe-modal');
+                  if (iframeModal) iframeModal.remove();
                   transformGlobalReportAndApplyPaywall();
                 }
               }
@@ -564,13 +573,30 @@
     const clean = String(rawCode || '').trim();
     if (!clean) return false;
     const upper = clean.toUpperCase();
-    if (AUTHORIZED_CODE_HASHES.indexOf(hashAccessCode(upper)) !== -1) return true;
-    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(clean)) return true;
-    const digitsOnly = clean.replace(/^#/, '');
-    if (/^\d{6,12}$/.test(digitsOnly) && !/^(\d)\1+$/.test(digitsOnly) && digitsOnly !== '123456' && digitsOnly !== '1234567' && digitsOnly !== '12345678' && digitsOnly !== '123456789') {
-      return true;
+    return AUTHORIZED_CODE_HASHES.indexOf(hashAccessCode(upper)) !== -1;
+  }
+
+  function verifyLemonSqueezyLicenseOnline(rawCode) {
+    const clean = String(rawCode || '').trim();
+    if (!clean || typeof window === 'undefined' || typeof window.fetch !== 'function') {
+      return Promise.resolve(false);
     }
-    return false;
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(clean)) {
+      return Promise.resolve(false);
+    }
+    return window.fetch('https://api.lemonsqueezy.com/v1/licenses/validate', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'license_key=' + encodeURIComponent(clean)
+    })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        return Boolean(data && data.valid === true && (!data.license_key || data.license_key.status !== 'disabled'));
+      })
+      .catch(function () { return false; });
   }
 
   global.verifyKidsFitMemberOrder = function (emailOverride) {
@@ -585,6 +611,7 @@
           window.localStorage.setItem('kidsfit_global_auth_user_v1', JSON.stringify(user));
         }
       }
+      recordVerifiedPaidMemberConversion();
       syncAuthHeaderButton();
       transformGlobalReportAndApplyPaywall();
       if (typeof window.alert === 'function') {
@@ -592,15 +619,20 @@
       }
     };
     const promptOrderFallback = function () {
-      const pendingTs = Number((window.localStorage && window.localStorage.getItem('kidsfit_pending_ls_checkout_ts_v1')) || 0);
-      if (pendingTs && (Date.now() - pendingTs < 86400000)) {
-        unlockMemberNow();
-        return;
-      }
       if (typeof window.prompt === 'function') {
-        const entered = window.prompt('Enter your Lemon Squeezy Order / Receipt Number (from your receipt email) or Access Code to unlock immediately:');
-        if (entered && isValidLemonSqueezyOrderOrCode(entered)) {
-          unlockMemberNow();
+        const entered = window.prompt('Enter your Lemon Squeezy License Key or authorized Access Code to unlock immediately:');
+        if (entered) {
+          if (isValidLemonSqueezyOrderOrCode(entered)) {
+            unlockMemberNow();
+            return;
+          }
+          verifyLemonSqueezyLicenseOnline(entered).then(function (isValidLicense) {
+            if (isValidLicense) {
+              unlockMemberNow();
+            } else if (typeof window.alert === 'function') {
+              window.alert('Could not verify that license or access code. Please complete payment via the official Lemon Squeezy Checkout window (which unlocks automatically upon payment completion).');
+            }
+          });
           return;
         }
       }
@@ -2960,8 +2992,28 @@ ${isMasked ? `
     }
   }
 
+  function recordVerifiedPaidMemberConversion() {
+    try {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      const ua = navigator.userAgent || '';
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|python|curl|node|axios/i.test(ua)) return;
+      const host = (window.location && window.location.hostname) || '';
+      if (!host || host === 'localhost' || host === '127.0.0.1') return;
+      const kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      const ns = 'kfg_kisfitglobal';
+      if (window.localStorage && window.localStorage.getItem('hq_paid_kfg_' + kst) !== '1') {
+        window.localStorage.setItem('hq_paid_kfg_' + kst, '1');
+        if (typeof window.fetch === 'function') {
+          window.fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_member_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+          window.fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_member_total', { mode: 'cors', keepalive: true }).catch(function () {});
+        }
+      }
+    } catch (_) {}
+  }
+
   function applyAutoPaidOrderUnlock(data, fallbackEmail, fallbackPlan) {
     stopAutoPaymentProgressionPoller();
+    recordVerifiedPaidMemberConversion();
     try {
       if (typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.setItem(UNLOCK_STORAGE_KEY, 'true');
@@ -3115,7 +3167,7 @@ ${isMasked ? `
   global.launchLemonSqueezyCheckout = function (planOverride) {
     try {
       if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.setItem('kidsfit_pending_ls_checkout_ts_v1', String(Date.now()));
+        window.localStorage.removeItem('kidsfit_pending_ls_checkout_ts_v1');
       }
     } catch (_) {}
     const plan = planOverride || selectedPlan || 'single';
@@ -3291,12 +3343,43 @@ ${isMasked ? `
       return;
     }
 
-    if (!email || email.indexOf('@') === -1) {
+    const fallbackStaticVerify = function () {
+      if (orderCode) {
+        verifyLemonSqueezyLicenseOnline(orderCode).then(function (isValidLicense) {
+          if (isValidLicense) {
+            applyAutoPaidOrderUnlock({
+              verified: true,
+              email: email || 'member@kisfitglobal.com',
+              orderId: orderCode,
+              planType: selectedPlan
+            }, email || 'member@kisfitglobal.com', selectedPlan);
+          } else if (msgEl) {
+            msgEl.style.display = 'block';
+            msgEl.style.background = '#FEF2F2';
+            msgEl.style.color = '#DC2626';
+            msgEl.textContent = 'Invalid license or access code. Please complete payment via the official Lemon Squeezy Checkout button above (which unlocks automatically upon payment).';
+          }
+        });
+        return;
+      }
       if (msgEl) {
         msgEl.style.display = 'block';
         msgEl.style.background = '#FEF2F2';
         msgEl.style.color = '#DC2626';
-        msgEl.textContent = 'Please enter the email address used during Lemon Squeezy checkout (or your Order/Receipt #).';
+        msgEl.textContent = 'No completed payment found for ' + (email || 'this session') + ' yet. Please complete payment via the blue Lemon Squeezy Checkout button above (it unlocks automatically upon completion), or enter a valid License Key / Access Code.';
+      }
+    };
+
+    if (!email || email.indexOf('@') === -1) {
+      if (orderCode) {
+        fallbackStaticVerify();
+        return;
+      }
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.background = '#FEF2F2';
+        msgEl.style.color = '#DC2626';
+        msgEl.textContent = 'Please enter the email address used during Lemon Squeezy checkout (or your License Key / Access Code).';
       } else if (typeof window.alert === 'function') {
         window.alert('Please enter the email address used during Lemon Squeezy checkout.');
       }
@@ -3308,20 +3391,6 @@ ${isMasked ? `
       msgEl.style.color = '#1D4ED8';
       msgEl.textContent = 'Checking Lemon Squeezy Store #296100 order records...';
     }
-
-    const fallbackStaticVerify = function () {
-      const pendingTs = Number((typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('kidsfit_pending_ls_checkout_ts_v1')) || 0);
-      if (pendingTs && (Date.now() - pendingTs < 86400000)) {
-        applyAutoPaidOrderUnlock({ verified: true, email: email, planType: selectedPlan }, email, selectedPlan);
-        return;
-      }
-      if (msgEl) {
-        msgEl.style.display = 'block';
-        msgEl.style.background = '#FEF2F2';
-        msgEl.style.color = '#DC2626';
-        msgEl.textContent = 'Please click the blue Lemon Squeezy Checkout button above first, or enter your Receipt/Order # from your confirmation email.';
-      }
-    };
 
     if (isStaticGitHubPagesHost()) {
       fallbackStaticVerify();
@@ -3400,9 +3469,16 @@ ${isMasked ? `
             }
 
             if (isStaticGitHubPagesHost()) {
-              const pendingTs = Number((window.localStorage && window.localStorage.getItem('kidsfit_pending_ls_checkout_ts_v1')) || 0);
-              if ((queryOrderId && isValidLemonSqueezyOrderOrCode(queryOrderId)) || (pendingTs && (Date.now() - pendingTs < 86400000))) {
+              if (queryOrderId && isValidLemonSqueezyOrderOrCode(queryOrderId)) {
                 applyAutoPaidOrderUnlock({ verified: true, email: queryEmail || 'member@kisfitglobal.com', orderId: queryOrderId || '', planType: selectedPlan }, queryEmail, selectedPlan);
+              } else if (queryOrderId) {
+                verifyLemonSqueezyLicenseOnline(queryOrderId).then(function (isValidLicense) {
+                  if (isValidLicense) {
+                    applyAutoPaidOrderUnlock({ verified: true, email: queryEmail || 'member@kisfitglobal.com', orderId: queryOrderId || '', planType: selectedPlan }, queryEmail, selectedPlan);
+                  } else if (typeof global.openKidsFitGlobalCheckoutModal === 'function') {
+                    global.openKidsFitGlobalCheckoutModal();
+                  }
+                });
               } else if (typeof global.openKidsFitGlobalCheckoutModal === 'function') {
                 global.openKidsFitGlobalCheckoutModal();
               }
@@ -3537,7 +3613,7 @@ ${isMasked ? `
     if (!host || host === 'localhost' || host === '127.0.0.1') return;
     var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
     var ns = 'kfg_kisfitglobal';
-    if (location.search.indexOf('payment=success') !== -1 || location.search.indexOf('unlock=1') !== -1) {
+    if (localStorage.getItem('kidsfit_global_report_unlocked_v1') === 'true') {
       if (localStorage.getItem('hq_paid_kfg_' + kst) !== '1') {
         localStorage.setItem('hq_paid_kfg_' + kst, '1');
         fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_member_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
