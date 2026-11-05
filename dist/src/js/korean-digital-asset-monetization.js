@@ -203,7 +203,7 @@
 /* === HQ KPI Conversion Tracker (3사업부: 상품 구매 레퍼럴 클릭 추적) === */
 (function(){
   try {
-    if (typeof window === 'undefined' || window.__HQ_KPI_KFK__) return;
+    if (typeof window === 'undefined' || window.__HQ_KPI_KFK__ || window.__HQ_BEACON_SENT_kfk_kidsfitkr__) return;
     window.__HQ_KPI_KFK__ = true;
     var host = (location && location.hostname) || '';
     if (!host || host === 'localhost' || host === '127.0.0.1') return;

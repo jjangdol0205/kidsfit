@@ -106,6 +106,36 @@
       setTimeout(function() { window.setKidsFitDeviceView('auto'); }, 100);
     });
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MedicalOrganization",
+        "name": "키즈핏 그로스 스튜디오 (KIDS-FIT)",
+        "alternateName": "KIDS-FIT 육아 큐레이션 셀렉트샵 & 발달·성장 진단 연구소",
+        "url": "https://kidsfit.co.kr/",
+        "logo": "https://kidsfit.co.kr/samples/app-icon-192.png",
+        "description": "질병관리청(KDCA) 표준 성장도표 · 보건복지부 영유아 발달선별검사(K-DST) · 학술논문 3,894편 기반 소아 신체성장·성조숙증·두뇌역량 무료 진단 및 발달 단계별 육아 필수템 큐레이션 셀렉트샵",
+        "areaServed": {
+          "@type": "Country",
+          "name": "South Korea"
+        },
+        "sameAs": [
+          "https://www.youtube.com/@kidsfit01",
+          "https://www.instagram.com/kids_fit1",
+          "https://blog.naver.com/kidsfit_studio",
+          "https://cafe.naver.com/kidsfitgrowth"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "KIDS-FIT 키즈핏",
+        "url": "https://kidsfit.co.kr/"
+      }
+    ]
+  }
+  </script>
   <script>
   /* === HQ Edge Instant <head> Real-Human Visitor & Referral Beacon (kfk_kidsfitkr) === */
   (function(){
@@ -113,6 +143,7 @@
       if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
       if (window.__HQ_BEACON_SENT_kfk_kidsfitkr__) return;
       window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
+      window.__HQ_KPI_KFK__ = true;
       var ua = navigator.userAgent || '';
       if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
       var host = (location && location.hostname) || '';
@@ -120,9 +151,14 @@
       var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
       var ns = 'kfk_kidsfitkr';
       fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
       if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
         localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
         fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
+        localStorage.setItem('hq_uv_ever_' + ns, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function(){});
       }
       document.addEventListener('click', function(e) {
         var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
@@ -130,8 +166,9 @@
         var href = (el.getAttribute('href') || '').toLowerCase();
         var onclick = (el.getAttribute('onclick') || '').toLowerCase();
         var txt = (el.innerText || el.textContent || '').toLowerCase();
-        if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /최저가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동/.test(txt)) {
+        if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('yes24.com') !== -1 || href.indexOf('click.linkprice.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /최저가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
           fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
         }
       }, true);
     } catch (e) {}
@@ -169,7 +206,7 @@
         </button>
         <a href="#homepage-intro-growth-report" id="nav-header-growth-report" data-i18n="nav.forWhom" style="display: none;">신체 성장 정밀 진단</a>
         <a href="#homepage-intro-learning-report" id="nav-header-learning-report" data-i18n="nav.services" style="display: none;">두뇌·학습 정밀 진단</a>
-        <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language">
+        <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language" style="display: none !important;" hidden>
           🇺🇸 EN
         </button>
         <button type="button" class="header-control-btn" id="btn-theme-toggle" aria-label="Toggle theme" style="display: none;">
@@ -208,6 +245,14 @@
         <span><strong style="color: #1D4ED8;">1분 객관식 설문 진단</strong> · 병원 방문 없이 생활·학습 습관 체크만으로 즉시 판독</span>
         <span style="color: #CBD5E1;" class="pc-view-block">|</span>
         <span><strong style="color: #1D4ED8;">의학·학술 기준 검증</strong> · KDCA 월령 백분위 · Tanner 유전키 · 논문 3,894편 대조</span>
+      </div>
+
+      <!-- Direct Hero CTA to 1:1 Free Diagnosis Lounge -->
+      <div style="max-width: 560px; margin: 0 auto 1.25rem; text-align: center;">
+        <button type="button" id="btn-hero-open-diagnosis-lounge" onclick="if(window.openKidsFitDiagnosisLounge) window.openKidsFitDiagnosisLounge();" style="width: 100%; background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%); color: #FFFFFF; border: 1.5px solid #1E40AF; border-radius: 14px; padding: 0.9rem 1.2rem; font-size: 0.96rem; font-weight: 900; cursor: pointer; box-shadow: 0 10px 24px rgba(29, 78, 216, 0.24); display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;">
+          <span>🎁 1:1 무료 발달·성장 진단 라운지 입장하기</span>
+          <span style="font-size: 0.78rem; font-weight: 800; background: rgba(255,255,255,0.2); padding: 0.18rem 0.55rem; border-radius: 9999px;">관심 육아템 1회 확인 시 즉시 무료 오픈 →</span>
+        </button>
       </div>
 
       <!-- Legacy Top CTA Buttons Hidden per User Request (Cards below provide the primary 1-minute diagnosis buttons) -->
@@ -4408,7 +4453,13 @@
           var whyEl = document.getElementById('kf-modal-why-picked-list');
           if (whyEl && Array.isArray(prod.whyWePicked)) {
             whyEl.innerHTML = prod.whyWePicked.map(function(w, idx) {
-              var titles = ['소아발달 임상 전문의 추천', '무독성 유해물질 0% 안심 검증', '실사용 만족도 &amp; 육아 피로도 절감'];
+              var catTitlesMap = {
+                nutrition: ['소아 성장·영양 임상 설계 검증', '고흡수 생체이용률 &amp; 안심 원료', '아이 기호성 &amp; 섭취 편의성 만족'],
+                development: ['연령별 소아 발달 이정표 맞춤 설계', '무독성 유해물질 0% 안심 소재 검증', '소근육·오감 자극 &amp; 육아 피로도 절감'],
+                gear: ['소아 체형·척추 인체공학 정렬 설계', '친환경 안심 소재 &amp; 내구성 검증', '바른 자세 습관화 &amp; 실사용 만족도 1위'],
+                learning: ['전두엽 문해력·사고력 발달 커리큘럼', '연령별 자기주도 학습 몰입도 검증', '학부모 홈스쿨링 코칭 만족도 우수']
+              };
+              var titles = catTitlesMap[prod.category] || ['소아발달 전문가 엄선 큐레이션', '핵심 스펙 &amp; 품질 기준 검증', '실사용 만족도 &amp; 육아 효율 극대화'];
               var pointTitle = titles[idx] || ('핵심 포인트 0' + (idx + 1));
               return '<div class="kf-why-item"><span class="kf-why-badge">POINT 0' + (idx + 1) + ' · ' + pointTitle + '</span><p class="kf-why-text">' + w + '</p></div>';
             }).join('');
@@ -4815,7 +4866,13 @@
             새벽마다 깨는 아기? 신생아 통잠 꿀조합 2가지
           </h3>
           <div style="position: relative; width: 100%; max-width: 310px; margin: 0 auto 0.85rem; aspect-ratio: 9 / 16; background: #000000; border-radius: 16px; overflow: hidden; border: 1.5px solid #334155;">
-            <video id="kf-shorts-video-el" controls playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            <video id="kf-shorts-video-el" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            <div id="kf-shorts-video-fallback" style="display: none; position: absolute; inset: 0; background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%); padding: 1.25rem 1rem; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #FFFFFF;">
+              <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🎬</div>
+              <div style="font-size: 0.92rem; font-weight: 900; color: #FFE600; margin-bottom: 0.4rem;">키즈핏 공식 쇼츠·릴스 핵심 브리핑</div>
+              <p style="font-size: 0.8rem; color: #CBD5E1; line-height: 1.5; margin: 0 0 0.9rem;">현재 브라우저 환경에서 비디오 스트리밍이 지연되고 있습니다. 아래 공식 채널 또는 추천 육아템 상세 모달에서 바로 확인하실 수 있습니다.</p>
+              <button type="button" onclick="window.openShortsFeaturedProductModal()" style="background: #FFE600; color: #0F172A; border: none; border-radius: 9999px; padding: 0.55rem 1rem; font-size: 0.8rem; font-weight: 900; cursor: pointer;">🛍️ 이 에피소드 핵심 육아템 바로 보기 →</button>
+            </div>
           </div>
           <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.65rem;">
             <a href="https://www.youtube.com/@kidsfit01" target="_blank" rel="noopener noreferrer" style="background: #DC2626; color: #FFFFFF; text-decoration: none; font-size: 0.76rem; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px;">
@@ -4825,7 +4882,7 @@
               📸 공식 인스타 (@kids_fit1)
             </a>
           </div>
-          <button type="button" onclick="window.closeKidsFitShortsVideoModal(); var g = document.getElementById('kf-shop-grid'); if(g && g.scrollIntoView) g.scrollIntoView({behavior:'smooth', block:'start'});" style="width: 100%; background: #FFE600; color: #0F172A; border: none; border-radius: 12px; padding: 0.78rem 1rem; font-size: 0.88rem; font-weight: 900; cursor: pointer;">
+          <button type="button" onclick="window.openShortsFeaturedProductModal()" style="width: 100%; background: #FFE600; color: #0F172A; border: none; border-radius: 12px; padding: 0.78rem 1rem; font-size: 0.88rem; font-weight: 900; cursor: pointer;">
             🛍️ 영상 속 추천템 상세정보 &amp; 최저가 바로보기
           </button>
         </div>
@@ -4892,18 +4949,39 @@
           } catch (err) {}
         };
 
+        window.openShortsFeaturedProductModal = function() {
+          try {
+            var epObj = window.__currentShortsEpObj || (window.KIDSFIT_SHORTS_EPISODES && window.KIDSFIT_SHORTS_EPISODES[0]);
+            window.closeKidsFitShortsVideoModal();
+            if (epObj && Array.isArray(epObj.productIds) && epObj.productIds[0] && typeof window.openKidsFitProductModal === 'function') {
+              window.openKidsFitProductModal(epObj.productIds[0]);
+              return;
+            }
+            var g = document.getElementById('kf-shop-grid');
+            if (g && g.scrollIntoView) g.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (e) {}
+        };
+
         window.openKidsFitShortsVideoModal = function(epNum) {
           try {
             var eps = window.KIDSFIT_SHORTS_EPISODES || [];
             var epObj = eps.find(function(x) { return x.ep === Number(epNum); }) || eps[0];
             if (!epObj) return;
+            window.__currentShortsEpObj = epObj;
             var modal = document.getElementById('kf-shorts-video-modal');
             var badgeEl = document.getElementById('kf-shorts-modal-badge');
             var titleEl = document.getElementById('kf-shorts-modal-title');
             var videoEl = document.getElementById('kf-shorts-video-el');
+            var fbEl = document.getElementById('kf-shorts-video-fallback');
             if (badgeEl) badgeEl.textContent = epObj.badge;
             if (titleEl) titleEl.textContent = epObj.title;
+            if (fbEl) fbEl.style.display = 'none';
             if (videoEl) {
+              videoEl.style.display = 'block';
+              videoEl.onerror = function() {
+                videoEl.style.display = 'none';
+                if (fbEl) fbEl.style.display = 'flex';
+              };
               videoEl.src = epObj.video;
               videoEl.currentTime = 0;
               var p = videoEl.play();
