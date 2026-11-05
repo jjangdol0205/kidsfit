@@ -136,6 +136,37 @@
       setTimeout(function() { window.setKidsFitDeviceView('auto'); }, 100);
     });
   </script>
+  <script>
+  /* === HQ Edge Instant <head> Real-Human Visitor & Paid Click Beacon (kfg_kisfitglobal) === */
+  (function(){
+    try {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      if (window.__HQ_BEACON_SENT_kfg_kisfitglobal__) return;
+      window.__HQ_BEACON_SENT_kfg_kisfitglobal__ = true;
+      var ua = navigator.userAgent || '';
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
+      var host = (location && location.hostname) || '';
+      if (!host || host === 'localhost' || host === '127.0.0.1') return;
+      var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      var ns = 'kfg_kisfitglobal';
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
+        localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      document.addEventListener('click', function(e) {
+        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+        if (!el) return;
+        var href = (el.getAttribute('href') || '').toLowerCase();
+        var txt = (el.innerText || el.textContent || '').toLowerCase();
+        var id = (el.id || '').toLowerCase();
+        if (href.indexOf('lemonsqueezy.com') !== -1 || id.indexOf('paywall') !== -1 || id.indexOf('checkout') !== -1 || /unlock|8\.99|19\.99|pass|checkout/.test(txt)) {
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+      }, true);
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body data-theme="light">
 
