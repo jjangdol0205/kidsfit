@@ -24,6 +24,47 @@
     .unit-pill { display:inline-block; background:#EEF2FF; color:#4338CA; border:1px solid #C7D2FE; border-radius:999px; padding:0.2rem 0.65rem; font-size:0.75rem; font-weight:800; text-decoration:none; margin-right:0.3rem; margin-top:0.3rem; }
     .unit-pill:hover { background:#E0E7FF; }
   </style>
+  <script>
+  /* === HQ Edge Real-Human Visitor & KPI Beacon (kfg_kisfitglobal) === */
+  (function(){
+    try {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      if (window.__HQ_BEACON_SENT_kfg_kisfitglobal__ || window.__HQ_KPI_KFG__) return;
+      window.__HQ_BEACON_SENT_kfg_kisfitglobal__ = true;
+      window.__HQ_KPI_KFG__ = true;
+      var ua = navigator.userAgent || '';
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
+      var host = (location && location.hostname) || '';
+      if (!host || host === 'localhost' || host === '127.0.0.1') return;
+      var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      var ns = 'kfg_kisfitglobal';
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
+        localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
+        localStorage.setItem('hq_uv_ever_' + ns, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      document.addEventListener('click', function(e) {
+        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+        if (!el) return;
+        var href = (el.getAttribute('href') || '').toLowerCase();
+        var txt = (el.innerText || el.textContent || '').toLowerCase();
+        if (href.indexOf('lemonsqueezy.com') !== -1 || /\$8\.99|\$19\.99|unlock|checkout/.test(txt)) {
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+        if (href.indexOf('iherb.com') !== -1 || href.indexOf('amazon.com') !== -1 || href.indexOf('ipz1547') !== -1 || href.indexOf('kidfit-20') !== -1) {
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+      }, true);
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
   <div class="wrap">

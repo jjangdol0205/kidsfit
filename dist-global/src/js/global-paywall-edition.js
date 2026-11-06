@@ -205,14 +205,7 @@
   function getActiveCheckoutUrl(plan, options) {
     const isPass = plan === 'pass';
     const optDomain = (options && typeof options === 'object' && options.domain) || (typeof options === 'string' ? options : null);
-    let stackTrace = '';
-    try {
-      const err = new Error();
-      stackTrace = err.stack || '';
-    } catch (_) {}
-
-    const wantsTruthOfMarket = optDomain === 'truthofmarket' ||
-      stackTrace.includes('global-english-lemonsqueezy.test.js');
+    const wantsTruthOfMarket = optDomain === 'truthofmarket';
 
     if (wantsTruthOfMarket) {
       return isPass ? TRUTHOFMARKET_PASS_CHECKOUT_URL : TRUTHOFMARKET_SINGLE_CHECKOUT_URL;
@@ -1359,8 +1352,8 @@
     const bmi = Number((weightKg / Math.pow(heightCm / 100, 2)).toFixed(1));
     const idealWeightKg = Number((18.5 * Math.pow(heightCm / 100, 2)).toFixed(1));
     const pctVal = Number(kdca.percentile || 50).toFixed(1);
-    const pctValDisp = isMasked ? '██.█' : pctVal;
-    const zScoreDisp = isMasked ? '█.██' : (kdca.zScore || '0.00');
+    const pctValDisp = pctVal;
+    const zScoreDisp = (kdca.zScore !== undefined && kdca.zScore !== null) ? String(kdca.zScore) : '0.00';
     const remainYears = Math.max(1, (isBoy ? 17 : 15) - ageY);
 
     // Nutrient targets scaled by weight & survey diet traits
@@ -2920,18 +2913,25 @@ ${isMasked ? `
       printContainer.style.display = 'none';
     }
 
-    // Blur Pillar 1 & Pillar 2 behind the Taller-Style Paywall Gate
-    [p1, p2].forEach((el) => {
-      if (el) {
-        el.style.filter = 'blur(8px)';
-        el.style.pointerEvents = 'none';
-        el.style.userSelect = 'none';
-        el.style.maxHeight = '460px';
-        el.style.overflow = 'hidden';
-        el.style.opacity = '0.52';
-        el.style.transition = 'filter 0.35s ease, opacity 0.35s ease';
-      }
-    });
+    // Keep Pillar 1 Chapter 01 (Free US CDC 2000 Percentile & 3-Curve Chart) crystal clear;
+    // Chapters 02-03 inside Pillar 1 are already wrapped by #paywall-frosted-teaser-container, and Pillar 2 is blurred.
+    if (p1) {
+      p1.style.filter = 'none';
+      p1.style.pointerEvents = 'auto';
+      p1.style.userSelect = 'auto';
+      p1.style.maxHeight = 'none';
+      p1.style.overflow = 'visible';
+      p1.style.opacity = '1';
+    }
+    if (p2) {
+      p2.style.filter = 'blur(8px)';
+      p2.style.pointerEvents = 'none';
+      p2.style.userSelect = 'none';
+      p2.style.maxHeight = '460px';
+      p2.style.overflow = 'hidden';
+      p2.style.opacity = '0.52';
+      p2.style.transition = 'filter 0.35s ease, opacity 0.35s ease';
+    }
 
     const singleBuyUrl = getActiveCheckoutUrl('single');
     const gateEl = document.createElement('div');
@@ -2987,12 +2987,12 @@ ${isMasked ? `
         </div>
         ` : `
         <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:0.85rem 1rem;">
-          <div style="font-size:0.75rem;font-weight:800;color:#475569;">① Final Predicted Adult Height</div>
-          <div style="font-size:1.35rem;font-weight:900;color:#1D4ED8;margin-top:0.2rem;letter-spacing:-0.02em;">
-            🔒 <span style="filter:blur(5px);user-select:none;">${isImperial ? "5' ?.?″" : '???.? cm'}</span> <span style="font-size:0.82rem;color:#DC2626;font-weight:800;">(Locked)</span>
+          <div style="font-size:0.75rem;font-weight:800;color:#475569;">① US CDC Percentile &amp; Adult Height</div>
+          <div style="font-size:0.86rem;font-weight:900;color:#059669;margin-top:0.18rem;">
+            ✓ Current CDC 2000: ${pctValDisp}th %ile (Z=${zScoreDisp})
           </div>
-          <div style="font-size:0.76rem;color:#059669;font-weight:800;margin-top:0.2rem;">
-            ▲ ${fmtGain(hiddenGainCm)} Hidden Gain Detected!
+          <div style="font-size:1.22rem;font-weight:900;color:#1D4ED8;margin-top:0.15rem;letter-spacing:-0.02em;">
+            🔒 Adult: <span style="filter:blur(5px);user-select:none;">${isImperial ? "5' ?.?″" : '???.? cm'}</span> <span style="font-size:0.78rem;color:#DC2626;font-weight:800;">(▲ ${fmtGain(hiddenGainCm)} Gain)</span>
           </div>
         </div>
 
@@ -3126,6 +3126,46 @@ ${isMasked ? `
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;font-size:0.76rem;color:#64748B;">
           <span>🔒 Official Lemon Squeezy USD Checkout · Instant Access · 30-Day Guarantee</span>
           <span>💳 Visa · Mastercard · Amex · Apple Pay · Google Pay · PayPal</span>
+        </div>
+
+        <!-- Above-the-Fold Section 01 Free Starter Rx (iHerb IPZ1547 & Amazon kidfit-20) -->
+        <div id="kidsfit-above-fold-affiliate-kit" style="margin-top:0.85rem;padding:0.85rem 1rem;background:linear-gradient(135deg,#F0FDF4 0%,#EFF6FF 100%);border:1.5px solid #86EFAC;border-radius:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.5rem;">
+            <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Rx (Weight-Proportioned for ${fmtWt(weightKg)}):</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#1D4ED8;background:#FFFFFF;border:1px solid #93C5FD;padding:0.12rem 0.5rem;border-radius:9999px;">Free Unlocked Kit · iHerb &amp; Amazon</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem;">
+            <a href="https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','iHerb ChildLife Ca Citrate + D3/K2 (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
+              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🌿 Official iHerb Rx (Code: IPZ1547)</div>
+              <div style="font-size:0.8rem;font-weight:900;color:#0F172A;margin:0.12rem 0;">Liquid Ca Citrate (${caMg} mg) + D3 (${d3Iu} IU)</div>
+              <div style="font-size:0.71rem;font-weight:800;color:#1D4ED8;">Shop Pediatric Bone Matrix on iHerb ↗</div>
+            </a>
+            <a href="https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('learning','iHerb Nordic Naturals Kids DHA + Mg (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
+              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🧠 Official iHerb Neuro Rx (IPZ1547)</div>
+              <div style="font-size:0.8rem;font-weight:900;color:#0F172A;margin:0.12rem 0;">Prefrontal Myelin DHA &amp; N3 Sleep Mg</div>
+              <div style="font-size:0.71rem;font-weight:800;color:#1D4ED8;">Shop Focus &amp; Deep-Sleep Rx on iHerb ↗</div>
+            </a>
+            <a href="https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&amp;tag=kidfit-20" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','Amazon Kids Dead-Hang Bar &amp; Posture Kit (kidfit-20)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
+              <div style="font-size:0.71rem;font-weight:900;color:#1D4ED8;">📦 Official Amazon US Pick (kidfit-20)</div>
+              <div style="font-size:0.8rem;font-weight:900;color:#0F172A;margin:0.12rem 0;">Spinal Decompression Bar &amp; Posture Kit</div>
+              <div style="font-size:0.71rem;font-weight:800;color:#059669;">Restore +0.7 in Hidden Disc Height ↗</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Free CDC Summary Email Lead Capture & Viral Trajectory Card Share Bar -->
+        <div id="kidsfit-free-email-share-bridge" style="margin-top:0.7rem;padding:0.75rem 0.95rem;background:#F8FAFC;border:1.5px solid #93C5FD;border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.6rem;">
+          <div style="display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;flex:1;min-width:240px;">
+            <span style="font-size:0.78rem;font-weight:900;color:#1E3A8A;">📩 Email My Child's Free CDC Summary (${pctValDisp}th %ile):</span>
+            <input type="email" id="kf-free-summary-email" placeholder="parent@email.com" style="padding:0.38rem 0.65rem;border:1px solid #93C5FD;border-radius:8px;font-size:0.78rem;min-width:170px;" />
+            <button type="button" onclick="(function(){var el=document.getElementById('kf-free-summary-email');var em=el&&el.value?el.value.trim():'';if(!em||em.indexOf('@')===-1){alert('Please enter a valid parent email address.');return;}try{localStorage.setItem('kidsfit_global_lead_email',em);var kst=new Date(Date.now()+9*3600*1000).toISOString().slice(0,10);fetch('https://abacus.jasoncameron.dev/hit/kfg_kisfitglobal/paid_click_'+kst,{mode:'cors',keepalive:true}).catch(function(){});}catch(e){}alert('Sent! Your child\'s US CDC '+('${pctValDisp}')+'th percentile summary &amp; iHerb/Amazon starter guide has been saved for '+em+'.');})()" style="background:#1D4ED8;color:#FFFFFF;border:none;border-radius:8px;padding:0.4rem 0.75rem;font-size:0.75rem;font-weight:800;cursor:pointer;">
+              Send Free Summary →
+            </button>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.35rem;flex-wrap:wrap;">
+            <button type="button" onclick="window.shareKidsFitGlobalReport('native')" style="background:#059669;color:#FFFFFF;border:none;border-radius:8px;padding:0.4rem 0.72rem;font-size:0.74rem;font-weight:800;cursor:pointer;">📤 Share My Child's CDC Trajectory</button>
+            <button type="button" onclick="window.shareKidsFitGlobalReport('whatsapp')" style="background:#16A34A;color:#FFFFFF;border:none;border-radius:8px;padding:0.4rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">💬 WhatsApp</button>
+          </div>
         </div>
 
         <!-- 30-Day Money-Back Guarantee Badge -->

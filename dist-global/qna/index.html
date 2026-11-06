@@ -18,6 +18,47 @@
     .cta-btn { display:inline-block; background:#10B981; color:#FFFFFF; text-decoration:none; font-weight:900; font-size:0.95rem; padding:0.8rem 1.4rem; border-radius:12px; box-shadow:0 4px 14px rgba(16,185,129,0.3); transition:background 0.2s ease; }
     .cta-btn:hover { background:#059669; }
   </style>
+  <script>
+  /* === HQ Edge Real-Human Visitor & KPI Beacon (kfg_kisfitglobal) === */
+  (function(){
+    try {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      if (window.__HQ_BEACON_SENT_kfg_kisfitglobal__ || window.__HQ_KPI_KFG__) return;
+      window.__HQ_BEACON_SENT_kfg_kisfitglobal__ = true;
+      window.__HQ_KPI_KFG__ = true;
+      var ua = navigator.userAgent || '';
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
+      var host = (location && location.hostname) || '';
+      if (!host || host === 'localhost' || host === '127.0.0.1') return;
+      var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      var ns = 'kfg_kisfitglobal';
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
+        localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
+        localStorage.setItem('hq_uv_ever_' + ns, '1');
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      }
+      document.addEventListener('click', function(e) {
+        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+        if (!el) return;
+        var href = (el.getAttribute('href') || '').toLowerCase();
+        var txt = (el.innerText || el.textContent || '').toLowerCase();
+        if (href.indexOf('lemonsqueezy.com') !== -1 || /\$8\.99|\$19\.99|unlock|checkout/.test(txt)) {
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/paid_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+        if (href.indexOf('iherb.com') !== -1 || href.indexOf('amazon.com') !== -1 || href.indexOf('ipz1547') !== -1 || href.indexOf('kidfit-20') !== -1) {
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+      }, true);
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -34,6 +75,208 @@
     </div>
 
     <!-- MAIN DIRECTORY GRID -->
+
+      <!-- SYNCED: 28 AGE x GENDER US CDC CALCULATORS & ALL 32 CLINICAL COLUMNS -->
+      <div id="synced-cdc-calculators-and-columns" style="margin-top:2.2rem;margin-bottom:2rem;">
+        <h2 style="font-size:1.25rem;font-weight:900;color:#1E3A8A;margin:0 0 0.9rem;border-bottom:2px solid #DBEAFE;padding-bottom:0.4rem;">
+          US CDC 2000 Height Percentile Calculators by Age &amp; Gender (Ages 3–16)
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:0.55rem;margin-bottom:2rem;">
+          <a href="/qna/calc-3yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 3 Boy (3' 1.5" (37.5 in))</a>
+          <a href="/qna/calc-3yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 3 Girl (3' 1.0" (37.0 in))</a>
+          <a href="/qna/calc-4yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 4 Boy (3' 4.3" (40.3 in))</a>
+          <a href="/qna/calc-4yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 4 Girl (3' 3.5" (39.5 in))</a>
+          <a href="/qna/calc-5yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 5 Boy (3' 7.0" (43.0 in))</a>
+          <a href="/qna/calc-5yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 5 Girl (3' 6.5" (42.5 in))</a>
+          <a href="/qna/calc-6yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 6 Boy (3' 9.5" (45.5 in))</a>
+          <a href="/qna/calc-6yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 6 Girl (3' 9.3" (45.3 in))</a>
+          <a href="/qna/calc-7yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 7 Boy (3' 12.0" (48.0 in))</a>
+          <a href="/qna/calc-7yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 7 Girl (3' 11.9" (47.9 in))</a>
+          <a href="/qna/calc-8yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 8 Boy (4' 2.4" (50.4 in))</a>
+          <a href="/qna/calc-8yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 8 Girl (4' 2.2" (50.2 in))</a>
+          <a href="/qna/calc-9yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 9 Boy (4' 4.5" (52.5 in))</a>
+          <a href="/qna/calc-9yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 9 Girl (4' 4.4" (52.4 in))</a>
+          <a href="/qna/calc-10yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 10 Boy (4' 6.5" (54.5 in))</a>
+          <a href="/qna/calc-10yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 10 Girl (4' 6.6" (54.6 in))</a>
+          <a href="/qna/calc-11yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 11 Boy (4' 8.5" (56.5 in))</a>
+          <a href="/qna/calc-11yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 11 Girl (4' 8.7" (56.7 in))</a>
+          <a href="/qna/calc-12yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 12 Boy (4' 10.7" (58.7 in))</a>
+          <a href="/qna/calc-12yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 12 Girl (4' 11.5" (59.5 in))</a>
+          <a href="/qna/calc-13yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 13 Boy (5' 1.5" (61.5 in))</a>
+          <a href="/qna/calc-13yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 13 Girl (5' 1.9" (61.9 in))</a>
+          <a href="/qna/calc-14yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 14 Boy (5' 4.5" (64.5 in))</a>
+          <a href="/qna/calc-14yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 14 Girl (5' 3.1" (63.1 in))</a>
+          <a href="/qna/calc-15yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 15 Boy (5' 7.0" (67.0 in))</a>
+          <a href="/qna/calc-15yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 15 Girl (5' 3.7" (63.7 in))</a>
+          <a href="/qna/calc-16yo-boy-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 16 Boy (5' 8.3" (68.3 in))</a>
+          <a href="/qna/calc-16yo-girl-height-percentile.html" style="text-decoration:none;background:#FFFFFF;border:1px solid #BFDBFE;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.78rem;font-weight:800;color:#1E3A8A;display:block;">📏 Age 16 Girl (5' 4.0" (64.0 in))</a>
+        </div>
+        <h2 style="font-size:1.25rem;font-weight:900;color:#1E3A8A;margin:0 0 0.9rem;border-bottom:2px solid #DBEAFE;padding-bottom:0.4rem;">
+          Peer-Reviewed Clinical Auxology &amp; 5-Axis Brain LQ Columns (#1–#32)
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.85rem;">
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-001</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-001.html" style="color:#0F172A;text-decoration:none;">Clinical Pediatric Column #1: Mid-Parental Height Genetics vs. Environmental Sleep & Nutrition Golden Window</a></h3>
+          <a href="/qna/post-seq-001.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-002</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-002.html" style="color:#0F172A;text-decoration:none;">Clinical Pediatric Column #2: Pediatric Nocturnal Growing Pains — Skeletal Traction Signals & Magnesium-SWS Protocol</a></h3>
+          <a href="/qna/post-seq-002.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-003</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-003.html" style="color:#0F172A;text-decoration:none;">Clinical Pediatric Column #3: Picky Eater Nutritional Optimization & Zinc-Colostrum High-Density Protocol</a></h3>
+          <a href="/qna/post-seq-003.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-004</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-004.html" style="color:#0F172A;text-decoration:none;">Why Smart Kids Freeze on Math Word Problems: Prefrontal Working Memory Overload & Singapore Math 3-Box Bar Modeling</a></h3>
+          <a href="/qna/post-seq-004.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-005</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-005.html" style="color:#0F172A;text-decoration:none;">Does Rapid Weight Gain Cause Early Puberty and Stunt Final Adult Height? The Adipose Aromatase Bone-Age Mechanism</a></h3>
+          <a href="/qna/post-seq-005.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-006</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-006.html" style="color:#0F172A;text-decoration:none;">Child Waking Up Crying with Nighttime Leg & Knee Growing Pains: Warm Compress, Calcium Citrate & Magnesium Glycinate Protocol</a></h3>
+          <a href="/qna/post-seq-006.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-007</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-007.html" style="color:#0F172A;text-decoration:none;">Fixing "Tech Neck" & Backpack Slouching in Kids: Recovering +0.7 Inches of Compressed Spinal Height & Boosting Desk Focus</a></h3>
+          <a href="/qna/post-seq-007.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-008</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-008.html" style="color:#0F172A;text-decoration:none;">Is $20,000/Year Growth Hormone (rhGH) Therapy Worth It for Idiopathic Short Stature (ISS)? Cochrane & BMJ Meta-Analysis Breakdown</a></h3>
+          <a href="/qna/post-seq-008.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-009</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-009.html" style="color:#0F172A;text-decoration:none;">Why Kids Understand in Class but Blank Out on Tests: The 3-Minute Feynman Blank-Page Retrieval Protocol</a></h3>
+          <a href="/qna/post-seq-009.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-010</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-010.html" style="color:#0F172A;text-decoration:none;">Calcium Citrate vs. Carbonate for Kids: Why Vitamin K2 (MK-7) and Chelated Zinc Are Essential for Epiphyseal Bone Growth</a></h3>
+          <a href="/qna/post-seq-010.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-011</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-011.html" style="color:#0F172A;text-decoration:none;">Toddler Height & Weight Percentile Drops at Age 2–3: US CDC Growth Standards & Pincer-Grasp Motor Cortex Protocol</a></h3>
+          <a href="/qna/post-seq-011.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-012</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-012.html" style="color:#0F172A;text-decoration:none;">Maximizing the 18-Month Peak Height Velocity (PHV) Puberty Growth Spurt in Boys & Girls Before Growth Plates Fuse</a></h3>
+          <a href="/qna/post-seq-012.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-013</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-013.html" style="color:#0F172A;text-decoration:none;">Reversing Smartphone & Short-Form Video Attention Fatigue in Kids: The 20-Minute Visual Timer & Dopamine Reset Protocol</a></h3>
+          <a href="/qna/post-seq-013.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-014</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-014.html" style="color:#0F172A;text-decoration:none;">Does Rapid Weight Gain Cause Early Puberty and Stunt Final Adult Height? The Adipose Aromatase Bone-Age Mechanism</a></h3>
+          <a href="/qna/post-seq-014.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-015</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-015.html" style="color:#0F172A;text-decoration:none;">Child Waking Up Crying with Nighttime Leg & Knee Growing Pains: Warm Compress, Calcium Citrate & Magnesium Glycinate Protocol</a></h3>
+          <a href="/qna/post-seq-015.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-016</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-016.html" style="color:#0F172A;text-decoration:none;">Does Rapid Weight Gain Cause Early Puberty and Stunt Final Adult Height? The Adipose Aromatase Bone-Age Mechanism</a></h3>
+          <a href="/qna/post-seq-016.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-017</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-017.html" style="color:#0F172A;text-decoration:none;">Child Waking Up Crying with Nighttime Leg & Knee Growing Pains: Warm Compress, Calcium Citrate & Magnesium Glycinate Protocol</a></h3>
+          <a href="/qna/post-seq-017.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-018</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-018.html" style="color:#0F172A;text-decoration:none;">Fixing "Tech Neck" & Backpack Slouching in Kids: Recovering +0.7 Inches of Compressed Spinal Height & Boosting Desk Focus</a></h3>
+          <a href="/qna/post-seq-018.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-019</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-019.html" style="color:#0F172A;text-decoration:none;">Is $20,000/Year Growth Hormone (rhGH) Therapy Worth It for Idiopathic Short Stature (ISS)? Cochrane & BMJ Meta-Analysis Breakdown</a></h3>
+          <a href="/qna/post-seq-019.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-020</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-020.html" style="color:#0F172A;text-decoration:none;">Why Kids Understand in Class but Blank Out on Tests: The 3-Minute Feynman Blank-Page Retrieval Protocol</a></h3>
+          <a href="/qna/post-seq-020.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-021</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-021.html" style="color:#0F172A;text-decoration:none;">Calcium Citrate vs. Carbonate for Kids: Why Vitamin K2 (MK-7) and Chelated Zinc Are Essential for Epiphyseal Bone Growth</a></h3>
+          <a href="/qna/post-seq-021.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-022</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-022.html" style="color:#0F172A;text-decoration:none;">Toddler Height & Weight Percentile Drops at Age 2–3: US CDC Growth Standards & Pincer-Grasp Motor Cortex Protocol</a></h3>
+          <a href="/qna/post-seq-022.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-023</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-023.html" style="color:#0F172A;text-decoration:none;">Maximizing the 18-Month Peak Height Velocity (PHV) Puberty Growth Spurt in Boys & Girls Before Growth Plates Fuse</a></h3>
+          <a href="/qna/post-seq-023.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-024</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-024.html" style="color:#0F172A;text-decoration:none;">Reversing Smartphone & Short-Form Video Attention Fatigue in Kids: The 20-Minute Visual Timer & Dopamine Reset Protocol</a></h3>
+          <a href="/qna/post-seq-024.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-025</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-025.html" style="color:#0F172A;text-decoration:none;">How to Accurately Predict Your Child's Adult Height: US CDC 2000 Percentiles vs. The +3.3 Inch Sleep & Nutrition Window</a></h3>
+          <a href="/qna/post-seq-025.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-026</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-026.html" style="color:#0F172A;text-decoration:none;">Why Smart Kids Freeze on Math Word Problems: Prefrontal Working Memory Overload & Singapore Math 3-Box Bar Modeling</a></h3>
+          <a href="/qna/post-seq-026.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-027</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-027.html" style="color:#0F172A;text-decoration:none;">Does Rapid Weight Gain Cause Early Puberty and Stunt Final Adult Height? The Adipose Aromatase Bone-Age Mechanism</a></h3>
+          <a href="/qna/post-seq-027.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-028</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-028.html" style="color:#0F172A;text-decoration:none;">Child Waking Up Crying with Nighttime Leg & Knee Growing Pains: Warm Compress, Calcium Citrate & Magnesium Glycinate Protocol</a></h3>
+          <a href="/qna/post-seq-028.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-029</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-029.html" style="color:#0F172A;text-decoration:none;">Fixing "Tech Neck" & Backpack Slouching in Kids: Recovering +0.7 Inches of Compressed Spinal Height & Boosting Desk Focus</a></h3>
+          <a href="/qna/post-seq-029.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-030</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-030.html" style="color:#0F172A;text-decoration:none;">Is $20,000/Year Growth Hormone (rhGH) Therapy Worth It for Idiopathic Short Stature (ISS)? Cochrane & BMJ Meta-Analysis Breakdown</a></h3>
+          <a href="/qna/post-seq-030.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-031</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-031.html" style="color:#0F172A;text-decoration:none;">Why Kids Understand in Class but Blank Out on Tests: The 3-Minute Feynman Blank-Page Retrieval Protocol</a></h3>
+          <a href="/qna/post-seq-031.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:1rem;">
+          <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:0.72rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;margin-bottom:0.4rem;">POST-SEQ-032</span>
+          <h3 style="font-size:0.96rem;font-weight:800;margin:0 0 0.4rem;line-height:1.35;"><a href="/qna/post-seq-032.html" style="color:#0F172A;text-decoration:none;">Calcium Citrate vs. Carbonate for Kids: Why Vitamin K2 (MK-7) and Chelated Zinc Are Essential for Epiphyseal Bone Growth</a></h3>
+          <a href="/qna/post-seq-032.html" style="font-size:0.8rem;font-weight:800;color:#1D4ED8;text-decoration:none;">Read Clinical Brief &rarr;</a>
+        </div>
+        </div>
+      </div>
       <div style="margin-bottom:2rem;">
         <h2 style="font-size:1.25rem;font-weight:900;color:#1E3A8A;margin:0 0 0.9rem;border-bottom:2px solid #DBEAFE;padding-bottom:0.4rem;">Physical Growth & Auxology</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;">
