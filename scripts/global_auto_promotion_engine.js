@@ -486,8 +486,8 @@ async function publishUsTelegraphBacklinkArticle(topicIndex = 0, newColumnUrl = 
     {
       tag: 'ul',
       children: [
-        { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://app.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599' }, children: ['💳 [$8.99 Single Child Clinical Pass] Unlock All 5 Clinical Chapters + 2-Page Hospital-Style Printable PDF'] }] },
-        { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' }, children: ['💎 [$19.99 6-Month Unlimited Growth & Brain LQ Pass] Monthly 30-Day Velocity Re-Calibration + All Siblings'] }] },
+        { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://app.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b' }, children: ['💳 [$8.99 Single Child Clinical Pass] Unlock All 5 Clinical Chapters + 2-Page Hospital-Style Printable PDF'] }] },
+        { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://app.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde' }, children: ['💎 [$19.99 6-Month Unlimited Growth & Brain LQ Pass] Monthly 30-Day Velocity Re-Calibration + All Siblings'] }] },
         { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&rcode=IPZ1547' }, children: ['🌿 [Official iHerb Bone-Matrix Rx · Code IPZ1547] ChildLife Liquid Calcium Citrate + Vitamin D3/K2 + Chelated Zinc'] }] },
         { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&rcode=IPZ1547' }, children: ['🧠 [Official iHerb Prefrontal Myelin Rx · Code IPZ1547] Nordic Naturals Children DHA Omega-3 & N3 Sleep Magnesium'] }] },
         { tag: 'li', children: [{ tag: 'a', attrs: { href: 'https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&tag=kidfit-20' }, children: ['📦 [Official Amazon US Pick · Tag kidfit-20] Pediatric Doorway Spinal Decompression Bar (+0.7 in Hidden Disc Recovery)'] }] }
