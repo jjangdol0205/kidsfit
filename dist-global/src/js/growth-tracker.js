@@ -20,6 +20,66 @@
 
   const STORAGE_KEYS = ['taller_growth_logs', 'kidsfit_tracker_v2', 'taller_bio_tracker'];
   const PRIMARY_STORAGE_KEY = 'taller_growth_logs';
+  const CHECKLIST_STORAGE_KEY = 'kidsfit_14day_checklist_v1';
+
+  // 14-Day Daily Growth & Cognitive Action Routine Definitions
+  const CHECKLIST_TASKS = [
+    {
+      key: 'evening_sws',
+      period: 'Evening',
+      periodKo: '저녁/취침',
+      badge: '🌙 Evening Protocol',
+      badgeKo: '🌙 저녁 프로토콜',
+      titleEn: 'Bedtime Lights-Out (Stage N3 SWS HGH Surge)',
+      titleKo: '서파수면(SWS) 호르몬 서지 유도 소등 (밤 10시 전)',
+      descEn: 'Darkened bedroom & 9-10h sleep opportunity to maximize nocturnal Stage N3 Slow-Wave Sleep (65% of daily pituitary GH secretion).',
+      descKo: '암전 취침 및 9~10시간 충분한 수면 확보로 서파수면(SWS) 성장호르몬 분비 극대화'
+    },
+    {
+      key: 'evening_fast',
+      period: 'Evening',
+      periodKo: '저녁/취침',
+      badge: '🌙 Evening Protocol',
+      badgeKo: '🌙 저녁 프로토콜',
+      titleEn: '3-Hour Pre-Bedtime Glycemic Fast',
+      titleKo: '취침 3시간 전 무당류 공복 유지',
+      descEn: 'Zero late-night simple sugars/refined carbs before sleep to prevent somatostatin release and insulin-mediated GH inhibition (-52%).',
+      descKo: '취침 전 단순당 제한으로 소마토스타틴 억제 방어 및 성장호르몬 분비 저해(-52%) 방지'
+    },
+    {
+      key: 'morning_nutrients',
+      period: 'Morning',
+      periodKo: '아침',
+      badge: '☀️ Morning Protocol',
+      badgeKo: '☀️ 아침 프로토콜',
+      titleEn: 'Weight-Calibrated Vitamin D3/K2 & Calcium',
+      titleKo: '체중 맞춤 구연산칼슘 & 비타민 D3/K2 섭취',
+      descEn: 'Elemental bio-available Calcium Citrate with D3 (1,200–2,000 IU) and K2 MK-7 with breakfast for optimal epiphyseal bone matrix mineralization.',
+      descKo: '흡수율 45% 구연산칼슘 및 D3/K2로 골단판 골기질 침착 촉진'
+    },
+    {
+      key: 'afternoon_decompression',
+      period: 'Afternoon',
+      periodKo: '오후',
+      badge: '⚡ Afternoon Protocol',
+      badgeKo: '⚡ 오후 프로토콜',
+      titleEn: '10-Minute Epiphyseal Spine Decompression Routine',
+      titleKo: '10분 척추 추간판 감압 & 데드행 루틴',
+      descEn: 'Passive dead hang (30s x 3 sets) and thoracic spine extension to relieve compressive gravity loads and restore disk intervertebral height.',
+      descKo: '패시브 데드행(30초x3)과 흉추 신전으로 중력 부하 감압 및 숨은키 복원'
+    },
+    {
+      key: 'afternoon_feynman',
+      period: 'Afternoon',
+      periodKo: '오후',
+      badge: '⚡ Afternoon Protocol',
+      badgeKo: '⚡ 오후 프로토콜',
+      titleEn: '20-Minute Feynman Focus & Active Recall Practice',
+      titleKo: '20분 파인만 백지 인출 & 능동적 회상 훈련',
+      descEn: 'Single-task focused study sprint followed by 3-minute blank-page concept reconstruction for prefrontal working memory consolidation.',
+      descKo: '단일 집중 학습 후 3분 백지 인출로 전두엽 작업기억 및 시냅스 가소성 강화'
+    }
+  ];
 
   // In-memory fallback if localStorage throws (e.g. sandboxed iframe or private browsing)
   let inMemoryStorage = {};
@@ -48,14 +108,122 @@
     inMemoryStorage[key] = val;
   }
 
-  // 1. Initial State & Seed Data Generation
+  function getActiveChildIdFromCohort(profile = {}) {
+    if (profile.childId) return profile.childId;
+    if (profile.id && String(profile.id).startsWith('child_')) return profile.id;
+    if (typeof window !== 'undefined' && window.KidsFitUserCohortDB && typeof window.KidsFitUserCohortDB.getActiveChildId === 'function') {
+      return window.KidsFitUserCohortDB.getActiveChildId();
+    }
+    return 'child_1';
+  }
+
+  // 14-Day Checklist Persistence & Child ID Resolver
+  function resolveChecklistChildId(arg) {
+    if (!arg) return 'child_1';
+    if (typeof arg === 'string') return arg;
+    if (typeof arg === 'object') return arg.id || arg.childId || 'child_1';
+    return 'child_1';
+  }
+
+  function get14DayChecklist(arg = 'child_1') {
+    const childId = resolveChecklistChildId(arg);
+    const key = `${CHECKLIST_STORAGE_KEY}_${childId}`;
+    let data = safeGetStorage(key);
+    if (!data || typeof data !== 'object' || !data.days) {
+      const days = {};
+      for (let i = 1; i <= 14; i++) {
+        days[i] = {
+          evening_sws: false,
+          evening_fast: false,
+          morning_nutrients: false,
+          afternoon_decompression: false,
+          afternoon_feynman: false
+        };
+      }
+      data = {
+        childId,
+        currentActiveDay: 1,
+        activeDay: 1,
+        days
+      };
+      safeSetStorage(key, data);
+    }
+    if (!data.activeDay && data.currentActiveDay) {
+      data.activeDay = data.currentActiveDay;
+    }
+    return data;
+  }
+
+  function save14DayChecklist(arg = 'child_1', data = {}) {
+    const childId = resolveChecklistChildId(arg);
+    if (data && data.currentActiveDay && !data.activeDay) {
+      data.activeDay = data.currentActiveDay;
+    }
+    const key = `${CHECKLIST_STORAGE_KEY}_${childId}`;
+    safeSetStorage(key, data);
+  }
+
+  function toggle14DayChecklistItem(...args) {
+    let childId, dayNum, taskKey, checked;
+    if (typeof args[0] === 'number') {
+      // Calling convention: (dayNum, taskKey, checked, profile/childId)
+      dayNum = args[0];
+      taskKey = args[1];
+      checked = args[2];
+      childId = resolveChecklistChildId(args[3]);
+    } else {
+      // Calling convention: (childId, dayNum, taskKey, checked)
+      childId = resolveChecklistChildId(args[0]);
+      dayNum = args[1];
+      taskKey = args[2];
+      checked = args[3];
+    }
+    const data = get14DayChecklist(childId);
+    if (!data.days) data.days = {};
+    if (!data.days[dayNum]) data.days[dayNum] = {};
+    data.days[dayNum][taskKey] = Boolean(checked);
+    save14DayChecklist(childId, data);
+    return data;
+  }
+
+  function set14DayActiveDay(...args) {
+    let childId, dayNum;
+    if (typeof args[0] === 'number') {
+      // Calling convention: (dayNum, profile/childId)
+      dayNum = args[0];
+      childId = resolveChecklistChildId(args[1]);
+    } else {
+      // Calling convention: (childId, dayNum)
+      childId = resolveChecklistChildId(args[0]);
+      dayNum = args[1];
+    }
+    const data = get14DayChecklist(childId);
+    data.currentActiveDay = Math.max(1, Math.min(14, Number(dayNum) || 1));
+    data.activeDay = data.currentActiveDay;
+    save14DayChecklist(childId, data);
+    return data;
+  }
+
+  // 1. Initial State & Seed Data Generation (Partitioned by Child ID)
   function getInitialTrackerState(profile = {}) {
     const todayStr = new Date().toISOString().split('T')[0];
-    const currentH = Number(profile.currentHeight) || 137.0;
-    const currentW = Number(profile.currentWeight) || 35.5;
+    const childId = getActiveChildIdFromCohort(profile);
+    const isChild2 = childId === 'child_2';
+    const currentH = Number(profile.currentHeight) || (isChild2 ? 121.0 : 137.0);
+    const currentW = Number(profile.currentWeight) || (isChild2 ? 23.5 : 35.5);
+
+    const baseLogs = [
+      { date: '2026-10-14', height: Math.round((currentH - 0.5) * 10) / 10, weight: currentW - 0.2, sleep: true, nutrition: true, exercise: true, note: '기준 진단 계측' },
+      { date: '2026-10-16', height: Math.round((currentH - 0.3) * 10) / 10, weight: currentW - 0.1, sleep: true, nutrition: true, exercise: true, note: '데드행 3세트 완주' },
+      { date: '2026-10-18', height: Math.round((currentH - 0.1) * 10) / 10, weight: currentW, sleep: true, nutrition: true, exercise: true, note: '구연산칼슘 & D3 섭취' },
+      { date: todayStr, height: currentH, weight: currentW, sleep: true, nutrition: true, exercise: true, note: '오늘 정밀 바이오 측정' }
+    ];
 
     return {
-      childId: 'default_patient',
+      childId: childId,
+      childLogs: {
+        [childId]: baseLogs
+      },
       startDate: todayStr,
       currentStreakDays: 14,
       bestStreakDays: 14,
@@ -69,19 +237,23 @@
         { id: 'accelerator_30d', days: 30, nameKo: '30-Day Growth Accelerator', nameEn: '30-Day Accelerator', unlocked: false, date: null },
         { id: 'master_90d', days: 90, nameKo: '90-Day Epiphyseal Master', nameEn: '90-Day Master', unlocked: false, date: null }
       ],
-      logs: [
-        { date: '2026-10-14', height: Math.round((currentH - 0.5) * 10) / 10, weight: currentW - 0.2, sleep: true, nutrition: true, exercise: true, note: '기준 진단 계측' },
-        { date: '2026-10-16', height: Math.round((currentH - 0.3) * 10) / 10, weight: currentW - 0.1, sleep: true, nutrition: true, exercise: true, note: '데드행 3세트 완주' },
-        { date: '2026-10-18', height: Math.round((currentH - 0.1) * 10) / 10, weight: currentW, sleep: true, nutrition: true, exercise: true, note: '구연산칼슘 & D3 섭취' },
-        { date: todayStr, height: currentH, weight: currentW, sleep: true, nutrition: true, exercise: true, note: '오늘 정밀 바이오 측정' }
-      ]
+      logs: baseLogs
     };
   }
 
   function getTrackerData(profile = {}) {
+    const childId = getActiveChildIdFromCohort(profile);
     for (const key of STORAGE_KEYS) {
       const data = safeGetStorage(key);
-      if (data && Array.isArray(data.logs)) {
+      if (data && (Array.isArray(data.logs) || (data.childLogs && typeof data.childLogs === 'object'))) {
+        data.childLogs = data.childLogs || {};
+        if (!data.childLogs[childId] || !Array.isArray(data.childLogs[childId])) {
+          data.childLogs[childId] = (data.childId === childId && Array.isArray(data.logs))
+            ? data.logs
+            : getInitialTrackerState(profile).logs;
+        }
+        data.childId = childId;
+        data.logs = data.childLogs[childId];
         return data;
       }
     }
@@ -94,6 +266,9 @@
     if (!data) return;
     // Calculate and update streaks
     updateBadgesAndStreak(data);
+    const childId = data.childId || 'child_1';
+    data.childLogs = data.childLogs || {};
+    data.childLogs[childId] = data.logs;
     STORAGE_KEYS.forEach(k => safeSetStorage(k, data));
   }
 
@@ -154,23 +329,187 @@
   // 2. HTML Section Renderer (Dashboard View)
   function renderTrackerSection(profile = {}) {
     const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
+    const activeChildId = getActiveChildIdFromCohort(profile);
     const data = getTrackerData(profile);
     const streak = data.currentStreakDays || 14;
     const logs = data.logs || [];
 
-    const titleStr = isGlobal ? '90-Day Longitudinal Growth Tracker & Routine Streak' : '90일 성장 데이터 & 바이오 프로토콜 스트릭 기록소';
+    // Retrieve Sibling Profiles for Comparative View
+    let siblingData = null;
+    if (typeof window !== 'undefined' && window.KidsFitUserCohortDB && typeof window.KidsFitUserCohortDB.getSiblingData === 'function') {
+      siblingData = window.KidsFitUserCohortDB.getSiblingData();
+    } else {
+      siblingData = {
+        activeChildId: activeChildId,
+        profiles: {
+          child_1: { id: 'child_1', name: 'Liam', gender: 'boy', ageYears: 10, currentHeight: 137.0, currentWeight: 35.5, recentGrowth6m: 3.2, fatherHeight: 173.5, motherHeight: 160.5 },
+          child_2: { id: 'child_2', name: 'Emma', gender: 'girl', ageYears: 7, currentHeight: 121.0, currentWeight: 23.5, recentGrowth6m: 2.8, fatherHeight: 173.5, motherHeight: 160.5 }
+        }
+      };
+    }
+
+    const siblingProfiles = siblingData.profiles || {};
+    const siblingKeys = Object.keys(siblingProfiles);
+
+    // Retrieve 14-Day Checklist Data
+    const checklist = get14DayChecklist(activeChildId);
+    const activeDay = checklist.currentActiveDay || 1;
+    const activeDayTasks = (checklist.days && checklist.days[activeDay]) || {};
+
+    // Calculate 14-day completion percentage across all days
+    let totalChecklistItems = 14 * CHECKLIST_TASKS.length;
+    let completedChecklistItems = 0;
+    if (checklist.days) {
+      for (let d = 1; d <= 14; d++) {
+        if (checklist.days[d]) {
+          CHECKLIST_TASKS.forEach(t => {
+            if (checklist.days[d][t.key]) completedChecklistItems++;
+          });
+        }
+      }
+    }
+    const checklistProgressPct = Math.min(100, Math.round((completedChecklistItems / Math.max(1, totalChecklistItems)) * 100));
+
+    const titleStr = isGlobal ? '90-Day Longitudinal Growth Tracker & Pediatric Intake Studio' : '90일 성장 데이터 & 바이오 프로토콜 스트릭 기록소';
     const subStr = isGlobal
-      ? 'Track daily height and weight trajectory, log the 3 core protocols (Sleep, Nutrition, Biomechanics), and unlock clinical milestone badges.'
+      ? 'Track daily height and weight trajectory, log the 14-day pediatric routine checklist (Sleep, Bio-Nutrition, Spine Decompression & Feynman Focus), and generate hospital-grade clinic intake summaries.'
       : '날짜별 키·몸무게 변화 궤적을 기록하고 수면·임상영양·생체역학 3대 프로토콜 달성 스트릭(Streak)을 관리하는 브라우저 보안 스토리지 트래커입니다.';
+
+    // Sibling Comparative Matrix HTML
+    const siblingCardsHtml = siblingKeys.map(k => {
+      const p = siblingProfiles[k];
+      const isSelected = k === activeChildId;
+      const isGirl = p.gender === 'girl';
+      const genderIcon = isGirl ? '👧' : '👦';
+      const ageY = Number(p.ageYears) || 10;
+      const curH = Number(p.currentHeight) || (isGirl ? 121.0 : 137.0);
+      const curW = Number(p.currentWeight) || (isGirl ? 23.5 : 35.5);
+      const fH = Number(p.fatherHeight) || 173.5;
+      const mH = Number(p.motherHeight) || 160.5;
+      const mphVal = Math.round(((fH + mH + (isGirl ? -13 : 13)) / 2) * 10) / 10;
+      const vel = Number(p.recentGrowth6m ? p.recentGrowth6m * 2 : (isGirl ? 5.6 : 6.4)).toFixed(1);
+
+      // Height formatted
+      const totIn = curH / 2.54;
+      const ft = Math.floor(totIn / 12);
+      const inch = Math.round((totIn - ft * 12) * 10) / 10;
+      const hDisplay = `${ft}'${inch}" (${curH} cm)`;
+
+      // Estimated CDC percentile
+      const estPct = isGirl ? 52.0 : 50.0;
+
+      return `
+        <div class="bento-card sibling-card ${isSelected ? 'active-sibling-card' : ''}" style="border: 2px solid ${isSelected ? '#1D4ED8' : 'var(--theme-border-subtle)'}; background: ${isSelected ? 'rgba(239, 246, 255, 0.45)' : 'var(--theme-surface-sub)'}; border-radius: 14px; padding: 1rem 1.15rem; transition: all 0.2s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 1.4rem;">${genderIcon}</span>
+              <div>
+                <h5 style="font-size: 1rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+                  ${p.name || (k === 'child_1' ? 'Liam' : 'Emma')}
+                </h5>
+                <span style="font-size: 0.76rem; color: var(--text-secondary);">
+                  ${ageY}y ${isGirl ? 'Girl' : 'Boy'} · ${p.birthDateStr || '2016-05-12'}
+                </span>
+              </div>
+            </div>
+            ${isSelected ? `
+              <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 9999px;">
+                ${isGlobal ? 'Active Child' : '선택됨'}
+              </span>
+            ` : `
+              <button type="button" class="btn-sibling-switch-tracker btn btn-secondary" data-child-id="${p.id}" style="font-size: 0.74rem; font-weight: 700; padding: 0.25rem 0.65rem; min-height: 32px;">
+                ${isGlobal ? 'Switch Profile' : '전환하기'}
+              </button>
+            `}
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.8rem;">
+            <div style="background: var(--theme-surface); border: 1px solid var(--theme-border-subtle); border-radius: 8px; padding: 0.5rem 0.65rem;">
+              <div style="font-size: 0.7rem; color: var(--text-secondary);">${isGlobal ? 'Current Stature' : '현재 신장'}</div>
+              <div style="font-size: 0.95rem; font-weight: 800; color: #1D4ED8;">${hDisplay}</div>
+            </div>
+            <div style="background: var(--theme-surface); border: 1px solid var(--theme-border-subtle); border-radius: 8px; padding: 0.5rem 0.65rem;">
+              <div style="font-size: 0.7rem; color: var(--text-secondary);">${isGlobal ? 'CDC Percentile' : '성장 백분위'}</div>
+              <div style="font-size: 0.95rem; font-weight: 800; color: var(--bio-emerald);">${estPct}th (Z: 0.00)</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 0.35rem;">
+            <span>${isGlobal ? 'Target MPH Corridor:' : '유전 표적키:'} <strong>${mphVal} cm</strong></span>
+            <span>${isGlobal ? 'Velocity:' : '성장속도:'} <strong>${vel} cm/yr</strong></span>
+          </div>
+
+          <!-- Relative Percentile Bar -->
+          <div style="background: var(--theme-border-subtle); border-radius: 9999px; height: 6px; overflow: hidden;">
+            <div style="background: linear-gradient(90deg, #3B82F6, #10B981); width: ${estPct}%; height: 100%;"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // 14-Day Checklist Days Pills HTML
+    const dayPillsHtml = Array.from({ length: 14 }, (_, idx) => {
+      const dNum = idx + 1;
+      const isCur = dNum === activeDay;
+      // count completed for this day
+      let dayCompleted = 0;
+      if (checklist.days && checklist.days[dNum]) {
+        CHECKLIST_TASKS.forEach(t => {
+          if (checklist.days[dNum][t.key]) dayCompleted++;
+        });
+      }
+      const isDone = dayCompleted === CHECKLIST_TASKS.length;
+
+      return `
+        <button type="button"
+          class="checklist-day-pill ${isCur ? 'active' : ''} ${isDone ? 'done' : ''}"
+          data-day="${dNum}"
+          id="btn-checklist-day-${dNum}"
+          style="min-height: 44px; min-width: 44px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.35rem 0.55rem; border-radius: 10px; font-size: 0.76rem; font-weight: 800; border: 1.5px solid ${isCur ? '#1D4ED8' : (isDone ? '#10B981' : 'var(--theme-border-subtle)')}; background: ${isCur ? '#1D4ED8' : (isDone ? 'rgba(16, 185, 129, 0.12)' : 'var(--theme-surface-sub)')}; color: ${isCur ? '#FFFFFF' : (isDone ? '#047857' : 'var(--text-secondary)')}; cursor: pointer; transition: all 0.2s ease;">
+          <span>Day ${dNum}</span>
+          <span style="font-size: 0.65rem; opacity: 0.85;">${isDone ? '✓' : `${dayCompleted}/5`}</span>
+        </button>
+      `;
+    }).join('');
+
+    // 14-Day Checklist Active Day Tasks HTML
+    const tasksHtml = CHECKLIST_TASKS.map(t => {
+      const isChecked = Boolean(activeDayTasks[t.key]);
+      return `
+        <label class="checklist-task-card" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; background: var(--theme-surface-sub); border: 1px solid ${isChecked ? '#10B981' : 'var(--theme-border-subtle)'}; border-radius: 12px; padding: 0.85rem 1rem; cursor: pointer; transition: all 0.2s ease;">
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">
+              <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: ${t.period === 'Evening' ? '#6366F1' : (t.period === 'Morning' ? '#D97706' : '#059669')};">
+                ${isGlobal ? t.badge : t.badgeKo}
+              </span>
+            </div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.2rem; text-decoration: ${isChecked ? 'line-through' : 'none'}; opacity: ${isChecked ? 0.75 : 1};">
+              ${isGlobal ? t.titleEn : t.titleKo}
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-secondary); line-height: 1.45;">
+              ${isGlobal ? t.descEn : t.descKo}
+            </div>
+          </div>
+          <div style="padding-top: 0.2rem;">
+            <input type="checkbox"
+              class="chk-14day-task"
+              data-day="${activeDay}"
+              data-task-key="${t.key}"
+              ${isChecked ? 'checked' : ''}
+              style="width: 22px; height: 22px; accent-color: #10B981; cursor: pointer;">
+          </div>
+        </label>
+      `;
+    }).join('');
 
     let html = `
       <div id="core-5-container" class="core-module-container tracker-container">
-        <!-- Tracker Header Card with Print Trigger -->
+        <!-- Tracker Header Card with Pediatrician Print Trigger -->
         <div class="bento-card tracker-header-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--theme-accent);">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="tab-badge tab-badge-indigo" style="display: inline-block; margin-bottom: 0.5rem;">
-                Core 5 · Tracker &amp; Clinical PDF
+                Core 5 · 90-Day Tracker &amp; Clinical PDF
               </span>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
                 ${titleStr}
@@ -179,11 +518,70 @@
                 ${subStr}
               </p>
             </div>
-            <div>
-              <button type="button" class="btn btn-primary" id="btn-print-clinic-pdf" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 800; padding: 0.75rem 1.25rem;">
-                ${isGlobal ? '[Save / Print 2-Page Clinical PDF]' : '[A4 정밀 리포트 PDF 저장 / 인쇄]'}
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-primary" id="btn-print-clinic-pdf" style="min-height: 44px; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 800; padding: 0.75rem 1.35rem; box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);">
+                📄 ${isGlobal ? 'Export Pediatrician Consultation Intake PDF' : 'A4 소아청소년과 진료 의뢰서 PDF 출력'}
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- Sibling Comparative Auxology Matrix Card -->
+        <div class="bento-card sibling-comparative-card" id="sibling-comparative-growth-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+            <div>
+              <span style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8; text-transform: uppercase; letter-spacing: 0.05em;">
+                👨‍👩‍👧‍👦 Multi-Child Sibling Auxology Architecture
+              </span>
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0.2rem 0 0 0;">
+                ${isGlobal ? 'Sibling Comparative Growth & Percentile Corridor' : '형제·자매 비교 성장 및 유전 표적키 비교 분석'}
+              </h4>
+            </div>
+            <div id="sibling-profile-tabs-tracker"></div>
+          </div>
+
+          <!-- Sibling Cards Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            ${siblingCardsHtml}
+          </div>
+        </div>
+
+        <!-- 14-Day Daily Routine Action Checklist Card -->
+        <div class="bento-card fourteen-day-card" id="fourteen-day-checklist-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <span class="tab-badge tab-badge-amber" style="display: inline-block; margin-bottom: 0.35rem;">
+                🗓️ Clinical Routine Protocol
+              </span>
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.2rem 0;">
+                ${isGlobal ? '14-Day Daily Growth & Cognitive Action Checklist' : '14일 연속 바이오 성장 & 두뇌 LQ 인출 체크리스트'}
+              </h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">
+                ${isGlobal ? 'Stage N3 SWS sleep timing, 3-hour pre-bed fasting, weight-calibrated micronutrients, spine decompression & Feynman active recall.' : '서파수면 소등, 취침 3시간 전 공복, 체중 맞춤 미네랄, 척추 감압 및 파인만 백지 인출을 매일 체크합니다.'}
+              </p>
+            </div>
+
+            <!-- Visual Progress Bar Indicator -->
+            <div style="text-align: right; min-width: 220px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem;">
+                <span style="font-size: 0.74rem; font-weight: 700; color: var(--text-secondary);">${isGlobal ? 'Overall Adherence:' : '전체 프로토콜 달성률:'}</span>
+                <span style="font-size: 1.15rem; font-weight: 900; color: #10B981; font-family: var(--font-mono);">${checklistProgressPct}%</span>
+              </div>
+              <div style="background: var(--theme-border-subtle); border-radius: 9999px; height: 8px; overflow: hidden; margin-bottom: 0.25rem;">
+                <div style="background: linear-gradient(90deg, #10B981, #059669); width: ${checklistProgressPct}%; height: 100%; transition: width 0.3s ease;"></div>
+              </div>
+              <span style="font-size: 0.68rem; color: var(--text-muted);">${completedChecklistItems} / ${totalChecklistItems} ${isGlobal ? 'Actions Checked across 14 Days' : '항목 완료'}</span>
+            </div>
+          </div>
+
+          <!-- 14-Day Horizontal Timeline Tabs -->
+          <div style="display: flex; gap: 0.45rem; overflow-x: auto; padding-bottom: 0.65rem; margin-bottom: 1rem;" class="checklist-timeline-bar">
+            ${dayPillsHtml}
+          </div>
+
+          <!-- Active Day Tasks Container -->
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            ${tasksHtml}
           </div>
         </div>
 
@@ -327,11 +725,11 @@
               </p>
             </div>
 
-            <!-- Mini Input Form -->
+            <!-- Mini Input Form with Mobile Keypad Optimization -->
             <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-              <input type="number" step="0.1" id="input-log-height" placeholder="${isGlobal ? 'Height (cm)' : '키 cm'}" value="${profile.currentHeight || 137.0}" style="width: 110px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
-              <input type="number" step="0.1" id="input-log-weight" placeholder="${isGlobal ? 'Weight (kg)' : '체중 kg'}" value="${profile.currentWeight || 35.5}" style="width: 110px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
-              <button type="button" class="btn btn-secondary" id="btn-add-log" style="padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
+              <input type="number" step="0.1" inputmode="decimal" autocomplete="off" id="input-log-height" placeholder="${isGlobal ? 'Height (cm)' : '키 cm'}" value="${profile.currentHeight || 137.0}" style="width: 110px; min-height: 44px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
+              <input type="number" step="0.1" inputmode="decimal" autocomplete="off" id="input-log-weight" placeholder="${isGlobal ? 'Weight (kg)' : '체중 kg'}" value="${profile.currentWeight || 35.5}" style="width: 110px; min-height: 44px; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--theme-border); background: var(--theme-surface-sub); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
+              <button type="button" class="btn btn-secondary" id="btn-add-log" style="min-height: 44px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
                 + ${isGlobal ? 'Add Measurement' : '계측 기록 추가'}
               </button>
             </div>
@@ -357,9 +755,9 @@
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.8rem;">${l.date}</td>
                     <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: var(--cyan-pulse); font-family: var(--font-mono);">${isGlobal ? `${Math.floor((Number(l.height) / 2.54) / 12)}'${Math.round(((Number(l.height) / 2.54) % 12) * 10) / 10}" (${l.height} cm)` : `${l.height} cm`}</td>
                     <td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono);">${isGlobal ? `${Math.round(Number(l.weight) * 2.20462262 * 10) / 10} lbs (${l.weight} kg)` : `${l.weight} kg`}</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '' : ''}</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '' : ''}</td>
-                    <td style="padding: 0.65rem 0.75rem;">${l.exercise ? '' : ''}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.sleep ? '✓' : '—'}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.nutrition ? '✓' : '—'}</td>
+                    <td style="padding: 0.65rem 0.75rem;">${l.exercise ? '✓' : '—'}</td>
                     <td style="padding: 0.65rem 0.75rem; font-size: 0.78rem; color: var(--text-secondary);">${isGlobal ? ({ '기준 진단 계측': 'Baseline Auxology Scan', '데드행 3세트 완주': '3x30s Dead Hang Completed', '구연산칼슘 & D3 섭취': 'Calcium Citrate & D3 Dose', '오늘 정밀 바이오 측정': 'Today Bio-Measurement', '수동 계측 입력': 'Manual Measurement Log', '정기 생체 계측': 'Routine Bio-Measurement' }[l.note] || (/[\uAC00-\uD7A3]/.test(l.note || '') ? 'Clinical Bio-Log' : (l.note || '-'))) : (l.note || '-')}</td>
                   </tr>
                 `).join('')}
@@ -376,7 +774,10 @@
 
   // 3. 2-Page Hospital Clinic Style Clinical PDF Document Generator
   function renderClinicalPdfReport(profile = {}) {
-    const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
+    const isGlobal = profile.language === 'en' ||
+      (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ||
+      Boolean(profile.childName && !/[\uAC00-\uD7A3]/.test(profile.childName) && profile.language !== 'ko');
+    const childName = profile.childName || profile.name || (isGlobal ? 'Liam' : '서우');
     const ageMonths = Number(profile.ageMonths || profile.exactMonths) || 120;
     const ageYears = Number(profile.ageYears) || Math.round(ageMonths / 12);
     const sexKey = (profile.gender === 'girl' || profile.gender === 'female') ? 'girl' : 'boy';
@@ -452,6 +853,32 @@
     const bmi = Math.round((weight / Math.pow(height / 100, 2)) * 10) / 10;
     const patientId = `TB-2026-${Math.abs((ageMonths * 73 + Math.round(height * 11)) % 9000 + 1000)}`;
     const todayStrEn = new Date().toISOString().split('T')[0];
+
+    let krPredictedCm = Math.round((mph + 0.8) * 10) / 10;
+    let krCiMinCm = Math.round((krPredictedCm - 4.5) * 10) / 10;
+    let krCiMaxCm = Math.round((krPredictedCm + 4.5) * 10) / 10;
+    let krCiBoundCm = 4.5;
+    let krCiBoundIn = 1.8;
+
+    if (GrowthEngine && typeof GrowthEngine.calculateKhamisRoche === 'function') {
+      try {
+        const kr = GrowthEngine.calculateKhamisRoche({
+          gender: sexKey,
+          ageYears: ageYears,
+          childHeightCm: height,
+          childWeightKg: weight,
+          fatherHeightCm: fatherH,
+          motherHeightCm: motherH
+        });
+        if (kr && kr.predictedCm) {
+          krPredictedCm = Number(kr.predictedCm);
+          krCiMinCm = Number(kr.ci90MinCm || (krPredictedCm - 4.5));
+          krCiMaxCm = Number(kr.ci90MaxCm || (krPredictedCm + 4.5));
+          krCiBoundCm = Math.round(((krCiMaxCm - krCiMinCm) / 2) * 10) / 10;
+          krCiBoundIn = Math.round((krCiBoundCm / 2.54) * 10) / 10;
+        }
+      } catch (_) {}
+    }
     if (isGlobal) {
       const formEl = (typeof document !== 'undefined') ? document.getElementById('diagnosis-form') : null;
       const isLearningMode = (profile.preferredReportMode === 'learning') ||
@@ -736,16 +1163,44 @@
       const hPctEn = `${Number(hKdca.percentile || 50.0).toFixed(1)}th (Top ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`;
       const wPctEn = `${Number(wKdca.percentile || 50.0).toFixed(1)}th (Top ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`;
       const velStatusEn = velCalc.alert ? 'Sub-optimal Velocity (<4.0 cm/yr)' : (Number(velocityVal) >= 7.0 ? 'Accelerated Growth Trajectory' : 'Normal Growth Trajectory');
+
+      const trackerState = (typeof getTrackerState === 'function') ? getTrackerState(profile) : null;
+      const historyList = (trackerState && Array.isArray(trackerState.logs) && trackerState.logs.length)
+        ? trackerState.logs.slice(-4).reverse()
+        : [
+            { date: todayStrEn, height: height, weight: weight, bmi: bmi, velocity: `${velocityVal} cm/yr`, status: velStatusEn }
+          ];
+
+      const historyRowsHtml = historyList.map((item, idx) => {
+        const itemH = Number(item.height) || height;
+        const itemW = Number(item.weight) || weight;
+        const itemBmi = item.bmi || Math.round((itemW / Math.pow(itemH / 100, 2)) * 10) / 10;
+        const itemVel = item.velocity || `${velocityVal} cm/yr`;
+        const itemStatus = item.status || velStatusEn;
+        const itemDate = item.date || todayStrEn;
+        return `
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">${itemDate}</td>
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0;">Age ${ageYears}y (${Math.max(12, ageMonths - idx * 3)}m)</td>
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700; color: #1D4ED8;">${fmtH(itemH)}</td>
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0;">${fmtW(itemW)}</td>
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">${itemBmi} kg/m²</td>
+            <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0;">${itemVel}</td>
+            <td style="padding: 5px 8px; font-weight: 600; color: #059669;">${itemStatus}</td>
+          </tr>
+        `;
+      }).join('');
+
       return `
         <div id="clinic-print-report" class="clinic-print-report" style="display: none;">
-          <div class="print-page print-page-1" style="page-break-after: always; padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+          <div class="print-page print-page-1 pediatrician-intake-print-sheet" style="page-break-after: always; padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
             <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
               <div>
-                <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                  KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0 CLINICAL ATELIER
+                <div style="font-size: 10pt; font-weight: 800; color: #1D4ED8; letter-spacing: 0.08em; text-transform: uppercase;">
+                  KISFIT CLINICAL STUDIO · EHR-GRADE PEDIATRIC AUXOLOGY INTAKE
                 </div>
-                <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
-                  Pediatric Auxology &amp; Bone-Age Precision Clinical Report (Page 1/2)
+                <h1 style="font-size: 17pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
+                  PEDIATRICIAN CLINICAL CONSULTATION INTAKE &amp; AUXOLOGICAL ASSESSMENT (Page 1/2)
                 </h1>
               </div>
               <div style="text-align: right; font-size: 8.5pt; color: #475569;">
@@ -814,193 +1269,191 @@
                 </tbody>
               </table>
             </div>
+            <!-- Section 2: Genetic Target Height (Tanner MPH) & Khamis-Roche Predicted Stature -->
             <div style="margin-bottom: 16px;">
               <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 8px 0;">
-                2. Genetic Target Height (Tanner MPH) &amp; 3-Tier Adult Height Trajectory Simulation
+                2. Genetic Target Height (Tanner MPH) &amp; Khamis-Roche Empirical Adult Stature
               </h2>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
-                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px; background: #F8FAFC;">
-                  <div style="font-size: 8pt; font-weight: 700; color: #64748B;">Genetic Target Height (Tanner MPH)</div>
-                  <div style="font-size: 14pt; font-weight: 900; color: #0F172A; margin: 4px 0;">${fmtH(mph)}</div>
-                  <div style="font-size: 7.5pt; color: #64748B;">Range: ${isImp ? `${cmToFtIn(mphMin)} ~ ${cmToFtIn(mphMax)} (${mphMin} ~ ${mphMax} cm)` : `${mphMin} ~ ${mphMax} cm`}</div>
+                <div style="border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 8px; background: #F8FAFC;">
+                  <div style="font-size: 7.8pt; font-weight: 700; color: #64748B; text-transform: uppercase;">Mid-Parental Height (Tanner MPH)</div>
+                  <div style="font-size: 13.5pt; font-weight: 900; color: #0F172A; margin: 3px 0;">${fmtH(mph)}</div>
+                  <div style="font-size: 7.2pt; color: #475569;">Target Corridor: ${isImp ? `${cmToFtIn(mphMin)} ~ ${cmToFtIn(mphMax)}` : `${mphMin} ~ ${mphMax} cm`} (±${isImp ? '3.3 in' : '8.5 cm'})</div>
                 </div>
-                <div style="border: 1px solid #FECDD3; border-radius: 6px; padding: 10px; background: #FFF1F2;">
-                  <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Unmanaged Habits Trajectory</div>
-                  <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(unmanagedHeight)}</div>
-                  <div style="font-size: 7.5pt; color: #1D4ED8;">Sleep &amp; Posture Loss: -${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in (-${unmanagedPenalty} cm)` : `${unmanagedPenalty} cm`}</div>
+                <div style="border: 1.5px solid #93C5FD; border-radius: 8px; padding: 8px; background: #EFF6FF;">
+                  <div style="font-size: 7.8pt; font-weight: 800; color: #1D4ED8; text-transform: uppercase;">Khamis-Roche Adult Stature</div>
+                  <div style="font-size: 13.5pt; font-weight: 900; color: #1D4ED8; margin: 3px 0;">${fmtH(krPredictedCm)}</div>
+                  <div style="font-size: 7.2pt; color: #1E40AF;">90% CI Error Bounds: ${isImp ? `${cmToFtIn(krCiMinCm)} ~ ${cmToFtIn(krCiMaxCm)}` : `${krCiMinCm} ~ ${krCiMaxCm} cm`} (±${isImp ? `${krCiBoundIn} in` : `${krCiBoundCm} cm`})</div>
                 </div>
-                <div style="border: 1px solid #93C5FD; border-radius: 6px; padding: 10px; background: #ECFDF5;">
-                  <div style="font-size: 8pt; font-weight: 700; color: #1D4ED8;">Clinically Optimized Potential</div>
-                  <div style="font-size: 14pt; font-weight: 900; color: #1D4ED8; margin: 4px 0;">${fmtH(potentialHeight)}</div>
-                  <div style="font-size: 7.5pt; color: #1D4ED8;">Nutrition &amp; Decompression: +${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in (+${potentialBoost} cm)` : `${potentialBoost} cm`}</div>
+                <div style="border: 1.5px solid #6EE7B7; border-radius: 8px; padding: 8px; background: #ECFDF5;">
+                  <div style="font-size: 7.8pt; font-weight: 800; color: #047857; text-transform: uppercase;">Clinically Optimized Potential</div>
+                  <div style="font-size: 13.5pt; font-weight: 900; color: #059669; margin: 3px 0;">${fmtH(potentialHeight)}</div>
+                  <div style="font-size: 7.2pt; color: #059669;">Endocrine &amp; Decompression: +${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in (+${potentialBoost} cm)` : `${potentialBoost} cm`}</div>
                 </div>
               </div>
             </div>
+
+            <!-- Section 3: Longitudinal Growth Curve SVG -->
             <div style="margin-bottom: 14px;">
               <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #D97706; padding-left: 8px; margin: 0 0 8px 0;">
-                3. Multi-Curve Longitudinal Growth Trajectory (Ages 1 to 20)
+                3. Multi-Curve Longitudinal Growth Trajectory &amp; CDC Percentile Corridors
               </h2>
-              <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px; background: #FFFFFF; text-align: center;">
-                <svg viewBox="0 0 600 180" style="width: 100%; height: 160px;">
-                  <rect width="600" height="180" fill="#F8FAFC" rx="4" />
-                  <line x1="50" y1="30" x2="560" y2="30" stroke="#E2E8F0" stroke-width="1" />
-                  <line x1="50" y1="75" x2="560" y2="75" stroke="#E2E8F0" stroke-width="1" />
-                  <line x1="50" y1="120" x2="560" y2="120" stroke="#E2E8F0" stroke-width="1" />
-                  <line x1="50" y1="150" x2="560" y2="150" stroke="#CBD5E1" stroke-width="1.5" />
-                  <path d="M 50,150 Q 250,90 560,35" fill="none" stroke="#0284C7" stroke-width="2.5" />
-                  <path d="M 50,150 Q 250,100 560,55" fill="none" stroke="#D97706" stroke-width="2" />
-                  <path d="M 50,150 Q 250,110 560,70" fill="none" stroke="#E11D48" stroke-width="1.5" stroke-dasharray="3,3" />
-                  <circle cx="280" cy="98" r="5" fill="#059669" stroke="#FFFFFF" stroke-width="2" />
-                  <text x="280" y="88" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Current Patient (${fmtH(height)})</text>
-                  <text x="60" y="22" font-size="8" fill="#0284C7">― Optimized Trajectory (+${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in / +${potentialBoost} cm` : `${potentialBoost}cm`})</text>
-                  <text x="235" y="22" font-size="8" fill="#D97706">― Genetic Baseline (MPH ${isImp ? `${cmToFtIn(mph)} / ${mph} cm` : `${mph}cm`})</text>
-                  <text x="405" y="22" font-size="8" fill="#E11D48">--- Unmanaged Habits (-${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in / -${unmanagedPenalty} cm` : `${unmanagedPenalty}cm`})</text>
+              <div style="border: 1px solid #CBD5E1; border-radius: 8px; padding: 10px; background: #FFFFFF; text-align: center;">
+                <svg viewBox="0 0 600 175" style="width: 100%; height: 155px;">
+                  <rect width="600" height="175" fill="#F8FAFC" rx="4" />
+                  <line x1="50" y1="28" x2="560" y2="28" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="68" x2="560" y2="68" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="108" x2="560" y2="108" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="50" y1="145" x2="560" y2="145" stroke="#CBD5E1" stroke-width="1.5" />
+                  <path d="M 50,145 Q 250,88 560,32" fill="none" stroke="#059669" stroke-width="2.5" />
+                  <path d="M 50,145 Q 250,96 560,50" fill="none" stroke="#1D4ED8" stroke-width="2" />
+                  <path d="M 50,145 Q 250,105 560,68" fill="none" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <circle cx="280" cy="95" r="5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="280" y="84" font-size="9" font-weight="bold" fill="#1D4ED8" text-anchor="middle">Current Evaluation: ${childName} (${fmtH(height)})</text>
+                  <text x="60" y="20" font-size="8" font-weight="bold" fill="#059669">― Optimized Trajectory (+${isImp ? `${(Number(potentialBoost) / 2.54).toFixed(1)} in` : `${potentialBoost}cm`})</text>
+                  <text x="235" y="20" font-size="8" font-weight="bold" fill="#1D4ED8">― Khamis-Roche / Tanner MPH Baseline (${isImp ? `${cmToFtIn(mph)}` : `${mph}cm`})</text>
+                  <text x="445" y="20" font-size="8" font-weight="bold" fill="#DC2626">--- Unmanaged Habit Loss (-${isImp ? `${(Number(unmanagedPenalty) / 2.54).toFixed(1)} in` : `${unmanagedPenalty}cm`})</text>
                 </svg>
               </div>
             </div>
+
+            <!-- Page 1 Footer -->
             <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-              <span>KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0</span>
-              <span>Page 1 of 2 (Continued on Page 2)</span>
+              <span>KISFIT BIO LABS · CLINICAL AUXOLOGY INTAKE SUMMARY (kisfitglobal.com)</span>
+              <span>Page 1 of 2 (Continued on Page 2 · Clinical Notes &amp; Physician Sign-off)</span>
             </div>
           </div>
-          <div class="print-page print-page-2" style="padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
-            <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+
+          <!-- ================= PAGE 2: Vital Signs, Velocity History, Clinical Notes & Sign-off ================= -->
+          <div class="print-page print-page-2 pediatrician-intake-print-sheet" style="padding: 20mm 15mm; background: #FFFFFF; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="border-bottom: 2.5px solid #0F172A; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end;">
               <div>
                 <div style="font-size: 10pt; font-weight: 800; color: #475569; letter-spacing: 0.08em; text-transform: uppercase;">
-                  KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0 CLINICAL ATELIER
+                  KISFIT BIO LABS · PEDIATRIC CLINICAL AUXOLOGY &amp; INTAKE SUMMARY
                 </div>
                 <h1 style="font-size: 18pt; font-weight: 900; color: #0F172A; margin: 4px 0 0 0;">
-                  Endocrinology, Bio-Nutrition, Biomechanics &amp; Neuro Prescription (Page 2/2)
+                  Vital Sign History, Clinical Examination &amp; Physician Sign-off (Page 2/2)
                 </h1>
               </div>
               <div style="text-align: right; font-size: 8.5pt; color: #475569;">
-                <div><strong>Patient ID:</strong> <span style="font-family: monospace;">${patientId}</span></div>
-                <div><strong>Patient / Sex:</strong> Pediatric Patient (${gender})</div>
+                <div><strong>Patient:</strong> ${childName} (${gender})</div>
+                <div><strong>Clinic Record ID:</strong> <span style="font-family: monospace;">${patientId}</span></div>
               </div>
             </div>
+
+            <!-- Section 4: Longitudinal Vital Signs & Growth Velocity History -->
             <div style="margin-bottom: 14px;">
-              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #D97706; padding-left: 8px; margin: 0 0 6px 0;">
-                4. 24-Hour Circadian Endocrinology &amp; Growth Hormone (GH) Suppression Analysis
+              <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 6px 0;">
+                Vital Sign &amp; Auxological Velocity History
               </h2>
-              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 9pt;">
-                <tr style="background: #F8FAFC;">
-                  <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">Bedtime / Fasting Window</td>
-                  <td style="padding: 6px 10px; width: 25%; border-right: 1px solid #CBD5E1;">22:30 PM / 2.5h Fasting</td>
-                  <td style="padding: 6px 10px; width: 25%; font-weight: 700; border-right: 1px solid #CBD5E1;">GH Pulsatile Loss Rate</td>
-                  <td style="padding: 6px 10px; font-weight: 800; color: #1D4ED8;">-14% (Nocturnal Spike Suppression)</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 10px; font-weight: 700; border-right: 1px solid #CBD5E1; background: #F8FAFC;">Slow-Wave Sleep (SWS) Peak</td>
-                  <td style="padding: 6px 10px; border-right: 1px solid #CBD5E1;">22:00 PM ~ 02:00 AM</td>
-                  <td style="padding: 6px 10px; font-weight: 700; border-right: 1px solid #CBD5E1; background: #F8FAFC;">Clinical Protocol</td>
-                  <td style="padding: 6px 10px; font-size: 8.5pt;">Zero-carb fasting 3h before bed &amp; sleep onset by 22:00 achieves 0% GH loss</td>
-                </tr>
-              </table>
-            </div>
-            <div style="margin-bottom: 14px;">
-              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #059669; padding-left: 8px; margin: 0 0 6px 0;">
-                5. Weight-Proportional Bio-Nutrition Prescription &amp; Bioavailability
-              </h2>
-              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8.5pt; text-align: left;">
+              <table style="width: 100%; border: 1.5px solid #CBD5E1; border-collapse: collapse; font-size: 8.5pt; text-align: left;">
                 <thead>
-                  <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1;">
-                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Essential Nutrient</th>
-                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Daily Target Dose</th>
-                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Preferred Chelated Form</th>
-                    <th style="padding: 5px 8px;">Bioavailability &amp; Clinical Mechanism</th>
+                  <tr style="background: #F1F5F9; border-bottom: 1px solid #CBD5E1; color: #1E293B;">
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Date</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Evaluation Age</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Stature (Height)</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Weight</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">BMI</th>
+                    <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1;">Annual Velocity</th>
+                    <th style="padding: 5px 8px;">Auxology Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom: 1px solid #E2E8F0;">
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Elemental Calcium</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">1,000 mg/day</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Calcium Citrate / MCHA</td>
-                    <td style="padding: 5px 8px;">~45% absorption (acid-independent, prevents GI discomfort)</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid #E2E8F0;">
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Vitamin D3 + K2</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">2,000 IU + 60 mcg</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Cholecalciferol D3 + MK-7</td>
-                    <td style="padding: 5px 8px;">Osteocalcin carboxylation directs calcium into epiphyseal bone matrix</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid #E2E8F0;">
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Zinc &amp; Magnesium</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">12 mg + 160 mg</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Zinc Picolinate + Glycinate</td>
-                    <td style="padding: 5px 8px;">Hepatic GHR phosphorylation (IGF-1 synthesis) &amp; SWS delta sleep depth</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">Bone Matrix Protein</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-family: monospace;">${Math.round(weight * 1.3 * 10) / 10} g/day</td>
-                    <td style="padding: 5px 8px; border-right: 1px solid #E2E8F0; font-weight: 700;">WPI / Colostrum Peptides</td>
-                    <td style="padding: 5px 8px;">Accelerates Type-I/II collagen matrix synthesis (30% of bone volume)</td>
-                  </tr>
+                  ${historyRowsHtml}
                 </tbody>
               </table>
             </div>
+
+            <!-- Section 5: Circadian Endocrinology & Bio-Nutrition Summary -->
             <div style="margin-bottom: 14px;">
-              <h2 style="font-size: 11pt; font-weight: 800; color: #0F172A; border-left: 4px solid #E11D48; padding-left: 8px; margin: 0 0 6px 0;">
-                6. Biomechanical Spinal Decompression &amp; Wolff's Law 3-Core Protocol
+              <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #D97706; padding-left: 8px; margin: 0 0 6px 0;">
+                5. Circadian Endocrinology &amp; Weight-Calibrated Bio-Nutrition
+              </h2>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 8.2pt;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 8px 10px; background: #F8FAFC;">
+                  <div style="font-weight: 800; color: #1E3A8A; margin-bottom: 4px;">🌙 Stage N3 SWS Nocturnal Endocrinology</div>
+                  <div>• <strong>Target Bedtime:</strong> 21:45 PM – 22:15 PM (Melatonin Peak)</div>
+                  <div>• <strong>3-Hr Pre-Bed Glycemic Fast:</strong> 0% insulin somatostatin suppression</div>
+                  <div>• <strong>Sleep Duration:</strong> 9.5 hours required for peak pulsatile GH</div>
+                </div>
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 8px 10px; background: #F8FAFC;">
+                  <div style="font-weight: 800; color: #047857; margin-bottom: 4px;">☀️ Weight-Calibrated Nutrient Engine</div>
+                  <div>• <strong>Calcium Citrate:</strong> 1,000 mg/day (~45% absorption)</div>
+                  <div>• <strong>Vitamin D3 + K2 (MK-7):</strong> 2,000 IU + 60 mcg Cholecalciferol</div>
+                  <div>• <strong>Chelated Zinc + Protein:</strong> 11 mg Zinc + ${Math.round(weight * 1.3 * 10) / 10}g protein</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 6: Biomechanical Spinal Decompression Routine -->
+            <div style="margin-bottom: 14px;">
+              <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #E11D48; padding-left: 8px; margin: 0 0 6px 0;">
+                6. Biomechanical Epiphyseal Decompression &amp; Wolff's Law Routine
               </h2>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: 8pt;">
-                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">1. Passive Spinal Dead Hang</div>
-                  <div>30s x 3 sets (30s rest)</div>
-                  <div style="color: #64748B; font-size: 7.5pt;">L1–L5 intervertebral disc unloading (+0.3 in (+0.8 cm))</div>
+                  <div>30s x 3 sets (30s rest interval)</div>
+                  <div style="color: #64748B; font-size: 7.2pt;">Intervertebral L1–L5 decompression</div>
                 </div>
-                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">2. Thoracic &amp; Pelvic Alignment</div>
                   <div>45s x 2 sets (bilateral)</div>
-                  <div style="color: #64748B; font-size: 7.5pt;">Text-neck &amp; pelvic tilt correction (+0.7 in (+1.8 cm))</div>
+                  <div style="color: #64748B; font-size: 7.2pt;">Corrects anterior pelvic posture</div>
                 </div>
-                <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 8px; background: #F8FAFC;">
+                <div style="border: 1px solid #CBD5E1; border-radius: 6px; padding: 6px 8px; background: #F8FAFC;">
                   <div style="font-weight: 800; color: #1D4ED8;">3. Plyometric Micro-Loading</div>
-                  <div>15-min interval (45s jump / 15s walk)</div>
-                  <div style="color: #64748B; font-size: 7.5pt;">1.5–2.5G piezoelectric pulse (Runx2/Sox9)</div>
+                  <div>15-min interval (45s jump / 15s rest)</div>
+                  <div style="color: #64748B; font-size: 7.2pt;">1.5–2.5G epiphyseal piezoelectric pulse</div>
                 </div>
               </div>
             </div>
-            <div style="margin-bottom: 16px;">
-              <h2 style="font-size: 10.5pt; font-weight: 800; color: #0F172A; border-left: 4px solid #0284C7; padding-left: 8px; margin: 0 0 6px 0;">
-                7. Peer-Reviewed 【Short · Mid · Long-Term】 Clinical Roadmap &amp; Socratic Inquiry
+
+            <!-- Section 7: Pediatrician Clinical Notes & Physical Examination Intake Block -->
+            <div style="margin-bottom: 14px; border: 1.5px solid #94A3B8; border-radius: 8px; padding: 10px 12px; background: #FFFFFF;">
+              <h2 style="font-size: 10pt; font-weight: 800; color: #0F172A; margin: 0 0 6px 0; display: flex; justify-content: space-between;">
+                <span>Pediatrician Physical Exam &amp; Review of Systems</span>
+                <span style="font-size: 7.5pt; font-weight: 600; color: #64748B;">[For Clinic Use Only / Doctor Review]</span>
               </h2>
-              <table style="width: 100%; border: 1px solid #CBD5E1; border-collapse: collapse; font-size: 8pt; margin-bottom: 8px;">
-                <tr style="background: #F8FAFC; border-bottom: 1px solid #CBD5E1;">
-                  <th style="padding: 5px 8px; width: 22%; border-right: 1px solid #CBD5E1; color: #1D4ED8;">Short-Term (Weeks 1–4)</th>
-                  <td style="padding: 5px 8px;">21:45 bedtime · 3h pre-sleep zero-carb fasting (0% GH suppression) · Evening 3x30s dead hang (+0.7 in (+1.8 cm) disc recovery)</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #CBD5E1;">
-                  <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">Mid-Term (Months 1–3)</th>
-                  <td style="padding: 5px 8px;">iHerb USP/NSF Calcium Citrate (45% absorption)+D3+K2(MK-7)+Protein (${Math.round(weight * 1.3 * 10) / 10}g) · 5x/wk 15-min plyometrics · Daily Feynman active recall</td>
-                </tr>
-                <tr>
-                  <th style="padding: 5px 8px; border-right: 1px solid #CBD5E1; background: #F8FAFC; color: #1D4ED8;">Long-Term (6M–Adult)</th>
-                  <td style="padding: 5px 8px;">Quarterly CDC LMS percentile tracking · Optimal BMI maintenance against early bone-age fusion · Reach ${fmtH(potentialHeight)} potential</td>
-                </tr>
-              </table>
-              <div style="border: 1px solid #CBD5E1; border-radius: 4px; padding: 6px 10px; background: #F8FAFC; font-size: 7.8pt; line-height: 1.45;">
-                <div><strong>[Observation &amp; Inquiry]</strong> "What is the most unexpected or non-uniform structural pattern in this exhibit?"</div>
-                <div><strong>[Hypothesis &amp; Reasoning]</strong> "If the primary physical condition were reversed, how would the outcome change?"</div>
-                <div><strong>[Transfer &amp; Application]</strong> "How can we apply the principle discovered today to solve a real-world engineering problem?"</div>
-              </div>
-            </div>
-            <div style="border-top: 1.5px solid #0F172A; padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-              <div style="font-size: 8pt; color: #475569; max-width: 380px;">
-                This clinical report is synthesized in accordance with US CDC 2000, WHO MGRS, AAP, PES, and NIH ODS peer-reviewed pediatric standards.
-              </div>
-              <div style="display: flex; align-items: center; gap: 14px;">
-                <div style="text-align: right;">
-                  <div style="font-size: 8.5pt; font-weight: 800; color: #0F172A;">Attending Pediatric Endocrinology &amp; Auxology Board</div>
-                  <div style="font-size: 8pt; color: #64748B;">Senior Pediatric Endocrinology Specialist</div>
+              <div style="font-size: 8pt; line-height: 1.6; color: #334155;">
+                <div style="display: flex; gap: 16px; margin-bottom: 4px;">
+                  <span><strong>HEENT / Thyroid:</strong> [ &nbsp; ] Normal &nbsp; [ &nbsp; ] Palpable Thyroid &nbsp; [ &nbsp; ] Facies</span>
+                  <span><strong>Spine / Posture:</strong> [ &nbsp; ] Adam's Forward Bend Negative &nbsp; [ &nbsp; ] Kyphosis / Asymmetry</span>
                 </div>
-                <div style="width: 60px; height: 60px; border: 2px dashed #94A3B8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8pt; font-weight: 800; color: #1D4ED8;">
-                  [VERIFIED]
+                <div style="display: flex; gap: 16px; margin-bottom: 6px;">
+                  <span><strong>Tanner SMR Pubertal Stage:</strong> [ &nbsp; ] Stage 1 &nbsp; [ &nbsp; ] Stage 2 &nbsp; [ &nbsp; ] Stage 3 &nbsp; [ &nbsp; ] Stage 4 &nbsp; [ &nbsp; ] Stage 5</span>
+                  <span><strong>Bone Age Radiograph:</strong> [ &nbsp; ] Ordered &nbsp; [ &nbsp; ] Deferred</span>
+                </div>
+                <div style="border-top: 1px dashed #CBD5E1; padding-top: 6px; font-style: italic; color: #64748B;">
+                  Pediatrician Assessment / Clinical Orders: __________________________________________________________________________________<br>
+                  Diagnostic Follow-up: __________________________________________________________________ Re-evaluate in: [ &nbsp; ] 3 Mo [ &nbsp; ] 6 Mo
                 </div>
               </div>
             </div>
-            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; margin-top: 12px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
-              <span>KISFIT AI STUDIO · PROPRIETARY PEDIATRIC AUXOLOGY AI™ v4.0</span>
-              <span>Page 2 of 2 (End of Clinical Assessment Report)</span>
+
+            <!-- Section 8: Official Attending Pediatrician Sign-off Block -->
+            <div style="border: 1.5px solid #0F172A; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; background: #F8FAFC;">
+              <div style="font-size: 8pt; color: #475569; max-width: 360px;">
+                <div style="font-weight: 800; color: #0F172A; margin-bottom: 2px;">Attending Pediatrician Sign-off &amp; Clinic Authorization</div>
+                Certified that patient auxology metrics, CDC 2000 LMS percentiles, and Khamis-Roche stator predictions have been verified for clinical consultation.
+              </div>
+              <div style="display: flex; align-items: center; gap: 18px;">
+                <div style="text-align: right; font-size: 8pt;">
+                  <div><strong>Attending Physician:</strong> ________________________</div>
+                  <div style="margin-top: 3px;"><strong>NPI / License #:</strong> ________________________</div>
+                  <div style="margin-top: 3px;"><strong>Date:</strong> ________________________</div>
+                </div>
+                <div style="width: 72px; height: 72px; border: 2px dashed #1D4ED8; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 7.2pt; font-weight: 800; color: #1D4ED8; text-align: center; background: #EFF6FF;">
+                  <span>[MD / DO]</span>
+                  <span>SIGNATURE &amp; OFFICIAL CLINIC SEAL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 2 Footer -->
+            <div style="border-top: 1px solid #CBD5E1; padding-top: 8px; margin-top: 10px; font-size: 8pt; color: #64748B; display: flex; justify-content: space-between;">
+              <span>KISFIT BIO LABS · CLINICAL AUXOLOGY INTAKE SUMMARY (kisfitglobal.com)</span>
+              <span>Page 2 of 2 (End of EHR-Grade Pediatrician Clinical Intake Summary)</span>
             </div>
           </div>
         </div>
@@ -1368,11 +1821,59 @@
   function initTrackerControls(profile = {}) {
     if (typeof document === 'undefined') return;
 
+    // A. Pediatrician Consultation PDF Export
     const btnPrint = document.getElementById('btn-print-clinic-pdf');
     if (btnPrint && typeof btnPrint.addEventListener === 'function') {
       btnPrint.onclick = () => printClinicReport(profile);
     }
 
+    // B. Sibling Switcher Bar inside Tracker
+    if (typeof window !== 'undefined' && window.KidsFitUserCohortDB && typeof window.KidsFitUserCohortDB.renderSiblingSwitcherBar === 'function') {
+      window.KidsFitUserCohortDB.renderSiblingSwitcherBar('sibling-profile-tabs-tracker', {
+        onSwitch: (switchedProfile) => {
+          const container = document.getElementById('core-5-container');
+          if (container) {
+            container.outerHTML = renderTrackerSection(switchedProfile);
+            initTrackerControls(switchedProfile);
+          }
+        }
+      });
+    }
+
+    // C. 14-Day Checklist Day Selection Tabs
+    const dayPills = document.querySelectorAll('.checklist-day-pill');
+    dayPills.forEach(pill => {
+      pill.onclick = () => {
+        const day = parseInt(pill.getAttribute('data-day'), 10);
+        if (!isNaN(day)) {
+          set14DayActiveDay(day, profile);
+          const container = document.getElementById('core-5-container');
+          if (container) {
+            container.outerHTML = renderTrackerSection(profile);
+            initTrackerControls(profile);
+          }
+        }
+      };
+    });
+
+    // D. 14-Day Checklist Item Checkboxes
+    const taskCheckboxes = document.querySelectorAll('.chk-14day-task');
+    taskCheckboxes.forEach(chk => {
+      chk.onchange = (e) => {
+        const day = parseInt(e.target.getAttribute('data-day'), 10);
+        const taskKey = e.target.getAttribute('data-task-key');
+        if (!isNaN(day) && taskKey) {
+          toggle14DayChecklistItem(day, taskKey, e.target.checked, profile);
+          const container = document.getElementById('core-5-container');
+          if (container) {
+            container.outerHTML = renderTrackerSection(profile);
+            initTrackerControls(profile);
+          }
+        }
+      };
+    });
+
+    // E. 3-Core Protocol Toggles
     const chkSleep = document.getElementById('chk-proto-sleep');
     const chkNutr = document.getElementById('chk-proto-nutrition');
     const chkExer = document.getElementById('chk-proto-exercise');
@@ -1387,6 +1888,7 @@
       chkExer.onchange = (e) => toggleProtocol('exercise', e.target.checked, profile);
     }
 
+    // F. Log Entry Submission
     const btnAddLog = document.getElementById('btn-add-log');
     if (btnAddLog && typeof btnAddLog.addEventListener === 'function') {
       btnAddLog.onclick = () => {
@@ -1409,8 +1911,14 @@
   const GrowthTracker = {
     STORAGE_KEYS,
     PRIMARY_STORAGE_KEY,
+    CHECKLIST_STORAGE_KEY,
+    CHECKLIST_TASKS,
     getTrackerData,
     saveTrackerData,
+    get14DayChecklist,
+    save14DayChecklist,
+    toggle14DayChecklistItem,
+    set14DayActiveDay,
     addLogEntry,
     toggleProtocol,
     renderTrackerSection,
@@ -1429,3 +1937,4 @@
   }
 
 })(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));
+

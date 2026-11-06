@@ -32,7 +32,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\키즈핏")
+ROOT = Path(r"D:\사업아이템")
 PACK_DIR = ROOT / "samples" / "7_naver_blog_daily_pack" / "폴더별_글모음"
 GEN_IMG_DIR = ROOT / "samples" / "9_naver_brand_assets" / "daily_auto_cards"
 CURSOR_PATH = ROOT / "logs" / "blog_cafe_3x_daily_cursor.json"
@@ -842,7 +842,7 @@ def main():
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=5000)
+            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=5000)
             context = browser.contexts[0]
         except Exception:
             sys.path.insert(0, str(ROOT / "scripts"))
@@ -850,12 +850,12 @@ def main():
             launch_chrome_on_default_desktop()
             for _ in range(15):
                 try:
-                    with urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2) as r:
+                    with urllib.request.urlopen("http://127.0.0.1:9233/json/version", timeout=2) as r:
                         if r.status == 200:
                             break
                 except Exception:
                     time.sleep(1)
-            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=10000)
+            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=10000)
             context = browser.contexts[0]
 
         blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img, category_name=b_cat)

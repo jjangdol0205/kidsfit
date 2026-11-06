@@ -16,6 +16,120 @@
   'use strict';
 
   const STORAGE_KEY = 'taller_user_cohort_records_v1';
+  const SIBLINGS_STORAGE_KEY = 'kidsfit_child_profiles_v1';
+  const LEGACY_PROFILE_KEY = 'kidsfit_last_quiz_profile_v1';
+
+  const DEFAULT_SIBLING_PROFILES = {
+    activeChildId: 'child_1',
+    children: [
+      {
+        id: 'child_1',
+        name: 'Liam',
+        childName: 'Liam',
+        gender: 'boy',
+        birthYear: 2016,
+        birthMonth: 5,
+        birthDay: 12,
+        birthDateStr: '2016-05-12',
+        ageYears: 10,
+        ageMonths: 120,
+        currentHeight: 137.0,
+        heightCm: 137.0,
+        currentWeight: 35.5,
+        weightKg: 35.5,
+        recentGrowth6m: 3.2,
+        recentGainCm: 3.2,
+        fatherHeight: 173.5,
+        fatherHeightCm: 173.5,
+        motherHeight: 160.5,
+        motherHeightCm: 160.5,
+        tannerPhase: 'phase_2',
+        habits: ['late_sleep'],
+        cognitiveAxes: ['science_nature'],
+        region: 'United States'
+      },
+      {
+        id: 'child_2',
+        name: 'Emma',
+        childName: 'Emma',
+        gender: 'girl',
+        birthYear: 2019,
+        birthMonth: 8,
+        birthDay: 22,
+        birthDateStr: '2019-08-22',
+        ageYears: 7,
+        ageMonths: 84,
+        currentHeight: 121.0,
+        heightCm: 121.0,
+        currentWeight: 23.5,
+        weightKg: 23.5,
+        recentGrowth6m: 2.8,
+        recentGainCm: 2.8,
+        fatherHeight: 173.5,
+        fatherHeightCm: 173.5,
+        motherHeight: 160.5,
+        motherHeightCm: 160.5,
+        tannerPhase: 'phase_1',
+        habits: ['poor_posture'],
+        cognitiveAxes: ['math_logic'],
+        region: 'United States'
+      }
+    ],
+    profiles: {
+      child_1: {
+        id: 'child_1',
+        name: 'Liam',
+        childName: 'Liam',
+        gender: 'boy',
+        birthYear: 2016,
+        birthMonth: 5,
+        birthDay: 12,
+        birthDateStr: '2016-05-12',
+        ageYears: 10,
+        ageMonths: 120,
+        currentHeight: 137.0,
+        heightCm: 137.0,
+        currentWeight: 35.5,
+        weightKg: 35.5,
+        recentGrowth6m: 3.2,
+        recentGainCm: 3.2,
+        fatherHeight: 173.5,
+        fatherHeightCm: 173.5,
+        motherHeight: 160.5,
+        motherHeightCm: 160.5,
+        tannerPhase: 'phase_2',
+        habits: ['late_sleep'],
+        cognitiveAxes: ['science_nature'],
+        region: 'United States'
+      },
+      child_2: {
+        id: 'child_2',
+        name: 'Emma',
+        childName: 'Emma',
+        gender: 'girl',
+        birthYear: 2019,
+        birthMonth: 8,
+        birthDay: 22,
+        birthDateStr: '2019-08-22',
+        ageYears: 7,
+        ageMonths: 84,
+        currentHeight: 121.0,
+        heightCm: 121.0,
+        currentWeight: 23.5,
+        weightKg: 23.5,
+        recentGrowth6m: 2.8,
+        recentGainCm: 2.8,
+        fatherHeight: 173.5,
+        fatherHeightCm: 173.5,
+        motherHeight: 160.5,
+        motherHeightCm: 160.5,
+        tannerPhase: 'phase_1',
+        habits: ['poor_posture'],
+        cognitiveAxes: ['math_logic'],
+        region: 'United States'
+      }
+    }
+  };
 
   const HABIT_DOMAIN_MAP = {
     late_sleep: {
@@ -77,10 +191,17 @@
     return '17-20y';
   }
 
+  function getStorage() {
+    if (typeof window !== 'undefined' && window.localStorage) return window.localStorage;
+    if (typeof localStorage !== 'undefined') return localStorage;
+    return null;
+  }
+
   function getLocalRecords() {
-    if (typeof localStorage === 'undefined') return [];
+    const storage = getStorage();
+    if (!storage) return [];
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = storage.getItem(STORAGE_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
       return Array.isArray(parsed) ? parsed : [];
@@ -90,10 +211,290 @@
   }
 
   function saveLocalRecords(records) {
-    if (typeof localStorage === 'undefined') return;
+    const storage = getStorage();
+    if (!storage) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(records.slice(-50)));
+      storage.setItem(STORAGE_KEY, JSON.stringify(records.slice(-50)));
     } catch (_) {}
+  }
+
+  function getSiblingData() {
+    const storage = getStorage();
+    let result;
+    if (!storage) {
+      result = JSON.parse(JSON.stringify(DEFAULT_SIBLING_PROFILES));
+    } else {
+      try {
+        const raw = storage.getItem(SIBLINGS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && (parsed.profiles || Array.isArray(parsed.children))) {
+            if (!parsed.profiles && Array.isArray(parsed.children)) {
+              parsed.profiles = {};
+              parsed.children.forEach(c => { parsed.profiles[c.id] = c; });
+            }
+            if (!parsed.activeChildId || !parsed.profiles[parsed.activeChildId]) {
+              parsed.activeChildId = Object.keys(parsed.profiles)[0] || 'child_1';
+            }
+            result = parsed;
+          }
+        }
+        if (!result) {
+          // Migrate from single-profile legacy storage if present
+          const legacyRaw = storage.getItem(LEGACY_PROFILE_KEY);
+          const initial = JSON.parse(JSON.stringify(DEFAULT_SIBLING_PROFILES));
+          if (legacyRaw) {
+            try {
+              const legacy = JSON.parse(legacyRaw);
+              if (legacy && (legacy.currentHeight || legacy.gender || legacy.childName)) {
+                const cName = legacy.childName || legacy.name || 'Liam';
+                const h = legacy.currentHeight || legacy.heightCm || 137.0;
+                const w = legacy.currentWeight || legacy.weightKg || 35.5;
+                initial.profiles.child_1 = Object.assign({}, initial.profiles.child_1, legacy, {
+                  id: 'child_1',
+                  name: cName,
+                  childName: cName,
+                  heightCm: h,
+                  currentHeight: h,
+                  weightKg: w,
+                  currentWeight: w
+                });
+              }
+            } catch (_) {}
+          }
+          initial.children = Object.values(initial.profiles);
+          storage.setItem(SIBLINGS_STORAGE_KEY, JSON.stringify(initial));
+          result = initial;
+        }
+      } catch (_) {
+        result = JSON.parse(JSON.stringify(DEFAULT_SIBLING_PROFILES));
+      }
+    }
+
+    if (result && result.profiles) {
+      result.children = Object.values(result.profiles);
+    }
+    return result;
+  }
+
+  function saveSiblingData(data) {
+    const storage = getStorage();
+    if (!storage || !data) return;
+    try {
+      if (data.profiles) {
+        data.children = Object.values(data.profiles);
+      } else if (data.children && Array.isArray(data.children)) {
+        data.profiles = {};
+        data.children.forEach(c => {
+          if (c && c.id) data.profiles[c.id] = c;
+        });
+      }
+      storage.setItem(SIBLINGS_STORAGE_KEY, JSON.stringify(data));
+      const activeId = data.activeChildId || 'child_1';
+      if (data.profiles && data.profiles[activeId]) {
+        storage.setItem(LEGACY_PROFILE_KEY, JSON.stringify(data.profiles[activeId]));
+      }
+    } catch (_) {}
+  }
+
+  function getActiveChildId() {
+    const data = getSiblingData();
+    return data.activeChildId || 'child_1';
+  }
+
+  function getActiveChildProfile() {
+    const data = getSiblingData();
+    const id = data.activeChildId || 'child_1';
+    return (data.profiles && data.profiles[id]) || (data.profiles && data.profiles.child_1) || DEFAULT_SIBLING_PROFILES.profiles.child_1;
+  }
+
+  function setActiveChildId(childId) {
+    const data = getSiblingData();
+    if (data.profiles && data.profiles[childId]) {
+      data.activeChildId = childId;
+      saveSiblingData(data);
+      if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('kidsfit:sibling-changed', {
+          detail: { childId, profile: data.profiles[childId] }
+        }));
+      }
+      return data.profiles[childId];
+    }
+    return getActiveChildProfile();
+  }
+
+  function saveChildProfile(childId, profileUpdates = {}) {
+    const data = getSiblingData();
+    if (!data.profiles[childId]) {
+      const num = Object.keys(data.profiles).length + 1;
+      data.profiles[childId] = {
+        id: childId,
+        name: profileUpdates.childName || profileUpdates.name || `Child ${num}`,
+        childName: profileUpdates.childName || profileUpdates.name || `Child ${num}`
+      };
+    }
+    const target = data.profiles[childId];
+    const merged = Object.assign({}, target, profileUpdates);
+    if (profileUpdates.heightCm !== undefined) {
+      merged.currentHeight = profileUpdates.heightCm;
+      merged.heightCm = profileUpdates.heightCm;
+    }
+    if (profileUpdates.currentHeight !== undefined) {
+      merged.heightCm = profileUpdates.currentHeight;
+      merged.currentHeight = profileUpdates.currentHeight;
+    }
+    if (profileUpdates.weightKg !== undefined) {
+      merged.currentWeight = profileUpdates.weightKg;
+      merged.weightKg = profileUpdates.weightKg;
+    }
+    if (profileUpdates.currentWeight !== undefined) {
+      merged.weightKg = profileUpdates.currentWeight;
+      merged.currentWeight = profileUpdates.currentWeight;
+    }
+    if (profileUpdates.childName) {
+      merged.name = profileUpdates.childName;
+    }
+    if (profileUpdates.name) {
+      merged.childName = profileUpdates.name;
+    }
+    data.profiles[childId] = merged;
+    data.children = Object.values(data.profiles);
+    saveSiblingData(data);
+    return merged;
+  }
+
+  function addSiblingProfile(customProfile = {}) {
+    const data = getSiblingData();
+    const profiles = data.profiles || {};
+    const keys = Object.keys(profiles);
+    if (keys.length >= 3) {
+      return null;
+    }
+    const newNum = keys.length + 1;
+    const newId = customProfile.id || `child_${newNum}`;
+    const name = customProfile.childName || customProfile.name || (newNum === 3 ? 'Lucas' : `Child ${newNum}`);
+    const height = customProfile.heightCm || customProfile.currentHeight || (newNum === 3 ? 108.5 : 121.0);
+    const weight = customProfile.weightKg || customProfile.currentWeight || (newNum === 3 ? 18.2 : 23.5);
+    const recent = customProfile.recentGainCm || customProfile.recentGrowth6m || 2.8;
+
+    const newChild = Object.assign({
+      id: newId,
+      name: name,
+      childName: name,
+      gender: customProfile.gender || (newNum % 2 === 0 ? 'girl' : 'boy'),
+      birthYear: customProfile.birthYear || (2026 - (newNum === 3 ? 5 : 7)),
+      birthMonth: customProfile.birthMonth || 4,
+      birthDay: customProfile.birthDay || 10,
+      birthDateStr: customProfile.birthDateStr || `${2026 - (newNum === 3 ? 5 : 7)}-04-10`,
+      ageYears: customProfile.ageYears || (newNum === 3 ? 5 : 7),
+      ageMonths: customProfile.ageMonths || (newNum === 3 ? 60 : 84),
+      currentHeight: height,
+      heightCm: height,
+      currentWeight: weight,
+      weightKg: weight,
+      recentGrowth6m: recent,
+      recentGainCm: recent,
+      fatherHeight: customProfile.fatherHeight || customProfile.fatherHeightCm || 173.5,
+      fatherHeightCm: customProfile.fatherHeight || customProfile.fatherHeightCm || 173.5,
+      motherHeight: customProfile.motherHeight || customProfile.motherHeightCm || 160.5,
+      motherHeightCm: customProfile.motherHeight || customProfile.motherHeightCm || 160.5,
+      tannerPhase: customProfile.tannerPhase || 'phase_1',
+      habits: customProfile.habits || ['late_sleep'],
+      cognitiveAxes: customProfile.cognitiveAxes || ['math_logic'],
+      region: customProfile.region || 'United States'
+    }, customProfile, { id: newId, name: name, childName: name });
+
+    data.profiles[newId] = newChild;
+    data.children = Object.values(data.profiles);
+    data.activeChildId = newId;
+    saveSiblingData(data);
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('kidsfit:sibling-changed', {
+        detail: { childId: newId, profile: newChild }
+      }));
+    }
+    return newChild;
+  }
+
+  function renderSiblingSwitcherBar(containerId = 'sibling-profile-tabs', options = {}) {
+    if (typeof document === 'undefined') return '';
+    const container = typeof containerId === 'string' ? document.getElementById(containerId) : containerId;
+    const data = getSiblingData();
+    const activeId = data.activeChildId || 'child_1';
+    const profileKeys = Object.keys(data.profiles || {});
+    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+
+    const tabsHtml = profileKeys.map((k, index) => {
+      const p = data.profiles[k];
+      const isActive = k === activeId;
+      const genderIcon = p.gender === 'girl' ? '👧' : '👦';
+      const cName = p.childName || p.name || `Child ${index + 1}`;
+      const ageLabel = isEn ? `${p.ageYears || 10}y ${p.gender === 'girl' ? 'Girl' : 'Boy'}` : `만 ${p.ageYears || 10}세 ${p.gender === 'girl' ? '여아' : '남아'}`;
+      return `
+        <button type="button"
+          class="sibling-tab-btn ${isActive ? 'active' : ''}"
+          data-child-id="${p.id}"
+          id="btn-sibling-tab-${p.id}"
+          role="tab"
+          aria-selected="${isActive ? 'true' : 'false'}"
+          style="min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 0.95rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; border: 1.5px solid ${isActive ? '#1D4ED8' : '#CBD5E1'}; background: ${isActive ? '#EFF6FF' : '#FFFFFF'}; color: ${isActive ? '#1D4ED8' : '#475569'}; cursor: pointer; transition: all 0.2s ease;">
+          <span style="font-size: 1.05rem;">${genderIcon}</span>
+          <span>${cName} (${ageLabel})</span>
+          ${isActive ? '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#1D4ED8;"></span>' : ''}
+        </button>
+      `;
+    }).join('');
+
+    const addBtnHtml = profileKeys.length < 3 ? `
+      <button type="button"
+        class="sibling-tab-btn sibling-add-btn add-sibling-btn"
+        id="btn-add-sibling-profile"
+        title="${isEn ? 'Add Sibling Profile (Up to 3 Children)' : '형제자매 추가 (최대 3명)'}"
+        style="min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.5rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; border: 1.5px dashed #93C5FD; background: #F8FAFC; color: #1D4ED8; cursor: pointer; transition: all 0.2s ease;">
+        <span>➕</span>
+        <span>${isEn ? '+ Add Child' : '자녀 추가'}</span>
+      </button>
+    ` : '';
+
+    const barHtml = `
+      <div class="sibling-profile-tabs-bar" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.85rem;" role="tablist" aria-label="Sibling Profiles">
+        <span style="font-size: 0.76rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em; margin-right: 0.2rem;">
+          👨‍👩‍👧‍👦 ${isEn ? 'Sibling Profiles:' : '형제·자매 프로필:'}
+        </span>
+        ${tabsHtml}
+        ${addBtnHtml}
+      </div>
+    `;
+
+    if (container) {
+      container.innerHTML = barHtml;
+      // Bind click events safely
+      if (typeof container.querySelector === 'function') {
+        profileKeys.forEach((k) => {
+          const btn = container.querySelector(`#btn-sibling-tab-${k}`);
+          if (btn) {
+            btn.onclick = () => {
+              setActiveChildId(k);
+              renderSiblingSwitcherBar(containerId, options);
+              if (typeof options.onSwitch === 'function') {
+                options.onSwitch(data.profiles[k], k);
+              }
+            };
+          }
+        });
+        const addBtn = container.querySelector('#btn-add-sibling-profile');
+        if (addBtn) {
+          addBtn.onclick = () => {
+            const newChild = addSiblingProfile();
+            renderSiblingSwitcherBar(containerId, options);
+            if (typeof options.onAdd === 'function') {
+              options.onAdd(newChild);
+            }
+          };
+        }
+      }
+    }
+    return barHtml;
   }
 
   /**
@@ -192,9 +593,15 @@
     const gender = profile.gender === 'girl' ? 'girl' : 'boy';
     const targetSubject = profile.targetSubject === 'self' ? 'self' : 'child';
 
+    const activeSiblingId = profile.id || profile.childId || getActiveChildId();
+    const activeProfile = getActiveChildProfile();
+    const childName = profile.name || profile.childName || (activeProfile ? activeProfile.name : 'Child');
+
     const record = {
       id: `USR-${Date.now().toString(36).toUpperCase()}`,
       timestamp: new Date().toISOString(),
+      childId: activeSiblingId,
+      childName: childName,
       targetSubject,
       gender,
       birthDateStr: profile.birthDateStr || `${2026 - ageYears}-06-15`,
@@ -336,6 +743,9 @@
 
   const UserCohortDB = {
     STORAGE_KEY,
+    SIBLINGS_STORAGE_KEY,
+    LEGACY_PROFILE_KEY,
+    DEFAULT_SIBLING_PROFILES,
     HABIT_DOMAIN_MAP,
     getBaseCohortDb,
     getAgeBandKey,
@@ -343,7 +753,15 @@
     getAggregatedCohortAnalytics,
     recordUserDiagnosis,
     getCohortComparisonForProfile,
-    renderGuidebookCohortSection
+    renderGuidebookCohortSection,
+    getSiblingData,
+    saveSiblingData,
+    getActiveChildId,
+    getActiveChildProfile,
+    setActiveChildId,
+    saveChildProfile,
+    addSiblingProfile,
+    renderSiblingSwitcherBar
   };
 
   if (typeof module !== 'undefined' && module.exports) {

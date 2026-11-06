@@ -1,35 +1,57 @@
 {
-  "ok": true,
+  "status": "ok",
   "mode": "static",
-  "domain": "kisfitglobal.com",
   "analytics": {
     "today": {
-      "date": "2026-11-05",
-      "uniqueVisitors": 0,
-      "pageviews": 0,
-      "newVisitors": 0,
-      "returningVisitors": 0,
-      "diagnosesCompleted": 0,
+      "date": "2026-11-06",
+      "uv": 0,
+      "pv": 0,
+      "diagnoses": {
+        "total": 0,
+        "growth": 0,
+        "learning": 0
+      },
       "affiliateClicks": 0,
-      "byCategory": {},
-      "byProduct": {},
-      "hourlyPageviews": {},
-      "hourlyClicks": {},
-      "hourlyDiagnoses": {},
-      "recentClicks": [],
-      "visitorsList": []
-    },
-    "total": {
-      "uniqueVisitors": 0,
-      "pageviews": 0,
-      "newVisitors": 0,
-      "returningVisitors": 0,
-      "diagnosesCompleted": 0,
-      "affiliateClicks": 0,
-      "byCategory": {},
-      "byProduct": {},
       "recentClicks": []
     },
-    "dailyHistory": []
+    "total": {
+      "uv": 82,
+      "pv": 88,
+      "diagnoses": {
+        "total": 45,
+        "growth": 45,
+        "learning": 16
+      },
+      "affiliateClicks": 562,
+      "productClicks": {
+        "growth": 264,
+        "learning": 49,
+        "byReferrer": {
+          "direct": {
+            "growth": 1,
+            "learning": 0
+          }
+        }
+      },
+      "bots": 71,
+      "recentClicks": [
+        {
+          "id": "CLK-1793874078159-963",
+          "timestampKst": "2026-11-05 19:21:18 KST",
+          "category": "growth",
+          "platform": "쿠팡 파트너스 (AF7865143)",
+          "productName": "칼슴",
+          "href": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B9%BC%EC%8A%B4",
+          "utmSource": "direct",
+          "device": "desktop",
+          "domain": "127.0.0.1:55777",
+          "notifiedByServer": true,
+          "rlArmId": "growth_nutrition_repeat_cart",
+          "rlCtaArm": "arm_rocket_review",
+          "rlReward": 33,
+          "sessionClicks": 1
+        }
+      ]
+    }
   }
 }

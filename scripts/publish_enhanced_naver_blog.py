@@ -26,13 +26,13 @@ Responsibilities:
    - Accent Primary: Soft violet / royal indigo (#4F46E5 / RGB 79, 70, 229)
    - Accent Growth: Fresh emerald mint (#10B981 / RGB 16, 185, 129)
    - Accent Warning/Peak: Warm coral (#F97316 / RGB 249, 115, 22)
-6. Publishes via Playwright connecting to CDP http://127.0.0.1:9222 to https://blog.naver.com/PostWriteForm.naver?blogId=expertise333
+6. Publishes via Playwright connecting to CDP http://127.0.0.1:9233 to https://blog.naver.com/PostWriteForm.naver?blogId=expertise333
    Scheduled publication cadence: 2x/day at 10:00 and 20:30 (daily parenting columns).
 7. Handles multi-image file input upload via SmartEditor ONE DOM automation.
 8. Writes execution audit logs containing logNo and timestamp to the logs/ directory.
 9. Supports CLI flags:
    --dry-run: Renders text and 3 images, validates length >= 1500 chars and 0 raw markdown, prints preview without submitting.
-   --live: Connects to CDP port 9222, executes publication on Naver Blog, returns post URL.
+   --live: Connects to CDP port 9233, executes publication on Naver Blog, returns post URL.
    --category: Category override.
    --topic-idx: Topic selection index (0-based).
 """
@@ -57,7 +57,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-ROOT = Path(r"d:\키즈핏")
+ROOT = Path(r"D:\사업아이템")
 KB_PATH = ROOT / "docs" / "hourly_benchmark_paper_kb.json"
 FALLBACK_KB_PATH = ROOT / "src" / "data" / "research-knowledge-base.json"
 ENHANCED_IMG_DIR = ROOT / "samples" / "enhanced_blog_images"
@@ -68,8 +68,8 @@ ENV_PATH = ROOT / ".env"
 # Target configuration
 TARGET_BLOG_ID = "expertise333"
 TARGET_WRITE_URL = f"https://blog.naver.com/PostWriteForm.naver?blogId={TARGET_BLOG_ID}"
-CDP_URL = "http://127.0.0.1:9222"
-CDP_PORT = 9222
+CDP_URL = "http://127.0.0.1:9233"
+CDP_PORT = 9233
 
 # Scheduled publishing cadence: 2x/day at 10:00 and 20:30 KST
 SCHEDULED_INTERVALS = ["10:00", "20:30"]
@@ -788,6 +788,14 @@ DEEP_PARENTING_TOPICS = [
 # Validation & Content Verification
 # ==============================================================================
 
+try:
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from kidsfit_conversion_content_bank import CONVERSION_EPISODE_TOPICS
+    DEEP_PARENTING_TOPICS = CONVERSION_EPISODE_TOPICS
+except Exception:
+    pass
+
+
 def validate_blog_content(title: str, body: str, image_paths: list[str], category: str) -> tuple[bool, list[str]]:
     issues = []
 
@@ -841,7 +849,7 @@ def publish_blog_post_cdp(
     category_name: str
 ) -> str:
     """
-    Connects to persistent Chrome on CDP port 9222 and publishes the post to Naver Blog (expertise333).
+    Connects to persistent Chrome on CDP port 9233 and publishes the post to Naver Blog (expertise333).
     Uploads all 3 high-resolution PNG images via file input chooser, selects category in publish drawer,
     and returns the live published post URL.
     """
@@ -1038,7 +1046,7 @@ def write_audit_log(entry: dict):
 def main():
     parser = argparse.ArgumentParser(description="KidsFit Enhanced Naver Blog Publisher")
     parser.add_argument("--dry-run", action="store_true", default=False, help="Render text and 3 images, validate constraints, and exit without publishing")
-    parser.add_argument("--live", action="store_true", default=False, help="Execute live publication on Naver Blog via CDP port 9222")
+    parser.add_argument("--live", action="store_true", default=False, help="Execute live publication on Naver Blog via CDP port 9233")
     parser.add_argument("--category", type=str, default="", help="KidsFit category filter/override")
     parser.add_argument("--topic-idx", type=int, default=0, help="Topic index from library (0 to len-1)")
     args = parser.parse_args()

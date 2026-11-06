@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Naver Browser Daemon (scripts/naver_browser_daemon.py)
-Spawns Chrome directly on the interactive user desktop (WinSta0\\Default) with remote debugging port 9222,
+Spawns Chrome directly on the interactive user desktop (WinSta0\\Default) with remote debugging port 9233,
 and stays alive as a daemon so the Windows Job Object never terminates Chrome prematurely.
 """
 
@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\키즈핏")
+ROOT = Path(r"D:\사업아이템")
 PROFILE_DIR = ROOT / ".naver-browser-profile"
 PROFILE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -58,7 +58,7 @@ def launch_chrome_on_default_desktop():
     cmd = (
         f'"{chrome_exe}" '
         f'--user-data-dir="{PROFILE_DIR}" '
-        f'--remote-debugging-port=9222 '
+        f'--remote-debugging-port=9233 '
         f'--start-maximized '
         f'--no-first-run '
         f'--no-default-browser-check '
@@ -99,9 +99,9 @@ def main():
     pid = launch_chrome_on_default_desktop()
     for _ in range(15):
         try:
-            with urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2) as resp:
+            with urllib.request.urlopen("http://127.0.0.1:9233/json/version", timeout=2) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                print(f"✅ CDP Port 9222 Ready: {data.get('Browser')}", flush=True)
+                print(f"✅ CDP Port 9233 Ready: {data.get('Browser')}", flush=True)
                 break
         except Exception:
             time.sleep(1)

@@ -20,7 +20,7 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"d:\키즈핏")
+ROOT = Path(r"D:\사업아이템")
 PROFILE_DIR = ROOT / ".naver-browser-profile"
 STATE_PATH = ROOT / "logs" / "safe_backlog_state.json"
 GEN_IMG_DIR = ROOT / "samples" / "9_naver_brand_assets" / "daily_auto_cards"
@@ -132,11 +132,18 @@ SAFE_BACKLOG_ITEMS = [
 ]
 
 
+try:
+    from kidsfit_conversion_content_bank import CONVERSION_KIN_BANK
+    SAFE_BACKLOG_ITEMS = CONVERSION_KIN_BANK + SAFE_BACKLOG_ITEMS
+except Exception:
+    pass
+
+
 def ensure_clean_cdp_browser(p):
-    """Connects to CDP 9222 or launches the persistent Chrome profile on WinSta0\\Default."""
+    """Connects to CDP 9233 or launches the persistent Chrome profile on WinSta0\\Default."""
     cdp_ok = False
     try:
-        req = urllib.request.Request("http://127.0.0.1:9222/json/version")
+        req = urllib.request.Request("http://127.0.0.1:9233/json/version")
         with urllib.request.urlopen(req, timeout=2) as resp:
             if resp.status == 200:
                 cdp_ok = True
@@ -145,22 +152,22 @@ def ensure_clean_cdp_browser(p):
 
     if cdp_ok:
         try:
-            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=8000)
+            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=8000)
             return browser, browser.contexts[0], False
         except Exception:
             cdp_ok = False
 
-    print("🔄 [영구 프로필 브라우저 기동] WinSta0\\Default 데스크톱에서 CDP 9222 세션을 연결합니다...", flush=True)
+    print("🔄 [영구 프로필 브라우저 기동] WinSta0\\Default 데스크톱에서 CDP 9233 세션을 연결합니다...", flush=True)
     from naver_browser_daemon import launch_chrome_on_default_desktop
     launch_chrome_on_default_desktop()
     for _ in range(15):
         try:
-            with urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2) as r:
+            with urllib.request.urlopen("http://127.0.0.1:9233/json/version", timeout=2) as r:
                 if r.status == 200:
                     break
         except Exception:
             time.sleep(1)
-    browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222", timeout=10000)
+    browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=10000)
     return browser, browser.contexts[0], False
 
 

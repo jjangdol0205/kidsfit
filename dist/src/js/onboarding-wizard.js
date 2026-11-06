@@ -2596,12 +2596,19 @@
     // Auto-start preset wizard & clinical scan when URL contains ?preset=... (from Q&A or external links)
     try {
       if (typeof window !== 'undefined' && window.location && window.location.search) {
-        const urlPreset = String(new URLSearchParams(window.location.search).get('preset') || '').trim();
+        const sp = new URLSearchParams(window.location.search);
+        const rawP = String(sp.get('preset') || '').trim();
+        const ageN = parseInt(sp.get('age') || '', 10);
+        const ageP = !isNaN(ageN) && ageN >= 2 && ageN <= 18 ? (ageN <= 7 ? 'preset-1' : ageN <= 10 ? 'preset-2' : ageN <= 13 ? 'preset-3' : ageN <= 15 ? 'preset-4' : 'preset-5') : '';
+        const urlPreset = (PRESET_ALIASES && PRESET_ALIASES[rawP]) || rawP || ageP;
         const rawMode = String(new URLSearchParams(window.location.search).get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
         if (urlPreset && PRESETS[urlPreset] && !window._kidsfitUrlPresetApplied) {
           window._kidsfitUrlPresetApplied = true;
           enterStudioMode('child', rawMode);
           loadPreset(urlPreset);
+        } else if (new URLSearchParams(window.location.search).get('mode') && !window._kidsfitUrlPresetApplied) {
+          window._kidsfitUrlPresetApplied = true;
+          enterStudioMode('child', rawMode);
         }
       }
     } catch (_) {}

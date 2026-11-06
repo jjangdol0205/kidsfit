@@ -4156,4 +4156,248 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 }
 
+/* ==========================================================================
+   32. MILESTONE 3: GLOBAL UX, MULTI-CHILD ARCHITECTURE & ACCESSIBLE TOAST
+   ========================================================================== */
+
+/* A. Mobile Keypad & Accessible Touch Targets (>=44px x 44px) */
+button,
+.btn,
+.btn-primary,
+.prescription-retest-btn,
+.btn-unit-tab,
+.capsule-tab,
+.chip-label,
+.chip-pill,
+.sibling-tab-btn,
+.checklist-day-pill,
+.form-select,
+.form-input {
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.chip-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chip-pill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  box-sizing: border-box;
+}
+
+.sibling-tab-btn {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+.checklist-day-pill {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* B. Accessible Visual Toast Notification System (#kidsfit-validation-toast) */
+.kidsfit-validation-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  z-index: 100000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 90%;
+  max-width: 480px;
+}
+
+.kidsfit-validation-toast.toast-show {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.kidsfit-validation-toast.toast-hide {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+}
+
+.kidsfit-validation-toast .toast-inner {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-left: 4px solid #EF4444;
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.input-invalid-shake {
+  animation: inputShake 0.45s ease-in-out;
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+}
+
+/* C. Sibling Profile Switcher Tabs */
+.sibling-profile-tabs-container {
+  width: 100%;
+}
+
+.sibling-profile-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sibling-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1.5px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.sibling-tab-btn:hover {
+  border-color: #94A3B8;
+  background: #F8FAFC;
+}
+
+.sibling-tab-btn.active {
+  background: #1D4ED8;
+  color: #FFFFFF;
+  border-color: #1D4ED8;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+}
+
+.sibling-tab-btn.add-btn {
+  background: #F1F5F9;
+  border-style: dashed;
+  color: #1D4ED8;
+}
+
+.sibling-tab-btn.add-btn:hover {
+  background: #E0E7FF;
+  border-color: #1D4ED8;
+}
+
+/* D. 14-Day Daily Action Checklist & Routine Card */
+.fourteen-day-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 1.35rem 1.25rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.checklist-timeline-bar {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.checklist-day-pill {
+  flex-shrink: 0;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.checklist-task-card {
+  user-select: none;
+}
+
+.checklist-task-card:hover {
+  border-color: #94A3B8 !important;
+}
+
+/* E. Sibling Comparative Auxology Card */
+.sibling-comparative-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 1.35rem 1.25rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+/* F. Pediatrician Consultation Intake PDF Print Container & Clean 2-Page Layout */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  .clinic-header,
+  .hero-section,
+  .quick-presets-bar,
+  .quiz-section,
+  .brand-bottom-dock,
+  .prescription-banner,
+  .master-briefing-card,
+  #capsule-nav-wrapper,
+  #core-5-container,
+  #sibling-profile-tabs,
+  #sibling-profile-tabs-dashboard,
+  #analysis-overlay,
+  .kidsfit-validation-toast,
+  .floating-back-brand-btn {
+    display: none !important;
+  }
+
+  #clinic-print-report-container {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .pediatrician-intake-print-sheet {
+    page-break-after: always;
+    break-after: page;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 18mm 16mm !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .pediatrician-intake-print-sheet:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+
+
 

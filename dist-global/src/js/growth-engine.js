@@ -816,16 +816,16 @@
     const unmanagedHeight = Math.round((mph - unmanagedLoss) * 10) / 10;
 
     let goldenBoost = 5.0;
-    let legacyStageMonths = '대략 36~48개월 열림 (Approx. 36–48 Months Open)';
+    let legacyStageMonths = 'Approx. 36–48 Months Open';
     if (pubertyStage === 'growth_spurt' || pubertyStage === 'phase_2') {
       goldenBoost = 4.0;
-      legacyStageMonths = '대략 18~24개월 골든타임 (Approx. 18–24 Months Golden Window)';
+      legacyStageMonths = 'Approx. 18–24 Months Golden Window';
     } else if (pubertyStage === 'urgent_secondary_signs' || pubertyStage === 'phase_3') {
       goldenBoost = 2.5;
-      legacyStageMonths = '대략 6~12개월 급박한 골든타임 (Approx. 6–12 Months Urgent Golden Window!)';
+      legacyStageMonths = 'Approx. 6–12 Months Urgent Golden Window!';
     } else if (pubertyStage === 'phase_4') {
       goldenBoost = 1.8;
-      legacyStageMonths = '대략 <6개월 막바지 (Approx. <6 Months Late Stage)';
+      legacyStageMonths = 'Approx. <6 Months Late Stage';
     }
 
     const effectiveAgeMonths = (ageMonths !== null && ageMonths !== undefined && Number(ageMonths) > 0) ? Number(ageMonths) : 120;
@@ -850,7 +850,7 @@
       windowShortBadge: windowInfo.shortBadge,
       windowSubLabel: windowInfo.subLabel,
       windowMeaningKo: windowInfo.meaningKo,
-      _legacyKorean: true
+      _legacyKorean: false
     };
   }
 
@@ -880,7 +880,7 @@
 
   // 10. High-Resolution Interactive Multi-Curve SVG Chart (CDC Corridors P3-P97, Tanner PHV, Crosshairs)
   function renderSvgGrowthCurve(sex, currentAgeMonths, currentHeight, options = {}) {
-    const width = 640;
+    const width = 600;
     const height = 320;
     const padding = { top: 28, right: 175, bottom: 40, left: 50 };
 
@@ -1096,7 +1096,7 @@
         <g transform="translate(${Math.max(padding.left + 6, Math.min(width - padding.right - 160, curX - 78))}, ${Math.max(padding.top + 4, curY - 38)})" class="growth-hover-tooltip">
           <rect x="0" y="0" width="156" height="26" rx="6" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.4" />
           <text x="78" y="17" font-size="10.5" font-weight="900" fill="#1D4ED8" text-anchor="middle">
-            ${options && options.mph !== undefined ? `Current: ${curH}cm (${cmToFtInStr(curH)}) · ${curZ.percentile}th Pct` : `현재 ${curH}cm · Current: ${curH}cm`}
+            ${options && options.mph !== undefined ? `Current: ${curH}cm (${cmToFtInStr(curH)}) · ${curZ.percentile}th Pct` : `Current: ${curH}cm (${cmToFtInStr(curH)})`}
           </text>
         </g>
       </svg>
@@ -1122,9 +1122,9 @@
       return `${ft}'${inVal}"`;
     };
 
-    const title1 = isKo ? '① 부모 유전 예상키' : '① Genetic Target Height (Mid-Parental MPH)';
-    const title2 = isKo ? '② 방해 습관 방치 시 예측키' : '② Unmanaged Habits Trajectory';
-    const title3 = isKo ? '③ 골든타임 밀착 관리 시 최대 잠재키' : '③ Clinical Intervention Target Window';
+    const title1 = '① Genetic Target Height (Mid-Parental MPH)';
+    const title2 = '② Unmanaged Habits Trajectory';
+    const title3 = '③ Clinical Intervention Target Window';
 
     return `
       <div class="predicted-bars-container">
@@ -1177,31 +1177,31 @@
       <div class="coaching-cards-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
         <!-- Card 1: Nutrition -->
         <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">① 식단 &amp; 뼈성장 영양 핵심</div>
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">① Diet &amp; Skeletal Growth Nutrition Core</div>
           <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasMilk 
-              ? '• <strong>구연산 칼슘 · 어골칼슘(흡수율 45%)</strong> + 비타민D3·K2를 아침·저녁 보충해 우유 배앓이 없이 뼈 기질을 채워주세요.' 
-              : '• <strong>구연산 칼슘 · 비타민D3(1000~2000IU) · 아연 · 초유</strong>를 아침·저녁 꾸준히 보충해 성장판 연골 증식을 돕습니다.'}
+              ? '• <strong>Calcium Citrate · Ossein Hydroxyapatite (45% Absorption)</strong> + Vitamin D3·K2 morning/evening to build bone matrix without lactose discomfort.' 
+              : '• <strong>Calcium Citrate · Vitamin D3 (1,000–2,000 IU) · Zinc · Colostrum</strong> morning/evening to stimulate epiphyseal chondrocyte proliferation.'}
           </div>
         </div>
 
         <!-- Card 2: Sleep -->
         <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">② 밤 10시 수면 골든타임</div>
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">② 10:00 PM Sleep Golden Window</div>
           <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasLateSleep 
-              ? '• 밤 10시~새벽 2시에 일일 성장호르몬의 <strong>65%가 분비</strong>됩니다. 21:45 소등 &amp; 취침 2시간 전 금식을 지켜주세요.' 
-              : '• 취침 후 첫 90분 깊은 서파수면(SWS)에서 성장호르몬이 폭발합니다. 잠들기 전 5분 다리 마사지로 숙면을 유도하세요.'}
+              ? '• <strong>65% of daily human growth hormone (GH)</strong> is pulsed between 10:00 PM and 2:00 AM. Ensure lights off by 9:45 PM and fast 2 hours prior.' 
+              : '• Growth hormone surges during the first 90-minute slow-wave sleep (SWS). A 5-minute pre-bed leg stretch promotes deep restorative sleep.'}
           </div>
         </div>
 
         <!-- Card 3: Posture -->
         <div class="bento-card-sub" style="background: #FFFFFF; border-left: 4px solid #93C5FD; border-radius: 14px; padding: 1.05rem 1.15rem;">
-          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">③ 숨은 키 2cm 감압 &amp; 점핑</div>
+          <div style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8; margin-bottom: 0.35rem;">③ Hidden Height 0.8 in (2 cm) Decompression &amp; Jumping</div>
           <div style="font-size: 0.92rem; color: #0F172A; line-height: 1.55;">
             ${hasPosture 
-              ? '• 저녁 <strong>문틀 철봉 매달리기(30초×3세트)</strong>로 눌린 척추 디스크를 펴주면 <strong>숨은 키 2cm(1.5~2.2cm)</strong>가 복원됩니다.' 
-              : '• 하루 15분 <strong>실내 트램폴린·줄넘기 점핑</strong>은 성장판 연골세포를 자극해 숨은 키 2cm와 골성장을 깨웁니다.'}
+              ? '• Evening <strong>doorway bar dead-hang (30s × 3 sets)</strong> unloads compressed spinal discs to restore <strong>+0.8 in (1.5–2.2 cm) of hidden stature</strong>.' 
+              : '• 15 minutes of daily <strong>indoor trampoline or jump rope</strong> stimulates epiphyseal growth plates for skeletal accrual and posture recovery.'}
           </div>
         </div>
       </div>
@@ -1214,16 +1214,16 @@
 
     const velocityList = (authoritiesData && authoritiesData.growthVelocityAndRedFlags) || [];
     const velocityGuide = velocityList.find((v) => clampedM >= v.minMonths && clampedM <= v.maxMonths) || {
-      ageRangeLabel: '소아·학령기 표준 기준',
-      normalVelocityCmPerYear: '연간 5.0 ~ 7.0cm 성장',
-      sleepRecommendation: '일일 총 9~12시간 (밤 10시 전 취침)'
+      ageRangeLabel: 'Pediatric & School-Age Standard',
+      normalVelocityCmPerYear: 'Annual Growth: 5.0 – 7.0 cm/yr (2.0 – 2.8 in/yr)',
+      sleepRecommendation: '9 – 12 Hours Daily (Bedtime before 10:00 PM)'
     };
 
     return `
       <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.2rem; margin-top: 1.15rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
           <h4 style="font-size: 1.02rem; font-weight: 900; color: #0F172A; margin: 0;">
-            대한소아내분비학회 · 미국수면재단(NSF) 핵심 기준 요약
+            AAP Pediatric Endocrinology &amp; National Sleep Foundation Core Standards
           </h4>
           <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.78rem; font-weight: 800; padding: 0.22rem 0.65rem; border-radius: 9999px;">
             ${velocityGuide.ageRangeLabel}
@@ -1232,137 +1232,137 @@
 
         <div style="display: flex; flex-direction: column; gap: 0.65rem;">
           <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">정상 성장속도 기준</span>
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">Normal Growth Velocity</span>
             <span style="font-size: 0.98rem; font-weight: 900; color: #1D4ED8;">${velocityGuide.normalVelocityCmPerYear}</span>
           </div>
           <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">연령 권장 수면시간</span>
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">Recommended Sleep Duration</span>
             <span style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8;">${velocityGuide.sleepRecommendation}</span>
           </div>
           <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 12px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">체질량지수 (BMI ${bmiInfo.bmi})</span>
-            <span style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor};">${bmiInfo.bmiStatus} (연 4cm 미만 시 진료 권장)</span>
+            <span style="font-size: 0.84rem; color: #475569; font-weight: 800;">Body Mass Index (BMI ${bmiInfo.bmi})</span>
+            <span style="font-size: 0.95rem; font-weight: 900; color: ${bmiInfo.bmiBadgeColor};">${bmiInfo.bmiStatus} (Clinical consult recommended if &lt; 4 cm/yr)</span>
           </div>
         </div>
       </div>
     `;
   }
 
-  // 14. Age-Appropriate Recommended Products & Compact Reference Section for Tab 1 (신체성장)
+  // 14. Age-Appropriate Recommended Products & Compact Reference Section for Tab 1 (Physical Growth)
   function renderAcademicEvidenceSection(profile = {}) {
     const ageMonths = Number(profile.ageMonths) || 120;
     const ageYears = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
 
-    let ageBandTitle = `만 ${ageYears}세 맞춤`;
+    let ageBandTitle = `Age ${ageYears} Specialized`;
     let prod1, prod2, prod3;
 
     if (ageYears <= 3) {
-      ageBandTitle = `만 ${ageYears}세(영유아기) 맞춤`;
+      ageBandTitle = `Ages 1–3 (Toddler &amp; Infant)`;
       prod1 = {
-        badge: `만 ${ageYears}세 맞춤 1위 · 액상 칼슘·D3`,
-        title: '차일드라이프 액상 구연산 칼슘·마그네슘 오렌지맛 & 비타민D3 1000IU 드롭',
-        desc: `생후 ${ageMonths}개월 영유아는 정제 알약 대신 위산과 무관하게 흡수되는 액상 구연산 칼슘과 비타민D3 드롭으로 기초 골격을 다져주어야 합니다.`,
+        badge: `Age ${ageYears} Top Pick · Liquid Calcium &amp; D3`,
+        title: 'ChildLife Essentials Liquid Calcium &amp; Magnesium with Vitamin D3 Drops',
+        desc: `For toddlers at ${ageMonths} months, non-acidic liquid calcium citrate and vitamin D3 drops provide gentle, highly bioavailable bone mineralization.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B0%A8%EC%9D%BC%EB%93%9C%EB%9D%BC%EC%9D%B4%ED%94%84+%EC%95%A1%EC%83%81+%EC%B9%BC%EC%8A%98+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%9C%A0%EC%95%84',
-        btnText: `쿠팡에서 만 ${ageYears}세 액상 칼슘·D3 보기 ↗`
+        btnText: `View Age ${ageYears} Liquid Calcium &amp; D3 ↗`
       };
       prod2 = {
-        badge: `만 ${ageYears}세 맞춤 2위 · 초유·아연 면역·식욕`,
-        title: '일동후디스 하이키즈 초유 분말 / 영유아 글루콘산 아연·초유 스틱',
-        desc: '편식·입짧음을 예방하고 성장호르몬 수용체(IGF-1) 활성과 기초 면역력을 동시에 챙겨주는 영유아 맞춤 초유·아연입니다.',
+        badge: `Age ${ageYears} Top Pick · Colostrum &amp; Zinc`,
+        title: 'Pediatric Colostrum Powder &amp; Bioavailable Zinc Glycinate Sticks',
+        desc: 'Supports healthy appetite, early mucosal immune barrier, and stimulates IGF-1 receptor sensitivity for continuous stature accrual.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%A0%EC%95%84+%EC%B4%88%EC%9C%A0+%EB%B6%84%EB%A7%90+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%98%81%EC%96%91%EC%A0%9C',
-        btnText: `쿠팡에서 영유아 초유·아연 영양제 보기 ↗`
+        btnText: `View Toddler Colostrum &amp; Zinc ↗`
       };
       prod3 = {
-        badge: `만 ${ageYears}세 맞춤 3위 · 안전 손잡이 트램폴린`,
-        title: '멜킨 유아 안전 손잡이형 무소음 밴드 실내 트램폴린 & 초음파 신장계',
-        desc: '영유아 소뇌 평형감각 발달과 하지 성장판 미세자극을 층간소음 없이 안전하게 도와주는 손잡이형 점핑 기구입니다.',
+        badge: `Age ${ageYears} Top Pick · Safe Handle Trampoline`,
+        title: 'Low-Impact Indoor Padded Trampoline with Handle &amp; Stature Gauge',
+        desc: 'Stimulates vestibular equilibrium, cerebellar coordination, and provides micro-mechanical epiphyseal loading safely.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88+%EC%9C%A0%EC%95%84+%EC%95%88%EC%A0%84+%EC%86%90%EC%9E%A1%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0',
-        btnText: `쿠팡에서 유아 손잡이 트램폴린 보기 ↗`
+        btnText: `View Toddler Handle Trampoline ↗`
       };
     } else if (ageYears <= 6) {
-      ageBandTitle = `만 ${ageYears}세(유아·유치원기) 맞춤`;
+      ageBandTitle = `Ages 4–6 (Preschool &amp; Kindergarten)`;
       prod1 = {
-        badge: `만 ${ageYears}세 맞춤 1위 · 키성장 기능성 젤리/분말`,
-        title: '종근당건강 아이커 / 키클래오042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
-        desc: `만 ${ageYears}세 유아기 하지 성장판 연골세포 증식 인자(IGF-1)를 깨워주는 식약처 인정 원료! 우유나 간식처럼 맛있게 챙기는 1위 제품입니다.`,
+        badge: `Age ${ageYears} Top Pick · Linear Growth Nutrients`,
+        title: 'Clinical Botanical Complex (Astragalus Extract) + Calcium &amp; Vitamin D3/Zinc',
+        desc: `Standardized botanical extract clinically documented to promote IGF-1 and IGFBP-3 synthesis without premature epiphyseal maturation.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `쿠팡에서 만 ${ageYears}세 HT042 키성장 영양제 보기 ↗`
+        btnText: `View Age ${ageYears} Botanical Growth Nutrients ↗`
       };
       prod2 = {
-        badge: `만 ${ageYears}세 맞춤 2위 · 츄어블 칼슘 올인원`,
-        title: '뉴질랜드 초유 칼슘·어골칼슘 + 비타민D3·아연·마그네슘 오렌지맛 츄어블',
-        desc: '알약을 삼키기 힘든 유아도 사탕처럼 맛있게 씹어 먹으며 칼슘·초유·비타민D3·아연을 한 번에 채우는 스테디셀러입니다.',
+        badge: `Age ${ageYears} Top Pick · Chewable Calcium All-in-One`,
+        title: 'Ossein Hydroxyapatite &amp; Colostrum Chewable with Vitamin D3 &amp; Zinc',
+        desc: 'Gentle, chewable formulation providing 45% bioavailable calcium matrix for rapid early childhood skeletal expansion.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%89%B4%EC%A7%88%EB%9E%9C%EB%93%9C+%EC%B4%88%EC%9C%A0+%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD+%EC%95%84%EC%97%B0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%B8%84%EC%96%B4%EB%B8%94',
-        btnText: `쿠팡에서 유아 초유·칼슘 츄어블 보기 ↗`
+        btnText: `View Pediatric Chewable Calcium ↗`
       };
       prod3 = {
-        badge: `만 ${ageYears}세 맞춤 3위 · 무소음 점핑 트램폴린`,
-        title: '층간소음 방어 어린이 실내 무소음 점핑 트램폴린 & 초음파 디지털 신장계',
-        desc: '하루 15분 수직 점핑(볼프의 법칙)으로 대퇴골·경골 성장판을 자극하고 매달 1일 아침 키를 0.1cm 단위로 측정합니다.',
+        badge: `Age ${ageYears} Top Pick · Silent Jumping Trampoline`,
+        title: 'Silent Shock-Absorption Rebounder &amp; Precision Digital Stadiometer',
+        desc: '15 minutes of daily vertical bouncing triggers Wolff law epiphyseal loading across distal femur and proximal tibia growth plates.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A0%90%ED%95%91%EB%A7%A4%ED%8A%B8',
-        btnText: `쿠팡에서 어린이 무소음 트램폴린 보기 ↗`
+        btnText: `View Silent Children Rebounder ↗`
       };
     } else if (ageYears <= 10) {
-      ageBandTitle = `만 ${ageYears}세(초등 학령기) 맞춤`;
+      ageBandTitle = `Ages 7–10 (Elementary School Phase)`;
       prod1 = {
-        badge: `만 ${ageYears}세 맞춤 1위 · 사춘기 전 기초키 확보`,
-        title: '종근당건강 아이커 / 키즈텐042 (식약처 인정 HT042 황기추출물 + 칼슘·비타민D·아연)',
-        desc: `사춘기 급성장기 진입 전 기초 신장을 최대한 높여주어야 하는 만 ${ageYears}세 초등 핵심 기능성 원료입니다.`,
+        badge: `Age ${ageYears} Top Pick · Pre-Pubertal Linear Accrual`,
+        title: 'Standardized Botanical Epiphyseal Activator + High-Bioavailability Calcium &amp; D3',
+        desc: `Maximizes baseline stature accumulation before the pubertal growth spurt during critical ages 7–10.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `쿠팡에서 초등 HT042 키성장 영양제 보기 ↗`
+        btnText: `View Pre-Pubertal Growth Nutrients ↗`
       };
       prod2 = {
-        badge: `만 ${ageYears}세 맞춤 2위 · 고흡수 어골·연골칼슘`,
-        title: '초등 고흡수 비소성 어골·연골칼슘(800mg) + 비타민D3·K2·아연·마그네슘',
-        desc: '초등 시기 급격히 늘어나는 뼈 길이 성장을 단단한 골기질로 채워주는 생체흡수율 45% 칼슘·D3·K2 배합입니다.',
+        badge: `Age ${ageYears} Top Pick · Bioavailable Microcrystalline Calcium`,
+        title: 'Microcrystalline Ossein Hydroxyapatite (800mg) + Vitamin D3/K2 &amp; Zinc',
+        desc: 'Provides 45% bioavailable calcium matrix to reinforce bone mineral content alongside rapid linear elongation.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EC%97%B0%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3+K2+%EC%95%84%EC%97%B0',
-        btnText: `쿠팡에서 초등 어골·연골칼슘 보기 ↗`
+        btnText: `View Microcrystalline Calcium ↗`
       };
       prod3 = {
-        badge: `만 ${ageYears}세 맞춤 3위 · 초음파 신장계 & 카운터 줄넘기`,
-        title: '인바디 초음파 디지털 신장계(1초 정밀 키재기) & 초등 디지털 카운터 줄넘기',
-        desc: '초등 줄넘기 급수제 대비 하루 500회 점핑으로 성장판을 자극하고, 매월 1일 아침 성장속도(cm/년)를 정밀 측정합니다.',
+        badge: `Age ${ageYears} Top Pick · Digital Stadiometer &amp; Counter Jump Rope`,
+        title: 'Ultrasonic Digital Stadiometer (1s Precision) &amp; Digital Counter Jump Rope',
+        desc: 'Stimulates epiphyseal plates with 500 rhythmic daily jumps while tracking precise monthly stature velocity (cm/yr).',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9D%B8%EB%B0%94%EB%94%94+%EC%B4%88%EC%9D%8C%ED%8C%8C+%EC%8B%A0%EC%9E%A5%EA%B3%84+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%94%94%EC%A7%80%ED%84%B8+%ED%82%A4%EC%9E%AC%EA%B8%B0',
-        btnText: `쿠팡에서 초음파 신장계·줄넘기 보기 ↗`
+        btnText: `View Stadiometer &amp; Jump Rope ↗`
       };
     } else {
-      ageBandTitle = `만 ${ageYears}세(초등 고학년·청소년 급성장기) 맞춤`;
+      ageBandTitle = `Ages 11–18 (Adolescent Growth Spurt &amp; Peak Height Velocity)`;
       prod1 = {
-        badge: `만 ${ageYears}세 급성장 1위 · HT042 & 고함량 칼슘`,
-        title: '식약처 인정 HT042 황기추출물 + 청소년 고함량 어골·연골칼슘(1100mg)·아르기닌',
-        desc: `성장판이 닫히기 전 마지막 골든타임(만 ${ageYears}세)에 폭발하는 뼈 성장 요구량을 채워주는 고함량 집중 배합입니다.`,
+        badge: `Age ${ageYears} Top Pick · Peak Velocity Intensive Calcium &amp; Botanicals`,
+        title: 'Adolescent High-Strength Calcium (1,100mg) + Vitamin D3/K2 &amp; Botanical Extract',
+        desc: `Meets intense skeletal mineral demand during the final golden window before epiphyseal fusion.`,
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%A2%85%EA%B7%BC%EB%8B%B9%EA%B1%B4%EA%B0%95+%EC%95%84%EC%9D%B4%EC%BB%A4+HT042+%ED%99%A9%EA%B8%B0%EC%B6%94%EC%B6%9C%EB%AC%BC+%ED%82%A4%EC%84%B1%EC%9E%A5',
-        btnText: `쿠팡에서 청소년 HT042·고함량 칼슘 보기 ↗`
+        btnText: `View Adolescent Growth Formulation ↗`
       };
       prod2 = {
-        badge: `만 ${ageYears}세 맞춤 2위 · 심야 수면·성장통 마그네슘`,
-        title: '청소년 킬레이트 글리시네이트 마그네슘·타트체리 슬립케어 & 비타민D3·K2',
-        desc: '학원·학업 스트레스로 늦게 자는 청소년의 서파수면(SWS) 성장호르몬 피크를 회복시키고 다리 성장통을 완화합니다.',
+        badge: `Age ${ageYears} Top Pick · Deep Sleep &amp; Growth Ache Magnesium`,
+        title: 'Chelated Magnesium Glycinate &amp; Tart Cherry Restorative Sleep Complex',
+        desc: 'Restores slow-wave sleep (SWS) growth hormone pulses and relieves nocturnal leg growing pains in active adolescents.',
         url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%AD%EC%86%8C%EB%85%84+%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98+%ED%83%80%ED%8A%B8%EC%B2%B4%EB%A6%AC+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD',
-        btnText: `쿠팡에서 청소년 수면·마그네슘 칼슘 보기 ↗`
+        btnText: `View Adolescent Sleep &amp; Magnesium ↗`
       };
       prod3 = {
-        badge: `만 ${ageYears}세 맞춤 3위 · 숨은키 +1.8cm 문틀 철봉`,
-        title: '무타공 안전 잠금 실내 문틀 철봉(데드행 바) & 척추 신전 고밀도 EPP 폼롤러',
-        desc: '하루 종일 책상에 앉아 눌린 척추 디스크를 저녁 90초 매달리기(Dead Hang)로 감압해 숨은 키 1.8~2.2cm를 즉시 복원합니다.',
-        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC',
-        btnText: `쿠팡에서 문틀 철봉·척추 폼롤러 보기 ↗`
+        badge: `Age ${ageYears} Top Pick · Hidden Height +0.8 in (+2 cm) Doorway Bar`,
+        title: 'Doorway Decompression Dead-Hang Bar &amp; High-Density Spinal Foam Roller',
+        desc: 'Evening 90-second spinal decompression unloads intervertebral discs to recover +0.8 in (1.8–2.2 cm) of compressed posture stature.',
+        url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%84%EC%A0%84+%EC%9E%A0%EA%B8%88+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%8B%A4%EB%82%B4+%ED%84%B1%EA%B1%B8%EC%9D%B4%EB%B4%89+%ED%8F%BC%EB%A1%A4%EB%9F%AC',
+        btnText: `View Doorway Bar &amp; Foam Roller ↗`
       };
     }
 
     return `
       <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-        <span style="font-size: 0.86rem; font-weight: 800; color: #1D4ED8;">동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+        <span style="font-size: 0.86rem; font-weight: 800; color: #1D4ED8;">Peer-Reviewed Academic Clinical Evidence: CDC / KDCA Reference Standards &amp; Pediatric Trials</span>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800; text-decoration: none;">PMID:25374566 Original Article ↗</a>
       </div>
 
       <!-- Bottom Recommended Products for Core 1 (Age-Tailored & Hidden by default so pure report shows first) -->
       <div id="core-1-recommended-products" class="curated-product-recommendation-section growth-product-section" style="display: none; background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 18px; padding: 1.25rem; margin-top: 1.25rem; text-align: left;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <h4 style="font-size: 1.1rem; font-weight: 900; color: #1D4ED8; margin: 0;">
-            [${ageBandTitle}] 신체성장 · 숨은 키 목표 달성 엄선 추천 상품 TOP 3
+            [${ageBandTitle}] Skeletal Growth &amp; Hidden Stature Curated Recommendations TOP 3
           </h4>
-          <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 800;">만 ${ageYears}세(${ageMonths}개월) 연령별 발달 단계 1:1 맞춤 큐레이션</span>
+          <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 800;">Age ${ageYears} (${ageMonths} Months) Developmental Stage 1:1 Curation</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.85rem;">
@@ -1403,7 +1403,7 @@
           </div>
         </div>
         <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed #BFDBFE; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.76rem; color: #475569;">
-          <span>학술 레퍼런스: Kim JH et al. (2018) 2017 Korean National Growth Charts · Lee D et al. HT042 Clinical Trial</span>
+          <span>Academic References: Kim JH et al. (2018) Growth Charts · Lee D et al. Pediatric Clinical Trial</span>
           <a href="https://pubmed.ncbi.nlm.nih.gov/29628905/" target="_blank" rel="noopener noreferrer" style="color: #1D4ED8; text-decoration: underline;">PubMed PMID: 29628905 ↗</a>
         </div>
       </div>
@@ -1438,10 +1438,10 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div>
             <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: #0F172A;">
-              우리 아이 몸무게 &amp; 체질량(BMI) 3단 밸런스 비교 (키 성장 연동 진단)
+              Child Weight &amp; Body Mass Index (BMI) 3-Tier Balance Comparison
             </h4>
             <p style="font-size: 0.82rem; color: #334155; margin: 0.2rem 0 0 0;">
-              질병관리청(KDCA) 또래 평균 몸무게 · 현재 키(${curH}cm) 맞춤 적정 몸무게 · 6개월 후 목표 몸무게
+              Pediatric Standard Median · Current Height (${curH}cm) Optimal Weight · 6-Month Target
             </p>
           </div>
           <span style="background: #EFF6FF; border: 1px solid ${bmiInfo.bmiBadgeColor}; color: ${bmiInfo.bmiBadgeColor}; font-size: 0.8rem; font-weight: 900; padding: 0.28rem 0.75rem; border-radius: 9999px;">
@@ -1453,20 +1453,20 @@
           <!-- Weight Bar 1: KDCA Peer Standard Weight -->
           <div class="predicted-bar-row">
             <div class="predicted-bar-header">
-              <span class="bar-title">① 동월령 또래 표준 평균 몸무게 (KDCA 50백분위)</span>
+              <span class="bar-title">① Same-Age Peer Standard Median Weight (CDC / KDCA 50th Percentile)</span>
               <span class="bar-val">${stdW}kg</span>
             </div>
             <div class="predicted-bar-track">
               <div class="predicted-bar-fill bar-fill-mph" style="width: ${wStdPct}%;"></div>
             </div>
-            <div class="predicted-bar-caption">질병관리청 성장도표 기준 같은 개월 수 ${gender === 'boy' ? '남아' : '여아'}의 표준 중앙값 체중</div>
+            <div class="predicted-bar-caption">Standard median reference weight for same-age ${gender === 'boy' ? 'boys' : 'girls'}</div>
           </div>
 
           <!-- Weight Bar 2: Current Child Weight -->
           <div class="predicted-bar-row" style="margin-top: 1rem;">
             <div class="predicted-bar-header">
-              <span class="bar-title">② 현재 우리 아이 몸무게 (상위 ${wTop}% · ${wPct}백분위)</span>
-              <span class="bar-val" style="color: ${bmiInfo.bmiBadgeColor};">${curW}kg <small style="font-size: 0.84rem;">(또래 평균 대비 ${wDeltaStr} / 현재 키 적정 대비 ${optDeltaStr})</small></span>
+              <span class="bar-title">② Current Child Weight (Top ${wTop}% · ${wPct}th Percentile)</span>
+              <span class="bar-val" style="color: ${bmiInfo.bmiBadgeColor};">${curW}kg <small style="font-size: 0.84rem;">(vs Peer Median: ${wDeltaStr} / vs Optimal for Height: ${optDeltaStr})</small></span>
             </div>
             <div class="predicted-bar-track">
               <div class="predicted-bar-fill" style="width: ${wCurPct}%; background: ${bmiInfo.bmiBadgeColor};"></div>
@@ -1477,13 +1477,13 @@
           <!-- Weight Bar 3: Optimal Weight for Current Height & 6-Month Goal -->
           <div class="predicted-bar-row" style="margin-top: 1rem;">
             <div class="predicted-bar-header">
-              <span class="bar-title">③ 현재 키(${curH}cm) 맞춤 적정 몸무게 → 6개월 후 목표</span>
-              <span class="bar-val bar-val-mint">적정 ${optW}kg <small style="color: #1D4ED8; font-size: 0.88rem; font-weight: 800;">→ 6개월 후 ${target6mW}kg</small></span>
+              <span class="bar-title">③ Optimal Weight for Current Height (${curH}cm) → 6-Month Target</span>
+              <span class="bar-val bar-val-mint">Optimal ${optW}kg <small style="color: #1D4ED8; font-size: 0.88rem; font-weight: 800;">→ 6-Month Goal: ${target6mW}kg</small></span>
             </div>
             <div class="predicted-bar-track">
               <div class="predicted-bar-fill bar-fill-mint" style="width: ${Math.max(wOptPct, wTargetPct)}%;"></div>
             </div>
-            <div class="predicted-bar-caption">성조숙증(체지방 과다)과 영양 부족 없이 잠재키(${pred.potentialHeight}cm)까지 가장 잘 자라는 황금 체중 궤적</div>
+            <div class="predicted-bar-caption">Balanced trajectory to reach maximum potential height (${pred.potentialHeight}cm) without excess adiposity or under-nutrition</div>
           </div>
         </div>
       </div>
@@ -1504,7 +1504,7 @@
 
     const deltaSign = kdca.deltaMedian >= 0 ? `+${kdca.deltaMedian}` : `${kdca.deltaMedian}`;
     const wDeltaSign = bmiInfo.weightDelta >= 0 ? `+${bmiInfo.weightDelta}` : `${bmiInfo.weightDelta}`;
-    const genderKorean = gender === 'boy' ? '남아' : '여아';
+    const genderLabel = gender === 'boy' ? 'Boy' : 'Girl';
     const vel = calculateVelocity(profile.recentGrowth6m || 3.0, Math.round(ageMonths / 12));
 
     return `
@@ -1514,32 +1514,32 @@
         <!-- Big Stats Bento Header (2x2 Grid — 2 Cards Per Row Filling the Screen Cleanly) -->
         <div class="growth-stats-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 0.85rem;">
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">키·몸무게 백분위</span>
-            <div style="font-size: 1.55rem; font-weight: 900; color: var(--cyan-pulse, #38BDF8); margin: 0.3rem 0;">키 상위 ${kdca.topPercent}%</div>
-            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">몸무게 상위 ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
-            <span style="font-size: 0.75rem; color: #334155;">키 ${kdca.percentile}th · 체중 ${bmiInfo.weightPercentile}th Pct</span>
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--cyan-pulse, #38BDF8);">Stature &amp; Weight Percentiles</span>
+            <div style="font-size: 1.55rem; font-weight: 900; color: var(--cyan-pulse, #38BDF8); margin: 0.3rem 0;">Height Top ${kdca.topPercent}%</div>
+            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">Weight Top ${bmiInfo.weightTopPercent}% (${bmiInfo.currentWeight}kg)</span>
+            <span style="font-size: 0.75rem; color: #334155;">Height ${kdca.percentile}th · Weight ${bmiInfo.weightPercentile}th Pct</span>
           </div>
 
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--growth-mint, #10B981);">연간 성장속도</span>
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--growth-mint, #10B981);">Annual Growth Velocity</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: ${vel.alert ? '#1D4ED8' : 'var(--growth-mint, #10B981)'}; margin: 0.3rem 0;">
-              ${vel.velocityCmPerYear} cm/년
+              ${vel.velocityCmPerYear} cm/yr
             </div>
-            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">적정체중 ${bmiInfo.optimalWeightForHeight}kg 기준</span>
+            <span style="font-size: 0.8rem; color: #0F172A; font-weight: 700; display: block;">Based on Optimal ${bmiInfo.optimalWeightForHeight}kg</span>
             <span style="font-size: 0.75rem; color: ${vel.alert ? '#1D4ED8' : 'var(--text-secondary)'};">
-              ${vel.alert ? '저성장 주의 (<4.0cm/yr)' : vel.status === 'accelerated' ? '급성장 가속 피크' : '정상 성장 궤도'}
+              ${vel.alert ? 'Sub-Optimal Velocity (&lt;4.0cm/yr)' : vel.status === 'accelerated' ? 'Peak Growth Velocity' : 'Normal Growth Velocity'}
             </span>
           </div>
 
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">유전 표적키 (MPH)</span>
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--amber-caution, #F59E0B);">Genetic Target Height (MPH)</span>
             <div style="font-size: 1.55rem; font-weight: 900; color: var(--amber-caution, #F59E0B); margin: 0.3rem 0;">${mphObj.mph}cm</div>
-            <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700; display: block;">잠재키 최대 ${pred.potentialHeight}cm</span>
+            <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700; display: block;">Potential Stature Up to ${pred.potentialHeight}cm</span>
             <span style="font-size: 0.75rem; color: #334155;">${mphObj.rangeStr} (±8.5cm)</span>
           </div>
 
           <div class="stat-card" style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 20px; padding: 1.15rem 0.9rem; text-align: center;">
-            <span style="font-size: 0.84rem; font-weight: 800; color: var(--rose-alert, #F43F5E);">성장판 잔여 기간</span>
+            <span style="font-size: 0.84rem; font-weight: 800; color: var(--rose-alert, #F43F5E);">Growth Plate Remaining Window</span>
             <div style="font-size: 1.35rem; font-weight: 900; color: var(--rose-alert, #F43F5E); margin: 0.35rem 0;">
               ${pred.windowHeadline || pred.monthsRemaining.split('(')[0].trim()}
             </div>
@@ -1549,7 +1549,7 @@
 
         <!-- Clear Clinical Explanation of Growth Plate Remaining Window -->
         <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.8rem 1rem; margin-bottom: 1.25rem; font-size: 0.84rem; color: #0F172A; line-height: 1.55;">
-          <strong style="color: #1D4ED8;">[골든타임 성장판 잔여 기간이란?]</strong> 뼈 끝의 연골 성장판이 완전히 닫혀 키 성장이 멈추는 시기(${gender === 'boy' ? '남아 평균 만 16.5~17세' : '여아 평균 만 14.5~15세'})까지 <strong>실제로 키가 더 자랄 수 있는 남은 시간</strong>입니다. ${pred.windowMeaningKo || ''}
+          <strong style="color: #1D4ED8;">[What is the Epiphyseal Growth Window?]</strong> The remaining period until distal epiphyseal cartilages fuse (${gender === 'boy' ? 'boys average age 16.5–17.0' : 'girls average age 14.5–15.0'}), representing <strong>the remaining biological window for linear stature growth</strong>. ${pred.windowMeaningKo || ''}
         </div>
 
         <!-- High-Resolution Interactive 3-Curve SVG Chart Card -->
@@ -1557,16 +1557,16 @@
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <div>
               <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0; color: #0F172A;">
-                3중 성인 예측키 성장 궤적 곡선 (Auxology Trajectory)
+                3-Tier Adult Stature Trajectory Curves (Auxology Trajectory)
               </h4>
               <p style="font-size: 0.82rem; color: #334155; margin: 0.2rem 0 0 0;">
-                현재 나이(${Math.round(ageMonths / 12)}세)부터 만 20세까지 3가지 성장 경로 시뮬레이션
+                Simulating 3 distinct growth trajectories from current age (${Math.round(ageMonths / 12)}) to age 20
               </p>
             </div>
             <div style="display: flex; gap: 0.85rem; font-size: 0.78rem; font-weight: 700;">
-              <span style="color: #1D4ED8;">● 최대 잠재 궤적</span>
-              <span style="color: #1D4ED8;">● 유전 기준(MPH)</span>
-              <span style="color: #1D4ED8;">● 방치 손실 궤적</span>
+              <span style="color: #1D4ED8;">● Optimized Potential Trajectory</span>
+              <span style="color: #1D4ED8;">● Genetic Target (MPH)</span>
+              <span style="color: #1D4ED8;">● Unmanaged Habit Trajectory</span>
             </div>
           </div>
           ${renderSvgGrowthCurve(gender, ageMonths, profile.currentHeight, {
@@ -1580,7 +1580,7 @@
         <!-- 3-Tier Predicted Height Bar Chart -->
         <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
           <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 1rem 0; color: #0F172A;">
-            성인 예측키 3단 비교 (유전 MPH vs 현재 습관 유지 vs 골든타임 최적화)
+            Adult Stature 3-Tier Comparison (Genetic MPH vs Unmanaged Habits vs Golden Window Optimized)
           </h4>
           ${render3TierBarChart(pred)}
         </div>
@@ -1594,7 +1594,7 @@
         <!-- 3 Habit Prescriptive Coaching Cards -->
         <div style="margin-top: 1.5rem;">
           <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: #0F172A;">
-            성장 방해 생체 요인별 임상 프로토콜
+            Clinical Protocol by Growth Inhibitor Factor
           </h4>
           ${renderCoachingCards(profile.habits)}
         </div>
