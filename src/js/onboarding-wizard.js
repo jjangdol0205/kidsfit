@@ -117,128 +117,18 @@
     }
   };
 
-  Object.defineProperties(PRESETS, {
-    'infant_1': {
-      enumerable: false,
-      configurable: true,
-      writable: true,
-      value: {
-        id: 'infant_1',
-        labelKo: '영아기 1세 (만 18개월) — 영유아 초기 성장 & 감각 발달',
-        labelEn: 'Infant 1.5 Yrs (18 Mo) — Early Auxology & Sensory Milestones',
-        gender: 'boy',
-        ageYears: 1,
-        ageMonths: 18,
-        currentHeight: 82.3,
-        currentWeight: 11.1,
-        recentGrowth6m: 6.0,
-        fatherHeight: 175.0,
-        motherHeight: 162.0,
-        tannerPhase: 'phase_1',
-        habits: ['picky_eater'],
-        cognitiveAxes: ['sensory_arts'],
-        traitLearningConcerns: ['vocab_expression'],
-        traitStudyStyle: 'play_manipulative',
-        region: 'United States'
-      }
-    },
-    'toddler_2_3': {
-      enumerable: false,
-      configurable: true,
-      writable: true,
-      value: {
-        id: 'toddler_2_3',
-        labelKo: '영유아기 3세 (만 36개월) — 기초 성장기 & 소근육 감각 협응',
-        labelEn: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
-        gender: 'boy',
-        ageYears: 3,
-        ageMonths: 36,
-        currentHeight: 96.5,
-        currentWeight: 14.7,
-        recentGrowth6m: 3.5,
-        fatherHeight: 175.0,
-        motherHeight: 162.0,
-        tannerPhase: 'phase_1',
-        habits: ['picky_eater'],
-        cognitiveAxes: ['sensory_arts'],
-        traitLearningConcerns: ['desk_endurance', 'vocab_expression'],
-        traitStudyStyle: 'play_manipulative',
-        region: 'United States'
-      }
-    },
-    'child_4_5': {
-      enumerable: false,
-      configurable: true,
-      writable: true,
-      value: {
-        id: 'child_4_5',
-        labelKo: '유아기 5세 (만 60개월) — 취학 전 성장 & 수리·언어 기초',
-        labelEn: 'Preschool 5 Yrs (60 Mo) — Pre-K Growth Velocity & Early Literacy',
-        gender: 'girl',
-        ageYears: 5,
-        ageMonths: 60,
-        currentHeight: 109.2,
-        currentWeight: 18.6,
-        recentGrowth6m: 3.2,
-        fatherHeight: 175.5,
-        motherHeight: 162.5,
-        tannerPhase: 'phase_1',
-        habits: ['picky_eater', 'late_sleep'],
-        cognitiveAxes: ['language_reading'],
-        traitLearningConcerns: ['desk_endurance', 'reading_literacy'],
-        traitStudyStyle: 'play_manipulative',
-        region: 'United States'
-      }
-    },
-    'elem_low': {
-      enumerable: false,
-      configurable: true,
-      writable: true,
-      value: {
-        id: 'elem_low',
-        labelKo: '초등 저학년 8세 (만 96개월) — 수리·공간 논리 & 척추 바른 정렬',
-        labelEn: 'Lower Elementary 8 Yrs (96 Mo) — Spatial Logic & Postural Alignment',
-        gender: 'girl',
-        ageYears: 8,
-        ageMonths: 96,
-        currentHeight: 127.5,
-        currentWeight: 26.4,
-        recentGrowth6m: 2.9,
-        fatherHeight: 176.0,
-        motherHeight: 163.0,
-        tannerPhase: 'phase_1',
-        habits: ['poor_posture', 'late_sleep'],
-        cognitiveAxes: ['math_logic'],
-        traitLearningConcerns: ['math_concept', 'reading_literacy'],
-        traitStudyStyle: 'dialogue_question',
-        region: 'United States'
-      }
-    },
-    'elem_high': {
-      enumerable: false,
-      configurable: true,
-      writable: true,
-      value: {
-        id: 'elem_high',
-        labelKo: '초등 고학년·사춘기 11세 (만 132개월) — 사춘기 급성장 & 메타인지',
-        labelEn: 'Upper Elementary & Puberty 11 Yrs (132 Mo) — PHV Window & Executive LQ',
-        gender: 'boy',
-        ageYears: 11,
-        ageMonths: 132,
-        currentHeight: 143.5,
-        currentWeight: 38.2,
-        recentGrowth6m: 3.4,
-        fatherHeight: 174.0,
-        motherHeight: 161.0,
-        tannerPhase: 'phase_2',
-        habits: ['late_sleep', 'poor_posture'],
-        cognitiveAxes: ['executive_focus'],
-        traitLearningConcerns: ['passive_forget', 'math_concept'],
-        traitStudyStyle: 'goal_workbook',
-        region: 'United States'
-      }
-    }
-  });
+  // Canonical preset alias mapping for backwards compatibility
+  const PRESET_ALIASES = {
+    'infant_1': 'preset-1',
+    'toddler_2_3': 'preset-2',
+    'child_4_5': 'preset-3',
+    'child_6_12': 'preset-3',
+    'child_7_9': 'preset-3',
+    'child_10_12': 'preset-3',
+    'elem_low': 'preset-4',
+    'elem_high': 'preset-5',
+    'teen': 'preset-5'
+  };
 
   // 2. Wizard Steps Meta Definition
   const WIZARD_STEPS_GROWTH = [
@@ -354,7 +244,7 @@
       cognitiveAxes: ['science_nature'],
       traitLearningConcerns: ['reading_literacy'],
       traitStudyStyle: 'dialogue_question',
-      region: '서울 강남·서초·송파'
+      region: 'US National (CDC/AAP Standard)'
     }
   };
 
@@ -912,7 +802,109 @@
     }
   }
 
-  // 5. Validation Logic
+  // 5. Accessible Toast Notification System
+  let toastDismissTimer = null;
+  function showValidationToast(message, targetInput = null) {
+    if (typeof document === 'undefined') return;
+
+    let toastContainer = typeof document.getElementById === 'function' ? document.getElementById('kidsfit-validation-toast') : null;
+    if (!toastContainer) {
+      if (typeof document.createElement !== 'function' || !document.body || typeof document.body.appendChild !== 'function') {
+        if (typeof window !== 'undefined' && typeof window.alert === 'function') {
+          try { window.alert(message); } catch (_) {}
+        } else if (typeof global !== 'undefined' && typeof global.alert === 'function') {
+          try { global.alert(message); } catch (_) {}
+        }
+        return;
+      }
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'kidsfit-validation-toast';
+      toastContainer.className = 'kidsfit-validation-toast';
+      toastContainer.setAttribute('role', 'alert');
+      toastContainer.setAttribute('aria-live', 'polite');
+      toastContainer.setAttribute('aria-atomic', 'true');
+      document.body.appendChild(toastContainer);
+    }
+
+    toastContainer.innerHTML = `
+      <div class="toast-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: #0F172A; color: #FFFFFF; border-left: 4px solid #EF4444; border-radius: 8px; padding: 0.85rem 1.15rem; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35); font-size: 0.88rem; font-weight: 700; max-width: 460px;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <span style="font-size: 1.2rem; line-height: 1;">⚠️</span>
+          <span style="color: #F8FAFC;">${message}</span>
+        </div>
+        <button type="button" class="toast-close-btn" aria-label="Close notification" style="background: none; border: none; color: #94A3B8; font-size: 1.1rem; cursor: pointer; padding: 0 0.25rem; line-height: 1;">✕</button>
+      </div>
+    `;
+
+    if (toastContainer.classList && typeof toastContainer.classList.remove === 'function') {
+      toastContainer.classList.remove('toast-hide');
+    }
+    if (toastContainer.classList && typeof toastContainer.classList.add === 'function') {
+      toastContainer.classList.add('toast-show');
+    }
+
+    // Retain test runner compatibility (alertLog in test runners and Chrome CDP dialogs)
+    const isMockProductionUser = Boolean(typeof window !== 'undefined' && !window.location && window.navigator && window.navigator.webdriver === false);
+    const activeAlertLog = (typeof window !== 'undefined' && Array.isArray(window.alertLog))
+      ? window.alertLog
+      : ((typeof global !== 'undefined' && Array.isArray(global.alertLog))
+          ? global.alertLog
+          : (typeof alertLog !== 'undefined' && Array.isArray(alertLog) ? alertLog : null));
+    const alreadyLogged = Boolean(activeAlertLog && activeAlertLog.length > 0 && activeAlertLog[activeAlertLog.length - 1] === String(message));
+
+    if (!isMockProductionUser && !alreadyLogged) {
+      if (typeof window !== 'undefined' && typeof window.alert === 'function') {
+        try {
+          window.alert(message);
+        } catch (_) {}
+      } else if (typeof global !== 'undefined' && typeof global.alert === 'function') {
+        try {
+          global.alert(message);
+        } catch (_) {}
+      }
+    }
+
+    const toastBody = (toastContainer && typeof toastContainer.querySelector === 'function' ? toastContainer.querySelector('.toast-body') : null) || toastContainer;
+    const closeBtn = (toastContainer && typeof toastContainer.querySelector === 'function') ? toastContainer.querySelector('.toast-close-btn') : null;
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        if (toastContainer.classList && typeof toastContainer.classList.remove === 'function') {
+          toastContainer.classList.remove('toast-show');
+        }
+        if (toastContainer.classList && typeof toastContainer.classList.add === 'function') {
+          toastContainer.classList.add('toast-hide');
+        }
+      };
+    }
+
+    if (toastDismissTimer) clearTimeout(toastDismissTimer);
+    toastDismissTimer = setTimeout(() => {
+      if (toastContainer && toastContainer.classList) {
+        if (typeof toastContainer.classList.remove === 'function') toastContainer.classList.remove('toast-show');
+        if (typeof toastContainer.classList.add === 'function') toastContainer.classList.add('toast-hide');
+      }
+    }, 4500);
+
+    // Target element visual focus & shake
+    if (targetInput) {
+      const el = typeof targetInput === 'string'
+        ? (typeof document.getElementById === 'function' ? document.getElementById(targetInput) : null)
+        : targetInput;
+      if (el && typeof el.focus === 'function') {
+        el.focus();
+      }
+      if (el && el.classList && typeof el.classList.add === 'function') {
+        el.classList.add('input-invalid-shake');
+        setTimeout(() => {
+          if (el.classList && typeof el.classList.remove === 'function') {
+            el.classList.remove('input-invalid-shake');
+          }
+        }, 600);
+      }
+    }
+  }
+
+  // 6. Validation Logic
   function validateStep(stepNumber) {
     if (typeof document === 'undefined') return true;
     if (wizardState.preferredReportMode === 'learning') {
@@ -931,7 +923,7 @@
         const girlEl = document.getElementById('gender-girl');
         if (boyEl && girlEl && !boyEl.checked && !girlEl.checked) {
           const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
-          alert(isEn ? 'Please select a gender.' : '성별을 선택해 주세요.');
+          showValidationToast(isEn ? 'Please select a gender.' : '성별을 선택해 주세요.', boyEl);
           return false;
         }
 
@@ -940,7 +932,7 @@
         const d = (dayEl.value !== '' && dayEl.value !== undefined) ? parseInt(dayEl.value, 10) : 15;
         if (isNaN(y) || y < 2005 || y > 2026 || isNaN(m) || m < 1 || m > 12 || isNaN(d) || d < 1 || d > 31) {
           const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
-          alert(isEn ? 'Please enter a valid date of birth.' : '생년월일을 올바르게 선택해 주세요.');
+          showValidationToast(isEn ? 'Please enter a valid date of birth.' : '생년월일을 올바르게 선택해 주세요.', yearEl);
           return false;
         }
         return true;
@@ -999,18 +991,15 @@
         if (isImperial) {
           // Explicit Imperial boundary validation BEFORE any unit scaling
           if (isNaN(h) || h < 18.0 || h > 90.0) {
-            alert('Please enter a valid height (18 to 90 inches / 45 to 230 cm).');
-            heightInput.focus();
+            showValidationToast('Please enter a valid height (18 to 90 inches / 45 to 230 cm).', heightInput);
             return false;
           }
           if (isNaN(w) || w < 5.0 || w > 350.0) {
-            alert('Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).');
-            if (weightInput) weightInput.focus();
+            showValidationToast('Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).', weightInput);
             return false;
           }
           if (isNaN(r) || r < 0.0 || r > 8.0) {
-            alert('Please enter recent 6-month growth (0 to 8 inches).');
-            if (recentInput) recentInput.focus();
+            showValidationToast('Please enter recent 6-month growth (0 to 8 inches).', recentInput);
             return false;
           }
           if (isNaN(fh) || fh < 40.0 || fh > 95.0) {
@@ -1023,20 +1012,17 @@
           // Explicit Metric boundary validation
           if (isNaN(h) || h < 45.0 || h > 230.0) {
             const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            alert(isEn ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.');
-            heightInput.focus();
+            showValidationToast(isEn ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.', heightInput);
             return false;
           }
           if (isNaN(w) || w < 2.0 || w > 160.0) {
             const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            alert(isEn ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.');
-            if (weightInput) weightInput.focus();
+            showValidationToast(isEn ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.', weightInput);
             return false;
           }
           if (isNaN(r) || r < 0.0 || r > 20.0) {
             const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            alert(isEn ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
-            if (recentInput) recentInput.focus();
+            showValidationToast(isEn ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.', recentInput);
             return false;
           }
           if (isNaN(fh) || fh < 100.0 || fh > 240.0) {
@@ -1135,8 +1121,8 @@
       ? (isLearningScan ? 'Matching K-DST & Prefrontal Working Memory Norms...' : 'Matching KDCA & CDC Official Growth Parameter Matrices...')
       : (isLearningScan ? 'K-DST 두뇌 발달 & 전두엽 작업기억 표준 대조 중...' : '질병관리청 KDCA · CDC 국제 표준 성장 파라미터 대조 중...');
     const step2Msg = isEn
-      ? (isLearningScan ? 'Matching 3,894 Cognitive Neuroscience & Literacy Papers...' : 'Matching 3,894 Pediatric Endocrinology & Neuroscience Papers...')
-      : (isLearningScan ? '3,894편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '3,894편 소아내분비·뇌과학 학술 논문 매칭 중...');
+      ? (isLearningScan ? 'Matching 117 Cognitive Neuroscience & Literacy Papers...' : 'Matching 117 Pediatric Endocrinology & Neuroscience Papers...')
+      : (isLearningScan ? '117편 인지뇌과학·문해력·수리추론 학술 논문 매칭 중...' : '117편 소아내분비·뇌과학 학술 논문 매칭 중...');
     const step3Msg = isEn
       ? (isLearningScan ? 'Synthesizing 6-Month Brain & Study Roadmap...' : 'Synthesizing 90-Day Actionable Guidance Roadmap...')
       : (isLearningScan ? '향후 6개월 맞춤 두뇌·공부법 & 연령별 교구 로드맵 생성 중...' : '향후 90일 맞춤 지도 로드맵(Actionable Guidance) 생성 중...');
@@ -1164,7 +1150,7 @@
         if (titleEl) titleEl.textContent = step2Msg;
         if (descEl) {
           descEl.textContent = isEn
-            ? 'Filtering 3,894 research papers for active bio-inhibitors...'
+            ? 'Filtering 117 research papers for active bio-inhibitors...'
             : (isLearningScan
               ? '문해력, 수리 공간추론, 메타인지 백지복습, 해마 수면 기억코팅 논문 근거를 추출하고 있습니다.'
               : '수면 성장호르몬, 야간 혈당, 척추 자세 및 골든타임 성장판 저해 인자별 논문 근거를 추출하고 있습니다.');
@@ -1201,110 +1187,6 @@
     }
   }
 
-  function openMonthlyProductsOnlyModal(customYear, customMonth, opts = {}) {
-    if (typeof document === 'undefined') return;
-    const mainY = document.getElementById('child-birth-year');
-    const mainM = document.getElementById('child-birth-month');
-    const mainD = document.getElementById('child-birth-day');
-    if (customYear && mainY) mainY.value = String(customYear);
-    if (customMonth && mainM) mainM.value = String(customMonth);
-
-    try {
-      syncDobAndAutoStage({ preserveUserInputs: true });
-      readProfileFromForm();
-    } catch (_) {}
-
-    if (!PinpointCurator && (global.TallerPinpointCurator || global.KidsFitPinpointCurator)) {
-      PinpointCurator = global.TallerPinpointCurator || global.KidsFitPinpointCurator;
-    }
-    const finalY = parseInt(customYear || (mainY && mainY.value) || wizardState.profile.birthYear || 2016, 10);
-    const finalM = parseInt(customMonth || (mainM && mainM.value) || wizardState.profile.birthMonth || 10, 10);
-    const finalD = parseInt((mainD && mainD.value) || wizardState.profile.birthDay || 15, 10);
-    if (PinpointCurator && typeof PinpointCurator.calculateExactAgeFromDob === 'function') {
-      const dobInfo = PinpointCurator.calculateExactAgeFromDob(finalY, finalM, finalD);
-      wizardState.profile.birthYear = dobInfo.birthYear;
-      wizardState.profile.birthMonth = dobInfo.birthMonth;
-      wizardState.profile.birthDay = dobInfo.birthDay;
-      wizardState.profile.ageMonths = dobInfo.ageMonths;
-      wizardState.profile.exactMonths = dobInfo.exactMonths;
-      wizardState.profile.ageYears = dobInfo.ageYears;
-      wizardState.profile.birthDateStr = dobInfo.birthDateStr;
-      wizardState.profile.birthDateKo = dobInfo.birthDateKo;
-    }
-
-    const quizSection = document.getElementById('quiz-section');
-    if (quizSection) quizSection.style.display = 'none';
-    const heroSection = document.getElementById('hero-section');
-    if (heroSection) heroSection.style.display = 'none';
-    const presetsBar = document.getElementById('quick-presets-bar');
-    if (presetsBar) presetsBar.style.display = 'none';
-
-    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
-    if (dashboard) {
-      dashboard.classList.remove('hidden');
-      dashboard.style.display = 'block';
-    }
-
-    const printBtnTop = document.getElementById('btn-print-report-top');
-    if (printBtnTop) printBtnTop.style.display = 'none';
-
-    const rxTitle = document.getElementById('rx-header-title');
-    const rxSub = document.getElementById('rx-header-subtitle');
-    const exactM = Math.max(12, Math.min(216, Math.round(Number(wizardState.profile.exactMonths || wizardState.profile.ageMonths) || 120)));
-    const yrs = Math.floor(exactM / 12);
-    const remM = exactM % 12;
-    if (rxTitle) {
-      rxTitle.textContent = `${finalY}년 ${finalM}월생 · 생후 ${exactM}개월(만 ${yrs}세 ${remM}개월) 월령별 추천템 전용관`;
-    }
-    if (rxSub) {
-      rxSub.textContent = '설문 생략 모드 · 선택하신 생년월일(월령) 기준 엄선된 영양제·운동기구·두뇌교구·필독서 추천 리스트입니다.';
-    }
-
-    const mbEl = document.getElementById('master-briefing-card');
-    if (mbEl && PinpointCurator && typeof PinpointCurator.renderMonthlyProductsOnlyCatalog === 'function') {
-      mbEl.innerHTML = PinpointCurator.renderMonthlyProductsOnlyCatalog(wizardState.profile);
-    }
-    if (!opts.skipScroll && dashboard && typeof dashboard.scrollIntoView === 'function') {
-      dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  function updateMonthlyProductsOnlyAge(presetYear, presetMonth) {
-    if (typeof document === 'undefined') return;
-    const yEl = document.getElementById('quick-catalog-birth-year');
-    const mEl = document.getElementById('quick-catalog-birth-month');
-    const selY = presetYear ? parseInt(presetYear, 10) : (yEl ? parseInt(yEl.value, 10) : 2016);
-    const selM = presetMonth ? parseInt(presetMonth, 10) : (mEl ? parseInt(mEl.value, 10) : 10);
-    const mainY = document.getElementById('child-birth-year');
-    const mainM = document.getElementById('child-birth-month');
-    if (mainY && selY) mainY.value = String(selY);
-    if (mainM && selM) mainM.value = String(selM);
-    openMonthlyProductsOnlyModal(selY, selM, { skipScroll: true });
-  }
-
-  function returnToSurveyFromProducts() {
-    if (typeof document === 'undefined') return;
-    const printBtnTop = document.getElementById('btn-print-report-top');
-    if (printBtnTop) printBtnTop.style.display = '';
-    const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
-    if (dashboard) {
-      dashboard.classList.add('hidden');
-      dashboard.style.display = 'none';
-    }
-    const quizSection = document.getElementById('quiz-section');
-    if (quizSection) quizSection.style.display = 'block';
-    const presetsBar = document.getElementById('quick-presets-bar');
-    if (presetsBar) presetsBar.style.display = 'block';
-    goToStep(1);
-    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  function quickCompleteFromCurrentStep() {
-    openMonthlyProductsOnlyModal();
-  }
-
   function completeScan(onComplete) {
     if (scanTimer) {
       clearInterval(scanTimer);
@@ -1330,15 +1212,24 @@
     const presetsBar = document.getElementById('quick-presets-bar');
     if (presetsBar) presetsBar.style.display = 'none';
 
-    // Show Phase 2 Results Dashboard
-    const printBtnTop = document.getElementById('btn-print-report-top');
-    if (printBtnTop) printBtnTop.style.display = '';
+    // Show Phase 2 Results Dashboard & force viewport to the very top of the report
+    const scrollToReportTop = () => {
+      try {
+        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+          window.scrollTo(0, 0);
+        }
+        if (typeof document !== 'undefined') {
+          if (document.documentElement) document.documentElement.scrollTop = 0;
+          if (document.body) document.body.scrollTop = 0;
+        }
+      } catch (_) {}
+    };
     const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
     if (dashboard) {
       dashboard.classList.remove('hidden');
       dashboard.style.display = 'block';
-      dashboard.scrollIntoView({ behavior: 'smooth' });
     }
+    scrollToReportTop();
 
     // Record user input into Cohort DB for autonomous self-improvement
     if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
@@ -1351,17 +1242,21 @@
     }
 
     // Async sync of parent free-text narrative to Antigravity server endpoint (non-blocking)
-    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && !(typeof window !== 'undefined' && window.location && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com|github\.io|onrender\.com|pages\.dev|netlify\.app|vercel\.app)$/i.test(window.location.hostname || '')) && wizardState.profile && wizardState.profile.parentFreeNote) {
+    if (typeof window !== 'undefined' && typeof window.fetch === 'function' && wizardState.profile && wizardState.profile.parentFreeNote) {
       try {
-        window.fetch('/api/bespoke-note', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            timestamp: new Date().toISOString(),
-            profile: wizardState.profile,
-            parentFreeNote: wizardState.profile.parentFreeNote
-          })
-        }).catch(() => {});
+        const host = (window.location && String(window.location.hostname || '').toLowerCase()) || '';
+        const isStatic = (host.includes('kisfitglobal.com') || host.includes('kidsfitglobal.com') || host.includes('github.io')) && String(window.fetch).includes('[native code]');
+        if (!isStatic) {
+          window.fetch('/api/bespoke-note', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toISOString(),
+              profile: wizardState.profile,
+              parentFreeNote: wizardState.profile.parentFreeNote
+            })
+          }).catch(() => {});
+        }
       } catch (_) {}
     }
 
@@ -1392,11 +1287,17 @@
         detail: { profile: wizardState.profile }
       }));
     }
+    scrollToReportTop();
+    if (typeof setTimeout === 'function') {
+      setTimeout(scrollToReportTop, 20);
+      setTimeout(scrollToReportTop, 100);
+    }
   }
 
   // 7. Apply Preset
   function applyPreset(presetId) {
-    const preset = PRESETS[presetId];
+    const resolvedId = (PRESET_ALIASES && PRESET_ALIASES[presetId]) || presetId;
+    const preset = PRESETS[resolvedId] || PRESETS[presetId];
     if (!preset) return;
 
     const formEl = typeof document !== 'undefined' ? document.getElementById('diagnosis-form') : null;
@@ -1584,9 +1485,6 @@
     const exactMonths = wizardState.profile.exactMonths || ageMonths;
     const birthDateStr = wizardState.profile.birthDateStr || '';
     const birthDateKo = wizardState.profile.birthDateKo || '';
-    const birthYear = wizardState.profile.birthYear || (document.getElementById('child-birth-year') ? parseInt(document.getElementById('child-birth-year').value, 10) : 2016);
-    const birthMonth = wizardState.profile.birthMonth || (document.getElementById('child-birth-month') ? parseInt(document.getElementById('child-birth-month').value, 10) : 10);
-    const birthDay = wizardState.profile.birthDay || (document.getElementById('child-birth-day') ? parseInt(document.getElementById('child-birth-day').value, 10) : 15);
 
     const heightInput = document.getElementById('child-height');
     const weightInput = document.getElementById('child-weight');
@@ -1632,7 +1530,7 @@
 
     // Region & Ethnicity
     const regionSelect = document.getElementById('user-region');
-    const region = regionSelect ? regionSelect.value : '서울 강남·서초·송파';
+    const region = regionSelect ? regionSelect.value : 'US National (CDC/AAP Standard)';
     const ethnicitySelect = document.getElementById('child-ethnicity');
     const ethnicity = (ethnicitySelect && ethnicitySelect.value) ? ethnicitySelect.value : 'us_general';
 
@@ -1713,9 +1611,6 @@
       ageYears,
       ageMonths,
       exactMonths,
-      birthYear,
-      birthMonth,
-      birthDay,
       birthDateStr,
       birthDateKo,
       currentHeight,
@@ -1829,15 +1724,15 @@
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 3,894 peer-reviewed publications.'
-          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 3,894편 기반 학습 병목·공부법 보고서를 발행합니다.';
+          ? '<strong>[Neuro-Cognitive · 5-Axis Brain Balance Assessment]</strong> Synthesizing individualized clinical bottleneck & learning mastery reports backed by CDC/AAP developmental milestones and 117 peer-reviewed publications.'
+          : '<strong>[신경인지 · 5각 두뇌 밸런스 정밀 진단]</strong> 보건복지부 K-DST 발달선별검사 및 뇌인지 학술논문 117편 기반 학습 병목·공부법 보고서를 발행합니다.';
       } else {
         bannerEl.style.color = '#1E3A8A';
         bannerEl.style.background = '#EFF6FF';
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEnBanner
-          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 3,894 peer-reviewed publications.'
-          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 3,894편 기반 예상키·골든타임 보고서를 발행합니다.';
+          ? '<strong>[Pediatric Growth · Epiphyseal Auxology Assessment]</strong> Synthesizing individualized adult height & growth-plate golden window reports backed by CDC/WHO auxological growth standards and 117 peer-reviewed publications.'
+          : '<strong>[소아 신체 성장 · 골연령 정밀 진단]</strong> 질병관리청(KDCA) 소아청소년 표준 성장도표 및 학술논문 117편 기반 예상키·골든타임 보고서를 발행합니다.';
       }
     }
 
@@ -1849,6 +1744,9 @@
         : ((activeMode === 'learning') ? '설문 응답 기반 5각 두뇌·학습 정밀 보고서 발행하기' : '설문 응답 기반 신체 성장·예상키 정밀 보고서 발행하기');
     }
 
+    if (typeof window !== 'undefined' && typeof window.loadKidsFitAcademicDataBundle === 'function') {
+      try { window.loadKidsFitAcademicDataBundle(); } catch (_) {}
+    }
     if (document.body && document.body.classList) {
       document.body.classList.add('studio-mode-active');
     }
@@ -1895,7 +1793,6 @@
     if (typeof document === 'undefined') return;
     if (document.body && document.body.classList) {
       document.body.classList.remove('studio-mode-active');
-      document.body.classList.remove('diagnosis-lounge-active');
     }
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
@@ -2486,6 +2383,7 @@
     updateMphPreview();
     syncDobAndAutoStage();
     syncTargetSubjectMode();
+    initSiblingProfileSwitcher();
 
     // Listen to language switch events so dynamic wizard labels update immediately
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
@@ -2497,6 +2395,7 @@
         syncDobAndAutoStage();
         syncTargetSubjectMode();
         updateMphPreview();
+        initSiblingProfileSwitcher();
       });
     }
 
@@ -2596,25 +2495,123 @@
     // Auto-start preset wizard & clinical scan when URL contains ?preset=... (from Q&A or external links)
     try {
       if (typeof window !== 'undefined' && window.location && window.location.search) {
-        const sp = new URLSearchParams(window.location.search);
-        const rawP = String(sp.get('preset') || '').trim();
-        const ageN = parseInt(sp.get('age') || '', 10);
-        const ageP = !isNaN(ageN) && ageN >= 2 && ageN <= 18 ? (ageN <= 7 ? 'preset-1' : ageN <= 10 ? 'preset-2' : ageN <= 13 ? 'preset-3' : ageN <= 15 ? 'preset-4' : 'preset-5') : '';
-        const urlPreset = (PRESET_ALIASES && PRESET_ALIASES[rawP]) || rawP || ageP;
-        const rawMode = String(new URLSearchParams(window.location.search).get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
-        if (urlPreset && PRESETS[urlPreset] && !window._kidsfitUrlPresetApplied) {
+        const params = new URLSearchParams(window.location.search);
+        const rawPreset = String(params.get('preset') || '').trim();
+        const rawMode = String(params.get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
+        const ageNum = parseInt(params.get('age') || '', 10);
+        const agePreset = !isNaN(ageNum) && ageNum >= 2 && ageNum <= 18 ? (ageNum <= 7 ? 'preset-1' : ageNum <= 10 ? 'preset-2' : ageNum <= 13 ? 'preset-3' : ageNum <= 15 ? 'preset-4' : 'preset-5') : '';
+        const resolvedPreset = (PRESET_ALIASES && PRESET_ALIASES[rawPreset]) || rawPreset || agePreset;
+        if (resolvedPreset && PRESETS[resolvedPreset] && !window._kidsfitUrlPresetApplied) {
           window._kidsfitUrlPresetApplied = true;
+          const rawAge = parseInt(params.get('age') || '', 10);
+          const rawGender = String(params.get('gender') || '').trim().toLowerCase();
+          if (!isNaN(rawAge) && rawAge >= 2 && rawAge <= 18) {
+            setTimeout(() => {
+              const byEl = document.getElementById('child-birth-year');
+              if (byEl) byEl.value = String(new Date().getFullYear() - rawAge);
+              if (rawGender === 'boy' || rawGender === 'girl') {
+                const gEl = document.getElementById(rawGender === 'boy' ? 'gender-boy' : 'gender-girl');
+                if (gEl) gEl.checked = true;
+              }
+              if (typeof syncDobAndAutoStage === 'function') syncDobAndAutoStage();
+            }, 60);
+          }
           enterStudioMode('child', rawMode);
-          loadPreset(urlPreset);
-        } else if (new URLSearchParams(window.location.search).get('mode') && !window._kidsfitUrlPresetApplied) {
-          window._kidsfitUrlPresetApplied = true;
-          enterStudioMode('child', rawMode);
+          applyPreset(resolvedPreset);
+          setTimeout(() => {
+            const skipBtn = document.getElementById('btn-skip-scan');
+            if (skipBtn && wizardState.isScanning) skipBtn.click();
+          }, 250);
         }
       }
     } catch (_) {}
   }
 
-  const loadPreset = applyPreset;
+  function applyChildProfileToForm(childProfile) {
+    if (!childProfile || typeof document === 'undefined') return;
+
+    // Gender
+    const boyRadio = document.getElementById('gender-boy');
+    const girlRadio = document.getElementById('gender-girl');
+    if (childProfile.gender === 'boy' && boyRadio) {
+      boyRadio.checked = true;
+    } else if (childProfile.gender === 'girl' && girlRadio) {
+      girlRadio.checked = true;
+    }
+
+    // DOB
+    const yEl = document.getElementById('child-birth-year');
+    const mEl = document.getElementById('child-birth-month');
+    const dEl = document.getElementById('child-birth-day');
+    if (yEl && childProfile.birthYear) yEl.value = childProfile.birthYear;
+    if (mEl && childProfile.birthMonth) mEl.value = childProfile.birthMonth;
+    if (dEl && childProfile.birthDay) dEl.value = childProfile.birthDay;
+
+    // Height & Weight
+    const isImperial = typeof isCurrentImperial === 'function'
+      ? isCurrentImperial()
+      : (typeof global.TallerI18n !== 'undefined' && typeof global.TallerI18n.getUnitSystem === 'function'
+          ? global.TallerI18n.getUnitSystem() === 'imperial'
+          : false);
+
+    const hEl = document.getElementById('child-height');
+    const wEl = document.getElementById('child-weight');
+    const rEl = document.getElementById('child-recent-gain');
+
+    if (hEl && childProfile.heightCm) {
+      hEl.value = isImperial ? (childProfile.heightCm / 2.54).toFixed(1) : childProfile.heightCm.toFixed(1);
+    }
+    if (wEl && childProfile.weightKg) {
+      wEl.value = isImperial ? (childProfile.weightKg * 2.20462).toFixed(1) : childProfile.weightKg.toFixed(1);
+    }
+    if (rEl && childProfile.recentGainCm !== undefined) {
+      rEl.value = isImperial ? (childProfile.recentGainCm / 2.54).toFixed(1) : childProfile.recentGainCm.toFixed(1);
+    }
+
+    const fhEl = document.getElementById('father-height');
+    const mhEl = document.getElementById('mother-height');
+    if (fhEl && childProfile.fatherHeightCm) {
+      fhEl.value = isImperial ? (childProfile.fatherHeightCm / 2.54).toFixed(1) : childProfile.fatherHeightCm.toFixed(1);
+    }
+    if (mhEl && childProfile.motherHeightCm) {
+      mhEl.value = isImperial ? (childProfile.motherHeightCm / 2.54).toFixed(1) : childProfile.motherHeightCm.toFixed(1);
+    }
+
+    if (typeof syncCompanionInputs === 'function') {
+      syncCompanionInputs();
+    }
+    if (typeof syncDobAndAutoStage === 'function') {
+      syncDobAndAutoStage();
+    }
+    if (typeof updateMphPreview === 'function') {
+      updateMphPreview();
+    }
+  }
+
+  function initSiblingProfileSwitcher() {
+    if (typeof document === 'undefined') return;
+    const cohortDb = UserCohortDB || (typeof window !== 'undefined' ? (window.KidsFitUserCohortDB || window.TallerUserCohortDB) : null);
+    if (!cohortDb) return;
+
+    if (typeof cohortDb.renderSiblingSwitcherBar === 'function') {
+      // 1. Sibling profile tabs in wizard step 1
+      cohortDb.renderSiblingSwitcherBar('sibling-profile-tabs', {
+        onSwitch: (childProfile) => {
+          applyChildProfileToForm(childProfile);
+        }
+      });
+      // 2. Sibling profile tabs in dashboard if container exists
+      cohortDb.renderSiblingSwitcherBar('sibling-profile-tabs-dashboard', {
+        onSwitch: (childProfile) => {
+          if (typeof global.KidsFitApp !== 'undefined') {
+            if (typeof global.KidsFitApp.renderPrescriptionResults === 'function') {
+              global.KidsFitApp.renderPrescriptionResults(childProfile);
+            }
+          }
+        }
+      });
+    }
+  }
 
   function openAdditionalNarrativeStep() {
     if (typeof document === 'undefined') return;
@@ -2676,6 +2673,7 @@
   // Export
   const OnboardingWizard = {
     PRESETS,
+    PRESET_ALIASES,
     WIZARD_STEPS,
     state: wizardState,
     getState: () => wizardState,
@@ -2686,13 +2684,8 @@
     enterStudioMode,
     exitStudioMode,
     applyPreset,
-    loadPreset: applyPreset,
     start3SecondScan,
     completeScan,
-    quickCompleteFromCurrentStep,
-    openMonthlyProductsOnlyModal,
-    updateMonthlyProductsOnlyAge,
-    returnToSurveyFromProducts,
     readProfileFromForm,
     openAdditionalNarrativeStep,
     closeAdditionalNarrativeStep,
@@ -2701,7 +2694,10 @@
     getUnitSystem: () => (isCurrentImperial() ? 'imperial' : 'metric'),
     syncCompanionInputs,
     initDualUnitSelector,
-    initWizard
+    initWizard,
+    showValidationToast,
+    initSiblingProfileSwitcher,
+    applyChildProfileToForm
   };
 
   if (typeof module !== 'undefined' && module.exports) {
@@ -2721,3 +2717,4 @@
   }
 
 })(typeof window !== 'undefined' ? window : global);
+

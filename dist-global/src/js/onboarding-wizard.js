@@ -122,6 +122,9 @@
     'infant_1': 'preset-1',
     'toddler_2_3': 'preset-2',
     'child_4_5': 'preset-3',
+    'child_6_12': 'preset-3',
+    'child_7_9': 'preset-3',
+    'child_10_12': 'preset-3',
     'elem_low': 'preset-4',
     'elem_high': 'preset-5',
     'teen': 'preset-5'
@@ -2515,6 +2518,10 @@
           }
           enterStudioMode('child', rawMode);
           applyPreset(resolvedPreset);
+          setTimeout(() => {
+            const skipBtn = document.getElementById('btn-skip-scan');
+            if (skipBtn && wizardState.isScanning) skipBtn.click();
+          }, 250);
         }
       }
     } catch (_) {}

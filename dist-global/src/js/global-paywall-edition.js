@@ -3801,7 +3801,7 @@ ${isMasked ? `
           '<button type="button" onclick="var m=document.getElementById(\'kidsfit-embedded-ls-iframe-modal\');if(m)m.remove();" style="background:#1E293B;color:#FFFFFF;border:1px solid #475569;border-radius:9999px;width:30px;height:30px;font-weight:900;cursor:pointer;">✕</button>' +
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
-          '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Gateway Notice: If international card checkout is under maintenance in your region, unlock your full 7-chapter report &amp; PDF free right now:</span>' +
+          '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter clinical dossier &amp; printable 2-page PDF:</span>' +
           '<button type="button" onclick="window.claimKidsFitInstantFoundingPass(\'iframe_fallback\')" style="background:#059669;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(5,150,105,0.25);">⚡ Instant 7-Day Free Report Unlock →</button>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
@@ -3964,7 +3964,7 @@ ${isMasked ? `
             <span style="font-size:0.66rem;font-weight:800;background:#10B981;color:#FFFFFF;padding:0.1rem 0.45rem;border-radius:9999px;">FREE 7-DAY UNLOCK</span>
           </div>
           <p style="font-size:0.74rem;color:#1E293B;line-height:1.4;margin:0 0 0.5rem 0;">
-            While Store #296100 completes regional payment gateway synchronization, parents can unlock all 7 clinical chapters &amp; Printable Hospital PDF immediately at $0:
+            Want to test the unlocked 7-chapter clinical dossier &amp; Printable 2-Page Hospital PDF before billing (or while reviewing Store #296100 deliverables)? Activate an instant 7-Day Preview Pass:
           </p>
           <button type="button" id="btn-claim-instant-founding-pass" onclick="window.claimKidsFitInstantFoundingPass('modal_direct')" style="width:100%;padding:0.68rem 0.85rem;border-radius:10px;border:none;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;font-size:0.84rem;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(5,150,105,0.24);">
             ⚡ Activate Free 7-Day Clinical Founding Pass &amp; Unlock PDF Now →
