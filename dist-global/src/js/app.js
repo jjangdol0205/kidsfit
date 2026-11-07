@@ -1339,7 +1339,7 @@
       try {
         const params = new URLSearchParams(window.location.search);
         const viewParam = params.get('view');
-        const presetParam = params.get('preset');
+        const urlAgeNum = parseInt(params.get('age') || '', 10); const urlAutoPreset = !isNaN(urlAgeNum) && urlAgeNum >= 2 && urlAgeNum <= 18 ? (urlAgeNum <= 4 ? 'preset-1' : urlAgeNum <= 8 ? 'preset-2' : urlAgeNum <= 11 ? 'preset-3' : urlAgeNum <= 14 ? 'preset-4' : 'preset-5') : (params.get('autostart') === '1' ? 'preset-2' : ''); const presetParam = urlAutoPreset || params.get('preset');
         const modeParam = params.get('mode');
 
         const PRESET_ALIAS_MAP = {
@@ -1374,7 +1374,7 @@
             state.profile = Object.assign({}, JSON.parse(JSON.stringify(PRESETS[mappedPreset])), {
               preferredReportMode: (modeParam === 'learning' || viewParam === 'learning-report') ? 'learning' : 'growth'
             });
-            syncStateToForm(state.profile);
+            if (!isNaN(urlAgeNum) && urlAgeNum >= 2 && urlAgeNum <= 18) { state.profile.ageYears = urlAgeNum; state.profile.ageMonths = urlAgeNum * 12; } syncStateToForm(state.profile);
           }
           if (document.body && document.body.classList) {
             document.body.classList.add('studio-mode-active');

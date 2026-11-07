@@ -120,13 +120,13 @@
   // Canonical preset alias mapping for backwards compatibility
   const PRESET_ALIASES = {
     'infant_1': 'preset-1',
-    'toddler_2_3': 'preset-2',
-    'child_4_5': 'preset-3',
+    'toddler_2_3': 'preset-1',
+    'child_4_5': 'preset-2',
     'child_6_12': 'preset-3',
     'child_7_9': 'preset-3',
     'child_10_12': 'preset-3',
-    'elem_low': 'preset-4',
-    'elem_high': 'preset-5',
+    'elem_low': 'preset-2',
+    'elem_high': 'preset-3',
     'teen': 'preset-5'
   };
 
@@ -2499,8 +2499,8 @@
         const rawPreset = String(params.get('preset') || '').trim();
         const rawMode = String(params.get('mode') || '').trim().toLowerCase() === 'learning' ? 'learning' : 'growth';
         const ageNum = parseInt(params.get('age') || '', 10);
-        const agePreset = !isNaN(ageNum) && ageNum >= 2 && ageNum <= 18 ? (ageNum <= 7 ? 'preset-1' : ageNum <= 10 ? 'preset-2' : ageNum <= 13 ? 'preset-3' : ageNum <= 15 ? 'preset-4' : 'preset-5') : '';
-        const resolvedPreset = (PRESET_ALIASES && PRESET_ALIASES[rawPreset]) || rawPreset || agePreset;
+        const agePreset = !isNaN(ageNum) && ageNum >= 2 && ageNum <= 18 ? (ageNum <= 4 ? 'preset-1' : ageNum <= 8 ? 'preset-2' : ageNum <= 11 ? 'preset-3' : ageNum <= 14 ? 'preset-4' : 'preset-5') : (params.get('autostart') === '1' ? 'preset-2' : '');
+        const resolvedPreset = agePreset || (PRESET_ALIASES && PRESET_ALIASES[rawPreset]) || rawPreset;
         if (resolvedPreset && PRESETS[resolvedPreset] && !window._kidsfitUrlPresetApplied) {
           window._kidsfitUrlPresetApplied = true;
           const rawAge = parseInt(params.get('age') || '', 10);

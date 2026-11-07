@@ -64,7 +64,7 @@
   }
 
   function isReportUnlocked() {
-    if (isSamplePreviewActive()) return true;
+    if (false && isSamplePreviewActive()) return true; // Disabled free sample full-unlock bypass
     try {
       if (typeof window !== 'undefined' && window.location) {
         const s = String(window.location.search || '').toLowerCase();
@@ -1152,10 +1152,10 @@
       quizSec.querySelectorAll('span, strong, div').forEach((el) => {
         if (el.children.length === 0 && el.textContent) {
           const t = el.textContent.trim();
-          if (t === '뇌인지 학술논문 기반 판독') el.textContent = 'Neuro-Cognitive Paper-Based Scan';
-          else if (t === '선택 항목 1:1 정밀 반영') el.textContent = '1:1 Calibrated to Your Selections';
-          else if (t === '[다음 단계]') el.textContent = '[Next Step]';
-          else if (t === '예시1') el.textContent = 'Sample Note';
+          if (t === '\uB1CC\uC778\uC9C0 \uD559\uC220\uB18C\uBB38 \uAE30\uBC18 \uD310\uB3C5' || t === 'Neuro-Cognitive Paper-Based Scan') el.textContent = 'Neuro-Cognitive Paper-Based Scan';
+          else if (t === '\uC120\uD0DD \uD56D\uBAA9 1:1 \uC815\uBC00 \uBC18\uC601' || t === '1:1 Calibrated to Your Selections') el.textContent = '1:1 Calibrated to Your Selections';
+          else if (t === '[\uB2E4\uC74C \uB2E8\uACC4]' || t === '[Next Step]') el.textContent = '[Next Step]';
+          else if (t === '\uC608\uC2DC1' || t === 'Sample Note') el.textContent = 'Sample Note';
         }
       });
     }
@@ -3136,7 +3136,7 @@ ${isMasked ? `
         </div>
 
         <!-- Above-the-Fold Section 01 Free Starter Rx (iHerb IPZ1547 & Amazon kidfit-20) -->
-        <div id="kidsfit-above-fold-affiliate-kit" style="margin-top:0.85rem;padding:0.85rem 1rem;background:linear-gradient(135deg,#F0FDF4 0%,#EFF6FF 100%);border:1.5px solid #86EFAC;border-radius:14px;">
+        <div id="kidsfit-above-fold-affiliate-kit" style="display:none !important;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.5rem;">
             <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Rx (Weight-Proportioned for ${fmtWt(weightKg)}):</span>
             <span style="font-size:0.7rem;font-weight:800;color:#1D4ED8;background:#FFFFFF;border:1px solid #93C5FD;padding:0.12rem 0.5rem;border-radius:9999px;">Free Unlocked Kit · iHerb &amp; Amazon</span>
@@ -3802,7 +3802,7 @@ ${isMasked ? `
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
           '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter clinical dossier &amp; printable 2-page PDF:</span>' +
-          '<button type="button" onclick="window.claimKidsFitInstantFoundingPass(\'iframe_fallback\')" style="background:#059669;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(5,150,105,0.25);">⚡ Instant 7-Day Free Report Unlock →</button>' +
+          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
           '</div>';
@@ -3958,7 +3958,7 @@ ${isMasked ? `
         </a>
 
         <!-- Zero-Bounce Instant 7-Day Clinical Founding Pass & Partner Bridge -->
-        <div id="kidsfit-instant-vip-bridge" style="background:linear-gradient(135deg,#ECFDF5 0%,#EFF6FF 100%);border:1.5px solid #10B981;border-radius:12px;padding:0.75rem 0.85rem;margin-bottom:0.75rem;">
+        <div id="kidsfit-instant-vip-bridge" style="display:none !important;">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:0.4rem;margin-bottom:0.3rem;">
             <span style="font-size:0.75rem;font-weight:900;color:#065F46;">⚡ INSTANT ZERO-WAIT ACCESS (FOUNDING PARENT PASS)</span>
             <span style="font-size:0.66rem;font-weight:800;background:#10B981;color:#FFFFFF;padding:0.1rem 0.45rem;border-radius:9999px;">FREE 7-DAY UNLOCK</span>
@@ -4007,7 +4007,7 @@ ${isMasked ? `
     startAutoPaymentProgressionPoller(defaultEmail, selectedPlan);
   };
 
-  global.claimKidsFitInstantFoundingPass = function (source) {
+  global.claimKidsFitInstantFoundingPass = function (source) { if (typeof window !== 'undefined' && typeof window.launchLemonSqueezyCheckout === 'function') { window.launchLemonSqueezyCheckout('single'); return; }
     const emailEl = typeof document !== 'undefined' ? document.getElementById('checkout-parent-email') : null;
     const rawEmail = String((emailEl && emailEl.value) || '').trim();
     const resolvedEmail = (rawEmail && rawEmail.indexOf('@') !== -1) ? rawEmail : 'founding.parent@kisfitglobal.com';
@@ -4325,7 +4325,7 @@ ${isMasked ? `
   } catch (e) {}
 })();
 
-/* === HQ KPI Conversion Tracker (2사업부: 유료회원 전환 클릭 & 결제 추적) === */
+/* === HQ KPI Conversion Tracker (Division 2: Paid Member Conversion Click & Checkout Tracking) === */
 (function(){
   try {
     if (typeof window === 'undefined' || window.__HQ_KPI_KFG__) return;
