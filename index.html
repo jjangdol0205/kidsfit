@@ -233,8 +233,8 @@
 
       <!-- Above-the-Fold Parent Psychological Hook (Loss Aversion + Golden Time + Hidden Potential) -->
       <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width: 860px; margin: 0 auto 0.75rem; color: #0F172A; font-weight: 800; font-size: clamp(1.38rem, 4.2vw, 2.3rem); line-height: 1.34; letter-spacing: -0.03em;">
-        <span class="hero-single-line">"설마 크겠지" 미루는 사이,</span><br>
-        <span class="hero-headline-highlight hero-single-line" style="color: #1D4ED8; font-weight: 800;">아이의 성장판과 전두엽 골든타임은 매년 닫혀가고 있습니다</span>
+        <span class="hero-single-line">신생아 모로반사·통잠부터 초등 성장판·전두엽 골든타임까지,</span><br>
+        <span class="hero-headline-highlight hero-single-line" style="color: #1D4ED8; font-weight: 800;">0세~초등 월령별 맞춤 1분 발달·성장 진단 &amp; 필수 육아템 큐레이션</span>
       </h1>
 
       <p class="hero-subtitle" data-i18n="hero.subtitle" style="color: #334155; font-weight: 500; max-width: 720px; margin: 0 auto 1.1rem; font-size: clamp(0.9rem, 2.4vw, 1.02rem); line-height: 1.55;">
@@ -385,7 +385,7 @@
             </div>
 
             <!-- Active Episode Spotlight Banner (Shown when an Episode 1~10 is selected or ?ep=N) -->
-            <div id="kf-shorts-active-spotlight" style="display: none; margin-top: 0.8rem; padding: 0.85rem 1rem; background: rgba(255, 230, 0, 0.12); border: 1.5px solid #FFE600; border-radius: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+            <div id="kf-shorts-active-spotlight" style="display: flex; margin-top: 0.8rem; padding: 0.85rem 1rem; background: rgba(255, 230, 0, 0.12); border: 1.5px solid #FFE600; border-radius: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
               <div>
                 <span id="kf-spotlight-badge" style="display: inline-block; background: #FFE600; color: #0F172A; font-size: 0.72rem; font-weight: 900; padding: 0.18rem 0.6rem; border-radius: 6px; margin-bottom: 0.25rem;">🎬 쇼츠 1편 매칭 상품</span>
                 <strong id="kf-spotlight-title" style="display: block; font-size: 0.96rem; font-weight: 900; color: #FFFFFF;">새벽마다 깨는 아기? 신생아 통잠 꿀조합 2가지</strong>
@@ -4716,7 +4716,7 @@
 
       window.__currentModalProductId = 'prod_nb_nut_1';
 
-      window.openKidsFitProductModal = function(productId) {
+      window.openKidsFitProductModal = null; window._openKidsFitEditorialModal = function(productId) {
         try {
           var pid = productId || 'prod_nb_nut_1';
           var prod = null;
@@ -5327,7 +5327,17 @@ window.syncKidsFitLivePaperCount = function() {
           { ep: 7, format: 'single', badge: '🎬 쇼츠 7편 · 스마트폰 끊기', title: '스마트폰 단번에 끊는! 3D 입체 자석블록 120P', video: 'samples/shorts_10eps/mastered/ep07_magnetic_blocks_120p1.mp4', productIds: ['prod_tod_dev_1'] },
           { ep: 8, format: 'single', badge: '🎬 쇼츠 8편 · 거북목 교정', title: '초등 거북목·척추 교정! 인체공학 시디즈 링고 성장의자', video: 'samples/shorts_10eps/mastered/ep08_ergonomic_chair_bookstand1.mp4', productIds: ['prod_ch_gear_1'] },
           { ep: 9, format: 'combo', badge: '🎬 쇼츠 9편 · 초등 3종 시너지', title: '초등 급성장기 필수! 칼마디K2 + 오메가3 + 그래비트랙스', video: 'samples/shorts_10eps/mastered/ep09_elementary_growth_brain3.mp4', productIds: ['prod_ch_nut_1', 'prod_ch_nut_2', 'prod_ch_dev_1'] },
-          { ep: 10, format: 'free', badge: '📚 쇼츠 10편 · 예스24 필독서', title: '연령별 두뇌·문해력 베스트 도서 4종 총정리', video: 'samples/shorts_10eps/mastered/ep10_free_trial_top4.mp4', productIds: ['prod_nb_learn_1', 'prod_inf_learn_1', 'prod_tod_learn_1', 'prod_ch_learn_1'] }
+          { ep: 10, format: 'free', badge: '📚 쇼츠 10편 · 예스24 필독서', title: '연령별 두뇌·문해력 베스트 도서 4종 총정리', video: 'samples/shorts_10eps/mastered/ep10_free_trial_top4.mp4', productIds: ['prod_nb_learn_1', 'prod_inf_learn_1', 'prod_tod_learn_1', 'prod_ch_learn_1'] },
+          { ep: 11, format: 'combo', badge: '🎬 쇼츠 11편 · 통잠 심화', title: '생후 50일 기적의 통잠 루틴 & 모로반사 완벽 차단', video: 'samples/shorts_10eps/mastered/ep01_newborn_sleep_combo2.mp4', productIds: ['prod_nb_gear_1', 'prod_nb_gear_2'] },
+          { ep: 12, format: 'single', badge: '🎬 쇼츠 12편 · 배앓이 종결', title: '새벽 영아산통·배앓이 멈추는 비타민D+루테리 유산균', video: 'samples/shorts_10eps/mastered/ep02_baby_vitamind_drop1.mp4', productIds: ['prod_nb_nut_1', 'prod_nb_dev_1'] },
+          { ep: 13, format: 'vs', badge: '🎬 쇼츠 13편 · 액상칼슘 흡수율', title: '돌 아기 치아·뼈 성장 액상칼슘 흡수율 1:1 비교', video: 'samples/shorts_10eps/mastered/ep03_liquid_calcium_vs2.mp4', productIds: ['prod_inf_nut_1', 'prod_inf_nut_2'] },
+          { ep: 14, format: 'combo', badge: '🎬 쇼츠 14편 · 소근육 두뇌자극', title: '1~3세 전두엽 시냅스 폭발! 걸음마 & 몬테소리 교구', video: 'samples/shorts_10eps/mastered/ep04_toddler_walker_montessori2.mp4', productIds: ['prod_inf_gear_1', 'prod_inf_dev_1'] },
+          { ep: 15, format: 'single', badge: '🎬 쇼츠 15편 · 성장판 점프자극', title: '실내 성장판 미세자극 1위! 무소음 번지 트램폴린', video: 'samples/shorts_10eps/mastered/ep05_silent_bungee_trampoline1.mp4', productIds: ['prod_tod_gear_1'] },
+          { ep: 16, format: 'vs', badge: '🎬 쇼츠 16편 · 환절기 면역력', title: '어린이집 감기 종결! 초유 유산균 VS 멀티비타민 구미', video: 'samples/shorts_10eps/mastered/ep06_probiotics_vs_multigummy2.mp4', productIds: ['prod_tod_nut_1', 'prod_tod_nut_2'] },
+          { ep: 17, format: 'single', badge: '🎬 쇼츠 17편 · 공간지각력', title: '수학 머리 트이는 3D 입체 자석블록 120P 도형 놀이', video: 'samples/shorts_10eps/mastered/ep07_magnetic_blocks_120p1.mp4', productIds: ['prod_tod_dev_1'] },
+          { ep: 18, format: 'single', badge: '🎬 쇼츠 18편 · 바른자세 숨은키', title: '구부정한 초등 숨은 키 +2cm 찾는 바른자세 성장의자', video: 'samples/shorts_10eps/mastered/ep08_ergonomic_chair_bookstand1.mp4', productIds: ['prod_ch_gear_1'] },
+          { ep: 19, format: 'combo', badge: '🎬 쇼츠 19편 · 초등 급성장기', title: '사춘기 전 폭풍성장 골든타임! 칼마디K2 + 오메가3', video: 'samples/shorts_10eps/mastered/ep09_elementary_growth_brain3.mp4', productIds: ['prod_ch_nut_1', 'prod_ch_nut_2', 'prod_ch_dev_1'] },
+          { ep: 20, format: 'free', badge: '📚 쇼츠 20편 · 문해력 필독서', title: '상위 1% 어휘력·문해력 격차 만드는 연령별 필독서', video: 'samples/shorts_10eps/mastered/ep10_free_trial_top4.mp4', productIds: ['prod_nb_learn_1', 'prod_inf_learn_1', 'prod_tod_learn_1', 'prod_ch_learn_1'] }
         ];
 
         window.__currentShortsEp = 0;
@@ -5349,7 +5359,7 @@ window.syncKidsFitLivePaperCount = function() {
                 if (cp && cp.id) catalogMap[cp.id] = cp;
               }
             }
-            var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
+            var gridEl = document.getElementById('kf-shop-grid'); if (gridEl) { ['prod_nb_gear_2', 'prod_nb_gear_1'].forEach(function(topPid) { var topCard = gridEl.querySelector('.kf-product-card[data-product-id="' + topPid + '"]'); if (topCard && gridEl.firstChild) { topCard.style.outline = '3px solid #F59E0B'; gridEl.insertBefore(topCard, gridEl.firstChild); } }); } var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
             for (var k = 0; k < cards.length; k++) {
               var card = cards[k];
               var pid = card.getAttribute('data-product-id');
@@ -5461,7 +5471,7 @@ window.syncKidsFitLivePaperCount = function() {
             window.__currentShortsEp = num;
             var eps = window.KIDSFIT_SHORTS_EPISODES || [];
             var epObj = eps.find(function(x) { return x.ep === num; });
-            var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
+            var gridEl = document.getElementById('kf-shop-grid'); if (gridEl) { ['prod_nb_gear_2', 'prod_nb_gear_1'].forEach(function(topPid) { var topCard = gridEl.querySelector('.kf-product-card[data-product-id="' + topPid + '"]'); if (topCard && gridEl.firstChild) { topCard.style.outline = '3px solid #F59E0B'; gridEl.insertBefore(topCard, gridEl.firstChild); } }); } var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
             var epBtns = document.querySelectorAll('#kf-shorts-ep-strip button[data-ep-btn]');
             for (var b = 0; b < epBtns.length; b++) {
               var isSel = Number(epBtns[b].getAttribute('data-ep-btn')) === num;
@@ -5526,7 +5536,7 @@ window.syncKidsFitLivePaperCount = function() {
               window.selectKidsFitShortsEpisode(0);
               return;
             }
-            var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
+            var gridEl = document.getElementById('kf-shop-grid'); if (gridEl) { ['prod_nb_gear_2', 'prod_nb_gear_1'].forEach(function(topPid) { var topCard = gridEl.querySelector('.kf-product-card[data-product-id="' + topPid + '"]'); if (topCard && gridEl.firstChild) { topCard.style.outline = '3px solid #F59E0B'; gridEl.insertBefore(topCard, gridEl.firstChild); } }); } var cards = document.querySelectorAll('#kf-shop-grid .kf-product-card');
             var shown = 0;
             for (var k = 0; k < cards.length; k++) {
               var cFmt = cards[k].getAttribute('data-shorts-format') || '';
@@ -5552,7 +5562,7 @@ window.syncKidsFitLivePaperCount = function() {
           try {
             var params = new URLSearchParams(window.location.search);
             var epParam = Number(params.get('ep') || params.get('shorts'));
-            if (epParam >= 1 && epParam <= 10) {
+            if (epParam >= 1 && epParam <= 20) {
               window.selectKidsFitShortsEpisode(epParam);
               var hub = document.getElementById('kf-shorts-active-spotlight') || document.getElementById('kf-shop-grid') || document.getElementById('kf-shorts-showcase-hub');
               if (hub && hub.scrollIntoView) {
