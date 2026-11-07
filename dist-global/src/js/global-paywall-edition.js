@@ -988,7 +988,7 @@
           <!-- Report 2 Intro Card: Brain & Learning -->
           <div id="homepage-intro-learning-report" class="mf-glass-card us-bento-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.55rem 1.4rem; border: 1px solid #E2E8F0; border-radius: 22px; background: #FFFFFF;">
             <div>
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.6rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem;">
                 <span style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #FFFFFF; background: #1D4ED8; padding: 0.24rem 0.7rem; border-radius: 9999px; letter-spacing: 0.03em;">
                   02 · NEURO-COGNITIVE LQ LAB
                 </span>
@@ -1002,8 +1002,8 @@
               </p>
 
               <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem 0.9rem; margin-bottom: 1rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem; font-size: 0.76rem; font-weight: 700; color: #0F172A;">
-                  <span style="white-space: nowrap;">5-Axis Brain LQ &amp; 6-Month Growth Curve</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.45rem; font-size: 0.76rem; font-weight: 700; color: #0F172A;">
+                  <span>5-Axis Brain LQ &amp; 6-Month Growth Curve</span>
                   <span style="color: #1D4ED8; background: #EFF6FF; padding: 0.14rem 0.55rem; border-radius: 9999px; border: 1px solid #BFDBFE; white-space: nowrap; flex-shrink: 0; font-weight: 800;">+21 Pt LQ Gain</span>
                 </div>
                 <svg viewBox="0 0 420 155" style="width: 100%; height: auto; display: block;" role="img" aria-label="5-Axis Brain Balance Radar Preview">

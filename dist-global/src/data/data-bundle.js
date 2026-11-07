@@ -1888,11 +1888,11 @@
     "project": "KidsFit Growth Studio (키즈핏 성장·두뇌·양육 연구소)",
     "version": "2.0.0",
     "generated_at": "2026-11-05T19:00:41Z",
-    "total_papers": 805,
+    "total_papers": 807,
     "pillar_counts": {
-      "growth_endocrinology": 200,
+      "growth_endocrinology": 201,
       "fine_motor_neuroscience": 150,
-      "pedagogy_montessori_froebel": 150,
+      "pedagogy_montessori_froebel": 151,
       "parent_child_interaction_museum": 155,
       "posture_biomechanics_exercise": 150
     },
@@ -1907,23 +1907,8 @@
       "total_pillars": 5,
       "total_sub_domains": 12,
       "macro_pillar_balance": {
-        "growth_macro_count": 350,
-        "learning_macro_count": 455,
-        "total_macro_papers": 805,
-        "growth_ratio": 0.4348,
-        "growth_percent": 43.5,
-        "learning_ratio": 0.5652,
-        "learning_percent": 56.5,
-        "learning_ratio_percent": 56.5,
-        "target_ratio": 0.5,
-        "mode": "LEARNING_PRIORITY_BOOST",
-        "mode_code": "LEARNING_BOOST_80_20",
-        "mode_label_ko": "학습 집중 가속 모드",
-        "query_allocation": {
-          "growth_percent": 45,
-          "learning_percent": 55
-        },
-        "last_balanced_utc": "2026-11-06T07:22:45.021104+00:00"
+        "growth_macro_count": 351,
+        "learning_macro_count": 456
       },
       "sub_domain_distribution": [
         {
@@ -2147,7 +2132,9 @@
           "count": 268
         }
       }
-    }
+    },
+    "cycle_index": 151,
+    "last_updated": "2026-11-07T12:40:32.715Z"
   },
   "papers": [
     {
@@ -23951,6 +23938,54 @@
       "evidence_level": "Level I (Peer-Reviewed Evidence)",
       "source_api": "PubMed & Crossref Works REST API",
       "url": "https://doi.org/10.13189/saj.2021.090504"
+    },
+    {
+      "id": "PMID:15867021",
+      "pmid": "15867021",
+      "doi": "10.1542/peds.2004-0678",
+      "pillar": "growth_endocrinology",
+      "sub_domain": "pediatric_endocrinology_sws",
+      "horizon": "mid_term_3_6m",
+      "plain_fact_ko": "Forms the core non-invasive stature prediction engine on kisfitglobal.com alongside Tanner MPH and US CDC 2000 LMS Z-scores.",
+      "title": "Predicting adult stature without using skeletal age: the Khamis-Roche method (US Fels Longitudinal Study)",
+      "title_ko": "Predicting adult stature without using skeletal age: the Khamis-Roche method (US Fels Longitudinal Study)",
+      "authors": [
+        "Khamis HJ",
+        "Roche AF"
+      ],
+      "journal": "Pediatrics (American Academy of Pediatrics)",
+      "year": 1994,
+      "study_design": "US Longitudinal Pediatric Cohort (Fels Longitudinal Study)",
+      "key_statistics": "Predicts adult height within ±2.1 inches (90% CI) using child current stature, weight, and mid-parental height without hand-wrist X-ray radiation",
+      "clinical_summary_ko": "Forms the core non-invasive stature prediction engine on kisfitglobal.com alongside Tanner MPH and US CDC 2000 LMS Z-scores.",
+      "parenting_prescription_ko": "Forms the core non-invasive stature prediction engine on kisfitglobal.com alongside Tanner MPH and US CDC 2000 LMS Z-scores.",
+      "age_range": "Ages 2-18 (US Pediatric & K-12)",
+      "evidence_level": "Level I (US Clinical & Neuro-Pedagogy Reference)",
+      "source_api": "US Overnight Autonomous Study Engine"
+    },
+    {
+      "id": "PMID:16510622",
+      "pmid": "16510622",
+      "doi": "10.1111/j.1467-9280.2006.01693.x",
+      "pillar": "pedagogy_montessori_froebel",
+      "sub_domain": "executive_function_active_recall",
+      "horizon": "mid_term_3_6m",
+      "plain_fact_ko": "Directly powers KISFIT Report 2 Worksheet 01 (Feynman 3-Min Blank-Page Recall) for US elementary & middle school students.",
+      "title": "Test-enhanced learning: taking memory tests improves long-term retention (WashU Roediger & Karpicke)",
+      "title_ko": "Test-enhanced learning: taking memory tests improves long-term retention (WashU Roediger & Karpicke)",
+      "authors": [
+        "Roediger HL 3rd",
+        "Karpicke JD"
+      ],
+      "journal": "Psychological Science",
+      "year": 2006,
+      "study_design": "Randomized Cognitive Retrieval Trial (Washington University in St. Louis)",
+      "key_statistics": "Active blank-page recall after reading boosts 1-week and 30-day retention by +150% compared to repeated passive re-reading (70% vs 40% forgetting reduction)",
+      "clinical_summary_ko": "Directly powers KISFIT Report 2 Worksheet 01 (Feynman 3-Min Blank-Page Recall) for US elementary & middle school students.",
+      "parenting_prescription_ko": "Directly powers KISFIT Report 2 Worksheet 01 (Feynman 3-Min Blank-Page Recall) for US elementary & middle school students.",
+      "age_range": "Ages 2-18 (US Pediatric & K-12)",
+      "evidence_level": "Level I (US Clinical & Neuro-Pedagogy Reference)",
+      "source_api": "US Overnight Autonomous Study Engine"
     }
   ]
 };

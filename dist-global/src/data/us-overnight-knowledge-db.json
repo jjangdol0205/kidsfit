@@ -1,11 +1,14 @@
 {
-  "lastUpdated": "2026-10-31T20:41:48.588Z",
-  "kstDate": "2026-11-01",
-  "cycleIndex": 167,
-  "totalPapersIndexed": 3722,
-  "growthPapers": 1580,
-  "learningPapers": 2142,
-  "newlyAddedPapers": [],
+  "lastUpdated": "2026-11-07T12:40:32.715Z",
+  "kstDate": "2026-11-07",
+  "cycleIndex": 151,
+  "totalPapersIndexed": 807,
+  "growthPapers": 351,
+  "learningPapers": 456,
+  "newlyAddedPapers": [
+    "Predicting adult stature without using skeletal age: the Khamis-Roche method (US Fels Longitudinal Study) (Pediatrics (American Academy of Pediatrics), 1994)",
+    "Test-enhanced learning: taking memory tests improves long-term retention (WashU Roediger & Karpicke) (Psychological Science, 2006)"
+  ],
   "usBooksAndMarketingModules": [
     {
       "category": "US Neuro-Education Book",
