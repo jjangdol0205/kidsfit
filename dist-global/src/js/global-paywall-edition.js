@@ -2892,6 +2892,133 @@ ${isMasked ? `
               </div>
             </div>
           </div>
+
+          <!-- Paid Subscriber Exclusive: 6-Pack VIP Clinical Resource & Download Vault -->
+          <div id="kidsfit-vip-clinical-resource-vault" style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#FFFFFF;border:2px solid #3B82F6;border-radius:16px;padding:1.1rem 1.15rem;margin-bottom:0.85rem;box-shadow:0 14px 32px rgba(15,23,42,0.22);">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.6rem;margin-bottom:0.8rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(147,197,253,0.28);">
+              <div>
+                <span style="background:linear-gradient(90deg,#F59E0B 0%,#10B981 100%);color:#0F172A;font-size:0.7rem;font-weight:900;padding:0.18rem 0.65rem;border-radius:9999px;letter-spacing:0.04em;text-transform:uppercase;">
+                  👑 PAID SUBSCRIBER EXCLUSIVE · VIP CLINICAL RESOURCE VAULT
+                </span>
+                <h4 style="margin:0.35rem 0 0.15rem 0;font-size:1.04rem;font-weight:900;color:#FFFFFF;">
+                  1:1 Personalized Downloadable Toolkits, Meal Protocols &amp; Specialist Prep Sheets
+                </h4>
+                <p style="margin:0;font-size:0.77rem;color:#BFDBFE;line-height:1.45;">
+                  Pre-calibrated for <strong>Age ${ageY} ${genderLabel} (${fmtLen(heightCm)} · ${fmtWt(weightKg)})</strong> — click any resource below for instant offline Excel (.CSV) or Clinical Brief (.TXT) download:
+                </p>
+              </div>
+              <button type="button" onclick="window.downloadKidsFitVipResource('all_vip_pack')" style="background:linear-gradient(90deg,#10B981 0%,#059669 100%);color:#FFFFFF;border:none;border-radius:10px;padding:0.55rem 0.95rem;font-size:0.78rem;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(16,185,129,0.35);white-space:nowrap;">
+                📦 Download All 5 VIP Files + Print PDF
+              </button>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:0.65rem;margin-bottom:0.8rem;">
+              <!-- VIP Kit 1 -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#6EE7B7;">KIT 01 · EXCEL / SHEETS (.CSV)</span>
+                    <span style="font-size:0.66rem;background:rgba(16,185,129,0.2);color:#A7F3D0;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">90-Day Log</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">📊 90-Day Auxology, 10 PM HGH &amp; Dosing Tracker</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    Day-by-day sleep onset, 3h glycemic fast check, Ca (${caMg}mg) / D3 (${d3Iu}IU) / K2 / Zinc log &amp; CDC velocity audit.
+                  </div>
+                </div>
+                <button type="button" onclick="window.downloadKidsFitVipResource('tracker_csv')" style="width:100%;background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">
+                  📥 Download 90-Day Tracker (.CSV)
+                </button>
+              </div>
+
+              <!-- VIP Kit 2 -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#FCD34D;">KIT 02 · NUTRITION MATRIX (.CSV)</span>
+                    <span style="font-size:0.66rem;background:rgba(245,158,11,0.22);color:#FDE68A;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">28-Day Menu</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">🍽️ 28-Day IGF-1 Meal Plan &amp; Grocery Master List</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    4-week amino-acid (Arginine/Lysine) meal calendar, supermarket shopping list &amp; nocturnal insulin-spike blacklist.
+                  </div>
+                </div>
+                <button type="button" onclick="window.downloadKidsFitVipResource('meal_plan_csv')" style="width:100%;background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">
+                  📥 Download 28-Day Meal Plan (.CSV)
+                </button>
+              </div>
+
+              <!-- VIP Kit 3 -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#93C5FD;">KIT 03 · SPECIALIST BRIEF (.TXT)</span>
+                    <span style="font-size:0.66rem;background:rgba(59,130,246,0.25);color:#BFDBFE;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Clinic Ready</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">🩺 Pediatric Endocrinologist &amp; Bone-Age Lab Guide</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    Exact lab codes (Left-Wrist Bone Age X-Ray, Serum IGF-1, IGFBP-3, 25-OH-D, TSH) &amp; 7 questions for your doctor.
+                  </div>
+                </div>
+                <button type="button" onclick="window.downloadKidsFitVipResource('doctor_brief')" style="width:100%;background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">
+                  📥 Download Doctor Lab Brief (.TXT)
+                </button>
+              </div>
+
+              <!-- VIP Kit 4 -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#6EE7B7;">KIT 04 · BIOMECHANICS (.CSV)</span>
+                    <span style="font-size:0.66rem;background:rgba(16,185,129,0.2);color:#A7F3D0;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">+0.8 in Disc</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">🦴 12-Week Wolff&apos;s Law Decompression Blueprint</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    Progressive 12-week bar dead-hang, thoracic Cobra extension &amp; plyometric epiphyseal loading schedule.
+                  </div>
+                </div>
+                <button type="button" onclick="window.downloadKidsFitVipResource('exercise_csv')" style="width:100%;background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">
+                  📥 Download 12-Wk Exercise Plan (.CSV)
+                </button>
+              </div>
+
+              <!-- VIP Kit 5 -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#C4B5FD;">KIT 05 · NEURO-STUDY (.CSV)</span>
+                    <span style="font-size:0.66rem;background:rgba(139,92,246,0.25);color:#DDD6FE;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">+150% Recall</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">🧠 30-Day Feynman Recall &amp; Dopamine Reset Log</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    Prefrontal focus sprint timer log, 3-Min Blank-Page Recall tracker, Bar-Model template &amp; screen detox protocol.
+                  </div>
+                </div>
+                <button type="button" onclick="window.downloadKidsFitVipResource('neuro_workbook_csv')" style="width:100%;background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;">
+                  📥 Download Neuro Study Log (.CSV)
+                </button>
+              </div>
+
+              <!-- VIP Kit 6: Multi-Sibling Vault -->
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.32);border-radius:12px;padding:0.75rem 0.85rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                    <span style="font-size:0.68rem;font-weight:900;color:#FCD34D;">KIT 06 · FAMILY CARE VAULT</span>
+                    <span style="font-size:0.66rem;background:rgba(245,158,11,0.22);color:#FDE68A;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Up to 4 Kids</span>
+                  </div>
+                  <div style="font-size:0.83rem;font-weight:900;color:#FFFFFF;margin-bottom:0.25rem;">👨‍👩‍👧‍👦 Multi-Sibling Profile Switcher &amp; Storage</div>
+                  <div style="font-size:0.72rem;color:#CBD5E1;line-height:1.4;margin-bottom:0.55rem;">
+                    Save this child&apos;s baseline or switch between up to 4 sibling profiles instantaneously without re-paying:
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem;">
+                  <button type="button" onclick="window.saveOrSwitchKidsFitSiblingSlot(1)" style="background:#059669;color:#FFFFFF;border:none;border-radius:6px;padding:0.35rem 0.4rem;font-size:0.7rem;font-weight:800;cursor:pointer;">💾 Child Slot #1</button>
+                  <button type="button" onclick="window.saveOrSwitchKidsFitSiblingSlot(2)" style="background:#0EA5E9;color:#FFFFFF;border:none;border-radius:6px;padding:0.35rem 0.4rem;font-size:0.7rem;font-weight:800;cursor:pointer;">💾 Child Slot #2</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="kidsfit-vip-download-toast" style="display:none;background:rgba(16,185,129,0.22);border:1px solid #6EE7B7;color:#ECFDF5;border-radius:10px;padding:0.5rem 0.75rem;font-size:0.76rem;font-weight:800;text-align:center;"></div>
+          </div>
         </div>
 
         <div id="kidsfit-viral-share-bar" style="background:#F8FAFC;border:1.5px solid #93C5FD;border-radius:12px;padding:0.7rem 0.9rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
@@ -3101,13 +3228,51 @@ ${isMasked ? `
         </div>
 
         <!-- Monthly Retention Value Box: Why Parents Need Ongoing Monthly Re-Calibration -->
-        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.75rem 0.95rem;margin-bottom:0.95rem;font-size:0.78rem;color:#065F46;line-height:1.48;">
+        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.75rem 0.95rem;margin-bottom:0.8rem;font-size:0.78rem;color:#065F46;line-height:1.48;">
           <strong style="color:#047857;display:block;margin-bottom:0.18rem;">
             🔄 Why 78% of Parents Choose the 6-Month Re-Calibration Pass ($3.33/mo):
           </strong>
           ${isLearningMode
             ? 'A single test only shows Day-1 baseline. Neural myelination &amp; working memory shift every <strong>30 days</strong>—the 6-Month Pass tracks monthly LQ score gains, unlocks harder Cycle 2–6 Feynman/Bar-Model worksheets each month, and covers all siblings.'
             : 'A single height check is only a Day-1 snapshot. Growth velocity (cm/yr), bone-age drift, and weight-matched Ca/D3/K2/Zinc dosing change every <strong>30 days</strong>—the 6-Month Pass detects growth stagnation early before growth plates close and covers all siblings.'}
+        </div>
+
+        <!-- Paid Subscriber Exclusive 6-Pack Downloadable Clinical Vault Preview ($149 Value Included Free) -->
+        <div id="paywall-vip-bonus-pack-preview" style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#FFFFFF;border:1.5px solid #3B82F6;border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.85rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.55rem;">
+            <span style="font-size:0.74rem;font-weight:900;color:#FCD34D;letter-spacing:0.03em;">
+              🎁 INCLUDED FREE WITH EVERY PAID PASS · 6-PACK VIP CLINICAL DOWNLOAD VAULT
+            </span>
+            <span style="background:rgba(16,185,129,0.25);border:1px solid #6EE7B7;color:#A7F3D0;font-size:0.68rem;font-weight:900;padding:0.12rem 0.5rem;border-radius:9999px;">
+              $149 VALUE · INSTANT UNLOCK
+            </span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:0.45rem;font-size:0.74rem;color:#E2E8F0;line-height:1.4;">
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#6EE7B7;display:block;">📊 01 · 90-Day Auxology &amp; HGH Tracker (.CSV)</strong>
+              <span>Excel/Sheets log for 10 PM sleep, 3h fast &amp; Ca/D3/K2 dosing.</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#FCD34D;display:block;">🍽️ 02 · 28-Day IGF-1 Meal Plan &amp; Grocery List (.CSV)</strong>
+              <span>4-week amino-acid menu &amp; supermarket shopping checklist.</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#93C5FD;display:block;">🩺 03 · Pediatric Endocrinologist Lab Sheet (.TXT)</strong>
+              <span>Bone-Age X-Ray, IGF-1, IGFBP-3, 25(OH)D &amp; TSH doctor brief.</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#6EE7B7;display:block;">🦴 04 · 12-Wk Wolff&apos;s Law Decompression Plan (.CSV)</strong>
+              <span>Progressive bar dead-hang &amp; plyometric +0.8 in disc protocol.</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#C4B5FD;display:block;">🧠 05 · 30-Day Feynman &amp; Dopamine Reset Log (.CSV)</strong>
+              <span>Prefrontal focus sprint timer, Bar-Model &amp; screen detox matrix.</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
+              <strong style="color:#FCD34D;display:block;">🖨️ 06 · 2-Page Hospital PDF + 4-Sibling Vault</strong>
+              <span>Instant printable clinical chart &amp; multi-child profile storage.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Sample Report Preview Action Button -->
@@ -3184,7 +3349,7 @@ ${isMasked ? `
               <span style="font-size:0.7rem;font-weight:800;background:#DCFCE7;color:#166534;border:1px solid #BBF7D0;padding:0.12rem 0.5rem;border-radius:9999px;">RISK-FREE</span>
             </div>
             <div style="font-size:0.78rem;color:#14532D;line-height:1.5;">
-              If your pediatrician or pediatric endocrinologist disagrees with our CDC LMS auxology methodology, email support@kisfitglobal.com for an immediate, no-questions-asked refund.
+              If your pediatrician or pediatric endocrinologist disagrees with our CDC LMS auxology methodology, email beable9489@gmail.com for an immediate, no-questions-asked refund.
             </div>
           </div>
         </div>
@@ -3572,6 +3737,320 @@ ${isMasked ? `
           setTimeout(function () { btn.textContent = orig; }, 2500);
         }
       }).catch(function () {});
+    }
+  };
+
+  function getActiveChildProfileForVipKit() {
+    let saved = {};
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const raw = window.localStorage.getItem('kidsfit_last_quiz_profile_v1');
+        if (raw) saved = JSON.parse(raw) || {};
+      }
+    } catch (_) {}
+    const wiz = (global.TallerOnboardingWizard && typeof global.TallerOnboardingWizard.getState === 'function' && global.TallerOnboardingWizard.getState().profile) || {};
+    const app = (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) || {};
+    return Object.assign({}, SAMPLE_DEMO_PROFILE, saved, wiz, app);
+  }
+
+  function showVipVaultToast(message) {
+    if (typeof document === 'undefined') return;
+    const toast = document.getElementById('kidsfit-vip-download-toast');
+    if (!toast) return;
+    toast.style.display = 'block';
+    toast.textContent = message;
+    setTimeout(function () {
+      if (toast) toast.style.display = 'none';
+    }, 4500);
+  }
+
+  function triggerBrowserBlobDownload(filename, content, mimeType) {
+    if (typeof document === 'undefined' || typeof Blob === 'undefined' || typeof URL === 'undefined') return false;
+    try {
+      const blob = new Blob([content], { type: mimeType || 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 300);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  global.downloadKidsFitVipResource = function (resourceType) {
+    const prof = getActiveChildProfileForVipKit();
+    const ageY = Math.max(1, Math.min(20, Math.floor((Number(prof.ageMonths) || 108) / 12)));
+    const isBoy = prof.gender !== 'girl';
+    const genderStr = isBoy ? 'Boy' : 'Girl';
+    const childName = String(prof.childName || ('Child_Age' + ageY)).replace(/[^a-zA-Z0-9_-]/g, '_');
+    const hCm = Number(prof.currentHeight) || 135.0;
+    const wKg = Number(prof.currentWeight) || 32.0;
+    const fCm = Number(prof.fatherHeight) || 175.0;
+    const mCm = Number(prof.motherHeight) || 162.0;
+    const mphCm = Number(((fCm + mCm + (isBoy ? 13 : -13)) / 2).toFixed(1));
+    const optCm = Number((mphCm + 4.8).toFixed(1));
+    const caMg = Math.min(1300, Math.max(700, Math.round(wKg * 26)));
+    const d3Iu = ageY >= 9 ? 2000 : 1200;
+    const k2Mcg = ageY >= 9 ? 90 : 60;
+    const znMg = Number(Math.min(15, Math.max(6, wKg * 0.31)).toFixed(1));
+    const mgMg = Math.min(320, Math.max(130, Math.round(wKg * 5.5)));
+
+    if (resourceType === 'all_vip_pack') {
+      global.downloadKidsFitVipResource('tracker_csv');
+      setTimeout(function () { global.downloadKidsFitVipResource('meal_plan_csv'); }, 250);
+      setTimeout(function () { global.downloadKidsFitVipResource('doctor_brief'); }, 500);
+      setTimeout(function () { global.downloadKidsFitVipResource('exercise_csv'); }, 750);
+      setTimeout(function () { global.downloadKidsFitVipResource('neuro_workbook_csv'); }, 1000);
+      showVipVaultToast('✓ All 5 Personalized VIP Clinical Files Downloaded! Opening 2-Page Hospital PDF Print...');
+      setTimeout(function () {
+        if (typeof global.triggerKidsFitGlobalPrint === 'function') global.triggerKidsFitGlobalPrint();
+      }, 1300);
+      return true;
+    }
+
+    if (resourceType === 'tracker_csv') {
+      const rows = [
+        'Day,Date_Offset,Target_Bedtime_SWS,Last_Meal_Cutoff_3h_Fast,Morning_Stature_cm,Morning_Weight_kg,Calcium_Citrate_mg,Vitamin_D3_IU,Vitamin_K2_MK7_mcg,Chelated_Zinc_mg,Evening_Mg_Glycinate_mg,Bar_DeadHang_3x30s,Plyometric_Jumps,Milestone_Audit_Note'
+      ];
+      for (let d = 1; d <= 90; d++) {
+        const projH = (hCm + (d * 0.022)).toFixed(2);
+        const projW = (wKg + (d * 0.008)).toFixed(2);
+        const note = d % 30 === 0
+          ? ('DAY-' + d + ' CDC LMS VELOCITY CHECKPOINT: Re-enter morning height/weight on kisfitglobal.com')
+          : (d % 7 === 0 ? 'Weekly Posture & Spine Decompression Check' : 'Standard Pituitary N3 HGH Window');
+        rows.push([
+          'Day ' + d,
+          'D+' + d,
+          '09:45 PM (Asleep by 10:00 PM)',
+          '06:45 PM (Zero Sugar/Milk After)',
+          projH,
+          projW,
+          caMg,
+          d3Iu,
+          k2Mcg,
+          znMg,
+          mgMg,
+          '3 Sets x 30s Completed',
+          ageY >= 9 ? '400 Jumps' : '250 Jumps',
+          '"' + note + '"'
+        ].join(','));
+      }
+      triggerBrowserBlobDownload('KISFIT_90Day_Auxology_HGH_Tracker_' + childName + '.csv', rows.join('\n'), 'text/csv;charset=utf-8;');
+      showVipVaultToast('✓ Downloaded: 90-Day Auxology, 10 PM HGH & Bio-Nutrition Tracker (.CSV)');
+      return true;
+    }
+
+    if (resourceType === 'meal_plan_csv') {
+      const breakfasts = [
+        'Pasture-Raised 2-Egg Omelet + Spinach + Oat Toast (High Choline & L-Leucine)',
+        'Greek Yogurt Parfait + Chia Seeds + Walnuts + Blueberries (Probiotic Ca + Omega-3)',
+        'Wild Salmon & Avocado Whole-Grain Toast + Boiled Egg (Vitamin D3 + DHA)',
+        'Cottage Cheese Pancakes + Pumpkin Seeds + Kiwi (High L-Lysine + Chelated Zinc)',
+        'Grass-Fed Beef & Veggie Scramble + Sweet Potato Hash (Heme-Iron + IGF-1 Amino Profile)',
+        'Organic Tofu & Egg Ribbon Soup + Sesame Rice Ball (Bioavailable Calcium + Arginine)',
+        'Turkey Breast Breakfast Wrap + Cheddar + Bell Peppers (Tryptophan + Vitamin C)'
+      ];
+      const lunches = [
+        'Grilled Chicken Breast + Quinoa Bowl + Steamed Broccoli (L-Arginine + Sulforaphane)',
+        'Grass-Fed Beef Meatballs + Brown Rice + Roasted Carrots (Zinc + Heme Iron)',
+        'Baked Cod Fillet + Lentil Pilaf + Asparagus Spears (Iodine + Folate + Lean Protein)',
+        'Turkey & Black Bean Burrito Bowl + Avocado + Romaine (Lysine + Magnesium)',
+        'Wild Sardine / Tuna Salad Sandwich on Sourdough + Cucumber Sticks (Osteocalcin Matrix)',
+        'Roast Chicken Drumstick + Mashed Sweet Potato + Green Beans (Collagen + Beta-Carotene)',
+        'Lean Pork Tenderloin Stir-Fry + Bok Choy + Buckwheat Sobas (Vitamin B1 + Calcium)'
+      ];
+      const snacks = [
+        '4:00 PM Pre-Play: Handful of Almonds & Pumpkin Seeds + Apple Slices',
+        '4:00 PM Pre-Play: Hard-Boiled Egg + Edamame Pods (Steamed)',
+        '4:00 PM Pre-Play: String Cheese + Roasted Chickpeas + Pear',
+        '4:00 PM Pre-Play: Unsweetened Kefir Smoothie + Hemp Hearts + Berries',
+        '4:00 PM Pre-Play: Turkey Roll-Ups + Bell Pepper Strips + Hummus',
+        '4:00 PM Pre-Play: Chia Pudding (Unsweetened Almond Milk) + Walnuts',
+        '4:00 PM Pre-Play: Cottage Cheese Cup + Pineapple Chunks'
+      ];
+      const dinners = [
+        '6:30 PM Early Dinner: Grilled Wild Salmon + Steamed Kale + Wild Rice (Finish 3h Before Bed)',
+        '6:30 PM Early Dinner: Grass-Fed Sirloin Steak Bites + Zucchini + Roasted Potatoes',
+        '6:30 PM Early Dinner: Baked Chicken Thighs + Brussels Sprouts + Farro',
+        '6:30 PM Early Dinner: Halibut / White Fish Bone Broth Soup + Tofu + Shiitake Mushrooms',
+        '6:30 PM Early Dinner: Ground Turkey Lettuce Wraps + Quinoa + Steamed Broccoli',
+        '6:30 PM Early Dinner: Slow-Cooked Beef Bone Broth Stew + Root Vegetables',
+        '6:30 PM Early Dinner: Grilled Shrimp & Chicken Skewers + Spinach Salad + Olive Oil'
+      ];
+      const rows = [
+        'Day,Week,Breakfast_IGF1_Activation,School_Lunch_Chondrocyte_Fuel,Afternoon_PreExercise_Snack,Early_Dinner_Before_645PM,Post_7PM_Glycemic_Fast_Rule,Daily_Micronutrient_Target'
+      ];
+      for (let d = 1; d <= 28; d++) {
+        const idx = (d - 1) % 7;
+        const wk = Math.ceil(d / 7);
+        rows.push([
+          'Day ' + d,
+          'Week ' + wk,
+          '"' + breakfasts[idx] + '"',
+          '"' + lunches[idx] + '"',
+          '"' + snacks[idx] + '"',
+          '"' + dinners[idx] + '"',
+          '"Water/Herbal Tea Only After 7:00 PM (Zero Liquid Sugar/Juice/Late Milk to Prevent Somatostatin Spike)"',
+          '"Ca ' + caMg + 'mg | D3 ' + d3Iu + 'IU | K2 ' + k2Mcg + 'mcg | Zn ' + znMg + 'mg | Mg ' + mgMg + 'mg"'
+        ].join(','));
+      }
+      rows.push('---,---,---,---,---,---,---,---');
+      rows.push('GROCERY_CATEGORY,CORE_SHOPPING_ITEMS,CLINICAL_PURPOSE,WEEKLY_QUANTITY_GUIDE,AVOID_BLACKLIST,NOTES,UNIT,STATUS');
+      rows.push('1_Amino_Proteins,"Wild Salmon, Pasture Eggs, Grass-Fed Beef, Chicken Breast, Sardines, Greek Yogurt",Hepatic IGF-1 & Epiphyseal Chondrocyte Synthesis,14-21 Servings/Wk,"Avoid Breaded/Deep-Fried Nuggets",Prioritize Leucine + Arginine + Lysine,Weekly,Required');
+      rows.push('2_Bone_Minerals,"Bok Choy, Broccoli, Kale, Pumpkin Seeds, Almonds, Sesame, Tofu, Kefir",Osteoblast Mineralization & Mg/Zinc Cofactors,Daily Greens + 1 oz Seeds,"Avoid High-Oxalate Soda/Cola (Phosphoric Acid Leaches Ca)",Pair with Vitamin D3 + K2 MK-7,Weekly,Required');
+      rows.push('3_Nocturnal_Blacklist,"ZERO Soda, ZERO Late-Night Cereal/Milk, ZERO Fruit Juice After 7:00 PM",Prevents Hyperinsulinemia & Pituitary GH Suppression,0 Servings After 7 PM,"High-Fructose Corn Syrup & Late Carbs Blunt N3 HGH by up to 62%",Strict 3-Hour Pre-Bed Fast,Daily,Mandatory');
+      triggerBrowserBlobDownload('KISFIT_28Day_IGF1_MealPlan_Grocery_' + childName + '.csv', rows.join('\n'), 'text/csv;charset=utf-8;');
+      showVipVaultToast('✓ Downloaded: 28-Day IGF-1 Meal Plan & Supermarket Grocery Master List (.CSV)');
+      return true;
+    }
+
+    if (resourceType === 'doctor_brief') {
+      const briefLines = [
+        '================================================================================',
+        'KISFIT BIO LABS — PEDIATRIC ENDOCRINOLOGY & AUXOLOGY SPECIALIST CONSULT BRIEF',
+        'Official US CDC 2000 LMS & Khamis-Roche Bone-Age Preparation Dossier',
+        '================================================================================',
+        '',
+        '1. PATIENT BASELINE BIOMETRICS & GENETIC TARGET',
+        '--------------------------------------------------------------------------------',
+        '• Patient Profile       : Age ' + ageY + ' (' + genderStr + ')',
+        '• Current Stature       : ' + hCm.toFixed(1) + ' cm (' + cmToFtInStr(hCm) + ')',
+        '• Current Body Mass     : ' + wKg.toFixed(1) + ' kg (' + (wKg * 2.20462).toFixed(1) + ' lbs)',
+        '• Father / Mother Height: ' + fCm.toFixed(1) + ' cm / ' + mCm.toFixed(1) + ' cm',
+        '• Mid-Parental Height   : ' + mphCm.toFixed(1) + ' cm (' + cmToFtInStr(mphCm) + ') [Tanner MPH Standard]',
+        '• Optimized Potential   : ' + optCm.toFixed(1) + ' cm (' + cmToFtInStr(optCm) + ') [With Sleep HGH & Bone-Age Defense]',
+        '',
+        '2. RECOMMENDED RADIOLOGICAL & SERUM BIOMARKER LAB ORDERS (FOR CLINICIAN REVIEW)',
+        '--------------------------------------------------------------------------------',
+        '[ ] 1. Left Hand & Wrist Bone-Age Radiograph (Greulich-Pyle / Tanner-Whitehouse TW3)',
+        '       -> Clinical Objective: Evaluate epiphyseal plate openness vs. chronological age',
+        '          and verify absence of premature estrogen/aromatase-mediated closure.',
+        '[ ] 2. Serum IGF-1 (Insulin-Like Growth Factor-1) & IGFBP-3',
+        '       -> Clinical Objective: Assess integrated 24-hour pituitary GH secretion and',
+        '          hepatic anabolic signaling (insensitive to pulsatile daytime GH variance).',
+        '[ ] 3. Serum 25-Hydroxyvitamin D [25(OH)D] & Intact PTH / Alkaline Phosphatase (ALP)',
+        '       -> Clinical Objective: Confirm optimal 40–60 ng/mL bone-mineralization status.',
+        '[ ] 4. Complete Thyroid Panel (TSH & Free T4)',
+        '       -> Clinical Objective: Rule out subclinical hypothyroidism blunting chondrocyte',
+        '          hypertrophy and linear growth velocity.',
+        '[ ] 5. Serum Ferritin, Complete Blood Count (CBC), and Plasma Zinc',
+        '       -> Clinical Objective: Identify occult iron/zinc deficiency causing picky appetite',
+        '          and depressed hepatic IGF-1 synthesis.',
+        '[ ] 6. Fasting Morning Glucose, HbA1c & Lipid Profile (If BMI > 75th Percentile)',
+        '       -> Clinical Objective: Screen for hyperinsulinemia and leptin-driven bone-age',
+        '          advancement.',
+        '',
+        '3. 7 HIGH-YIELD QUESTIONS FOR PARENTS TO ASK THE PEDIATRIC ENDOCRINOLOGIST',
+        '--------------------------------------------------------------------------------',
+        'Q1. "Does my child\'s Greulich-Pyle bone age match their chronological age (' + ageY + ' yrs),',
+        '     or is there any bone-age advancement/delay affecting their remaining growth window?"',
+        'Q2. "What is my child\'s annualized height velocity (cm/yr) over the past 6–12 months,',
+        '     and does it track along their genetic Mid-Parental Height (' + mphCm.toFixed(1) + ' cm) channel?"',
+        'Q3. "Are Serum IGF-1 and IGFBP-3 in the upper half (+0.5 to +1.5 SDS) of the age-matched',
+        '     pediatric reference range?"',
+        'Q4. "Is Serum 25(OH)D above 40 ng/mL, and do you approve our weight-calibrated daily',
+        '     protocol of Calcium Citrate (' + caMg + ' mg), Vitamin D3 (' + d3Iu + ' IU), K2 MK-7 (' + k2Mcg + ' mcg), and Zinc (' + znMg + ' mg)?"',
+        'Q5. "Does my child show any early signs of central puberty (Tanner Stage transition)',
+        '     that could shorten the prepubertal growth phase?"',
+        'Q6. "Could nocturnal mouth-breathing, allergic rhinitis, or late evening carbohydrate',
+        '     intake be fragmenting N3 slow-wave sleep and blunting nocturnal GH pulsatility?"',
+        'Q7. "When should we schedule our next 6-month longitudinal auxology & velocity check-in?"',
+        '',
+        '4. CURRENT WEIGHT-CALIBRATED BIO-NUTRITION & CIRCADIAN PROTOCOL ON FILE',
+        '--------------------------------------------------------------------------------',
+        '• Elemental Calcium (Citrate) : ' + caMg + ' mg/day (Split AM/PM for optimal absorption)',
+        '• Cholecalciferol (Vit D3)    : ' + d3Iu + ' IU/day (Taken with fat-containing meal)',
+        '• Menaquinone-7 (Vit K2 MK-7) : ' + k2Mcg + ' mcg/day (Activates osteocalcin bone binding)',
+        '• Chelated Zinc (Bisglycinate): ' + znMg + ' mg/day (Supports hepatic IGF-1 & appetite)',
+        '• Magnesium Glycinate (PM)    : ' + mgMg + ' mg/day (45 mins pre-bed for N3 sleep & growing pains)',
+        '• Circadian GH Rule           : Lights out by 9:45 PM · Zero calories 3 hours pre-sleep',
+        '================================================================================'
+      ];
+      triggerBrowserBlobDownload('KISFIT_Pediatric_Endocrinologist_Visit_Brief_' + childName + '.txt', briefLines.join('\n'), 'text/plain;charset=utf-8;');
+      showVipVaultToast('✓ Downloaded: Pediatric Endocrinologist Visit Prep & Lab Order Sheet (.TXT)');
+      return true;
+    }
+
+    if (resourceType === 'exercise_csv') {
+      const rows = [
+        'Week,Phase_Focus,Morning_Spinal_Traction,Afternoon_Osteogenic_Plyometrics,Evening_PreBed_Decompression,Pelvic_Thoracic_Alignment_Cue,Expected_Disc_And_Periosteal_Adaptation'
+      ];
+      for (let w = 1; w <= 12; w++) {
+        const hangSec = w <= 4 ? 30 : (w <= 8 ? 40 : 45);
+        const jumps = w <= 4 ? 250 : (w <= 8 ? 400 : 500);
+        const phase = w <= 4
+          ? 'Phase 1: Intervertebral Disc Rehydration & Tech-Neck Unloading'
+          : (w <= 8 ? 'Phase 2: Wolff\'s Law Piezoelectric Epiphyseal Micro-Strain' : 'Phase 3: Peak Postural Stature Lock (+0.6 to +0.8 in Recovery)');
+        rows.push([
+          'Week ' + w,
+          '"' + phase + '"',
+          '"3 Sets x ' + hangSec + 's Doorway Bar Passive Dead-Hang Upon Waking"',
+          '"' + jumps + ' Vertical Rope Skips + 3x12 Squat-to-Reach Jumps (Soft Forefoot Landing)"',
+          '"2 Sets x 45s Cobra Thoracic Extension + 60s Child\'s Pose Lumbar Release + Hamstring Stretch"',
+          '"Ears aligned over shoulders; 90-90-90 ergonomic desk seating; zero W-sitting or leg crossing"',
+          '"Week ' + w + ' Target: Decompresses diurnal 1.2-1.8 cm disc compression & stimulates chondrocyte columns"'
+        ].join(','));
+      }
+      triggerBrowserBlobDownload('KISFIT_12Week_Spinal_Decompression_Exercise_Plan_' + childName + '.csv', rows.join('\n'), 'text/csv;charset=utf-8;');
+      showVipVaultToast('✓ Downloaded: 12-Week Wolff\'s Law Spinal Decompression & Plyometric Plan (.CSV)');
+      return true;
+    }
+
+    if (resourceType === 'neuro_workbook_csv') {
+      const rows = [
+        'Day,Cognitive_Cycle,PreStudy_Dopamine_Reset,Timed_Prefrontal_Focus_Sprint,Feynman_3Min_BlankPage_Recall_Topic,Singapore_Math_3Box_BarModel_Check,Cornell_3Color_Error_Tag,Evening_Hippocampal_Sleep_Consolidation'
+      ];
+      for (let d = 1; d <= 30; d++) {
+        const sprintMins = d <= 10 ? 20 : (d <= 20 ? 25 : 35);
+        const cyc = d <= 10 ? 'Cycle 1: Prefrontal Attention Stabilization' : (d <= 20 ? 'Cycle 2: Active Retrieval Myelination' : 'Cycle 3: Deep Socratic STEM Transfer');
+        rows.push([
+          'Day ' + d,
+          '"' + cyc + '"',
+          '"Phone/Tablet in Lockbox 60m Before Study + 200ml Water + Morning DHA/Choline"',
+          '"2 Sprints x ' + sprintMins + ' mins (Tally any distraction urges on scratchpad instead of breaking focus)"',
+          '"Close textbook -> Write 3 core concepts from memory on blank sheet -> Explain aloud in 60s"',
+          '"Drew Part-Whole / Comparison Bar Diagram BEFORE writing algebraic equations: [YES / NO]"',
+          '"Tagged errors: [RED: Misread Question] | [BLUE: Concept Gap] | [GREEN: Calculation Slip]"',
+          '"5-Min Verbal Summary Before 10:00 PM N3 Deep Sleep (Boosts 48h Retention by +150%)"'
+        ].join(','));
+      }
+      triggerBrowserBlobDownload('KISFIT_30Day_Feynman_NeuroStudy_Workbook_' + childName + '.csv', rows.join('\n'), 'text/csv;charset=utf-8;');
+      showVipVaultToast('✓ Downloaded: 30-Day Prefrontal Focus, Feynman Recall & Dopamine Reset Workbook (.CSV)');
+      return true;
+    }
+    return false;
+  };
+
+  global.saveOrSwitchKidsFitSiblingSlot = function (slotIdx) {
+    const slot = Math.max(1, Math.min(4, Number(slotIdx) || 1));
+    const storageKey = 'kidsfit_global_sibling_slot_' + slot + '_v1';
+    try {
+      if (typeof window === 'undefined' || !window.localStorage) return false;
+      const existingRaw = window.localStorage.getItem(storageKey);
+      const currentProf = getActiveChildProfileForVipKit();
+      if (!existingRaw) {
+        window.localStorage.setItem(storageKey, JSON.stringify(currentProf));
+        showVipVaultToast('✓ Saved current child profile (' + (currentProf.currentHeight || 135) + ' cm) into Family Sibling Slot #' + slot + '!');
+        return true;
+      }
+      const savedSibling = JSON.parse(existingRaw);
+      window.localStorage.setItem('kidsfit_last_quiz_profile_v1', JSON.stringify(savedSibling));
+      if (global.KidsFitApp && global.KidsFitApp.state) {
+        global.KidsFitApp.state.profile = Object.assign({}, global.KidsFitApp.state.profile || {}, savedSibling);
+      }
+      transformGlobalReportAndApplyPaywall();
+      showVipVaultToast('✓ Loaded Family Sibling Slot #' + slot + ' (' + (savedSibling.currentHeight || 135) + ' cm)! Report re-calibrated.');
+      return true;
+    } catch (_) {
+      return false;
     }
   };
 
@@ -3989,7 +4468,7 @@ ${isMasked ? `
             <span style="font-size:1.1rem;">🛡️</span>
             <strong style="color:#065F46;font-size:0.8rem;">100% Satisfaction · 30-Day Money-Back Guarantee</strong>
           </div>
-          <div>If your pediatrician or pediatric endocrinologist disagrees with our CDC LMS auxology methodology, email support@kisfitglobal.com for an immediate, no-questions-asked refund.</div>
+          <div>If your pediatrician or pediatric endocrinologist disagrees with our CDC LMS auxology methodology, email beable9489@gmail.com for an immediate, no-questions-asked refund.</div>
         </div>
 
         <div style="margin-top:0.6rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:0.5rem 0.75rem;text-align:center;font-size:0.7rem;color:#475569;font-weight:700;">
@@ -4290,6 +4769,8 @@ ${isMasked ? `
     switchModalPlan: global.switchModalPlan,
     openKidsFitGlobalCheckoutModal: global.openKidsFitGlobalCheckoutModal,
     launchLemonSqueezyCheckout: global.launchLemonSqueezyCheckout,
+    downloadKidsFitVipResource: global.downloadKidsFitVipResource,
+    saveOrSwitchKidsFitSiblingSlot: global.saveOrSwitchKidsFitSiblingSlot,
     initGlobalPaywallEdition
   };
 
