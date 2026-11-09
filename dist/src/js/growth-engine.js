@@ -306,6 +306,142 @@
     return calculateMPH(fatherHeight, motherHeight, gender).mph;
   }
 
+  // 5-1. Khamis-Roche Empirical Adult Stature Prediction Method (Pediatrics 1994; 94(4):504-507, Fels Longitudinal Study)
+  const KHAMIS_ROCHE_COEFFICIENTS = {
+    boy: [
+      { age: 4.0, b0: -10.25670, b1: 1.23812, b2: -0.087235, b3: 0.50286 },
+      { age: 4.5, b0: -10.71900, b1: 1.15964, b2: -0.074454, b3: 0.52887 },
+      { age: 5.0, b0: -11.02130, b1: 1.10674, b2: -0.064778, b3: 0.53919 },
+      { age: 5.5, b0: -11.15560, b1: 1.07480, b2: -0.057760, b3: 0.53691 },
+      { age: 6.0, b0: -11.11380, b1: 1.05923, b2: -0.052947, b3: 0.52513 },
+      { age: 6.5, b0: -11.02210, b1: 1.05542, b2: -0.049892, b3: 0.50692 },
+      { age: 7.0, b0: -10.99840, b1: 1.05877, b2: -0.048144, b3: 0.48538 },
+      { age: 7.5, b0: -11.02140, b1: 1.06467, b2: -0.047256, b3: 0.46361 },
+      { age: 8.0, b0: -11.06960, b1: 1.06853, b2: -0.046778, b3: 0.44469 },
+      { age: 8.5, b0: -11.12200, b1: 1.06572, b2: -0.046261, b3: 0.43171 },
+      { age: 9.0, b0: -11.15710, b1: 1.05166, b2: -0.045254, b3: 0.42776 },
+      { age: 9.5, b0: -11.14050, b1: 1.02174, b2: -0.043311, b3: 0.43593 },
+      { age: 10.0, b0: -11.03800, b1: 0.97135, b2: -0.039981, b3: 0.45932 },
+      { age: 10.5, b0: -10.82860, b1: 0.89589, b2: -0.034814, b3: 0.50101 },
+      { age: 11.0, b0: -10.49170, b1: 0.81239, b2: -0.029050, b3: 0.54781 },
+      { age: 11.5, b0: -10.00650, b1: 0.74134, b2: -0.024167, b3: 0.58409 },
+      { age: 12.0, b0: -9.35220, b1: 0.68325, b2: -0.020076, b3: 0.60927 },
+      { age: 12.5, b0: -8.60550, b1: 0.63869, b2: -0.016681, b3: 0.62279 },
+      { age: 13.0, b0: -7.86320, b1: 0.60818, b2: -0.013895, b3: 0.62407 },
+      { age: 13.5, b0: -7.13480, b1: 0.59228, b2: -0.011624, b3: 0.61253 },
+      { age: 14.0, b0: -6.42990, b1: 0.59151, b2: -0.009776, b3: 0.58762 },
+      { age: 14.5, b0: -5.75780, b1: 0.60643, b2: -0.008261, b3: 0.54875 },
+      { age: 15.0, b0: -5.12820, b1: 0.63757, b2: -0.006988, b3: 0.49536 },
+      { age: 15.5, b0: -4.50920, b1: 0.68548, b2: -0.005863, b3: 0.42687 },
+      { age: 16.0, b0: -3.92920, b1: 0.75069, b2: -0.004795, b3: 0.34271 },
+      { age: 16.5, b0: -3.48730, b1: 0.83375, b2: -0.003695, b3: 0.24231 },
+      { age: 17.0, b0: -3.28300, b1: 0.93520, b2: -0.002470, b3: 0.12510 },
+      { age: 17.5, b0: -3.41560, b1: 1.05558, b2: -0.001027, b3: -0.00950 }
+    ],
+    girl: [
+      { age: 4.0, b0: -8.13250, b1: 1.24768, b2: -0.194350, b3: 0.44774 },
+      { age: 4.5, b0: -6.47656, b1: 1.22177, b2: -0.185190, b3: 0.41381 },
+      { age: 5.0, b0: -5.13582, b1: 1.19932, b2: -0.175300, b3: 0.38467 },
+      { age: 5.5, b0: -4.13791, b1: 1.17880, b2: -0.164840, b3: 0.36039 },
+      { age: 6.0, b0: -3.51039, b1: 1.15866, b2: -0.154000, b3: 0.34105 },
+      { age: 6.5, b0: -3.14322, b1: 1.13737, b2: -0.142940, b3: 0.32672 },
+      { age: 7.0, b0: -2.87645, b1: 1.11342, b2: -0.131840, b3: 0.31748 },
+      { age: 7.5, b0: -2.66291, b1: 1.08525, b2: -0.120860, b3: 0.31340 },
+      { age: 8.0, b0: -2.45559, b1: 1.05135, b2: -0.110190, b3: 0.31457 },
+      { age: 8.5, b0: -2.20728, b1: 1.01018, b2: -0.099990, b3: 0.32105 },
+      { age: 9.0, b0: -1.87098, b1: 0.96020, b2: -0.090440, b3: 0.33291 },
+      { age: 9.5, b0: -1.06330, b1: 0.89989, b2: -0.081710, b3: 0.35025 },
+      { age: 10.0, b0: 0.33468, b1: 0.82771, b2: -0.073970, b3: 0.37312 },
+      { age: 10.5, b0: 1.97366, b1: 0.74213, b2: -0.067390, b3: 0.40161 },
+      { age: 11.0, b0: 3.50436, b1: 0.67173, b2: -0.061360, b3: 0.42042 },
+      { age: 11.5, b0: 4.57747, b1: 0.64150, b2: -0.055180, b3: 0.41686 },
+      { age: 12.0, b0: 4.84365, b1: 0.64452, b2: -0.048940, b3: 0.39490 },
+      { age: 12.5, b0: 4.27869, b1: 0.67386, b2: -0.042720, b3: 0.35850 },
+      { age: 13.0, b0: 3.21417, b1: 0.72260, b2: -0.036610, b3: 0.31163 },
+      { age: 13.5, b0: 1.83456, b1: 0.78383, b2: -0.030670, b3: 0.25826 },
+      { age: 14.0, b0: 0.32425, b1: 0.85062, b2: -0.025000, b3: 0.20235 },
+      { age: 14.5, b0: -1.13224, b1: 0.91605, b2: -0.019670, b3: 0.14787 },
+      { age: 15.0, b0: -2.35055, b1: 0.97319, b2: -0.014770, b3: 0.09880 },
+      { age: 15.5, b0: -3.10326, b1: 1.01514, b2: -0.010370, b3: 0.05909 },
+      { age: 16.0, b0: -3.17885, b1: 1.03496, b2: -0.006550, b3: 0.03272 },
+      { age: 16.5, b0: -2.41657, b1: 1.02573, b2: -0.003400, b3: 0.02364 },
+      { age: 17.0, b0: -0.65579, b1: 0.98054, b2: -0.001000, b3: 0.03584 },
+      { age: 17.5, b0: 2.26429, b1: 0.89246, b2: 0.000570, b3: 0.07327 }
+    ]
+  };
+
+  function calculateKhamisRoche(ageYearsOrObj, heightCm, weightKg, fatherHeightCm, motherHeightCm, sex) {
+    let age, hCm, wKg, fCm, mCm, s;
+    if (typeof ageYearsOrObj === 'object' && ageYearsOrObj !== null) {
+      age = Number(ageYearsOrObj.ageYears !== undefined ? ageYearsOrObj.ageYears : (ageYearsOrObj.ageMonths ? ageYearsOrObj.ageMonths / 12 : 10));
+      hCm = Number(ageYearsOrObj.heightCm || ageYearsOrObj.currentHeight || 137.0);
+      wKg = Number(ageYearsOrObj.weightKg || ageYearsOrObj.currentWeight || 35.5);
+      fCm = Number(ageYearsOrObj.fatherHeightCm || ageYearsOrObj.fatherHeight || 173.5);
+      mCm = Number(ageYearsOrObj.motherHeightCm || ageYearsOrObj.motherHeight || 160.5);
+      s = normalizeSex(ageYearsOrObj.sex || ageYearsOrObj.gender || 'boy');
+    } else {
+      age = Number(ageYearsOrObj) || 10.0;
+      hCm = Number(heightCm) || 137.0;
+      wKg = Number(weightKg) || 35.5;
+      fCm = Number(fatherHeightCm) || 173.5;
+      mCm = Number(motherHeightCm) || 160.5;
+      s = normalizeSex(sex || 'boy');
+    }
+
+    const heightIn = hCm / 2.54;
+    const weightLbs = wKg * 2.20462262;
+    const midParentStatureIn = ((fCm + mCm) / 2.0) / 2.54;
+    const table = KHAMIS_ROCHE_COEFFICIENTS[s] || KHAMIS_ROCHE_COEFFICIENTS.boy;
+    const clampedAge = Math.max(4.0, Math.min(17.5, age));
+
+    let coeff = null;
+    if (clampedAge <= table[0].age) {
+      coeff = table[0];
+    } else if (clampedAge >= table[table.length - 1].age) {
+      coeff = table[table.length - 1];
+    } else {
+      for (let i = 0; i < table.length - 1; i++) {
+        const r1 = table[i];
+        const r2 = table[i + 1];
+        if (clampedAge >= r1.age && clampedAge <= r2.age) {
+          const t = (clampedAge - r1.age) / (r2.age - r1.age);
+          coeff = {
+            age: clampedAge,
+            b0: (1 - t) * r1.b0 + t * r2.b0,
+            b1: (1 - t) * r1.b1 + t * r2.b1,
+            b2: (1 - t) * r1.b2 + t * r2.b2,
+            b3: (1 - t) * r1.b3 + t * r2.b3
+          };
+          break;
+        }
+      }
+    }
+    if (!coeff) coeff = table[0];
+
+    const predictedInRaw = coeff.b0 + (coeff.b1 * heightIn) + (coeff.b2 * weightLbs) + (coeff.b3 * midParentStatureIn);
+    const predictedCm = Math.round((predictedInRaw * 2.54) * 10) / 10;
+    const predictedIn = Math.round(predictedInRaw * 10) / 10;
+    const isBoy = s === 'boy';
+    const ci90BoundCm = isBoy ? 5.34 : 4.25;
+    const standardErrorCm = isBoy ? 3.25 : 2.58;
+    const ci90MinCm = Math.round((predictedCm - ci90BoundCm) * 10) / 10;
+    const ci90MaxCm = Math.round((predictedCm + ci90BoundCm) * 10) / 10;
+
+    return {
+      predictedCm,
+      predictedIn,
+      ci90BoundCm,
+      ci90MinCm,
+      ci90MaxCm,
+      ci90RangeStr: `${ci90MinCm}cm ~ ${ci90MaxCm}cm (±${ci90BoundCm}cm)`,
+      standardErrorCm,
+      method: 'Khamis-Roche (1994, Fels Longitudinal Study)',
+      ageEvaluated: Math.round(clampedAge * 10) / 10,
+      coefficientsUsed: coeff
+    };
+  }
+
+
   // 6. Annual Growth Velocity Engine
   function calculateVelocity(currentHeight, previousHeightOrAge, monthsDiff = 6) {
     let velocity;
@@ -1067,7 +1203,7 @@
     return `
       <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.85rem 1.1rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <span style="font-size: 0.86rem; font-weight: 800; color: #1D4ED8;">동료심사(Peer-Reviewed) 학술 논문 임상 근거: 질병관리청(KDCA 2017) 및 황기추출물(HT042) 임상</span>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800; text-decoration: none;">PMID:25374566 원문 ↗</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25374566/" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #1D4ED8; font-weight: 800; text-decoration: none;">[논문] PMID:25374566 ↗</a>
       </div>
 
       <!-- Bottom Recommended Products for Core 1 (Age-Tailored & Hidden by default so pure report shows first) -->
@@ -1329,6 +1465,8 @@
     evaluateWeightAndBmi,
     calculateMPH,
     calculateMph,
+    KHAMIS_ROCHE_COEFFICIENTS,
+    calculateKhamisRoche,
     calculateVelocity,
     predictAdultHeightTrajectories,
     calculateRemainingGrowthWindow,

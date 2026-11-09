@@ -221,7 +221,7 @@
             return `
               <a href="https://kr.iherb.com/search?kw=%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%B9%BC%EC%8A%B4&rcode=IPZ1547" 
                  target="_blank" 
-                 rel="noopener noreferrer" 
+                 rel="noopener noreferrer sponsored" 
                  class="reference-chip" 
                  id="ref-chip-nutrition"
                  style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">

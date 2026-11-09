@@ -679,7 +679,7 @@
                 <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">안전 고정형 실내 문틀 철봉 (데드행 스트레칭 바)</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">아침·저녁 30초 매달리기로 낮 동안 눌린 척추 디스크 간격을 안전하게 펴줍니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EB%AC%B4%ED%83%80%EA%B3%B5+%EC%95%88%EC%A0%84+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89" target="_blank" rel="noopener noreferrer sponsored" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
                 실내 문틀 철봉 보러가기 ↗
               </a>
             </div>
@@ -689,7 +689,7 @@
                 <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">멜킨스포츠 척추 신전 고밀도 EPP 폼롤러 90cm</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">흉추 신전 스트레칭과 책상 시선 각도 교정으로 숨은 키(+1.8cm)를 복원합니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EA%B3%A0%EB%B0%80%EB%8F%84+EPP+%ED%8F%BC%EB%A1%A4%EB%9F%AC+90cm" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EA%B3%A0%EB%B0%80%EB%8F%84+EPP+%ED%8F%BC%EB%A1%A4%EB%9F%AC+90cm" target="_blank" rel="noopener noreferrer sponsored" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
                 멜킨 고밀도 EPP 폼롤러 보기 ↗
               </a>
             </div>
@@ -699,7 +699,7 @@
                 <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">멜킨스포츠 어린이 무소음 실내 점핑 트램폴린</div>
                 <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">관절 무리 없이 무릎 성장판에 탄성 미세 자극을 전달하는 실내 운동 기구입니다.</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EB%A9%9C%ED%82%88%EC%8A%A4%ED%8F%AC%EC%B8%A0+%EC%96%B4%EB%A6%B0%EC%9D%B4+%EB%AC%B4%EC%86%8C%EC%9D%8C+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0" target="_blank" rel="noopener noreferrer sponsored" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
                 멜킨 무소음 실내 트램폴린 보기 ↗
               </a>
             </div>
@@ -721,7 +721,7 @@
         <div class="curated-product-recommendation-section growth-product-section" style="display: none; justify-content: flex-end; margin-top: 1rem;">
           <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%9C%84%EC%A6%88%EB%8F%85%EC%84%9C%EB%8C%80+%EB%86%92%EC%9D%B4%EC%A1%B0%EC%A0%88+%EC%9B%90%EB%AA%A9+2%EB%8B%A8+%EB%8F%85%EC%84%9C%EB%8C%80" 
              target="_blank" 
-             rel="noopener noreferrer" 
+             rel="noopener noreferrer sponsored" 
              class="reference-chip" 
              id="ref-chip-biomechanics"
              style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">

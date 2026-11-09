@@ -1068,7 +1068,7 @@
         <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
           <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25EA%25B8%25B0%25EC%25A0%2581%25EC%259D%2598%2520%25EB%258F%2585%25EC%2584%259C%2520%25EB%2585%25BC%25EC%2588%25A0" 
              target="_blank" 
-             rel="noopener noreferrer" 
+             rel="noopener noreferrer sponsored" 
              class="reference-chip" 
              id="ref-chip-neuro"
              style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">

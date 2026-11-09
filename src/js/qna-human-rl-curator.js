@@ -80,7 +80,7 @@
             '🚀 [쿠팡 로켓배송] ' + spec.itemAName.slice(0, 18) + ' 실구매 후기·성분표 확인 →' +
           '</a>' +
           '<a href="' + spec.itemBUrl + '" data-product-category="' + cat + '" data-rl-arm-id="' + spec.rlArmId + '" data-rl-cta-arm="arm_rocket_review" data-rl-reward-weight="' + spec.rlWeight + '" data-product-name="' + spec.itemBName + '" target="_blank" rel="noopener sponsored" style="display:flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#059669,#10B981);color:#FFFFFF;font-weight:800;font-size:13.5px;text-decoration:none;">' +
-            '🚀 [쿠팡 로켓배송] ' + spec.itemBName.slice(0, 18) + ' 스펙·최저가 확인 →' +
+            '🚀 [쿠팡 로켓배송] ' + spec.itemBName.slice(0, 18) + ' 스펙·혜택가 확인 →' +
           '</a>' +
         '</div>' +
         '<p style="margin:6px 0 0 0;font-size:11.5px;color:#94A3B8;">' +

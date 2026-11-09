@@ -226,7 +226,7 @@
       var href = (el.getAttribute('href') || '').toLowerCase();
       var onclick = (el.getAttribute('onclick') || '').toLowerCase();
       var txt = (el.innerText || el.textContent || '').toLowerCase();
-      if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /최저가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
+      if (href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가|구매|쿠팡|셀렉트샵|무료 잠금해제|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
         hitRefClick();
       }
     }, true);

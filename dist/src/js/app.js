@@ -321,12 +321,12 @@
         mother = mother * 2.54;
       }
 
-      if (isNaN(age) || age < 12 || age > 240) {
-        alert('아이의 현재 월령을 12~240개월(1~20세) 사이로 입력해주세요.');
+      if (isNaN(age) || age < 0 || age > 240) {
+        alert('아이의 현재 월령을 0~240개월(신생아~20세) 사이로 입력해주세요.');
         if (ageInput) ageInput.focus();
         return false;
       }
-      if (isNaN(height) || height < 45 || height > 230) {
+      if (age < 12) age = 12; if (isNaN(height) || height < 45 || height > 230) {
         alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이의 현재 키를 45~230cm 사이로 입력해주세요.');
         if (heightInput) heightInput.focus();
         return false;
