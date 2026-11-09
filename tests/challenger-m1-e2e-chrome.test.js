@@ -22,7 +22,7 @@ const fs = require('fs');
 const assert = require('assert');
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const INDEX_HTML_URL = 'file:///d:/%ED%82%A4%EC%A6%88%ED%95%8F%20%EC%98%81%EB%AC%B8/index.html';
+const INDEX_HTML_URL = require('url').pathToFileURL(path.resolve(__dirname, '../../2사업부/index.html')).href;
 const CDP_PORT = 9555;
 
 let passCount = 0;
