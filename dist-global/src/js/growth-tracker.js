@@ -813,19 +813,25 @@
     const hDeltaVal = hKdca.deltaMedian !== undefined ? hKdca.deltaMedian : Math.round((height - medianHeight) * 10) / 10;
     const hDeltaStr = `${hDeltaVal >= 0 ? '+' : ''}${hDeltaVal.toFixed(1)} cm`;
     const hZStr = `${hKdca.zScore >= 0 ? '+' : ''}${Number(hKdca.zScore || 0).toFixed(2)} SD`;
-    const hPctStr = `${Number(hKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`;
+    const hPctStr = isGlobal
+      ? `${Number(hKdca.percentile || 50.0).toFixed(1)}th %ile (Top ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`
+      : `${Number(hKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(hKdca.topPercent !== undefined ? hKdca.topPercent : (100 - hKdca.percentile)).toFixed(1)}%)`;
 
     const wDeltaVal = wKdca.deltaMedian !== undefined ? wKdca.deltaMedian : Math.round((weight - medianWeight) * 10) / 10;
     const wDeltaStr = `${wDeltaVal >= 0 ? '+' : ''}${wDeltaVal.toFixed(1)} kg`;
     const wZStr = `${wKdca.zScore >= 0 ? '+' : ''}${Number(wKdca.zScore || 0).toFixed(2)} SD`;
-    const wPctStr = `${Number(wKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`;
+    const wPctStr = isGlobal
+      ? `${Number(wKdca.percentile || 50.0).toFixed(1)}th %ile (Top ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`
+      : `${Number(wKdca.percentile || 50.0).toFixed(1)}th (상위 ${Number(wKdca.topPercent !== undefined ? wKdca.topPercent : (100 - wKdca.percentile)).toFixed(1)}%)`;
 
     const recentGain6m = Number(profile.recentGrowth6m) || 3.2;
     const velCalc = (GrowthEngine && typeof GrowthEngine.calculateVelocity === 'function')
       ? GrowthEngine.calculateVelocity(recentGain6m, ageYears)
       : { velocityCmPerYear: Math.round(recentGain6m * 2 * 10) / 10, alert: false };
     const velocityVal = Number(velCalc.velocityCmPerYear || (recentGain6m * 2)).toFixed(1);
-    const velStatusText = velCalc.alert ? '저성장 주의 (<4.0cm/yr)' : (Number(velocityVal) >= 7.0 ? '급성장 가속 궤도' : '정상 성장 궤도');
+    const velStatusText = isGlobal
+      ? (velCalc.alert ? 'Sub-Optimal Velocity (<4.0 cm/yr)' : (Number(velocityVal) >= 7.0 ? 'Accelerated Growth Trajectory' : 'Normal Growth Trajectory'))
+      : (velCalc.alert ? '저성장 주의 (<4.0cm/yr)' : (Number(velocityVal) >= 7.0 ? '급성장 가속 궤도' : '정상 성장 궤도'));
 
     // Tanner MPH & Predicted adult heights via GrowthEngine.predictAdultHeightTrajectories()
     const mphOffset = sexKey === 'girl' ? -13 : 13;

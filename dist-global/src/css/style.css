@@ -4443,5 +4443,124 @@ button,
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ==========================================================================
+   32. INTERACTIVE 3-PAGE CLINICAL SAMPLE PREVIEW & COMMERCIAL PAYWALL MATRIX
+   ========================================================================== */
+
+#kidsfit-sample-demo-modal {
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.paywall-feature-comparison-matrix {
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.paywall-feature-comparison-matrix table tr:hover td {
+  background-color: #F1F5F9;
+}
+
+.paywall-vip-bonus-pack-preview summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  outline: none;
+  min-height: 48px;
+  user-select: none;
+  border-radius: 8px;
+}
+
+.paywall-vip-bonus-pack-preview summary:focus-visible {
+  outline: 2px solid #38BDF8;
+  outline-offset: 2px;
+}
+
+.paywall-vip-bonus-pack-preview summary::-webkit-details-marker,
+.paywall-vip-bonus-pack-preview summary::marker {
+  display: none;
+}
+
+.paywall-vip-bonus-pack-preview .vip-vault-chevron {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: #A7F3D0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.paywall-vip-bonus-pack-preview[open] .vip-vault-chevron {
+  transform: rotate(180deg);
+}
+
+/* Mobile Ergonomics & Readability (<640px) */
+@media (max-width: 640px) {
+  #kidsfit-sample-demo-modal {
+    padding: 0.35rem !important;
+  }
+
+  #kidsfit-sample-demo-modal > div {
+    max-height: 98vh !important;
+    border-radius: 16px !important;
+  }
+
+  #taller-global-paywall-card {
+    padding: 0.95rem 0.85rem !important;
+  }
+
+  .paywall-feature-comparison-matrix {
+    padding: 0.65rem 0.65rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .paywall-feature-comparison-matrix table {
+    font-size: 0.72rem !important;
+  }
+
+  .paywall-feature-comparison-matrix th,
+  .paywall-feature-comparison-matrix td {
+    padding: 0.38rem 0.45rem !important;
+  }
+
+  .paywall-vip-bonus-pack-preview {
+    padding: 0.65rem 0.75rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .paywall-vip-bonus-pack-preview > div {
+    grid-template-columns: 1fr !important;
+    gap: 0.35rem !important;
+  }
+
+  #taller-global-paywall-card button,
+  #taller-global-paywall-card a.lemonsqueezy-button,
+  #kidsfit-global-checkout-modal button,
+  #kidsfit-global-checkout-modal a.lemonsqueezy-button,
+  #kidsfit-sample-demo-modal button,
+  #paywall-vip-bonus-pack-preview summary,
+  .paywall-vip-bonus-pack-preview summary {
+    min-height: 48px !important;
+  }
+
+  #checkout-parent-email,
+  #checkout-order-code,
+  #kf-free-summary-email {
+    font-size: 16px !important;
+    min-height: 48px !important;
+  }
+}
+
 
 

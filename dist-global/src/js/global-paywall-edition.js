@@ -317,6 +317,43 @@
     }
   };
 
+  global.switchSamplePreviewPage = function (pageNum) {
+    if (typeof document === 'undefined') return;
+    const pNum = Math.max(1, Math.min(3, parseInt(pageNum, 10) || 1));
+    const p1 = document.getElementById('sample-preview-page-1');
+    const p2 = document.getElementById('sample-preview-page-2');
+    const p3 = document.getElementById('sample-preview-page-3');
+    const t1 = document.getElementById('sample-tab-btn-1');
+    const t2 = document.getElementById('sample-tab-btn-2');
+    const t3 = document.getElementById('sample-tab-btn-3');
+    const ind = document.getElementById('sample-active-page-num');
+
+    if (p1) p1.style.display = pNum === 1 ? 'block' : 'none';
+    if (p2) p2.style.display = pNum === 2 ? 'block' : 'none';
+    if (p3) p3.style.display = pNum === 3 ? 'block' : 'none';
+
+    const actStyle = 'background:#1D4ED8;color:#FFFFFF;border:1.5px solid #1D4ED8;font-weight:900;box-shadow:0 2px 8px rgba(29,78,216,0.25);';
+    const inactStyle = 'background:#F8FAFC;color:#475569;border:1.5px solid #CBD5E1;font-weight:700;box-shadow:none;';
+    const baseTab = 'padding:0.6rem 0.75rem;min-height:48px;border-radius:10px;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;transition:all 0.15s ease;';
+
+    if (t1) t1.style.cssText = baseTab + (pNum === 1 ? actStyle : inactStyle);
+    if (t2) t2.style.cssText = baseTab + (pNum === 2 ? actStyle : inactStyle);
+    if (t3) t3.style.cssText = baseTab + (pNum === 3 ? actStyle : inactStyle);
+
+    if (ind) ind.textContent = String(pNum);
+
+    const prevBtn = document.getElementById('btn-sample-page-prev');
+    const nextBtn = document.getElementById('btn-sample-page-next');
+    if (prevBtn) {
+      prevBtn.disabled = pNum === 1;
+      prevBtn.style.opacity = pNum === 1 ? '0.4' : '1';
+    }
+    if (nextBtn) {
+      nextBtn.disabled = pNum === 3;
+      nextBtn.style.opacity = pNum === 3 ? '0.4' : '1';
+    }
+  };
+
   global.openSampleReportPreview = function () {
     if (typeof document === 'undefined') return;
     let modal = document.getElementById('kidsfit-sample-demo-modal');
@@ -324,57 +361,493 @@
 
     modal = document.createElement('div');
     modal.id = 'kidsfit-sample-demo-modal';
-    modal.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.75);display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px);';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.8);display:flex;align-items:center;justify-content:center;padding:0.75rem;backdrop-filter:blur(6px);overflow-y:auto;';
     modal.innerHTML = `
-      <div style="background:#FFFFFF;border:2px solid #1D4ED8;border-radius:24px;max-width:520px;width:100%;padding:1.6rem 1.5rem;box-shadow:0 25px 60px rgba(15,23,42,0.35);color:#0F172A;text-align:left;position:relative;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.85rem;padding-bottom:0.65rem;border-bottom:1px solid #E2E8F0;">
-          <div style="display:flex;align-items:center;gap:0.5rem;">
-            <span style="font-size:1.3rem;">👀</span>
-            <div>
-              <span style="font-size:0.72rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:0.18rem 0.55rem;border-radius:9999px;">LIVE DEMO CASE · CDC 2000 LMS</span>
-              <h3 style="margin:0.25rem 0 0;font-size:1.18rem;font-weight:900;color:#0F172A;">Interactive Sample Report Preview</h3>
+      <div style="background:#FFFFFF;border:2.5px solid #1D4ED8;border-radius:22px;max-width:880px;width:100%;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(15,23,42,0.45);color:#0F172A;text-align:left;position:relative;overflow:hidden;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;">
+        
+        <!-- Header Bar -->
+        <div style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#FFFFFF;padding:0.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;border-bottom:1px solid rgba(255,255,255,0.15);">
+          <div>
+            <div style="font-size:0.68rem;font-weight:900;color:#93C5FD;letter-spacing:0.06em;text-transform:uppercase;">
+              🏥 KISFIT CLINICAL PEDIATRIC ATELIER · HOSPITAL-GRADE AUXOLOGY INTAKE
+            </div>
+            <h3 style="margin:0.2rem 0 0;font-size:1.15rem;font-weight:900;color:#FFFFFF;display:flex;align-items:center;gap:0.45rem;">
+              <span>CLINICAL AUXOLOGY &amp; EPIGENETIC GROWTH DOSSIER</span>
+            </h3>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.65rem;">
+            <span style="font-family:monospace;font-size:0.72rem;background:rgba(255,255,255,0.12);padding:0.2rem 0.55rem;border-radius:6px;color:#E2E8F0;border:1px solid rgba(255,255,255,0.2);">
+              Patient ID: KFG-EHR-9082-2026
+            </span>
+            <button type="button" onclick="var m=document.getElementById('kidsfit-sample-demo-modal');if(m)m.remove();" aria-label="Close Sample Preview" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#FFFFFF;border-radius:9999px;width:34px;height:34px;font-size:1.1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s ease;">✕</button>
+          </div>
+        </div>
+
+        <!-- Standards & Watermark Verification Ribbon -->
+        <div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:0.55rem 1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;font-size:0.75rem;">
+          <div style="color:#1E3A8A;font-weight:700;">
+            <strong>Standards:</strong> US CDC 2000 LMS / AAP Guidelines / WHO MGRS &middot; <strong>Evaluated:</strong> Liam (Age 9 Boy · 50th Percentile CDC LMS)
+          </div>
+          <div style="background:#DBEAFE;color:#1D4ED8;border:1px solid #93C5FD;font-weight:900;padding:0.18rem 0.6rem;border-radius:9999px;display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;">
+            <span>🔒 OFFICIAL CLINICAL SAMPLE · VERIFIED EHR PREVIEW · KISFIT BIO LABS</span>
+          </div>
+        </div>
+
+        <!-- Liam Patient Intake Overview Card (Preserved for Test Suite & Context) -->
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 1.1rem;margin:0.75rem 1.25rem 0.5rem 1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.4rem;">
+            <div style="display:flex;align-items:center;gap:0.45rem;">
+              <span style="font-size:1.1rem;">👦</span>
+              <strong style="color:#0F172A;font-size:0.92rem;">Patient: Liam (Age 9 Boy)</strong>
+            </div>
+            <span style="font-size:0.72rem;font-weight:900;background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;padding:0.15rem 0.55rem;border-radius:9999px;">
+              50th Percentile CDC LMS
+            </span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.35rem;font-size:0.78rem;color:#334155;line-height:1.45;">
+            <div>&bull; <strong>Current Stature:</strong> 4' 4.6" (133.5 cm)</div>
+            <div>&bull; <strong>Current Weight:</strong> 62.8 lbs (28.5 kg)</div>
+            <div>&bull; <strong>BMI:</strong> 16.0 kg/m&sup2; (Healthy Linear Range)</div>
+            <div>&bull; <strong>Tanner Stage:</strong> Stage 1 (Prepubertal)</div>
+            <div>&bull; <strong>Annual Velocity:</strong> 5.2 cm/yr (2.0 in/yr)</div>
+            <div>&bull; <strong>Father's Height:</strong> 5' 9.5" (176.5 cm)</div>
+            <div>&bull; <strong>Mother's Height:</strong> 5' 4.2" (163.0 cm)</div>
+            <div>&bull; <strong>Mid-Parental Target (MPH):</strong> 5' 9.4" (176.3 cm &plusmn; 3.3 in)</div>
+          </div>
+        </div>
+
+        <!-- Interactive 3-Page Segmented Tab Switcher -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;padding:0 1.25rem;margin-bottom:0.6rem;">
+          <button type="button" id="sample-tab-btn-1" onclick="window.switchSamplePreviewPage(1)" style="padding:0.6rem 0.75rem;min-height:48px;border-radius:10px;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;background:#1D4ED8;color:#FFFFFF;border:1.5px solid #1D4ED8;font-weight:900;box-shadow:0 2px 8px rgba(29,78,216,0.25);">
+            <span>📄</span> Page 1: Auxology &amp; Trajectory
+          </button>
+          <button type="button" id="sample-tab-btn-2" onclick="window.switchSamplePreviewPage(2)" style="padding:0.6rem 0.75rem;min-height:48px;border-radius:10px;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;background:#F8FAFC;color:#475569;border:1.5px solid #CBD5E1;font-weight:700;">
+            <span>🦴</span> Page 2: Khamis-Roche &amp; Bone Age
+          </button>
+          <button type="button" id="sample-tab-btn-3" onclick="window.switchSamplePreviewPage(3)" style="padding:0.6rem 0.75rem;min-height:48px;border-radius:10px;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;background:#F8FAFC;color:#475569;border:1.5px solid #CBD5E1;font-weight:700;">
+            <span>⚡</span> Page 3: 90-Day Action Protocol
+          </button>
+        </div>
+
+        <!-- Scrollable Clinical Report Content Area -->
+        <div style="padding:0 1.25rem 0.75rem 1.25rem;overflow-y:auto;flex:1;max-height:56vh;">
+          
+          <!-- ================= PAGE 1 ================= -->
+          <div id="sample-preview-page-1" style="display:block;">
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.5rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>1.1</span> Standardized Pediatric Auxology &amp; LMS Z-Score Table (US CDC 2000)
+              </h4>
+              <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:0.76rem;text-align:left;color:#1E293B;">
+                  <thead>
+                    <tr style="background:#F1F5F9;border-bottom:1.5px solid #CBD5E1;">
+                      <th style="padding:0.45rem 0.6rem;color:#475569;font-weight:800;">Biometric Metric</th>
+                      <th style="padding:0.45rem 0.5rem;font-weight:800;">Liam Value</th>
+                      <th style="padding:0.45rem 0.5rem;font-weight:800;">Age 9.0 Median</th>
+                      <th style="padding:0.45rem 0.5rem;font-weight:800;">Delta</th>
+                      <th style="padding:0.45rem 0.5rem;font-weight:800;">Z-Score</th>
+                      <th style="padding:0.45rem 0.5rem;font-weight:800;">Percentile</th>
+                      <th style="padding:0.45rem 0.6rem;font-weight:800;">Clinical Interpretation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.45rem 0.6rem;font-weight:700;">Standing Stature</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:800;color:#1D4ED8;">4' 4.6" (133.5 cm)</td>
+                      <td style="padding:0.45rem 0.5rem;">133.5 cm</td>
+                      <td style="padding:0.45rem 0.5rem;">0.0 cm</td>
+                      <td style="padding:0.45rem 0.5rem;font-family:monospace;">+0.00 SD</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:900;color:#1D4ED8;">50.0th %ile</td>
+                      <td style="padding:0.45rem 0.6rem;color:#059669;font-weight:700;">Exact median progression corridor</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.45rem 0.6rem;font-weight:700;">Body Mass (Weight)</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:800;">62.8 lbs (28.5 kg)</td>
+                      <td style="padding:0.45rem 0.5rem;">28.5 kg</td>
+                      <td style="padding:0.45rem 0.5rem;">0.0 kg</td>
+                      <td style="padding:0.45rem 0.5rem;font-family:monospace;">+0.00 SD</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:900;">50.0th %ile</td>
+                      <td style="padding:0.45rem 0.6rem;color:#059669;font-weight:700;">Ideal metabolic lean mass ratio</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.45rem 0.6rem;font-weight:700;">Body Mass Index (BMI)</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:800;">16.0 kg/m&sup2;</td>
+                      <td style="padding:0.45rem 0.5rem;">16.1 kg/m&sup2;</td>
+                      <td style="padding:0.45rem 0.5rem;">-0.1 kg/m&sup2;</td>
+                      <td style="padding:0.45rem 0.5rem;font-family:monospace;">-0.05 SD</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:900;">48.2th %ile</td>
+                      <td style="padding:0.45rem 0.6rem;color:#059669;font-weight:700;">Optimal for epiphyseal chondrogenesis</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.45rem 0.6rem;font-weight:700;">Annual Height Velocity</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:800;color:#1D4ED8;">2.0 in/yr (5.2 cm/yr)</td>
+                      <td style="padding:0.45rem 0.5rem;">5.3 cm/yr</td>
+                      <td style="padding:0.45rem 0.5rem;">-0.1 cm/yr</td>
+                      <td style="padding:0.45rem 0.5rem;font-family:monospace;">—</td>
+                      <td style="padding:0.45rem 0.5rem;font-weight:900;color:#1D4ED8;">Prepubertal</td>
+                      <td style="padding:0.45rem 0.6rem;color:#059669;font-weight:700;">Normal linear velocity (&gt;4.0 cm/yr)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Multi-Curve SVG Growth Chart -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;flex-wrap:wrap;gap:0.4rem;">
+                <h4 style="margin:0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                  <span>1.2</span> Multi-Curve CDC Stature Trajectory &amp; 90% Confidence Corridor
+                </h4>
+                <span style="font-size:0.7rem;font-weight:800;background:#EFF6FF;color:#1D4ED8;padding:0.12rem 0.5rem;border-radius:9999px;">
+                  Statistical Corridor: &plusmn;2.1 in (&plusmn;5.34 cm)
+                </span>
+              </div>
+              
+              <svg viewBox="0 0 540 210" style="width:100%;height:auto;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;margin:0.35rem 0;" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid Lines -->
+                <line x1="50" y1="25" x2="520" y2="25" stroke="#E2E8F0" stroke-dasharray="3,3" />
+                <line x1="50" y1="65" x2="520" y2="65" stroke="#E2E8F0" stroke-dasharray="3,3" />
+                <line x1="50" y1="105" x2="520" y2="105" stroke="#E2E8F0" stroke-dasharray="3,3" />
+                <line x1="50" y1="145" x2="520" y2="145" stroke="#E2E8F0" stroke-dasharray="3,3" />
+                <line x1="50" y1="180" x2="520" y2="180" stroke="#CBD5E1" stroke-width="1.5" />
+
+                <!-- Vertical Age Guides -->
+                <line x1="50" y1="20" x2="50" y2="180" stroke="#CBD5E1" stroke-width="1.5" />
+                <line x1="167" y1="20" x2="167" y2="180" stroke="#E2E8F0" stroke-dasharray="2,2" />
+                <line x1="285" y1="20" x2="285" y2="180" stroke="#E2E8F0" stroke-dasharray="2,2" />
+                <line x1="402" y1="20" x2="402" y2="180" stroke="#E2E8F0" stroke-dasharray="2,2" />
+                <line x1="520" y1="20" x2="520" y2="180" stroke="#CBD5E1" stroke-width="1.5" />
+
+                <!-- Axis Labels -->
+                <text x="50" y="195" font-size="9" fill="#64748B" font-family="sans-serif" text-anchor="middle">Age 4</text>
+                <text x="167" y="195" font-size="9" fill="#1D4ED8" font-family="sans-serif" font-weight="bold" text-anchor="middle">Age 9 (Now)</text>
+                <text x="285" y="195" font-size="9" fill="#64748B" font-family="sans-serif" text-anchor="middle">Age 13.5 (PHV)</text>
+                <text x="402" y="195" font-size="9" fill="#64748B" font-family="sans-serif" text-anchor="middle">Age 16</text>
+                <text x="520" y="195" font-size="9" fill="#0F172A" font-family="sans-serif" font-weight="bold" text-anchor="middle">Age 20 (Adult)</text>
+
+                <text x="42" y="28" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="end">185cm</text>
+                <text x="42" y="68" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="end">175cm</text>
+                <text x="42" y="108" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="end">150cm</text>
+                <text x="42" y="148" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="end">130cm</text>
+
+                <!-- 90% Statistical Confidence Corridor Shading from Age 9 to Age 20 -->
+                <polygon points="167,138 285,90 402,68 520,45 520,78 402,100 285,118 167,138" fill="rgba(59,130,246,0.12)" stroke="none" />
+
+                <!-- CDC LMS P97 reference curve -->
+                <path d="M 50,158 Q 167,118 285,75 T 520,28" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3,3" />
+                <!-- CDC LMS P50 reference curve -->
+                <path d="M 50,168 Q 167,138 285,98 T 520,62" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+                <!-- CDC LMS P3 reference curve -->
+                <path d="M 50,176 Q 167,152 285,120 T 520,95" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3,3" />
+
+                <!-- Projection 1: Clinically Optimized Stature (6' 0.0" / 183.0 cm) -->
+                <path d="M 167,138 C 220,126 310,72 520,32" fill="none" stroke="#059669" stroke-width="2.8" />
+                <circle cx="520" cy="32" r="4" fill="#059669" />
+                <text x="515" y="24" font-size="8.5" fill="#059669" font-family="sans-serif" font-weight="900" text-anchor="end">Clinically Optimized: 6' 0.0" (183.0 cm)</text>
+
+                <!-- Projection 2: Genetic & Tanner MPH Baseline (5' 9.4" / 176.3 cm) -->
+                <path d="M 167,138 C 220,132 310,92 520,62" fill="none" stroke="#1D4ED8" stroke-width="2.8" />
+                <circle cx="520" cy="62" r="4" fill="#1D4ED8" />
+                <text x="515" y="56" font-size="8.5" fill="#1D4ED8" font-family="sans-serif" font-weight="900" text-anchor="end">Baseline / Tanner MPH: 5' 9.4" (176.3 cm)</text>
+
+                <!-- Projection 3: Unmanaged Hazard (5' 7.4" / 171.3 cm) -->
+                <path d="M 167,138 C 220,136 310,105 520,82" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="5,4" />
+                <circle cx="520" cy="82" r="3.5" fill="#DC2626" />
+                <text x="515" y="93" font-size="8" fill="#DC2626" font-family="sans-serif" font-weight="800" text-anchor="end">Unmanaged Hazard: 5' 7.4" (171.3 cm)</text>
+
+                <!-- Liam's Current Assessment Radar Marker -->
+                <circle cx="167" cy="138" r="7" fill="none" stroke="#1D4ED8" stroke-width="2" opacity="0.6">
+                  <animate attributeName="r" values="5;10;5" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="167" cy="138" r="4.5" fill="#1D4ED8" />
+                <rect x="100" y="112" width="135" height="18" rx="4" fill="#1E293B" opacity="0.9" />
+                <text x="167" y="124" font-size="7.5" fill="#FFFFFF" font-family="sans-serif" font-weight="bold" text-anchor="middle">Liam (Age 9.0y · 133.5 cm)</text>
+              </svg>
+
+              <!-- Bento Stature Projection Summary -->
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;margin-top:0.45rem;text-align:center;">
+                <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:0.45rem 0.5rem;">
+                  <div style="font-size:0.68rem;color:#1E3A8A;font-weight:700;">Genetic Baseline (MPH)</div>
+                  <div style="font-size:1.05rem;font-weight:900;color:#1D4ED8;">5' 9.4" (176.3 cm)</div>
+                  <div style="font-size:0.68rem;color:#475569;">50th %ile Canalization</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.45rem 0.5rem;">
+                  <div style="font-size:0.68rem;color:#475569;font-weight:700;">90% Statistical Corridor</div>
+                  <div style="font-size:1.05rem;font-weight:900;color:#0F172A;">5' 7.3" – 5' 11.5"</div>
+                  <div style="font-size:0.68rem;color:#64748B;">&plusmn;2.1 in (&plusmn;5.34 cm)</div>
+                </div>
+                <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:0.45rem 0.5rem;">
+                  <div style="font-size:0.68rem;color:#065F46;font-weight:700;">Clinically Optimized</div>
+                  <div style="font-size:1.05rem;font-weight:900;color:#059669;">6' 0.0" (183.0 cm)</div>
+                  <div style="font-size:0.68rem;color:#059669;font-weight:800;">+9.5 cm Potential Ceiling</div>
+                </div>
+              </div>
             </div>
           </div>
-          <button type="button" onclick="var m=document.getElementById('kidsfit-sample-demo-modal');if(m)m.remove();" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:9999px;width:32px;height:32px;font-weight:900;cursor:pointer;">✕</button>
-        </div>
 
-        <p style="font-size:0.84rem;color:#475569;line-height:1.55;margin:0 0 1rem 0;">
-          Experience the complete unmasked 7-chapter clinical dossier and hospital PDF generated from a realistic pediatric patient profile before starting your child's assessment.
-        </p>
+          <!-- ================= PAGE 2 ================= -->
+          <div id="sample-preview-page-2" style="display:none;">
+            <!-- Section 2.1: Polygenic Baseline (Tanner MPH) -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.45rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>2.1</span> Polygenic Baseline &amp; Tanner Mid-Parental Height (MPH)
+              </h4>
+              <p style="font-size:0.76rem;color:#475569;line-height:1.45;margin:0 0 0.5rem 0;">
+                Calculated from biological parents' standing stature: Father 5' 9.5" (176.5 cm) &amp; Mother 5' 4.2" (163.0 cm).
+              </p>
+              <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.6rem 0.8rem;font-size:0.78rem;line-height:1.5;color:#1E293B;">
+                <div><strong>• Tanner Mid-Parental Target (Boys):</strong> ((Father 176.5 cm + Mother 163.0 cm + 13.0 cm) / 2) = <strong>176.25 cm (~5' 9.4")</strong></div>
+                <div><strong>• Polygenic Target Corridor (&plusmn;3.3 in / &plusmn;8.5 cm):</strong> <strong>167.8 cm – 184.8 cm (5' 6.1" – 6' 0.7")</strong></div>
+                <div style="color:#059669;font-weight:700;margin-top:0.25rem;">&bull; Clinical Note: Genetics dictate the baseline corridor; 30% to 40% of final adult stature remains modifiable through proactive chrononutrition, sleep hGH optimization, and biomechanics.</div>
+              </div>
+            </div>
 
-        <!-- Demo Patient Summary Card -->
-        <div style="background:#F8FAFC;border:1.5px solid #BFDBFE;border-radius:14px;padding:0.95rem 1.1rem;margin-bottom:1.1rem;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;">
-            <strong style="color:#1E3A8A;font-size:0.92rem;">👦 Patient: Liam (Age 9 Boy)</strong>
-            <span style="font-size:0.72rem;font-weight:800;background:#ECFDF5;color:#059669;padding:0.15rem 0.5rem;border-radius:9999px;">50th Percentile CDC LMS</span>
+            <!-- Section 2.2: Khamis-Roche 1994 Mathematical Proof -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;flex-wrap:wrap;gap:0.4rem;">
+                <h4 style="margin:0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                  <span>2.2</span> Khamis-Roche (1994) Empirical Regression Mathematical Proof
+                </h4>
+                <span style="font-size:0.7rem;font-weight:800;color:#1D4ED8;background:#EFF6FF;border:1px solid #BFDBFE;padding:0.12rem 0.5rem;border-radius:9999px;">
+                  Published in Pediatrics 1994;94:504-507
+                </span>
+              </div>
+              <p style="font-size:0.75rem;color:#475569;margin:0 0 0.5rem 0;">
+                Calculated without bone age radiograph radiation using 28-row empirical regression weights derived from the Fels Longitudinal Study:
+              </p>
+              
+              <div style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:8px;padding:0.6rem 0.8rem;margin-bottom:0.5rem;font-family:monospace;font-size:0.75rem;color:#0F172A;">
+                Predicted Adult Height (in) = &beta;₀ + (&beta;₁ &times; Height_in) + (&beta;₂ &times; Weight_lbs) + (&beta;₃ &times; MidParentStature_in)
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:0.75rem;text-align:left;color:#334155;margin-bottom:0.5rem;">
+                  <thead>
+                    <tr style="background:#F8FAFC;border-bottom:1px solid #CBD5E1;">
+                      <th style="padding:0.35rem 0.5rem;font-weight:800;">Regression Term</th>
+                      <th style="padding:0.35rem 0.5rem;font-weight:800;">Exact Beta (&beta;) Weight</th>
+                      <th style="padding:0.35rem 0.5rem;font-weight:800;">Liam Value</th>
+                      <th style="padding:0.35rem 0.5rem;font-weight:800;">Component Output</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;">Intercept (&beta;₀)</td>
+                      <td style="padding:0.35rem 0.5rem;font-family:monospace;">-11.15710</td>
+                      <td style="padding:0.35rem 0.5rem;">—</td>
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;">-11.157 in</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;">Current Stature (&beta;₁)</td>
+                      <td style="padding:0.35rem 0.5rem;font-family:monospace;">+1.05166</td>
+                      <td style="padding:0.35rem 0.5rem;">52.56 in (133.5 cm)</td>
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;color:#1D4ED8;">+55.275 in</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #E2E8F0;">
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;">Current Weight (&beta;₂)</td>
+                      <td style="padding:0.35rem 0.5rem;font-family:monospace;">-0.045254</td>
+                      <td style="padding:0.35rem 0.5rem;">62.83 lbs (28.5 kg)</td>
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;color:#DC2626;">-2.843 in</td>
+                    </tr>
+                    <tr style="border-bottom:1.5px solid #CBD5E1;">
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;">Mid-Parent Stature (&beta;₃)</td>
+                      <td style="padding:0.35rem 0.5rem;font-family:monospace;">+0.42776</td>
+                      <td style="padding:0.35rem 0.5rem;">66.83 in (169.75 cm)</td>
+                      <td style="padding:0.35rem 0.5rem;font-weight:700;color:#059669;">+28.587 in</td>
+                    </tr>
+                    <tr style="background:#EFF6FF;font-weight:900;">
+                      <td style="padding:0.45rem 0.5rem;color:#1E3A8A;" colspan="3">Predicted Adult Stature Y = &Sigma;(&beta;)</td>
+                      <td style="padding:0.45rem 0.5rem;color:#1D4ED8;font-size:0.85rem;">69.41 in (176.3 cm / 5' 9.4")</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;font-size:0.74rem;color:#475569;">
+                <span>• <strong>Standard Error of Estimate:</strong> 3.25 cm (1.28 in)</span>
+                <span>• <strong>90% Confidence Corridor:</strong> &plusmn;5.34 cm (&plusmn;2.1 in)</span>
+                <span>• <strong>28-Row Empirical Matrix:</strong> Full age coverage 4.0 to 17.5y in 0.5y steps</span>
+              </div>
+            </div>
+
+            <!-- Section 2.3: Epiphyseal Growth Plate Timeline -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.45rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>2.3</span> Epiphyseal Growth Plate Fusion Timeline &amp; Bone Age Window
+              </h4>
+              <div style="font-size:0.75rem;color:#475569;margin-bottom:0.6rem;">
+                Chronological Age: <strong>9.0y</strong> &middot; Bone Age Equivalent: <strong>Greulich-Pyle / TW3 ~8.8–9.2y</strong> &middot; Prepubertal Quiescent Physis
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.45rem;font-size:0.74rem;">
+                <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:8px;padding:0.55rem 0.65rem;">
+                  <div style="font-weight:800;color:#1D4ED8;">1. Prepubertal Window (4–10y)</div>
+                  <div style="color:#059669;font-weight:700;">★ CURRENT STAGE</div>
+                  <div style="color:#334155;">Growth plates fully open with thick cartilaginous physis. High sensitivity to somatotropin &amp; nutrition.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.65rem;">
+                  <div style="font-weight:800;color:#0F172A;">2. Peak Height Velocity (PHV)</div>
+                  <div style="color:#64748B;">Ages 11.5y (Girls) / 13.5y (Boys)</div>
+                  <div style="color:#334155;">Rapid pubertal growth spurt (8–11 cm/yr) driven by sex steroids and pulsatile pituitary GH release.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.65rem;">
+                  <div style="font-weight:800;color:#0F172A;">3. Physis Calcification Phase</div>
+                  <div style="color:#64748B;">Ages 14.5–16.5y</div>
+                  <div style="color:#334155;">Epiphyseal chondrocyte senescence with peripheral osseous bridging toward the center.</div>
+                </div>
+                <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:0.55rem 0.65rem;">
+                  <div style="font-weight:800;color:#DC2626;">4. Permanent Physis Closure</div>
+                  <div style="color:#DC2626;font-weight:700;">Ages 15–17y (Final Fusion)</div>
+                  <div style="color:#334155;">Cortical bone fuses completely across the physis. Remaining height potential permanently reaches <strong>0.0 cm</strong>.</div>
+                </div>
+              </div>
+
+              <div style="margin-top:0.6rem;background:#F0FDF4;border:1px solid #86EFAC;border-radius:8px;padding:0.6rem 0.8rem;font-size:0.76rem;color:#065F46;line-height:1.45;">
+                <strong>🚨 Biological Imperative:</strong> Liam has approximately <strong>6.5 years (78 months)</strong> before epiphyseal fusion begins. Every single month of delayed sleep and suboptimal nutrition compounds into permanent lost adult stature.
+              </div>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;font-size:0.78rem;color:#334155;line-height:1.45;">
-            <div>• <strong>Current Stature:</strong> 4' 4.6" (133.5 cm)</div>
-            <div>• <strong>Current Weight:</strong> 62.8 lbs (28.5 kg)</div>
-            <div>• <strong>Tanner Stage:</strong> Stage 1 (Prepubertal)</div>
-            <div>• <strong>Annual Velocity:</strong> 5.2 cm/yr (2.0 in/yr)</div>
-            <div>• <strong>Father's Height:</strong> 5' 9.5" (176.5 cm)</div>
-            <div>• <strong>Mother's Height:</strong> 5' 4.2" (163.0 cm)</div>
-            <div style="grid-column:1 / -1;">• <strong>Mid-Parental Target (MPH):</strong> 5' 9.4" (176.3 cm ± 3.3 in)</div>
+
+          <!-- ================= PAGE 3 ================= -->
+          <div id="sample-preview-page-3" style="display:none;">
+            <!-- Section 3.1: Circadian SWS Deep Sleep Architecture -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.45rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>3.1</span> Axis 1: Circadian SWS Deep Sleep Somatotropin (hGH) Protocol
+              </h4>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.5rem;font-size:0.76rem;">
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.6rem 0.75rem;">
+                  <div style="font-weight:800;color:#1E3A8A;margin-bottom:0.25rem;">🌙 Stage N3 SWS Sleep Architecture</div>
+                  <div>• <strong>Target Lights-Out:</strong> 9:45 PM | <strong>Sleep Onset:</strong> 10:00 PM</div>
+                  <div>• <strong>Peak Stage N3 SWS Window:</strong> 10:45 PM – 1:15 AM</div>
+                  <div>• <strong>Wake-up Target:</strong> 7:00 AM (9.0h / 6 complete 90-min cycles)</div>
+                  <div style="color:#059669;font-weight:700;margin-top:0.2rem;">60–70% of daily pulsatile growth hormone is secreted during Stage N3 delta sleep.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.6rem 0.75rem;">
+                  <div style="font-weight:800;color:#047857;margin-bottom:0.25rem;">⏳ 3-Hour Pre-Bed Glycemic Fast</div>
+                  <div>• <strong>Last Caloric Cutoff:</strong> 6:45 PM (Water only thereafter)</div>
+                  <div>• <strong>Insulin-Somatostatin Block:</strong> 0% GH suppression (Optimal)</div>
+                  <div>• <strong>Late Evening Snack Risk:</strong> Up to 52% GH pulse inhibition</div>
+                  <div style="color:#059669;font-weight:700;margin-top:0.2rem;">Zero nocturnal insulin spikes allows maximum pituitary somatotropin release.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3.2: Weight-Calibrated Micro-Nutrient Timing -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.45rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>3.2</span> Axis 2: Weight-Calibrated Micro-Nutrient &amp; Amino Acid Timing (Liam: 28.5 kg)
+              </h4>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.5rem;font-size:0.75rem;">
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#1D4ED8;display:block;margin-bottom:0.2rem;">☀️ Morning (07:30 AM Post-Breakfast):</strong>
+                  <div>• <strong>Vitamin D3:</strong> 2,000 IU (Cholecalciferol)</div>
+                  <div>• <strong>Vitamin K2 (MK-7):</strong> 60 mcg (Osteocalcin carboxylator)</div>
+                  <div>• <strong>Protein Target:</strong> 37.0 g/day (1.3 g/kg high biological value)</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#047857;display:block;margin-bottom:0.2rem;">🌤️ Afternoon (04:00 PM Snack):</strong>
+                  <div>• <strong>Chelated Zinc Picolinate:</strong> 11 mg</div>
+                  <div>• <strong>Mechanistic Role:</strong> Essential enzymatic cofactor for hepatic IGF-1 transcription &amp; GH receptor sensitivity.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#7C3AED;display:block;margin-bottom:0.2rem;">🌙 Evening (06:30 PM with Dinner):</strong>
+                  <div>• <strong>Microcrystalline Hydroxyapatite / Calcium Citrate:</strong> 1,000 mg (~45% absorption, gastric pH-independent)</div>
+                  <div>• <strong>Chelated Magnesium Glycinate:</strong> 130 mg (NMDA deep-sleep cofactor)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3.3: Wolff's Law Biomechanical Decompression Routines -->
+            <div style="border:1.5px solid #BFDBFE;border-radius:14px;padding:0.9rem 1rem;background:#FFFFFF;margin-bottom:0.75rem;">
+              <h4 style="margin:0 0 0.45rem 0;font-size:0.95rem;font-weight:900;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+                <span>3.3</span> Axis 3: Wolff's Law Biomechanical Spinal Decompression Routines
+              </h4>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.5rem;font-size:0.75rem;">
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#1D4ED8;display:block;margin-bottom:0.2rem;">1. Passive Spinal Dead Hang (Wolff's Law)</strong>
+                  <div>• 30 seconds &times; 3 sets (30s rest interval)</div>
+                  <div>• Reverses diurnal L1–L5 disc compression, restoring <strong>+0.8 to +1.2 cm</strong> daily height.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#1D4ED8;display:block;margin-bottom:0.2rem;">2. Thoracic Extension &amp; Pelvic Alignment</strong>
+                  <div>• 45 seconds &times; 2 sets (foam roller + lunge stretch)</div>
+                  <div>• Neutralizes anterior pelvic tilt &amp; forward slouch, restoring <strong>+1.5 to +1.8 cm</strong> hidden stature.</div>
+                </div>
+                <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:0.55rem 0.7rem;">
+                  <strong style="color:#1D4ED8;display:block;margin-bottom:0.2rem;">3. Epiphyseal Micro-Loading Plyometrics</strong>
+                  <div>• 15 minutes interval rope/sprints (45s work / 15s rest)</div>
+                  <div>• Generates 1.5–2.5G vertical piezoelectric ground force activating epiphyseal Runx2/Sox9 chondrocytes.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3.4: Attending Pediatrician Consultation Block -->
+            <div style="border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 1rem;background:#F8FAFC;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.4rem;">
+                <strong style="font-size:0.8rem;color:#0F172A;">Attending Pediatrician Physical Exam &amp; Review of Systems</strong>
+                <span style="font-size:0.7rem;color:#64748B;font-family:monospace;">[Official Clinic Review Block]</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.45rem;font-size:0.74rem;color:#334155;">
+                <div>[ &nbsp; ] <strong>HEENT / Thyroid:</strong> Normal / Non-Palpable</div>
+                <div>[ &nbsp; ] <strong>Spinal Scoliosis Check:</strong> Normal Symmetrical Alignment</div>
+                <div>[ &nbsp; ] <strong>Tanner SMR Stage:</strong> Stage 1 Quiescent Physis</div>
+                <div>[ &nbsp; ] <strong>Annual Velocity Status:</strong> 5.2 cm/yr (Normal Linear Corridor)</div>
+              </div>
+              <div style="margin-top:0.5rem;padding-top:0.45rem;border-top:1px dashed #CBD5E1;display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:#64748B;">
+                <span>Physician Signature: ___________________________, M.D.</span>
+                <span>Official Hospital Clinic Seal: [ &nbsp; VERIFIED EHR &nbsp; ]</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sticky Modal Footer with Nav Arrows, CTA Buttons, and Demo Trigger -->
+        <div style="background:#F8FAFC;border-top:1.5px solid #CBD5E1;padding:0.75rem 1.25rem;display:flex;flex-direction:column;gap:0.55rem;">
+          <!-- Top Nav Row -->
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.76rem;color:#475569;">
+            <button type="button" id="btn-sample-page-prev" onclick="var ind=document.getElementById('sample-active-page-num');var cur=parseInt(ind?ind.textContent:'1',10)||1;window.switchSamplePreviewPage(cur-1);" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:0.35rem 0.75rem;cursor:pointer;font-weight:800;color:#1E3A8A;">
+              &larr; Prev Page
+            </button>
+            <span style="font-weight:800;color:#1E3A8A;">
+              Page <span id="sample-active-page-num">1</span> of 3 &middot; Verified EHR Clinical Sample
+            </span>
+            <button type="button" id="btn-sample-page-next" onclick="var ind=document.getElementById('sample-active-page-num');var cur=parseInt(ind?ind.textContent:'1',10)||1;window.switchSamplePreviewPage(cur+1);" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:0.35rem 0.75rem;cursor:pointer;font-weight:800;color:#1E3A8A;">
+              Next Page &rarr;
+            </button>
+          </div>
+
+          <!-- Checkout Action Buttons Row -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.45rem;">
+            <button type="button" onclick="var m=document.getElementById('kidsfit-sample-demo-modal');if(m)m.remove();window.openKidsFitGlobalCheckoutModal('single');" style="min-height:48px;padding:0.7rem 1rem;border-radius:12px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.86rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(29,78,216,0.25);display:flex;align-items:center;justify-content:center;gap:0.35rem;">
+              <span>🔓 Unlock My Child's Personalized Report ($8.99) &rarr;</span>
+            </button>
+            <button type="button" onclick="var m=document.getElementById('kidsfit-sample-demo-modal');if(m)m.remove();window.openKidsFitGlobalCheckoutModal('pass');" style="min-height:48px;padding:0.7rem 1rem;border-radius:12px;border:none;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;font-size:0.86rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(5,150,105,0.25);display:flex;align-items:center;justify-content:center;gap:0.35rem;">
+              <span>⭐ Get 6-Month Growth Pass ($19.99 · Save 63%) &rarr;</span>
+            </button>
+          </div>
+
+          <!-- Secondary Actions -->
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.45rem;padding-top:0.25rem;">
+            <button type="button" onclick="window.loadSampleDemoProfile();" style="background:none;border:none;color:#1D4ED8;font-size:0.76rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0.25rem 0;">
+              🚀 Open Full Sample Report Now (Load Interactive Liam Profile in Dashboard)
+            </button>
+            <span style="font-size:0.72rem;color:#64748B;">
+              🔒 256-Bit SSL &middot; Verified Merchant Store #296100 &middot; 30-Day Money-Back Guarantee
+            </span>
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:0.55rem;">
-          <button type="button" onclick="window.loadSampleDemoProfile();" style="width:100%;padding:0.95rem 1.2rem;border-radius:14px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1rem;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(29,78,216,0.25);display:flex;align-items:center;justify-content:center;gap:0.5rem;">
-            <span>🚀 Open Full Sample Report Now</span>
-            <span>→</span>
-          </button>
-          <button type="button" onclick="var m=document.getElementById('kidsfit-sample-demo-modal');if(m)m.remove();" style="width:100%;padding:0.65rem 1rem;border-radius:12px;border:1px solid #CBD5E1;background:#FFFFFF;color:#475569;font-size:0.84rem;font-weight:700;cursor:pointer;">
-            Cancel
-          </button>
-        </div>
-
-        <div style="margin-top:0.8rem;text-align:center;font-size:0.74rem;color:#64748B;">
-          🔒 Free demonstration · Zero credit card required · Full 7 chapters unmasked
-        </div>
       </div>
     `;
     document.body.appendChild(modal);
+    try {
+      if (typeof global.switchSamplePreviewPage === 'function') {
+        global.switchSamplePreviewPage(1);
+      }
+    } catch (_) {}
   };
 
   function ensureLemonSqueezyScriptLoaded() {
@@ -3525,7 +3998,7 @@ ${isMasked ? `
 
         <!-- 2-Tier Plan Selector -->
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.8rem;margin-bottom:0.95rem;">
-          <label id="paywall-plan-label-single" onclick="window.selectKidsFitGlobalPlan('single')" style="cursor:pointer;background:#EFF6FF;border:2px solid #1D4ED8;border-radius:14px;padding:0.95rem 1rem;display:flex;flex-direction:column;justify-content:space-between;">
+          <label id="paywall-plan-label-single" onclick="window.selectKidsFitGlobalPlan('single')" style="cursor:pointer;background:#EFF6FF;border:2px solid #1D4ED8;border-radius:14px;padding:0.95rem 1rem;display:flex;flex-direction:column;justify-content:space-between;transition:all 0.2s ease;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
               <span style="font-size:0.82rem;font-weight:900;color:#1D4ED8;">
                 <input type="radio" name="kidsfit-global-plan" value="single" checked style="accent-color:#1D4ED8;margin-right:0.3rem;">
@@ -3551,54 +4024,142 @@ ${isMasked ? `
             </div>
           </label>
 
-          <label id="paywall-plan-label-pass" onclick="window.selectKidsFitGlobalPlan('pass')" style="cursor:pointer;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:0.95rem 1rem;display:flex;flex-direction:column;justify-content:space-between;">
+          <label id="paywall-plan-label-pass" onclick="window.selectKidsFitGlobalPlan('pass')" style="cursor:pointer;background:#F8FAFC;border:2.5px solid #1D4ED8;border-radius:14px;padding:0.95rem 1rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 12px 30px rgba(29,78,216,0.18);transition:all 0.2s ease;">
+            <div style="position:absolute;top:-10px;right:14px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.65rem;font-weight:900;padding:0.18rem 0.55rem;border-radius:9999px;box-shadow:0 3px 8px rgba(29,78,216,0.35);letter-spacing:0.02em;">
+              ⭐ BEST VALUE · 78% CHOOSE
+            </div>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
               <span style="font-size:0.82rem;font-weight:900;color:#0F172A;">
                 <input type="radio" name="kidsfit-global-plan" value="pass" style="accent-color:#1D4ED8;margin-right:0.3rem;">
                 ${isLearningMode ? '6-MONTH MONTHLY BRAIN LQ TRACKER' : '6-MONTH MONTHLY GROWTH VELOCITY PASS'}
               </span>
-              <span style="background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;font-size:0.7rem;font-weight:900;padding:0.15rem 0.5rem;border-radius:9999px;">78% CHOOSE · BEST VALUE</span>
+              <span style="background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;font-size:0.7rem;font-weight:900;padding:0.15rem 0.5rem;border-radius:9999px;">SAVE 63% · $3.33/MO</span>
             </div>
             <div style="display:flex;align-items:baseline;gap:0.45rem;margin-bottom:0.3rem;">
               <span style="font-size:1.65rem;font-weight:900;color:#0F172A;">$19.99</span>
-              <span style="font-size:0.85rem;color:#94A3B8;text-decoration:line-through;font-weight:700;">$79.99</span>
-              <span style="font-size:0.78rem;color:#059669;font-weight:800;">· Only $3.33/mo (6 Mos)</span>
+              <span style="font-size:0.85rem;color:#94A3B8;text-decoration:line-through;font-weight:700;">$53.94</span>
+              <span style="font-size:0.78rem;color:#059669;font-weight:800;">· Only $3.33/mo (11¢/day)</span>
             </div>
             <div style="font-size:0.78rem;color:#334155;line-height:1.45;">
               ${isLearningMode ? `
               ✓ <strong>Monthly 30-Day 5-Axis Brain LQ Re-Calibration</strong><br>
               ✓ <strong>Cycles 1–6 Progressive Monthly Worksheets</strong><br>
-              ✓ <strong>Unlimited Sibling Profiles</strong> &amp; Dynamic DHA Dosing
+              ✓ <strong>Unlimited Sibling Profiles (3+)</strong> &amp; Dynamic DHA Dosing
               ` : `
               ✓ <strong>Monthly 30-Day Height Velocity (cm/yr) Re-Scans</strong><br>
               ✓ <strong>Auto-Updated Weight-Matched Ca/D3/K2/Zinc Dosing</strong><br>
-              ✓ <strong>Bone-Age Closure Alert + Unlimited Sibling Profiles</strong>
+              ✓ <strong>Physis Fusion Watch + Unlimited Sibling Profiles (3+)</strong>
               `}
             </div>
           </label>
         </div>
 
         <!-- Monthly Retention Value Box: Why Parents Need Ongoing Monthly Re-Calibration -->
-        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.75rem 0.95rem;margin-bottom:0.8rem;font-size:0.78rem;color:#065F46;line-height:1.48;">
-          <strong style="color:#047857;display:block;margin-bottom:0.18rem;">
-            🔄 Why 78% of Parents Choose the 6-Month Re-Calibration Pass ($3.33/mo):
-          </strong>
-          ${isLearningMode
-            ? 'A single test only shows Day-1 baseline. Neural myelination &amp; working memory shift every <strong>30 days</strong>—the 6-Month Pass tracks monthly LQ score gains, unlocks harder Cycle 2–6 Feynman/Bar-Model worksheets each month, and covers all siblings.'
-            : 'A single height check is only a Day-1 snapshot. Growth velocity (cm/yr), bone-age drift, and weight-matched Ca/D3/K2/Zinc dosing change every <strong>30 days</strong>—the 6-Month Pass detects growth stagnation early before growth plates close and covers all siblings.'}
+        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.85rem 1rem;margin-bottom:0.85rem;font-size:0.8rem;color:#065F46;line-height:1.5;">
+          <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.35rem;flex-wrap:wrap;">
+            <span style="font-size:1.1rem;">🔄</span>
+            <strong style="color:#047857;font-size:0.86rem;">
+              Why 78% of Parents Choose the 6-Month Re-Calibration Pass ($19.99 One-Time):
+            </strong>
+          </div>
+          <p style="margin:0 0 0.35rem 0;">
+            <strong>• Concrete Value Framing:</strong> 6 individual monthly reports ($8.99 &times; 6 = $53.94) vs. 6-Month Pass ($19.99) = <strong>63% Savings ($33.95 instant savings)</strong>. Breaks down to <strong>"Only $3.33 / month"</strong> (just 11 cents/day).
+          </p>
+          <p style="margin:0 0 0.45rem 0;">
+            <strong>• Dynamic Auxology vs. Static Check:</strong> Single height checks are mere Day-1 photographs. Height velocity (cm/year), pubertal Tanner acceleration, and bone-age drift fluctuate every 30 days. The 6-Month Pass detects growth stagnation early before epiphyseal plates close.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.45rem;font-size:0.74rem;">
+            <span style="background:#DCFCE7;color:#166534;border:1px solid #BBF7D0;padding:0.18rem 0.55rem;border-radius:9999px;font-weight:800;">👨‍👩‍👧‍👦 Unlimited Sibling Profiles (Up to 3+ Children)</span>
+            <span style="background:#DCFCE7;color:#166534;border:1px solid #BBF7D0;padding:0.18rem 0.55rem;border-radius:9999px;font-weight:800;">🧠 Both Pillar 1 (Growth) &amp; Pillar 2 (Brain LQ)</span>
+            <span style="background:#DCFCE7;color:#166534;border:1px solid #BBF7D0;padding:0.18rem 0.55rem;border-radius:9999px;font-weight:800;">🩺 Priority Pediatrician Email Review (beable9489@gmail.com)</span>
+          </div>
+        </div>
+
+        <!-- Feature Comparison Matrix (1-Time Snapshot vs 6-Month Longitudinal Tracking) -->
+        <div class="paywall-feature-comparison-matrix" style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:0.85rem 1rem;margin-bottom:0.85rem;overflow-x:auto;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.55rem;flex-wrap:wrap;gap:0.4rem;">
+            <strong style="font-size:0.82rem;color:#1E3A8A;display:flex;align-items:center;gap:0.35rem;">
+              <span>⚖️</span> Plan Feature Comparison Matrix (1-Time Snapshot vs 6-Month Protocol)
+            </strong>
+            <span style="font-size:0.7rem;font-weight:800;color:#059669;background:#ECFDF5;border:1px solid #A7F3D0;padding:0.12rem 0.5rem;border-radius:9999px;">
+              63% Savings ($33.95 Saved)
+            </span>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.76rem;color:#334155;text-align:left;">
+            <thead>
+              <tr style="border-bottom:1.5px solid #CBD5E1;background:#F1F5F9;">
+                <th style="padding:0.45rem 0.6rem;color:#475569;font-weight:800;width:42%;">Clinical Feature &amp; Deliverables</th>
+                <th style="padding:0.45rem 0.5rem;color:#1D4ED8;font-weight:800;text-align:center;width:28%;">Single Report ($8.99)</th>
+                <th style="padding:0.45rem 0.5rem;color:#047857;font-weight:900;text-align:center;width:30%;background:#ECFDF5;">6-Month Pass ($19.99)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Dossier Scope &amp; Protocol</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Day-1 Baseline Only</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Full 6-Month Protocol</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Velocity Re-Scans (30-Day Cycles)</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Static Assessment</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Monthly Re-Scans (6x)</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Growth Plate Closure Monitor</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Day-1 Tanner Check</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Continuous Physis Watch</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Weight-Calibrated Nutrition Updates</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Day-1 Snapshot</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Dynamic Monthly Dosing</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Household Multi-Child Coverage</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">1 Child Profile</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Unlimited Siblings (3+)</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Dual-Pillar Cognitive Access</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Single Pillar Only</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Both Growth &amp; Brain LQ</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Hospital Clinic Intake PDF</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">1-Time Summary</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Unlimited 2-Page EHR PDFs</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Pediatrician Email Review</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Standard Support</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Priority Review (beable9489@gmail.com)</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;background:#F1F5F9;">
+                <td style="padding:0.45rem 0.6rem;font-weight:800;color:#0F172A;">Total Value &amp; Price</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#0F172A;">$8.99 One-Time</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:900;color:#047857;background:#ECFDF5;">$19.99 (Value $53.94)</td>
+              </tr>
+              <tr style="background:#F0FDF4;">
+                <td style="padding:0.45rem 0.6rem;font-weight:800;color:#047857;">Cost Breakdown per Month</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">-</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:900;color:#047857;background:#DCFCE7;">Only $3.33 / mo (11¢/day)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- Paid Subscriber Exclusive 6-Pack Downloadable Clinical Vault Preview ($149 Value Included Free) -->
-        <div id="paywall-vip-bonus-pack-preview" style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#FFFFFF;border:1.5px solid #3B82F6;border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.85rem;">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.55rem;">
-            <span style="font-size:0.74rem;font-weight:900;color:#FCD34D;letter-spacing:0.03em;">
-              🎁 INCLUDED FREE WITH EVERY PAID PASS · 6-PACK VIP CLINICAL DOWNLOAD VAULT
+        <details id="paywall-vip-bonus-pack-preview" class="paywall-vip-bonus-pack-preview" style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#FFFFFF;border:1.5px solid #3B82F6;border-radius:14px;padding:0.85rem 1rem;margin-bottom:0.85rem;">
+          <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;min-height:48px;outline:none;">
+            <span style="font-size:0.75rem;font-weight:900;color:#FCD34D;letter-spacing:0.03em;display:flex;align-items:center;gap:0.35rem;">
+              <span>🎁</span> INCLUDED FREE WITH EVERY PAID PASS · 6-PACK VIP CLINICAL VAULT
             </span>
-            <span style="background:rgba(16,185,129,0.25);border:1px solid #6EE7B7;color:#A7F3D0;font-size:0.68rem;font-weight:900;padding:0.12rem 0.5rem;border-radius:9999px;">
-              $149 VALUE · INSTANT UNLOCK
+            <span style="background:rgba(16,185,129,0.25);border:1px solid #6EE7B7;color:#A7F3D0;font-size:0.68rem;font-weight:900;padding:0.18rem 0.55rem;border-radius:9999px;display:inline-flex;align-items:center;gap:0.25rem;">
+              <span>$149 VALUE · INSTANT UNLOCK</span>
+              <span class="vip-vault-chevron" style="display:inline-block;transition:transform 0.25s ease;">▾</span>
             </span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:0.45rem;font-size:0.74rem;color:#E2E8F0;line-height:1.4;">
+          </summary>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:0.45rem;font-size:0.74rem;color:#E2E8F0;line-height:1.4;margin-top:0.65rem;">
             <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
               <strong style="color:#6EE7B7;display:block;">📊 01 · 90-Day Auxology &amp; HGH Tracker (.CSV)</strong>
               <span>Excel/Sheets log for 10 PM sleep, 3h fast &amp; Ca/D3/K2 dosing.</span>
@@ -3612,7 +4173,7 @@ ${isMasked ? `
               <span>Bone-Age X-Ray, IGF-1, IGFBP-3, 25(OH)D &amp; TSH doctor brief.</span>
             </div>
             <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
-              <strong style="color:#6EE7B7;display:block;">🦴 04 · 12-Wk Wolff&apos;s Law Decompression Plan (.CSV)</strong>
+              <strong style="color:#6EE7B7;display:block;">🦴 04 · 12-Wk Wolff's Law Decompression Plan (.CSV)</strong>
               <span>Progressive bar dead-hang &amp; plyometric +0.8 in disc protocol.</span>
             </div>
             <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(147,197,253,0.25);border-radius:8px;padding:0.45rem 0.6rem;">
@@ -3624,25 +4185,25 @@ ${isMasked ? `
               <span>Instant printable clinical chart &amp; multi-child profile storage.</span>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- Sample Report Preview Action Button -->
-        <button type="button" onclick="if(window.openSampleReportPreview){window.openSampleReportPreview();}else if(window.loadSampleDemoProfile){window.loadSampleDemoProfile();}" style="width:100%;padding:0.75rem 1rem;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.88rem;font-weight:900;cursor:pointer;margin-bottom:0.75rem;box-shadow:0 4px 12px rgba(29,78,216,0.08);display:flex;align-items:center;justify-content:center;gap:0.45rem;">
-          <span>👀 View Live Sample Report (Demo Profile)</span>
+        <button type="button" onclick="if(window.openSampleReportPreview){window.openSampleReportPreview();}else if(window.loadSampleDemoProfile){window.loadSampleDemoProfile();}" style="width:100%;min-height:48px;padding:0.75rem 1rem;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.88rem;font-weight:900;cursor:pointer;margin-bottom:0.75rem;box-shadow:0 4px 12px rgba(29,78,216,0.08);display:flex;align-items:center;justify-content:center;gap:0.45rem;">
+          <span>👀 View Live Sample Report (3-Page Clinical EHR Preview)</span>
           <span>→</span>
         </button>
 
         <!-- Primary Checkout CTA Button + 1-Tap Direct Express Checkout -->
-        <button type="button" id="btn-global-paywall-checkout" data-checkout-url="${singleBuyUrl}" onclick="window.openKidsFitGlobalCheckoutModal()" style="width:100%;padding:1rem 1.2rem;border-radius:14px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(29,78,216,0.28);margin-bottom:0.55rem;">
+        <button type="button" id="btn-global-paywall-checkout" data-checkout-url="${singleBuyUrl}" onclick="window.openKidsFitGlobalCheckoutModal()" style="width:100%;min-height:52px;padding:1rem 1.2rem;border-radius:14px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(29,78,216,0.28);margin-bottom:0.55rem;display:flex;align-items:center;justify-content:center;gap:0.45rem;">
           🔓 Unlock Full Clinical Report &amp; Printable PDF Now ($8.99) →
         </button>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.5rem;margin-bottom:0.65rem;">
-          <button type="button" onclick="window.launchLemonSqueezyCheckout('single')" style="padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.8rem;font-weight:900;cursor:pointer;">
+          <button type="button" onclick="window.launchLemonSqueezyCheckout('single')" style="min-height:48px;padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.82rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
             ⚡ 1-Tap Express Checkout: $8.99 Single Pass →
           </button>
-          <button type="button" onclick="window.launchLemonSqueezyCheckout('pass')" style="padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #059669;background:#ECFDF5;color:#047857;font-size:0.8rem;font-weight:900;cursor:pointer;">
-            💎 1-Tap Express Checkout: $19.99 6-Month Pass →
+          <button type="button" onclick="window.launchLemonSqueezyCheckout('pass')" style="min-height:48px;padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #059669;background:#ECFDF5;color:#047857;font-size:0.82rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
+            💎 1-Tap Express Checkout: $19.99 6-Month Pass (Save 63%) →
           </button>
         </div>
 
@@ -4738,19 +5299,26 @@ ${isMasked ? `
       if (selectedPlan === 'single') {
         singleLbl.style.background = '#EFF6FF';
         singleLbl.style.border = '2px solid #1D4ED8';
-        passLbl.style.background = '#F8FAFC';
+        singleLbl.style.boxShadow = '0 6px 18px rgba(29, 78, 216, 0.15)';
+        passLbl.style.background = '#FFFFFF';
         passLbl.style.border = '1.5px solid #CBD5E1';
+        passLbl.style.boxShadow = 'none';
       } else {
         passLbl.style.background = '#EFF6FF';
-        passLbl.style.border = '2px solid #1D4ED8';
-        singleLbl.style.background = '#F8FAFC';
+        passLbl.style.border = '2.5px solid #1D4ED8';
+        passLbl.style.boxShadow = '0 12px 30px rgba(29, 78, 216, 0.22)';
+        singleLbl.style.background = '#FFFFFF';
         singleLbl.style.border = '1.5px solid #CBD5E1';
+        singleLbl.style.boxShadow = 'none';
       }
     }
     if (btn) {
-      const priceStr = selectedPlan === 'pass' ? '$19.99' : '$8.99';
       btn.setAttribute('data-checkout-url', getActiveCheckoutUrl(selectedPlan));
-      btn.innerHTML = `🔓 Unlock Full Clinical Report &amp; Printable PDF Now (${priceStr}) →`;
+      if (selectedPlan === 'pass') {
+        btn.innerHTML = `⭐ Unlock 6-Month Growth Pass &amp; VIP Vault ($19.99 · Save 63%) →`;
+      } else {
+        btn.innerHTML = `🔓 Unlock Full Clinical Report &amp; Printable PDF Now ($8.99) →`;
+      }
     }
   };
 
@@ -4968,11 +5536,11 @@ ${isMasked ? `
 
         <div style="margin-bottom:0.85rem;">
           <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.3rem;">Parent Email (Used for Lemon Squeezy Receipt &amp; Instant Auto-Unlock)</label>
-          <input type="email" id="checkout-parent-email" value="${defaultEmail}" placeholder="parent@example.com" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;color:#0F172A;">
+          <input type="email" id="checkout-parent-email" value="${defaultEmail}" placeholder="parent@example.com" style="width:100%;box-sizing:border-box;padding:0.75rem 0.85rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:16px;color:#0F172A;min-height:48px;">
         </div>
 
         <!-- Primary Official Lemon Squeezy Hosted / Overlay Checkout Button -->
-        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:block;text-align:center;text-decoration:none;width:100%;box-sizing:border-box;padding:0.95rem 1rem;border-radius:12px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.98rem;font-weight:900;cursor:pointer;margin-bottom:0.65rem;box-shadow:0 10px 24px rgba(29,78,216,0.25);">
+        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:52px;box-sizing:border-box;padding:0.95rem 1rem;border-radius:12px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.98rem;font-weight:900;cursor:pointer;margin-bottom:0.65rem;box-shadow:0 10px 24px rgba(29,78,216,0.25);">
           💳 Pay ${priceStr} via Official Lemon Squeezy Checkout →
         </a>
 
