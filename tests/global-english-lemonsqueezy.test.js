@@ -1,7 +1,7 @@
 /**
  * tests/global-english-lemonsqueezy.test.js
  * Verification Suite for Milestone M2: Global English Default & Lemon Squeezy Integration
- * Workspace: d:\키즈핏 영문 (kisfitglobal.com)
+ * Workspace: D:\드림컴퍼니\2사업부 (kisfitglobal.com)
  */
 
 const fs = require('fs');

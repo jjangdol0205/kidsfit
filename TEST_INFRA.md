@@ -147,7 +147,7 @@ During concurrent development, tests for uncompleted milestones will fail until 
 ## 6. Environment & Hardware Prerequisites
 1. **Python**: Python 3.10+ (tested on Python 3.14.2 64-bit on Windows).
 2. **PIL (Pillow)**: Version 10.0+ for high-resolution image dimension and format inspection.
-3. **CDP Port 9222**: Google Chrome running on `WinSta0\Default` with `--remote-debugging-port=9222` and user data profile `d:\사업아이템\.naver-browser-profile`.
+3. **CDP Port 9222**: Google Chrome running on `WinSta0\Default` with `--remote-debugging-port=9222` and user data profile `D:\드림컴퍼니\3사업부\.naver-browser-profile`.
 4. **Environment Variables (`.env`)**:
    - `TELEGRAM_BOT_TOKEN`: Valid Telegram bot token.
    - `TELEGRAM_CHAT_ID`: `755033799`.

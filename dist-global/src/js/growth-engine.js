@@ -854,6 +854,114 @@
     };
   }
 
+  // 8-3. What-If Trajectory & Intervention Simulator Auxology Engine
+  function calculateInterventionGains(baseInches, sex = 'boy', ageYears = 10, activeInterventions = []) {
+    const isBoy = normalizeSex(sex) === 'boy';
+    const ageY = Math.max(3.0, Math.min(20.0, Number(ageYears) || 10.0));
+
+    // Normalization for base stature: accept either inches or cm
+    let baseIn = Number(baseInches) || 68.0;
+    let baseCm = baseIn;
+    if (baseInches > 95.0) {
+      baseCm = baseInches;
+      baseIn = Math.round((baseCm / 2.54) * 10) / 10;
+    } else {
+      baseCm = Math.round((baseIn * 2.54) * 10) / 10;
+    }
+
+    // Epiphyseal closure age calibration
+    const closureAge = isBoy ? 17.5 : 15.5;
+    const remainingYears = Math.max(0, closureAge - ageY);
+    let ageFactor = 1.0;
+    if (remainingYears >= 4.0) {
+      ageFactor = 1.0;
+    } else if (remainingYears > 0) {
+      ageFactor = Math.max(0.35, Math.min(1.0, remainingYears / 4.0));
+    } else {
+      ageFactor = 0.2; // Residual spinal disc hydration / postural recovery
+    }
+
+    const INTERVENTION_SPECS = {
+      sleep_sws: {
+        id: 'sleep_sws',
+        label: 'Circadian SWS Lights-Out Shift',
+        baseGainCm: 1.5,
+        baseMonths: 3,
+        description: 'Deep Stage N3 slow-wave sleep delta-wave optimization restoring up to 70% of daily pituitary GH pulses.'
+      },
+      glycemic_fast: {
+        id: 'glycemic_fast',
+        label: '3-Hour Pre-Bed Glycemic Fast',
+        baseGainCm: 1.2,
+        baseMonths: 2,
+        description: 'Eliminates nocturnal hyperinsulinemia to unblock somatostatin suppression on growth hormone secretion.'
+      },
+      wolff_exercise: {
+        id: 'wolff_exercise',
+        label: "Wolff's Law Piezoelectric Loading",
+        baseGainCm: 1.4,
+        baseMonths: 2,
+        description: '15-min daily vertical axial loading & rope skipping inducing osteocyte electrical signals for chondrocyte hypertrophy.'
+      },
+      bone_minerals: {
+        id: 'bone_minerals',
+        label: 'Targeted Bone Matrix Mineral Dosing',
+        baseGainCm: 1.1,
+        baseMonths: 2,
+        description: 'Elemental Calcium Citrate + Vitamin D3 & K2 MK-7 ensuring complete osteoid matrix calcification.'
+      }
+    };
+
+    const activeList = Array.isArray(activeInterventions) ? activeInterventions : [];
+    const activeSet = new Set(activeList.map(item => String(item).toLowerCase().trim()));
+
+    let sumGainCm = 0;
+    let sumMonths = 0;
+    const gainsBreakdown = {};
+
+    for (const key of Object.keys(INTERVENTION_SPECS)) {
+      const spec = INTERVENTION_SPECS[key];
+      const isActive = activeSet.has(key);
+      const gainCm = isActive ? Math.round(spec.baseGainCm * ageFactor * 10) / 10 : 0.0;
+      const gainIn = isActive ? Math.round((gainCm / 2.54) * 10) / 10 : 0.0;
+      const months = isActive ? Math.round(spec.baseMonths * ageFactor) : 0;
+
+      if (isActive) {
+        sumGainCm += gainCm;
+        sumMonths += months;
+      }
+
+      gainsBreakdown[key] = {
+        active: isActive,
+        label: spec.label,
+        gainCm,
+        gainInches: gainIn,
+        windowExtensionMonths: months,
+        description: spec.description
+      };
+    }
+
+    const totalGainCm = Math.round(sumGainCm * 10) / 10;
+    const totalGainInches = Math.round((totalGainCm / 2.54) * 10) / 10;
+    const simulatedAdultCm = Math.round((baseCm + totalGainCm) * 10) / 10;
+    const simulatedAdultInches = Math.round((simulatedAdultCm / 2.54) * 10) / 10;
+
+    return {
+      baseStatureCm: baseCm,
+      baseStatureInches: baseIn,
+      sex: isBoy ? 'boy' : 'girl',
+      ageYears: ageY,
+      ageFactor: Math.round(ageFactor * 100) / 100,
+      totalGainCm,
+      totalGainInches,
+      simulatedAdultCm,
+      simulatedAdultInches,
+      windowExtensionMonths: sumMonths,
+      gainsBreakdown,
+      activeInterventions: activeList
+    };
+  }
+
   // 9. Normative Growth Curve Data (CDC 2000 & KDCA LMS Percentile Corridors: P3, P10, P50, P90, P97)
   function getGrowthCurveData(sex, standard = 'KDCA') {
     const table = getStandardsTable(sex, standard);
@@ -1622,6 +1730,7 @@
     predictAdultHeightTrajectories,
     calculateRemainingGrowthWindow,
     calculateHeightPrediction,
+    calculateInterventionGains,
     getGrowthCurveData,
     renderSvgGrowthCurve,
     render3TierBarChart,

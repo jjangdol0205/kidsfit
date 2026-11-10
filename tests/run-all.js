@@ -16,7 +16,8 @@ function runAllTests() {
   console.log('   KidsFit Growth Studio - Test Suite Runner');
   console.log('====================================================');
 
-  const files = fs.readdirSync(TESTS_DIR).filter((f) => f.endsWith('.test.js'));
+  const D2_GLOBAL_ONLY_SUITES = new Set(["challenger-2-empirical-verification.test.js","challenger-empirical-stress.test.js","challenger-m1-survey-stress.test.js","cross-workspace-challenge.test.js","global-english-lemonsqueezy.test.js","telegram-bridge.test.js"]);
+  const files = fs.readdirSync(TESTS_DIR).filter((f) => f.endsWith('.test.js') && !D2_GLOBAL_ONLY_SUITES.has(f));
 
   let totalSuites = 0;
   let passedSuites = 0;

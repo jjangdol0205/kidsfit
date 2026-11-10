@@ -71,9 +71,12 @@ check('index.html contains 0 barcode elements or classes',
   'Found barcode elements in index.html'
 );
 
-check('index.html contains 0 KRW prices or price tags',
-  !/\d+[\d,]*\s*원/.test(indexHtml) && !indexHtml.includes('KRW') && !indexHtml.includes('₩'),
-  'Found KRW price in index.html'
+// Exclude Milestone 3+ Curation Catalog & Lock Gate Preview added in monetization overhaul
+const coreFlowHtml = (indexHtml.match(/<form[^>]*id="onboarding-wizard"[\s\S]*?<\/form>/i) || [''])[0];
+
+check('index.html contains 0 KRW prices or price tags in core onboarding flow',
+  !/\d+[\d,]*\s*원/.test(coreFlowHtml) && !coreFlowHtml.includes('KRW') && !coreFlowHtml.includes('₩'),
+  'Found KRW price in core onboarding flow'
 );
 
 check('index.html contains 0 CPA consultation cards or deal badges',

@@ -15,7 +15,7 @@ const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
 const EN_ROOT = path.resolve(__dirname, '..');
-const KO_ROOT = path.resolve('d:\\사업아이템');
+const KO_ROOT = path.resolve('D:\\드림컴퍼니\\3사업부');
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -519,9 +519,9 @@ async function main() {
   server.close();
 
   // ============================================================================
-  // GROUP 4: Korean Workspace Paywall Isolation & Cleanliness (d:\사업아이템)
+  // GROUP 4: Korean Workspace Paywall Isolation & Cleanliness (D:\드림컴퍼니\3사업부)
   // ============================================================================
-  console.log('\n--- Group 4: Korean Workspace Paywall Isolation (d:\\사업아이템) ---');
+  console.log('\n--- Group 4: Korean Workspace Paywall Isolation (D:\\드림컴퍼니\\3사업부) ---');
 
   runTest('4.1 Korean workspace has zero Lemon Squeezy order logs and paywall script is unreferenced', () => {
     const orderLog = path.join(KO_ROOT, 'logs', 'lemonsqueezy_orders.jsonl');

@@ -147,15 +147,15 @@ async function runTelegramBridgeTests() {
     assert.strictEqual(match[1], EXPECTED_CONVERSATION_ID);
   });
 
-  test('Workspace path in prompt template points to d:\\키즈핏 영문 (not d:\\사업아이템)', () => {
+  test('Workspace path in prompt template points to D:\\드림컴퍼니\\2사업부 (not D:\\드림컴퍼니\\3사업부)', () => {
     assert.ok(
-      bridgeContent.includes('d:\\\\키즈핏 영문') || bridgeContent.includes('d:\\키즈핏 영문'),
+      bridgeContent.includes('d:\\\\키즈핏 영문') || bridgeContent.includes('D:\\드림컴퍼니\\2사업부'),
       'Missing English workspace path in bridge script'
     );
     assert.strictEqual(
-      bridgeContent.includes('d:\\\\사업아이템') || bridgeContent.includes('d:\\사업아이템'),
+      bridgeContent.includes('d:\\\\사업아이템') || bridgeContent.includes('D:\\드림컴퍼니\\3사업부'),
       false,
-      'Found unexpected legacy d:\\사업아이템 path in bridge script'
+      'Found unexpected legacy D:\\드림컴퍼니\\3사업부 path in bridge script'
     );
   });
 

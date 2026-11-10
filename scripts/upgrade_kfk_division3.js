@@ -5,7 +5,7 @@ const ROOT = path.resolve(__dirname, '..');
 const QNA_DIR = path.join(ROOT, 'qna');
 
 // ---------------------------------------------------------------------------
-// 1. Update D:\사업아이템\index.html
+// 1. Update D:\드림컴퍼니\5사업부\index.html
 // ---------------------------------------------------------------------------
 function updateIndexHtml() {
   const indexPath = path.join(ROOT, 'index.html');
@@ -130,7 +130,7 @@ function updateIndexHtml() {
                 directBtn.setAttribute('data-shop-category', prodInfo.category || 'growth');
                 directBtn.setAttribute('data-shop-stage', prodInfo.stage || 'all');
                 directBtn.setAttribute('data-shop-platform', prodInfo.platform || 'coupang');
-                var pLabel = prodInfo.platform === 'iherb' ? '🌿 iHerb 최저가 바로가기 (+진단 잠금해제)' : (prodInfo.platform === 'cpa' ? '📚 예스24 최저가 바로가기 (+진단 잠금해제)' : '🚀 쿠팡 최저가 바로가기 (+진단 잠금해제)');
+                var pLabel = prodInfo.platform === 'iherb' ? '🌿 iHerb 혜택가 확인 바로가기 (+진단 잠금해제)' : (prodInfo.platform === 'cpa' ? '📚 예스24 혜택가 확인 바로가기 (+진단 잠금해제)' : '🚀 쿠팡 혜택가 확인 바로가기 (+진단 잠금해제)');
                 directBtn.style.cssText = 'display:block;margin-top:0.45rem;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);color:#FFE600;text-align:center;padding:0.58rem 0.7rem;border-radius:10px;font-size:0.78rem;font-weight:900;text-decoration:none;border:1px solid #334155;';
                 directBtn.textContent = pLabel;
                 directBtn.addEventListener('click', function(ev) {
@@ -147,7 +147,7 @@ function updateIndexHtml() {
   );
 
   fs.writeFileSync(indexPath, html, 'utf8');
-  console.log('✅ Updated D:\\사업아이템\\index.html');
+  console.log('✅ Updated D:\\드림컴퍼니\\5사업부\\index.html');
 }
 
 // ---------------------------------------------------------------------------
@@ -284,11 +284,16 @@ function generateKdcaCalculators() {
       </a>
       <div class="aff-grid">
         <a class="aff-btn" href="https://www.coupang.com/vp/products/7335841617?itemId=29211153321&vendorItemId=96131097426&lptag=AF7865143" target="_blank" rel="noopener noreferrer sponsored">
-          🚀 [쿠팡 로켓] 급성장기 칼슘·마그네슘·비타민D·K2 최저가 확인 →
+          🚀 [쿠팡 로켓] 급성장기 칼슘·마그네슘·비타민D·K2 공식 혜택가 확인 →
         </a>
         <a class="aff-btn" href="https://kr.iherb.com/pr/nordic-naturals-daily-omega-kids-natural-fruit-flavor-500-mg-30-soft-gels/4181?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" style="background:#14532D;color:#FFFFFF;">
           🌿 [iHerb 직구] 두뇌·성장 필수 고순도 키즈 오메가3 &amp; D3 확인 →
         </a>
+      </div>
+      <!-- KFTC Affiliate Regulatory Disclosure Banner -->
+      <div class="aff-disclosure" style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:12px;padding:10px 14px;margin-top:14px;font-size:0.78rem;color:#475569;line-height:1.45;">
+        <strong style="color:#0F172A;display:block;margin-bottom:2px;">📢 공정거래위원회 심사지침 준수 안내</strong>
+        본 페이지의 추천 상품 링크는 <strong>쿠팡 파트너스, YES24, iHerb</strong> 제휴 마케팅 활동의 일환으로 일정액의 수수료를 제공받을 수 있으며, 구매자에게 발생하는 추가 비용은 전혀 없습니다.
       </div>
     </article>
 
@@ -442,7 +447,7 @@ ${rssItems}
 }
 
 // ---------------------------------------------------------------------------
-// 3. Upgrade D:\사업아이템\scripts\send_daily_6am_shorts_telegram.js
+// 3. Upgrade D:\드림컴퍼니\5사업부\scripts\send_daily_6am_shorts_telegram.js
 // ---------------------------------------------------------------------------
 function updateDailyShortsTelegramScript() {
   const scriptPath = path.join(ROOT, 'scripts', 'send_daily_6am_shorts_telegram.js');
@@ -462,13 +467,13 @@ function updateDailyShortsTelegramScript() {
       /const msgReels =[\s\S]*?await sendHtmlMessage\(msgReels\);/,
       `const msgReels =
     \`🟣 <b>[4/6] 인스타그램 릴스 전체 본문 (@kids_fit1)</b> — 아래 박스 터치 시 바로 복사\\n\` +
-    \`<pre>\${escapeHtml(item.reelsFull + '\\n\\n💬 댓글에 [키성장] 또는 [통잠]이라고 남겨주시면 1초 만에 DM으로 무료 진단 & 최저가 바로가기 링크를 보내드려요!')}</pre>\`;
+    \`<pre>\${escapeHtml(item.reelsFull + '\\n\\n💬 댓글에 [키성장] 또는 [통잠]이라고 남겨주시면 1초 만에 DM으로 무료 진단 & 혜택가 확인 바로가기 링크를 보내드려요!')}</pre>\`;
   await sendHtmlMessage(msgReels);
 
   // 4-2. 스레드(Threads) 3줄 팩트폭격 복붙용
   const threadsCopy =
     \`🚨 \${item.label}\\n\` +
-    \`질병관리청(KDCA) 성장도표 기준 우리 아이 키·두뇌 백분위 1분 무료 진단하고 오늘 영상 속 에디터 엄선 육아템 최저가까지 한 번에 확인하세요 👇\\n\` +
+    \`질병관리청(KDCA) 성장도표 기준 우리 아이 키·두뇌 백분위 1분 무료 진단하고 오늘 영상 속 에디터 엄선 육아템 공식 혜택가까지 한 번에 확인하세요 👇\\n\` +
     \`👉 https://kidsfit.co.kr/?ep=\${item.ep}&utm_source=threads&utm_medium=social\`;
   const msgThreads =
     \`🧵 <b>[5/6] 스레드(Threads) 3줄 팩트폭격 본문</b> — 아래 박스 터치 시 바로 복사\\n\` +
@@ -479,7 +484,7 @@ function updateDailyShortsTelegramScript() {
   const naverCopy =
     \`[키즈핏 소아성장 연구소 \${item.ep}편] \${item.ytTitle}\\n\\n\` +
     \`✅ 질병관리청(KDCA 2017) 백분위 & 유전 성인 예측키 1분 무료 진단\\n\` +
-    \`✅ 영상 속 추천 육아템 실시간 공식 최저가 바로가기:\\n\` +
+    \`✅ 영상 속 추천 육아템 실시간 공식 혜택가 확인 바로가기:\\n\` +
     \`https://kidsfit.co.kr/?ep=\${item.ep}&utm_source=naver_clip&utm_medium=organic\`;
   const msgNaver =
     \`🟢 <b>[6/6] 네이버 클립(Clip) &amp; 블로그·맘카페 요약</b> — 아래 박스 터치 시 바로 복사\\n\` +
@@ -496,7 +501,7 @@ function updateDailyShortsTelegramScript() {
   }
 
   fs.writeFileSync(scriptPath, code, 'utf8');
-  console.log('✅ Updated D:\\사업아이템\\scripts\\send_daily_6am_shorts_telegram.js');
+  console.log('✅ Updated D:\\드림컴퍼니\\5사업부\\scripts\\send_daily_6am_shorts_telegram.js');
 }
 
 updateIndexHtml();

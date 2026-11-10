@@ -1542,7 +1542,19 @@
         "스포이드 방식은 흘리기 쉬운데 이건 병을 기울이면 딱 한 방울만 똑 떨어져서 젖꼭지 위에 바르기 최고입니다.",
         "소아과 정기검진 때 의사선생님께서도 권장하신 제품이라 둘째 때도 고민 없이 선택했습니다."
       ],
-      "summary": "모유수유아 소아과 권장 필수 액상 비타민D 하루 1방울 및 신생아 배앓이 방지 프리미엄 유산균"
+      "summary": "모유수유아 소아과 권장 필수 액상 비타민D 하루 1방울 및 신생아 배앓이 방지 프리미엄 유산균",
+      "brand": "닥터에디션 (Dr.Edition)",
+      "nutrientFocus": "비타민D3 + 배앓이 유산균 (락토바실러스 루테리)",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_dev_1",
@@ -1588,7 +1600,19 @@
         "헝겊 인형에서 바스락 소리가 나니까 칭얼거리다가도 손을 뻗으며 만지작거리다 스르륵 잠드네요.",
         "출산선물로 받았던 수많은 교구 중 가장 활용도 높고 사진 찍어줄 때도 너무 예쁘게 나옵니다."
       ],
-      "summary": "생후 0~3개월 시신경·두뇌 망막 자극 흑백 초점 병풍책과 무독성 구강기 안심 헝겊 인형"
+      "summary": "생후 0~3개월 시신경·두뇌 망막 자극 흑백 초점 병풍책과 무독성 구강기 안심 헝겊 인형",
+      "brand": "블루래빗 (Blue Rabbit)",
+      "nutrientFocus": "시신경·망막 두뇌 시냅스 자극 초점 교구",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.7,
+        "convenience": 4.8,
+        "value": 4.7,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_gear_1",
@@ -1634,7 +1658,19 @@
         "새벽에 지퍼 아래만 쓱 올려서 기저귀 갈아주면 아기가 잠에서 완전히 깨지 않아 수면 교육이 훨씬 쉬워졌어요.",
         "일반 천 속싸개는 풀려서 질식 위험이 걱정됐는데, 이건 착용도 쉽고 고관절도 편안해 보여 안심입니다."
       ],
-      "summary": "나비잠 자세를 유지시켜 신생아 모로반사 깜짝 놀람을 막아주고 깊은 수면(SWS) 호르몬 분비 유도"
+      "summary": "나비잠 자세를 유지시켜 신생아 모로반사 깜짝 놀람을 막아주고 깊은 수면(SWS) 호르몬 분비 유도",
+      "brand": "스와들업 (Love To Dream)",
+      "nutrientFocus": "나비잠 모로반사 차단 및 수면호르몬 분비 유도",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.9,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_gear_2",
@@ -1680,7 +1716,19 @@
         "머리에 열이 많아 자고 일어나면 베개가 흠뻑 젖곤 했는데, 에어메쉬라 바람이 숭숭 통해 태열이 싹 가라앉았습니다.",
         "샤워기로 쓱 뿌려 빨아도 물이 쏙 빠지고 금방 말라서 땀 많은 여름철에도 냄새 없이 깨끗하게 써요."
       ],
-      "summary": "신생아 연약한 경추 C자 곡선 지지 및 열 많은 아기 태열·두상 변형 방지 에어쿨링 설계"
+      "summary": "신생아 연약한 경추 C자 곡선 지지 및 열 많은 아기 태열·두상 변형 방지 에어쿨링 설계",
+      "brand": "지오필로우 (GIO Pillow)",
+      "nutrientFocus": "경추 C자 커브 지지 및 두상 변형 예방 3D 에어메쉬",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_nb_learn_1",
@@ -1726,7 +1774,19 @@
         "기계음이 아니라 실제 현악기·관악기 오케스트라 소리라 엄마가 듣기에도 너무 고급스럽고 편안합니다.",
         "어스본 사운드북 중 가장 인기 있는 4권만 모아놓은 세트라 실패 없는 첫 아기책 선물로 최고예요."
       ],
-      "summary": "생후 0~12개월 청각·소근육·리듬감 발달을 돕는 어스본코리아 인기 사운드북 4권 선물 세트"
+      "summary": "생후 0~12개월 청각·소근육·리듬감 발달을 돕는 어스본코리아 인기 사운드북 4권 선물 세트",
+      "brand": "어스본코리아 (Usborne)",
+      "nutrientFocus": "청각·언어 시냅스 폭발기 오감발달 사운드북",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.6,
+        "value": 4.4,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_nb_hot_1",
@@ -1773,7 +1833,19 @@
         "키즈핏에서 실시간 공식 혜택가 확인으로 바로 비교하고 사니까 검색 시간도 아끼고 너무 편해요."
       ],
       "summary": "생후 0~12개월 누워서 발차기 대근육·청각·시각 동시 자극 국민 아기체육관 피아노",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "피셔프라이스 (Fisher-Price)",
+      "nutrientFocus": "발차기 대근육·청각·시각 협응 국민 아기체육관",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.7,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 4.9,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_nut_1",
@@ -1819,7 +1891,19 @@
         "비타민D랑 아연까지 한 번에 들어있어 여러 개 따로 안 챙겨줘도 되니 엄마 입장에서 정말 편합니다.",
         "2개 세트라 용량도 넉넉하고 쿠팡 로켓배송으로 신선한 유통기한 제품을 바로 받아서 만족해요."
       ],
-      "summary": "편식 심한 아이도 맛있게 씹어 먹는 기초 성장·면역 필수 9종 비타민 & 3종 미네랄 과일맛 구미젤리"
+      "summary": "편식 심한 아이도 맛있게 씹어 먹는 기초 성장·면역 필수 9종 비타민 & 3종 미네랄 과일맛 구미젤리",
+      "brand": "세노비스 키즈 (Cenovis Kids)",
+      "nutrientFocus": "구연산 칼슘 + 비타민D3 + 글루콘산 아연 구미",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 5.0,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_nut_2",
@@ -1865,7 +1949,19 @@
         "밤에 다리 주물러달라고 자주 깨던 아이였는데 마그네슘이 같이 들어가서 그런지 통잠 자는 날이 많아졌어요.",
         "냉장고에 넣어두고 아침마다 요거트에 한 숟가락씩 타서 주면 하루 영양 챙기기 끝이라 너무 간편합니다."
       ],
-      "summary": "미국 소아과 전문의 추천 배합, 액상형으로 체내 흡수율 3배 높은 영유아 성장기 칼마디"
+      "summary": "미국 소아과 전문의 추천 배합, 액상형으로 체내 흡수율 3배 높은 영유아 성장기 칼마디",
+      "brand": "차일드라이프 (ChildLife)",
+      "nutrientFocus": "액상 칼슘:마그네슘 2:1 황금배합 + 비타민D3",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 5.0,
+        "convenience": 4.6,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_dev_1",
@@ -1911,7 +2007,19 @@
         "모서리가 하나도 날카롭지 않고 매끄럽게 마감되어 있어서 구강기 아기 손에 쥐여줘도 안심입니다.",
         "문센 몬테소리 수업에서 쓰던 교구랑 똑같은데 집에서 매일 반복해서 놀아줄 수 있어 가성비 최고예요."
       ],
-      "summary": "손가락 정밀 조작과 시지각 협응력을 키워 전두엽 뇌 시냅스를 연결하는 친환경 천연원목 교구"
+      "summary": "손가락 정밀 조작과 시지각 협응력을 키워 전두엽 뇌 시냅스를 연결하는 친환경 천연원목 교구",
+      "brand": "고려베이비 (Koreababy)",
+      "nutrientFocus": "소근육 협응 & 대상영속성 천연원목 몬테소리 교구",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.6,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_gear_1",
@@ -1957,7 +2065,19 @@
         "한영 버전이라 한국어 동요랑 영어 표현이 같이 나와서 아기가 버튼 누르며 옹알이 따라 하는 게 너무 귀여워요.",
         "앞판 장난감만 떼서 바닥에 놔줘도 누르고 돌리며 잘 놀고, 걸음마 뗀 뒤에도 계속 가지고 놀아 본전 뽑았습니다."
       ],
-      "summary": "골반 수평과 대퇴골 각도를 지켜주는 속도조절 바퀴 설계로 O자 다리 예방 및 대근육 강화"
+      "summary": "골반 수평과 대퇴골 각도를 지켜주는 속도조절 바퀴 설계로 O자 다리 예방 및 대근육 강화",
+      "brand": "브이텍 (VTech)",
+      "nutrientFocus": "속도조절 감속 다이얼 O자다리 방지 걸음마 학습기",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_learn_1",
@@ -2003,7 +2123,19 @@
         "기존에 쓰던 사운드북은 힘줘서 눌러야 소리가 났는데 어스본은 아기 손끝만 닿아도 또렷하게 소리가 나서 최고예요.",
         "색감도 너무 예쁘고 종이가 두꺼운 보드북이라 돌 지난 아기가 매일 넘겨도 찢어지지 않아 든든합니다."
       ],
-      "summary": "손끝으로 사운드 버튼을 누르며 생생한 동물 울음소리와 의성어·어휘력을 키우는 베스트셀러 사운드북"
+      "summary": "손끝으로 사운드 버튼을 누르며 생생한 동물 울음소리와 의성어·어휘력을 키우는 베스트셀러 사운드북",
+      "brand": "어스본코리아 (Usborne)",
+      "nutrientFocus": "언어 폭발기 어휘력 확장 K-DST 언어발달 사운드북",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.7,
+        "convenience": 4.8,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_hot_1",
@@ -2050,7 +2182,19 @@
         "실시간 가격으로 쿠팡이랑 100% 똑같이 연동되어 있어서 믿고 바로 구매했습니다."
       ],
       "summary": "국제고관절협회 인증 M자 다리 각도 유지 및 부모 허리 통증 분산 인체공학 아기띠",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "포그내 (POGNAE)",
+      "nutrientFocus": "국제고관절협회 인증 M자 다리 각도 인체공학 아기띠",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_tod_nut_1",
@@ -2096,7 +2240,19 @@
         "맛이 분유처럼 달콤고소해서 약 싫어하는 첫째도 아침마다 스스로 스틱 들고 와서 뜯어달라고 합니다.",
         "화장실 갈 때마다 힘들어하고 토끼똥 싸던 아이가 매일 아침 황금 바나나똥을 시원하게 봐요!"
       ],
-      "summary": "어린이집·유치원 단체생활 감기·장염 방어 면역력 아연과 장내 마이크로바이옴 정상화 생유산균"
+      "summary": "어린이집·유치원 단체생활 감기·장염 방어 면역력 아연과 장내 마이크로바이옴 정상화 생유산균",
+      "brand": "종근당건강 (락토핏)",
+      "nutrientFocus": "특허 생유산균 100억 CFU + 면역 아연 + 초유단백",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 4.9,
+        "value": 5.0,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_nut_2",
@@ -2142,7 +2298,19 @@
         "치아 치료 중이라 젤리 주기 무서웠는데, 펙틴 성분이라 이빨에 끈적하게 달라붙지 않아서 너무 만족합니다.",
         "영양제 먹일 때마다 실랑이하던 스트레스가 완전히 사라졌어요. 직구 장바구니 필수템입니다."
       ],
-      "summary": "인공 색소·합성 감미료 0%, 두뇌 발달 필수 DHA와 뼈 형성 비타민D3가 함유된 맛있는 젤리"
+      "summary": "인공 색소·합성 감미료 0%, 두뇌 발달 필수 DHA와 뼈 형성 비타민D3가 함유된 맛있는 젤리",
+      "brand": "스마트팬츠 (SmartyPants)",
+      "nutrientFocus": "천연 펙틴 베이스 오메가3 DHA + 비타민D3 멀티구미",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 5.0,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_dev_1",
@@ -2188,7 +2356,19 @@
         "일반 블록은 높이 쌓으면 무너져서 짜증 냈는데, 이건 자석이 짱짱하게 잡아줘서 혼자서도 높은 탑을 척척 완성하네요.",
         "120피스라 형제자매 둘이서 싸우지 않고 사이좋게 나눠 갖고 놀기에 피스 수가 딱 적당합니다."
       ],
-      "summary": "평면 도형에서 입체 건축물로 변환하며 두뇌 두정엽 3차원 공간지각과 수학적 직관력 자극"
+      "summary": "평면 도형에서 입체 건축물로 변환하며 두뇌 두정엽 3차원 공간지각과 수학적 직관력 자극",
+      "brand": "맥포머스 (Magformers)",
+      "nutrientFocus": "3D 입체 기하학 두정엽 공간지각 N35 자석블록",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 5.0,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_gear_1",
@@ -2234,7 +2414,19 @@
         "밤마다 잠투정 심하던 아이가 저녁 먹고 20분만 신나게 뛰면 씻자마자 기절해서 꿀잠 잡니다.",
         "쇠 스프링은 녹슬고 삐걱거리는데 이건 소리가 정말 하나도 안 나고 핸들바가 있어 4세 아이도 안전하게 타요."
       ],
-      "summary": "층간소음 차단 탄성 번지로 관절 무리 없이 무릎 연골 성장판을 자극하고 성장호르몬 분비 촉진"
+      "summary": "층간소음 차단 탄성 번지로 관절 무리 없이 무릎 연골 성장판을 자극하고 성장호르몬 분비 촉진",
+      "brand": "로베라 (ROVERA)",
+      "nutrientFocus": "층간소음 차단 무릎 연골 성장판 수직 점핑 트램폴린",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_tod_learn_1",
@@ -2280,7 +2472,19 @@
         "1권부터 5권까지 단계가 정말 체계적이라 엄마가 따로 준비할 것 없이 하루 두 장씩만 같이 해줘도 한글이 떼집니다.",
         "주변 선배맘들이 한글 떼기 교재 1위로 다들 추천해서 샀는데 왜 국민 한글책인지 바로 이해됐어요."
       ],
-      "summary": "훈민정음 창제 원리에 기반해 모음·자음 결합을 체계적으로 깨치는 대한민국 대표 한글 떼기 5권 세트"
+      "summary": "훈민정음 창제 원리에 기반해 모음·자음 결합을 체계적으로 깨치는 대한민국 대표 한글 떼기 5권 세트",
+      "brand": "길벗스쿨 (Gilbut School)",
+      "nutrientFocus": "취학 전 필수 운필력 & 한글 떼기 스마트 워크북",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_hot_1",
@@ -2327,7 +2531,19 @@
         "가격대비 구성이 너무 알차서 조카 선물이나 어린이날·생일 선물로도 최고예요."
       ],
       "summary": "유아 손 크기에 딱 맞는 큼직한 블록으로 기차 연결·크기 비교·역할놀이를 즐기는 레고 듀플로",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "레고 (LEGO)",
+      "nutrientFocus": "소근육 정교성 & 역할놀이 듀플로 동물 기차 블록",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 5.0,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 4.7,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_nut_1",
@@ -2373,7 +2589,20 @@
         "성장판 검사하고 의사선생님이 K2 같이 든 칼슘제 먹이라 하셔서 골랐는데 1년 동안 8cm 훌쩍 컸습니다.",
         "마그네슘 덕분인지 밤에 다리 쥐나는 것도 없어지고 아침에 일어날 때 개운해해요."
       ],
-      "summary": "2차 성징 사춘기 전후 급성장기(PHV) 골밀도 강화 및 성장판 닫힘 지연 somatostatin 억제 영양"
+      "summary": "2차 성징 사춘기 전후 급성장기(PHV) 골밀도 강화 및 성장판 닫힘 지연 somatostatin 억제 영양",
+      "brand": "비타민마을 (Vitamin Village)",
+      "nutrientFocus": "사춘기 급성장기 해조칼슘 + 마그네슘 + D3 + 비타민K2",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.8,
+        "value": 4.9,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_nut_2",
@@ -2419,7 +2648,20 @@
         "비린내에 엄청 예민한 아이인데 딸기향이 솔솔 나서 거부감 없이 2년째 매일 먹이고 있어요.",
         "선생님께서 수업 시간에 딴청 피우는 게 눈에 띄게 줄고 책 읽을 때 집중하는 시간이 길어졌다고 칭찬해 주셨어요."
       ],
-      "summary": "초등학생 전두엽 실행 집중력, 작업기억 용량 및 시각 피로 완화를 위한 노르웨이산 rTG 오메가3"
+      "summary": "초등학생 전두엽 실행 집중력, 작업기억 용량 및 시각 피로 완화를 위한 노르웨이산 rTG 오메가3",
+      "brand": "노르딕 네츄럴스 (Nordic Naturals)",
+      "nutrientFocus": "전두엽 집중력 & 안구 망막 보호 고순도 rTG 오메가3 DHA",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 5.0,
+        "absorption": 5.0,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_dev_1",
@@ -2465,7 +2707,19 @@
         "구슬이 왜 중간에 멈췄는지 원인을 찾고 각도를 고치면서 생각하는 힘이 부쩍 자란 게 느껴집니다.",
         "아빠랑 아이가 머리 맞대고 신기록 세우며 협동 놀이하기에 이것만 한 교구가 없어요. 초등 입학 선물로 강력 추천합니다."
       ],
-      "summary": "위치·운동에너지 역학 법칙을 온몸으로 체험하며 스마트폰 중독 도파민을 이겨내는 과학 마블런"
+      "summary": "위치·운동에너지 역학 법칙을 온몸으로 체험하며 스마트폰 중독 도파민을 이겨내는 과학 마블런",
+      "brand": "라벤스부르거 (GraviTrax)",
+      "nutrientFocus": "중력·역학 법칙 체험 입체 STEAM 마블런 교구",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 5.0,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_gear_1",
@@ -2511,7 +2765,20 @@
         "앉으면 바퀴가 고정되는 싯브레이크 기능이 신의 한 수예요! 의자 밀고 장난치던 버릇이 사라지고 집중 시간이 늘었습니다.",
         "소이밀크 색상이 화사하고 아이 방 인테리어랑 너무 잘 어울려서 초등 입학 선물로 대만족입니다."
       ],
-      "summary": "구부정한 척추 디스크 압박을 해소하여 숨은 키 1.8~2.2cm를 찾아주는 듀얼 요추 서포트 의자"
+      "summary": "구부정한 척추 디스크 압박을 해소하여 숨은 키 1.8~2.2cm를 찾아주는 듀얼 요추 서포트 의자",
+      "brand": "시디즈 (SIDIZ)",
+      "nutrientFocus": "숨은 키 2cm 보존 발받침 일체형 듀얼 요추 학생의자",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_learn_1",
@@ -2557,7 +2824,19 @@
         "지문 내용이 상식과 과학 이야기라 아이가 재미있어하고, 끝부분에 있는 속담·어휘 퍼즐을 특히 좋아해요.",
         "만 원도 안 되는 가격에 해설지까지 너무 자세하게 잘 나와 있어서 엄마표 국어 교재로 1단계부터 쭉 정착했습니다."
       ],
-      "summary": "매일 15분 다양한 교과 연계 비문학·문학 지문으로 초등 저학년 핵심 문해력과 어휘력을 길러주는 독해 기본서"
+      "summary": "매일 15분 다양한 교과 연계 비문학·문학 지문으로 초등 저학년 핵심 문해력과 어휘력을 길러주는 독해 기본서",
+      "brand": "마더텅 (Mother Tongue)",
+      "nutrientFocus": "초등 국어 교과 연계 전두엽 문해력 독해 워크북",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 5.0,
+        "composite": 4.9
+      }
     },
     {
       "id": "prod_ch_hot_1",
@@ -2604,7 +2883,19 @@
         "주변 초등 맘카페에서도 입소문 자자한 템이라 고민 없이 선택했는데 대만족입니다."
       ],
       "summary": "초등학생 독서·문제집 풀이 시 고개 숙임을 막아 경추 C자 커브와 시력을 보호하는 각도조절 원목 독서대",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "나무숨 (대한다원 삼나무)",
+      "nutrientFocus": "경추 C자 커브 보존 및 거북목 방지 각도조절 독서대",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.7,
+        "absorption": 4.6,
+        "convenience": 4.8,
+        "value": 5.0,
+        "composite": 4.8
+      }
     }
   ],
   "products": [
@@ -2652,7 +2943,19 @@
         "스포이드 방식은 흘리기 쉬운데 이건 병을 기울이면 딱 한 방울만 똑 떨어져서 젖꼭지 위에 바르기 최고입니다.",
         "소아과 정기검진 때 의사선생님께서도 권장하신 제품이라 둘째 때도 고민 없이 선택했습니다."
       ],
-      "summary": "모유수유아 소아과 권장 필수 액상 비타민D 하루 1방울 및 신생아 배앓이 방지 프리미엄 유산균"
+      "summary": "모유수유아 소아과 권장 필수 액상 비타민D 하루 1방울 및 신생아 배앓이 방지 프리미엄 유산균",
+      "brand": "닥터에디션 (Dr.Edition)",
+      "nutrientFocus": "비타민D3 + 배앓이 유산균 (락토바실러스 루테리)",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_dev_1",
@@ -2698,7 +3001,19 @@
         "헝겊 인형에서 바스락 소리가 나니까 칭얼거리다가도 손을 뻗으며 만지작거리다 스르륵 잠드네요.",
         "출산선물로 받았던 수많은 교구 중 가장 활용도 높고 사진 찍어줄 때도 너무 예쁘게 나옵니다."
       ],
-      "summary": "생후 0~3개월 시신경·두뇌 망막 자극 흑백 초점 병풍책과 무독성 구강기 안심 헝겊 인형"
+      "summary": "생후 0~3개월 시신경·두뇌 망막 자극 흑백 초점 병풍책과 무독성 구강기 안심 헝겊 인형",
+      "brand": "블루래빗 (Blue Rabbit)",
+      "nutrientFocus": "시신경·망막 두뇌 시냅스 자극 초점 교구",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.7,
+        "convenience": 4.8,
+        "value": 4.7,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_gear_1",
@@ -2744,7 +3059,19 @@
         "새벽에 지퍼 아래만 쓱 올려서 기저귀 갈아주면 아기가 잠에서 완전히 깨지 않아 수면 교육이 훨씬 쉬워졌어요.",
         "일반 천 속싸개는 풀려서 질식 위험이 걱정됐는데, 이건 착용도 쉽고 고관절도 편안해 보여 안심입니다."
       ],
-      "summary": "나비잠 자세를 유지시켜 신생아 모로반사 깜짝 놀람을 막아주고 깊은 수면(SWS) 호르몬 분비 유도"
+      "summary": "나비잠 자세를 유지시켜 신생아 모로반사 깜짝 놀람을 막아주고 깊은 수면(SWS) 호르몬 분비 유도",
+      "brand": "스와들업 (Love To Dream)",
+      "nutrientFocus": "나비잠 모로반사 차단 및 수면호르몬 분비 유도",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.9,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_nb_gear_2",
@@ -2790,7 +3117,19 @@
         "머리에 열이 많아 자고 일어나면 베개가 흠뻑 젖곤 했는데, 에어메쉬라 바람이 숭숭 통해 태열이 싹 가라앉았습니다.",
         "샤워기로 쓱 뿌려 빨아도 물이 쏙 빠지고 금방 말라서 땀 많은 여름철에도 냄새 없이 깨끗하게 써요."
       ],
-      "summary": "신생아 연약한 경추 C자 곡선 지지 및 열 많은 아기 태열·두상 변형 방지 에어쿨링 설계"
+      "summary": "신생아 연약한 경추 C자 곡선 지지 및 열 많은 아기 태열·두상 변형 방지 에어쿨링 설계",
+      "brand": "지오필로우 (GIO Pillow)",
+      "nutrientFocus": "경추 C자 커브 지지 및 두상 변형 예방 3D 에어메쉬",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_nb_learn_1",
@@ -2836,7 +3175,19 @@
         "상담사분이 아이 개월 수에 맞는 상호작용 놀이법을 친절하게 알려주셔서 육아 꿀팁 많이 배웠습니다.",
         "체험판인데도 종이 질이 두껍고 모서리가 둥글려져 있어 신생아가 손에 쥐고 놀기에 아주 안전해요."
       ],
-      "summary": "임신·출산 학부모 대상 영아 첫 뇌신경 언어 자극 그림책 및 프리미엄 오감발달 키트 무료 배송"
+      "summary": "임신·출산 학부모 대상 영아 첫 뇌신경 언어 자극 그림책 및 프리미엄 오감발달 키트 무료 배송",
+      "brand": "어스본코리아 (Usborne)",
+      "nutrientFocus": "청각·언어 시냅스 폭발기 오감발달 사운드북",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.6,
+        "value": 4.4,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_nb_hot_1",
@@ -2883,7 +3234,19 @@
         "키즈핏에서 실시간 공식 혜택가 확인으로 바로 비교하고 사니까 검색 시간도 아끼고 너무 편해요."
       ],
       "summary": "생후 0~12개월 누워서 발차기 대근육·청각·시각 동시 자극 국민 아기체육관 피아노",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "피셔프라이스 (Fisher-Price)",
+      "nutrientFocus": "발차기 대근육·청각·시각 협응 국민 아기체육관",
+      "milestoneBadges": [
+        "영아기 (0–12개월)"
+      ],
+      "scorecard": {
+        "safety": 4.7,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 4.9,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_nut_1",
@@ -2929,7 +3292,19 @@
         "변비 생길까 봐 칼슘제 먹이기 꺼려졌는데, 구연산 칼슘이라 그런지 변비 하나 없이 응가도 황금색으로 잘 봅니다.",
         "3개월 꾸준히 먹이고 영유아검진 갔더니 백분위가 10프로대에서 35프로로 껑충 뛰어올라 너무 뿌듯해요!"
       ],
-      "summary": "우유 안 먹는 아이도 저녁 식후 1포로 골격 형성 3대 핵심 미네랄 완벽 흡수"
+      "summary": "우유 안 먹는 아이도 저녁 식후 1포로 골격 형성 3대 핵심 미네랄 완벽 흡수",
+      "brand": "세노비스 키즈 (Cenovis Kids)",
+      "nutrientFocus": "구연산 칼슘 + 비타민D3 + 글루콘산 아연 구미",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 5.0,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_nut_2",
@@ -2975,7 +3350,19 @@
         "밤에 다리 주물러달라고 자주 깨던 아이였는데 마그네슘이 같이 들어가서 그런지 통잠 자는 날이 많아졌어요.",
         "냉장고에 넣어두고 아침마다 요거트에 한 숟가락씩 타서 주면 하루 영양 챙기기 끝이라 너무 간편합니다."
       ],
-      "summary": "미국 소아과 전문의 추천 배합, 액상형으로 체내 흡수율 3배 높은 영유아 성장기 칼마디"
+      "summary": "미국 소아과 전문의 추천 배합, 액상형으로 체내 흡수율 3배 높은 영유아 성장기 칼마디",
+      "brand": "차일드라이프 (ChildLife)",
+      "nutrientFocus": "액상 칼슘:마그네슘 2:1 황금배합 + 비타민D3",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 5.0,
+        "convenience": 4.6,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_dev_1",
@@ -3021,7 +3408,19 @@
         "모서리가 하나도 날카롭지 않고 매끄럽게 마감되어 있어서 구강기 아기 손에 쥐여줘도 안심입니다.",
         "문센 몬테소리 수업에서 쓰던 교구랑 똑같은데 집에서 매일 반복해서 놀아줄 수 있어 가성비 최고예요."
       ],
-      "summary": "손가락 정밀 조작과 시지각 협응력을 키워 전두엽 뇌 시냅스를 연결하는 친환경 천연원목 교구"
+      "summary": "손가락 정밀 조작과 시지각 협응력을 키워 전두엽 뇌 시냅스를 연결하는 친환경 천연원목 교구",
+      "brand": "고려베이비 (Koreababy)",
+      "nutrientFocus": "소근육 협응 & 대상영속성 천연원목 몬테소리 교구",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.6,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_gear_1",
@@ -3067,7 +3466,19 @@
         "아이가 뒤로 꽈당 넘어졌을 때 안전 헬멧 덕분에 울지도 않고 머리도 멀쩡해서 가슴을 쓸어내렸습니다.",
         "앞판 장난감만 떼서 바닥에 놔줘도 누르고 돌리며 잘 놀고, 바퀴 잠그면 미니 놀이책상이 되어 활용도 200%예요."
       ],
-      "summary": "골반 수평과 대퇴골 각도를 지켜주는 속도조절 바퀴 설계로 O자 다리 예방 및 대근육 강화"
+      "summary": "골반 수평과 대퇴골 각도를 지켜주는 속도조절 바퀴 설계로 O자 다리 예방 및 대근육 강화",
+      "brand": "브이텍 (VTech)",
+      "nutrientFocus": "속도조절 감속 다이얼 O자다리 방지 걸음마 학습기",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_learn_1",
@@ -3113,7 +3524,19 @@
         "단순히 책만 오는 게 아니라 선생님이 오셔서 아이랑 놀아주며 언어 발달 상태를 짚어주셔서 큰 도움이 됐습니다.",
         "노래 멜로디가 너무 신나서 아이가 책을 장난감처럼 들고 다니며 흥얼거려요."
       ],
-      "summary": "12~36개월 언어 폭발기 어휘력 300% 확장 K-DST 언어발달 정밀 검사 연계 0원 상담 키트"
+      "summary": "12~36개월 언어 폭발기 어휘력 300% 확장 K-DST 언어발달 정밀 검사 연계 0원 상담 키트",
+      "brand": "어스본코리아 (Usborne)",
+      "nutrientFocus": "언어 폭발기 어휘력 확장 K-DST 언어발달 사운드북",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.7,
+        "convenience": 4.8,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_inf_hot_1",
@@ -3160,7 +3583,19 @@
         "실시간 가격으로 쿠팡이랑 100% 똑같이 연동되어 있어서 믿고 바로 구매했습니다."
       ],
       "summary": "국제고관절협회 인증 M자 다리 각도 유지 및 부모 허리 통증 분산 인체공학 아기띠",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "포그내 (POGNAE)",
+      "nutrientFocus": "국제고관절협회 인증 M자 다리 각도 인체공학 아기띠",
+      "milestoneBadges": [
+        "유아기 (1–3세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_tod_nut_1",
@@ -3206,7 +3641,19 @@
         "맛이 분유처럼 달콤고소해서 약 싫어하는 첫째도 아침마다 스스로 스틱 들고 와서 뜯어달라고 합니다.",
         "화장실 갈 때마다 힘들어하고 토끼똥 싸던 아이가 매일 아침 황금 바나나똥을 시원하게 봐요!"
       ],
-      "summary": "어린이집·유치원 단체생활 감기·장염 방어 면역력 아연과 장내 마이크로바이옴 정상화 생유산균"
+      "summary": "어린이집·유치원 단체생활 감기·장염 방어 면역력 아연과 장내 마이크로바이옴 정상화 생유산균",
+      "brand": "종근당건강 (락토핏)",
+      "nutrientFocus": "특허 생유산균 100억 CFU + 면역 아연 + 초유단백",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.7,
+        "convenience": 4.9,
+        "value": 5.0,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_nut_2",
@@ -3252,7 +3699,19 @@
         "치아 치료 중이라 젤리 주기 무서웠는데, 펙틴 성분이라 이빨에 끈적하게 달라붙지 않아서 너무 만족합니다.",
         "영양제 먹일 때마다 실랑이하던 스트레스가 완전히 사라졌어요. 직구 장바구니 필수템입니다."
       ],
-      "summary": "인공 색소·합성 감미료 0%, 두뇌 발달 필수 DHA와 뼈 형성 비타민D3가 함유된 맛있는 젤리"
+      "summary": "인공 색소·합성 감미료 0%, 두뇌 발달 필수 DHA와 뼈 형성 비타민D3가 함유된 맛있는 젤리",
+      "brand": "스마트팬츠 (SmartyPants)",
+      "nutrientFocus": "천연 펙틴 베이스 오메가3 DHA + 비타민D3 멀티구미",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 5.0,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_dev_1",
@@ -3298,7 +3757,19 @@
         "일반 블록은 높이 쌓으면 무너져서 짜증 냈는데, 이건 자석이 짱짱하게 잡아줘서 혼자서도 높은 탑을 척척 완성하네요.",
         "120피스라 형제자매 둘이서 싸우지 않고 사이좋게 나눠 갖고 놀기에 피스 수가 딱 적당합니다."
       ],
-      "summary": "평면 도형에서 입체 건축물로 변환하며 두뇌 두정엽 3차원 공간지각과 수학적 직관력 자극"
+      "summary": "평면 도형에서 입체 건축물로 변환하며 두뇌 두정엽 3차원 공간지각과 수학적 직관력 자극",
+      "brand": "맥포머스 (Magformers)",
+      "nutrientFocus": "3D 입체 기하학 두정엽 공간지각 N35 자석블록",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 5.0,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_gear_1",
@@ -3344,7 +3815,19 @@
         "밤마다 잠투정 심하던 아이가 저녁 먹고 20분만 신나게 뛰면 씻자마자 기절해서 꿀잠 잡니다.",
         "쇠 스프링은 녹슬고 삐걱거리는데 이건 소리가 정말 하나도 안 나고 핸들바가 있어 4세 아이도 안전하게 타요."
       ],
-      "summary": "층간소음 차단 탄성 번지로 관절 무리 없이 무릎 연골 성장판을 자극하고 성장호르몬 분비 촉진"
+      "summary": "층간소음 차단 탄성 번지로 관절 무리 없이 무릎 연골 성장판을 자극하고 성장호르몬 분비 촉진",
+      "brand": "로베라 (ROVERA)",
+      "nutrientFocus": "층간소음 차단 무릎 연골 성장판 수직 점핑 트램폴린",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.7
+      }
     },
     {
       "id": "prod_tod_learn_1",
@@ -3390,7 +3873,19 @@
         "교재 퀄리티가 너무 좋아서 무료체험만으로도 값어치를 톡톡히 했습니다. 아이가 패드 공부 시간을 놀이로 생각해요.",
         "선생님이 전화로 아이 진도 칭찬해 주시니까 아이가 어깨 으쓱해하며 스스로 패드 켜고 공부합니다."
       ],
-      "summary": "한글·수학·동화·영어까지 전용 태블릿과 체험 교재 집앞 무료배송 및 1:1 맞춤 학습케어"
+      "summary": "한글·수학·동화·영어까지 전용 태블릿과 체험 교재 집앞 무료배송 및 1:1 맞춤 학습케어",
+      "brand": "길벗스쿨 (Gilbut School)",
+      "nutrientFocus": "취학 전 필수 운필력 & 한글 떼기 스마트 워크북",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.8,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_tod_hot_1",
@@ -3437,7 +3932,19 @@
         "가격대비 구성이 너무 알차서 조카 선물이나 어린이날·생일 선물로도 최고예요."
       ],
       "summary": "유아 손 크기에 딱 맞는 큼직한 블록으로 기차 연결·크기 비교·역할놀이를 즐기는 레고 듀플로",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "레고 (LEGO)",
+      "nutrientFocus": "소근육 정교성 & 역할놀이 듀플로 동물 기차 블록",
+      "milestoneBadges": [
+        "학령전기 (4–6세)"
+      ],
+      "scorecard": {
+        "safety": 5.0,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 4.7,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_nut_1",
@@ -3483,7 +3990,20 @@
         "성장판 검사하고 의사선생님이 K2 같이 든 칼슘제 먹이라 하셔서 골랐는데 1년 동안 8cm 훌쩍 컸습니다.",
         "마그네슘 덕분인지 밤에 다리 쥐나는 것도 없어지고 아침에 일어날 때 개운해해요."
       ],
-      "summary": "2차 성징 사춘기 전후 급성장기(PHV) 골밀도 강화 및 성장판 닫힘 지연 somatostatin 억제 영양"
+      "summary": "2차 성징 사춘기 전후 급성장기(PHV) 골밀도 강화 및 성장판 닫힘 지연 somatostatin 억제 영양",
+      "brand": "비타민마을 (Vitamin Village)",
+      "nutrientFocus": "사춘기 급성장기 해조칼슘 + 마그네슘 + D3 + 비타민K2",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 4.9,
+        "convenience": 4.8,
+        "value": 4.9,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_nut_2",
@@ -3529,7 +4049,20 @@
         "비린내에 엄청 예민한 아이인데 딸기향이 솔솔 나서 거부감 없이 2년째 매일 먹이고 있어요.",
         "선생님께서 수업 시간에 딴청 피우는 게 눈에 띄게 줄고 책 읽을 때 집중하는 시간이 길어졌다고 칭찬해 주셨어요."
       ],
-      "summary": "초등학생 전두엽 실행 집중력, 작업기억 용량 및 시각 피로 완화를 위한 노르웨이산 rTG 오메가3"
+      "summary": "초등학생 전두엽 실행 집중력, 작업기억 용량 및 시각 피로 완화를 위한 노르웨이산 rTG 오메가3",
+      "brand": "노르딕 네츄럴스 (Nordic Naturals)",
+      "nutrientFocus": "전두엽 집중력 & 안구 망막 보호 고순도 rTG 오메가3 DHA",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 5.0,
+        "absorption": 5.0,
+        "convenience": 4.7,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_dev_1",
@@ -3575,7 +4108,19 @@
         "구슬이 왜 중간에 멈췄는지 원인을 찾고 각도를 고치면서 생각하는 힘이 부쩍 자란 게 느껴집니다.",
         "아빠랑 아이가 머리 맞대고 신기록 세우며 협동 놀이하기에 이것만 한 교구가 없어요. 초등 입학 선물로 강력 추천합니다."
       ],
-      "summary": "위치·운동에너지 역학 법칙을 온몸으로 체험하며 스마트폰 중독 도파민을 이겨내는 과학 마블런"
+      "summary": "위치·운동에너지 역학 법칙을 온몸으로 체험하며 스마트폰 중독 도파민을 이겨내는 과학 마블런",
+      "brand": "라벤스부르거 (GraviTrax)",
+      "nutrientFocus": "중력·역학 법칙 체험 입체 STEAM 마블런 교구",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.8,
+        "absorption": 5.0,
+        "convenience": 4.6,
+        "value": 4.6,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_gear_1",
@@ -3621,7 +4166,20 @@
         "등받이가 허리를 쏙 받쳐줘서 구부정하던 자세가 꼿꼿해졌고, 독서대 덕분에 목 아프다는 소리가 쏙 들어갔습니다.",
         "바퀴 회전 고정 기능이 있어 공부할 때 집중이 흐트러지지 않아 학습 태도 잡는 데 일등공신입니다."
       ],
-      "summary": "구부정한 척추 디스크 압박을 해소하여 숨은 키 1.8~2.2cm를 찾아주는 듀얼 요추 서포트 의자"
+      "summary": "구부정한 척추 디스크 압박을 해소하여 숨은 키 1.8~2.2cm를 찾아주는 듀얼 요추 서포트 의자",
+      "brand": "시디즈 (SIDIZ)",
+      "nutrientFocus": "숨은 키 2cm 보존 발받침 일체형 듀얼 요추 학생의자",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)",
+        "청소년 급성장기 (13–18세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.9,
+        "convenience": 4.7,
+        "value": 4.5,
+        "composite": 4.8
+      }
     },
     {
       "id": "prod_ch_learn_1",
@@ -3667,7 +4225,19 @@
         "수학 연산이랑 단원평가 대비가 잘 되어 있어서 학원 안 보내고도 학교 단원평가 100점 맞아왔습니다.",
         "10일 무료체험 신청해서 받아보고 마음에 안 들면 편하게 반납할 수 있으니 부담 없이 시작해 보기 참 좋아요."
       ],
-      "summary": "초등 전과목 AI 학습기 + 학습 진단 검사 + 전과목 교재 100% 무료 증정 이벤트"
+      "summary": "초등 전과목 AI 학습기 + 학습 진단 검사 + 전과목 교재 100% 무료 증정 이벤트",
+      "brand": "마더텅 (Mother Tongue)",
+      "nutrientFocus": "초등 국어 교과 연계 전두엽 문해력 독해 워크북",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.9,
+        "absorption": 4.8,
+        "convenience": 4.8,
+        "value": 5.0,
+        "composite": 4.9
+      }
     },
     {
       "id": "prod_ch_hot_1",
@@ -3714,7 +4284,19 @@
         "주변 초등 맘카페에서도 입소문 자자한 템이라 고민 없이 선택했는데 대만족입니다."
       ],
       "summary": "초등학생 독서·문제집 풀이 시 고개 숙임을 막아 경추 C자 커브와 시력을 보호하는 각도조절 원목 독서대",
-      "isWeeklyHotDeal": true
+      "isWeeklyHotDeal": true,
+      "brand": "나무숨 (대한다원 삼나무)",
+      "nutrientFocus": "경추 C자 커브 보존 및 거북목 방지 각도조절 독서대",
+      "milestoneBadges": [
+        "초등 성장기 (7–12세)"
+      ],
+      "scorecard": {
+        "safety": 4.7,
+        "absorption": 4.6,
+        "convenience": 4.8,
+        "value": 5.0,
+        "composite": 4.8
+      }
     }
   ]
 };
@@ -180137,9 +180719,9 @@
     "version": "1.0.0",
     "partner_id": "AF7865143",
     "ultimate_objective": "Maximize Coupang Partners Expected Commission Revenue + 24h Rocket Cart Halo Conversion",
-    "last_updated_kst": "2026-11-05 19:21:18 KST",
-    "total_episodes": 172,
-    "total_cumulative_reward": 7821,
+    "last_updated_kst": "2026-11-09 13:12:05 KST",
+    "total_episodes": 209,
+    "total_cumulative_reward": 9258,
     "exploration_rate_epsilon": 0.18,
     "ucb_exploration_constant_c": 1.414,
     "winning_category_arm": "growth_nutrition_repeat_cart",
@@ -180164,11 +180746,11 @@
       "id": "arm_rocket_review",
       "label": "🛒 쿠팡 로켓배송 혜택가·실제 학부모 후기 확인 ↗",
       "badge": "🚀 로켓와우 내일도착 · 학부모 실구매 후기 검증",
-      "alpha": 440.12,
+      "alpha": 583.82,
       "beta": 13.68,
       "impressions": 345,
-      "clicks": 144,
-      "cumulative_reward": 4640,
+      "clicks": 181,
+      "cumulative_reward": 6077,
       "ucb_score": 2.277
     },
     "arm_wow_tomorrow": {
@@ -180226,11 +180808,11 @@
       "commission_multiplier": 1.65,
       "avg_order_value_krw": 38000,
       "cart_halo_multiplier": 2.2,
-      "alpha": 549.5,
+      "alpha": 729.13,
       "beta": 12.1,
       "impressions": 435,
-      "clicks": 151,
-      "cumulative_reward": 5151,
+      "clicks": 188,
+      "cumulative_reward": 6588,
       "ucb_score": 3.352,
       "priority_rank": 1
     },
@@ -180394,6 +180976,302 @@
   },
   "recent_reward_history": [
     {
+      "timestampKst": "2026-11-09 13:12:05 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:35:36 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:20:01 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:12:17 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 19:16:54 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 18:59:20 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 18:38:58 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 17:41:44 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 21:56:24 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:47:25 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:46:28 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:40:54 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:39:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 20:39:49 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:56 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:19 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:18 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:58 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:07 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:06 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:36:00 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:35:20 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:35:19 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:08:05 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:08:04 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:04:39 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:04:37 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:02:34 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:02:30 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:46:59 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 15:45:43 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:45:42 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:37:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 15:35:35 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:35:31 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:32:30 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:32:26 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
       "timestampKst": "2026-11-05 19:21:18 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
@@ -180411,302 +181289,6 @@
     },
     {
       "timestampKst": "2026-11-05 19:20:30 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 19:19:57 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 19:02:27 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 19:01:41 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:55:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:55:00 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:40:05 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:39:02 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:38:19 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:58 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:32 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:04 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:11:47 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:10:55 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:08:17 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:07:28 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:44:52 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:44:08 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:38:09 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:37:54 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:37:09 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:34:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:33:32 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:32:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-10-31 13:14:02 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 13:12:10 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:58:50 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:56:34 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:44:17 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:44:01 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:42:07 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:41:46 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:25:27 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:25:06 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:17:59 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:17:38 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:08:14 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:07:27 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
       "productName": "칼슴",

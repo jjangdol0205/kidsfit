@@ -20,7 +20,7 @@ const { getTelegramConfig, telegramApiRequest, escapeHtml } = require('./telegra
 const rlEngine = require('./rl_paid_conversion_engine');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const HOST_REPO_DIR = 'd:\\사업아이템';
+const HOST_REPO_DIR = 'D:\\드림컴퍼니\\5사업부';
 const LOGS_DIR = path.join(ROOT_DIR, 'logs');
 const STATUS_FILE = path.join(LOGS_DIR, 'autonomous_homepage_manager_status.json');
 const PROCESSED_ORDERS_FILE = path.join(LOGS_DIR, 'processed_paid_orders_ledger.json');

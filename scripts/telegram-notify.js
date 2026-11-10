@@ -44,9 +44,9 @@ function getTelegramConfig() {
     cliConvId ||
     dotEnv.ANTIGRAVITY_CONVERSATION_ID ||
     process.env.ANTIGRAVITY_CONVERSATION_ID ||
-    '278ac9cd-25e2-4d75-93ae-f407a1e6de5d'
+    '1921e31e-ab59-4720-9419-93cac770374d'
   ).trim();
-  const siteUrl = 'https://kisfitglobal.com/en';
+  const siteUrl = 'https://kidsfit.co.kr';
   const isConfigured = Boolean(
     botToken &&
     botToken !== 'YOUR_TELEGRAM_BOT_TOKEN' &&
@@ -80,10 +80,10 @@ function saveTelegramConfig(updates = {}) {
 function telegramApiRequestSingle(botToken, method, payload = null) {
   return new Promise((resolve, reject) => {
     if (method === 'sendMessage' && payload && typeof payload === 'object') {
-      if (!payload.disable_web_page_preview && !payload.link_preview_options && typeof payload.text === 'string' && payload.text.includes('kisfitglobal.com')) {
+      if (!payload.disable_web_page_preview && !payload.link_preview_options && typeof payload.text === 'string' && payload.text.includes('kidsfit.co.kr')) {
         payload.link_preview_options = {
           is_disabled: false,
-          url: 'https://kisfitglobal.com/en',
+          url: 'https://kidsfit.co.kr',
           prefer_large_media: true
         };
       }
@@ -201,7 +201,7 @@ function loadResearchStatus() {
 
 function buildCompletionMessageHtml(metrics = {}) {
   const cfg = getTelegramConfig();
-  const siteUrl = metrics.siteUrl || cfg.siteUrl || 'https://kisfitglobal.com';
+  const siteUrl = metrics.siteUrl || cfg.siteUrl || 'https://kidsfit.co.kr';
   const now = new Date();
   const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   const research = loadResearchStatus();
@@ -215,7 +215,7 @@ function buildCompletionMessageHtml(metrics = {}) {
   const modeLabel = mb.mode_label_ko || '50:50 자동 균형 학습 모드';
 
   return [
-    `🌱 <b>[키즈핏 그로스 스튜디오(KidsFit) × Antigravity 실시간 보고]</b>`,
+    `🏢 <b>[제3사업부 키즈핏 코리아(kidsfit.co.kr) — 총괄 매니저 & 멀티에이전트 본부 보고]</b>`,
     `🕒 <b>보고 시각</b>: <code>${escapeHtml(timestamp)}</code>`,
     `🌐 <b>실서버 도메인</b>: <a href="${escapeHtml(siteUrl)}">${escapeHtml(siteUrl)}</a>`,
     `━━━━━━━━━━━━━━━━━━`,

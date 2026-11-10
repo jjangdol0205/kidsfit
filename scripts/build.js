@@ -145,9 +145,9 @@ function build() {
     }
   });
 
-  // Sync Global English edition from sibling workspace (d:\키즈핏 영문\dist -> dist-global/) if present
+  // Sync Global English edition from sibling workspace (D:\드림컴퍼니\2사업부\dist -> dist-global/) if present
   try {
-    const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '키즈핏 영문', 'dist');
+    const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '2사업부', 'dist');
     const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
     if (fs.existsSync(siblingGlobalDist)) {
       fs.mkdirSync(targetGlobalDir, { recursive: true });
@@ -159,7 +159,7 @@ function build() {
         const srcSub = path.join(siblingGlobalDist, subDir);
         if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
       });
-      console.log('Synced Global English assets from d:\\키즈핏 영문\\dist -> dist-global/');
+      console.log('Synced Global English assets from D:\\드림컴퍼니\\2사업부\\dist -> dist-global/');
     }
   } catch (_) {}
 

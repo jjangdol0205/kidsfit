@@ -26,7 +26,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const LIVE_HOST_ROOT = 'd:/사업아이템';
+const LIVE_HOST_ROOT = 'D:/드림컴퍼니/5사업부';
 const POLICY_JSON_PATH = path.join(PROJECT_ROOT, 'src', 'data', 'rl-paid-conversion-policy.json');
 const RL_HISTORY_LOG_PATH = path.join(PROJECT_ROOT, 'logs', 'rl_paid_conversion_episodes.json');
 

@@ -990,7 +990,7 @@ def main():
 
     studio_html = update_studio_dashboard_html()
 
-    for target_root in [ROOT_DIR / "dist", ROOT_DIR / "dist-global", Path(r"d:\사업아이템\dist-global")]:
+    for target_root in [ROOT_DIR / "dist", ROOT_DIR / "dist-global", Path(r"D:\드림컴퍼니\5사업부\dist-global")]:
         if target_root.exists():
             shutil.copy2(studio_html, target_root / "tiktok_insta_reddit_studio.html")
             target_vid_dir = target_root / "tiktok_insta_videos"

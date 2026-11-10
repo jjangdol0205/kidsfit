@@ -4,9 +4,9 @@
     "version": "1.0.0",
     "partner_id": "AF7865143",
     "ultimate_objective": "Maximize Coupang Partners Expected Commission Revenue + 24h Rocket Cart Halo Conversion",
-    "last_updated_kst": "2026-11-05 19:21:18 KST",
-    "total_episodes": 172,
-    "total_cumulative_reward": 7821,
+    "last_updated_kst": "2026-11-09 13:12:05 KST",
+    "total_episodes": 209,
+    "total_cumulative_reward": 9258,
     "exploration_rate_epsilon": 0.18,
     "ucb_exploration_constant_c": 1.414,
     "winning_category_arm": "growth_nutrition_repeat_cart",
@@ -31,11 +31,11 @@
       "id": "arm_rocket_review",
       "label": "🛒 쿠팡 로켓배송 혜택가·실제 학부모 후기 확인 ↗",
       "badge": "🚀 로켓와우 내일도착 · 학부모 실구매 후기 검증",
-      "alpha": 440.12,
+      "alpha": 583.82,
       "beta": 13.68,
       "impressions": 345,
-      "clicks": 144,
-      "cumulative_reward": 4640,
+      "clicks": 181,
+      "cumulative_reward": 6077,
       "ucb_score": 2.277
     },
     "arm_wow_tomorrow": {
@@ -93,11 +93,11 @@
       "commission_multiplier": 1.65,
       "avg_order_value_krw": 38000,
       "cart_halo_multiplier": 2.2,
-      "alpha": 549.5,
+      "alpha": 729.13,
       "beta": 12.1,
       "impressions": 435,
-      "clicks": 151,
-      "cumulative_reward": 5151,
+      "clicks": 188,
+      "cumulative_reward": 6588,
       "ucb_score": 3.352,
       "priority_rank": 1
     },
@@ -261,6 +261,302 @@
   },
   "recent_reward_history": [
     {
+      "timestampKst": "2026-11-09 13:12:05 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:35:36 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:20:01 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 22:12:17 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 19:16:54 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 18:59:20 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 18:38:58 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-08 17:41:44 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 21:56:24 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:47:25 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:46:28 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:40:54 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 20:39:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 20:39:49 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:56 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:19 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:55:18 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:58 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:07 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 17:48:06 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:36:00 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:35:20 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:35:19 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:08:05 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:08:04 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 16:04:39 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:04:37 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:02:34 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 16:02:30 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:46:59 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 15:45:43 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:45:42 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:37:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-07 15:35:35 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:35:31 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:32:30 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
+      "timestampKst": "2026-11-07 15:32:26 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "PAID ORDER: $8.99 Single Pass",
+      "reward": 45,
+      "utmSource": "lemonsqueezy_webhook"
+    },
+    {
       "timestampKst": "2026-11-05 19:21:18 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
@@ -278,302 +574,6 @@
     },
     {
       "timestampKst": "2026-11-05 19:20:30 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 19:19:57 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 19:02:27 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 19:01:41 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:55:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:55:00 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:40:05 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:39:02 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:38:19 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:58 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:32 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:37:04 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:11:47 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:10:55 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 18:08:17 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 18:07:28 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:44:52 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:44:08 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:38:09 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:37:54 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:37:09 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:34:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 17:33:32 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 17:32:40 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-10-31 13:14:02 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 13:12:10 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:58:50 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:56:34 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:44:17 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:44:01 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:42:07 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:41:46 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:25:27 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:25:06 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:17:59 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:17:38 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:08:14 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-10-31 11:07:27 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
       "productName": "칼슴",

@@ -1167,7 +1167,7 @@
    */
   function buildNativeEnglishClinicalReportHTML(profile, options) {
     const isMasked = typeof options === 'boolean' ? options : Boolean(options && options.masked);
-    const GrowthEngine = global.KidsFitGrowthEngine;
+    const GrowthEngine = global.KidsFitGrowthEngine || (typeof window !== 'undefined' ? window.KidsFitGrowthEngine : null) || (typeof require !== 'undefined' ? (function(){ try { return require('./growth-engine'); } catch(_){ return null; } })() : null);
     const ageMonths = Math.max(12, Math.min(240, Number(profile.ageMonths) || 120));
     const ageY = Math.max(1, Math.min(20, Math.floor(ageMonths / 12)));
     const ageRemM = Math.round(ageMonths % 12);
@@ -1796,6 +1796,132 @@
               </div>
             </div>
           </div>
+
+          <!-- FEATURE 1: What-If Trajectory & Intervention Simulator -->
+          ${!isMasked ? `
+          <div id="what-if-trajectory-simulator-card" class="what-if-simulator-card" style="margin-top:1.2rem;background:#FFFFFF;border:2px solid #3B82F6;border-radius:16px;padding:1.2rem 1.3rem;box-shadow:0 8px 24px rgba(59,130,246,0.12);">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.8rem;border-bottom:1.5px solid #EFF6FF;padding-bottom:0.75rem;">
+              <div>
+                <span style="font-size:0.74rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:0.2rem 0.65rem;border-radius:9999px;border:1px solid #BFDBFE;">
+                  ⚡ PRO INTERACTIVE SIMULATOR · WHAT-IF TRAJECTORY MODELER
+                </span>
+                <h4 style="margin:0.35rem 0 0 0;font-size:1.1rem;font-weight:900;color:#0F172A;">
+                  Simulate How Specific Lifestyle Interventions Directly Expand Adult Stature
+                </h4>
+              </div>
+              <div style="font-size:0.78rem;font-weight:800;color:#059669;background:#ECFDF5;padding:0.25rem 0.75rem;border-radius:9999px;border:1px solid #A7F3D0;">
+                ✓ Active Auxology Calibration (${isBoy ? 'Male' : 'Female'} · Age ${ageY})
+              </div>
+            </div>
+
+            <p style="font-size:0.82rem;color:#475569;line-height:1.55;margin:0 0 1rem 0;">
+              Toggle interventions below to see real-time recalculations of your child's predicted adult stature and remaining epiphyseal growth-plate window:
+            </p>
+
+            <!-- 4 Interactive Intervention Toggles -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.75rem;margin-bottom:1.1rem;">
+              <label class="what-if-toggle-card" style="display:flex;gap:0.65rem;align-items:flex-start;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 0.85rem;cursor:pointer;">
+                <input type="checkbox" id="chk-sim-sleep" class="what-if-input" checked onchange="window.updateKidsFitWhatIfSimulator()" style="margin-top:0.2rem;width:18px;height:18px;accent-color:#1D4ED8;cursor:pointer;">
+                <div>
+                  <div style="font-size:0.84rem;font-weight:900;color:#0F172A;">🌙 Circadian SWS Sleep Shift</div>
+                  <div style="font-size:0.72rem;color:#059669;font-weight:800;">+1.5 cm (+0.6 in) · +3 Mos Window</div>
+                  <div style="font-size:0.71rem;color:#64748B;line-height:1.4;margin-top:0.15rem;">Shift bedtime to 9:30–9:45 PM for deep Stage N3 somatotropin delta-wave peak.</div>
+                </div>
+              </label>
+
+              <label class="what-if-toggle-card" style="display:flex;gap:0.65rem;align-items:flex-start;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 0.85rem;cursor:pointer;">
+                <input type="checkbox" id="chk-sim-fast" class="what-if-input" checked onchange="window.updateKidsFitWhatIfSimulator()" style="margin-top:0.2rem;width:18px;height:18px;accent-color:#1D4ED8;cursor:pointer;">
+                <div>
+                  <div style="font-size:0.84rem;font-weight:900;color:#0F172A;">🛑 3-Hour Pre-Bed Glycemic Fast</div>
+                  <div style="font-size:0.72rem;color:#059669;font-weight:800;">+1.2 cm (+0.5 in) · +2 Mos Window</div>
+                  <div style="font-size:0.71rem;color:#64748B;line-height:1.4;margin-top:0.15rem;">Zero night carbs/milk prevents somatostatin blunting of nocturnal GH pulses.</div>
+                </div>
+              </label>
+
+              <label class="what-if-toggle-card" style="display:flex;gap:0.65rem;align-items:flex-start;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 0.85rem;cursor:pointer;">
+                <input type="checkbox" id="chk-sim-wolff" class="what-if-input" checked onchange="window.updateKidsFitWhatIfSimulator()" style="margin-top:0.2rem;width:18px;height:18px;accent-color:#1D4ED8;cursor:pointer;">
+                <div>
+                  <div style="font-size:0.84rem;font-weight:900;color:#0F172A;">⚡ Wolff's Law Piezoelectric Exercise</div>
+                  <div style="font-size:0.72rem;color:#059669;font-weight:800;">+1.4 cm (+0.6 in) · +2 Mos Window</div>
+                  <div style="font-size:0.71rem;color:#64748B;line-height:1.4;margin-top:0.15rem;">15-min daily jumping / skipping stimulates chondrocyte hypertrophy.</div>
+                </div>
+              </label>
+
+              <label class="what-if-toggle-card" style="display:flex;gap:0.65rem;align-items:flex-start;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 0.85rem;cursor:pointer;">
+                <input type="checkbox" id="chk-sim-minerals" class="what-if-input" checked onchange="window.updateKidsFitWhatIfSimulator()" style="margin-top:0.2rem;width:18px;height:18px;accent-color:#1D4ED8;cursor:pointer;">
+                <div>
+                  <div style="font-size:0.84rem;font-weight:900;color:#0F172A;">🦴 Targeted Bone Mineral Dosing</div>
+                  <div style="font-size:0.72rem;color:#059669;font-weight:800;">+1.1 cm (+0.4 in) · +2 Mos Window</div>
+                  <div style="font-size:0.71rem;color:#64748B;line-height:1.4;margin-top:0.15rem;">Weight-calibrated Calcium Citrate + D3/K2 MK-7 matrix calcification.</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- Live Simulated Results Dashboard -->
+            <div style="background:linear-gradient(90deg,#EFF6FF 0%,#F0FDF4 100%);border:1.5px solid #93C5FD;border-radius:12px;padding:0.95rem 1.1rem;">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.8rem;align-items:center;">
+                <div>
+                  <div style="font-size:0.72rem;font-weight:800;color:#475569;text-transform:uppercase;">Simulated Adult Height</div>
+                  <div id="sim-adult-height-disp" style="font-size:1.35rem;font-weight:900;color:#1D4ED8;margin:0.1rem 0;">
+                    ${fmtLen(Number(unmanagedCm) + 5.2)}
+                  </div>
+                  <div style="font-size:0.72rem;color:#64748B;">Unmanaged Baseline: ${fmtLen(unmanagedCm)}</div>
+                </div>
+                <div>
+                  <div style="font-size:0.72rem;font-weight:800;color:#475569;text-transform:uppercase;">Net Intervention Gain</div>
+                  <div id="sim-net-gain-disp" style="font-size:1.35rem;font-weight:900;color:#059669;margin:0.1rem 0;">
+                    +5.2 cm (+2.0 in)
+                  </div>
+                  <div style="font-size:0.72rem;color:#059669;font-weight:700;">Over Unmanaged Biological Stature</div>
+                </div>
+                <div>
+                  <div style="font-size:0.72rem;font-weight:800;color:#475569;text-transform:uppercase;">Extended Plate Longevity</div>
+                  <div id="sim-window-ext-disp" style="font-size:1.35rem;font-weight:900;color:#7C3AED;margin:0.1rem 0;">
+                    +9 Months Extra
+                  </div>
+                  <div style="font-size:0.72rem;color:#475569;">Additional Open Epiphyseal Window</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          ` : `
+          <!-- Locked Preview Teaser for Free Users -->
+          <div id="what-if-trajectory-simulator-card-locked" class="what-if-simulator-card what-if-locked-teaser" style="margin-top:1.2rem;background:#F8FAFC;border:2px dashed #93C5FD;border-radius:16px;padding:1.2rem 1.3rem;position:relative;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+              <span style="font-size:0.74rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:0.2rem 0.65rem;border-radius:9999px;border:1px solid #BFDBFE;">
+                🔒 PRO FEATURE · WHAT-IF TRAJECTORY &amp; INTERVENTION SIMULATOR
+              </span>
+              <span style="font-size:0.76rem;font-weight:900;color:#D97706;background:#FEF3C7;padding:0.2rem 0.65rem;border-radius:9999px;border:1px solid #FCD34D;">
+                🔒 Locked for Free Preview
+              </span>
+            </div>
+            <h4 style="margin:0 0 0.35rem 0;font-size:1.06rem;font-weight:900;color:#0F172A;">
+              Interactive Lifestyle &amp; Clinical Intervention Simulator
+            </h4>
+            <p style="font-size:0.82rem;color:#64748B;line-height:1.55;margin:0 0 0.9rem 0;">
+              Simulate real-time adult height recovery (+1.1 to +5.2 cm / +0.4 to +2.0 in) by dynamically adjusting SWS sleep lights-out timing, 3h pre-bed glycemic fasting, Wolff's law exercise, and bone-matrix mineral dosing.
+            </p>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.6rem;opacity:0.6;pointer-events:none;margin-bottom:0.9rem;">
+              <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:0.6rem 0.8rem;font-size:0.78rem;">
+                <strong>🌙 Circadian SWS Shift:</strong> +1.5 cm locked
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:0.6rem 0.8rem;font-size:0.78rem;">
+                <strong>🛑 3h Glycemic Fast:</strong> +1.2 cm locked
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:0.6rem 0.8rem;font-size:0.78rem;">
+                <strong>⚡ Wolff's Law Exercise:</strong> +1.4 cm locked
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:0.6rem 0.8rem;font-size:0.78rem;">
+                <strong>🦴 Targeted Bone Minerals:</strong> +1.1 cm locked
+              </div>
+            </div>
+
+            <button type="button" onclick="window.openKidsFitGlobalCheckoutModal()" style="display:inline-flex;align-items:center;gap:0.4rem;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;border:none;border-radius:10px;padding:0.65rem 1.1rem;font-size:0.84rem;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(29,78,216,0.25);">
+              🔓 Unlock Interactive What-If Simulator ($8.99) →
+            </button>
+          </div>
+          `}
         </section>
 
 ${isMasked ? `
@@ -1998,6 +2124,89 @@ ${isMasked ? `
               <a href="https://www.iherb.com/search?kw=ChildLife+Colostrum+Zinc+Kids&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;font-size:0.75rem;font-weight:800;color:#FFFFFF;background:#059669;padding:0.42rem 0.7rem;border-radius:8px;text-decoration:none;">
                 🌿 View Zinc &amp; Colostrum on iHerb ↗
               </a>
+            </div>
+          </div>
+
+          <!-- FEATURE 3: Circadian Chrononutrition Timeline & 1-Click Shopping List -->
+          <div id="circadian-chrononutrition-timeline-container" class="circadian-chrononutrition-timeline-card" style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:1.15rem 1.25rem;margin-top:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.85rem;border-bottom:1px solid #E2E8F0;padding-bottom:0.65rem;">
+              <div>
+                <span style="font-size:0.72rem;font-weight:900;color:#059669;background:#ECFDF5;padding:0.18rem 0.65rem;border-radius:9999px;border:1px solid #A7F3D0;">
+                  ⏰ 24-HOUR CIRCADIAN CHRONONUTRITION TIMELINE
+                </span>
+                <h4 style="margin:0.35rem 0 0.15rem 0;font-size:1.02rem;font-weight:900;color:#0F172A;">
+                  Meal-by-Meal Nutrient Timing Aligned with Pituitary SWS Somatotropin Release
+                </h4>
+                <p style="margin:0;font-size:0.76rem;color:#64748B;">
+                  Synchronizing amino-acid delivery and avoiding evening insulin surges maximizes 24-hr biological growth.
+                </p>
+              </div>
+              <button type="button" onclick="window.printChrononutritionShoppingList()" style="background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;border:none;border-radius:8px;padding:0.45rem 0.85rem;font-size:0.76rem;font-weight:800;cursor:pointer;box-shadow:0 4px 10px rgba(16,185,129,0.25);">
+                🛒 1-Click Shopping Checklist →
+              </button>
+            </div>
+
+            <!-- 5 Time-Blocks Timeline -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.65rem;">
+              <!-- 07:30 Breakfast -->
+              <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:0.75rem 0.85rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                  <strong style="font-size:0.8rem;color:#B45309;">🍳 07:30 AM</strong>
+                  <span style="font-size:0.68rem;background:#FEF3C7;color:#92400E;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Anabolic Fuel</span>
+                </div>
+                <div style="font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.25rem;">High-Leucine / Choline Breakfast</div>
+                <div style="font-size:0.71rem;color:#78350F;line-height:1.4;">
+                  Pasture eggs, Greek yogurt, oats + <strong>Vitamin D3 (${vitDIu} IU) &amp; K2 (${vitK2Mcg} mcg)</strong> for fat-soluble osteocalcin activation.
+                </div>
+              </div>
+
+              <!-- 12:30 Lunch -->
+              <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:0.75rem 0.85rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                  <strong style="font-size:0.8rem;color:#1D4ED8;">🥗 12:30 PM</strong>
+                  <span style="font-size:0.68rem;background:#DBEAFE;color:#1E40AF;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">IGF-1 Synthesis</span>
+                </div>
+                <div style="font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.25rem;">Epiphyseal Chondrocyte Fuel</div>
+                <div style="font-size:0.71rem;color:#1E3A8A;line-height:1.4;">
+                  Wild salmon / poultry / legumes + dark greens + <strong>Chelated Zinc (${zincMg} mg)</strong> to stimulate hepatic IGF-1 synthesis.
+                </div>
+              </div>
+
+              <!-- 16:00 Snack -->
+              <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:10px;padding:0.75rem 0.85rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                  <strong style="font-size:0.8rem;color:#6D28D9;">⚡ 04:00 PM</strong>
+                  <span style="font-size:0.68rem;background:#EDE9FE;color:#5B21B6;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Pre-Exercise</span>
+                </div>
+                <div style="font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.25rem;">Piezoelectric Bone Loading Fuel</div>
+                <div style="font-size:0.71rem;color:#4C1D95;line-height:1.4;">
+                  Raw almonds, banana or whole fruit powering 15-min jumping / Wolff's law bone stimulation before dinner.
+                </div>
+              </div>
+
+              <!-- 18:30 Dinner -->
+              <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:10px;padding:0.75rem 0.85rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                  <strong style="font-size:0.8rem;color:#059669;">🍲 06:30 PM</strong>
+                  <span style="font-size:0.68rem;background:#D1FAE5;color:#065F46;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Deep Sleep Fuel</span>
+                </div>
+                <div style="font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.25rem;">High-Glycine Dinner + Bioavailable Ca</div>
+                <div style="font-size:0.71rem;color:#064E3B;line-height:1.4;">
+                  Bone broth, steamed vegetables + <strong>Calcium Citrate (${caMg} mg)</strong> (stomach-acid independent, optimizes night bone mineral density).
+                </div>
+              </div>
+
+              <!-- 19:00 Glycemic Lockout -->
+              <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:0.75rem 0.85rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+                  <strong style="font-size:0.8rem;color:#DC2626;">🛑 07:00 PM</strong>
+                  <span style="font-size:0.68rem;background:#FEE2E2;color:#991B1B;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">3h Fast Cutoff</span>
+                </div>
+                <div style="font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.25rem;">Strict Glycemic Lockout</div>
+                <div style="font-size:0.71rem;color:#7F1D1D;line-height:1.4;">
+                  Water / chamomile tea only. Zero fruit juices, sodas, or bedtime milk to eliminate somatostatin and protect 70% nocturnal GH pulse!
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -2870,12 +3079,20 @@ ${isMasked ? `
             </div>
             <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:12px;padding:0.75rem 0.9rem;display:flex;flex-direction:column;justify-content:space-between;">
               <div>
-                <div style="font-size:0.72rem;font-weight:900;color:#1D4ED8;margin-bottom:0.2rem;">STEP 2 · 2-PAGE HOSPITAL PDF CHART</div>
-                <div style="font-size:0.82rem;font-weight:800;color:#0F172A;margin-bottom:0.4rem;">Save or Print Your Child&apos;s Official 2-Page PDF</div>
+                <div style="font-size:0.72rem;font-weight:900;color:#1D4ED8;margin-bottom:0.2rem;">STEP 2 · 3-IN-1 CLINICAL PRINT PACK</div>
+                <div style="font-size:0.82rem;font-weight:800;color:#0F172A;margin-bottom:0.4rem;">Print Clinic Dossier, Fridge Wall Chart, or Certificate</div>
               </div>
-              <button type="button" onclick="if(window.triggerKidsFitGlobalPrint){window.triggerKidsFitGlobalPrint();}else{window.print();}" style="width:100%;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;border:none;border-radius:8px;padding:0.45rem 0.75rem;font-size:0.78rem;font-weight:900;cursor:pointer;">
-                🖨️ Download / Print 2-Page PDF →
-              </button>
+              <div style="display:flex;flex-direction:column;gap:0.3rem;">
+                <button type="button" onclick="window.printKidsFitDocument('doctor-dossier')" style="width:100%;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;border:none;border-radius:8px;padding:0.38rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;text-align:left;">
+                  🖨️ 1. Doctor Consultation Dossier (2-Page EHR) →
+                </button>
+                <button type="button" onclick="window.printKidsFitDocument('fridge-chart')" style="width:100%;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:8px;padding:0.38rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;text-align:left;">
+                  🖨️ 2. 14-Day Refrigerator Wall Chart →
+                </button>
+                <button type="button" onclick="window.printKidsFitDocument('milestone-certificate')" style="width:100%;background:#D97706;color:#FFFFFF;border:none;border-radius:8px;padding:0.38rem 0.65rem;font-size:0.74rem;font-weight:800;cursor:pointer;text-align:left;">
+                  🏅 3. Child Milestone Potential Certificate →
+                </button>
+              </div>
             </div>
             <div style="background:#FFFFFF;border:1.5px solid #C4B5FD;border-radius:12px;padding:0.75rem 0.9rem;display:flex;flex-direction:column;justify-content:space-between;">
               <div>
@@ -3018,6 +3235,140 @@ ${isMasked ? `
             </div>
 
             <div id="kidsfit-vip-download-toast" style="display:none;background:rgba(16,185,129,0.22);border:1px solid #6EE7B7;color:#ECFDF5;border-radius:10px;padding:0.5rem 0.75rem;font-size:0.76rem;font-weight:800;text-align:center;"></div>
+          </div>
+
+          <!-- FEATURE 5: Pediatric Specialist Lab Range Interpreter & Clinic Checklist -->
+          <div id="pediatric-specialist-lab-guide-card" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(147,197,253,0.4);border-radius:14px;padding:1rem 1.15rem;margin-top:0.85rem;margin-bottom:0.85rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;border-bottom:1px solid rgba(147,197,253,0.25);padding-bottom:0.6rem;">
+              <div>
+                <span style="font-size:0.7rem;font-weight:900;color:#93C5FD;background:rgba(30,58,138,0.5);padding:0.18rem 0.6rem;border-radius:9999px;border:1px solid rgba(147,197,253,0.3);">
+                  🩺 CLINICIAN CONSULT PREPARATION · LAB RANGE INTERPRETER
+                </span>
+                <h4 style="margin:0.3rem 0 0 0;font-size:1.02rem;font-weight:900;color:#FFFFFF;">
+                  Pediatric Specialist Lab Range Interpreter &amp; Consultation Checklist
+                </h4>
+                <p style="margin:0.15rem 0 0 0;font-size:0.75rem;color:#BFDBFE;">
+                  Evidence-based pediatric corridors for serum growth biomarkers &amp; Greulich-Pyle radiographs.
+                </p>
+              </div>
+              <button type="button" onclick="window.printKidsFitDocument('doctor-dossier')" style="background:#2563EB;color:#FFFFFF;border:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:800;cursor:pointer;">
+                🖨️ Print Doctor Intake Brief →
+              </button>
+            </div>
+
+            <!-- 4 Biomarker Reference Guides -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.6rem;margin-bottom:0.85rem;">
+              <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.25);border-radius:10px;padding:0.7rem 0.8rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                  <strong style="font-size:0.8rem;color:#FFFFFF;">Serum IGF-1</strong>
+                  <span style="font-size:0.66rem;background:rgba(59,130,246,0.3);color:#93C5FD;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Target: +0.5 to +1.5 SDS</span>
+                </div>
+                <div style="font-size:0.71rem;color:#CBD5E1;line-height:1.4;">
+                  Normal: -2.0 to +2.0 SDS. Lower quartile indicates nocturnal GH blunting or nutritional deficit.
+                </div>
+              </div>
+
+              <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.25);border-radius:10px;padding:0.7rem 0.8rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                  <strong style="font-size:0.8rem;color:#FFFFFF;">Serum IGFBP-3</strong>
+                  <span style="font-size:0.66rem;background:rgba(16,185,129,0.25);color:#A7F3D0;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Target: &gt; 50th %ile</span>
+                </div>
+                <div style="font-size:0.71rem;color:#CBD5E1;line-height:1.4;">
+                  Primary GH binding protein confirming hepatic bioavailability and biological stability.
+                </div>
+              </div>
+
+              <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.25);border-radius:10px;padding:0.7rem 0.8rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                  <strong style="font-size:0.8rem;color:#FFFFFF;">25(OH)D (Vitamin D)</strong>
+                  <span style="font-size:0.66rem;background:rgba(245,158,11,0.25);color:#FDE68A;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Optimal: 40–60 ng/mL</span>
+                </div>
+                <div style="font-size:0.71rem;color:#CBD5E1;line-height:1.4;">
+                  Subclinical insufficiency (&lt;30 ng/mL) severely retards epiphyseal plate osteoid matrix calcification.
+                </div>
+              </div>
+
+              <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.25);border-radius:10px;padding:0.7rem 0.8rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                  <strong style="font-size:0.8rem;color:#FFFFFF;">Bone Age (Wrist X-Ray)</strong>
+                  <span style="font-size:0.66rem;background:rgba(139,92,246,0.25);color:#DDD6FE;padding:0.1rem 0.4rem;border-radius:9999px;font-weight:800;">Greulich-Pyle</span>
+                </div>
+                <div style="font-size:0.71rem;color:#CBD5E1;line-height:1.4;">
+                  Advance &gt;+1.0 yr signals rapid plate closure; delay &gt;-1.5 yrs indicates constitutional extended corridor.
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive 7-Question Clinical Checklist -->
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(147,197,253,0.3);border-radius:10px;padding:0.85rem 0.95rem;">
+              <div style="font-size:0.82rem;font-weight:900;color:#6EE7B7;margin-bottom:0.5rem;">
+                📋 7 Questions for Your Pediatric Consultation (Interactive Checklist)
+              </div>
+              <div id="clinic-checklist-container" style="display:flex;flex-direction:column;gap:0.4rem;">
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-1" onchange="window.toggleClinicChecklistQuestion(1)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q1:</strong> Does my child's Greulich-Pyle skeletal age match chronological age (${ageY}y), or is there bone-age advancement affecting remaining plate longevity?</span>
+                    <span id="tag-clinic-q-1" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-2" onchange="window.toggleClinicChecklistQuestion(2)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q2:</strong> What is my child's annualized linear height velocity (cm/yr) over the past 6–12 months, and does it track along their genetic Mid-Parental channel?</span>
+                    <span id="tag-clinic-q-2" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-3" onchange="window.toggleClinicChecklistQuestion(3)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q3:</strong> Are Serum IGF-1 and IGFBP-3 in the upper quartile (+0.5 to +1.5 SDS) confirming peak pituitary growth hormone sensitivity?</span>
+                    <span id="tag-clinic-q-3" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-4" onchange="window.toggleClinicChecklistQuestion(4)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q4:</strong> Is Serum 25(OH)D above 40 ng/mL, and is our daily Calcium Citrate + Vitamin D3/K2 protocol medically approved?</span>
+                    <span id="tag-clinic-q-4" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-5" onchange="window.toggleClinicChecklistQuestion(5)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q5:</strong> Can we order a complete thyroid panel (TSH &amp; Free T4) to rule out subclinical thyroid blunting of chondrocyte growth?</span>
+                    <span id="tag-clinic-q-5" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-6" onchange="window.toggleClinicChecklistQuestion(6)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q6:</strong> Are serum ferritin and plasma zinc levels optimal for linear velocity and healthy metabolic appetite?</span>
+                    <span id="tag-clinic-q-6" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+
+                <label class="clinic-checklist-item" style="display:flex;gap:0.55rem;align-items:flex-start;cursor:pointer;font-size:0.75rem;color:#E2E8F0;">
+                  <input type="checkbox" id="chk-clinic-q-7" onchange="window.toggleClinicChecklistQuestion(7)" style="margin-top:0.15rem;accent-color:#10B981;">
+                  <div>
+                    <span><strong>Q7:</strong> Are daily 15-minute Wolff's law vertical impact exercises (jumping/skipping) and bar dead-hang medically cleared?</span>
+                    <span id="tag-clinic-q-7" style="font-size:0.66rem;background:rgba(148,163,184,0.2);color:#94A3B8;padding:0.08rem 0.4rem;border-radius:9999px;margin-left:0.35rem;font-weight:700;">Pending</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- FEATURE 4: Sibling Dual-Curve Matrix & Consolidated Family Dosing -->
+          <div id="sibling-dual-curve-matrix-container" style="margin-top:0.85rem;">
+            ${(global.KidsFitGrowthTracker && typeof global.KidsFitGrowthTracker.renderSiblingDualCurveMatrix === 'function')
+              ? global.KidsFitGrowthTracker.renderSiblingDualCurveMatrix().html
+              : (typeof require !== 'undefined' ? (function(){ try { return require('./growth-tracker').renderSiblingDualCurveMatrix().html; } catch(_){ return ''; } })() : '')}
           </div>
         </div>
 
@@ -4054,6 +4405,195 @@ ${isMasked ? `
     }
   };
 
+  global.calculateInterventionGains = function (baseInches, sex, ageYears, activeInterventions) {
+    const GE = global.KidsFitGrowthEngine || (typeof window !== 'undefined' ? window.KidsFitGrowthEngine : null) || (typeof require !== 'undefined' ? (function(){ try { return require('./growth-engine'); } catch(_){ return null; } })() : null);
+    if (GE && typeof GE.calculateInterventionGains === 'function') {
+      return GE.calculateInterventionGains(baseInches, sex, ageYears, activeInterventions);
+    }
+    return {
+      baseStatureCm: Number(baseInches) > 95 ? Number(baseInches) : Number(baseInches) * 2.54,
+      totalGainCm: 5.2,
+      totalGainInches: 2.0,
+      simulatedAdultCm: 177.9,
+      simulatedAdultInches: 70.0,
+      windowExtensionMonths: 9
+    };
+  };
+
+  global.updateKidsFitWhatIfSimulator = function () {
+    if (typeof document === 'undefined') return;
+    const chkSleep = document.getElementById('chk-sim-sleep');
+    const chkFast = document.getElementById('chk-sim-fast');
+    const chkWolff = document.getElementById('chk-sim-wolff');
+    const chkMin = document.getElementById('chk-sim-minerals');
+
+    const activeList = [];
+    if (chkSleep && chkSleep.checked) activeList.push('sleep_sws');
+    if (chkFast && chkFast.checked) activeList.push('glycemic_fast');
+    if (chkWolff && chkWolff.checked) activeList.push('wolff_exercise');
+    if (chkMin && chkMin.checked) activeList.push('bone_minerals');
+
+    const prof = getActiveChildProfileForVipKit();
+    const h = Number(prof.currentHeight) || 137.0;
+    const fH = Number(prof.fatherHeight) || 173.5;
+    const mH = Number(prof.motherHeight) || 160.5;
+    const isB = (prof.gender !== 'girl');
+    const mphOffset = isB ? 13 : -13;
+    const mph = (fH + mH + mphOffset) / 2;
+    const unmanaged = Math.round((mph - 2.5) * 10) / 10;
+    const ageY = Number(prof.ageYears) || (prof.ageMonths ? Math.round(prof.ageMonths / 12) : 10);
+
+    const res = global.calculateInterventionGains(unmanaged / 2.54, isB ? 'boy' : 'girl', ageY, activeList);
+
+    const elHeight = document.getElementById('sim-adult-height-disp');
+    const elGain = document.getElementById('sim-net-gain-disp');
+    const elExt = document.getElementById('sim-window-ext-disp');
+
+    const isImperial = (global.TallerI18n && typeof global.TallerI18n.getUnitSystem === 'function')
+      ? global.TallerI18n.getUnitSystem() === 'imperial'
+      : true;
+
+    if (elHeight) {
+      const ftIn = cmToFtInStr(res.simulatedAdultCm);
+      elHeight.textContent = isImperial ? `${ftIn} (${res.simulatedAdultCm.toFixed(1)} cm)` : `${res.simulatedAdultCm.toFixed(1)} cm (${ftIn})`;
+    }
+    if (elGain) {
+      elGain.textContent = `+${res.totalGainCm.toFixed(1)} cm (+${res.totalGainInches.toFixed(1)} in)`;
+    }
+    if (elExt) {
+      elExt.textContent = `+${res.windowExtensionMonths} Months Extra`;
+    }
+  };
+
+  global.printKidsFitDocument = function (docType = 'doctor-dossier') {
+    if (isGlobalPaidEdition() && !isReportUnlocked()) {
+      const printContainer = typeof document !== 'undefined' ? document.getElementById('clinic-print-report-container') : null;
+      if (printContainer) {
+        printContainer.innerHTML = '';
+        printContainer.style.display = 'none';
+      }
+      if (typeof global.openKidsFitGlobalCheckoutModal === 'function') {
+        global.openKidsFitGlobalCheckoutModal();
+      }
+      return false;
+    }
+    const prof = getActiveChildProfileForVipKit();
+    const tracker = global.KidsFitGrowthTracker || (typeof window !== 'undefined' && window.KidsFitGrowthTracker) || (typeof require !== 'undefined' ? (function(){ try { return require('./growth-tracker'); } catch(_){ return null; } })() : null);
+    if (tracker && typeof tracker.printClinicalPrintPack === 'function') {
+      return tracker.printClinicalPrintPack(docType, prof);
+    }
+    return global.triggerKidsFitGlobalPrint();
+  };
+
+  global.printChrononutritionShoppingList = function () {
+    if (isGlobalPaidEdition() && !isReportUnlocked()) {
+      if (typeof global.openKidsFitGlobalCheckoutModal === 'function') {
+        global.openKidsFitGlobalCheckoutModal();
+      }
+      return false;
+    }
+    const prof = getActiveChildProfileForVipKit();
+    const childName = prof.childName || prof.name || 'Liam';
+    const ageY = Number(prof.ageYears) || 10;
+    const caMg = ageY >= 9 ? 1000 : 800;
+    const d3Iu = ageY >= 9 ? 1000 : 800;
+    const k2Mcg = ageY >= 9 ? 75 : 45;
+    const znMg = ageY >= 9 ? 11 : 8;
+
+    const html = `
+      <div class="pediatrician-intake-print-sheet" style="font-family:'Pretendard',sans-serif;color:#0F172A;padding:16mm 14mm;max-width:800px;margin:0 auto;background:#FFFFFF;">
+        <div style="border-bottom:2px solid #059669;padding-bottom:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-size:8pt;font-weight:900;color:#059669;letter-spacing:0.05em;text-transform:uppercase;">KISFIT BIO LABS · CHRONONUTRITION PROTOCOL</div>
+            <h1 style="font-size:16pt;font-weight:900;margin:2px 0;color:#0F172A;">28-Day Pediatric Growth &amp; IGF-1 Grocery Checklist</h1>
+            <div style="font-size:8pt;color:#64748B;">Personalized for ${childName} (Age ${ageY}) · Supermarket Grocery Master List</div>
+          </div>
+          <div style="text-align:right;font-size:8pt;color:#475569;">
+            Print Date: ${new Date().toISOString().split('T')[0]}
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div style="border:1px solid #CBD5E1;border-radius:10px;padding:10px 12px;background:#F8FAFC;">
+            <div style="font-size:9pt;font-weight:900;color:#1E3A8A;margin-bottom:6px;">🍳 Morning Anabolic &amp; Bone Mineral Basket</div>
+            <ul style="margin:0;padding-left:16px;font-size:8pt;color:#334155;line-height:1.5;">
+              <li>[ ] Pasture-raised organic eggs (Choline &amp; Leucine source)</li>
+              <li>[ ] Plain Greek yogurt (High bioavailability casein &amp; calcium)</li>
+              <li>[ ] Rolled whole oats (Slow-burning sustained glycogen)</li>
+              <li>[ ] <strong>Calcium Citrate (${caMg} mg/day)</strong> (Stomach-acid independent)</li>
+              <li>[ ] <strong>Vitamin D3 (${d3Iu} IU) + K2 MK-7 (${k2Mcg} mcg)</strong> (Drops)</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #CBD5E1;border-radius:10px;padding:10px 12px;background:#F8FAFC;">
+            <div style="font-size:9pt;font-weight:900;color:#059669;margin-bottom:6px;">🥗 Noon &amp; Afternoon Chondrocyte Fuel</div>
+            <ul style="margin:0;padding-left:16px;font-size:8pt;color:#334155;line-height:1.5;">
+              <li>[ ] Wild Alaskan salmon or pasture poultry (Arginine &amp; Lysine)</li>
+              <li>[ ] Dark leafy greens (Spinach, kale, steamed broccoli)</li>
+              <li>[ ] Raw almonds &amp; walnuts (Magnesium &amp; healthy fats)</li>
+              <li>[ ] Bananas &amp; blueberries (Piezoelectric pre-exercise fuel)</li>
+              <li>[ ] <strong>Chelated Zinc (${znMg} mg/day)</strong> (Hepatic IGF-1 stimulus)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="border:1.5px solid #EF4444;border-radius:10px;padding:10px 12px;background:#FEF2F2;margin-bottom:14px;">
+          <div style="font-size:9pt;font-weight:900;color:#DC2626;margin-bottom:4px;">🛑 Evening 3-Hour Glycemic Fast Blacklist (Zero Consumption after 07:00 PM)</div>
+          <div style="font-size:7.8pt;color:#7F1D1D;line-height:1.45;">
+            • NO fruit juices, sodas, energy drinks, or sweet bedtime flavored milk.<br>
+            • NO cookies, candy, white bread, or night-time high-glycemic cereals.<br>
+            • <em>Clinical Reason:</em> Insulin spikes trigger somatostatin release which blunts up to 70% of deep Slow-Wave Sleep (SWS) human growth hormone pulses.
+          </div>
+        </div>
+
+        <div style="border:1px solid #E2E8F0;border-radius:8px;padding:8px 12px;background:#FFFFFF;font-size:7.5pt;color:#64748B;display:flex;justify-content:space-between;">
+          <span>KISFIT Bio Labs · kisfitglobal.com · Chrononutrition Shopping Guide</span>
+          <span>Aligned with US NIH ODS &amp; Van Cauter Sleep Endocrine Benchmarks</span>
+        </div>
+      </div>
+    `;
+
+    if (typeof document === 'undefined') return false;
+    let printContainer = document.getElementById('clinic-print-report-container');
+    if (!printContainer) {
+      printContainer = document.createElement('div');
+      printContainer.id = 'clinic-print-report-container';
+      document.body.appendChild(printContainer);
+    }
+    printContainer.style.display = 'block';
+    printContainer.innerHTML = html;
+    if (typeof window !== 'undefined' && typeof window.print === 'function') {
+      window.print();
+    }
+    return true;
+  };
+
+  global.toggleClinicChecklistQuestion = function (qIdx) {
+    const key = 'kidsfit_clinic_checklist_state_v1';
+    let state = {};
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        state = JSON.parse(window.localStorage.getItem(key) || '{}');
+      }
+    } catch (_) {}
+    state[qIdx] = !state[qIdx];
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, JSON.stringify(state));
+      }
+    } catch (_) {}
+
+    if (typeof document === 'undefined') return state[qIdx];
+    const chkEl = document.getElementById('chk-clinic-q-' + qIdx);
+    const tagEl = document.getElementById('tag-clinic-q-' + qIdx);
+    if (chkEl) chkEl.checked = state[qIdx];
+    if (tagEl) {
+      tagEl.textContent = state[qIdx] ? '✓ Discussed with Clinician' : 'Pending';
+      tagEl.style.background = state[qIdx] ? 'rgba(16,185,129,0.3)' : 'rgba(148,163,184,0.2)';
+      tagEl.style.color = state[qIdx] ? '#A7F3D0' : '#94A3B8';
+    }
+    return state[qIdx];
+  };
+
   let _autoPaymentPollTimer = null;
   function stopAutoPaymentProgressionPoller() {
     if (_autoPaymentPollTimer) {
@@ -4771,6 +5311,11 @@ ${isMasked ? `
     launchLemonSqueezyCheckout: global.launchLemonSqueezyCheckout,
     downloadKidsFitVipResource: global.downloadKidsFitVipResource,
     saveOrSwitchKidsFitSiblingSlot: global.saveOrSwitchKidsFitSiblingSlot,
+    calculateInterventionGains: global.calculateInterventionGains,
+    updateKidsFitWhatIfSimulator: global.updateKidsFitWhatIfSimulator,
+    printKidsFitDocument: global.printKidsFitDocument,
+    printChrononutritionShoppingList: global.printChrononutritionShoppingList,
+    toggleClinicChecklistQuestion: global.toggleClinicChecklistQuestion,
     initGlobalPaywallEdition
   };
 

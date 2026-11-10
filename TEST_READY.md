@@ -2,7 +2,7 @@
 
 ## 1. Test Suite Status & Command
 The comprehensive 4-Tier End-to-End test suite for the KidsFit Parenting Content Ecosystem is ready and committed at:
-`d:\사업아이템\tests\test_parenting_ecosystem_e2e.py`
+`D:\드림컴퍼니\3사업부\tests\test_parenting_ecosystem_e2e.py`
 
 ### Test Command
 ```powershell

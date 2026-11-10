@@ -4,7 +4,7 @@
 KIDS-FIT BIO LABS — Google Flow (Veo 2/3) Browser Automation Bot (scripts/google_flow_veo_bot.py)
 
 Automates Google Flow (https://labs.google/fx/tools/flow / https://flow.google.com) using a
-persistent Google Chrome profile (`d:/키즈핏 영문/.flow-browser-profile`).
+persistent Google Chrome profile (`D:/드림컴퍼니/2사업부/.flow-browser-profile`).
 
 Modes:
   1. `python scripts/google_flow_veo_bot.py --check`

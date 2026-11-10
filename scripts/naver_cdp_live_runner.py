@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-D:\사업아이템\scripts\naver_cdp_live_runner.py
+D:\드림컴퍼니\5사업부\scripts\naver_cdp_live_runner.py
 Pure WebSocket CDP Automation Engine (Port 9233) for Division 3 (kidsfit.co.kr):
   1. Publishes deep academic parenting column + 3 1080x1080 infographics to Naver Blog (expertise333)
   2. Answers open parenting questions on Naver Knowledge iN (kin.naver.com) with Zero-URL clinical guidance
@@ -29,7 +29,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-ROOT = Path(r"D:\사업아이템")
+ROOT = Path(r"D:\드림컴퍼니\5사업부")
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from publish_enhanced_naver_blog import (
@@ -203,7 +203,7 @@ async def publish_naver_blog_via_cdp(cdp: CDPClient, topic_idx: int = None) -> d
     clean_body = sanitize_se_one_body(topic["body"])
     deep_link = topic.get("deep_link", "https://kidsfit.co.kr/?ep=1")
     inflow_prefix = (
-        f"⚡ [오늘의 키즈핏 교육 코칭 & 추천 육아템 최저가 + 1:1 발달진단 무료 오픈]\n"
+        f"⚡ [오늘의 키즈핏 교육 코칭 & 추천 육아템 공식 혜택가 + 1:1 발달진단 무료 오픈]\n"
         f"공식 판매처 1회 확인 시 4대 발달·성장 정밀 진단과 A4 코칭 워크북이 즉시 무료로 열립니다 👇\n"
         f"{deep_link}\n\n"
     )
@@ -384,7 +384,7 @@ async def publish_naver_cafe_via_cdp(cdp: CDPClient, topic_idx: int = None) -> d
     cafe_title = f"[키즈핏 육아·교육 칼럼 #{topic.get('ep', seq_num)}] {topic['title']}"
     clean_body = sanitize_se_one_body(topic["body"])
     cafe_prefix = (
-        f"🎁 [카페 회원 전용 무료 특전: 추천 육아템 최저가 비교 & A4 코칭 워크북 잠금해제]\n"
+        f"🎁 [카페 회원 전용 무료 특전: 추천 육아템 공식 혜택가 비교 & A4 코칭 워크북 잠금해제]\n"
         f"아래 키즈핏 전용 링크에서 공식 판매처를 1회 확인하시면 4대 발달 진단과 A4 워크북이 즉시 무료로 열립니다 👇\n"
         f"{deep_link}\n\n"
     )
@@ -671,7 +671,7 @@ async def run_kin_and_blog_tour_via_cdp(cdp: CDPClient) -> dict:
                 # Pin first comment if not yet pinned
                 if last_log_no not in commented_own:
                     pin_msg = (
-                        f"📌 [방문자 필독 · 본문 추천 육아템 최저가 & 무료 발달진단·A4 워크북 바로가기]\n"
+                        f"📌 [방문자 필독 · 본문 추천 육아템 공식 혜택가 & 무료 발달진단·A4 워크북 바로가기]\n"
                         f"본문에 소개된 교구·영양제 상세 비교표와 공식 판매처(확인 즉시 4대 발달진단 & A4 워크북 무료 오픈)는 아래 전용 링크에서 바로 확인하실 수 있습니다 👇\n"
                         f"👉 오늘의 에피소드 전용 스토어: https://kidsfit.co.kr/?ep={ep_num}\n"
                         f"👉 1분 무료 예상키·두뇌 발달 진단: https://kidsfit.co.kr"

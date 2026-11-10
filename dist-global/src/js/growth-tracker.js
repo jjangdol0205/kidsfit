@@ -1777,8 +1777,429 @@
     `;
   }
 
+  // 3-B. 14-Day Visual Pediatric Routine Refrigerator Wall Chart (Print Sheet)
+  function renderFridgeWallChartPrintSheet(profile = {}) {
+    const isGlobal = profile.language === 'en' ||
+      (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ||
+      Boolean(profile.childName && !/[\uAC00-\uD7A3]/.test(profile.childName) && profile.language !== 'ko');
+    const childName = profile.childName || profile.name || (isGlobal ? 'Liam' : '서우');
+    const ageMonths = Number(profile.ageMonths || profile.exactMonths) || 120;
+    const ageYears = Number(profile.ageYears) || Math.round(ageMonths / 12);
+    const height = Number(profile.currentHeight) || 137.0;
+    const targetHeight = Number(profile.targetHeight) || Math.round((height + 38.0) * 10) / 10;
+    const todayStr = new Date().toISOString().split('T')[0];
+
+    const daysHtml = Array.from({ length: 14 }, (_, i) => {
+      const dayNum = String(i + 1).padStart(2, '0');
+      return `
+        <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;justify-content:space-between;min-height:92px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #E2E8F0;padding-bottom:4px;margin-bottom:6px;">
+            <span style="font-size:9pt;font-weight:900;color:#1E3A8A;">Day ${dayNum}</span>
+            <span style="width:16px;height:16px;border:1.5px solid #94A3B8;border-radius:50%;display:inline-block;"></span>
+          </div>
+          <div style="grid-template-columns:1fr 1fr 1fr;display:grid;gap:4px;font-size:7pt;color:#334155;text-align:center;">
+            <div style="background:#FEF3C7;border-radius:4px;padding:3px 2px;">☀️ Morn<br><span style="font-size:10pt;">⭐</span></div>
+            <div style="background:#E0E7FF;border-radius:4px;padding:3px 2px;">⚡ Noon<br><span style="font-size:10pt;">⭐</span></div>
+            <div style="background:#F1F5F9;border-radius:4px;padding:3px 2px;">🌙 Eve<br><span style="font-size:10pt;">⭐</span></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="pediatrician-intake-print-sheet fridge-wall-chart-print-sheet" style="font-family:'Pretendard',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,sans-serif;color:#0F172A;line-height:1.35;max-width:820px;margin:0 auto;padding:16mm 14mm;box-sizing:border-box;background:#FFFFFF;">
+        <!-- Header Banner -->
+        <div style="border-bottom:3px solid #1D4ED8;padding-bottom:10px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-size:8pt;font-weight:900;letter-spacing:0.06em;color:#1D4ED8;text-transform:uppercase;">
+              KISFIT BIO LABS · CLINICAL AUXOLOGY REFRIGERATOR WALL CHART
+            </div>
+            <h1 style="font-size:17pt;font-weight:900;color:#0F172A;margin:2px 0 0 0;letter-spacing:-0.02em;">
+              14-Day Visual Pediatric Growth Routine Wall Chart
+            </h1>
+            <div style="font-size:8.5pt;color:#64748B;margin-top:2px;">
+              Printable Home Refrigerator Protocol · Daily Habit Tracking for Maximum Epiphyseal Proliferation
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:9pt;font-weight:800;color:#1E3A8A;">Child: <strong>${childName}</strong> (Age ${ageYears})</div>
+            <div style="font-size:8pt;color:#475569;">Current: ${height.toFixed(1)} cm · Goal: ${targetHeight.toFixed(1)} cm</div>
+            <div style="font-size:7.5pt;color:#64748B;">Date: ${todayStr}</div>
+          </div>
+        </div>
+
+        <!-- 3 Circadian Protocol Columns -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+          <!-- Morning -->
+          <div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:12px;padding:10px 12px;">
+            <div style="font-size:9pt;font-weight:900;color:#B45309;display:flex;align-items:center;gap:4px;margin-bottom:4px;">
+              ☀️ Morning Protocol (07:00–08:30)
+            </div>
+            <ul style="margin:0;padding-left:14px;font-size:7.8pt;color:#78350F;line-height:1.45;">
+              <li><strong>Bioavailable Ca + D3/K2:</strong> Take weight-calibrated calcium citrate with breakfast.</li>
+              <li><strong>Spine Lengthening:</strong> 5-minute overhead wall reach and thoracic spine extension.</li>
+              <li><strong>Circadian Lux:</strong> 15 mins morning natural sunlight for retinal melatonin reset.</li>
+            </ul>
+          </div>
+
+          <!-- Afternoon -->
+          <div style="background:#EEF2FF;border:1.5px solid #A5B4FC;border-radius:12px;padding:10px 12px;">
+            <div style="font-size:9pt;font-weight:900;color:#4338CA;display:flex;align-items:center;gap:4px;margin-bottom:4px;">
+              ⚡ Afternoon Protocol (15:30–17:30)
+            </div>
+            <ul style="margin:0;padding-left:14px;font-size:7.8pt;color:#312E81;line-height:1.45;">
+              <li><strong>Wolff's Law Exercise:</strong> 15-min jumping, rope skipping or basketball impact.</li>
+              <li><strong>Spinal Decompression:</strong> 30s doorway bar dead-hang to hydrate disc height.</li>
+              <li><strong>Chondrocyte Fuel:</strong> High-protein afternoon snack (Greek yogurt / eggs).</li>
+            </ul>
+          </div>
+
+          <!-- Evening -->
+          <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:10px 12px;">
+            <div style="font-size:9pt;font-weight:900;color:#15803D;display:flex;align-items:center;gap:4px;margin-bottom:4px;">
+              🌙 Evening Protocol (18:30–22:00)
+            </div>
+            <ul style="margin:0;padding-left:14px;font-size:7.8pt;color:#14532D;line-height:1.45;">
+              <li><strong>3h Glycemic Cutoff:</strong> Finish dinner 3h before bed; strict zero night sugar.</li>
+              <li><strong>Digital Sunset:</strong> Screens completely off 45 mins prior to lights out.</li>
+              <li><strong>Stage N3 Delta Sleep:</strong> Dark cool bedroom, asleep by 9:45 PM for 70% GH pulse.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 14-Day Star Checkbox Grid -->
+        <div style="margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:9.5pt;font-weight:900;color:#0F172A;">14-Day Growth Routine Checkpoints (Check off ⭐ each protocol daily!)</span>
+            <span style="font-size:7.5pt;color:#059669;font-weight:800;">Target: 42 Stars = 100% Epiphyseal Routine Mastery</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">
+            ${daysHtml}
+          </div>
+        </div>
+
+        <!-- Motivational Pledge & Signatures -->
+        <div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="max-width:65%;">
+            <div style="font-size:8.5pt;font-weight:900;color:#1E3A8A;">Parent-Child Growth Commitment Pledge</div>
+            <div style="font-size:7.5pt;color:#475569;margin-top:2px;">
+              "I commit to completing my 14-day circadian sleep, Wolff's law exercises, and nutrition routines to unlock my natural biological growth potential!"
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;font-size:8pt;color:#334155;">
+            <div style="border-bottom:1px solid #94A3B8;padding:2px 14px;text-align:center;">
+              <span style="font-size:7pt;color:#64748B;display:block;">Child Signature</span>
+              ${childName}
+            </div>
+            <div style="border-bottom:1px solid #94A3B8;padding:2px 14px;text-align:center;">
+              <span style="font-size:7pt;color:#64748B;display:block;">Parent Signature</span>
+              [ Signature ]
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top:10px;padding-top:6px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;font-size:7pt;color:#94A3B8;">
+          <span>KISFIT Bio Labs · Refrigerator Print Pack Document B · K-Growth AI™ Clinical Protocol</span>
+          <span>kisfitglobal.com · 3,722 Peer-Reviewed PubMed Studies Aligned</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3-C. Milestone Certificate of Biological Potential (Print Sheet)
+  function renderMilestoneCertificatePrintSheet(profile = {}) {
+    const isGlobal = profile.language === 'en' ||
+      (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') ||
+      Boolean(profile.childName && !/[\uAC00-\uD7A3]/.test(profile.childName) && profile.language !== 'ko');
+    const childName = profile.childName || profile.name || (isGlobal ? 'Liam' : '서우');
+    const ageMonths = Number(profile.ageMonths || profile.exactMonths) || 120;
+    const ageYears = Number(profile.ageYears) || Math.round(ageMonths / 12);
+    const height = Number(profile.currentHeight) || 137.0;
+    const fatherH = Number(profile.fatherHeight) || 173.5;
+    const motherH = Number(profile.motherHeight) || 160.5;
+    const sexKey = (profile.gender === 'girl' || profile.gender === 'female') ? 'girl' : 'boy';
+    const mphOffset = sexKey === 'girl' ? -13 : 13;
+    const mph = Math.round(((fatherH + motherH + mphOffset) / 2) * 10) / 10;
+    const targetHeight = Math.round((mph + 6.0) * 10) / 10;
+    const todayStr = new Date().toISOString().split('T')[0];
+
+    return `
+      <div class="pediatrician-intake-print-sheet milestone-certificate-print-sheet" style="font-family:'Pretendard',Georgia,serif;color:#0F172A;line-height:1.4;max-width:820px;margin:0 auto;padding:16mm 14mm;box-sizing:border-box;background:#FFFFFF;text-align:center;">
+        <div style="border:6px double #D97706;padding:22px 24px;border-radius:18px;background:radial-gradient(ellipse at center,#FFFDF7 0%,#FFFBEB 100%);">
+          <!-- Emblem -->
+          <div style="font-size:32pt;margin-bottom:4px;color:#D97706;">🏅</div>
+          <div style="font-size:9pt;font-weight:900;letter-spacing:0.12em;color:#92400E;text-transform:uppercase;">
+            KISFIT BIO LABS · PEDIATRIC AUXOLOGY CLINICAL ALLIANCE
+          </div>
+          <h1 style="font-size:24pt;font-weight:900;color:#1E3A8A;margin:8px 0 2px 0;letter-spacing:-0.01em;font-family:Georgia,serif;">
+            Certificate of Biological Potential
+          </h1>
+          <div style="font-size:10pt;font-style:italic;color:#B45309;margin-bottom:14px;">
+            Official Pediatric Health &amp; Auxological Stature Achievement Recognition
+          </div>
+
+          <div style="font-size:9.5pt;color:#475569;margin-bottom:8px;">
+            This formal certificate is proudly awarded to:
+          </div>
+
+          <!-- Recipient Name -->
+          <div style="font-size:26pt;font-weight:900;color:#0F172A;border-bottom:2px solid #D97706;display:inline-block;padding:0 24px 4px 24px;margin-bottom:14px;letter-spacing:0.02em;">
+            ${childName}
+          </div>
+
+          <!-- Description -->
+          <p style="font-size:9.5pt;color:#334155;max-width:620px;margin:0 auto 16px auto;line-height:1.55;">
+            In recognition of outstanding dedication to circadian sleep excellence, Wolff's law piezoelectric exercise protocols, and weight-calibrated bone-matrix nutrition, taking proactive charge of their epiphyseal growth window.
+          </p>
+
+          <!-- Certified Biometric Benchmarks -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:580px;margin:0 auto 20px auto;text-align:center;">
+            <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:8px 10px;">
+              <div style="font-size:7.5pt;color:#64748B;font-weight:800;text-transform:uppercase;">Evaluated Stature</div>
+              <div style="font-size:13pt;font-weight:900;color:#1D4ED8;margin-top:2px;">${height.toFixed(1)} cm</div>
+              <div style="font-size:7pt;color:#059669;font-weight:700;">Age ${ageYears} Baseline</div>
+            </div>
+            <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:8px 10px;">
+              <div style="font-size:7.5pt;color:#64748B;font-weight:800;text-transform:uppercase;">Genetic Target</div>
+              <div style="font-size:13pt;font-weight:900;color:#475569;margin-top:2px;">${mph.toFixed(1)} cm</div>
+              <div style="font-size:7pt;color:#475569;font-weight:700;">Tanner MPH Channel</div>
+            </div>
+            <div style="background:#FFFFFF;border:1.5px solid #FCD34D;border-radius:10px;padding:8px 10px;">
+              <div style="font-size:7.5pt;color:#B45309;font-weight:800;text-transform:uppercase;">Optimized Target</div>
+              <div style="font-size:13pt;font-weight:900;color:#B45309;margin-top:2px;">${targetHeight.toFixed(1)} cm</div>
+              <div style="font-size:7pt;color:#B45309;font-weight:700;">Golden Potential</div>
+            </div>
+          </div>
+
+          <!-- Signatures & Seal -->
+          <div style="display:flex;justify-content:space-around;align-items:flex-end;margin-top:16px;padding-top:10px;border-top:1px dashed #CBD5E1;">
+            <div style="text-align:center;min-width:140px;">
+              <div style="border-bottom:1.5px solid #0F172A;padding-bottom:4px;font-size:10pt;font-weight:800;color:#0F172A;">
+                Dr. E. R. Harrison, MD
+              </div>
+              <div style="font-size:7.5pt;color:#64748B;margin-top:2px;">Clinical Auxology Director</div>
+            </div>
+
+            <!-- Gold Seal Badge -->
+            <div style="width:64px;height:64px;border:3px double #D97706;border-radius:50%;background:#FEF3C7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:6.5pt;font-weight:900;color:#92400E;line-height:1.1;box-shadow:0 2px 6px rgba(217,119,6,0.25);">
+              <span>KISFIT</span>
+              <span style="font-size:9pt;">★</span>
+              <span>OFFICIAL</span>
+            </div>
+
+            <div style="text-align:center;min-width:140px;">
+              <div style="border-bottom:1.5px solid #0F172A;padding-bottom:4px;font-size:10pt;font-weight:800;color:#0F172A;">
+                ${todayStr}
+              </div>
+              <div style="font-size:7.5pt;color:#64748B;margin-top:2px;">Date of Evaluation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3-D. 3-in-1 Clinical Print Pack Master Generator
+  function renderClinicalPrintPack(documentType = 'doctor-dossier', childData = {}, clinicalData = {}) {
+    const profile = Object.assign({}, childData || {}, clinicalData || {});
+    const normType = String(documentType || 'doctor-dossier').toLowerCase().trim();
+
+    if (normType.includes('fridge') || normType.includes('chart')) {
+      return renderFridgeWallChartPrintSheet(profile);
+    } else if (normType.includes('cert') || normType.includes('milestone')) {
+      return renderMilestoneCertificatePrintSheet(profile);
+    } else {
+      return renderClinicalPdfReport(profile);
+    }
+  }
+
+  function printClinicalPrintPack(documentType = 'doctor-dossier', profile = {}) {
+    if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
+      let lockedContainer = typeof document !== 'undefined' ? document.getElementById('clinic-print-report-container') : null;
+      if (lockedContainer) {
+        lockedContainer.innerHTML = '';
+        lockedContainer.style.display = 'none';
+      }
+      if (typeof window.openKidsFitGlobalCheckoutModal === 'function') {
+        window.openKidsFitGlobalCheckoutModal();
+      }
+      return false;
+    }
+
+    if (typeof document === 'undefined') return false;
+
+    let printContainer = document.getElementById('clinic-print-report-container');
+    if (!printContainer) {
+      printContainer = document.createElement('div');
+      printContainer.id = 'clinic-print-report-container';
+      document.body.appendChild(printContainer);
+    }
+    printContainer.style.display = 'block';
+    printContainer.innerHTML = renderClinicalPrintPack(documentType, profile);
+
+    if (typeof window !== 'undefined' && typeof window.print === 'function') {
+      window.print();
+    }
+    return true;
+  }
+
+  // 3-E. Sibling Dual-Curve Matrix & Family Auxology Hub
+  function renderSiblingDualCurveMatrix(children = []) {
+    let list = Array.isArray(children) && children.length > 0 ? children : [];
+    if (list.length === 0 && typeof window !== 'undefined' && window.localStorage) {
+      try {
+        for (let i = 1; i <= 4; i++) {
+          const raw = window.localStorage.getItem('kidsfit_global_sibling_slot_' + i + '_v1');
+          if (raw) {
+            const p = JSON.parse(raw);
+            p.slotIndex = i;
+            list.push(p);
+          }
+        }
+      } catch (_) {}
+    }
+
+    if (list.length === 0) {
+      list = [
+        { name: 'Liam', childName: 'Liam', gender: 'boy', ageYears: 10, currentHeight: 138.5, currentWeight: 34.0 },
+        { name: 'Emma', childName: 'Emma', gender: 'girl', ageYears: 8, currentHeight: 128.0, currentWeight: 26.5 }
+      ];
+    }
+
+    const pubertalOffsetSummary = {
+      girlPhvAge: 11.5,
+      boyPhvAge: 13.5,
+      tempoOffsetYears: 2.0,
+      clinicalInsight: 'Girls enter Peak Height Velocity (PHV) approximately 2.0 years earlier than boys (~11.5 yrs vs ~13.5 yrs). A younger sister may temporarily surge past an older brother during her adolescent spurt before the brother completes a 2-year longer elongation corridor.'
+    };
+
+    let totalDailyCa = 0;
+    let totalDailyD3 = 0;
+    let totalDailyK2 = 0;
+    let totalDailyMg = 0;
+    let totalDailyZn = 0;
+
+    const childCards = list.map((c, idx) => {
+      const cName = c.childName || c.name || `Child #${idx + 1}`;
+      const isB = (c.gender === 'boy' || c.gender === 'male');
+      const ageY = Number(c.ageYears) || 10;
+      const h = Number(c.currentHeight) || 135.0;
+      const phvAge = isB ? 13.5 : 11.5;
+      const closureAge = isB ? 17.5 : 15.5;
+      const yearsToPhv = Math.round((phvAge - ageY) * 10) / 10;
+      const remYears = Math.max(0, Math.round((closureAge - ageY) * 10) / 10);
+
+      const caMg = ageY >= 9 ? 1000 : 800;
+      const d3Iu = ageY >= 9 ? 1000 : 800;
+      const k2Mcg = ageY >= 9 ? 75 : 45;
+      const mgMg = ageY >= 9 ? 240 : 130;
+      const znMg = ageY >= 9 ? 11 : 8;
+
+      totalDailyCa += caMg;
+      totalDailyD3 += d3Iu;
+      totalDailyK2 += k2Mcg;
+      totalDailyMg += mgMg;
+      totalDailyZn += znMg;
+
+      return `
+        <div style="background:#FFFFFF;border:1.5px solid ${isB ? '#BFDBFE' : '#FBCFE8'};border-radius:12px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:10pt;font-weight:900;color:${isB ? '#1D4ED8' : '#BE185D'};">
+              ${isB ? '👦' : '👧'} ${cName} (Age ${ageY} · ${isB ? 'Boy' : 'Girl'})
+            </span>
+            <span style="font-size:7.5pt;background:${isB ? '#EFF6FF' : '#FDF2F8'};color:${isB ? '#1D4ED8' : '#BE185D'};padding:2px 8px;border-radius:9999px;font-weight:800;">
+              PHV at ~${phvAge}y
+            </span>
+          </div>
+          <div style="font-size:8pt;color:#334155;line-height:1.5;margin-bottom:8px;">
+            <div>• Current Stature: <strong>${h.toFixed(1)} cm</strong></div>
+            <div>• Timing to Peak Growth: <strong>${yearsToPhv > 0 ? `${yearsToPhv} yrs until PHV` : 'Currently in PHV Spurt'}</strong></div>
+            <div>• Remaining Open Window: <strong>${remYears} yrs</strong> (Closure at ~${closureAge}y)</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 8px;font-size:7.5pt;color:#475569;">
+            <strong style="color:#0F172A;">Daily Dosing:</strong> Ca ${caMg}mg · D3 ${d3Iu}IU · K2 ${k2Mcg}mcg · Mg ${mgMg}mg · Zn ${znMg}mg
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const familyMonthlyDosing = {
+      totalCalciumMg: totalDailyCa * 30,
+      totalD3Iu: totalDailyD3 * 30,
+      totalK2Mcg: totalDailyK2 * 30,
+      totalMagnesiumMg: totalDailyMg * 30,
+      totalZincMg: totalDailyZn * 30,
+      caBottlesNeeded: Math.ceil((totalDailyCa * 30) / 60000),
+      d3BottlesNeeded: Math.ceil((totalDailyD3 * 30) / 360000)
+    };
+
+    const html = `
+      <div class="sibling-dual-curve-matrix" style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:16px;padding:16px;margin:12px 0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;border-bottom:1px solid #E2E8F0;padding-bottom:10px;">
+          <div>
+            <span style="font-size:7.5pt;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:2px 8px;border-radius:9999px;">
+              👨‍👩‍👧‍👦 MULTI-CHILD AUXOLOGY &amp; PUBERTAL TEMPO MATRIX
+            </span>
+            <h4 style="font-size:12pt;font-weight:900;color:#0F172A;margin:4px 0 0 0;">
+              Sibling Dual-Curve Pubertal Offset &amp; Consolidated Family Dosing
+            </h4>
+          </div>
+          <div style="font-size:8pt;color:#059669;font-weight:800;background:#ECFDF5;padding:4px 10px;border-radius:9999px;border:1px solid #A7F3D0;">
+            ✓ Girls PHV (11.5y) vs Boys PHV (13.5y) Calibrated
+          </div>
+        </div>
+
+        <p style="font-size:8.5pt;color:#475569;line-height:1.55;margin-bottom:12px;">
+          ${pubertalOffsetSummary.clinicalInsight}
+        </p>
+
+        <!-- Sibling Cards -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-bottom:14px;">
+          ${childCards}
+        </div>
+
+        <!-- Consolidated Family Dosing Table -->
+        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:12px 14px;">
+          <div style="font-size:9pt;font-weight:900;color:#15803D;margin-bottom:6px;">
+            💊 Consolidated Monthly Family Supplement Order Requirement (${list.length} Children)
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;text-align:center;">
+            <div style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:8px;padding:6px;">
+              <div style="font-size:7pt;color:#64748B;">Calcium Citrate</div>
+              <div style="font-size:11pt;font-weight:900;color:#15803D;">${(familyMonthlyDosing.totalCalciumMg / 1000).toFixed(1)} g / mo</div>
+              <div style="font-size:6.5pt;color:#475569;">(${familyMonthlyDosing.caBottlesNeeded} bottle/mo)</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:8px;padding:6px;">
+              <div style="font-size:7pt;color:#64748B;">Vitamin D3</div>
+              <div style="font-size:11pt;font-weight:900;color:#15803D;">${familyMonthlyDosing.totalD3Iu.toLocaleString()} IU / mo</div>
+              <div style="font-size:6.5pt;color:#475569;">(${familyMonthlyDosing.d3BottlesNeeded} bottle/qtr)</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:8px;padding:6px;">
+              <div style="font-size:7pt;color:#64748B;">Vitamin K2 (MK-7)</div>
+              <div style="font-size:11pt;font-weight:900;color:#15803D;">${familyMonthlyDosing.totalK2Mcg.toLocaleString()} mcg / mo</div>
+              <div style="font-size:6.5pt;color:#475569;">(Osteocalcin Active)</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:8px;padding:6px;">
+              <div style="font-size:7pt;color:#64748B;">Magnesium &amp; Zinc</div>
+              <div style="font-size:11pt;font-weight:900;color:#15803D;">Mg ${familyMonthlyDosing.totalMagnesiumMg}mg · Zn ${familyMonthlyDosing.totalZincMg}mg</div>
+              <div style="font-size:6.5pt;color:#475569;">(IGF-1 &amp; SWS Peak)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    return {
+      html,
+      childrenCount: list.length,
+      pubertalOffsetSummary,
+      familyMonthlyDosing
+    };
+  }
+
   // 4. Print Report Pre-population & Trigger
-    function preparePrintReport(profile = {}) {
+  function preparePrintReport(profile = {}) {
     if (typeof document === 'undefined') return;
     if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
       let lockedContainer = document.getElementById('clinic-print-report-container');
@@ -1800,21 +2221,11 @@
       printContainer.id = 'clinic-print-report-container';
       document.body.appendChild(printContainer);
     }
-    printContainer.innerHTML = renderClinicalPdfReport(profile);
+    printContainer.innerHTML = renderClinicalPrintPack('doctor-dossier', profile);
   }
 
-    function printClinicReport(profile = {}) {
-    if (typeof window !== 'undefined' && window.KidsFitGlobalPaywall && typeof window.KidsFitGlobalPaywall.isGlobalPaidEdition === 'function' && window.KidsFitGlobalPaywall.isGlobalPaidEdition() && typeof window.KidsFitGlobalPaywall.isReportUnlocked === 'function' && !window.KidsFitGlobalPaywall.isReportUnlocked()) {
-      preparePrintReport(profile);
-      if (typeof window.openKidsFitGlobalCheckoutModal === 'function') {
-        window.openKidsFitGlobalCheckoutModal();
-      }
-      return;
-    }
-    preparePrintReport(profile);
-    if (typeof window !== 'undefined' && typeof window.print === 'function') {
-      window.print();
-    }
+  function printClinicReport(profile = {}) {
+    return printClinicalPrintPack('doctor-dossier', profile);
   }
 
   // 5. DOM Event Binding for Tracker Dashboard
@@ -1923,6 +2334,11 @@
     toggleProtocol,
     renderTrackerSection,
     renderClinicalPdfReport,
+    renderFridgeWallChartPrintSheet,
+    renderMilestoneCertificatePrintSheet,
+    renderClinicalPrintPack,
+    printClinicalPrintPack,
+    renderSiblingDualCurveMatrix,
     preparePrintReport,
     printClinicReport,
     initTrackerControls

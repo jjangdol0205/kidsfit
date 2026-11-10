@@ -1,7 +1,7 @@
 /**
- * D:\사업아이템\scripts\apply_dawn_track3.js
+ * D:\드림컴퍼니\5사업부\scripts\apply_dawn_track3.js
  * Injects Khamis-Roche 28-Row Non-Radiographic Adult Height Matrix & Pediatrician 1-Page Summary Suite
- * into D:\사업아이템\index.html cleanly without PowerShell escaping issues.
+ * into D:\드림컴퍼니\5사업부\index.html cleanly without PowerShell escaping issues.
  */
 const fs = require('fs');
 const path = require('path');
@@ -48,7 +48,7 @@ const suite = `<!-- Khamis-Roche 28-Row Non-Radiographic Adult Height Matrix & P
 if (!html.includes('kf-khamis-roche-pediatrician-suite') && html.includes(target)) {
   html = html.replace(target, suite);
   fs.writeFileSync(p, html, 'utf8');
-  console.log('[Track3] Injected kf-khamis-roche-pediatrician-suite into D:/사업아이템/index.html');
+  console.log('[Track3] Injected kf-khamis-roche-pediatrician-suite into D:/드림컴퍼니/5사업부/index.html');
 } else {
   console.log('[Track3] Already present or target checked.');
 }

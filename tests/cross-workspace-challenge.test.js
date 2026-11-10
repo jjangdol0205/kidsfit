@@ -8,8 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const ENG_ROOT = path.resolve(__dirname, '..');
-const KOR_ROOT = path.resolve('D:\\사업아이템');
+const ENG_ROOT = path.resolve('D:\\드림컴퍼니\\2사업부');
+const KOR_ROOT = path.resolve('D:\\드림컴퍼니\\3사업부');
 
 let passedAssertions = 0;
 let failedAssertions = 0;
@@ -295,9 +295,9 @@ async function runEmpiricalChallenge() {
   assert(engBridge.includes('278ac9cd-25e2-4d75-93ae-f407a1e6de5d'), 'English telegram-antigravity-bridge.js references English conversation ID');
   assert(korBridge.includes('efdd0412-2586-40cf-bb28-0fa8976613df'), 'Korean telegram-antigravity-bridge.js references Korean conversation ID');
 
-  assert(engBridge.includes('키즈핏 영문'), 'English telegram-antigravity-bridge.js directs worker to English workspace');
-  assert(!engBridge.includes('d:\\사업아이템') && !engBridge.includes('d:\\\\사업아이템'), 'English telegram-antigravity-bridge.js does NOT direct worker to Korean workspace');
-  assert(korBridge.includes('사업아이템'), 'Korean telegram-antigravity-bridge.js directs worker to Korean workspace');
+  assert(engBridge.includes('2사업부'), 'English telegram-antigravity-bridge.js directs worker to English workspace');
+  assert(!engBridge.includes('D:\\드림컴퍼니\\3사업부') && !engBridge.includes('d:\\\\사업아이템'), 'English telegram-antigravity-bridge.js does NOT direct worker to Korean workspace');
+  assert(korBridge.includes('3사업부'), 'Korean telegram-antigravity-bridge.js directs worker to Korean workspace');
 
   // Live Telegram API verification for both tokens
   console.log('\n--- 4.1 Live Telegram API getMe Verification ---');

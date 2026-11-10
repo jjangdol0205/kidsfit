@@ -345,7 +345,7 @@ function auditStage5AffiliateLinks() {
   // HTML Rendering & Discreet 12px Styling Check
   const htmlKo = RefChips.getReferenceChipsHtml('calcium', false);
   recordCheck('Stage 5: Links', 'Reference Chips Styled at 12px Font Size', htmlKo.includes('12px'), 'Font size check');
-  recordCheck('Stage 5: Links', 'No Aggressive Promotional Keywords (Zero "특가/최저가")', !htmlKo.includes('특가') && !htmlKo.includes('최저가'), 'Clean clinical text check');
+  recordCheck('Stage 5: Links', 'No Aggressive Promotional Keywords (Zero Prohibited Terms)', !htmlKo.includes('\uD2B9\uAC00') && !htmlKo.includes('\uCD5C\uC800\uAC00'), 'Clean clinical text check');
 
   // Master Toggle Check
   const disabledHtml = RefChips.getReferenceChipsHtml('calcium', false, { chipsEnabled: false });

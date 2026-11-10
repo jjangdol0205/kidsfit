@@ -15,7 +15,7 @@ const https = require('https');
 const { getTelegramConfig, telegramApiRequest, escapeHtml } = require('./telegram-notify');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const HOST_REPO_DIR = 'd:\\사업아이템';
+const HOST_REPO_DIR = 'D:\\드림컴퍼니\\5사업부';
 
 function getKstDateString(offsetDays = 0) {
   const ms = Date.now() + 9 * 3600 * 1000 + offsetDays * 86400 * 1000;

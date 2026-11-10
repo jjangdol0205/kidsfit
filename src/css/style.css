@@ -2313,8 +2313,9 @@ p, li, dt, dd,
   }
 
   .mobile-touch-btn,
-  .mobile-touch-btn-primary {
-    min-height: 46px !important;
+  .mobile-touch-btn-primary,
+  .pinpoint-direct-link {
+    min-height: 48px !important;
     font-size: 0.86rem !important;
     padding: 0.65rem 0.85rem !important;
     white-space: normal !important;
@@ -2323,7 +2324,7 @@ p, li, dt, dd,
 
   .mobile-touch-btn-sub,
   .mobile-touch-btn-secondary {
-    min-height: 44px !important;
+    min-height: 48px !important;
     font-size: 0.82rem !important;
     padding: 0.55rem 0.6rem !important;
     white-space: normal !important;
@@ -4344,6 +4345,10 @@ html[data-edition="global-paid"] select.form-input:focus {
 }
 
 .kf-card-action-btn {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   color: #FFFFFF;
   text-align: center;
@@ -4353,7 +4358,6 @@ html[data-edition="global-paid"] select.form-input:focus {
   font-weight: 800;
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.18);
   transition: filter 0.15s ease, transform 0.15s ease;
-  display: block;
 }
 
 .kf-product-card:hover .kf-card-action-btn {
@@ -4369,6 +4373,113 @@ html[data-edition="global-paid"] select.form-input:focus {
 .kf-card-action-btn.iherb {
   background: linear-gradient(135deg, #15803D 0%, #16A34A 100%);
   box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2);
+}
+
+
+/* 4-Axis Scorecard Bento Card Styling */
+.kf-scorecard-card-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  margin: 0.45rem 0 0.55rem 0;
+}
+
+.kf-sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.68rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid #EDF2F7;
+  padding-bottom: 0.25rem;
+}
+
+.kf-sc-title {
+  color: #475569;
+  font-weight: 700;
+}
+
+.kf-sc-composite {
+  color: #1D4ED8;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.kf-sc-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.kf-sc-bar-row {
+  display: grid;
+  grid-template-columns: 58px 1fr 24px;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+}
+
+.kf-sc-bar-lbl {
+  color: #64748B;
+  font-weight: 600;
+}
+
+.kf-sc-track {
+  width: 100%;
+  height: 5px;
+  background: #E2E8F0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.kf-sc-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.kf-sc-fill.fill-safety { background: linear-gradient(90deg, #10B981, #059669); }
+.kf-sc-fill.fill-absorb { background: linear-gradient(90deg, #3B82F6, #1D4ED8); }
+.kf-sc-fill.fill-ease   { background: linear-gradient(90deg, #8B5CF6, #6D28D9); }
+.kf-sc-fill.fill-cost   { background: linear-gradient(90deg, #F59E0B, #D97706); }
+
+.kf-sc-val {
+  color: #1E293B;
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Milestone Age Badges */
+.kf-card-milestone-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  margin: 0.25rem 0 0.35rem 0;
+}
+
+.kf-milestone-age-chip {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 9999px;
+  line-height: 1.2;
+}
+
+.kf-milestone-age-chip.age-newborn   { background: #FFE4E6; color: #BE123C; border: 1px solid #FECDD3; }
+.kf-milestone-age-chip.age-infant    { background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
+.kf-milestone-age-chip.age-preschool { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+.kf-milestone-age-chip.age-elementary{ background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+.kf-milestone-age-chip.age-adolescent{ background: #F3E8FF; color: #7E22CE; border: 1px solid #E9D5FF; }
+
+.kf-milestone-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 0.12rem 0.35rem;
+  border-radius: 4px;
 }
 
 /* Mobile Responsiveness for Shopping Mall */
@@ -4412,10 +4523,19 @@ html[data-edition="global-paid"] select.form-input:focus {
     margin-bottom: 0.45rem;
   }
 
-  .kf-card-thumb-wrap .kf-badge-platform,
   .kf-card-thumb-wrap .kf-card-stage-tag {
     font-size: 0.58rem;
     padding: 0.12rem 0.35rem;
+    top: auto !important;
+    bottom: 6px !important;
+    right: 6px !important;
+  }
+
+  .kf-card-thumb-wrap .kf-badge-platform {
+    font-size: 0.58rem;
+    padding: 0.12rem 0.35rem;
+    top: 6px !important;
+    left: 6px !important;
   }
 
   .kf-card-title {
@@ -4449,8 +4569,12 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 
   .kf-card-action-btn {
-    font-size: 0.72rem;
-    padding: 0.45rem 0.4rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.76rem;
+    padding: 0.5rem 0.45rem;
   }
 
   .kf-stage-tab {

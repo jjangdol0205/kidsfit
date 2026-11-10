@@ -7,14 +7,14 @@
  * 1. Listens 24/7 to the user's Telegram Bot via Long Polling (`getUpdates`) + Inline Button Callbacks
  * 2. Instant Built-in Commands & 1-Tap Smartphone Buttons:
  *    - `/help` (`도움말`/`시작`) : Show interactive KidsFit control panel with 1-tap buttons
- *    - `/status` (`상태`/`점검`) : Check live `https://kisfitglobal.com` server & Paper Learning status
+ *    - `/status` (`상태`/`점검`) : Check live `https://kidsfit.co.kr` server & Paper Learning status
  *    - `/research` (`논문`/`학습`): Run an immediate incremental paper crawl cycle & report new papers
  *    - `/samples` (`샘플`/`웹툰`): Send the 6-cut conversational webtoon & 1-line cardnews sample photos
  *    - `/deploy` (`배포`)        : Rebuild `dist/`, run verification checks (R5 remote push guarded)
  * 3. Direct Antigravity AI Remote Control (`language_server.exe` / `agentapi.bat` Bridge):
  *    - Any natural language message sent on Telegram automatically wakes up Google Antigravity
- *      in conversation `278ac9cd-25e2-4d75-93ae-f407a1e6de5d`, executes the task in `d:\키즈핏 영문`,
- *      and replies back to Telegram when finished!
+ *      in conversation `1921e31e-ab59-4720-9419-93cac770374d` (Telegram Dedicated Channel), executes the task in `D:\드림컴퍼니\5사업부`,
+ *      and replies back to Telegram when finished! (PC Direct Channel `dbc61f0a-76cb-48e3-b617-a616c069564c` is isolated)
  */
 
 const fs = require('fs');
@@ -26,7 +26,9 @@ const telegramNotifier = require('./telegram-notify.js');
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json');
 
-const DEFAULT_CONVERSATION_ID = '278ac9cd-25e2-4d75-93ae-f407a1e6de5d';
+// Telegram Dedicated HQ Conversation: '1921e31e-ab59-4720-9419-93cac770374d' (PC Direct: 'dbc61f0a-76cb-48e3-b617-a616c069564c')
+const DEFAULT_CONVERSATION_ID = '1921e31e-ab59-4720-9419-93cac770374d';
+const PC_DIRECT_CONVERSATION_ID = 'dbc61f0a-76cb-48e3-b617-a616c069564c';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
 const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe';
 
@@ -47,6 +49,10 @@ const CONTROL_PANEL_KEYBOARD = {
     [
       { text: '🌙 심야학습 실행 (/nightstudy)', callback_data: '/nightstudy' },
       { text: '🔄 재빌드 & 검증 (/deploy)', callback_data: '/deploy' }
+    ],
+    [
+      { text: '🏢 3사업부 멀티에이전트 본부 (/hq)', callback_data: '/hq' },
+      { text: '🔥 새벽 Max-Token 플랜 (/dawn)', callback_data: '/dawn' }
     ]
   ]
 };
@@ -94,7 +100,7 @@ function dispatchToAntigravity(userCommandText, conversationId) {
     `"${userCommandText}"`,
     ``,
     `지침:`,
-    `1. 작업 디렉토리(d:\\키즈핏 영문)에서 사용자의 요청을 즉시 수행하세요.`,
+    `1. 작업 디렉토리(D:\\드림컴퍼니\\5사업부)에서 사용자의 요청을 즉시 수행하세요.`,
     `2. 코드나 데이터가 변경되었다면 node scripts/build.js 실행 후 검증을 완료하세요. (주의: R5 지침에 따라 원격 저장소로 git push는 실행하지 마세요.)`,
     `3. 작업이 완료되면 반드시 다음 명령어를 실행하여 사용자 텔레그램으로 완료 결과를 답장하세요:`,
     `   node scripts/telegram-notify.js --message "<수행한 작업 요약 및 결과>"`
@@ -155,6 +161,12 @@ async function handleIncomingCommand(rawText, options = {}) {
     return sendChatMessage(botToken, chatId, html, withButtons);
   };
 
+  // 0. /hq or /dawn (Division 3 Multi-Agent HQ & Overnight Max-Token Plan)
+  if (['/hq', '/dawn', '/agents', '조직도', '멀티에이전트', '새벽', '토큰'].includes(text)) {
+    const { buildDivision3MasterReportHtml } = require('./division3_company_hq.js');
+    return reply(buildDivision3MasterReportHtml(), true);
+  }
+
   // 1. /start or /help
   if (
     text === '/start' ||
@@ -168,7 +180,7 @@ async function handleIncomingCommand(rawText, options = {}) {
     const research = telegramNotifier.loadResearchStatus();
     const msg = [
       `🌱 <b>[키즈핏 그로스 스튜디오 × Antigravity 원격 제어 센터]</b>`,
-      `스마트폰 텔레그램과 PC의 <b>Google Antigravity AI 에이전트</b> 및 <b>kisfitglobal.com</b> 실서버가 실시간 양방향 연결되어 있습니다!`,
+      `스마트폰 텔레그램과 PC의 <b>Google Antigravity AI 에이전트</b> 및 <b>kidsfit.co.kr</b> 실서버가 실시간 양방향 연결되어 있습니다!`,
       ``,
       `📊 <b>현재 학술 논문 학습 누적</b>: <b>총 ${research.total_papers || 663}편</b> (Cycle #${research.cycle_index || 34})`,
       ``,
@@ -192,7 +204,7 @@ async function handleIncomingCommand(rawText, options = {}) {
     const lines = [
       `📊 <b>[키즈핏 실서버 & 학술 논문 학습 실시간 상태]</b>`,
       `━━━━━━━━━━━━━━━━━━`,
-      `🌐 <b>1. 실서버(kisfitglobal.com) 엔드포인트</b>`
+      `🌐 <b>1. 실서버(kidsfit.co.kr) 엔드포인트</b>`
     ];
     checks.forEach(c => {
       const icon = c.status === 200 ? '✅' : '⚠️';
@@ -346,7 +358,7 @@ async function handleIncomingCommand(rawText, options = {}) {
     // Strict R5 compliance: Do NOT execute git push to any remote repository
     const ok = buildRes.status === 0 && testRes.status === 0;
     const msg = ok
-      ? `✅ <b>[재빌드 & kisfitglobal.com 로컬 검증 완료!]</b>\n• dist/ 프로덕션 빌드 성공\n• 전체 테스트 스위트 100% 통과\n• R5 지침에 따라 원격 git push는 비활성화되어 안전하게 보호됩니다.`
+      ? `✅ <b>[재빌드 & kidsfit.co.kr 로컬 검증 완료!]</b>\n• dist/ 프로덕션 빌드 성공\n• 전체 테스트 스위트 100% 통과\n• R5 지침에 따라 원격 git push는 비활성화되어 안전하게 보호됩니다.`
       : `⚠️ <b>[빌드/검증 로그 확인]</b>\n<pre>${telegramNotifier.escapeHtml(((testRes.stdout || testRes.stderr || '') + '\n' + (buildRes.stderr || '')).slice(-500))}</pre>`;
     return reply(msg, true);
   }
@@ -463,13 +475,13 @@ async function handleIncomingCommand(rawText, options = {}) {
       `🔐 <b>[KIDS-FIT 영문 홈페이지 관리자(Admin) 모드 접속 방법]</b>`,
       `━━━━━━━━━━━━━━━━━━`,
       `<b>방법 1 (URL 바로가기 — 가장 빠름):</b>`,
-      `👉 <a href="https://kisfitglobal.com/?admin=1">https://kisfitglobal.com/?admin=1</a> 접속 시 관리자 스튜디오가 즉시 열립니다.`,
+      `👉 <a href="https://kidsfit.co.kr/?admin=1">https://kidsfit.co.kr/?admin=1</a> 접속 시 관리자 스튜디오가 즉시 열립니다.`,
       ``,
       `<b>방법 2 (비밀 클릭 트리거):</b>`,
       `홈페이지 맨 아래 푸터의 저작권 문구(<code>© 2026 KIDS-FIT BIO LABS. All rights reserved.</code>)를 <b>3초 이내에 연속 5번 클릭(탭)</b>하면 관리자 모달이 열립니다.`,
       ``,
       `<b>방법 3 (관리자 유료 리포트 즉시 잠금해제 URL):</b>`,
-      `👉 <a href="https://kisfitglobal.com/?unlock=1">https://kisfitglobal.com/?unlock=1</a> (결제 없이 유료 리포트 전체 열람 모드)`
+      `👉 <a href="https://kidsfit.co.kr/?unlock=1">https://kidsfit.co.kr/?unlock=1</a> (결제 없이 유료 리포트 전체 열람 모드)`
     ].join('\n');
     return reply(adminMsg, true);
   }
@@ -523,7 +535,7 @@ async function startPollingDaemon() {
     await telegramNotifier.telegramApiRequest(botToken, 'setMyCommands', {
       commands: [
         { command: 'help', description: '키즈핏 원격 제어 리모컨 버튼 보기' },
-        { command: 'status', description: 'kisfitglobal.com 실서버 & 논문 학습 현황' },
+        { command: 'status', description: 'kidsfit.co.kr 실서버 & 논문 학습 현황' },
         { command: 'pay', description: '유료결제(Lemon Squeezy) & 회원가입 시스템 현황' },
         { command: 'admin', description: '관리자(Admin) 모드 접속 방법 및 바로가기' },
         { command: 'research', description: '지금 즉시 학술 논문 추가 크롤링·학습 실행' },
@@ -636,14 +648,14 @@ async function startPollingDaemon() {
           const hostRepoDir = path.resolve(PROJECT_ROOT, '..', '사업아이템');
           if (fs.existsSync(hostRepoDir)) {
             spawnSync('git', ['add', 'server.js', 'dist-global'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
-            spawnSync('git', ['commit', '-m', 'Nov 1 Render quota reset: auto-deploy accumulated kisfitglobal.com updates'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
-            spawnSync('git', ['push', 'origin', 'main'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 60000 });
+            spawnSync('git', ['commit', '-m', 'Nov 1 Render quota reset: auto-deploy accumulated kidsfit.co.kr updates'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
+            // R5 Guarded: git push disabled
           }
           if (ownerChatId) {
             await sendChatMessage(
               botToken,
               ownerChatId,
-              `🎉 <b>[11월 1일 렌더(Render) 무료 빌드 할당량 초기화 — 자동 빌드 & 실서버 배포 완료!]</b>\n• 10월 말 동안 누적된 모든 로컬 개선사항 및 신규 Q&A 칼럼이 <code>kisfitglobal.com</code> 실서버에 자동 배포되었습니다.`,
+              `🎉 <b>[11월 1일 렌더(Render) 무료 빌드 할당량 초기화 — 자동 빌드 & 실서버 배포 완료!]</b>\n• 10월 말 동안 누적된 모든 로컬 개선사항 및 신규 Q&A 칼럼이 <code>kidsfit.co.kr</code> 실서버에 자동 배포되었습니다.`,
               true
             );
           }

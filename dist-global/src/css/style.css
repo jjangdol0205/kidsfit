@@ -4397,6 +4397,50 @@ button,
     page-break-after: auto;
     break-after: auto;
   }
+
+  .fridge-wall-chart-print-sheet,
+  .milestone-certificate-print-sheet {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .fridge-wall-chart-print-sheet {
+    border: 2px solid #1D4ED8 !important;
+  }
+}
+
+/* ==========================================================================
+   27. PREMIUM VALUE PACKAGE (MILESTONE 1): WHAT-IF SIMULATOR, CHRONONUTRITION, SIBLING MATRIX & CLINIC PRINT PACK
+   ========================================================================== */
+.what-if-simulator-card {
+  transition: all 0.25s ease;
+}
+
+.what-if-toggle-card:hover {
+  border-color: #3B82F6 !important;
+  background: #EFF6FF !important;
+}
+
+.what-if-locked-teaser {
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+}
+
+.circadian-chrononutrition-timeline-card {
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.sibling-dual-curve-matrix {
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+}
+
+.clinic-checklist-item {
+  transition: background 0.15s ease;
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+.clinic-checklist-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 

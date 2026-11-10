@@ -31,7 +31,7 @@ const telegramNotifier = require('./telegram-notify');
 const rlEngine = require('./rl_paid_conversion_engine');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const LIVE_HOST_ROOT = 'd:/사업아이템';
+const LIVE_HOST_ROOT = 'D:/드림컴퍼니/5사업부';
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'auto_promotion_state.json');
 const TELEGRAPH_ACCOUNT_PATH = path.join(PROJECT_ROOT, 'logs', 'us_telegraph_account.json');
 const EXT_BACKLINKS_PATH = path.join(PROJECT_ROOT, 'logs', 'us_external_backlinks_registry.json');
@@ -203,7 +203,7 @@ function savePromoState(state) {
 
 /**
  * [Autonomous Track 1] Automatically generate the next standalone US Long-Tail Q&A HTML page (qna/post-seq-XXX.html)
- * and sync it to dist/, sitemap.xml, llms.txt, and d:\사업아이템\dist-global\
+ * and sync it to dist/, sitemap.xml, llms.txt, and D:\드림컴퍼니\5사업부\dist-global\
  */
 function truncateAtWordBoundary(rawText, maxLen = 158) {
   const clean = String(rawText || '').replace(/\s+/g, ' ').trim();
@@ -298,8 +298,8 @@ function generateNextAutonomousUsQnaColumn(seqNum, topic) {
         </div>
         <div style="font-size:0.8rem;font-weight:900;color:#065F46;margin-bottom:0.4rem;">🌿 Clinician-Verified Pediatric Bio-Nutrition &amp; Growth Tools (Official iHerb IPZ1547 &amp; Amazon US):</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.45rem;">
-          <a href="https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" style="text-decoration:none;background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.76rem;font-weight:800;color:#065F46;display:block;">🌿 iHerb Ca Citrate + D3/K2 + Zinc Rx &nearr;</a>
-          <a href="https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" style="text-decoration:none;background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.76rem;font-weight:800;color:#065F46;display:block;">🧠 iHerb Prefrontal DHA &amp; Sleep Mg &nearr;</a>
+          <a href="https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" style="text-decoration:none;background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.76rem;font-weight:800;color:#065F46;display:block;">🌿 iHerb Ca Citrate + D3/K2 + Zinc Rx &nearr;</a>
+          <a href="https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" style="text-decoration:none;background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.76rem;font-weight:800;color:#065F46;display:block;">🧠 iHerb Prefrontal DHA &amp; Sleep Mg &nearr;</a>
           <a href="https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&amp;tag=kidfit-20" target="_blank" rel="noopener noreferrer" style="text-decoration:none;background:#FFFFFF;border:1px solid #93C5FD;border-radius:10px;padding:0.5rem 0.65rem;font-size:0.76rem;font-weight:800;color:#1E3A8A;display:block;">📦 Amazon Spinal Decompression Bar &nearr;</a>
         </div>
       </div>
@@ -309,7 +309,7 @@ function generateNextAutonomousUsQnaColumn(seqNum, topic) {
 </body>
 </html>`;
 
-  // Save to qna/, dist/qna/, and d:\사업아이템\dist-global\qna\
+  // Save to qna/, dist/qna/, and D:\드림컴퍼니\5사업부\dist-global\qna\
   safeWriteFile(path.join(PROJECT_ROOT, 'qna', fileName), html);
   safeWriteFile(path.join(PROJECT_ROOT, 'dist', 'qna', fileName), html);
   if (fs.existsSync(LIVE_HOST_ROOT)) {

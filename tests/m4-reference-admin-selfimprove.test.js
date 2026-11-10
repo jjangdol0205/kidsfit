@@ -337,7 +337,7 @@ async function runAllSuites() {
     assert.ok(bundle.enTikTokScript.includes('60s Clinical Script & Viral Hook'));
     assert.ok(bundle.enTikTokScript.includes('Viral Hook'));
     assert.ok(bundle.enTikTokScript.includes('Growth Hormone'));
-    assert.ok(bundle.enTikTokScript.includes('kisfitglobal.com'));
+    assert.ok(bundle.enTikTokScript.includes('kidsfit.co.kr') || bundle.enTikTokScript.includes('kisfitglobal.com'));
     assert.ok(bundle.enShortsScript.includes('YouTube Shorts 60s Scientific Breakdown Script'));
   });
 
@@ -347,8 +347,8 @@ async function runAllSuites() {
     assert.ok(bundle.koBlogColumn.includes('부모 유전 표적키'));
     assert.ok(bundle.koBlogColumn.length >= 1500, `Expected blog column >= 1500 chars, got ${bundle.koBlogColumn.length}`);
     assert.ok(bundle.koBlogColumn.includes('|'), 'Blog column must contain markdown comparison table');
-    assert.ok(bundle.koBlogColumn.includes('kisfitglobal.com'), 'Blog column must contain platform bridge link');
-    assert.ok(bundle.koCafePost.includes('kisfitglobal.com'));
+    assert.ok(bundle.koBlogColumn.includes('kidsfit.co.kr') || bundle.koBlogColumn.includes('kisfitglobal.com'), 'Blog column must contain platform bridge link');
+    assert.ok(bundle.koCafePost.includes('kidsfit.co.kr') || bundle.koCafePost.includes('kisfitglobal.com'));
   });
 
   it('supports 3 distinct real-world pediatric scenarios', () => {

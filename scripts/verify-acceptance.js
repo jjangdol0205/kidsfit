@@ -46,11 +46,11 @@ function verifyMilestone1() {
     }
   });
 
-  check('CNAME exists at root and contains kisfitglobal.com', () => {
+  check('CNAME exists at root and contains kidsfit.co.kr', () => {
     const cnamePath = path.join(ROOT_DIR, 'CNAME');
     if (!fs.existsSync(cnamePath)) throw new Error('CNAME missing');
     const content = fs.readFileSync(cnamePath, 'utf8').trim();
-    if (content !== 'kisfitglobal.com') {
+    if (content !== 'kidsfit.co.kr') {
       throw new Error(`CNAME contains unexpected content: "${content}"`);
     }
   });
@@ -137,7 +137,7 @@ function verifyMilestone1() {
     const distCname = path.join(distDir, 'CNAME');
     if (!fs.existsSync(distCname)) throw new Error('dist/CNAME is missing');
     const distCnameContent = fs.readFileSync(distCname, 'utf8').trim();
-    if (distCnameContent !== 'kisfitglobal.com') {
+    if (distCnameContent !== 'kidsfit.co.kr') {
       throw new Error(`dist/CNAME has invalid domain: ${distCnameContent}`);
     }
   });
@@ -532,8 +532,8 @@ function verifyMilestone5() {
       const stat = fs.statSync(p);
       if (stat.size < 2000) throw new Error(`Playbook ${f} is too short (<2KB)`);
       const content = fs.readFileSync(p, 'utf8');
-      if (!content.includes('kisfitglobal.com')) {
-        throw new Error(`Playbook ${f} missing target domain kisfitglobal.com`);
+      if (!content.includes('kidsfit.co.kr')) {
+        throw new Error(`Playbook ${f} missing target domain kidsfit.co.kr`);
       }
     });
   });
@@ -574,7 +574,7 @@ function verifyMilestone5() {
   });
 
   console.log('\n[Group 17: 28 Clinical Q&A Articles, 0 Hangul across Web/Feeds, Lemon Squeezy Store #296100 & @kidsfittbot]');
-  check('qna/ and dist/qna/ contain 28 clinical Q&A guides and directory index with kisfitglobal.com canonical URLs', () => {
+  check('qna/ and dist/qna/ contain 28 clinical Q&A guides and directory index with kidsfit.co.kr canonical URLs', () => {
     ['qna', 'dist/qna'].forEach((dirRel) => {
       const qnaDir = path.join(ROOT_DIR, dirRel);
       if (!fs.existsSync(qnaDir)) throw new Error(`Directory ${dirRel} missing`);
@@ -585,8 +585,8 @@ function verifyMilestone5() {
         const fpath = path.join(qnaDir, fname);
         if (!fs.existsSync(fpath)) throw new Error(`Missing ${fname} in ${dirRel}`);
         const c = fs.readFileSync(fpath, 'utf8');
-        if (!c.includes('https://kisfitglobal.com/qna/')) {
-          throw new Error(`${fname} in ${dirRel} missing canonical kisfitglobal.com URL`);
+        if (!c.includes('https://kidsfit.co.kr/qna/')) {
+          throw new Error(`${fname} in ${dirRel} missing canonical kidsfit.co.kr URL`);
         }
         if (!c.includes('FAQPage')) {
           throw new Error(`${fname} in ${dirRel} missing FAQPage JSON-LD schema`);
@@ -667,7 +667,7 @@ function verifyMilestone5() {
     const envPath = path.join(ROOT_DIR, '.env');
     if (!fs.existsSync(envPath)) throw new Error('.env missing');
     const envContent = fs.readFileSync(envPath, 'utf8');
-    if (!envContent.includes('TELEGRAM_BOT_TOKEN=8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw')) {
+    if (!envContent.includes('TELEGRAM_BOT_TOKEN=8874740009:AAHecAzLm5wYe_OyHDCDxrR92P0CcTMd6JE')) {
       throw new Error('@kidsfittbot token missing from .env');
     }
     if (!envContent.includes('ANTIGRAVITY_CONVERSATION_ID=')) {
