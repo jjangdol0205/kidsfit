@@ -22,9 +22,11 @@ Dark Luxury Listicle)의 실제 프리미어 프로 / 애프터이펙트 편집 
 """
 
 import os
+import re
 import sys
 import math
 import wave
+import zlib
 import asyncio
 import subprocess
 from pathlib import Path
@@ -135,11 +137,174 @@ async def synthesize_natural_voice_with_words(
     return words, total_dur
 
 
+SPOKEN_MULTIWORD_NORMALIZATIONS = [
+    (("vitamin", "d", "three"), "VITAMIN D3"),
+    (("vitamin", "k", "two"), "VITAMIN K2"),
+    (("d", "three"), "VITAMIN D3"),
+    (("k", "two"), "K2"),
+    (("ten", "p", "m"), "10 PM"),
+    (("nine", "p", "m"), "9 PM"),
+    (("eight", "p", "m"), "8 PM"),
+    (("two", "a", "m"), "2 AM"),
+    (("eight", "a", "m"), "8 AM"),
+    (("seven", "thirty", "a", "m"), "7:30 AM"),
+    (("two", "full", "inches"), "+2 INCHES"),
+    (("two", "hidden", "inches"), "+2 INCHES"),
+    (("two", "inches"), "+2 INCHES"),
+    (("four", "inches"), "+4 INCHES"),
+    (("c", "d", "c"), "CDC"),
+    (("i", "g", "f", "one"), "IGF-1"),
+    (("l", "q"), "LQ"),
+    (("i", "q"), "IQ"),
+    (("sixty", "day", "m", "a"), "60-DAY MA"),
+    (("sixty-day", "m", "a"), "60-DAY MA"),
+]
+
+SPOKEN_SINGLE_WORD_NORMALIZATIONS = {
+    "sixty": "60",
+    "forty": "40",
+    "forty-eight": "48",
+    "seventy": "70",
+    "seventy-five": "75",
+    "twenty-five": "25",
+    "twenty-three": "23",
+    "thirty": "30",
+    "twenty": "20",
+    "fifteen": "15",
+    "fourteen": "14",
+    "eighteen": "18",
+    "fifty": "50",
+    "eighty": "80",
+    "ninety": "90",
+    "kisfitglobal": "kisfitglobal.com",
+}
+
+
+def _strip_word_punct(raw: str):
+    m = re.match(r"^([^A-Za-z0-9+$-]*)(.*?)([^A-Za-z0-9%]*)$", raw.strip())
+    if not m:
+        return "", raw.strip(), ""
+    return m.group(1), m.group(2), m.group(3)
+
+
+def normalize_spoken_words(words: list) -> list:
+    """
+    영문 TTS 발음용 단어/구절을 화면 및 SRT 표시용 표준 숫자·단위로 자동 정규화합니다.
+    예: SIXTY -> 60, FORTY -> 40, D three -> VITAMIN D3, K two -> K2,
+        ten P M -> 10 PM, two inches -> +2 INCHES, C D C -> CDC, I G F one -> IGF-1
+    """
+    if not words:
+        return []
+
+    normalized = []
+    n = len(words)
+    i = 0
+
+    while i < n:
+        matched = False
+        # "KisFitGlobal dot com" -> "kisfitglobal.com"
+        if i + 2 < n:
+            _, c0, _ = _strip_word_punct(words[i]["word"])
+            _, c1, _ = _strip_word_punct(words[i + 1]["word"])
+            _, c2, tail2 = _strip_word_punct(words[i + 2]["word"])
+            if c0.lower() == "kisfitglobal" and c1.lower() == "dot" and c2.lower() == "com":
+                normalized.append({
+                    "word": f"kisfitglobal.com{tail2}",
+                    "start": words[i]["start"],
+                    "end": words[i + 2]["end"],
+                    "duration": max(0.08, words[i + 2]["end"] - words[i]["start"]),
+                })
+                i += 3
+                continue
+
+        for seq, replacement in SPOKEN_MULTIWORD_NORMALIZATIONS:
+            seq_len = len(seq)
+            if i + seq_len <= n:
+                cores = [_strip_word_punct(words[i + k]["word"])[1].lower() for k in range(seq_len)]
+                if tuple(cores) == seq:
+                    _, _, tail = _strip_word_punct(words[i + seq_len - 1]["word"])
+                    normalized.append({
+                        "word": f"{replacement}{tail}",
+                        "start": words[i]["start"],
+                        "end": words[i + seq_len - 1]["end"],
+                        "duration": max(0.08, words[i + seq_len - 1]["end"] - words[i]["start"]),
+                    })
+                    i += seq_len
+                    matched = True
+                    break
+        if matched:
+            continue
+
+        lead, core, tail = _strip_word_punct(words[i]["word"])
+        low = core.lower()
+
+        # "<number> percent" -> "70%", "40%", etc.
+        if low in SPOKEN_SINGLE_WORD_NORMALIZATIONS and SPOKEN_SINGLE_WORD_NORMALIZATIONS[low].isdigit() and (i + 1 < n):
+            _, next_core, next_tail = _strip_word_punct(words[i + 1]["word"])
+            if next_core.lower() == "percent":
+                num_str = SPOKEN_SINGLE_WORD_NORMALIZATIONS[low]
+                normalized.append({
+                    "word": f"{lead}{num_str}%{next_tail}",
+                    "start": words[i]["start"],
+                    "end": words[i + 1]["end"],
+                    "duration": max(0.08, words[i + 1]["end"] - words[i]["start"]),
+                })
+                i += 2
+                continue
+
+        if low in SPOKEN_SINGLE_WORD_NORMALIZATIONS:
+            repl = SPOKEN_SINGLE_WORD_NORMALIZATIONS[low]
+            normalized.append({
+                **words[i],
+                "word": f"{lead}{repl}{tail}",
+            })
+        else:
+            normalized.append(dict(words[i]))
+        i += 1
+
+    return normalized
+
+
+def _format_srt_timestamp(seconds: float) -> str:
+    ms_total = max(0, int(round(seconds * 1000.0)))
+    hh = ms_total // 3_600_000
+    rem = ms_total % 3_600_000
+    mm = rem // 60_000
+    rem %= 60_000
+    ss = rem // 1_000
+    ms = rem % 1_000
+    return f"{hh:02d}:{mm:02d}:{ss:02d},{ms:03d}"
+
+
+def export_srt(phrase_groups: list, out_srt: Path) -> Path:
+    """
+    정규화된 구절 타임스탬프(phrase_groups)를 정식 SubRip(.srt) 자막 파일로 추출합니다.
+    """
+    out_path = Path(out_srt)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    blocks = []
+    idx = 1
+    for grp in phrase_groups or []:
+        grp_words = normalize_spoken_words(grp.get("words", []))
+        line_text = " ".join(w["word"].strip() for w in grp_words if w.get("word", "").strip()).strip()
+        if not line_text:
+            continue
+        start_ts = _format_srt_timestamp(float(grp.get("start", 0.0)))
+        end_sec = max(float(grp.get("start", 0.0)) + 0.12, float(grp.get("end", 0.12)))
+        end_ts = _format_srt_timestamp(end_sec)
+        blocks.append(f"{idx}\n{start_ts} --> {end_ts}\n{line_text}\n")
+        idx += 1
+
+    out_path.write_text("\n".join(blocks), encoding="utf-8")
+    return out_path
+
+
 def group_words_into_phrases(words: list, max_words_per_group: int = 3, max_chars: int = 20) -> list:
     """
-    단어 타임스탬프 리스트를 미국 쇼츠 표준인 2~3단어 묶음(Phrase Chunk)으로 그룹화합니다.
+    단어 타임스탬프 리스트를 숫자·단위 정규화 후 미국 쇼츠 표준인 2~3단어 묶음(Phrase Chunk)으로 그룹화합니다.
     구두점(., ?, !, —)이 나오면 즉시 구절을 끊어 호흡과 시각적 리듬을 일치시킵니다.
     """
+    words = normalize_spoken_words(words)
     groups = []
     cur = []
     cur_chars = 0
@@ -200,42 +365,60 @@ def build_studio_soundtrack(
     sr = 44100
     total_samples = int(total_duration * sr)
     t = np.linspace(0, total_duration, total_samples, endpoint=False)
-    rng = np.random.default_rng(42)
+    seed_key = f"{voice_wav}:{total_duration:.3f}:{style}:{len(cut_times)}".encode("utf-8")
+    dyn_seed = zlib.crc32(seed_key) & 0xFFFFFFFF
+    rng = np.random.default_rng(dyn_seed)
 
     left = np.zeros(total_samples, dtype=np.float64)
     right = np.zeros(total_samples, dtype=np.float64)
 
     if style == "science":
-        # Zack D. Films / Vox 스타일: 긴장감 있는 펄스 베이스 + 미니멀 시네마틱 틱(Tick) 리듬
-        notes = [110.0, 130.81, 98.0, 123.47]  # A2 -> C3 -> G2 -> B2
-        beat_hz = 2.0  # 120 BPM
+        # 다크 다큐 로테이션 코드 진행 (기계적인 고정 드론 탈피)
+        science_progressions = [
+            [110.0, 130.81, 98.0, 123.47],   # Am -> C -> G -> Bm
+            [98.0, 116.54, 87.31, 110.0],    # Gm -> Bb -> F -> Am
+            [123.47, 98.0, 110.0, 92.50],    # Bm -> G -> A -> F#m
+            [82.41, 98.0, 110.0, 123.47],    # Em -> G -> A -> Bm
+        ]
+        notes = science_progressions[dyn_seed % len(science_progressions)]
+        beat_hz = 1.85 + (dyn_seed % 5) * 0.06
     elif style == "reels_luxury":
-        # 미국 다크 럭셔리 인스타 릴스: 묵직하고 몽환적인 슬로우 드레이크/위켄드 스타일 R&B 패드 + 서브베이스
-        notes = [92.50, 110.0, 73.42, 82.41]  # F#2 -> A2 -> D2 -> E2
+        luxury_progressions = [
+            [92.50, 110.0, 73.42, 82.41],
+            [87.31, 103.83, 77.78, 92.50],
+        ]
+        notes = luxury_progressions[dyn_seed % len(luxury_progressions)]
         beat_hz = 1.4
     else:
-        # 넷플릭스/리들리 스콧 역사 다큐: 웅장한 저음 첼로/호른 드론 + 북소리 울림
-        notes = [73.42, 87.31, 65.41, 82.41]  # D2 -> F2 -> C2 -> E2
+        docu_progressions = [
+            [73.42, 87.31, 65.41, 82.41],
+            [82.41, 98.00, 73.42, 87.31],
+        ]
+        notes = docu_progressions[dyn_seed % len(docu_progressions)]
         beat_hz = 1.25
 
     sec_per_note = total_duration / len(notes)
+    lfo = 0.82 + 0.18 * np.sin(2 * np.pi * 0.28 * t + (dyn_seed % 7))
+    lp_kernel = np.ones(36, dtype=np.float64) / 36.0
     for idx, f0 in enumerate(notes):
         s_t = idx * sec_per_note
         e_t = (idx + 1) * sec_per_note
-        env = np.clip((t - s_t) / 0.8, 0, 1) * np.clip((e_t - t) / 0.8, 0, 1)
-        # 따뜻한 아날로그 패드 (기본음 + 5도 + 옥타브)
-        pad_l = (
-            0.55 * np.sin(2 * np.pi * f0 * t)
-            + 0.30 * np.sin(2 * np.pi * (f0 * 1.498) * t + 0.3)
-            + 0.15 * np.sin(2 * np.pi * (f0 * 2.0) * t + 0.7)
+        env = np.clip((t - s_t) / 0.85, 0, 1) * np.clip((e_t - t) / 0.85, 0, 1)
+        # 따뜻한 로우패스 아날로그 패드 (순수 사인파 기계음 드론 제거 -> 디튠 + 소프트 새추레이션 + 로우패스)
+        raw_l = (
+            0.50 * np.sin(2 * np.pi * (f0 * 0.998) * t)
+            + 0.32 * np.sin(2 * np.pi * (f0 * 1.498) * t + 0.35)
+            + 0.18 * np.sin(2 * np.pi * (f0 * 2.003) * t + 0.75)
         )
-        pad_r = (
-            0.55 * np.sin(2 * np.pi * (f0 * 1.002) * t + 0.5)
-            + 0.30 * np.sin(2 * np.pi * (f0 * 1.501) * t + 1.1)
-            + 0.15 * np.sin(2 * np.pi * (f0 * 2.0) * t + 0.2)
+        raw_r = (
+            0.50 * np.sin(2 * np.pi * (f0 * 1.002) * t + 0.45)
+            + 0.32 * np.sin(2 * np.pi * (f0 * 1.502) * t + 1.15)
+            + 0.18 * np.sin(2 * np.pi * (f0 * 1.997) * t + 0.20)
         )
-        left += 0.24 * pad_l * env
-        right += 0.24 * pad_r * env
+        pad_l = np.convolve(np.tanh(raw_l * 1.25), lp_kernel, mode="same") * lfo
+        pad_r = np.convolve(np.tanh(raw_r * 1.25), lp_kernel, mode="same") * lfo
+        left += 0.21 * pad_l * env
+        right += 0.21 * pad_r * env
 
     # 부드러운 심장박동 서브베이스 펄스 (60Hz~80Hz)
     beat_phase = (t * beat_hz) % 1.0
@@ -300,7 +483,10 @@ def build_studio_soundtrack(
         final_r = right * 0.85
 
     stereo = np.vstack((final_l, final_r)).T
-    stereo = np.clip(stereo, -0.98, 0.98)
+    # -0.5 dBFS (0.944) 클리핑 방지 소프트 리미터 적용
+    ceiling = 0.94406
+    stereo = ceiling * np.tanh(stereo / ceiling)
+    stereo = np.clip(stereo, -ceiling, ceiling)
     pcm = (stereo * 32767).astype(np.int16)
 
     with wave.open(str(final_wav), "wb") as wf:
@@ -409,10 +595,10 @@ def draw_active_word_captions(
     t: float,
     accent_color: tuple = (0, 245, 212, 255),
     danger_words: set = None,
-    y_pos: int = 1380,
+    y_pos: int = 1070,
 ):
     """
-    현재 시점(t)에 발화 중인 2~3단어 구절을 화면 중앙 하단에 표시하되,
+    현재 시점(t)에 발화 중인 2~3단어 구절을 골든 세이프존(y_pos=1060~1080)에 표시하되,
     지금 이 순간 발음되고 있는 '단어(Active Word)'만 색상이 켜지고 살짝 위로 팝업되도록 렌더링합니다.
     """
     if danger_words is None:
@@ -431,25 +617,30 @@ def draw_active_word_captions(
     if not active_group:
         return
 
-    font_normal = load_font(FONT_ARIAL_BOLD, 68)
-    font_active = load_font(FONT_ARIAL_BOLD, 74)
+    font_normal = load_font(FONT_ARIAL_BOLD, 86)
+    font_active = load_font(FONT_ARIAL_BOLD, 92)
 
-    words = active_group["words"]
+    words = normalize_spoken_words(active_group["words"])
     # 구절 등장 첫 0.08초 동안 전체 구절이 살짝 떠오르는 모션
     group_age = max(0.0, t - active_group["start"])
     pop_y = int(max(0.0, (0.08 - group_age) / 0.08) * 20)
 
-    # 각 단어 폭 계산하여 중앙 정렬 배치
+    # 각 단어 폭 계산하여 중앙 정렬 배치 (940px 초과 단일 구절은 자동 폰트 보정)
     word_metrics = []
-    space_w = 22
+    space_w = 24
     total_w = 0
 
     for w_info in words:
         is_speaking = (w_info["start"] - 0.04 <= t <= w_info["end"] + 0.04)
         f_use = font_active if is_speaking else font_normal
-        disp_text = w_info["word"].upper()
+        raw_word = w_info["word"]
+        disp_text = raw_word if raw_word.lower() == "kisfitglobal.com" else raw_word.upper()
         bbox = overlay_draw.textbbox((0, 0), disp_text, font=f_use)
         ww = bbox[2] - bbox[0]
+        if ww > 920:
+            f_use = load_font(FONT_ARIAL_BOLD, 70 if is_speaking else 66)
+            bbox = overlay_draw.textbbox((0, 0), disp_text, font=f_use)
+            ww = bbox[2] - bbox[0]
         wh = bbox[3] - bbox[1]
         word_metrics.append((disp_text, is_speaking, f_use, ww, wh))
         total_w += ww
@@ -459,13 +650,15 @@ def draw_active_word_captions(
     # 만약 폭이 940px을 넘으면 2줄로 자동 분할
     if total_w > 940 and len(word_metrics) >= 3:
         rows = [word_metrics[:2], word_metrics[2:]]
+    elif total_w > 940 and len(word_metrics) == 2:
+        rows = [[word_metrics[0]], [word_metrics[1]]]
     else:
         rows = [word_metrics]
 
     for r_idx, row in enumerate(rows):
         row_w = sum(m[3] for m in row) + space_w * max(0, len(row) - 1)
         cur_x = (WIDTH - row_w) // 2
-        cur_y = y_pos + pop_y + r_idx * 92
+        cur_y = y_pos + pop_y + r_idx * 102
 
         for disp_text, is_speaking, f_use, ww, wh in row:
             clean_w = disp_text.strip(".,?!:;\"'").lower()
@@ -588,13 +781,13 @@ def build_video_1_body_science():
         odraw.text((116, 109), tag_top, font=font_hud_sm, fill=(0, 245, 212, 230))
         odraw.text((88, 144), tag_main, font=font_hud_lg, fill=(245, 250, 255, 255))
 
-        # 단어별 Active-Word Kinetic Captions
+        # 단어별 Active-Word Kinetic Captions (골든 세이프존 y=1070)
         draw_active_word_captions(
             odraw,
             phrases,
             t,
             accent_color=(0, 245, 212, 255),
-            y_pos=1390,
+            y_pos=1070,
         )
 
         # 하단 얇은 시안 진행바 (4px)
@@ -606,6 +799,7 @@ def build_video_1_body_science():
 
     proc.stdin.close()
     proc.wait()
+    export_srt(phrases, out_mp4.with_suffix(".srt"))
     print(f"✅ [완료] {out_mp4} ({total_dur:.1f}초)")
 
 
@@ -856,13 +1050,13 @@ def build_video_3_history_whatif():
         odraw.text((92, 109), c_top, font=font_ch_sm, fill=(255, 205, 115, 235))
         odraw.text((92, 144), c_main, font=font_ch_lg, fill=(255, 250, 240, 255))
 
-        # 단어별 Active-Word Kinetic Captions (시네마 골드 하이라이트)
+        # 단어별 Active-Word Kinetic Captions (골든 세이프존 y=1070)
         draw_active_word_captions(
             odraw,
             phrases,
             t,
             accent_color=(255, 214, 60, 255),
-            y_pos=1390,
+            y_pos=1070,
         )
 
         prog_w = int(WIDTH * (f_idx / float(max(1, total_frames - 1))))
@@ -873,6 +1067,7 @@ def build_video_3_history_whatif():
 
     proc.stdin.close()
     proc.wait()
+    export_srt(phrases, out_mp4.with_suffix(".srt"))
     print(f"✅ [완료] {out_mp4} ({total_dur:.1f}초)")
 
 

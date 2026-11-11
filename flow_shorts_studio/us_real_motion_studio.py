@@ -56,6 +56,7 @@ from us_viral_studio import (
     group_words_into_phrases,
     build_studio_soundtrack,
     draw_active_word_captions,
+    export_srt,
 )
 
 
@@ -95,14 +96,9 @@ def iter_video_clip_frames(
         total_f = max(1, num_frames - 1)
         for i in range(num_frames):
             prog = i / float(total_f)
-            # Smooth cosine ease-in-out
+            # Smooth cosine ease-in-out — 순방향 광학 줌(Forward Optical Push-In)만 유지
             smooth_p = 0.5 - 0.5 * math.cos(math.pi * prog)
-            if mode_seed in (0, 2):
-                # Smooth cinema push-in (1.00 -> 1.18x)
-                zoom = 1.02 + 0.16 * smooth_p
-            else:
-                # Smooth cinema pull-out (1.18 -> 1.02x)
-                zoom = 1.18 - 0.16 * smooth_p
+            zoom = 1.02 + 0.14 * smooth_p
             win_w = new_w / zoom
             win_h = new_h / zoom
             drift_x = math.sin(prog * math.pi) * (new_w - win_w) * (0.18 if mode_seed % 2 == 0 else -0.18)
@@ -172,6 +168,23 @@ def iter_video_clip_frames(
             pass
 
 
+def _apply_forward_optical_zoom(img: Image.Image, prog: float, max_zoom: float = 1.10) -> Image.Image:
+    """역재생(ping-pong) 없이 순방향 광학 줌(1.00 -> max_zoom)으로 자연스러운 전진 모션을 부여합니다."""
+    w, h = img.size
+    smooth_p = 0.5 - 0.5 * math.cos(math.pi * max(0.0, min(1.0, prog)))
+    zoom = 1.0 + (max_zoom - 1.0) * smooth_p
+    win_w = w / zoom
+    win_h = h / zoom
+    x0 = (w - win_w) * 0.5
+    y0 = (h - win_h) * 0.5
+    return img.transform(
+        (w, h),
+        Image.Transform.EXTENT,
+        (x0, y0, x0 + win_w, y0 + win_h),
+        Image.Resampling.BILINEAR,
+    )
+
+
 def load_video_clip_frames(
     video_path: Path,
     num_frames: int,
@@ -183,7 +196,7 @@ def load_video_clip_frames(
 ) -> list:
     """
     실제 동영상(.webm, .ogv, .mpg, .mp4)에서 지정된 구간의 프레임을 추출합니다.
-    원본 길이가 짧으면 자연스럽게 앞뒤 왕복(Ping-Pong) 또는 루프하여 끊김 없이 실제 움직임을 유지합니다.
+    역방향 왕복 재생(문워크·역중력 버그)을 영구 제거하고 순방향 루프 + 순방향 광학 줌을 유지합니다.
     """
     pts_expr = f"{1.0 / speed:.3f}*PTS"
     if fit_mode == "cover":
@@ -204,6 +217,7 @@ def load_video_clip_frames(
 
     cmd = [
         FFMPEG_EXE,
+        "-stream_loop", "-1",
         "-ss", f"{start_sec:.2f}",
         "-i", str(video_path),
         "-vf", vf,
@@ -232,15 +246,16 @@ def load_video_clip_frames(
     if not extracted:
         extracted = [Image.new("RGB", (target_w, target_h), (8, 12, 18))]
 
-    # 만약 필요한 프레임 수보다 원본 클립이 짧으면 Ping-Pong(정방향 -> 역방향) 연속 재생으로 끊김 없는 모션 생성
-    if len(extracted) < num_frames:
-        ping_pong = extracted + list(reversed(extracted[1:-1] if len(extracted) > 2 else extracted))
-        full_frames = []
-        while len(full_frames) < num_frames:
-            full_frames.extend(ping_pong)
-        return full_frames[:num_frames]
+    # 순방향 프레임 진행 + 서브픽셀 순방향 광학 줌 (역재생 영구 제거)
+    total_f = max(1, num_frames - 1)
+    src_len = len(extracted)
+    forward_frames = []
+    for idx in range(num_frames):
+        base_img = extracted[idx % src_len]
+        prog = idx / float(total_f)
+        forward_frames.append(_apply_forward_optical_zoom(base_img, prog, max_zoom=1.10))
 
-    return extracted[:num_frames]
+    return forward_frames
 
 
 # ==============================================================================
@@ -482,9 +497,9 @@ def build_real_motion_video_1():
             odraw, t, global_prog, shot_idx, t_top, t_main, font_mono, font_sm, font_lg
         )
 
-        # 단어별 Active-Word Kinetic Captions
+        # 단어별 Active-Word Kinetic Captions (골든 세이프존 y=1070)
         draw_active_word_captions(
-            odraw, phrases, t, accent_color=(0, 245, 212, 255), y_pos=1430
+            odraw, phrases, t, accent_color=(0, 245, 212, 255), y_pos=1070
         )
 
         prog_w = int(WIDTH * global_prog)
@@ -495,6 +510,7 @@ def build_real_motion_video_1():
 
     proc.stdin.close()
     proc.wait()
+    export_srt(phrases, out_mp4.with_suffix(".srt"))
     print(f"✅ [완료] {out_mp4} (100% 실제 3D 뇌 영상 + 실시간 모션 그래픽)")
 
 
@@ -778,7 +794,7 @@ def build_real_motion_video_3():
         odraw.text((92, 144), c_main, font=font_ch_lg, fill=(255, 250, 240, 255))
 
         draw_active_word_captions(
-            odraw, phrases, t, accent_color=(255, 214, 60, 255), y_pos=1390
+            odraw, phrases, t, accent_color=(255, 214, 60, 255), y_pos=1070
         )
 
         prog_w = int(WIDTH * global_prog)
@@ -789,6 +805,7 @@ def build_real_motion_video_3():
 
     proc.stdin.close()
     proc.wait()
+    export_srt(phrases, out_mp4.with_suffix(".srt"))
     print(f"✅ [완료] {out_mp4} (100% 실제 3D 고대 로마 애니메이션 & 4K 실사 영상)")
 
 
