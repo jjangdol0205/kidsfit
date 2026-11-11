@@ -7,6 +7,24 @@
 (function (global) {
   'use strict';
 
+  function isGlobalEnRuntime(explicitFlag) {
+    if (explicitFlag === true) return true;
+    if (explicitFlag === false) return false;
+    if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+    if (typeof global !== 'undefined' && global.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+    if (typeof document !== 'undefined' && document.documentElement) {
+      const lang = String(document.documentElement.lang || '').toLowerCase();
+      const edition = typeof document.documentElement.getAttribute === 'function'
+        ? document.documentElement.getAttribute('data-edition')
+        : '';
+      if (lang.startsWith('en') || edition === 'global-paid') return true;
+    }
+    if (typeof window !== 'undefined' && window.location && /kisfitglobal\.com|kidsfitglobal\.com/i.test(String(window.location.hostname || ''))) {
+      return true;
+    }
+    return false;
+  }
+
   // 1. Data Loader
   let rubricsData = null;
   let authoritiesData = null;
@@ -84,41 +102,58 @@
   }
 
   // 3. Educational Philosophy Evaluator
-  function evaluatePedagogy(months, concerns = []) {
+  function evaluatePedagogy(months, concerns = [], isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     let recommended = 'MONTESSORI';
-    let badge = '만 2~3세 소근육 최적';
+    let badge = useGlobal ? 'Ages 2-3 Optimal Fine-Motor Window' : '만 2~3세 소근육 최적';
     let rationale = '';
     let preventOverspendingTip = '';
 
     if (months < 24) {
       recommended = 'WALDORF';
-      badge = '만 1~2세 오감·정서';
-      rationale = '언어 폭발 이전 신체 감각과 정서적 애착이 형성되는 시기로 부드러운 자연 촉감 교구로 오감을 열어주세요.';
-      preventOverspendingTip = '플라스틱 전자 사운드 장난감에 과노출되면 감각 피로와 산만함이 생깁니다. 이 시기에는 부드러운 자연 촉감 교구로 오감을 열어주세요.';
+      badge = useGlobal ? 'Ages 1-2 Sensorimotor & Attachment' : '만 1~2세 오감·정서';
+      rationale = useGlobal
+        ? 'Before the expressive language burst, tactile exploration and secure attachment wire early sensorimotor pathways. Prioritize warm natural textures.'
+        : '언어 폭발 이전 신체 감각과 정서적 애착이 형성되는 시기로 부드러운 자연 촉감 교구로 오감을 열어주세요.';
+      preventOverspendingTip = useGlobal
+        ? 'Flashing plastic electronic sound toys overstimulate developing auditory cortices and fragment attention. Simple wooden and fabric tactile tools work best.'
+        : '플라스틱 전자 사운드 장난감에 과노출되면 감각 피로와 산만함이 생깁니다. 이 시기에는 부드러운 자연 촉감 교구로 오감을 열어주세요.';
     } else if (months >= 24 && months < 48) {
       recommended = 'MONTESSORI';
-      badge = '만 2~3세 소근육 최적';
-      rationale = '손끝 삼지창 협응력이 형성되는 민감기로 몬테소리 일상 감각 교구가 두뇌 전두엽을 직접 자극합니다. 만 2~3세에 가베를 들이면 엄마표 스트레스만 받고 방치됩니다.';
-      preventOverspendingTip = '만 2~3세에 추상적 입체 도형인 가베를 들이면 아이가 조작하지 못해 엄마표 스트레스만 받고 방치됩니다. 몬테소리 소근육부터 시작하세요.';
+      badge = useGlobal ? 'Ages 2-3 Optimal Fine-Motor Window' : '만 2~3세 소근육 최적';
+      rationale = useGlobal
+        ? 'Peak sensitive window for tripod pincer coordination; Montessori sensorial and practical-life tools directly activate prefrontal executive circuits.'
+        : '손끝 삼지창 협응력이 형성되는 민감기로 몬테소리 일상 감각 교구가 두뇌 전두엽을 직접 자극합니다. 만 2~3세에 가베를 들이면 엄마표 스트레스만 받고 방치됩니다.';
+      preventOverspendingTip = useGlobal
+        ? 'Introducing abstract 3D geometric sets too early causes frustration before pincer strength matures. Build Montessori fine-motor control first.'
+        : '만 2~3세에 추상적 입체 도형인 가베를 들이면 아이가 조작하지 못해 엄마표 스트레스만 받고 방치됩니다. 몬테소리 소근육부터 시작하세요.';
     } else if (months >= 48 && months < 72) {
       recommended = 'GABE';
-      badge = '만 4~5세 공간·수리';
-      rationale = '2차원 평면에서 3차원 입체로 공간 인지능력이 확장되는 시기로 기하 도형의 분할 합성을 통해 초등 수학 기초를 다집니다.';
-      preventOverspendingTip = '소근육이 다져지지 않은 상태의 조기 도입은 비효율적입니다. 만 4세 이후 손끝 힘이 완성되었을 때 들여야 분해·조립 창의력이 폭발합니다.';
+      badge = useGlobal ? 'Ages 4-5 Spatial & Mathematical Logic' : '만 4~5세 공간·수리';
+      rationale = useGlobal
+        ? 'Spatial reasoning expands from 2D planes to 3D geometry; decomposing and combining geometric solids builds foundational mathematical intuition.'
+        : '2차원 평면에서 3차원 입체로 공간 인지능력이 확장되는 시기로 기하 도형의 분할 합성을 통해 초등 수학 기초를 다집니다.';
+      preventOverspendingTip = useGlobal
+        ? 'Wait until fine-motor endurance is established around age 4 so your child can independently construct and rotate multi-part geometric structures.'
+        : '소근육이 다져지지 않은 상태의 조기 도입은 비효율적입니다. 만 4세 이후 손끝 힘이 완성되었을 때 들여야 분해·조립 창의력이 폭발합니다.';
     } else {
       recommended = 'CREATIVE_SCIENCE';
-      badge = '만 6세 이상 탐구·과학';
-      rationale = '인과관계와 기계적 원리에 호기심이 급증하는 시기로 기어와 코딩 블록을 통해 가설 설정과 문제해결력을 기릅니다.';
-      preventOverspendingTip = '수동적 키트 조립보다는 왜 돌아갈까?를 스스로 질문하는 프로젝트형 교구로 접근해야 초등 과학 탐구 토론 수업에 직결됩니다.';
+      badge = useGlobal ? 'Ages 6+ STEM & Causal Inquiry' : '만 6세 이상 탐구·과학';
+      rationale = useGlobal
+        ? 'Curiosity shifts toward mechanical causality and systems thinking; gear trains, marble runs, and logic kits build hypothesis-testing stamina.'
+        : '인과관계와 기계적 원리에 호기심이 급증하는 시기로 기어와 코딩 블록을 통해 가설 설정과 문제해결력을 기릅니다.';
+      preventOverspendingTip = useGlobal
+        ? 'Choose open-ended engineering kits that prompt "Why did that move?" rather than single-use step-by-step display models.'
+        : '수동적 키트 조립보다는 왜 돌아갈까?를 스스로 질문하는 프로젝트형 교구로 접근해야 초등 과학 탐구 토론 수업에 직결됩니다.';
     }
 
     // Weight by developmental concerns
     if (concerns.includes('fine_motor') && months < 60) {
       recommended = 'MONTESSORI';
-      badge = '소근육 집중 몬테소리 처방';
+      badge = useGlobal ? 'Targeted Fine-Motor Montessori Protocol' : '소근육 집중 몬테소리 처방';
     } else if (concerns.includes('math_space') && months >= 40) {
       recommended = 'GABE';
-      badge = '공간지각 집중 가베 처방';
+      badge = useGlobal ? 'Targeted 3D Spatial Geometry Protocol' : '공간지각 집중 가베 처방';
     }
 
     return {
@@ -130,14 +165,86 @@
   }
 
   // Alias for contract compliance
-  function evaluatePedagogicalMethod(ageMonths, concerns = [], currentPhilosophy = '') {
-    return evaluatePedagogy(ageMonths, concerns);
+  function evaluatePedagogicalMethod(ageMonths, concerns = [], currentPhilosophy = '', isGlobalMode = null) {
+    return evaluatePedagogy(ageMonths, concerns, isGlobalMode);
   }
 
+  const EN_CURATED_TOYS_POOL = [
+    {
+      id: 'TOY_01',
+      name: 'Montessori Wooden Knobbed Cylinder Blocks (4-Set)',
+      targetAge: '24~48 mo',
+      ageMonthsMin: 20,
+      ageMonthsMax: 54,
+      concerns: ['fine_motor', 'math_space'],
+      benefit: 'Strengthens tripod pincer grip and 3D visual size discrimination',
+      price: 34.99,
+      amazonQuery: 'Montessori Knobbed Cylinder Blocks Set Wooden'
+    },
+    {
+      id: 'TOY_02',
+      name: 'Fine-Motor Wooden Tweezers & Lacing Button Activity Kit',
+      targetAge: '24~48 mo',
+      ageMonthsMin: 18,
+      ageMonthsMax: 48,
+      concerns: ['fine_motor', 'daily'],
+      benefit: 'Builds finger-pad grip endurance and bilateral hand-eye coordination',
+      price: 22.99,
+      amazonQuery: 'Learning Resources Helping Hands Fine Motor Tool Set'
+    },
+    {
+      id: 'TOY_03',
+      name: 'Froebel 3D Wooden Geometric Building Solids Starter Set',
+      targetAge: '48~72 mo',
+      ageMonthsMin: 42,
+      ageMonthsMax: 78,
+      concerns: ['math_space', 'cognitive'],
+      benefit: 'Develops 3D mental rotation, part-whole fractions, and spatial geometry',
+      price: 39.99,
+      amazonQuery: 'Wooden Geometric Solids Montessori Froebel Blocks'
+    },
+    {
+      id: 'TOY_04',
+      name: '3D Clear Magnetic Building Tiles 100-Piece STEM Pack',
+      targetAge: '36~72 mo',
+      ageMonthsMin: 30,
+      ageMonthsMax: 84,
+      concerns: ['math_space', 'fine_motor'],
+      benefit: 'Expands structural engineering creativity and multi-plane symmetry',
+      price: 49.99,
+      amazonQuery: 'Magna-Tiles Clear Colors 100 Piece Magnetic Building Set'
+    },
+    {
+      id: 'TOY_05',
+      name: 'Preschool Safety Scissors & Progressive Cutting Skill Workbook',
+      targetAge: '24~60 mo',
+      ageMonthsMin: 24,
+      ageMonthsMax: 60,
+      concerns: ['fine_motor'],
+      benefit: 'Establishes proper thumb-up scissor posture and intrinsic hand stamina',
+      price: 14.99,
+      amazonQuery: 'Melissa Doug Scissor Skills Activity Pad Safety Scissors'
+    },
+    {
+      id: 'TOY_06',
+      name: 'STEM Gravity Marble Run & Mechanical Gear Logic Kit',
+      targetAge: '60+ mo',
+      ageMonthsMin: 54,
+      ageMonthsMax: 144,
+      concerns: ['cognitive', 'math_space'],
+      benefit: 'Trains causal physics deduction, kinetic energy transfer, and executive planning',
+      price: 44.99,
+      amazonQuery: 'Ravensburger GraviTrax Starter Set Marble Run STEM'
+    }
+  ];
+
   // 4. TOP 4 Hot Toys Curation
-  function getCuratedToys(ageMonths, concerns = []) {
+  function getCuratedToys(ageMonths, concerns = [], isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     let pool = [];
-    if (rubricsData && rubricsData.curatedToys) {
+    if (useGlobal) {
+      pool = EN_CURATED_TOYS_POOL;
+    } else if (rubricsData && rubricsData.curatedToys) {
       pool = rubricsData.curatedToys;
     } else {
       pool = [
@@ -238,7 +345,8 @@
   }
 
   // 5. Render SVG 6-Axis Radar Chart
-  function renderSvgRadarChart(scores, polygonPoints) {
+  function renderSvgRadarChart(scores, polygonPoints, isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     const size = 300;
     const cx = 150;
     const cy = 150;
@@ -253,17 +361,26 @@
     });
 
     // Axis labels positions
-    const labelOffsets = [
-      { text: '소근육 (Fine)', x: 150, y: 32, anchor: 'middle' },
-      { text: '인지 (Cognitive)', x: 252, y: 92, anchor: 'start' },
-      { text: '언어 (Language)', x: 252, y: 218, anchor: 'start' },
-      { text: '사회성 (Social)', x: 150, y: 278, anchor: 'middle' },
-      { text: '자조 (Self-care)', x: 48, y: 218, anchor: 'end' },
-      { text: '대근육 (Gross)', x: 48, y: 92, anchor: 'end' }
-    ];
+    const labelOffsets = useGlobal
+      ? [
+          { text: 'Fine Motor', x: 150, y: 32, anchor: 'middle' },
+          { text: 'Cognitive', x: 252, y: 92, anchor: 'start' },
+          { text: 'Language', x: 252, y: 218, anchor: 'start' },
+          { text: 'Social-Emotional', x: 150, y: 278, anchor: 'middle' },
+          { text: 'Self-Care', x: 48, y: 218, anchor: 'end' },
+          { text: 'Gross Motor', x: 48, y: 92, anchor: 'end' }
+        ]
+      : [
+          { text: '소근육 (Fine)', x: 150, y: 32, anchor: 'middle' },
+          { text: '인지 (Cognitive)', x: 252, y: 92, anchor: 'start' },
+          { text: '언어 (Language)', x: 252, y: 218, anchor: 'start' },
+          { text: '사회성 (Social)', x: 150, y: 278, anchor: 'middle' },
+          { text: '자조 (Self-care)', x: 48, y: 218, anchor: 'end' },
+          { text: '대근육 (Gross)', x: 48, y: 92, anchor: 'end' }
+        ];
 
     return `
-      <svg viewBox="-65 0 430 ${size}" class="kdst-radar-svg" style="width: 100%; max-width: 390px; height: auto; margin: 0 auto; display: block;" aria-label="보건복지부 K-DST 6대 발달영역 레이더">
+      <svg viewBox="-65 0 430 ${size}" class="kdst-radar-svg" style="width: 100%; max-width: 390px; height: auto; margin: 0 auto; display: block;" aria-label="${useGlobal ? 'US CDC & ASQ-3 6-Axis Developmental Balance Radar' : '보건복지부 K-DST 6대 발달영역 레이더'}">
         <!-- Background Rings -->
         ${ringPolygons.map((pts, i) => `
           <polygon points="${pts}" fill="${i === 4 ? '#F8FAFC' : 'none'}" stroke="#E2E8F0" stroke-width="1" />
@@ -284,7 +401,7 @@
         }).join('')}
 
         <!-- Axis Labels -->
-        ${labelOffsets.map((l, idx) => `
+        ${labelOffsets.map((l) => `
           <text x="${l.x}" y="${l.y}" font-size="11.5" font-weight="800" fill="#1E293B" text-anchor="${l.anchor}">${l.text}</text>
         `).join('')}
       </svg>
@@ -292,25 +409,29 @@
   }
 
   // 6. Render Pedagogical Decision Box
-  function renderPedagogyBox(verdict) {
+  function renderPedagogyBox(verdict, isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     const isMontessori = verdict.recommended === 'MONTESSORI';
     const isGabe = verdict.recommended === 'GABE';
     const isWaldorf = verdict.recommended === 'WALDORF';
-    const isScience = verdict.recommended === 'CREATIVE_SCIENCE';
+
+    const recLabel = useGlobal
+      ? `Recommended Approach: ${isMontessori ? 'Montessori (Fine-Motor & Practical Autonomy)' : isGabe ? 'Froebel 3D Solids (Spatial & Geometric Logic)' : isWaldorf ? 'Waldorf (Natural Sensory & Emotional Play)' : 'STEM Inquiry Lab (Mechanical & Causal Reasoning)'}`
+      : `추천 교육법: ${isMontessori ? '몬테소리 (손끝 소근육·일상 자율 교구)' : isGabe ? '프뢰벨 은물 / 가베 (3D 공간지각·기하 도형)' : isWaldorf ? '발도르프 (오감 자연·정서 예술놀이)' : '창의과학 / 융합 STEAM (기어·코딩 탐구형)'}`;
 
     return `
       <div class="pedagogy-decision-card" style="background: #FFFFFF; border: 1.5px solid var(--growth-mint); border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="font-size: 1.4rem;"></span>
-            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">월령별 교육법 판정 (워킹맘 지갑 지킴이 가이드)</h4>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">${useGlobal ? 'Age-Calibrated Pedagogy Fit (Smart Parent Budget Guide)' : '월령별 교육법 판정 (워킹맘 지갑 지킴이 가이드)'}</h4>
           </div>
           <span class="tab-badge tab-badge-mint" style="font-size: 0.82rem; font-weight: 700;">${verdict.badge}</span>
         </div>
 
         <div style="background: #F0FDF4; border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 1rem; border-left: 4px solid var(--growth-mint);">
           <div style="font-weight: 800; color: #065F46; font-size: 1rem; margin-bottom: 0.35rem;">
-            추천 교육법: ${isMontessori ? '몬테소리 (손끝 소근육·일상 자율 교구)' : isGabe ? '프뢰벨 은물 / 가베 (3D 공간지각·기하 도형)' : isWaldorf ? '발도르프 (오감 자연·정서 예술놀이)' : '창의과학 / 융합 STEAM (기어·코딩 탐구형)'}
+            ${recLabel}
           </div>
           <p style="font-size: 0.9rem; color: #166534; line-height: 1.6; margin: 0;">
             ${verdict.rationale}
@@ -319,7 +440,7 @@
 
         <div style="background: #FFFBEB; border-radius: 16px; padding: 0.9rem 1.15rem; border-left: 4px solid #93C5FD;">
           <div style="font-weight: 700; color: #92400E; font-size: 0.88rem; margin-bottom: 0.25rem;">
-            중복 지출 방지 핵심 조언:
+            ${useGlobal ? 'Evidence-Based Toy Budget Advice:' : '중복 지출 방지 핵심 조언:'}
           </div>
           <p style="font-size: 0.85rem; color: #78350F; line-height: 1.55; margin: 0;">
             ${verdict.preventOverspendingTip}
@@ -329,8 +450,132 @@
     `;
   }
 
-  // 6.5 Render Official K-DST Milestones & Zero-Cost Home Play Guide
-  function renderOfficialKdstCoaching(ageMonths) {
+  function getEnglishMilestoneGuidance(ageMonths) {
+    const m = Number(ageMonths) || 36;
+    if (m < 24) {
+      return {
+        label: 'Ages 12–23 Months Sensorimotor & Early Word Burst',
+        milestones: [
+          'Points to show interesting objects and follows 1-step spoken directions without gestures',
+          'Stacks 2–4 blocks independently and uses thumb-index pincer grasp for small snacks',
+          'Walks steadily and begins imitating household routines with caregivers'
+        ],
+        plays: [
+          'Muffin-Tin Pom-Pom Sort: Drop soft balls into muffin cups to build early pincer release.',
+          'Texture Treasure Basket: Compare wooden spoons, silicone whisks, and cotton cloths aloud.',
+          'Mirror Emotion Naming: Make happy, surprised, and sleepy faces together before bedtime.'
+        ],
+        avoid: 'Stop throwing that! Look here and repeat this word right now.',
+        recommend: 'You noticed how that block rolled! Shall we roll it back into the basket together?'
+      };
+    }
+    if (m < 48) {
+      return {
+        label: 'Ages 2–3 Years Tripod Grip & Expressive Language Window',
+        milestones: [
+          'Speaks in 3–4 word sentences and asks "What" or "Where" questions spontaneously',
+          'Turns book pages singly, threads large beads, and snips paper with child safety scissors',
+          'Engages in pretend role-play and practices taking turns with adult scaffolding'
+        ],
+        plays: [
+          'Kitchen Tongs Transfer: Move dry pasta or cotton balls between two bowls for 5 minutes.',
+          'Sock-Pair Detective: Match laundry socks by color and pattern to train visual classification.',
+          '3-Choice Story Pause: Pause before turning a picture-book page and ask what happens next.'
+        ],
+        avoid: 'Let me do it—you are taking too long to button your coat.',
+        recommend: 'Your fingers are working so carefully on that button. Show me which side goes in first!'
+      };
+    }
+    if (m < 72) {
+      return {
+        label: 'Ages 4–5 Years Prefrontal Executive & 3D Spatial Window',
+        milestones: [
+          'Retells a short story in sequence and explains causal "Why" relationships',
+          'Copies crosses, squares, and triangles; cuts cleanly along curved lines',
+          'Follows 3-step game rules and regulates frustration using verbal words'
+        ],
+        plays: [
+          'Tabletop Shadow Architecture: Shine a flashlight on block towers and trace the 2D shadow.',
+          'Grocery Estimation Game: Guess which produce item weighs more, then test by hand.',
+          'Reverse Storyteller: Let your child "read" a familiar storybook to you from memory.'
+        ],
+        avoid: 'That tower fell because you stacked the big piece on top—do it my way.',
+        recommend: 'Interesting collapse! Which base block do you think could hold the widest roof next try?'
+      };
+    }
+    return {
+      label: 'Ages 6+ Years Metacognitive Planning & Deep Focus Window',
+      milestones: [
+        'Sustains 20–30 minutes of independent reading or multi-step STEM problem solving',
+        'Plans, tests, and revises hypotheses when building mechanical or logic models',
+        'Summarizes key takeaways in own words (active retrieval) rather than passive skimming'
+      ],
+      plays: [
+        'Dinner-Table Teach-Back: Ask your child to teach the family one cool concept learned today.',
+        '2-Variable Kitchen Physics: Test how water temperature changes salt or sugar dissolving speed.',
+        '20-Minute Screen-Free Deep Build: Set a visual timer for uninterrupted reading or sketching.'
+      ],
+      avoid: 'Why did you miss an easy question you already studied yesterday?',
+      recommend: 'Walk me through how your brain approached Step 1—let us spot where the clue hid!'
+    };
+  }
+
+  // 6.5 Render Official K-DST / AAP-CDC Milestones & Zero-Cost Home Play Guide
+  function renderOfficialKdstCoaching(ageMonths, isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
+    if (useGlobal) {
+      const en = getEnglishMilestoneGuidance(ageMonths);
+      return `
+        <div class="kdst-official-coaching-card" style="background: #FFFFFF; border: 1.5px solid #C7D2FE; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            <div>
+              <span style="background: #EEF2FF; color: #4338CA; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 9999px; display: inline-block; margin-bottom: 0.35rem;">
+                Clinical Standard · US CDC &amp; AAP Bright Futures Aligned
+              </span>
+              <h4 style="font-size: 1.12rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+                ${en.label} &amp; Zero-Cost Home Play Protocol
+              </h4>
+            </div>
+            <span style="font-size: 0.8rem; color: #1D4ED8; font-weight: 700;">Prefrontal Synaptic Golden Window</span>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <div style="font-weight: 800; font-size: 0.92rem; color: #1E293B; margin-bottom: 0.6rem;">
+              Key CDC / AAP Developmental Checkpoints for This Age Bracket
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
+              ${en.milestones.map((ms) => `
+                <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 0.7rem 0.9rem; font-size: 0.84rem; color: #166534; line-height: 1.45;">
+                  • ${ms}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div style="background: #FFFBEB; border: 1px solid #93C5FD; border-radius: 16px; padding: 1.1rem 1.25rem; margin-bottom: 1.15rem;">
+            <div style="font-weight: 800; font-size: 0.95rem; color: #92400E; margin-bottom: 0.5rem;">
+              3 Zero-Cost Living-Room Brain Games to Try Tonight (Before Buying Any Toys)
+            </div>
+            <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.86rem; color: #78350F; line-height: 1.65;">
+              ${en.plays.map((play) => `<li>${play}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div style="background: #EEF2FF; border-radius: 16px; padding: 1.1rem 1.25rem; border-left: 4px solid #1D4ED8;">
+            <div style="font-weight: 800; font-size: 0.92rem; color: #312E81; margin-bottom: 0.45rem;">
+              Prefrontal Co-Regulation Parent-Child Dialogue Script
+            </div>
+            <div style="font-size: 0.84rem; color: #991B1B; margin-bottom: 0.35rem; line-height: 1.5;">
+              Phrase to Avoid: “${en.avoid}”
+            </div>
+            <div style="font-size: 0.86rem; color: #1E40AF; font-weight: 700; line-height: 1.55;">
+              ⭕ Recommended Dialogue: “${en.recommend}”
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     const detail = getKdstAgeDetail(ageMonths);
     if (!detail) return '';
     const milestonesList = Array.isArray(detail.milestones) ? detail.milestones : Object.values(detail.milestones || {});
@@ -395,7 +640,50 @@
   }
 
   // 7. Render Curated TOP 4 Hot Items (Framed as Optional Secondary Aids)
-  function renderToyCards(toys, affiliateConfig = {}) {
+  function renderToyCards(toys, affiliateConfig = {}, isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
+    if (useGlobal) {
+      const amazonTag = affiliateConfig.amazon || 'kidfit-20';
+      return `
+        <div class="curated-toys-section" style="margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem;">
+            <div>
+              <span style="font-size: 0.76rem; font-weight: 700; color: #64748B; display: block; margin-bottom: 0.15rem;">[Optional Secondary Learning Aids — Practice Zero-Cost Home Play First]</span>
+              <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0;">Top 4 Age-Matched Developmental Tools</h4>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Pediatric Neuro-Motor Reference</span>
+          </div>
+
+          <div class="toys-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+            ${toys.map((t, idx) => {
+              const q = encodeURIComponent(t.amazonQuery || t.name);
+              const amazonUrl = `https://www.amazon.com/s?k=${q}&tag=${encodeURIComponent(amazonTag)}`;
+              return `
+                <div class="toy-card bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                      <span style="background: var(--primary-indigo-sub); color: var(--primary-indigo); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 9999px;">TOP ${idx + 1}</span>
+                      <span style="font-size: 0.78rem; color: var(--text-secondary);">${t.targetAge}</span>
+                    </div>
+                    <h5 style="font-size: 0.98rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.5rem 0; line-height: 1.4;">${t.name}</h5>
+                    <p style="font-size: 0.85rem; color: #475569; line-height: 1.55; margin: 0 0 0.85rem 0;">
+                      <strong>Clinical Rationale:</strong> ${t.benefit}
+                    </p>
+                  </div>
+
+                  <div>
+                    <a href="${amazonUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.84rem; padding: 0.55rem 0.75rem; display: block; box-sizing: border-box;">
+                      View Developmental Tool Specs (Amazon) ↗
+                    </a>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     const coupangId = affiliateConfig.coupang || 'AF7865143';
 
     return `
@@ -438,36 +726,38 @@
   }
 
   // 8. Full Report Renderer for Tab 2
-  function renderTab2Report(profile, affiliateConfig = {}) {
+  function renderTab2Report(profile, affiliateConfig = {}, isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     const radar = evaluateKdstBalance(profile.ageMonths, profile.developmentConcerns);
-    const pedagogy = evaluatePedagogy(profile.ageMonths, profile.developmentConcerns);
-    const toys = getCuratedToys(profile.ageMonths, profile.developmentConcerns);
+    const pedagogy = evaluatePedagogy(profile.ageMonths, profile.developmentConcerns, useGlobal);
+    const toys = getCuratedToys(profile.ageMonths, profile.developmentConcerns, useGlobal);
 
     return `
-      <!-- K-DST Radar Section -->
+      <!-- 6-Axis Radar Section -->
       <div style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem;">
         <div style="text-align: center; margin-bottom: 1rem;">
-          <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.35rem 0;">보건복지부 K-DST 6대 영역 발달 균형도</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">선택하신 발달 고민 태그가 반영된 다각적 밸런스 분석입니다.</p>
+          <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.35rem 0;">${useGlobal ? 'US CDC & ASQ-3 6-Domain Developmental Balance' : '보건복지부 K-DST 6대 영역 발달 균형도'}</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">${useGlobal ? 'Multi-axis developmental profile calibrated to your selected priority tags.' : '선택하신 발달 고민 태그가 반영된 다각적 밸런스 분석입니다.'}</p>
         </div>
-        ${renderSvgRadarChart(radar.radarScores, radar.polygonPoints)}
+        ${renderSvgRadarChart(radar.radarScores, radar.polygonPoints, useGlobal)}
       </div>
 
-      <!-- Official K-DST Milestones & Zero-cost Home Play -->
-      ${renderOfficialKdstCoaching(profile.ageMonths)}
+      <!-- Official Milestones & Zero-cost Home Play -->
+      ${renderOfficialKdstCoaching(profile.ageMonths, useGlobal)}
 
       <!-- Pedagogical Verdict -->
-      ${renderPedagogyBox(pedagogy)}
+      ${renderPedagogyBox(pedagogy, useGlobal)}
 
       <!-- Academic Literature Evidence -->
-      ${renderDevAcademicEvidence()}
+      ${renderDevAcademicEvidence(useGlobal)}
 
-      <!-- TOP 4 Hot Toys -->
-      ${renderToyCards(toys, affiliateConfig)}
+      <!-- TOP 4 Developmental Tools -->
+      ${renderToyCards(toys, affiliateConfig, useGlobal)}
     `;
   }
 
-  function renderDevAcademicEvidence() {
+  function renderDevAcademicEvidence(isGlobalMode = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     let kb = null;
     if (typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
       kb = window.KIDSFIT_RESEARCH_DATA;
@@ -486,6 +776,48 @@
       .filter((p) => p.pillar === 'fine_motor_neuroscience' || p.pillar === 'pedagogy_montessori_froebel')
       .slice(0, 4);
     if (!papers.length) return '';
+
+    if (useGlobal) {
+      return `
+        <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 1.35rem;"></span>
+              <h4 style="font-size: 1.05rem; font-weight: 800; color: #064E3B; margin: 0;">
+                Peer-Reviewed Fine-Motor Neuroscience &amp; Montessori/STEM Pedagogy Evidence
+              </h4>
+            </div>
+            <span style="background: #DCFCE7; color: #065F46; font-size: 0.76rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 9999px;">
+              Science · Child Development · PubMed Indexed
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.9rem;">
+            ${papers.map((p) => {
+              const safeDesign = p.study_design && !/[가-힣]/.test(p.study_design) ? p.study_design : 'Peer-Reviewed Pediatric Cohort Study';
+              return `
+                <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                    <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8; background: #ECFDF5; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                      ${p.journal} (${p.year})
+                    </span>
+                    ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; color: #1D4ED8; font-weight: 700; text-decoration: none;">View Study ↗</a>` : ''}
+                  </div>
+                  <div style="font-size: 0.9rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 0.45rem;">
+                    ${p.title}
+                  </div>
+                  <p style="font-size: 0.8rem; color: #334155; line-height: 1.5; margin: 0 0 0.45rem 0;">
+                    <strong>Study Design:</strong> ${safeDesign}
+                  </p>
+                  <div style="font-size: 0.79rem; color: #312E81; background: #EEF2FF; padding: 0.55rem 0.7rem; border-radius: 10px; line-height: 1.45;">
+                    <strong>Clinical Takeaway:</strong> Tactile fine-motor manipulation and structured spatial inquiry strengthen prefrontal executive attention.
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
 
     return `
       <div style="background: #F8FAFC; border: 1.5px solid #93C5FD; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem;">

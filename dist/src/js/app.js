@@ -851,6 +851,26 @@
       if (typeof window !== 'undefined' && typeof window.applyKidsFitReportLockState === 'function') {
         window.applyKidsFitReportLockState();
       }
+      // Enforce >= 48px mobile touch target on all affiliate curation CTAs & ensure FTC disclosure visibility in results
+      try {
+        const dashboardRoot = document.getElementById('results-dashboard') || masterCard;
+        if (dashboardRoot && typeof dashboardRoot.querySelectorAll === 'function') {
+          const ctaLinks = dashboardRoot.querySelectorAll('.pinpoint-direct-link, .mobile-touch-btn, .kf-card-action-btn, a[data-merchant]');
+          ctaLinks.forEach((btn) => {
+            if (btn && btn.style) {
+              btn.style.minHeight = '48px';
+              btn.style.display = 'inline-flex';
+              btn.style.alignItems = 'center';
+              btn.style.justifyContent = 'center';
+            }
+          });
+        }
+        const ftcResultsBanner = document.getElementById('kf-results-ftc-disclosure-banner');
+        if (ftcResultsBanner && ftcResultsBanner.style) {
+          ftcResultsBanner.style.display = 'flex';
+          ftcResultsBanner.style.minHeight = '48px';
+        }
+      } catch (_) {}
       if (typeof window !== 'undefined' && window.location && window.location.hash) {
         try {
           const targetEl = document.querySelector(window.location.hash);

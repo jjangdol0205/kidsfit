@@ -1362,7 +1362,7 @@
     const heroHeadline = document.querySelector('.hero-headline');
     if (heroHeadline) {
       heroHeadline.style.cssText = 'max-width:880px;margin:0 auto 0.85rem;color:#0F172A;font-weight:800;font-size:clamp(1.75rem,4.6vw,2.85rem);line-height:1.14;letter-spacing:-0.035em;';
-      heroHeadline.innerHTML = '<span class="hero-single-line">Predict Your Child&apos;s Adult Height &amp;</span><br><span class="hero-headline-highlight hero-single-line" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">Unlock Their Full Growth &amp; Brain Potential.</span>';
+      heroHeadline.innerHTML = '<span class="hero-single-line">Predict Your Child&apos;s Adult Height &amp; </span><br><span class="hero-headline-highlight hero-single-line" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">Unlock Their Full Growth &amp; Brain Potential.</span>';
     }
 
     const heroSubtitle = document.querySelector('.hero-subtitle');

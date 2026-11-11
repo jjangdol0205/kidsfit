@@ -22,6 +22,7 @@
   const PRESETS = {
     'preset-1': {
       id: 'preset-1',
+      label: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
       labelKo: '영유아기 3세 (만 36개월) — 기초 성장기 & 소근육 감각 협응',
       labelEn: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Motor Skills',
       gender: 'boy',
@@ -41,6 +42,7 @@
     },
     'preset-2': {
       id: 'preset-2',
+      label: 'Childhood 7 Yrs (84 Mo) — Spatial Logic & Postural Alignment',
       labelKo: '아동기 7세 (만 84개월) — 수리·공간 논리 & 척추 바른 정렬',
       labelEn: 'Childhood 7 Yrs (84 Mo) — Spatial Logic & Postural Alignment',
       gender: 'girl',
@@ -60,6 +62,7 @@
     },
     'preset-3': {
       id: 'preset-3',
+      label: 'Early Puberty 10 Yrs (120 Mo) — Early Pubertal Hormone Optimization',
       labelKo: '사춘기 진입 10세 (만 120개월) — 사춘기 초기 수면·호르몬 최적화',
       labelEn: 'Early Puberty 10 Yrs (120 Mo) — Early Pubertal Hormone Optimization',
       gender: 'boy',
@@ -79,6 +82,7 @@
     },
     'preset-4': {
       id: 'preset-4',
+      label: 'Peak Growth Spurt 13 Yrs (156 Mo) — Peak Height Velocity (PHV) Intervention',
       labelKo: '급성장기 13세 (만 156개월) — PHV 급성장 피크 & 골든타임 집중',
       labelEn: 'Peak Growth Spurt 13 Yrs (156 Mo) — Peak Height Velocity (PHV) Intervention',
       gender: 'boy',
@@ -98,6 +102,7 @@
     },
     'preset-5': {
       id: 'preset-5',
+      label: 'Late Adolescent 16 Yrs (192 Mo) — Spinal Disc Recovery & Alignment',
       labelKo: '후기 청소년 16세 (만 192개월) — 체형 완성기 척추 디스크 복원',
       labelEn: 'Late Adolescent 16 Yrs (192 Mo) — Spinal Disc Recovery & Alignment',
       gender: 'girl',
@@ -331,7 +336,7 @@
 
     // Update Progress Indicator
     const tagEl = document.getElementById('quiz-step-tag');
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
     const stepWord = 'Step';
     if (tagEl) {
       tagEl.textContent = `${stepWord} ${stepNumber} / ${wizardState.maxStep}`;
@@ -499,7 +504,7 @@
     }
 
     // Sync hidden & legacy inputs
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
     const ageDisplay = document.getElementById('child-age-display');
     const ageMonthsInput = document.getElementById('child-age-months');
     const ageSlider = document.getElementById('child-age-slider');
@@ -545,7 +550,7 @@
    */
   function syncAgeAppropriateQuizOptions(ageYears) {
     if (typeof document === 'undefined') return;
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
 
     const age = Number(ageYears) || 10;
     const isToddler = age <= 4;
@@ -922,7 +927,7 @@
         const boyEl = document.getElementById('gender-boy');
         const girlEl = document.getElementById('gender-girl');
         if (boyEl && girlEl && !boyEl.checked && !girlEl.checked) {
-          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+          const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
           showValidationToast(isEn ? 'Please select a gender.' : '성별을 선택해 주세요.', boyEl);
           return false;
         }
@@ -931,7 +936,7 @@
         const m = (monthEl.value !== '' && monthEl.value !== undefined) ? parseInt(monthEl.value, 10) : 10;
         const d = (dayEl.value !== '' && dayEl.value !== undefined) ? parseInt(dayEl.value, 10) : 15;
         if (isNaN(y) || y < 2005 || y > 2026 || isNaN(m) || m < 1 || m > 12 || isNaN(d) || d < 1 || d > 31) {
-          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+          const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
           showValidationToast(isEn ? 'Please enter a valid date of birth.' : '생년월일을 올바르게 선택해 주세요.', yearEl);
           return false;
         }
@@ -1010,19 +1015,21 @@
           }
         } else {
           // Explicit Metric boundary validation
+          const isEnMetric = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+            (typeof document !== 'undefined' && document.documentElement && (
+              String(document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+              (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')
+            ));
           if (isNaN(h) || h < 45.0 || h > 230.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.', heightInput);
+            showValidationToast(isEnMetric ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.', heightInput);
             return false;
           }
           if (isNaN(w) || w < 2.0 || w > 160.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.', weightInput);
+            showValidationToast(isEnMetric ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.', weightInput);
             return false;
           }
           if (isNaN(r) || r < 0.0 || r > 20.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.', recentInput);
+            showValidationToast(isEnMetric ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.', recentInput);
             return false;
           }
           if (isNaN(fh) || fh < 100.0 || fh > 240.0) {
@@ -1092,7 +1099,7 @@
     const titleEl = document.getElementById('analysis-title');
     const descEl = document.getElementById('analysis-desc');
     const fillEl = document.getElementById('analysis-bar-fill');
-    const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
+    const isEn = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) || (typeof document !== 'undefined' && document.documentElement && (String(document.documentElement.lang || '').toLowerCase().startsWith('en') || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')));
 
     if (overlay) {
       overlay.style.display = 'flex';

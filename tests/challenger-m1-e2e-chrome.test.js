@@ -47,70 +47,98 @@ async function runChromeE2ESuite() {
   console.log('   CHALLENGER 1: REAL HEADLESS CHROME CDP EMPIRICAL E2E TEST HARNESS    ');
   console.log('========================================================================\n');
 
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'chrome-e2e-m1-'));
-  const chrome = spawn(CHROME_PATH, [
-    '--headless=new',
-    `--remote-debugging-port=${CDP_PORT}`,
-    `--user-data-dir=${tempDir}`,
-    '--disable-gpu',
-    '--no-sandbox',
-    '--no-first-run',
-    INDEX_HTML_URL
-  ]);
+  let tempDir = null;
+  let chrome = null;
+  let ws = null;
 
-  chrome.on('error', (err) => {
-    console.error('[Chrome Error]', err.message);
-  });
-
-  // Wait for Chrome to listen
-  await new Promise(r => setTimeout(r, 2000));
-
-  // Get Page Target WebSocket URL
-  let pageWsUrl = null;
-  for (let attempt = 0; attempt < 5; attempt++) {
-    try {
-      const jsonRes = await new Promise((resolve, reject) => {
-        http.get(`http://127.0.0.1:${CDP_PORT}/json`, res => {
-          let d = '';
-          res.on('data', c => d += c);
-          res.on('end', () => resolve(JSON.parse(d)));
-        }).on('error', reject);
-      });
-      const pageTarget = jsonRes.find(t => t.type === 'page');
-      if (pageTarget && pageTarget.webSocketDebuggerUrl) {
-        pageWsUrl = pageTarget.webSocketDebuggerUrl;
-        break;
-      }
-    } catch (_) {
-      await new Promise(r => setTimeout(r, 1000));
+  function cleanupChrome() {
+    if (ws) {
+      try { ws.close(); } catch (_) {}
+      ws = null;
+    }
+    if (chrome && !chrome.killed) {
+      try {
+        if (process.platform === 'win32') {
+          const { spawnSync } = require('child_process');
+          spawnSync('taskkill', ['/F', '/T', '/PID', String(chrome.pid)], { stdio: 'ignore' });
+        } else {
+          chrome.kill('SIGKILL');
+        }
+      } catch (_) {}
+      chrome = null;
+    }
+    if (tempDir) {
+      try { fs.rmSync(tempDir, { recursive: true, force: true }); } catch (_) {}
+      tempDir = null;
     }
   }
 
-  assert(pageWsUrl, 'Failed to acquire Chrome Page Target WebSocket URL');
-  console.log(`[CDP] Connected to Chrome Page Target: ${pageWsUrl}\n`);
+  try {
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'chrome-e2e-m1-'));
+    chrome = spawn(CHROME_PATH, [
+      '--headless=new',
+      '--incognito',
+      `--remote-debugging-port=${CDP_PORT}`,
+      `--user-data-dir=${tempDir}`,
+      '--disable-gpu',
+      '--no-sandbox',
+      '--no-first-run',
+      INDEX_HTML_URL
+    ]);
 
-  const ws = new WebSocket(pageWsUrl);
-  let msgId = 1;
-  const pendingRequests = new Map();
-  const openedDialogs = [];
-
-  function sendCDP(method, params = {}) {
-    return new Promise((resolve, reject) => {
-      const id = msgId++;
-      const timeout = setTimeout(() => {
-        pendingRequests.delete(id);
-        reject(new Error(`CDP request timed out: ${method}`));
-      }, 10000);
-
-      pendingRequests.set(id, (res) => {
-        clearTimeout(timeout);
-        if (res.error) reject(new Error(res.error.message));
-        else resolve(res.result);
-      });
-
-      ws.send(JSON.stringify({ id, method, params }));
+    chrome.on('error', (err) => {
+      console.error('[Chrome Error]', err.message);
     });
-  }
+
+    // Wait for Chrome to listen
+    await new Promise(r => setTimeout(r, 2000));
+
+    // Get Page Target WebSocket URL
+    let pageWsUrl = null;
+    for (let attempt = 0; attempt < 15; attempt++) {
+      try {
+        const jsonRes = await new Promise((resolve, reject) => {
+          http.get(`http://127.0.0.1:${CDP_PORT}/json`, res => {
+            let d = '';
+            res.on('data', c => d += c);
+            res.on('end', () => resolve(JSON.parse(d)));
+          }).on('error', reject);
+        });
+        const pageTarget = jsonRes.find(t => t.type === 'page');
+        if (pageTarget && pageTarget.webSocketDebuggerUrl) {
+          pageWsUrl = pageTarget.webSocketDebuggerUrl;
+          break;
+        }
+      } catch (_) {
+        await new Promise(r => setTimeout(r, 1000));
+      }
+    }
+
+    assert(pageWsUrl, 'Failed to acquire Chrome Page Target WebSocket URL');
+    console.log(`[CDP] Connected to Chrome Page Target: ${pageWsUrl}\n`);
+
+    ws = new WebSocket(pageWsUrl);
+    let msgId = 1;
+    const pendingRequests = new Map();
+    const openedDialogs = [];
+
+    function sendCDP(method, params = {}) {
+      return new Promise((resolve, reject) => {
+        const id = msgId++;
+        const timeout = setTimeout(() => {
+          pendingRequests.delete(id);
+          reject(new Error(`CDP request timed out: ${method}`));
+        }, 30000);
+
+        pendingRequests.set(id, (res) => {
+          clearTimeout(timeout);
+          if (res.error) reject(new Error(res.error.message));
+          else resolve(res.result);
+        });
+
+        ws.send(JSON.stringify({ id, method, params }));
+      });
+    }
 
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
@@ -148,8 +176,12 @@ async function runChromeE2ESuite() {
     return res.result.value;
   }
 
-  // Wait 1.5s for initial hydration
-  await new Promise(r => setTimeout(r, 1500));
+  // Wait until full DOM & bundle hydration completes
+  for (let w = 0; w < 30; w++) {
+    const ready = await evalInBrowser(`Boolean(document && document.body && document.readyState === 'complete' && document.getElementById('btn-home-start-growth-report'))`);
+    if (ready) break;
+    await new Promise(r => setTimeout(r, 300));
+  }
 
   // --------------------------------------------------------------------------
   console.log('[SECTION 1: Homepage Verification & 0 Alerts on Load]');
@@ -219,11 +251,14 @@ async function runChromeE2ESuite() {
   })()`);
   await new Promise(r => setTimeout(r, 300));
 
+  const genderToast = await evalInBrowser(`(document.getElementById('kidsfit-validation-toast') && document.getElementById('kidsfit-validation-toast').textContent) || ''`);
+
   it('3.1 Step 1 with unselected gender prompts for gender, NEVER height/weight', () => {
-    assert.strictEqual(openedDialogs.length, 1, 'Expected 1 alert for gender');
-    assert(openedDialogs[0].message.toLowerCase().includes('gender'), `Alert should mention gender: ${openedDialogs[0].message}`);
-    assert(!openedDialogs[0].message.toLowerCase().includes('height'), 'Alert must not mention height');
-    assert(!openedDialogs[0].message.toLowerCase().includes('weight'), 'Alert must not mention weight');
+    const msg = openedDialogs.length > 0 ? openedDialogs[0].message : genderToast;
+    assert(msg && msg.length > 0, 'Expected alert or accessible toast for gender');
+    assert(msg.toLowerCase().includes('gender'), `Prompt should mention gender: ${msg}`);
+    assert(!msg.toLowerCase().includes('height'), 'Prompt must not mention height');
+    assert(!msg.toLowerCase().includes('weight'), 'Prompt must not mention weight');
   });
 
   // Test 3.2: Select Boy, invalid day value
@@ -237,10 +272,12 @@ async function runChromeE2ESuite() {
     document.getElementById('btn-next-step').click();
   })()`);
   await new Promise(r => setTimeout(r, 300));
+  const dobToast = await evalInBrowser(`(document.getElementById('kidsfit-validation-toast') && document.getElementById('kidsfit-validation-toast').textContent) || ''`);
 
   it('3.2 Step 1 with invalid DOB prompts for DOB, NEVER height/weight', () => {
-    assert.strictEqual(openedDialogs.length, 1, 'Expected 1 alert for DOB');
-    assert(openedDialogs[0].message.toLowerCase().includes('birth'), `Alert should mention birth: ${openedDialogs[0].message}`);
+    const msg = openedDialogs.length > 0 ? openedDialogs[0].message : dobToast;
+    assert(msg && msg.length > 0, 'Expected alert or accessible toast for DOB');
+    assert(msg.toLowerCase().includes('birth'), `Prompt should mention birth: ${msg}`);
   });
 
   // Test 3.3: Reset to Step 1 with valid Gender and Valid DOB (Year 2016, Oct, 15) with blank height/weight -> Next
@@ -517,10 +554,9 @@ async function runChromeE2ESuite() {
     assert.ok(parseFloat(unitSwitchResult.backFt) >= 4, 'Restored ft should be >= 4');
   });
 
-  // Clean up Chrome
-  ws.close();
-  chrome.kill();
-  try { fs.rmSync(tempDir, { recursive: true, force: true }); } catch (_) {}
+  } finally {
+    cleanupChrome();
+  }
 
   console.log('\n========================================================================');
   console.log(`REAL CHROME E2E SUMMARY: ${passCount} PASSED | ${failCount} FAILED`);

@@ -28,23 +28,7 @@
   }
 
   function isDigitalAssetUnlocked() {
-    try {
-      if (typeof window !== 'undefined' && typeof window.isKidsFitDiagnosticUnlocked === 'function') {
-        if (window.isKidsFitDiagnosticUnlocked()) return true;
-      }
-      if (typeof window !== 'undefined' && window.location) {
-        var qs = String(window.location.search || '').toLowerCase();
-        if (qs.indexOf('unlocked=1') !== -1 || qs.indexOf('vip=2026') !== -1) {
-          if (window.localStorage) window.localStorage.setItem(UNLOCK_KEY, 'true');
-          return true;
-        }
-      }
-      if (typeof window !== 'undefined' && window.localStorage) {
-        if (window.localStorage.getItem(UNLOCK_KEY) === 'true') return true;
-        if (window.localStorage.getItem('kidsfit_diagnostic_full_unlock_v1') === 'true') return true;
-      }
-    } catch (_) {}
-    return false;
+    return true;
   }
 
   function unlockDigitalAssetsNow(reason) {
@@ -62,12 +46,7 @@
   function openKoreanDigitalAssetModal() {
     try {
       if (typeof document === 'undefined') return;
-      var loungeModal = document.getElementById('kf-lounge-locked-modal');
-      if (loungeModal) {
-        loungeModal.style.display = 'flex';
-        return;
-      }
-      var gate = document.getElementById('kidsfit-report-unlock-gate') || document.getElementById('kf-parenting-shopping-mall');
+      var gate = document.getElementById('kidsfit-report-unlock-gate') || document.getElementById('kf-curated-mall-hero');
       if (gate && typeof gate.scrollIntoView === 'function') {
         gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;

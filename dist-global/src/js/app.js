@@ -33,7 +33,7 @@
   const PRESETS = {
     'preset-1': {
       id: 'preset-1',
-      label: '영유아기 3세 (36개월) — 기초 성장기 & 소근육 감각 협응',
+      label: 'Toddler 3 Yrs (36 Mo) — Foundation Auxology & Fine-Motor Coordination',
       gender: 'boy',
       ageYears: 3,
       ageMonths: 36,
@@ -53,7 +53,7 @@
     },
     'preset-2': {
       id: 'preset-2',
-      label: '아동기 7세 (84개월) — 수리·공간 논리 & 척추 정렬 플랜',
+      label: 'Childhood 7 Yrs (84 Mo) — Spatial Logic & Postural Spine Alignment',
       gender: 'girl',
       ageYears: 7,
       ageMonths: 84,
@@ -73,7 +73,7 @@
     },
     'preset-3': {
       id: 'preset-3',
-      label: '사춘기 진입 10세 (120개월) — 사춘기 초기 수면·호르몬 최적화',
+      label: 'Early Puberty 10 Yrs (120 Mo) — Nocturnal Sleep & HGH Optimization',
       gender: 'boy',
       ageYears: 10,
       ageMonths: 120,
@@ -93,7 +93,7 @@
     },
     'preset-4': {
       id: 'preset-4',
-      label: '급성장기 13세 (156개월) — PHV 급성장 피크 & 골든타임 집중',
+      label: 'Peak Growth Spurt 13 Yrs (156 Mo) — Peak Height Velocity (PHV) Window',
       gender: 'boy',
       ageYears: 13,
       ageMonths: 156,
@@ -113,7 +113,7 @@
     },
     'preset-5': {
       id: 'preset-5',
-      label: '후기 청소년 16세 (192개월) — 체형 완성기 척추 디스크 복원',
+      label: 'Late Adolescent 16 Yrs (192 Mo) — Epiphyseal Maturation & Disc Decompression',
       gender: 'girl',
       ageYears: 16,
       ageMonths: 192,
@@ -137,28 +137,28 @@
   const STEP_INFO = [
     {
       step: 1,
-      title: '아이 기본 프로필 & 거주 지역',
-      subtitle: '질병관리청 표준 성장도표 백분위와 지역 맞춤 나들이 매칭에 활용됩니다.'
+      title: 'Child Demographics & Regional Normative Baseline',
+      subtitle: 'Calibrated against US CDC 2000 LMS growth percentiles and regional enrichment tracks.'
     },
     {
       step: 2,
-      title: '성장 단계 & 골연령 (Tanner Stage) 진행도',
-      subtitle: '성장판 개방률과 급성장 피크기(PHV) 잔여 잠재력을 평가합니다.'
+      title: 'Growth Stage & Bone-Age (Tanner Stage) Progression',
+      subtitle: 'Evaluates epiphyseal growth-plate open ratio and remaining Peak Height Velocity (PHV) window.'
     },
     {
       step: 3,
-      title: '라이프스타일 & 생체 저해 요인 체크',
-      subtitle: '수면 중 성장호르몬 분비 억제 및 예측키 손실 요인을 진단합니다.'
+      title: 'Lifestyle & Nocturnal Bio-Inhibitor Screening',
+      subtitle: 'Diagnoses slow-wave sleep HGH suppression and modifiable adult stature loss factors.'
     },
     {
       step: 4,
-      title: '두뇌·신경인지 핵심 관심 축 (5대 영역)',
-      subtitle: '연령별 대뇌 피질 재조직화 및 신경가소성 자극 프로토콜을 설정합니다.'
+      title: '5-Axis Neuro-Cognitive Priority Matrix',
+      subtitle: 'Configures age-specific cortical rewiring and neuroplasticity stimulation protocols.'
     },
     {
       step: 5,
-      title: '바이오 통계 연산 및 궤적 모델링',
-      subtitle: 'LMS Z-Score, 24시간 호르몬 곡선 및 3단 성인 예측키를 산출 중입니다.'
+      title: 'Biostatistical Computation & Trajectory Modeling',
+      subtitle: 'Computing CDC LMS Z-Scores, 24-hour HGH curve, and 3-tier adult height projection.'
     }
   ];
 
@@ -312,7 +312,12 @@
       let father = fatherInput ? parseFloat(fatherInput.value) : state.profile.fatherHeight;
       let mother = motherInput ? parseFloat(motherInput.value) : state.profile.motherHeight;
 
-      const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+      const isEnVal = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+        (typeof document !== 'undefined' && document.documentElement && (
+          String(document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+          (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')
+        ));
+      const isImperial = isEnVal && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
       if (isImperial) {
         height = height * 2.54;
         weight = weight / 2.20462262;
@@ -322,22 +327,22 @@
       }
 
       if (isNaN(age) || age < 12 || age > 240) {
-        alert('아이의 현재 월령을 12~240개월(1~20세) 사이로 입력해주세요.');
+        alert(isEnVal ? 'Please enter child age between 12 and 240 months (1 to 20 years).' : '아이의 현재 월령을 12~240개월(1~20세) 사이로 입력해주세요.');
         if (ageInput) ageInput.focus();
         return false;
       }
       if (isNaN(height) || height < 45 || height > 230) {
-        alert(isImperial ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이의 현재 키를 45~230cm 사이로 입력해주세요.');
+        alert(isEnVal ? 'Please enter a valid height (18 to 90 inches / 45 to 230 cm).' : '아이의 현재 키를 45~230cm 사이로 입력해주세요.');
         if (heightInput) heightInput.focus();
         return false;
       }
       if (isNaN(weight) || weight < 2 || weight > 160) {
-        alert(isImperial ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이의 현재 몸무게를 2~160kg 사이로 입력해주세요.');
+        alert(isEnVal ? 'Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).' : '아이의 현재 몸무게를 2~160kg 사이로 입력해주세요.');
         if (weightInput) weightInput.focus();
         return false;
       }
       if (isNaN(recent) || recent < 0 || recent > 20) {
-        alert(isImperial ? 'Please enter recent 6-month growth (0 to 8 inches).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
+        alert(isEnVal ? 'Please enter recent 6-month growth (0 to 8 inches / 0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.');
         if (recentInput) recentInput.focus();
         return false;
       }
@@ -761,6 +766,11 @@
     }
 
     const affConfig = getAffiliateConfig();
+    const isEnReport = (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+      (typeof document !== 'undefined' && document.documentElement && (
+        String(document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+        (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')
+      ));
 
     // Render Tab 1: Core 1 Auxology & Growth Trajectories
     const growthCard = document.getElementById('growth-report-card');
@@ -772,12 +782,12 @@
     const endoCard = document.getElementById('endocrinology-report-card');
     if (endoCard) {
       if (NutritionEngine && NutritionEngine.renderTab2Report) {
-        endoCard.innerHTML = NutritionEngine.renderTab2Report(state.profile, affConfig);
+        endoCard.innerHTML = NutritionEngine.renderTab2Report(state.profile, affConfig, isEnReport);
       } else if (EndocrinologyEngine && EndocrinologyEngine.renderEndocrinologySection) {
         endoCard.innerHTML = `
           <div id="core-2-container" class="core-module-container">
-            ${EndocrinologyEngine.renderEndocrinologySection(state.profile)}
-            ${NutritionEngine && NutritionEngine.renderNutritionSection ? NutritionEngine.renderNutritionSection(state.profile, affConfig) : ''}
+            ${EndocrinologyEngine.renderEndocrinologySection(state.profile, isEnReport)}
+            ${NutritionEngine && NutritionEngine.renderNutritionSection ? NutritionEngine.renderNutritionSection(state.profile, affConfig, isEnReport) : ''}
           </div>
         `;
       }
@@ -787,7 +797,7 @@
     // Render Core 3: Biomechanics & Posture Studio
     const biomechanicsCard = document.getElementById('core-3-container') || document.getElementById('biomechanics-report-card');
     if (biomechanicsCard && BiomechanicsStudio && BiomechanicsStudio.renderBiomechanicsSection) {
-      biomechanicsCard.innerHTML = BiomechanicsStudio.renderBiomechanicsSection(state.profile, affConfig);
+      biomechanicsCard.innerHTML = BiomechanicsStudio.renderBiomechanicsSection(state.profile, affConfig, isEnReport);
       if (typeof BiomechanicsStudio.initRoutineTimers === 'function') {
         BiomechanicsStudio.initRoutineTimers();
       }
@@ -796,7 +806,7 @@
     // Render Core 4: Neuro-Cognitive Matrix
     const neuroCard = document.getElementById('core-4-container') || document.getElementById('neuro-report-card');
     if (neuroCard && NeuroCognitiveMatrix && NeuroCognitiveMatrix.renderNeuroSection) {
-      neuroCard.innerHTML = NeuroCognitiveMatrix.renderNeuroSection(state.profile, affConfig);
+      neuroCard.innerHTML = NeuroCognitiveMatrix.renderNeuroSection(state.profile, affConfig, isEnReport);
     }
 
     // Render Core 5: 90-Day Tracker & Hospital Clinic A4 PDF
@@ -814,13 +824,13 @@
     // Render Tab 2 (Legacy Dev Card if present)
     const devCard = document.getElementById('dev-report-card');
     if (devCard && DevelopmentEngine) {
-      devCard.innerHTML = DevelopmentEngine.renderTab2Report(state.profile, affConfig);
+      devCard.innerHTML = DevelopmentEngine.renderTab2Report(state.profile, affConfig, isEnReport);
     }
 
     // Render Tab 3
     const outingCard = document.getElementById('outing-report-card');
     if (outingCard && WeekendCurator) {
-      outingCard.innerHTML = WeekendCurator.renderTab3Report(state.profile, affConfig);
+      outingCard.innerHTML = WeekendCurator.renderTab3Report(state.profile, affConfig, isEnReport);
     }
 
     // Render Monetization Appendix
@@ -979,9 +989,8 @@
     const kdca = GrowthEngine ? GrowthEngine.calculateKdcaPercentile(state.profile.currentHeight, lms.L, lms.M, lms.S) : { topPercent: 30 };
     const mph = GrowthEngine ? GrowthEngine.calculateMph(state.profile.fatherHeight, state.profile.motherHeight, state.profile.gender) : 170;
     const pred = GrowthEngine ? GrowthEngine.calculateHeightPrediction(mph, state.profile.habits, state.profile.pubertyStage) : { potentialHeight: 178 };
-    const outing = WeekendCurator ? WeekendCurator.getWeekendOuting(state.profile.region, state.profile.interest) : { destination: '어린이박물관' };
-
     const isEnShare = typeof document !== 'undefined' && document.documentElement && (document.documentElement.lang === 'en' || (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid'));
+    const outing = WeekendCurator ? WeekendCurator.getWeekendOuting(state.profile.region, state.profile.interest, isEnShare) : { destination: isEnShare ? 'Science & Discovery Museum' : '어린이박물관' };
     const childGender = state.profile.gender === 'boy' ? (isEnShare ? 'Boy' : '남아') : (isEnShare ? 'Girl' : '여아');
     const text = isEnShare
       ? `✨ KidsFit Clinical Growth Report (${state.profile.ageMonths} mos ${childGender}): Top ${kdca.topPercent}% on US CDC Growth Charts! With clinical optimization, projected adult height reaches ${pred.potentialHeight} cm (${Math.floor((pred.potentialHeight / 2.54) / 12)}'${Math.round((pred.potentialHeight / 2.54) % 12)}")! 👉 https://kisfitglobal.com`
@@ -1142,7 +1151,8 @@
           if (targetTextarea && typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard.writeText(targetTextarea.value).then(() => {
               const origText = btn.textContent;
-              btn.textContent = '✓ 복사완료!';
+              const isEnCopy = typeof document !== 'undefined' && document.documentElement && String(document.documentElement.lang || '').toLowerCase().startsWith('en');
+              btn.textContent = isEnCopy ? '✓ Copied!' : '✓ 복사완료!';
               btn.style.background = '#059669';
               setTimeout(() => {
                 btn.textContent = origText;
@@ -1277,7 +1287,10 @@
         if (blogEl) blogEl.value = DEFAULT_AFFILIATE_CONFIG.blogUrl;
         renderPrescriptionResults();
         renderAdminOsmuStudio();
-        alert('기존 머니핏 네이버 블로그·카페 연동 캐시 및 설정이 100% 초기화되었으며, 키즈핏 그로스 스튜디오 기본값으로 재설정되었습니다.');
+        const isEnAdm = typeof document !== 'undefined' && document.documentElement && String(document.documentElement.lang || '').toLowerCase().startsWith('en');
+        alert(isEnAdm
+          ? 'Channel & affiliate cache has been reset to KISFIT Bio Labs default configuration.'
+          : '기존 머니핏 네이버 블로그·카페 연동 캐시 및 설정이 100% 초기화되었으며, 키즈핏 그로스 스튜디오 기본값으로 재설정되었습니다.');
       });
     }
 
@@ -1298,7 +1311,8 @@
         saveAffiliateConfig(cfg);
         renderPrescriptionResults();
         renderAdminOsmuStudio();
-        alert('관리자 설정이 저장되었으며 실시간으로 동기화됩니다.');
+        const isEnAdm = typeof document !== 'undefined' && document.documentElement && String(document.documentElement.lang || '').toLowerCase().startsWith('en');
+        alert(isEnAdm ? 'Admin configuration saved and synchronized in real time.' : '관리자 설정이 저장되었으며 실시간으로 동기화됩니다.');
         closeAdminModal();
       });
     }

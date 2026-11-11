@@ -2313,8 +2313,9 @@ p, li, dt, dd,
   }
 
   .mobile-touch-btn,
-  .mobile-touch-btn-primary {
-    min-height: 46px !important;
+  .mobile-touch-btn-primary,
+  .pinpoint-direct-link {
+    min-height: 48px !important;
     font-size: 0.86rem !important;
     padding: 0.65rem 0.85rem !important;
     white-space: normal !important;
@@ -2323,7 +2324,7 @@ p, li, dt, dd,
 
   .mobile-touch-btn-sub,
   .mobile-touch-btn-secondary {
-    min-height: 44px !important;
+    min-height: 48px !important;
     font-size: 0.82rem !important;
     padding: 0.55rem 0.6rem !important;
     white-space: normal !important;
@@ -2829,6 +2830,12 @@ html[data-device-view="mobile"] .prescription-retest-btn {
 .app-download-header-btn:hover {
   background: linear-gradient(90deg, #0284C7 0%, #10B981 100%);
   color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  #btn-header-app-download {
+    display: none !important;
+  }
 }
 
 .hero-app-download-bar {
@@ -4344,6 +4351,10 @@ html[data-edition="global-paid"] select.form-input:focus {
 }
 
 .kf-card-action-btn {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   color: #FFFFFF;
   text-align: center;
@@ -4353,7 +4364,6 @@ html[data-edition="global-paid"] select.form-input:focus {
   font-weight: 800;
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.18);
   transition: filter 0.15s ease, transform 0.15s ease;
-  display: block;
 }
 
 .kf-product-card:hover .kf-card-action-btn {
@@ -4565,12 +4575,12 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 
   .kf-card-action-btn {
-    min-height: 44px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.72rem;
-    padding: 0.45rem 0.4rem;
+    font-size: 0.76rem;
+    padding: 0.5rem 0.45rem;
   }
 
   .kf-stage-tab {

@@ -83,6 +83,7 @@
       focus: 'sensorimotor synaptogenesis',
       focusKo: '감각운동 피질 시냅스 폭발적 형성기 (Sensorimotor Synaptogenesis)',
       targetCortex: '감각운동 피질(Sensorimotor Cortex) & 두정엽(Parietal Lobe)',
+      targetCortexEn: 'Sensorimotor Cortex & Parietal Association Lobe',
       principleKo: '초당 100만 개 시냅스가 연결되는 시기로, 양손 촉각·소근육 자극이 기초 두뇌 배선을 완성합니다.',
       principleEn: 'Rapid synaptogenesis forming 1M connections/sec via bilateral fine-motor play.',
       dailyRegimenKo: '하루 15분: 촉각 놀이 · 원목 블록 쌓기 · 손끝 집게/가위질',
@@ -99,6 +100,7 @@
       focus: 'linguistic lateralization',
       focusKo: '언어 편측화 & 전두-두정 신경망 가지치기',
       targetCortex: '브로카·베르니케 언어 영역 & 좌우 뇌량',
+      targetCortexEn: 'Broca-Wernicke Language Circuit & Corpus Callosum',
       principleKo: '시냅스 가지치기로 사고 회로가 정교해지며 언어 표현과 입체 공간 추론의 기초가 확립됩니다.',
       principleEn: 'Linguistic lateralization and synaptic pruning stabilize inductive logic.',
       dailyRegimenKo: '하루 20분: 그림책 낭독 · "왜 그럴까?" 질문 · 은물·자석블록 입체 조형',
@@ -115,6 +117,7 @@
       focus: 'prefrontal cortical thickness',
       focusKo: '전두엽 피질 두께 피크 & 메타인지 형성',
       targetCortex: '배외측 전전두엽(DLPFC) & 전대상회(ACC)',
+      targetCortexEn: 'Dorsolateral Prefrontal Cortex (DLPFC) & Anterior Cingulate (ACC)',
       principleKo: '추상적 사고와 메타인지(스스로 생각을 점검하는 힘)를 관장하는 전두엽이 최고조로 발달합니다.',
       principleEn: 'Prefrontal cortex thickness peaks, enabling abstract logic and meta-cognition.',
       dailyRegimenKo: '하루 25분: 하브루타 질문 토론 · 전략 보드게임 · 과학 탐구 일지',
@@ -131,6 +134,7 @@
       focus: 'axonal myelination',
       focusKo: '신경 축삭 수초화 & 자기주도 딥워크 완성',
       targetCortex: '전두엽 백질 신경망 & 변연계',
+      targetCortexEn: 'Prefrontal White-Matter Tracts & Limbic Executive Network',
       principleKo: '신경 전달 속도를 100배 높이는 수초화가 완성되어 장기 목표 몰입과 고차원 추론이 자리잡습니다.',
       principleEn: 'Axonal myelination accelerates neural speed 100x for deep academic stamina.',
       dailyRegimenKo: '하루 30분: 무방해 딥워크 몰입 · 원전 심층 독서 · 요약 노트 작성',
@@ -148,7 +152,8 @@
       titleEn: 'Step 1: Observation & Inquiry',
       modelKo: '이 전시물에서 가장 규칙적이지 않거나 특이한 점은 무엇일까?',
       modelEn: 'What is the most unexpected pattern or irregularity you observe here?',
-      guideKo: '• 정답 대신 아이가 색·모양·움직임에서 느낀 특이한 점을 먼저 말하게 해주세요.'
+      guideKo: '• 정답 대신 아이가 색·모양·움직임에서 느낀 특이한 점을 먼저 말하게 해주세요.',
+      guideEn: '• Instead of giving the right answer, invite your child to describe unusual colors, shapes, or motions first.'
     },
     step2: {
       step: 2,
@@ -156,7 +161,8 @@
       titleEn: 'Step 2: Hypothesis & Deduction',
       modelKo: '만약 이 조건이 반대로 바뀌었다면, 구조나 역사적 결과는 어떻게 달라졌을까?',
       modelEn: 'If this core variable had been reversed, how would the structural or historical outcome have changed?',
-      guideKo: '• "만약 재료가 나무였다면?"처럼 핵심 조건을 반대로 뒤집어 상상하게 해주세요.'
+      guideKo: '• "만약 재료가 나무였다면?"처럼 핵심 조건을 반대로 뒤집어 상상하게 해주세요.',
+      guideEn: '• Prompt counterfactual thinking—for example, "What if this structure were built out of wood instead of steel?"'
     },
     step3: {
       step: 3,
@@ -164,7 +170,8 @@
       titleEn: 'Step 3: Application & Reflection',
       modelKo: '오늘 발견한 원리를 우리 일상이나 미래 과학에 적용한다면 어떤 문제를 해결할 수 있을까?',
       modelEn: 'How can the principle discovered today be applied to modern engineering or our daily lives to solve real-world challenges?',
-      guideKo: '• 오늘 본 원리를 우리 집이나 일상 속 물건과 연결해 보게 질문해 주세요.'
+      guideKo: '• 오늘 본 원리를 우리 집이나 일상 속 물건과 연결해 보게 질문해 주세요.',
+      guideEn: '• Connect today\'s scientific principle to an everyday object at home or a real-world engineering challenge.'
     }
   };
 
@@ -801,8 +808,16 @@
   }
 
   // 7. Full HTML Section Renderer
-  function renderNeuroSection(profile = {}, affConfig = {}) {
-    const isGlobal = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en') || profile.language === 'en';
+  function renderNeuroSection(profile = {}, affConfig = {}, isGlobalMode = null) {
+    const isGlobal = isGlobalMode === true || (isGlobalMode !== false && (
+      (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+      (typeof global !== 'undefined' && global.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+      (typeof document !== 'undefined' && document.documentElement && (
+        String(document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+        (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')
+      )) ||
+      profile.language === 'en'
+    ));
     const ageYears = profile.ageYears || (profile.ageMonths ? Math.round(profile.ageMonths / 12) : 10);
     const cogAxes = profile.cognitiveAxes || [];
 
@@ -898,7 +913,7 @@
                   ${isGlobal ? 'Cortical Rewiring Science' : '대뇌 피질 신경가소성'}
                 </span>
                 <span style="font-size: 0.8rem; font-weight: 700; color: #334155;">
-                  ${goldenWindow.ageRangeStr}
+                  ${isGlobal ? goldenWindow.ageRangeStrEn : goldenWindow.ageRangeStr}
                 </span>
               </div>
 
@@ -933,7 +948,7 @@
 
             <!-- Target Cortex Badge -->
             <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--theme-border-subtle); font-size: 0.75rem; color: #475569;">
-              <strong>${isGlobal ? 'Target Area' : '핵심 신경 타깃'}:</strong> ${goldenWindow.targetCortex}
+              <strong>${isGlobal ? 'Target Area' : '핵심 신경 타깃'}:</strong> ${isGlobal ? (goldenWindow.targetCortexEn || goldenWindow.targetCortex) : goldenWindow.targetCortex}
             </div>
           </div>
 
@@ -951,13 +966,13 @@
               </h4>
             </div>
             <span style="font-size: 0.75rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              ${isGlobal ? 'K-DST Standard + 5 Survey Factors Linked' : '보건복지부 K-DST 기준선 + 우리 아이 설문 5대 변수 100% 연동'}
+              ${isGlobal ? 'US CDC / AAP & K-DST Standard + 5 Survey Factors Linked' : '보건복지부 K-DST 기준선 + 우리 아이 설문 5대 변수 100% 연동'}
             </span>
           </div>
 
           <p style="font-size: 0.86rem; color: #475569; line-height: 1.58; margin: 0 0 0.9rem 0;">
             ${isGlobal
-              ? 'This 5-axis radar chart is NOT a fixed or arbitrary graphic. Every vertex is dynamically computed by combining (1) the Korean National Developmental Screening Test (K-DST) normative median baseline (70 pts) with (2) your child’s prioritized cognitive axes (+20 pts), (3) temperament traits, (4) single-session focus span, and (5) sleep/screen & narrative signals.'
+              ? 'This 5-axis radar chart is NOT a fixed or arbitrary graphic. Every vertex is dynamically computed by combining (1) the pediatric developmental screening normative median baseline (70 pts) with (2) your child’s prioritized cognitive axes (+20 pts), (3) temperament traits, (4) single-session focus span, and (5) sleep/screen & narrative signals.'
               : '위 5각 레이더 차트는 임의로 그려진 고정 그래픽이 아닙니다. <strong>① 보건복지부 영유아·아동 발달선별검사(K-DST) 또래 표준 중위값(점선 오각형 = 70점)</strong>을 기준선으로 삼고, 부모님이 설문에서 직접 입력하신 <strong>② 중점 두뇌 발달축(+20점) · ③ 평소 기질(6종) · ④ 1회 집중 지속시간 · ⑤ 수면·미디어 습관 및 서술형 고민 키워드</strong>를 실시간 가감산하여 각 꼭짓점 좌표를 산출합니다.'}
           </p>
 
@@ -1020,7 +1035,7 @@
                 "${isGlobal ? HAVRUTA_QUESTIONS.step1.modelEn : HAVRUTA_QUESTIONS.step1.modelKo}"
               </p>
               <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
-                ${HAVRUTA_QUESTIONS.step1.guideKo}
+                ${isGlobal ? HAVRUTA_QUESTIONS.step1.guideEn : HAVRUTA_QUESTIONS.step1.guideKo}
               </p>
             </div>
 
@@ -1033,7 +1048,7 @@
                 "${isGlobal ? HAVRUTA_QUESTIONS.step2.modelEn : HAVRUTA_QUESTIONS.step2.modelKo}"
               </p>
               <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
-                ${HAVRUTA_QUESTIONS.step2.guideKo}
+                ${isGlobal ? HAVRUTA_QUESTIONS.step2.guideEn : HAVRUTA_QUESTIONS.step2.guideKo}
               </p>
             </div>
 
@@ -1046,7 +1061,7 @@
                 "${isGlobal ? HAVRUTA_QUESTIONS.step3.modelEn : HAVRUTA_QUESTIONS.step3.modelKo}"
               </p>
               <p style="font-size: 0.78rem; color: #334155; line-height: 1.5; margin: 0;">
-                ${HAVRUTA_QUESTIONS.step3.guideKo}
+                ${isGlobal ? HAVRUTA_QUESTIONS.step3.guideEn : HAVRUTA_QUESTIONS.step3.guideKo}
               </p>
             </div>
 
@@ -1066,14 +1081,14 @@
 
         <!-- Reference Archival Chip -->
         <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-          <a href="https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%2525ED%252595%252598%2525EB%2525B8%25258C%2525EB%2525A3%2525A8%2525ED%252583%252580%252B%2525EA%2525B3%2525BC%2525ED%252595%252599" 
+          <a href="${isGlobal ? `https://www.amazon.com/s?k=Magna-Tiles+100+Piece+Evan-Moor+Higher-Order+Thinking+STEM&tag=${encodeURIComponent((affConfig && affConfig.amazon) || 'kidfit-20')}` : 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%2525ED%252595%252598%2525EB%2525B8%25258C%2525EB%2525A3%2525A8%2525ED%252583%252580%252B%2525EA%2525B3%2525BC%2525ED%252595%252599'}" 
              target="_blank" 
              rel="noopener noreferrer" 
              class="reference-chip" 
              id="ref-chip-neuro"
              style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
             <span></span>
-            <span>${isGlobal ? '[Cognitive Tools & Books Archive Reference (Yes24) ↗]' : '[관련 도구·도서 아카이브 참고 ↗]'}</span>
+            <span>${isGlobal ? '[Cognitive Tools &amp; STEM Books Reference (Amazon) ↗]' : '[관련 도구·도서 아카이브 참고 ↗]'}</span>
           </a>
         </div>
       </div>

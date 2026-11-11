@@ -123,12 +123,21 @@
     return ''; // Integrated into Core 3 Biomechanics Studio
   }
 
+  function renderFtcDisclosureBanner() {
+    return `
+      <div class="kf-ftc-inline-disclosure" role="note" aria-label="공정거래위원회 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.9rem; margin: 0.5rem 0; font-size: 0.8rem; font-weight: 700; color: #1E293B; text-align: center; line-height: 1.45;">
+        ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (AF7865143 · A100708867 · 구매자 추가 비용 0원 · 공식 판매처 보러가기 및 혜택가 확인 지원)
+      </div>
+    `.trim();
+  }
+
   function renderLayer4LockIn(profile = {}, config = {}) {
     // Retain clean sharing utility without commercial group buys
     const childGender = profile.gender === 'boy' ? '남아' : '여아';
     return `
       <div class="bio-share-container" style="margin: 2rem 0; text-align: center;">
-        <button type="button" class="btn btn-secondary btn-share-prescription" id="btn-share-rx" onclick="if(navigator.clipboard){navigator.clipboard.writeText(window.location.href);alert('임상 처방전 링크가 클립보드에 복사되었습니다.');}" style="font-size: 0.9rem; padding: 0.75rem 1.25rem;">
+        ${renderFtcDisclosureBanner()}
+        <button type="button" class="btn btn-secondary btn-share-prescription mobile-touch-btn" id="btn-share-rx" onclick="if(navigator.clipboard){navigator.clipboard.writeText(window.location.href);alert('임상 처방전 링크가 클립보드에 복사되었습니다.');}" style="min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; padding: 0.75rem 1.25rem;">
           ${childGender} 바이오 분석 처방전 링크 공유하기
         </button>
       </div>
@@ -136,7 +145,7 @@
   }
 
   function renderAllMonetizationLayers() {
-    return ''; // 100% Commercial Purge
+    return '';
   }
 
   // 4. Diagnostic Test Unlock & Partner Formatting Utilities (R2 & R4)
@@ -224,28 +233,7 @@
   }
 
   function isDiagnosticUnlocked() {
-    if (inMemoryUnlockState && inMemoryUnlockState.unlocked) return true;
-    if (typeof window !== 'undefined') {
-      if (window.__kidsfitDiagnosticUnlocked === true || window.__kidsfitReportUnlocked === true) return true;
-      if (window.__kidsfitInMemoryStore && window.__kidsfitInMemoryStore['kidsfit_diagnostic_unlocked'] === 'true') return true;
-    }
-    try {
-      if (typeof localStorage !== 'undefined' && localStorage) {
-        if (localStorage.getItem('kidsfit_diagnostic_unlocked') === 'true') return true;
-        if (localStorage.getItem('kf_report_unlocked') === '1') return true;
-        const raw = localStorage.getItem('kidsfit_free_tickets');
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (parsed && parsed.unlocked === true) return true;
-        }
-      }
-    } catch (_) {}
-    try {
-      if (typeof sessionStorage !== 'undefined' && sessionStorage) {
-        if (sessionStorage.getItem('kf_report_unlocked') === '1') return true;
-      }
-    } catch (_) {}
-    return false;
+    return true;
   }
 
   function getDiagnosticTickets() {
@@ -261,12 +249,11 @@
     if (inMemoryUnlockState && inMemoryUnlockState.tickets) {
       return inMemoryUnlockState.tickets;
     }
-    const currentUnlocked = isDiagnosticUnlocked();
     return {
-      growth: { name: '신체 성장 정밀 진단', unlocked: currentUnlocked },
-      precocious_puberty: { name: '골연령·성조숙증 판정', unlocked: currentUnlocked },
-      brain_development: { name: '두뇌 5대 역량 진단', unlocked: currentUnlocked },
-      temperament_learning: { name: '기질·학습 스타일 진단', unlocked: currentUnlocked }
+      growth: { name: '신체 성장 정밀 진단', unlocked: true },
+      precocious_puberty: { name: '골연령·성조숙증 판정', unlocked: true },
+      brain_development: { name: '두뇌 5대 역량 진단', unlocked: true },
+      temperament_learning: { name: '기질·학습 스타일 진단', unlocked: true }
     };
   }
 
@@ -286,6 +273,7 @@
     renderLayer2Receipt,
     renderLayer3Hardware,
     renderLayer4LockIn,
+    renderFtcDisclosureBanner,
     renderAllMonetizationLayers
   };
 

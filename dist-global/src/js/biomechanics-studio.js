@@ -88,6 +88,7 @@
       principle: "Wolff's Law",
       molecularTrigger: 'Runx2 / Sox9 & Type II Collagen',
       restorationEstimate: '+1.2 ~ +2.0 cm (장기 골 개조 촉진)',
+      restorationEstimateEn: '+0.5 ~ +0.8 in (+1.2 ~ +2.0 cm · Bone Remodeling)',
       summaryKo: '가벼운 수직 점핑으로 무릎 성장판(Runx2/Sox9) 연골세포 분열을 촉진합니다.',
       summaryEn: 'Cyclic vertical hops stimulate epiphyseal growth plate chondrocyte proliferation.',
       instructionsKo: [
@@ -490,9 +491,15 @@
               <text x="190" y="162" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? 'Press Gently with Thumbs for 5s in Circles' : '엄지손가락으로 5초씩 지그시 누르며 원 그리기'}</text>
             </svg>
             <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.9rem; color: #0F172A; line-height: 1.55;">
-              <li><strong>따뜻한 온기:</strong> 양손을 비벼 아이 무릎을 30초간 감싸기</li>
-              <li><strong>독비혈 지압:</strong> 무릎뼈 아래 양옆 오목한 곳 엄지로 5초씩 지압</li>
-              <li><strong>족삼리 마사지:</strong> 무릎 바깥 아래 3cm를 원 그리듯 10회 풀기</li>
+              ${isGlobal ? `
+                <li><strong>Warm Palms:</strong> Rub both hands together and cup your child's knees gently for 30 seconds</li>
+                <li><strong>Hollow Acupressure:</strong> Press the medial &amp; lateral hollows below the kneecap gently with thumbs for 5s</li>
+                <li><strong>Lateral Tibia Circles:</strong> Massage 1 inch below the outer knee in 10 slow circular strokes</li>
+              ` : `
+                <li><strong>따뜻한 온기:</strong> 양손을 비벼 아이 무릎을 30초간 감싸기</li>
+                <li><strong>독비혈 지압:</strong> 무릎뼈 아래 양옆 오목한 곳 엄지로 5초씩 지압</li>
+                <li><strong>족삼리 마사지:</strong> 무릎 바깥 아래 3cm를 원 그리듯 10회 풀기</li>
+              `}
             </ul>
           </div>
 
@@ -522,9 +529,15 @@
               <text x="297" y="149" fill="#1D4ED8" font-size="11" font-weight="800" text-anchor="middle">${isGlobal ? '③ Pull Toes Gently' : '③ 발끝을 몸쪽으로 당기기'}</text>
             </svg>
             <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.9rem; color: #0F172A; line-height: 1.55;">
-              <li><strong>쓸어올리기:</strong> 발목부터 무릎 뒤 오금까지 양손으로 10회 쓸어올리기</li>
-              <li><strong>발끝 당기기:</strong> 발끝을 몸쪽으로 당겨 종아리 근육 10초 늘리기</li>
-              <li><strong>성장통 완화:</strong> 다리 근막 긴장을 풀어 밤새 깊은 숙면 유도</li>
+              ${isGlobal ? `
+                <li><strong>Upward Sweep:</strong> Glide both hands from the ankle up to the back of the knee 10 times</li>
+                <li><strong>Dorsiflexion Stretch:</strong> Gently flex toes toward the shin for 10 seconds to lengthen calf fascia</li>
+                <li><strong>Night Comfort:</strong> Releases lower-limb tension to reduce growing pains and deepen slow-wave sleep</li>
+              ` : `
+                <li><strong>쓸어올리기:</strong> 발목부터 무릎 뒤 오금까지 양손으로 10회 쓸어올리기</li>
+                <li><strong>발끝 당기기:</strong> 발끝을 몸쪽으로 당겨 종아리 근육 10초 늘리기</li>
+                <li><strong>성장통 완화:</strong> 다리 근막 긴장을 풀어 밤새 깊은 숙면 유도</li>
+              `}
             </ul>
           </div>
         </div>
@@ -533,8 +546,16 @@
   }
 
   // 4b. HTML Section Renderer
-  function renderBiomechanicsSection(profile = {}, affConfig = {}) {
-    const isGlobal = (typeof document !== 'undefined' && document.documentElement.lang === 'en') || profile.language === 'en';
+  function renderBiomechanicsSection(profile = {}, affConfig = {}, isGlobalMode = null) {
+    const isGlobal = isGlobalMode === true || (isGlobalMode !== false && (
+      (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+      (typeof global !== 'undefined' && global.__KIDSFIT_GLOBAL_PAID_EDITION === true) ||
+      (typeof document !== 'undefined' && document.documentElement && (
+        String(document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+        (typeof document.documentElement.getAttribute === 'function' && document.documentElement.getAttribute('data-edition') === 'global-paid')
+      )) ||
+      profile.language === 'en'
+    ));
     const habits = profile.habits || [];
     const restoredHeight = calculateDecompressionPotential(habits);
 
@@ -636,7 +657,7 @@
             <div style="background: #F8FAFC; border: 1px solid #BFDBFE; border-radius: 14px; padding: 0.95rem 1rem;">
               <div style="font-size: 0.88rem; font-weight: 800; color: #1D4ED8; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
                 <span>${isGlobal ? 'Step-by-Step How to Do It' : '그림 보고 따라 하는 동작 순서'}</span>
-                <span style="color: #1D4ED8; font-size: 0.8rem;">${isGlobal ? 'Gain' : '기대 효과'}: ${r.restorationEstimate}</span>
+                <span style="color: #1D4ED8; font-size: 0.8rem;">${isGlobal ? 'Gain' : '기대 효과'}: ${isGlobal ? (r.restorationEstimateEn || String(r.restorationEstimate || '').replace(/\s*\([^)]*[가-힣][^)]*\)/g, '')) : r.restorationEstimate}</span>
               </div>
               <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.92rem; color: #0F172A; line-height: 1.65;">
                 ${instructions.map(inst => `<li style="margin-bottom: 0.25rem;">${inst}</li>`).join('')}
@@ -666,41 +687,41 @@
         <div class="bento-card curated-product-recommendation-section growth-product-section" id="core-3-recommended-products" style="display: none; margin-top: 1.25rem; margin-bottom: 1.25rem; padding: 1.35rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem;">
             <span style="font-size: 1.05rem; font-weight: 900; color: #0F172A;">
-              척추 감압 · 바른 자세 교정에 도움이 되는 엄선 추천 상품 TOP 3
+              ${isGlobal ? 'Top 3 Biomechanical Decompression &amp; Posture Alignment Tools' : '척추 감압 · 바른 자세 교정에 도움이 되는 엄선 추천 상품 TOP 3'}
             </span>
             <span style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8; background: #EFF6FF; padding: 0.22rem 0.65rem; border-radius: 9999px;">
-              Core 3 맞춤 큐레이션
+              ${isGlobal ? 'Core 3 Clinical Curation' : 'Core 3 맞춤 큐레이션'}
             </span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">엄선 1위 · 운동 1단계 필수템</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">안전 고정형 실내 문틀 철봉 (데드행 스트레칭 바)</div>
-                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">아침·저녁 30초 매달리기로 낮 동안 눌린 척추 디스크 간격을 안전하게 펴줍니다.</p>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">${isGlobal ? 'Pick #1 · Step 1 Decompression Aid' : '엄선 1위 · 운동 1단계 필수템'}</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">${isGlobal ? 'Safety-Lock Doorway Pull-Up &amp; Dead-Hang Decompression Bar' : '안전 고정형 실내 문틀 철봉 (데드행 스트레칭 바)'}</div>
+                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">${isGlobal ? '30-second morning and evening hangs safely decompress intervertebral discs compressed during daytime sitting.' : '아침·저녁 30초 매달리기로 낮 동안 눌린 척추 디스크 간격을 안전하게 펴줍니다.'}</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%8B%A4%EB%82%B4+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%96%B4%EB%A6%B0%EC%9D%B4" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                실내 문틀 철봉 보러가기 ↗
+              <a href="${isGlobal ? `https://www.amazon.com/s?k=Ally+Peaks+Pull+Up+Bar+Doorway+Safety+Lock&tag=${encodeURIComponent((affConfig && affConfig.amazon) || 'kidfit-20')}` : 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%8B%A4%EB%82%B4+%EB%AC%B8%ED%8B%80+%EC%B2%A0%EB%B4%89+%EC%96%B4%EB%A6%B0%EC%9D%B4'}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                ${isGlobal ? 'View Doorway Dead-Hang Bar (Amazon) ↗' : '실내 문틀 철봉 보러가기 ↗'}
               </a>
             </div>
             <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">엄선 2위 · 운동 2단계 필수템</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">소프트 EPP 폼롤러 &amp; 2단 각도조절 원목 독서대</div>
-                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">흉추 신전 스트레칭과 책상 시선 각도 교정으로 숨은 키(+1.8cm)를 복원합니다.</p>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">${isGlobal ? 'Pick #2 · Step 2 Thoracic Posture Aid' : '엄선 2위 · 운동 2단계 필수템'}</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">${isGlobal ? 'High-Density Foam Roller &amp; Adjustable Ergonomic Book Stand' : '소프트 EPP 폼롤러 &amp; 2단 각도조절 원목 독서대'}</div>
+                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">${isGlobal ? 'Thoracic extension and eye-level desk alignment help recover up to +0.7 in (+1.8 cm) of postural stature.' : '흉추 신전 스트레칭과 책상 시선 각도 교정으로 숨은 키(+1.8cm)를 복원합니다.'}</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%ED%8F%BC%EB%A1%A4%EB%9F%AC+%EA%B0%81%EB%8F%84%EC%A1%B0%EC%A0%88+%EB%8F%85%EC%84%9C%EB%8C%80" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                폼롤러 · 자세교정 독서대 보기 ↗
+              <a href="${isGlobal ? `https://www.amazon.com/s?k=TriggerPoint+Foam+Roller+Adjustable+Bamboo+Book+Stand&tag=${encodeURIComponent((affConfig && affConfig.amazon) || 'kidfit-20')}` : 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%ED%8F%BC%EB%A1%A4%EB%9F%AC+%EA%B0%81%EB%8F%84%EC%A1%B0%EC%A0%88+%EB%8F%85%EC%84%9C%EB%8C%80'}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                ${isGlobal ? 'View Foam Roller &amp; Posture Stand (Amazon) ↗' : '폼롤러 · 자세교정 독서대 보기 ↗'}
               </a>
             </div>
             <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.65rem;">
               <div>
-                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">엄선 3위 · 운동 3단계 필수템</span>
-                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">층간소음 방지 실내 점핑 트램폴린 · 카운트 줄넘기</div>
-                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">관절 무리 없이 무릎 성장판에 탄성 미세 자극을 전달하는 실내 운동 기구입니다.</p>
+                <span style="font-size: 0.74rem; font-weight: 800; color: #1D4ED8;">${isGlobal ? 'Pick #3 · Step 3 Epiphyseal Micro-Loading Aid' : '엄선 3위 · 운동 3단계 필수템'}</span>
+                <div style="font-size: 0.96rem; font-weight: 800; color: #0F172A; margin: 0.25rem 0;">${isGlobal ? 'Low-Impact Indoor Handlebar Trampoline &amp; Counter Jump Rope' : '층간소음 방지 실내 점핑 트램폴린 · 카운트 줄넘기'}</div>
+                <p style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.45;">${isGlobal ? 'Delivers gentle elastic piezoelectric micro-stimulation to knee and ankle growth plates.' : '관절 무리 없이 무릎 성장판에 탄성 미세 자극을 전달하는 실내 운동 기구입니다.'}</p>
               </div>
-              <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A4%84%EB%84%98%EA%B8%B0" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
-                무소음 트램폴린·줄넘기 보기 ↗
+              <a href="${isGlobal ? `https://www.amazon.com/s?k=Kids+Indoor+Mini+Trampoline+Handlebar+Counter+Jump+Rope&tag=${encodeURIComponent((affConfig && affConfig.amazon) || 'kidfit-20')}` : 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%8B%A4%EB%82%B4+%ED%8A%B8%EB%9E%A8%ED%8F%B4%EB%A6%B0+%EC%A4%84%EB%84%98%EA%B8%B0'}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; justify-content: center; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; background: #1D4ED8; color: #FFFFFF; font-size: 0.85rem; font-weight: 800; text-decoration: none;">
+                ${isGlobal ? 'View Trampoline &amp; Jump Rope (Amazon) ↗' : '무소음 트램폴린·줄넘기 보기 ↗'}
               </a>
             </div>
           </div>
@@ -719,14 +740,14 @@
 
         <!-- Biomechanics Reference Archival Chip (Hidden by default in pure report) -->
         <div class="curated-product-recommendation-section growth-product-section" style="display: none; justify-content: flex-end; margin-top: 1rem;">
-          <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%B4%ED%98%95%EA%B5%90%EC%A0%95+%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4" 
+          <a href="${isGlobal ? `https://www.amazon.com/s?k=Wishacc+Adjustable+Bamboo+Book+Stand+Ergonomic+Posture&tag=${encodeURIComponent((affConfig && affConfig.amazon) || 'kidfit-20')}` : 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B2%B4%ED%98%95%EA%B5%90%EC%A0%95+%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4'}" 
              target="_blank" 
              rel="noopener noreferrer" 
              class="reference-chip" 
              id="ref-chip-biomechanics"
              style="font-size: 12px; color: #334155; border: 1px solid var(--theme-border); padding: 0.35rem 0.75rem; border-radius: 9999px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; background: var(--theme-surface-sub);">
             <span></span>
-            <span>${isGlobal ? '[Biomechanics Equipment Reference (Coupang) ↗]' : '[생체역학·자세교정 도구 아카이브 참고 ↗]'}</span>
+            <span>${isGlobal ? '[Biomechanics Equipment Reference (Amazon) ↗]' : '[생체역학·자세교정 도구 아카이브 참고 ↗]'}</span>
           </a>
         </div>
       </div>

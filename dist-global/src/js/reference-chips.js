@@ -16,6 +16,24 @@
 (function (global) {
   'use strict';
 
+  function isGlobalEnRuntime(explicitFlag) {
+    if (explicitFlag === true) return true;
+    if (explicitFlag === false) return false;
+    if (typeof window !== 'undefined' && window.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+    if (typeof global !== 'undefined' && global.__KIDSFIT_GLOBAL_PAID_EDITION === true) return true;
+    if (typeof document !== 'undefined' && document.documentElement) {
+      const lang = String(document.documentElement.lang || '').toLowerCase();
+      const edition = typeof document.documentElement.getAttribute === 'function'
+        ? document.documentElement.getAttribute('data-edition')
+        : '';
+      if (lang.startsWith('en') || edition === 'global-paid') return true;
+    }
+    if (typeof window !== 'undefined' && window.location && /kisfitglobal\.com|kidsfitglobal\.com/i.test(String(window.location.hostname || ''))) {
+      return true;
+    }
+    return false;
+  }
+
   // Default Affiliate & Merchant Configuration (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
@@ -194,13 +212,14 @@
   /**
    * Generates discrete 12px reference chip items according to current language & mode.
    */
-  function getReferenceChipsData(categoryKey = 'nutrients', isGlobalMode = false, customConfig = null) {
+  function getReferenceChipsData(categoryKey = 'nutrients', isGlobalMode = null, customConfig = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobalMode);
     const config = Object.assign({}, getAffiliateConfig(), customConfig || {});
     if (config.chipsEnabled === false) {
       return [];
     }
 
-    if (isGlobalMode) {
+    if (useGlobal) {
       // Global EN Mode: iHerb + Amazon
       return [
         {
@@ -249,7 +268,7 @@
   /**
    * Renders HTML string for discrete 12px reference chips.
    */
-  function getReferenceChipsHtml(categoryKey = 'nutrients', isGlobalMode = false, customConfig = null) {
+  function getReferenceChipsHtml(categoryKey = 'nutrients', isGlobalMode = null, customConfig = null) {
     const chips = getReferenceChipsData(categoryKey, isGlobalMode, customConfig);
     if (!chips || chips.length === 0) {
       return '';
@@ -282,7 +301,7 @@
   /**
    * Mounts or injects reference chips into DOM container.
    */
-  function renderReferenceChips(containerIdOrElement, categoryKey = 'nutrients', isGlobalMode = false, customConfig = null) {
+  function renderReferenceChips(containerIdOrElement, categoryKey = 'nutrients', isGlobalMode = null, customConfig = null) {
     const html = getReferenceChipsHtml(categoryKey, isGlobalMode, customConfig);
     if (typeof document === 'undefined') return html;
 
@@ -308,7 +327,8 @@
    * Continuous Research Paper Citations:
    * Generates clinical evidence section with clickable PMID and DOI links.
    */
-  function renderCitations(pillars = ['growth_endocrinology'], limit = 3, isGlobal = false) {
+  function renderCitations(pillars = ['growth_endocrinology'], limit = 3, isGlobal = null) {
+    const useGlobal = isGlobalEnRuntime(isGlobal);
     let kb = null;
     if (typeof window !== 'undefined' && window.KIDSFIT_RESEARCH_DATA) {
       kb = window.KIDSFIT_RESEARCH_DATA;
@@ -331,8 +351,9 @@
     const cardsHtml = matched.map((p) => {
       const pmidLink = p.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #1D4ED8; font-weight: 800; text-decoration: none; background: #EFF6FF; padding: 0.15rem 0.5rem; border-radius: 4px;">PMID:${p.pmid} ↗</a>` : '';
       const doiLink = p.doi ? `<a href="https://doi.org/${p.doi}" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: #1D4ED8; font-weight: 800; text-decoration: none; background: #EFF6FF; padding: 0.15rem 0.5rem; border-radius: 4px;">DOI ↗</a>` : '';
-      const shortFact = isGlobal
-        ? (p.title || p.key_statistics || '')
+      const safeEnStat = p.key_statistics && !/[가-힣]/.test(p.key_statistics) ? p.key_statistics : '';
+      const shortFact = useGlobal
+        ? (p.title || safeEnStat || 'Peer-reviewed pediatric clinical study')
         : (p.plain_fact_ko || p.title_ko || p.key_statistics || p.title || '');
 
       return `
@@ -354,11 +375,11 @@
           <div style="display: flex; align-items: center; gap: 0.4rem;">
             <span style="font-size: 1.05rem;"></span>
             <h5 style="font-size: 0.9rem; font-weight: 800; color: #0F172A; margin: 0;">
-              ${isGlobal ? 'Peer-Reviewed Clinical Research Citations (Click to expand ▼)' : '동료심사(Peer-Reviewed) 학술 논문 임상 근거 (출처 접음 · 클릭 시 펼침 ▼)'}
+              ${useGlobal ? 'Peer-Reviewed Clinical Research Citations (Click to expand ▼)' : '동료심사(Peer-Reviewed) 학술 논문 임상 근거 (출처 접음 · 클릭 시 펼침 ▼)'}
             </h5>
           </div>
           <span style="background: #EFF6FF; color: #1D4ED8; font-size: 0.74rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;">
-            ${isGlobal ? `PubMed & Crossref (${totalCount} Indexed Papers)` : `PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동`}
+            ${useGlobal ? `PubMed & Crossref (${totalCount} Indexed Papers)` : `PubMed · Crossref 총 ${totalCount}편 실시간 학습 DB 연동`}
           </span>
         </summary>
         <div style="display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed #BFDBFE;">

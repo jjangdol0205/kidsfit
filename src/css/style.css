@@ -2832,6 +2832,12 @@ html[data-device-view="mobile"] .prescription-retest-btn {
   color: #FFFFFF;
 }
 
+@media (max-width: 768px) {
+  #btn-header-app-download {
+    display: none !important;
+  }
+}
+
 .hero-app-download-bar {
   max-width: 920px;
   margin: 0 auto 1.35rem;
