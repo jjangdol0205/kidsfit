@@ -242,8 +242,8 @@ async function main() {
     const passUrl = GlobalPaywall.getActiveCheckoutUrl('pass');
     const fallbackUrl = GlobalPaywall.getActiveCheckoutUrl('unrecognized_plan');
 
-    assert.strictEqual(singleUrl, 'https://app.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b');
-    assert.strictEqual(passUrl, 'https://app.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde');
+    assert.strictEqual(singleUrl, 'https://app.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599');
+    assert.strictEqual(passUrl, 'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895');
     assert.strictEqual(fallbackUrl, singleUrl, 'Fallback must default to single pass');
   });
 

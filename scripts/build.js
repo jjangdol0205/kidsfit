@@ -240,7 +240,9 @@ function generateStaticApiEndpoints() {
     const verifyJson = JSON.stringify({ ok: true, verified: false, __staticFallback: true, mode: 'static_client_verify' }, null, 2);
     const checkoutJson = JSON.stringify({
       ok: true,
-      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b?embed=1'
+      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1',
+      singleCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1',
+      passCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895?embed=1'
     }, null, 2);
     const authJson = JSON.stringify({ ok: true, __fallbackLocal: true, mode: 'client_local' }, null, 2);
 

@@ -180719,9 +180719,9 @@
     "version": "1.0.0",
     "partner_id": "AF7865143",
     "ultimate_objective": "Maximize Coupang Partners Expected Commission Revenue + 24h Rocket Cart Halo Conversion",
-    "last_updated_kst": "2026-11-11 19:58:28 KST",
-    "total_episodes": 210,
-    "total_cumulative_reward": 9291,
+    "last_updated_kst": "2026-11-11 20:52:28 KST",
+    "total_episodes": 212,
+    "total_cumulative_reward": 9357,
     "exploration_rate_epsilon": 0.18,
     "ucb_exploration_constant_c": 1.414,
     "winning_category_arm": "growth_nutrition_repeat_cart",
@@ -180746,11 +180746,11 @@
       "id": "arm_rocket_review",
       "label": "🛒 쿠팡 로켓배송 혜택가·실제 학부모 후기 확인 ↗",
       "badge": "🚀 로켓와우 내일도착 · 학부모 실구매 후기 검증",
-      "alpha": 587.12,
+      "alpha": 593.72,
       "beta": 13.68,
       "impressions": 345,
-      "clicks": 182,
-      "cumulative_reward": 6110,
+      "clicks": 184,
+      "cumulative_reward": 6176,
       "ucb_score": 2.277
     },
     "arm_wow_tomorrow": {
@@ -180808,11 +180808,11 @@
       "commission_multiplier": 1.65,
       "avg_order_value_krw": 38000,
       "cart_halo_multiplier": 2.2,
-      "alpha": 733.25,
+      "alpha": 741.5,
       "beta": 12.1,
       "impressions": 435,
-      "clicks": 189,
-      "cumulative_reward": 6621,
+      "clicks": 191,
+      "cumulative_reward": 6687,
       "ucb_score": 3.352,
       "priority_rank": 1
     },
@@ -180975,6 +180975,22 @@
     }
   },
   "recent_reward_history": [
+    {
+      "timestampKst": "2026-11-11 20:52:28 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
+    {
+      "timestampKst": "2026-11-11 20:20:50 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
     {
       "timestampKst": "2026-11-11 19:58:28 KST",
       "armId": "growth_nutrition_repeat_cart",
@@ -181273,22 +181289,6 @@
     },
     {
       "timestampKst": "2026-11-07 15:32:26 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-05 19:21:18 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "칼슴",
-      "reward": 33,
-      "utmSource": "direct"
-    },
-    {
-      "timestampKst": "2026-11-05 19:20:50 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
       "productName": "PAID ORDER: $8.99 Single Pass",

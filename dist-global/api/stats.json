@@ -22,9 +22,9 @@
         "growth": 45,
         "learning": 16
       },
-      "affiliateClicks": 600,
+      "affiliateClicks": 602,
       "productClicks": {
-        "growth": 302,
+        "growth": 304,
         "learning": 49,
         "byReferrer": {
           "direct": {
@@ -36,15 +36,15 @@
       "bots": 71,
       "recentClicks": [
         {
-          "id": "CLK-1794394708049-273",
-          "timestampKst": "2026-11-11 19:58:28 KST",
+          "id": "CLK-1794397948500-470",
+          "timestampKst": "2026-11-11 20:52:28 KST",
           "category": "growth",
           "platform": "쿠팡 파트너스 (AF7865143)",
           "productName": "칼슴",
           "href": "https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kidsfit&pageKey=%EC%B9%BC%EC%8A%B4",
           "utmSource": "direct",
           "device": "desktop",
-          "domain": "127.0.0.1:51696",
+          "domain": "127.0.0.1:63230",
           "notifiedByServer": true,
           "rlArmId": "growth_nutrition_repeat_cart",
           "rlCtaArm": "arm_rocket_review",

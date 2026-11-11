@@ -6,8 +6,8 @@
  * 2. Converts the language button into an Imperial (ft/in, lbs) <-> Metric (cm, kg) Unit Switcher.
  * 3. Translates the Homepage Dual-Pillar Showcase, SVG Chart Previews, Quiz, and Master Clinical Report into 100% native English (ZERO Korean text).
  * 4. Implements the Taller-Style Hard-Paywall Gate wired to Official Lemon Squeezy Store #296100 (truthofmarket.lemonsqueezy.com):
- *    - Single Report Pass ($8.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b
- *    - 6-Month Growth & Brain Tracker Pass ($19.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde
+ *    - Single Report Pass ($8.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599
+ *    - 6-Month Growth & Brain Tracker Pass ($19.99 USD): https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895
  *    - Supports Lemon.js Overlay Checkout + Direct Checkout Redirect + VIP Owner Passcode ('VIP2026').
  */
 
@@ -18,10 +18,10 @@
   const CHECKOUT_URLS_KEY = 'kidsfit_global_checkout_urls_v1';
 
   // Official Live Lemon Squeezy Store #296100 (KISFIT Bio Labs)
-  const DEFAULT_SINGLE_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b';
-  const DEFAULT_PASS_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde';
-  const TRUTHOFMARKET_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b';
-  const TRUTHOFMARKET_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde';
+  const DEFAULT_SINGLE_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599';
+  const DEFAULT_PASS_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
+  const TRUTHOFMARKET_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599';
+  const TRUTHOFMARKET_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
 
   function isStaticGitHubPagesHost() {
     try {
@@ -213,15 +213,15 @@
 
     try {
       if (typeof window !== 'undefined' && window.localStorage) {
-        const saved = window.localStorage.getItem(CHECKOUT_URLS_KEY);
+        const saved = window.localStorage.getItem(CHECKOUT_URLS_KEY) || window.localStorage.getItem('kidsfit_custom_ls_checkout_urls_v1');
         if (saved) {
           const parsed = JSON.parse(saved);
           let customUrl = isPass ? parsed.passUrl : parsed.singleUrl;
           if (customUrl && /^https?:\/\//i.test(customUrl)) {
-            if (customUrl.indexOf('c1cd7f12-3479-49e8-ab71-59c98135d599') !== -1 || customUrl.indexOf('00ba1a7a-3676-4110-a554-46dfb451a58b') !== -1) {
+            if (!isPass && customUrl.indexOf('lemonsqueezy.com/checkout/buy/') !== -1 && customUrl.indexOf('c1cd7f12-3479-49e8-ab71-59c98135d599') === -1) {
               customUrl = DEFAULT_SINGLE_CHECKOUT_URL;
             }
-            if (customUrl.indexOf('c562946d-ef68-4c2f-a802-df9da0179895') !== -1 || customUrl.indexOf('ce12a74d-b86d-4413-ac3c-dc80d9f5dfde') !== -1) {
+            if (isPass && customUrl.indexOf('lemonsqueezy.com/checkout/buy/') !== -1 && customUrl.indexOf('c562946d-ef68-4c2f-a802-df9da0179895') === -1) {
               customUrl = DEFAULT_PASS_CHECKOUT_URL;
             }
             return customUrl;
@@ -5349,7 +5349,9 @@ ${isMasked ? `
       }
     } catch (_) {}
     const plan = planOverride || selectedPlan || 'single';
-    const baseCheckoutUrl = getActiveCheckoutUrl(plan);
+    const baseCheckoutUrl = isStaticGitHubPagesHost()
+      ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
+      : getActiveCheckoutUrl(plan);
     const emailEl = document.getElementById('checkout-parent-email');
     const email = String((emailEl && emailEl.value) || '').trim();
     try {
@@ -5389,7 +5391,7 @@ ${isMasked ? `
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
           '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter clinical dossier &amp; printable 2-page PDF:</span>' +
-          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/ce12a74d-b86d-4413-ac3c-dc80d9f5dfde' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/00ba1a7a-3676-4110-a554-46dfb451a58b') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
+          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
           '</div>';
