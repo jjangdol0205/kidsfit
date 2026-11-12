@@ -168,7 +168,7 @@
     if (advEl) {
       advEl.textContent = totalSuppression === 0
         ? 'Optimal Endocrine Window: Deep N3 sleep onset by 10:00 PM with a 3+ hour glycemic fast maximizes pituitary GH pulsatility.'
-        : 'Clinical Rx: Shift bedtime to 10:00 PM or earlier and finish last meal/milk at least 3 hours before sleep to recover +' + totalSuppression + '% suppressed HGH.';
+        : 'Habit Guide: Shift bedtime to 10:00 PM or earlier and finish last meal/milk at least 3 hours before sleep to support +' + totalSuppression + '% nocturnal sleep rhythm.';
     }
   };
 
@@ -2431,13 +2431,13 @@ ${isMasked ? `
         <!-- Actual Chapter Structures Underneath the Blur (Chapters 02, 03, 04-A, 04-B) -->
         <div class="paywall-blurred-chapters-content">
 ` : ''}
-        <!-- CHAPTER 2: Personalized Sleep/Endocrine Survey Synthesis & rhGH Injection Fact-Check -->
+        <!-- CHAPTER 2: Personalized Sleep/Endocrine Survey Synthesis & Growth Literature Review -->
         <section style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:18px;padding:1.35rem 1.3rem;margin-bottom:1.25rem;">
           <span style="display:inline-block;font-size:0.75rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;border:1px solid #BFDBFE;padding:0.2rem 0.65rem;border-radius:9999px;margin-bottom:0.5rem;">
-            CHAPTER 02 · 1:1 SLEEP ENDOCRINE PHENOTYPE &amp; rhGH INJECTION PAPER FACT-CHECK
+            CHAPTER 02 · 1:1 SLEEP ENDOCRINE PHENOTYPE &amp; GROWTH LITERATURE REVIEW
           </span>
           <h3 style="font-size:1.15rem;font-weight:900;color:#0F172A;margin:0 0 0.5rem 0;">
-            Personalized Step 4 &amp; Step 6 Endocrine Findings + Recombinant GH (rhGH) Clinical Comparison
+            Personalized Step 4 &amp; Step 6 Sleep-Habit Findings + Peer-Reviewed Auxology Literature Summary
           </h3>
           <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:12px;padding:0.85rem 1rem;margin-bottom:0.85rem;font-size:0.83rem;color:#0F172A;line-height:1.55;">
             <strong style="color:#1D4ED8;display:block;margin-bottom:0.25rem;">✓ Patient's Selected Sleep &amp; Constitutional Checkpoints (Steps 4 &amp; 6):</strong>
@@ -3935,7 +3935,7 @@ ${isMasked ? `
           </div>
         </div>
         <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:0.85rem 1rem;">
-          <div style="font-size:0.75rem;font-weight:800;color:#475569;">③ 4-Week Neuro-Study &amp; iHerb Rx</div>
+          <div style="font-size:0.75rem;font-weight:800;color:#475569;">③ 4-Week Neuro-Study &amp; Nutrition Guide</div>
           <div style="font-size:1.05rem;font-weight:900;color:#0F172A;margin-top:0.25rem;">
             🔒 <span style="color:#1D4ED8;">1:1 Study Roadmap Ready</span>
           </div>
@@ -3955,22 +3955,22 @@ ${isMasked ? `
         </div>
 
         <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:0.85rem 1rem;">
-          <div style="font-size:0.75rem;font-weight:800;color:#475569;">② rhGH Injection &amp; Bone-Age Verdict</div>
+          <div style="font-size:0.75rem;font-weight:800;color:#475569;">② Growth Literature &amp; Bone-Age Review</div>
           <div style="font-size:1.05rem;font-weight:900;color:#0F172A;margin-top:0.25rem;">
             🔒 <span style="color:#1D4ED8;">Tier Analysis Ready</span>
           </div>
           <div style="font-size:0.76rem;color:#475569;font-weight:700;margin-top:0.2rem;">
-            BMJ &amp; Cochrane Meta-Analysis ($15k/yr ROI Check)
+            BMJ &amp; Cochrane Peer-Reviewed Auxology Summary
           </div>
         </div>
 
         <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:14px;padding:0.85rem 1rem;">
-          <div style="font-size:0.75rem;font-weight:800;color:#475569;">③ 24h Sleep HGH &amp; Bio-Nutrition Rx</div>
+          <div style="font-size:0.75rem;font-weight:800;color:#475569;">③ 24h Sleep HGH &amp; Bio-Nutrition Guide</div>
           <div style="font-size:1.05rem;font-weight:900;color:#0F172A;margin-top:0.25rem;">
-            🔒 <span style="color:#1D4ED8;">1:1 Growth Protocol Ready</span>
+            🔒 <span style="color:#1D4ED8;">1:1 Growth Workbook Ready</span>
           </div>
           <div style="font-size:0.76rem;color:#475569;font-weight:700;margin-top:0.2rem;">
-            10 PM SWS HGH, Ca Citrate, D3+K2 &amp; Chelated Zinc
+            10 PM SWS Sleep, Ca Citrate, D3+K2 &amp; Chelated Zinc
           </div>
         </div>
         `}
@@ -3985,13 +3985,13 @@ ${isMasked ? `
             </span>
             <h3 style="font-size:1.24rem;font-weight:900;color:#0F172A;margin:0.45rem 0 0.2rem 0;">
               ${isLearningMode
-                ? "Unlock Your Child's Complete 1:1 5-Axis Brain LQ &amp; Neuro-Study Master Report"
-                : "Unlock Your Child's Complete 1:1 Pediatric Height &amp; Auxology Master Report"}
+                ? "Unlock Your Child's Complete 1:1 5-Axis Brain LQ &amp; Neuro-Study Workbook"
+                : "Unlock Your Child's Complete 1:1 Pediatric Height &amp; Auxology Workbook"}
             </h3>
             <p style="font-size:0.86rem;color:#475569;margin:0;">
               ${isLearningMode
-                ? 'Instant access to your child&#39;s 5-Axis Cognitive Radar, Top 2 Study Bottleneck Diagnosis, 4-Week Feynman &amp; Cornell Action Plan, and 4 Printable Cognitive Worksheets.'
-                : 'Instant access to your child&#39;s US CDC 2000 &amp; WHO Height Trajectory, 3-Scenario Adult Height Prediction, rhGH Injection ROI Verdict, 24h Sleep HGH Simulator, and Printable Growth Trackers.'}
+                ? 'Instant access to your child&#39;s 5-Axis Cognitive Radar, Top 2 Study Bottleneck Analysis, 4-Week Feynman &amp; Cornell Action Plan, and 4 Printable Cognitive Worksheets.'
+                : 'Instant access to your child&#39;s US CDC 2000 &amp; WHO Height Trajectory, 3-Scenario Adult Height Projection, Peer-Reviewed Literature Summary, 24h Sleep Rhythm Simulator, and Printable Growth Trackers.'}
             </p>
           </div>
         </div>
@@ -4015,11 +4015,11 @@ ${isMasked ? `
               ${isLearningMode ? `
               ✓ Full 5-Axis Brain LQ &amp; Study Bottleneck Report<br>
               ✓ Custom 4-Week Feynman &amp; Bar-Modeling Plan<br>
-              ✓ Printable Clinical PDF + 4 Cognitive Worksheets
+              ✓ Printable Summary PDF + 4 Cognitive Worksheets
               ` : `
-              ✓ Full US CDC 2000 Adult Height + rhGH Paper Report<br>
-              ✓ 24h Sleep HGH Simulator &amp; Weight-Based Ca/D3/K2 Rx<br>
-              ✓ Printable Hospital-Style PDF + 3 Growth Trackers
+              ✓ Full US CDC 2000 Adult Height + Literature Review<br>
+              ✓ 24h Sleep HGH Simulator &amp; Weight-Matched Ca/D3/K2 Guide<br>
+              ✓ Printable 2-Page Growth Summary PDF + 3 Growth Trackers
               `}
             </div>
           </label>
@@ -4044,10 +4044,10 @@ ${isMasked ? `
               ${isLearningMode ? `
               ✓ <strong>Monthly 30-Day 5-Axis Brain LQ Re-Calibration</strong><br>
               ✓ <strong>Cycles 1–6 Progressive Monthly Worksheets</strong><br>
-              ✓ <strong>Unlimited Sibling Profiles (3+)</strong> &amp; Dynamic DHA Dosing
+              ✓ <strong>Unlimited Sibling Profiles (3+)</strong> &amp; Daily DHA Reference Guide
               ` : `
               ✓ <strong>Monthly 30-Day Height Velocity (cm/yr) Re-Scans</strong><br>
-              ✓ <strong>Auto-Updated Weight-Matched Ca/D3/K2/Zinc Dosing</strong><br>
+              ✓ <strong>Auto-Updated Weight-Matched Ca/D3/K2/Zinc Reference Guide</strong><br>
               ✓ <strong>Physis Fusion Watch + Unlimited Sibling Profiles (3+)</strong>
               `}
             </div>
@@ -4212,22 +4212,22 @@ ${isMasked ? `
           <span>💳 Visa · Mastercard · Amex · Apple Pay · Google Pay · PayPal</span>
         </div>
 
-        <!-- Above-the-Fold Section 01 Free Starter Rx (iHerb IPZ1547 & Amazon kidfit-20) -->
+        <!-- Above-the-Fold Section 01 Free Starter Guide (iHerb IPZ1547 & Amazon kidfit-20) -->
         <div id="kidsfit-above-fold-affiliate-kit" style="display:none !important;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.5rem;">
-            <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Rx (Weight-Proportioned for ${fmtWt(weightKg)}):</span>
+            <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Guide (Weight-Proportioned for ${fmtWt(weightKg)}):</span>
             <span style="font-size:0.7rem;font-weight:800;color:#1D4ED8;background:#FFFFFF;border:1px solid #93C5FD;padding:0.12rem 0.5rem;border-radius:9999px;">Free Unlocked Kit · iHerb &amp; Amazon</span>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem;">
             <a href="https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','iHerb ChildLife Ca Citrate + D3/K2 (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
-              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🌿 Official iHerb Rx (Code: IPZ1547)</div>
+              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🌿 Official iHerb Pick (Code: IPZ1547)</div>
               <div style="font-size:0.8rem;font-weight:900;color:#0F172A;margin:0.12rem 0;">Liquid Ca Citrate (${caMg} mg) + D3 (${d3Iu} IU)</div>
               <div style="font-size:0.71rem;font-weight:800;color:#1D4ED8;">Shop Pediatric Bone Matrix on iHerb ↗</div>
             </a>
             <a href="https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('learning','iHerb Nordic Naturals Kids DHA + Mg (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
-              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🧠 Official iHerb Neuro Rx (IPZ1547)</div>
+              <div style="font-size:0.71rem;font-weight:900;color:#059669;">🧠 Official iHerb Neuro Pick (IPZ1547)</div>
               <div style="font-size:0.8rem;font-weight:900;color:#0F172A;margin:0.12rem 0;">Prefrontal Myelin DHA &amp; N3 Sleep Mg</div>
-              <div style="font-size:0.71rem;font-weight:800;color:#1D4ED8;">Shop Focus &amp; Deep-Sleep Rx on iHerb ↗</div>
+              <div style="font-size:0.71rem;font-weight:800;color:#1D4ED8;">Shop Focus &amp; Deep-Sleep Picks on iHerb ↗</div>
             </a>
             <a href="https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&amp;tag=kidfit-20" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','Amazon Kids Dead-Hang Bar &amp; Posture Kit (kidfit-20)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:10px;padding:0.55rem 0.75rem;display:block;">
               <div style="font-size:0.71rem;font-weight:900;color:#1D4ED8;">📦 Official Amazon US Pick (kidfit-20)</div>
@@ -4356,22 +4356,22 @@ ${isMasked ? `
           </div>
         </div>
 
-        <!-- Unlocked Section 01 Clinical Bio-Nutrition & Posture Starter Kit (Dual-Track Affiliate Monetization: iHerb IPZ1547 & Amazon kidfit-20) -->
+        <!-- Unlocked Section 01 Bio-Nutrition & Posture Starter Kit (Dual-Track Affiliate Monetization: iHerb IPZ1547 & Amazon kidfit-20) -->
         <div id="kidsfit-unlocked-section01-affiliate-kit" style="margin-top:0.9rem;padding:0.9rem 1rem;background:linear-gradient(135deg,#F0FDF4 0%,#EFF6FF 100%);border:1.5px solid #86EFAC;border-radius:14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.55rem;">
-            <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Rx: Clinician-Picked Bio-Nutrition &amp; Growth Tools</span>
+            <span style="font-size:0.82rem;font-weight:900;color:#065F46;">🌿 Section 01 Free Starter Guide: Editor-Picked Bio-Nutrition &amp; Growth Tools</span>
             <span style="font-size:0.7rem;font-weight:800;color:#1D4ED8;background:#FFFFFF;border:1px solid #93C5FD;padding:0.12rem 0.5rem;border-radius:9999px;">Unlocked for All Parents</span>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.55rem;">
             <a href="https://www.iherb.com/search?kw=ChildLife+Liquid+Calcium+Magnesium+Vitamin+D3+K2&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','iHerb ChildLife Ca Citrate + D3/K2 (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.6rem 0.75rem;display:block;">
-              <div style="font-size:0.72rem;font-weight:900;color:#059669;">🌿 Official iHerb Rx (Code: IPZ1547)</div>
+              <div style="font-size:0.72rem;font-weight:900;color:#059669;">🌿 Official iHerb Pick (Code: IPZ1547)</div>
               <div style="font-size:0.82rem;font-weight:900;color:#0F172A;margin:0.15rem 0;">Liquid Ca Citrate + D3/K2 + Zinc</div>
               <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;">Shop Pediatric Bone Matrix on iHerb ↗</div>
             </a>
             <a href="https://www.iherb.com/search?kw=Nordic+Naturals+Children+DHA+Omega+3+Magnesium&amp;rcode=IPZ1547" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('learning','iHerb Nordic Naturals Kids DHA + Mg (IPZ1547)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:10px;padding:0.6rem 0.75rem;display:block;">
-              <div style="font-size:0.72rem;font-weight:900;color:#059669;">🧠 Official iHerb Neuro Rx (IPZ1547)</div>
+              <div style="font-size:0.72rem;font-weight:900;color:#059669;">🧠 Official iHerb Neuro Pick (IPZ1547)</div>
               <div style="font-size:0.82rem;font-weight:900;color:#0F172A;margin:0.15rem 0;">Prefrontal Myelin DHA &amp; N3 Sleep Mg</div>
-              <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;">Shop Focus &amp; Deep-Sleep Rx on iHerb ↗</div>
+              <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;">Shop Focus &amp; Deep-Sleep Picks on iHerb ↗</div>
             </a>
             <a href="https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&amp;tag=kidfit-20" target="_blank" rel="noopener noreferrer" onclick="window.trackKidsFitAffiliateClick('growth','Amazon Kids Dead-Hang Bar &amp; Posture Kit (kidfit-20)',this.href)" style="text-decoration:none;background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:10px;padding:0.6rem 0.75rem;display:block;">
               <div style="font-size:0.72rem;font-weight:900;color:#1D4ED8;">📦 Official Amazon US Pick (kidfit-20)</div>
@@ -5265,8 +5265,8 @@ ${isMasked ? `
     },
     {
       id: 'A3_RHGH_20K_ROI_ANCHOR',
-      badge: 'COCHRANE &amp; BMJ ROI VERDICT · $8.99 PROTOCOL VS. $20,000/YR rhGH',
-      sub: 'Clinical meta-analyses show lifestyle sleep HGH, bioavailable Ca/D3/K2/Zinc, and Feynman/Bar-Model protocols recover +1.5 to +3.1 inches and +150% recall without $20,000/yr injections.',
+      badge: 'COCHRANE &amp; BMJ LITERATURE REVIEW · $8.99 WORKBOOK VALUE',
+      sub: 'Peer-reviewed studies highlight how consistent 10 PM deep sleep, daily Ca/D3/K2/Zinc intake, and Feynman/Bar-Model study habits support healthy growth trajectories and recall.',
       recPlan: 'single'
     }
   ];
@@ -5390,7 +5390,7 @@ ${isMasked ? `
           '<button type="button" onclick="var m=document.getElementById(\'kidsfit-embedded-ls-iframe-modal\');if(m)m.remove();" style="background:#1E293B;color:#FFFFFF;border:1px solid #475569;border-radius:9999px;width:30px;height:30px;font-weight:900;cursor:pointer;">✕</button>' +
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
-          '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter clinical dossier &amp; printable 2-page PDF:</span>' +
+          '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter growth workbook &amp; printable 2-page PDF:</span>' +
           '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
@@ -5452,7 +5452,7 @@ ${isMasked ? `
     const priceStr = isPass ? '$19.99' : '$8.99';
     const planTitle = isPass
       ? '6-Month Growth & Brain LQ Unlimited Pass'
-      : 'Single Child Full Clinical Report & Printable PDF Pass';
+      : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
     const lsBuyUrl = getActiveCheckoutUrl(selectedPlan);
 
     const titleEl = document.getElementById('checkout-modal-plan-title');
@@ -5498,7 +5498,7 @@ ${isMasked ? `
     const priceStr = selectedPlan === 'pass' ? '$19.99' : '$8.99';
     const planTitle = selectedPlan === 'pass'
       ? '6-Month Growth & Brain LQ Unlimited Pass'
-      : 'Single Child Full Clinical Report & Printable PDF Pass';
+      : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
     const lsBuyUrl = getActiveCheckoutUrl(selectedPlan);
     const loggedInUser = getLoggedInUser();
     const defaultEmail = (loggedInUser && loggedInUser.email) || '';
@@ -5553,10 +5553,10 @@ ${isMasked ? `
             <span style="font-size:0.66rem;font-weight:800;background:#10B981;color:#FFFFFF;padding:0.1rem 0.45rem;border-radius:9999px;">FREE 7-DAY UNLOCK</span>
           </div>
           <p style="font-size:0.74rem;color:#1E293B;line-height:1.4;margin:0 0 0.5rem 0;">
-            Want to test the unlocked 7-chapter clinical dossier &amp; Printable 2-Page Hospital PDF before billing (or while reviewing Store #296100 deliverables)? Activate an instant 7-Day Preview Pass:
+            Want to test the unlocked 7-chapter growth workbook &amp; Printable 2-Page Summary PDF before billing (or while reviewing Store #296100 deliverables)? Activate an instant 7-Day Preview Pass:
           </p>
           <button type="button" id="btn-claim-instant-founding-pass" onclick="window.claimKidsFitInstantFoundingPass('modal_direct')" style="width:100%;padding:0.68rem 0.85rem;border-radius:10px;border:none;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;font-size:0.84rem;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(5,150,105,0.24);">
-            ⚡ Activate Free 7-Day Clinical Founding Pass &amp; Unlock PDF Now →
+            ⚡ Activate Free 7-Day Founding Preview Pass &amp; Unlock PDF Now →
           </button>
         </div>
 
