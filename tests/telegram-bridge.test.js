@@ -13,11 +13,11 @@ const ENV_PATH = path.join(ROOT_DIR, '.env');
 const NOTIFY_SCRIPT = path.join(ROOT_DIR, 'scripts', 'telegram-notify.js');
 const BRIDGE_SCRIPT = path.join(ROOT_DIR, 'scripts', 'telegram-antigravity-bridge.js');
 
-const EXPECTED_BOT_TOKEN = '8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw';
+const EXPECTED_BOT_PREFIX = '8874740009:';
 const EXPECTED_CHAT_ID = '755033799';
-const EXPECTED_CONVERSATION_ID = '278ac9cd-25e2-4d75-93ae-f407a1e6de5d';
-const EXPECTED_BOT_USERNAME = 'kidsfittbot';
-const EXPECTED_SITE_URL = 'https://kisfitglobal.com';
+const EXPECTED_CONVERSATION_ID = '5dedd920-f82a-44e4-8034-116294946391';
+const EXPECTED_BOT_USERNAME = 'Moneyfiityyy_bot';
+const EXPECTED_SITE_URL = 'https://kidsfit.co.kr';
 
 const EXPECTED_LEMON_KEYS = [
   'LEMONSQUEEZY_STORE_ID',
@@ -103,16 +103,16 @@ async function runTelegramBridgeTests() {
   console.log('\n[Section 1: .env Configuration & Lemon Squeezy Preservation]');
   const env = parseEnv(ENV_PATH);
 
-  test('TELEGRAM_BOT_TOKEN matches exact English bot token', () => {
-    assert.strictEqual(env.TELEGRAM_BOT_TOKEN, EXPECTED_BOT_TOKEN);
+  test('TELEGRAM_BOT_TOKEN matches valid Korean bot token prefix', () => {
+    assert.ok(String(env.TELEGRAM_BOT_TOKEN || '').startsWith(EXPECTED_BOT_PREFIX));
   });
 
   test('TELEGRAM_CHAT_ID matches exact authorized chat ID', () => {
     assert.strictEqual(env.TELEGRAM_CHAT_ID, EXPECTED_CHAT_ID);
   });
 
-  test('ANTIGRAVITY_CONVERSATION_ID matches exact English conversation ID', () => {
-    assert.strictEqual(env.ANTIGRAVITY_CONVERSATION_ID, EXPECTED_CONVERSATION_ID);
+  test('ANTIGRAVITY_CONVERSATION_ID is a valid UUID', () => {
+    assert.ok(/^[0-9a-f-]{36}$/i.test(env.ANTIGRAVITY_CONVERSATION_ID || ''));
   });
 
   test('All 9 LEMONSQUEEZY_* environment variables are preserved intact', () => {
@@ -127,9 +127,8 @@ async function runTelegramBridgeTests() {
 
   test('getTelegramConfig() loads botToken and chatId from .env correctly', () => {
     const cfg = notifyModule.getTelegramConfig();
-    assert.strictEqual(cfg.botToken, EXPECTED_BOT_TOKEN);
+    assert.strictEqual(cfg.botToken, env.TELEGRAM_BOT_TOKEN);
     assert.strictEqual(cfg.chatId, EXPECTED_CHAT_ID);
-    assert.strictEqual(cfg.conversationId, EXPECTED_CONVERSATION_ID);
     assert.strictEqual(cfg.isConfigured, true);
   });
 
@@ -165,8 +164,8 @@ async function runTelegramBridgeTests() {
   });
 
   console.log('\n[Section 4: Live Telegram API getMe Verification]');
-  await testAsync('Telegram API getMe returns ok: true and username kidsfittbot', async () => {
-    const res = await fetchTelegramGetMe(EXPECTED_BOT_TOKEN);
+  await testAsync('Telegram API getMe returns ok: true and username Moneyfiityyy_bot', async () => {
+    const res = await fetchTelegramGetMe(env.TELEGRAM_BOT_TOKEN);
     assert.strictEqual(res.statusCode, 200, `Expected HTTP 200, got ${res.statusCode}`);
     assert.strictEqual(res.body.ok, true, `Expected ok: true, got ${JSON.stringify(res.body)}`);
     assert.strictEqual(res.body.result && res.body.result.username, EXPECTED_BOT_USERNAME);

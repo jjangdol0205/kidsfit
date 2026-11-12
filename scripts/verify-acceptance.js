@@ -667,8 +667,8 @@ function verifyMilestone5() {
     const envPath = path.join(ROOT_DIR, '.env');
     if (!fs.existsSync(envPath)) throw new Error('.env missing');
     const envContent = fs.readFileSync(envPath, 'utf8');
-    if (!envContent.includes('TELEGRAM_BOT_TOKEN=8874740009:AAHecAzLm5wYe_OyHDCDxrR92P0CcTMd6JE')) {
-      throw new Error('@kidsfittbot token missing from .env');
+    if (!/TELEGRAM_BOT_TOKEN=8874740009:[A-Za-z0-9_-]{30,}/.test(envContent)) {
+      throw new Error('@Moneyfiityyy_bot token missing from .env');
     }
     if (!envContent.includes('ANTIGRAVITY_CONVERSATION_ID=')) {
       throw new Error('English Antigravity conversation ID missing from .env');

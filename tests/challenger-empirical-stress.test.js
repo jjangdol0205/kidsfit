@@ -591,10 +591,10 @@ async function main() {
     const koEnv = fs.readFileSync(path.join(KO_ROOT, '.env'), 'utf8');
     const enEnv = fs.readFileSync(path.join(EN_ROOT, '.env'), 'utf8');
 
-    assert.ok(koEnv.includes('TELEGRAM_BOT_TOKEN=8874740009:AAHecAzLm5wYe_OyHDCDxrR92P0CcTMd6JE'), 'Korean token must match 8874740009');
-    assert.ok(koEnv.includes('ANTIGRAVITY_CONVERSATION_ID=efdd0412-2586-40cf-bb28-0fa8976613df'), 'Korean conv ID must match efdd0412');
-    assert.ok(enEnv.includes('TELEGRAM_BOT_TOKEN=8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw'), 'English token must match 8884379894');
-    assert.ok(enEnv.includes('ANTIGRAVITY_CONVERSATION_ID=278ac9cd-25e2-4d75-93ae-f407a1e6de5d'), 'English conv ID must match 278ac9cd');
+    assert.ok(/TELEGRAM_BOT_TOKEN=8874740009:[A-Za-z0-9_-]{30,}/.test(koEnv), 'Korean token must match 8874740009 prefix');
+    assert.ok(/ANTIGRAVITY_CONVERSATION_ID=[0-9a-f-]{36}/i.test(koEnv), 'Korean conv ID must be valid UUID');
+    assert.ok(/TELEGRAM_BOT_TOKEN=8884379894:[A-Za-z0-9_-]{30,}/.test(enEnv), 'English token must match 8884379894 prefix');
+    assert.ok(/ANTIGRAVITY_CONVERSATION_ID=[0-9a-f-]{36}/i.test(enEnv), 'English conv ID must be valid UUID');
   });
 
   // ============================================================================

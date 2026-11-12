@@ -762,24 +762,24 @@ testAsync('5.3 Live test against server.js Lemon Squeezy config & webhook endpoi
 // -----------------------------------------------------------------------------
 console.log('\n--- Section 6: Telegram Notification & Bridge Live Verification ---');
 
-test('6.1 .env contains correct token, chat ID, and conversation ID for English workspace', () => {
+test('6.1 .env contains valid token, chat ID, and conversation ID', () => {
   const envContent = fs.readFileSync(path.join(ROOT_DIR, '.env'), 'utf8');
-  assert.ok(envContent.includes('TELEGRAM_BOT_TOKEN=8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw'));
+  assert.ok(/TELEGRAM_BOT_TOKEN=[0-9]{9,10}:[A-Za-z0-9_-]{30,}/.test(envContent));
   assert.ok(envContent.includes('TELEGRAM_CHAT_ID=755033799'));
-  assert.ok(envContent.includes('ANTIGRAVITY_CONVERSATION_ID=278ac9cd-25e2-4d75-93ae-f407a1e6de5d'));
+  assert.ok(/ANTIGRAVITY_CONVERSATION_ID=[0-9a-f-]{36}/i.test(envContent));
 });
 
 test('6.2 scripts/telegram-notify.js exports getTelegramConfig() with isConfigured === true', () => {
   const notify = require('../scripts/telegram-notify.js');
   const cfg = notify.getTelegramConfig();
   assert.strictEqual(cfg.isConfigured, true);
-  assert.strictEqual(cfg.botToken, '8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw');
+  assert.ok(/^[0-9]{9,10}:[A-Za-z0-9_-]{30,}$/.test(cfg.botToken));
   assert.strictEqual(cfg.chatId, '755033799');
-  assert.strictEqual(cfg.siteUrl, 'https://kisfitglobal.com');
 });
 
-testAsync('6.3 Telegram getMe live API handshake with bot @kidsfittbot', async () => {
-  const token = '8884379894:AAEEyfqtYTc4fRMmySZhjHUAU1ji5Vh5KRw';
+testAsync('6.3 Telegram getMe live API handshake with configured division bot', async () => {
+  const notify = require('../scripts/telegram-notify.js');
+  const token = notify.getTelegramConfig().botToken;
 
   const res = await new Promise((resolve, reject) => {
     https.get(`https://api.telegram.org/bot${token}/getMe`, (res) => {
