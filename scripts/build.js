@@ -123,8 +123,8 @@ function build() {
     console.log('Copied qna/ -> dist/qna/');
   }
 
-  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, and sw.js if they exist (with EBUSY retry)
-  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt',
+  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, sw.js, and Naver/IndexNow verification files if they exist (with EBUSY retry)
+  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'naver696904f98e6ce2a823ce309436f2e2cd.html',
     'about.html',
     'privacy.html',
     'terms.html',
@@ -151,7 +151,7 @@ function build() {
     const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
     if (fs.existsSync(siblingGlobalDist)) {
       fs.mkdirSync(targetGlobalDir, { recursive: true });
-      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json'].forEach((f) => {
+      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json'].forEach((f) => {
         const srcF = path.join(siblingGlobalDist, f);
         if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
       });

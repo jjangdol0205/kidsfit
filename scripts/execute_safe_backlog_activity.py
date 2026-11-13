@@ -324,8 +324,8 @@ def try_safe_naver_kin_answer(context, item: dict, answered_urls: list) -> dict:
 
 
 def main():
-    from naver_auto_comment_and_kin_daemon import main as run_comment_and_kin
-    run_comment_and_kin()
+    print("🛡️ [Zero-Ban Safety Lock] 네이버 지식iN 무인 매크로 답변 데몬은 계정 영구 보호(Zero-Ban) 정책에 따라 차단되었습니다.")
+    return {"status": "zero_ban_locked"}
 
 
 if __name__ == "__main__":

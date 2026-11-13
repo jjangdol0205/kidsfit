@@ -442,6 +442,11 @@ def main():
             print(f"⚠️ 텔레그램 전송 경고: {e}")
 
 
+def main():
+    print("🛡️ [Zero-Ban Safety Lock] 네이버 외부 블로그 자동 댓글 투어·셀프 첫댓글 고정·지식iN 매크로는 계정 영구 보호(Zero-Ban) 정책에 따라 차단되었습니다.")
+    print("👉 공식 D.I.A.+ 순수 임상 정보 칼럼 원고는 text_automation_hq/outbox/YYYY-MM-DD/KFK/ 에서 안전하게 생성됩니다.")
+    return {"status": "zero_ban_locked"}
+
+
 if __name__ == "__main__":
-    from execute_32_community_conquest_daemon import main as run_conquest
-    run_conquest()
+    main()

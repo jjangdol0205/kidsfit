@@ -1,45 +1,83 @@
 # 키즈핏 그로스 스튜디오 (KidsFit Korea — https://kidsfit.co.kr)
 
-> 질병관리청(KDCA) 2017 소아청소년 성장도표 LMS 정밀 백분위 계산기 & 5대 두뇌 학습지수(LQ) 무료 진단 플랫폼.
-> 최종 업데이트: 2026-11-11 (KST) | 생후 0개월 신생아 ~ 만 20세 전 연령 무료 30초 진단 지원.
+> 질병관리청(KDCA) 2017 소아청소년 성장도표 LMS 정밀 백분위 계산기 & K-DST 6대 발달 · 5대 두뇌 학습지수(LQ) 무료 진단 플랫폼.
+> 최종 업데이트: 2026-11-13 (KST) | 생후 0개월 신생아 ~ 만 20세 전 연령 무료 30초 진단 지원.
 
 ## 1. 핵심 무료 진단 및 임상 가이드
 - 메인 소아성장·두뇌발달 진단 스튜디오: https://kidsfit.co.kr/
-- 소아성장·수면·영양·학습법 임상 Q&A 아카이브: https://kidsfit.co.kr/qna/
-- 에디터 큐레이션 연령별 맞춤 발달 교구 & 공식 판매처 보러가기 (혜택가 확인 지원): https://kidsfit.co.kr/?ep=1
+- 소아성장·수면·영양·학습법 임상 Q&A 아카이브: https://kidsfit.co.kr/qna/index.html
+- 에디터 큐레이션 연령별 맞춤 발달 교구 & 공식 판매처 보러가기 (혜택가 확인 지원): https://kidsfit.co.kr/qna/monthly-curation.html
 
-## 2. 주요 임상 Q&A 가이드 URL
-- https://kidsfit.co.kr/qna/free-worksheets.html
-- https://kidsfit.co.kr/qna/kr-calc-10yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-10yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-11yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-11yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-12yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-12yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-13yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-13yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-14yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-14yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-15yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-15yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-16yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-16yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-5yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-5yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-6yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-6yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-7yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-7yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-8yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-8yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-calc-9yo-boy-height.html
-- https://kidsfit.co.kr/qna/kr-calc-9yo-girl-height.html
-- https://kidsfit.co.kr/qna/kr-deep-01-elem1-age7-height-percentile-khamis-roche.html
-- https://kidsfit.co.kr/qna/kr-deep-02-elem2-age8-height-growth-velocity-bone-age.html
-- https://kidsfit.co.kr/qna/kr-deep-03-elem3-age9-precocious-puberty-girls-breast-bud.html
-- https://kidsfit.co.kr/qna/kr-deep-04-elem4-age10-height-percentile-phv-golden-time.html
-- https://kidsfit.co.kr/qna/kr-deep-05-elem5-age11-growth-spurt-boys-voice-girls-menarche.html
-- https://kidsfit.co.kr/qna/kr-deep-06-elem6-age12-middle-school-final-growth-plate-routine.html
-- https://kidsfit.co.kr/qna/kr-deep-07-10pm-deep-sleep-growth-hormone-melatonin-lux-protocol.html
-- https://kidsfit.co.kr/qna/kr-deep-08-calcium-citrate-vs-carbonate-vitamin-d3-k2-osteocalcin.html
-- https://kidsfit.co.kr/qna/kr-deep-09-picky-eater-zinc-iron-ferritin-appetite-ghrelin.html
+## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 (73종 정규화 완료)
+- [엄마표 무료 프린트 워크지 5종 (소근육 가위질·문장제 수학 도해·3줄 백지복습 노트) | 키즈핏 그로스 스튜디오](https://kidsfit.co.kr/qna/free-worksheets.html)
+- [만 10세 남아(초등 4학년(만 10세)) 평균키 140.4cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-10yo-boy-height.html)
+- [만 10세 여아(초등 4학년(만 10세)) 평균키 140.5cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-10yo-girl-height.html)
+- [만 11세 남아(초등 5학년(만 11세)) 평균키 146.5cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-11yo-boy-height.html)
+- [만 11세 여아(초등 5학년(만 11세)) 평균키 147.2cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-11yo-girl-height.html)
+- [만 12세 남아(초등 6학년(만 12세)) 평균키 153.7cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-12yo-boy-height.html)
+- [만 12세 여아(초등 6학년(만 12세)) 평균키 152.5cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-12yo-girl-height.html)
+- [만 13세 남아(중학 1학년(만 13세)) 평균키 161.2cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-13yo-boy-height.html)
+- [만 13세 여아(중학 1학년(만 13세)) 평균키 156cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-13yo-girl-height.html)
+- [만 14세 남아(중학 2학년(만 14세)) 평균키 167.3cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-14yo-boy-height.html)
+- [만 14세 여아(중학 2학년(만 14세)) 평균키 158.1cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-14yo-girl-height.html)
+- [만 15세 남아(중학 3학년(만 15세)) 평균키 171.2cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-15yo-boy-height.html)
+- [만 15세 여아(중학 3학년(만 15세)) 평균키 159.3cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-15yo-girl-height.html)
+- [만 16세 남아(고등 1학년(만 16세)) 평균키 173.2cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-16yo-boy-height.html)
+- [만 16세 여아(고등 1학년(만 16세)) 평균키 159.9cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-16yo-girl-height.html)
+- [만 5세 남아(유치원(만 5세)) 평균키 109.9cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-5yo-boy-height.html)
+- [만 5세 여아(유치원(만 5세)) 평균키 108.7cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-5yo-girl-height.html)
+- [만 6세 남아(유치원 졸업반(만 6세)) 평균키 116.6cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-6yo-boy-height.html)
+- [만 6세 여아(유치원 졸업반(만 6세)) 평균키 115.3cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-6yo-girl-height.html)
+- [만 7세 남아(초등 1학년(만 7세)) 평균키 123.1cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-7yo-boy-height.html)
+- [만 7세 여아(초등 1학년(만 7세)) 평균키 121.6cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-7yo-girl-height.html)
+- [만 8세 남아(초등 2학년(만 8세)) 평균키 129.1cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-8yo-boy-height.html)
+- [만 8세 여아(초등 2학년(만 8세)) 평균키 127.7cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-8yo-girl-height.html)
+- [만 9세 남아(초등 3학년(만 9세)) 평균키 134.8cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-9yo-boy-height.html)
+- [만 9세 여아(초등 3학년(만 9세)) 평균키 133.9cm & 질병관리청(KDCA) 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-9yo-girl-height.html)
+- [초등학교 1학년(만 7세) 남아·여아 평균키 백분위 표 & 무채혈 성인키 예측 계산법 (2026 질병관리청 기준) | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-01-elem1-age7-height-percentile-khamis-roche.html)
+- [초등학교 2학년(만 8세) 평균키·몸무게 백분위와 연간 5cm 미만 성장 정체기 돌파 프로토콜 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-02-elem2-age8-height-growth-velocity-bone-age.html)
+- [초등학교 3학년(만 9세) 여아 가슴멍울·머리냄새 초기 신호와 성조숙증 뼈나이 가속 방어 가이드 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-03-elem3-age9-precocious-puberty-girls-breast-bud.html)
+- [초등학교 4학년(만 10세) 남아·여아 평균키 백분위 표 & 사춘기 급성장기(PHV) 직전 골든타임 전략 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-04-elem4-age10-height-percentile-phv-golden-time.html)
+- [초등학교 5학년(만 11세) 평균키 백분위와 여아 초경 전후·남아 변성기 전 최종 성인키 시뮬레이션 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-05-elem5-age11-growth-spurt-boys-voice-girls-menarche.html)
+- [초등학교 6학년(만 12세) 남아·여아 평균키 백분위 표 & 성장판 닫히기 전 마지막 5cm 스퍼트 전략 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-06-elem6-age12-middle-school-final-growth-plate-routine.html)
+- [밤 10시 성장호르몬 골든타임의 진실: 시각 시계보다는 입면 후 첫 90분 서파수면(SWS)과 침실 조도 30Lux 법칙 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-07-10pm-deep-sleep-growth-hormone-melatonin-lux-protocol.html)
+- [어린이 칼슘제 고르는 법: 탄산칼슘 vs 구연산칼슘 흡수율 비교와 비타민 D3·K2(MK-7) 오스테오칼신 작용 기전 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-08-calcium-citrate-vs-carbonate-vitamin-d3-k2-osteocalcin.html)
+- [밥 안 먹는 아이(소아 편식·저체중) 원인은 아연과 저장철(페리틴) 결핍? 미각 수용체와 그렐린 회복 4주 프로토콜 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-09-picky-eater-zinc-iron-ferritin-appetite-ghrelin.html)
+- [수업시간 멍때리고 산만한 아이: ADHD 오진 부르는 아침 시리얼 혈당 스파이크와 전두엽 실행기능 식단 교정법 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-10-morning-glucose-spike-adhd-misdiagnosis-executive-function.html)
+- [연산은 빠른데 서술형 수학만 틀리는 아이: 작업기억(Working Memory) 4청크 한계와 바 모델(Bar Model) 시각화 훈련 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-11-working-memory-4chunks-singapore-math-bar-model.html)
+- [스마트폰·태블릿 거북목과 라운드숄더가 훔쳐간 숨은 키 2cm: 경추 각도별 하중 표와 학년별 책상의자 세팅 공식 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-12-forward-head-posture-turtle-neck-hidden-height-2cm.html)
+- [아파트 층간소음 걱정 없는 실내 키크는 운동: 울프의 법칙(Wolff Law) 성장판 압전 자극과 저녁 15분 점핑 루틴 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-13-apartment-noiseless-jumping-trampoline-wolffs-law-growth-plate.html)
+- [살이 키로 간다는 옛말의 함정: 소아 BMI 85백분위 이상 과체중이 뼈나이(골연령)를 1.5년 앞당기는 내분비 기전 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-14-pediatric-obesity-bmi-85percentile-leptin-bone-age-acceleration.html)
+- [어린이집·유치원 단체생활 감기 달고 사는 아이: 항생제 반복 투여 후 장내 미생물(Microbiome) 복구와 면역 성장 상관관계 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-15-daycare-frequent-colds-gut-microbiome-vitamin-d-zinc-immunity.html)
+- [코골이와 입 벌리고 자는 비염 아이(구강호흡): 아데노이드형 얼굴 변형과 서파수면 분절로 인한 성장호르몬 감소 해결법 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-16-allergic-rhinitis-mouth-breathing-adenoid-face-deep-sleep-loss.html)
+- [밤마다 다리 아프다고 우는 아이: 진짜 성장통(Growing Pains) 구별법 5가지와 칼슘·마그네슘·비타민D 완화 루틴 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-17-growing-pains-night-leg-cramps-versus-pathologic-pain-red-flags.html)
+- [부모 키가 작아도 아이는 클 수 있을까? 유전키(MPH) 공식의 한계(±8.5cm)와 Khamis-Roche 후성유전 환경 변수 +7cm의 과학 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-18-mph-genetic-height-vs-khamis-roche-epigenetic-plus-7cm.html)
+- [어린이 키성장 영양제 성분 완전 분석: 식약처 인정 HT042(황기추출물) vs L-아르기닌 vs 칼마디K2 연령별·체질별 선택 기준 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-19-ht042-astragalus-extract-vs-arginine-calcium-supplement-guide.html)
+- [초등 공부방 환경 의학 가이드: 눈 피로 막는 CRI 95·4000K 조명 세팅과 AI 스마트학습(웅진스마트올·엘리하이) 0원 무료체험 비교 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-20-elementary-study-room-lighting-cri95-smart-learning-free-trial-guide.html)
+- [[생후 12~216개월] 설문 없이 바로 보는 월령별 영양제·운동기구·두뇌교구·필독서 추천템 전용관 | 키즈핏](https://kidsfit.co.kr/qna/monthly-curation.html)
+- [탈(脫)네이버 6대 외부채널 자동 발행 &amp; 커뮤니티 확산 스튜디오 | KIDS-FIT](https://kidsfit.co.kr/qna/omni-channel-kit.html)
+- [초등 아이 키 백분위 & 부모 유전 예상키(MPH) 계산법과 밤 10시 수면 골든타임 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-01.html)
+- [밤마다 무릎·종아리 아파하는 어린이 야간 성장통 원인과 5분 온찜질·칼슘·마그네슘 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-02.html)
+- [고기·채소 편식하고 우유 마시면 배 아파하는 입 짧은 아이 고밀도 영양 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-03.html)
+- [사춘기 2차 성징 신호와 골연령(뼈나이) 가속 늦추는 숨은 키 7cm 집중 방어 플랜 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-04.html)
+- [책상 거북목·구부정한 자세 교정과 문틀 철봉 데드행으로 숨은 키 +1.8cm 복원하기 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-05.html)
+- [만 2~3세 손끝 소근육 민감기(몬테소리) vs 만 4~5세 입체 공간지각(은물·가베) 중복 지출 없는 선택 기준 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-06.html)
+- [단순 연산은 100점인데 문장제·서술형 수학만 틀리는 아이 '여백 10초 도식화' 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-07.html)
+- [긴 줄글 책 읽기 싫어하는 초등 아이 문해력·어휘력 +42% 키우는 15분 질문독서 루틴 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-08.html)
+- [스마트폰·유튜브 숏폼 과몰입 리셋 & 무소음 시각 타이머 20분 전두엽 집중력 훈련 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-09.html)
+- [학원 다녀오면 다 안다는데 시험 보면 잊어버리는 아이 '3분 파인만 3줄 백지복습' 루틴 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-10.html)
+- [만 2~3세(24~47개월) 남아·여아 평균키·몸무게 백분위 & 소근육 몬테소리 교구 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-11.html)
+- [만 4~5세(48~71개월) 남아·여아 평균키·몸무게 백분위 & 프뢰벨 가베·자석교구 시기 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-12.html)
+- [만 6~7세(초등 1학년) 평균키·몸무게 백분위 & 입학 전 한글·수리 전두엽 집중력 루틴 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-13.html)
+- [만 8~9세(초2~초3) 남아·여아 평균키·몸무게 백분위 & 성조숙증 초기 신호 체크표 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-14.html)
+- [만 10~11세(초4~초5) 사춘기 급성장기(PHV) 숨은 키 7cm 도약 골든타임 집중 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-15.html)
+- [만 12~15세(초6~중학생) 성장판 후기 마지막 숨은 키 3cm 척추 감압 & 중등 백지복습법 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-16.html)
+- [HT042(황기추출물 등 복합물) 어린이 키성장 영양제 임상논문 팩트체크 & 효과 보는 복용 시기 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-17.html)
+- [어린이 구연산칼슘·어골칼슘 vs 탄산칼슘 흡수율 비교 & 비타민D3·K2 황금 배합비 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-18.html)
+- [초등 거북목·말린 어깨 교정 독서대 각도 & 문틀 철봉 데드행 숨은 키 2cm 복원 루틴 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-19.html)
+- [스마트폰·유튜브 쇼츠 도파민 과몰입 아이 전두엽 회복 '14일 도파민 디톡스 루틴' | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-20.html)
+- [초등 어휘력·문해력 상위 1% 만드는 저녁 식탁 15분 '하브루타 열린 질문법 3단계' | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-21.html)
+- [초등 수학 연산은 빨라도 응용·도형·입체 문제만 막힐 때 '3단계 구체물·도식화 처방' | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-22.html)
+- [보건복지부 K-DST 영유아 발달선별검사 6대 영역(대근육·소근육·인지·언어·사회성·자조) 체크리스트 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-23.html)
+- [서울·경기·수도권 주말 아이와 가볼만한 국립과학관·박물관·미술관 도슨트 코스 20선 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-24.html)
+- [부산·대구·대전·광주·전국 권역별 주말 아이와 가볼만한 역사·과학·자연 체험 학습 코스 20선 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-25.html)
