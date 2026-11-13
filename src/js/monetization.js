@@ -156,15 +156,42 @@
     'temperament_learning'
   ];
 
-  function formatPartnerUrl(rawUrl, platform = '') {
+  function formatPartnerUrl(rawUrl, platform = '', subId = 'kidsfit') {
     if (!rawUrl) return '';
     const pLower = String(platform || '').toLowerCase();
     const config = getAffiliateConfig();
     const coupangTag = config.coupang || 'AF7865143';
     const iherbTag = config.iherb || 'IPZ1547';
     const cpaTag = config.linkprice || 'A100708867';
+    const safeSub = encodeURIComponent(subId || 'kidsfit');
 
     if (pLower.includes('coupang') || rawUrl.includes('coupang.com')) {
+      if (rawUrl.includes('link.coupang.com/re/AFFS')) {
+        if (!rawUrl.includes('lptag=')) {
+          const sep = rawUrl.includes('?') ? '&' : '?';
+          return `${rawUrl}${sep}lptag=${coupangTag}`;
+        }
+        return rawUrl;
+      }
+      const prodMatch = rawUrl.match(/coupang\.com\/vp\/products\/(\d+)/i);
+      if (prodMatch) {
+        const pageKey = prodMatch[1];
+        const itemMatch = rawUrl.match(/[?&]itemId=(\d+)/i);
+        const vendorMatch = rawUrl.match(/[?&]vendorItemId=(\d+)/i);
+        let affUrl = `https://link.coupang.com/re/AFFSDP?lptag=${coupangTag}&subid=${safeSub}&pageKey=${pageKey}`;
+        if (itemMatch) affUrl += `&itemId=${itemMatch[1]}`;
+        if (vendorMatch) affUrl += `&vendorItemId=${vendorMatch[1]}`;
+        return affUrl;
+      }
+      const searchMatch = rawUrl.match(/coupang\.com\/np\/search\?([^#]+)/i);
+      if (searchMatch) {
+        const qMatch = searchMatch[1].replace(/&amp;/g, '&').match(/(?:^|&)q=([^&]+)/i);
+        const subMatch = searchMatch[1].replace(/&amp;/g, '&').match(/(?:^|&)subid=([^&]+)/i);
+        if (qMatch) {
+          const finalSub = subMatch ? subMatch[1] : safeSub;
+          return `https://link.coupang.com/re/AFFSRP?lptag=${coupangTag}&subid=${finalSub}&pageKey=${qMatch[1]}`;
+        }
+      }
       if (!rawUrl.includes('lptag=')) {
         const sep = rawUrl.includes('?') ? '&' : '?';
         return `${rawUrl}${sep}lptag=${coupangTag}`;

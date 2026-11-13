@@ -328,7 +328,7 @@
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
 
     const enc = (s) => encodeURIComponent(s || '').replace(/'/g, '%27');
-    const cpUrl = `https://www.coupang.com/np/search?q=${enc(coupangQuery)}&channel=user&lptag=${cpTag}&subid=kidsfit`;
+    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${enc(coupangQuery)}`;
     const ihUrl = `https://kr.iherb.com/search?kw=${enc(iherbQuery)}&rcode=${ihCode}`;
     const amzUrl = `https://www.amazon.com/s?k=${enc(iherbQuery)}&tag=${amzTag}`;
     const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${enc(yes24Query || coupangQuery)}`;
@@ -2483,7 +2483,7 @@
                 ${isEn ? sub.specEn : sub.specKo}
               </div>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                <a href="https://cshop.naver.com/paradiseshop" target="_blank" rel="noopener" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
                   🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
                 </a>
                 <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
@@ -2522,7 +2522,7 @@
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-              <a href="https://cshop.naver.com/paradiseshop" target="_blank" rel="noopener" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
+              <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
                 🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
               </a>
               <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.48rem 0.65rem; border-radius: 8px; text-decoration: none; text-align: center;">
@@ -3226,7 +3226,7 @@
                   ${item.whyKo || item.specKo}
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="https://cshop.naver.com/paradiseshop" target="_blank" rel="noopener" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
                   </a>
                   <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; text-decoration: none; text-align: center; font-size: 0.8rem; font-weight: 900; border-radius: 8px;">🚀 쿠팡 로켓배송 혜택가 확인</a>
