@@ -1,6 +1,6 @@
 # KISFIT Bio Labs — Global Pediatric Auxology & Brain LQ Clinical Studio (https://kisfitglobal.com)
 
-> Updated: 2026-11-13 | US CDC 2000 LMS Growth Standards & Khamis-Roche Non-Radiographic Stature Prediction (+-2.1 cm SEE).
+> Updated: 2026-11-14 | US CDC 2000 LMS Growth Standards & Khamis-Roche Non-Radiographic Stature Prediction (+-2.1 cm SEE).
 > Peer-Reviewed Clinical Corpus: 3,894+ PubMed & Pediatric Endocrine Society references.
 
 ## 1. Core Interactive Diagnostic Tools
