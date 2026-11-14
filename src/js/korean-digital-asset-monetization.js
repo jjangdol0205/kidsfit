@@ -10,6 +10,15 @@
 
   var UNLOCK_KEY = 'kidsfit_kr_digital_asset_unlocked_v1';
 
+  var NAVER_KIDS_BRANDCONNECT = {
+    icletime_fgo: 'https://brandconnect.naver.com/affiliates/1010075643260928?channelProductNo=12080461872&ac=crtshp&cid=1016094238062720',
+    lactobio_probiotics: 'https://brandconnect.naver.com/affiliates/1016189312112224?channelProductNo=2815773337&ac=crtshp&cid=1016094238062720',
+    calmadi_k2: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720',
+    bookstand_2tier: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720',
+    posture_chair: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720',
+    magnet_cube: 'https://brandconnect.naver.com/affiliates/1016189312116322?channelProductNo=11858995377&ac=crtshp&cid=1016094238062720'
+  };
+
   var RX_ESSENTIAL_ITEMS = {
     bookstand: {
       id: 'prod_ch_hot_1',
@@ -20,7 +29,9 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652'
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
+      naverCta: '🟢 Npay 적립: 2단 독서대 공식 판매처 →'
     },
     reading_workbook: {
       id: 'prod_ch_learn_1',
@@ -31,7 +42,9 @@
       cta: '📚 공식 판매처 보러가기 →',
       platform: 'linkprice',
       bg: '#059669',
-      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169'
+      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
+      naverCta: '🟢 Npay 적립: 바른자세 의자 혜택가 확인 →'
     },
     lactofit_kids: {
       id: 'prod_tod_nut_1',
@@ -42,7 +55,9 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509'
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.lactobio_probiotics,
+      naverCta: '🟢 Npay 적립: 베베키즈 유산균·아연 확인 →'
     },
     ca_mg_d3_chew: {
       id: 'prod_ch_nut_1',
@@ -53,7 +68,9 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_camgd3&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426'
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_camgd3&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.icletime_fgo,
+      naverCta: '🟢 Npay 적립: 아이클타임 키성장 FGO 확인 →'
     },
     liquid_calcium: {
       id: 'prod_inf_nut_2',
@@ -64,7 +81,9 @@
       cta: '🌿 iHerb 혜택가 확인 →',
       platform: 'iherb',
       bg: '#047857',
-      url: 'https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547'
+      url: 'https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.calmadi_k2,
+      naverCta: '🟢 Npay 적립: 튼튼키즈 칼마디+K2 확인 →'
     },
     baby_focus_book: {
       id: 'prod_nb_dev_1',
@@ -75,7 +94,9 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_focusbook&pageKey=6728684571&itemId=15671650287&vendorItemId=82887200026'
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_focusbook&pageKey=6728684571&itemId=15671650287&vendorItemId=82887200026',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.magnet_cube,
+      naverCta: '🟢 Npay 적립: 미니 자석블럭 교구 확인 →'
     },
     wood_rollercoaster: {
       id: 'prod_inf_dev_1',
@@ -86,7 +107,9 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_woodbead&pageKey=8485073446&itemId=16104062785&vendorItemId=83301332924'
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_woodbead&pageKey=8485073446&itemId=16104062785&vendorItemId=83301332924',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.magnet_cube,
+      naverCta: '🟢 Npay 적립: 미니 자석블럭 교구 확인 →'
     },
     miracle_hangul: {
       id: 'prod_tod_learn_1',
@@ -97,7 +120,9 @@
       cta: '📚 공식 판매처 보러가기 →',
       platform: 'linkprice',
       bg: '#059669',
-      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F96662201'
+      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F96662201',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
+      naverCta: '🟢 Npay 적립: 2단 독서대 공식 판매처 →'
     }
   };
 
@@ -173,9 +198,16 @@
             '<strong style="display:block;font-size:0.86rem;font-weight:900;color:#0F172A;line-height:1.35;margin-bottom:0.25rem;">' + it.name + '</strong>' +
             '<p style="margin:0;font-size:0.76rem;color:#475569;line-height:1.42;">' + it.reason + '</p>' +
           '</div>' +
-          '<a href="' + it.url + '" target="_blank" rel="noopener noreferrer sponsored" data-platform="' + it.platform + '" data-product-id="' + it.id + '" style="display:flex;min-height:42px;align-items:center;justify-content:center;background:' + it.bg + ';color:#FFFFFF;font-size:0.8rem;font-weight:900;border-radius:9px;text-decoration:none;padding:0.45rem 0.7rem;margin-top:0.25rem;">' +
-            it.cta +
-          '</a>' +
+          '<div style="display:flex;flex-direction:column;gap:0.35rem;margin-top:0.25rem;">' +
+            '<a href="' + it.url + '" target="_blank" rel="noopener noreferrer sponsored" data-platform="' + it.platform + '" data-product-id="' + it.id + '" style="display:flex;min-height:42px;align-items:center;justify-content:center;background:' + it.bg + ';color:#FFFFFF;font-size:0.8rem;font-weight:900;border-radius:9px;text-decoration:none;padding:0.45rem 0.7rem;">' +
+              it.cta +
+            '</a>' +
+            (it.naverUrl ? (
+              '<a href="' + it.naverUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-platform="naver_brandconnect" data-product-id="' + it.id + '_npay" style="display:flex;min-height:38px;align-items:center;justify-content:center;background:#ECFDF5;border:1.5px solid #03C75A;color:#065F46;font-size:0.74rem;font-weight:900;border-radius:9px;text-decoration:none;padding:0.38rem 0.6rem;">' +
+                (it.naverCta || '🟢 Npay 공식관 적립 · 혜택가 확인 →') +
+              '</a>'
+            ) : '') +
+          '</div>' +
         '</div>'
       );
     }).join('');
