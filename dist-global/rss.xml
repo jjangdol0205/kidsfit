@@ -1,116 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>KISFIT Bio Labs | Pediatric Growth &amp; Neuro-Nutrition Clinical Research</title>
+    <title>KISFIT Bio Labs | US CDC 2000 Pediatric Growth &amp; Khamis-Roche Clinical Research</title>
     <link>https://kisfitglobal.com/</link>
     <atom:link href="https://kisfitglobal.com/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Peer-reviewed pediatric auxology, US CDC 2000 height percentile charts, Khamis-Roche adult height prediction, and 5-Axis Brain LQ clinical guides.</description>
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
+    <description>Peer-reviewed pediatric auxology, US CDC 2000 LMS height percentile charts, Khamis-Roche adult stature prediction, and 5-Axis Brain LQ clinical guides.</description>
     <language>en-US</language>
-    <lastBuildDate>Sat, 14 Nov 2026 12:14:30 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2026 13:00:42 +0000</lastBuildDate>
     <item>
-      <title><![CDATA[KISFIT Bio Labs — Free 60-Sec US CDC 2000 Height Percentile & Khamis-Roche Adult Stature Studio]]></title>
-      <link>https://kisfitglobal.com/</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Interactive US CDC 2000 LMS height percentile calculator, Khamis-Roche adult stature projection (±2.1 cm SEE), and 5-Axis Brain Learning Quotient (LQ) diagnostic studio.]]></description>
+      <title><![CDATA[Child Height Percentiles, Mid-Parental Height (MPH) Formula & The 10 PM Deep Sleep Golden Window]]></title>
+      <link>https://kisfitglobal.com/qna/topic-01.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-01.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[A child]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 3-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-3yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-3yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 3-year-old boy: 50th percentile average is 3' 1.5" (37.5 in) (95.2 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Pediatric Nocturnal Growing Pains in Knees and Calves: 5-Minute Warm Compress, Calcium & Magnesium Protocol]]></title>
+      <link>https://kisfitglobal.com/qna/topic-02.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-02.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Nocturnal growing pains are benign neuromuscular traction signals occurring when rapid daytime longitudinal bone growth outpaces surrounding muscular...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 3-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-3yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-3yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 3-year-old girl: 50th percentile average is 3' 1.0" (37.0 in) (94.0 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Picky Eating, Meat/Vegetable Aversion & Milk-Induced Stomach Distress: High-Density Pediatric Nutrition]]></title>
+      <link>https://kisfitglobal.com/qna/topic-03.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-03.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Coercive feeding triggers gustatory sensory defense mechanisms and cortisol spikes; restoring taste bud receptor sensitivity with elemental zinc...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 4-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-4yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-4yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 4-year-old boy: 50th percentile average is 3' 4.3" (40.3 in) (102.3 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Pubertal Secondary Sex Characteristics & Bone Age Acceleration: Preserving +3 Inches of Growth Potential]]></title>
+      <link>https://kisfitglobal.com/qna/topic-04.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-04.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Early epiphyseal maturation and premature growth plate closure reduces final adult height by 2 to 4 inches; maintaining visceral adiposity below the...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 4-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-4yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-4yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 4-year-old girl: 50th percentile average is 3' 3.5" (39.5 in) (100.3 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Desk Forward Head Posture & Spinal Slouching: Doorway Dead-Hangs for Hidden +0.7 Inch Restoration]]></title>
+      <link>https://kisfitglobal.com/qna/topic-05.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-05.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[A 30-degree forward neck tilt increases cervical spine compressive load from 12 lbs to 40 lbs, causing intervertebral disc flattening and thoracic...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 5-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-5yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-5yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 5-year-old boy: 50th percentile average is 3' 7.0" (43.0 in) (109.2 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Montessori Fine-Motor Tactile Window (Ages 2-3) vs. Froebel Spatial Blocks (Ages 4-5): Smart Educational Investing]]></title>
+      <link>https://kisfitglobal.com/qna/topic-06.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-06.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Sensory brain development follows a strict neurological sequence: ages 2-3 prioritize fine-motor finger dexterity corresponding to 30% of the primary...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 5-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-5yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-5yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 5-year-old girl: 50th percentile average is 3' 6.5" (42.5 in) (107.9 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Fluent in Arithmetic but Struggling with Math Word Problems: The 10-Second Margin Diagramming Strategy]]></title>
+      <link>https://kisfitglobal.com/qna/topic-07.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-07.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Failure on mathematical word problems is rarely a reading deficit; it occurs when raw textual parsing overloads the prefrontal working memory capacity...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 6-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-6yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-6yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 6-year-old boy: 50th percentile average is 3' 9.5" (45.5 in) (115.5 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Overcoming Reluctance to Read Long Chapters: 15-Minute Inquiry-Based Dialogue to Boost Vocabulary by 42%]]></title>
+      <link>https://kisfitglobal.com/qna/topic-08.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-08.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Forcing children to write repetitive book summaries creates reading aversion; engaging in 15 minutes of interactive]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 6-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-6yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-6yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 6-year-old girl: 50th percentile average is 3' 9.3" (45.3 in) (115.1 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Smartphone & Short-Form Video Dopamine Reset: 20-Minute Silent Visual Timer for Prefrontal Focus]]></title>
+      <link>https://kisfitglobal.com/qna/topic-09.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-09.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Algorithmic 15-second video loops trigger supra-physiological dopamine spikes that downregulate D2 striatal receptors, creating ADHD-like executive...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 7-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-7yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-7yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 7-year-old boy: 50th percentile average is 3' 12.0" (48.0 in) (121.9 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Understanding in Class but Blanking on Tests: 3-Minute Feynman Blank-Sheet Retrieval Routine]]></title>
+      <link>https://kisfitglobal.com/qna/topic-10.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-10.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Re-reading produces an]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 7-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-7yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-7yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 7-year-old girl: 50th percentile average is 3' 11.9" (47.9 in) (121.6 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Toddler Milestones (Ages 2-3 / 24-47 Months): Height & Weight Growth Curves & Fine-Motor Development]]></title>
+      <link>https://kisfitglobal.com/qna/topic-11.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-11.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Between ages 2 and 3, healthy toddlers gain approximately 4.5 to 6.5 lbs (2.0 to 3.0 kg) and 3.0 to 3.5 inches (7.5 to 9.0 cm) annually; behavioral...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 8-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-8yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-8yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 8-year-old boy: 50th percentile average is 4' 2.4" (50.4 in) (128.0 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Preschool Milestones (Ages 4-5 / 48-71 Months): Growth Trajectories & Spatial-Math Foundations]]></title>
+      <link>https://kisfitglobal.com/qna/topic-12.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-12.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Preschoolers maintain a steady growth pace of 2.5 to 3.0 inches (6.0 to 7.5 cm) per year; cognitive development shifts from 2D sensory play to 3D...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 8-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-8yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-8yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 8-year-old girl: 50th percentile average is 4' 2.2" (50.2 in) (127.5 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[First Grade Milestones (Ages 6-7 / 72-95 Months): School Transition, Growth & Attention Stamina]]></title>
+      <link>https://kisfitglobal.com/qna/topic-13.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-13.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Entering first grade introduces postural fatigue and cognitive transition stress; pairing ergonomic 25-degree desk reading stands with 20-minute visual...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 9-Year-Old Boy (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-9yo-boy-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-9yo-boy-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 9-year-old boy: 50th percentile average is 4' 4.5" (52.5 in) (133.3 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Middle Childhood Milestones (Ages 8-9): Growth Velocity & Precocious Puberty Early Warning Signs]]></title>
+      <link>https://kisfitglobal.com/qna/topic-14.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-14.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Secondary sex characteristics appearing before age 8 in girls (breast budding) or age 9 in boys (testicular enlargement) advance bone age prematurely...]]></description>
     </item>
     <item>
-      <title><![CDATA[Average Height for a 9-Year-Old Girl (US CDC 2000 Percentile Chart & Adult Height Predictor) | KISFIT]]></title>
-      <link>https://kisfitglobal.com/qna/calc-9yo-girl-height-percentile.html</link>
-      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-9yo-girl-height-percentile.html</guid>
-      <pubDate>Sat, 14 Nov 2026 12:14:30 GMT</pubDate>
-      <description><![CDATA[Official US CDC 2000 height percentile chart for a 9-year-old girl: 50th percentile average is 4' 4.4" (52.4 in) (133.1 cm). Run a free 60-sec Khamis-Roche adult height prediction.]]></description>
+      <title><![CDATA[Pre-Adolescence (Ages 10-11): Peak Height Velocity (PHV) Golden Window & Auxological Support]]></title>
+      <link>https://kisfitglobal.com/qna/topic-15.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/topic-15.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[The Peak Height Velocity (PHV) window lasts 18 to 24 months, delivering up to 3.5 to 4.5 inches (9 to 12 cm) per year; supplying high-bioavailability...]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 10-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-10yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-10yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 10-year-old boy: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 10-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-10yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-10yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 10-year-old girl: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 11-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-11yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-11yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 11-year-old boy: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 11-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-11yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-11yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 11-year-old girl: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 12-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-12yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-12yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 12-year-old boy: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 12-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-12yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-12yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 12-year-old girl: 50th percentile average is 4]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 13-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-13yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-13yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 13-year-old boy: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 13-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-13yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-13yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 13-year-old girl: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 14-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-14yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-14yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 14-year-old boy: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 14-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-14yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-14yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 14-year-old girl: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 15-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-15yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-15yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 15-year-old boy: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 15-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-15yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-15yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 15-year-old girl: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 16-Year-Old Boy: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-16yo-boy-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-16yo-boy-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 16-year-old boy: 50th percentile average is 5]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Average Height for a 16-Year-Old Girl: US CDC Percentile Chart & Adult Height Predictor]]></title>
+      <link>https://kisfitglobal.com/qna/calc-16yo-girl-height-percentile.html</link>
+      <guid isPermaLink="true">https://kisfitglobal.com/qna/calc-16yo-girl-height-percentile.html</guid>
+      <pubDate>Sat, 14 Nov 2026 13:00:42 +0000</pubDate>
+      <description><![CDATA[Official US CDC 2000 height percentile chart for a 16-year-old girl: 50th percentile average is 5]]></description>
     </item>
   </channel>
 </rss>

@@ -26,15 +26,7 @@
   const LOCALIZED_EN_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1';
 
   function getLocalizedEnglishCheckoutUrl(plan) {
-    return plan === 'pass' ? LOCALIZED_EN_PASS_CHECKOUT_URL : LOCALIZED_EN_SINGLE_CHECKOUT_URL;
-  }
-
-  function isRealBrowserNativeRuntime() {
-    try {
-      return typeof window !== 'undefined' && typeof window.fetch === 'function' && String(window.fetch).indexOf('[native code]') !== -1;
-    } catch (_) {
-      return false;
-    }
+    return plan === 'pass' ? TRUTHOFMARKET_PASS_CHECKOUT_URL : TRUTHOFMARKET_SINGLE_CHECKOUT_URL;
   }
 
   function isStaticGitHubPagesHost() {
@@ -5486,12 +5478,9 @@ ${isMasked ? `
       }
     } catch (_) {}
     const plan = planOverride || selectedPlan || 'single';
-    const useLocalizedEnCheckout = isRealBrowserNativeRuntime();
-    const baseCheckoutUrl = useLocalizedEnCheckout
-      ? getLocalizedEnglishCheckoutUrl(plan)
-      : (isStaticGitHubPagesHost()
-          ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
-          : getActiveCheckoutUrl(plan));
+    const baseCheckoutUrl = isStaticGitHubPagesHost()
+      ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
+      : getActiveCheckoutUrl(plan);
     const emailEl = document.getElementById('checkout-parent-email');
     const email = String((emailEl && emailEl.value) || '').trim();
     try {
@@ -5534,7 +5523,7 @@ ${isMasked ? `
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
           '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter growth workbook &amp; printable 2-page PDF:</span>' +
-          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (useLocalizedEnCheckout ? getLocalizedEnglishCheckoutUrl(plan) : (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599')) + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
+          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
           '</div>';
@@ -5596,8 +5585,8 @@ ${isMasked ? `
     const planTitle = isPass
       ? '6-Month Growth & Brain LQ Unlimited Pass'
       : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
-    const lsBuyUrl = isRealBrowserNativeRuntime()
-      ? getLocalizedEnglishCheckoutUrl(selectedPlan)
+    const lsBuyUrl = isStaticGitHubPagesHost()
+      ? getActiveCheckoutUrl(selectedPlan, { domain: 'truthofmarket' })
       : getActiveCheckoutUrl(selectedPlan);
 
     const titleEl = document.getElementById('checkout-modal-plan-title');
@@ -5645,8 +5634,8 @@ ${isMasked ? `
     const planTitle = selectedPlan === 'pass'
       ? '6-Month Growth & Brain LQ Unlimited Pass'
       : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
-    const lsBuyUrl = isRealBrowserNativeRuntime()
-      ? getLocalizedEnglishCheckoutUrl(selectedPlan)
+    const lsBuyUrl = isStaticGitHubPagesHost()
+      ? getActiveCheckoutUrl(selectedPlan, { domain: 'truthofmarket' })
       : getActiveCheckoutUrl(selectedPlan);
     const lsProductUuid = selectedPlan === 'pass' ? 'c562946d-ef68-4c2f-a802-df9da0179895' : 'c1cd7f12-3479-49e8-ab71-59c98135d599';
     const loggedInUser = getLoggedInUser();

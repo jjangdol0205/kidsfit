@@ -4502,12 +4502,20 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 
   .kf-filter-buttons {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    display: flex;
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+    gap: 0.42rem;
     padding-bottom: 3px;
     width: 100%;
+  }
+
+  .kf-stage-tab,
+  .kf-category-pill {
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   .kf-filter-buttons::-webkit-scrollbar {
@@ -5161,15 +5169,17 @@ html[data-edition="global-paid"] select.form-input:focus {
   }
 }
 
-/* Curation Select Shop Top Cleanup */
+/* Curation Select Shop Top Cleanup — Keep 3s Hero Headline & Subtitle Visible! */
 .clinical-authority-pill,
-#hero-section > .hero-headline,
-#hero-section > .hero-subtitle,
 .clinical-survey-trust-bar {
   display: none !important;
 }
 #hero-section.hero-section.compact-hero {
-  padding-top: 0.6rem !important;
+  padding-top: 0.9rem !important;
+}
+.kf-stage-tab,
+.kf-category-pill {
+  min-height: 40px;
 }
 
 /* =========================================================================
