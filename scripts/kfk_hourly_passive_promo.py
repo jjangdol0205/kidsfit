@@ -315,6 +315,19 @@ def main() -> int:
         f"우리 아이 개월 수별 질병관리청 백분위 & 성인 예상키 1분 무료 진단:\n"
         f"{canonical_url}?utm_source=social_thread&utm_medium=organic"
     )
+    naver_shopping_connect_pack = (
+        f"# [네이버 자사 블로그(expertise333) + 브랜드커넥트 안전 포스팅 본문 · {date_str}]\n\n"
+        f"{topic['hook_text']}\n\n"
+        f"## 핵심 체크 포인트\n"
+        f"{topic['summary']}\n\n"
+        f"1. **개월 수별 질병관리청(KDCA) 백분위 & 성인 예상키 1분 무료 확인**:\n"
+        f"   👉 https://kidsfit.co.kr/?utm_source=naver_blog_owned\n"
+        f"2. **오늘 칼럼 전문 & 3단계 가정 루틴 표 보기**:\n"
+        f"   👉 {canonical_url}?utm_source=naver_blog_owned\n"
+        f"3. **네이버 공식 브랜드커넥트 에디터 큐레이션 라운지 (C-Rank 친화 자사 생태계 링크)**:\n"
+        f"   👉 https://naver.me/5Jq9LnLT\n\n"
+        f"※ 본 포스팅은 건강·학습 정보 안내와 함께 네이버 브랜드커넥트 활동의 일환으로 수수료를 제공받을 수 있습니다.\n"
+    )
     synd_res = dispatch_zero_ban_text_bundle(
         div_code="KFK",
         canonical_domain=HOST,
@@ -325,7 +338,10 @@ def main() -> int:
         reply_social_link=reply_text,
         longform_markdown=dia_md,
         tags=["소아성장", "육아정보", "키즈핏", "초등학습"],
-        platform_extras={"naver_blog_dia_plus_column.md": dia_md},
+        platform_extras={
+            "naver_blog_dia_plus_column.md": dia_md,
+            "naver_shopping_connect_owned_blog_pack.md": naver_shopping_connect_pack,
+        },
         div_env_path=ROOT_DIR / ".env",
         dry_run=args.dry_run,
     )
