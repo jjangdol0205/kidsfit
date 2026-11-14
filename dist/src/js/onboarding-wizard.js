@@ -1792,7 +1792,7 @@
   function exitStudioMode() {
     if (typeof document === 'undefined') return;
     if (document.body && document.body.classList) {
-      document.body.classList.remove('studio-mode-active');
+      document.body.classList.remove('studio-mode-active', 'diagnosis-lounge-active');
     }
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
@@ -1807,13 +1807,61 @@
       dashboard.classList.add('hidden');
       dashboard.style.display = 'none';
     }
+    const curatedMallHero = document.getElementById('kf-curated-mall-hero');
+    if (curatedMallHero) {
+      curatedMallHero.style.display = 'block';
+    }
     const heroSection = document.getElementById('hero-section');
     if (heroSection) {
       heroSection.style.display = 'block';
-      if (typeof heroSection.scrollIntoView === 'function') {
-        heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    const scrollTarget = curatedMallHero || heroSection;
+    if (scrollTarget && typeof scrollTarget.scrollIntoView === 'function') {
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function openMonthlyProductsOnlyModal(optionalStage) {
+    if (typeof document === 'undefined') return;
+    let targetStage = optionalStage || 'all';
+    if (!optionalStage || optionalStage === 'auto') {
+      const dobInput = document.getElementById('child-dob');
+      if (dobInput && dobInput.value) {
+        const dobDate = new Date(dobInput.value);
+        if (!Number.isNaN(dobDate.getTime())) {
+          const now = new Date();
+          const months = Math.max(0, (now.getFullYear() - dobDate.getFullYear()) * 12 + (now.getMonth() - dobDate.getMonth()));
+          if (months <= 12) targetStage = 'pregnancy_newborn';
+          else if (months <= 36) targetStage = 'infancy';
+          else if (months <= 72) targetStage = 'toddler';
+          else targetStage = 'child';
+        }
+      } else if (wizardState && wizardState.stage) {
+        const st = String(wizardState.stage).toLowerCase();
+        if (st.includes('newborn') || st.includes('infant_0')) targetStage = 'pregnancy_newborn';
+        else if (st.includes('infan')) targetStage = 'infancy';
+        else if (st.includes('toddler')) targetStage = 'toddler';
+        else if (st.includes('child') || st.includes('school') || st.includes('teen')) targetStage = 'child';
       }
     }
+    exitStudioMode();
+    if (typeof window !== 'undefined' && typeof window.filterKidsFitShopByStage === 'function') {
+      let btnEl = null;
+      const stageTabs = document.querySelectorAll('#kf-shop-stage-tabs .kf-stage-tab');
+      stageTabs.forEach((btn) => {
+        const oc = btn.getAttribute('onclick') || '';
+        if (oc.indexOf("'" + targetStage + "'") !== -1) {
+          btnEl = btn;
+        }
+      });
+      window.filterKidsFitShopByStage(targetStage, btnEl);
+    }
+    setTimeout(() => {
+      const shopContainer = document.getElementById('kf-shop-stage-tabs') || document.getElementById('kf-curated-mall-hero');
+      if (shopContainer && typeof shopContainer.scrollIntoView === 'function') {
+        shopContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 60);
   }
 
   // 8b. Interactive Dual-Unit Selector Engine
@@ -2683,6 +2731,7 @@
     syncDobAndAutoStage,
     enterStudioMode,
     exitStudioMode,
+    openMonthlyProductsOnlyModal,
     applyPreset,
     start3SecondScan,
     completeScan,

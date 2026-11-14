@@ -1,6 +1,7 @@
 {
   "ok": true,
-  "checkoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1",
-  "singleCheckoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1",
-  "passCheckoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895?embed=1"
+  "locale": "en-US",
+  "checkoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1",
+  "singleCheckoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1",
+  "passCheckoutUrl": "https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1"
 }

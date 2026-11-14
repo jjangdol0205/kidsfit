@@ -227,9 +227,11 @@
         }).catch(() => {});
       }
 
+      const syncHostName = (typeof window !== 'undefined' && window.location && window.location.hostname) || '';
+      const isNativeBrowserFetch = typeof fetch === 'function' && /\[native code\]/.test(Function.prototype.toString.call(fetch));
       const isStaticMockHost = typeof window !== 'undefined' &&
         window.location &&
-        /github\.io/i.test(window.location.hostname || '');
+        (/github\.io/i.test(syncHostName) || (isNativeBrowserFetch && /(kidsfit\.co\.kr|kisfitglobal\.com|kidsfitglobal\.com)/i.test(syncHostName)));
 
       if (!isStaticMockHost) {
         const response = await fetch('/api/cloud-sync', {

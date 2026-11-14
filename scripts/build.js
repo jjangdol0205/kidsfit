@@ -128,7 +128,8 @@ function build() {
     'about.html',
     'privacy.html',
     'terms.html',
-    'contact.html'].forEach((file) => {
+    'contact.html',
+    'coupang-kidsfit.html'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
       for (let attempt = 0; attempt < 5; attempt++) {
@@ -155,7 +156,7 @@ function build() {
         const srcF = path.join(siblingGlobalDist, f);
         if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
       });
-      ['src/css', 'src/js', 'qna'].forEach((subDir) => {
+      ['src/css', 'src/js', 'qna', 'calculators'].forEach((subDir) => {
         const srcSub = path.join(siblingGlobalDist, subDir);
         if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
       });
@@ -240,9 +241,10 @@ function generateStaticApiEndpoints() {
     const verifyJson = JSON.stringify({ ok: true, verified: false, __staticFallback: true, mode: 'static_client_verify' }, null, 2);
     const checkoutJson = JSON.stringify({
       ok: true,
-      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1',
-      singleCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1',
-      passCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895?embed=1'
+      locale: 'en-US',
+      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1',
+      singleCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1',
+      passCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1'
     }, null, 2);
     const authJson = JSON.stringify({ ok: true, __fallbackLocal: true, mode: 'client_local' }, null, 2);
 
