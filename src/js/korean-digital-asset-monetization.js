@@ -429,7 +429,7 @@
         hitRefClick('aff_iherb');
       } else if (href.indexOf('naver.me') !== -1 || href.indexOf('brandconnect.naver') !== -1) {
         hitRefClick('aff_naver_bc');
-      } else if (href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|공식 판매처|에디터 큐레이션/.test(txt)) {
+      } else if (href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('_openkidsfiteditorialmodal') !== -1 || onclick.indexOf('openshortsfeaturedproductmodal') !== -1 || onclick.indexOf('handlekidsfitmodalctaclick') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|공식 판매처|에디터 큐레이션/.test(txt)) {
         hitRefClick('aff_other');
       }
     }, true);
