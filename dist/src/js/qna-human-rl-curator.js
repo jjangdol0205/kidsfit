@@ -66,7 +66,7 @@
       itemBBad: '무작정 통글자 외우기 (받침·초등 알림장 받아쓰기 병목)',
       itemBGood: '소리값·자모음 결합 원리 기반 체계적 유아 문해력 첫걸음',
       itemBCta: '📚 [예스24 공식] 기적의 한글 학습 혜택가 확인 →',
-      itemBUrl: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F96662201'
+      itemBUrl: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25EA%25B8%25B0%25EC%25A0%2581%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B8%2580%2520%25ED%2595%2599%25EC%258A%25B5'
     },
     learning: {
       badge: '🧠 두뇌 5각 밸런스 · 초등 문해력 · 백지복습 스펙 비교',

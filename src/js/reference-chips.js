@@ -175,7 +175,7 @@
         return `https://affiliate.klook.com/redirect?aid=${encodeURIComponent(aid)}&aff_adid=${encodeURIComponent(adid)}&k_site=${encodeURIComponent(kSite)}`;
       }
       case 'myrealtrip': {
-        return 'https://myrealt.rip/xwYQee';
+        return 'https://myrealt.rip/xc4wa0';
       }
       case 'tenping': {
         return cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';

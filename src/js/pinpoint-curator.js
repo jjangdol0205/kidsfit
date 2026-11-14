@@ -1914,7 +1914,7 @@
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
       const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(q)}`;
       const adpickKkdayUrl = `https://adpick.co.kr/apis/goshopping.php?affid=${adpickAff}&offer=b796d&url=${encodeURIComponent(kkdayTarget)}`;
-      const mrtUrl = c.mrtShortUrl || 'https://myrealt.rip/xwYQee';
+      const mrtUrl = c.mrtShortUrl || 'https://myrealt.rip/xc4wa0';
       const ageTip = (c.ageBandGuides && c.ageBandGuides[ageKey])
         ? c.ageBandGuides[ageKey]
         : `${c.destination} — 만 ${ageYears}세 눈높이 맞춤 관람 및 체험 코스`;
@@ -1960,7 +1960,7 @@
       const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(cpQuery)}`;
       const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(encodeURIComponent(yesQuery))}`;
       const yesUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
-      const myrealtripUrl = mrtShortUrl || 'https://myrealt.rip/xwYQee';
+      const myrealtripUrl = mrtShortUrl || 'https://myrealt.rip/xc4wa0';
       const kSite = klookDestUrl || `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(tourQuery)}`;
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
       const kkdayTarget = `https://www.kkday.com/ko/product/productlist?keyword=${encodeURIComponent(tourQuery)}`;
@@ -1987,7 +1987,7 @@
           titleEn: 'Aquarium Family Ticket & Interactive Marine Sound/Flap Book',
           descKo: '만 1~3세 영유아는 날씨 영향을 받지 않는 실내 아쿠아리움의 대형 수조 빛깔과 물고기 움직임을 눈으로 쫓으며 시각피질과 어휘 폭발기 시냅스가 가장 안전하고 강력하게 자극됩니다.',
           missionKo: '아쿠아리움 부모 대화 미션: "우와~ 가오리가 날개처럼 헤엄치네! 가오리 배는 무슨 색깔일까?"'
-        }, makeTourUrls('유아 바다생물 사운드북 아쿠아리움 스티커북 플랩북', '어스본 요리조리 열어보는 바다', '코엑스 아쿠아리움', 'https://myrealt.rip/xc4l47', 'https://www.klook.com/ko/search/result/?query=%EC%BD%94%EC%97%91%EC%8A%A4+%EC%95%84%EC%BF%A0%EC%95%84%EB%A6%AC%EC%9B%80')),
+        }, makeTourUrls('유아 바다생물 사운드북 아쿠아리움 스티커북 플랩북', '어스본 요리조리 열어보는 바다', '코엑스 아쿠아리움', 'https://myrealt.rip/xc4wa0', 'https://www.klook.com/ko/search/result/?query=%EC%BD%94%EC%97%91%EC%8A%A4+%EC%95%84%EC%BF%A0%EC%95%84%EB%A6%AC%EC%9B%80')),
         Object.assign({
           badgeKo: '만 1~3세 시그니처 2위 · 실내 애니멀 테마파크 먹이주기',
           badgeEn: 'Age 1–3 Pick #2 · Indoor Animal Park',

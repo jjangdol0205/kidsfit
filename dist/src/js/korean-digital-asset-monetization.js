@@ -120,7 +120,7 @@
       cta: '📚 공식 판매처 보러가기 →',
       platform: 'linkprice',
       bg: '#059669',
-      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F96662201',
+      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25EA%25B8%25B0%25EC%25A0%2581%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B8%2580%2520%25ED%2595%2599%25EC%258A%25B5',
       naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
       naverCta: '🟢 Npay 적립: 2단 독서대 공식 판매처 →'
     }
