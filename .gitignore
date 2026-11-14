@@ -9,3 +9,6 @@ logs/flow_daemon_status.json
 .gemini/
 __pycache__/
 *.pyc
+
+dist-global/tiktok_insta_videos/
+tiktok_insta_videos/*.zip
