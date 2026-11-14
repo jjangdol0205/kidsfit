@@ -80,7 +80,7 @@
   <meta property="og:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kisfitglobal.com/">
-  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwfywrcc">
+  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwgemk02">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -88,23 +88,23 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KISFIT — US CDC Child Height Predictor &amp; 5-Axis Brain LQ Report">
   <meta property="twitter:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
-  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwfywrcc">
+  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwgemk02">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mwfywrcc">
+  <link rel="manifest" href="manifest.json?v=20261022_mwgemk02">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KISFIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwfywrcc">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwgemk02">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style id="kidsfit-anti-fouc-css">html,body{background:#F8FAFC !important;color:#0F172A !important;}</style>
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwfywrcc">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwgemk02">
   <script>
     try {
       window.__KIDSFIT_GLOBAL_PAID_EDITION = true;
@@ -136,7 +136,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mwfywrcc').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mwgemk02').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -228,20 +228,20 @@
           <span class="brand-tagline" data-i18n="brand.tagline">US CDC 2000 Auxology · Bone-Age Trajectory &amp; Neuro-Cognitive LQ Lab</span>
         </div>
       </div>
-      <div class="header-actions clinic-header-actions" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-        <button type="button" id="btn-header-auth" class="header-control-btn" onclick="if(window.openKidsFitAuthModal) window.openKidsFitAuthModal('login');" aria-label="Sign In or Sign Up" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px; cursor: pointer;">
-          👤 Sign In / Sign Up
+      <div class="header-actions clinic-header-actions" style="display: flex; align-items: center; justify-content: flex-end; gap: 0.38rem; flex-wrap: nowrap;">
+        <button type="button" id="btn-header-auth" class="header-control-btn" onclick="if(window.openKidsFitAuthModal) window.openKidsFitAuthModal('login');" aria-label="Sign In or Sign Up" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; font-weight: 800; font-size: 0.78rem; min-height: 40px; padding: 0.4rem 0.7rem; border-radius: 9999px; cursor: pointer; white-space: nowrap;">
+          👤 Sign In
         </button>
         <button type="button" id="btn-header-sample-report" class="header-control-btn header-sample-report-btn" onclick="if(window.openSampleReportPreview){window.openSampleReportPreview();}else if(window.loadSampleDemoProfile){window.loadSampleDemoProfile();}" aria-label="View Live Sample Report" style="display:none !important;">
           👀 View Live Sample Report (Demo Profile)
         </button>
-        <button type="button" id="btn-header-app-download" class="app-download-header-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" aria-label="Install Web App">
-          📲 Web App
+        <button type="button" id="btn-header-app-download" class="app-download-header-btn" onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" aria-label="Install Web App" style="min-height: 40px; padding: 0.4rem 0.68rem; font-size: 0.78rem; white-space: nowrap;">
+          📲 App
         </button>
         <a href="#homepage-intro-growth-report" id="nav-header-growth-report" data-i18n="nav.forWhom" style="display: none;">Physical Growth Assessment</a>
         <a href="#homepage-intro-learning-report" id="nav-header-learning-report" data-i18n="nav.services" style="display: none;">Cognitive &amp; Learning Assessment</a>
-        <button type="button" class="header-control-btn header-unit-toggle-btn" id="btn-unit-toggle" aria-label="Toggle measurement units">
-          🇺🇸 Imperial: ft/in · lbs
+        <button type="button" class="header-control-btn header-unit-toggle-btn" id="btn-unit-toggle" aria-label="Toggle measurement units" style="min-height: 40px; padding: 0.4rem 0.72rem; font-size: 0.78rem; white-space: nowrap;">
+          🇺🇸 ft/in · lbs
         </button>
         <button type="button" class="header-control-btn" id="btn-lang-toggle" aria-label="Toggle language" style="display: none;">
           🇺🇸 EN
@@ -258,33 +258,226 @@
     <!-- =========================================================================
          FIRST SCREEN: CLINICAL MEDICAL WHITE & BLUE + ABOVE-THE-FOLD PARENT HOOK
          ========================================================================= -->
-    <section class="hero-section compact-hero" id="hero-section" aria-label="KISFIT Pediatric Growth &amp; Neurocognitive Development Studio" style="padding: 1.8rem 0.8rem 2.2rem;">
+    <section class="hero-section compact-hero" id="hero-section" aria-label="KISFIT Pediatric Growth &amp; Neurocognitive Development Studio" style="padding: 1.15rem 0.8rem 2rem;">
 
       <!-- Above-the-Fold Clinical Authority Pill -->
-      <div class="clinical-authority-pill" style="display:inline-flex;align-items:center;gap:0.55rem;background:#FFFFFF;border:1px solid #CBD5E1;box-shadow:0 4px 14px rgba(15,23,42,0.05);color:#0F172A;font-size:0.78rem;font-weight:700;padding:0.34rem 0.85rem 0.34rem 0.45rem;border-radius:9999px;margin:0 auto 1rem;">
-        <span style="background:linear-gradient(135deg,#0F172A 0%,#2563EB 100%);color:#FFFFFF;padding:0.2rem 0.65rem;border-radius:9999px;font-size:0.7rem;font-weight:800;letter-spacing:0.04em;">US CLINICAL LAB</span><span>CDC 2000 Growth Charts · AAP &amp; PES Aligned · Multi-Ethnic Auxology</span>
+      <div class="clinical-authority-pill" style="display:inline-flex;align-items:center;gap:0.5rem;background:#FFFFFF;border:1px solid #CBD5E1;box-shadow:0 4px 12px rgba(15,23,42,0.04);color:#0F172A;font-size:0.75rem;font-weight:700;padding:0.28rem 0.75rem 0.28rem 0.4rem;border-radius:9999px;margin:0 auto 0.75rem;">
+        <span style="background:linear-gradient(135deg,#0F172A 0%,#2563EB 100%);color:#FFFFFF;padding:0.18rem 0.58rem;border-radius:9999px;font-size:0.68rem;font-weight:800;letter-spacing:0.04em;">US CDC 2000</span><span>Pediatric Height &amp; Growth-Plate Lab</span>
       </div>
 
-      <!-- Above-the-Fold Parent Psychological Hook -->
-      <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width:880px;margin:0 auto 0.85rem;color:#0F172A;font-weight:800;font-size:clamp(1.75rem,4.6vw,2.85rem);line-height:1.14;letter-spacing:-0.035em;">
-        <span class="hero-single-line">Predict Your Child&apos;s Adult Height &amp; </span><br><span class="hero-headline-highlight hero-single-line" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">Unlock Their Full Growth &amp; Brain Potential.</span>
+      <!-- Above-the-Fold 12-Word Intuitive Parent Hook -->
+      <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width:840px;margin:0 auto 0.6rem;color:#0F172A;font-weight:800;font-size:clamp(1.62rem,4.5vw,2.65rem);line-height:1.16;letter-spacing:-0.03em;">
+        <span>See Your Child&apos;s Predicted Adult Height—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And How Much Growth Time Remains.</span>
       </h1>
 
-      <p class="hero-subtitle" data-i18n="hero.subtitle" style="color:#475569;font-weight:500;max-width:700px;margin:0 auto 1.25rem;font-size:clamp(0.96rem,2.2vw,1.12rem);line-height:1.6;">
-        Get a hospital-grade bone-age trajectory (+2.6 in / +6.7 cm hidden window), nocturnal HGH optimization plan, and 5-Axis Brain Learning Quotient (LQ) in 60 seconds with <strong>KISFIT Bio Labs</strong>.
+      <p class="hero-subtitle" data-i18n="hero.subtitle" style="color:#475569;font-weight:500;max-width:660px;margin:0 auto 1rem;font-size:clamp(0.92rem,2.1vw,1.06rem);line-height:1.5;">
+        Enter your child&apos;s age and current height for a free 60-second US CDC growth forecast—no sign-up required.
       </p>
 
-      <!-- 1-Second YouTube Shorts & Reels Topic Instant CDC Scan Bar (Zero-Survey Bridge) -->
-      <div id="kfg-shorts-instant-topic-bar" style="max-width:880px;margin:0 auto 1.2rem;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:2px solid #38BDF8;border-radius:16px;padding:0.85rem 1rem;box-shadow:0 12px 28px rgba(15,23,42,0.16);text-align:center;">
-        <div style="font-size:0.78rem;font-weight:900;color:#38BDF8;letter-spacing:0.03em;margin-bottom:0.55rem;">🎬 WATCHED @kisfitglobal SHORTS OR REELS? TAP YOUR TOPIC TO CHECK YOUR +2.4~2.6 INCHES OPTIMIZED WINDOW IN 1 SECOND:</div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.45rem;margin-bottom:0.5rem;">
-          <a href="?preset=preset-2&amp;age=7&amp;gender=boy&amp;autostart=1" style="text-decoration:none;background:#38BDF8;color:#0F172A;font-size:0.8rem;font-weight:900;padding:0.48rem 0.85rem;border-radius:9999px;box-shadow:0 4px 12px rgba(56,189,248,0.3);">👄 Mouth Breathing &amp; Facial/Height Impact →</a>
-          <a href="?preset=preset-3&amp;age=10&amp;gender=boy&amp;autostart=1" style="text-decoration:none;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #38BDF8;font-size:0.78rem;font-weight:800;padding:0.46rem 0.8rem;border-radius:9999px;">🌙 10 PM Deep-Sleep HGH Surge →</a>
-          <a href="?preset=preset-4&amp;age=13&amp;gender=boy&amp;autostart=1" style="text-decoration:none;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.78rem;font-weight:800;padding:0.46rem 0.8rem;border-radius:9999px;">⏰ Late Bedtime Growth Loss →</a>
-          <a href="?preset=preset-2&amp;age=8&amp;gender=girl&amp;autostart=1" style="text-decoration:none;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.78rem;font-weight:800;padding:0.46rem 0.8rem;border-radius:9999px;">🪢 Skipping Rope &amp; Growth Plate Micro-Stimulation →</a>
+      <!-- Above-the-Fold 3-Second Interactive Quick-Start Card -->
+      <div id="kfg-quick-start-card" style="max-width:680px;margin:0 auto 1.15rem;background:#FFFFFF;border:2px solid #2563EB;border-radius:20px;padding:1rem 1rem 0.95rem;box-shadow:0 16px 36px rgba(37,99,235,0.12);text-align:left;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.65rem;margin-bottom:0.8rem;">
+          <!-- Gender Toggle -->
+          <div>
+            <label style="display:block;font-size:0.74rem;font-weight:800;color:#475569;margin-bottom:0.3rem;">1. Child&apos;s Gender</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem;">
+              <button type="button" id="kfg-qs-boy" onclick="window.setKisfitQuickGender('boy')" style="min-height:44px;border-radius:10px;border:2px solid #2563EB;background:#EFF6FF;color:#1D4ED8;font-size:0.86rem;font-weight:800;cursor:pointer;">👦 Boy</button>
+              <button type="button" id="kfg-qs-girl" onclick="window.setKisfitQuickGender('girl')" style="min-height:44px;border-radius:10px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#334155;font-size:0.86rem;font-weight:700;cursor:pointer;">👧 Girl</button>
+            </div>
+          </div>
+          <!-- Age Select -->
+          <div>
+            <label for="kfg-qs-age" style="display:block;font-size:0.74rem;font-weight:800;color:#475569;margin-bottom:0.3rem;">2. Current Age</label>
+            <select id="kfg-qs-age" onchange="window.syncKisfitQuickAgeHeight()" style="width:100%;min-height:44px;border-radius:10px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:0.9rem;font-weight:800;padding:0 0.65rem;cursor:pointer;">
+              <option value="3">Age 3 yrs</option>
+              <option value="4">Age 4 yrs</option>
+              <option value="5">Age 5 yrs</option>
+              <option value="6">Age 6 yrs</option>
+              <option value="7">Age 7 yrs</option>
+              <option value="8">Age 8 yrs</option>
+              <option value="9" selected>Age 9 yrs</option>
+              <option value="10">Age 10 yrs</option>
+              <option value="11">Age 11 yrs</option>
+              <option value="12">Age 12 yrs</option>
+              <option value="13">Age 13 yrs</option>
+              <option value="14">Age 14 yrs</option>
+              <option value="15">Age 15 yrs</option>
+              <option value="16">Age 16 yrs</option>
+              <option value="17">Age 17 yrs</option>
+            </select>
+          </div>
+          <!-- Current Height Input (Imperial ft/in or Metric cm synced automatically) -->
+          <div>
+            <label style="display:block;font-size:0.74rem;font-weight:800;color:#475569;margin-bottom:0.3rem;">3. Current Height</label>
+            <div id="kfg-qs-imperial-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem;">
+              <select id="kfg-qs-ft" aria-label="Feet" style="width:100%;min-height:44px;border-radius:10px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:0.88rem;font-weight:800;padding:0 0.4rem;">
+                <option value="2">2 ft</option>
+                <option value="3">3 ft</option>
+                <option value="4" selected>4 ft</option>
+                <option value="5">5 ft</option>
+                <option value="6">6 ft</option>
+              </select>
+              <select id="kfg-qs-in" aria-label="Inches" style="width:100%;min-height:44px;border-radius:10px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:0.88rem;font-weight:800;padding:0 0.4rem;">
+                <option value="0">0 in</option>
+                <option value="1">1 in</option>
+                <option value="2">2 in</option>
+                <option value="3">3 in</option>
+                <option value="4" selected>4 in</option>
+                <option value="5">5 in</option>
+                <option value="6">6 in</option>
+                <option value="7">7 in</option>
+                <option value="8">8 in</option>
+                <option value="9">9 in</option>
+                <option value="10">10 in</option>
+                <option value="11">11 in</option>
+              </select>
+            </div>
+            <div id="kfg-qs-metric-wrap" style="display:none;">
+              <input type="number" id="kfg-qs-cm" value="133" min="75" max="205" step="0.5" aria-label="Height in cm" style="width:100%;min-height:44px;border-radius:10px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:0.92rem;font-weight:800;padding:0 0.7rem;" placeholder="cm (e.g. 133)">
+            </div>
+          </div>
         </div>
-        <div style="font-size:0.74rem;color:#A7F3D0;font-weight:800;">✨ Free 60s US CDC Preview (+2.4~2.6 inches Optimized Window) · Full 2-Page Pediatrician EHR PDF ($8.99 Single / $19.99 6-Month Pass)</div>
+
+        <button type="button" id="btn-kfg-quick-start-primary" onclick="window.launchKisfitQuickStart('growth')" style="width:100%;min-height:54px;border:none;border-radius:14px;background:linear-gradient(135deg,#1D4ED8 0%,#0284C7 100%);color:#FFFFFF;font-size:1.02rem;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(29,78,216,0.28);display:flex;align-items:center;justify-content:center;gap:0.45rem;">
+          <span>🚀 Check Predicted Adult Height Free (60s) →</span>
+        </button>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.5rem;margin-top:0.55rem;">
+          <button type="button" id="btn-kfg-quick-start-brain" onclick="window.launchKisfitQuickStart('learning')" style="min-height:42px;border-radius:10px;border:1px solid #CBD5E1;background:#F8FAFC;color:#1E293B;font-size:0.8rem;font-weight:800;cursor:pointer;">
+            🧠 Free 5-Axis Brain &amp; Focus Check →
+          </button>
+          <button type="button" id="btn-kfg-quick-sample-pdf" onclick="if(window.openSampleReportPreview){window.openSampleReportPreview();}else if(window.TallerOnboardingWizard){window.TallerOnboardingWizard.enterStudioMode('child','growth');}" style="min-height:42px;border-radius:10px;border:1px solid #A7F3D0;background:#ECFDF5;color:#065F46;font-size:0.8rem;font-weight:800;cursor:pointer;">
+            📄 Preview Sample 2-Page Doctor PDF →
+          </button>
+        </div>
       </div>
+
+      <!-- Topic Quick-Select Bar (Opens Parent's Own Child Step 1 Instead of Fake Auto-Paywall) -->
+      <div id="kfg-shorts-instant-topic-bar" style="max-width:840px;margin:0 auto 1.15rem;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:1.5px solid #38BDF8;border-radius:16px;padding:0.8rem 0.9rem;box-shadow:0 10px 24px rgba(15,23,42,0.12);text-align:center;">
+        <div style="font-size:0.78rem;font-weight:800;color:#7DD3FC;margin-bottom:0.5rem;">🎬 Came from @kisfitglobal Shorts/Reels? Tap a concern to include it in your child&apos;s scan:</div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.45rem;">
+          <button type="button" onclick="window.startKisfitTopicCheck('mouth_breathing')" style="min-height:42px;background:#38BDF8;color:#0F172A;border:none;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">👄 Mouth Breathing</button>
+          <button type="button" onclick="window.startKisfitTopicCheck('deep_sleep')" style="min-height:42px;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #38BDF8;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">🌙 10 PM Deep Sleep</button>
+          <button type="button" onclick="window.startKisfitTopicCheck('late_bedtime')" style="min-height:42px;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">⏰ Late Bedtime</button>
+          <button type="button" onclick="window.startKisfitTopicCheck('skipping_rope')" style="min-height:42px;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">🪢 Jumping / Sports</button>
+          <button type="button" onclick="window.startKisfitTopicCheck('posture')" style="min-height:42px;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">📱 Slouching Posture</button>
+          <button type="button" onclick="window.startKisfitTopicCheck('picky_eating')" style="min-height:42px;background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid #94A3B8;font-size:0.79rem;font-weight:800;padding:0.45rem 0.85rem;border-radius:9999px;cursor:pointer;">🥦 Picky Eating</button>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        window.__kfgQuickGender = 'boy';
+        var AGE_MEDIAN_CM = {3:96,4:103,5:110,6:116,7:122,8:128,9:133,10:138,11:144,12:150,13:157,14:164,15:169,16:172,17:174};
+        window.setKisfitQuickGender = function(g) {
+          window.__kfgQuickGender = (g === 'girl') ? 'girl' : 'boy';
+          var b = document.getElementById('kfg-qs-boy');
+          var gr = document.getElementById('kfg-qs-girl');
+          if (b && gr) {
+            if (window.__kfgQuickGender === 'boy') {
+              b.style.border = '2px solid #2563EB'; b.style.background = '#EFF6FF'; b.style.color = '#1D4ED8'; b.style.fontWeight = '800';
+              gr.style.border = '1.5px solid #CBD5E1'; gr.style.background = '#F8FAFC'; gr.style.color = '#334155'; gr.style.fontWeight = '700';
+            } else {
+              gr.style.border = '2px solid #2563EB'; gr.style.background = '#EFF6FF'; gr.style.color = '#1D4ED8'; gr.style.fontWeight = '800';
+              b.style.border = '1.5px solid #CBD5E1'; b.style.background = '#F8FAFC'; b.style.color = '#334155'; b.style.fontWeight = '700';
+            }
+          }
+        };
+        window.syncKisfitQuickUnitUI = function() {
+          var isImp = true;
+          try {
+            if (window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function') {
+              isImp = window.TallerI18n.getUnitSystem() === 'imperial';
+            }
+          } catch (e) {}
+          var impW = document.getElementById('kfg-qs-imperial-wrap');
+          var metW = document.getElementById('kfg-qs-metric-wrap');
+          if (impW && metW) {
+            impW.style.display = isImp ? 'grid' : 'none';
+            metW.style.display = isImp ? 'none' : 'block';
+          }
+        };
+        window.syncKisfitQuickAgeHeight = function() {
+          var ageEl = document.getElementById('kfg-qs-age');
+          var age = parseInt((ageEl && ageEl.value) || '9', 10) || 9;
+          var cm = AGE_MEDIAN_CM[age] || 133;
+          var cmEl = document.getElementById('kfg-qs-cm');
+          if (cmEl) cmEl.value = String(cm);
+          var totalIn = Math.round(cm / 2.54);
+          var ft = Math.floor(totalIn / 12);
+          var inch = totalIn % 12;
+          var ftEl = document.getElementById('kfg-qs-ft');
+          var inEl = document.getElementById('kfg-qs-in');
+          if (ftEl) ftEl.value = String(Math.min(6, Math.max(2, ft)));
+          if (inEl) inEl.value = String(Math.min(11, Math.max(0, inch)));
+        };
+        window.applyKisfitQuickInputsToWizard = function() {
+          try {
+            var g = window.__kfgQuickGender || 'boy';
+            var gRadio = document.getElementById(g === 'girl' ? 'gender-girl' : 'gender-boy');
+            if (gRadio) gRadio.checked = true;
+            var ageEl = document.getElementById('kfg-qs-age');
+            var age = parseInt((ageEl && ageEl.value) || '9', 10) || 9;
+            var byEl = document.getElementById('child-birth-year');
+            var bmEl = document.getElementById('child-birth-month');
+            var bdEl = document.getElementById('child-birth-day');
+            if (byEl) byEl.value = String(new Date().getFullYear() - age);
+            if (bmEl && !bmEl.value) bmEl.value = '6';
+            if (bdEl && !bdEl.value) bdEl.value = '15';
+            var isImp = !(window.TallerI18n && typeof window.TallerI18n.getUnitSystem === 'function' && window.TallerI18n.getUnitSystem() === 'metric');
+            var chFt = document.getElementById('child-height-ft');
+            var chIn = document.getElementById('child-height-in');
+            var chH = document.getElementById('child-height');
+            if (isImp) {
+              var ftVal = parseInt((document.getElementById('kfg-qs-ft') || {}).value || '4', 10);
+              var inVal = parseInt((document.getElementById('kfg-qs-in') || {}).value || '4', 10);
+              if (chFt) chFt.value = String(ftVal);
+              if (chIn) chIn.value = String(inVal);
+              if (chH) chH.value = String(ftVal * 12 + inVal);
+            } else {
+              var cmVal = parseFloat((document.getElementById('kfg-qs-cm') || {}).value || '133') || 133;
+              if (chH) chH.value = String(cmVal);
+            }
+            if (window.TallerOnboardingWizard) {
+              if (typeof window.TallerOnboardingWizard.syncCompanionInputs === 'function') window.TallerOnboardingWizard.syncCompanionInputs();
+              if (typeof window.TallerOnboardingWizard.syncDobAndAutoStage === 'function') window.TallerOnboardingWizard.syncDobAndAutoStage();
+            }
+          } catch (e) {}
+        };
+        window.launchKisfitQuickStart = function(mode) {
+          window.applyKisfitQuickInputsToWizard();
+          if (window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function') {
+            window.TallerOnboardingWizard.enterStudioMode('child', mode === 'learning' ? 'learning' : 'growth');
+          }
+        };
+        window.startKisfitTopicCheck = function(topicKey) {
+          var labels = {
+            mouth_breathing: 'Mouth Breathing & Sleep Airway Impact',
+            deep_sleep: '10 PM Deep-Sleep HGH Window',
+            late_bedtime: 'Late Bedtime Growth-Plate Recovery',
+            skipping_rope: 'Jumping & Growth-Plate Stimulation',
+            posture: 'Tech-Neck & Spinal Decompression',
+            picky_eating: 'Picky Eating & Protein/Calcium Gap'
+          };
+          var label = labels[topicKey] || 'Growth Optimization Check';
+          window.applyKisfitQuickInputsToWizard();
+          var noteEl = document.getElementById('parent-free-note');
+          if (noteEl) noteEl.value = 'Focus Concern: ' + label;
+          if (window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.enterStudioMode === 'function') {
+            window.TallerOnboardingWizard.enterStudioMode('child', 'growth');
+            var bannerEl = document.getElementById('guidebook-mode-banner');
+            if (bannerEl) {
+              bannerEl.innerHTML = '<strong>[Topic Selected: ' + label + ']</strong> Confirm your child&apos;s birth date &amp; measurements below to calculate their exact US CDC adult height forecast.';
+            }
+          }
+        };
+        document.addEventListener('DOMContentLoaded', function() {
+          window.syncKisfitQuickUnitUI();
+          var uBtn = document.getElementById('btn-unit-toggle');
+          if (uBtn) uBtn.addEventListener('click', function() { setTimeout(window.syncKisfitQuickUnitUI, 30); });
+        });
+      })();
+      </script>
       <!-- Survey Simplicity & High Clinical Reliability Assurance Bar -->
       <div class="clinical-survey-trust-bar" style="max-width:860px;margin:0 auto 1.35rem;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 8px 24px rgba(15,23,42,0.04);border-radius:9999px;padding:0.65rem 1.35rem;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.55rem 1.4rem;font-size:0.82rem;color:#0F172A;font-weight:600;">
         <span><strong style="color:#059669;">US CDC 2000 LMS</strong> · Multi-Ethnic Auxology Calibrated</span><span style="color:#CBD5E1;" class="pc-view-block">|</span><span><strong style="color:#1D4ED8;">KISFIT HGH Window™</strong> · Khamis-Roche &amp; Tanner MPH Model</span><span style="color:#CBD5E1;" class="pc-view-block">|</span><span><strong style="color:#0F172A;">Dual-Unit Ready</strong> · Instant ft/in · lbs &amp; cm · kg</span>
@@ -539,7 +732,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mwfywrcc" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mwgemk02" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">Install Free KISFIT Clinical Report App on Mobile &amp; Desktop</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">Add to home screen to track quarterly growth percentiles and 5-axis cognitive progress seamlessly</div>
@@ -555,7 +748,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mwfywrcc" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mwgemk02" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install KISFIT App to Home Screen</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Instant report access with zero install friction</div>
@@ -1955,26 +2148,26 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/cloud-sync.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mwfywrcc"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/global-paywall-edition.js?v=20261022_mwfywrcc" defer></script>
-  <script src="src/js/app.js?v=20261022_mwfywrcc" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/cloud-sync.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mwgemk02"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/global-paywall-edition.js?v=20261022_mwgemk02" defer></script>
+  <script src="src/js/app.js?v=20261022_mwgemk02" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -1989,7 +2182,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mwfywrcc')
+          window.fetch('src/data/data-bundle.js?v=20261022_mwgemk02')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2017,7 +2210,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mwfywrcc" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mwgemk02" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KISFIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">Add KISFIT App to Home Screen</h3>

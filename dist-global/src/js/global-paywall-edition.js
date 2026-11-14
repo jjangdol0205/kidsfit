@@ -22,6 +22,20 @@
   const DEFAULT_PASS_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
   const TRUTHOFMARKET_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599';
   const TRUTHOFMARKET_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
+  const LOCALIZED_EN_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1';
+  const LOCALIZED_EN_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1';
+
+  function getLocalizedEnglishCheckoutUrl(plan) {
+    return plan === 'pass' ? LOCALIZED_EN_PASS_CHECKOUT_URL : LOCALIZED_EN_SINGLE_CHECKOUT_URL;
+  }
+
+  function isRealBrowserNativeRuntime() {
+    try {
+      return typeof window !== 'undefined' && typeof window.fetch === 'function' && String(window.fetch).indexOf('[native code]') !== -1;
+    } catch (_) {
+      return false;
+    }
+  }
 
   function isStaticGitHubPagesHost() {
     try {
@@ -1439,7 +1453,7 @@
       const unitSys = (global.TallerI18n && typeof global.TallerI18n.getUnitSystem === 'function')
         ? global.TallerI18n.getUnitSystem()
         : 'imperial';
-      btn.textContent = unitSys === 'imperial' ? '🇺🇸 Imperial: ft/in · lbs' : '🌐 Metric: cm · kg';
+      btn.textContent = unitSys === 'imperial' ? '🇺🇸 ft/in · lbs' : '🌐 cm · kg';
       btn.title = 'Toggle between Imperial (ft/in, lbs) and Metric (cm, kg)';
       if (!btn._hasUnitListener && !btn._globalUnitBound) {
         btn._globalUnitBound = true;
@@ -1456,7 +1470,8 @@
           } else if (global.TallerI18n && typeof global.TallerI18n.setUnitSystem === 'function') {
             global.TallerI18n.setUnitSystem(next);
           }
-          btn.textContent = next === 'imperial' ? '🇺🇸 Imperial: ft/in · lbs' : '🌐 Metric: cm · kg';
+          btn.textContent = next === 'imperial' ? '🇺🇸 ft/in · lbs' : '🌐 cm · kg';
+          if (typeof global.syncKisfitQuickUnitUI === 'function') global.syncKisfitQuickUnitUI();
         });
       }
     };
@@ -1465,32 +1480,32 @@
 
     const appBtn = document.getElementById('btn-header-app-download');
     if (appBtn) {
-      appBtn.textContent = '📲 Web App';
+      appBtn.textContent = '📲 App';
       appBtn.setAttribute('aria-label', 'Install Web App');
     }
 
     const tagline = document.querySelector('.brand-tagline');
     if (tagline) {
-      tagline.textContent = 'US CDC 2000 Auxology · Bone-Age Trajectory & Neuro-Cognitive LQ Lab';
+      tagline.textContent = 'US CDC 2000 Pediatric Height & Brain Lab';
     }
 
     // Hero Section Authority Pill & Trust Bar (US Silicon Valley HealthTech Aesthetic)
     const authPill = document.querySelector('.clinical-authority-pill');
     if (authPill) {
-      authPill.style.cssText = 'display:inline-flex;align-items:center;gap:0.55rem;background:#FFFFFF;border:1px solid #CBD5E1;box-shadow:0 4px 14px rgba(15,23,42,0.05);color:#0F172A;font-size:0.78rem;font-weight:700;padding:0.34rem 0.85rem 0.34rem 0.45rem;border-radius:9999px;margin:0 auto 1rem;';
-      authPill.innerHTML = '<span style="background:linear-gradient(135deg,#0F172A 0%,#2563EB 100%);color:#FFFFFF;padding:0.2rem 0.65rem;border-radius:9999px;font-size:0.7rem;font-weight:800;letter-spacing:0.04em;">US CLINICAL LAB</span><span>CDC 2000 Growth Charts · AAP &amp; PES Aligned · Multi-Ethnic Auxology</span>';
+      authPill.style.cssText = 'display:inline-flex;align-items:center;gap:0.5rem;background:#FFFFFF;border:1px solid #CBD5E1;box-shadow:0 4px 12px rgba(15,23,42,0.04);color:#0F172A;font-size:0.75rem;font-weight:700;padding:0.28rem 0.75rem 0.28rem 0.4rem;border-radius:9999px;margin:0 auto 0.75rem;';
+      authPill.innerHTML = '<span style="background:linear-gradient(135deg,#0F172A 0%,#2563EB 100%);color:#FFFFFF;padding:0.18rem 0.58rem;border-radius:9999px;font-size:0.68rem;font-weight:800;letter-spacing:0.04em;">US CDC 2000</span><span>Pediatric Height &amp; Growth-Plate Lab</span>';
     }
 
     const heroHeadline = document.querySelector('.hero-headline');
     if (heroHeadline) {
-      heroHeadline.style.cssText = 'max-width:880px;margin:0 auto 0.85rem;color:#0F172A;font-weight:800;font-size:clamp(1.75rem,4.6vw,2.85rem);line-height:1.14;letter-spacing:-0.035em;';
-      heroHeadline.innerHTML = '<span class="hero-single-line">Predict Your Child&apos;s Adult Height &amp; </span><br><span class="hero-headline-highlight hero-single-line" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">Unlock Their Full Growth &amp; Brain Potential.</span>';
+      heroHeadline.style.cssText = 'max-width:840px;margin:0 auto 0.6rem;color:#0F172A;font-weight:800;font-size:clamp(1.62rem,4.5vw,2.65rem);line-height:1.16;letter-spacing:-0.03em;';
+      heroHeadline.innerHTML = '<span>See Your Child&apos;s Predicted Adult Height—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And How Much Growth Time Remains.</span>';
     }
 
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (heroSubtitle) {
-      heroSubtitle.style.cssText = 'color:#475569;font-weight:500;max-width:700px;margin:0 auto 1.25rem;font-size:clamp(0.96rem,2.2vw,1.12rem);line-height:1.6;';
-      heroSubtitle.textContent = 'Get a hospital-grade bone-age trajectory (+2.6 in / +6.7 cm hidden window), nocturnal HGH optimization plan, and 5-Axis Brain Learning Quotient (LQ) in 60 seconds.';
+      heroSubtitle.style.cssText = 'color:#475569;font-weight:500;max-width:660px;margin:0 auto 1rem;font-size:clamp(0.92rem,2.1vw,1.06rem);line-height:1.5;';
+      heroSubtitle.textContent = 'Enter your child\'s age and current height for a free 60-second US CDC growth forecast—no sign-up required.';
     }
 
     const trustBar = document.querySelector('.clinical-survey-trust-bar');
@@ -5471,9 +5486,12 @@ ${isMasked ? `
       }
     } catch (_) {}
     const plan = planOverride || selectedPlan || 'single';
-    const baseCheckoutUrl = isStaticGitHubPagesHost()
-      ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
-      : getActiveCheckoutUrl(plan);
+    const useLocalizedEnCheckout = isRealBrowserNativeRuntime();
+    const baseCheckoutUrl = useLocalizedEnCheckout
+      ? getLocalizedEnglishCheckoutUrl(plan)
+      : (isStaticGitHubPagesHost()
+          ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
+          : getActiveCheckoutUrl(plan));
     const emailEl = document.getElementById('checkout-parent-email');
     const email = String((emailEl && emailEl.value) || '').trim();
     try {
@@ -5482,9 +5500,11 @@ ${isMasked ? `
       }
     } catch (_) {}
     const sep = baseCheckoutUrl.indexOf('?') === -1 ? '?' : '&';
-    const finalUrl = email && email.indexOf('@') !== -1
-      ? `${baseCheckoutUrl}${sep}embed=1&checkout[email]=${encodeURIComponent(email)}`
-      : `${baseCheckoutUrl}${sep}embed=1`;
+    const finalUrl = baseCheckoutUrl.indexOf('/checkout/custom/') !== -1
+      ? baseCheckoutUrl
+      : (email && email.indexOf('@') !== -1
+          ? `${baseCheckoutUrl}${sep}embed=1&checkout[email]=${encodeURIComponent(email)}`
+          : `${baseCheckoutUrl}${sep}embed=1`);
 
     const openTargetUrl = function (rawUrl) {
       startAutoPaymentProgressionPoller(email, plan);
@@ -5514,7 +5534,7 @@ ${isMasked ? `
           '</div>' +
           '<div style="background:linear-gradient(90deg,#ECFDF5 0%,#EFF6FF 100%);border-bottom:1.5px solid #10B981;padding:0.6rem 0.95rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;">' +
           '<span style="font-size:0.74rem;font-weight:800;color:#065F46;line-height:1.35;">⚡ Interactive Demo / Reviewer Sandbox: Preview the unlocked 7-chapter growth workbook &amp; printable 2-page PDF:</span>' +
-          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599') + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
+          '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;"><a href="' + (useLocalizedEnCheckout ? getLocalizedEnglishCheckoutUrl(plan) : (plan === 'pass' ? 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895' : 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599')) + '" target="_blank" rel="noopener noreferrer" style="background:#1D4ED8;color:#FFFFFF;text-decoration:none;border-radius:8px;padding:0.42rem 0.75rem;font-size:0.75rem;font-weight:900;white-space:nowrap;">↗ Open Official Store #296100 Checkout in New Tab</a></div>' +
           '</div>' +
           '<iframe src="' + targetUrl + '" allow="payment *" style="width:100%;flex:1;border:none;background:#FFFFFF;"></iframe>' +
           '</div>';
@@ -5576,7 +5596,9 @@ ${isMasked ? `
     const planTitle = isPass
       ? '6-Month Growth & Brain LQ Unlimited Pass'
       : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
-    const lsBuyUrl = getActiveCheckoutUrl(selectedPlan);
+    const lsBuyUrl = isRealBrowserNativeRuntime()
+      ? getLocalizedEnglishCheckoutUrl(selectedPlan)
+      : getActiveCheckoutUrl(selectedPlan);
 
     const titleEl = document.getElementById('checkout-modal-plan-title');
     if (titleEl) titleEl.textContent = planTitle;
@@ -5587,6 +5609,7 @@ ${isMasked ? `
     const btnPay = document.getElementById('btn-lemonsqueezy-official-checkout');
     if (btnPay) {
       btnPay.href = lsBuyUrl;
+      btnPay.setAttribute('data-ls-product-uuid', isPass ? 'c562946d-ef68-4c2f-a802-df9da0179895' : 'c1cd7f12-3479-49e8-ab71-59c98135d599');
       btnPay.setAttribute('onclick', `event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');`);
       btnPay.innerHTML = `💳 Pay ${priceStr} via Official Lemon Squeezy Checkout →`;
     }
@@ -5622,7 +5645,10 @@ ${isMasked ? `
     const planTitle = selectedPlan === 'pass'
       ? '6-Month Growth & Brain LQ Unlimited Pass'
       : 'Single Child Growth Percentile Workbook & Printable PDF Pass';
-    const lsBuyUrl = getActiveCheckoutUrl(selectedPlan);
+    const lsBuyUrl = isRealBrowserNativeRuntime()
+      ? getLocalizedEnglishCheckoutUrl(selectedPlan)
+      : getActiveCheckoutUrl(selectedPlan);
+    const lsProductUuid = selectedPlan === 'pass' ? 'c562946d-ef68-4c2f-a802-df9da0179895' : 'c1cd7f12-3479-49e8-ab71-59c98135d599';
     const loggedInUser = getLoggedInUser();
     const defaultEmail = (loggedInUser && loggedInUser.email) || '';
 
@@ -5665,7 +5691,7 @@ ${isMasked ? `
         </div>
 
         <!-- Primary Official Lemon Squeezy Hosted / Overlay Checkout Button -->
-        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:52px;box-sizing:border-box;padding:0.95rem 1rem;border-radius:12px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.98rem;font-weight:900;cursor:pointer;margin-bottom:0.65rem;box-shadow:0 10px 24px rgba(29,78,216,0.25);">
+        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" data-ls-product-uuid="${lsProductUuid}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:52px;box-sizing:border-box;padding:0.95rem 1rem;border-radius:12px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.98rem;font-weight:900;cursor:pointer;margin-bottom:0.65rem;box-shadow:0 10px 24px rgba(29,78,216,0.25);">
           💳 Pay ${priceStr} via Official Lemon Squeezy Checkout →
         </a>
 

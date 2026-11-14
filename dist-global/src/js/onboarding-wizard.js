@@ -2095,7 +2095,10 @@
       // Synchronize all 3 Toggle Buttons UI
       const btnHeaderUnit = document.getElementById('btn-unit-toggle');
       if (btnHeaderUnit) {
-        btnHeaderUnit.textContent = isImperial ? '🇺🇸 Imperial: ft/in · lbs' : '🌐 Metric: cm · kg';
+        btnHeaderUnit.textContent = isImperial ? '🇺🇸 ft/in · lbs' : '🌐 cm · kg';
+      }
+      if (typeof global.syncKisfitQuickUnitUI === 'function') {
+        global.syncKisfitQuickUnitUI();
       }
 
       const btnStep2Imp = document.getElementById('btn-step2-unit-imperial');
@@ -2524,11 +2527,15 @@
             }, 60);
           }
           enterStudioMode('child', rawMode);
-          applyPreset(resolvedPreset);
-          setTimeout(() => {
-            const skipBtn = document.getElementById('btn-skip-scan');
-            if (skipBtn && wizardState.isScanning) skipBtn.click();
-          }, 250);
+          if (params.get('demo') === '1') {
+            applyPreset(resolvedPreset);
+            setTimeout(() => {
+              const skipBtn = document.getElementById('btn-skip-scan');
+              if (skipBtn && wizardState.isScanning) skipBtn.click();
+            }, 250);
+          } else {
+            goToStep(1);
+          }
         }
       }
     } catch (_) {}

@@ -235,9 +235,10 @@
       }
 
       // 2. Standard edge/server endpoint (/api/cloud-sync)
-      const isStaticMockHost = typeof window !== 'undefined' &&
-        window.location &&
-        /github\.io/i.test(window.location.hostname || '');
+      const syncHostName = (typeof window !== 'undefined' && window.location && window.location.hostname) || '';
+      const isNativeBrowserFetch = typeof fetch === 'function' && String(fetch).indexOf('[native code]') !== -1;
+      const isStaticMockHost = /github\.io/i.test(syncHostName) ||
+        (isNativeBrowserFetch && /(kisfitglobal\.com|kidsfitglobal\.com|kidsfit\.co\.kr)/i.test(syncHostName));
 
       if (!isStaticMockHost) {
         const response = await fetch('/api/cloud-sync', {

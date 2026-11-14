@@ -86,8 +86,9 @@
   function triggerHaptic(kind = 'tick', targetEl = null) {
     if (!state.hapticEnabled) return;
 
-    // 1. Hardware Vibration (if supported)
-    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+    // 1. Hardware Vibration (only when supported AND user has tapped frame to prevent browser intervention errors)
+    const hasUserActivation = typeof navigator !== 'undefined' && (!navigator.userActivation || navigator.userActivation.hasBeenActive);
+    if (hasUserActivation && typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
       try {
         if (kind === 'tick') navigator.vibrate(8);
         else if (kind === 'step') navigator.vibrate([18, 35, 25]);
