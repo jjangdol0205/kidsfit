@@ -851,6 +851,11 @@
       if (typeof window !== 'undefined' && typeof window.applyKidsFitReportLockState === 'function') {
         window.applyKidsFitReportLockState();
       }
+      if (typeof window !== 'undefined' && typeof window.renderKidsFitDynamicRxTop3 === 'function') {
+        try {
+          window.renderKidsFitDynamicRxTop3(state.profile || {});
+        } catch (_) {}
+      }
       // Enforce >= 48px mobile touch target on all affiliate curation CTAs & ensure FTC disclosure visibility in results
       try {
         const dashboardRoot = document.getElementById('results-dashboard') || masterCard;

@@ -34,8 +34,8 @@
 
       // Hero (Psychological Hook + Clinical Authority + Immediate CTA)
       'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,894편 교차 검증',
-      'hero.headline': '<span class="hero-single-line">우리 아이 숨은 키 +6.7cm 골든타임 1분 무료 진단 &amp;</span> <span class="hero-headline-highlight hero-single-line">월령별 육아 필수템 큐레이션</span>',
-      'hero.subtitle': '병원 방문·회원가입 없이 1분 체크로 예상키·성조숙증·두뇌 기질을 확인하고 검증된 육아템을 비교하세요.',
+      'hero.headline': '<span class="hero-single-line">우리 아이 또래 성장 백분위 확인부터</span> <span class="hero-headline-highlight hero-single-line">시기별 꼭 필요한 성장·학습 큐레이션까지 한곳에서</span>',
+      'hero.subtitle': '내 아이 나이대만 탭하면 질병관리청 기준 성장 가이드와 선배 학부모 검증 육아·성장 큐레이션을 한눈에 비교하고 바로 이용할 수 있습니다.',
       'nav.forWhom': '신체 성장 정밀 진단',
       'nav.services': '두뇌·학습 정밀 진단',
       'hero.cta.parent': '소아 신체 성장 · 최종 예상키 1분 진단 시작하기',
