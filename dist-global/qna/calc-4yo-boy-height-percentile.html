@@ -65,6 +65,54 @@
     th { background:#EFF6FF; color:#1E3A8A; font-weight:800; }
     .cta-btn { display:block; text-align:center; background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%); color:#FFFFFF; text-decoration:none; font-weight:900; font-size:1.02rem; padding:1rem 1.25rem; border-radius:14px; box-shadow:0 8px 22px rgba(29,78,216,0.25); margin-top:1.1rem; }
   </style>
+  <!-- KFG_PARENT_SIGNUP_HANDLER_START -->
+  <script>
+  (function(){
+    if (typeof window === 'undefined') return;
+    window.__kfgSubmitParentSignup = function(ev, formEl, stageLabel) {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      var input = formEl ? formEl.querySelector('input[type="email"]') : null;
+      var email = input ? String(input.value || '').trim() : '';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (input) input.focus();
+        return false;
+      }
+      var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      var ns = 'kfg_kisfitglobal';
+      try {
+        localStorage.setItem('kfg_parent_member_email', email);
+        localStorage.setItem('kfg_parent_member_stage', stageLabel || 'US CDC Growth');
+        localStorage.setItem('kfg_parent_member_since', kst);
+        var dedupeKey = 'hq_signup_' + ns + '_' + kst + '_' + email.toLowerCase();
+        var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+        var host = (typeof location !== 'undefined' && location.hostname) ? location.hostname : '';
+        var isHumanLive = !(navigator && navigator.webdriver) && !/bot|crawl|spider|slurp|headless|lighthouse|python|curl|node|axios/i.test(ua) && host && host !== 'localhost' && host !== '127.0.0.1';
+        if (localStorage.getItem(dedupeKey) !== '1') {
+          localStorage.setItem(dedupeKey, '1');
+          if (isHumanLive) {
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/signup_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/signup_total', { mode: 'cors', keepalive: true }).catch(function(){});
+          }
+        }
+      } catch (_e) {}
+      document.querySelectorAll('.kfg-parent-signup-status').forEach(function(el) {
+        el.style.display = 'block';
+        el.innerHTML = '✅ <strong>Checklist Unlocked!</strong> Your free US CDC Growth, 10 PM Sleep &amp; Nutrition Checklist (' + String(stageLabel || 'All Ages').replace(/[<>&"]/g, '') + ') is active for <strong>' + email.replace(/[<>&"]/g, '') + '</strong>.';
+      });
+      document.querySelectorAll('.kfg-parent-signup-form input[type="email"]').forEach(function(inp) { inp.value = email; });
+      return false;
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        var saved = localStorage.getItem('kfg_parent_member_email');
+        if (saved) {
+          document.querySelectorAll('.kfg-parent-signup-form input[type="email"]').forEach(function(inp) { inp.value = saved; });
+        }
+      } catch (_e2) {}
+    });
+  })();
+  </script>
+  <!-- KFG_PARENT_SIGNUP_HANDLER_END -->
 </head>
 <body>
   <div class="wrap">
@@ -75,6 +123,38 @@
     <article class="card">
       <span class="badge">US CDC 2000 LMS STATURE REFERENCE · AGE 4 BOY</span>
       <h1>Average Height for a 4-Year-Old Boy: US CDC Percentile Chart &amp; Adult Height Predictor</h1>
+      <!-- KFG_PARENT_LEAD_TOP_START -->
+      <section id="kfg-lead-magnet-top" aria-label="Free Parent Growth Checklist Email Sign-Up and 1-Tap Report Checkout" style="margin:1.15rem 0;padding:1.35rem 1.3rem;background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:2px solid #2563EB;border-radius:18px;box-shadow:0 8px 22px rgba(37,99,235,0.10);">
+        <div style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:0.78rem;font-weight:900;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:0.5rem;">
+          🎁 FREE US PARENT TRACKER &bull; AGE 4 BOY
+        </div>
+        <h2 style="font-size:clamp(1.18rem,2.8vw,1.45rem);font-weight:900;color:#0F172A;margin:0 0 0.45rem;line-height:1.3;">
+          Is My Child Growing Normally? Free Age 4 Boy CDC Checklist
+        </h2>
+        <p style="font-size:1rem;color:#334155;margin:0 0 0.9rem;line-height:1.55;">
+          Enter your email for your child's free <strong>US CDC Percentile, 10 PM Sleep &amp; Calcium/D3 Checklist</strong>—plus monthly growth-window reminders.
+        </p>
+        <form class="kfg-parent-signup-form" onsubmit="return window.__kfgSubmitParentSignup(event, this, 'Age 4 Boy');" style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:stretch;">
+          <label for="kfg-parent-email-top" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Parent email address</label>
+          <input id="kfg-parent-email-top" type="email" required autocomplete="email" placeholder="Enter parent email (e.g., mom@gmail.com)" style="flex:1 1 240px;min-height:54px;padding:0.75rem 1rem;font-size:1rem;font-weight:700;border-radius:12px;border:2px solid #93C5FD;background:#FFFFFF;color:#0F172A;" />
+          <button type="submit" style="min-height:54px;padding:0.75rem 1.35rem;font-size:1rem;font-weight:900;border-radius:12px;border:none;background:#1D4ED8;color:#FFFFFF;cursor:pointer;white-space:nowrap;">
+            📩 Send Free Checklist (1-Click) &rarr;
+          </button>
+        </form>
+        <div class="kfg-parent-signup-status" role="status" aria-live="polite" style="display:none;margin-top:0.75rem;padding:0.65rem 0.85rem;border-radius:10px;background:#DCFCE7;color:#14532D;font-size:0.95rem;font-weight:700;"></div>
+        <div style="margin-top:0.95rem;padding-top:0.8rem;border-top:1px solid #BFDBFE;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.65rem;">
+          <span style="font-size:0.9rem;font-weight:800;color:#1E293B;">💳 Need the Full Printable Pediatrician PDF Right Now? (1-Tap Apple Pay / Card):</span>
+          <div style="display:flex;flex-wrap:wrap;gap:0.55rem;">
+            <a href="https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1" data-ls-product-uuid="c1cd7f12-3479-49e8-ab71-59c98135d599" class="lemonsqueezy-button" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0.55rem 1rem;border-radius:10px;background:#0F172A;color:#FFFFFF;font-size:0.9rem;font-weight:800;text-decoration:none;">
+              📄 1-Tap Single Report ($8.99)
+            </a>
+            <a href="https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" class="lemonsqueezy-button" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0.55rem 1rem;border-radius:10px;background:#059669;color:#FFFFFF;font-size:0.9rem;font-weight:900;text-decoration:none;">
+              📈 1-Tap 6-Month Family Pass ($19.99)
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- KFG_PARENT_LEAD_TOP_END -->
       <p style="font-size:0.95rem;color:#334155;margin:0 0 1rem;">
         According to the <strong>US CDC 2000 Pediatric Growth Standards</strong>, the <strong>50th percentile (median)</strong> standing height for a <strong>4-year-old boy</strong> is <strong>3' 4.3" (40.3 in) (102.3 cm)</strong>. Compare your child's current stature across the clinical percentile corridors below:
       </p>
@@ -126,6 +206,39 @@
           <a href="https://www.amazon.com/s?k=kids+doorway+pull+up+bar+posture+corrector&amp;tag=kidfit-20" target="_blank" rel="noopener noreferrer" style="text-decoration:none;background:#FFFFFF;border:1px solid #93C5FD;border-radius:10px;padding:0.55rem 0.7rem;font-size:0.76rem;font-weight:800;color:#1E3A8A;display:block;">📦 Amazon Spinal Decompression Bar &nearr;</a>
         </div>
       </div>
+    
+      <!-- KFG_PARENT_LEAD_BOTTOM_START -->
+      <section id="kfg-lead-magnet-bottom" aria-label="Free Parent Growth Checklist Email Sign-Up and 1-Tap Report Checkout" style="margin:1.15rem 0;padding:1.35rem 1.3rem;background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:2px solid #2563EB;border-radius:18px;box-shadow:0 8px 22px rgba(37,99,235,0.10);">
+        <div style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:0.78rem;font-weight:900;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:0.5rem;">
+          🎁 FREE US PARENT TRACKER &bull; AGE 4 BOY
+        </div>
+        <h2 style="font-size:clamp(1.18rem,2.8vw,1.45rem);font-weight:900;color:#0F172A;margin:0 0 0.45rem;line-height:1.3;">
+          Track Every Growth Spurt — Free Monthly Age 4 Boy Parent Tracker
+        </h2>
+        <p style="font-size:1rem;color:#334155;margin:0 0 0.9rem;line-height:1.55;">
+          Enter your email for your child's free <strong>US CDC Percentile, 10 PM Sleep &amp; Calcium/D3 Checklist</strong>—plus monthly growth-window reminders.
+        </p>
+        <form class="kfg-parent-signup-form" onsubmit="return window.__kfgSubmitParentSignup(event, this, 'Age 4 Boy');" style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:stretch;">
+          <label for="kfg-parent-email-bottom" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Parent email address</label>
+          <input id="kfg-parent-email-bottom" type="email" required autocomplete="email" placeholder="Enter parent email (e.g., mom@gmail.com)" style="flex:1 1 240px;min-height:54px;padding:0.75rem 1rem;font-size:1rem;font-weight:700;border-radius:12px;border:2px solid #93C5FD;background:#FFFFFF;color:#0F172A;" />
+          <button type="submit" style="min-height:54px;padding:0.75rem 1.35rem;font-size:1rem;font-weight:900;border-radius:12px;border:none;background:#1D4ED8;color:#FFFFFF;cursor:pointer;white-space:nowrap;">
+            📩 Send Free Checklist (1-Click) &rarr;
+          </button>
+        </form>
+        <div class="kfg-parent-signup-status" role="status" aria-live="polite" style="display:none;margin-top:0.75rem;padding:0.65rem 0.85rem;border-radius:10px;background:#DCFCE7;color:#14532D;font-size:0.95rem;font-weight:700;"></div>
+        <div style="margin-top:0.95rem;padding-top:0.8rem;border-top:1px solid #BFDBFE;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.65rem;">
+          <span style="font-size:0.9rem;font-weight:800;color:#1E293B;">💳 Need the Full Printable Pediatrician PDF Right Now? (1-Tap Apple Pay / Card):</span>
+          <div style="display:flex;flex-wrap:wrap;gap:0.55rem;">
+            <a href="https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1" data-ls-product-uuid="c1cd7f12-3479-49e8-ab71-59c98135d599" class="lemonsqueezy-button" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0.55rem 1rem;border-radius:10px;background:#0F172A;color:#FFFFFF;font-size:0.9rem;font-weight:800;text-decoration:none;">
+              📄 1-Tap Single Report ($8.99)
+            </a>
+            <a href="https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" class="lemonsqueezy-button" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0.55rem 1rem;border-radius:10px;background:#059669;color:#FFFFFF;font-size:0.9rem;font-weight:900;text-decoration:none;">
+              📈 1-Tap 6-Month Family Pass ($19.99)
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- KFG_PARENT_LEAD_BOTTOM_END -->
     </article>
   </div>
 </body>

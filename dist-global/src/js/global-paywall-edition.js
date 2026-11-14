@@ -22,8 +22,8 @@
   const DEFAULT_PASS_CHECKOUT_URL = 'https://app.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
   const TRUTHOFMARKET_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599';
   const TRUTHOFMARKET_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895';
-  const LOCALIZED_EN_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1';
-  const LOCALIZED_EN_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1';
+  const LOCALIZED_EN_SINGLE_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1&locale=en';
+  const LOCALIZED_EN_PASS_CHECKOUT_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895?embed=1&locale=en';
 
   function getLocalizedEnglishCheckoutUrl(plan) {
     return plan === 'pass' ? TRUTHOFMARKET_PASS_CHECKOUT_URL : TRUTHOFMARKET_SINGLE_CHECKOUT_URL;
@@ -4183,6 +4183,39 @@ ${isMasked ? `
           </label>
         </div>
 
+        <!-- Primary 2x Large 64px+ 1-Tap Express Checkout Buttons Front-and-Center -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.75rem;margin-bottom:0.65rem;">
+          <button type="button" id="btn-one-tap-single-report" data-ls-product-uuid="c1cd7f12-3479-49e8-ab71-59c98135d599" onclick="window.launchLemonSqueezyCheckout('single')" style="min-height:66px;padding:0.95rem 1.1rem;border-radius:14px;border:2px solid #1D4ED8;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.02rem;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(29,78,216,0.26);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.18rem;line-height:1.25;">
+            <span>🔓 Single Growth Report — $8.99</span>
+            <span style="font-size:0.74rem;font-weight:700;color:#DBEAFE;">One-Time · Instant On-Screen Unlock &amp; PDF</span>
+          </button>
+          <button type="button" id="btn-one-tap-six-month-pass" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" onclick="window.launchLemonSqueezyCheckout('pass')" style="min-height:66px;padding:0.95rem 1.1rem;border-radius:14px;border:2px solid #047857;background:linear-gradient(90deg,#059669 0%,#10B981 100%);color:#FFFFFF;font-size:1.02rem;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(5,150,105,0.26);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.18rem;line-height:1.25;">
+            <span>⭐ 6-Month Growth Pass — $19.99</span>
+            <span style="font-size:0.74rem;font-weight:700;color:#D1FAE5;">Save 63% · Unlimited Siblings + Brain LQ</span>
+          </button>
+        </div>
+
+        <div style="text-align:center;font-size:0.8rem;font-weight:800;color:#0F172A;margin-bottom:0.65rem;line-height:1.45;">
+          🍎 Apple Pay · Google Pay · Credit Card · PayPal &nbsp;|&nbsp; <span style="color:#059669;">✨ Unlocks Automatically on Screen Right After Payment (30-Day Guarantee)</span>
+        </div>
+
+        <details style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:0.55rem 0.85rem;margin-bottom:0.85rem;">
+          <summary style="cursor:pointer;font-size:0.78rem;font-weight:800;color:#1D4ED8;">
+            🔑 Switching devices or already paid? Restore your report with a License Key ▾
+          </summary>
+          <div style="margin-top:0.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.76rem;color:#475569;">
+            <span>Open the license restore box if you purchased on another phone or computer:</span>
+            <button type="button" onclick="window.openKidsFitGlobalCheckoutModal({focusRestore:true})" style="padding:0.42rem 0.8rem;border-radius:8px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-weight:800;cursor:pointer;">
+              Restore License Key →
+            </button>
+          </div>
+        </details>
+
+        <details style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:0.65rem 0.9rem;margin-bottom:0.75rem;">
+          <summary style="cursor:pointer;font-size:0.82rem;font-weight:800;color:#334155;">
+            📊 View Full Plan Comparison Table, Sample Preview &amp; Included PDF Pack ▾
+          </summary>
+          <div style="margin-top:0.75rem;">
         <!-- Monthly Retention Value Box: Why Parents Need Ongoing Monthly Re-Calibration -->
         <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.85rem 1rem;margin-bottom:0.85rem;font-size:0.8rem;color:#065F46;line-height:1.5;">
           <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.35rem;flex-wrap:wrap;">
@@ -4323,23 +4356,25 @@ ${isMasked ? `
         </button>
 
         <!-- Primary Checkout CTA Button + 1-Tap Direct Express Checkout -->
-        <button type="button" id="btn-global-paywall-checkout" data-checkout-url="${singleBuyUrl}" onclick="window.openKidsFitGlobalCheckoutModal()" style="width:100%;min-height:52px;padding:1rem 1.2rem;border-radius:14px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(29,78,216,0.28);margin-bottom:0.55rem;display:flex;align-items:center;justify-content:center;gap:0.45rem;">
-          🔓 Unlock Full Clinical Report &amp; Printable PDF Now ($8.99) →
+        <button type="button" id="btn-global-paywall-checkout" data-checkout-url="${singleBuyUrl}" onclick="window.openKidsFitGlobalCheckoutModal()" style="width:100%;min-height:62px;padding:1rem 1.2rem;border-radius:14px;border:none;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(29,78,216,0.28);margin-bottom:0.55rem;display:flex;align-items:center;justify-content:center;gap:0.45rem;">
+          🔓 Get Single Growth Report — $8.99 →
         </button>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.5rem;margin-bottom:0.65rem;">
-          <button type="button" onclick="window.launchLemonSqueezyCheckout('single')" style="min-height:48px;padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.82rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
-            ⚡ 1-Tap Express Checkout: $8.99 Single Pass →
+          <button type="button" onclick="window.launchLemonSqueezyCheckout('single')" style="min-height:60px;padding:0.75rem 0.95rem;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.88rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
+            ⚡ Single Growth Report — $8.99 →
           </button>
-          <button type="button" onclick="window.launchLemonSqueezyCheckout('pass')" style="min-height:48px;padding:0.65rem 0.85rem;border-radius:10px;border:1.5px solid #059669;background:#ECFDF5;color:#047857;font-size:0.82rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
-            💎 1-Tap Express Checkout: $19.99 6-Month Pass (Save 63%) →
+          <button type="button" onclick="window.launchLemonSqueezyCheckout('pass')" style="min-height:60px;padding:0.75rem 0.95rem;border-radius:12px;border:1.5px solid #059669;background:#ECFDF5;color:#047857;font-size:0.88rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.35rem;">
+            ⭐ 6-Month Growth Pass — $19.99 (Save 63%) →
           </button>
         </div>
 
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;font-size:0.76rem;color:#64748B;">
-          <span>🔒 Official Lemon Squeezy USD Checkout · Instant Access · 30-Day Guarantee</span>
+          <span>🔒 Official Lemon Squeezy USD Checkout · Instant Auto-Unlock · 30-Day Guarantee</span>
           <span>💳 Visa · Mastercard · Amex · Apple Pay · Google Pay · PayPal</span>
         </div>
+          </div>
+        </details>
 
         <!-- Above-the-Fold Section 01 Free Starter Guide (iHerb IPZ1547 & Amazon kidfit-20) -->
         <div id="kidsfit-above-fold-affiliate-kit" style="display:none !important;">
@@ -5492,13 +5527,18 @@ ${isMasked ? `
     const finalUrl = baseCheckoutUrl.indexOf('/checkout/custom/') !== -1
       ? baseCheckoutUrl
       : (email && email.indexOf('@') !== -1
-          ? `${baseCheckoutUrl}${sep}embed=1&checkout[email]=${encodeURIComponent(email)}`
-          : `${baseCheckoutUrl}${sep}embed=1`);
+          ? `${baseCheckoutUrl}${sep}embed=1&locale=en&checkout[email]=${encodeURIComponent(email)}`
+          : `${baseCheckoutUrl}${sep}embed=1&locale=en`);
 
     const openTargetUrl = function (rawUrl) {
       startAutoPaymentProgressionPoller(email, plan);
-      const hasEmbed = String(rawUrl || '').indexOf('embed=1') !== -1;
-      const targetUrl = hasEmbed ? rawUrl : (rawUrl + (String(rawUrl || '').indexOf('?') === -1 ? '?embed=1' : '&embed=1'));
+      let targetUrl = String(rawUrl || '');
+      if (targetUrl.indexOf('embed=1') === -1) {
+        targetUrl += (targetUrl.indexOf('?') === -1 ? '?embed=1' : '&embed=1');
+      }
+      if (targetUrl.indexOf('locale=') === -1) {
+        targetUrl += '&locale=en';
+      }
       try {
         if (typeof window !== 'undefined' && typeof window.createLemonSqueezy === 'function') {
           window.createLemonSqueezy();
@@ -5623,8 +5663,12 @@ ${isMasked ? `
     window.switchModalPlan = global.switchModalPlan;
   }
 
-  global.openKidsFitGlobalCheckoutModal = function () {
+  global.openKidsFitGlobalCheckoutModal = function (modalOpts) {
     if (typeof document === 'undefined') return;
+    if (modalOpts === 'single' || modalOpts === 'pass') {
+      selectedPlan = modalOpts;
+    }
+    const focusRestore = Boolean(modalOpts && typeof modalOpts === 'object' && modalOpts.focusRestore);
     ensureLemonSqueezyScriptLoaded();
 
     let modal = document.getElementById('kidsfit-global-checkout-modal');
@@ -5645,44 +5689,48 @@ ${isMasked ? `
     modal.id = 'kidsfit-global-checkout-modal';
     modal.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.72);display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);';
     modal.innerHTML = `
-      <div style="background:#FFFFFF;border:2px solid #1D4ED8;border-radius:22px;max-width:470px;width:100%;padding:1.5rem 1.4rem;box-shadow:0 25px 60px rgba(0,0,0,0.35);color:#0F172A;text-align:left;">
+      <div style="background:#FFFFFF;border:2px solid #1D4ED8;border-radius:22px;max-width:470px;width:100%;padding:1.5rem 1.4rem;box-shadow:0 25px 60px rgba(0,0,0,0.35);color:#0F172A;text-align:left;max-height:92vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.85rem;padding-bottom:0.65rem;border-bottom:1px solid #E2E8F0;">
           <div>
-            <span style="font-size:0.72rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:0.18rem 0.55rem;border-radius:9999px;">KISFIT BIO LABS · OFFICIAL USD CHECKOUT</span>
+            <span style="font-size:0.72rem;font-weight:900;color:#1D4ED8;background:#EFF6FF;padding:0.18rem 0.55rem;border-radius:9999px;">KISFIT BIO LABS · 1-TAP USD CHECKOUT</span>
             <h3 id="checkout-modal-plan-title" style="margin:0.3rem 0 0;font-size:1.08rem;font-weight:900;color:#0F172A;line-height:1.3;">${planTitle}</h3>
           </div>
-          <button type="button" onclick="var m=document.getElementById('kidsfit-global-checkout-modal');if(m)m.remove();" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:9999px;width:32px;height:32px;font-weight:900;cursor:pointer;">✕</button>
+          <button type="button" onclick="var m=document.getElementById('kidsfit-global-checkout-modal');if(m)m.remove();" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:9999px;width:34px;height:34px;font-weight:900;cursor:pointer;">✕</button>
         </div>
 
-        <!-- Interactive 2-Tier Plan Switcher Inside Modal -->
-        <div class="checkout-plan-selector" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.9rem;">
-          <button type="button" id="chk-plan-single" onclick="window.switchModalPlan('single')" style="cursor:pointer;padding:0.65rem 0.6rem;border-radius:12px;background:${selectedPlan === 'single' ? '#EFF6FF' : '#F8FAFC'};border:${selectedPlan === 'single' ? '2px solid #1D4ED8' : '1.5px solid #CBD5E1'};text-align:left;display:flex;flex-direction:column;gap:0.15rem;transition:all 0.15s ease;">
-            <span style="font-size:0.7rem;font-weight:700;color:#64748B;">SINGLE PASS</span>
-            <strong style="font-size:0.86rem;color:#0F172A;font-weight:800;">1 Child Report</strong>
-            <span style="font-size:1.05rem;font-weight:900;color:#1D4ED8;">$8.99 <small style="font-size:0.7rem;font-weight:600;color:#64748B;">USD</small></span>
+        <!-- Interactive 2-Tier Plan Switcher Inside Modal (64px+ Large Cards) -->
+        <div class="checkout-plan-selector" style="display:grid;grid-template-columns:1fr 1fr;gap:0.55rem;margin-bottom:0.9rem;">
+          <button type="button" id="chk-plan-single" onclick="window.switchModalPlan('single')" style="min-height:68px;cursor:pointer;padding:0.7rem 0.65rem;border-radius:12px;background:${selectedPlan === 'single' ? '#EFF6FF' : '#F8FAFC'};border:${selectedPlan === 'single' ? '2px solid #1D4ED8' : '1.5px solid #CBD5E1'};text-align:left;display:flex;flex-direction:column;gap:0.15rem;transition:all 0.15s ease;">
+            <span style="font-size:0.7rem;font-weight:700;color:#64748B;">SINGLE REPORT</span>
+            <strong style="font-size:0.88rem;color:#0F172A;font-weight:800;">Single Growth Report</strong>
+            <span style="font-size:1.1rem;font-weight:900;color:#1D4ED8;">$8.99 <small style="font-size:0.7rem;font-weight:600;color:#64748B;">USD</small></span>
           </button>
-          <button type="button" id="chk-plan-pass" onclick="window.switchModalPlan('pass')" style="cursor:pointer;padding:0.65rem 0.6rem;border-radius:12px;background:${selectedPlan === 'pass' ? '#EFF6FF' : '#F8FAFC'};border:${selectedPlan === 'pass' ? '2px solid #1D4ED8' : '1.5px solid #CBD5E1'};text-align:left;display:flex;flex-direction:column;gap:0.15rem;position:relative;transition:all 0.15s ease;">
+          <button type="button" id="chk-plan-pass" onclick="window.switchModalPlan('pass')" style="min-height:68px;cursor:pointer;padding:0.7rem 0.65rem;border-radius:12px;background:${selectedPlan === 'pass' ? '#EFF6FF' : '#F8FAFC'};border:${selectedPlan === 'pass' ? '2px solid #1D4ED8' : '1.5px solid #CBD5E1'};text-align:left;display:flex;flex-direction:column;gap:0.15rem;position:relative;transition:all 0.15s ease;">
             <span style="position:absolute;top:-8px;right:6px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.6rem;font-weight:900;padding:0.12rem 0.45rem;border-radius:9999px;box-shadow:0 2px 6px rgba(29,78,216,0.3);">⭐ BEST VALUE</span>
             <span style="font-size:0.7rem;font-weight:700;color:#1D4ED8;">6-MONTH PASS</span>
-            <strong style="font-size:0.86rem;color:#0F172A;font-weight:800;">All Features + LQ</strong>
-            <span style="font-size:1.05rem;font-weight:900;color:#1D4ED8;">$19.99 <small style="font-size:0.7rem;font-weight:600;color:#64748B;">USD</small></span>
+            <strong style="font-size:0.88rem;color:#0F172A;font-weight:800;">6-Month Growth Pass</strong>
+            <span style="font-size:1.1rem;font-weight:900;color:#1D4ED8;">$19.99 <small style="font-size:0.7rem;font-weight:600;color:#64748B;">USD</small></span>
           </button>
         </div>
 
-        <div style="background:#F8FAFC;border:1px solid #BFDBFE;border-radius:12px;padding:0.75rem 0.9rem;margin-bottom:0.9rem;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:0.86rem;font-weight:800;color:#334155;">Total Due Today (USD)</span>
+        <div style="background:#F8FAFC;border:1px solid #BFDBFE;border-radius:12px;padding:0.75rem 0.9rem;margin-bottom:0.85rem;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.86rem;font-weight:800;color:#334155;">Total Due Today (One-Time USD)</span>
           <span id="checkout-modal-total-due" style="font-size:1.35rem;font-weight:900;color:#1D4ED8;">${priceStr}</span>
         </div>
 
-        <div style="margin-bottom:0.85rem;">
-          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.3rem;">Parent Email (Used for Lemon Squeezy Receipt &amp; Instant Auto-Unlock)</label>
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.3rem;">Parent Email (Optional — Pre-fills Receipt Email)</label>
           <input type="email" id="checkout-parent-email" value="${defaultEmail}" placeholder="parent@example.com" style="width:100%;box-sizing:border-box;padding:0.75rem 0.85rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:16px;color:#0F172A;min-height:48px;">
         </div>
 
-        <!-- Primary Official Lemon Squeezy Hosted / Overlay Checkout Button -->
-        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" data-ls-product-uuid="${lsProductUuid}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:52px;box-sizing:border-box;padding:0.95rem 1rem;border-radius:12px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:0.98rem;font-weight:900;cursor:pointer;margin-bottom:0.65rem;box-shadow:0 10px 24px rgba(29,78,216,0.25);">
-          💳 Pay ${priceStr} via Official Lemon Squeezy Checkout →
+        <!-- Primary Official Lemon Squeezy Hosted / Overlay Checkout Button (64px+) -->
+        <a id="btn-lemonsqueezy-official-checkout" href="${lsBuyUrl}" data-ls-product-uuid="${lsProductUuid}" onclick="event.preventDefault(); window.launchLemonSqueezyCheckout('${selectedPlan}');" class="lemonsqueezy-button" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:64px;box-sizing:border-box;padding:1rem 1.1rem;border-radius:14px;background:linear-gradient(90deg,#1D4ED8 0%,#2563EB 100%);color:#FFFFFF;font-size:1.04rem;font-weight:900;cursor:pointer;margin-bottom:0.5rem;box-shadow:0 10px 24px rgba(29,78,216,0.28);">
+          💳 Pay ${priceStr} &amp; Unlock Instantly →
         </a>
+
+        <div style="text-align:center;font-size:0.76rem;font-weight:800;color:#059669;margin-bottom:0.65rem;line-height:1.4;">
+          🍎 Apple Pay · Google Pay · Credit Card · PayPal — Unlocks Automatically on Screen (No Key Copy-Paste Needed)
+        </div>
 
         <!-- Zero-Bounce Instant 7-Day Clinical Founding Pass & Partner Bridge -->
         <div id="kidsfit-instant-vip-bridge" style="display:none !important;">
@@ -5698,17 +5746,22 @@ ${isMasked ? `
           </button>
         </div>
 
-        <div id="kidsfit-paywall-verify-box">
-          <div style="margin-bottom:0.55rem;">
-            <label style="display:block;font-size:0.74rem;font-weight:700;color:#475569;margin-bottom:0.25rem;">Lemon Squeezy License Key (from Receipt Email) or Access Code</label>
-            <input type="text" id="checkout-order-code" placeholder="e.g. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" style="width:100%;box-sizing:border-box;padding:0.55rem 0.75rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.84rem;color:#0F172A;">
-          </div>
-          <div id="checkout-verify-status-msg" style="display:none;font-size:0.8rem;font-weight:700;padding:0.55rem 0.75rem;border-radius:10px;margin-bottom:0.65rem;"></div>
+        <details id="kidsfit-license-restore-details" ${focusRestore ? 'open' : ''} style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:12px;padding:0.65rem 0.85rem;">
+          <summary style="cursor:pointer;font-size:0.78rem;font-weight:800;color:#1D4ED8;">
+            🔑 Switching devices or already paid? Restore with License Key ▾
+          </summary>
+          <div id="kidsfit-paywall-verify-box" style="margin-top:0.6rem;">
+            <div style="margin-bottom:0.55rem;">
+              <label style="display:block;font-size:0.74rem;font-weight:700;color:#475569;margin-bottom:0.25rem;">Lemon Squeezy License Key (from Receipt Email) or Access Code</label>
+              <input type="text" id="checkout-order-code" placeholder="e.g. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" style="width:100%;box-sizing:border-box;padding:0.55rem 0.75rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.84rem;color:#0F172A;">
+            </div>
+            <div id="checkout-verify-status-msg" style="display:none;font-size:0.8rem;font-weight:700;padding:0.55rem 0.75rem;border-radius:10px;margin-bottom:0.65rem;"></div>
 
-          <button type="button" onclick="window.completeKidsFitGlobalCheckout()" style="width:100%;padding:0.78rem 1rem;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.86rem;font-weight:800;cursor:pointer;margin-bottom:0.55rem;">
-            Already Completed Lemon Squeezy Payment? Activate License Key &amp; Unlock →
-          </button>
-        </div>
+            <button type="button" onclick="window.completeKidsFitGlobalCheckout()" style="width:100%;padding:0.78rem 1rem;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.86rem;font-weight:800;cursor:pointer;margin-bottom:0.25rem;">
+              Restore License Key &amp; Unlock Report →
+            </button>
+          </div>
+        </details>
 
         <!-- Checkout Modal 30-Day Guarantee & Clinical Trust Badges -->
         <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:0.75rem 0.85rem;margin-top:0.75rem;font-size:0.76rem;color:#14532D;line-height:1.45;">
