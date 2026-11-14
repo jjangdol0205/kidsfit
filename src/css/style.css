@@ -3930,7 +3930,7 @@ html[data-edition="global-paid"] select.form-input:focus {
    30. KIDSFIT PARENTING SELECT SHOP & AFFILIATE CATALOG UI
    ========================================================================== */
 #kf-curated-mall-hero,
-#kidsfit-parenting-select-shop,
+div#kidsfit-parenting-select-shop,
 .kidsfit-parenting-select-shop {
   margin-top: 1.25rem;
   background: #FFFFFF;
