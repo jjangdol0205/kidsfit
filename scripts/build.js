@@ -4,11 +4,28 @@
  * Deterministic, zero-external-dependencies, cross-platform.
  */
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
+
+function computeDeterministicBuildStamp() {
+  const hash = crypto.createHash('sha256');
+  for (const rel of [
+    'src/js/app.js',
+    'src/js/monetization.js',
+    'src/css/style.css',
+    'src/data/curation-catalog.json'
+  ]) {
+    const fp = path.join(ROOT_DIR, rel);
+    if (fs.existsSync(fp)) {
+      hash.update(fs.readFileSync(fp));
+    }
+  }
+  return `20261022_${hash.digest('hex').slice(0, 8)}`;
+}
 
 function copyRecursiveSync(src, dest) {
   const exists = fs.existsSync(src);
@@ -79,8 +96,8 @@ function build() {
   syncLiveResearchCountToSourceFiles();
   generateDataBundle();
 
-  // 4. Build / Copy index.html with automatic cache-busting stamp
-  const buildStamp = `20261022_${Date.now().toString(36)}`;
+  // 4. Build / Copy index.html with deterministic content-hash cache-busting stamp
+  const buildStamp = computeDeterministicBuildStamp();
   const indexSrc = path.join(ROOT_DIR, 'index.html');
   const indexDest = path.join(DIST_DIR, 'index.html');
   if (fs.existsSync(indexSrc)) {

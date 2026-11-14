@@ -16,7 +16,7 @@ const distDir = path.join(rootDir, 'dist');
 
 const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
 const todayIso = nowKst.toISOString().slice(0, 10);
-const rfcNow = new Date().toUTCString();
+const rfcNow = new Date(`${todayIso}T00:00:00Z`).toUTCString();
 
 function escapeXml(str) {
   return String(str || '')
@@ -95,6 +95,7 @@ for (const f of allQnaFiles) {
 // 3. Rebuild clean canonical sitemap.xml
 const corePages = [
   { loc: 'https://kidsfit.co.kr/', prio: '1.0', freq: 'daily' },
+  { loc: 'https://kidsfit.co.kr/coupang-kidsfit.html', prio: '0.88', freq: 'weekly' },
   { loc: 'https://kidsfit.co.kr/about.html', prio: '0.7', freq: 'monthly' },
   { loc: 'https://kidsfit.co.kr/contact.html', prio: '0.6', freq: 'monthly' },
   { loc: 'https://kidsfit.co.kr/privacy.html', prio: '0.5', freq: 'yearly' },
