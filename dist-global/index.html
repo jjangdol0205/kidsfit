@@ -80,7 +80,7 @@
   <meta property="og:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kisfitglobal.com/">
-  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhlqkhn">
+  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhueng7">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -88,17 +88,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KISFIT — US CDC Child Height Predictor &amp; 5-Axis Brain LQ Report">
   <meta property="twitter:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
-  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhlqkhn">
+  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhueng7">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mwhlqkhn">
+  <link rel="manifest" href="manifest.json?v=20261022_mwhueng7">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KISFIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwhlqkhn">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwhueng7">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,8 +117,8 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwhlqkhn">
-  <link rel="stylesheet" href="src/css/parent-growth-club.css?v=20261022_mwhlqkhn">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwhueng7">
+  <link rel="stylesheet" href="src/css/parent-growth-club.css?v=20261022_mwhueng7">
   <script>
     try {
       window.__KIDSFIT_GLOBAL_PAID_EDITION = true;
@@ -150,7 +150,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mwhlqkhn').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mwhueng7').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -271,6 +271,20 @@
         }
         var stOk = document.getElementById(statusId);
         if (stOk) stOk.style.color = '#065F46';
+        var segCode = window.__kfgSelectedClubSegment || 'ages_8_11_golden_window';
+        var sl = String(stageLabel || '').toLowerCase();
+        if (sl.indexOf('2-5') !== -1 || sl.indexOf('3-7') !== -1 || sl.indexOf('foundation') !== -1) segCode = 'ages_3_7_foundation';
+        else if (sl.indexOf('12') !== -1 || sl.indexOf('13') !== -1 || sl.indexOf('puberty') !== -1) segCode = 'ages_12_16_peak_velocity';
+        if (window.DreamCompanyCRM && typeof window.DreamCompanyCRM.registerMember === 'function') {
+          try {
+            window.DreamCompanyCRM.registerMember({
+              div: 'KFG',
+              email: val.toLowerCase(),
+              segment: segCode,
+              lang: 'en-US'
+            });
+          } catch (_crmErr) {}
+        }
         window.trackKfgFreeSignup(val, stageLabel || 'US CDC Growth Plan');
         return false;
       };
@@ -756,6 +770,163 @@
           <span id="kfg-club-history-summary" class="kfg-club-history-note">Last Check-in: Ready to log your child&apos;s baseline today</span>
         </div>
         <div id="kfg-club-ics-feedback" role="status" aria-live="polite" style="display:none;margin-top:0.45rem;font-size:0.78rem;font-weight:700;color:#047857;"></div>
+
+        <!-- Passwordless 3-Sec Free Parent Growth Club Email & Stage Registration -->
+        <div id="kfg-club-passwordless-box" class="kfg-club-passwordless-box">
+          <span class="kfg-club-pwless-eyebrow">PASSWORDLESS 3-SEC CLUB MEMBERSHIP &middot; FREE AGE-STAGE BRIEFINGS</span>
+          <h3 class="kfg-club-pwless-title">Get Age-Matched US CDC Height Velocity &amp; Pre-10 PM Sleep GH Briefings</h3>
+          <p class="kfg-club-pwless-sub">No password needed. Tap your child&apos;s growth window and enter 1 parent email for tailored sleep, bone mineral, and height velocity guidance.</p>
+          <div class="kfg-club-seg-row" role="group" aria-label="Select Child Growth Stage">
+            <button type="button" class="kfg-club-seg-pill" data-kfg-club-seg="ages_3_7_foundation" aria-pressed="false" onclick="if(window.selectKfgFreeClubSegment)window.selectKfgFreeClubSegment('ages_3_7_foundation');">
+              🌱 Ages 3&ndash;7 Foundation
+            </button>
+            <button type="button" class="kfg-club-seg-pill active" data-kfg-club-seg="ages_8_11_golden_window" aria-pressed="true" onclick="if(window.selectKfgFreeClubSegment)window.selectKfgFreeClubSegment('ages_8_11_golden_window');">
+              ⭐ Ages 8&ndash;11 Golden Window
+            </button>
+            <button type="button" class="kfg-club-seg-pill" data-kfg-club-seg="ages_12_16_peak_velocity" aria-pressed="false" onclick="if(window.selectKfgFreeClubSegment)window.selectKfgFreeClubSegment('ages_12_16_peak_velocity');">
+              🚀 Ages 12&ndash;16 Puberty
+            </button>
+          </div>
+          <form id="kfg-club-passwordless-form" class="kfg-club-pwless-form" onsubmit="return window.submitKfgPasswordlessClubSignup(event);">
+            <input type="text" id="kfg-club-passwordless-nick" class="kfg-club-pwless-input" style="flex:0 1 170px;" aria-label="Parent or Child Nickname (Optional)" placeholder="Name (optional)">
+            <input type="email" id="kfg-club-passwordless-email" class="kfg-club-pwless-input" required aria-label="Parent Email Address" placeholder="Enter parent email (no password needed)">
+            <input type="text" id="kfg-club-passwordless-hp" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
+            <button type="submit" id="btn-kfg-club-passwordless-submit" class="kfg-club-pwless-btn">
+              Join Free Growth Club (3-Sec Access) -&gt;
+            </button>
+          </form>
+          <div id="kfg-club-passwordless-feedback" class="kfg-crm-feedback" role="status" aria-live="polite" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- Paid VIP Monthly Growth Checklist & Pediatric Velocity Commentary Portal -->
+      <section id="kfg-vip-monthly-checkin" aria-label="Paid VIP Monthly Growth Checklist and Pediatric Velocity Commentary Portal">
+        <div class="kfg-vip-top-row">
+          <span class="kfg-vip-eyebrow">🩺 PAID VIP MONTHLY CONCIERGE &middot; 30-DAY VELOCITY &amp; HABIT CHECK-IN</span>
+          <span id="kfg-vip-status-pill" class="kfg-vip-status-pill">Included with $8.99 Single Report (1x Bonus) &amp; $19.99 6-Month Pass (6x Monthly)</span>
+        </div>
+        <h2 class="kfg-vip-heading">Monthly Growth Checklist &amp; Personalized US CDC Velocity Commentary</h2>
+        <p class="kfg-vip-lead">
+          Paid VIP parents receive a monthly growth check-in email every 30 days. Log this month&apos;s barefoot morning height and 4 core growth habits below to generate your instant annualized velocity (cm/yr &amp; in/yr) commentary and #1 bottleneck coaching action.
+        </p>
+
+        <form id="kfg-vip-monthly-checkin-form" onsubmit="return window.submitKfgVipMonthlyCheckinForm(event);">
+          <div class="kfg-vip-grid-3">
+            <div class="kfg-vip-field">
+              <label for="kfg-vip-email">VIP Parent Email (Receipt Email)</label>
+              <input type="email" id="kfg-vip-email" required placeholder="parent@gmail.com">
+            </div>
+            <div class="kfg-vip-field">
+              <label for="kfg-vip-child-name">Child&apos;s First Name</label>
+              <input type="text" id="kfg-vip-child-name" placeholder="e.g. Liam or Emma">
+            </div>
+            <div class="kfg-vip-field" style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;">
+              <div>
+                <label for="kfg-vip-child-sex">Sex</label>
+                <select id="kfg-vip-child-sex">
+                  <option value="M" selected>Boy (M)</option>
+                  <option value="F">Girl (F)</option>
+                </select>
+              </div>
+              <div>
+                <label for="kfg-vip-child-age">Age (yrs)</label>
+                <input type="number" id="kfg-vip-child-age" min="3" max="17.5" step="0.5" value="9">
+              </div>
+            </div>
+          </div>
+
+          <div class="kfg-vip-grid-3" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+            <div class="kfg-vip-field">
+              <label for="kfg-vip-prev-cm">Previous Month Height (cm)</label>
+              <input type="number" id="kfg-vip-prev-cm" min="65" max="215" step="0.1" value="133.5" oninput="if(window.syncVipHeightHelperLabels)window.syncVipHeightHelperLabels();">
+              <span id="kfg-vip-prev-imperial-hint" class="kfg-vip-hint">Approx. 4 ft 4.6 in</span>
+            </div>
+            <div class="kfg-vip-field">
+              <label for="kfg-vip-curr-cm">This Month&apos;s Morning Height (cm)</label>
+              <input type="number" id="kfg-vip-curr-cm" min="65" max="215" step="0.1" value="134.1" required oninput="if(window.syncVipHeightHelperLabels)window.syncVipHeightHelperLabels();">
+              <span id="kfg-vip-curr-imperial-hint" class="kfg-vip-hint">Approx. 4 ft 4.8 in</span>
+            </div>
+          </div>
+
+          <div class="kfg-vip-imperial-bar">
+            <strong>US Imperial Quick Converter (ft / in &rarr; cm):</strong>
+            <label for="kfg-vip-conv-ft">Feet</label>
+            <input type="number" id="kfg-vip-conv-ft" min="2" max="6" step="1" placeholder="4" oninput="if(window.applyVipImperialConverter)window.applyVipImperialConverter();">
+            <label for="kfg-vip-conv-in">Inches</label>
+            <input type="number" id="kfg-vip-conv-in" min="0" max="11.9" step="0.1" placeholder="4.8" oninput="if(window.applyVipImperialConverter)window.applyVipImperialConverter();">
+            <span style="color:#93C5FD;">(Auto-fills This Month&apos;s Height in cm)</span>
+          </div>
+
+          <div class="kfg-vip-habits-grid">
+            <div class="kfg-vip-habit-card">
+              <span class="kfg-vip-habit-lbl">1. Pre-10 PM Deep Sleep (GH Pulse)</span>
+              <input type="hidden" id="kfg-vip-sleep-score" value="4">
+              <div class="kfg-vip-score-btns" role="group" aria-label="Pre-10 PM Deep Sleep Score 1 to 5">
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="sleep" data-kfg-habit-score="1" onclick="window.selectVipHabitScore('sleep',1)">1</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="sleep" data-kfg-habit-score="2" onclick="window.selectVipHabitScore('sleep',2)">2</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="sleep" data-kfg-habit-score="3" onclick="window.selectVipHabitScore('sleep',3)">3</button>
+                <button type="button" class="kfg-vip-score-btn active" data-kfg-habit-axis="sleep" data-kfg-habit-score="4" onclick="window.selectVipHabitScore('sleep',4)">4</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="sleep" data-kfg-habit-score="5" onclick="window.selectVipHabitScore('sleep',5)">5</button>
+              </div>
+            </div>
+
+            <div class="kfg-vip-habit-card">
+              <span class="kfg-vip-habit-lbl">2. Protein + Ca / Vit D3 / Zinc</span>
+              <input type="hidden" id="kfg-vip-nutrition-score" value="4">
+              <div class="kfg-vip-score-btns" role="group" aria-label="Nutrition Score 1 to 5">
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="nutrition" data-kfg-habit-score="1" onclick="window.selectVipHabitScore('nutrition',1)">1</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="nutrition" data-kfg-habit-score="2" onclick="window.selectVipHabitScore('nutrition',2)">2</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="nutrition" data-kfg-habit-score="3" onclick="window.selectVipHabitScore('nutrition',3)">3</button>
+                <button type="button" class="kfg-vip-score-btn active" data-kfg-habit-axis="nutrition" data-kfg-habit-score="4" onclick="window.selectVipHabitScore('nutrition',4)">4</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="nutrition" data-kfg-habit-score="5" onclick="window.selectVipHabitScore('nutrition',5)">5</button>
+              </div>
+            </div>
+
+            <div class="kfg-vip-habit-card">
+              <span class="kfg-vip-habit-lbl">3. Daily 20-Min Vertical Jump &amp; Stretch</span>
+              <input type="hidden" id="kfg-vip-exercise-score" value="3">
+              <div class="kfg-vip-score-btns" role="group" aria-label="Vertical Jump Exercise Score 1 to 5">
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="exercise" data-kfg-habit-score="1" onclick="window.selectVipHabitScore('exercise',1)">1</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="exercise" data-kfg-habit-score="2" onclick="window.selectVipHabitScore('exercise',2)">2</button>
+                <button type="button" class="kfg-vip-score-btn active" data-kfg-habit-axis="exercise" data-kfg-habit-score="3" onclick="window.selectVipHabitScore('exercise',3)">3</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="exercise" data-kfg-habit-score="4" onclick="window.selectVipHabitScore('exercise',4)">4</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="exercise" data-kfg-habit-score="5" onclick="window.selectVipHabitScore('exercise',5)">5</button>
+              </div>
+            </div>
+
+            <div class="kfg-vip-habit-card">
+              <span class="kfg-vip-habit-lbl">4. Spinal Posture &amp; Nasal Breathing</span>
+              <input type="hidden" id="kfg-vip-posture-score" value="3">
+              <div class="kfg-vip-score-btns" role="group" aria-label="Posture and Nasal Breathing Score 1 to 5">
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="posture" data-kfg-habit-score="1" onclick="window.selectVipHabitScore('posture',1)">1</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="posture" data-kfg-habit-score="2" onclick="window.selectVipHabitScore('posture',2)">2</button>
+                <button type="button" class="kfg-vip-score-btn active" data-kfg-habit-axis="posture" data-kfg-habit-score="3" onclick="window.selectVipHabitScore('posture',3)">3</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="posture" data-kfg-habit-score="4" onclick="window.selectVipHabitScore('posture',4)">4</button>
+                <button type="button" class="kfg-vip-score-btn" data-kfg-habit-axis="posture" data-kfg-habit-score="5" onclick="window.selectVipHabitScore('posture',5)">5</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="kfg-vip-form-error" role="alert" style="display:none;margin-bottom:0.65rem;padding:0.55rem 0.75rem;border-radius:10px;background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;font-size:0.82rem;font-weight:800;"></div>
+
+          <button type="submit" id="btn-kfg-vip-checkin-submit" class="kfg-vip-submit-btn">
+            Submit Monthly Check-in &amp; Generate Velocity Commentary -&gt;
+          </button>
+        </form>
+
+        <div id="kfg-vip-commentary-output" aria-live="polite" style="display:none;"></div>
+
+        <div class="kfg-vip-pass-upsell-strip">
+          <span>Need monthly growth checklist emails &amp; velocity coaching? <strong>Single Report ($8.99)</strong> includes 1x 30-Day Check-in Bonus &middot; <strong>6-Month Pass ($19.99)</strong> includes 6 Monthly Checklists &amp; Commentary.</span>
+          <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
+            <button type="button" data-ls-product-uuid="c1cd7f12-3479-49e8-ab71-59c98135d599" onclick="if(window.triggerKfgVelocityEdgeCheckout){window.triggerKfgVelocityEdgeCheckout('single');}else if(window.openKidsFitGlobalCheckoutModal){window.openKidsFitGlobalCheckoutModal('single');}" style="min-height:40px;padding:0.4rem 0.8rem;border-radius:10px;border:1px solid #60A5FA;background:#1D4ED8;color:#FFFFFF;font-size:0.78rem;font-weight:800;cursor:pointer;">
+              Single Report $8.99 (+1x Check-in)
+            </button>
+            <button type="button" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" onclick="if(window.triggerKfgVelocityEdgeCheckout){window.triggerKfgVelocityEdgeCheckout('pass');}else if(window.openKidsFitGlobalCheckoutModal){window.openKidsFitGlobalCheckoutModal('pass');}" style="min-height:40px;padding:0.4rem 0.8rem;border-radius:10px;border:1px solid #34D399;background:#059669;color:#FFFFFF;font-size:0.78rem;font-weight:800;cursor:pointer;">
+              6-Month Pass $19.99 (6x Monthly)
+            </button>
+          </div>
+        </div>
       </section>
 
       <!-- Premium Clinical Editorial: The Proactive Growth Edge -->
@@ -795,7 +966,7 @@
           </button>
           <button type="button" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" onclick="if(window.triggerKfgVelocityEdgeCheckout){window.triggerKfgVelocityEdgeCheckout('pass');}" class="kfg-edge-btn-pass">
             <span>⭐ Explore 6-Month Velocity Pass — $19.99 →</span>
-            <span class="kfg-edge-btn-sub">Monthly 30-Day Slope Re-Scans · Single Report $8.99 Available</span>
+            <span class="kfg-edge-btn-sub">Includes 6 Monthly Checklists &amp; Velocity Commentary Emails · Single Report $8.99 (+1x Check-in)</span>
           </button>
         </div>
       </section>
@@ -1289,7 +1460,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhueng7" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">Install Free KISFIT Clinical Report App on Mobile &amp; Desktop</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">Add to home screen to track quarterly growth percentiles and 5-axis cognitive progress seamlessly</div>
@@ -1305,7 +1476,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhueng7" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install KISFIT App to Home Screen</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Instant report access with zero install friction</div>
@@ -2635,11 +2806,11 @@
         <div class="kfg-edge-checkout-grid">
           <button type="button" id="btn-edge-single-report" data-ls-product-uuid="c1cd7f12-3479-49e8-ab71-59c98135d599" onclick="if(window.triggerKfgVelocityEdgeCheckout){window.triggerKfgVelocityEdgeCheckout('single');}" class="kfg-edge-btn-single">
             <span>🔓 Single Growth Report — $8.99</span>
-            <span class="kfg-edge-btn-sub">One-Time · Instant 7-Chapter Clinical Unlock &amp; Doctor PDF</span>
+            <span class="kfg-edge-btn-sub">One-Time · 7-Chapter Unlock, Doctor PDF + 1x 30-Day Check-in Bonus</span>
           </button>
           <button type="button" id="btn-edge-six-month-pass" data-ls-product-uuid="c562946d-ef68-4c2f-a802-df9da0179895" onclick="if(window.triggerKfgVelocityEdgeCheckout){window.triggerKfgVelocityEdgeCheckout('pass');}" class="kfg-edge-btn-pass">
             <span>⭐ 6-Month Growth Pass — $19.99</span>
-            <span class="kfg-edge-btn-sub">Monthly 30-Day CDC Velocity Re-Scans · Unlimited Siblings</span>
+            <span class="kfg-edge-btn-sub">6 Monthly Growth Checklist Emails + Velocity Commentary · Unlimited Siblings</span>
           </button>
         </div>
       </section>
@@ -2768,28 +2939,30 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/cloud-sync.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mwhlqkhn"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/global-paywall-edition.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/parent-growth-club.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/bone-age-interpreter.js?v=20261022_mwhlqkhn" defer></script>
-  <script src="src/js/app.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/cloud-sync.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mwhueng7"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/global-paywall-edition.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/hq_member_crm_client.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/parent-growth-club.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/vip-monthly-checkin.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/bone-age-interpreter.js?v=20261022_mwhueng7" defer></script>
+  <script src="src/js/app.js?v=20261022_mwhueng7" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -2804,7 +2977,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mwhlqkhn')
+          window.fetch('src/data/data-bundle.js?v=20261022_mwhueng7')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2832,7 +3005,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mwhueng7" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KISFIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">Add KISFIT App to Home Screen</h3>

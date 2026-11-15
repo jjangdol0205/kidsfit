@@ -1078,43 +1078,42 @@
     }
 
     modal.innerHTML = `
-      <div style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:22px;max-width:440px;width:100%;padding:1.5rem 1.4rem;box-shadow:0 25px 60px rgba(15,23,42,0.28);color:#0F172A;text-align:left;">
+      <div style="background:#FFFFFF;border:1.5px solid #10B981;border-radius:22px;max-width:450px;width:100%;padding:1.5rem 1.4rem;box-shadow:0 25px 60px rgba(15,23,42,0.28);color:#0F172A;text-align:left;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.85rem;padding-bottom:0.65rem;border-bottom:1px solid #E2E8F0;">
           <div>
-            <span style="font-size:0.72rem;font-weight:800;color:#1D4ED8;background:#EFF6FF;padding:0.18rem 0.55rem;border-radius:9999px;">KISFIT BIO LABS · MEMBER &amp; ADMIN PORTAL</span>
-            <h3 style="margin:0.3rem 0 0;font-size:1.15rem;font-weight:800;color:#0F172A;">Sign In or Create Account</h3>
+            <span style="font-size:0.72rem;font-weight:900;color:#065F46;background:#ECFDF5;padding:0.18rem 0.55rem;border-radius:9999px;">PASSWORDLESS 3-SEC CLUB ACCESS</span>
+            <h3 style="margin:0.3rem 0 0;font-size:1.12rem;font-weight:800;color:#0F172A;">Parent Growth Golden-Window Club</h3>
           </div>
           <button type="button" onclick="var m=document.getElementById('kidsfit-auth-modal');if(m)m.remove();" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:9999px;width:32px;height:32px;font-weight:800;cursor:pointer;">✕</button>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;margin-bottom:1rem;background:#F1F5F9;padding:0.3rem;border-radius:12px;">
-          <button type="button" id="auth-tab-btn-login" onclick="window.openKidsFitAuthModal('login')" style="padding:0.5rem;border-radius:9px;border:none;font-size:0.84rem;font-weight:800;cursor:pointer;background:${activeTab === 'login' ? '#FFFFFF' : 'transparent'};color:${activeTab === 'login' ? '#0F172A' : '#64748B'};box-shadow:${activeTab === 'login' ? '0 2px 6px rgba(15,23,42,0.08)' : 'none'};">
-            Sign In (Member / Admin)
-          </button>
-          <button type="button" id="auth-tab-btn-signup" onclick="window.openKidsFitAuthModal('signup')" style="padding:0.5rem;border-radius:9px;border:none;font-size:0.84rem;font-weight:800;cursor:pointer;background:${activeTab === 'signup' ? '#FFFFFF' : 'transparent'};color:${activeTab === 'signup' ? '#0F172A' : '#64748B'};box-shadow:${activeTab === 'signup' ? '0 2px 6px rgba(15,23,42,0.08)' : 'none'};">
-            Create Account
-          </button>
-        </div>
+        <p style="margin:0 0 0.85rem;font-size:0.84rem;color:#334155;line-height:1.45;">
+          No password required. Enter your parent email and select your child&apos;s age stage to save growth milestones and receive age-matched US CDC velocity &amp; sleep GH briefings.
+        </p>
 
-        <div id="auth-name-group" style="display:${activeTab === 'signup' ? 'block' : 'none'};margin-bottom:0.75rem;">
-          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">Parent / Guardian Name</label>
+        <div style="margin-bottom:0.75rem;">
+          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">Parent / Guardian Name (Optional)</label>
           <input type="text" id="auth-input-name" placeholder="Sarah Jenkins" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;color:#0F172A;">
         </div>
 
         <div style="margin-bottom:0.75rem;">
-          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">User ID</label>
-          <input type="text" id="auth-input-email" autocomplete="username" placeholder="Enter your User ID" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;color:#0F172A;">
+          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">Child&apos;s Growth Stage</label>
+          <select id="auth-input-stage" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;font-weight:700;color:#0F172A;background:#FFFFFF;">
+            <option value="ages_3_7_foundation">Ages 3-7 (Early Foundation)</option>
+            <option value="ages_8_11_golden_window" selected>Ages 8-11 (Pre-Puberty Golden Window)</option>
+            <option value="ages_12_16_peak_velocity">Ages 12-16 (Puberty &amp; Plate Closure)</option>
+          </select>
         </div>
 
         <div style="margin-bottom:0.85rem;">
-          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">Password</label>
-          <input type="password" id="auth-input-password" autocomplete="current-password" placeholder="Enter your Password" onkeydown="if(event.key==='Enter'){event.preventDefault();window.submitKidsFitAuth('${activeTab}');}" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;color:#0F172A;">
+          <label style="display:block;font-size:0.78rem;font-weight:800;color:#334155;margin-bottom:0.25rem;">Parent Email Address</label>
+          <input type="email" id="auth-input-email" autocomplete="email" placeholder="parent@gmail.com" onkeydown="if(event.key==='Enter'){event.preventDefault();window.submitKidsFitAuth('signup');}" style="width:100%;box-sizing:border-box;padding:0.65rem 0.8rem;border:1.5px solid #CBD5E1;border-radius:10px;font-size:0.9rem;color:#0F172A;">
         </div>
 
         <div id="auth-feedback-msg" style="display:none;font-size:0.8rem;font-weight:700;padding:0.55rem 0.75rem;border-radius:8px;margin-bottom:0.75rem;"></div>
 
-        <button type="button" onclick="window.submitKidsFitAuth('${activeTab}')" style="width:100%;padding:0.88rem 1rem;border-radius:12px;border:none;background:linear-gradient(135deg,#0F172A 0%,#1D4ED8 100%);color:#FFFFFF;font-size:0.94rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(29,78,216,0.22);">
-          ${activeTab === 'signup' ? 'Create Account →' : 'Sign In →'}
+        <button type="button" onclick="window.submitKidsFitAuth('signup')" style="width:100%;padding:0.88rem 1rem;border-radius:12px;border:none;background:linear-gradient(135deg,#059669 0%,#1D4ED8 100%);color:#FFFFFF;font-size:0.94rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(5,150,105,0.22);">
+          Instant 3-Sec Club Access (No Password) →
         </button>
       </div>
     `;
@@ -1124,13 +1123,13 @@
   global.submitKidsFitAuth = function (mode) {
     const nameEl = document.getElementById('auth-input-name');
     const emailEl = document.getElementById('auth-input-email');
-    const passEl = document.getElementById('auth-input-password');
+    const stageEl = document.getElementById('auth-input-stage');
     const msgEl = document.getElementById('auth-feedback-msg');
 
     const name = String((nameEl && nameEl.value) || '').trim();
     const rawIdOrEmail = String((emailEl && emailEl.value) || '').trim();
     const email = rawIdOrEmail.toLowerCase();
-    const password = String((passEl && passEl.value) || '');
+    const segment = String((stageEl && stageEl.value) || 'ages_8_11_golden_window').trim();
 
     const showMsg = function (text, isErr) {
       if (!msgEl) return;
@@ -1141,41 +1140,29 @@
       msgEl.textContent = text;
     };
 
-    // Check if the user entered the Administrator ID & Password (verified via zero-plaintext digest)
-    if (global.KidsFitAdminStudio && typeof global.KidsFitAdminStudio.verifyAdminCredentials === 'function' && global.KidsFitAdminStudio.verifyAdminCredentials(rawIdOrEmail, password)) {
-      try {
-        if (typeof window !== 'undefined' && window.sessionStorage) {
-          window.sessionStorage.setItem('kisfit_admin_auth_token_v1', 'a86cfdc57a9f8d167c0546a365722330');
-        }
-        if (typeof window !== 'undefined' && window.localStorage) {
-          window.localStorage.setItem(UNLOCK_STORAGE_KEY, 'true');
-          window.localStorage.setItem('kidsfit_global_auth_user_v1', JSON.stringify({
-            name: 'Administrator',
-            email: 'admin@kisfitglobal.com',
-            isAdmin: true,
-            unlockedPass: true
-          }));
-        }
-      } catch (_) {}
-      syncAuthHeaderButton();
-      const authModal = document.getElementById('kidsfit-auth-modal');
-      if (authModal) authModal.remove();
-      const checkoutModal = document.getElementById('kidsfit-global-checkout-modal');
-      if (checkoutModal) checkoutModal.remove();
-      transformGlobalReportAndApplyPaywall();
-      if (global.KidsFitAdminStudio && typeof global.KidsFitAdminStudio.openAdminModal === 'function') {
-        global.KidsFitAdminStudio.openAdminModal();
-      }
-      return Promise.resolve({ ok: true, isAdmin: true });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showMsg('Please enter a valid parent email address (e.g., parent@gmail.com).', true);
+      return;
     }
 
-    if (!email || email.length < 3 || password.length < 4) {
-      showMsg('Please enter a valid User ID (min 3 characters) and Password (min 4 characters).', true);
-      return;
+    if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.registerMember === 'function') {
+      try {
+        global.DreamCompanyCRM.registerMember({
+          div: 'KFG',
+          email: email,
+          nickname: name,
+          segment: segment,
+          lang: 'en-US'
+        });
+      } catch (_) {}
+    }
+    if (typeof global.trackKfgFreeSignup === 'function') {
+      try { global.trackKfgFreeSignup(email, segment); } catch (_) {}
     }
 
     const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
     const profile = (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) || null;
+    const password = 'passwordless-club';
 
     const completeLocalMemberAuth = function () {
       try {
@@ -4148,7 +4135,7 @@ ${isMasked ? `
               ` : `
               ✓ Full US CDC 2000 Adult Height + Literature Review<br>
               ✓ 24h Sleep HGH Simulator &amp; Weight-Matched Ca/D3/K2 Guide<br>
-              ✓ Printable 2-Page Growth Summary PDF + 3 Growth Trackers
+              ✓ Printable 2-Page Growth Summary PDF + <strong>1x 30-Day Growth Check-in Bonus</strong>
               `}
             </div>
           </label>
@@ -4175,7 +4162,7 @@ ${isMasked ? `
               ✓ <strong>Cycles 1–6 Progressive Monthly Worksheets</strong><br>
               ✓ <strong>Unlimited Sibling Profiles (3+)</strong> &amp; Daily DHA Reference Guide
               ` : `
-              ✓ <strong>Monthly 30-Day Height Velocity (cm/yr) Re-Scans</strong><br>
+              ✓ <strong>Monthly Growth Checklist Emailing &amp; Velocity Commentary (6 Months)</strong><br>
               ✓ <strong>Auto-Updated Weight-Matched Ca/D3/K2/Zinc Reference Guide</strong><br>
               ✓ <strong>Physis Fusion Watch + Unlimited Sibling Profiles (3+)</strong>
               `}
@@ -4262,9 +4249,9 @@ ${isMasked ? `
                 <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Full 6-Month Protocol</td>
               </tr>
               <tr style="border-bottom:1px solid #E2E8F0;">
-                <td style="padding:0.45rem 0.6rem;font-weight:700;">Velocity Re-Scans (30-Day Cycles)</td>
-                <td style="padding:0.45rem 0.5rem;text-align:center;color:#64748B;">Static Assessment</td>
-                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">Monthly Re-Scans (6x)</td>
+                <td style="padding:0.45rem 0.6rem;font-weight:700;">Monthly Growth Checklist &amp; Velocity Emailing</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;color:#1D4ED8;font-weight:700;">1x 30-Day Check-in Bonus</td>
+                <td style="padding:0.45rem 0.5rem;text-align:center;font-weight:800;color:#047857;background:#F0FDF4;">6 Monthly Checklists + Commentary</td>
               </tr>
               <tr style="border-bottom:1px solid #E2E8F0;">
                 <td style="padding:0.45rem 0.6rem;font-weight:700;">Growth Plate Closure Monitor</td>
@@ -5368,6 +5355,19 @@ ${isMasked ? `
           existingUser.planType = resolvedPlan;
           if (resolvedOrderId) existingUser.lastOrderId = resolvedOrderId;
           window.localStorage.setItem('kidsfit_global_auth_user_v1', JSON.stringify(existingUser));
+        }
+        if (resolvedEmail && resolvedEmail.indexOf('@') !== -1 && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.enrollKfgPaidVip === 'function') {
+          const appProf = (global.KidsFitApp && global.KidsFitApp.state && global.KidsFitApp.state.profile) || {};
+          global.DreamCompanyCRM.enrollKfgPaidVip({
+            email: resolvedEmail,
+            child_name: appProf.childName || 'Your Child',
+            child_sex: String(appProf.gender || 'boy').toLowerCase().indexOf('girl') !== -1 || String(appProf.gender || '').toUpperCase() === 'F' ? 'F' : 'M',
+            child_age_years: Number(appProf.ageYears) || 9,
+            baseline_height_cm: Number(appProf.currentHeight) || 134,
+            plan_tier: resolvedPlan === 'pass' ? '6-Month Growth Pass ($19.99)' : 'Single Growth Report ($8.99)',
+            months_remaining: resolvedPlan === 'pass' ? 6 : 1,
+            order_ref: String(resolvedOrderId || 'WEB-VIP')
+          });
         }
       }
     } catch (_) {}
