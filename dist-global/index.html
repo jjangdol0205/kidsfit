@@ -80,7 +80,7 @@
   <meta property="og:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kisfitglobal.com/">
-  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh9yz0a">
+  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhe3xgm">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -88,17 +88,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KISFIT — US CDC Child Height Predictor &amp; 5-Axis Brain LQ Report">
   <meta property="twitter:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
-  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh9yz0a">
+  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhe3xgm">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mwh9yz0a">
+  <link rel="manifest" href="manifest.json?v=20261022_mwhe3xgm">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KISFIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwh9yz0a">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwhe3xgm">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +117,8 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwh9yz0a">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwhe3xgm">
+  <link rel="stylesheet" href="src/css/parent-growth-club.css?v=20261022_mwhe3xgm">
   <script>
     try {
       window.__KIDSFIT_GLOBAL_PAID_EDITION = true;
@@ -149,7 +150,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mwh9yz0a').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mwhe3xgm').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -492,6 +493,57 @@
           </button>
         </div>
       </div>
+
+      <!-- KISFIT Parent Growth Club — Monthly Milestone Stamp & D-30 Reminder -->
+      <section id="kfg-parent-growth-club" aria-label="KISFIT Parent Growth Club — Monthly Milestone Stamp and D-30 Reminder">
+        <div class="kfg-club-top-row">
+          <span class="kfg-club-pill">🌱 KISFIT PARENT GROWTH CLUB</span>
+          <span id="kfg-club-streak-badge" class="kfg-club-streak-badge">🏅 Growth Club Partner · Day 1 Check-in</span>
+        </div>
+        <h2 class="kfg-club-title">KISFIT Parent Growth Club — Monthly Milestone Stamp &amp; D-30 Reminder</h2>
+        <div id="kfg-club-daily-greeting" class="kfg-club-greeting-box">
+          💚 &ldquo;Welcome back, Growth Partner — steady 9 PM deep sleep and daily D3 + Calcium build healthy inches quietly month by month.&rdquo;
+        </div>
+        <div class="kfg-club-subhead">
+          <span class="kfg-club-subhead-label">My Child&apos;s Monthly Growth Milestone Stamp &amp; D-30 Re-check Reminder<span id="kfg-club-live-counter" style="display:none;color:#059669;font-weight:800;"></span></span>
+          <span id="kfg-club-progress-pill" class="kfg-club-progress-pill">0/4 Milestones Stamped</span>
+        </div>
+        <div class="kfg-milestone-grid">
+          <div id="kfg-ms-card-1" class="kfg-milestone-card">
+            <div class="kfg-milestone-step"><span>Milestone 1</span><span id="kfg-ms-seal-1" class="kfg-milestone-seal">Pending</span></div>
+            <div class="kfg-milestone-name">Stamp 1: Baseline Logged</div>
+            <div id="kfg-ms-meta-1" class="kfg-milestone-meta">Tap check-in below to log Day 1</div>
+          </div>
+          <div id="kfg-ms-card-2" class="kfg-milestone-card">
+            <div class="kfg-milestone-step"><span>Milestone 2</span><span id="kfg-ms-seal-2" class="kfg-milestone-seal">Pending</span></div>
+            <div class="kfg-milestone-name">Stamp 2: 9 PM Sleep &amp; Nutrition Check</div>
+            <div id="kfg-ms-meta-2" class="kfg-milestone-meta">Bedtime + daily D3 &amp; Ca check</div>
+          </div>
+          <div id="kfg-ms-card-3" class="kfg-milestone-card">
+            <div class="kfg-milestone-step"><span>Milestone 3</span><span id="kfg-ms-seal-3" class="kfg-milestone-seal">Pending</span></div>
+            <div class="kfg-milestone-name">Stamp 3: Day-30 Re-check</div>
+            <div id="kfg-ms-meta-3" class="kfg-milestone-meta">Unlocks at 30-day height check</div>
+          </div>
+          <div id="kfg-ms-card-4" class="kfg-milestone-card">
+            <div class="kfg-milestone-step"><span>Milestone 4</span><span id="kfg-ms-seal-4" class="kfg-milestone-seal">Pending</span></div>
+            <div class="kfg-milestone-name">Stamp 4: 90-Day Growth Velocity</div>
+            <div id="kfg-ms-meta-4" class="kfg-milestone-meta">Quarterly US CDC velocity</div>
+          </div>
+        </div>
+        <div class="kfg-club-cta-row">
+          <button type="button" id="btn-kfg-stamp-checkin" class="kfg-btn-stamp-checkin" onclick="if(window.stampKfgGrowthClubToday)window.stampKfgGrowthClubToday();">
+            🌱 Stamp Today&apos;s Growth &amp; Habit Check-in
+          </button>
+          <button type="button" id="btn-kfg-ics-download" class="kfg-btn-ics-download" onclick="if(window.downloadKfgD30CalendarIcs)window.downloadKfgD30CalendarIcs();">
+            📅 Add D-30 Growth Check to Calendar (.ics)
+          </button>
+        </div>
+        <div class="kfg-club-status-bar">
+          <span id="kfg-club-next-recheck" class="kfg-club-recheck-badge">⏰ Next Growth Re-check: D-30</span>
+          <span id="kfg-club-history-summary" class="kfg-club-history-note">Last Check-in: Ready to log your child&apos;s baseline today</span>
+        </div>
+        <div id="kfg-club-ics-feedback" role="status" aria-live="polite" style="display:none;margin-top:0.45rem;font-size:0.78rem;font-weight:700;color:#047857;"></div>
+      </section>
 
       <!-- 1-Field Free Parent Growth Dashboard & 12-Month Checklist Signup Card -->
       <div id="kfg-home-free-signup-card" style="max-width:840px;margin:0 auto 1.15rem;background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:2px solid #10B981;border-radius:20px;padding:1.05rem 1.1rem;box-shadow:0 12px 28px rgba(16,185,129,0.12);text-align:left;">
@@ -982,7 +1034,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mwh9yz0a" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhe3xgm" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">Install Free KISFIT Clinical Report App on Mobile &amp; Desktop</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">Add to home screen to track quarterly growth percentiles and 5-axis cognitive progress seamlessly</div>
@@ -998,7 +1050,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mwh9yz0a" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhe3xgm" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install KISFIT App to Home Screen</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Instant report access with zero install friction</div>
@@ -2425,26 +2477,27 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/cloud-sync.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mwh9yz0a"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/global-paywall-edition.js?v=20261022_mwh9yz0a" defer></script>
-  <script src="src/js/app.js?v=20261022_mwh9yz0a" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/cloud-sync.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mwhe3xgm"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/global-paywall-edition.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/parent-growth-club.js?v=20261022_mwhe3xgm" defer></script>
+  <script src="src/js/app.js?v=20261022_mwhe3xgm" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -2459,7 +2512,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mwh9yz0a')
+          window.fetch('src/data/data-bundle.js?v=20261022_mwhe3xgm')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2487,7 +2540,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mwh9yz0a" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mwhe3xgm" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KISFIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">Add KISFIT App to Home Screen</h3>
