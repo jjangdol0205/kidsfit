@@ -80,7 +80,7 @@
   <meta property="og:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kisfitglobal.com/">
-  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh1nj3q">
+  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh2kogc">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -88,17 +88,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KISFIT — US CDC Child Height Predictor &amp; 5-Axis Brain LQ Report">
   <meta property="twitter:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
-  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh1nj3q">
+  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwh2kogc">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mwh1nj3q">
+  <link rel="manifest" href="manifest.json?v=20261022_mwh2kogc">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KISFIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwh1nj3q">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwh2kogc">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +117,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwh1nj3q">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwh2kogc">
   <script>
     try {
       window.__KIDSFIT_GLOBAL_PAID_EDITION = true;
@@ -149,7 +149,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mwh1nj3q').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mwh2kogc').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -182,10 +182,100 @@
     });
   </script>
   <script>
-  /* === HQ Edge Instant <head> Real-Human Visitor & Paid Click Beacon (kfg_kisfitglobal) === */
+  /* === HQ Edge Instant <head> Real-Human Visitor, Free Parent Signup & Paid Click Beacon (kfg_kisfitglobal) === */
   (function(){
     try {
       if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      var ns = 'kfg_kisfitglobal';
+      window.trackKfgFreeSignup = function(rawEmail, stageLabel) {
+        var email = String(rawEmail || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
+        var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+        try {
+          localStorage.setItem('kfg_parent_member_email', email);
+          localStorage.setItem('kfg_parent_member_stage', stageLabel || 'US CDC Growth Plan');
+          localStorage.setItem('kfg_parent_member_since', kst);
+          localStorage.setItem('kidsfit_pending_ls_checkout_email_v1', email);
+          var profilesRaw = localStorage.getItem('kfg_saved_profiles') || '[]';
+          var profiles = [];
+          try { profiles = JSON.parse(profilesRaw) || []; } catch (_pe) { profiles = []; }
+          var ageEl = document.getElementById('kfg-qs-age');
+          var snap = {
+            email: email,
+            savedAt: new Date().toISOString(),
+            gender: window.__kfgQuickGender || 'boy',
+            age: ageEl ? ageEl.value : '9',
+            stage: stageLabel || 'US CDC Growth Plan'
+          };
+          profiles.unshift(snap);
+          localStorage.setItem('kfg_saved_profiles', JSON.stringify(profiles.slice(0, 10)));
+          var dedupeKey = 'hq_signup_' + ns + '_' + kst + '_' + email.toLowerCase();
+          var uaCheck = navigator.userAgent || '';
+          var hostCheck = (location && location.hostname) || '';
+          var isHumanLive = !navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(uaCheck) && hostCheck && hostCheck !== 'localhost' && hostCheck !== '127.0.0.1';
+          if (localStorage.getItem(dedupeKey) !== '1') {
+            localStorage.setItem(dedupeKey, '1');
+            if (isHumanLive) {
+              fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/signup_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+              fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/signup_total', { mode: 'cors', keepalive: true }).catch(function(){});
+            }
+          }
+        } catch (_se) {}
+        window.syncKfgParentDashboardUI(email, stageLabel);
+        return true;
+      };
+      window.syncKfgParentDashboardUI = function(emailOverride, stageLabel) {
+        try {
+          var email = String(emailOverride || localStorage.getItem('kfg_parent_member_email') || '').trim();
+          if (!email) return;
+          var authBtn = document.getElementById('btn-header-auth');
+          if (authBtn) {
+            authBtn.textContent = '✅ Parent Dashboard';
+            authBtn.style.background = '#ECFDF5';
+            authBtn.style.color = '#065F46';
+            authBtn.style.border = '1.5px solid #10B981';
+          }
+          ['kfg-home-signup-email', 'kfg-results-signup-email', 'checkout-parent-email'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el && !el.value) el.value = email;
+          });
+          var safeEmail = email.replace(/[<>&"]/g, '');
+          var safeStage = String(stageLabel || localStorage.getItem('kfg_parent_member_stage') || 'All Ages').replace(/[<>&"]/g, '');
+          ['kfg-home-signup-status', 'kfg-results-signup-status'].forEach(function(id) {
+            var st = document.getElementById(id);
+            if (st) {
+              st.style.display = 'block';
+              st.innerHTML = '✅ <strong>Saved to Free Parent Dashboard (' + safeEmail + ')</strong> · Quarterly US CDC milestone tracker &amp; 12-Month Checklist unlocked (' + safeStage + ').';
+            }
+          });
+          ['kfg-home-checklist-unlocked', 'kfg-results-checklist-unlocked'].forEach(function(id) {
+            var box = document.getElementById(id);
+            if (box) box.style.display = 'grid';
+          });
+        } catch (_ue) {}
+      };
+      window.submitKfgParentDashboard = function(ev, inputId, statusId, stageLabel) {
+        if (ev && ev.preventDefault) ev.preventDefault();
+        var inp = document.getElementById(inputId);
+        var val = inp ? String(inp.value || '').trim() : '';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          var stErr = document.getElementById(statusId);
+          if (stErr) {
+            stErr.style.display = 'block';
+            stErr.style.color = '#DC2626';
+            stErr.textContent = 'Please enter a valid parent email address (e.g., parent@gmail.com).';
+          }
+          if (inp) inp.focus();
+          return false;
+        }
+        var stOk = document.getElementById(statusId);
+        if (stOk) stOk.style.color = '#065F46';
+        window.trackKfgFreeSignup(val, stageLabel || 'US CDC Growth Plan');
+        return false;
+      };
+      document.addEventListener('DOMContentLoaded', function() {
+        window.syncKfgParentDashboardUI();
+      });
       if (window.__HQ_BEACON_SENT_kfg_kisfitglobal__) return;
       window.__HQ_BEACON_SENT_kfg_kisfitglobal__ = true;
       window.__HQ_KPI_KFG__ = true;
@@ -194,7 +284,6 @@
       var host = (location && location.hostname) || '';
       if (!host || host === 'localhost' || host === '127.0.0.1') return;
       var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-      var ns = 'kfg_kisfitglobal';
       fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
       fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
       if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
@@ -278,13 +367,13 @@
         <span style="background:linear-gradient(135deg,#0F172A 0%,#2563EB 100%);color:#FFFFFF;padding:0.18rem 0.58rem;border-radius:9999px;font-size:0.68rem;font-weight:800;letter-spacing:0.04em;">US CDC 2000</span><span>Pediatric Height &amp; Growth-Plate Lab</span>
       </div>
 
-      <!-- Above-the-Fold 12-Word Intuitive Parent Hook -->
+      <!-- Above-the-Fold 13-Word Intuitive Parent Hook -->
       <h1 class="hero-headline" data-i18n-html="hero.headline" style="max-width:840px;margin:0 auto 0.6rem;color:#0F172A;font-weight:800;font-size:clamp(1.62rem,4.5vw,2.65rem);line-height:1.16;letter-spacing:-0.03em;">
-        <span>See Your Child&apos;s Predicted Adult Height—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And How Much Growth Time Remains.</span>
+        <span>Track Your Child&apos;s US CDC Growth Curve—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And Get an Age-by-Age Growth Plan.</span>
       </h1>
 
       <p class="hero-subtitle" data-i18n="hero.subtitle" style="color:#475569;font-weight:500;max-width:660px;margin:0 auto 1rem;font-size:clamp(0.92rem,2.1vw,1.06rem);line-height:1.5;">
-        Enter your child&apos;s age and current height for a free 60-second US CDC growth forecast—no sign-up required.
+        Check your child&apos;s predicted adult height in 60 seconds and save quarterly US CDC milestones to your free Parent Dashboard.
       </p>
 
       <!-- Above-the-Fold 3-Second Interactive Quick-Start Card -->
@@ -364,6 +453,154 @@
           </button>
         </div>
       </div>
+
+      <!-- Age-by-Age Pediatric Growth Guide 4-Tab Hub (US CDC 2000 & AAP Benchmarks) -->
+      <div id="kfg-age-guide-hub" style="max-width:840px;margin:0 auto 1.15rem;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:20px;padding:1.05rem 1.05rem 1rem;box-shadow:0 12px 30px rgba(15,23,42,0.06);text-align:left;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.45rem;margin-bottom:0.7rem;">
+          <div>
+            <span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-size:0.72rem;font-weight:900;padding:0.2rem 0.65rem;border-radius:9999px;margin-bottom:0.25rem;">📅 US CDC AGE-STAGE PEDIATRIC ROADMAP</span>
+            <h2 style="margin:0;font-size:clamp(1.02rem,2.4vw,1.2rem);font-weight:800;color:#0F172A;line-height:1.3;">Select Your Child&apos;s Age Window to View Expected Yearly Gain, Bedtime &amp; Nutrition Targets</h2>
+          </div>
+        </div>
+        <div id="kfg-age-stage-tabs" role="tablist" aria-label="Age Stage Growth Guide" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:0.45rem;margin-bottom:0.8rem;">
+          <button type="button" role="tab" id="kfg-tab-stage-2to5" aria-selected="false" onclick="window.selectKfgAgeGuideStage('2to5')" style="min-height:48px;border-radius:12px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#334155;font-size:0.82rem;font-weight:800;padding:0.45rem 0.6rem;cursor:pointer;">👶 Ages 2–5<br><span style="font-size:0.72rem;font-weight:600;color:#64748B;">Early Foundation</span></button>
+          <button type="button" role="tab" id="kfg-tab-stage-6to9" aria-selected="true" onclick="window.selectKfgAgeGuideStage('6to9')" style="min-height:48px;border-radius:12px;border:2px solid #2563EB;background:#EFF6FF;color:#1D4ED8;font-size:0.82rem;font-weight:800;padding:0.45rem 0.6rem;cursor:pointer;">🧒 Ages 6–9<br><span style="font-size:0.72rem;font-weight:700;color:#1D4ED8;">Pre-Puberty Window</span></button>
+          <button type="button" role="tab" id="kfg-tab-stage-10to14" aria-selected="false" onclick="window.selectKfgAgeGuideStage('10to14')" style="min-height:48px;border-radius:12px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#334155;font-size:0.82rem;font-weight:800;padding:0.45rem 0.6rem;cursor:pointer;">📏 Ages 10–14<br><span style="font-size:0.72rem;font-weight:600;color:#64748B;">Peak Spurt (PHV)</span></button>
+          <button type="button" role="tab" id="kfg-tab-stage-15to18" aria-selected="false" onclick="window.selectKfgAgeGuideStage('15to18')" style="min-height:48px;border-radius:12px;border:1.5px solid #CBD5E1;background:#F8FAFC;color:#334155;font-size:0.82rem;font-weight:800;padding:0.45rem 0.6rem;cursor:pointer;">🎓 Ages 15–18<br><span style="font-size:0.72rem;font-weight:600;color:#64748B;">Late Plate &amp; Posture</span></button>
+        </div>
+        <div id="kfg-age-stage-panel" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:0.9rem;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:0.65rem;margin-bottom:0.75rem;">
+            <div style="background:#FFFFFF;border:1px solid #DBEAFE;border-radius:11px;padding:0.65rem 0.75rem;">
+              <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;margin-bottom:0.2rem;">📈 Expected CDC Gain</div>
+              <div id="kfg-stage-velocity" style="font-size:0.92rem;font-weight:900;color:#0F172A;">2.0–2.5 in/yr (5–6.5 cm/yr)</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #DBEAFE;border-radius:11px;padding:0.65rem 0.75rem;">
+              <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;margin-bottom:0.2rem;">🌙 Deep-Sleep HGH Window</div>
+              <div id="kfg-stage-sleep" style="font-size:0.92rem;font-weight:900;color:#0F172A;">Asleep by 8:30–9:15 PM</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #DBEAFE;border-radius:11px;padding:0.65rem 0.75rem;">
+              <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;margin-bottom:0.2rem;">🥛 Daily Nutrition Target</div>
+              <div id="kfg-stage-nutrition" style="font-size:0.86rem;font-weight:800;color:#0F172A;">28–38g Protein · 1,000mg Ca · 600–800 IU D3</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #FECACA;border-radius:11px;padding:0.65rem 0.75rem;">
+              <div style="font-size:0.72rem;font-weight:800;color:#DC2626;margin-bottom:0.2rem;">🩺 Doctor Watch-Point</div>
+              <div id="kfg-stage-redflag" style="font-size:0.82rem;font-weight:700;color:#334155;">Puberty signs before age 8 (girls) / 9 (boys) or &lt;1.8 in/yr</div>
+            </div>
+          </div>
+          <button type="button" id="btn-kfg-stage-launch" onclick="window.launchKisfitAgeStagePreset()" style="width:100%;min-height:48px;border-radius:12px;border:1.5px solid #1D4ED8;background:#EFF6FF;color:#1D4ED8;font-size:0.9rem;font-weight:800;cursor:pointer;">
+            📏 Load Age 8 Preset &amp; Run 60-Sec US CDC Height Forecast →
+          </button>
+        </div>
+      </div>
+
+      <!-- 1-Field Free Parent Growth Dashboard & 12-Month Checklist Signup Card -->
+      <div id="kfg-home-free-signup-card" style="max-width:840px;margin:0 auto 1.15rem;background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:2px solid #10B981;border-radius:20px;padding:1.05rem 1.1rem;box-shadow:0 12px 28px rgba(16,185,129,0.12);text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+          <span style="background:#059669;color:#FFFFFF;font-size:0.72rem;font-weight:900;padding:0.2rem 0.65rem;border-radius:9999px;">🎁 FREE PARENT GROWTH DASHBOARD</span>
+          <span style="font-size:0.76rem;font-weight:800;color:#065F46;">Quarterly US CDC Percentile Reminders + Printable 12-Month Checklist</span>
+        </div>
+        <h3 style="margin:0 0 0.35rem;font-size:clamp(1.02rem,2.4vw,1.18rem);font-weight:800;color:#0F172A;line-height:1.3;">
+          Save Your Child&apos;s Growth Curve &amp; Unlock the Free 12-Month Sleep + Nutrition Checklist
+        </h3>
+        <p style="margin:0 0 0.75rem;font-size:0.86rem;color:#334155;line-height:1.5;">
+          Enter 1 parent email to unlock your age-matched 10 PM sleep &amp; nutrition checklist immediately and track height milestones every 90 days.
+        </p>
+        <form id="kfg-home-signup-form" onsubmit="return window.submitKfgParentDashboard(event, 'kfg-home-signup-email', 'kfg-home-signup-status', window.__kfgSelectedStageLabel || 'Ages 6-9 Pre-Puberty');" style="display:flex;flex-wrap:wrap;gap:0.55rem;align-items:stretch;">
+          <input type="email" id="kfg-home-signup-email" required aria-label="Parent Email Address" placeholder="Enter parent email (e.g. mom@gmail.com)" style="flex:1 1 230px;min-height:56px;border-radius:12px;border:1.5px solid #94A3B8;background:#FFFFFF;color:#0F172A;font-size:0.98rem;font-weight:600;padding:0 0.95rem;">
+          <button type="submit" id="btn-kfg-home-signup" style="flex:0 0 auto;min-height:56px;border-radius:12px;border:none;background:linear-gradient(135deg,#059669 0%,#047857 100%);color:#FFFFFF;font-size:0.96rem;font-weight:800;padding:0 1.25rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,150,105,0.25);white-space:nowrap;">
+            📧 Unlock Free Checklist &amp; Save →
+          </button>
+        </form>
+        <div id="kfg-home-signup-status" role="status" aria-live="polite" style="display:none;margin-top:0.6rem;font-size:0.86rem;font-weight:700;color:#065F46;"></div>
+        <div id="kfg-home-checklist-unlocked" style="display:none;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:0.55rem;margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed #6EE7B7;">
+          <div style="background:#FFFFFF;border:1px solid #A7F3D0;border-radius:10px;padding:0.6rem 0.7rem;font-size:0.8rem;color:#0F172A;"><strong>✓ 1. 10 PM N3 Sleep Rule:</strong> Zero screens 45 mins before bed; dark room to protect peak nocturnal HGH pulse.</div>
+          <div style="background:#FFFFFF;border:1px solid #A7F3D0;border-radius:10px;padding:0.6rem 0.7rem;font-size:0.8rem;color:#0F172A;"><strong>✓ 2. Zero Late-Night Sugar:</strong> Avoid sweet snacks 2 hrs before sleep (prevents insulin-driven HGH suppression).</div>
+          <div style="background:#FFFFFF;border:1px solid #A7F3D0;border-radius:10px;padding:0.6rem 0.7rem;font-size:0.8rem;color:#0F172A;"><strong>✓ 3. Daily 10-Min Bar/Jump:</strong> 3 sets of 20s bar hangs + 200 rope jumps for epiphyseal stimulation.</div>
+          <div style="background:#FFFFFF;border:1px solid #A7F3D0;border-radius:10px;padding:0.6rem 0.7rem;font-size:0.8rem;color:#0F172A;"><strong>✓ 4. 90-Day Morning Measure:</strong> Measure barefoot against a flat wall every 3 months within 30 mins of waking.</div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var STAGE_DATA = {
+          '2to5': {
+            label: 'Ages 2-5 Early Foundation',
+            presetAge: 4,
+            velocity: '2.5–3.2 in/yr (6–8 cm/yr)',
+            sleep: 'Asleep by 7:30–8:30 PM',
+            nutrition: '16–24g Protein · 700–1,000mg Ca · 600 IU D3',
+            redflag: 'Gaining under 2.0 in/yr or chronic mouth-breathing snoring',
+            btnText: '📏 Load Age 4 Preset & Run 60-Sec US CDC Height Forecast →'
+          },
+          '6to9': {
+            label: 'Ages 6-9 Pre-Puberty Window',
+            presetAge: 8,
+            velocity: '2.0–2.5 in/yr (5–6.5 cm/yr)',
+            sleep: 'Asleep by 8:30–9:15 PM',
+            nutrition: '28–38g Protein · 1,000mg Ca · 600–800 IU D3',
+            redflag: 'Puberty signs before age 8 (girls) / 9 (boys) or <1.8 in/yr',
+            btnText: '📏 Load Age 8 Preset & Run 60-Sec US CDC Height Forecast →'
+          },
+          '10to14': {
+            label: 'Ages 10-14 Peak Spurt (PHV)',
+            presetAge: 12,
+            velocity: '3.2–4.3 in/yr (8–11 cm/yr)',
+            sleep: 'Before 10:00 PM (Peak N3 HGH Pulse)',
+            nutrition: '50–68g Protein · 1,300mg Ca · 1,000 IU D3 + Zinc',
+            redflag: 'Sleeping past 11:00 PM (-48% HGH) or rapid BMI jump fusing plates',
+            btnText: '📏 Load Age 12 Preset & Run 60-Sec US CDC Height Forecast →'
+          },
+          '15to18': {
+            label: 'Ages 15-18 Late Plate & Posture',
+            presetAge: 16,
+            velocity: '0.6–1.8 in/yr + 0.7 in posture recovery',
+            sleep: 'Asleep before 10:30 PM',
+            nutrition: '65–80g Protein · 1,300mg Ca + Mg · 10-min Bar Hang',
+            redflag: 'Forward tech-neck & compressed discs hiding 0.5–0.9 in of height',
+            btnText: '📏 Load Age 16 Preset & Run 60-Sec US CDC Height Forecast →'
+          }
+        };
+        window.__kfgSelectedStageKey = '6to9';
+        window.__kfgSelectedStageLabel = STAGE_DATA['6to9'].label;
+        window.selectKfgAgeGuideStage = function(key) {
+          var info = STAGE_DATA[key] || STAGE_DATA['6to9'];
+          window.__kfgSelectedStageKey = key;
+          window.__kfgSelectedStageLabel = info.label;
+          ['2to5', '6to9', '10to14', '15to18'].forEach(function(k) {
+            var btn = document.getElementById('kfg-tab-stage-' + k);
+            if (!btn) return;
+            var active = (k === key);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+            btn.style.border = active ? '2px solid #2563EB' : '1.5px solid #CBD5E1';
+            btn.style.background = active ? '#EFF6FF' : '#F8FAFC';
+            btn.style.color = active ? '#1D4ED8' : '#334155';
+            var sub = btn.querySelector('span');
+            if (sub) sub.style.color = active ? '#1D4ED8' : '#64748B';
+          });
+          var vEl = document.getElementById('kfg-stage-velocity');
+          var sEl = document.getElementById('kfg-stage-sleep');
+          var nEl = document.getElementById('kfg-stage-nutrition');
+          var rEl = document.getElementById('kfg-stage-redflag');
+          var bEl = document.getElementById('btn-kfg-stage-launch');
+          if (vEl) vEl.textContent = info.velocity;
+          if (sEl) sEl.textContent = info.sleep;
+          if (nEl) nEl.textContent = info.nutrition;
+          if (rEl) rEl.textContent = info.redflag;
+          if (bEl) bEl.textContent = info.btnText;
+        };
+        window.launchKisfitAgeStagePreset = function() {
+          var info = STAGE_DATA[window.__kfgSelectedStageKey || '6to9'] || STAGE_DATA['6to9'];
+          var ageSel = document.getElementById('kfg-qs-age');
+          if (ageSel) {
+            ageSel.value = String(info.presetAge);
+            if (typeof window.syncKisfitQuickAgeHeight === 'function') window.syncKisfitQuickAgeHeight();
+          }
+          if (typeof window.launchKisfitQuickStart === 'function') {
+            window.launchKisfitQuickStart('growth');
+          }
+        };
+      })();
+      </script>
 
       <!-- Topic Quick-Select Bar (Opens Parent's Own Child Step 1 Instead of Fake Auto-Paywall) -->
       <div id="kfg-shorts-instant-topic-bar" style="max-width:840px;margin:0 auto 1.15rem;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:1.5px solid #38BDF8;border-radius:16px;padding:0.8rem 0.9rem;box-shadow:0 10px 24px rgba(15,23,42,0.12);text-align:center;">
@@ -635,7 +872,7 @@
               </div>
               <div>
                 <div style="font-size: 0.78rem; font-weight: 800; color: #059669; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 0.35rem 0.65rem; margin-bottom: 0.45rem; text-align: center;">
-                  ⚡ No Sign-up or Phone Required · 6 Quick Touches for Instant Free Report
+                  📊 Save to Free Parent Growth Dashboard · Track Quarterly US CDC Percentiles
                 </div>
                 <button type="button" id="btn-home-start-growth-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'growth');" class="mf-btn-white" style="width: 100%; padding: 0.9rem 1rem; font-size: 0.94rem; font-weight: 800; background: #1D4ED8; color: #FFFFFF; border: 1px solid #1E40AF; border-radius: 10px; cursor: pointer;">
                   Start 1-Min Growth &amp; Height Trajectory Assessment
@@ -730,7 +967,7 @@
               </div>
               <div>
                 <div style="font-size: 0.78rem; font-weight: 800; color: #059669; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 0.35rem 0.65rem; margin-bottom: 0.45rem; text-align: center;">
-                  ⚡ No Sign-up or Phone Required · 6 Quick Touches for Instant Free Report
+                  📊 Save to Free Parent Growth Dashboard · Track Quarterly US CDC Percentiles
                 </div>
                 <button type="button" id="btn-home-start-learning-report" onclick="if(window.TallerOnboardingWizard) window.TallerOnboardingWizard.enterStudioMode('child', 'learning');" class="mf-btn-glass" style="width: 100%; padding: 0.9rem 1rem; font-size: 0.94rem; font-weight: 800; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; border-radius: 10px; cursor: pointer;">
                   Start 1-Min 5-Axis Brain Balance &amp; Learning Bottleneck Assessment
@@ -745,7 +982,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mwh1nj3q" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mwh2kogc" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">Install Free KISFIT Clinical Report App on Mobile &amp; Desktop</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">Add to home screen to track quarterly growth percentiles and 5-axis cognitive progress seamlessly</div>
@@ -761,7 +998,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mwh1nj3q" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mwh2kogc" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install KISFIT App to Home Screen</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Instant report access with zero install friction</div>
@@ -2037,6 +2274,33 @@
       <!-- Dashboard Multi-Child Sibling Switcher Bar -->
       <div id="sibling-profile-tabs-dashboard" class="sibling-profile-tabs-container" style="margin-bottom: 1.25rem;"></div>
 
+      <!-- Post-Measurement 1-Field Free Parent Growth Dashboard Save Gate (Placed Above Paywall) -->
+      <div id="kfg-results-save-gate" style="margin: 0 0 1.25rem; padding: 1.15rem 1.2rem; background: linear-gradient(135deg, #EFF6FF 0%, #ECFDF5 100%); border: 2px solid #2563EB; border-radius: 18px; box-shadow: 0 10px 26px rgba(37, 99, 235, 0.10); text-align: left;">
+        <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.35rem;">
+          <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.72rem; font-weight: 900; padding: 0.2rem 0.65rem; border-radius: 9999px;">💾 FREE PARENT DASHBOARD SAVE</span>
+          <span style="font-size: 0.76rem; font-weight: 800; color: #065F46;">Bookmark Forecast + Free 12-Month Sleep &amp; Nutrition Checklist</span>
+        </div>
+        <h3 style="margin: 0 0 0.35rem; font-size: clamp(1.02rem, 2.5vw, 1.2rem); font-weight: 800; color: #0F172A; line-height: 1.3;">
+          Save This Child&apos;s US CDC Growth Forecast &amp; Unlock Your Free 12-Month Action Checklist
+        </h3>
+        <p style="margin: 0 0 0.75rem; font-size: 0.86rem; color: #334155; line-height: 1.5;">
+          Enter 1 email to keep this projection in your free Parent Growth Dashboard, get 90-day re-measurement reminders, and auto-fill doctor PDF delivery.
+        </p>
+        <form id="kfg-results-signup-form" onsubmit="return window.submitKfgParentDashboard(event, 'kfg-results-signup-email', 'kfg-results-signup-status', 'Post-Scan US CDC Forecast');" style="display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: stretch;">
+          <input type="email" id="kfg-results-signup-email" required aria-label="Parent Email to Save Growth Forecast" placeholder="Enter parent email to save forecast (e.g. mom@gmail.com)" style="flex: 1 1 240px; min-height: 56px; border-radius: 12px; border: 1.5px solid #93C5FD; background: #FFFFFF; color: #0F172A; font-size: 0.98rem; font-weight: 600; padding: 0 0.95rem;">
+          <button type="submit" id="btn-kfg-results-signup" style="flex: 0 0 auto; min-height: 56px; border-radius: 12px; border: none; background: linear-gradient(135deg, #1D4ED8 0%, #059669 100%); color: #FFFFFF; font-size: 0.96rem; font-weight: 800; padding: 0 1.25rem; cursor: pointer; box-shadow: 0 8px 20px rgba(29, 78, 216, 0.22); white-space: nowrap;">
+            ✅ Save Forecast &amp; Unlock Free Checklist
+          </button>
+        </form>
+        <div id="kfg-results-signup-status" role="status" aria-live="polite" style="display: none; margin-top: 0.6rem; font-size: 0.86rem; font-weight: 700; color: #065F46;"></div>
+        <div id="kfg-results-checklist-unlocked" style="display: none; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.55rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed #93C5FD;">
+          <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.7rem; font-size: 0.8rem; color: #0F172A;"><strong>✓ 10 PM Deep Sleep:</strong> Lights out before 10:00 PM to capture 70%+ of daily pulsatile HGH release.</div>
+          <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.7rem; font-size: 0.8rem; color: #0F172A;"><strong>✓ Pre-Bed Fasting:</strong> Zero carbs/sugar 2 hours before bedtime to prevent insulin spikes blocking HGH.</div>
+          <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.7rem; font-size: 0.8rem; color: #0F172A;"><strong>✓ Daily Decompression:</strong> 10-min morning/evening bar hang + jumping routine (+0.7 in posture recovery).</div>
+          <div style="background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.6rem 0.7rem; font-size: 0.8rem; color: #0F172A;"><strong>✓ Quarterly CDC Check:</strong> Measure barefoot against a flat wall every 90 days to verify annual velocity.</div>
+        </div>
+      </div>
+
       <!-- Master Briefing Card (One-Page 7-Chapter Storyline + Sticky TOC Bar) -->
       <div class="bento-card master-briefing-card" id="master-briefing-card"></div>
 
@@ -2161,26 +2425,26 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/cloud-sync.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mwh1nj3q"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/global-paywall-edition.js?v=20261022_mwh1nj3q" defer></script>
-  <script src="src/js/app.js?v=20261022_mwh1nj3q" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/cloud-sync.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mwh2kogc"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/global-paywall-edition.js?v=20261022_mwh2kogc" defer></script>
+  <script src="src/js/app.js?v=20261022_mwh2kogc" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -2195,7 +2459,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mwh1nj3q')
+          window.fetch('src/data/data-bundle.js?v=20261022_mwh2kogc')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2223,7 +2487,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mwh1nj3q" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mwh2kogc" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KISFIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">Add KISFIT App to Home Screen</h3>

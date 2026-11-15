@@ -269,8 +269,8 @@
 
       // Hero
       'hero.badge': '🌱 Powered by US CDC 2000, WHO Growth Standards & 117 Clinical Papers · KISFIT AI™',
-      'hero.headline': 'How Tall Will Your Child Grow?\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #38BDF8 0%, #34D399 60%, #A7F3D0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Separate Physical Growth Report & Brain Learning Report in 1 Min</span>',
-      'hero.subtitle': '1-Min Input → Independent [Physical Growth Report] & [Brain Learning Report]',
+      'hero.headline': 'Track Your Child\'s US CDC Growth Curve—\n<span class="hero-headline-highlight" style="background: linear-gradient(90deg, #1D4ED8 0%, #0284C7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">And Get an Age-by-Age Growth Plan.</span>',
+      'hero.subtitle': 'Check your child\'s predicted adult height in 60 seconds and save quarterly US CDC milestones to your free Parent Dashboard.',
       'nav.forWhom': 'Who It\'s For',
       'nav.services': 'Our Services',
       'hero.cta.parent': '📏 Start Physical Growth Report →',

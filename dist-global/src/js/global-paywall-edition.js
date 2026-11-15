@@ -1491,13 +1491,13 @@
     const heroHeadline = document.querySelector('.hero-headline');
     if (heroHeadline) {
       heroHeadline.style.cssText = 'max-width:840px;margin:0 auto 0.6rem;color:#0F172A;font-weight:800;font-size:clamp(1.62rem,4.5vw,2.65rem);line-height:1.16;letter-spacing:-0.03em;';
-      heroHeadline.innerHTML = '<span>See Your Child&apos;s Predicted Adult Height—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And How Much Growth Time Remains.</span>';
+      heroHeadline.innerHTML = '<span>Track Your Child&apos;s US CDC Growth Curve—</span><span class="hero-headline-highlight" style="background:linear-gradient(90deg,#1D4ED8 0%,#0284C7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#1D4ED8;font-weight:800;">And Get an Age-by-Age Growth Plan.</span>';
     }
 
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (heroSubtitle) {
       heroSubtitle.style.cssText = 'color:#475569;font-weight:500;max-width:660px;margin:0 auto 1rem;font-size:clamp(0.92rem,2.1vw,1.06rem);line-height:1.5;';
-      heroSubtitle.textContent = 'Enter your child\'s age and current height for a free 60-second US CDC growth forecast—no sign-up required.';
+      heroSubtitle.textContent = 'Check your child\'s predicted adult height in 60 seconds and save quarterly US CDC milestones to your free Parent Dashboard.';
     }
 
     const trustBar = document.querySelector('.clinical-survey-trust-bar');
@@ -5517,7 +5517,20 @@ ${isMasked ? `
       ? getActiveCheckoutUrl(plan, { domain: 'truthofmarket' })
       : getActiveCheckoutUrl(plan);
     const emailEl = document.getElementById('checkout-parent-email');
-    const email = String((emailEl && emailEl.value) || '').trim();
+    let savedMemberEmail = '';
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        savedMemberEmail = String(
+          window.localStorage.getItem('kfg_parent_member_email') ||
+          window.localStorage.getItem('kidsfit_pending_ls_checkout_email_v1') ||
+          ''
+        ).trim();
+      }
+    } catch (_) {}
+    if (emailEl && !String(emailEl.value || '').trim() && savedMemberEmail) {
+      emailEl.value = savedMemberEmail;
+    }
+    const email = String((emailEl && emailEl.value) || savedMemberEmail || '').trim();
     try {
       if (email && email.indexOf('@') !== -1 && typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.setItem('kidsfit_pending_ls_checkout_email_v1', email);
