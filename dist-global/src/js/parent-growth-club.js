@@ -356,9 +356,48 @@
     }
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderParentGrowthClub);
-  } else {
+  var SINGLE_REPORT_LS_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c1cd7f12-3479-49e8-ab71-59c98135d599?embed=1&locale=en';
+  var SIX_MONTH_PASS_LS_URL = 'https://truthofmarket.lemonsqueezy.com/checkout/buy/c562946d-ef68-4c2f-a802-df9da0179895?embed=1&locale=en';
+
+  window.triggerKfgVelocityEdgeCheckout = function (plan) {
+    var mode = (plan === 'pass') ? 'pass' : 'single';
+    if (typeof window.launchLemonSqueezyCheckout === 'function') {
+      window.launchLemonSqueezyCheckout(mode);
+      return;
+    }
+    if (typeof window.openKidsFitGlobalCheckoutModal === 'function') {
+      window.openKidsFitGlobalCheckoutModal(mode);
+      return;
+    }
+    window.open(mode === 'pass' ? SIX_MONTH_PASS_LS_URL : SINGLE_REPORT_LS_URL, '_blank', 'noopener');
+  };
+
+  function syncResultsVelocityEdgeBridge() {
+    var ctxEl = document.getElementById('kfg-results-edge-child-context');
+    if (!ctxEl) return;
+    var snap = captureChildSnapshot();
+    if (snap) {
+      ctxEl.textContent = 'Current Baseline: ' + snap + ' · US CDC LMS & Khamis-Roche Velocity Window Active';
+    }
+  }
+
+  function initClubAndVelocityEdge() {
     renderParentGrowthClub();
+    syncResultsVelocityEdgeBridge();
+    var resDash = document.getElementById('results-dashboard');
+    if (resDash && typeof MutationObserver === 'function') {
+      var obs = new MutationObserver(function () {
+        if (!resDash.classList.contains('hidden') && resDash.style.display !== 'none') {
+          syncResultsVelocityEdgeBridge();
+        }
+      });
+      obs.observe(resDash, { attributes: true, attributeFilter: ['class', 'style'] });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initClubAndVelocityEdge);
+  } else {
+    initClubAndVelocityEdge();
   }
 })();

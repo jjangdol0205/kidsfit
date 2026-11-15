@@ -234,6 +234,31 @@
     }
   };
 
+  window.jumpToKfkPeerEditorialCuration = function (concernKey) {
+    var valid = (concernKey === 'sleep' || concernKey === 'nutrition' || concernKey === 'posture' || concernKey === 'exercise')
+      ? concernKey
+      : 'nutrition';
+    try {
+      if (document.body) {
+        document.body.classList.remove('studio-mode-active', 'diagnosis-lounge-active');
+      }
+      var heroSec = document.getElementById('hero-section');
+      if (heroSec) {
+        heroSec.classList.remove('hidden');
+        heroSec.style.display = '';
+      }
+      if (typeof window.selectKfkConcernTab === 'function') {
+        window.selectKfkConcernTab(valid);
+      }
+      var hub = document.getElementById('kfk-concern-rx-hub');
+      if (hub && typeof hub.scrollIntoView === 'function') {
+        setTimeout(function () {
+          hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 40);
+      }
+    } catch (_e) {}
+  };
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       renderHabitNotebook();
