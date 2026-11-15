@@ -80,7 +80,7 @@
   <meta property="og:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kisfitglobal.com/">
-  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhf4nq0">
+  <meta property="og:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhlqkhn">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -88,17 +88,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="KISFIT — US CDC Child Height Predictor &amp; 5-Axis Brain LQ Report">
   <meta property="twitter:description" content="US CDC 2000 Growth Charts &amp; 805 Curated Clinical Studies (from 3,700+ reviewed papers) | 60-Second 3-Tier Adult Height Simulation, Bone-Age Window &amp; Brain LQ Roadmap">
-  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhf4nq0">
+  <meta property="twitter:image" content="https://kisfitglobal.com/samples/og-kisfit-global-en-v5.png?v=20261022_mwhlqkhn">
 
   <!-- Minimalist SVG Favicon & Official PWA / Mobile App Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 16 Q 16 7, 24 16 T 16 25' fill='none' stroke='%2338BDF8' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='14' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='18' r='2' fill='%2310B981'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261022_mwhf4nq0">
+  <link rel="manifest" href="manifest.json?v=20261022_mwhlqkhn">
   <meta name="theme-color" content="#F8FAFC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KISFIT">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwhf4nq0">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261022_mwhlqkhn">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,8 +117,8 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwhf4nq0">
-  <link rel="stylesheet" href="src/css/parent-growth-club.css?v=20261022_mwhf4nq0">
+  <link rel="stylesheet" href="src/css/style.css?v=20261022_mwhlqkhn">
+  <link rel="stylesheet" href="src/css/parent-growth-club.css?v=20261022_mwhlqkhn">
   <script>
     try {
       window.__KIDSFIT_GLOBAL_PAID_EDITION = true;
@@ -150,7 +150,7 @@
     });
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js?v=20261022_mwhf4nq0').then(function(reg) {
+        navigator.serviceWorker.register('/sw.js?v=20261022_mwhlqkhn').then(function(reg) {
           if (reg && typeof reg.update === 'function') reg.update();
         }).catch(function() {});
       });
@@ -452,6 +452,9 @@
           <button type="button" id="btn-kfg-quick-sample-pdf" onclick="if(window.openSampleReportPreview){window.openSampleReportPreview();}else if(window.TallerOnboardingWizard){window.TallerOnboardingWizard.enterStudioMode('child','growth');}" style="min-height:42px;border-radius:10px;border:1px solid #A7F3D0;background:#ECFDF5;color:#065F46;font-size:0.8rem;font-weight:800;cursor:pointer;">
             📄 Preview Sample 2-Page Doctor PDF →
           </button>
+          <button type="button" id="btn-kfg-quick-bone-age" onclick="var baEl=document.getElementById('kfg-bone-age-interpreter');if(baEl&&baEl.scrollIntoView)baEl.scrollIntoView({behavior:'smooth',block:'start'});" style="min-height:42px;border-radius:10px;border:1.5px solid #2563EB;background:#EFF6FF;color:#1D4ED8;font-size:0.8rem;font-weight:900;cursor:pointer;">
+            🦴 Wrist Bone-Age X-Ray Interpreter ↓
+          </button>
         </div>
       </div>
 
@@ -493,6 +496,216 @@
           </button>
         </div>
       </div>
+
+      <!-- Clinical Bone-Age X-Ray Report Interpreter & Remaining Inches Simulator -->
+      <section id="kfg-bone-age-interpreter" role="region" aria-label="Clinical Bone Age X-Ray Report Interpreter and Remaining Growth Simulator">
+        <div class="kfg-ba-top-row">
+          <span class="kfg-ba-badge">🦴 CLINICAL BONE-AGE X-RAY INTERPRETER</span>
+          <span class="kfg-ba-safe-note">🔒 No X-Ray Upload · 100% Private Browser Math</span>
+        </div>
+        <h2 class="kfg-ba-title">Got a wrist bone-age X-ray? See how many inches of growth remain right now.</h2>
+        <p class="kfg-ba-lead">
+          Enter the <strong>skeletal bone age</strong> from your pediatrician or endocrinologist&apos;s left-wrist X-ray report alongside your child&apos;s current height. Using clinical <strong>Bayley-Pinneau mature-height multipliers</strong>, see remaining growth-plate runway (%), projected adult stature, and tonight&apos;s home protocol in seconds.
+        </p>
+
+        <div class="kfg-ba-preset-bar" aria-label="Sample Bone Age Scenarios">
+          <span class="kfg-ba-preset-label">⚡ Try 1-Tap Clinical Scenarios:</span>
+          <button type="button" class="kfg-ba-preset-chip" onclick="if(window.applyKfgBoneAgePreset)window.applyKfgBoneAgePreset('advanced_boy');">⚠️ Advanced Bone Age (+1y 4m, Boy 10y)</button>
+          <button type="button" class="kfg-ba-preset-chip" onclick="if(window.applyKfgBoneAgePreset)window.applyKfgBoneAgePreset('ontrack_girl');">🟢 On-Track Pace (Girl 9y)</button>
+          <button type="button" class="kfg-ba-preset-chip" onclick="if(window.applyKfgBoneAgePreset)window.applyKfgBoneAgePreset('late_boy');">🌱 Late-Bloomer Runway (-1y 2m, Boy 11y)</button>
+        </div>
+
+        <div class="kfg-ba-form-panel">
+          <div class="kfg-ba-unit-row">
+            <span class="kfg-ba-unit-caption">Preferred Height Unit (Outputs show both ft/in &amp; cm):</span>
+            <div class="kfg-ba-unit-toggle" role="group" aria-label="Height Unit Selector">
+              <button type="button" class="kfg-ba-unit-btn active" data-kfg-ba-unit="imperial" aria-pressed="true" onclick="if(window.selectKfgBoneAgeUnit)window.selectKfgBoneAgeUnit('imperial');">US Imperial (ft / in)</button>
+              <button type="button" class="kfg-ba-unit-btn" data-kfg-ba-unit="metric" aria-pressed="false" onclick="if(window.selectKfgBoneAgeUnit)window.selectKfgBoneAgeUnit('metric');">Metric (cm)</button>
+            </div>
+          </div>
+
+          <div class="kfg-ba-input-grid">
+            <div class="kfg-ba-field">
+              <span class="kfg-ba-label">1. Child&apos;s Sex</span>
+              <div class="kfg-ba-sex-toggle" role="group" aria-label="Child Sex">
+                <button type="button" class="kfg-ba-sex-btn active" data-kfg-ba-sex="M" aria-pressed="true" onclick="if(window.selectKfgBoneAgeSex)window.selectKfgBoneAgeSex('M');">👦 Boy</button>
+                <button type="button" class="kfg-ba-sex-btn" data-kfg-ba-sex="F" aria-pressed="false" onclick="if(window.selectKfgBoneAgeSex)window.selectKfgBoneAgeSex('F');">👧 Girl</button>
+              </div>
+            </div>
+
+            <div class="kfg-ba-field">
+              <span class="kfg-ba-label">2. Child&apos;s Current Height</span>
+              <div id="kfg-ba-imperial-wrap" class="kfg-ba-inline-pair">
+                <select id="kfg-ba-height-ft" class="kfg-ba-select" aria-label="Child Height Feet">
+                  <option value="3">3 ft</option>
+                  <option value="4" selected>4 ft</option>
+                  <option value="5">5 ft</option>
+                  <option value="6">6 ft</option>
+                </select>
+                <select id="kfg-ba-height-in" class="kfg-ba-select" aria-label="Child Height Inches">
+                  <option value="0">0.0 in</option>
+                  <option value="0.5">0.5 in</option>
+                  <option value="1">1.0 in</option>
+                  <option value="1.5">1.5 in</option>
+                  <option value="2">2.0 in</option>
+                  <option value="2.5">2.5 in</option>
+                  <option value="3">3.0 in</option>
+                  <option value="3.5">3.5 in</option>
+                  <option value="4">4.0 in</option>
+                  <option value="4.5">4.5 in</option>
+                  <option value="5">5.0 in</option>
+                  <option value="5.5">5.5 in</option>
+                  <option value="6">6.0 in</option>
+                  <option value="6.5">6.5 in</option>
+                  <option value="7" selected>7.0 in</option>
+                  <option value="7.5">7.5 in</option>
+                  <option value="8">8.0 in</option>
+                  <option value="8.5">8.5 in</option>
+                  <option value="9">9.0 in</option>
+                  <option value="9.5">9.5 in</option>
+                  <option value="10">10.0 in</option>
+                  <option value="10.5">10.5 in</option>
+                  <option value="11">11.0 in</option>
+                  <option value="11.5">11.5 in</option>
+                </select>
+              </div>
+              <div id="kfg-ba-metric-wrap" style="display:none;">
+                <input type="number" id="kfg-ba-height-cm" class="kfg-ba-input" min="85" max="198" step="0.1" value="139.7" inputmode="decimal" aria-label="Child Height in cm">
+              </div>
+            </div>
+
+            <div class="kfg-ba-field">
+              <span class="kfg-ba-label">3. Chronological Age (Actual Years / Months)</span>
+              <div class="kfg-ba-inline-pair">
+                <select id="kfg-ba-ca-years" class="kfg-ba-select" aria-label="Chronological Age Years">
+                  <option value="4">4 yrs</option>
+                  <option value="5">5 yrs</option>
+                  <option value="6">6 yrs</option>
+                  <option value="7">7 yrs</option>
+                  <option value="8">8 yrs</option>
+                  <option value="9">9 yrs</option>
+                  <option value="10" selected>10 yrs</option>
+                  <option value="11">11 yrs</option>
+                  <option value="12">12 yrs</option>
+                  <option value="13">13 yrs</option>
+                  <option value="14">14 yrs</option>
+                  <option value="15">15 yrs</option>
+                  <option value="16">16 yrs</option>
+                  <option value="17">17 yrs</option>
+                </select>
+                <select id="kfg-ba-ca-months" class="kfg-ba-select" aria-label="Chronological Age Months">
+                  <option value="0" selected>0 mo</option>
+                  <option value="1">1 mo</option>
+                  <option value="2">2 mo</option>
+                  <option value="3">3 mo</option>
+                  <option value="4">4 mo</option>
+                  <option value="5">5 mo</option>
+                  <option value="6">6 mo</option>
+                  <option value="7">7 mo</option>
+                  <option value="8">8 mo</option>
+                  <option value="9">9 mo</option>
+                  <option value="10">10 mo</option>
+                  <option value="11">11 mo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="kfg-ba-field">
+              <span class="kfg-ba-label">4. Doctor&apos;s Wrist Bone Age (Years / Months)</span>
+              <div class="kfg-ba-inline-pair">
+                <select id="kfg-ba-years" class="kfg-ba-select" aria-label="Wrist Bone Age Years">
+                  <option value="4">Bone Age 4y</option>
+                  <option value="5">Bone Age 5y</option>
+                  <option value="6">Bone Age 6y</option>
+                  <option value="7">Bone Age 7y</option>
+                  <option value="8">Bone Age 8y</option>
+                  <option value="9">Bone Age 9y</option>
+                  <option value="10">Bone Age 10y</option>
+                  <option value="11" selected>Bone Age 11y</option>
+                  <option value="12">Bone Age 12y</option>
+                  <option value="13">Bone Age 13y</option>
+                  <option value="14">Bone Age 14y</option>
+                  <option value="15">Bone Age 15y</option>
+                  <option value="16">Bone Age 16y</option>
+                  <option value="17">Bone Age 17y</option>
+                  <option value="18">Bone Age 18y</option>
+                </select>
+                <select id="kfg-ba-months" class="kfg-ba-select" aria-label="Wrist Bone Age Months">
+                  <option value="0">0 mo</option>
+                  <option value="1">1 mo</option>
+                  <option value="2">2 mo</option>
+                  <option value="3">3 mo</option>
+                  <option value="4" selected>4 mo</option>
+                  <option value="5">5 mo</option>
+                  <option value="6">6 mo</option>
+                  <option value="7">7 mo</option>
+                  <option value="8">8 mo</option>
+                  <option value="9">9 mo</option>
+                  <option value="10">10 mo</option>
+                  <option value="11">11 mo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="kfg-ba-field">
+              <label class="kfg-ba-label" for="kfg-ba-father-cm">5. Father&apos;s Height (Optional Genetic Anchor)</label>
+              <select id="kfg-ba-father-cm" class="kfg-ba-select" aria-label="Father Height">
+                <option value="">Skip Genetic Anchor</option>
+                <option value="167.6">5&apos;6&quot; (167.6 cm)</option>
+                <option value="170.2">5&apos;7&quot; (170.2 cm)</option>
+                <option value="172.7">5&apos;8&quot; (172.7 cm)</option>
+                <option value="175.3">5&apos;9&quot; (175.3 cm)</option>
+                <option value="177.8" selected>5&apos;10&quot; (177.8 cm)</option>
+                <option value="180.3">5&apos;11&quot; (180.3 cm)</option>
+                <option value="182.9">6&apos;0&quot; (182.9 cm)</option>
+                <option value="185.4">6&apos;1&quot; (185.4 cm)</option>
+                <option value="188.0">6&apos;2&quot; (188.0 cm)</option>
+              </select>
+            </div>
+
+            <div class="kfg-ba-field">
+              <label class="kfg-ba-label" for="kfg-ba-mother-cm">6. Mother&apos;s Height (Optional Genetic Anchor)</label>
+              <select id="kfg-ba-mother-cm" class="kfg-ba-select" aria-label="Mother Height">
+                <option value="">Skip Genetic Anchor</option>
+                <option value="154.9">5&apos;1&quot; (154.9 cm)</option>
+                <option value="157.5">5&apos;2&quot; (157.5 cm)</option>
+                <option value="160.0">5&apos;3&quot; (160.0 cm)</option>
+                <option value="162.6" selected>5&apos;4&quot; (162.6 cm)</option>
+                <option value="165.1">5&apos;5&quot; (165.1 cm)</option>
+                <option value="167.6">5&apos;6&quot; (167.6 cm)</option>
+                <option value="170.2">5&apos;7&quot; (170.2 cm)</option>
+                <option value="172.7">5&apos;8&quot; (172.7 cm)</option>
+                <option value="175.3">5&apos;9&quot; (175.3 cm)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="kfg-ba-stage-helper">
+            <span class="kfg-ba-stage-caption">💡 Only heard a verbal <strong>growth-plate stage</strong> from your doctor? Tap a stage to estimate Bone Age:</span>
+            <div class="kfg-ba-stage-chips" role="group" aria-label="5-Stage Growth Plate Helper">
+              <button type="button" class="kfg-ba-stage-chip" data-kfg-plate-stage="stage_open" aria-pressed="false" onclick="if(window.selectKfgGrowthPlateStage)window.selectKfgGrowthPlateStage('stage_open');">1. Wide-Open Early Plate</button>
+              <button type="button" class="kfg-ba-stage-chip" data-kfg-plate-stage="stage_entry" aria-pressed="false" onclick="if(window.selectKfgGrowthPlateStage)window.selectKfgGrowthPlateStage('stage_entry');">2. Pre-Spurt Entry</button>
+              <button type="button" class="kfg-ba-stage-chip" data-kfg-plate-stage="stage_phv" aria-pressed="false" onclick="if(window.selectKfgGrowthPlateStage)window.selectKfgGrowthPlateStage('stage_phv');">3. Peak Spurt (PHV)</button>
+              <button type="button" class="kfg-ba-stage-chip" data-kfg-plate-stage="stage_decel" aria-pressed="false" onclick="if(window.selectKfgGrowthPlateStage)window.selectKfgGrowthPlateStage('stage_decel');">4. Late Deceleration</button>
+              <button type="button" class="kfg-ba-stage-chip" data-kfg-plate-stage="stage_near_fusion" aria-pressed="false" onclick="if(window.selectKfgGrowthPlateStage)window.selectKfgGrowthPlateStage('stage_near_fusion');">5. Near-Closure Final Window</button>
+            </div>
+          </div>
+
+          <div class="kfg-ba-submit-row">
+            <button type="button" id="btn-kfg-ba-calculate" class="kfg-ba-calc-btn" onclick="if(window.calculateKfgBoneAge)window.calculateKfgBoneAge();">
+              🔍 Calculate Remaining Growth Inches &amp; Tonight&apos;s Protocol →
+            </button>
+          </div>
+        </div>
+
+        <div id="kfg-bone-age-result" aria-live="polite">
+          <!-- Hydrated immediately on page load by src/js/bone-age-interpreter.js -->
+        </div>
+
+        <div class="kfg-ba-legal-box">
+          ⚕️ <strong>Educational &amp; Wellness Reference Only:</strong> This browser-based calculator is not a medical device and never uploads or reads raw X-ray images. It translates skeletal bone-age numbers provided by your clinician into educational Bayley-Pinneau mature-height estimates and home sleep, nutrition, and posture habits. Always consult a board-certified pediatrician or pediatric endocrinologist for medical diagnosis or treatment.
+        </div>
+      </section>
 
       <!-- KISFIT Parent Growth Club — Monthly Milestone Stamp & D-30 Reminder -->
       <section id="kfg-parent-growth-club" aria-label="KISFIT Parent Growth Club — Monthly Milestone Stamp and D-30 Reminder">
@@ -1076,7 +1289,7 @@
           <div class="pc-view-block" style="width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
               <div class="hero-app-download-info" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="samples/app-icon-192.png?v=20261022_mwhf4nq0" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT App Icon" class="hero-app-download-icon" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #BFDBFE;">
                 <div class="hero-app-download-text">
                   <div class="hero-app-download-title" style="color: #0F172A; font-weight: 800; font-size: 0.9rem;">Install Free KISFIT Clinical Report App on Mobile &amp; Desktop</div>
                   <div class="hero-app-download-desc" style="color: #475569; font-size: 0.8rem;">Add to home screen to track quarterly growth percentiles and 5-axis cognitive progress seamlessly</div>
@@ -1092,7 +1305,7 @@
           <div class="mobile-view-block" style="width: 100%;">
             <div onclick="if(window.openKidsFitAppDownloadModal) window.openKidsFitAppDownloadModal();" style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; cursor: pointer;">
               <div style="display: flex; align-items: center; gap: 0.6rem; min-width: 0;">
-                <img src="samples/app-icon-192.png?v=20261022_mwhf4nq0" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+                <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #BFDBFE; flex-shrink: 0;">
                 <div style="min-width: 0; text-align: left;">
                   <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install KISFIT App to Home Screen</div>
                   <div style="font-size: 0.74rem; font-weight: 500; color: #475569; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Instant report access with zero install friction</div>
@@ -2555,27 +2768,28 @@
   </footer>
 
   <!-- Runtime Scripts Loaded in Deterministic Order (Interactive UI First, 6.29MB Data Bundle Async Background Loaded) -->
-  <script src="src/js/i18n.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/theme-switcher.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/haptic-typewriter.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/pinpoint-curator.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/user-cohort-db.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/cloud-sync.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/reference-chips.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/onboarding-wizard.js?v=20261022_mwhf4nq0"></script>
-  <script src="src/js/growth-engine.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/endocrinology-engine.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/nutrition-engine.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/biomechanics-studio.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/growth-tracker.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/development-engine.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/weekend-curator.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/monetization.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/master-briefing.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/global-paywall-edition.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/parent-growth-club.js?v=20261022_mwhf4nq0" defer></script>
-  <script src="src/js/app.js?v=20261022_mwhf4nq0" defer></script>
+  <script src="src/js/i18n.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/theme-switcher.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/haptic-typewriter.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/pinpoint-curator.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/user-cohort-db.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/cloud-sync.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/reference-chips.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/onboarding-wizard.js?v=20261022_mwhlqkhn"></script>
+  <script src="src/js/growth-engine.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/endocrinology-engine.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/nutrition-engine.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/biomechanics-studio.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/neuro-cognitive-matrix.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/growth-tracker.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/development-engine.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/weekend-curator.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/monetization.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/master-briefing.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/global-paywall-edition.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/parent-growth-club.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/bone-age-interpreter.js?v=20261022_mwhlqkhn" defer></script>
+  <script src="src/js/app.js?v=20261022_mwhlqkhn" defer></script>
   <script>
     (function() {
       // 1. Iframe Clickjacking Protection
@@ -2590,7 +2804,7 @@
         if (window.__KIDSFIT_DATA_BUNDLE_LOADING || window.__KIDSFIT_DATA_BUNDLE) return;
         window.__KIDSFIT_DATA_BUNDLE_LOADING = true;
         if (typeof window.fetch === 'function') {
-          window.fetch('src/data/data-bundle.js?v=20261022_mwhf4nq0')
+          window.fetch('src/data/data-bundle.js?v=20261022_mwhlqkhn')
             .then(function(res) { return res.ok ? res.text() : ''; })
             .then(function(code) {
               if (!code) return;
@@ -2618,7 +2832,7 @@
     <div class="kidsfit-app-modal-card" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #BFDBFE; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);">
       <div class="kidsfit-app-modal-header">
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <img src="samples/app-icon-192.png?v=20261022_mwhf4nq0" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
+          <img src="samples/app-icon-192.png?v=20261022_mwhlqkhn" alt="KISFIT App Icon" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #BFDBFE; flex-shrink: 0;">
           <div>
             <span id="app-modal-native-status" style="display: inline-block; font-size: 0.72rem; font-weight: 800; color: #1D4ED8;">KISFIT OFFICIAL APP</span>
             <h3 id="app-modal-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A; line-height: 1.3;">Add KISFIT App to Home Screen</h3>

@@ -4562,5 +4562,573 @@ button,
   }
 }
 
+/* ============================================================================
+   CLINICAL BONE-AGE X-RAY REPORT INTERPRETER (#kfg-bone-age-interpreter)
+   ============================================================================ */
+#kfg-bone-age-interpreter {
+  max-width: 840px;
+  margin: 0 auto 1.18rem;
+  background: linear-gradient(155deg, #FFFFFF 0%, #F0F7FF 54%, #EFF6FF 100%);
+  border: 2px solid #2563EB;
+  border-radius: 20px;
+  padding: 1.12rem 1.12rem 1.02rem;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(29, 78, 216, 0.10);
+}
+
+.kfg-ba-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.kfg-ba-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #1D4ED8;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 900;
+  padding: 0.24rem 0.72rem;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+}
+
+.kfg-ba-safe-note {
+  font-size: 0.73rem;
+  font-weight: 800;
+  color: #065F46;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 0.2rem 0.62rem;
+  border-radius: 9999px;
+}
+
+.kfg-ba-title {
+  margin: 0 0 0.36rem;
+  font-size: clamp(1.06rem, 2.7vw, 1.32rem);
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  line-height: 1.32;
+}
+
+.kfg-ba-lead {
+  margin: 0 0 0.76rem;
+  font-size: 0.84rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.kfg-ba-preset-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-bottom: 0.8rem;
+}
+
+.kfg-ba-preset-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+.kfg-ba-preset-chip {
+  min-height: 34px;
+  padding: 0.28rem 0.68rem;
+  border-radius: 9999px;
+  border: 1px solid #BFDBFE;
+  background: #FFFFFF;
+  color: #1E3A8A;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.kfg-ba-preset-chip:hover {
+  background: #DBEAFE;
+  border-color: #2563EB;
+}
+
+.kfg-ba-form-panel {
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 16px;
+  padding: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.kfg-ba-unit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.58rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.kfg-ba-unit-caption {
+  font-size: 0.77rem;
+  font-weight: 800;
+  color: #334155;
+}
+
+.kfg-ba-unit-toggle {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+}
+
+.kfg-ba-unit-btn {
+  min-height: 36px;
+  padding: 0.28rem 0.72rem;
+  border-radius: 8px;
+  border: 1px solid #CBD5E1;
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.kfg-ba-unit-btn.active {
+  background: #0F172A;
+  border-color: #0F172A;
+  color: #FFFFFF;
+}
+
+.kfg-ba-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.kfg-ba-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.kfg-ba-label {
+  font-size: 0.79rem;
+  font-weight: 900;
+  color: #0F172A;
+}
+
+.kfg-ba-sex-toggle,
+.kfg-ba-inline-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.42rem;
+}
+
+.kfg-ba-sex-btn {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1.5px solid #CBD5E1;
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.kfg-ba-sex-btn.active {
+  background: #1D4ED8;
+  border-color: #1E40AF;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.22);
+}
+
+.kfg-ba-input,
+.kfg-ba-select {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1.5px solid #94A3B8;
+  background: #FFFFFF;
+  color: #0F172A;
+  font-size: 0.87rem;
+  font-weight: 800;
+  padding: 0.42rem 0.65rem;
+  box-sizing: border-box;
+}
+
+.kfg-ba-stage-helper {
+  margin-top: 0.75rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed #CBD5E1;
+}
+
+.kfg-ba-stage-caption {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #334155;
+  margin-bottom: 0.42rem;
+}
+
+.kfg-ba-stage-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.kfg-ba-stage-chip {
+  min-height: 36px;
+  padding: 0.3rem 0.68rem;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
+  background: #F8FAFC;
+  color: #1E293B;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.kfg-ba-stage-chip.active {
+  background: #EFF6FF;
+  border-color: #2563EB;
+  color: #1D4ED8;
+}
+
+.kfg-ba-submit-row {
+  margin-top: 0.78rem;
+}
+
+.kfg-ba-calc-btn {
+  width: 100%;
+  min-height: 50px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 100%);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.24);
+}
+
+.kfg-ba-report-box {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 2px solid #93C5FD;
+  padding: 0.95rem;
+}
+
+.kfg-ba-report-box.pace-fast {
+  border-color: #F59E0B;
+  background: linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 28%);
+}
+
+.kfg-ba-report-box.pace-slow {
+  border-color: #10B981;
+  background: linear-gradient(180deg, #ECFDF5 0%, #FFFFFF 28%);
+}
+
+.kfg-ba-report-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.kfg-ba-pace-badge {
+  display: inline-block;
+  padding: 0.3rem 0.72rem;
+  border-radius: 9999px;
+  font-size: 0.77rem;
+  font-weight: 900;
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.kfg-ba-pace-badge.pace-fast {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+.kfg-ba-pace-badge.pace-slow {
+  background: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+}
+
+.kfg-ba-meta-pill {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+.kfg-ba-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.58rem;
+  margin-bottom: 0.72rem;
+}
+
+.kfg-ba-kpi-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 13px;
+  padding: 0.7rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.16rem;
+}
+
+.kfg-ba-kpi-card.is-highlight {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-color: #60A5FA;
+}
+
+.kfg-ba-kpi-label {
+  font-size: 0.73rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+.kfg-ba-kpi-value {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+}
+
+.kfg-ba-kpi-card.is-highlight .kfg-ba-kpi-value {
+  color: #1D4ED8;
+}
+
+.kfg-ba-kpi-value small {
+  font-size: 0.82rem;
+  margin-left: 0.14rem;
+}
+
+.kfg-ba-kpi-value.is-delta {
+  font-size: 1.08rem;
+}
+
+.kfg-ba-kpi-sub {
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.kfg-ba-mph-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  background: #F1F5F9;
+  border-radius: 10px;
+  padding: 0.48rem 0.72rem;
+  font-size: 0.77rem;
+  color: #334155;
+  margin-bottom: 0.72rem;
+}
+
+.kfg-ba-mph-diff.is-plus {
+  color: #047857;
+}
+
+.kfg-ba-mph-diff.is-minus {
+  color: #B45309;
+}
+
+.kfg-ba-gauge-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 13px;
+  padding: 0.75rem 0.82rem;
+  margin-bottom: 0.75rem;
+}
+
+.kfg-ba-gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  font-size: 0.77rem;
+  color: #334155;
+  margin-bottom: 0.42rem;
+}
+
+.kfg-ba-gauge-remain {
+  color: #1D4ED8;
+}
+
+.kfg-ba-gauge-track {
+  display: flex;
+  width: 100%;
+  height: 16px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: #E2E8F0;
+  margin-bottom: 0.55rem;
+}
+
+.kfg-ba-gauge-achieved {
+  background: #94A3B8;
+  height: 100%;
+  transition: width 0.28s ease;
+}
+
+.kfg-ba-gauge-open {
+  background: linear-gradient(90deg, #2563EB 0%, #10B981 100%);
+  height: 100%;
+  transition: width 0.28s ease;
+}
+
+.kfg-ba-summary-text {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #1E293B;
+  line-height: 1.5;
+}
+
+.kfg-ba-tips-box {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 12px;
+  padding: 0.72rem 0.82rem;
+  margin-bottom: 0.8rem;
+}
+
+.kfg-ba-tips-title {
+  display: block;
+  font-size: 0.81rem;
+  font-weight: 900;
+  color: #065F46;
+  margin-bottom: 0.36rem;
+}
+
+.kfg-ba-tips-list {
+  margin: 0;
+  padding-left: 1.05rem;
+  font-size: 0.79rem;
+  color: #1E293B;
+  line-height: 1.5;
+}
+
+.kfg-ba-tips-list li + li {
+  margin-top: 0.24rem;
+}
+
+.kfg-ba-cta-bridge {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border-radius: 14px;
+  padding: 0.85rem 0.92rem;
+  color: #FFFFFF;
+}
+
+.kfg-ba-cta-copy {
+  margin-bottom: 0.65rem;
+}
+
+.kfg-ba-cta-copy strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #F8FAFC;
+  margin-bottom: 0.18rem;
+}
+
+.kfg-ba-cta-copy span {
+  display: block;
+  font-size: 0.76rem;
+  color: #CBD5E1;
+}
+
+.kfg-ba-cta-btns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.kfg-ba-btn-single,
+.kfg-ba-btn-pass {
+  min-height: 54px;
+  border-radius: 11px;
+  padding: 0.55rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.14rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.kfg-ba-btn-single {
+  background: #FFFFFF;
+  color: #0F172A;
+  border: 1.5px solid #93C5FD;
+}
+
+.kfg-ba-btn-single span {
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.kfg-ba-btn-single small {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 700;
+}
+
+.kfg-ba-btn-pass {
+  background: linear-gradient(135deg, #2563EB 0%, #059669 100%);
+  color: #FFFFFF;
+  border: 1.5px solid #60A5FA;
+}
+
+.kfg-ba-btn-pass span {
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.kfg-ba-btn-pass small {
+  font-size: 0.7rem;
+  color: #DCFCE7;
+  font-weight: 700;
+}
+
+.kfg-ba-legal-box {
+  margin-top: 0.72rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #DBEAFE;
+  font-size: 0.72rem;
+  color: #64748B;
+  line-height: 1.45;
+}
+
+@media (max-width: 820px) {
+  .kfg-ba-kpi-grid,
+  .kfg-ba-input-grid,
+  .kfg-ba-cta-btns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 440px) {
+  #kfg-bone-age-interpreter {
+    padding: 0.92rem 0.82rem;
+    border-radius: 16px;
+  }
+}
+
+
 
 

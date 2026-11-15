@@ -16,6 +16,7 @@ function computeDeterministicBuildStamp() {
   for (const rel of [
     'src/js/app.js',
     'src/js/monetization.js',
+    'src/js/bone-age-interpreter.js',
     'src/css/style.css',
     'src/data/curation-catalog.json'
   ]) {
