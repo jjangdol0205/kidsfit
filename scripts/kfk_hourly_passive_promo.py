@@ -36,6 +36,10 @@ HQ_ROOT = ROOT_DIR.parent
 sys.path.insert(0, str(HQ_ROOT / "text_automation_hq"))
 
 from anti_ban_guardrails import validate_division_guardrails
+from fandom_editor_letter_builder import (
+    compose_fandom_editor_letter_md,
+    validate_fandom_editor_letter,
+)
 from indexnow_delta_gate import (
     ping_websub_if_feed_changed,
     publish_daily_unique_telegraph_summary,
@@ -295,31 +299,43 @@ def collect_canonical_url_map() -> dict[str, Path]:
 
 
 def build_naver_dia_markdown(topic: dict, canonical_url: str, date_str: str) -> str:
-    return f"""# {topic['title']}
-
-> 발행일: {date_str} | 작성: 키즈핏 그로스 스튜디오 소아성장·두뇌발달 연구팀 (`kidsfit.co.kr`)
-
-## 1. 엄마·아빠가 꼭 알아두면 좋은 핵심 요약
-{topic['summary']}
-
-## 2. 오늘 밤부터 집에서 바로 해보는 3가지 실천법
-1. **3개월마다 질병관리청(KDCA) 또래 백분위 기록하기**: 1년에 한 번 학교 검진표만 보지 말고 분기마다 키·몸무게 백분위 곡선이 잘 유지되는지 1분 무료 진단기로 체크해 보세요.
-2. **저녁 수면·식탁·책상 습관 다듬기**: 밤 10시 전 불 끄기, 잠들기 2시간 전 달콤한 간식 쉬어가기, 책상 15도 눈높이 독서대와 저녁 스트레칭 루틴을 가볍게 이어갑니다.
-3. **우리 아이 연령대에 맞는 성분·교구 고르기**: 화려한 광고 문구보다 원료 배합(구연산 칼슘, 비타민D3·K2, 킬레이트 아연 등)과 아이 개월 수에 꼭 맞는 단계인지 먼저 비교해 보세요.
-
-## 3. 무료 백분위 계산기 & 연령별 에디터 큐레이션 바로가기
-- 오늘 주제의 상세 실천 가이드 원문 보기: {canonical_url}
-- 생후 0개월~만 20세 1분 무료 성장 백분위·예상키 진단기: https://kidsfit.co.kr/
-- 0~3세 · 4~6세 · 7~12세 연령별 맞춤 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인): https://kidsfit.co.kr/coupang-kidsfit.html
-
----
-※ 본 칼럼은 질병관리청 소아청소년 성장도표 및 학술 문헌에 기반한 건강·육아 정보이며 의학적 진단을 대신하지 않습니다. 공식 홈페이지 내 에디터 큐레이션 링크를 통한 구매 시 공정거래위원회 지침에 따라 일정액의 수수료를 제공받을 수 있습니다.
-"""
+    md = compose_fandom_editor_letter_md(
+        div_code="KFK",
+        title=f"[{date_str} 학부모 성장수첩 편지] {topic['title']}",
+        canonical_url=canonical_url,
+        empathy_two_lines=[
+            "등원·등교 준비부터 퇴근 후 저녁 식탁까지 쉼 없이 달려온 엄마·아빠, 잠든 아이 이불을 덮어주며 '우리 애는 또래만큼 잘 크고 있나?' 혼자 걱정하신 적 있으시죠?",
+            "오늘 하루도 아이를 위해 애쓰신 부모님 마음을 먼저 토닥이며, 키즈핏 학부모 성장수첩 에디터가 언제나 엄마·아빠 편에서 가장 쉬운 실천법만 골라 전해드립니다.",
+        ],
+        three_insights=[
+            f"**오늘의 핵심 성장 포인트**: {topic['summary']}",
+            "**분기마다 1번 질병관리청(KDCA 2017) 성장도표 기록하기**: 1년에 한 번 받는 학교 검진표만 기다리기보다, 3개월마다 키·몸무게 백분위 흐름이 유지되는지 가볍게 기록해 두면 성장판 골든타임을 훨씬 편안하게 지킬 수 있습니다.",
+            "**저녁 멜라토닌 조도와 오스테오칼신 영양 밸런스**: 밤 9시 40분 거실 조명을 한 톤 낮춰 깊은 잠을 돕고, 연령대에 맞는 원료 배합(구연산 칼슘·비타민D3·K2 등)인지 성분표부터 차분히 살펴보세요.",
+        ],
+        daily_mission=(
+            "오늘 저녁 잠들기 30분 전, 거실 형광등을 따뜻한 스탠드 조명으로 낮추고 "
+            "아이 어깨를 1분간 토닥이며 '오늘 하루도 정말 잘 자랐어'라고 한마디 건네 보세요."
+        ),
+        gentle_bridge_lines=[
+            f"**오늘의 학부모 성장수첩 칼럼 전문 읽기**: {canonical_url}",
+            "**생후 0개월~만 20세 1분 무료 질병관리청 백분위·예상키 진단기**: https://kidsfit.co.kr/ (무료 진단만으로도 우리 아이 성장 위치를 충분히 확인하실 수 있습니다)",
+            "**필요하실 때 참고하시는 연령별 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인)**: https://kidsfit.co.kr/coupang-kidsfit.html",
+        ],
+        footer_disclaimer=(
+            "※ 본 편지는 질병관리청 소아청소년 성장도표 및 학술 문헌에 기반한 키즈핏 학부모 성장수첩의 육아·건강 안내이며 의학적 진단을 대신하지 않습니다. "
+            "공식 홈페이지 내 에디터 큐레이션 링크를 통한 구매 시 공정거래위원회 지침에 따라 일정액의 수수료를 제공받을 수 있습니다."
+        ),
+    )
+    check = validate_fandom_editor_letter("KFK", md)
+    if not check["passed"]:
+        raise RuntimeError(f"KFK Fandom Editor Letter validation failed: {check}")
+    return md
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="KFK Zero-Ban Passive Text Automation Engine v2.0")
     parser.add_argument("--dry-run", action="store_true", help="Validate & build outbox without live network calls")
+    parser.add_argument("--no-deploy", action="store_true", help="Build outbox & local feeds without running git push")
     parser.add_argument("--force", action="store_true", help="Compat flag")
     args = parser.parse_args()
 
@@ -333,7 +349,7 @@ def main() -> int:
 
     # 2. Consolidate doorway stubs & sync clean sitemap.xml, rss.xml, feed.json, llms.txt + deploy live
     sync_passive_seo_assets_py()
-    deploy_res = deploy_division_live("KFK", dry_run=args.dry_run)
+    deploy_res = {"status": "SKIPPED_NO_DEPLOY"} if args.no_deploy else deploy_division_live("KFK", dry_run=args.dry_run)
 
     # 3. Deterministic daily rotation by date ordinal (fixes legacy +2 mod 6 loop bug)
     day_idx = now_kst.date().toordinal() % len(DAILY_KR_CLINICAL_TOPICS)
@@ -348,12 +364,18 @@ def main() -> int:
 
     # 5. Max 1 unique Telegraph clinical summary per day (zero raw Coupang/LinkPrice links)
     tg_nodes = [
+        {
+            "tag": "blockquote",
+            "children": [
+                f"📒 키즈핏 학부모 성장수첩 ({date_str}): 오늘 하루도 등원·출근·저녁 준비까지 숨 가쁘게 달려온 엄마·아빠, 정말 고생 많으셨습니다. 아이 키 성장을 응원하는 성장수첩 에디터가 오늘 밤 가장 쉬운 실천 팁을 전해드립니다."
+            ],
+        },
         {"tag": "p", "children": [topic["summary"]]},
-        {"tag": "h3", "children": ["엄마·아빠를 위한 1분 무료 성장 백분위 진단 & 실천 팁"]},
+        {"tag": "h3", "children": ["🌱 오늘 저녁 1분 응원 미션 & 무료 성장 백분위 진단"]},
         {
             "tag": "p",
             "children": [
-                "우리 아이 개월 수별 질병관리청(KDCA) 또래 백분위와 성인 예상키, 연령별 맞춤 육아템 가이드는 ",
+                "잠들기 30분 전 거실 불을 한 톤 낮추고 아이를 따뜻하게 안아주세요. 우리 아이 개월 수별 질병관리청(KDCA) 또래 백분위와 성인 예상키는 필요하실 때 언제든 ",
                 {"tag": "a", "attrs": {"href": "https://kidsfit.co.kr/"}, "children": ["키즈핏 그로스 스튜디오 무료 진단기"]},
                 " 에서 생년월일·키·몸무게 입력만으로 1분 안에 확인하실 수 있습니다.",
             ],

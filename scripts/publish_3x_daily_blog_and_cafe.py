@@ -503,26 +503,32 @@ def build_dynamic_blog_post(seq_num: int):
             f"• 핵심 발견: {p_sum}\n"
         )
 
-    title = re.sub(r"^\[[^\]]+\]", f"[키즈핏 리포트 #{seq_num}]", topic["title"])
-    body = topic["body"] + paper_block
+    title = re.sub(r"^\[[^\]]+\]", f"[학부모 성장수첩 #{seq_num}]", topic["title"])
+    warm_mission_block = (
+        "\n\n🌱 [오늘 저녁 아이와 해보는 1분 응원 미션]\n"
+        "• 잠들기 30분 전 거실 조명을 한 톤 낮추고, 아이 손을 잡으며 오늘 가장 즐거웠던 순간 1가지를 들어주세요.\n"
+        "• 작은 생활 루틴 하나가 아이의 숙면과 성장판 컨디션을 가장 든든하게 지켜줍니다.\n"
+        "— 아이 키 성장을 응원하는 키즈핏 학부모 성장수첩 에디터 드림\n"
+    )
+    body = topic["body"] + warm_mission_block + paper_block
     img_out = GEN_IMG_DIR / f"blog_auto_seq_{seq_num:03d}.png"
-    generate_summary_card_png(img_out, f"키즈핏 학술 리포트 #{seq_num}", topic.get("card_title") or title, topic["points"], accent_rgb=(79, 70, 229))
+    generate_summary_card_png(img_out, f"키즈핏 학부모 성장수첩 #{seq_num}", topic.get("card_title") or title, topic["points"], accent_rgb=(79, 70, 229))
     return title, body, topic["tags"], str(img_out), topic.get("blog_category", "우리 아이 키성장·성조숙증")
 
 
 def append_triangular_backlink_mesh(body: str, seq_num: int, source_type: str = "blog") -> str:
     """
     Matches the user's clean manual edit style on Naver Blog & Cafe:
-    - Clean Top 10-Second Link + OpenGraph Preview Card (https://kidsfit.co.kr)
+    - Warm companion greeting + Clean Top 10-Second Free Check Link (https://kidsfit.co.kr)
     - Clean body with zero ASCII clutter and zero bottom link spam
     """
     clean_body = sanitize_se_one_body(body)
     top_inflow_box = (
-        "⚡ [바쁜 부모님을 위한 10초 무료 진단 바로가기]\n"
-        "우리 아이 생년월일·키·몸무게만 넣으면 질병관리청(KDCA) 백분위·3단 예상키 & 두뇌 5대 역량(LQ) 처방전이 10초 만에 무료 출력됩니다 👇\n"
+        "💌 [키즈핏 학부모 성장수첩 에디터의 안부 & 10초 무료 성장 체크]\n"
+        "오늘 하루도 아이 챙기시느라 정말 애쓰셨어요. 필요하실 때 우리 아이 생년월일·키·몸무게만 넣으시면 질병관리청(KDCA) 또래 백분위와 성인 예상키를 10초 만에 무료로 확인하실 수 있습니다 👇\n"
         "https://kidsfit.co.kr\n\n"
     )
-    if clean_body.startswith("⚡ [바쁜 부모님을 위한"):
+    if clean_body.startswith(("⚡ [바쁜", "💌 [키즈핏 학부모 성장수첩")):
         return clean_body
     return top_inflow_box + clean_body
 
@@ -840,26 +846,43 @@ def main():
     b_title, b_body, b_tags, b_img, b_cat = get_next_blog_content(next_blog_seq)
     c_board, c_title, c_body, c_tags, c_img = get_next_cafe_content(next_cafe_seq)
 
-    with sync_playwright() as p:
-        try:
-            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=5000)
-            context = browser.contexts[0]
-        except Exception:
-            sys.path.insert(0, str(ROOT / "scripts"))
-            from naver_browser_daemon import launch_chrome_on_default_desktop
-            launch_chrome_on_default_desktop()
-            for _ in range(15):
-                try:
-                    with urllib.request.urlopen("http://127.0.0.1:9233/json/version", timeout=2) as r:
-                        if r.status == 200:
-                            break
-                except Exception:
-                    time.sleep(1)
-            browser = p.chromium.connect_over_cdp("http://127.0.0.1:9233", timeout=10000)
-            context = browser.contexts[0]
+    hq_shorts_dir = str(ROOT.parent / "shorts_automation_hq")
+    if hq_shorts_dir not in sys.path:
+        sys.path.insert(0, hq_shorts_dir)
+    from naver_permanent_session_keeper import (
+        persist_refreshed_cookies_from_context,
+        sync_cookie_vaults_from_best_source,
+    )
 
-        blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img, category_name=b_cat)
-        cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
+    owned_headless_profile = ROOT / ".naver-headless-owned-profile"
+    owned_headless_profile.mkdir(parents=True, exist_ok=True)
+    seeded_cookies, _ = sync_cookie_vaults_from_best_source()
+
+    with sync_playwright() as p:
+        context = p.chromium.launch_persistent_context(
+            user_data_dir=str(owned_headless_profile),
+            channel="chrome",
+            headless=True,
+            viewport={"width": 1440, "height": 960},
+            locale="ko-KR",
+            timezone_id="Asia/Seoul",
+            args=[
+                "--no-first-run",
+                "--no-default-browser-check",
+                "--disable-blink-features=AutomationControlled",
+            ],
+        )
+        try:
+            if seeded_cookies:
+                try:
+                    context.add_cookies(seeded_cookies)
+                except Exception:
+                    pass
+            blog_url = publish_blog_post(context, b_title, b_body, b_tags, b_img, category_name=b_cat)
+            cafe_url = publish_cafe_post(context, c_board, c_title, c_body, c_tags, c_img)
+            persist_refreshed_cookies_from_context(context)
+        finally:
+            context.close()
 
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
     cursor["lastBlogSeq"] = next_blog_seq
