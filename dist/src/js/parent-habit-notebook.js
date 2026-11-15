@@ -259,13 +259,148 @@
     } catch (_e) {}
   };
 
+  var KFK_SEGMENTS = {
+    kr_early_elementary: '유아·초등 저학년 (기초 성장습관기)',
+    kr_upper_golden_time: '초등 고학년 (사춘기 전 급성장 골든타임)',
+    kr_teen_closing_care: '중·고등학생 (성장판 마무리·자세 집중기)'
+  };
+  var activeKfkSegment = 'kr_upper_golden_time';
+
+  function escKfkHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  window.selectKfkClubSegment = function (segKey) {
+    if (!KFK_SEGMENTS[segKey]) return;
+    activeKfkSegment = segKey;
+    try {
+      if (window.localStorage) {
+        window.localStorage.setItem('kfk_club_segment_v1', segKey);
+      }
+    } catch (_e) {}
+    var btns = document.querySelectorAll('[data-kfk-club-seg]');
+    for (var i = 0; i < btns.length; i++) {
+      var b = btns[i];
+      var isAct = b.getAttribute('data-kfk-club-seg') === segKey;
+      b.classList.toggle('is-active', isAct);
+      b.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+    }
+  };
+
+  window.submitKfkPasswordlessClub = function (ev) {
+    if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+    var emailEl = document.getElementById('kfk-pwless-email');
+    var nickEl = document.getElementById('kfk-pwless-nickname');
+    var hpEl = document.getElementById('kfk-pwless-hp');
+    var fbEl = document.getElementById('kfk-pwless-feedback');
+    var btnEl = document.getElementById('btn-kfk-pwless-submit');
+
+    var email = emailEl ? String(emailEl.value || '').trim().toLowerCase() : '';
+    var nickname = nickEl ? String(nickEl.value || '').trim() : '';
+    var websiteHp = hpEl ? String(hpEl.value || '').trim() : '';
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.className = 'kfk-pwless-feedback is-error';
+        fbEl.textContent = '이메일 주소를 정확히 입력해 주세요 (예: mom@naver.com)';
+      }
+      if (emailEl) emailEl.focus();
+      return false;
+    }
+
+    var segLabel = KFK_SEGMENTS[activeKfkSegment] || KFK_SEGMENTS.kr_upper_golden_time;
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = '3초 정회원 등록 중...';
+    }
+
+    var onDone = function () {
+      if (btnEl) {
+        btnEl.disabled = false;
+        btnEl.textContent = '💌 3초 무료 정회원 등록하기 →';
+      }
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.className = 'kfk-pwless-feedback is-success';
+        fbEl.innerHTML =
+          '✅ <strong>키즈핏 성장 골든타임 정회원 등록 완료!</strong> (' + escKfkHtml(email) + ' · ' + escKfkHtml(segLabel) + ')<br>' +
+          '아이 성장 단계에 맞춘 숙면(서파수면)·영양·바른자세 에디터 편지를 보내드립니다. ' +
+          '<a href="#kfk-bone-age-interpreter" style="color:#047857;font-weight:900;text-decoration:underline;">🦴 병원 뼈나이 1분 무료 해석기 바로가기 →</a>';
+      }
+    };
+
+    if (window.DreamCompanyCRM && typeof window.DreamCompanyCRM.registerMember === 'function') {
+      window.DreamCompanyCRM.registerMember({
+        div: 'KFK',
+        email: email,
+        nickname: nickname,
+        segment: activeKfkSegment,
+        lang: 'ko-KR',
+        website_hp: websiteHp
+      }).then(onDone).catch(onDone);
+    } else {
+      try {
+        if (window.localStorage) {
+          window.localStorage.setItem('dc_member_KFK', JSON.stringify({
+            div: 'KFK',
+            email: email,
+            nickname: nickname,
+            segment: activeKfkSegment,
+            joined_at: new Date().toISOString()
+          }));
+        }
+      } catch (_e) {}
+      onDone();
+    }
+    return false;
+  };
+
+  function hydrateKfkPasswordlessClub() {
+    try {
+      var savedSeg = window.localStorage ? window.localStorage.getItem('kfk_club_segment_v1') : '';
+      if (savedSeg && KFK_SEGMENTS[savedSeg]) {
+        window.selectKfkClubSegment(savedSeg);
+      } else {
+        window.selectKfkClubSegment('kr_upper_golden_time');
+      }
+
+      var savedMember = (window.DreamCompanyCRM && window.DreamCompanyCRM.getLocalMember('KFK')) || null;
+      if (!savedMember && window.localStorage) {
+        var raw = window.localStorage.getItem('dc_member_KFK');
+        if (raw) savedMember = JSON.parse(raw);
+      }
+      if (savedMember && savedMember.email) {
+        var emailEl = document.getElementById('kfk-pwless-email');
+        var nickEl = document.getElementById('kfk-pwless-nickname');
+        var fbEl = document.getElementById('kfk-pwless-feedback');
+        if (emailEl && !emailEl.value) emailEl.value = savedMember.email;
+        if (nickEl && savedMember.nickname && !nickEl.value) nickEl.value = savedMember.nickname;
+        if (savedMember.segment && KFK_SEGMENTS[savedMember.segment]) {
+          window.selectKfkClubSegment(savedMember.segment);
+        }
+        if (fbEl) {
+          fbEl.style.display = 'block';
+          fbEl.className = 'kfk-pwless-feedback is-success';
+          fbEl.innerHTML = '💚 <strong>정회원 구독 중:</strong> ' + escKfkHtml(savedMember.email) + ' · 맞춤 단계: ' + escKfkHtml(KFK_SEGMENTS[savedMember.segment] || KFK_SEGMENTS.kr_upper_golden_time);
+        }
+      }
+    } catch (_e) {}
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       renderHabitNotebook();
       fetchInitialLiveCounts();
+      hydrateKfkPasswordlessClub();
     });
   } else {
     renderHabitNotebook();
     fetchInitialLiveCounts();
+    hydrateKfkPasswordlessClub();
   }
 })();

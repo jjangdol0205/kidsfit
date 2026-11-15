@@ -147,7 +147,8 @@ function build() {
     'privacy.html',
     'terms.html',
     'contact.html',
-    'coupang-kidsfit.html'].forEach((file) => {
+    'coupang-kidsfit.html',
+    'hq-mailing-endpoint.json'].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
       for (let attempt = 0; attempt < 5; attempt++) {
@@ -170,7 +171,7 @@ function build() {
     const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
     if (fs.existsSync(siblingGlobalDist)) {
       fs.mkdirSync(targetGlobalDir, { recursive: true });
-      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json'].forEach((f) => {
+      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json', 'hq-mailing-endpoint.json'].forEach((f) => {
         const srcF = path.join(siblingGlobalDist, f);
         if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
       });
