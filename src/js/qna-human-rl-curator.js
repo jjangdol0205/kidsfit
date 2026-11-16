@@ -39,6 +39,7 @@
           if (!el) return;
           var href = (el.getAttribute('href') || '').toLowerCase();
           if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
+          if (href.indexOf('#kfk-latpeed-ebook-slot') !== -1 || el.getAttribute('data-kfk-paid-ebook') === '1') return;
           var txt = (el.innerText || el.textContent || '').toLowerCase();
           if (
             el.getAttribute('data-shop-click') === '1' ||
