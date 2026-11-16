@@ -37,14 +37,16 @@ function loadDotEnv() {
 function getTelegramConfig() {
   const dotEnv = loadDotEnv();
   const botToken = (dotEnv.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN || '').trim();
-  const chatId = String(dotEnv.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || '').trim();
+  const chatId = String(dotEnv.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || '-1003834697086').trim();
+  const ownerUserId = String(dotEnv.TELEGRAM_OWNER_USER_ID || process.env.TELEGRAM_OWNER_USER_ID || '755033799').trim();
   const cliConvArg = process.argv.find(a => a.startsWith('--conversation='));
   const cliConvId = cliConvArg ? cliConvArg.split('=')[1].trim() : '';
   const conversationId = (
     cliConvId ||
+    dotEnv.DIVISION_CONVERSATION_ID ||
     dotEnv.ANTIGRAVITY_CONVERSATION_ID ||
     process.env.ANTIGRAVITY_CONVERSATION_ID ||
-    '1921e31e-ab59-4720-9419-93cac770374d'
+    '73f230e4-d0b1-4732-b378-27fedb0c9c83'
   ).trim();
   const siteUrl = 'https://kidsfit.co.kr';
   const isConfigured = Boolean(
@@ -57,6 +59,7 @@ function getTelegramConfig() {
   return {
     botToken,
     chatId,
+    ownerUserId,
     conversationId,
     siteUrl,
     isConfigured
@@ -93,6 +96,7 @@ function telegramApiRequestSingle(botToken, method, payload = null) {
     const options = {
       hostname: 'api.telegram.org',
       port: 443,
+      family: 4,
       path: `/bot${botToken}/${method}`,
       method: payload ? 'POST' : 'GET',
       headers: payload
@@ -215,7 +219,7 @@ function buildCompletionMessageHtml(metrics = {}) {
   const modeLabel = mb.mode_label_ko || '50:50 자동 균형 학습 모드';
 
   return [
-    `🏢 <b>[제3사업부 키즈핏 코리아(kidsfit.co.kr) — 총괄 매니저 & 멀티에이전트 본부 보고]</b>`,
+    `🏢 <b>[5사업부 KidsFit Korea (패시브 · kidsfit.co.kr) — 전담 봇(@Moneyfiityyy_bot) 보고]</b>`,
     `🕒 <b>보고 시각</b>: <code>${escapeHtml(timestamp)}</code>`,
     `🌐 <b>실서버 도메인</b>: <a href="${escapeHtml(siteUrl)}">${escapeHtml(siteUrl)}</a>`,
     `━━━━━━━━━━━━━━━━━━`,
@@ -293,6 +297,13 @@ async function sendTelegramReport(metrics = {}, options = {}) {
 
   const apiRes = await telegramApiRequest(cfg.botToken, 'sendMessage', payload);
   console.log(`  ✓ [Telegram] Live message sent to Chat ID ${targetChatId} (message_id: ${apiRes.message_id})`);
+  if (!options.groupOnly && cfg.ownerUserId && String(cfg.ownerUserId) !== String(targetChatId)) {
+    try {
+      const dmPayload = { ...payload, chat_id: String(cfg.ownerUserId) };
+      const dmRes = await telegramApiRequest(cfg.botToken, 'sendMessage', dmPayload);
+      console.log(`  ✓ [Telegram] Mirrored message to Owner DM ${cfg.ownerUserId} (message_id: ${dmRes.message_id})`);
+    } catch (_) {}
+  }
   return { sent: true, mode: 'LIVE', messageId: apiRes.message_id, chatId: targetChatId };
 }
 
@@ -324,6 +335,7 @@ function sendTelegramPhoto(botToken, chatId, photoPath, caption = '') {
     const options = {
       hostname: 'api.telegram.org',
       port: 443,
+      family: 4,
       path: `/bot${botToken}/sendPhoto`,
       method: 'POST',
       headers: {
@@ -371,9 +383,7 @@ if (require.main === module) {
     if (tokenArgIdx !== -1 && args[tokenArgIdx + 1]) {
       saveTelegramConfig({ telegramBotToken: args[tokenArgIdx + 1].trim() });
     }
-    if (chatArgIdx !== -1 && args[chatArgIdx + 1]) {
-      saveTelegramConfig({ telegramChatId: args[chatArgIdx + 1].trim() });
-    }
+    const explicitChatOverride = chatArgIdx !== -1 && args[chatArgIdx + 1] ? args[chatArgIdx + 1].trim() : '';
 
     const cfg = getTelegramConfig();
 
@@ -389,8 +399,13 @@ if (require.main === module) {
     if (photoArgIdx !== -1 && args[photoArgIdx + 1]) {
       const photoPath = path.resolve(PROJECT_ROOT, args[photoArgIdx + 1]);
       const caption = captionArgIdx !== -1 && args[captionArgIdx + 1] ? args.slice(captionArgIdx + 1).join(' ') : '';
-      const photoRes = await sendTelegramPhoto(cfg.botToken, cfg.chatId, photoPath, caption);
-      console.log(`[Telegram Photo Sent] message_id=${photoRes.message_id}`);
+      const targetChats = explicitChatOverride
+        ? [explicitChatOverride]
+        : Array.from(new Set([cfg.ownerUserId, cfg.chatId].filter(Boolean)));
+      for (const cid of targetChats) {
+        const photoRes = await sendTelegramPhoto(cfg.botToken, cid, photoPath, caption);
+        console.log(`[Telegram Photo Sent] chat=${cid} message_id=${photoRes.message_id}`);
+      }
       process.exit(0);
     }
 

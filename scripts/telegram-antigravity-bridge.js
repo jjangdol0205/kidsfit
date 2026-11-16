@@ -13,7 +13,7 @@
  *    - `/deploy` (`배포`)        : Rebuild `dist/`, run verification checks (R5 remote push guarded)
  * 3. Direct Antigravity AI Remote Control (`language_server.exe` / `agentapi.bat` Bridge):
  *    - Any natural language message sent on Telegram automatically wakes up Google Antigravity
- *      in conversation `1921e31e-ab59-4720-9419-93cac770374d` (Telegram Dedicated Channel), executes the task in `D:\드림컴퍼니\5사업부`,
+ *      in conversation `73f230e4-d0b1-4732-b378-27fedb0c9c83` (Telegram Unified Channel), executes the task in `D:\드림컴퍼니\5사업부`,
  *      and replies back to Telegram when finished! (PC Direct Channel `dbc61f0a-76cb-48e3-b617-a616c069564c` is isolated)
  */
 
@@ -26,8 +26,8 @@ const telegramNotifier = require('./telegram-notify.js');
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json');
 
-// Telegram Dedicated HQ Conversation: '1921e31e-ab59-4720-9419-93cac770374d' (PC Direct: 'dbc61f0a-76cb-48e3-b617-a616c069564c')
-const DEFAULT_CONVERSATION_ID = '1921e31e-ab59-4720-9419-93cac770374d';
+// Telegram Unified Conversation: '73f230e4-d0b1-4732-b378-27fedb0c9c83' (PC Direct: 'dbc61f0a-76cb-48e3-b617-a616c069564c')
+const DEFAULT_CONVERSATION_ID = '73f230e4-d0b1-4732-b378-27fedb0c9c83';
 const PC_DIRECT_CONVERSATION_ID = 'dbc61f0a-76cb-48e3-b617-a616c069564c';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
 const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe';
@@ -51,7 +51,7 @@ const CONTROL_PANEL_KEYBOARD = {
       { text: '🔄 재빌드 & 검증 (/deploy)', callback_data: '/deploy' }
     ],
     [
-      { text: '🏢 3사업부 멀티에이전트 본부 (/hq)', callback_data: '/hq' },
+      { text: '🏢 5사업부 패시브 본부 (/hq)', callback_data: '/hq' },
       { text: '🔥 새벽 Max-Token 플랜 (/dawn)', callback_data: '/dawn' }
     ]
   ]
@@ -521,6 +521,19 @@ async function handleIncomingCommand(rawText, options = {}) {
 }
 
 async function startPollingDaemon() {
+  // Yield getUpdates polling if DreamCompany 5-Bot Hub Watchdog is active (prevents HTTP 409 Conflict!)
+  const hubPidPath = path.resolve(PROJECT_ROOT, '..', 'telegram_5bot_hub', 'bot_hub_watchdog.pid');
+  if (fs.existsSync(hubPidPath)) {
+    const hubPid = Number(fs.readFileSync(hubPidPath, 'utf8').trim());
+    if (hubPid && hubPid !== process.pid) {
+      try {
+        process.kill(hubPid, 0);
+        console.log(`[Telegram Bridge] 5-Bot Hub Watchdog (PID ${hubPid}) is already polling @Moneyfiityyy_bot; yielding to avoid HTTP 409.`);
+        process.exit(0);
+      } catch (_) {}
+    }
+  }
+
   const cfg = telegramNotifier.getTelegramConfig();
   if (!cfg.isConfigured) {
     console.log('⚠️ [Telegram Bridge] 봇 토큰이 설정되지 않았습니다.');
@@ -648,7 +661,7 @@ async function startPollingDaemon() {
           const hostRepoDir = path.resolve(PROJECT_ROOT, '..', '사업아이템');
           if (fs.existsSync(hostRepoDir)) {
             spawnSync('git', ['add', 'server.js', 'dist-global'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
-            spawnSync('git', ['commit', '-m', 'Nov 1 Render quota reset: auto-deploy accumulated kidsfit.co.kr updates'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
+            spawnSync('git', ['commit', '-m', 'Nov 1 Render quota reset: auto-deploy accumulated kidsfit.co.kr updates [skip render]'], { cwd: hostRepoDir, encoding: 'utf8', timeout: 30000 });
             // R5 Guarded: git push disabled
           }
           if (ownerChatId) {

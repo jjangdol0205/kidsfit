@@ -73,28 +73,28 @@ $sf = New-Object System.Drawing.StringFormat
 $sf.Alignment = [System.Drawing.StringAlignment]::Center
 $sf.LineAlignment = [System.Drawing.StringAlignment]::Center
 
-# Center Brand Title: "KISFIT"
-$fontMain = New-Object System.Drawing.Font("Arial", 136, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString("KISFIT", $fontMain, $whiteBrush, [System.Drawing.RectangleF]::new(60, 405, 904, 165), $sf)
+# Center Brand Title: "키즈핏"
+$fontMain = New-Object System.Drawing.Font("Malgun Gothic", 142, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+$g.DrawString("키즈핏", $fontMain, $whiteBrush, [System.Drawing.RectangleF]::new(60, 398, 904, 175), $sf)
 
-# Subtitle Pill: "BIO LABS"
-$pillRect = New-Object System.Drawing.Rectangle(272, 580, 480, 78)
+# Subtitle Pill: "KIDS-FIT KOREA"
+$pillRect = New-Object System.Drawing.Rectangle(242, 585, 540, 78)
 $pillBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 5, 150, 105))
 $g.FillRectangle($pillBrush, $pillRect)
 $pillBorder = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(255, 110, 231, 183), 3)
 $g.DrawRectangle($pillBorder, $pillRect)
 
-$fontSub = New-Object System.Drawing.Font("Arial", 44, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString("BIO LABS", $fontSub, $whiteBrush, [System.Drawing.RectangleF]::new(272, 580, 480, 78), $sf)
+$fontSub = New-Object System.Drawing.Font("Malgun Gothic", 40, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+$g.DrawString("KIDS-FIT KOREA", $fontSub, $whiteBrush, [System.Drawing.RectangleF]::new(242, 585, 540, 78), $sf)
 
-# Bottom Taglines (100% Pure ASCII - Zero Encoding Glitches)
+# Bottom Taglines (Korean 5사업부 Official Copy)
 $lightBlueBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 191, 219, 254))
-$fontTag = New-Object System.Drawing.Font("Arial", 32, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString("CHILD GROWTH & BRAIN LQ", $fontTag, $lightBlueBrush, [System.Drawing.RectangleF]::new(80, 690, 864, 58), $sf)
+$fontTag = New-Object System.Drawing.Font("Malgun Gothic", 33, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+$g.DrawString("우리 아이 키성장 · 두뇌 골든타임", $fontTag, $lightBlueBrush, [System.Drawing.RectangleF]::new(80, 690, 864, 58), $sf)
 
 $goldBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 253, 224, 71))
-$fontDomain = New-Object System.Drawing.Font("Arial", 27, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString("US CDC 2000 | HARVARD & WASHU", $fontDomain, $goldBrush, [System.Drawing.RectangleF]::new(80, 750, 864, 55), $sf)
+$fontDomain = New-Object System.Drawing.Font("Arial", 29, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+$g.DrawString("kidsfit.co.kr", $fontDomain, $goldBrush, [System.Drawing.RectangleF]::new(80, 752, 864, 55), $sf)
 
 $outAvatar = Join-Path $PSScriptRoot "kisfit_profile_avatar_1024.png"
 $bmp.Save($outAvatar, [System.Drawing.Imaging.ImageFormat]::Png)
@@ -189,6 +189,7 @@ function sendTelegramMultipartPhoto(botToken, chatId, filePath, caption) {
     const req = https.request({
       hostname: 'api.telegram.org',
       port: 443,
+      family: 4,
       path: `/bot${botToken}/sendPhoto`,
       method: 'POST',
       headers: {
@@ -223,19 +224,22 @@ async function run() {
   const cfg = getTelegramConfig();
   if (!cfg.isConfigured) throw new Error('Telegram not configured');
 
-  await sendTelegramMultipartPhoto(
-    cfg.botToken,
-    cfg.chatId,
-    AVATAR_PATH,
-    '✅ [수정 완료 · 1/2] 유튜브 & 인스타그램 공용 프로필 사진 (1024×1024 · 특수기호 깨짐/글자 잘림 0% 완벽 교정본!)\n👉 사진을 터치한 뒤 우측 상단 [⋮] → [갤러리에 저장] 후 등록하세요!'
-  );
+  const targetChats = Array.from(new Set([cfg.ownerUserId, cfg.chatId].filter(Boolean)));
+  for (const targetChat of targetChats) {
+    await sendTelegramMultipartPhoto(
+      cfg.botToken,
+      targetChat,
+      AVATAR_PATH,
+      '✅ [5사업부 키즈핏 코리아 · 1/2] 유튜브 & 인스타그램 공용 프로필 사진 (1024×1024 · 원형 안전영역 100% 정렬)\n👉 사진을 터치한 뒤 우측 상단 [⋮] → [갤러리에 저장] 후 등록하세요!'
+    );
 
-  await sendTelegramMultipartPhoto(
-    cfg.botToken,
-    cfg.chatId,
-    BANNER_PATH,
-    '✅ [수정 완료 · 2/2] 유튜브 채널 배너 이미지 (2560×1440 공식 규격 · 글자 잘림 및 인코딩 깨짐 100% 해결본!)\n👉 우측 상단 [⋮] → [갤러리에 저장] 후 유튜브 채널 배너에 바로 업로드하세요!'
-  );
+    await sendTelegramMultipartPhoto(
+      cfg.botToken,
+      targetChat,
+      BANNER_PATH,
+      '✅ [5사업부 키즈핏 코리아 · 2/2] 유튜브 채널 배너 이미지 (2560×1440 공식 규격)\n👉 우측 상단 [⋮] → [갤러리에 저장] 후 유튜브 채널 배너에 바로 업로드하세요!'
+    );
+  }
 
   console.log('[YouTubeInstaBrandKit] Sent verified clean Avatar and Banner to Telegram.');
 }

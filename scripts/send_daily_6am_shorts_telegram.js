@@ -18,7 +18,7 @@ const STATE_PATH = path.resolve(__dirname, '../samples/shorts_10eps/daily_send_s
 
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@kidsfit01';
 const INSTAGRAM_PROFILE_URL = 'https://www.instagram.com/kids_fit1';
-const NAVER_CREATOR_SHOP_URL = 'https://cshop.naver.com/paradiseshop';
+const NAVER_CREATOR_SHOP_URL = 'https://kidsfit.co.kr/coupang-kidsfit.html';
 
 // @kidsfit01 유튜브 쇼츠 & 네이버 클립(Clip) 표준 업로드 규격 (09:30 KST 등원 직후 골든타임)
 const KIDSFIT_KR_UPLOAD_CONFIG = {
@@ -900,7 +900,7 @@ function saveState(st) {
     `<pre>${escapeHtml(threadsCopy)}</pre>`;
   if (false) await sendHtmlMessage(msgThreads);
 
-  // 4-3. 네이버 클립(Clip) 동시 업로드용 클린 MP4 & 크리에이터샵(cshop.naver.com/paradiseshop) 연결 패키지 전송
+  // 4-3. 네이버 클립(Clip) 동시 업로드용 클린 MP4 & 크리에이터샵(kidsfit.co.kr/coupang-kidsfit.html) 연결 패키지 전송
   const naverClipCaption =
     `🟢 [3/3 영상: 네이버 클립(Clip) 동시 업로드 전용 클린 MP4 · ${item.ep}/${DAILY_EPISODES.length}편]\n` +
     `✅ 쇼핑 커넥트 상품 태그 & 네이버 공식 브랜드 큐레이션(${NAVER_CREATOR_SHOP_URL}) 직결 업로드용`;

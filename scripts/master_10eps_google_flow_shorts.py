@@ -73,7 +73,7 @@ KIDSFIT_KR_YOUTUBE_UPLOAD_DEFAULTS = {
         "키즈핏",
     ],
     "standard_yt_cta": "📏 부모 키 유전 한계를 넘는 우리 아이 최종 예상키 & 성조숙증 신호등 1분 무료 진단 👉 프로필 상단 [kidsfit.co.kr] 클릭!",
-    "naver_clip_creator_shop_url": "https://cshop.naver.com/paradiseshop",
+    "naver_clip_creator_shop_url": "https://kidsfit.co.kr/coupang-kidsfit.html",
 }
 
 

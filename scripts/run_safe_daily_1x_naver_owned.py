@@ -7,29 +7,29 @@ D:\드림컴퍼니\5사업부\scripts\run_safe_daily_1x_naver_owned.py
 
 핵심 안전 가드레일 (저품질·스팸 제재 위험 0% 보장):
   1. 오직 자사 보유 채널만 발행:
-     - 자사 네이버 블로그: https://blog.naver.com/expertise333
-     - 자사 네이버 카페: https://cafe.naver.com/moneyfitlab
+     - 자사 네이버 블로그: https://blog.naver.com/expertise333 ('우리 아이 키성장·성조숙증' 전문 매거진 + 3종 인포그래픽 교차 배치)
+     - 자사 네이버 카페: https://cafe.naver.com/moneyfitlab ('우리아이 키성장·성조숙증' menu_id=3 소통형 코칭 원고 분리)
      (타인 블로그·맘카페·지식iN 자동 댓글/글쓰기 영구 차단!)
   2. 하루 최대 1회 하드 잠금 (`logs/naver_daily_1x_safe_lock.json`):
-     - 기존 과밀 스케줄(하루 5회)을 폐지하고, 같은 날짜(KST)에는 절대 2회 이상 실행되지 않도록 원자적 잠금 적용.
+     - 같은 날짜(KST)에는 절대 2회 이상 자동 실행되지 않도록 원자적 잠금 적용
+       (단, 개편 검수용 명시적 `--force-showcase` 플래그 지정 시 1회 실발행 후 당일 잠금 즉시 갱신).
   3. 주간 인간 활동 시간대(`08:30 ~ 21:30 KST`)에만 작동:
      - 새벽 시간대 봇 패턴 발행을 원천 차단.
-  4. 발행 전 HQ 가드레일 사전 검수 (`validate_division_guardrails("KFK", ...)`):
-     - 금지어(Unicode escape 검사) 0건 및 정식 도메인(`https://kidsfit.co.kr`) 포함 여부를 브라우저 기동 전에 검증.
-  5. 로그인 세션 무결성 점검:
-     - 쿠키 백업(`NID_AUT`) 또는 로컬 CDP(`127.0.0.1:9233`) 세션이 만료된 경우 에러 크래시 없이
-       `AWAITING_DAY5_SESSION_REFRESH` 상태를 기록하고 정상 종료(Exit 0).
+  4. 발행 전 HQ & KFK 에디토리얼 가드레일 사전 검수:
+     - 100% 키 성장 주제 순도(비성장 잡학 0건), 첫 문단 외부링크 0건, 3종 PNG 생성 및 세이프 마진 검증,
+       금지어(Unicode escape 검사)·해외 PG 혼입 0건, 블로그/카페 유사문서 분리 검증 통과 후에만 실행.
+  5. 로그인 세션 무결성 점검 및 무소음(`--silent`) 실행 기본 보장.
 """
 
 from __future__ import annotations
 
 import argparse
-import json
-import sys
-import urllib.request
 from datetime import datetime, timedelta, timezone
+import json
 from pathlib import Path
+import sys
 from typing import Any, Dict
+import urllib.request
 
 if hasattr(sys.stdout, "reconfigure"):
     try:
@@ -55,6 +55,12 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 from anti_ban_guardrails import validate_division_guardrails  # noqa: E402
+from kfk_naver_editorial_designer import (  # noqa: E402
+    EDITORIAL_IMG_DIR,
+    build_blog_editorial_package,
+    build_cafe_coaching_package,
+    validate_kfk_editorial_pair,
+)
 
 # Unicode escapes avoid literal prohibited words anywhere in 5사업부 codebase
 PROHIBITED_TERMS = [
@@ -109,34 +115,50 @@ def _check_naver_session_available() -> Dict[str, Any]:
 
 
 def preview_and_validate_next_owned_posts() -> Dict[str, Any]:
-    """Loads next queued owned Naver Blog & Cafe posts without launching any browser and validates guardrails."""
+    """Loads next queued owned Naver Blog (3-set magazine) & Cafe posts without launching any browser and validates guardrails."""
     import publish_3x_daily_blog_and_cafe as naver_pub
 
     cursor = naver_pub.load_cursor()
-    next_blog_seq = int(cursor.get("lastBlogSeq", 2)) + 1
-    next_cafe_seq = int(cursor.get("lastCafeSeq", 0)) + 1
+    next_blog_seq = int(cursor.get("lastBlogSeq", 30)) + 1
+    next_cafe_seq = int(cursor.get("lastCafeSeq", 28)) + 1
 
-    b_title, b_body, b_tags, b_img, b_cat = naver_pub.get_next_blog_content(next_blog_seq)
-    c_board, c_title, c_body, c_tags, c_img = naver_pub.get_next_cafe_content(next_cafe_seq)
+    blog_pkg = build_blog_editorial_package(next_blog_seq, out_dir=EDITORIAL_IMG_DIR)
+    cafe_pkg = build_cafe_coaching_package(next_cafe_seq, out_dir=EDITORIAL_IMG_DIR)
 
-    combined = "\n".join([b_title, b_body, " ".join(b_tags), c_title, c_body, " ".join(c_tags)])
+    combined = "\n".join(
+        [
+            blog_pkg["title"],
+            blog_pkg["full_body"],
+            " ".join(blog_pkg["tags"]),
+            cafe_pkg["title"],
+            cafe_pkg["body"],
+            " ".join(cafe_pkg["tags"]),
+        ]
+    )
     hq_guard = validate_division_guardrails("KFK", combined)
+    editorial_violations = validate_kfk_editorial_pair(blog_pkg, cafe_pkg)
     prohibited_hits = [w for w in PROHIBITED_TERMS if w in combined]
-    has_canonical = "https://kidsfit.co.kr" in b_body and "https://kidsfit.co.kr" in c_body
+    has_canonical = "https://kidsfit.co.kr" in blog_pkg["bottom_bridge"] and "https://kidsfit.co.kr" in cafe_pkg["body"]
+    zero_top_link = "http://" not in blog_pkg["section1_intro"] and "https://" not in blog_pkg["section1_intro"]
 
-    passed = hq_guard["passed"] and len(prohibited_hits) == 0 and has_canonical
+    all_violations = hq_guard["violations"] + editorial_violations + prohibited_hits
+    passed = hq_guard["passed"] and len(all_violations) == 0 and has_canonical and zero_top_link
     return {
         "passed": passed,
         "next_blog_seq": next_blog_seq,
-        "blog_category": b_cat,
-        "blog_title": b_title,
-        "blog_image": b_img,
+        "blog_category": blog_pkg["category"],
+        "blog_title": blog_pkg["title"],
+        "blog_char_count": blog_pkg["char_count"],
+        "blog_image": blog_pkg["images"][0],
+        "blog_images_3set": blog_pkg["images"],
+        "zero_first_section_url": zero_top_link,
         "next_cafe_seq": next_cafe_seq,
-        "cafe_board": c_board,
-        "cafe_title": c_title,
-        "cafe_image": c_img,
+        "cafe_board": cafe_pkg["board"],
+        "cafe_menu_id": cafe_pkg["menu_id"],
+        "cafe_title": cafe_pkg["title"],
+        "cafe_image": cafe_pkg["image"],
         "has_canonical_domain": has_canonical,
-        "guardrail_violations": hq_guard["violations"] + prohibited_hits,
+        "guardrail_violations": all_violations,
     }
 
 
@@ -144,6 +166,8 @@ def run_safe_daily_1x_naver(
     dry_run: bool = False,
     status_only: bool = False,
     ignore_window_for_test: bool = False,
+    force_showcase: bool = False,
+    notify: bool = False,
 ) -> Dict[str, Any]:
     now_kst = datetime.now(KST)
     today_str = now_kst.strftime("%Y-%m-%d")
@@ -160,8 +184,8 @@ def run_safe_daily_1x_naver(
             "session": session_info,
         }
 
-    # 1. Hard 1x/day idempotency lock
-    if lock.get("last_published_date") == today_str and not dry_run:
+    # 1. Hard 1x/day idempotency lock (unless explicit --force-showcase is requested)
+    if lock.get("last_published_date") == today_str and not dry_run and not force_showcase:
         return {
             "status": "ALREADY_PUBLISHED_TODAY",
             "today_kst": today_str,
@@ -194,14 +218,14 @@ def run_safe_daily_1x_naver(
         }
 
     # 3. Daytime human window protection (08:30 ~ 21:30 KST)
-    if not ignore_window_for_test and not _is_within_daytime_window(now_kst):
+    if not ignore_window_for_test and not force_showcase and not _is_within_daytime_window(now_kst):
         return {
             "status": "SKIPPED_OUTSIDE_DAYTIME_WINDOW",
             "today_kst": today_str,
             "allowed_window_kst": "08:30~21:30",
         }
 
-    # 4. Session check (graceful skip if WIP=1 Day 5 Naver login refresh hasn't been done yet)
+    # 4. Session check
     if not session_info["ready_for_unattended_run"]:
         return {
             "status": "AWAITING_DAY5_SESSION_REFRESH",
@@ -210,15 +234,12 @@ def run_safe_daily_1x_naver(
             "preview": preview,
         }
 
-    # 5. Execute max 1x/day owned Naver Blog & Cafe publish and lock today immediately
+    # 5. Execute headless owned Naver Blog (3-image magazine) & Cafe publish and lock today immediately
     import publish_3x_daily_blog_and_cafe as naver_pub
 
-    naver_pub.main()
-    updated_cursor = naver_pub.load_cursor()
-    hist = updated_cursor.get("history") or []
-    latest = hist[-1] if hist else {}
-    blog_url = (latest.get("blog") or {}).get("url", "")
-    cafe_url = (latest.get("cafe") or {}).get("url", "")
+    pub_res = naver_pub.main(notify=notify, check_cafe_branding=force_showcase)
+    blog_url = pub_res.get("blog_url", "")
+    cafe_url = pub_res.get("cafe_url", "")
 
     lock["last_published_date"] = today_str
     lock["last_published_at"] = now_kst.isoformat()
@@ -228,8 +249,10 @@ def run_safe_daily_1x_naver(
         {
             "date": today_str,
             "published_at_kst": now_kst.isoformat(),
+            "mode": "FORCE_SHOWCASE" if force_showcase else "DAILY_1X",
             "blog_seq": preview["next_blog_seq"],
             "blog_url": blog_url,
+            "blog_images": preview["blog_images_3set"],
             "cafe_seq": preview["next_cafe_seq"],
             "cafe_url": cafe_url,
         }
@@ -238,20 +261,34 @@ def run_safe_daily_1x_naver(
     _save_json(SAFE_LOCK_PATH, lock)
 
     return {
-        "status": "PUBLISHED_DAILY_1X",
+        "status": "PUBLISHED_SHOWCASE_AND_LOCKED" if force_showcase else "PUBLISHED_DAILY_1X",
         "today_kst": today_str,
+        "blog_seq": preview["next_blog_seq"],
+        "blog_title": preview["blog_title"],
         "blog_url": blog_url,
+        "blog_images": preview["blog_images_3set"],
+        "cafe_seq": preview["next_cafe_seq"],
+        "cafe_title": preview["cafe_title"],
         "cafe_url": cafe_url,
+        "cafe_image": preview["cafe_image"],
+        "cafe_branding": pub_res.get("cafe_branding"),
     }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="5사업부 자사 네이버 블로그·카페 일 1회 Zero-Ban 안전 발행기")
-    parser.add_argument("--dry-run", action="store_true", help="브라우저 기동 없이 다음 회차 원고·가드레일·1일1회 잠금 검증")
+    parser.add_argument("--dry-run", action="store_true", help="브라우저 기동 없이 다음 회차 원고·3종 이미지·가드레일 검증")
     parser.add_argument("--status", action="store_true", help="금일 발행 여부 및 세션 상태 조회")
+    parser.add_argument("--force-showcase", action="store_true", help="개편 직후 1회 실시간 쇼케이스 발행 및 당일 잠금 갱신")
+    parser.add_argument("--notify", action="store_true", help="명시적 텔레그램 알림 발송 시에만 지정 (기본 무소음)")
     args = parser.parse_args()
 
-    res = run_safe_daily_1x_naver(dry_run=args.dry_run, status_only=args.status)
+    res = run_safe_daily_1x_naver(
+        dry_run=args.dry_run,
+        status_only=args.status,
+        force_showcase=args.force_showcase,
+        notify=args.notify,
+    )
     print(json.dumps(res, ensure_ascii=False, indent=2))
     return 0 if res.get("status") != "BLOCKED_GUARDRAIL" else 1
 

@@ -6,7 +6,7 @@
 - 한국형 레이아웃 & 자막 세이프존:
   1) 상단 훅 배너 (y=200~300)
   2) 중앙 자막 세이프존 (y=1020~1100, 84~92pt 굵은 한글 폰트 + 검정 테두리 + 노랑/민트 강조)
-  3) 유튜브(@kidsfit01, 09:30 KST, categoryId=27, MadeForKids=False) + 네이버 클립(_NaverClip_Clean.mp4 -> cshop.naver.com/paradiseshop) 동시 출력!
+  3) 유튜브(@kidsfit01, 09:30 KST, categoryId=27, MadeForKids=False) + 네이버 클립(_NaverClip_Clean.mp4 -> kidsfit.co.kr/coupang-kidsfit.html) 동시 출력!
 """
 import os
 import sys
