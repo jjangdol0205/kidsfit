@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <title>초등학생 인체공학 척추 지지 성장 의자 &amp; 독서대</title>
+  <defs>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="ivory-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF8"/>
+      <stop offset="100%" stop-color="#F3EFEA"/>
+    </linearGradient>
+    <linearGradient id="amber-glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6E3A0E"/>
+      <stop offset="35%" stop-color="#B86C26"/>
+      <stop offset="70%" stop-color="#8C4A15"/>
+      <stop offset="100%" stop-color="#4E2706"/>
+    </linearGradient>
+    <linearGradient id="amber-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD494" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD494" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="oil-drop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE885"/>
+      <stop offset="100%" stop-color="#E5A912"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#ivory-bg)"/>
+  <ellipse cx="200" cy="350" rx="140" ry="22" fill="#E2D9CF" opacity="0.6"/>
+
+  <!-- Ergonomic Pediatric Chair -->
+  <g transform="translate(60, 70)" filter="url(#card-shadow)">
+    <!-- Dual-wing Lumbar Backrest -->
+    <g transform="translate(40, 20)">
+      <!-- Left Wing -->
+      <path d="M20,10 C5,10 0,35 0,65 C0,95 10,110 25,110 Z" fill="#6EE7B7" stroke="#059669" stroke-width="2"/>
+      <!-- Right Wing -->
+      <path d="M35,10 C50,10 55,35 55,65 C55,95 45,110 30,110 Z" fill="#6EE7B7" stroke="#059669" stroke-width="2"/>
+      <!-- Spine adjustment bar -->
+      <rect x="24" y="20" width="8" height="110" rx="4" fill="#334155"/>
+    </g>
+
+    <!-- Seat Cushion -->
+    <ellipse cx="68" cy="145" rx="42" ry="18" fill="#10B981"/>
+
+    <!-- Center Post Cylinder -->
+    <rect x="64" y="160" width="8" height="60" fill="#64748B"/>
+
+    <!-- Circular Footrest -->
+    <ellipse cx="68" cy="195" rx="35" ry="12" fill="none" stroke="#334155" stroke-width="6"/>
+
+    <!-- 5-Star Caster Base -->
+    <path d="M68,220 L30,240 M68,220 L105,240 M68,220 L68,250" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="30" cy="242" r="6" fill="#0F172A"/>
+    <circle cx="105" cy="242" r="6" fill="#0F172A"/>
+    <circle cx="68" cy="252" r="6" fill="#0F172A"/>
+  </g>
+
+  <!-- Bamboo Slant Reading Easel on Desk -->
+  <g transform="translate(200, 110)" filter="url(#card-shadow)">
+    <!-- Bamboo Board -->
+    <polygon points="10,40 110,20 110,140 10,160" fill="#E6BA7E" stroke="#B4823A" stroke-width="2"/>
+    <!-- Wood grain lines -->
+    <line x1="20" y1="50" x2="100" y2="35" stroke="#C89758" stroke-width="1.5"/>
+    <line x1="20" y1="90" x2="100" y2="75" stroke="#C89758" stroke-width="1.5"/>
+    <line x1="20" y1="130" x2="100" y2="115" stroke="#C89758" stroke-width="1.5"/>
+    
+    <!-- Open Book on Easel -->
+    <polygon points="25,60 95,45 95,135 25,150" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- Page holder clips -->
+    <rect x="25" y="145" width="8" height="15" rx="3" fill="#64748B"/>
+    <rect x="85" y="132" width="8" height="15" rx="3" fill="#64748B"/>
+
+    <text x="60" y="185" font-family="-apple-system, sans-serif" font-size="8" font-weight="800" fill="#78350F" text-anchor="middle">바른자세 각도 독서대</text>
+  </g>
+
+</svg>
