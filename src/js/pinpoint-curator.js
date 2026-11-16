@@ -2130,7 +2130,7 @@
         titleEn: 'Youth Humanities/Architecture Docent Tour & Cornell Research Note',
         descKo: '학업 스트레스와 진로 고민이 깊어지는 만 14세 이상 청소년에게 깊이 있는 박물관 사유 공간과 명문 캠퍼스·역사 건축 해설 투어는 지적 호기심과 생기부 심화 탐구 주제를 동시에 선물합니다.',
         missionKo: '인문 탐방 대화 포인트: "반가사유상과 조선 궁궐 건축이 수백 년이 지나도 사람들에게 깊은 울림을 주는 이유는 무엇일까?"'
-      }, makeTourUrls('청소년 코넬식 탐구 보고서 노트 한국사 인문학 필독서', '청소년을 위한 박물관 인문학 건축 교양서', '국립중앙박물관 어린이 투어', 'https://myrealt.rip/xwYWc4', 'https://www.klook.com/ko/search/result/?query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')),
+      }, makeTourUrls('청소년 코넬식 탐구 보고서 노트 한국사 인문학 필독서', '청소년을 위한 박물관 인문학 건축 교양서', '국립중앙박물관 어린이 투어', 'https://myrealt.rip/xc4wa0', 'https://www.klook.com/ko/search/result/?query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80')),
       Object.assign({
         badgeKo: '만 14세+ 시그니처 2위 · 글로벌 과학·문화 도시 인사이트 투어',
         badgeEn: 'Age 14+ Pick #2 · Global City Science & Cultural Insight',

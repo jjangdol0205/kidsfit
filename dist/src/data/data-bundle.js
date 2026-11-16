@@ -524,7 +524,7 @@
         "price": 17900,
         "coupangPath": "vp/products/national-museum-3d-puzzle"
       },
-      "mrtShortUrl": "https://myrealt.rip/xwYWc4",
+      "mrtShortUrl": "https://myrealt.rip/xc4wa0",
       "klookQuery": "경복궁 국립중앙박물관 투어",
       "ageBandGuides": {
         "age_1_3": "국립중앙박물관 어린이박물관 유모차 무장애 동선 중심 · 50분 이내 오감·촉각·시각 자극 위주 관람",
@@ -180719,9 +180719,9 @@
     "version": "1.0.0",
     "partner_id": "AF7865143",
     "ultimate_objective": "Maximize Coupang Partners Expected Commission Revenue + 24h Rocket Cart Halo Conversion",
-    "last_updated_kst": "2026-11-15 17:54:38 KST",
-    "total_episodes": 214,
-    "total_cumulative_reward": 9423,
+    "last_updated_kst": "2026-11-15 22:01:41 KST",
+    "total_episodes": 215,
+    "total_cumulative_reward": 9456,
     "exploration_rate_epsilon": 0.18,
     "ucb_exploration_constant_c": 1.414,
     "winning_category_arm": "growth_nutrition_repeat_cart",
@@ -180746,11 +180746,11 @@
       "id": "arm_rocket_review",
       "label": "🛒 쿠팡 로켓배송 혜택가·실제 학부모 후기 확인 ↗",
       "badge": "🚀 로켓와우 내일도착 · 학부모 실구매 후기 검증",
-      "alpha": 600.32,
+      "alpha": 603.62,
       "beta": 13.68,
       "impressions": 345,
-      "clicks": 186,
-      "cumulative_reward": 6242,
+      "clicks": 187,
+      "cumulative_reward": 6275,
       "ucb_score": 2.277
     },
     "arm_wow_tomorrow": {
@@ -180808,11 +180808,11 @@
       "commission_multiplier": 1.65,
       "avg_order_value_krw": 38000,
       "cart_halo_multiplier": 2.2,
-      "alpha": 749.75,
+      "alpha": 753.88,
       "beta": 12.1,
       "impressions": 435,
-      "clicks": 193,
-      "cumulative_reward": 6753,
+      "clicks": 194,
+      "cumulative_reward": 6786,
       "ucb_score": 3.352,
       "priority_rank": 1
     },
@@ -180975,6 +180975,14 @@
     }
   },
   "recent_reward_history": [
+    {
+      "timestampKst": "2026-11-15 22:01:41 KST",
+      "armId": "growth_nutrition_repeat_cart",
+      "ctaArm": "arm_rocket_review",
+      "productName": "칼슴",
+      "reward": 33,
+      "utmSource": "direct"
+    },
     {
       "timestampKst": "2026-11-15 17:54:38 KST",
       "armId": "growth_nutrition_repeat_cart",
@@ -181281,14 +181289,6 @@
     },
     {
       "timestampKst": "2026-11-07 15:35:35 KST",
-      "armId": "growth_nutrition_repeat_cart",
-      "ctaArm": "arm_rocket_review",
-      "productName": "PAID ORDER: $8.99 Single Pass",
-      "reward": 45,
-      "utmSource": "lemonsqueezy_webhook"
-    },
-    {
-      "timestampKst": "2026-11-07 15:35:31 KST",
       "armId": "growth_nutrition_repeat_cart",
       "ctaArm": "arm_rocket_review",
       "productName": "PAID ORDER: $8.99 Single Pass",
