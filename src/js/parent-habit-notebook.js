@@ -165,7 +165,7 @@
     if (typeof window.fetch !== 'function') return;
     var todayStr = getKstDateString();
     HABIT_KEYS.forEach(function (habit) {
-      window.fetch('https://abacus.jasoncameron.dev/get/kfk_kidsfit/stamp_' + habit + '_' + todayStr, {
+      window.fetch('https://abacus.jasoncameron.dev/get/kfk_kidsfitkr/stamp_' + habit + '_' + todayStr, {
         mode: 'cors'
       })
         .then(function (r) { return r && r.ok ? r.json() : null; })
@@ -218,7 +218,7 @@
     renderHabitNotebook();
 
     if (shouldSendHit && typeof window.fetch === 'function') {
-      window.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfit/stamp_' + habit + '_' + todayStr, {
+      window.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/stamp_' + habit + '_' + todayStr, {
         mode: 'cors',
         keepalive: true
       })
@@ -319,7 +319,28 @@
       btnEl.textContent = '3초 정회원 등록 중...';
     }
 
+    var fireKfkSignupHit = function () {
+      try {
+        if (window.DreamCompanyCRM && typeof window.DreamCompanyCRM.fireSignupBeacon === 'function') {
+          window.DreamCompanyCRM.fireSignupBeacon('KFK');
+          return;
+        }
+        if (typeof window.fetch !== 'function') return;
+        var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+        if ((typeof navigator !== 'undefined' && navigator.webdriver) || /jsdom|bot|crawl|spider|slurp|headless|lighthouse|python|curl/i.test(ua)) return;
+        var host = (window.location && window.location.hostname) ? window.location.hostname : '';
+        if (!host || host === 'localhost' || host === '127.0.0.1') return;
+        var nowMs = Date.now();
+        if (window.__LAST_KFK_SIGNUP_BEACON_TS__ && (nowMs - window.__LAST_KFK_SIGNUP_BEACON_TS__) < 1500) return;
+        window.__LAST_KFK_SIGNUP_BEACON_TS__ = nowMs;
+        var todayStr = getKstDateString();
+        window.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_' + todayStr, { mode: 'cors', keepalive: true }).catch(function () {});
+        window.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_total', { mode: 'cors', keepalive: true }).catch(function () {});
+      } catch (_e) {}
+    };
+
     var onDone = function () {
+      fireKfkSignupHit();
       if (btnEl) {
         btnEl.disabled = false;
         btnEl.textContent = '💌 3초 무료 정회원 등록하기 →';

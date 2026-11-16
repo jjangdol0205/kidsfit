@@ -1961,7 +1961,7 @@
             <button
               type="button"
               id="btn-print-report-briefing"
-              onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else { window.print(); } })()"
+              onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(window.isKidsFitInAppWebView && window.isKidsFitInAppWebView()){ window.openKidsFitInAppWorkbookModal(p); } else if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else if(window.safeKidsFitPrint){ window.safeKidsFitPrint(p); } else { window.print(); } })()"
               style="display: inline-flex; align-items: center; gap: 0.35rem; background: #F8FAFC; color: #0F172A; font-weight: 900; font-size: 0.84rem; padding: 0.48rem 0.95rem; border-radius: 9999px; border: 1.5px solid #93C5FD; cursor: pointer; box-shadow: 0 4px 14px #F8FAFC;"
             >
               ${isEn ? 'Print / Save A4 PDF' : '보고서 출력 (인쇄 / PDF 저장)'}
@@ -2556,7 +2556,7 @@
             [신체 성장 마스터 분석 보고서] 진단 완료 · 진단 6단계 + 우리 아이 특징 서술형 종합 반영
           </span>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="if(window.TallerGrowthTracker&&typeof window.TallerGrowthTracker.printClinicReport==='function'){window.TallerGrowthTracker.printClinicReport(Object.assign({},(window.TallerOnboardingWizard&&window.TallerOnboardingWizard.state&&window.TallerOnboardingWizard.state.profile)||{}, {preferredReportMode:'learning'}));}else{window.print();}" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
+            <button type="button" onclick="if(window.isKidsFitInAppWebView&&window.isKidsFitInAppWebView()){window.openKidsFitInAppWorkbookModal((window.TallerOnboardingWizard&&window.TallerOnboardingWizard.state&&window.TallerOnboardingWizard.state.profile)||{});}else if(window.TallerGrowthTracker&&typeof window.TallerGrowthTracker.printClinicReport==='function'){window.TallerGrowthTracker.printClinicReport(Object.assign({},(window.TallerOnboardingWizard&&window.TallerOnboardingWizard.state&&window.TallerOnboardingWizard.state.profile)||{}, {preferredReportMode:'learning'}));}else if(window.safeKidsFitPrint){window.safeKidsFitPrint();}else{window.print();}" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
               신체 성장 보고서 인쇄 / PDF 저장
             </button>
           </div>
@@ -3658,7 +3658,7 @@
             [두뇌·학습 마스터 분석 보고서] 시각 진단 완료
           </span>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else { window.print(); } })()" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
+            <button type="button" onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(window.isKidsFitInAppWebView && window.isKidsFitInAppWebView()){ window.openKidsFitInAppWorkbookModal(p); } else if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else if(window.safeKidsFitPrint){ window.safeKidsFitPrint(p); } else { window.print(); } })()" style="cursor: pointer; background: #EFF6FF; border: 1px solid #93C5FD; color: #0F172A; font-weight: 800; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 9999px;">
               두뇌·학습 보고서 인쇄 / PDF 저장
             </button>
           </div>

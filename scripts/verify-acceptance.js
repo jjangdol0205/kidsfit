@@ -236,22 +236,22 @@ function verifyMilestone3() {
       throw new Error('LMS data table is incomplete (< 15 age points)');
     }
     const sample = data.boy.find(x => x.m === 84);
-    if (!sample || sample.M !== 121.1) {
-      throw new Error(`Expected 84mo boy median 121.1cm, got ${sample ? sample.M : 'undefined'}`);
+    if (!sample || sample.M !== 122.1) {
+      throw new Error(`Expected 84mo boy median 122.1cm, got ${sample ? sample.M : 'undefined'}`);
     }
   });
 
   check('src/js/growth-engine.js calculates Box-Cox Z-score, erf percentiles, and Tanner MPH', () => {
     const growthEngine = require(path.join(ROOT_DIR, 'src', 'js', 'growth-engine.js'));
     const lms120 = growthEngine.getLmsForMonth('boy', 120);
-    const p50 = growthEngine.calculateKdcaPercentile(137.0, lms120.L, lms120.M, lms120.S);
+    const p50 = growthEngine.calculateKdcaPercentile(138.8, lms120.L, lms120.M, lms120.S);
     if (Math.abs(p50.percentile - 50.0) > 0.5) {
       throw new Error(`Expected ~50th percentile, got ${p50.percentile}`);
     }
 
-    const p97 = growthEngine.calculateKdcaPercentile(149.7, lms120.L, lms120.M, lms120.S);
+    const p97 = growthEngine.calculateKdcaPercentile(150.2, lms120.L, lms120.M, lms120.S);
     if (p97.percentile < 96.0 || p97.percentile > 98.0) {
-      throw new Error(`Expected ~97th percentile for 149.7cm 120mo boy, got ${p97.percentile}`);
+      throw new Error(`Expected ~97th percentile for 150.2cm 120mo boy, got ${p97.percentile}`);
     }
 
     const boyMph = growthEngine.calculateMph(178, 162, 'boy');

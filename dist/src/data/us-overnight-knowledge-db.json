@@ -1,0 +1,53 @@
+{
+  "lastUpdated": "2026-10-31T20:41:48.588Z",
+  "kstDate": "2026-11-01",
+  "cycleIndex": 167,
+  "totalPapersIndexed": 3722,
+  "growthPapers": 1580,
+  "learningPapers": 2142,
+  "newlyAddedPapers": [],
+  "usBooksAndMarketingModules": [
+    {
+      "category": "US Neuro-Education Book",
+      "title": "Make It Stick: The Science of Successful Learning (Harvard Belknap Press)",
+      "authors": "Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel",
+      "core_insight": "US students fall into the \"Illusion of Mastery\" when re-reading highlighted notes. Effortful retrieval (Feynman blank-page recall), interleaved problem solving, and 72-hour spaced error testing double long-term exam retention.",
+      "site_integration": "Applied in Report 2 (Brain & Learning) Chapter 06 Protocol A & Worksheet 01 (Feynman 3-Min Blank-Page Recall) + Month 4 Cornell 72-Hr Error Retrieval."
+    },
+    {
+      "category": "US Sleep & Endocrinology Book",
+      "title": "Why We Sleep: Unlocking the Power of Sleep and Dreams (Scribner)",
+      "authors": "Matthew Walker, PhD (UC Berkeley Center for Human Sleep Science)",
+      "core_insight": "Deep N3 Slow-Wave Sleep (SWS) in the first 90 minutes after sleep onset drives both peak pituitary Growth Hormone (HGH) release and sleep-spindle transfer of daytime learning from the hippocampus to the neocortex.",
+      "site_integration": "Applied in Report 1 Chapter 03 Interactive 24-Hr Nocturnal HGH Simulator and Report 2 Chapter 06 Protocol C (SWS Hippocampal Consolidation)."
+    },
+    {
+      "category": "US K-12 Executive Function Book",
+      "title": "Smart but Scattered: The Revolutionary \"Executive Skills\" Approach to Helping Kids Reach Their Potential (Guilford Press)",
+      "authors": "Peg Dawson, EdD & Richard Guare, PhD",
+      "core_insight": "Smart children who underperform on multi-step math word problems or tests almost always have a bottleneck in Prefrontal Working Memory or Sustained Attention rather than IQ. Externalizing variables visually (Bar Modeling) and matching sprint length to biological age-in-months resolves the bottleneck.",
+      "site_integration": "Applied in Report 2 Chapter 05 5-Axis Brain LQ Matrix & Worksheet 02/03 (Visual Math Bar-Modeling Canvas & Timed Focus Sprint Log)."
+    },
+    {
+      "category": "US D2C Conversion & Online Marketing Framework",
+      "title": "US Parent D2C Health/EdTech Funnel & Price-Anchoring Playbook (kisfitglobal.com)",
+      "authors": "KISFIT US Growth & CRO Intelligence",
+      "core_insight": "US parents respond highest to: (1) Native Imperial units first (ft/in, lbs) with US CDC 2000 & Harvard/WashU authority badges; (2) Sharp price anchoring ($450 pediatric endocrine consult / $2,400 learning center eval vs. $8.99 instant clinical PDF); (3) 6-Month Monthly Re-Calibration Pass ($19.99 = $3.33/mo) positioned around 30-day height velocity (in/yr) and monthly Brain LQ progression; (4) Strict DOM security so unpaid previews tease masked insights (██) without leaking Chapters 2-8.",
+      "site_integration": "Applied across index.html hero/pricing, global-paywall-edition.js 2-tier Lemon Squeezy embedded checkout, and daily 06:00 AM KST US YouTube Shorts & Instagram Reels copy-paste pack."
+    },
+    {
+      "category": "US Short-Form Video Production & Casting Standard (YouTube Shorts / Reels / TikTok)",
+      "title": "Mandatory Child, Teenager & Parent Casting Rule for All KISFIT Video Assets",
+      "authors": "KISFIT Video Creative Direction",
+      "core_insight": "Because KISFIT is a pediatric & adolescent growth and brain development service, 100% of video scenes must prominently feature children (ages 3-12), teenagers (ages 13-17), and their parents (mother & father) interacting in warm, relatable everyday settings—never abstract medical charts alone or unrelated adult-only scenes.",
+      "site_integration": "Enforced in scripts/google_flow_veo_bot.py (FLOW_EPISODE_PROMPTS), scripts/generate_global_tiktok_insta_videos.py (US_SHORTS_VIDEOS), and tiktok_insta_Videos/flow_raw/."
+    },
+    {
+      "category": "Autonomous US SEO, GEO (AI Search) & Zero-Touch Promotion Evolution",
+      "title": "Generative Engine Optimization (GEO — Princeton / Georgia Tech KDD 2024) & Programmatic US Parent Q&A Syndication",
+      "authors": "Aggarwal et al. (Princeton / GT / Allen AI) & KISFIT Autonomous Growth Engine",
+      "core_insight": "Embedding quantitative clinical statistics (+3.3 in epigenetic window, 42% insulin-mediated GH blunting, +150% Feynman recall retention), PMID citations, and FAQPage JSON-LD schema into standalone /qna/post-seq-XXX.html pages + llms.txt boosts AI Search citation visibility (ChatGPT Search, Perplexity, Claude, Google AI Overviews) by +40.9%. Pairing programmatic Q&A generation with automated DA-88 telegra.ph DoFollow articles and 6-engine IndexNow/WebSub pings creates a 100% zero-touch organic traffic loop.",
+      "site_integration": "Executed autonomously 3x/day and every night (00:00-06:00 KST) via scripts/global_auto_promotion_engine.js and src/data/us-auto-promo-keywords-db.json."
+    }
+  ]
+}

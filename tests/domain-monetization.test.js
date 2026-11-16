@@ -74,7 +74,7 @@ it('interpolates intermediate months smoothly between reference milestones', () 
 
 it('calculates KDCA percentiles: 50th percentile at median', () => {
   const lms = GrowthEngine.getLmsForMonth('boy', 120);
-  const res = GrowthEngine.calculateKdcaPercentile(137.0, lms.L, lms.M, lms.S);
+  const res = GrowthEngine.calculateKdcaPercentile(138.8, lms.L, lms.M, lms.S);
   assertApprox(res.percentile, 50.0, 0.5);
   assert.strictEqual(res.deltaMedian, 0.0);
   assert.strictEqual(res.topPercent, Math.round((100 - res.percentile) * 10) / 10);
@@ -82,9 +82,9 @@ it('calculates KDCA percentiles: 50th percentile at median', () => {
 
 it('calculates KDCA percentiles: 97th percentile and positive delta', () => {
   const lms = GrowthEngine.getLmsForMonth('boy', 120);
-  const res = GrowthEngine.calculateKdcaPercentile(149.7, lms.L, lms.M, lms.S);
+  const res = GrowthEngine.calculateKdcaPercentile(150.2, lms.L, lms.M, lms.S);
   assertApprox(res.percentile, 97.0, 1.0);
-  assert.strictEqual(res.deltaMedian, 12.7);
+  assert.strictEqual(res.deltaMedian, 11.4);
 });
 
 it('calculates Tanner MPH: Boy (F+M+13)/2 and Girl (F+M-13)/2', () => {

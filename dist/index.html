@@ -140,7 +140,7 @@
         },
         "sameAs": [
           "https://www.youtube.com/@kidsfit01",
-          "https://clip.naver.com/@truthofmarket",
+          "https://naver.me/G2YsIdQ1",
           "https://kidsfit.co.kr/coupang-kidsfit.html",
           "https://www.instagram.com/kids_fit1",
           "https://blog.naver.com/kidsfit_studio",
@@ -196,42 +196,72 @@
   }
   </script>
   <script>
-  /* === HQ Edge Instant <head> Real-Human Visitor & Referral Beacon (kfk_kidsfitkr) === */
+  /* === HQ Edge Instant <head> Real-Human Visitor, Unified Shop Click Beacon & In-App Print Guard (kfk_kidsfitkr) === */
   (function(){
     try {
       if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
-      if (window.__HQ_BEACON_SENT_kfk_kidsfitkr__) return;
-      window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
       var ua = navigator.userAgent || '';
-      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
+      if (/Instagram|FBAN|FBAV|KAKAOTALK/i.test(ua)) {
+        window.print = function() {
+          if (typeof window.openKidsFitInAppWorkbookModal === 'function') {
+            window.openKidsFitInAppWorkbookModal();
+          }
+        };
+      }
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios|jsdom/i.test(ua)) return;
       var host = (location && location.hostname) || '';
       if (!host || host === 'localhost' || host === '127.0.0.1') return;
       var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
       var ns = 'kfk_kidsfitkr';
-      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
-      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
-      if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
-        localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
-        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
-      }
-      if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
-        localStorage.setItem('hq_uv_ever_' + ns, '1');
-        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function(){});
-      }
-      document.addEventListener('click', function(e) {
-        if (window.__HQ_KPI_KFK__) return;
-        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
-        if (!el) return;
-        var href = (el.getAttribute('href') || '').toLowerCase();
-        var onclick = (el.getAttribute('onclick') || '').toLowerCase();
-        var txt = (el.innerText || el.textContent || '').toLowerCase();
-        if (el.getAttribute('data-shop-click') === '1' || el.getAttribute('data-product-category') || href.indexOf('coupang.com') !== -1 || href.indexOf('iherb.com') !== -1 || href.indexOf('yes24.com') !== -1 || href.indexOf('click.linkprice.com') !== -1 || href.indexOf('brandconnect.naver.com') !== -1 || href.indexOf('naver.me') !== -1 || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('_openkidsfiteditorialmodal') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|구매|쿠팡|네이버|적립관|셀렉트샵|사러가기|바로가기|스토어 이동|공식 판매처/.test(txt)) {
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+      if (!window.__HQ_BEACON_SENT_kfk_kidsfitkr__) {
+        window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
+          localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
         }
-      }, true);
+        if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
+          localStorage.setItem('hq_uv_ever_' + ns, '1');
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function(){});
+        }
+      }
+      if (!window.__HQ_CLICK_TRACKER_KFK__) {
+        window.__HQ_CLICK_TRACKER_KFK__ = true;
+        document.addEventListener('click', function(e) {
+          if (e && e.__kfkShopTracked) return;
+          var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+          if (!el) return;
+          var href = (el.getAttribute('href') || '').toLowerCase();
+          if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
+          var onclick = (el.getAttribute('onclick') || '').toLowerCase();
+          var txt = (el.innerText || el.textContent || '').toLowerCase();
+          var netKey = '';
+          if (href.indexOf('coupang.com') !== -1 || href.indexOf('coupang-kidsfit.html') !== -1) {
+            netKey = 'aff_coupang';
+          } else if (href.indexOf('click.linkprice.com') !== -1 || href.indexOf('linkprice.com') !== -1 || href.indexOf('yes24.com') !== -1) {
+            netKey = 'aff_linkprice';
+          } else if (href.indexOf('iherb.com') !== -1) {
+            netKey = 'aff_iherb';
+          } else if (href.indexOf('brandconnect.naver.com') !== -1 || href.indexOf('naver.me') !== -1) {
+            netKey = 'aff_naver_bc';
+          } else if (el.getAttribute('data-shop-click') === '1' || el.getAttribute('data-product-category') || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('_openkidsfiteditorialmodal') !== -1 || onclick.indexOf('handlekidsfitmodalctaclick') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|에디터 큐레이션|안심 큐레이션 확인|공식 판매처|쿠팡|적립관|셀렉트샵|바로가기|스토어 이동/.test(txt)) {
+            netKey = 'aff_other';
+          }
+          if (netKey) {
+            if (e) e.__kfkShopTracked = true;
+            var nowTs = Date.now();
+            if (window.__LAST_KFK_SHOP_CLICK_TS__ && (nowTs - window.__LAST_KFK_SHOP_CLICK_TS__) < 300) return;
+            window.__LAST_KFK_SHOP_CLICK_TS__ = nowTs;
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_total', { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/' + netKey + '_' + kst, { mode: 'cors', keepalive: true }).catch(function(){});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/' + netKey + '_total', { mode: 'cors', keepalive: true }).catch(function(){});
+          }
+        }, true);
+      }
     } catch (e) {}
   })();
   </script>
@@ -512,12 +542,46 @@
         <div id="kfk-age-guide-summary" class="kfk-guide-summary-bar">
           <div style="flex: 1; min-width: 210px;">
             <strong id="kfk-age-guide-title" style="display: block; font-size: 0.9rem; font-weight: 900; color: #1E3A8A; margin-bottom: 0.2rem;">📌 [급성장기 초등고·중등 10~14세] 연간 +6~9cm 최대 급성장 · 성조숙증 방어 골든타임</strong>
-            <span id="kfk-age-guide-desc" style="font-size: 0.8rem; color: #334155; line-height: 1.45; display: block;">KDCA 기준 만 10세 평균 키 남아 137.0cm / 여아 139.1cm · 밤 10시 전 숙면과 칼슘·비타민D3·바른 착석 자세가 최종 성인키 격차를 결정합니다.</span>
+            <span id="kfk-age-guide-desc" style="font-size: 0.8rem; color: #334155; line-height: 1.45; display: block;">질병관리청 2017 성장도표 기준 · 만 10세(120개월) 50백분위수 남아 138.8cm / 여아 139.1cm (만 10세 6개월·126개월 남아 141.7cm / 여아 142.5cm) · 밤 10시 전 숙면과 칼슘·비타민D3·바른 착석 자세가 최종 성인키 격차를 결정합니다.</span>
           </div>
           <button type="button" id="kfk-age-diag-cta" onclick="window.jumpToKidsFitDiagnosis('growth')" style="min-height: 44px; background: #1D4ED8; color: #FFFFFF; border: none; border-radius: 10px; padding: 0.5rem 0.9rem; font-size: 0.8rem; font-weight: 900; cursor: pointer; white-space: nowrap;">
             📏 이 나이 백분위 1분 진단 →
           </button>
         </div>
+
+        <details id="kfk-kdca-standard-height-table" style="margin: 0.55rem 0 0.75rem; background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 12px; padding: 0.55rem 0.8rem; font-size: 0.78rem; color: #1E293B;">
+          <summary style="cursor: pointer; font-weight: 900; color: #1E3A8A; outline: none;">📊 질병관리청 「2017 소아청소년 성장도표」 만 3세(36개월)~만 18세(216개월) 공식 50백분위수 표준키 전체 표 열기 (개월수 명시)</summary>
+          <div style="overflow-x: auto; margin-top: 0.55rem;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.76rem; background: #FFFFFF;">
+              <thead>
+                <tr style="background: #EFF6FF; color: #1E3A8A;">
+                  <th style="border: 1px solid #CBD5E1; padding: 6px 8px;">연령 (정확한 개월수)</th>
+                  <th style="border: 1px solid #CBD5E1; padding: 6px 8px;">남아 50백분위수</th>
+                  <th style="border: 1px solid #CBD5E1; padding: 6px 8px;">여아 50백분위수</th>
+                  <th style="border: 1px solid #CBD5E1; padding: 6px 8px;">반년 경과 (N세 6개월) 남아 / 여아</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 3세 0개월 (36개월)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">96.5cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">95.4cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">42개월: 99.8cm / 98.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 4세 0개월 (48개월)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">103.1cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">102.2cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">54개월: 106.3cm / 105.3cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 5세 0개월 (60개월 · 유치원)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">109.6cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">108.4cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">66개월: 112.8cm / 111.6cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 6세 0개월 (72개월 · 예비초)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">115.9cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">114.7cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">78개월: 119.0cm / 117.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 7세 0개월 (84개월 · 초등 1학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">122.1cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">120.8cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">90개월: 125.0cm / 123.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 8세 0개월 (96개월 · 초등 2학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">127.9cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">126.7cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">102개월: 130.7cm / 129.7cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 9세 0개월 (108개월 · 초등 3학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">133.4cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">132.6cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">114개월: 136.1cm / 135.9cm</td></tr>
+                <tr style="background:#FEF9C3;font-weight:900;"><td style="border:1px solid #CBD5E1;padding:5px 8px;">만 10세 0개월 (120개월 · 초등 4학년)</td><td style="border:1px solid #CBD5E1;padding:5px 8px;text-align:center;">138.8cm</td><td style="border:1px solid #CBD5E1;padding:5px 8px;text-align:center;">139.1cm</td><td style="border:1px solid #CBD5E1;padding:5px 8px;text-align:center;">126개월: 141.7cm / 142.5cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 11세 0개월 (132개월 · 초등 5학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">144.7cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">145.8cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">138개월: 148.1cm / 148.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 12세 0개월 (144개월 · 초등 6학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">151.4cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">151.7cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">150개월: 155.0cm / 153.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 13세 0개월 (156개월 · 중학 1학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">158.6cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">155.9cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">162개월: 161.8cm / 157.1cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 14세 0개월 (168개월 · 중학 2학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">165.0cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">158.3cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">174개월: 167.1cm / 158.9cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 15세 0개월 (180개월 · 중학 3학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">169.2cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">159.5cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">186개월: 170.3cm / 159.8cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 16세 0개월 (192개월 · 고등 1학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">171.4cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">160.0cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">198개월: 172.0cm / 160.1cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 17세 0개월 (204개월 · 고등 2학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">172.6cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">160.2cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">210개월: 173.1cm / 160.3cm</td></tr>
+                <tr><td style="border:1px solid #E2E8F0;padding:5px 8px;font-weight:700;">만 18세 0개월 (216개월 · 고등 3학년)</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">173.6cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">160.3cm</td><td style="border:1px solid #E2E8F0;padding:5px 8px;text-align:center;">성인 수렴 구간</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
 
         <div id="kfk-age-onetap-cards" class="kfk-direct-3grid">
           <div class="kfk-direct-item-card">
@@ -871,12 +935,12 @@
         </div>
       </section>
 
-      <!-- YouTube (@kidsfit01), Naver Clip (@truthofmarket) & Instagram Viewer 1-Second Direct Jump Bar -->
+      <!-- YouTube (@kidsfit01), Official KidsFit Naver Clip & Instagram Viewer 1-Second Direct Jump Bar -->
       <div id="kf-hero-shorts-direct-bar" style="max-width: 860px; margin: 0 auto 1.15rem; background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFC 100%); border: 1.5px solid #93C5FD; border-radius: 16px; padding: 0.8rem 0.95rem; text-align: left; box-shadow: 0 6px 18px rgba(29, 78, 216, 0.06);">
         <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.82rem; font-weight: 800; color: #0F172A; margin-bottom: 0.55rem; line-height: 1.4;">
           <span>🎬 영상에서 본 고민 바로가기:</span>
           <a href="https://www.youtube.com/@kidsfit01" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:32px;padding:0.2rem 0.65rem;border-radius:9999px;background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;font-size:0.75rem;font-weight:800;text-decoration:none;">📺 유튜브(@kidsfit01)</a>
-          <a href="https://clip.naver.com/@truthofmarket" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:32px;padding:0.2rem 0.65rem;border-radius:9999px;background:#ECFDF5;color:#047857;border:1px solid #A7F3D0;font-size:0.75rem;font-weight:800;text-decoration:none;">🟢 네이버 클립</a>
+          <a href="https://naver.me/G2YsIdQ1" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:32px;padding:0.2rem 0.65rem;border-radius:9999px;background:#ECFDF5;color:#047857;border:1px solid #A7F3D0;font-size:0.75rem;font-weight:800;text-decoration:none;">🟢 네이버 클립</a>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 0.42rem;">
           <a href="#kfk-bone-age-interpreter" onclick="var baJump=document.getElementById('kfk-bone-age-interpreter');if(baJump&&baJump.scrollIntoView){event.preventDefault();baJump.scrollIntoView({behavior:'smooth',block:'start'});}" style="display: inline-flex; align-items: center; min-height: 40px; background: #0F172A; color: #FFE600; border: 1px solid #1E293B; border-radius: 9999px; padding: 0.38rem 0.82rem; font-size: 0.78rem; font-weight: 900; text-decoration: none;">🦴 병원 뼈나이·잔여키 해석기</a>
@@ -930,9 +994,9 @@
                 <span>📺</span>
                 <span>공식 유튜브 쇼츠 (@kidsfit01)</span>
               </a>
-              <a href="https://clip.naver.com/@truthofmarket" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; background: #ECFDF5; color: #047857; border: 1.5px solid #A7F3D0; border-radius: 9999px; padding: 0.38rem 0.9rem; font-size: 0.8rem; font-weight: 800; text-decoration: none; box-shadow: 0 2px 8px rgba(4, 120, 87, 0.08);">
+              <a href="https://naver.me/G2YsIdQ1" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; background: #ECFDF5; color: #047857; border: 1.5px solid #A7F3D0; border-radius: 9999px; padding: 0.38rem 0.9rem; font-size: 0.8rem; font-weight: 800; text-decoration: none; box-shadow: 0 2px 8px rgba(4, 120, 87, 0.08);">
                 <span>🟢</span>
-                <span>공식 네이버 클립 (@truthofmarket)</span>
+                <span>공식 네이버 클립 (키즈핏)</span>
               </a>
               <a href="https://www.instagram.com/kids_fit1" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; background: #FDF2F8; color: #DB2777; border: 1.5px solid #FBCFE8; border-radius: 9999px; padding: 0.38rem 0.9rem; font-size: 0.8rem; font-weight: 800; text-decoration: none; box-shadow: 0 2px 8px rgba(219, 39, 119, 0.08);">
                 <span>📸</span>
@@ -4151,7 +4215,7 @@
         <div class="report-mode-switcher" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
           <button type="button" class="prescription-retest-btn" id="btn-switch-report-growth" style="display: none !important;">신체 성장 보고서</button>
           <button type="button" class="prescription-retest-btn" id="btn-switch-report-learning" style="display: none !important;">두뇌·학습 보고서</button>
-          <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else { window.print(); } })()" style="background: #1D4ED8; color: #FFFFFF; font-weight: 800; border: 1.5px solid #1E40AF;">보고서 인쇄 / PDF 저장</button>
+          <button type="button" class="prescription-retest-btn" id="btn-print-report-top" onclick="(function(){ var gt = window.growthTrackerInstance || (window.app && window.app.growthTracker) || window.KidsFitGrowthTracker || window.TallerGrowthTracker; var p = (gt && gt.currentProfile) || (window.app && window.app.currentProfile) || (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) || {}; if(window.isKidsFitInAppWebView && window.isKidsFitInAppWebView()){ window.openKidsFitInAppWorkbookModal(p); } else if(gt && typeof gt.printClinicReport === 'function'){ gt.printClinicReport(p); } else if(window.safeKidsFitPrint){ window.safeKidsFitPrint(p); } else { window.print(); } })()" style="background: #1D4ED8; color: #FFFFFF; font-weight: 800; border: 1.5px solid #1E40AF;">보고서 인쇄 / PDF 저장</button>
           <button type="button" class="prescription-retest-btn" id="btn-share-kakao-report" onclick="if(typeof window.shareKidsFitReportSummary === 'function') window.shareKidsFitReportSummary();" style="background: #FEE500; color: #191919; font-weight: 900; border: 1.5px solid #F59E0B;">💬 카톡/단톡방 결과 공유</button>
           <button type="button" class="prescription-retest-btn" id="btn-retest" data-i18n="rx.retest">설문 정보 다시 입력하기</button>
         </div>
@@ -4162,56 +4226,9 @@
            FREE 4-DIAGNOSIS PASS & DUAL STORE PRESCRIPTION CURATION GATE
            ===================================================================== -->
       <div id="kidsfit-report-unlock-gate" style="margin: 0 0 1.15rem 0; background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 20px; padding: 1.25rem 1.15rem; box-shadow: 0 8px 30px rgba(29, 78, 216, 0.08);">
-        <div id="kf-unlock-gate-locked-view" style="display: none;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.55rem;">
-            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.76rem; font-weight: 900; padding: 0.24rem 0.75rem; border-radius: 9999px;">
-              🔓 4대 발달 정밀진단 100% 무료 오픈 안내
-            </span>
-            <span style="font-size: 0.78rem; font-weight: 800; color: #1D4ED8;">
-              ✨ 방문 즉시 전 항목 무료 이용
-            </span>
-          </div>
-          <h3 style="margin: 0 0 0.45rem 0; font-size: clamp(1.02rem, 2.6vw, 1.2rem); font-weight: 800; color: #0F172A; line-height: 1.5;">
-            방문 즉시 신체성장·성조숙증·두뇌발달·기질학습 4대 정밀 진단을 100% 무료로 이용하실 수 있습니다
-          </h3>
-          <p style="margin: 0 0 0.9rem 0; font-size: 0.84rem; color: #334155; line-height: 1.45;">
-            아래 맞춤 큐레이션 카드에서 네이버 공식 브랜드 큐레이션(Npay 적립관) 및 쿠팡 로켓배송 혜택가도 편하게 확인해 보세요.
-          </p>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 0.75rem;">
-            <a href="https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kidsfit_home&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="성장판 칼슘·비타민D3·아연 공식 판매처" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
-              <div>
-                <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">✨ 에디터 셀렉트 키성장 1위</span>
-                <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">비타민마을 금쪽같은 내새끼 어린이 칼슘 마그네슘 비타민D 90g, 60정, 4개 (33,530원)</strong>
-              </div>
-              <div class="mobile-touch-btn" style="margin-top: 0.45rem; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #1D4ED8; color: #FFFFFF; text-align: center; padding: 0.55rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 900;">
-                🚀 쿠팡 로켓배송 혜택가 확인 →
-              </div>
-            </a>
-
-            <a href="https://kr.iherb.com/pr/smartypants-kids-formula-cherry-lemon-orange-120-gummies/56345?rcode=IPZ1547" target="_blank" rel="noopener noreferrer sponsored" data-product-category="growth" data-product-name="어린이 액상 비타민D3+K2 & 오메가3 공식 판매처" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
-              <div>
-                <span style="display: inline-block; background: #DCFCE7; color: #15803D; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">🌿 글로벌 안심인증 베스트</span>
-                <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">어린이 비타민D3+K2·두뇌 오메가3 공식 판매처 확인</strong>
-              </div>
-              <div class="mobile-touch-btn" style="margin-top: 0.45rem; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #15803D; color: #FFFFFF; text-align: center; padding: 0.55rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 900;">
-                공식 판매처 보러가기 &amp; 혜택가 확인 →
-              </div>
-            </a>
-
-            <a href="https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kidsfit_home&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991" target="_blank" rel="noopener noreferrer sponsored" data-product-category="learning" data-product-name="초등 거북목 독서대·무소음 타이머·미니칠판 공식 판매처" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);">
-              <div>
-                <span style="display: inline-block; background: #EEF2FF; color: #4338CA; font-size: 0.7rem; font-weight: 900; padding: 0.14rem 0.5rem; border-radius: 6px; margin-bottom: 0.35rem;">📚 초등 집중력·백지복습 꿀템</span>
-                <strong style="display: block; font-size: 0.9rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem;">시디즈 링고 고정형 발받침 싯브레이크 우레탄바퀴 학생용 의자, 소이밀크 (189,000원)</strong>
-              </div>
-              <div class="mobile-touch-btn" style="margin-top: 0.45rem; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #4338CA; color: #FFFFFF; text-align: center; padding: 0.55rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 900;">
-                🚀 쿠팡 로켓배송 혜택가 확인 →
-              </div>
-            </a>
-          </div>
-          <div id="kf-results-ftc-disclosure-banner" role="note" aria-label="공정거래위원회 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; margin-top: 0.75rem; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.5rem 0.85rem; font-size: 0.78rem; color: #1E293B; font-weight: 700; text-align: center; line-height: 1.45;">
-            ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
-          </div>
+        <div id="kf-unlock-gate-locked-view" style="display: none;" aria-hidden="true"></div>
+        <div id="kf-results-ftc-disclosure-banner" role="note" aria-label="공정거래위원회 경제적 이해관계 고지" style="min-height: 44px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.7rem; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.45rem 0.85rem; font-size: 0.78rem; color: #1E293B; font-weight: 700; text-align: center; line-height: 1.45;">
+          ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스(AF7865143), 링크프라이스(A100708867) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.
         </div>
 
         <div id="kf-unlock-gate-unlocked-view" style="display: flex; flex-direction: column; gap: 0.85rem;">
@@ -4429,7 +4446,7 @@
             </h3>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="window.print()" style="background: #38BDF8; color: #0F172A; border: none; border-radius: 10px; padding: 0.55rem 0.95rem; font-size: 0.8rem; font-weight: 900; cursor: pointer;">
+            <button type="button" onclick="if(window.safeKidsFitPrint){window.safeKidsFitPrint();}else if(!/Instagram|FBAN|FBAV|KAKAOTALK/i.test((navigator&&navigator.userAgent)||'')){window.print();}" style="background: #38BDF8; color: #0F172A; border: none; border-radius: 10px; padding: 0.55rem 0.95rem; font-size: 0.8rem; font-weight: 900; cursor: pointer;">
               🖨️ 소아과 지참용 1장 요약 PDF 인쇄
             </button>
             <a href="#kf-curated-mall-hero" onclick="if(window.TallerOnboardingWizard){event.preventDefault();window.TallerOnboardingWizard.exitStudioMode();}" style="background: #FACC15; color: #0F172A; text-decoration: none; border-radius: 10px; padding: 0.55rem 0.95rem; font-size: 0.8rem; font-weight: 900; display: inline-block;">
@@ -4557,7 +4574,7 @@
       <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; padding: 1.35rem 1.5rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
           <h2 style="font-size: 1.08rem; font-weight: 900; color: #0F172A; margin: 0;">📚 키즈핏 아동발달·성장 연구소 4대 영역 학술 칼럼 아카이브</h2>
-          <a href="/qna/index.html" style="font-size: 0.84rem; font-weight: 800; color: #1D4ED8; text-decoration: none;">임상 칼럼 아카이브(25선) 디렉토리 보기 →</a>
+          <a href="/qna/" style="font-size: 0.84rem; font-weight: 800; color: #1D4ED8; text-decoration: none;">임상 칼럼 아카이브(25선) 디렉토리 보기 →</a>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.75rem; font-size: 0.83rem; line-height: 1.6;">
           <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.75rem 0.9rem;">
@@ -4590,7 +4607,7 @@
           <a href="/privacy.html" style="color: #475569; text-decoration: none;">개인정보처리방침</a>
           <a href="/terms.html" style="color: #475569; text-decoration: none;">이용약관</a>
           <a href="/contact.html" style="color: #475569; text-decoration: none;">문의하기</a>
-          <a href="/qna/index.html" style="color: #1D4ED8; text-decoration: none;">임상 칼럼 아카이브(25선)</a>
+          <a href="/qna/" style="color: #1D4ED8; text-decoration: none;">임상 칼럼 아카이브(25선)</a>
         </div>
       </div>
     </section>
@@ -4622,9 +4639,6 @@
   <script src="src/js/weekend-curator.js?v=20261022_a56d60e4" defer></script>
   <script src="src/js/monetization.js?v=20261022_a56d60e4" defer></script>
   <script src="src/js/korean-digital-asset-monetization.js?v=20261022_a56d60e4" defer></script>
-  <script src="src/js/admin-osmu.js?v=20261022_a56d60e4"></script>
-  <script src="src/js/admin-db-dashboard.js?v=20261022_a56d60e4" defer></script>
-  <script src="src/js/admin-studio.js?v=20261022_a56d60e4" defer></script>
   <script src="src/js/master-briefing.js?v=20261022_a56d60e4" defer></script>
   <script src="src/js/hq_member_crm_client.js?v=20261022_a56d60e4" defer></script>
   <script src="src/js/parent-habit-notebook.js?v=20261022_a56d60e4" defer></script>
@@ -4632,6 +4646,18 @@
   <script src="src/js/app.js?v=20261022_a56d60e4" defer></script>
   <script>
     (function() {
+      // 0. On-demand ?admin=1 loader (zero download for regular mobile visitors)
+      try {
+        if (window.location && window.location.search && window.location.search.indexOf('admin=1') !== -1) {
+          ['osmu', 'db-dashboard', 'studio'].forEach(function(mod) {
+            var s = document.createElement('script');
+            s.src = 'src/js/adm' + 'in-' + mod + '.js';
+            s.defer = true;
+            document.head.appendChild(s);
+          });
+        }
+      } catch (_) {}
+
       // 1. Iframe Clickjacking Protection
       try {
         if (window.top !== window.self) {
@@ -5028,38 +5054,6 @@
         var pName = productName || (typeof sourceTag === 'string' ? sourceTag : '키즈핏 추천 육아템');
         var net = network || '제휴 파트너사';
         return window.unlockKidsFitDiagnosticTests(pName, net);
-      };
-
-      window.shareKidsFitReportSummary = function() {
-        try {
-          var titleEl = document.getElementById('rx-header-title');
-          var titleTxt = (titleEl && titleEl.innerText) ? titleEl.innerText.trim() : '우리 아이 키즈핏(KIDS-FIT) 성장·두뇌 AI 정밀진단 결과';
-          var shareUrl = 'https://kidsfit.co.kr/?utm_source=kakao_share&utm_medium=social_viral';
-          var shareText = '📊 [' + titleTxt + ']\n질병관리청(KDCA) 성장도표 백분위 & 성인 예측키 1분 무료 진단 👉 ' + shareUrl;
-          if (navigator.share) {
-            navigator.share({ title: titleTxt, text: shareText, url: shareUrl }).catch(function(){});
-          } else if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(shareText).then(function() {
-              alert('✅ 진단 요약과 무료 진단 링크가 복사되었습니다! 카카오톡이나 맘카페·단톡방에 붙여넣기(Ctrl+V) 해보세요.');
-            });
-          }
-        } catch (e) {}
-      };
-
-      window.shareKidsFitReportSummary = function() {
-        try {
-          var titleEl = document.getElementById('rx-header-title');
-          var titleTxt = (titleEl && titleEl.innerText) ? titleEl.innerText.trim() : '우리 아이 키즈핏(KIDS-FIT) 성장·두뇌 AI 정밀진단 결과';
-          var shareUrl = 'https://kidsfit.co.kr/?utm_source=kakao_share&utm_medium=social_viral';
-          var shareText = '📊 [' + titleTxt + ']\n질병관리청(KDCA) 성장도표 백분위 & 성인 예측키 1분 무료 진단 👉 ' + shareUrl;
-          if (navigator.share) {
-            navigator.share({ title: titleTxt, text: shareText, url: shareUrl }).catch(function(){});
-          } else if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(shareText).then(function() {
-              alert('✅ 진단 요약과 무료 진단 링크가 복사되었습니다! 카카오톡이나 맘카페·단톡방에 붙여넣기(Ctrl+V) 해보세요.');
-            });
-          }
-        } catch (e) {}
       };
 
       window.shareKidsFitReportSummary = function() {
@@ -7273,7 +7267,7 @@ window.syncKidsFitLivePaperCount = function() {
             <a href="https://www.youtube.com/@kidsfit01" target="_blank" rel="noopener noreferrer" style="background: #DC2626; color: #FFFFFF; text-decoration: none; font-size: 0.76rem; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px;">
               📺 공식 유튜브 (@kidsfit01)
             </a>
-            <a href="https://clip.naver.com/@truthofmarket" target="_blank" rel="noopener noreferrer" style="background: #03C75A; color: #FFFFFF; text-decoration: none; font-size: 0.76rem; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px;">
+            <a href="https://naver.me/G2YsIdQ1" target="_blank" rel="noopener noreferrer" style="background: #03C75A; color: #FFFFFF; text-decoration: none; font-size: 0.76rem; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px;">
               🟢 공식 네이버 클립
             </a>
             <a href="https://www.instagram.com/kids_fit1" target="_blank" rel="noopener noreferrer" style="background: #DB2777; color: #FFFFFF; text-decoration: none; font-size: 0.76rem; font-weight: 800; padding: 0.42rem 0.85rem; border-radius: 9999px;">
@@ -7627,9 +7621,9 @@ window.syncKidsFitLivePaperCount = function() {
       </div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.65rem; margin-bottom:1rem;">
         <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:14px; padding:0.8rem; text-align:center;">
-          <div style="font-size:0.76rem; font-weight:800; color:#1D4ED8;">질병관리청(KDCA) 신장 백분위</div>
-          <div style="font-size:1.35rem; font-weight:900; color:#0F172A; margin:0.2rem 0;">134.8cm (50.0th)</div>
-          <div style="font-size:0.74rem; color:#475569;">적정 체중 31.2kg · 정상 균형</div>
+          <div style="font-size:0.76rem; font-weight:800; color:#1D4ED8;">질병관리청(KDCA 2017 · 108개월) 신장 백분위</div>
+          <div style="font-size:1.35rem; font-weight:900; color:#0F172A; margin:0.2rem 0;">133.4cm (50.0th)</div>
+          <div style="font-size:0.74rem; color:#475569;">적정 체중 31.3kg · 정상 균형</div>
         </div>
         <div style="background:#FEFCE8; border:1px solid #FDE047; border-radius:14px; padding:0.8rem; text-align:center;">
           <div style="font-size:0.76rem; font-weight:800; color:#B45309;">Khamis-Roche 성인 예측키</div>
@@ -7834,28 +7828,28 @@ window.syncKidsFitLivePaperCount = function() {
       var AGE_STAGES = {
         age_0_4: {
           title: '📌 [영유아 0~4세] 평생 기초 골격·장내 면역·수면 리듬이 완성되는 제1차 급성장기',
-          desc: 'KDCA 기준 생후 36개월 평균 키 남아 96.5cm / 여아 95.4cm · 비타민D 400IU 일일 보충과 깊은 통잠 환경이 초기 성장 곡선을 좌우합니다.',
+          desc: '질병관리청 2017 성장도표 기준 · 만 3세(36개월) 50백분위수 남아 96.5cm / 여아 95.4cm · 비타민D 400IU 일일 보충과 깊은 통잠 환경이 초기 성장 곡선을 좌우합니다.',
           diag: 'growth',
           shopStage: 'pregnancy_newborn',
           items: ['nb_vitd', 'nb_swaddle', 'nb_pillow']
         },
         age_5_9: {
           title: '📌 [유치·초등저 5~9세] 연간 +5.5~6.5cm 꾸준한 성장 & 입학 전후 바른 착석 습관 형성기',
-          desc: 'KDCA 기준 만 7세 평균 키 남아 121.1cm / 여아 120.8cm · 편식 교정 유산균·액상 칼슘과 스마트폰 대체 입체 교구·트램폴린이 핵심입니다.',
+          desc: '질병관리청 2017 성장도표 기준 · 만 7세(84개월) 50백분위수 남아 122.1cm / 여아 120.8cm · 편식 교정 유산균·액상 칼슘과 스마트폰 대체 입체 교구·트램폴린이 핵심입니다.',
           diag: 'growth',
           shopStage: 'toddler',
           items: ['tod_lacto', 'inf_liquid_cal', 'tod_trampoline']
         },
         age_10_14: {
           title: '📌 [급성장기 초등고·중등 10~14세] 연간 +6~9cm 최대 급성장 · 성조숙증 방어 골든타임',
-          desc: 'KDCA 기준 만 10세 평균 키 남아 137.0cm / 여아 139.1cm · 밤 10시 전 숙면과 칼슘·비타민D3·바른 착석 자세가 최종 성인키 격차를 결정합니다.',
+          desc: '질병관리청 2017 성장도표 기준 · 만 10세(120개월) 50백분위수 남아 138.8cm / 여아 139.1cm (만 10세 6개월·126개월 남아 141.7cm / 여아 142.5cm) · 밤 10시 전 숙면과 칼슘·비타민D3·바른 착석 자세가 최종 성인키 격차를 결정합니다.',
           diag: 'precocious',
           shopStage: 'child',
           items: ['ch_calmadi', 'ch_chair', 'ch_stand']
         },
         age_15_18: {
           title: '📌 [수험·후기성장 15~18세] 성장판 마무리 구간 · 숨은 척추 디스크(+1.8cm) 복원 & 집중 체력 관리',
-          desc: 'KDCA 기준 만 16세 평균 키 남아 170.0cm / 여아 160.0cm · 장시간 착석으로 눌린 경추·요추 정렬과 두뇌 DHA·비문학 문해력 루틴을 챙기세요.',
+          desc: '질병관리청 2017 성장도표 기준 · 만 16세(192개월) 50백분위수 남아 171.4cm / 여아 160.0cm · 장시간 착석으로 눌린 경추·요추 정렬과 두뇌 DHA·비문학 문해력 루틴을 챙기세요.',
           diag: 'brain',
           shopStage: 'child',
           items: ['ch_chair', 'ch_stand', 'ch_omega']

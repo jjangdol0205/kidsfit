@@ -12,47 +12,57 @@
   function initKidsfitQnaBeacon() {
     try {
       if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
-      if (window.__HQ_BEACON_SENT_kfk_kidsfitkr__) return;
-      window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
       var ua = navigator.userAgent || '';
       if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios|jsdom/i.test(ua)) return;
       var host = (typeof location !== 'undefined' && location.hostname) ? location.hostname : '';
       if (!host || host === 'localhost' || host === '127.0.0.1') return;
       var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
       var ns = 'kfk_kidsfitkr';
-      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-      fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function () {});
-      if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
-        localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
-        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-      }
-      if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
-        localStorage.setItem('hq_uv_ever_' + ns, '1');
-        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function () {});
-      }
-      document.addEventListener('click', function (e) {
-        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
-        if (!el) return;
-        var href = (el.getAttribute('href') || '').toLowerCase();
-        var txt = (el.innerText || el.textContent || '').toLowerCase();
-        if (
-          el.getAttribute('data-shop-click') === '1' ||
-          el.getAttribute('data-product-category') ||
-          href.indexOf('coupang.com') !== -1 ||
-          href.indexOf('iherb.com') !== -1 ||
-          href.indexOf('yes24.com') !== -1 ||
-          href.indexOf('click.linkprice.com') !== -1 ||
-          href.indexOf('brandconnect.naver.com') !== -1 ||
-          href.indexOf('naver.me') !== -1 ||
-          href.indexOf('coupang-kidsfit.html') !== -1 ||
-          /혜택가 확인|공식 판매처|쿠팡|적립관|셀렉트샵|보러가기/.test(txt)
-        ) {
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
+      if (!window.__HQ_BEACON_SENT_kfk_kidsfitkr__) {
+        window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+        fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function () {});
+        if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
+          localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
         }
-      }, true);
+        if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
+          localStorage.setItem('hq_uv_ever_' + ns, '1');
+          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function () {});
+        }
+      }
+      if (!window.__HQ_CLICK_TRACKER_KFK__) {
+        window.__HQ_CLICK_TRACKER_KFK__ = true;
+        document.addEventListener('click', function (e) {
+          if (e && e.__kfkShopTracked) return;
+          var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+          if (!el) return;
+          var href = (el.getAttribute('href') || '').toLowerCase();
+          if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
+          var txt = (el.innerText || el.textContent || '').toLowerCase();
+          if (
+            el.getAttribute('data-shop-click') === '1' ||
+            el.getAttribute('data-product-category') ||
+            href.indexOf('coupang.com') !== -1 ||
+            href.indexOf('iherb.com') !== -1 ||
+            href.indexOf('yes24.com') !== -1 ||
+            href.indexOf('click.linkprice.com') !== -1 ||
+            href.indexOf('brandconnect.naver.com') !== -1 ||
+            href.indexOf('naver.me') !== -1 ||
+            href.indexOf('coupang-kidsfit.html') !== -1 ||
+            /혜택가 확인|공식 판매처|에디터 큐레이션|안심 큐레이션 확인|쿠팡|적립관|셀렉트샵|보러가기/.test(txt)
+          ) {
+            if (e) e.__kfkShopTracked = true;
+            var nowTs = Date.now();
+            if (window.__LAST_KFK_SHOP_CLICK_TS__ && (nowTs - window.__LAST_KFK_SHOP_CLICK_TS__) < 300) return;
+            window.__LAST_KFK_SHOP_CLICK_TS__ = nowTs;
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/ref_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/shop_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
+          }
+        }, true);
+      }
     } catch (_) {}
   }
 
@@ -272,11 +282,144 @@
     }
   }
 
+  var QNA_HUB_SEG_LABELS = {
+    kr_early_elementary: '유아·초등 저학년 (기초 성장습관기)',
+    kr_upper_golden_time: '초등 고학년 (사춘기 전 급성장 골든타임)',
+    kr_teen_closing_care: '중·고등학생 (성장판 마무리·자세 집중기)'
+  };
+
+  window.selectKfkQnaHubSegment = function (segKey) {
+    if (!QNA_HUB_SEG_LABELS[segKey] || typeof document === 'undefined') return;
+    var hub = document.getElementById('kfk-qna-conversion-hub');
+    if (hub) hub.setAttribute('data-active-segment', segKey);
+    var btns = document.querySelectorAll('#kfk-qna-conversion-hub [data-kfk-qna-seg]');
+    for (var i = 0; i < btns.length; i++) {
+      var isAct = btns[i].getAttribute('data-kfk-qna-seg') === segKey;
+      btns[i].setAttribute('aria-pressed', isAct ? 'true' : 'false');
+      btns[i].style.background = isAct ? '#1D4ED8' : '#FFFFFF';
+      btns[i].style.color = isAct ? '#FFFFFF' : '#1E293B';
+      btns[i].style.borderColor = isAct ? '#1D4ED8' : '#CBD5E1';
+    }
+  };
+
+  window.submitKfkQnaHubSignup = function (ev) {
+    if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+    if (typeof document === 'undefined') return false;
+    var hub = document.getElementById('kfk-qna-conversion-hub');
+    var emailEl = document.getElementById('kfk-qna-hub-email');
+    var hpEl = document.getElementById('kfk-qna-hub-hp');
+    var fbEl = document.getElementById('kfk-qna-hub-feedback');
+    var btnEl = document.getElementById('btn-kfk-qna-hub-submit');
+    var email = emailEl ? String(emailEl.value || '').trim().toLowerCase() : '';
+    var websiteHp = hpEl ? String(hpEl.value || '').trim() : '';
+    var segKey = (hub && hub.getAttribute('data-active-segment')) || 'kr_upper_golden_time';
+    if (!QNA_HUB_SEG_LABELS[segKey]) segKey = 'kr_upper_golden_time';
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.style.background = '#FEF2F2';
+        fbEl.style.color = '#B91C1C';
+        fbEl.textContent = '이메일 주소를 정확히 입력해 주세요 (예: mom@naver.com)';
+      }
+      if (emailEl) emailEl.focus();
+      return false;
+    }
+
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = '3초 무료 정회원 등록 중...';
+    }
+
+    var onDone = function () {
+      try {
+        var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+        var host = (typeof location !== 'undefined' && location.hostname) ? location.hostname : '';
+        var nowMs = Date.now();
+        if (host && host !== 'localhost' && host !== '127.0.0.1' && !(typeof navigator !== 'undefined' && navigator.webdriver) && !/jsdom|bot|crawl|spider|headless|lighthouse|python|curl/i.test(ua)) {
+          if (!window.__LAST_KFK_SIGNUP_BEACON_TS__ || (nowMs - window.__LAST_KFK_SIGNUP_BEACON_TS__) >= 1500) {
+            window.__LAST_KFK_SIGNUP_BEACON_TS__ = nowMs;
+            var kst = new Date(nowMs + 9 * 3600 * 1000).toISOString().slice(0, 10);
+            fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+            fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_total', { mode: 'cors', keepalive: true }).catch(function () {});
+          }
+        }
+      } catch (_) {}
+      if (btnEl) {
+        btnEl.disabled = false;
+        btnEl.textContent = '💌 3초 무료 정회원 등록하기 →';
+      }
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.style.background = '#ECFDF5';
+        fbEl.style.color = '#065F46';
+        fbEl.innerHTML = '✅ <strong>키즈핏 성장수첩 정회원 등록 완료!</strong> (' + email.replace(/[<>"&]/g, '') + ' · ' + QNA_HUB_SEG_LABELS[segKey] + ')<br>아이 성장단계에 맞춘 수면·영양·바른자세 에디터 가이드를 보내드립니다. <a href="/#kfk-bone-age-interpreter" style="color:#047857;font-weight:900;text-decoration:underline;">🦴 병원 뼈나이 1분 무료 해석기 바로가기 →</a>';
+      }
+    };
+
+    if (window.DreamCompanyCRM && typeof window.DreamCompanyCRM.registerMember === 'function') {
+      window.DreamCompanyCRM.registerMember({
+        div: 'KFK',
+        email: email,
+        segment: segKey,
+        lang: 'ko-KR',
+        website_hp: websiteHp,
+        message: 'KFK_QnA_Conversion_Hub'
+      }).then(onDone).catch(onDone);
+    } else {
+      try {
+        if (window.localStorage) {
+          window.localStorage.setItem('dc_member_KFK', JSON.stringify({
+            div: 'KFK',
+            email: email,
+            segment: segKey,
+            joined_at: new Date().toISOString()
+          }));
+        }
+      } catch (_) {}
+      onDone();
+    }
+    return false;
+  };
+
+  function hydrateKfkQnaConversionHub() {
+    try {
+      if (typeof document === 'undefined') return;
+      var hub = document.getElementById('kfk-qna-conversion-hub');
+      if (!hub) return;
+      var defaultSeg = hub.getAttribute('data-default-segment') || 'kr_upper_golden_time';
+      window.selectKfkQnaHubSegment(defaultSeg);
+      var saved = (window.DreamCompanyCRM && window.DreamCompanyCRM.getLocalMember && window.DreamCompanyCRM.getLocalMember('KFK')) || null;
+      if (!saved && window.localStorage) {
+        var raw = window.localStorage.getItem('dc_member_KFK');
+        if (raw) saved = JSON.parse(raw);
+      }
+      if (saved && saved.email) {
+        var emailEl = document.getElementById('kfk-qna-hub-email');
+        var fbEl = document.getElementById('kfk-qna-hub-feedback');
+        if (emailEl && !emailEl.value) emailEl.value = saved.email;
+        if (saved.segment && QNA_HUB_SEG_LABELS[saved.segment]) {
+          window.selectKfkQnaHubSegment(saved.segment);
+        }
+        if (fbEl) {
+          fbEl.style.display = 'block';
+          fbEl.style.background = '#ECFDF5';
+          fbEl.style.color = '#065F46';
+          fbEl.innerHTML = '💚 <strong>성장수첩 정회원 구독 중:</strong> ' + String(saved.email).replace(/[<>"&]/g, '') + ' · 맞춤 단계: ' + QNA_HUB_SEG_LABELS[saved.segment || defaultSeg];
+        }
+      }
+    } catch (_) {}
+  }
+
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', renderHumanCuration);
+      document.addEventListener('DOMContentLoaded', function () {
+        renderHumanCuration();
+        hydrateKfkQnaConversionHub();
+      });
     } else {
       renderHumanCuration();
+      hydrateKfkQnaConversionHub();
     }
   }
 })();

@@ -142,7 +142,7 @@ function build() {
   }
 
   // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, sw.js, and Naver/IndexNow verification files if they exist (with EBUSY retry)
-  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'naver696904f98e6ce2a823ce309436f2e2cd.html',
+  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'naver696904f98e6ce2a823ce309436f2e2cd.html',
     'about.html',
     'privacy.html',
     'terms.html',
@@ -165,23 +165,25 @@ function build() {
     }
   });
 
-  // Sync Global English edition from sibling workspace (D:\드림컴퍼니\2사업부\dist -> dist-global/) if present
-  try {
-    const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '2사업부', 'dist');
-    const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
-    if (fs.existsSync(siblingGlobalDist)) {
-      fs.mkdirSync(targetGlobalDir, { recursive: true });
-      ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json', 'hq-mailing-endpoint.json'].forEach((f) => {
-        const srcF = path.join(siblingGlobalDist, f);
-        if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
-      });
-      ['src/css', 'src/js', 'qna', 'calculators'].forEach((subDir) => {
-        const srcSub = path.join(siblingGlobalDist, subDir);
-        if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
-      });
-      console.log('Synced Global English assets from D:\\드림컴퍼니\\2사업부\\dist -> dist-global/');
-    }
-  } catch (_) {}
+  // Sync Global English edition from sibling workspace ONLY when explicitly requested via SYNC_DIST_GLOBAL=1
+  if (process.env.SYNC_DIST_GLOBAL === '1') {
+    try {
+      const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '2사업부', 'dist');
+      const targetGlobalDir = path.join(ROOT_DIR, 'dist-global');
+      if (fs.existsSync(siblingGlobalDist)) {
+        fs.mkdirSync(targetGlobalDir, { recursive: true });
+        ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', 'rss.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'about.html', 'privacy.html', 'terms.html', 'contact.html', '_routes.json', 'hq-mailing-endpoint.json'].forEach((f) => {
+          const srcF = path.join(siblingGlobalDist, f);
+          if (fs.existsSync(srcF)) fs.copyFileSync(srcF, path.join(targetGlobalDir, f));
+        });
+        ['src/css', 'src/js', 'qna', 'calculators'].forEach((subDir) => {
+          const srcSub = path.join(siblingGlobalDist, subDir);
+          if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
+        });
+        console.log('Synced Global English assets from D:\\드림컴퍼니\\2사업부\\dist -> dist-global/');
+      }
+    } catch (_) {}
+  }
 
   generateStaticApiEndpoints();
 
@@ -193,9 +195,10 @@ function generateStaticApiEndpoints() {
   try {
     const apiDir = path.join(DIST_DIR, 'api');
     fs.mkdirSync(apiDir, { recursive: true });
-    const globalDir = path.join(ROOT_DIR, 'dist-global');
-    const globalApiDir = path.join(globalDir, 'api');
-    if (fs.existsSync(globalDir)) {
+    const allowGlobalSync = process.env.SYNC_DIST_GLOBAL === '1';
+    const globalDir = allowGlobalSync ? path.join(ROOT_DIR, 'dist-global') : null;
+    const globalApiDir = (globalDir && fs.existsSync(globalDir)) ? path.join(globalDir, 'api') : null;
+    if (globalApiDir) {
       fs.mkdirSync(globalApiDir, { recursive: true });
     }
 
@@ -249,7 +252,7 @@ function generateStaticApiEndpoints() {
     const statsJson = JSON.stringify(statsData, null, 2);
     fs.writeFileSync(path.join(apiDir, 'stats'), statsJson, 'utf8');
     fs.writeFileSync(path.join(apiDir, 'stats.json'), statsJson, 'utf8');
-    if (fs.existsSync(globalApiDir)) {
+    if (globalApiDir && fs.existsSync(globalApiDir)) {
       fs.writeFileSync(path.join(globalApiDir, 'health'), healthPayload, 'utf8');
       fs.writeFileSync(path.join(globalApiDir, 'health.json'), healthPayload, 'utf8');
       fs.writeFileSync(path.join(globalApiDir, 'stats'), statsJson, 'utf8');
@@ -257,26 +260,12 @@ function generateStaticApiEndpoints() {
     }
 
     const visitJson = JSON.stringify({ ok: true, mode: 'static' }, null, 2);
-    const verifyJson = JSON.stringify({ ok: true, verified: false, __staticFallback: true, mode: 'static_client_verify' }, null, 2);
-    const checkoutJson = JSON.stringify({
-      ok: true,
-      locale: 'en-US',
-      checkoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1',
-      singleCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/3478dae1-e316-4bad-bb6a-1e7e986b2f02?signature=5922bcbe062c18b962ef32b6524250a2f77fafea031ef2b90a895b810b8b360d&embed=1',
-      passCheckoutUrl: 'https://truthofmarket.lemonsqueezy.com/checkout/custom/7f36b7f1-f98b-446a-9eff-84c588460984?signature=eaf8134b6f7bbcde9e9b4ac2d0c3a623c370f5345fcdabd98ef0d2c9def6e9f9&embed=1'
-    }, null, 2);
     const authJson = JSON.stringify({ ok: true, __fallbackLocal: true, mode: 'client_local' }, null, 2);
 
     [apiDir, globalApiDir].forEach((dir) => {
       if (!dir || !fs.existsSync(dir)) return;
       fs.writeFileSync(path.join(dir, 'visit'), visitJson, 'utf8');
       fs.writeFileSync(path.join(dir, 'visit.json'), visitJson, 'utf8');
-      fs.writeFileSync(path.join(dir, 'lemonsqueezy-checkout'), checkoutJson, 'utf8');
-      fs.writeFileSync(path.join(dir, 'lemonsqueezy-checkout.json'), checkoutJson, 'utf8');
-      const lsDir = path.join(dir, 'lemonsqueezy-orders');
-      fs.mkdirSync(lsDir, { recursive: true });
-      fs.writeFileSync(path.join(lsDir, 'verify'), verifyJson, 'utf8');
-      fs.writeFileSync(path.join(lsDir, 'verify.json'), verifyJson, 'utf8');
       const authSubDir = path.join(dir, 'auth');
       fs.mkdirSync(authSubDir, { recursive: true });
       fs.writeFileSync(path.join(authSubDir, 'login'), authJson, 'utf8');
@@ -300,12 +289,10 @@ function generateStaticApiEndpoints() {
     const shareSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420"><rect width="800" height="420" rx="28" fill="#1E3A8A"/><text x="50" y="95" fill="#93C5FD" font-family="sans-serif" font-size="22" font-weight="bold">KIDS-FIT GROWTH &amp; BRAIN STUDIO (kidsfit.co.kr)</text><text x="50" y="165" fill="#FFFFFF" font-family="sans-serif" font-size="38" font-weight="bold">우리 아이 맞춤형 키성장 · 두뇌발달 정밀 처방전</text><text x="50" y="235" fill="#DBEAFE" font-family="sans-serif" font-size="24">질병관리청(KDCA) 성장도표 · K-DST · 학술논문 ${totalPapers.toLocaleString('en-US')}편 기반</text><rect x="50" y="295" width="380" height="64" rx="32" fill="#10B981"/><text x="90" y="336" fill="#FFFFFF" font-family="sans-serif" font-size="24" font-weight="bold">https://kidsfit.co.kr 무료 진단</text></svg>`;
     fs.writeFileSync(path.join(apiDir, 'share-card.svg'), shareSvg, 'utf8');
 
-        const redirectsContent = [
+    const redirectsContent = [
       '/api/health /api/health.json 200',
       '/api/stats /api/stats.json 200',
       '/api/visit /api/visit.json 200',
-      '/api/lemonsqueezy-orders/verify /api/lemonsqueezy-orders/verify.json 200',
-      '/api/lemonsqueezy-checkout /api/lemonsqueezy-checkout.json 200',
       '/api/auth/login /api/auth/login.json 200',
       '/api/auth/register /api/auth/register.json 200',
       '/api/adpick-offers /api/adpick-offers.json 200',
@@ -313,7 +300,7 @@ function generateStaticApiEndpoints() {
       '/* /index.html 200'
     ].join('\n') + '\n';
     fs.writeFileSync(path.join(DIST_DIR, '_redirects'), redirectsContent, 'utf8');
-    if (fs.existsSync(globalDir)) {
+    if (globalDir && fs.existsSync(globalDir)) {
       fs.writeFileSync(path.join(globalDir, '_redirects'), redirectsContent, 'utf8');
     }
     console.log('[Build] Generated static API endpoints (dist/api/health, stats, adpick-offers, share-card.svg) & dist/_redirects for Render Static Site.');

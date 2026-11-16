@@ -229,6 +229,214 @@
     } catch (_) {}
   }
 
+  var nativeBrowserPrint = (typeof global !== 'undefined' && typeof global.print === 'function')
+    ? global.print.bind(global)
+    : null;
+
+  function isKidsFitInAppWebView() {
+    try {
+      var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+      return /Instagram|FBAN|FBAV|KAKAOTALK/i.test(ua);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function ensureDreamCompanyCrmLoaded(cb) {
+    if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.registerMember === 'function') {
+      cb(global.DreamCompanyCRM);
+      return;
+    }
+    if (typeof document === 'undefined') {
+      cb(null);
+      return;
+    }
+    var existingScript = document.querySelector('script[src*="hq_member_crm_client.js"]');
+    if (!existingScript) {
+      var s = document.createElement('script');
+      s.src = '/src/js/hq_member_crm_client.js';
+      s.async = true;
+      s.onload = function () { cb(global.DreamCompanyCRM || null); };
+      s.onerror = function () { cb(null); };
+      document.head.appendChild(s);
+    } else {
+      setTimeout(function () { cb(global.DreamCompanyCRM || null); }, 350);
+    }
+  }
+
+  var activeInAppSeg = 'kr_upper_golden_time';
+  var INAPP_SEG_LABELS = {
+    kr_early_elementary: '유아·초등 저학년 (기초 성장습관기)',
+    kr_upper_golden_time: '초등 고학년 (사춘기 전 급성장 골든타임)',
+    kr_teen_closing_care: '중·고등학생 (성장판 마무리·자세 집중기)'
+  };
+
+  function selectKidsFitInAppSeg(segKey) {
+    if (!INAPP_SEG_LABELS[segKey]) return;
+    activeInAppSeg = segKey;
+    if (typeof document === 'undefined') return;
+    var btns = document.querySelectorAll('[data-kfk-inapp-seg]');
+    for (var i = 0; i < btns.length; i++) {
+      var isAct = btns[i].getAttribute('data-kfk-inapp-seg') === segKey;
+      btns[i].style.background = isAct ? '#1D4ED8' : '#F8FAFC';
+      btns[i].style.color = isAct ? '#FFFFFF' : '#1E293B';
+      btns[i].style.borderColor = isAct ? '#1D4ED8' : '#CBD5E1';
+    }
+  }
+
+  function submitKidsFitInAppWorkbookEmail(ev) {
+    if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+    if (typeof document === 'undefined') return false;
+    var emailInput = document.getElementById('kfk-inapp-wb-email');
+    var fbEl = document.getElementById('kfk-inapp-wb-feedback');
+    var submitBtn = document.getElementById('btn-kfk-inapp-wb-submit');
+    var email = emailInput ? String(emailInput.value || '').trim().toLowerCase() : '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.style.background = '#FEF2F2';
+        fbEl.style.color = '#B91C1C';
+        fbEl.textContent = '이메일 주소를 정확히 입력해 주세요 (예: mom@naver.com)';
+      }
+      if (emailInput) emailInput.focus();
+      return false;
+    }
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '워크북·가이드 발송 및 3초 정회원 등록 중...';
+    }
+    var finishSignup = function () {
+      try {
+        var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+        var host = (typeof location !== 'undefined' && location.hostname) ? location.hostname : '';
+        var nowMs = Date.now();
+        if (host && host !== 'localhost' && host !== '127.0.0.1' && !/jsdom|bot|crawl|spider|headless/i.test(ua)) {
+          if (!global.__LAST_KFK_SIGNUP_BEACON_TS__ || (nowMs - global.__LAST_KFK_SIGNUP_BEACON_TS__) >= 1500) {
+            global.__LAST_KFK_SIGNUP_BEACON_TS__ = nowMs;
+            var kst = new Date(nowMs + 9 * 3600 * 1000).toISOString().slice(0, 10);
+            fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+            fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_total', { mode: 'cors', keepalive: true }).catch(function () {});
+          }
+        }
+      } catch (_) {}
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '📩 내 이메일로 성장 워크북/가이드 즉시 받기 완료 ✓';
+      }
+      if (fbEl) {
+        fbEl.style.display = 'block';
+        fbEl.style.background = '#ECFDF5';
+        fbEl.style.color = '#065F46';
+        fbEl.innerHTML = '✅ <strong>발송 예약 &amp; 3초 무료 정회원 등록 완료!</strong> (' + email.replace(/[<>"&]/g, '') + ' · ' + INAPP_SEG_LABELS[activeInAppSeg] + ')<br>아래 화면에서도 전체 성장 워크북과 체크표를 바로 캡처·열람하실 수 있습니다.';
+      }
+    };
+    ensureDreamCompanyCrmLoaded(function (crm) {
+      if (crm && typeof crm.registerMember === 'function') {
+        crm.registerMember({
+          div: 'KFK',
+          email: email,
+          segment: activeInAppSeg,
+          lang: 'ko-KR',
+          message: 'InApp_WebView_Workbook_Guide_Instant_Send'
+        }).then(finishSignup).catch(finishSignup);
+      } else {
+        try {
+          if (global.localStorage) {
+            global.localStorage.setItem('dc_member_KFK', JSON.stringify({
+              div: 'KFK',
+              email: email,
+              segment: activeInAppSeg,
+              joined_at: new Date().toISOString()
+            }));
+          }
+        } catch (_) {}
+        finishSignup();
+      }
+    });
+    return false;
+  }
+
+  function openKidsFitInAppWorkbookModal(profileArg) {
+    if (typeof document === 'undefined' || !document.body) return;
+    var p = profileArg || getActiveProfile();
+    var ageY = Number(p.ageYears) || 10;
+    var ageM = Number(p.ageMonths) || (ageY * 12);
+    var genderKo = (p.gender === 'girl' || p.gender === 'female') ? '여아' : '남아';
+    var caMg = ageY >= 9 ? 900 : (ageY >= 6 ? 750 : 600);
+    if (ageM <= 108) activeInAppSeg = 'kr_early_elementary';
+    else if (ageM <= 156) activeInAppSeg = 'kr_upper_golden_time';
+    else activeInAppSeg = 'kr_teen_closing_care';
+
+    var modal = document.getElementById('kfk-inapp-workbook-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'kfk-inapp-workbook-modal';
+      modal.className = 'no-print';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.style.cssText = 'position:fixed;inset:0;z-index:100000;background:rgba(15,23,42,0.82);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:16px 12px;';
+      document.body.appendChild(modal);
+    }
+    var bundle = selectTop3ForProfile(p);
+    var topA = bundle.items[0] || RX_ESSENTIAL_ITEMS.bookstand;
+    modal.style.display = 'flex';
+    modal.innerHTML =
+      '<div style="width:100%;max-width:680px;background:#FFFFFF;border:2px solid #2563EB;border-radius:20px;padding:20px 18px;margin:auto;color:#0F172A;box-shadow:0 24px 48px rgba(15,23,42,0.35);">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:12px;margin-bottom:14px;">' +
+          '<div>' +
+            '<span style="display:inline-block;background:#DBEAFE;color:#1D4ED8;font-size:12px;font-weight:900;padding:3px 10px;border-radius:999px;margin-bottom:4px;">📱 카톡·인스타 앱 내 전체보기 전용 모드</span>' +
+            '<h3 style="margin:0;font-size:18px;font-weight:900;line-height:1.35;color:#0F172A;">인앱 브라우저에서도 멈춤 없이 바로 보는 성장 워크북 &amp; 이메일 즉시 발송</h3>' +
+          '</div>' +
+          '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="background:#F1F5F9;border:none;border-radius:999px;width:34px;height:34px;font-size:16px;font-weight:900;cursor:pointer;color:#334155;flex-shrink:0;">✕</button>' +
+        '</div>' +
+        '<div style="background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:1.5px solid #93C5FD;border-radius:16px;padding:15px;margin-bottom:16px;">' +
+          '<div style="font-size:15px;font-weight:900;color:#0F172A;margin-bottom:6px;">📩 내 이메일로 성장 워크북/가이드 즉시 받기 (3초 무료 정회원 자동 등록)</div>' +
+          '<p style="margin:0 0 10px;font-size:13px;color:#334155;line-height:1.5;">카카오톡·인스타그램 앱 내 브라우저에서는 종이 인쇄창이 제한됩니다. 이메일만 입력하시면 비밀번호 없이 <strong>성장 워크북·골든타임 가이드</strong>를 보내드리고 아래 전체 시트도 바로 확인하실 수 있습니다.</p>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
+            '<button type="button" data-kfk-inapp-seg="kr_early_elementary" onclick="window.selectKidsFitInAppSeg(\'kr_early_elementary\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_early_elementary' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">유아·초등 저학년</button>' +
+            '<button type="button" data-kfk-inapp-seg="kr_upper_golden_time" onclick="window.selectKidsFitInAppSeg(\'kr_upper_golden_time\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">초등 고학년 급성장기</button>' +
+            '<button type="button" data-kfk-inapp-seg="kr_teen_closing_care" onclick="window.selectKidsFitInAppSeg(\'kr_teen_closing_care\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">중·고등 마무리</button>' +
+          '</div>' +
+          '<form onsubmit="return window.submitKidsFitInAppWorkbookEmail(event);" style="display:flex;flex-wrap:wrap;gap:8px;">' +
+            '<input type="email" id="kfk-inapp-wb-email" required placeholder="학부모님 이메일 주소 입력 (비밀번호 없음)" style="flex:1;min-width:210px;min-height:46px;padding:10px 13px;border:1.5px solid #93C5FD;border-radius:11px;font-size:14px;">' +
+            '<button type="submit" id="btn-kfk-inapp-wb-submit" style="min-height:46px;padding:10px 16px;border:none;border-radius:11px;background:#1D4ED8;color:#FFFFFF;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;">내 이메일로 성장 워크북/가이드 즉시 받기 →</button>' +
+          '</form>' +
+          '<div id="kfk-inapp-wb-feedback" style="display:none;margin-top:8px;padding:10px 12px;border-radius:10px;font-size:13px;line-height:1.5;"></div>' +
+        '</div>' +
+        '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:14px;margin-bottom:12px;">' +
+          '<div style="font-size:14px;font-weight:900;color:#1E3A8A;margin-bottom:8px;">📋 [화면 전체보기 요약] 만 ' + ageY + '세(' + ageM + '개월·' + genderKo + ') 90일 키성장·수면·바른자세 실전 가이드</div>' +
+          '<ul style="margin:0;padding-left:18px;font-size:13.5px;color:#1E293B;line-height:1.7;">' +
+            '<li><strong>① 야간 성장호르몬 숙면:</strong> 저녁 8시 이후 무당류 공복 유지 + 밤 9시 50분 조도 30Lux 감광 입면 (서파수면 첫 90분 GH 피크 보호)</li>' +
+            '<li><strong>② 연령 맞춤 골기질 영양:</strong> 일일 권장 칼슘 ' + caMg + 'mg + 비타민D3 1,000~2,000 IU + 아연 저녁 식후 섭취</li>' +
+            '<li><strong>③ 숨은 키 +1.8cm 자세·점핑:</strong> 독서대 시선 15도 확보 + 하교 후 실내 점핑·철봉 매달리기 30초×3세트</li>' +
+          '</ul>' +
+        '</div>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">' +
+          '<a href="' + topA.url + '" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
+          '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
+        '</div>' +
+        '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스(AF7865143) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
+      '</div>';
+  }
+
+  function safeKidsFitPrint(profileArg) {
+    if (isKidsFitInAppWebView()) {
+      openKidsFitInAppWorkbookModal(profileArg);
+      return false;
+    }
+    if (nativeBrowserPrint) {
+      nativeBrowserPrint();
+      return true;
+    }
+    return false;
+  }
+
+  if (typeof global !== 'undefined' && isKidsFitInAppWebView()) {
+    global.print = function () {
+      openKidsFitInAppWorkbookModal(getActiveProfile());
+    };
+  }
+
   function openKoreanDigitalAssetModal() {
     try {
       if (typeof document === 'undefined') return;
@@ -237,9 +445,7 @@
         gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      if (typeof window !== 'undefined' && typeof window.print === 'function') {
-        window.print();
-      }
+      safeKidsFitPrint(getActiveProfile());
     } catch (_) {}
   }
 
@@ -346,9 +552,7 @@
     if (typeof window !== 'undefined' && typeof window.__hitKidsFitKpiMetric === 'function') {
       window.__hitKidsFitKpiMetric('workbook_print');
     }
-    if (typeof window !== 'undefined' && typeof window.print === 'function') {
-      window.print();
-    }
+    safeKidsFitPrint(p);
   }
 
   function triggerKoreanWorksheetPrint() {
@@ -356,9 +560,7 @@
     if (typeof window !== 'undefined' && typeof window.__hitKidsFitKpiMetric === 'function') {
       window.__hitKidsFitKpiMetric('workbook_print');
     }
-    if (typeof window !== 'undefined' && typeof window.print === 'function') {
-      window.print();
-    }
+    safeKidsFitPrint(getActiveProfile());
   }
 
   if (typeof document !== 'undefined' && !isJsdomEnv()) {
@@ -382,6 +584,11 @@
     }
   }
 
+  global.isKidsFitInAppWebView = isKidsFitInAppWebView;
+  global.openKidsFitInAppWorkbookModal = openKidsFitInAppWorkbookModal;
+  global.selectKidsFitInAppSeg = selectKidsFitInAppSeg;
+  global.submitKidsFitInAppWorkbookEmail = submitKidsFitInAppWorkbookEmail;
+  global.safeKidsFitPrint = safeKidsFitPrint;
   global.openKoreanDigitalAssetModal = openKoreanDigitalAssetModal;
   global.triggerKoreanWorksheetPrint = triggerKoreanWorksheetPrint;
   global.renderKidsFitDynamicRxTop3 = renderDynamicRxTop3;
@@ -389,6 +596,8 @@
     isDigitalAssetUnlocked: isDigitalAssetUnlocked,
     unlockDigitalAssetsNow: unlockDigitalAssetsNow,
     openKoreanDigitalAssetModal: openKoreanDigitalAssetModal,
+    openKidsFitInAppWorkbookModal: openKidsFitInAppWorkbookModal,
+    safeKidsFitPrint: safeKidsFitPrint,
     printVipWorkbookBundle: printVipWorkbookBundle,
     injectReportDigitalAssetBanner: injectReportDigitalAssetBanner,
     renderDynamicRxTop3: renderDynamicRxTop3
@@ -420,7 +629,7 @@
   } catch (e) {}
 })();
 
-/* === HQ KPI Conversion Tracker (5사업부: 플랫폼별 제휴 클릭 & 진단 완료 정밀 계측) === */
+/* === HQ KPI Conversion Tracker (5사업부: 단일 제휴·쇼핑 클릭 비콘 통합 & 중복 방지) === */
 (function(){
   try {
     if (typeof window === 'undefined' || window.__HQ_KPI_KFK__) return;
@@ -436,34 +645,49 @@
       fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/' + key + '_total', { mode: 'cors', keepalive: true }).catch(function(){});
     }
     window.__hitKidsFitKpiMetric = hitMetric;
-    function hitRefClick(networkKey) {
+    function hitShopAndRefClick(networkKey) {
+      var nowTs = Date.now();
+      if (window.__LAST_KFK_SHOP_CLICK_TS__ && (nowTs - window.__LAST_KFK_SHOP_CLICK_TS__) < 300) return;
+      window.__LAST_KFK_SHOP_CLICK_TS__ = nowTs;
       hitMetric('ref_click');
+      hitMetric('shop_click');
       if (networkKey) hitMetric(networkKey);
     }
+    window.__fireKfkShopClickBeacon = hitShopAndRefClick;
     var origRecord = window.recordKidsFitProductClick;
     if (typeof origRecord === 'function') {
       window.recordKidsFitProductClick = function() {
-        hitRefClick('aff_modal');
+        hitShopAndRefClick('aff_modal');
         return origRecord.apply(this, arguments);
       };
     }
-    document.addEventListener('click', function(e) {
-      var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
-      if (!el) return;
-      var href = (el.getAttribute('href') || '').toLowerCase();
-      var onclick = (el.getAttribute('onclick') || '').toLowerCase();
-      var txt = (el.innerText || el.textContent || '').toLowerCase();
-      if (href.indexOf('coupang.com') !== -1) {
-        hitRefClick('aff_coupang');
-      } else if (href.indexOf('linkprice.com') !== -1 || href.indexOf('yes24.com') !== -1) {
-        hitRefClick('aff_linkprice');
-      } else if (href.indexOf('iherb.com') !== -1) {
-        hitRefClick('aff_iherb');
-      } else if (href.indexOf('naver.me') !== -1 || href.indexOf('brandconnect.naver') !== -1) {
-        hitRefClick('aff_naver_bc');
-      } else if (href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('_openkidsfiteditorialmodal') !== -1 || onclick.indexOf('openshortsfeaturedproductmodal') !== -1 || onclick.indexOf('handlekidsfitmodalctaclick') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|공식 판매처|에디터 큐레이션/.test(txt)) {
-        hitRefClick('aff_other');
-      }
-    }, true);
+    if (!window.__HQ_CLICK_TRACKER_KFK__) {
+      window.__HQ_CLICK_TRACKER_KFK__ = true;
+      document.addEventListener('click', function(e) {
+        if (e && e.__kfkShopTracked) return;
+        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+        if (!el) return;
+        var href = (el.getAttribute('href') || '').toLowerCase();
+        var onclick = (el.getAttribute('onclick') || '').toLowerCase();
+        var txt = (el.innerText || el.textContent || '').toLowerCase();
+        if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
+        var netKey = '';
+        if (href.indexOf('coupang.com') !== -1 || href.indexOf('coupang-kidsfit.html') !== -1) {
+          netKey = 'aff_coupang';
+        } else if (href.indexOf('linkprice.com') !== -1 || href.indexOf('yes24.com') !== -1) {
+          netKey = 'aff_linkprice';
+        } else if (href.indexOf('iherb.com') !== -1) {
+          netKey = 'aff_iherb';
+        } else if (href.indexOf('naver.me') !== -1 || href.indexOf('brandconnect.naver') !== -1) {
+          netKey = 'aff_naver_bc';
+        } else if (el.getAttribute('data-shop-click') === '1' || el.getAttribute('data-product-category') || href.indexOf('adpick') !== -1 || href.indexOf('myrealtrip') !== -1 || onclick.indexOf('openkidsfitproductmodal') !== -1 || onclick.indexOf('_openkidsfiteditorialmodal') !== -1 || onclick.indexOf('openshortsfeaturedproductmodal') !== -1 || onclick.indexOf('handlekidsfitmodalctaclick') !== -1 || onclick.indexOf('recordkidsfitproductclick') !== -1 || /혜택가 확인|공식 판매처|에디터 큐레이션|안심 큐레이션 확인|적립관|셀렉트샵/.test(txt)) {
+          netKey = 'aff_other';
+        }
+        if (netKey) {
+          if (e) e.__kfkShopTracked = true;
+          hitShopAndRefClick(netKey);
+        }
+      }, true);
+    }
   } catch (e) {}
 })();

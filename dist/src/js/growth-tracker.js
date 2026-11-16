@@ -1627,8 +1627,16 @@
     } else {
       preparePrintReport(profile);
     }
-    if (typeof window !== 'undefined' && typeof window.print === 'function') {
-      window.print();
+    if (typeof window !== 'undefined') {
+      if (typeof window.safeKidsFitPrint === 'function') {
+        window.safeKidsFitPrint(profile);
+      } else if (typeof navigator !== 'undefined' && /Instagram|FBAN|FBAV|KAKAOTALK/i.test(navigator.userAgent || '')) {
+        if (typeof window.openKidsFitInAppWorkbookModal === 'function') {
+          window.openKidsFitInAppWorkbookModal(profile);
+        }
+      } else if (typeof window.print === 'function') {
+        window.print();
+      }
     }
   }
 

@@ -63,6 +63,25 @@
     }
   }
 
+  function fireDivisionSignupBeacon(div) {
+    try {
+      if (String(div || '').trim().toUpperCase() !== 'KFK') return;
+      if (typeof global === 'undefined' || typeof global.fetch !== 'function') return;
+      var nav = typeof navigator !== 'undefined' ? navigator : null;
+      var ua = (nav && nav.userAgent) ? nav.userAgent : '';
+      if ((nav && nav.webdriver) || /jsdom|bot|crawl|spider|slurp|headless|lighthouse|gtmetrix|pingdom|uptimerobot|python|curl|node|axios/i.test(ua)) return;
+      var loc = global.location;
+      var host = (loc && loc.hostname) ? loc.hostname : '';
+      if (!host || host === 'localhost' || host === '127.0.0.1') return;
+      var nowMs = Date.now();
+      if (global.__LAST_KFK_SIGNUP_BEACON_TS__ && (nowMs - global.__LAST_KFK_SIGNUP_BEACON_TS__) < 1500) return;
+      global.__LAST_KFK_SIGNUP_BEACON_TS__ = nowMs;
+      var kst = new Date(nowMs + 9 * 3600 * 1000).toISOString().slice(0, 10);
+      global.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
+      global.fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_total', { mode: 'cors', keepalive: true }).catch(function () {});
+    } catch (_) {}
+  }
+
   function postToAppsScript(execUrl, payload) {
     return fetch(execUrl, {
       method: 'POST',
@@ -116,12 +135,17 @@
         var q = readQueue();
         q.push(payload);
         writeQueue(q);
+        fireDivisionSignupBeacon(div);
         return { ok: true, queued_for_sync: true, div: div, email: email, segment: segment };
       }
-      return postToAppsScript(execUrl, payload).catch(function () {
+      return postToAppsScript(execUrl, payload).then(function (res) {
+        fireDivisionSignupBeacon(div);
+        return res;
+      }).catch(function () {
         var q2 = readQueue();
         q2.push(payload);
         writeQueue(q2);
+        fireDivisionSignupBeacon(div);
         return { ok: true, queued_for_sync: true, div: div, email: email, segment: segment };
       });
     });
@@ -263,6 +287,7 @@
 
   global.DreamCompanyCRM = {
     registerMember: registerMember,
+    fireSignupBeacon: fireDivisionSignupBeacon,
     enrollKfgPaidVip: enrollKfgPaidVip,
     submitKfgVipCheckin: submitKfgVipCheckin,
     getLocalMember: getLocalMember,

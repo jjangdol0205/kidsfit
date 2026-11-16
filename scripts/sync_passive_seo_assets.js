@@ -38,8 +38,9 @@ for (const f of allQnaFiles) {
   const fp = path.join(qnaDir, f);
   const raw = fs.readFileSync(fp, 'utf8');
   const canonMatch = raw.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
-  const canonicalUrl = canonMatch ? canonMatch[1].trim() : 'https://kidsfit.co.kr/qna/index.html';
-  const targetSlug = path.basename(canonicalUrl);
+  const rawCanon = canonMatch ? canonMatch[1].trim() : 'https://kidsfit.co.kr/qna/';
+  const canonicalUrl = rawCanon.replace(/\/index\.html$/i, '/');
+  const targetSlug = canonicalUrl.endsWith('/qna/') ? '' : path.basename(canonicalUrl);
   const stubHtml = [
     '<!DOCTYPE html>',
     '<html lang="ko">',
@@ -88,11 +89,11 @@ for (const f of allQnaFiles) {
   const desc = descMatch
     ? descMatch[1].trim()
     : '질병관리청(KDCA 2017) 성장도표 및 K-DST 발달지표 기반 소아 성장·두뇌영양 임상 가이드';
-  const url = f === 'index.html' ? 'https://kidsfit.co.kr/qna/index.html' : `https://kidsfit.co.kr/qna/${f}`;
+  const url = f === 'index.html' ? 'https://kidsfit.co.kr/qna/' : `https://kidsfit.co.kr/qna/${f}`;
   indexableQna.push({ file: f, url, title, desc });
 }
 
-// 3. Rebuild clean canonical sitemap.xml
+// 3. Rebuild clean canonical sitemap.xml (deduplicated, zero /index.html folder URLs)
 const corePages = [
   { loc: 'https://kidsfit.co.kr/', prio: '1.0', freq: 'daily' },
   { loc: 'https://kidsfit.co.kr/coupang-kidsfit.html', prio: '0.88', freq: 'weekly' },
@@ -102,19 +103,26 @@ const corePages = [
   { loc: 'https://kidsfit.co.kr/terms.html', prio: '0.5', freq: 'yearly' }
 ];
 
+const seenSitemapLocs = new Set();
 const sitemapBlocks = [];
 for (const p of corePages) {
-  const relFile = p.loc === 'https://kidsfit.co.kr/' ? 'index.html' : p.loc.replace('https://kidsfit.co.kr/', '');
+  const cleanLoc = p.loc.replace(/\/index\.html$/i, '/');
+  if (seenSitemapLocs.has(cleanLoc)) continue;
+  const relFile = cleanLoc === 'https://kidsfit.co.kr/' ? 'index.html' : cleanLoc.replace('https://kidsfit.co.kr/', '');
   if (fs.existsSync(path.join(rootDir, relFile))) {
+    seenSitemapLocs.add(cleanLoc);
     sitemapBlocks.push(
-      `  <url>\n    <loc>${p.loc}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.prio}</priority>\n  </url>`
+      `  <url>\n    <loc>${cleanLoc}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.prio}</priority>\n  </url>`
     );
   }
 }
 for (const item of indexableQna) {
+  const cleanUrl = item.url.replace(/\/index\.html$/i, '/');
+  if (seenSitemapLocs.has(cleanUrl)) continue;
+  seenSitemapLocs.add(cleanUrl);
   const prio = item.file === 'index.html' ? '0.92' : (item.file.startsWith('kr-deep-') || item.file.startsWith('kr-calc-') ? '0.88' : '0.84');
   sitemapBlocks.push(
-    `  <url>\n    <loc>${item.url}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${prio}</priority>\n  </url>`
+    `  <url>\n    <loc>${cleanUrl}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${prio}</priority>\n  </url>`
   );
 }
 
@@ -135,7 +143,7 @@ const llmsLines = [
   '',
   '## 1. 핵심 무료 진단 및 임상 가이드',
   '- 메인 소아성장·두뇌발달 진단 스튜디오: https://kidsfit.co.kr/',
-  '- 소아성장·수면·영양·학습법 임상 Q&A 아카이브: https://kidsfit.co.kr/qna/index.html',
+  '- 소아성장·수면·영양·학습법 임상 Q&A 아카이브: https://kidsfit.co.kr/qna/',
   '- 에디터 큐레이션 연령별 맞춤 발달 교구 & 공식 판매처 보러가기 (혜택가 확인 지원): https://kidsfit.co.kr/qna/monthly-curation.html',
   '',
   `## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 (${indexableQna.length}종 정규화 완료)`
@@ -207,6 +215,7 @@ for (const [fname, content] of [
   ['sitemap.xml', sitemapXml],
   ['llms.txt', llmsTxt],
   ['rss.xml', rssXml],
+  ['feed.xml', rssXml],
   ['feed.json', feedJson]
 ]) {
   fs.writeFileSync(path.join(rootDir, fname), content, 'utf8');
