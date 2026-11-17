@@ -1,17 +1,35 @@
 User-agent: *
 Allow: /
 
-# Korean Portal Crawlers (Naver Yeti, Daum/Kakao Daumoa, Zum)
+# Korean Major Search Portal Crawlers (Naver, Daum/Kakao, Nate/SK Comms, Zum)
 User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
 Allow: /
 
 User-agent: Daumoa
 Allow: /
 
+User-agent: Daum
+Allow: /
+
 User-agent: kakaotalk-scrap
 Allow: /
 
-# Global Search & AI Answer Engine Crawlers (ChatGPT, Perplexity, Claude, Google, Bing)
+User-agent: NATE
+Allow: /
+
+User-agent: Cowbot
+Allow: /
+
+User-agent: NateBot
+Allow: /
+
+User-agent: ZumBot
+Allow: /
+
+# Global Search & AI Grounding Crawlers (Google, Bing/IndexNow, ChatGPT, Perplexity, Claude)
 User-agent: Googlebot
 Allow: /
 

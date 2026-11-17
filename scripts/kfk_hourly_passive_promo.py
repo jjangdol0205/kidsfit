@@ -82,18 +82,18 @@ DAILY_KR_CLINICAL_TOPICS = [
         "hook_text": "칼슘 영양제를 매일 먹여도 아이 변만 딱딱하고 키가 그대로인 이유가 있습니다.\n\n위산이 적은 아이는 탄산칼슘보다 구연산 칼슘이 잘 흡수되며, 흡수된 칼슘을 성장판 뼈로 보내려면 비타민D3와 K2가 함께 들어 있어야 합니다. #어린이영양 #키성장",
     },
     {
-        "slug": "working-memory-4chunks-bar-model",
-        "title": "연산은 100점인데 두 줄 문장제 수학만 나오면 멈추는 초등 아이 — 여백 3칸 그림 코칭법",
-        "summary": "서술형 수학 문제 앞에서 멍해지는 건 독해력이 부족해서가 아니라 숫자 조건 3~4개를 머릿속에만 담아두려다 기억 공간이 꽉 차기 때문입니다. 암산을 멈추고 여백에 조건 동그라미와 막대 그림을 그리게 해보세요.",
-        "qna_path": "/qna/kr-deep-11-working-memory-4chunks-singapore-math-bar-model.html",
-        "hook_text": "연산은 100점인데 두 줄 문장제 수학만 나오면 멈추는 아이, 독해력 탓이 아닙니다.\n\n초등 저학년 머릿속 기억 공간은 숫자 3~4개면 꽉 찹니다. 암산을 멈추고 여백에 조건 동그라미와 막대 그림만 그리게 해줘도 실수가 절반으로 줄어듭니다. #초등수학 #두뇌발달",
+        "slug": "phv-age10-golden-time-bone-age",
+        "title": "초등학교 3·4학년 또래보다 갑자기 크거나 멈춘 아이 — 급성장기(PHV)와 손목 뼈나이 판독 가이드",
+        "summary": "아이의 성인 최종키는 달력 생년월일이 아니라 성장판 연골 시계인 뼈나이(골연령)를 따라갑니다. 여아 만 8~9세·남아 만 9~10세 전후로 질병관리청 백분위 기울기와 손목 뼈나이 기준점을 확인하면 급성장 골든타임을 여유 있게 지킬 수 있습니다.",
+        "qna_path": "/qna/kr-deep-04-elem4-age10-height-percentile-phv-golden-time.html",
+        "hook_text": "초등 3학년부터는 달력 나이보다 손목 뼈나이 시계가 성인키를 좌우합니다.\n\n여아 만 9세·남아 만 10세 전후로 분기별 질병관리청 표준 백분위 흐름과 골연령 편차를 확인해 급성장기 골든타임을 놓치지 마세요. #급성장기 #뼈나이검사",
     },
     {
-        "slug": "morning-glucose-spike-executive-function",
-        "title": "등교 후 오전 2교시만 되면 멍해지는 아이 — 달콤한 시리얼 대신 집중력을 지키는 5분 아침밥",
-        "summary": "아침마다 시리얼·식빵·과일주스 위주로 먹으면 등교 직후 혈당이 급히 올랐다가 오전 10시 무렵 뚝 떨어지면서 수업 집중력이 흐트러지기 쉽습니다. 삶은 달걀이나 두부 한 조각을 먼저 챙겨주는 실천법을 소개합니다.",
-        "qna_path": "/qna/kr-deep-10-morning-glucose-spike-adhd-misdiagnosis-executive-function.html",
-        "hook_text": "오전 2교시만 되면 멍해지는 아이, 달콤한 시리얼 아침 식탁부터 바꿔 보세요.\n\n시리얼·식빵·주스 위주 아침밥은 등교 직후 혈당을 급히 올렸다가 10시 무렵 급격히 떨어뜨립니다. 삶은 달걀·두부 단백질을 곁들이면 오전 집중력이 확 달라집니다. #초등집중력 #아침식단",
+        "slug": "mouth-breathing-rhinitis-deep-sleep",
+        "title": "잘 때 입 살짝 벌리고 뒤척이는 비염 아이 — 깊은 서파수면과 키 성장호르몬을 되찾는 침실 루틴",
+        "summary": "수면 시간이 충분한데도 아침마다 다크서클이 짙고 키 성장이 더디다면 밤사이 코막힘으로 인한 구강호흡을 살펴봐야 합니다. 침실 습도 45~50% 유지와 아동 체형에 맞는 경추 베개 각도로 코호흡 깊은 잠을 회복하는 방법을 안내합니다.",
+        "qna_path": "/qna/kr-deep-16-allergic-rhinitis-mouth-breathing-adenoid-face-deep-sleep-loss.html",
+        "hook_text": "잘 때 입 벌리고 자는 아이, 밤사이 키 성장호르몬이 새고 있습니다.\n\n야간 구강호흡은 미세 각성을 반복시켜 성장호르몬이 쏟아지는 첫 90분 깊은 서파수면을 방해합니다. 침실 습도 45~50%와 코호흡 환경을 먼저 챙겨주세요. #구강호흡 #키성장수면",
     },
     {
         "slug": "forward-head-posture-hidden-height",
@@ -318,7 +318,8 @@ def build_naver_dia_markdown(topic: dict, canonical_url: str, date_str: str) -> 
         ),
         gentle_bridge_lines=[
             f"**오늘의 학부모 성장수첩 칼럼 전문 읽기**: {canonical_url}",
-            "**생후 0개월~만 20세 1분 무료 질병관리청 백분위·예상키 진단기**: https://kidsfit.co.kr/ (무료 진단만으로도 우리 아이 성장 위치를 충분히 확인하실 수 있습니다)",
+            "**생후 0개월~만 20세 1분 무료 질병관리청 백분위·뼈나이 해석기**: https://kidsfit.co.kr/ (무료 진단만으로도 우리 아이 성장 위치를 충분히 확인하실 수 있습니다)",
+            "**우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF + 30일 체크표**: https://kidsfit.co.kr/#kfk-latpeed-ebook-slot",
             "**필요하실 때 참고하시는 연령별 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인)**: https://kidsfit.co.kr/coupang-kidsfit.html",
         ],
         footer_disclaimer=(
@@ -347,8 +348,18 @@ def main() -> int:
     if not guard["coupang_AF7865143"] or not guard["linkprice_A100708867"] or guard["prohibited_words_count"] > 0:
         raise RuntimeError(f"KFK Guardrail check failed: {guard}")
 
-    # 2. Consolidate doorway stubs & sync clean sitemap.xml, rss.xml, feed.json, llms.txt + deploy live
-    sync_passive_seo_assets_py()
+    # 2. Materialize Korean 5-Portal Prestige Editorial Journal (Daum · Nate · Naver Search) & sync clean feeds
+    daum_nate_portal: dict = {"status": "INIT"}
+    try:
+        if str(ROOT_DIR / "scripts") not in sys.path:
+            sys.path.insert(0, str(ROOT_DIR / "scripts"))
+        from kfk_daum_nate_portal_publisher import run_daum_nate_portal_pipeline
+
+        daum_nate_portal = run_daum_nate_portal_pipeline(date_str=date_str, dry_run=args.dry_run)
+    except Exception as exc:
+        daum_nate_portal = {"status": "PORTAL_PIPELINE_WARN", "detail": str(exc)[:140]}
+        sync_passive_seo_assets_py()
+
     deploy_res = {"status": "SKIPPED_NO_DEPLOY"} if args.no_deploy else deploy_division_live("KFK", dry_run=args.dry_run)
 
     # 3. Deterministic daily rotation by date ordinal (fixes legacy +2 mod 6 loop bug)
@@ -488,24 +499,41 @@ def main() -> int:
         dry_run=args.dry_run,
     )
 
-    # 8. Owned Naver Blog (`expertise333`) & Cafe (`moneyfitlab`) Safe 1x/Day Trigger (09:00 KST window)
+    # 8. Owned Naver Blog (`expertise333`) & Cafe (`moneyfitlab`) Safe 1x/Day Smart Daytime Catch-Up (08:30~21:30 KST)
     naver_owned_1x: dict = {"status": "SKIPPED_DRY_RUN"}
     try:
-        sys.path.insert(0, str(ROOT_DIR / "scripts"))
+        if str(ROOT_DIR / "scripts") not in sys.path:
+            sys.path.insert(0, str(ROOT_DIR / "scripts"))
         from run_safe_daily_1x_naver_owned import run_safe_daily_1x_naver
 
+        minutes_kst = now_kst.hour * 60 + now_kst.minute
         if args.dry_run:
             naver_owned_1x = run_safe_daily_1x_naver(dry_run=True)
-        elif now_kst.hour == 9:
+        elif (8 * 60 + 30) <= minutes_kst <= (21 * 60 + 30):
             naver_owned_1x = run_safe_daily_1x_naver(dry_run=False)
         else:
             naver_owned_1x = run_safe_daily_1x_naver(status_only=True)
     except Exception as exc:
         naver_owned_1x = {"status": "SAFE_WRAPPER_WARN", "detail": str(exc)}
 
+    # 9. Naver Knowledge-iN (`kin.naver.com`) Zero-URL Prestige 1:1 Clinical Advisor (Safe 1x/Day)
+    naver_kin_1x: dict = {"status": "SKIPPED_DRY_RUN"}
+    try:
+        from kfk_prestige_naver_kin_advisor import run_safe_daily_1x_naver_kin
+
+        minutes_kst = now_kst.hour * 60 + now_kst.minute
+        if args.dry_run:
+            naver_kin_1x = run_safe_daily_1x_naver_kin(dry_run=True)
+        elif (9 * 60 + 0) <= minutes_kst <= (21 * 60 + 45):
+            naver_kin_1x = run_safe_daily_1x_naver_kin(dry_run=False)
+        else:
+            naver_kin_1x = run_safe_daily_1x_naver_kin(status_only=True)
+    except Exception as exc:
+        naver_kin_1x = {"status": "KIN_WRAPPER_WARN", "detail": str(exc)}
+
     status_obj = {
         "timestamp_kst": now_kst.strftime("%Y-%m-%d %H:%M:%S KST"),
-        "engine_version": "2.1-zero-ban-b2c",
+        "engine_version": "3.0-5portal-prestige-zero-spam",
         "deploy_status": deploy_res.get("status"),
         "llms_updated": date_str,
         "canonical_url_count": len(url_map),
@@ -517,7 +545,9 @@ def main() -> int:
         "outbox_dir": synd_res.get("outbox_dir"),
         "guardrails": guard,
         "naver_owned_daily_1x": naver_owned_1x,
-        "naver_status": "Zero-Ban 패시브 SEO & 자사 블로그·카페 일 1회 안전 모드 (타인 공간 자동 댓글 영구 차단)",
+        "naver_kin_daily_1x": naver_kin_1x,
+        "daum_nate_portal": daum_nate_portal,
+        "naver_status": "한국 5대 포털(네이버 블로그·카페·지식iN · 다음 · 네이트) 무스팸 고급 에디토리얼 일 1회 자동 모드",
     }
     PROMO_STATUS_PATH.write_text(json.dumps(status_obj, ensure_ascii=False, indent=2), encoding="utf-8")
     print(

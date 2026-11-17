@@ -8,7 +8,13 @@
 - 우리 아이 성장·수면·영양·학습법 Q&A 아카이브: https://kidsfit.co.kr/qna/index.html
 - 연령별 맞춤 육아템 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인): https://kidsfit.co.kr/coupang-kidsfit.html
 
-## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 (73종 정규화 완료)
+## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 (79종 정규화 완료)
+- [잠드는 시계 바늘보다 중요한 것: 입면 후 첫 90분 서파수면과 거실 조도 30Lux의 성장생리학 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-01-slow-wave-sleep-melatonin-30lux-growth-hormone.html)
+- [달력 나이보다 정직한 손목 뼈나이(Bone Age): 급성장기(PHV) 골든타임을 지키는 학부모 판독 가이드 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-02-bone-age-xray-phv-precocious-puberty-compass.html)
+- [칼슘만 챙겨서는 뼈로 가지 않습니다: 구연산 칼슘·비타민D3·K2와 미각 세포 아연(Zinc)의 생화학적 연결고리 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-03-citrate-calcium-vitamin-d3-k2-zinc-mineral-bridge.html)
+- [평평한 책상 위 30도 고개 숙임의 대가: 아이의 숨은 키 2cm를 되찾는 15도 독서대와 발받침 인체공학 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-04-text-neck-15deg-bookstand-hidden-stature-2cm.html)
+- [성장판 연골을 깨우는 볼프의 법칙(Wolff&#x27;s Law): 하루 15분 수직 점프 운동과 과훈련 피로 사이의 적정선 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-05-indoor-vertical-jump-wolffs-law-epiphyseal-plate.html)
+- [베개 위 살짝 벌어진 입술의 신호: 소아 야간 구강호흡이 서파수면과 얼굴형·키 성장에 미치는 영향 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-06-allergic-rhinitis-mouth-breathing-deep-sleep-recovery.html)
 - [엄마표 무료 프린트 워크지 5종 (소근육 가위질·문장제 수학 도해·3줄 백지복습 노트) | 키즈핏 그로스 스튜디오](https://kidsfit.co.kr/qna/free-worksheets.html)
 - [만 10세 남아 (초등 4학년 · 120개월) 평균키 138.8cm & 질병관리청 2017 성장도표 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-10yo-boy-height.html)
 - [만 10세 여아 (초등 4학년 · 120개월) 평균키 139.1cm & 질병관리청 2017 성장도표 백분위 계산기 | 키즈핏](https://kidsfit.co.kr/qna/kr-calc-10yo-girl-height.html)
