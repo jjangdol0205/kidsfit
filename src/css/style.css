@@ -2418,7 +2418,10 @@ svg {
   }
 }
 
-/* 24. DUAL-MODE SURVEY STUDIO (Growth Quiz vs Learning Quiz) */
+/* 24. PURE HEIGHT-GROWTH SURVEY STUDIO (Hide legacy learning/cognitive questionnaire fields on growth flow) */
+.mode-learning-field {
+  display: none !important;
+}
 .wizard-mode-learning .mode-growth-field {
   display: none !important;
 }
@@ -2428,8 +2431,13 @@ svg {
 .wizard-mode-growth .mode-growth-field {
   display: block !important;
 }
-/* Unified 1-Stop Growth + Learning funnel: both fields active */
-.wizard-mode-growth .mode-learning-field { display: block; }
+.wizard-mode-growth .mode-learning-field {
+  display: none !important;
+}
+#kf-shop-grid [data-shop-category="development"],
+#kf-shop-grid [data-shop-category="learning"] {
+  display: none !important;
+}
 
 /* ==========================================================================
    25. UNIFIED REPORT TYPOGRAPHY (GROWTH & LEARNING) + 1-LINE VERTICAL FLOW

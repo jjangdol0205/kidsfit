@@ -81,11 +81,11 @@
       'preset.chip.4': '만 13세 (급성장 피크)',
       'preset.chip.5': '만 16세 (체형 완성기)',
       'quiz.edition.label': '맞춤 정밀 진단 유형',
-      'quiz.edition.child': '소아·청소년 1:1 성장·학습 정밀 진단',
-      'quiz.edition.self': '소아·청소년 1:1 성장·학습 정밀 진단',
+      'quiz.edition.child': '소아·청소년 1:1 키성장·골연령 정밀 진단',
+      'quiz.edition.self': '소아·청소년 1:1 키성장·골연령 정밀 진단',
       'quiz.dob.hint1': '동일 연도 출생아도 1월생과 12월생은 표준 신장이 최대 4.8cm 차이 납니다 (생년월일 일수 정밀 보정 적용)',
       'quiz.mph.label': '실시간 부모 유전 표적키 (Tanner MPH)',
-      'quiz.region.label': '거주 지역 (지역 교육·탐구 인프라 연동)',
+      'quiz.region.label': '거주 지역 (선택 · 지역 소아성장 환경 참고)',
       'quiz.autostage.badge': '질병관리청 성장도표 기반 [성장단계 및 골연령 진행도] 자동 산출 완료',
       'quiz.autostage.manualLabel': '자동 산출된 성장 단계 확인 (병원 골연령 판독 결과가 다른 경우 수동 변경 가능)',
       'quiz.habits.label': '신체 성장을 저해하는 생활 습관 점검 (복수 선택)',
@@ -133,18 +133,18 @@
       'wizard.step2.title': '현재 신장 · 체중 · 최근 6개월 성장 속도 입력',
       'wizard.step2.sub': '현재 신체 백분위(Z-Score)와 연간 성장 속도(cm/yr)를 산출합니다.',
       'wizard.step3.title': '부모 신장 기반 유전 표적키(MPH) 및 거주 권역 설정',
-      'wizard.step3.sub': 'Tanner 공식 기반 유전 예상키와 권역별 교육·체험 인프라를 매칭합니다.',
+      'wizard.step3.sub': 'Tanner 공식 기반 부모 유전 예상키(MPH ±8.5cm)와 맞춤 성장 환경을 분석합니다.',
       'wizard.step4.title': '골연령 성장 단계 확인 및 수면·영양 대사 패턴 점검',
       'wizard.step4.sub': '성장호르몬 분비 효율과 직결되는 수면 품질 및 소화·영양 흡수 특성을 선택해 주세요.',
       'wizard.step5.title': '성장 저해 요인 및 척추 정렬 · 신체 활동량 점검',
       'wizard.step5.sub': '생활 습관 및 자세 교정 시 추가로 확보 가능한 잠재 신장(cm)을 계산합니다.',
-      'wizard.step6.title': '세부 신체·학습 병목 최종 점검 및 정밀 보고서 발행',
-      'wizard.step6.sub': '해당하는 항목을 선택하시면 2,918편 학술 데이터 기반 1:1 정밀 보고서가 즉시 발행됩니다.',
+      'wizard.step6.title': '세부 성장통 · 성조숙증 · 체질 최종 점검 및 정밀 보고서 발행',
+      'wizard.step6.sub': '해당하는 항목을 선택하시면 질병관리청 표준도표 및 소아성장 논문 데이터 기반 1:1 정밀 보고서가 즉시 발행됩니다.',
 
       // Form Labels
       'label.gender': '성별 구분',
-      'label.gender.boy': '남아 (Male)',
-      'label.gender.girl': '여아 (Female)',
+      'label.gender.boy': '남아 (아들)',
+      'label.gender.girl': '여아 (딸)',
       'label.age': '생년월일 (정밀 월령·일수 보정)',
       'label.height': '현재 신장',
       'label.weight': '현재 체중',
@@ -156,13 +156,13 @@
       'label.scan': '정밀 진단 분석 시작',
 
       // Tanner Phases
-      'phase.1.title': 'Phase 1. 기초 성장기 (Pre-Pubertal)',
+      'phase.1.title': '1단계 · 기초 성장기 (안정 성장 구간)',
       'phase.1.desc': '성장판 개방률 90% 이상, 연간 5~6cm 안정적 성장 구간',
-      'phase.2.title': 'Phase 2. 급성장 피크기 (PHV Golden Time)',
+      'phase.2.title': '2단계 · 급성장 피크기 (골든타임 구간)',
       'phase.2.desc': '성장호르몬 및 IGF-1 분비 극대화, 연간 7~10cm 최대 가속 구간',
-      'phase.3.title': 'Phase 3. 감속·성숙기 (Deceleration Phase)',
+      'phase.3.title': '3단계 · 감속·성숙기 (잔여 잠재키 구간)',
       'phase.3.desc': '2차 성징 후기, 성장판 폐쇄 전 잔여 잠재력 4~7cm 집중 확보 구간',
-      'phase.4.title': 'Phase 4. 체형·자세 완성기 (Postural Recovery)',
+      'phase.4.title': '4단계 · 체형·자세 완성기 (숨은 키 복원)',
       'phase.4.desc': '추간판 디스크 감압 및 척추·골반 정렬로 숨은 키 1.5~2.5cm 복원 구간',
 
       // Habits
@@ -180,14 +180,14 @@
       'cog.executive_focus': '전두엽 작업기억·집중 지속력',
 
       // Loader
-      'loader.step1': '질병관리청(KDCA) 성장도표 및 K-DST 발달 지표 대조 중...',
+      'loader.step1': '질병관리청(KDCA 2017) 성장도표 및 골연령 표준 대조 중...',
       'loader.step2': 'Z-Score 표준화 및 3단 성인 예측키 궤적 모델링 연산 중...',
-      'loader.step3': '호르몬 분비 효율 및 5각 두뇌 밸런스 프로토콜 생성 완료.',
+      'loader.step3': '성장호르몬 분비 효율 및 맞춤 키성장 프로토콜 생성 완료.',
       'loader.skip': '대기 없이 진단 결과 즉시 확인하기',
 
       // Results
       'rx.retest': '설문 정보 다시 입력하기',
-      'rx.standard.kdca': '질병관리청(KDCA 2017) 소아청소년 성장도표 및 K-DST 발달기준 정밀 판독 완료',
+      'rx.standard.kdca': '질병관리청(KDCA 2017) 소아청소년 성장도표 및 골연령·성장습관 정밀 판독 완료',
       'rx.standard.cdc': 'US CDC 2000 & WHO Clinical Growth Standards Applied',
 
       // Deep Child Trait Questions (Clean Clinical Terminology, Zero Emojis)

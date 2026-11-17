@@ -109,7 +109,21 @@ function build() {
   const indexSrc = path.join(ROOT_DIR, 'index.html');
   const indexDest = path.join(DIST_DIR, 'index.html');
   if (fs.existsSync(indexSrc)) {
-    const rawHtml = fs.readFileSync(indexSrc, 'utf8');
+    let rawHtml = fs.readFileSync(indexSrc, 'utf8');
+    // Auto-sync Latpeed live URL if D:\드림컴퍼니\data\latpeed_kfk_live.json exists with a live https://latpeed.com URL
+    try {
+      const latpeedJsonPath = path.resolve(ROOT_DIR, '..', 'data', 'latpeed_kfk_live.json');
+      if (fs.existsSync(latpeedJsonPath)) {
+        const latData = JSON.parse(fs.readFileSync(latpeedJsonPath, 'utf8'));
+        const liveUrl = String(latData.product_url || latData.latpeed_live_url || latData.LATPEED_LIVE_URL || latData.url || '').trim();
+        if (/^https:\/\/(?:www\.)?latpeed\.com\/.+/i.test(liveUrl)) {
+          rawHtml = rawHtml
+            .replace(/STORE_LIVE_READY:\s*(?:false|true)/, 'STORE_LIVE_READY: true')
+            .replace(/LATPEED_LIVE_URL:\s*'[^']*'/, `LATPEED_LIVE_URL: '${liveUrl}'`);
+          console.log(`[Build] Auto-injected live Latpeed URL -> ${liveUrl}`);
+        }
+      }
+    } catch (_) {}
     const stampedHtml = rawHtml.replace(/\?v=2026[0-9a-zA-Z_]+/g, `?v=${buildStamp}`);
     try {
       fs.writeFileSync(indexSrc, stampedHtml, 'utf8');
