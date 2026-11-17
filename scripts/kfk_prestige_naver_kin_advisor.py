@@ -482,6 +482,8 @@ def fetch_open_kin_growth_questions_http(query: str, max_items: int = 5) -> List
             re.S | re.I,
         ):
             href = html.unescape(m.group(1)).strip()
+            # Strip snippet anchor params like &answerNo=1 so we land cleanly on the main Q&A page
+            href = re.sub(r"&answerNo=\d+", "", href)
             title_clean = re.sub(r"<[^>]+>", "", html.unescape(m.group(2))).strip()
             title_clean = re.sub(r"\s+", " ", title_clean)
             if len(title_clean) < 8 or href in seen:
@@ -648,7 +650,11 @@ def run_safe_daily_1x_naver_kin(
 
                 page = context.new_page()
                 for cand in fresh_candidates[:3]:
-                    page.goto(cand["url"], wait_until="domcontentloaded", timeout=22000)
+                    try:
+                        page.goto(cand["url"], wait_until="commit", timeout=20000)
+                        page.wait_for_load_state("domcontentloaded", timeout=10000)
+                    except Exception:
+                        pass
                     time.sleep(random.uniform(2.6, 3.8))
 
                     body_txt = page.evaluate("() => document.body ? document.body.innerText : ''")
