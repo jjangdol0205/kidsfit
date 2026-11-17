@@ -2187,6 +2187,39 @@
           </div>
         </div>
 
+        ${profile.hasBoneAge ? `
+        <div id="kfk-report-bone-age-calibration-card" style="margin-bottom: 1.15rem; padding: 1.15rem 1.3rem; background: linear-gradient(135deg, #EFF6FF 0%, #ECFDF5 100%); border: 2px solid #3B82F6; border-radius: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.55rem;">
+            <span style="background: #1D4ED8; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.24rem 0.72rem; border-radius: 9999px;">
+              🦴 병원 뼈나이 경과 시차(Δt) 자동 보정 정밀 판독
+            </span>
+            <span style="font-size: 0.78rem; font-weight: 800; color: #065F46; background: #DCFCE7; padding: 0.2rem 0.68rem; border-radius: 9999px; border: 1px solid #6EE7B7;">
+              Bayley-Pinneau 골성숙 비율 적용
+            </span>
+          </div>
+          <p style="margin: 0 0 0.7rem 0; font-size: 0.9rem; font-weight: 900; color: #0F172A; line-height: 1.55;">
+            ${profile.baCalibrationSummaryKo || ''}
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.6rem;">
+            <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 12px; padding: 0.7rem 0.85rem;">
+              <div style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">금일 추정 골연령 잔여 성장키</div>
+              <div class="kfk-sensitive-cm" style="font-size: 1.28rem; font-weight: 900; color: #0F172A; margin-top: 0.15rem;">+${Number(profile.baRemainingCm || 0).toFixed(1)} cm</div>
+              <div style="font-size: 0.74rem; color: #475569;">성인키 달성률 ${Number(profile.baAchievedPct || 80).toFixed(1)}% 진행</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1.5px solid #93C5FD; border-radius: 12px; padding: 0.7rem 0.85rem;">
+              <div style="font-size: 0.76rem; font-weight: 800; color: #1D4ED8;">시차(Δt) 보정 골연령 예상 성인키</div>
+              <div class="kfk-sensitive-cm" style="font-size: 1.28rem; font-weight: 900; color: #1D4ED8; margin-top: 0.15rem;">${Number(profile.baPredictedAdultCm || optimizedHeight).toFixed(1)} cm</div>
+              <div style="font-size: 0.74rem; color: #475569;">실제나이 대비 편차 반영 완료</div>
+            </div>
+          </div>
+          ${profile.baRecheckAdvisoryKo ? `
+          <div style="margin-top: 0.65rem; padding: 0.6rem 0.8rem; border-radius: 10px; background: #FFFBEB; border: 1px solid #F59E0B; font-size: 0.82rem; font-weight: 800; color: #92400E; line-height: 1.48;">
+            ⚠️ ${profile.baRecheckAdvisoryKo}
+          </div>
+          ` : ''}
+        </div>
+        ` : ''}
+
         <!-- ================================================================== -->
         <!-- First-Fold 3-Second Quick Purchase Bridge (Growth) -->
         ${PinpointCurator && typeof PinpointCurator.renderFirstFoldQuickPurchaseBridge === 'function' ? PinpointCurator.renderFirstFoldQuickPurchaseBridge(profile, 'growth') : ''}

@@ -741,7 +741,7 @@
           : '6-Step Clinical Scan + Phenotype Synthesis · US CDC 2000 & 3,894 Pediatric Endocrine Studies Analyzed')
         : (isLearningModeActive
           ? '진단 6단계 + 우리 아이 상세 특징 합산 · K-DST & 뇌인지 학습 논문 3,894편 정밀 분석 완료'
-          : '진단 6단계 + 우리 아이 상세 특징 합산 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,894편 정밀 분석 완료');
+          : '5단계 정밀 설문 진단 · 질병관리청(KDCA 2017) & 소아내분비 논문 3,894편 정밀 분석 완료');
     }
 
     const affConfig = getAffiliateConfig();
@@ -848,13 +848,14 @@
       if (BiomechanicsStudio && typeof BiomechanicsStudio.initRoutineTimers === 'function') {
         BiomechanicsStudio.initRoutineTimers();
       }
-      if (typeof window !== 'undefined' && typeof window.applyKidsFitReportLockState === 'function') {
-        window.applyKidsFitReportLockState();
+      if (typeof window !== 'undefined' && typeof window.saveKidsFitSurveyProfileForUnlock === 'function') {
+        try { window.saveKidsFitSurveyProfileForUnlock(state.profile || {}, true); } catch (_) {}
       }
       if (typeof window !== 'undefined' && typeof window.renderKidsFitDynamicRxTop3 === 'function') {
-        try {
-          window.renderKidsFitDynamicRxTop3(state.profile || {});
-        } catch (_) {}
+        try { window.renderKidsFitDynamicRxTop3(state.profile || {}); } catch (_) {}
+      }
+      if (typeof window !== 'undefined' && typeof window.applyKidsFitReportLockState === 'function') {
+        window.applyKidsFitReportLockState();
       }
       // Enforce >= 48px mobile touch target on all affiliate curation CTAs & ensure FTC disclosure visibility in results
       try {
@@ -1319,7 +1320,7 @@
       goToStep(1);
       const initialStepTag = document.getElementById('quiz-step-tag');
       if (initialStepTag) {
-        initialStepTag.textContent = 'Step 1 / 6';
+        initialStepTag.textContent = 'Step 1 / 5';
       }
       syncStateToForm(state.profile);
     }

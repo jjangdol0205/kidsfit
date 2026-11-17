@@ -130,49 +130,42 @@
     'teen': 'preset-5'
   };
 
-  // 2. Wizard Steps Meta Definition
+  // 2. Wizard Steps Meta Definition (Pure 5-Step Guided Funnel)
   const WIZARD_STEPS_GROWTH = [
     {
       step: 1,
-      titleKo: '기본 인적 사항 (성별 · 생년월일 정밀 산출)',
-      titleEn: 'Basic Demographics (Sex · Date of Birth)',
-      subKo: '생년월일 일수까지 정밀 보정하여 질병관리청(KDCA) 월령별 표준 신장·골연령과 대조합니다.',
-      subEn: 'Utilized for CDC/KDCA LMS national growth charts and normative baselines.'
+      titleKo: '아이 기본 신체 정보 입력 (성별 · 생년월일 · 현재 키/체중)',
+      titleEn: 'Child Basic Biometrics (Sex · DOB · Current Height & Weight)',
+      subKo: '생년월일 일수까지 정밀 보정하여 질병관리청(KDCA 2017) 월령별 표준 키 백분위와 최근 성장 속도를 산출합니다.',
+      subEn: 'Utilized for KDCA/CDC LMS growth percentiles and 6-month growth velocity.'
     },
     {
       step: 2,
-      titleKo: '현재 신장 · 체중 · 최근 6개월 성장 속도 입력',
-      titleEn: 'Current Stature & Growth Velocity',
-      subKo: '현재 신체 백분위(Z-Score)와 연간 성장 속도(cm/yr)를 기반으로 잠재 신장을 산출합니다.',
-      subEn: 'Baseline metrics for national LMS percentiles and 6-month growth velocity.'
-    },
-    {
-      step: 3,
-      titleKo: '부모 신장 입력 및 유전 표적키(MPH) 산출',
+      titleKo: '부모 유전 신장 입력 및 표적키(Tanner MPH) 산출',
       titleEn: 'Mid-Parental Height (MPH) & Genetic Potential',
-      subKo: 'Tanner 공식 기반 유전 예상키와 생활 습관 교정 시 최대 잠재키를 계산합니다.',
+      subKo: '아버지·어머니 신장을 바탕으로 유전 예상키 범위(±8.5cm)와 후천적 환경 잠재력을 실시간 계산합니다.',
       subEn: 'Calculates Tanner Mid-Parental Target Height and clinical margin in real-time.'
     },
     {
+      step: 3,
+      titleKo: '병원 뼈나이(골연령) 유무 선택 & 측정일자 시차(Δt) 자동 보정',
+      titleEn: 'Optional Hospital Bone-Age & Exam-Date Time-Lag (Δt) Calibration',
+      subKo: '병원 엑스레이 검사 전이어도 괜찮습니다! 과거 촬영 기록이 있다면 오늘 입력일 기준 경과 개월 수(Δt)를 자동 보정합니다.',
+      subEn: 'Calibrates past bone-age X-ray exam date to today using elapsed months (Δt) and pubertal tempo.'
+    },
+    {
       step: 4,
-      titleKo: '골연령 성장 단계 확인 및 수면·영양 대사 점검',
-      titleEn: 'Growth Stage & Sleep/Diet Habits',
-      subKo: '야간 서파수면 성장호르몬 분비 효율과 체중 비례 필수 영양 흡수 특성을 진단합니다.',
-      subEn: 'Evaluates epiphyseal plate open ratio and sleep/diet traits.'
+      titleKo: '밤 수면 시각 · 구강호흡 · 골밀도 영양 습관 체크',
+      titleEn: 'Nocturnal Sleep, Breathing & Bone-Matrix Nutrition Habits',
+      subKo: '성장호르몬이 집중 분비되는 밤 10시 서파수면 품질과 유제품·칼슘·비타민D3·단백질 섭취 습관을 점검합니다.',
+      subEn: 'Evaluates nocturnal SWS growth hormone efficiency and calcium/D3/protein intake.'
     },
     {
       step: 5,
-      titleKo: '성장 저해 요인 및 척추 정렬 · 신체 활동량 점검',
-      titleEn: 'Posture Alignment & Physical Activity',
-      subKo: '경추·흉추 정렬 상태와 성장판 압전 자극 빈도를 분석하여 숨은 키 복원폭을 산출합니다.',
-      subEn: 'Diagnoses nocturnal GH suppression and adult height penalty factors.'
-    },
-    {
-      step: 6,
-      titleKo: '신체 성장·체질 세부 점검 및 정밀 보고서 발행',
-      titleEn: 'Growth Details & Personalized Report',
-      subKo: '해당하는 임상 항목을 선택하시면 1:1 소아 신체 성장 정밀 보고서를 즉시 발행합니다.',
-      subEn: 'Generates tailored clinical growth guidance and supplement/exercise prescriptions.'
+      titleKo: '바른 자세 · 점프 운동 · 최근 성장/사춘기 징후 최종 체크',
+      titleEn: 'Posture Alignment, Jumping Exercise & Growth/Puberty Signs',
+      subKo: '책상 거북목 자세와 하루 점프 운동, 성장통·체중·사춘기 징후를 확인한 뒤 정밀 성장 분석 결과를 확인합니다.',
+      subEn: 'Synthesizes spinal alignment, jumping stimulation, and pubertal pace into your personalized report.'
     }
   ];
 
@@ -181,8 +174,8 @@
       step: 1,
       titleKo: '기본 인적 사항 (성별 · 생년월일 정밀 산출)',
       titleEn: 'Basic Demographics (Sex · Date of Birth)',
-      subKo: '아동의 연령 및 뇌 발달 주기에 맞춰 진단 문항과 규준 데이터를 자동 설정합니다.',
-      subEn: 'Classifies neuro-developmental stage and cognitive baseline.'
+      subKo: '아동의 연령 및 발달 주기에 맞춰 진단 문항과 규준 데이터를 자동 설정합니다.',
+      subEn: 'Classifies developmental stage and baseline.'
     },
     {
       step: 2,
@@ -202,31 +195,24 @@
       step: 4,
       titleKo: '전두엽 주의집중 지속 시간 및 디지털 미디어 습관',
       titleEn: 'Executive Focus & Dopamine Regulation',
-      subKo: '전두엽 실행기능(작업기억·충동억제)과 착석 몰입 지속력, 도파민 노출도를 진단합니다.',
+      subKo: '전두엽 실행기능과 착석 몰입 지속력, 도파민 노출도를 진단합니다.',
       subEn: 'Measures prefrontal executive function and digital distraction resilience.'
     },
     {
       step: 5,
-      titleKo: '메타인지 인출 습관 및 수면 장기기억 공고화 패턴',
-      titleEn: 'Metacognition & SWS Memory Consolidation',
-      subKo: '배운 내용을 자기 언어로 인출(백지복습)하고 장기기억으로 정착시키는 역량을 진단합니다.',
-      subEn: 'Assesses hippocampal long-term consolidation and self-explanation mastery.'
-    },
-    {
-      step: 6,
       titleKo: '학습 병목·기질 최종 점검 및 정밀 보고서 발행',
       titleEn: 'Study Temperament & Personalized Report',
-      subKo: '해당하는 인지 성향과 학습 병목을 선택하시면 5각 두뇌 밸런스 정밀 보고서를 즉시 발행합니다.',
-      subEn: 'Synthesizes personalized learning roadmap, study methodology, and workbook curation.'
+      subKo: '해당하는 성향과 병목을 선택하시면 정밀 보고서를 즉시 발행합니다.',
+      subEn: 'Synthesizes personalized roadmap and curation.'
     }
   ];
 
   let WIZARD_STEPS = WIZARD_STEPS_GROWTH;
 
-  // 3. Wizard Internal State
+  // 3. Wizard Internal State (5 Guided Steps: 20% -> 100%)
   const wizardState = {
     currentStep: 1,
-    maxStep: 6,
+    maxStep: 5,
     activePresetId: null,
     isScanning: false,
     scanCompleted: false,
@@ -240,14 +226,297 @@
       fatherHeight: 173.5,
       motherHeight: 160.5,
       tannerPhase: 'phase_2',
+      hasBoneAge: false,
+      deltaMonths: 0,
+      tempoFactor: 1.0,
       habits: ['late_sleep'],
       cognitiveAxes: ['science_nature'],
       traitLearningConcerns: ['reading_literacy'],
       traitStudyStyle: 'dialogue_question',
-      region: 'US National (CDC/AAP Standard)'
+      region: '서울 강남·서초·송파'
     }
   };
 
+  // 3b. Step 3 Bone-Age Optional & Exam-Date Time-Lag (Δt) Calibration Helpers
+  const QUIZ_BP_BOY = [
+    { ba: 3.0, pct: 57.2 }, { ba: 4.0, pct: 61.5 }, { ba: 5.0, pct: 64.6 }, { ba: 6.0, pct: 67.6 },
+    { ba: 7.0, pct: 69.5 }, { ba: 8.0, pct: 72.3 }, { ba: 9.0, pct: 75.2 }, { ba: 10.0, pct: 78.4 },
+    { ba: 11.0, pct: 80.4 }, { ba: 12.0, pct: 83.4 }, { ba: 13.0, pct: 87.6 }, { ba: 14.0, pct: 92.7 },
+    { ba: 15.0, pct: 96.8 }, { ba: 16.0, pct: 98.2 }, { ba: 17.0, pct: 99.1 }, { ba: 18.0, pct: 99.8 }, { ba: 18.5, pct: 100.0 }
+  ];
+  const QUIZ_BP_GIRL = [
+    { ba: 3.0, pct: 62.4 }, { ba: 4.0, pct: 66.8 }, { ba: 5.0, pct: 70.1 }, { ba: 6.0, pct: 73.3 },
+    { ba: 7.0, pct: 76.3 }, { ba: 8.0, pct: 79.5 }, { ba: 9.0, pct: 82.7 }, { ba: 10.0, pct: 86.2 },
+    { ba: 11.0, pct: 90.6 }, { ba: 12.0, pct: 92.2 }, { ba: 13.0, pct: 95.8 }, { ba: 14.0, pct: 98.0 },
+    { ba: 15.0, pct: 99.0 }, { ba: 16.0, pct: 99.6 }, { ba: 17.0, pct: 99.9 }, { ba: 17.5, pct: 100.0 }
+  ];
+
+  function interpolateQuizMaturePct(isGirl, boneAgeYears) {
+    if (global.KfkBoneAgeInterpreter && typeof global.KfkBoneAgeInterpreter.interpolateMaturePct === "function") {
+      return global.KfkBoneAgeInterpreter.interpolateMaturePct(isGirl ? "F" : "M", boneAgeYears);
+    }
+    const table = isGirl ? QUIZ_BP_GIRL : QUIZ_BP_BOY;
+    const ba = Math.max(table[0].ba, Math.min(table[table.length - 1].ba, Number(boneAgeYears) || 10));
+    for (let i = 0; i < table.length - 1; i++) {
+      if (ba >= table[i].ba && ba <= table[i + 1].ba) {
+        const span = table[i + 1].ba - table[i].ba;
+        const r = span > 0 ? (ba - table[i].ba) / span : 0;
+        return table[i].pct + r * (table[i + 1].pct - table[i].pct);
+      }
+    }
+    return table[table.length - 1].pct;
+  }
+
+  function ensureQuizExamYearOptions() {
+    if (typeof document === "undefined") return;
+    const exYearEl = document.getElementById("kfk-quiz-exam-year");
+    const exMonthEl = document.getElementById("kfk-quiz-exam-month");
+    if (!exYearEl || typeof exYearEl.getAttribute !== "function") return;
+    const now = new Date();
+    const ty = now.getFullYear();
+    const tm = now.getMonth() + 1;
+    if (exYearEl.getAttribute("data-hydrated-year") !== String(ty)) {
+      let html = "";
+      for (let y = ty; y >= ty - 5; y--) {
+        html += `<option value="${y}">${y}년 촬영</option>`;
+      }
+      exYearEl.innerHTML = html;
+      exYearEl.value = String(ty);
+      exYearEl.setAttribute("data-hydrated-year", String(ty));
+      if (exMonthEl) exMonthEl.value = String(tm);
+    }
+  }
+
+  function computeQuizBoneAgeState() {
+    const defaultObj = {
+      hasBoneAge: false,
+      baExamYears: null,
+      baExamMonths: null,
+      examYear: null,
+      examMonth: null,
+      deltaMonths: 0,
+      tempoFactor: 1.0,
+      tempoAccel: false,
+      baProjectedToday: null,
+      baProjectedYears: null,
+      baProjectedMonths: null,
+      baAchievedPct: null,
+      baPredictedAdultCm: null,
+      baRemainingCm: null,
+      baCalibrationSummaryKo: "",
+      baRecheckAdvisoryKo: ""
+    };
+    if (typeof document === "undefined") return defaultObj;
+    const yesRadio = document.getElementById("kfk-ba-choice-yes");
+    if (!yesRadio || !yesRadio.checked) return defaultObj;
+
+    ensureQuizExamYearOptions();
+    const boyRadio = document.getElementById("gender-boy");
+    const isGirl = boyRadio ? !boyRadio.checked : false;
+    const heightInput = document.getElementById("child-height");
+    const curHeight = Math.max(45, Math.min(230, parseFloat(heightInput && heightInput.value) || 137.0));
+
+    const baYearEl = document.getElementById("kfk-quiz-ba-years");
+    const baMonthEl = document.getElementById("kfk-quiz-ba-months");
+    const exYearEl = document.getElementById("kfk-quiz-exam-year");
+    const exMonthEl = document.getElementById("kfk-quiz-exam-month");
+    const tempoCb = document.getElementById("kfk-quiz-tempo-accel");
+    const earlyPubCb = typeof document.querySelector === "function" ? document.querySelector('input[name="trait-growth-detail"][value="early_puberty_worry"]') : null;
+    const fatGainCb = typeof document.querySelector === "function" ? document.querySelector('input[name="trait-growth-detail"][value="overweight_fat_gain"]') : null;
+
+    const now = new Date();
+    const todayYear = now.getFullYear();
+    const todayMonth = now.getMonth() + 1;
+
+    const baExamYears = Math.max(3, Math.min(18, parseInt(baYearEl && baYearEl.value, 10) || 10));
+    const baExamMonths = Math.max(0, Math.min(11, parseInt(baMonthEl && baMonthEl.value, 10) || 0));
+    const examYear = exYearEl && exYearEl.value ? parseInt(exYearEl.value, 10) : todayYear;
+    const examMonth = exMonthEl && exMonthEl.value ? parseInt(exMonthEl.value, 10) : todayMonth;
+
+    const deltaMonths = Math.max(0, (todayYear - examYear) * 12 + (todayMonth - examMonth));
+    const hasAccel = Boolean((tempoCb && tempoCb.checked) || (earlyPubCb && earlyPubCb.checked) || (fatGainCb && fatGainCb.checked));
+    const tempoFactor = hasAccel ? 1.08 : 1.0;
+    const baExam = baExamYears + baExamMonths / 12;
+    const maxCap = isGirl ? 17.5 : 18.5;
+    const baProjectedToday = Math.max(3.0, Math.min(maxCap, baExam + (deltaMonths / 12) * tempoFactor));
+
+    const projTotalMonths = Math.round(baProjectedToday * 12);
+    const projYears = Math.floor(projTotalMonths / 12);
+    const projMonths = Math.abs(projTotalMonths % 12);
+
+    const achievedPct = interpolateQuizMaturePct(isGirl, baProjectedToday);
+    const baPredictedAdultCm = Math.max(curHeight, Math.min(210.0, Math.round((curHeight / (achievedPct / 100)) * 10) / 10));
+    const baRemainingCm = Math.max(0, Math.round((baPredictedAdultCm - curHeight) * 10) / 10);
+
+    const monthPad = examMonth < 10 ? "0" + examMonth : String(examMonth);
+    const lagLabel = deltaMonths === 0 ? "이번 달(0개월 전)" : `${deltaMonths}개월 전`;
+    const tempoNote = tempoFactor > 1.0 ? " · 사춘기 가속 ×1.08 반영" : "";
+    const baCalibrationSummaryKo = `📌 ${examYear}년 ${monthPad}월(${lagLabel}) 측정 뼈나이 ${baExamYears}세 ${baExamMonths}개월 ➔ 경과 시차(+${deltaMonths}개월${tempoNote}) 자동 반영 금일 추정 골연령 ${projYears}세 ${projMonths}개월 기준 정밀 분석`;
+    const baRecheckAdvisoryKo = deltaMonths >= 12
+      ? "촬영 후 1년 이상 경과하여 사춘기 골성숙 속도가 달라졌을 수 있으므로 다음 정기 검진 시 성장판 재확인을 권장합니다."
+      : "";
+
+    return {
+      hasBoneAge: true,
+      baExamYears,
+      baExamMonths,
+      examYear,
+      examMonth,
+      deltaMonths,
+      tempoFactor,
+      tempoAccel: hasAccel,
+      baProjectedToday,
+      baProjectedYears: projYears,
+      baProjectedMonths: projMonths,
+      baAchievedPct: Math.round(achievedPct * 10) / 10,
+      baPredictedAdultCm,
+      baRemainingCm,
+      baCalibrationSummaryKo,
+      baRecheckAdvisoryKo
+    };
+  }
+
+  function syncQuizBoneAgeCalibration() {
+    if (typeof document === "undefined") return;
+    const yesRadio = document.getElementById("kfk-ba-choice-yes");
+    const noRadio = document.getElementById("kfk-ba-choice-no");
+    const cardNo = document.getElementById("kfk-ba-branch-card-no");
+    const cardYes = document.getElementById("kfk-ba-branch-card-yes");
+    const noneBox = document.getElementById("kfk-ba-none-reassurance");
+    const panelBox = document.getElementById("kfk-step3-bone-age-panel");
+    const hasBa = Boolean(yesRadio && yesRadio.checked);
+
+    if (cardNo && cardNo.classList) cardNo.classList.toggle("is-selected", !hasBa);
+    if (cardYes && cardYes.classList) cardYes.classList.toggle("is-selected", hasBa);
+    if (noRadio && !hasBa) noRadio.checked = true;
+    if (noneBox && noneBox.style) noneBox.style.display = hasBa ? "none" : "block";
+    if (panelBox && panelBox.style) panelBox.style.display = hasBa ? "block" : "none";
+
+    if (!hasBa) return;
+    const cal = computeQuizBoneAgeState();
+    const badgeEl = document.getElementById("kfk-quiz-ba-live-badge");
+    const recheckEl = document.getElementById("kfk-quiz-ba-recheck-note");
+    if (badgeEl) {
+      badgeEl.textContent = cal.baCalibrationSummaryKo;
+    }
+    if (recheckEl) {
+      if (cal.baRecheckAdvisoryKo) {
+        recheckEl.style.display = "block";
+        recheckEl.textContent = "⚠️ " + cal.baRecheckAdvisoryKo;
+      } else {
+        recheckEl.style.display = "none";
+        recheckEl.textContent = "";
+      }
+    }
+
+    if (typeof document.querySelectorAll === "function") {
+      const lagChips = document.querySelectorAll("[data-kfk-quiz-lag-months]");
+      if (lagChips && lagChips.forEach) {
+        lagChips.forEach((chip) => {
+          const m = parseInt(chip.getAttribute("data-kfk-quiz-lag-months"), 10);
+          if (chip.classList) chip.classList.toggle("active", m === cal.deltaMonths);
+        });
+      }
+      // Map calibrated bone age to tanner-phase automatically
+      const boyRadio = document.getElementById("gender-boy");
+      const isGirl = boyRadio ? !boyRadio.checked : false;
+      const ba = cal.baProjectedToday || 10;
+      let mappedPhase = "phase_2";
+      if (isGirl) {
+        if (ba < 9.2) mappedPhase = "phase_1";
+        else if (ba < 12.2) mappedPhase = "phase_2";
+        else if (ba < 14.3) mappedPhase = "phase_3";
+        else mappedPhase = "phase_4";
+      } else {
+        if (ba < 11.0) mappedPhase = "phase_1";
+        else if (ba < 13.8) mappedPhase = "phase_2";
+        else if (ba < 15.8) mappedPhase = "phase_3";
+        else mappedPhase = "phase_4";
+      }
+      const phaseRadios = document.querySelectorAll('input[name="tanner-phase"]');
+      if (phaseRadios && phaseRadios.forEach) {
+        phaseRadios.forEach((r) => { r.checked = (r.value === mappedPhase); });
+      }
+    }
+  }
+
+  function setQuizBoneAgeMode(mode) {
+    if (typeof document === "undefined") return;
+    const yesRadio = document.getElementById("kfk-ba-choice-yes");
+    const noRadio = document.getElementById("kfk-ba-choice-no");
+    const wantYes = (mode === "yes" || mode === true);
+    if (yesRadio) yesRadio.checked = wantYes;
+    if (noRadio) noRadio.checked = !wantYes;
+    if (wantYes) {
+      ensureQuizExamYearOptions();
+      const baYearEl = document.getElementById("kfk-quiz-ba-years");
+      if (baYearEl && !baYearEl.getAttribute("data-user-touched")) {
+        const ageM = Number((document.getElementById("child-age-months") || {}).value) || 120;
+        baYearEl.value = String(Math.max(3, Math.min(18, Math.floor(ageM / 12))));
+      }
+    }
+    syncQuizBoneAgeCalibration();
+  }
+
+  function selectQuizGrowthPlateStage(stageId) {
+    if (typeof document === "undefined") return;
+    setQuizBoneAgeMode("yes");
+    const boyRadio = document.getElementById("gender-boy");
+    const isGirl = boyRadio ? !boyRadio.checked : false;
+    const ageM = Number((document.getElementById("child-age-months") || {}).value) || 120;
+    const ca = ageM / 12;
+    let targetBa = ca;
+    if (stageId === "stage_open") targetBa = Math.max(3.2, Math.min(16.5, ca - 0.85));
+    else if (stageId === "stage_entry") targetBa = isGirl ? Math.max(8.0, Math.min(11.5, Math.max(ca, 9.5))) : Math.max(9.0, Math.min(13.0, Math.max(ca, 11.0)));
+    else if (stageId === "stage_phv") targetBa = isGirl ? 11.2 : 12.8;
+    else if (stageId === "stage_decel") targetBa = isGirl ? 13.2 : 14.7;
+    else if (stageId === "stage_near_fusion") targetBa = isGirl ? 14.8 : 16.2;
+
+    const totM = Math.round(targetBa * 12);
+    const baYearEl = document.getElementById("kfk-quiz-ba-years");
+    const baMonthEl = document.getElementById("kfk-quiz-ba-months");
+    if (baYearEl) {
+      baYearEl.value = String(Math.max(3, Math.min(18, Math.floor(totM / 12))));
+      baYearEl.setAttribute("data-user-touched", "1");
+    }
+    if (baMonthEl) baMonthEl.value = String(Math.max(0, Math.min(11, totM % 12)));
+    if (typeof document.querySelectorAll === "function") {
+      const chips = document.querySelectorAll("[data-kfk-quiz-plate-stage]");
+      if (chips && chips.forEach) {
+        chips.forEach((c) => {
+          if (c.classList) c.classList.toggle("active", c.getAttribute("data-kfk-quiz-plate-stage") === stageId);
+        });
+      }
+    }
+    syncQuizBoneAgeCalibration();
+  }
+
+  function selectQuizExamLagMonths(monthsAgo) {
+    if (typeof document === "undefined") return;
+    setQuizBoneAgeMode("yes");
+    ensureQuizExamYearOptions();
+    const now = new Date();
+    const lag = Math.max(0, Math.round(Number(monthsAgo) || 0));
+    const totalM = now.getFullYear() * 12 + now.getMonth() - lag;
+    const targetY = Math.floor(totalM / 12);
+    const targetM = (totalM % 12) + 1;
+    const exYearEl = document.getElementById("kfk-quiz-exam-year");
+    const exMonthEl = document.getElementById("kfk-quiz-exam-month");
+    if (exYearEl) exYearEl.value = String(targetY);
+    if (exMonthEl) exMonthEl.value = String(targetM);
+    syncQuizBoneAgeCalibration();
+  }
+
+  function applyKoreanAvgParentHeights() {
+    if (typeof document === "undefined") return;
+    const fatherInput = document.getElementById("father-height");
+    const motherInput = document.getElementById("mother-height");
+    const isImp = typeof isCurrentImperial === "function" ? isCurrentImperial() : false;
+    if (fatherInput) fatherInput.value = isImp ? "68.5" : "174.0";
+    if (motherInput) motherInput.value = isImp ? "63.4" : "161.0";
+    if (typeof syncCompanionInputs === "function") syncCompanionInputs();
+    updateMphPreview();
+  }
   // Real-time Tanner MPH Preview
   function updateMphPreview() {
     if (typeof document === 'undefined') return;
@@ -904,186 +1173,124 @@
     }
   }
 
-  // 6. Validation Logic
+  // 6. Validation Logic (5-Step Guided Flow)
   function validateStep(stepNumber) {
-    if (typeof document === 'undefined') return true;
-    if (wizardState.preferredReportMode === 'learning') {
-      return true; // Skip physical height/weight check in learning mode
+    if (typeof document === "undefined") return true;
+    if (wizardState.preferredReportMode === "learning") {
+      return true;
     }
 
-    const yearEl = document.getElementById('child-birth-year');
-    const monthEl = document.getElementById('child-birth-month');
-    const dayEl = document.getElementById('child-birth-day');
+    const yearEl = document.getElementById("child-birth-year");
+    const monthEl = document.getElementById("child-birth-month");
+    const dayEl = document.getElementById("child-birth-day");
     const hasDobSelects = Boolean(yearEl && monthEl && dayEl);
 
     if (stepNumber === 1) {
       if (hasDobSelects) {
-        // Full DOM environment: Step 1 validates ONLY Gender & DOB
-        const boyEl = document.getElementById('gender-boy');
-        const girlEl = document.getElementById('gender-girl');
+        const boyEl = document.getElementById("gender-boy");
+        const girlEl = document.getElementById("gender-girl");
         if (boyEl && girlEl && !boyEl.checked && !girlEl.checked) {
-          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
-          showValidationToast(isEn ? 'Please select a gender.' : '성별을 선택해 주세요.', boyEl);
+          const isEn = typeof document !== "undefined" && document.documentElement && document.documentElement.lang === "en";
+          showValidationToast(isEn ? "Please select a gender." : "성별을 선택해 주세요.", boyEl);
           return false;
         }
-
-        const y = (yearEl.value !== '' && yearEl.value !== undefined) ? parseInt(yearEl.value, 10) : 2016;
-        const m = (monthEl.value !== '' && monthEl.value !== undefined) ? parseInt(monthEl.value, 10) : 10;
-        const d = (dayEl.value !== '' && dayEl.value !== undefined) ? parseInt(dayEl.value, 10) : 15;
-        if (isNaN(y) || y < 2005 || y > 2026 || isNaN(m) || m < 1 || m > 12 || isNaN(d) || d < 1 || d > 31) {
-          const isEn = typeof document !== 'undefined' && document.documentElement.lang === 'en';
-          showValidationToast(isEn ? 'Please enter a valid date of birth.' : '생년월일을 올바르게 선택해 주세요.', yearEl);
+        const y = (yearEl.value !== "" && yearEl.value !== undefined) ? parseInt(yearEl.value, 10) : 2016;
+        const m = (monthEl.value !== "" && monthEl.value !== undefined) ? parseInt(monthEl.value, 10) : 10;
+        const d = (dayEl.value !== "" && dayEl.value !== undefined) ? parseInt(dayEl.value, 10) : 15;
+        if (isNaN(y) || y < 2005 || y > 2027 || isNaN(m) || m < 1 || m > 12 || isNaN(d) || d < 1 || d > 31) {
+          const isEn = typeof document !== "undefined" && document.documentElement && document.documentElement.lang === "en";
+          showValidationToast(isEn ? "Please enter a valid date of birth." : "생년월일을 올바르게 선택해 주세요.", yearEl);
           return false;
         }
-        return true;
       }
-      // Legacy mock DOM fallback where DOB selects don't exist: fall through to height/weight check below
-    }
 
-    if (stepNumber === 2 || (stepNumber === 1 && !hasDobSelects)) {
-      const heightInput = document.getElementById('child-height');
-      const weightInput = document.getElementById('child-weight');
-      const recentInput = document.getElementById('child-recent-gain');
-      const fatherInput = document.getElementById('father-height');
-      const motherInput = document.getElementById('mother-height');
-
+      const heightInput = document.getElementById("child-height");
+      const weightInput = document.getElementById("child-weight");
+      const recentInput = document.getElementById("child-recent-gain");
       if (heightInput) {
         let h = parseFloat(heightInput.value);
         let w = weightInput ? parseFloat(weightInput.value) : 35.5;
         let r = recentInput ? parseFloat(recentInput.value) : 3.0;
-        let fh = fatherInput ? parseFloat(fatherInput.value) : 173.5;
-        let mh = motherInput ? parseFloat(motherInput.value) : 160.5;
-
-        // Fallback: If primary inputs were empty, resolve from companion inputs
         if (isNaN(h) || h <= 0) {
-          const chFt = document.getElementById('child-height-ft');
-          const chIn = document.getElementById('child-height-in');
+          const chFt = document.getElementById("child-height-ft");
+          const chIn = document.getElementById("child-height-in");
           if (chFt || chIn) {
             const ft = parseFloat(chFt ? chFt.value : 0) || 0;
             const inch = parseFloat(chIn ? chIn.value : 0) || 0;
             const totIn = Math.round((ft * 12 + inch) * 10) / 10;
-            if (totIn > 0) {
-              heightInput.value = totIn.toFixed(1);
-              h = totIn;
-            }
+            if (totIn > 0) { heightInput.value = totIn.toFixed(1); h = totIn; }
           }
         }
         if ((isNaN(w) || w <= 0) && weightInput) {
-          const chWlbs = document.getElementById('child-weight-lbs');
+          const chWlbs = document.getElementById("child-weight-lbs");
           if (chWlbs && chWlbs.value) {
             const lbs = parseFloat(chWlbs.value) || 0;
-            if (lbs > 0) {
-              weightInput.value = lbs.toFixed(1);
-              w = lbs;
-            }
+            if (lbs > 0) { weightInput.value = lbs.toFixed(1); w = lbs; }
           }
         }
-
-        // Strict boundary checks against authoritative clinical ranges:
-        // Imperial mode: [18.0, 90.0] inches, [5.0, 350.0] lbs, [0.0, 8.0] inches
-        // Metric mode:   [45.0, 230.0] cm,    [2.0, 160.0] kg,   [0.0, 20.0] cm
-        const isImperial = typeof isCurrentImperial === 'function'
+        const isImperial = typeof isCurrentImperial === "function"
           ? isCurrentImperial()
-          : (typeof global.TallerI18n !== 'undefined' && typeof global.TallerI18n.getUnitSystem === 'function'
-              ? global.TallerI18n.getUnitSystem() === 'imperial'
+          : (typeof global.TallerI18n !== "undefined" && typeof global.TallerI18n.getUnitSystem === "function"
+              ? global.TallerI18n.getUnitSystem() === "imperial"
               : false);
-
         if (isImperial) {
-          // Explicit Imperial boundary validation BEFORE any unit scaling
           if (isNaN(h) || h < 18.0 || h > 90.0) {
-            showValidationToast('Please enter a valid height (18 to 90 inches / 45 to 230 cm).', heightInput);
+            showValidationToast("Please enter a valid height (18 to 90 inches / 45 to 230 cm).", heightInput);
             return false;
           }
           if (isNaN(w) || w < 5.0 || w > 350.0) {
-            showValidationToast('Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).', weightInput);
+            showValidationToast("Please enter a valid weight (5 to 350 lbs / 2 to 160 kg).", weightInput);
             return false;
           }
           if (isNaN(r) || r < 0.0 || r > 8.0) {
-            showValidationToast('Please enter recent 6-month growth (0 to 8 inches).', recentInput);
+            showValidationToast("Please enter recent 6-month growth (0 to 8 inches).", recentInput);
             return false;
           }
-          if (isNaN(fh) || fh < 40.0 || fh > 95.0) {
-            if (fatherInput) fatherInput.value = 68.3;
-          }
-          if (isNaN(mh) || mh < 40.0 || mh > 95.0) {
-            if (motherInput) motherInput.value = 63.2;
-          }
         } else {
-          // Explicit Metric boundary validation
+          const isEn = typeof document !== "undefined" && document.documentElement && document.documentElement.lang === "en";
           if (isNaN(h) || h < 45.0 || h > 230.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter a valid height (45 to 230 cm).' : '아이 키를 45cm ~ 230cm 사이로 입력해 주세요.', heightInput);
+            showValidationToast(isEn ? "Please enter a valid height (45 to 230 cm)." : "아이 현재 키를 45cm ~ 230cm 사이로 입력해 주세요.", heightInput);
             return false;
           }
           if (isNaN(w) || w < 2.0 || w > 160.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter a valid weight (2 to 160 kg).' : '아이 몸무게를 2kg ~ 160kg 사이로 입력해 주세요.', weightInput);
+            showValidationToast(isEn ? "Please enter a valid weight (2 to 160 kg)." : "아이 현재 체중을 2kg ~ 160kg 사이로 입력해 주세요.", weightInput);
             return false;
           }
           if (isNaN(r) || r < 0.0 || r > 20.0) {
-            const isEn = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en';
-            showValidationToast(isEn ? 'Please enter recent 6-month growth (0 to 20 cm).' : '최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.', recentInput);
+            showValidationToast(isEn ? "Please enter recent 6-month growth (0 to 20 cm)." : "최근 6개월 성장폭을 0 ~ 20cm 사이로 입력해 주세요.", recentInput);
             return false;
-          }
-          if (isNaN(fh) || fh < 100.0 || fh > 240.0) {
-            if (fatherInput) fatherInput.value = 173.5;
-          }
-          if (isNaN(mh) || mh < 100.0 || mh > 240.0) {
-            if (motherInput) motherInput.value = 160.5;
           }
         }
       }
+      return true;
     }
 
-    if (stepNumber === 3) {
-      const fatherInput = document.getElementById('father-height');
-      const motherInput = document.getElementById('mother-height');
+    if (stepNumber === 2) {
+      const fatherInput = document.getElementById("father-height");
+      const motherInput = document.getElementById("mother-height");
       if (fatherInput && motherInput) {
         let fh = parseFloat(fatherInput.value);
         let mh = parseFloat(motherInput.value);
-        if (isNaN(fh) || fh <= 0) {
-          const fhFt = document.getElementById('father-height-ft');
-          const fhIn = document.getElementById('father-height-in');
-          if (fhFt || fhIn) {
-            const ft = parseFloat(fhFt ? fhFt.value : 0) || 0;
-            const inch = parseFloat(fhIn ? fhIn.value : 0) || 0;
-            const totIn = Math.round((ft * 12 + inch) * 10) / 10;
-            if (totIn > 0) {
-              fatherInput.value = totIn.toFixed(1);
-              fh = totIn;
-            }
-          }
-        }
-        if (isNaN(mh) || mh <= 0) {
-          const mhFt = document.getElementById('mother-height-ft');
-          const mhIn = document.getElementById('mother-height-in');
-          if (mhFt || mhIn) {
-            const ft = parseFloat(mhFt ? mhFt.value : 0) || 0;
-            const inch = parseFloat(mhIn ? mhIn.value : 0) || 0;
-            const totIn = Math.round((ft * 12 + inch) * 10) / 10;
-            if (totIn > 0) {
-              motherInput.value = totIn.toFixed(1);
-              mh = totIn;
-            }
-          }
-        }
-        const isImperial = typeof document !== 'undefined' && document.documentElement.lang === 'en' && typeof global.TallerI18n !== 'undefined' && global.TallerI18n.getUnitSystem() === 'imperial';
+        const isImperial = typeof isCurrentImperial === "function" ? isCurrentImperial() : false;
         if (isImperial) {
-          fh = fh * 2.54;
-          mh = mh * 2.54;
+          if (isNaN(fh) || fh < 40.0 || fh > 95.0) fatherInput.value = "68.5";
+          if (isNaN(mh) || mh < 40.0 || mh > 95.0) motherInput.value = "63.4";
+        } else {
+          if (isNaN(fh) || fh < 100.0 || fh > 240.0) fatherInput.value = "174.0";
+          if (isNaN(mh) || mh < 100.0 || mh > 240.0) motherInput.value = "161.0";
         }
-        if (isNaN(fh) || fh < 100 || fh > 240) {
-          fatherInput.value = isImperial ? 68.3 : 173.5;
-        }
-        if (isNaN(mh) || mh < 100 || mh > 240) {
-          motherInput.value = isImperial ? 63.2 : 160.5;
-        }
+        updateMphPreview();
       }
+      return true;
+    }
+
+    if (stepNumber === 3) {
+      syncQuizBoneAgeCalibration();
+      return true;
     }
 
     return true;
   }
-
   // 6. 60-Second Personalized Bio Scan & Parent Briefing Theatre Loader
   let scanTimer = null;
   function start3SecondScan(onComplete, options = {}) {
@@ -1230,6 +1437,14 @@
       dashboard.style.display = 'block';
     }
     scrollToReportTop();
+
+    // Persist survey profile (including Bone-Age Δt calibration) for Affiliate Unlock Gate & WebView return restore
+    if (typeof global.saveKidsFitSurveyProfileForUnlock === "function") {
+      try { global.saveKidsFitSurveyProfileForUnlock(wizardState.profile, true); } catch (_) {}
+    }
+    if (wizardState.profile && wizardState.profile.hasBoneAge && global.KfkBoneAgeInterpreter && typeof global.KfkBoneAgeInterpreter.syncFromSurveyProfile === "function") {
+      try { global.KfkBoneAgeInterpreter.syncFromSurveyProfile(wizardState.profile); } catch (_) {}
+    }
 
     // Record user input into Cohort DB for autonomous self-improvement
     if (!UserCohortDB && (global.TallerUserCohortDB || global.KidsFitUserCohortDB)) {
@@ -1605,7 +1820,22 @@
       ? freeNoteEl.value.trim()
       : (wizardState.profile.parentFreeNote || '');
 
-    wizardState.profile = {
+    const boneAgeCal = computeQuizBoneAgeState();
+    if (boneAgeCal.hasBoneAge && typeof document.querySelector === "function") {
+      const checkedPhaseAfterBa = document.querySelector('input[name="tanner-phase"]:checked');
+      if (checkedPhaseAfterBa) tannerPhase = checkedPhaseAfterBa.value;
+    }
+    // Auto-enrich habits from Step 4 & Step 5 trait checkboxes when explicitly checked in live DOM
+    const rawSleepChecked = getCheckedValues("trait-sleep-quality");
+    const rawDietChecked = getCheckedValues("trait-diet-digestion");
+    const rawPostureChecked = getCheckedValues("trait-posture-type");
+    if (rawSleepChecked.includes("late_bedtime") && !habits.includes("late_sleep")) habits.push("late_sleep");
+    if ((rawSleepChecked.includes("night_snack") || rawDietChecked.includes("sweet_carb")) && !habits.includes("night_carbs")) habits.push("night_carbs");
+    if ((rawPostureChecked.includes("turtle_slouch") || traitGrowthDetails.includes("slouch_disc_loss")) && !habits.includes("poor_posture")) habits.push("poor_posture");
+    if ((rawDietChecked.includes("meat_veggie_picky") || rawDietChecked.includes("small_appetite")) && !habits.includes("picky_eater")) habits.push("picky_eater");
+    if (exerciseTraitEl && exerciseTraitEl.value === "low_indoor" && (rawSleepChecked.length || rawDietChecked.length || rawPostureChecked.length) && !habits.includes("sedentary")) habits.push("sedentary");
+
+    wizardState.profile = Object.assign({}, boneAgeCal, {
       targetSubject,
       gender,
       ageYears,
@@ -1643,7 +1873,7 @@
       traitStudyStyle,
       parentFreeNote,
       preferredReportMode: wizardState.preferredReportMode || (typeof window !== 'undefined' && window.__KIDSFIT_PREFERRED_REPORT_MODE) || 'growth'
-    };
+    });
 
     return wizardState.profile;
   }
@@ -1791,6 +2021,7 @@
 
   function exitStudioMode() {
     if (typeof document === 'undefined') return;
+    if (typeof global.clearKidsFitSurveyReturnRestoreFlag === "function") { try { global.clearKidsFitSurveyReturnRestoreFlag(); } catch (_) {} }
     if (document.body && document.body.classList) {
       document.body.classList.remove('studio-mode-active', 'diagnosis-lounge-active');
     }
@@ -2436,6 +2667,37 @@
     syncDobAndAutoStage();
     syncTargetSubjectMode();
     initSiblingProfileSwitcher();
+    ensureQuizExamYearOptions();
+    ["kfk-ba-choice-no", "kfk-ba-choice-yes", "kfk-quiz-ba-years", "kfk-quiz-ba-months", "kfk-quiz-exam-year", "kfk-quiz-exam-month", "kfk-quiz-tempo-accel"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el && !el._hasBaListener) {
+        el._hasBaListener = true;
+        el.addEventListener("change", () => {
+          if (id === "kfk-quiz-ba-years" || id === "kfk-quiz-ba-months") el.setAttribute("data-user-touched", "1");
+          syncQuizBoneAgeCalibration();
+        });
+      }
+    });
+    if (typeof document.querySelectorAll === "function") {
+      const detailCbs = document.querySelectorAll('input[name="trait-growth-detail"]');
+      if (detailCbs && detailCbs.forEach) {
+        detailCbs.forEach((cb) => {
+          if (!cb._hasBaSync) {
+            cb._hasBaSync = true;
+            cb.addEventListener("change", () => {
+              if (cb.value === "early_puberty_worry" || cb.value === "overweight_fat_gain") {
+                const tempoCb = document.getElementById("kfk-quiz-tempo-accel");
+                const eCb = document.querySelector('input[name="trait-growth-detail"][value="early_puberty_worry"]');
+                const fCb = document.querySelector('input[name="trait-growth-detail"][value="overweight_fat_gain"]');
+                if (tempoCb) tempoCb.checked = Boolean((eCb && eCb.checked) || (fCb && fCb.checked));
+                syncQuizBoneAgeCalibration();
+              }
+            });
+          }
+        });
+      }
+    }
+    syncQuizBoneAgeCalibration();
 
     // Listen to language switch events so dynamic wizard labels update immediately
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
@@ -2512,6 +2774,7 @@
     const retestBtn = document.getElementById('btn-retest');
     if (retestBtn) {
       retestBtn._currentRetestFn = () => {
+        if (typeof global.clearKidsFitSurveyReturnRestoreFlag === "function") { try { global.clearKidsFitSurveyReturnRestoreFlag(); } catch (_) {} }
         if (document.body && document.body.classList) {
           document.body.classList.add('studio-mode-active');
         }
@@ -2694,7 +2957,7 @@
 
   function closeAdditionalNarrativeStep() {
     if (typeof document === 'undefined') return;
-    goToStep(6);
+    goToStep(5);
   }
 
   function submitQuiz(e) {
@@ -2729,6 +2992,13 @@
     WIZARD_STEPS,
     state: wizardState,
     getState: () => wizardState,
+    getProfile: () => wizardState.profile,
+    setQuizBoneAgeMode,
+    selectQuizGrowthPlateStage,
+    selectQuizExamLagMonths,
+    syncQuizBoneAgeCalibration,
+    computeQuizBoneAgeState,
+    applyKoreanAvgParentHeights,
     goToStep,
     validateStep,
     updateMphPreview,
@@ -2758,6 +3028,10 @@
   } else {
     global.TallerOnboardingWizard = OnboardingWizard;
     global.KidsFitOnboardingWizard = OnboardingWizard;
+    global.setKfkQuizBoneAgeMode = setQuizBoneAgeMode;
+    global.selectKfkQuizPlateStage = selectQuizGrowthPlateStage;
+    global.selectKfkQuizExamLag = selectQuizExamLagMonths;
+    global.applyKfkKoreanAvgParents = applyKoreanAvgParentHeights;
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       if (document.readyState === 'loading') {
         window.addEventListener('DOMContentLoaded', () => {

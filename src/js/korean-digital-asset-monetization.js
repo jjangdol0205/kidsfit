@@ -1,96 +1,62 @@
 /**
  * src/js/korean-digital-asset-monetization.js
- * Korean Free A4 Printable Workbook & Dynamic Age×Habit Prescription Curation Engine (kidsfit.co.kr)
- * - 100% Free of foreign paywalls or paid checkout modals.
- * - Dynamically matches diagnosed child age & habit bottlenecks to high-conversion 8,900원~3만원대 daily essentials
- *   across Coupang Partners AFFSDP/AFFSRP (AF7865143), LinkPrice Yes24 (A100708867), iHerb (IPZ1547), and Naver BrandConnect.
+ * Division 5 (kidsfit.co.kr) — Affiliate-Click Result Unlock Gate, Pure Height-Growth TOP 3 Matcher
+ * & In-App WebView (KakaoTalk / Instagram / Naver) Persistence Engine
+ *
+ * - 100% Pure Height-Growth Curation across ALL ages (0 non-growth books/toys).
+ * - Preserves Coupang Partners (AF7865143), Naver BrandConnect (Npay), iHerb (IPZ1547), LinkPrice (A100708867),
+ *   Latpeed 9,900 KRW Masterbook PDF (https://www.latpeed.com/products/daMaP), and KFTC disclosure notices.
+ * - Synchronous pre-navigation unlock + localStorage/sessionStorage dual persistence + bfcache/reload auto-restore.
  */
 (function (global) {
   'use strict';
 
   var UNLOCK_KEY = 'kidsfit_kr_digital_asset_unlocked_v1';
+  var SAVED_PROFILE_KEY = 'kfk_saved_survey_profile_v1';
+  var RETURN_RESTORE_KEY = 'kfk_awaiting_return_restore_v1';
 
   var NAVER_KIDS_BRANDCONNECT = {
     icletime_fgo: 'https://brandconnect.naver.com/affiliates/1010075643260928?channelProductNo=12080461872&ac=crtshp&cid=1016094238062720',
     lactobio_probiotics: 'https://brandconnect.naver.com/affiliates/1016189312112224?channelProductNo=2815773337&ac=crtshp&cid=1016094238062720',
     calmadi_k2: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720',
     bookstand_2tier: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720',
-    posture_chair: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720',
-    magnet_cube: 'https://brandconnect.naver.com/affiliates/1016189312116322?channelProductNo=11858995377&ac=crtshp&cid=1016094238062720'
+    posture_chair: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720'
   };
 
+  // 100% Pure Height-Growth Essentials Only (Sleep, Bone-Density Nutrition, Posture, Jumping Stimulation)
   var RX_ESSENTIAL_ITEMS = {
-    bookstand: {
-      id: 'prod_ch_hot_1',
-      badge: '경추 거북목 · 숨은 키 +1.8cm',
-      name: '삼나무 2단 각도조절 원목 독서대',
-      priceLabel: '8,900원대 · 로켓배송',
-      reason: '고개 숙임 하중(18kg)을 덜어 경추 정렬과 착석 몰입 시간을 동시에 개선합니다.',
+    sleep_pillow: {
+      id: 'prod_nb_gear_2',
+      badge: '밤 10시 서파수면 · 성장호르몬 케어',
+      name: '아동·청소년 경추 지지 숙면 베개·수면안대 모음',
+      priceLabel: '에디터 큐레이션 · 로켓배송',
+      reason: '밤 10시~새벽 2시 깊은 서파수면(SWS) 유도 및 구강호흡·뒤척임 완화를 돕는 숙면 환경입니다.',
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
-      naverCta: '🟢 Npay 적립: 2단 원목 독서대 공식 판매처 →'
-    },
-    posture_chair: {
-      id: 'prod_ch_gear_1',
-      badge: '척추·골반 정렬 · 숨은 키 방어',
-      name: '시디즈 링고 성장형 발받침 바른자세 학생의자',
-      priceLabel: '체형 성장 단계별 조절',
-      reason: '구부정한 착석 습관과 거북목을 예방하여 성장기 척추 디스크 하중을 줄여줍니다.',
-      cta: '🚀 쿠팡 혜택가 확인 →',
-      platform: 'coupang',
-      bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
-      naverCta: '🟢 Npay 적립: 바른자세 학생의자 혜택가 확인 →'
-    },
-    reading_workbook: {
-      id: 'prod_ch_learn_1',
-      badge: '문장제 수학 · 비문학 문해력',
-      name: '뿌리깊은 초등국어 독해력 기본편 (마더텅)',
-      priceLabel: '9,900원 · 예스24 공식',
-      reason: '세 줄 이상 긴 서술형 문제에서 막히는 초등 문해력 병목을 하루 10분 루틴으로 잡아줍니다.',
-      cta: '📚 공식 판매처 보러가기 →',
-      platform: 'linkprice',
-      bg: '#059669',
-      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169',
-      naverUrl: '',
-      naverCta: ''
-    },
-    lactofit_kids: {
-      id: 'prod_tod_nut_1',
-      badge: '편식 · 장내 칼슘 흡수 환경',
-      name: '종근당건강 락토핏 생유산균 키즈 (60포)',
-      priceLabel: '14,760원대 · 로켓배송',
-      reason: '편식·배앓이가 잦은 유아·초등기 장내 미생물 균형과 아연·비타민D 일일 보충을 돕습니다.',
-      cta: '🚀 쿠팡 혜택가 확인 →',
-      platform: 'coupang',
-      bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509',
+      url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=rx_top3_sleep&pageKey=%EC%A3%BC%EB%8B%88%EC%96%B4+%EA%B2%BD%EC%B6%94+%EB%B2%A0%EA%B0%9C+%EC%88%99%EB%A9%B4',
       naverUrl: '',
       naverCta: ''
     },
     ca_mg_d3_chew: {
       id: 'prod_ch_nut_1',
-      badge: '성장판 골기질 · 야간 숙면 시너지',
-      name: '금쪽같은 어린이 칼슘 마그네슘 비타민D (4통)',
-      priceLabel: '33,530원대 · 로켓배송',
-      reason: '밤 10시 성장호르몬 피크 구간 전후 골단판 연골 석회화에 필요한 칼슘·마그네슘·D3 배합입니다.',
+      badge: '성장판 골밀도 · 야간 숙면 시너지',
+      name: '금쪽같은 어린이 칼슘·마그네슘·비타민D3 세트 (4통)',
+      priceLabel: '4개월분 · 로켓배송',
+      reason: '밤 10시 성장호르몬 피크 구간 전후 성장판 연골 형성과 체내 칼슘 흡수를 뒷받침하는 핵심 배합입니다.',
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_camgd3&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426',
       naverUrl: NAVER_KIDS_BRANDCONNECT.calmadi_k2,
-      naverCta: '🟢 Npay 적립: 어린이 칼마디+K2 공식 판매처 →'
+      naverCta: '🟢 Npay 적립: 어린이 칼마디+K2 공식 판매처 보러가기 →'
     },
     liquid_calcium: {
       id: 'prod_inf_nut_2',
-      badge: '영유아 액상 고흡수 구연산칼슘',
+      badge: '고흡수 액상 구연산 칼슘·D3',
       name: '차일드라이프 액상 칼슘·마그네슘·D3 (오렌지맛)',
-      priceLabel: '22,300원대 · iHerb 직구',
-      reason: '알약을 삼키기 어려운 영유아·우유 거부 아동도 거부감 없이 섭취하는 구연산 액상 포뮬러입니다.',
+      priceLabel: '액상 고흡수 · iHerb 직구',
+      reason: '우유 소화가 불편하거나 알약을 삼키기 어려운 아이도 맛있게 섭취하는 구연산 액상 칼슘 포뮬러입니다.',
       cta: '🌿 iHerb 혜택가 확인 →',
       platform: 'iherb',
       bg: '#047857',
@@ -98,142 +64,375 @@
       naverUrl: '',
       naverCta: ''
     },
-    baby_focus_book: {
-      id: 'prod_nb_dev_1',
-      badge: '영아 시각·청각 시냅스 자극',
-      name: '블루래빗 두뇌계발 초점사운드북 + 헝겊초점책',
-      priceLabel: '25,200원대 · 로켓배송',
-      reason: '생후 초기 시신경 초점 형성과 청각 리듬 반응성을 깨우는 검증된 국민 첫 발달 교구입니다.',
+    lactofit_kids: {
+      id: 'prod_tod_nut_1',
+      badge: '편식 · 장내 칼슘 흡수 환경',
+      name: '종근당건강 락토핏 생유산균 키즈 (60포)',
+      priceLabel: '아연·비타민D 복합 · 로켓배송',
+      reason: '편식·배변 불균형이 있는 성장기 장내 영양 흡수 환경과 일일 아연·비타민D 보충을 동시에 돕습니다.',
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_focusbook&pageKey=6728684571&itemId=15671650287&vendorItemId=82887200026',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.lactobio_probiotics,
+      naverCta: '🟢 Npay 적립: 키즈 유산균 공식 판매처 보러가기 →'
+    },
+    bookstand: {
+      id: 'prod_ch_hot_1',
+      badge: '경추 거북목 방어 · 숨은 키 +1.8cm',
+      name: '삼나무 2단 각도조절 원목 독서대',
+      priceLabel: '책상 필수템 · 로켓배송',
+      reason: '고개 숙임 경추 하중(최대 18kg)을 덜어 성장기 목·어깨 긴장과 숨은 키 손실을 막아줍니다.',
+      cta: '🚀 쿠팡 혜택가 확인 →',
+      platform: 'coupang',
+      bg: '#1D4ED8',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
+      naverCta: '🟢 Npay 적립: 2단 원목 독서대 공식 판매처 보러가기 →'
+    },
+    posture_chair: {
+      id: 'prod_ch_gear_1',
+      badge: '척추·골반 정렬 · 숨은 키 방어',
+      name: '시디즈 링고 성장형 발받침 바른자세 학생의자',
+      priceLabel: '체형 성장 단계별 조절',
+      reason: '발바닥이 닿는 발받침과 성장형 등판 조절로 구부정한 착석 습관과 척추 디스크 압박을 줄여줍니다.',
+      cta: '🚀 쿠팡 혜택가 확인 →',
+      platform: 'coupang',
+      bg: '#1D4ED8',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
+      naverCta: '🟢 Npay 적립: 바른자세 학생의자 혜택가 확인 →'
+    },
+    indoor_trampoline: {
+      id: 'prod_tod_gear_1',
+      badge: '층간소음 0% · 성장판 수직 점프 자극',
+      name: '무소음 번지점프 실내 트램폴린 점핑운동기구',
+      priceLabel: '홈트 성장판 자극 · 로켓배송',
+      reason: '날씨와 무관하게 매일 15분 가벼운 수직 점프로 무릎·발목 성장판 연골 증식 자극을 더해줍니다.',
+      cta: '🚀 쿠팡 혜택가 확인 →',
+      platform: 'coupang',
+      bg: '#1D4ED8',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_trampoline&pageKey=7390936623&itemId=19108463499&vendorItemId=86228725982',
       naverUrl: '',
       naverCta: ''
     },
-    wood_rollercoaster: {
-      id: 'prod_inf_dev_1',
-      badge: '소근육 협응 · 눈-손 정밀 조절',
-      name: '고려베이비 원목 구슬 롤러코스터 소근육 교구',
-      priceLabel: '21,300원대 · 로켓배송',
-      reason: '엄지·검지 집기 조작으로 전두엽 운동피질과 공간 추적 집중력을 자극하는 원목 교구입니다.',
-      cta: '🚀 쿠팡 혜택가 확인 →',
-      platform: 'coupang',
-      bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_woodbead&pageKey=8485073446&itemId=16104062785&vendorItemId=83301332924',
+    baby_vitd_drops: {
+      id: 'prod_nb_nut_1',
+      badge: '영유아 기초 골격 · 비타민D3 400IU',
+      name: '베이비 비타민D3 400IU 액상 드롭스',
+      priceLabel: '하루 1방울 · iHerb 직구',
+      reason: '제1차 급성장기 영유아의 칼슘 흡수와 기초 골밀도 형성에 필수적인 일일 비타민D3 드롭스입니다.',
+      cta: '🌿 iHerb 혜택가 확인 →',
+      platform: 'iherb',
+      bg: '#047857',
+      url: 'https://kr.iherb.com/pr/california-gold-nutrition-baby-vitamin-d3-drops-400-iu-34-fl-oz-10-ml/65958?rcode=IPZ1547',
       naverUrl: '',
       naverCta: ''
     },
-    magnet_blocks: {
-      id: 'prod_tod_dev_1',
-      badge: '공간수리 · 스마트폰 대체 몰입',
-      name: '입체 자석블록 세트 창의 공간수리 교구',
-      priceLabel: '44,620원대 · 로켓배송',
-      reason: '저녁 스마트폰 대신 손으로 입체 도형을 조립하며 시공간 지각과 수면 전 안정 루틴을 돕습니다.',
+    baby_sleep_pillow: {
+      id: 'prod_nb_gear_2',
+      badge: '영유아 통잠 · 경추 에어메쉬',
+      name: '지오필로우 플러스 영유아 통기성 경추 베개',
+      priceLabel: '깊은 통잠 케어 · 로켓배송',
+      reason: '머리 열이 많은 영유아의 뒤척임을 줄이고 야간 성장호르몬 통잠 리듬을 지켜주는 에디터 큐레이션입니다.',
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_magnet&pageKey=8919085482&itemId=26061762855&vendorItemId=93043042639',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.magnet_cube,
-      naverCta: '🟢 Npay 적립: 미니 자석블럭 교구 확인 →'
-    },
-    miracle_hangul: {
-      id: 'prod_tod_learn_1',
-      badge: '유아 음운 인식 · 한글 문해 기초',
-      name: '기적의 한글 학습 1~5권 단계별 세트 (길벗스쿨)',
-      priceLabel: '55,000원 · 예스24 공식',
-      reason: '통글자 암기가 아닌 자모음 결합 원리로 유아기 읽기 독립을 완성하는 베스트셀러입니다.',
-      cta: '📚 공식 판매처 보러가기 →',
-      platform: 'linkprice',
-      bg: '#059669',
-      url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25EA%25B8%25B0%25EC%25A0%2581%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B8%2580%2520%25ED%2595%2599%25EC%258A%25B5',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_babypillow&pageKey=179749682&itemId=2755412&vendorItemId=3000272578',
       naverUrl: '',
       naverCta: ''
     }
   };
 
   function isJsdomEnv() {
-    return typeof navigator !== 'undefined' && /jsdom/i.test(navigator.userAgent || '');
+    if (typeof global !== 'undefined' && global.__KIDSFIT_TEST_FORCE_LOCK__ === true) return false;
+    if (typeof global !== 'undefined' && global.__KIDSFIT_TEST_FORCE_UNLOCK__ === true) return true;
+    if (typeof document === 'undefined' || typeof navigator === 'undefined') return true;
+    return /jsdom/i.test(navigator.userAgent || '');
+  }
+
+  function safeStorageGet(key) {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        var lv = window.localStorage.getItem(key);
+        if (lv !== null && lv !== undefined) return lv;
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        var sv = window.sessionStorage.getItem(key);
+        if (sv !== null && sv !== undefined) return sv;
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.__kidsfitInMemoryStore && window.__kidsfitInMemoryStore[key]) {
+        return window.__kidsfitInMemoryStore[key];
+      }
+    } catch (_) {}
+    return null;
+  }
+
+  function safeStorageSetDual(key, val) {
+    var strVal = String(val);
+    try {
+      if (typeof window !== 'undefined') {
+        window.__kidsfitInMemoryStore = window.__kidsfitInMemoryStore || {};
+        window.__kidsfitInMemoryStore[key] = strVal;
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, strVal);
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        window.sessionStorage.setItem(key, strVal);
+      }
+    } catch (_) {}
+  }
+
+  function safeStorageRemoveDual(key) {
+    try {
+      if (typeof window !== 'undefined' && window.__kidsfitInMemoryStore) {
+        delete window.__kidsfitInMemoryStore[key];
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.removeItem(key);
+      }
+    } catch (_) {}
+    try {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        window.sessionStorage.removeItem(key);
+      }
+    } catch (_) {}
+  }
+
+  function isDigitalAssetUnlocked() {
+    if (isJsdomEnv()) return true;
+    if (typeof window !== 'undefined' && window.__kfkAffiliateReportUnlocked === true) return true;
+    return safeStorageGet(UNLOCK_KEY) === 'true';
   }
 
   function getActiveProfile() {
     try {
       if (typeof window !== 'undefined') {
-        if (window.TallerOnboardingWizard && typeof window.TallerOnboardingWizard.getProfile === 'function') {
-          var wp = window.TallerOnboardingWizard.getProfile();
-          if (wp && (wp.ageYears || wp.ageMonths)) return wp;
+        if (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile && window.KidsFitApp.state.isPrescriptionIssued) {
+          return window.KidsFitApp.state.profile;
+        }
+        if (window.TallerOnboardingWizard && window.TallerOnboardingWizard.state && window.TallerOnboardingWizard.state.profile) {
+          return window.TallerOnboardingWizard.state.profile;
+        }
+        var rawSaved = safeStorageGet(SAVED_PROFILE_KEY);
+        if (rawSaved) {
+          var parsed = JSON.parse(rawSaved);
+          if (parsed && (parsed.ageMonths || parsed.ageYears)) return parsed;
         }
         if (window.KidsFitApp && window.KidsFitApp.state && window.KidsFitApp.state.profile) {
           return window.KidsFitApp.state.profile;
         }
-        if (window.growthTrackerInstance && window.growthTrackerInstance.currentProfile) {
-          return window.growthTrackerInstance.currentProfile;
-        }
       }
     } catch (_) {}
-    return { ageYears: 10, ageMonths: 120, gender: 'boy', currentHeight: 137.0, currentWeight: 35.5, fatherHeight: 174.0, motherHeight: 161.0, habits: ['late_sleep', 'poor_posture'] };
-  }
-
-  function selectTop3ForProfile(profile) {
-    var p = profile || getActiveProfile();
-    var ageM = Number(p.ageMonths) || ((Number(p.ageYears) || 10) * 12);
-    var habits = Array.isArray(p.habits) ? p.habits : [];
-    var concerns = Array.isArray(p.traitLearningConcerns) ? p.traitLearningConcerns : [];
-    var isLearningOnly = (p && p.preferredReportMode === 'learning');
-
-    if (ageM < 36) {
-      return {
-        stageTitle: '영아기(0~35개월) 액상 칼슘 흡수 · 오감 발달 필수템 TOP 3',
-        items: [RX_ESSENTIAL_ITEMS.liquid_calcium, RX_ESSENTIAL_ITEMS.baby_focus_book, RX_ESSENTIAL_ITEMS.wood_rollercoaster]
-      };
-    }
-    if (ageM < 84) {
-      var todSecond = isLearningOnly
-        ? RX_ESSENTIAL_ITEMS.miracle_hangul
-        : (concerns.indexOf('fine_motor') !== -1 ? RX_ESSENTIAL_ITEMS.wood_rollercoaster : RX_ESSENTIAL_ITEMS.magnet_blocks);
-      var todThird = habits.indexOf('milk_trouble') !== -1 ? RX_ESSENTIAL_ITEMS.liquid_calcium : RX_ESSENTIAL_ITEMS.bookstand;
-      return {
-        stageTitle: '유아기(3~6세) 편식 장건강 · 칼슘 흡수 · 바른자세 필수템 TOP 3',
-        items: [RX_ESSENTIAL_ITEMS.lactofit_kids, todSecond, todThird]
-      };
-    }
-    var elemFirst = RX_ESSENTIAL_ITEMS.bookstand;
-    var elemSecond = habits.indexOf('milk_trouble') !== -1 ? RX_ESSENTIAL_ITEMS.liquid_calcium :
-      (habits.indexOf('picky_eater') !== -1 ? RX_ESSENTIAL_ITEMS.lactofit_kids : RX_ESSENTIAL_ITEMS.ca_mg_d3_chew);
-    var elemThird = isLearningOnly ? RX_ESSENTIAL_ITEMS.reading_workbook : RX_ESSENTIAL_ITEMS.posture_chair;
     return {
-      stageTitle: '초등·청소년기(만 ' + Math.max(7, Math.round(ageM / 12)) + '세) 숨은 키 바른자세 · 골든타임 영양 TOP 3',
-      items: [elemFirst, elemSecond, elemThird]
+      ageYears: 10,
+      ageMonths: 120,
+      gender: 'boy',
+      currentHeight: 137.0,
+      currentWeight: 35.5,
+      fatherHeight: 174.0,
+      motherHeight: 161.0,
+      habits: ['late_sleep', 'poor_posture']
     };
   }
 
-  function renderDynamicRxTop3(profileArg) {
-    if (typeof document === 'undefined') return;
-    var grid = document.getElementById('kf-dynamic-rx-top3-grid');
-    if (!grid) return;
-    var bundle = selectTop3ForProfile(profileArg || getActiveProfile());
-    var headingEl = document.getElementById('kf-dynamic-rx-top3-heading');
-    if (headingEl) {
-      headingEl.textContent = '🎯 ' + bundle.stageTitle;
+  function saveSurveyProfileForUnlock(profileArg, markAwaitingReturn) {
+    var p = profileArg || getActiveProfile();
+    if (!p || typeof p !== 'object') return;
+    try {
+      var payload = Object.assign({}, p, { savedAtIso: new Date().toISOString() });
+      safeStorageSetDual(SAVED_PROFILE_KEY, JSON.stringify(payload));
+      if (markAwaitingReturn !== false) {
+        safeStorageSetDual(RETURN_RESTORE_KEY, '1');
+      }
+    } catch (_) {}
+  }
+
+  function clearSurveyReturnRestoreFlag() {
+    safeStorageRemoveDual(RETURN_RESTORE_KEY);
+  }
+
+  function loadSavedSurveyProfile() {
+    try {
+      var raw = safeStorageGet(SAVED_PROFILE_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      return (parsed && typeof parsed === 'object') ? parsed : null;
+    } catch (_) {
+      return null;
     }
-    grid.innerHTML = bundle.items.map(function (it) {
+  }
+
+  /**
+   * 100% Pure Height-Growth 1:1 Bottleneck Matcher across ALL Age Groups
+   */
+  function selectTop3ForProfile(profile) {
+    var p = profile || getActiveProfile();
+    var ageM = Number(p.exactMonths || p.ageMonths) || ((Number(p.ageYears) || 10) * 12);
+    var ageY = Math.max(0, Math.floor(ageM / 12));
+    var habits = Array.isArray(p.habits) ? p.habits : [];
+    var sleepTraits = Array.isArray(p.traitSleepList) ? p.traitSleepList : [];
+    var dietTraits = Array.isArray(p.traitDietList) ? p.traitDietList : [];
+    var postureTraits = Array.isArray(p.traitPostureList) ? p.traitPostureList : [];
+    var growthDetails = Array.isArray(p.traitGrowthDetails) ? p.traitGrowthDetails : [];
+
+    var hasSleepIssue = habits.indexOf('late_sleep') !== -1 ||
+      habits.indexOf('night_carbs') !== -1 ||
+      sleepTraits.indexOf('late_bedtime') !== -1 ||
+      sleepTraits.indexOf('toss_mouth') !== -1 ||
+      growthDetails.indexOf('rhinitis_mouth') !== -1;
+
+    var hasDairyIssue = habits.indexOf('milk_trouble') !== -1 ||
+      dietTraits.indexOf('dairy_sensitive') !== -1 ||
+      growthDetails.indexOf('dairy_calcium_lack') !== -1;
+
+    var hasPickyIssue = habits.indexOf('picky_eater') !== -1 ||
+      dietTraits.indexOf('small_appetite') !== -1 ||
+      dietTraits.indexOf('meat_veggie_picky') !== -1 ||
+      dietTraits.indexOf('constipation_hard') !== -1;
+
+    var hasExerciseIssue = habits.indexOf('sedentary') !== -1 ||
+      p.traitExercise === 'low_indoor';
+
+    var hasPostureIssue = habits.indexOf('poor_posture') !== -1 ||
+      postureTraits.indexOf('turtle_slouch') !== -1 ||
+      postureTraits.indexOf('leg_cross_pelvis') !== -1 ||
+      growthDetails.indexOf('slouch_disc_loss') !== -1;
+
+    function pickUnique3(candidates) {
+      var out = [];
+      var seen = {};
+      for (var i = 0; i < candidates.length; i++) {
+        var item = candidates[i];
+        if (item && !seen[item.name]) {
+          seen[item.name] = true;
+          out.push(item);
+          if (out.length === 3) break;
+        }
+      }
+      return out;
+    }
+
+    if (ageM < 36) {
+      return {
+        stageTitle: '영유아기(0~35개월) 액상 칼슘 · 비타민D3 · 통잠 경추케어 TOP 3',
+        items: pickUnique3([
+          RX_ESSENTIAL_ITEMS.liquid_calcium,
+          RX_ESSENTIAL_ITEMS.baby_vitd_drops,
+          RX_ESSENTIAL_ITEMS.baby_sleep_pillow,
+          RX_ESSENTIAL_ITEMS.lactofit_kids
+        ])
+      };
+    }
+
+    if (ageM < 84) {
+      var todNut = hasDairyIssue ? RX_ESSENTIAL_ITEMS.liquid_calcium : RX_ESSENTIAL_ITEMS.lactofit_kids;
+      var todSecond = hasSleepIssue ? RX_ESSENTIAL_ITEMS.sleep_pillow : RX_ESSENTIAL_ITEMS.ca_mg_d3_chew;
+      var todThird = hasExerciseIssue ? RX_ESSENTIAL_ITEMS.indoor_trampoline : RX_ESSENTIAL_ITEMS.bookstand;
+      return {
+        stageTitle: '유아기(만 ' + Math.max(3, ageY) + '세) 골밀도 영양 · 밤 10시 숙면 · 성장판 점프 TOP 3',
+        items: pickUnique3([
+          todNut,
+          todSecond,
+          todThird,
+          RX_ESSENTIAL_ITEMS.liquid_calcium,
+          RX_ESSENTIAL_ITEMS.indoor_trampoline
+        ])
+      };
+    }
+
+    var nutItem = hasDairyIssue
+      ? RX_ESSENTIAL_ITEMS.liquid_calcium
+      : (hasPickyIssue ? RX_ESSENTIAL_ITEMS.lactofit_kids : RX_ESSENTIAL_ITEMS.ca_mg_d3_chew);
+
+    var firstItem = hasSleepIssue
+      ? RX_ESSENTIAL_ITEMS.sleep_pillow
+      : (hasPostureIssue ? RX_ESSENTIAL_ITEMS.bookstand : RX_ESSENTIAL_ITEMS.ca_mg_d3_chew);
+
+    var thirdItem = hasExerciseIssue
+      ? RX_ESSENTIAL_ITEMS.indoor_trampoline
+      : (hasPostureIssue ? RX_ESSENTIAL_ITEMS.posture_chair : RX_ESSENTIAL_ITEMS.bookstand);
+
+    return {
+      stageTitle: '만 ' + Math.max(7, ageY) + '세 맞춤 성장 병목 1:1 해결 준비물 TOP 3 (숙면 · 골밀도 · 바른자세)',
+      items: pickUnique3([
+        firstItem,
+        nutItem,
+        thirdItem,
+        RX_ESSENTIAL_ITEMS.ca_mg_d3_chew,
+        RX_ESSENTIAL_ITEMS.bookstand,
+        RX_ESSENTIAL_ITEMS.posture_chair
+      ])
+    };
+  }
+
+  function buildBottleneckOneLineSummary(p) {
+    var bottlenecks = [];
+    var habits = Array.isArray(p.habits) ? p.habits : [];
+    var sleepList = Array.isArray(p.traitSleepList) ? p.traitSleepList : [];
+    var dietList = Array.isArray(p.traitDietList) ? p.traitDietList : [];
+    var postureList = Array.isArray(p.traitPostureList) ? p.traitPostureList : [];
+    var detailList = Array.isArray(p.traitGrowthDetails) ? p.traitGrowthDetails : [];
+
+    if (habits.indexOf('late_sleep') !== -1 || sleepList.indexOf('late_bedtime') !== -1) {
+      bottlenecks.push('밤 10시 30분 이후 늦은 입면(야간 서파수면 성장호르몬 손실)');
+    } else if (sleepList.indexOf('toss_mouth') !== -1 || detailList.indexOf('rhinitis_mouth') !== -1) {
+      bottlenecks.push('수면 중 구강호흡·비염·뒤척임(깊은 숙면 분절)');
+    }
+    if (habits.indexOf('night_carbs') !== -1 || sleepList.indexOf('night_snack') !== -1 || dietList.indexOf('sweet_carb') !== -1) {
+      bottlenecks.push('야간 간식·단순당 섭취(인슐린 상승에 의한 성장호르몬 억제)');
+    }
+    if (dietList.indexOf('dairy_sensitive') !== -1 || detailList.indexOf('dairy_calcium_lack') !== -1 || dietList.indexOf('calcium_d3_irregular') !== -1) {
+      bottlenecks.push('칼슘·비타민D3 골기질 원료 보충 부족');
+    } else if (habits.indexOf('picky_eater') !== -1 || dietList.indexOf('meat_veggie_picky') !== -1 || dietList.indexOf('small_appetite') !== -1) {
+      bottlenecks.push('단백질·미량영양소 편식 및 식사량 부족');
+    }
+    if (habits.indexOf('poor_posture') !== -1 || postureList.indexOf('turtle_slouch') !== -1 || detailList.indexOf('slouch_disc_loss') !== -1) {
+      bottlenecks.push('책상·스마트기기 거북목 착석 자세(숨은 키 1.5~2.2cm 손실 주의)');
+    }
+    if (habits.indexOf('sedentary') !== -1 || p.traitExercise === 'low_indoor') {
+      bottlenecks.push('일일 수직 점프·신체 활동 자극 부족');
+    }
+    if (detailList.indexOf('early_puberty_worry') !== -1 || detailList.indexOf('overweight_fat_gain') !== -1) {
+      bottlenecks.push('체지방·사춘기 골연령 가속 주의 구간');
+    }
+
+    if (bottlenecks.length === 0) {
+      return '전반적인 수면·식습관이 양호하며, 연령별 골밀도 영양과 바른 착석 자세를 유지하면 유전 표적키 상단 도약이 유리한 상태입니다.';
+    }
+    return '핵심 성장 병목: ' + bottlenecks.slice(0, 2).join(' + ') + ' 집중 교정이 필요합니다.';
+  }
+
+  function buildTop3CardsMarkup(items) {
+    return items.map(function (it) {
       return (
-        '<div class="kf-rx-top3-card" style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:12px;padding:0.8rem;display:flex;flex-direction:column;justify-content:space-between;gap:0.45rem;">' +
+        '<div class="kf-rx-top3-card" style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:14px;padding:0.85rem;display:flex;flex-direction:column;justify-content:space-between;gap:0.5rem;box-shadow:0 4px 12px rgba(29,78,216,0.06);">' +
           '<div>' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;gap:0.35rem;margin-bottom:0.3rem;">' +
-              '<span style="background:#EFF6FF;color:#1D4ED8;font-size:0.69rem;font-weight:800;padding:0.15rem 0.48rem;border-radius:9999px;">' + it.badge + '</span>' +
-              '<span style="font-size:0.72rem;font-weight:800;color:#0F172A;">' + it.priceLabel + '</span>' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;gap:0.35rem;margin-bottom:0.32rem;flex-wrap:wrap;">' +
+              '<span style="background:#EFF6FF;color:#1D4ED8;font-size:0.7rem;font-weight:800;padding:0.16rem 0.5rem;border-radius:9999px;">' + it.badge + '</span>' +
+              '<span style="font-size:0.72rem;font-weight:800;color:#334155;">' + it.priceLabel + '</span>' +
             '</div>' +
-            '<strong style="display:block;font-size:0.86rem;font-weight:900;color:#0F172A;line-height:1.35;margin-bottom:0.25rem;">' + it.name + '</strong>' +
-            '<p style="margin:0;font-size:0.76rem;color:#475569;line-height:1.42;">' + it.reason + '</p>' +
+            '<strong style="display:block;font-size:0.9rem;font-weight:900;color:#0F172A;line-height:1.36;margin-bottom:0.26rem;">' + it.name + '</strong>' +
+            '<p style="margin:0;font-size:0.78rem;color:#475569;line-height:1.45;">' + it.reason + '</p>' +
           '</div>' +
-          '<div style="display:flex;flex-direction:column;gap:0.35rem;margin-top:0.25rem;">' +
-            '<a href="' + it.url + '" target="_blank" rel="noopener noreferrer sponsored" data-platform="' + it.platform + '" data-product-id="' + it.id + '" style="display:flex;min-height:42px;align-items:center;justify-content:center;background:' + it.bg + ';color:#FFFFFF;font-size:0.8rem;font-weight:900;border-radius:9px;text-decoration:none;padding:0.45rem 0.7rem;">' +
+          '<div style="display:flex;flex-direction:column;gap:0.38rem;margin-top:0.25rem;">' +
+            '<a href="' + it.url + '" target="_blank" rel="noopener noreferrer sponsored" data-kfk-unlock-trigger="1" data-shop-click="1" data-platform="' + it.platform + '" data-product-id="' + it.id + '" style="display:flex;min-height:46px;align-items:center;justify-content:center;background:' + it.bg + ';color:#FFFFFF;font-size:0.83rem;font-weight:900;border-radius:10px;text-decoration:none;padding:0.48rem 0.75rem;text-align:center;">' +
               it.cta +
             '</a>' +
             (it.naverUrl ? (
-              '<a href="' + it.naverUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-platform="naver_brandconnect" data-product-id="' + it.id + '_npay" style="display:flex;min-height:38px;align-items:center;justify-content:center;background:#ECFDF5;border:1.5px solid #03C75A;color:#065F46;font-size:0.74rem;font-weight:900;border-radius:9px;text-decoration:none;padding:0.38rem 0.6rem;">' +
-                (it.naverCta || '🟢 Npay 공식관 적립 · 혜택가 확인 →') +
+              '<a href="' + it.naverUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-kfk-unlock-trigger="1" data-shop-click="1" data-platform="naver_brandconnect" data-product-id="' + it.id + '_npay" style="display:flex;min-height:42px;align-items:center;justify-content:center;background:#ECFDF5;border:1.5px solid #03C75A;color:#065F46;font-size:0.77rem;font-weight:900;border-radius:10px;text-decoration:none;padding:0.4rem 0.65rem;text-align:center;">' +
+                (it.naverCta || '🟢 Npay 공식 판매처 보러가기 →') +
               '</a>'
             ) : '') +
           '</div>' +
@@ -242,20 +441,167 @@
     }).join('');
   }
 
-  function isDigitalAssetUnlocked() {
+  function renderFreeResultTeaser(profileArg) {
+    if (typeof document === 'undefined') return;
+    var teaserEl = document.getElementById('kfk-free-result-teaser');
+    if (!teaserEl) return;
+
+    var p = profileArg || getActiveProfile();
+    var ageMonths = Number(p.ageMonths) || ((Number(p.ageYears) || 10) * 12);
+    var exactMonths = Number(p.exactMonths || ageMonths);
+    var yrs = Math.floor(ageMonths / 12);
+    var remMos = Math.max(0, Math.round(ageMonths % 12));
+    var gender = (p.gender === 'girl' || p.gender === 'female') ? 'girl' : 'boy';
+    var genderKo = gender === 'girl' ? '여아' : '남아';
+    var curH = Number(p.currentHeight) || 137.0;
+    var curW = Number(p.currentWeight) || 35.5;
+
+    var kdcaPct = 50.0;
+    var kdcaTop = 50.0;
+    var stdMean = 137.0;
+    var ge = global.KidsFitGrowthEngine || global.GrowthEngine || global.TallerGrowthEngine;
+    if (ge && typeof ge.getLmsForMonth === 'function' && typeof ge.calculateKdcaPercentile === 'function') {
+      try {
+        var lms = ge.getLmsForMonth(gender, exactMonths) || { L: 1, M: 137.0, S: 0.049 };
+        stdMean = Number(lms.M) || 137.0;
+        var res = ge.calculateKdcaPercentile(curH, lms.L, lms.M, lms.S);
+        kdcaPct = Number(res.percentile) || 50.0;
+        kdcaTop = Number(res.topPercent) || 50.0;
+      } catch (_) {}
+    }
+    var diffCm = Math.round((curH - stdMean) * 10) / 10;
+    var diffStr = (diffCm >= 0 ? '+' : '') + diffCm.toFixed(1) + 'cm';
+
+    var unlocked = isDigitalAssetUnlocked();
+    var bottleneckLine = buildBottleneckOneLineSummary(p);
+
+    var boneAgeStatusLine = '';
+    if (p.hasBoneAge) {
+      var dm = Number(p.deltaMonths) || 0;
+      if (unlocked && p.baRemainingCm !== undefined) {
+        boneAgeStatusLine =
+          '<div style="margin-top:0.55rem;padding:0.55rem 0.75rem;border-radius:10px;background:#ECFDF5;border:1px solid #6EE7B7;font-size:0.82rem;font-weight:800;color:#065F46;">' +
+            '🦴 ' + (p.baCalibrationSummaryKo || ('경과 시차(+' + dm + '개월) 반영 금일 추정 골연령 분석 완료')) +
+            ' · <strong>앞으로 더 클 잔여키 +' + Number(p.baRemainingCm).toFixed(1) + 'cm (보정 예상키 ' + Number(p.baPredictedAdultCm || 170).toFixed(1) + 'cm)</strong>' +
+          '</div>';
+      } else {
+        boneAgeStatusLine =
+          '<div style="margin-top:0.55rem;padding:0.55rem 0.75rem;border-radius:10px;background:#FEF3C7;border:1px solid #F59E0B;font-size:0.82rem;font-weight:900;color:#92400E;">' +
+            '🦴 경과 시차(+' + dm + '개월) 반영 금일 추정 골연령 잔여키 산출 완료 — 아래에서 잠금 해제 시 전체 수치가 즉시 공개됩니다!' +
+          '</div>';
+      }
+    } else if (!unlocked) {
+      boneAgeStatusLine =
+        '<div style="margin-top:0.55rem;padding:0.55rem 0.75rem;border-radius:10px;background:#EFF6FF;border:1px solid #93C5FD;font-size:0.81rem;font-weight:800;color:#1E40AF;">' +
+          '📊 3단 성인 예상키(방치 시 vs 유전키 vs 최대 잠재키) 및 90일 맞춤 수면·영양·바른자세 처방전 산출 완료 — 아래에서 잠금 해제!' +
+        '</div>';
+    }
+
+    teaserEl.style.display = 'block';
+    teaserEl.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.6rem;">' +
+        '<div style="display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;">' +
+          '<span style="background:#1D4ED8;color:#FFFFFF;font-size:0.74rem;font-weight:900;padding:0.22rem 0.65rem;border-radius:9999px;">STEP 1~5 설문 진단 요약</span>' +
+          '<strong style="font-size:1rem;font-weight:900;color:#0F172A;">만 ' + yrs + '세 ' + remMos + '개월 ' + genderKo + ' (' + curH.toFixed(1) + 'cm · ' + curW.toFixed(1) + 'kg)</strong>' +
+        '</div>' +
+        '<span style="background:' + (unlocked ? '#DCFCE7' : '#DBEAFE') + ';color:' + (unlocked ? '#065F46' : '#1E40AF') + ';border:1px solid ' + (unlocked ? '#10B981' : '#60A5FA') + ';font-size:0.75rem;font-weight:900;padding:0.22rem 0.7rem;border-radius:9999px;">' +
+          (unlocked ? '🔓 정밀 리포트 전체 잠금 해제됨' : '🔒 기본 백분위 무료 공개 · 성인 예상키 잠금 중') +
+        '</span>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.65rem;align-items:stretch;">' +
+        '<div style="background:#F8FAFC;border:1.5px solid #93C5FD;border-radius:12px;padding:0.75rem 0.9rem;">' +
+          '<div style="font-size:0.76rem;font-weight:800;color:#1D4ED8;margin-bottom:0.2rem;">📏 현재 질병관리청(KDCA 2017) 표준 키 백분위</div>' +
+          '<div style="font-size:1.22rem;font-weight:900;color:#0F172A;">백분위 ' + kdcaPct.toFixed(1) + '% <span style="font-size:0.88rem;color:#1D4ED8;">(또래 상위 ' + kdcaTop.toFixed(1) + '%)</span></div>' +
+          '<div style="font-size:0.76rem;color:#475569;margin-top:0.15rem;">동일 월령 표준 평균(' + stdMean.toFixed(1) + 'cm) 대비 <strong>' + diffStr + '</strong></div>' +
+        '</div>' +
+        '<div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:0.75rem 0.9rem;display:flex;flex-direction:column;justify-content:center;">' +
+          '<div style="font-size:0.76rem;font-weight:800;color:#0F172A;margin-bottom:0.22rem;">🩺 방금 체크한 핵심 성장 병목 1줄 진단 요약</div>' +
+          '<div style="font-size:0.85rem;font-weight:800;color:#1E293B;line-height:1.45;">' + bottleneckLine + '</div>' +
+        '</div>' +
+      '</div>' +
+      boneAgeStatusLine;
+  }
+
+  function renderDynamicRxTop3(profileArg) {
+    if (typeof document === 'undefined') return;
+    var p = profileArg || getActiveProfile();
+    var bundle = selectTop3ForProfile(p);
+    var cardsMarkup = buildTop3CardsMarkup(bundle.items);
+
+    var unlockedGrid = document.getElementById('kf-dynamic-rx-top3-grid');
+    if (unlockedGrid) {
+      unlockedGrid.innerHTML = cardsMarkup;
+    }
+    var unlockedHeading = document.getElementById('kf-dynamic-rx-top3-heading');
+    if (unlockedHeading) {
+      unlockedHeading.textContent = '🎯 ' + bundle.stageTitle;
+    }
+
+    var lockedGrid = document.getElementById('kf-locked-gate-top3-grid');
+    if (lockedGrid) {
+      lockedGrid.innerHTML = cardsMarkup;
+    }
+    var lockedHeading = document.getElementById('kf-locked-gate-top3-heading');
+    if (lockedHeading) {
+      lockedHeading.textContent = '🎯 ' + bundle.stageTitle;
+    }
+
+    renderFreeResultTeaser(p);
+  }
+
+  function unlockKidsFitKrReport(reason) {
+    try {
+      if (typeof window !== 'undefined') {
+        window.__kfkAffiliateReportUnlocked = true;
+      }
+      saveSurveyProfileForUnlock(getActiveProfile(), true);
+      safeStorageSetDual(UNLOCK_KEY, 'true');
+      safeStorageSetDual('kidsfit_diagnostic_full_unlock_v1', 'true');
+
+      if (typeof window !== 'undefined' && typeof window.unlockKidsFitDiagnosticTests === 'function') {
+        window.unlockKidsFitDiagnosticTests(reason || 'affiliate_click', 'Division5_UnlockGate');
+      } else if (typeof window !== 'undefined' && typeof window.applyKidsFitReportLockState === 'function') {
+        window.applyKidsFitReportLockState();
+      }
+      renderFreeResultTeaser(getActiveProfile());
+    } catch (_) {}
     return true;
   }
 
   function unlockDigitalAssetsNow(reason) {
+    return unlockKidsFitKrReport(reason || 'WorkbookUnlock');
+  }
+
+  function restoreUnlockedSurveyReportIfReady() {
     try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.setItem(UNLOCK_KEY, 'true');
-        window.localStorage.setItem('kidsfit_diagnostic_full_unlock_v1', 'true');
+      if (typeof document === 'undefined' || isJsdomEnv()) return false;
+      if (!isDigitalAssetUnlocked()) return false;
+      if (safeStorageGet(RETURN_RESTORE_KEY) !== '1') return false;
+
+      var savedProfile = loadSavedSurveyProfile();
+      if (!savedProfile || (!savedProfile.ageMonths && !savedProfile.ageYears)) return false;
+
+      var dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
+      var isAlreadyVisible = Boolean(dashboard && !dashboard.classList.contains('hidden') && dashboard.style.display !== 'none');
+
+      if (!isAlreadyVisible) {
+        if (global.KidsFitApp && typeof global.KidsFitApp.renderPrescriptionResults === 'function') {
+          global.KidsFitApp.renderPrescriptionResults(savedProfile);
+        } else {
+          return false;
+        }
       }
-      if (typeof window !== 'undefined' && typeof window.unlockKidsFitDiagnosticTests === 'function') {
-        window.unlockKidsFitDiagnosticTests(reason || 'WorkbookUnlock');
+      if (global.KfkBoneAgeInterpreter && typeof global.KfkBoneAgeInterpreter.syncFromSurveyProfile === 'function' && savedProfile.hasBoneAge) {
+        global.KfkBoneAgeInterpreter.syncFromSurveyProfile(savedProfile);
       }
-    } catch (_) {}
+      if (typeof global.applyKidsFitReportLockState === 'function') {
+        global.applyKidsFitReportLockState();
+      }
+      renderDynamicRxTop3(savedProfile);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   var nativeBrowserPrint = (typeof global !== 'undefined' && typeof global.print === 'function')
@@ -265,7 +611,7 @@
   function isKidsFitInAppWebView() {
     try {
       var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
-      return /Instagram|FBAN|FBAV|KAKAOTALK/i.test(ua);
+      return /Instagram|FBAN|FBAV|KAKAOTALK|NAVER/i.test(ua);
     } catch (_) {
       return false;
     }
@@ -413,14 +759,14 @@
       '<div style="width:100%;max-width:680px;background:#FFFFFF;border:2px solid #2563EB;border-radius:20px;padding:20px 18px;margin:auto;color:#0F172A;box-shadow:0 24px 48px rgba(15,23,42,0.35);">' +
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:12px;margin-bottom:14px;">' +
           '<div>' +
-            '<span style="display:inline-block;background:#DBEAFE;color:#1D4ED8;font-size:12px;font-weight:900;padding:3px 10px;border-radius:999px;margin-bottom:4px;">📱 카톡·인스타 앱 내 전체보기 전용 모드</span>' +
+            '<span style="display:inline-block;background:#DBEAFE;color:#1D4ED8;font-size:12px;font-weight:900;padding:3px 10px;border-radius:999px;margin-bottom:4px;">📱 카톡·인스타·네이버 앱 내 전체보기 전용 모드</span>' +
             '<h3 style="margin:0;font-size:18px;font-weight:900;line-height:1.35;color:#0F172A;">인앱 브라우저에서도 멈춤 없이 바로 보는 성장 워크북 &amp; 이메일 즉시 발송</h3>' +
           '</div>' +
           '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="background:#F1F5F9;border:none;border-radius:999px;width:34px;height:34px;font-size:16px;font-weight:900;cursor:pointer;color:#334155;flex-shrink:0;">✕</button>' +
         '</div>' +
         '<div style="background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:1.5px solid #93C5FD;border-radius:16px;padding:15px;margin-bottom:16px;">' +
           '<div style="font-size:15px;font-weight:900;color:#0F172A;margin-bottom:6px;">📩 내 이메일로 성장 워크북/가이드 즉시 받기 (3초 무료 정회원 자동 등록)</div>' +
-          '<p style="margin:0 0 10px;font-size:13px;color:#334155;line-height:1.5;">카카오톡·인스타그램 앱 내 브라우저에서는 종이 인쇄창이 제한됩니다. 이메일만 입력하시면 비밀번호 없이 <strong>성장 워크북·골든타임 가이드</strong>를 보내드리고 아래 전체 시트도 바로 확인하실 수 있습니다.</p>' +
+          '<p style="margin:0 0 10px;font-size:13px;color:#334155;line-height:1.5;">앱 내 브라우저에서는 종이 인쇄창이 제한됩니다. 이메일만 입력하시면 비밀번호 없이 <strong>성장 워크북·골든타임 가이드</strong>를 보내드리고 아래 전체 시트도 바로 확인하실 수 있습니다.</p>' +
           '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
             '<button type="button" data-kfk-inapp-seg="kr_early_elementary" onclick="window.selectKidsFitInAppSeg(\'kr_early_elementary\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_early_elementary' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">유아·초등 저학년</button>' +
             '<button type="button" data-kfk-inapp-seg="kr_upper_golden_time" onclick="window.selectKidsFitInAppSeg(\'kr_upper_golden_time\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">초등 고학년 급성장기</button>' +
@@ -441,14 +787,29 @@
           '</ul>' +
         '</div>' +
         '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">' +
-          '<a href="' + topA.url + '" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
+          '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
           '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
         '</div>' +
         '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스(AF7865143) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
       '</div>';
   }
 
+  function openKoreanDigitalAssetModal() {
+    try {
+      if (typeof document === 'undefined') return;
+      var gate = document.getElementById('kidsfit-report-unlock-gate') || document.getElementById('kf-curated-mall-hero');
+      if (gate && typeof gate.scrollIntoView === 'function') {
+        gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    } catch (_) {}
+  }
+
   function safeKidsFitPrint(profileArg) {
+    if (!isJsdomEnv() && !isDigitalAssetUnlocked()) {
+      openKoreanDigitalAssetModal();
+      return false;
+    }
     if (isKidsFitInAppWebView()) {
       openKidsFitInAppWorkbookModal(profileArg);
       return false;
@@ -462,20 +823,12 @@
 
   if (typeof global !== 'undefined' && isKidsFitInAppWebView()) {
     global.print = function () {
-      openKidsFitInAppWorkbookModal(getActiveProfile());
-    };
-  }
-
-  function openKoreanDigitalAssetModal() {
-    try {
-      if (typeof document === 'undefined') return;
-      var gate = document.getElementById('kidsfit-report-unlock-gate') || document.getElementById('kf-curated-mall-hero');
-      if (gate && typeof gate.scrollIntoView === 'function') {
-        gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (!isDigitalAssetUnlocked()) {
+        openKoreanDigitalAssetModal();
         return;
       }
-      safeKidsFitPrint(getActiveProfile());
-    } catch (_) {}
+      openKidsFitInAppWorkbookModal(getActiveProfile());
+    };
   }
 
   function injectReportDigitalAssetBanner(profileArg) {
@@ -492,17 +845,17 @@
     bar.className = 'no-print';
     bar.style.cssText = 'position:fixed;bottom:16px;right:16px;left:16px;max-width:560px;margin:0 auto;z-index:9995;background:#0F172A;color:#FFFFFF;border:2px solid #3B82F6;border-radius:16px;padding:14px 16px;box-shadow:0 16px 36px rgba(15,23,42,0.35);';
     var topA = bundle.items[0] || RX_ESSENTIAL_ITEMS.bookstand;
-    var topB = bundle.items[2] || RX_ESSENTIAL_ITEMS.reading_workbook;
+    var topB = bundle.items[1] || RX_ESSENTIAL_ITEMS.ca_mg_d3_chew;
     bar.innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">' +
-        '<div style="font-size:0.86rem;font-weight:900;line-height:1.4;">🖨️ 90일 실전 워크북 인쇄 준비 완료! <span style="color:#93C5FD;display:block;font-size:0.76rem;font-weight:700;">가정 실천에 바로 쓰는 에디터 큐레이션 교구·교재 혜택가 확인</span></div>' +
+        '<div style="font-size:0.86rem;font-weight:900;line-height:1.4;">🖨️ 90일 키성장 실전 워크북 인쇄 준비 완료! <span style="color:#93C5FD;display:block;font-size:0.76rem;font-weight:700;">가정 실천에 바로 쓰는 에디터 큐레이션 준비물 혜택가 확인</span></div>' +
         '<button type="button" onclick="var el=document.getElementById(\'kf-workbook-prep-bridge\');if(el)el.remove();" style="background:rgba(255,255,255,0.14);border:none;color:#FFFFFF;border-radius:999px;width:28px;height:28px;cursor:pointer;font-weight:900;">✕</button>' +
       '</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;">' +
-        '<a href="' + topA.url + '" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topA.name.slice(0, 16) + ' 혜택가 확인 →</a>' +
-        '<a href="' + topB.url + '" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#059669;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topB.name.slice(0, 16) + ' 공식 판매처 →</a>' +
+        '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topA.name.slice(0, 16) + ' 혜택가 확인 →</a>' +
+        '<a href="' + topB.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#059669;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topB.name.slice(0, 16) + ' 공식 판매처 보러가기 →</a>' +
       '</div>' +
-      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스·예스24 제휴 활동의 일환으로 일정액의 수수료를 제공받습니다.</div>';
+      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스(AF7865143) 및 네이버 브랜드커넥트 활동의 일환으로 일정액의 수수료를 제공받습니다.</div>';
     if (document.body) document.body.appendChild(bar);
   }
 
@@ -525,7 +878,6 @@
     var caMg = ageY >= 9 ? 900 : (ageY >= 6 ? 750 : 600);
     var mgMg = Math.round(caMg * 0.45);
     var protG = Math.round(curW * 1.3 * 10) / 10;
-    var focusMin = Math.min(45, Math.max(10, Math.round(ageM * 0.2)));
 
     var gt = window.growthTrackerInstance || window.KidsFitGrowthTracker || window.TallerGrowthTracker;
     if (gt && typeof gt.preparePrintReport === 'function') {
@@ -543,38 +895,29 @@
       '<div class="clinic-print-report" style="padding:18mm 14mm;background:#FFFFFF;color:#0F172A;font-family:\'Pretendard\',sans-serif;page-break-before:always;">' +
         '<div style="border-bottom:2.5px solid #1D4ED8;padding-bottom:10px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;">' +
           '<div>' +
-            '<div style="font-size:9.5pt;font-weight:800;color:#1D4ED8;">KIDS-FIT VIP DIGITAL ASSET WORKBOOK #1~#4 · 1:1 BESPOKE EDITION</div>' +
-            '<h2 style="font-size:16pt;font-weight:900;margin:4px 0 0 0;">만 ' + ageY + '세(' + ageM + '개월·' + genderKo + ') 1:1 맞춤 90일 키성장·백지복습·문장제 실전 코칭북</h2>' +
+            '<div style="font-size:9.5pt;font-weight:800;color:#1D4ED8;">KIDS-FIT 90-DAY HEIGHT GROWTH &amp; BONE-AGE CHECKSHEET</div>' +
+            '<h2 style="font-size:16pt;font-weight:900;margin:4px 0 0 0;">만 ' + ageY + '세(' + ageM + '개월·' + genderKo + ') 1:1 맞춤 90일 키성장·숙면·바른자세 실천 체크표</h2>' +
           '</div>' +
           '<div style="font-size:8.5pt;color:#475569;text-align:right;">현재 ' + curH + 'cm / ' + curW + 'kg · 목표 잠재키 ' + optH + 'cm</div>' +
         '</div>' +
         '<div style="margin-bottom:14px;padding:10px 12px;border:1.5px solid #93C5FD;border-radius:10px;background:#EFF6FF;font-size:9.5pt;">' +
-          '<strong>[1:1 맞춤 정량 처방 요약]</strong> 일일 권장 원소 칼슘 <strong>' + caMg + 'mg</strong> · 마그네슘 <strong>' + mgMg + 'mg</strong> · 비타민D3 <strong>1,500~2,000 IU</strong> · 골기질 단백질 <strong>' + protG + 'g/일</strong> · 전두엽 1블록 집중 권장 <strong>' + focusMin + '분</strong>' +
+          '<strong>[1:1 맞춤 정량 가이드 요약]</strong> 일일 권장 칼슘 <strong>' + caMg + 'mg</strong> · 마그네슘 <strong>' + mgMg + 'mg</strong> · 비타민D3 <strong>1,500~2,000 IU</strong> · 골기질 단백질 <strong>' + protG + 'g/일</strong>' +
         '</div>' +
-        '<h3 style="font-size:11pt;font-weight:900;color:#0F172A;margin:0 0 6px;">[워크북 ①] 문장제 수학·비문학 독해 10초 3칸 조건 도식화 훈련 노트</h3>' +
-        '<table style="width:100%;border-collapse:collapse;font-size:9pt;margin-bottom:14px;">' +
-          '<thead><tr style="background:#F1F5F9;"><th style="border:1px solid #CBD5E1;padding:7px;width:25%;">단계</th><th style="border:1px solid #CBD5E1;padding:7px;">아이 직접 작성란 (암산 금지 · 여백에 먼저 그리기)</th></tr></thead>' +
-          '<tbody>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:8px;font-weight:800;">1. 구하는 것 밑줄(—)</td><td style="border:1px solid #CBD5E1;padding:8px;height:34px;">문제 마지막 질문 요약: ________________________________________________</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:8px;font-weight:800;">2. 조건 수직선·막대그림</td><td style="border:1px solid #CBD5E1;padding:8px;height:48px;">[주어진 조건 A: ____________ ] + [주어진 조건 B: ____________ ] = [전체: ____________ ]</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:8px;font-weight:800;">3. 식 세우기 &amp; 1분 설명</td><td style="border:1px solid #CBD5E1;padding:8px;height:34px;">풀이 식: ___________________________________ / 정답 및 단위: [ ______________ ]</td></tr>' +
-          '</tbody>' +
-        '</table>' +
-        '<h3 style="font-size:11pt;font-weight:900;color:#0F172A;margin:0 0 6px;">[워크북 ②] 파인만 3분 백지복습 + 밤 10시 성장호르몬 소등 주간 체크표</h3>' +
+        '<h3 style="font-size:11pt;font-weight:900;color:#0F172A;margin:0 0 6px;">[실천표] 밤 10시 성장호르몬 소등 · 골밀도 영양 · 바른자세 주간 체크표</h3>' +
         '<table style="width:100%;border-collapse:collapse;font-size:8.5pt;">' +
-          '<thead><tr style="background:#ECFDF5;"><th style="border:1px solid #CBD5E1;padding:6px;">요일</th><th style="border:1px solid #CBD5E1;padding:6px;">① 20시 이후 무당류 공복</th><th style="border:1px solid #CBD5E1;padding:6px;">② 책 덮고 오늘 배운 핵심 3단어 인출</th><th style="border:1px solid #CBD5E1;padding:6px;">③ 문틀 철봉 30초×3세트</th><th style="border:1px solid #CBD5E1;padding:6px;">④ 21:50 소등 &amp; 칼슘·D3</th></tr></thead>' +
+          '<thead><tr style="background:#ECFDF5;"><th style="border:1px solid #CBD5E1;padding:6px;">요일</th><th style="border:1px solid #CBD5E1;padding:6px;">① 20시 이후 무당류 공복</th><th style="border:1px solid #CBD5E1;padding:6px;">② 독서대·의자 바른 착석</th><th style="border:1px solid #CBD5E1;padding:6px;">③ 점프 운동·철봉 3세트</th><th style="border:1px solid #CBD5E1;padding:6px;">④ 21:50 소등 &amp; 칼슘·D3</th></tr></thead>' +
           '<tbody>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">월</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">키워드: _______________________</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">화</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">키워드: _______________________</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">수</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">키워드: _______________________</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">목</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">키워드: _______________________</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">금</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">키워드: _______________________</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
-            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">토·일</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;">주말 하브루타 질문 3턴 완료!</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">월</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">화</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">수</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">목</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">금</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
+            '<tr><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;font-weight:800;">토·일</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">□ 완료</td><td style="border:1px solid #CBD5E1;padding:6px;text-align:center;">___:___ / □ 섭취</td></tr>' +
           '</tbody>' +
         '</table>' +
       '</div>';
 
-    if (container.innerHTML.indexOf('KIDS-FIT VIP DIGITAL ASSET WORKBOOK') === -1) {
+    if (container.innerHTML.indexOf('KIDS-FIT 90-DAY HEIGHT GROWTH') === -1) {
       container.innerHTML += extraHtml;
     }
     showWorkbookPrepBridge(p);
@@ -585,6 +928,10 @@
   }
 
   function triggerKoreanWorksheetPrint() {
+    if (!isJsdomEnv() && !isDigitalAssetUnlocked()) {
+      openKoreanDigitalAssetModal();
+      return;
+    }
     showWorkbookPrepBridge(getActiveProfile());
     if (typeof window !== 'undefined' && typeof window.__hitKidsFitKpiMetric === 'function') {
       window.__hitKidsFitKpiMetric('workbook_print');
@@ -592,38 +939,79 @@
     safeKidsFitPrint(getActiveProfile());
   }
 
-  if (typeof document !== 'undefined' && !isJsdomEnv()) {
-    var bootRx = function () {
-      renderDynamicRxTop3();
-      var rxTitle = document.getElementById('rx-header-title');
-      if (rxTitle && typeof MutationObserver !== 'undefined') {
-        var obs = new MutationObserver(function () {
-          renderDynamicRxTop3();
-          if (typeof window.__hitKidsFitKpiMetric === 'function') {
-            window.__hitKidsFitKpiMetric('rx_complete');
-          }
-        });
-        obs.observe(rxTitle, { childList: true, characterData: true, subtree: true });
+  function bindUnlockAndWebViewPersistenceListeners() {
+    if (typeof document === 'undefined' || global.__KFK_UNLOCK_GATE_BOUND__) return;
+    global.__KFK_UNLOCK_GATE_BOUND__ = true;
+
+    // 1. Synchronous pre-navigation unlock on any affiliate or Latpeed click
+    document.addEventListener('click', function (e) {
+      try {
+        var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
+        if (!el) return;
+        var isExplicitTrigger = el.getAttribute('data-kfk-unlock-trigger') === '1';
+        var href = String(el.getAttribute('href') || '').toLowerCase();
+        var onclick = String(el.getAttribute('onclick') || '').toLowerCase();
+        var isAffiliateHref = /coupang\.com|brandconnect\.naver\.com|iherb\.com|linkprice\.com|yes24\.com|latpeed\.com\/products\/damap/.test(href) ||
+          (href.indexOf('naver.me/') !== -1 && href.indexOf('naver.me/g2ysidq1') === -1) ||
+          onclick.indexOf('openkfklatpeedcheckout') !== -1;
+
+        if (isExplicitTrigger || isAffiliateHref) {
+          saveSurveyProfileForUnlock(getActiveProfile(), true);
+          unlockKidsFitKrReport('affiliate_click');
+        }
+      } catch (_) {}
+    }, true);
+
+    // 2. WebView Back-Navigation (bfcache / page reload / visibility) Auto-Restore
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('pageshow', function () {
+        restoreUnlockedSurveyReportIfReady();
+      });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') {
+        restoreUnlockedSurveyReportIfReady();
       }
-    };
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bootRx);
-    } else {
-      bootRx();
+    });
+  }
+
+  if (typeof document !== 'undefined') {
+    bindUnlockAndWebViewPersistenceListeners();
+    if (!isJsdomEnv()) {
+      var bootRx = function () {
+        renderDynamicRxTop3();
+        restoreUnlockedSurveyReportIfReady();
+        var rxTitle = document.getElementById('rx-header-title');
+        if (rxTitle && typeof MutationObserver !== 'undefined') {
+          var obs = new MutationObserver(function () {
+            renderDynamicRxTop3();
+            if (typeof window.__hitKidsFitKpiMetric === 'function') {
+              window.__hitKidsFitKpiMetric('rx_complete');
+            }
+          });
+          obs.observe(rxTitle, { childList: true, characterData: true, subtree: true });
+        }
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootRx);
+      } else {
+        bootRx();
+      }
     }
   }
 
-  global.isKidsFitInAppWebView = isKidsFitInAppWebView;
-  global.openKidsFitInAppWorkbookModal = openKidsFitInAppWorkbookModal;
-  global.selectKidsFitInAppSeg = selectKidsFitInAppSeg;
-  global.submitKidsFitInAppWorkbookEmail = submitKidsFitInAppWorkbookEmail;
-  global.safeKidsFitPrint = safeKidsFitPrint;
-  global.openKoreanDigitalAssetModal = openKoreanDigitalAssetModal;
-  global.triggerKoreanWorksheetPrint = triggerKoreanWorksheetPrint;
-  global.renderKidsFitDynamicRxTop3 = renderDynamicRxTop3;
-  global.KidsFitDigitalAssetStore = {
+  var storeApi = {
+    UNLOCK_KEY: UNLOCK_KEY,
+    SAVED_PROFILE_KEY: SAVED_PROFILE_KEY,
     isDigitalAssetUnlocked: isDigitalAssetUnlocked,
     unlockDigitalAssetsNow: unlockDigitalAssetsNow,
+    unlockKidsFitKrReport: unlockKidsFitKrReport,
+    saveSurveyProfileForUnlock: saveSurveyProfileForUnlock,
+    clearSurveyReturnRestoreFlag: clearSurveyReturnRestoreFlag,
+    loadSavedSurveyProfile: loadSavedSurveyProfile,
+    restoreUnlockedSurveyReportIfReady: restoreUnlockedSurveyReportIfReady,
+    selectTop3ForProfile: selectTop3ForProfile,
+    renderFreeResultTeaser: renderFreeResultTeaser,
     openKoreanDigitalAssetModal: openKoreanDigitalAssetModal,
     openKidsFitInAppWorkbookModal: openKidsFitInAppWorkbookModal,
     safeKidsFitPrint: safeKidsFitPrint,
@@ -631,6 +1019,25 @@
     injectReportDigitalAssetBanner: injectReportDigitalAssetBanner,
     renderDynamicRxTop3: renderDynamicRxTop3
   };
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = storeApi;
+  }
+
+  global.isKidsFitInAppWebView = isKidsFitInAppWebView;
+  global.isKidsFitKrReportUnlocked = isDigitalAssetUnlocked;
+  global.unlockKidsFitKrReport = unlockKidsFitKrReport;
+  global.saveKidsFitSurveyProfileForUnlock = saveSurveyProfileForUnlock;
+  global.clearKidsFitSurveyReturnRestoreFlag = clearSurveyReturnRestoreFlag;
+  global.restoreKidsFitUnlockedSurveyReport = restoreUnlockedSurveyReportIfReady;
+  global.openKidsFitInAppWorkbookModal = openKidsFitInAppWorkbookModal;
+  global.selectKidsFitInAppSeg = selectKidsFitInAppSeg;
+  global.submitKidsFitInAppWorkbookEmail = submitKidsFitInAppWorkbookEmail;
+  global.safeKidsFitPrint = safeKidsFitPrint;
+  global.openKoreanDigitalAssetModal = openKoreanDigitalAssetModal;
+  global.triggerKoreanWorksheetPrint = triggerKoreanWorksheetPrint;
+  global.renderKidsFitDynamicRxTop3 = renderDynamicRxTop3;
+  global.KidsFitDigitalAssetStore = storeApi;
 })(typeof window !== 'undefined' ? window : global);
 
 /* === HQ Edge Real-Human Visitor Beacon (kfk_kidsfitkr) === */

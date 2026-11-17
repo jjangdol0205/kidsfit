@@ -553,7 +553,11 @@
 
       // Older children track their current percentile channel more closely; younger children regress more toward genetic MPH
       const channelWeight = Math.min(0.76, Math.max(0.45, 0.38 + (exactMonths / 240) * 0.40));
-      const blendedBaseline = channelAdultHeight * channelWeight + mph * (1 - channelWeight);
+      let blendedBaseline = channelAdultHeight * channelWeight + mph * (1 - channelWeight);
+      if (childData.hasBoneAge && Number(childData.baPredictedAdultCm) > 0) {
+        const baAdult = Math.max(curHeight + 0.5, Math.min(210.0, Number(childData.baPredictedAdultCm)));
+        blendedBaseline = baAdult * 0.62 + blendedBaseline * 0.38;
+      }
 
       // Velocity momentum adjustment
       const expected6m = exactMonths < 36 ? 4.5 : (exactMonths < 60 ? 3.5 : (exactMonths < 120 ? 2.8 : (exactMonths < 168 ? 3.3 : 1.0)));
@@ -594,7 +598,10 @@
 
       // Age-, sex-, and Tanner-stage-specific remaining epiphyseal potential gain
       const closureMonths = gender === 'boy' ? 204 : 180;
-      const remMonths = Math.max(6, closureMonths - exactMonths);
+      const effectiveSkeletalMonths = (childData.hasBoneAge && Number(childData.baProjectedToday) > 0)
+        ? Math.max(12, Math.min(240, Math.round(Number(childData.baProjectedToday) * 12)))
+        : exactMonths;
+      const remMonths = Math.max(6, closureMonths - effectiveSkeletalMonths);
       const remFactor = Math.min(1.18, Math.max(0.22, remMonths / 108));
 
       let stageBaseBoost = 5.6;

@@ -195,8 +195,24 @@
   }
 
   var rendered = false;
+  function isSubstackEssayLayout() {
+    try {
+      if (typeof document !== "undefined" && document.body && document.body.classList && document.body.classList.contains("kfk-substack-essay")) {
+        return true;
+      }
+      var p = (typeof location !== "undefined" && location.pathname) ? location.pathname : "";
+      return /\/qna\/(essay-|topic-|editorial-)/i.test(p);
+    } catch (_) {
+      return false;
+    }
+  }
+
   function renderHumanCuration() {
     initKidsfitQnaBeacon();
+    if (isSubstackEssayLayout()) {
+      hydrateSubstackSubscribeBox();
+      return;
+    }
     if (rendered) return;
     var slot = document.getElementById('kf-human-curation-slot');
     if (!slot) return;
@@ -411,6 +427,142 @@
       }
     } catch (_) {}
   }
+
+
+  window.copyKfkSubstackLink = function (btnEl) {
+    try {
+      var url = (typeof window !== "undefined" && window.location && window.location.href) ? window.location.href : "https://kidsfit.co.kr/qna/essay-quiet-night-growth-note.html";
+      var done = function () {
+        if (!btnEl) return;
+        var orig = btnEl.getAttribute("data-orig-label") || btnEl.textContent;
+        btnEl.setAttribute("data-orig-label", orig);
+        btnEl.textContent = "링크 복사됨 ✓";
+        setTimeout(function () { btnEl.textContent = orig; }, 2200);
+      };
+      if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(done);
+      } else {
+        done();
+      }
+    } catch (_) {}
+  };
+
+  window.shareKfkSubstackEssay = function (btnEl) {
+    try {
+      var url = (typeof window !== "undefined" && window.location && window.location.href) ? window.location.href : "https://kidsfit.co.kr/qna/essay-quiet-night-growth-note.html";
+      var title = (typeof document !== "undefined" && document.title) ? document.title : "키즈핏 소아성장 연구소 노트";
+      if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+        navigator.share({ title: title, url: url }).catch(function () {});
+      } else {
+        window.copyKfkSubstackLink(btnEl);
+      }
+    } catch (_) {}
+  };
+
+  function hydrateSubstackSubscribeBox() {
+    try {
+      if (typeof document === "undefined") return;
+      var saved = (window.DreamCompanyCRM && window.DreamCompanyCRM.getLocalMember && window.DreamCompanyCRM.getLocalMember("KFK")) || null;
+      if (!saved && window.localStorage) {
+        var raw = window.localStorage.getItem("dc_member_KFK");
+        if (raw) saved = JSON.parse(raw);
+      }
+      if (saved && saved.email) {
+        var emailEl = document.getElementById("kfk-substack-email");
+        var fbEl = document.getElementById("kfk-substack-feedback");
+        if (emailEl && !emailEl.value) emailEl.value = saved.email;
+        if (fbEl) {
+          fbEl.style.display = "block";
+          fbEl.style.color = "#3f6212";
+          fbEl.textContent = "현재 구독 중인 이메일입니다 (" + String(saved.email).replace(/[<>"&]/g, "") + "). 새 에세이가 발행되면 보내드립니다.";
+        }
+      }
+    } catch (_) {}
+  }
+
+  window.submitKfkSubstackSubscribe = function (ev) {
+    if (ev && typeof ev.preventDefault === "function") ev.preventDefault();
+    if (typeof document === "undefined") return false;
+    var form = (ev && ev.target && ev.target.tagName === "FORM") ? ev.target : document.getElementById("kfk-substack-subscribe-form");
+    var emailEl = (form && form.querySelector('input[type="email"]')) || document.getElementById("kfk-substack-email");
+    var hpEl = (form && form.querySelector('input[name="website_hp"]')) || document.getElementById("kfk-substack-hp");
+    var btnEl = (form && form.querySelector('button[type="submit"]')) || document.getElementById("btn-kfk-substack-submit");
+    var fbEl = document.getElementById("kfk-substack-feedback");
+    var email = emailEl ? String(emailEl.value || "").trim().toLowerCase() : "";
+    var websiteHp = hpEl ? String(hpEl.value || "").trim() : "";
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      if (fbEl) {
+        fbEl.style.display = "block";
+        fbEl.style.color = "#b91c1c";
+        fbEl.textContent = "이메일 주소를 정확히 입력해 주세요 (예: parent@naver.com).";
+      }
+      if (emailEl) emailEl.focus();
+      return false;
+    }
+
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = "구독 등록 중...";
+    }
+
+    var finishSub = function () {
+      try {
+        var ua = (typeof navigator !== "undefined" && navigator.userAgent) ? navigator.userAgent : "";
+        var host = (typeof location !== "undefined" && location.hostname) ? location.hostname : "";
+        var nowMs = Date.now();
+        if (host && host !== "localhost" && host !== "127.0.0.1" && !(typeof navigator !== "undefined" && navigator.webdriver) && !/jsdom|bot|crawl|spider|headless|lighthouse|python|curl/i.test(ua)) {
+          if (!window.__LAST_KFK_SIGNUP_BEACON_TS__ || (nowMs - window.__LAST_KFK_SIGNUP_BEACON_TS__) >= 1500) {
+            window.__LAST_KFK_SIGNUP_BEACON_TS__ = nowMs;
+            var kst = new Date(nowMs + 9 * 3600 * 1000).toISOString().slice(0, 10);
+            fetch("https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_" + kst, { mode: "cors", keepalive: true }).catch(function () {});
+            fetch("https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/signup_total", { mode: "cors", keepalive: true }).catch(function () {});
+          }
+        }
+      } catch (_) {}
+      if (btnEl) {
+        btnEl.disabled = false;
+        btnEl.textContent = "구독 완료 ✓";
+      }
+      if (fbEl) {
+        fbEl.style.display = "block";
+        fbEl.style.color = "#166534";
+        fbEl.textContent = "구독이 등록되었습니다 (" + email.replace(/[<>"&]/g, "") + "). 다음 성장 에세이가 발행되면 이메일로 조용히 보내드리겠습니다.";
+      }
+    };
+
+    var invokeCrm = function (crm) {
+      if (crm && typeof crm.registerMember === "function") {
+        crm.registerMember({
+          div: "KFK",
+          email: email,
+          segment: "substack_essay_reader_kr",
+          lang: "ko-KR",
+          website_hp: websiteHp,
+          message: "KFK_Substack_Essay_Subscribe"
+        }).then(finishSub).catch(finishSub);
+      } else {
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem("dc_member_KFK", JSON.stringify({
+              div: "KFK",
+              email: email,
+              segment: "substack_essay_reader_kr",
+              joined_at: new Date().toISOString()
+            }));
+          }
+        } catch (_) {}
+        finishSub();
+      }
+    };
+
+    if (window.DreamCompanyCRM && typeof window.DreamCompanyCRM.registerMember === "function") {
+      invokeCrm(window.DreamCompanyCRM);
+    } else {
+      setTimeout(function () { invokeCrm(window.DreamCompanyCRM || null); }, 300);
+    }
+    return false;
+  };
 
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {

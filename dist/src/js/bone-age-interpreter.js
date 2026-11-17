@@ -1,19 +1,22 @@
 /**
  * src/js/bone-age-interpreter.js
- * Division 5 (kidsfit.co.kr) — Hospital Bone-Age X-Ray Result 1-Minute Interpreter & Remaining Height Simulator
+ * Division 5 (kidsfit.co.kr) — Hospital Bone-Age X-Ray Result 1-Minute Interpreter,
+ * Exam-Date Time-Lag (Δt) Calibration Engine & Remaining Height Simulator
  *
  * Architecture:
  * - 100% Client-Side Static Auxology Calculation (Bayley-Pinneau Mature Height Multiplier + Tanner Mid-Parental Height)
+ * - Exam-Date Time-Lag (Δt = Today - Exam Date) & Pubertal Tempo Factor (1.0 / 1.08) Automatic Calibration
  * - Zero medical image upload, zero server transmission (strictly educational & home growth-environment guidance)
- * - Zero-Tolerance Vocabulary & FTC Affiliate Disclosure compliant (Coupang AF7865143, LinkPrice A100708867, Naver BrandConnect)
+ * - FTC Affiliate Disclosure compliant (Coupang AF7865143, LinkPrice A100708867, iHerb IPZ1547, Naver BrandConnect)
  */
-(function () {
+(function (global) {
   'use strict';
 
-  var STORAGE_KEY = 'kfk_bone_age_interpreter_v1';
+  var STORAGE_KEY = 'kfk_bone_age_interpreter_v2';
 
-  // Strictly monotonic Bayley-Pinneau mature height achieved percentages (%) by skeletal Bone Age (4.0 to 18.5 yrs)
+  // Strictly monotonic Bayley-Pinneau mature height achieved percentages (%) by skeletal Bone Age (3.0 to 18.5 yrs)
   var BP_TABLE_BOY = [
+    { ba: 3.0, pct: 57.2 },
     { ba: 4.0, pct: 61.5 },
     { ba: 5.0, pct: 64.6 },
     { ba: 6.0, pct: 67.6 },
@@ -33,6 +36,7 @@
   ];
 
   var BP_TABLE_GIRL = [
+    { ba: 3.0, pct: 62.4 },
     { ba: 4.0, pct: 66.8 },
     { ba: 5.0, pct: 70.1 },
     { ba: 6.0, pct: 73.3 },
@@ -50,7 +54,7 @@
     { ba: 17.5, pct: 100.0 }
   ];
 
-  // Verified Affiliate Curation Catalog (Coupang AF7865143, LinkPrice A100708867, Naver BrandConnect)
+  // Verified Affiliate Curation Catalog (Coupang AF7865143, Naver BrandConnect)
   var NPAY_LINKS = {
     fgo: 'https://brandconnect.naver.com/affiliates/1010075643260928?channelProductNo=12080461872&ac=crtshp&cid=1016094238062720',
     calmadi: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720',
@@ -124,6 +128,8 @@
       heightCm: 139.0,
       baYears: 11,
       baMonths: 4,
+      lagMonths: 0,
+      tempoAccel: false,
       fatherCm: 174,
       motherCm: 161,
       stage: ''
@@ -135,6 +141,8 @@
       heightCm: 134.5,
       baYears: 9,
       baMonths: 3,
+      lagMonths: 3,
+      tempoAccel: false,
       fatherCm: 175,
       motherCm: 163,
       stage: 'stage_entry'
@@ -146,6 +154,8 @@
       heightCm: 138.5,
       baYears: 9,
       baMonths: 10,
+      lagMonths: 6,
+      tempoAccel: false,
       fatherCm: 176,
       motherCm: 162,
       stage: 'stage_open'
@@ -157,8 +167,89 @@
     return Math.max(min, Math.min(max, val));
   }
 
+  function getTodayYearMonth(nowOverride) {
+    var d = nowOverride instanceof Date && !isNaN(nowOverride.getTime()) ? nowOverride : new Date();
+    return {
+      year: d.getFullYear(),
+      month: d.getMonth() + 1
+    };
+  }
+
+  function getYearMonthFromLag(lagMonths, nowOverride) {
+    var today = getTodayYearMonth(nowOverride);
+    var lag = Math.max(0, Math.round(Number(lagMonths) || 0));
+    var totalMonths = today.year * 12 + (today.month - 1) - lag;
+    return {
+      year: Math.floor(totalMonths / 12),
+      month: (totalMonths % 12) + 1
+    };
+  }
+
+  /**
+   * Core Δt Calibration Formula (Shared by Survey Step 3, Report Engine & Standalone Bone-Age Interpreter)
+   * BA_projected_today = BA_exam + (deltaMonths / 12) * tempoFactor
+   */
+  function computeExamLagCalibration(params) {
+    var p = params || {};
+    var today = getTodayYearMonth(p.nowDate);
+    var baExamY = clamp(parseInt(p.baYears, 10) || 10, 3, 18);
+    var baExamM = clamp(parseInt(p.baMonths, 10) || 0, 0, 11);
+    var baExam = baExamY + baExamM / 12;
+
+    var examYear = parseInt(p.examYear, 10);
+    var examMonth = parseInt(p.examMonth, 10);
+    if (isNaN(examYear) || isNaN(examMonth) || examMonth < 1 || examMonth > 12) {
+      var fallbackYm = getYearMonthFromLag(p.lagMonths || 0, p.nowDate);
+      examYear = fallbackYm.year;
+      examMonth = fallbackYm.month;
+    }
+
+    var deltaMonths = Math.max(0, (today.year - examYear) * 12 + (today.month - examMonth));
+    var hasAccel = Boolean(p.tempoAccel || p.hasAccelSigns);
+    var tempoFactor = hasAccel ? 1.08 : 1.0;
+
+    var maxCap = (p.sex === 'F' || p.sex === 'girl') ? 17.5 : 18.5;
+    var baProjectedToday = clamp(baExam + (deltaMonths / 12) * tempoFactor, 3.0, maxCap);
+
+    var projTotalMonths = Math.round(baProjectedToday * 12);
+    var projYears = Math.floor(projTotalMonths / 12);
+    var projMonths = Math.abs(projTotalMonths % 12);
+
+    var examMonthPad = examMonth < 10 ? '0' + examMonth : String(examMonth);
+    var lagDesc = deltaMonths === 0 ? '이번 달(0개월 전)' : (deltaMonths + '개월 전');
+    var tempoNote = tempoFactor > 1.0 ? ' · 사춘기 가속 ×1.08 적용' : '';
+
+    var summaryKo =
+      '📌 ' + examYear + '년 ' + examMonthPad + '월(' + lagDesc + ') 측정 뼈나이 ' +
+      baExamY + '세 ' + baExamM + '개월 ➔ 경과 시차(+' + deltaMonths + '개월' + tempoNote +
+      ') 자동 반영 금일 추정 골연령 ' + projYears + '세 ' + projMonths + '개월 기준 정밀 분석';
+
+    var recheckAdvisoryKo = deltaMonths >= 12
+      ? '촬영 후 1년(' + deltaMonths + '개월) 이상 경과하여 사춘기 골성숙 속도가 달라졌을 수 있으므로 다음 정기 검진 시 성장판 재확인을 권장합니다.'
+      : '';
+
+    return {
+      todayYear: today.year,
+      todayMonth: today.month,
+      examYear: examYear,
+      examMonth: examMonth,
+      deltaMonths: deltaMonths,
+      tempoFactor: tempoFactor,
+      tempoAccel: hasAccel,
+      baExamYears: baExamY,
+      baExamMonths: baExamM,
+      baExam: baExam,
+      baProjectedToday: baProjectedToday,
+      baProjectedYears: projYears,
+      baProjectedMonths: projMonths,
+      summaryKo: summaryKo,
+      recheckAdvisoryKo: recheckAdvisoryKo
+    };
+  }
+
   function interpolateMaturePct(sex, boneAgeYears) {
-    var table = sex === 'F' ? BP_TABLE_GIRL : BP_TABLE_BOY;
+    var isFemale = (sex === 'F' || sex === 'girl' || sex === 'female');
+    var table = isFemale ? BP_TABLE_GIRL : BP_TABLE_BOY;
     var minBa = table[0].ba;
     var maxBa = table[table.length - 1].ba;
     var ba = clamp(boneAgeYears, minBa, maxBa);
@@ -194,7 +285,38 @@
     return sign + m + '개월';
   }
 
+  function ensureExamYearOptions(selectEl) {
+    if (!selectEl) return;
+    var today = getTodayYearMonth();
+    var currentVal = parseInt(selectEl.value, 10);
+    var minYear = today.year - 5;
+    var html = '';
+    for (var y = today.year; y >= minYear; y--) {
+      html += '<option value="' + y + '">' + y + '년 촬영</option>';
+    }
+    selectEl.innerHTML = html;
+    if (!isNaN(currentVal) && currentVal >= minYear && currentVal <= today.year) {
+      selectEl.value = String(currentVal);
+    } else {
+      selectEl.value = String(today.year);
+    }
+  }
+
+  function highlightLagChips(deltaMonths) {
+    if (typeof document === 'undefined') return;
+    var root = document.getElementById('kfk-bone-age-interpreter');
+    if (!root) return;
+    var chips = root.querySelectorAll('[data-kfk-ba-lag]');
+    for (var i = 0; i < chips.length; i++) {
+      var chipLag = parseInt(chips[i].getAttribute('data-kfk-ba-lag'), 10);
+      var match = chipLag === deltaMonths;
+      chips[i].classList.toggle('active', match);
+      chips[i].setAttribute('aria-pressed', match ? 'true' : 'false');
+    }
+  }
+
   function getSexState() {
+    if (typeof document === 'undefined') return 'M';
     var root = document.getElementById('kfk-bone-age-interpreter');
     if (!root) return 'M';
     var activeBtn = root.querySelector('[data-kfk-ba-sex].active');
@@ -202,6 +324,7 @@
   }
 
   function setSexState(sex) {
+    if (typeof document === 'undefined') return;
     var root = document.getElementById('kfk-bone-age-interpreter');
     if (!root) return;
     var btns = root.querySelectorAll('[data-kfk-ba-sex]');
@@ -213,6 +336,7 @@
   }
 
   function highlightStageChip(stageId) {
+    if (typeof document === 'undefined') return;
     var root = document.getElementById('kfk-bone-age-interpreter');
     if (!root) return;
     var chips = root.querySelectorAll('[data-kfk-plate-stage]');
@@ -224,20 +348,26 @@
   }
 
   function readInputsFromDom() {
+    var today = getTodayYearMonth();
     var sex = getSexState();
     var caY = parseInt((document.getElementById('kfk-ba-ca-years') || {}).value, 10);
     var caM = parseInt((document.getElementById('kfk-ba-ca-months') || {}).value, 10);
     var heightCm = parseFloat((document.getElementById('kfk-ba-height-cm') || {}).value);
     var baY = parseInt((document.getElementById('kfk-ba-years') || {}).value, 10);
     var baM = parseInt((document.getElementById('kfk-ba-months') || {}).value, 10);
+    var examYear = parseInt((document.getElementById('kfk-ba-exam-year') || {}).value, 10);
+    var examMonth = parseInt((document.getElementById('kfk-ba-exam-month') || {}).value, 10);
+    var tempoAccel = Boolean((document.getElementById('kfk-ba-tempo-accel') || {}).checked);
     var fatherRaw = (document.getElementById('kfk-ba-father-cm') || {}).value;
     var motherRaw = (document.getElementById('kfk-ba-mother-cm') || {}).value;
 
-    caY = clamp(isNaN(caY) ? 10 : caY, 4, 18);
+    caY = clamp(isNaN(caY) ? 10 : caY, 3, 18);
     caM = clamp(isNaN(caM) ? 0 : caM, 0, 11);
     heightCm = clamp(isNaN(heightCm) ? 139.0 : heightCm, 85, 198);
-    baY = clamp(isNaN(baY) ? 11 : baY, 4, 18);
+    baY = clamp(isNaN(baY) ? 11 : baY, 3, 18);
     baM = clamp(isNaN(baM) ? 0 : baM, 0, 11);
+    examYear = isNaN(examYear) ? today.year : clamp(examYear, today.year - 6, today.year);
+    examMonth = isNaN(examMonth) ? today.month : clamp(examMonth, 1, 12);
 
     var fatherCm = fatherRaw ? parseFloat(fatherRaw) : NaN;
     var motherCm = motherRaw ? parseFloat(motherRaw) : NaN;
@@ -249,34 +379,60 @@
       heightCm: heightCm,
       baYears: baY,
       baMonths: baM,
+      examYear: examYear,
+      examMonth: examMonth,
+      tempoAccel: tempoAccel,
       fatherCm: !isNaN(fatherCm) && fatherCm >= 135 && fatherCm <= 210 ? fatherCm : null,
       motherCm: !isNaN(motherCm) && motherCm >= 130 && motherCm <= 200 ? motherCm : null
     };
   }
 
   function writeInputsToDom(state) {
-    if (!state) return;
+    if (!state || typeof document === 'undefined') return;
     setSexState(state.sex === 'F' ? 'F' : 'M');
     var elCaY = document.getElementById('kfk-ba-ca-years');
     var elCaM = document.getElementById('kfk-ba-ca-months');
     var elH = document.getElementById('kfk-ba-height-cm');
     var elBaY = document.getElementById('kfk-ba-years');
     var elBaM = document.getElementById('kfk-ba-months');
+    var elExY = document.getElementById('kfk-ba-exam-year');
+    var elExM = document.getElementById('kfk-ba-exam-month');
+    var elTempo = document.getElementById('kfk-ba-tempo-accel');
     var elFa = document.getElementById('kfk-ba-father-cm');
     var elMo = document.getElementById('kfk-ba-mother-cm');
 
+    ensureExamYearOptions(elExY);
+
+    var targetYm = (state.examYear && state.examMonth)
+      ? { year: state.examYear, month: state.examMonth }
+      : getYearMonthFromLag(state.lagMonths || 0);
+
     if (elCaY) elCaY.value = String(state.caYears);
-    if (elCaM) elCaM.value = String(state.caMonths);
+    if (elCaM) elCaM.value = String(state.caMonths || 0);
     if (elH) elH.value = Number(state.heightCm).toFixed(1);
     if (elBaY) elBaY.value = String(state.baYears);
-    if (elBaM) elBaM.value = String(state.baMonths);
+    if (elBaM) elBaM.value = String(state.baMonths || 0);
+    if (elExY) elExY.value = String(targetYm.year);
+    if (elExM) elExM.value = String(targetYm.month);
+    if (elTempo) elTempo.checked = Boolean(state.tempoAccel);
     if (elFa && state.fatherCm !== undefined && state.fatherCm !== null) elFa.value = String(state.fatherCm);
     if (elMo && state.motherCm !== undefined && state.motherCm !== null) elMo.value = String(state.motherCm);
   }
 
   function computeBoneAgeReport(input) {
-    var ca = input.caYears + input.caMonths / 12;
-    var ba = input.baYears + input.baMonths / 12;
+    var ca = input.caYears + (input.caMonths || 0) / 12;
+    var cal = computeExamLagCalibration({
+      sex: input.sex,
+      baYears: input.baYears,
+      baMonths: input.baMonths,
+      examYear: input.examYear,
+      examMonth: input.examMonth,
+      lagMonths: input.lagMonths,
+      tempoAccel: input.tempoAccel,
+      nowDate: input.nowDate
+    });
+
+    var ba = cal.baProjectedToday;
     var deltaBa = ba - ca;
 
     var achievedPct = interpolateMaturePct(input.sex, ba);
@@ -293,7 +449,7 @@
 
     var mphCm = null;
     if (input.fatherCm && input.motherCm) {
-      mphCm = input.sex === 'F'
+      mphCm = (input.sex === 'F' || input.sex === 'girl')
         ? (input.fatherCm + input.motherCm - 13) / 2
         : (input.fatherCm + input.motherCm + 13) / 2;
     }
@@ -308,7 +464,7 @@
       paceType = 'fast';
       badgeText = '⚠️ 빠른 뼈나이 (' + formatDeltaMonths(deltaBa) + ') · 성장판 마감 시계 관리 필요';
       headlineSummary =
-        '현재 실제나이(' + formatYearsMonths(ca) + ')보다 뼈나이(' + formatYearsMonths(ba) + ')가 ' +
+        '현재 실제나이(' + formatYearsMonths(ca) + ')보다 금일 추정 골연령(' + formatYearsMonths(ba) + ')이 ' +
         formatDeltaMonths(deltaBa) + ' 앞서 있어, 동일 키·표준 뼈나이 대비 예상 성인키 여력이 약 ' +
         Math.abs(vsChronoDiffCm).toFixed(1) + 'cm 줄어든 구간입니다. 조급한 걱정 대신 오늘 밤부터 성장판 노화 속도를 늦추는 수면·체지방·바른자세 루틴을 집중 실천해 주세요.';
       actionTips = [
@@ -321,7 +477,7 @@
       paceType = 'slow';
       badgeText = '🌱 느린 뼈나이 (' + formatDeltaMonths(deltaBa) + ') · 대기만성형 잔여 잠재력 우수';
       headlineSummary =
-        '현재 실제나이(' + formatYearsMonths(ca) + ')보다 뼈나이(' + formatYearsMonths(ba) + ')가 ' +
+        '현재 실제나이(' + formatYearsMonths(ca) + ')보다 금일 추정 골연령(' + formatYearsMonths(ba) + ')이 ' +
         formatDeltaMonths(deltaBa) + ' 여유 있게 열려 있어, 동일 키 또래보다 성장판이 열려 있는 시간이 약 ' +
         Math.abs(deltaBa * 12).toFixed(0) + '개월 더 남아 있습니다. 이 귀한 여유 구간에 칼슘·비타민D3와 점프 자극을 채우면 예상 성인키 상단을 노릴 수 있습니다.';
       actionTips = [
@@ -334,7 +490,7 @@
       paceType = 'normal';
       badgeText = '🟢 연령 부합 안정권 (' + formatDeltaMonths(deltaBa) + ') · 균형 잡힌 성장 페이스';
       headlineSummary =
-        '실제나이(' + formatYearsMonths(ca) + ')와 병원 뼈나이(' + formatYearsMonths(ba) + ')가 안정적인 범위 안에서 조화롭게 자라고 있습니다. 앞으로 남아 있는 약 +' +
+        '실제나이(' + formatYearsMonths(ca) + ')와 금일 추정 골연령(' + formatYearsMonths(ba) + ')이 안정적인 범위 안에서 조화롭게 자라고 있습니다. 앞으로 남아 있는 약 +' +
         remainingCm.toFixed(1) + 'cm의 성장 잠재력이 손실 없이 발현되도록 숙면·골밀도 영양·바른 착석 3대 환경을 꾸준히 유지해 주세요.';
       actionTips = [
         '🥛 골밀도 영양 루틴 고정: 급성장 구간 진입 전후로 칼슘·비타민D3와 양질의 단백질 섭취를 놓치지 마세요.',
@@ -348,6 +504,13 @@
       sex: input.sex,
       ca: ca,
       ba: ba,
+      baExam: cal.baExam,
+      deltaMonths: cal.deltaMonths,
+      tempoFactor: cal.tempoFactor,
+      examYear: cal.examYear,
+      examMonth: cal.examMonth,
+      calibrationSummaryKo: cal.summaryKo,
+      recheckAdvisoryKo: cal.recheckAdvisoryKo,
       deltaBa: deltaBa,
       heightCm: input.heightCm,
       achievedPct: achievedPct,
@@ -384,9 +547,9 @@
           '</div>' +
           '<div class="kfk-ba-curation-btns"' + (hasNpay ? '' : ' style="grid-template-columns:1fr;"') + '>' +
             (hasNpay
-              ? '<a href="' + item.npayUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" class="kfk-1tap-btn kfk-1tap-npay">' + item.npayLabel + '</a>'
+              ? '<a href="' + item.npayUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" data-kfk-unlock-trigger="1" class="kfk-1tap-btn kfk-1tap-npay">' + item.npayLabel + '</a>'
               : '') +
-            '<a href="' + item.primaryUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" class="kfk-1tap-btn kfk-1tap-primary">' + item.primaryLabel + '</a>' +
+            '<a href="' + item.primaryUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" data-kfk-unlock-trigger="1" class="kfk-1tap-btn kfk-1tap-primary">' + item.primaryLabel + '</a>' +
           '</div>' +
         '</div>';
     }
@@ -394,8 +557,19 @@
   }
 
   function renderReport(report) {
+    if (typeof document === 'undefined') return;
     var container = document.getElementById('kfk-bone-age-result');
     if (!container) return;
+
+    highlightLagChips(report.deltaMonths);
+    var liveLagBanner = document.getElementById('kfk-ba-lag-live-banner');
+    if (liveLagBanner) {
+      liveLagBanner.innerHTML =
+        '<div>' + report.calibrationSummaryKo + '</div>' +
+        (report.recheckAdvisoryKo
+          ? '<div style="margin-top:0.3rem;color:#B45309;font-weight:800;">⚠️ ' + report.recheckAdvisoryKo + '</div>'
+          : '');
+    }
 
     var mphHtml = '';
     if (report.mphCm) {
@@ -425,14 +599,24 @@
           ? '🎯 [열린 성장판 맞춤] 골밀도 영양 & 실내 점프 자극 에디터 큐레이션'
           : '🎯 [안정권 성장 유지] 골밀도 영양·바른자세·숙면 3대 에디터 큐레이션';
 
+    var calibrationBoxHtml =
+      '<div style="margin-bottom:0.85rem;padding:0.72rem 0.9rem;border-radius:12px;background:#EFF6FF;border:1.5px solid #93C5FD;font-size:0.83rem;font-weight:800;color:#1E3A8A;line-height:1.5;">' +
+        '<div>' + report.calibrationSummaryKo + '</div>' +
+        (report.recheckAdvisoryKo
+          ? '<div style="margin-top:0.32rem;padding-top:0.32rem;border-top:1px dashed #93C5FD;color:#B45309;">⚠️ ' + report.recheckAdvisoryKo + '</div>'
+          : '') +
+      '</div>';
+
     container.innerHTML =
       '<div class="kfk-ba-report-box pace-' + report.paceType + '">' +
         '<div class="kfk-ba-report-head">' +
           '<span class="kfk-ba-pace-badge pace-' + report.paceType + '">' + report.badgeText + '</span>' +
           '<span class="kfk-ba-meta-pill">' +
-            (report.sex === 'F' ? '여아' : '남아') + ' · 현재 ' + report.heightCm.toFixed(1) + 'cm · 뼈나이 ' + formatYearsMonths(report.ba) +
+            (report.sex === 'F' ? '여아' : '남아') + ' · 현재 ' + report.heightCm.toFixed(1) + 'cm · 금일 추정 골연령 ' + formatYearsMonths(report.ba) +
           '</span>' +
         '</div>' +
+
+        calibrationBoxHtml +
 
         '<div class="kfk-ba-kpi-grid">' +
           '<div class="kfk-ba-kpi-card is-highlight">' +
@@ -441,14 +625,14 @@
             '<span class="kfk-ba-kpi-sub">성장판 잔여 잠재력 ' + report.remainingPct.toFixed(1) + '% 남음</span>' +
           '</div>' +
           '<div class="kfk-ba-kpi-card">' +
-            '<span class="kfk-ba-kpi-label">골연령 보정 예상 성인키</span>' +
+            '<span class="kfk-ba-kpi-label">시차 보정 예상 성인키</span>' +
             '<strong class="kfk-ba-kpi-value">' + report.pahCm.toFixed(1) + '<small>cm</small></strong>' +
             '<span class="kfk-ba-kpi-sub">예상 범위 ' + report.pahLowCm.toFixed(1) + ' ~ ' + report.pahHighCm.toFixed(1) + 'cm</span>' +
           '</div>' +
           '<div class="kfk-ba-kpi-card">' +
-            '<span class="kfk-ba-kpi-label">뼈나이 vs 실제나이 편차</span>' +
+            '<span class="kfk-ba-kpi-label">추정 골연령 vs 실제나이 편차</span>' +
             '<strong class="kfk-ba-kpi-value is-delta">' + formatDeltaMonths(report.deltaBa) + '</strong>' +
-            '<span class="kfk-ba-kpi-sub">실제 ' + formatYearsMonths(report.ca) + ' / 뼈나이 ' + formatYearsMonths(report.ba) + '</span>' +
+            '<span class="kfk-ba-kpi-sub">실제 ' + formatYearsMonths(report.ca) + ' / 골연령 ' + formatYearsMonths(report.ba) + '</span>' +
           '</div>' +
         '</div>' +
 
@@ -485,12 +669,15 @@
 
   function saveState(input) {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(input));
+      if (typeof localStorage !== 'undefined' && localStorage) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(input));
+      }
     } catch (_) {}
   }
 
   function loadState() {
     try {
+      if (typeof localStorage === 'undefined' || !localStorage) return null;
       var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       return JSON.parse(raw);
@@ -500,6 +687,7 @@
   }
 
   function calculateAndRender(shouldScrollResult) {
+    if (typeof document === 'undefined') return null;
     var input = readInputsFromDom();
     saveState(input);
     var report = computeBoneAgeReport(input);
@@ -513,30 +701,51 @@
     return report;
   }
 
+  function computeStageTargetBoneAge(ca, sex, stageId) {
+    var isFemale = (sex === 'F' || sex === 'girl');
+    if (stageId === 'stage_open') {
+      return clamp(ca - 0.85, 3.2, 16.5);
+    }
+    if (stageId === 'stage_entry') {
+      return isFemale ? clamp(Math.max(ca, 9.5), 8.0, 11.5) : clamp(Math.max(ca, 11.0), 9.0, 13.0);
+    }
+    if (stageId === 'stage_phv') {
+      return isFemale ? 11.2 : 12.8;
+    }
+    if (stageId === 'stage_decel') {
+      return isFemale ? 13.2 : 14.7;
+    }
+    if (stageId === 'stage_near_fusion') {
+      return isFemale ? 14.8 : 16.2;
+    }
+    return ca;
+  }
+
   function selectGrowthPlateStage(stageId) {
+    if (typeof document === 'undefined') return;
     var input = readInputsFromDom();
     var ca = input.caYears + input.caMonths / 12;
-    var targetBa = ca;
-
-    if (stageId === 'stage_open') {
-      targetBa = clamp(ca - 0.85, 4.2, 16.5);
-    } else if (stageId === 'stage_entry') {
-      targetBa = input.sex === 'F' ? clamp(Math.max(ca, 9.5), 8.5, 11.5) : clamp(Math.max(ca, 11.0), 9.5, 13.0);
-    } else if (stageId === 'stage_phv') {
-      targetBa = input.sex === 'F' ? 11.2 : 12.8;
-    } else if (stageId === 'stage_decel') {
-      targetBa = input.sex === 'F' ? 13.2 : 14.7;
-    } else if (stageId === 'stage_near_fusion') {
-      targetBa = input.sex === 'F' ? 14.8 : 16.2;
-    }
+    var targetBa = computeStageTargetBoneAge(ca, input.sex, stageId);
 
     var totalMonths = Math.round(targetBa * 12);
     var elBaY = document.getElementById('kfk-ba-years');
     var elBaM = document.getElementById('kfk-ba-months');
-    if (elBaY) elBaY.value = String(clamp(Math.floor(totalMonths / 12), 4, 18));
+    if (elBaY) elBaY.value = String(clamp(Math.floor(totalMonths / 12), 3, 18));
     if (elBaM) elBaM.value = String(clamp(totalMonths % 12, 0, 11));
 
     highlightStageChip(stageId);
+    calculateAndRender(false);
+  }
+
+  function selectExamLagMonths(monthsAgo) {
+    if (typeof document === 'undefined') return;
+    var ym = getYearMonthFromLag(monthsAgo);
+    var elExY = document.getElementById('kfk-ba-exam-year');
+    var elExM = document.getElementById('kfk-ba-exam-month');
+    ensureExamYearOptions(elExY);
+    if (elExY) elExY.value = String(ym.year);
+    if (elExM) elExM.value = String(ym.month);
+    highlightLagChips(Math.max(0, Math.round(Number(monthsAgo) || 0)));
     calculateAndRender(false);
   }
 
@@ -548,7 +757,29 @@
     calculateAndRender(false);
   }
 
+  function syncFromSurveyProfile(profile) {
+    if (!profile || !profile.hasBoneAge || typeof document === 'undefined') return;
+    var sec = document.getElementById('kfk-bone-age-interpreter');
+    if (!sec) return;
+    var ageM = Number(profile.ageMonths) || 120;
+    writeInputsToDom({
+      sex: (profile.gender === 'girl' || profile.gender === 'female') ? 'F' : 'M',
+      caYears: clamp(Math.floor(ageM / 12), 3, 18),
+      caMonths: clamp(Math.round(ageM % 12), 0, 11),
+      heightCm: Number(profile.currentHeight) || 137.0,
+      baYears: Number(profile.baExamYears) || Math.floor(ageM / 12),
+      baMonths: Number(profile.baExamMonths) || 0,
+      examYear: profile.examYear,
+      examMonth: profile.examMonth,
+      tempoAccel: Boolean(profile.tempoAccel),
+      fatherCm: Number(profile.fatherHeight) || 174,
+      motherCm: Number(profile.motherHeight) || 161
+    });
+    calculateAndRender(false);
+  }
+
   function jumpToBoneAgeInterpreter() {
+    if (typeof document === 'undefined') return;
     var sec = document.getElementById('kfk-bone-age-interpreter');
     if (sec && sec.scrollIntoView) {
       sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -556,8 +787,11 @@
   }
 
   function initBoneAgeInterpreter() {
+    if (typeof document === 'undefined') return;
     var sec = document.getElementById('kfk-bone-age-interpreter');
     if (!sec) return;
+
+    ensureExamYearOptions(document.getElementById('kfk-ba-exam-year'));
 
     var saved = loadState();
     if (saved && saved.caYears && saved.heightCm && saved.baYears) {
@@ -584,28 +818,44 @@
     calculateAndRender(false);
   }
 
-  window.KfkBoneAgeInterpreter = {
+  var api = {
     init: initBoneAgeInterpreter,
     calculate: calculateAndRender,
     computeReport: computeBoneAgeReport,
+    computeExamLagCalibration: computeExamLagCalibration,
+    interpolateMaturePct: interpolateMaturePct,
+    computeStageTargetBoneAge: computeStageTargetBoneAge,
+    getTodayYearMonth: getTodayYearMonth,
+    getYearMonthFromLag: getYearMonthFromLag,
     selectStage: selectGrowthPlateStage,
+    selectExamLagMonths: selectExamLagMonths,
+    syncFromSurveyProfile: syncFromSurveyProfile,
     applyPreset: applyPreset
   };
 
-  window.calculateKfkBoneAge = function () {
-    return calculateAndRender(true);
-  };
-  window.selectKfkBoneAgeSex = function (sex) {
-    setSexState(sex === 'F' ? 'F' : 'M');
-    calculateAndRender(false);
-  };
-  window.selectKfkGrowthPlateStage = selectGrowthPlateStage;
-  window.applyKfkBoneAgePreset = applyPreset;
-  window.jumpToKfkBoneAgeInterpreter = jumpToBoneAgeInterpreter;
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBoneAgeInterpreter);
-  } else {
-    initBoneAgeInterpreter();
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = api;
   }
-})();
+  if (global) {
+    global.KfkBoneAgeInterpreter = api;
+    global.calculateKfkBoneAge = function () {
+      return calculateAndRender(true);
+    };
+    global.selectKfkBoneAgeSex = function (sex) {
+      setSexState(sex === 'F' ? 'F' : 'M');
+      calculateAndRender(false);
+    };
+    global.selectKfkGrowthPlateStage = selectGrowthPlateStage;
+    global.selectKfkBaExamLag = selectExamLagMonths;
+    global.applyKfkBoneAgePreset = applyPreset;
+    global.jumpToKfkBoneAgeInterpreter = jumpToBoneAgeInterpreter;
+  }
+
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBoneAgeInterpreter);
+    } else {
+      initBoneAgeInterpreter();
+    }
+  }
+})(typeof window !== 'undefined' ? window : global);

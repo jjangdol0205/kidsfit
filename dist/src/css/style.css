@@ -2419,20 +2419,16 @@ svg {
 }
 
 /* 24. PURE HEIGHT-GROWTH SURVEY STUDIO (Hide legacy learning/cognitive questionnaire fields on growth flow) */
-.mode-learning-field {
+.mode-learning-field,
+.wizard-mode-learning .mode-learning-field,
+.wizard-mode-growth .mode-learning-field,
+#quiz-section .mode-learning-field {
   display: none !important;
 }
-.wizard-mode-learning .mode-growth-field {
-  display: none !important;
-}
-.wizard-mode-learning .mode-learning-field {
-  display: block !important;
-}
+.mode-growth-field,
+.wizard-mode-learning .mode-growth-field,
 .wizard-mode-growth .mode-growth-field {
   display: block !important;
-}
-.wizard-mode-growth .mode-learning-field {
-  display: none !important;
 }
 #kf-shop-grid [data-shop-category="development"],
 #kf-shop-grid [data-shop-category="learning"] {
@@ -6862,8 +6858,65 @@ body.diagnosis-lounge-active #kf-backroom-diagnosis-lounge {
   margin-bottom: 0.5rem;
 }
 
-
-
-
-
-
+/* === 5-Step Guided Survey Bone-Age Branch & Affiliate Result Unlock Gate === */
+.kfk-ba-branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+.kfk-ba-branch-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  border: 2px solid #CBD5E1;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+.kfk-ba-branch-card:hover {
+  border-color: #60A5FA;
+  background: #F8FAFC;
+}
+.kfk-ba-branch-card.is-selected {
+  border-color: #1D4ED8;
+  background: #EFF6FF;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.14);
+}
+.kfk-quiz-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+.kfk-quiz-mini-chip {
+  min-height: 40px;
+  padding: 0.42rem 0.78rem;
+  border-radius: 9999px;
+  border: 1.5px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #1E293B;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.kfk-quiz-mini-chip:hover {
+  border-color: #60A5FA;
+  background: #F8FAFC;
+}
+.kfk-quiz-mini-chip.active {
+  background: #1D4ED8;
+  border-color: #1E40AF;
+  color: #FFFFFF;
+}
+.kfk-locked-blur-section {
+  filter: blur(8px) !important;
+  -webkit-filter: blur(8px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
