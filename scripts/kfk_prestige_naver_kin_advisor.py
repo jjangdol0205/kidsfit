@@ -632,13 +632,15 @@ def run_safe_daily_1x_naver_kin(
     try:
         from playwright.sync_api import sync_playwright
 
-        HEADLESS_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
         cookies = json.loads(COOKIE_BACKUP_PATH.read_text(encoding="utf-8"))
+        exp_365 = int(time.time()) + 365 * 86400
+        for ck in cookies:
+            if isinstance(ck, dict) and ck.get("expires", -1) <= 0:
+                ck["expires"] = exp_365
 
         with sync_playwright() as p:
-            context = p.chromium.launch_persistent_context(
-                user_data_dir=str(HEADLESS_PROFILE_DIR),
-                headless=True,
+            browser = p.chromium.launch(headless=True, timeout=25000)
+            context = browser.new_context(
                 viewport={"width": 1366, "height": 900},
                 locale="ko-KR",
                 timezone_id="Asia/Seoul",
@@ -808,6 +810,7 @@ def run_safe_daily_1x_naver_kin(
                 }
             finally:
                 context.close()
+                browser.close()
     except Exception as exc:
         outbox_path = _save_kin_outbox_pack(today_str, advisory, chosen_q["url"], "CURATED_FALLBACK")
         return {
