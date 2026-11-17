@@ -65,8 +65,8 @@
       desc: '밤 10시~새벽 2시 깊은 서파수면(SWS) 유도 · 야간 멜라토닌 및 성장호르몬 리듬 보호 에디터 큐레이션',
       img: 'src/images/products/prod_nb_gear_2.webp',
       fallback: 'src/images/products/prod_nb_gear_2.svg',
-      npayUrl: NPAY_LINKS.calmadi,
-      npayLabel: '🟢 Npay 숙면·건강관',
+      npayUrl: '',
+      npayLabel: '',
       primaryUrl: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kfk_boneage_sleep&pageKey=%EC%A3%BC%EB%8B%88%EC%96%B4+%EA%B2%BD%EC%B6%94+%EB%B2%A0%EA%B0%9C+%EC%88%99%EB%A9%B4',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
@@ -77,7 +77,7 @@
       img: 'src/images/products/prod_ch_gear_1.webp',
       fallback: 'src/images/products/prod_ch_gear_1.svg',
       npayUrl: NPAY_LINKS.chair,
-      npayLabel: '🟢 Npay 바른자세관',
+      npayLabel: '🟢 Npay 바른자세 의자',
       primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
@@ -88,7 +88,7 @@
       img: 'src/images/products/prod_ch_hot_1.webp',
       fallback: 'src/images/products/prod_ch_gear_1.svg',
       npayUrl: NPAY_LINKS.stand,
-      npayLabel: '🟢 Npay 독서대관',
+      npayLabel: '🟢 Npay 2단 원목 독서대',
       primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_stand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
@@ -109,21 +109,10 @@
       desc: '열려 있는 성장판에 매일 10분 가벼운 수직 점프 자극을 더해주는 공식 판매처 보러가기',
       img: 'src/images/products/prod_tod_gear_1.webp',
       fallback: 'src/images/products/prod_tod_gear_1.svg',
-      npayUrl: NPAY_LINKS.fgo,
-      npayLabel: '🟢 Npay 키성장 FGO',
+      npayUrl: '',
+      npayLabel: '',
       primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_tramp&pageKey=7390936623&itemId=19108463499&vendorItemId=86228725982',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
-    },
-    reading_yes24: {
-      tag: '저녁 스마트폰 대체 독서 루틴',
-      title: '뿌리깊은 초등국어 독해력 단계별 교재 (예스24)',
-      desc: '취침 전 스마트폰 블루라이트 대신 차분한 독서 습관으로 숙면 입면을 돕는 공식 판매처 보러가기',
-      img: 'src/images/products/prod_ch_learn_1.webp',
-      fallback: 'src/images/products/prod_ch_learn_1.svg',
-      npayUrl: NPAY_LINKS.stand,
-      npayLabel: '🟢 Npay 독서대 함께보기',
-      primaryUrl: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169',
-      primaryLabel: '📚 공식 판매처 보러가기'
     }
   };
 
@@ -327,7 +316,7 @@
         '🥗 야식·액상과당 절제 및 단백질 균형: 급격한 체중 증가는 뼈나이 가속의 주요 환경 요인입니다.',
         '💺 숨은 키 2~3cm 착석 자세 방어: 남은 성장 기간 동안 거북목·구부정한 등으로 손해 보는 키를 막아주세요.'
       ];
-      curatedKeys = ['sleep_pillow', 'posture_chair', 'reading_yes24'];
+      curatedKeys = ['sleep_pillow', 'posture_chair', 'wood_stand'];
     } else if (deltaBa <= -0.75) {
       paceType = 'slow';
       badgeText = '🌱 느린 뼈나이 (' + formatDeltaMonths(deltaBa) + ') · 대기만성형 잔여 잠재력 우수';
@@ -352,7 +341,7 @@
         '🌙 서파수면 골든타임 사수: 밤 10시~새벽 2시 깊은 수면 구간에 하루 성장호르몬의 약 70%가 분비됩니다.',
         '💺 바른 독서·학습 자세 유지: 발바닥이 닿는 성장형 의자와 원목 독서대로 경추 하중을 줄여주세요.'
       ];
-      curatedKeys = ['calmadi_d3', 'wood_stand', 'sleep_pillow'];
+      curatedKeys = ['calmadi_d3', 'posture_chair', 'sleep_pillow'];
     }
 
     return {
@@ -382,6 +371,7 @@
     for (var i = 0; i < keys.length; i++) {
       var item = CURATION_ITEMS[keys[i]];
       if (!item) continue;
+      var hasNpay = Boolean(item.npayUrl);
       html +=
         '<div class="kfk-ba-curation-card">' +
           '<div class="kfk-ba-curation-top">' +
@@ -392,8 +382,10 @@
               '<span class="kfk-ba-curation-desc">' + item.desc + '</span>' +
             '</div>' +
           '</div>' +
-          '<div class="kfk-ba-curation-btns">' +
-            '<a href="' + item.npayUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" class="kfk-1tap-btn kfk-1tap-npay">' + item.npayLabel + '</a>' +
+          '<div class="kfk-ba-curation-btns"' + (hasNpay ? '' : ' style="grid-template-columns:1fr;"') + '>' +
+            (hasNpay
+              ? '<a href="' + item.npayUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" class="kfk-1tap-btn kfk-1tap-npay">' + item.npayLabel + '</a>'
+              : '') +
             '<a href="' + item.primaryUrl + '" target="_blank" rel="noopener noreferrer sponsored" data-shop-click="1" class="kfk-1tap-btn kfk-1tap-primary">' + item.primaryLabel + '</a>' +
           '</div>' +
         '</div>';

@@ -17,6 +17,13 @@ function computeDeterministicBuildStamp() {
     'src/js/app.js',
     'src/js/monetization.js',
     'src/js/bone-age-interpreter.js',
+    'src/js/parent-habit-notebook.js',
+    'src/js/korean-digital-asset-monetization.js',
+    'src/js/pinpoint-curator.js',
+    'src/js/i18n.js',
+    'src/js/onboarding-wizard.js',
+    'src/js/master-briefing.js',
+    'src/js/qna-human-rl-curator.js',
     'src/css/style.css',
     'src/data/curation-catalog.json'
   ]) {

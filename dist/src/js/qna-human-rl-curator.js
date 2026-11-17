@@ -251,8 +251,8 @@
           '<a href="/coupang-kidsfit.html" data-shop-click="1" style="display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 14px;border-radius:12px;background:#EFF6FF;border:1.5px solid #93C5FD;color:#1E3A8A;font-weight:900;font-size:13.5px;text-decoration:none;text-align:center;">' +
             '🍼 신생아~초등 쿠팡 인플루언서 16종 전체 추천관 보기 →' +
           '</a>' +
-          '<a href="https://naver.me/5Jq9LnLT" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 14px;border-radius:12px;background:#F0FDF4;border:1.5px solid #86EFAC;color:#166534;font-weight:900;font-size:13.5px;text-decoration:none;text-align:center;">' +
-            '🟢 네이버 공식 건강 브랜드 · Npay 적립관 보러가기 →' +
+          '<a href="https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&amp;ac=crtshp&amp;cid=1016094238062720" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 14px;border-radius:12px;background:#F0FDF4;border:1.5px solid #86EFAC;color:#166534;font-weight:900;font-size:13.5px;text-decoration:none;text-align:center;">' +
+            '🟢 네이버페이(Npay) 적립 · 어린이 칼마디+K2 공식 판매처 보러가기 →' +
           '</a>' +
         '</div>' +
         '<p style="margin:8px 0 0 0;font-size:11.5px;color:#64748B;line-height:1.45;">' +

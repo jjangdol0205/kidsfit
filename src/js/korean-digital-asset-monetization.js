@@ -31,7 +31,20 @@
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
       naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
-      naverCta: '🟢 Npay 적립: 2단 독서대 공식 판매처 →'
+      naverCta: '🟢 Npay 적립: 2단 원목 독서대 공식 판매처 →'
+    },
+    posture_chair: {
+      id: 'prod_ch_gear_1',
+      badge: '척추·골반 정렬 · 숨은 키 방어',
+      name: '시디즈 링고 성장형 발받침 바른자세 학생의자',
+      priceLabel: '체형 성장 단계별 조절',
+      reason: '구부정한 착석 습관과 거북목을 예방하여 성장기 척추 디스크 하중을 줄여줍니다.',
+      cta: '🚀 쿠팡 혜택가 확인 →',
+      platform: 'coupang',
+      bg: '#1D4ED8',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
+      naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
+      naverCta: '🟢 Npay 적립: 바른자세 학생의자 혜택가 확인 →'
     },
     reading_workbook: {
       id: 'prod_ch_learn_1',
@@ -43,8 +56,8 @@
       platform: 'linkprice',
       bg: '#059669',
       url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FGoods%2F59198169',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
-      naverCta: '🟢 Npay 적립: 바른자세 의자 혜택가 확인 →'
+      naverUrl: '',
+      naverCta: ''
     },
     lactofit_kids: {
       id: 'prod_tod_nut_1',
@@ -56,8 +69,8 @@
       platform: 'coupang',
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.lactobio_probiotics,
-      naverCta: '🟢 Npay 적립: 베베키즈 유산균·아연 확인 →'
+      naverUrl: '',
+      naverCta: ''
     },
     ca_mg_d3_chew: {
       id: 'prod_ch_nut_1',
@@ -69,8 +82,8 @@
       platform: 'coupang',
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_camgd3&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.icletime_fgo,
-      naverCta: '🟢 Npay 적립: 아이클타임 키성장 FGO 확인 →'
+      naverUrl: NAVER_KIDS_BRANDCONNECT.calmadi_k2,
+      naverCta: '🟢 Npay 적립: 어린이 칼마디+K2 공식 판매처 →'
     },
     liquid_calcium: {
       id: 'prod_inf_nut_2',
@@ -82,8 +95,8 @@
       platform: 'iherb',
       bg: '#047857',
       url: 'https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.calmadi_k2,
-      naverCta: '🟢 Npay 적립: 튼튼키즈 칼마디+K2 확인 →'
+      naverUrl: '',
+      naverCta: ''
     },
     baby_focus_book: {
       id: 'prod_nb_dev_1',
@@ -95,8 +108,8 @@
       platform: 'coupang',
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_focusbook&pageKey=6728684571&itemId=15671650287&vendorItemId=82887200026',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.magnet_cube,
-      naverCta: '🟢 Npay 적립: 미니 자석블럭 교구 확인 →'
+      naverUrl: '',
+      naverCta: ''
     },
     wood_rollercoaster: {
       id: 'prod_inf_dev_1',
@@ -108,6 +121,19 @@
       platform: 'coupang',
       bg: '#1D4ED8',
       url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_woodbead&pageKey=8485073446&itemId=16104062785&vendorItemId=83301332924',
+      naverUrl: '',
+      naverCta: ''
+    },
+    magnet_blocks: {
+      id: 'prod_tod_dev_1',
+      badge: '공간수리 · 스마트폰 대체 몰입',
+      name: '입체 자석블록 세트 창의 공간수리 교구',
+      priceLabel: '44,620원대 · 로켓배송',
+      reason: '저녁 스마트폰 대신 손으로 입체 도형을 조립하며 시공간 지각과 수면 전 안정 루틴을 돕습니다.',
+      cta: '🚀 쿠팡 혜택가 확인 →',
+      platform: 'coupang',
+      bg: '#1D4ED8',
+      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_magnet&pageKey=8919085482&itemId=26061762855&vendorItemId=93043042639',
       naverUrl: NAVER_KIDS_BRANDCONNECT.magnet_cube,
       naverCta: '🟢 Npay 적립: 미니 자석블럭 교구 확인 →'
     },
@@ -121,8 +147,8 @@
       platform: 'linkprice',
       bg: '#059669',
       url: 'https://click.linkprice.com/click.php?m=yes24&a=A100708867&l=9999&l_cd1=3&l_cd2=0&tu=https%3A%2F%2Fwww.yes24.com%2FProduct%2FSearch%3Fdomain%3DALL%26query%3D%25EA%25B8%25B0%25EC%25A0%2581%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B8%2580%2520%25ED%2595%2599%25EC%258A%25B5',
-      naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
-      naverCta: '🟢 Npay 적립: 2단 독서대 공식 판매처 →'
+      naverUrl: '',
+      naverCta: ''
     }
   };
 
@@ -153,27 +179,30 @@
     var ageM = Number(p.ageMonths) || ((Number(p.ageYears) || 10) * 12);
     var habits = Array.isArray(p.habits) ? p.habits : [];
     var concerns = Array.isArray(p.traitLearningConcerns) ? p.traitLearningConcerns : [];
+    var isLearningOnly = (p && p.preferredReportMode === 'learning');
 
     if (ageM < 36) {
       return {
-        stageTitle: '영아기(0~35개월) 오감 시냅스 · 액상 칼슘 흡수 필수템 TOP 3',
+        stageTitle: '영아기(0~35개월) 액상 칼슘 흡수 · 오감 발달 필수템 TOP 3',
         items: [RX_ESSENTIAL_ITEMS.liquid_calcium, RX_ESSENTIAL_ITEMS.baby_focus_book, RX_ESSENTIAL_ITEMS.wood_rollercoaster]
       };
     }
     if (ageM < 84) {
-      var todSecond = concerns.indexOf('fine_motor') !== -1 ? RX_ESSENTIAL_ITEMS.wood_rollercoaster : RX_ESSENTIAL_ITEMS.miracle_hangul;
+      var todSecond = isLearningOnly
+        ? RX_ESSENTIAL_ITEMS.miracle_hangul
+        : (concerns.indexOf('fine_motor') !== -1 ? RX_ESSENTIAL_ITEMS.wood_rollercoaster : RX_ESSENTIAL_ITEMS.magnet_blocks);
       var todThird = habits.indexOf('milk_trouble') !== -1 ? RX_ESSENTIAL_ITEMS.liquid_calcium : RX_ESSENTIAL_ITEMS.bookstand;
       return {
-        stageTitle: '유아기(3~6세) 편식 장건강 · 소근육 · 한글 문해 필수템 TOP 3',
+        stageTitle: '유아기(3~6세) 편식 장건강 · 칼슘 흡수 · 바른자세 필수템 TOP 3',
         items: [RX_ESSENTIAL_ITEMS.lactofit_kids, todSecond, todThird]
       };
     }
     var elemFirst = RX_ESSENTIAL_ITEMS.bookstand;
     var elemSecond = habits.indexOf('milk_trouble') !== -1 ? RX_ESSENTIAL_ITEMS.liquid_calcium :
       (habits.indexOf('picky_eater') !== -1 ? RX_ESSENTIAL_ITEMS.lactofit_kids : RX_ESSENTIAL_ITEMS.ca_mg_d3_chew);
-    var elemThird = RX_ESSENTIAL_ITEMS.reading_workbook;
+    var elemThird = isLearningOnly ? RX_ESSENTIAL_ITEMS.reading_workbook : RX_ESSENTIAL_ITEMS.posture_chair;
     return {
-      stageTitle: '초등·청소년기(만 ' + Math.max(7, Math.round(ageM / 12)) + '세) 숨은 키 복원 · 골든타임 영양 · 문해력 TOP 3',
+      stageTitle: '초등·청소년기(만 ' + Math.max(7, Math.round(ageM / 12)) + '세) 숨은 키 바른자세 · 골든타임 영양 TOP 3',
       items: [elemFirst, elemSecond, elemThird]
     };
   }

@@ -21,7 +21,7 @@
     ko: {
       // Header & Brand
       'brand.title': 'KIDS-FIT',
-      'brand.tagline': '프리미엄 육아 필수템 큐레이션 셀렉트샵 & 맞춤 발달 리포트',
+      'brand.tagline': '질병관리청 성장도표 · 병원 뼈나이 기반 우리 아이 키성장 골든타임 연구소',
       'trust.badge': 'Built on Official Standards: 질병관리청 소아청소년 성장도표 & 보건복지부 영유아 발달선별검사(K-DST) 기준 적용',
       'nav.auxology': '신체 성장 · 골연령 궤적',
       'nav.endocrinology': '성장호르몬 · 수면 · 임상 영양',
@@ -33,9 +33,9 @@
       'lang.toggle': 'EN (CDC)',
 
       // Hero (Psychological Hook + Clinical Authority + Immediate CTA)
-      'hero.badge': '질병관리청(KDCA) 표준 성장도표 · 보건복지부 K-DST · 소아내분비·뇌인지 학술논문 3,894편 교차 검증',
-      'hero.headline': '<span class="hero-single-line">우리 아이 또래 성장 백분위 확인부터</span> <span class="hero-headline-highlight hero-single-line">시기별 꼭 필요한 성장·학습 큐레이션까지 한곳에서</span>',
-      'hero.subtitle': '내 아이 나이대만 탭하면 질병관리청 기준 성장 가이드와 선배 학부모 검증 육아·성장 큐레이션을 한눈에 비교하고 바로 이용할 수 있습니다.',
+      'hero.badge': '질병관리청(KDCA 2017) 표준 성장도표 · 병원 뼈나이 · 소아내분비 학술논문 3,894편 교차 검증',
+      'hero.headline': '<span class="hero-single-line">우리 아이 지금 키 백분위와</span> <span class="hero-headline-highlight hero-single-line">성장판 닫히기 전 숨은 키 골든타임을 1분 만에 확인하세요</span>',
+      'hero.subtitle': '생년월일·현재 키·밤 10시 성장호르몬 숙면·칼마디 영양·숨은 키 바른자세만 체크하면 예상 성인키 3단 비교와 맞춤 처방을 즉시 확인합니다.',
       'nav.forWhom': '신체 성장 정밀 진단',
       'nav.services': '두뇌·학습 정밀 진단',
       'hero.cta.parent': '소아 신체 성장 · 최종 예상키 1분 진단 시작하기',

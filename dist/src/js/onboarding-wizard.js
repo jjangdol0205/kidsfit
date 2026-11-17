@@ -1685,7 +1685,7 @@
         bannerEl.style.borderColor = '#BFDBFE';
         bannerEl.innerHTML = isEn
           ? '<strong>[Parent\'s Child Growth & Learning Guidebook]</strong> Height Growth, Brain Roadmap & Pinpoint Supplements/Toys/Books.'
-          : '<strong>[소아·청소년 정밀 진단]</strong> 신체 성장 및 두뇌·학습 영역별 맞춤 분석 보고서를 발행합니다.';
+          : '<strong>[60초 우리 아이 키 백분위 &amp; 성장 잠재력 진단]</strong> 질병관리청(KDCA 2017) 표준도표 · 병원 뼈나이 · 밤 10시 성장호르몬 숙면 · 칼마디 영양 · 숨은 키 바른자세를 정밀 판독합니다.';
       }
     }
   }
@@ -1796,11 +1796,11 @@
     }
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
-      quizSection.style.display = 'none';
+      quizSection.style.display = 'block';
     }
     const presetsBar = document.getElementById('quick-presets-bar');
     if (presetsBar) {
-      presetsBar.style.display = 'none';
+      presetsBar.style.display = 'block';
     }
     const dashboard = document.getElementById('results-dashboard') || document.getElementById('prescription-container');
     if (dashboard) {
@@ -1815,7 +1815,7 @@
     if (heroSection) {
       heroSection.style.display = 'block';
     }
-    const scrollTarget = curatedMallHero || heroSection;
+    const scrollTarget = heroSection || quizSection;
     if (scrollTarget && typeof scrollTarget.scrollIntoView === 'function') {
       scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1845,6 +1845,10 @@
       }
     }
     exitStudioMode();
+    const fullShopDrawer = document.getElementById('kfk-full-select-shop-drawer');
+    if (fullShopDrawer) {
+      fullShopDrawer.open = true;
+    }
     if (typeof window !== 'undefined' && typeof window.filterKidsFitShopByStage === 'function') {
       let btnEl = null;
       const stageTabs = document.querySelectorAll('#kf-shop-stage-tabs .kf-stage-tab');

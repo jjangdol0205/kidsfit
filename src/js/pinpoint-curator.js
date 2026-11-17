@@ -2470,11 +2470,29 @@
     }
 
     const productCategory = (categoryType === 'supplement' || categoryType === 'toy') ? 'growth' : 'learning';
+    const matchExactNpayForTitle = (rawTitle) => {
+      const t = String(rawTitle || '');
+      if (/원목\s*독서대|2단.*독서대|각도조절.*독서대|틸팅.*독서대/.test(t)) {
+        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 2단 독서대 공식 판매처' };
+      }
+      if (/바른\s*자세.*의자|링고.*의자|학생.*의자|척추\s*교정\s*의자/.test(t)) {
+        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 바른자세 의자 공식 판매처' };
+      }
+      if (/칼슘.*마그네슘|칼마디/.test(t) && !/차일드라이프|액상/.test(t)) {
+        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 어린이 칼마디 공식 판매처' };
+      }
+      if (/자석\s*블록|자석\s*블럭|맥포머스/.test(t)) {
+        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116322?channelProductNo=11858995377&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 입체 자석블럭 공식 판매처' };
+      }
+      return null;
+    };
 
     if (isLearningCompact) {
       return `
         <div style="display: flex; flex-direction: column; gap: 0.55rem;">
-          ${threePicks.map(({ item, sub }, idx) => `
+          ${threePicks.map(({ item, sub }, idx) => {
+            const matchedNpay = matchExactNpayForTitle(sub.titleKo);
+            return `
             <div class="pinpoint-item-card" data-item-id="${item.id}" data-product-id="${item.id}" data-product-category="${productCategory}" style="background: #FFFFFF; border: 1px solid ${accentColor}; border-radius: 12px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <div style="font-size: 0.92rem; font-weight: 900; color: #0F172A; line-height: 1.32;">
                 <span style="color: #1D4ED8; margin-right:0.3rem;">${idx === 0 ? '1위' : idx === 1 ? '2위' : '3위'}</span>${isEn ? sub.titleEn : sub.titleKo}
@@ -2483,9 +2501,10 @@
                 ${isEn ? sub.specEn : sub.specKo}
               </div>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                  🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
-                </a>
+                ${matchedNpay ? `
+                <a href="${matchedNpay.url}" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                  ${matchedNpay.label}
+                </a>` : ''}
                 <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.82rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
                   🚀 쿠팡 로켓배송 혜택가 확인
                 </a>
@@ -2495,14 +2514,17 @@
                 </a>` : ''}
               </div>
             </div>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
       `;
     }
 
     return `
       <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-        ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => `
+        ${threePicks.map(({ item, sub, badgeKo, badgeEn }) => {
+          const matchedNpay = matchExactNpayForTitle(sub.titleKo);
+          return `
           <div class="pinpoint-item-card" data-item-id="${item.id}" data-product-id="${item.id}" data-product-category="${productCategory}" style="background: #FFFFFF; border: 1.5px solid ${accentColor}; border-radius: 14px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
               <span style="font-size: 0.74rem; font-weight: 900; color: #1D4ED8; background: #EFF6FF; padding: 0.16rem 0.55rem; border-radius: 9999px;">
@@ -2522,9 +2544,10 @@
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.15rem;">
-              <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
-              </a>
+              ${matchedNpay ? `
+              <a href="${matchedNpay.url}" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.8rem; font-weight: 900; padding: 0.45rem 0.6rem; border-radius: 8px; text-decoration: none; text-align: center;">
+                ${matchedNpay.label}
+              </a>` : ''}
               <a href="${sub.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.id}" data-product-category="${productCategory}" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.48rem 0.65rem; border-radius: 8px; text-decoration: none; text-align: center;">
                 🚀 쿠팡 로켓배송 혜택가 확인
               </a>
@@ -2533,7 +2556,8 @@
                 : ''}
             </div>
           </div>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
     `;
   }
@@ -3226,9 +3250,6 @@
                   ${item.whyKo || item.specKo}
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 0.35rem; margin-top: 0.1rem;">
-                  <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.78rem; font-weight: 900; padding: 0.42rem 0.55rem; border-radius: 8px; text-decoration: none; text-align: center;">
-                    🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
-                  </a>
                   <a href="${item.coupangUrl}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="coupang" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; text-decoration: none; text-align: center; font-size: 0.8rem; font-weight: 900; border-radius: 8px;">🚀 쿠팡 로켓배송 혜택가 확인</a>
                   <a href="${item.yes24Url}" target="_blank" rel="noopener noreferrer sponsored" class="pinpoint-direct-link mobile-touch-btn" data-merchant="linkprice" data-product-id="${item.key || 'workbook_' + idx}" data-product-category="learning" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #EFF6FF; border: 1px solid #BFDBFE; color: #0F172A; font-size: 0.78rem; font-weight: 800; padding: 0.4rem 0.5rem; border-radius: 8px; text-decoration: none; text-align: center;">
                     YES24 공식 판매처 보러가기 ↗

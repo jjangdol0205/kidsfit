@@ -99,8 +99,11 @@
   function renderLiveCountText(todayRec) {
     var countEl = document.getElementById('kfk-notebook-live-count');
     if (!countEl) return;
+    var localDone = (todayRec ? (todayRec.sleep ? 1 : 0) + (todayRec.nutrition ? 1 : 0) + (todayRec.jump ? 1 : 0) : 0);
     var n = computeDisplayParticipationCount(todayRec);
-    if (n > 0) {
+    if (localDone > 0) {
+      countEl.textContent = '오늘 우리 아이 성장 습관 ' + localDone + '개 실천 적립 완료 💚';
+    } else if (n > 0) {
       countEl.textContent = '오늘 ' + n.toLocaleString('ko-KR') + '명의 학부모님이 함께 실천 중';
     } else {
       countEl.textContent = '오늘 첫 번째 성장 습관 스탬프를 찍어보세요 🌱';
@@ -159,25 +162,6 @@
     }
 
     renderLiveCountText(todayRec);
-  }
-
-  function fetchInitialLiveCounts() {
-    if (typeof window.fetch !== 'function') return;
-    var todayStr = getKstDateString();
-    HABIT_KEYS.forEach(function (habit) {
-      window.fetch('https://abacus.jasoncameron.dev/get/kfk_kidsfitkr/stamp_' + habit + '_' + todayStr, {
-        mode: 'cors'
-      })
-        .then(function (r) { return r && r.ok ? r.json() : null; })
-        .then(function (data) {
-          if (data && typeof data.value === 'number' && data.value >= 0) {
-            liveCounts[habit] = Math.max(liveCounts[habit] || 0, data.value);
-            var st = loadNotebookState();
-            renderLiveCountText(getTodayRecord(st, todayStr));
-          }
-        })
-        .catch(function () {});
-    });
   }
 
   window.toggleKfkHabitStamp = function (habit) {
@@ -250,7 +234,7 @@
       if (typeof window.selectKfkConcernTab === 'function') {
         window.selectKfkConcernTab(valid);
       }
-      var hub = document.getElementById('kfk-concern-rx-hub');
+      var hub = document.getElementById('kfk-concern-rx-hub') || document.getElementById('kfk-peer-growth-editorial');
       if (hub && typeof hub.scrollIntoView === 'function') {
         setTimeout(function () {
           hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -416,12 +400,10 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       renderHabitNotebook();
-      fetchInitialLiveCounts();
       hydrateKfkPasswordlessClub();
     });
   } else {
     renderHabitNotebook();
-    fetchInitialLiveCounts();
     hydrateKfkPasswordlessClub();
   }
 })();

@@ -2534,8 +2534,8 @@
 
           <!-- Dual Official Store Bridge: Naver Creator Shop (Npay) + Coupang Rocket Delivery -->
           <div class="kf-rx-dual-store-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.55rem; margin-bottom: 0.9rem; padding: 0.75rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 14px;">
-            <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
-              🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
+            <a href="https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&amp;ac=crtshp&amp;cid=1016094238062720" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+              🟢 네이버페이(Npay) 적립 · 어린이 칼마디+K2 공식 판매처 보러가기
             </a>
             <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&amp;subid=kidsfit_rx_growth&amp;pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4%20%ED%82%A4%EC%84%B1%EC%9E%A5%20%EC%B9%BC%EC%8A%98%20%EB%B0%94%EB%A5%B8%EC%9E%90%EC%84%B8" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
               🚀 쿠팡 로켓배송 혜택가 확인
@@ -3628,8 +3628,8 @@
 
               <!-- Dual Official Store Bridge: Naver Creator Shop (Npay) + Coupang Rocket Delivery -->
               <div class="kf-rx-dual-store-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.55rem; margin-bottom: 0.85rem; padding: 0.75rem; background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px;">
-                <a href="https://naver.me/5Jq9LnLT" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
-                  🟢 네이버 공식 브랜드 큐레이션 · Npay 적립관 보러가기
+                <a href="https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&amp;ac=crtshp&amp;cid=1016094238062720" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                  🟢 네이버페이(Npay) 적립 · 높이조절 2단 원목 독서대 공식 판매처 보러가기
                 </a>
                 <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&amp;subid=kidsfit_rx_learning&amp;pageKey=%EC%B4%88%EB%93%B1%20%EB%B0%94%EB%A5%B8%EC%9E%90%EC%84%B8%20%EB%8F%85%EC%84%9C%EB%8C%80%20%EC%82%AC%EA%B3%A0%EB%A0%A5%20%EA%B5%90%EA%B5%AC" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
                   🚀 쿠팡 로켓배송 혜택가 확인

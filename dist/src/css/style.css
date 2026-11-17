@@ -1662,12 +1662,7 @@ body[data-theme="dark"] {
   font-weight: 800;
 }
 
-/* First-Screen Gate: Hide Survey & Presets until user clicks "Start Diagnosis" */
-body:not(.studio-mode-active) #quick-presets-bar,
-body:not(.studio-mode-active) #quiz-section {
-  display: none !important;
-}
-
+/* Diagnosis-First Funnel: Keep #quick-presets-bar & #quiz-section immediately visible above the fold */
 body.studio-mode-active #hero-section,
 body.studio-mode-active #brand-editorial-showcase,
 body.studio-mode-active .editorial-cta-bar {
@@ -5183,15 +5178,16 @@ div#kidsfit-parenting-select-shop,
 }
 
 /* =========================================================================
-   PURE CURATION SHOPPING MALL MAIN SCREEN & BACK-ROOM DIAGNOSIS LOUNGE
+   DIAGNOSIS-FIRST MAIN SCREEN & OPTIONAL COLLAPSIBLE SELECT SHOP DRAWER
    ========================================================================= */
 body:not(.studio-mode-active):not(.diagnosis-lounge-active) #dual-pillar-intro-showcase,
 body:not(.studio-mode-active):not(.diagnosis-lounge-active) #hero-monthly-products-only-bar,
 body:not(.studio-mode-active):not(.diagnosis-lounge-active) #hero-app-download-bar,
-body:not(.studio-mode-active):not(.diagnosis-lounge-active) #studio-utility-return-bar,
-body:not(.studio-mode-active):not(.diagnosis-lounge-active) #quick-presets-bar,
-body:not(.studio-mode-active):not(.diagnosis-lounge-active) #quiz-section,
-body:not(.studio-mode-active):not(.diagnosis-lounge-active) #results-dashboard {
+body:not(.studio-mode-active):not(.diagnosis-lounge-active) #studio-utility-return-bar {
+  display: none !important;
+}
+
+#results-dashboard.hidden {
   display: none !important;
 }
 
@@ -6658,6 +6654,206 @@ body.diagnosis-lounge-active #kf-backroom-diagnosis-lounge {
     padding: 0.72rem 0.82rem;
   }
 }
+
+/* =========================================================================
+   RESPONSIVE KDCA 2017 STANDARD HEIGHT TABLE (#kfk-kdca-standard-height-table)
+   & COLLAPSIBLE FULL SELECT SHOP DRAWER (#kfk-full-select-shop-drawer)
+   ========================================================================= */
+#kfk-kdca-standard-height-table {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto 1.25rem;
+  background: #FFFFFF;
+  border: 1.5px solid #93C5FD;
+  border-radius: 20px;
+  padding: 1.1rem 1rem;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.06);
+}
+
+.kfk-kdca-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.kfk-kdca-title {
+  margin: 0;
+  font-size: clamp(0.98rem, 2.5vw, 1.14rem);
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.kfk-kdca-swipe-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.65rem;
+  padding: 0.38rem 0.72rem;
+  border-radius: 9999px;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1E3A8A;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.kfk-kdca-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-bottom: 0.7rem;
+}
+
+.kfk-kdca-filter-btn {
+  min-height: 36px;
+  padding: 0.3rem 0.72rem;
+  border-radius: 9999px;
+  border: 1.5px solid #CBD5E1;
+  background: #F8FAFC;
+  color: #1E293B;
+  font-size: 0.77rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.kfk-kdca-filter-btn.active {
+  background: #1D4ED8;
+  border-color: #1E40AF;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+}
+
+.kfk-kdca-scroll-shell {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #CBD5E1;
+}
+
+.kfk-kdca-scroll-shell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  background: linear-gradient(270deg, rgba(241, 245, 249, 0.96) 0%, rgba(241, 245, 249, 0) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .kfk-kdca-scroll-shell:not(.is-scrolled-end)::after {
+    opacity: 1;
+  }
+  #kfk-kdca-standard-height-table {
+    padding: 0.92rem 0.78rem;
+    border-radius: 16px;
+  }
+}
+
+.kfk-kdca-scroll-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.kfk-kdca-table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  background: #FFFFFF;
+}
+
+.kfk-kdca-table th,
+.kfk-kdca-table td {
+  white-space: nowrap;
+}
+
+.kfk-full-shop-drawer-section {
+  width: 100%;
+  max-width: 980px;
+  margin: 0.5rem auto 1.6rem;
+}
+
+#kfk-full-select-shop-drawer {
+  box-sizing: border-box;
+  width: 100%;
+  background: #F8FAFC;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 18px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+#kfk-full-select-shop-drawer > summary.kfk-full-shop-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #0F172A;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%);
+  user-select: none;
+}
+
+#kfk-full-select-shop-drawer > summary.kfk-full-shop-summary::-webkit-details-marker {
+  display: none;
+}
+
+#kfk-full-select-shop-drawer .kfk-drawer-toggle-pill {
+  flex-shrink: 0;
+  background: #1D4ED8;
+  color: #FFFFFF;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.34rem 0.75rem;
+  border-radius: 9999px;
+}
+
+#kfk-full-select-shop-drawer[open] .kfk-drawer-toggle-pill {
+  background: #334155;
+}
+
+.kfk-full-shop-drawer-body {
+  padding: 1rem 0.85rem 1.15rem;
+  border-top: 1px solid #CBD5E1;
+}
+
+.kfk-step-pill-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+  border-radius: 9999px;
+  padding: 0.24rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
 
 
 
