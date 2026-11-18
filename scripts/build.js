@@ -38,6 +38,7 @@ function copyRecursiveSync(src, dest) {
       fs.mkdirSync(dest, { recursive: true });
     }
     fs.readdirSync(src).forEach((childItemName) => {
+      if (/^(_work|shorts_10eps|10_naver_clip_videos|9_naver_brand_assets|enhanced_blog_images)$/i.test(childItemName)) return;
       copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName));
     });
   } else {

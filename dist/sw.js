@@ -1,12 +1,10 @@
 /**
- * sw.js — KIDS-FIT Growth Studio Official PWA Service Worker
- * Network-First strategy: guarantees 100% fresh HTML/JS/CSS updates on every visit
- * while enabling native Android WebAPK / Chrome / Samsung Internet / Desktop PWA installation.
+ * sw.js — 키즈핏 성장 연구소 PWA Service Worker
+ * Strictly Network-First for HTML/JS/CSS with automatic purge of all legacy caches.
  */
 
-const CACHE_NAME = 'kidsfit-pwa-v20261026v37';
+const CACHE_NAME = 'kidsfit-kr-human-v20261118-v3';
 const APP_SHELL = [
-  '/',
   '/manifest.json',
   '/samples/app-icon-192.png',
   '/samples/app-icon-512.png',
@@ -16,9 +14,7 @@ const APP_SHELL = [
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(APP_SHELL).catch(() => {});
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL).catch(() => {}))
   );
 });
 
@@ -26,12 +22,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-          return Promise.resolve();
-        })
+        keys.map((key) => (key !== CACHE_NAME ? caches.delete(key) : Promise.resolve()))
       )
     ).then(() => self.clients.claim())
   );
@@ -45,9 +36,13 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/download/')) return;
 
-  const isCodeOrDoc = url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.json');
+  const isCodeOrDoc =
+    url.pathname === '/' ||
+    url.pathname.endsWith('.html') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.json');
 
-  // Network-first with cache: 'no-store' for code/HTML so updates to kisfitglobal.com are reflected immediately
   event.respondWith(
     fetch(req, isCodeOrDoc ? { cache: 'no-store' } : undefined)
       .then((networkRes) => {
@@ -57,8 +52,6 @@ self.addEventListener('fetch', (event) => {
         }
         return networkRes;
       })
-      .catch(() => {
-        return caches.match(req).then((cached) => cached || caches.match('/'));
-      })
+      .catch(() => caches.match(req))
   );
 });

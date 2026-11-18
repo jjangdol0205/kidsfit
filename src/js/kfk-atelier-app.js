@@ -251,13 +251,13 @@
     var projY = Math.floor(projTotalM / 12);
     var projM = Math.abs(projTotalM % 12);
     var mmStr = examM < 10 ? '0' + examM : String(examM);
-    var lagLabel = deltaMonths === 0 ? '이번 달 촬영' : (deltaMonths + '개월 전 촬영');
-    var tempoText = tempoFactor > 1.0 ? ', 사춘기 가속 계수 1.08 반영' : '';
+    var lagLabel = deltaMonths === 0 ? '이번 달 검사' : (deltaMonths + '개월 전 검사');
+    var tempoText = tempoFactor > 1.0 ? ', 최근 빠른 성장 속도 반영' : '';
 
     var summaryText =
-      examY + '년 ' + mmStr + '월(' + lagLabel + ') 측정 뼈나이 ' + baY + '세 ' + baM + '개월 → ' +
-      '경과 시차(+' + deltaMonths + '개월' + tempoText + ') 보정 금일 추정 골연령 ' +
-      projY + '세 ' + projM + '개월 기준 산출';
+      examY + '년 ' + mmStr + '월(' + lagLabel + ') 들으신 뼈나이 ' + baY + '세 ' + baM + '개월에서 ' +
+      '오늘까지 흐른 시간(+' + deltaMonths + '개월' + tempoText + ')을 더해 오늘 기준 약 ' +
+      projY + '세 ' + projM + '개월로 살펴봅니다.';
 
     var advisoryText = deltaMonths >= 12
       ? '촬영일로부터 1년(' + deltaMonths + '개월) 이상 경과하여 사춘기 골성숙 속도가 달라졌을 가능성이 있으므로 다음 정기 검진 시 성장판 재확인을 함께 권해 드립니다.'
@@ -596,8 +596,8 @@
     var el = document.getElementById('dob-live-readout');
     if (el) {
       el.innerHTML =
-        '금일 기준 <strong>만 ' + age.ageYears + '세 ' + age.remMonths + '개월</strong> (생후 ' + age.exactMonths.toFixed(1) + '개월) · ' +
-        '질병관리청 동월령 ' + (p.sex === 'girl' ? '여아' : '남아') + ' 표준 중앙값 <strong>' + row.M.toFixed(1) + ' cm</strong> 기준으로 대조합니다.';
+        '오늘 기준 <strong>만 ' + age.ageYears + '세 ' + age.remMonths + '개월</strong> · ' +
+        '같은 개월 수 ' + (p.sex === 'girl' ? '여자아이' : '남자아이') + ' 질병관리청 중간 키는 <strong>' + row.M.toFixed(1) + ' cm</strong>입니다.';
     }
   }
 
@@ -610,7 +610,7 @@
     var el = document.getElementById('mph-live-readout');
     if (el) {
       el.innerHTML =
-        '산출된 부모 유전 표적키(Tanner MPH): <strong>' + mph.toFixed(1) + ' cm</strong> ' +
+        '부모님 키로 살펴본 물려받은 중심값: <strong>' + mph.toFixed(1) + ' cm</strong> ' +
         '(유전 기대 범위 ' + (mph - 8.5).toFixed(1) + ' ~ ' + (mph + 8.5).toFixed(1) + ' cm)';
     }
   }
@@ -635,9 +635,9 @@
     var noteEl = document.getElementById('ba-delta-live-note');
     if (noteEl) {
       noteEl.innerHTML =
-        '<strong>경과 시차(Δt) 자동 보정 결과</strong><br>' +
+        '<strong>검사일 이후 흐른 시간 자동 반영 결과</strong><br>' +
         cal.summaryText +
-        (cal.advisoryText ? '<br><span style="color:#756D65;font-size:13.5px;">' + cal.advisoryText + '</span>' : '');
+        (cal.advisoryText ? '<br><span style="color:#6E665E;font-size:13.5px;">' + cal.advisoryText + '</span>' : '');
     }
   }
 
@@ -657,6 +657,7 @@
     state.currentScreen = screenIdx;
     var mainEl = document.getElementById('atelier-main-shell');
     if (mainEl) {
+      mainEl.classList.toggle('is-opening-view', screenIdx === 0);
       mainEl.classList.toggle('is-wide-view', screenIdx === 3);
     }
     var ids = [
@@ -680,8 +681,16 @@
       var panel = document.getElementById('step-content-' + s);
       if (panel) panel.classList.toggle('is-active', s === target);
     }
+    var stepNames = [
+      '',
+      '첫 번째 질문 (1 / 5)',
+      '두 번째 질문 (2 / 5)',
+      '세 번째 질문 (3 / 5)',
+      '네 번째 질문 (4 / 5)',
+      '마지막 질문 (5 / 5)'
+    ];
     var counterEl = document.getElementById('survey-step-counter');
-    if (counterEl) counterEl.textContent = 'Step ' + target + ' / 5';
+    if (counterEl) counterEl.textContent = stepNames[target] || (target + ' / 5');
     var fillEl = document.getElementById('survey-progress-fill');
     if (fillEl) fillEl.style.width = (target * 20) + '%';
     var errEl = document.getElementById('survey-validation-msg');
@@ -845,18 +854,19 @@
     };
 
     if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.registerMember === 'function') {
-      global.DreamCompanyCRM.registerMember({
-        div: 'KFK',
-        email: email,
-        nickname: nickname,
-        segment: 'kfk_atelier_stepup_kr',
-        notes: notesSummary,
-        lang: 'ko',
-        website_hp: hp
-      }).then(finishTransition).catch(finishTransition);
-    } else {
-      finishTransition();
+      try {
+        global.DreamCompanyCRM.registerMember({
+          div: 'KFK',
+          email: email,
+          nickname: nickname,
+          segment: 'kfk_atelier_stepup_kr',
+          notes: notesSummary,
+          lang: 'ko',
+          website_hp: hp
+        }).catch(function () {});
+      } catch (_) {}
     }
+    finishTransition();
     return false;
   }
 
@@ -878,9 +888,9 @@
     var statusBadge = document.getElementById('screen3-access-status');
     if (statusBadge) {
       if (paidPass && paidPass.tier === 'tier2') {
-        statusBadge.textContent = 'Tier 2 · 6개월 성장속도 트래커 패스 개방됨';
+        statusBadge.textContent = '2등급 · 6개월 성장속도 관리 패스 열람 중';
       } else if (paidPass && paidPass.tier === 'tier1') {
-        statusBadge.textContent = 'Tier 1 · 단건 정밀 리포트 패스 개방됨';
+        statusBadge.textContent = '1등급 · 단건 정밀 리포트 패스 열람 중';
       } else {
         statusBadge.textContent = '무료 기본 요약 열람 중 (일부 공개)';
       }
@@ -891,7 +901,7 @@
     if (titleEl) {
       titleEl.textContent =
         '만 ' + analysis.ageYears + '세 ' + analysis.remMonths + '개월 ' + analysis.sexLabel +
-        ' (' + analysis.heightCm.toFixed(1) + ' cm · ' + analysis.weightKg.toFixed(1) + ' kg) 기본 성장 위치 요약';
+        ' (' + analysis.heightCm.toFixed(1) + ' cm · ' + analysis.weightKg.toFixed(1) + ' kg) 기본 성장 위치';
     }
 
     var pctValEl = document.getElementById('result-free-percentile');
@@ -931,8 +941,8 @@
     var baPreviewLine = document.getElementById('vault-ba-context-line');
     if (baPreviewLine) {
       baPreviewLine.textContent = analysis.hasBoneAge && analysis.boneAgeCalibration
-        ? ('경과 시차(+' + analysis.boneAgeCalibration.deltaMonths + '개월) 보정 금일 추정 골연령 산출 완료 — 정밀 예측치 잠금 중')
-        : '질병관리청 2017 성장궤적 × 부모 유전 모델 결합 최종 성인 예측 키 산출 완료 — 정밀 예측치 잠금 중';
+        ? ('검사일 이후 흐른 시간(+' + analysis.boneAgeCalibration.deltaMonths + '개월)을 반영한 오늘 기준 예상 골연령과 성인 키 계산이 완료되었습니다.')
+        : '질병관리청 성장 기준과 부모님 신장, 생활 습관을 반영한 최종 성인 예상 키 계산이 완료되었습니다.';
     }
 
     if (paidPass) {
@@ -963,14 +973,14 @@
     if (baBox) {
       if (analysis.hasBoneAge && analysis.boneAgeCalibration) {
         baBox.innerHTML =
-          '<strong>골연령 경과 시차(Δt) 정밀 보정 결과</strong><br>' +
+          '<strong>검사일 이후 흐른 시간 보정 결과</strong><br>' +
           analysis.boneAgeCalibration.summaryText +
-          ' (현재 성인 신장 대비 골성숙 진행률 약 ' + analysis.maturePct.toFixed(1) + '%)' +
-          (analysis.boneAgeCalibration.advisoryText ? '<br><span style="color:#756D65;font-size:13.5px;">' + analysis.boneAgeCalibration.advisoryText + '</span>' : '');
+          ' (현재 성인 신장 대비 성장 진행률 약 ' + analysis.maturePct.toFixed(1) + '%)' +
+          (analysis.boneAgeCalibration.advisoryText ? '<br><span style="color:#6E665E;font-size:13.5px;">' + analysis.boneAgeCalibration.advisoryText + '</span>' : '');
       } else {
         baBox.innerHTML =
-          '<strong>연대기 정밀 월령 및 표준 골성숙 모델 적용</strong><br>' +
-          '생후 ' + analysis.exactMonths.toFixed(1) + '개월 표준 성숙도(약 ' + analysis.maturePct.toFixed(1) + '% 진행)와 부모 유전 표적키(' + analysis.mphCm.toFixed(1) + ' cm)를 결합해 산출했습니다.';
+          '<strong>태어난 일수 기준 정밀 월령 및 부모 신장 모델 적용</strong><br>' +
+          '생후 ' + analysis.exactMonths.toFixed(1) + '개월 표준 성숙도(약 ' + analysis.maturePct.toFixed(1) + '% 진행)와 부모님 키 중심값(' + analysis.mphCm.toFixed(1) + ' cm)을 함께 반영해 산출했습니다.';
       }
     }
 
@@ -983,8 +993,8 @@
     if (tOpt) tOpt.textContent = analysis.optimizedAdultCm.toFixed(1) + ' cm';
     if (tRem) {
       tRem.textContent =
-        '현재 키(' + analysis.heightCm.toFixed(1) + ' cm)로부터 골든타임 환경 최적화 시 기대 잔여 성장폭은 약 +' +
-        analysis.remainingPotentialCm.toFixed(1) + ' cm (현재 습관 대비 +' + analysis.ModifiableGapCm.toFixed(1) + ' cm 방어·복원 가능 구간)입니다.';
+        '현재 키(' + analysis.heightCm.toFixed(1) + ' cm)로부터 저녁 습관을 정돈할 때 기대할 수 있는 남은 성장폭은 약 +' +
+        analysis.remainingPotentialCm.toFixed(1) + ' cm (현재 습관 유지 시보다 +' + analysis.ModifiableGapCm.toFixed(1) + ' cm 회복 구간)입니다.';
     }
 
     var rxList = document.getElementById('full-report-prescription-list');
@@ -1002,13 +1012,15 @@
     var ebookBtn = document.getElementById('full-report-masterbook-link');
     if (ebookBtn) {
       var cfg = global.KFK_EBOOK_CONFIG || {};
-      ebookBtn.href = cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP';
+      ebookBtn.href = paidPass && paidPass.tier === 'tier2'
+        ? (cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/stores/7Frck')
+        : (cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP');
     }
     var passLabel = document.getElementById('full-report-pass-badge');
     if (passLabel && paidPass) {
       passLabel.textContent = paidPass.tier === 'tier2'
-        ? ('개방 등급: Tier 2 6개월 성장속도 트래커 VIP (' + paidPass.email + ')')
-        : ('개방 등급: Tier 1 단건 정밀 리포트 패스 (' + paidPass.email + ')');
+        ? ('열람 등급: 2등급 6개월 성장속도 집중 관리 패스 (' + paidPass.email + ')')
+        : ('열람 등급: 1등급 단건 정밀 리포트 패스 (' + paidPass.email + ')');
     }
   }
 
@@ -1142,9 +1154,10 @@
     if (msgEl) {
       msgEl.style.display = 'block';
       msgEl.style.color = '#2F5241';
-      msgEl.textContent = '패스 확인이 완료되어 위쪽 전체 정밀 리포트가 개방되었습니다.';
+      msgEl.textContent = '결제 확인이 완료되어 전체 정밀 리포트가 열렸습니다.';
     }
 
+    closeCheckinModal();
     renderScreen3Results(analysis);
     showScreen(3);
     var reportBox = document.getElementById('kfk-full-unlocked-report');
@@ -1244,27 +1257,27 @@
     return false;
   }
 
-  function openHeaderCheckinStudio(ev) {
+  function openHeaderCheckinStudio(ev, tabOpt) {
     if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
-    var savedRaw = safeGetStorage(PROFILE_KEY);
-    var profile = readFormProfile();
-    if ((!profile.heightCm || profile.heightCm < 65) && savedRaw) {
-      try { profile = JSON.parse(savedRaw); } catch (_) {}
+    if (tabOpt === 'tracker') {
+      switchCheckinTab('tracker');
+    } else if (tabOpt === 'restore') {
+      switchCheckinTab('restore');
     }
-    if (!profile.heightCm || profile.heightCm < 65) {
-      profile.heightCm = 138.8;
-      profile.weightKg = 35.0;
+    var modal = document.getElementById('kfk-checkin-modal');
+    if (modal) {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
     }
-    var analysis = state.lastAnalysis || analyzeGrowthClock(profile);
-    state.lastAnalysis = analysis;
-    renderScreen3Results(analysis);
-    showScreen(3);
-    setTimeout(function () {
-      var box = document.getElementById('kfk-vip-monthly-checkin');
-      if (box && box.scrollIntoView) {
-        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 80);
+  }
+
+  function closeCheckinModal() {
+    if (typeof document === 'undefined') return;
+    var modal = document.getElementById('kfk-checkin-modal');
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
   }
 
   function selectQuickLagChip(monthsAgo, btnEl) {
@@ -1424,6 +1437,7 @@
     verifyAndUnlockKfkPaidPass: verifyAndUnlockKfkPaidPass,
     submitKfkMonthlyVelocityCheckin: submitKfkMonthlyVelocityCheckin,
     openHeaderCheckinStudio: openHeaderCheckinStudio,
+    closeCheckinModal: closeCheckinModal,
     selectQuickLagChip: selectQuickLagChip,
     selectVerbalStageChip: selectVerbalStageChip,
     fillKoreanAverageParents: fillKoreanAverageParents,
