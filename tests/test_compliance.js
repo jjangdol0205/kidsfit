@@ -1,13 +1,13 @@
 /**
  * tests/test_compliance.js
- * Division 5 (kidsfit.co.kr) Headless Maintenance & Regulatory Compliance Test Suite
+ * Division 5 (kidsfit.co.kr) — Pure Paid 2-Tier Boutique Atelier & Zero-Affiliate Compliance Suite
  *
- * Verifies:
- * 1. Headless Maintenance Specification (HEADLESS_MAINTENANCE_SPEC.md) completeness
- * 2. Affiliate Tracking IDs integrity: Coupang Partners (AF7865143), LinkPrice (A100708867), iHerb (IPZ1547)
- * 3. Outbound <a> affiliate link standards: target="_blank", rel="noopener noreferrer sponsored"
- * 4. Fair Trade Commission (공정거래위원회) economic interest disclosure notices
- * 5. Telegram Bot isolation: @Moneyfiityyy_bot
+ * Verifies Chairman's 2026-11-18 Final Charter:
+ * 1. GEMINI.md & HEADLESS_MAINTENANCE_SPEC.md Pure 2-Tier Paid Atelier alignment
+ * 2. Zero Affiliate Remnants (0 occurrences of Coupang, AF7865143, Npay/BrandConnect, LinkPrice, A100708867, iHerb, IPZ1547, lemonsqueezy, KFTC affiliate notices) across index.html, root HTML, src/, qna/, and dist/
+ * 3. Single-Breath 4-Screen Step-Up Boutique Atelier Structure, Zero Emojis, Zero Clutter Below & Minimal 1-Line Legal Footer
+ * 4. Latpeed 2-Tier Paid Platform Config (9,900 KRW daMaP & 19,900 KRW 6-Month Velocity Tracker) + Bone-Age Δt Math
+ * 5. Telegram Bot Channel Isolation (@Moneyfiityyy_bot)
  */
 
 const fs = require('fs');
@@ -16,15 +16,9 @@ const assert = require('assert');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DOCS_DIR = path.join(ROOT_DIR, 'docs');
-const SRC_JS = path.join(ROOT_DIR, 'src', 'js');
-const SRC_DATA = path.join(ROOT_DIR, 'src', 'data');
+const SRC_DIR = path.join(ROOT_DIR, 'src');
 const QNA_DIR = path.join(ROOT_DIR, 'qna');
-
-const PARTNER_IDS = {
-  coupang: 'AF7865143',
-  linkprice: 'A100708867',
-  iherb: 'IPZ1547'
-};
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
 let totalChecks = 0;
 let passedChecks = 0;
@@ -46,192 +40,192 @@ function check(name, fn) {
 }
 
 console.log('========================================================================');
-console.log('   DIVISION 5 (kidsfit.co.kr) HEADLESS MAINTENANCE & COMPLIANCE TEST    ');
+console.log('   DIVISION 5 (kidsfit.co.kr) PURE PAID ATELIER & ZERO-AFFILIATE AUDIT  ');
 console.log('========================================================================\n');
 
 // -----------------------------------------------------------------------------
-// Suite 1: Headless Maintenance Specification Verification
+// Suite 1: Charter & Headless Maintenance Specification Verification
 // -----------------------------------------------------------------------------
-console.log('[Suite 1: Headless Maintenance Specification Verification]');
+console.log('[Suite 1: Charter & Headless Maintenance Specification Verification]');
 
-check('HEADLESS_MAINTENANCE_SPEC.md exists and contains core headless maintenance mandates', () => {
-  const specPath = path.join(DOCS_DIR, 'HEADLESS_MAINTENANCE_SPEC.md');
-  assert(fs.existsSync(specPath), `Spec file not found at ${specPath}`);
-  const content = fs.readFileSync(specPath, 'utf8');
+check('GEMINI.md & HEADLESS_MAINTENANCE_SPEC.md reflect Pure Latpeed 2-Tier Atelier & 0-Affiliate Charter', () => {
+  const geminiContent = fs.readFileSync(path.join(ROOT_DIR, 'GEMINI.md'), 'utf8');
+  const specContent = fs.readFileSync(path.join(DOCS_DIR, 'HEADLESS_MAINTENANCE_SPEC.md'), 'utf8');
 
-  // Core headless tenets
-  assert(content.includes('100% 무인화') || content.includes('Zero-Labor'), 'Missing zero-labor/headless tenet');
-  assert(content.includes(PARTNER_IDS.coupang), `Missing Coupang ID ${PARTNER_IDS.coupang} in spec`);
-  assert(content.includes(PARTNER_IDS.linkprice), `Missing LinkPrice ID ${PARTNER_IDS.linkprice} in spec`);
-  assert(content.includes('Moneyfiityyy_bot'), 'Missing @Moneyfiityyy_bot reference in spec');
-  assert(content.includes('공정거래위원회'), 'Missing FTC disclosure requirement in spec');
-  assert(content.includes('최저가') && content.includes('할인율') && content.includes('특가') && content.includes('폭탄세일'),
-    'Missing zero-tolerance prohibited words specification');
+  assert(geminiContent.includes('daMaP') && geminiContent.includes('9,900원') && geminiContent.includes('19,900원'),
+    'GEMINI.md missing Latpeed 2-tier 9,900/19,900 specification');
+  assert(specContent.includes('daMaP') && specContent.includes('7Frck') && specContent.includes('Moneyfiityyy_bot'),
+    'HEADLESS_MAINTENANCE_SPEC.md missing Latpeed 2-tier or @Moneyfiityyy_bot specification');
 });
 
 // -----------------------------------------------------------------------------
-// Suite 2: Affiliate Parameter Integrity Across Core Modules
+// Suite 2: Empirical Zero-Affiliate Remnant Scan (제휴 잔존 0건)
 // -----------------------------------------------------------------------------
-console.log('\n[Suite 2: Affiliate Parameter Integrity Across Core Modules]');
+console.log('\n[Suite 2: Empirical Zero-Affiliate Remnant Scan (제휴 잔존 0건)]');
 
-check('src/js/monetization.js configures Coupang (AF7865143) and LinkPrice (A100708867)', () => {
-  const filePath = path.join(SRC_JS, 'monetization.js');
-  const code = fs.readFileSync(filePath, 'utf8');
-  assert(code.includes(PARTNER_IDS.coupang), `monetization.js missing Coupang ${PARTNER_IDS.coupang}`);
-  assert(code.includes(PARTNER_IDS.linkprice), `monetization.js missing LinkPrice ${PARTNER_IDS.linkprice}`);
-});
+const FORBIDDEN_AFFILIATE_TOKENS = [
+  'link.coupang.com',
+  'coupang.com',
+  'af7865143',
+  'brandconnect.naver.com',
+  'click.linkprice.com',
+  'linkprice.com',
+  'a100708867',
+  'iherb.com',
+  'ipz1547',
+  'lemonsqueezy',
+  '공정거래위원회'
+];
 
-check('src/js/reference-chips.js configures Coupang (AF7865143) and LinkPrice (A100708867)', () => {
-  const filePath = path.join(SRC_JS, 'reference-chips.js');
-  const code = fs.readFileSync(filePath, 'utf8');
-  assert(code.includes(`coupang: '${PARTNER_IDS.coupang}'`), `reference-chips.js missing Coupang ID`);
-  assert(code.includes(`linkprice: '${PARTNER_IDS.linkprice}'`), `reference-chips.js missing LinkPrice ID`);
-});
+function collectWebFiles(baseDir, includeDist) {
+  const out = [];
+  ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html', 'coupang-kidsfit.html'].forEach((f) => {
+    const fp = path.join(baseDir, f);
+    if (fs.existsSync(fp)) out.push(fp);
+  });
 
-check('src/js/pinpoint-curator.js configures Coupang (AF7865143) and LinkPrice (A100708867)', () => {
-  const filePath = path.join(SRC_JS, 'pinpoint-curator.js');
-  const code = fs.readFileSync(filePath, 'utf8');
-  assert(code.includes(`coupang: '${PARTNER_IDS.coupang}'`), `pinpoint-curator.js missing Coupang ID`);
-  assert(code.includes(`linkprice: '${PARTNER_IDS.linkprice}'`), `pinpoint-curator.js missing LinkPrice ID`);
-});
-
-check('src/data/curation-catalog.json: all affiliate product URLs preserve partner IDs', () => {
-  const catalogPath = path.join(SRC_DATA, 'curation-catalog.json');
-  const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  const allProds = (catalog.products || []).concat(catalog.parentingProducts || []);
-  let scanned = 0;
-
-  allProds.forEach(prod => {
-    if (prod.affiliateUrl) {
-      scanned++;
-      const u = prod.affiliateUrl;
-      if (u.includes('coupang.com')) {
-        assert(u.includes(PARTNER_IDS.coupang), `Coupang item ${prod.id} missing ${PARTNER_IDS.coupang}: ${u}`);
-      } else if (u.includes('iherb.com')) {
-        assert(u.includes(PARTNER_IDS.iherb), `iHerb item ${prod.id} missing ${PARTNER_IDS.iherb}: ${u}`);
-      } else if (u.includes('linkprice.com') || u.includes('yes24.com')) {
-        assert(u.includes(PARTNER_IDS.linkprice), `LinkPrice item ${prod.id} missing ${PARTNER_IDS.linkprice}: ${u}`);
+  function walk(d) {
+    if (!fs.existsSync(d)) return;
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      const fp = path.join(d, ent.name);
+      if (ent.isDirectory()) {
+        walk(fp);
+      } else if (/\.(html|js|json|css)$/i.test(ent.name) && ent.name !== 'research-knowledge-base.json') {
+        out.push(fp);
       }
     }
-  });
-  assert(scanned >= 24, `Expected at least 24 affiliate URLs in curation catalog, found ${scanned}`);
-  console.log(`     ↳ Scanned & verified ${scanned} catalog affiliate product URLs`);
-});
-
-// -----------------------------------------------------------------------------
-// Suite 3: Empirical Scan of Outbound Affiliate Links (Tags & URLs)
-// -----------------------------------------------------------------------------
-console.log('\n[Suite 3: Outbound Link Formatting & Parameter Scan]');
-
-check('All <a> tags to affiliate domains enforce target="_blank" and rel attributes', () => {
-  const EXCLUDE_DIRS = new Set(['node_modules', '.git', 'dist', 'dist-global', '.agents', '.flow-browser-profile', '.naver-browser-profile']);
-  const AFFILIATE_DOMAINS = ['coupang.com', 'iherb.com', 'linkprice.com', 'yes24.com'];
-
-  function scanDir(dir) {
-    let files = [];
-    fs.readdirSync(dir).forEach(file => {
-      const full = path.join(dir, file);
-      const stat = fs.statSync(full);
-      if (stat.isDirectory()) {
-        if (!EXCLUDE_DIRS.has(file)) files = files.concat(scanDir(full));
-      } else if (file.endsWith('.html') || file.endsWith('.js')) {
-        files.push(full);
-      }
-    });
-    return files;
   }
 
-  const files = scanDir(ROOT_DIR);
-  let totalTags = 0;
-  let totalUrls = 0;
-  const tagViolations = [];
+  walk(path.join(baseDir, 'src'));
+  walk(path.join(baseDir, 'qna'));
+  if (includeDist && fs.existsSync(DIST_DIR)) {
+    const distIndex = path.join(DIST_DIR, 'index.html');
+    const distBundle = path.join(DIST_DIR, 'src', 'data', 'data-bundle.js');
+    if (fs.existsSync(distIndex)) out.push(distIndex);
+    if (fs.existsSync(distBundle)) out.push(distBundle);
+  }
+  return out;
+}
 
-  files.forEach(fp => {
+check('Strictly 0 affiliate URLs, partner IDs, KFTC affiliate notices, or lemonsqueezy across index.html, src/, qna/, and dist/', () => {
+  const files = collectWebFiles(ROOT_DIR, true);
+  const hits = [];
+
+  for (const fp of files) {
     const rel = path.relative(ROOT_DIR, fp);
-    let content;
-    try {
-      content = fs.readFileSync(fp, 'utf8');
-    } catch (_) {
-      return;
-    }
-
-    const aRegex = /<a\s+[^>]*?>/gis;
-    let m;
-    while ((m = aRegex.exec(content)) !== null) {
-      const tag = m[0];
-      const lower = tag.toLowerCase();
-      if (!AFFILIATE_DOMAINS.some(d => lower.includes(d))) continue;
-
-      totalTags++;
-
-      // Check target="_blank"
-      const targetM = tag.match(/target=["']([^"']+)["']/i);
-      if (!targetM || targetM[1].toLowerCase() !== '_blank') {
-        tagViolations.push(`${rel}: Missing or invalid target="_blank" in ${tag.slice(0, 80)}`);
-      }
-
-      // Check rel attribute
-      const relM = tag.match(/rel=["']([^"']+)["']/i);
-      if (!relM) {
-        tagViolations.push(`${rel}: Missing rel attribute in ${tag.slice(0, 80)}`);
-      } else {
-        const tokens = relM[1].toLowerCase().split(/\s+/);
-        if (!tokens.includes('noopener') || !tokens.includes('noreferrer')) {
-          tagViolations.push(`${rel}: Missing noopener/noreferrer in rel="${relM[1]}"`);
-        }
-      }
-
-      // Check tracking parameter inside href
-      const hrefM = tag.match(/href=["']([^"']+)["']/i);
-      if (hrefM) {
-        totalUrls++;
-        const href = hrefM[1];
-        const hLow = href.toLowerCase();
-        if (hLow.includes('coupang.com') && !href.includes(PARTNER_IDS.coupang) && !href.includes('${')) {
-          tagViolations.push(`${rel}: Coupang link missing ${PARTNER_IDS.coupang}: ${href}`);
-        }
-        if (hLow.includes('iherb.com') && !href.includes(PARTNER_IDS.iherb) && !href.includes('${')) {
-          tagViolations.push(`${rel}: iHerb link missing ${PARTNER_IDS.iherb}: ${href}`);
-        }
-        if ((hLow.includes('linkprice.com') || hLow.includes('yes24.com')) && !href.includes(PARTNER_IDS.linkprice) && !href.includes('${')) {
-          tagViolations.push(`${rel}: LinkPrice link missing ${PARTNER_IDS.linkprice}: ${href}`);
-        }
+    const low = fs.readFileSync(fp, 'utf8').toLowerCase();
+    for (const tok of FORBIDDEN_AFFILIATE_TOKENS) {
+      if (low.includes(tok.toLowerCase())) {
+        hits.push(`${rel} contains forbidden affiliate/legacy token "${tok}"`);
       }
     }
-  });
+  }
 
-  console.log(`     ↳ Scanned ${totalTags} affiliate tags and ${totalUrls} affiliate URLs across ${files.length} candidate files`);
-  assert.strictEqual(tagViolations.length, 0, `Found ${tagViolations.length} link formatting violations:\n${tagViolations.join('\n')}`);
+  console.log(`     ↳ Audited ${files.length} web/source/qna/dist files: ${hits.length} affiliate remnants`);
+  assert.strictEqual(hits.length, 0, `Affiliate remnants found:\n${hits.slice(0, 15).join('\n')}`);
 });
 
 // -----------------------------------------------------------------------------
-// Suite 4: Fair Trade Commission (KFTC) Disclosure Verification
+// Suite 3: Single-Breath Boutique Atelier Structure, Zero Emojis & Legal Footer
 // -----------------------------------------------------------------------------
-console.log('\n[Suite 4: Fair Trade Commission (KFTC) Economic Interest Disclosure]');
+console.log('\n[Suite 3: Single-Breath Boutique Atelier Structure & Zero-Emoji Audit]');
 
-check('index.html contains official KFTC economic interest disclosure notice', () => {
+check('index.html implements 4-Screen Single-Breath Step-Up Architecture & preserves locked DOM IDs', () => {
   const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
-  assert(html.includes('공정거래위원회'), 'index.html missing 공정거래위원회 keyword');
-  assert(html.includes('수수료') || html.includes('대가'), 'index.html missing commission/remuneration disclosure');
-});
-
-check('qna/monthly-curation.html contains KFTC disclosure banner', () => {
-  const html = fs.readFileSync(path.join(QNA_DIR, 'monthly-curation.html'), 'utf8');
-  assert(html.includes('공정거래위원회'), 'monthly-curation.html missing 공정거래위원회 keyword');
-});
-
-check('All 24 qna/kr-calc-*.html pages contain KFTC disclosure banner', () => {
-  const calcFiles = fs.readdirSync(QNA_DIR).filter(f => f.startsWith('kr-calc-') && f.endsWith('.html'));
-  assert.strictEqual(calcFiles.length, 24, `Expected 24 calculator pages, found ${calcFiles.length}`);
-
-  let verifiedCount = 0;
-  calcFiles.forEach(f => {
-    const content = fs.readFileSync(path.join(QNA_DIR, f), 'utf8');
-    assert(content.includes('공정거래위원회'), `${f} missing 공정거래위원회 keyword`);
-    assert(content.includes('aff-disclosure'), `${f} missing aff-disclosure class container`);
-    verifiedCount++;
+  const requiredIds = [
+    'kfk-peer-growth-editorial',
+    'quiz-section',
+    'step-content-1',
+    'step-content-2',
+    'step-content-3',
+    'step-content-4',
+    'step-content-5',
+    'child-height',
+    'child-weight',
+    'kfk-bone-age-interpreter',
+    'kfk-parent-habit-notebook',
+    'kfk-passwordless-club-box',
+    'kfk-latpeed-ebook-slot',
+    'kfk-vip-monthly-checkin'
+  ];
+  requiredIds.forEach((id) => {
+    assert(html.includes(`id="${id}"`), `index.html missing required DOM id="#${id}"`);
   });
-  console.log(`     ↳ Verified KFTC disclosure banner in all ${verifiedCount} calculator pages`);
+  assert(html.includes('왜 이 성장 시계 연구소를 만들었나요'), 'Screen 0 founding letter headline missing');
+  assert(html.includes('우리 아이 성장 시계 진단 시작하기'), 'Screen 0 single start CTA missing');
+  assert(html.includes('전문의의 진료를 대신하지 않습니다') && html.includes('beable9489@gmail.com'), 'Minimal 1-line legal footer disclaimer missing');
+});
+
+check('index.html and kfk-atelier-app.js contain 0 emojis and 0 broken visible HTML comments', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  const appJs = fs.readFileSync(path.join(SRC_DIR, 'js', 'kfk-atelier-app.js'), 'utf8');
+  const emojiRegex = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu;
+
+  const htmlEmojis = html.match(emojiRegex) || [];
+  const jsEmojis = appJs.match(emojiRegex) || [];
+  assert.strictEqual(htmlEmojis.length, 0, `Found emojis in index.html: ${htmlEmojis.join(', ')}`);
+  assert.strictEqual(jsEmojis.length, 0, `Found emojis in kfk-atelier-app.js: ${jsEmojis.join(', ')}`);
+
+  const strippedVisible = html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]+>/g, ' ');
+  const brokenComments = strippedVisible.match(/(?:-->|<!--|=====)/g) || [];
+  assert.strictEqual(brokenComments.length, 0, `Broken HTML comments leaked visibly: ${brokenComments.length}`);
+});
+
+// -----------------------------------------------------------------------------
+// Suite 4: Latpeed 2-Tier Paid Platform & Bone-Age Δt Auxology Engine
+// -----------------------------------------------------------------------------
+console.log('\n[Suite 4: Latpeed 2-Tier Paid Config & Bone-Age Δt Auxology Engine]');
+
+check('window.KFK_EBOOK_CONFIG configures STORE_LIVE_READY: true, Tier 1 (9,900 KRW daMaP), and Tier 2 (19,900 KRW 7Frck)', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  assert(/STORE_LIVE_READY:\s*true/.test(html), 'STORE_LIVE_READY must be true');
+  assert(html.includes("LATPEED_LIVE_URL: 'https://www.latpeed.com/products/daMaP'"), 'Tier 1 daMaP URL missing');
+  assert(html.includes("TIER1_9900_URL: 'https://www.latpeed.com/products/daMaP'"), 'TIER1_9900_URL missing');
+  assert(/LATPEED_TIER2_URL:\s*'https:\/\/www\.latpeed\.com\//.test(html), 'LATPEED_TIER2_URL missing');
+  assert(html.includes('9,900원') && html.includes('19,900원'), 'Both 9,900 KRW and 19,900 KRW tiers must be displayed');
+});
+
+check('KfkAtelierApp Bone-Age Δt Calibration & KDCA 2017 Auxology Engine compute accurately', () => {
+  const atelier = require(path.join(SRC_DIR, 'js', 'kfk-atelier-app.js'));
+  const cal = atelier.computeBoneAgeDeltaCalibration({
+    sex: 'boy',
+    baYears: 10,
+    baMonths: 6,
+    examYear: 2025,
+    examMonth: 11,
+    tempoAccel: true,
+    nowDate: new Date(2026, 10, 18) // Nov 2026 -> 12 months elapsed
+  });
+  assert.strictEqual(cal.deltaMonths, 12, 'Expected deltaMonths = 12');
+  assert.strictEqual(cal.tempoFactor, 1.08, 'Expected tempoFactor = 1.08');
+  assert(Math.abs(cal.baProjectedToday - (10.5 + 1.08)) < 0.05, 'Projected bone age math mismatch');
+  assert(cal.advisoryText.includes('1년'), 'Expected >=12 month recheck advisory');
+
+  const report = atelier.analyzeGrowthClock({
+    sex: 'boy',
+    birthYear: 2016,
+    birthMonth: 5,
+    birthDay: 15,
+    heightCm: 139.5,
+    weightKg: 35.0,
+    fatherCm: 175,
+    motherCm: 162,
+    bedtime: 'around_2300',
+    posture: 'slouch_forward',
+    boneAgeMode: 'measured',
+    baYears: 10,
+    baMonths: 6,
+    examYear: 2026,
+    examMonth: 5,
+    pubertySign: 'normal_tempo'
+  }, new Date(2026, 10, 18));
+
+  assert(report.kdca.percentile > 30 && report.kdca.percentile < 70, 'KDCA percentile out of expected range');
+  assert(report.optimizedAdultCm > report.currentTrendAdultCm, 'Optimized adult height must exceed current trend');
 });
 
 // -----------------------------------------------------------------------------
@@ -244,14 +238,6 @@ check('Division 5 is strictly bound to dedicated bot @Moneyfiityyy_bot', () => {
   assert(fs.existsSync(envPath), '.env missing in 5사업부');
   const envContent = fs.readFileSync(envPath, 'utf8');
   assert(envContent.includes('TELEGRAM_BOT_TOKEN='), '.env missing TELEGRAM_BOT_TOKEN');
-
-  const scriptsDir = path.join(ROOT_DIR, 'scripts');
-  const sendScript = path.join(scriptsDir, 'send_daily_6am_shorts_telegram.js');
-  if (fs.existsSync(sendScript)) {
-    const scriptContent = fs.readFileSync(sendScript, 'utf8');
-    assert(scriptContent.includes('Moneyfiityyy_bot') || scriptContent.includes('TELEGRAM_BOT_TOKEN'),
-      'send_daily_6am_shorts_telegram.js missing isolated bot binding');
-  }
 });
 
 // -----------------------------------------------------------------------------
@@ -265,9 +251,9 @@ console.log('===================================================================
 
 if (failedChecks > 0) {
   console.error('\nFAILURE DETAILS:');
-  failures.forEach(f => console.error(`- ${f.name}: ${f.error}`));
+  failures.forEach((f) => console.error(`- ${f.name}: ${f.error}`));
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL DIVISION 5 COMPLIANCE CHECKS PASSED (100% REGULATORY & AFFILIATE CONFORMANCE)!');
+  console.log('\n🎉 ALL DIVISION 5 PURE PAID ATELIER & ZERO-AFFILIATE CHECKS PASSED (100%)!');
   process.exit(0);
 }

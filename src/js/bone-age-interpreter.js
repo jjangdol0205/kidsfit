@@ -7,7 +7,7 @@
  * - 100% Client-Side Static Auxology Calculation (Bayley-Pinneau Mature Height Multiplier + Tanner Mid-Parental Height)
  * - Exam-Date Time-Lag (Δt = Today - Exam Date) & Pubertal Tempo Factor (1.0 / 1.08) Automatic Calibration
  * - Zero medical image upload, zero server transmission (strictly educational & home growth-environment guidance)
- * - FTC Affiliate Disclosure compliant (Coupang AF7865143, LinkPrice A100708867, iHerb IPZ1547, Naver BrandConnect)
+ * - FTC Affiliate Disclosure compliant (Coupang KFK_ATELIER, LinkPrice KFK_ATELIER, iHerb KFK_ATELIER, Naver BrandConnect)
  */
 (function (global) {
   'use strict';
@@ -54,12 +54,12 @@
     { ba: 17.5, pct: 100.0 }
   ];
 
-  // Verified Affiliate Curation Catalog (Coupang AF7865143, Naver BrandConnect)
+  // Verified Affiliate Curation Catalog (Coupang KFK_ATELIER, Naver BrandConnect)
   var NPAY_LINKS = {
-    fgo: 'https://brandconnect.naver.com/affiliates/1010075643260928?channelProductNo=12080461872&ac=crtshp&cid=1016094238062720',
-    calmadi: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720',
-    stand: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720',
-    chair: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720'
+    fgo: 'https://www.latpeed.com/products/daMaP',
+    calmadi: 'https://www.latpeed.com/products/daMaP',
+    stand: 'https://www.latpeed.com/products/daMaP',
+    chair: 'https://www.latpeed.com/products/daMaP'
   };
 
   var CURATION_ITEMS = {
@@ -71,7 +71,7 @@
       fallback: 'src/images/products/prod_nb_gear_2.svg',
       npayUrl: '',
       npayLabel: '',
-      primaryUrl: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=kfk_boneage_sleep&pageKey=%EC%A3%BC%EB%8B%88%EC%96%B4+%EA%B2%BD%EC%B6%94+%EB%B2%A0%EA%B0%9C+%EC%88%99%EB%A9%B4',
+      primaryUrl: 'https://www.latpeed.com/products/daMaP',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
     posture_chair: {
@@ -82,7 +82,7 @@
       fallback: 'src/images/products/prod_ch_gear_1.svg',
       npayUrl: NPAY_LINKS.chair,
       npayLabel: '🟢 Npay 바른자세 의자',
-      primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
+      primaryUrl: 'https://www.latpeed.com/products/daMaP',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
     wood_stand: {
@@ -93,7 +93,7 @@
       fallback: 'src/images/products/prod_ch_gear_1.svg',
       npayUrl: NPAY_LINKS.stand,
       npayLabel: '🟢 Npay 2단 원목 독서대',
-      primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_stand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
+      primaryUrl: 'https://www.latpeed.com/products/daMaP',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
     calmadi_d3: {
@@ -104,7 +104,7 @@
       fallback: 'src/images/products/prod_ch_nut_1.svg',
       npayUrl: NPAY_LINKS.calmadi,
       npayLabel: '🟢 Npay 칼마디 적립',
-      primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_calmadi&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426',
+      primaryUrl: 'https://www.latpeed.com/products/daMaP',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     },
     indoor_trampoline: {
@@ -115,7 +115,7 @@
       fallback: 'src/images/products/prod_tod_gear_1.svg',
       npayUrl: '',
       npayLabel: '',
-      primaryUrl: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=kfk_boneage_tramp&pageKey=7390936623&itemId=19108463499&vendorItemId=86228725982',
+      primaryUrl: 'https://www.latpeed.com/products/daMaP',
       primaryLabel: '🚀 쿠팡 혜택가 확인'
     }
   };

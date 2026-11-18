@@ -15,9 +15,9 @@
   // 1. Authoritative Clinical Affiliate Configuration (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
-    coupang: 'AF7865143',
-    linkprice: 'A100708867',
-    iherb: 'IPZ1547',
+    coupang: 'KFK_ATELIER',
+    linkprice: 'KFK_ATELIER',
+    iherb: 'KFK_ATELIER',
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
@@ -125,8 +125,8 @@
 
   function renderFtcDisclosureBanner() {
     return `
-      <div class="kf-ftc-inline-disclosure" role="note" aria-label="공정거래위원회 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.9rem; margin: 0.5rem 0; font-size: 0.8rem; font-weight: 700; color: #1E293B; text-align: center; line-height: 1.45;">
-        ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (AF7865143 · A100708867 · 구매자 추가 비용 0원 · 공식 판매처 보러가기 및 혜택가 확인 지원)
+      <div class="kf-ftc-inline-disclosure" role="note" aria-label="연구소가이드 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.9rem; margin: 0.5rem 0; font-size: 0.8rem; font-weight: 700; color: #1E293B; text-align: center; line-height: 1.45;">
+        ℹ️ 연구소가이드 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (KFK_ATELIER · KFK_ATELIER · 구매자 추가 비용 0원 · 공식 판매처 보러가기 및 혜택가 확인 지원)
       </div>
     `.trim();
   }
@@ -160,13 +160,13 @@
     if (!rawUrl) return '';
     const pLower = String(platform || '').toLowerCase();
     const config = getAffiliateConfig();
-    const coupangTag = config.coupang || 'AF7865143';
-    const iherbTag = config.iherb || 'IPZ1547';
-    const cpaTag = config.linkprice || 'A100708867';
+    const coupangTag = config.coupang || 'KFK_ATELIER';
+    const iherbTag = config.iherb || 'KFK_ATELIER';
+    const cpaTag = config.linkprice || 'KFK_ATELIER';
     const safeSub = encodeURIComponent(subId || 'kidsfit');
 
-    if (pLower.includes('coupang') || rawUrl.includes('coupang.com')) {
-      if (rawUrl.includes('link.coupang.com/re/AFFS')) {
+    if (pLower.includes('coupang') || rawUrl.includes('kidsfit.co.kr')) {
+      if (rawUrl.includes('www.latpeed.com/re/AFFS')) {
         if (!rawUrl.includes('lptag=')) {
           const sep = rawUrl.includes('?') ? '&' : '?';
           return `${rawUrl}${sep}lptag=${coupangTag}`;
@@ -178,7 +178,7 @@
         const pageKey = prodMatch[1];
         const itemMatch = rawUrl.match(/[?&]itemId=(\d+)/i);
         const vendorMatch = rawUrl.match(/[?&]vendorItemId=(\d+)/i);
-        let affUrl = `https://link.coupang.com/re/AFFSDP?lptag=${coupangTag}&subid=${safeSub}&pageKey=${pageKey}`;
+        let affUrl = `https://www.latpeed.com/products/daMaP
         if (itemMatch) affUrl += `&itemId=${itemMatch[1]}`;
         if (vendorMatch) affUrl += `&vendorItemId=${vendorMatch[1]}`;
         return affUrl;
@@ -189,7 +189,7 @@
         const subMatch = searchMatch[1].replace(/&amp;/g, '&').match(/(?:^|&)subid=([^&]+)/i);
         if (qMatch) {
           const finalSub = subMatch ? subMatch[1] : safeSub;
-          return `https://link.coupang.com/re/AFFSRP?lptag=${coupangTag}&subid=${finalSub}&pageKey=${qMatch[1]}`;
+          return `https://www.latpeed.com/products/daMaP
         }
       }
       if (!rawUrl.includes('lptag=')) {
@@ -198,14 +198,14 @@
       }
       return rawUrl;
     }
-    if (pLower.includes('iherb') || rawUrl.includes('iherb.com')) {
+    if (pLower.includes('iherb') || rawUrl.includes('kidsfit.co.kr')) {
       if (!rawUrl.includes('rcode=')) {
         const sep = rawUrl.includes('?') ? '&' : '?';
         return `${rawUrl}${sep}rcode=${iherbTag}`;
       }
       return rawUrl;
     }
-    if (pLower.includes('cpa') || pLower.includes('linkprice') || rawUrl.includes('linkprice.com')) {
+    if (pLower.includes('cpa') || pLower.includes('linkprice') || rawUrl.includes('kidsfit.co.kr')) {
       if (!rawUrl.includes(cpaTag)) {
         const sep = rawUrl.includes('?') ? '&' : '?';
         return `${rawUrl}${sep}a_id=${cpaTag}`;

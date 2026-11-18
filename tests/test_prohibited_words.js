@@ -3,8 +3,9 @@
  * Division 5 (kidsfit.co.kr) Zero-Tolerance Prohibited Words Regression Test
  *
  * Ground Rules (GEMINI.md & HEADLESS_MAINTENANCE_SPEC.md):
- * ❌ Strictly Prohibited: '최저가', '할인율', '특가', '폭탄세일' (Target: 0 occurrences)
- * ✅ Standard Alternatives: '혜택가 확인', '에디터 큐레이션', '공식 판매처 보러가기'
+ * - Strictly Prohibited across ALL files: '최저가', '할인율', '특가', '폭탄세일' (Target: 0 occurrences)
+ * - Strictly Prohibited across web-served files: 'lemonsqueezy' (Target: 0 occurrences)
+ * - Active Boutique Atelier Vocabulary: '성장 시계', '질병관리청', '마스터북'
  */
 
 const fs = require('fs');
@@ -14,26 +15,33 @@ const assert = require('assert');
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 const PROHIBITED_WORDS = ['최저가', '할인율', '특가', '폭탄세일'];
-const APPROVED_ALTERNATIVES = ['혜택가 확인', '에디터 큐레이션', '공식 판매처 보러가기'];
+const WEB_FORBIDDEN_WORDS = ['lemonsqueezy'];
+const ATELIER_VOCABULARY = ['성장 시계', '질병관리청', '마스터북'];
 
-// Scanned directories & extensions for production code, templates, and data
 const SCAN_DIRS = ['src', 'scripts', 'qna', 'samples'];
-const ROOT_FILES = ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html'];
+const ROOT_FILES = ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html', 'coupang-kidsfit.html'];
 const VALID_EXTS = ['.html', '.js', '.json', '.css'];
 
-// Excluded dirs: tests (contain assertions checking forbidden words), docs defining rules, git, node_modules
-const EXCLUDE_DIRS = new Set(['tests', 'node_modules', '.git', '.agents', '.flow-browser-profile', '.naver-browser-profile', 'docs', '네이버카페_글모음', '네이버블로그_글모음']);
+const EXCLUDE_DIRS = new Set([
+  'tests',
+  'node_modules',
+  '.git',
+  '.agents',
+  '.flow-browser-profile',
+  '.naver-browser-profile',
+  'docs',
+  '네이버카페_글모음',
+  '네이버블로그_글모음'
+]);
 
 function getProductionFiles() {
-  let fileList = [];
+  const fileList = [];
 
-  // 1. Root standalone HTML/JS files
-  ROOT_FILES.forEach(f => {
+  ROOT_FILES.forEach((f) => {
     const full = path.join(ROOT_DIR, f);
     if (fs.existsSync(full)) fileList.push(full);
   });
 
-  // 2. Scan designated production directories
   function traverse(dir) {
     if (!fs.existsSync(dir)) return;
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -43,24 +51,21 @@ function getProductionFiles() {
         if (!EXCLUDE_DIRS.has(ent.name)) {
           traverse(fullPath);
         }
-      } else if (ent.isFile()) {
-        if (VALID_EXTS.some(ext => ent.name.endsWith(ext))) {
-          // Skip large binary/data bundle files to prevent token waste
-          if (ent.name === 'data-bundle.js' || ent.name === 'research-knowledge-base.json') {
-            continue;
-          }
-          fileList.push(fullPath);
+      } else if (ent.isFile() && VALID_EXTS.some((ext) => ent.name.endsWith(ext))) {
+        if (ent.name === 'data-bundle.js' || ent.name === 'research-knowledge-base.json') {
+          continue;
         }
+        fileList.push(fullPath);
       }
     }
   }
 
-  SCAN_DIRS.forEach(sub => traverse(path.join(ROOT_DIR, sub)));
+  SCAN_DIRS.forEach((sub) => traverse(path.join(ROOT_DIR, sub)));
   return fileList;
 }
 
 console.log('========================================================================');
-console.log('   ZERO-TOLERANCE PROHIBITED WORDS EMPIRICAL AUDIT & SCANNER             ');
+console.log('   ZERO-TOLERANCE PROHIBITED WORDS EMPIRICAL AUDIT & SCANNER            ');
 console.log('========================================================================\n');
 
 const filesToScan = getProductionFiles();
@@ -68,9 +73,15 @@ console.log(`Auditing ${filesToScan.length} production files across 5사업부 f
 
 let totalScannedLines = 0;
 const violations = [];
+const vocabOccurrences = {
+  '성장 시계': 0,
+  '질병관리청': 0,
+  '마스터북': 0
+};
 
-filesToScan.forEach(filePath => {
+filesToScan.forEach((filePath) => {
   const relPath = path.relative(ROOT_DIR, filePath);
+  const isLegacyCliScript = relPath.startsWith('scripts' + path.sep) && relPath !== path.join('scripts', 'build.js');
   let content = '';
   try {
     content = fs.readFileSync(filePath, 'utf8');
@@ -93,28 +104,23 @@ filesToScan.forEach(filePath => {
         });
       }
     }
-  });
-});
-
-// Verification of Approved Alternative Vocabulary Usage
-let altOccurrences = {
-  '혜택가 확인': 0,
-  '에디터 큐레이션': 0,
-  '공식 판매처 보러가기': 0
-};
-
-filesToScan.forEach(filePath => {
-  let content = '';
-  try {
-    content = fs.readFileSync(filePath, 'utf8');
-  } catch (_) {
-    return;
-  }
-  APPROVED_ALTERNATIVES.forEach(alt => {
-    const matches = content.match(new RegExp(alt, 'g'));
-    if (matches) {
-      altOccurrences[alt] += matches.length;
+    if (!isLegacyCliScript) {
+      for (const fw of WEB_FORBIDDEN_WORDS) {
+        if (line.toLowerCase().includes(fw)) {
+          violations.push({
+            file: relPath,
+            lineNum: lineIdx + 1,
+            word: fw,
+            lineContent: line.trim()
+          });
+        }
+      }
     }
+  });
+
+  ATELIER_VOCABULARY.forEach((term) => {
+    const matches = content.match(new RegExp(term, 'g'));
+    if (matches) vocabOccurrences[term] += matches.length;
   });
 });
 
@@ -124,9 +130,9 @@ console.log(`Total Production Lines Audited : ${totalScannedLines.toLocaleString
 console.log(`Zero-Tolerance Violations Found: ${violations.length}`);
 console.log('------------------------------------------------------------------------');
 
-console.log('\n[Approved Alternative Vocabulary Active Adoption Statistics]');
-APPROVED_ALTERNATIVES.forEach(alt => {
-  console.log(`  ✓ "${alt}": ${altOccurrences[alt]} occurrences actively in use`);
+console.log('\n[Boutique Pediatric Growth Atelier Core Vocabulary Statistics]');
+ATELIER_VOCABULARY.forEach((term) => {
+  console.log(`  ✓ "${term}": ${vocabOccurrences[term]} occurrences actively in use`);
 });
 
 if (violations.length > 0) {
@@ -138,6 +144,7 @@ if (violations.length > 0) {
 } else {
   console.log('\n🎉 100% ZERO-TOLERANCE COMPLIANCE CERTIFIED: Strictly 0 prohibited words detected!');
   assert.strictEqual(violations.length, 0);
-  assert(altOccurrences['혜택가 확인'] > 0, 'Approved term "혜택가 확인" must be actively adopted');
+  assert(vocabOccurrences['성장 시계'] > 0, 'Core Atelier term "성장 시계" must be actively adopted');
+  assert(vocabOccurrences['질병관리청'] > 0, 'Official reference "질병관리청" must be actively adopted');
   process.exit(0);
 }

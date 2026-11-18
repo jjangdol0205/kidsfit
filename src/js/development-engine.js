@@ -396,7 +396,7 @@
 
   // 7. Render Curated TOP 4 Hot Items (Framed as Optional Secondary Aids)
   function renderToyCards(toys, affiliateConfig = {}) {
-    const coupangId = affiliateConfig.coupang || 'AF7865143';
+    const coupangId = affiliateConfig.coupang || 'KFK_ATELIER';
 
     return `
       <div class="curated-toys-section" style="margin-top: 1.5rem;">
@@ -410,7 +410,7 @@
 
         <div class="toys-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
           ${toys.map((t, idx) => {
-            const coupangUrl = `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(coupangId)}&subid=kidsfit&pageKey=${encodeURIComponent(t.name)}`;
+            const coupangUrl = `https://www.latpeed.com/products/daMaP
             return `
               <div class="toy-card bento-card-sub" style="background: #FFFFFF; border: 1px solid var(--border-clinic); border-radius: 20px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>

@@ -2567,10 +2567,10 @@
 
           <!-- Dual Official Store Bridge: Naver Creator Shop (Npay) + Coupang Rocket Delivery -->
           <div class="kf-rx-dual-store-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.55rem; margin-bottom: 0.9rem; padding: 0.75rem; background: #F8FAFC; border: 1.5px solid #BFDBFE; border-radius: 14px;">
-            <a href="https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&amp;ac=crtshp&amp;cid=1016094238062720" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+            <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
               🟢 네이버페이(Npay) 적립 · 어린이 칼마디+K2 공식 판매처 보러가기
             </a>
-            <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&amp;subid=kidsfit_rx_growth&amp;pageKey=%EC%96%B4%EB%A6%B0%EC%9D%B4%20%ED%82%A4%EC%84%B1%EC%9E%A5%20%EC%B9%BC%EC%8A%98%20%EB%B0%94%EB%A5%B8%EC%9E%90%EC%84%B8" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+            <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
               🚀 쿠팡 로켓배송 혜택가 확인
             </a>
           </div>
@@ -3661,10 +3661,10 @@
 
               <!-- Dual Official Store Bridge: Naver Creator Shop (Npay) + Coupang Rocket Delivery -->
               <div class="kf-rx-dual-store-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.55rem; margin-bottom: 0.85rem; padding: 0.75rem; background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 14px;">
-                <a href="https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&amp;ac=crtshp&amp;cid=1016094238062720" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #03C75A; border: 1px solid #029F48; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
                   🟢 네이버페이(Npay) 적립 · 높이조절 2단 원목 독서대 공식 판매처 보러가기
                 </a>
-                <a href="https://link.coupang.com/re/AFFSRP?lptag=AF7865143&amp;subid=kidsfit_rx_learning&amp;pageKey=%EC%B4%88%EB%93%B1%20%EB%B0%94%EB%A5%B8%EC%9E%90%EC%84%B8%20%EB%8F%85%EC%84%9C%EB%8C%80%20%EC%82%AC%EA%B3%A0%EB%A0%A5%20%EA%B5%90%EA%B5%AC" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
+                <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer sponsored" class="mobile-touch-btn" style="display: flex; min-height: 48px; align-items: center; justify-content: center; background: #1D4ED8; border: 1px solid #1E40AF; color: #FFFFFF; font-size: 0.84rem; font-weight: 900; padding: 0.55rem 0.8rem; border-radius: 10px; text-decoration: none; text-align: center;">
                   🚀 쿠팡 로켓배송 혜택가 확인
                 </a>
               </div>
@@ -3711,7 +3711,7 @@
 
         <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Always visible inside the report) -->
         <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.1rem; padding: 0.7rem 0.95rem; background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; font-size: 0.78rem; color: #475569; text-align: center; line-height: 1.45;">
-          ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+          ℹ️ 연구소가이드 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
         </div>
 
         <!-- ================================================================== -->

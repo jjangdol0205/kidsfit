@@ -1,7 +1,8 @@
 /**
  * scripts/build.js
- * Production build script for KidsFit Growth Studio (kidsfit.co.kr)
+ * Production build script for KidsFit Pediatric Growth Atelier (kidsfit.co.kr)
  * Deterministic, zero-external-dependencies, cross-platform.
+ * Pure Paid 2-Tier Latpeed Architecture (Zero Affiliate Links).
  */
 
 const crypto = require('crypto');
@@ -14,25 +15,17 @@ const DIST_DIR = path.join(ROOT_DIR, 'dist');
 function computeDeterministicBuildStamp() {
   const hash = crypto.createHash('sha256');
   for (const rel of [
-    'src/js/app.js',
-    'src/js/monetization.js',
-    'src/js/bone-age-interpreter.js',
-    'src/js/parent-habit-notebook.js',
-    'src/js/korean-digital-asset-monetization.js',
-    'src/js/pinpoint-curator.js',
-    'src/js/i18n.js',
-    'src/js/onboarding-wizard.js',
-    'src/js/master-briefing.js',
+    'src/js/kfk-atelier-app.js',
+    'src/js/hq_member_crm_client.js',
     'src/js/qna-human-rl-curator.js',
-    'src/css/style.css',
-    'src/data/curation-catalog.json'
+    'src/css/style.css'
   ]) {
     const fp = path.join(ROOT_DIR, rel);
     if (fs.existsSync(fp)) {
       hash.update(fs.readFileSync(fp));
     }
   }
-  return `20261022_${hash.digest('hex').slice(0, 8)}`;
+  return `20261118_${hash.digest('hex').slice(0, 8)}`;
 }
 
 function copyRecursiveSync(src, dest) {
@@ -82,7 +75,7 @@ function copyRecursiveSync(src, dest) {
 }
 
 function build() {
-  console.log('--- KidsFit Growth Studio Build Pipeline ---');
+  console.log('--- KidsFit Pediatric Growth Atelier Build Pipeline ---');
   const startTime = Date.now();
 
   // 1. Prepare dist/ (in-place overwrite to prevent Windows EPERM & race conditions)
@@ -100,36 +93,47 @@ function build() {
     throw new Error('Missing CNAME file at project root!');
   }
 
-  // 3. Synchronize live accumulated paper count across HTML & JS source files, then generate data-bundle.js
-  syncLiveResearchCountToSourceFiles();
+  // 3. Generate clean client-side data-bundle.js
   generateDataBundle();
 
-  // 4. Build / Copy index.html with deterministic content-hash cache-busting stamp
+  // 4. Build / Copy index.html with deterministic content-hash cache-busting stamp & Latpeed 2-Tier injection
   const buildStamp = computeDeterministicBuildStamp();
   const indexSrc = path.join(ROOT_DIR, 'index.html');
   const indexDest = path.join(DIST_DIR, 'index.html');
   if (fs.existsSync(indexSrc)) {
     let rawHtml = fs.readFileSync(indexSrc, 'utf8');
-    // Auto-sync Latpeed live URL if D:\드림컴퍼니\data\latpeed_kfk_live.json exists with a live https://latpeed.com URL
     try {
       const latpeedJsonPath = path.resolve(ROOT_DIR, '..', 'data', 'latpeed_kfk_live.json');
+      let tier1Url = 'https://www.latpeed.com/products/daMaP';
+      let tier2Url = 'https://www.latpeed.com/stores/7Frck';
       if (fs.existsSync(latpeedJsonPath)) {
         const latData = JSON.parse(fs.readFileSync(latpeedJsonPath, 'utf8'));
-        const liveUrl = String(latData.product_url || latData.latpeed_live_url || latData.LATPEED_LIVE_URL || latData.url || '').trim();
-        if (/^https:\/\/(?:www\.)?latpeed\.com\/.+/i.test(liveUrl)) {
-          rawHtml = rawHtml
-            .replace(/STORE_LIVE_READY:\s*(?:false|true)/, 'STORE_LIVE_READY: true')
-            .replace(/LATPEED_LIVE_URL:\s*'[^']*'/, `LATPEED_LIVE_URL: '${liveUrl}'`);
-          console.log(`[Build] Auto-injected live Latpeed URL -> ${liveUrl}`);
+        const t1Candidate = String(
+          latData.tier1_9900_url || latData.product_url || latData.latpeed_live_url || latData.LATPEED_LIVE_URL || latData.url || ''
+        ).trim();
+        const t2Candidate = String(
+          latData.tier2_19900_url || latData.tier2_url || latData.LATPEED_TIER2_URL || latData.store_url || ''
+        ).trim();
+        if (/^https:\/\/(?:www\.)?latpeed\.com\/.+/i.test(t1Candidate)) {
+          tier1Url = t1Candidate;
+        }
+        if (/^https:\/\/(?:www\.)?latpeed\.com\/.+/i.test(t2Candidate)) {
+          tier2Url = t2Candidate;
         }
       }
+      rawHtml = rawHtml
+        .replace(/STORE_LIVE_READY:\s*(?:false|true)/, 'STORE_LIVE_READY: true')
+        .replace(/LATPEED_LIVE_URL:\s*'[^']*'/, `LATPEED_LIVE_URL: '${tier1Url}'`)
+        .replace(/TIER1_9900_URL:\s*'[^']*'/, `TIER1_9900_URL: '${tier1Url}'`)
+        .replace(/LATPEED_TIER2_URL:\s*'[^']*'/, `LATPEED_TIER2_URL: '${tier2Url}'`)
+        .replace(/TIER2_19900_URL:\s*'[^']*'/, `TIER2_19900_URL: '${tier2Url}'`);
+      console.log(`[Build] Auto-injected Latpeed Tier 1 -> ${tier1Url} | Tier 2 -> ${tier2Url}`);
     } catch (_) {}
+
     const stampedHtml = rawHtml.replace(/\?v=2026[0-9a-zA-Z_]+/g, `?v=${buildStamp}`);
     try {
       fs.writeFileSync(indexSrc, stampedHtml, 'utf8');
-    } catch (_) {
-      // Ignore transient Windows file lock on root index.html during rapid test rebuilds
-    }
+    } catch (_) {}
     for (let attempt = 1; attempt <= 6; attempt++) {
       try {
         fs.writeFileSync(indexDest, stampedHtml, 'utf8');
@@ -143,7 +147,7 @@ function build() {
     console.log(`[3/5] Copied index.html -> dist/index.html (cache-bust: ?v=${buildStamp})`);
   }
 
-  // 5. Copy Assets / Source & Samples directories if present
+  // 5. Copy Assets / Source, Samples & QnA directories
   const srcDir = path.join(ROOT_DIR, 'src');
   if (fs.existsSync(srcDir)) {
     copyRecursiveSync(srcDir, path.join(DIST_DIR, 'src'));
@@ -162,14 +166,25 @@ function build() {
     console.log('Copied qna/ -> dist/qna/');
   }
 
-  // Copy robots.txt, sitemap.xml, rss.xml, feed.json, llms.txt, llms-full.txt, manifest.json, sw.js, and Naver/IndexNow verification files if they exist (with EBUSY retry)
-  ['robots.txt', 'sitemap.xml', 'rss.xml', 'feed.xml', 'feed.json', 'llms.txt', 'llms-full.txt', 'manifest.json', 'sw.js', 'bb7865143f912a88c04d31d3921a0988.txt', 'naver696904f98e6ce2a823ce309436f2e2cd.html',
+  [
+    'robots.txt',
+    'sitemap.xml',
+    'rss.xml',
+    'feed.xml',
+    'feed.json',
+    'llms.txt',
+    'llms-full.txt',
+    'manifest.json',
+    'sw.js',
+    'bb7865143f912a88c04d31d3921a0988.txt',
+    'naver696904f98e6ce2a823ce309436f2e2cd.html',
     'about.html',
     'privacy.html',
     'terms.html',
     'contact.html',
     'coupang-kidsfit.html',
-    'hq-mailing-endpoint.json'].forEach((file) => {
+    'hq-mailing-endpoint.json'
+  ].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
       for (let attempt = 0; attempt < 5; attempt++) {
@@ -186,7 +201,6 @@ function build() {
     }
   });
 
-  // Sync Global English edition from sibling workspace ONLY when explicitly requested via SYNC_DIST_GLOBAL=1
   if (process.env.SYNC_DIST_GLOBAL === '1') {
     try {
       const siblingGlobalDist = path.resolve(ROOT_DIR, '..', '2사업부', 'dist');
@@ -201,7 +215,7 @@ function build() {
           const srcSub = path.join(siblingGlobalDist, subDir);
           if (fs.existsSync(srcSub)) copyRecursiveSync(srcSub, path.join(targetGlobalDir, subDir));
         });
-        console.log('Synced Global English assets from D:\\드림컴퍼니\\2사업부\\dist -> dist-global/');
+        console.log('Synced Global English assets -> dist-global/');
       }
     } catch (_) {}
   }
@@ -216,98 +230,54 @@ function generateStaticApiEndpoints() {
   try {
     const apiDir = path.join(DIST_DIR, 'api');
     fs.mkdirSync(apiDir, { recursive: true });
-    const allowGlobalSync = process.env.SYNC_DIST_GLOBAL === '1';
-    const globalDir = allowGlobalSync ? path.join(ROOT_DIR, 'dist-global') : null;
-    const globalApiDir = (globalDir && fs.existsSync(globalDir)) ? path.join(globalDir, 'api') : null;
-    if (globalApiDir) {
-      fs.mkdirSync(globalApiDir, { recursive: true });
-    }
-
-    const kbPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
-    let totalPapers = 3894;
-    if (fs.existsSync(kbPath)) {
-      try {
-        const kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));
-        totalPapers = Number((kb.metadata && kb.metadata.total_papers) || (Array.isArray(kb.papers) ? kb.papers.length : 3894));
-      } catch (_) {}
-    }
 
     const healthPayload = JSON.stringify({
       status: 'ok',
-      service: 'KidsFit Growth Studio (Render Static Site)',
-      mode: 'static',
+      service: 'KidsFit Pediatric Growth Atelier',
+      mode: 'static_latpeed_2tier',
       domain: 'kidsfit.co.kr',
-      total_papers: totalPapers,
+      affiliate_links: 0,
       timestamp: new Date().toISOString()
     }, null, 2);
     fs.writeFileSync(path.join(apiDir, 'health'), healthPayload, 'utf8');
     fs.writeFileSync(path.join(apiDir, 'health.json'), healthPayload, 'utf8');
 
-    let statsData = {
+    const statsData = {
       status: 'ok',
       mode: 'static',
       analytics: {
-        today: { date: new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10), uv: 0, pv: 0, diagnoses: { total: 0, growth: 0, learning: 0 }, affiliateClicks: 0, recentClicks: [] },
-        total: { uv: 0, pv: 0, diagnoses: { total: 0, growth: 0, learning: 0 }, affiliateClicks: 0 }
+        today: { date: new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10), uv: 0, pv: 0, diagnoses: { total: 0, growth: 0 } },
+        total: { uv: 0, pv: 0, diagnoses: { total: 0, growth: 0 } }
       }
     };
-    const snapPath = path.join(ROOT_DIR, 'src', 'data', 'visitor-analytics-snapshot.json');
-    const logStatsPath = path.join(ROOT_DIR, 'logs', 'visitor_analytics.json');
-    const sourceStatsPath = fs.existsSync(logStatsPath) ? logStatsPath : (fs.existsSync(snapPath) ? snapPath : null);
-    if (sourceStatsPath) {
-      try {
-        const rawStats = JSON.parse(fs.readFileSync(sourceStatsPath, 'utf8'));
-        const kstToday = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-        const days = rawStats.days || {};
-        const todayBucket = days[kstToday] || Object.values(days).slice(-1)[0] || statsData.analytics.today;
-        statsData = {
-          status: 'ok',
-          mode: 'static',
-          analytics: {
-            today: todayBucket,
-            total: rawStats.total || statsData.analytics.total
-          }
-        };
-      } catch (_) {}
-    }
     const statsJson = JSON.stringify(statsData, null, 2);
     fs.writeFileSync(path.join(apiDir, 'stats'), statsJson, 'utf8');
     fs.writeFileSync(path.join(apiDir, 'stats.json'), statsJson, 'utf8');
-    if (globalApiDir && fs.existsSync(globalApiDir)) {
-      fs.writeFileSync(path.join(globalApiDir, 'health'), healthPayload, 'utf8');
-      fs.writeFileSync(path.join(globalApiDir, 'health.json'), healthPayload, 'utf8');
-      fs.writeFileSync(path.join(globalApiDir, 'stats'), statsJson, 'utf8');
-      fs.writeFileSync(path.join(globalApiDir, 'stats.json'), statsJson, 'utf8');
-    }
 
     const visitJson = JSON.stringify({ ok: true, mode: 'static' }, null, 2);
     const authJson = JSON.stringify({ ok: true, __fallbackLocal: true, mode: 'client_local' }, null, 2);
+    fs.writeFileSync(path.join(apiDir, 'visit'), visitJson, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'visit.json'), visitJson, 'utf8');
+    const authSubDir = path.join(apiDir, 'auth');
+    fs.mkdirSync(authSubDir, { recursive: true });
+    fs.writeFileSync(path.join(authSubDir, 'login'), authJson, 'utf8');
+    fs.writeFileSync(path.join(authSubDir, 'login.json'), authJson, 'utf8');
+    fs.writeFileSync(path.join(authSubDir, 'register'), authJson, 'utf8');
+    fs.writeFileSync(path.join(authSubDir, 'register.json'), authJson, 'utf8');
 
-    [apiDir, globalApiDir].forEach((dir) => {
-      if (!dir || !fs.existsSync(dir)) return;
-      fs.writeFileSync(path.join(dir, 'visit'), visitJson, 'utf8');
-      fs.writeFileSync(path.join(dir, 'visit.json'), visitJson, 'utf8');
-      const authSubDir = path.join(dir, 'auth');
-      fs.mkdirSync(authSubDir, { recursive: true });
-      fs.writeFileSync(path.join(authSubDir, 'login'), authJson, 'utf8');
-      fs.writeFileSync(path.join(authSubDir, 'login.json'), authJson, 'utf8');
-      fs.writeFileSync(path.join(authSubDir, 'register'), authJson, 'utf8');
-      fs.writeFileSync(path.join(authSubDir, 'register.json'), authJson, 'utf8');
-    });
-
-
-    const adpickJson = JSON.stringify({
+    const passesJson = JSON.stringify({
       status: 'ok',
-      source: 'static-curated',
-      offers: [
-        { id: 'coupang-calc', title: '어린이 구연산·어골칼슘 & 비타민D3 로켓배송', url: 'https://www.coupang.com/np/search?q=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%96%B4%EA%B3%A8%EC%B9%BC%EC%8A%98+%EB%B9%84%ED%83%80%EB%AF%BCD3&channel=user&lptag=AF7865143', platform: 'Coupang Partners' },
-        { id: 'iherb-zinc', title: '아이허브 어린이 액상 글루콘산 아연 & 유기농 D3', url: 'https://kr.iherb.com/search?kw=%EC%96%B4%EB%A6%B0%EC%9D%B4+%EC%95%84%EC%97%B0+%EB%B9%84%ED%83%80%EB%AF%BCD3&rcode=IPZ1547', platform: 'iHerb' }
+      source: 'latpeed-2tier-atelier',
+      offers: [],
+      passes: [
+        { tier: 'tier1', title: '단건 정밀 성장·뼈나이 리포트 패스', price_krw: 9900, url: 'https://www.latpeed.com/products/daMaP' },
+        { tier: 'tier2', title: '6개월 성장속도 트래커 풀패키지 패스', price_krw: 19900, url: 'https://www.latpeed.com/stores/7Frck' }
       ]
     }, null, 2);
-    fs.writeFileSync(path.join(apiDir, 'adpick-offers'), adpickJson, 'utf8');
-    fs.writeFileSync(path.join(apiDir, 'adpick-offers.json'), adpickJson, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'adpick-offers'), passesJson, 'utf8');
+    fs.writeFileSync(path.join(apiDir, 'adpick-offers.json'), passesJson, 'utf8');
 
-    const shareSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420"><rect width="800" height="420" rx="28" fill="#1E3A8A"/><text x="50" y="95" fill="#93C5FD" font-family="sans-serif" font-size="22" font-weight="bold">KIDS-FIT GROWTH &amp; BRAIN STUDIO (kidsfit.co.kr)</text><text x="50" y="165" fill="#FFFFFF" font-family="sans-serif" font-size="38" font-weight="bold">우리 아이 맞춤형 키성장 · 두뇌발달 정밀 처방전</text><text x="50" y="235" fill="#DBEAFE" font-family="sans-serif" font-size="24">질병관리청(KDCA) 성장도표 · K-DST · 학술논문 ${totalPapers.toLocaleString('en-US')}편 기반</text><rect x="50" y="295" width="380" height="64" rx="32" fill="#10B981"/><text x="90" y="336" fill="#FFFFFF" font-family="sans-serif" font-size="24" font-weight="bold">https://kidsfit.co.kr 무료 진단</text></svg>`;
+    const shareSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420"><rect width="800" height="420" rx="20" fill="#FAF7F2"/><rect x="24" y="24" width="752" height="372" rx="14" fill="#FFFFFF" stroke="#E6E0D6"/><text x="64" y="102" fill="#2F5241" font-family="serif" font-size="20" font-weight="bold">KIDSFIT PEDIATRIC GROWTH ATELIER · kidsfit.co.kr</text><text x="64" y="176" fill="#231F1D" font-family="serif" font-size="36" font-weight="bold">키즈핏 소아성장 아틀리에</text><text x="64" y="232" fill="#3A3430" font-family="sans-serif" font-size="22">질병관리청(KDCA 2017) 성장도표 · 병원 뼈나이 경과 시차(Δt) 보정</text><rect x="64" y="288" width="360" height="58" rx="10" fill="#2F5241"/><text x="98" y="325" fill="#FFFFFF" font-family="sans-serif" font-size="21" font-weight="bold">우리 아이 성장 시계 진단하기</text></svg>`;
     fs.writeFileSync(path.join(apiDir, 'share-card.svg'), shareSvg, 'utf8');
 
     const redirectsContent = [
@@ -316,180 +286,51 @@ function generateStaticApiEndpoints() {
       '/api/visit /api/visit.json 200',
       '/api/auth/login /api/auth/login.json 200',
       '/api/auth/register /api/auth/register.json 200',
-      '/api/adpick-offers /api/adpick-offers.json 200',
-      '/en /en/index.html 200',
       '/* /index.html 200'
     ].join('\n') + '\n';
     fs.writeFileSync(path.join(DIST_DIR, '_redirects'), redirectsContent, 'utf8');
-    if (globalDir && fs.existsSync(globalDir)) {
-      fs.writeFileSync(path.join(globalDir, '_redirects'), redirectsContent, 'utf8');
-    }
-    console.log('[Build] Generated static API endpoints (dist/api/health, stats, adpick-offers, share-card.svg) & dist/_redirects for Render Static Site.');
+    console.log('[Build] Generated static API endpoints & dist/_redirects (0 affiliate links).');
   } catch (e) {
     console.warn('[Build] Static API generation warning:', e.message);
   }
 }
 
-function syncLiveResearchCountToSourceFiles() {
-  const researchPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
-  if (!fs.existsSync(researchPath)) return;
-  try {
-    const kb = JSON.parse(fs.readFileSync(researchPath, 'utf8'));
-    let kbModified = false;
-    if (Array.isArray(kb.papers)) {
-      kb.papers.forEach((p) => {
-        const yr = Number(p.year) || 2020;
-        if (yr < 1960 || yr > 2026) {
-          p.year = Math.max(1960, Math.min(2026, yr));
-          kbModified = true;
-        }
-      });
-    }
-    if (kbModified) {
-      fs.writeFileSync(researchPath, JSON.stringify(kb, null, 2) + '\n', 'utf8');
-    }
-    const meta = kb.metadata || {};
-    const total = Number(meta.total_papers) || (Array.isArray(kb.papers) ? kb.papers.length : 0);
-    if (!total || total < 100) return;
-
-    const totalFormatted = total.toLocaleString('en-US'); // e.g., "2,723"
-    const bal = (meta.learning_analytics && meta.learning_analytics.macro_pillar_balance) || {};
-    let gCnt = Number(bal.growth_macro_count || 0);
-    let lCnt = Number(bal.learning_macro_count || 0);
-    if (!gCnt || !lCnt) {
-      const pc = meta.pillar_counts || {};
-      gCnt = Number(pc.growth_endocrinology || 0) + Number(pc.posture_biomechanics_exercise || 0);
-      lCnt = Math.max(0, total - gCnt);
-    }
-    const gStr = gCnt.toLocaleString('en-US');
-    const lStr = lCnt.toLocaleString('en-US');
-
-    const targetFiles = [
-      path.join(ROOT_DIR, 'index.html'),
-      path.join(ROOT_DIR, 'src', 'js', 'i18n.js'),
-      path.join(ROOT_DIR, 'src', 'js', 'onboarding-wizard.js'),
-      path.join(ROOT_DIR, 'src', 'js', 'haptic-typewriter.js'),
-      path.join(ROOT_DIR, 'src', 'js', 'app.js')
-    ];
-
-    targetFiles.forEach((fp) => {
-      if (!fs.existsSync(fp)) return;
-      let content = fs.readFileSync(fp, 'utf8');
-      const updated = content
-        .replace(/논문 [1-9],[0-9]{3}편/g, `논문 ${totalFormatted}편`)
-        .replace(/[1-9],[0-9]{3}편 (인지뇌과학|소아내분비)/g, `${totalFormatted}편 $1`)
-        .replace(/[1-9],[0-9]{3} (Clinical Papers|Cognitive|Pediatric|peer-reviewed|research papers|papers)/g, `${totalFormatted} $1`)
-        .replace(/[1-9],[0-9]{3}-Paper DB/g, `${totalFormatted}-Paper DB`)
-        .replace(/누적 [1-9],[0-9]{3}편 반영 중 \(신체성장 [0-9,]+편 · 두뇌학습 [0-9,]+편\)/g, `누적 ${totalFormatted}편 반영 중 (신체성장 ${gStr}편 · 두뇌학습 ${lStr}편)`);
-      if (updated !== content) {
-        try {
-          fs.writeFileSync(fp, updated, 'utf8');
-        } catch (_) {}
-      }
-    });
-    console.log(`[Build] Synced live accumulated paper count (${totalFormatted} papers: Growth ${gStr} / Learning ${lStr}) across UI files.`);
-  } catch (e) {
-    console.warn('[Build] Could not sync live paper count:', e.message);
-  }
-}
-
 function generateDataBundle() {
   const growthPath = path.join(ROOT_DIR, 'src', 'data', 'growth-standards.json');
-  const kdstPath = path.join(ROOT_DIR, 'src', 'data', 'kdst-rubrics.json');
-  const catalogPath = path.join(ROOT_DIR, 'src', 'data', 'curation-catalog.json');
   const authPath = path.join(ROOT_DIR, 'src', 'data', 'official-authorities.json');
-  const researchPath = path.join(ROOT_DIR, 'src', 'data', 'research-knowledge-base.json');
-  const cohortPath = path.join(ROOT_DIR, 'src', 'data', 'user-cohort-db.json');
-  const rlPolicyPath = path.join(ROOT_DIR, 'src', 'data', 'coupang-rl-policy.json');
-
-  if (!fs.existsSync(growthPath) || !fs.existsSync(kdstPath) || !fs.existsSync(catalogPath)) {
-    return;
-  }
+  if (!fs.existsSync(growthPath)) return;
 
   const growthJson = fs.readFileSync(growthPath, 'utf8').trim();
-  const kdstJson = fs.readFileSync(kdstPath, 'utf8').trim();
-  const catalogJson = fs.readFileSync(catalogPath, 'utf8').trim();
   const authJson = fs.existsSync(authPath) ? fs.readFileSync(authPath, 'utf8').trim() : '{}';
-  const researchJson = fs.existsSync(researchPath) ? fs.readFileSync(researchPath, 'utf8').trim() : '{}';
-  const cohortJson = fs.existsSync(cohortPath) ? fs.readFileSync(cohortPath, 'utf8').trim() : '{}';
-  const rlPolicyJson = fs.existsSync(rlPolicyPath) ? fs.readFileSync(rlPolicyPath, 'utf8').trim() : '{}';
 
   const bundleContent = `/**
- * KidsFit Growth Studio - Client-Side Data Bundle
- * Generated by scripts/build.js
- * Inlines official KDCA growth standards, K-DST rubrics, 40 regional curation catalog,
- * official authorities, 1,100+ peer-reviewed academic research knowledge base,
- * and User Input Cohort DB for browser runtime (window.KIDSFIT_*) and Node.js CommonJS (module.exports).
+ * KidsFit Pediatric Growth Atelier - Client-Side Auxology Standards Bundle
+ * Generated by scripts/build.js (Pure KDCA 2017 & Official Authorities — Zero Affiliate Links)
  */
-
 (function (global) {
   'use strict';
-
   var growthData = ${growthJson};
-  var kdstData = ${kdstJson};
-  var catalogData = ${catalogJson};
   var authoritiesData = ${authJson};
-  var researchData = ${researchJson};
-  var userCohortData = ${cohortJson};
-  var coupangRlPolicy = ${rlPolicyJson};
-
   if (typeof window !== 'undefined') {
     window.KIDSFIT_GROWTH_DATA = growthData;
-    window.KIDSFIT_KDST_DATA = kdstData;
-    window.KIDSFIT_CATALOG_DATA = catalogData;
     window.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
-    window.KIDSFIT_RESEARCH_DATA = researchData;
-    window.KIDSFIT_USER_COHORT_DB = userCohortData;
-    window.KIDSFIT_COUPANG_RL_POLICY = coupangRlPolicy;
   }
   if (typeof global !== 'undefined' && typeof window === 'undefined') {
     global.KIDSFIT_GROWTH_DATA = growthData;
-    global.KIDSFIT_KDST_DATA = kdstData;
-    global.KIDSFIT_CATALOG_DATA = catalogData;
     global.KIDSFIT_AUTHORITIES_DATA = authoritiesData;
-    global.KIDSFIT_RESEARCH_DATA = researchData;
-    global.KIDSFIT_USER_COHORT_DB = userCohortData;
-    global.KIDSFIT_COUPANG_RL_POLICY = coupangRlPolicy;
   }
-
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { growthData, kdstData, catalogData, authoritiesData, researchData, userCohortData, coupangRlPolicy };
+    module.exports = { growthData: growthData, authoritiesData: authoritiesData };
   }
 })(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));
 `;
 
   const srcBundle = path.join(ROOT_DIR, 'src', 'data', 'data-bundle.js');
-  let needWriteSrc = true;
-  if (fs.existsSync(srcBundle)) {
-    try {
-      const existing = fs.readFileSync(srcBundle, 'utf8');
-      if (existing === bundleContent) needWriteSrc = false;
-    } catch (_) {}
-  }
-  if (needWriteSrc) {
-    for (let attempt = 0; attempt < 5; attempt++) {
-      try {
-        fs.writeFileSync(srcBundle, bundleContent, 'utf8');
-        break;
-      } catch (e) {
-        if (attempt === 4) throw e;
-      }
-    }
-  }
-
+  fs.writeFileSync(srcBundle, bundleContent, 'utf8');
   const distBundleDir = path.join(DIST_DIR, 'src', 'data');
-  if (!fs.existsSync(distBundleDir)) {
-    fs.mkdirSync(distBundleDir, { recursive: true });
-  }
-  for (let attempt = 0; attempt < 5; attempt++) {
-    try {
-      fs.writeFileSync(path.join(distBundleDir, 'data-bundle.js'), bundleContent, 'utf8');
-      break;
-    } catch (e) {
-      if (attempt === 4) throw e;
-    }
-  }
-  console.log('[Build] Generated client-side data-bundle.js with inlined datasets (including official-authorities.json)');
+  fs.mkdirSync(distBundleDir, { recursive: true });
+  fs.writeFileSync(path.join(distBundleDir, 'data-bundle.js'), bundleContent, 'utf8');
+  console.log('[Build] Generated pure KDCA 2017 client-side data-bundle.js (zero affiliate catalog bloat).');
 }
 
 try {

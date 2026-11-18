@@ -219,7 +219,7 @@
               return rc.getReferenceChipsHtml('calcium', isGlobalMode, affConfig);
             }
             return `
-              <a href="https://kr.iherb.com/search?kw=%EA%B5%AC%EC%97%B0%EC%82%B0+%EC%B9%BC%EC%8A%B4&rcode=IPZ1547" 
+              <a href="https://www.latpeed.com/products/daMaP" 
                  target="_blank" 
                  rel="noopener noreferrer sponsored" 
                  class="reference-chip" 

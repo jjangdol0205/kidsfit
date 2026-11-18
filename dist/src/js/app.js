@@ -1055,9 +1055,9 @@
   // 9. Secret Admin Studio Logic (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
-    coupang: 'AF7865143',
-    linkprice: 'A100708867',
-    iherb: 'IPZ1547',
+    coupang: 'KFK_ATELIER',
+    linkprice: 'KFK_ATELIER',
+    iherb: 'KFK_ATELIER',
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',

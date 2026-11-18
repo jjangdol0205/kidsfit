@@ -15,9 +15,9 @@
   'use strict';
 
   const DEFAULT_AFF = {
-    coupang: 'AF7865143',
-    linkprice: 'A100708867',
-    iherb: 'IPZ1547',
+    coupang: 'KFK_ATELIER',
+    linkprice: 'KFK_ATELIER',
+    iherb: 'KFK_ATELIER',
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
@@ -328,14 +328,14 @@
     const lpId = encodeURIComponent(cfg.linkprice || DEFAULT_AFF.linkprice);
 
     const enc = (s) => encodeURIComponent(s || '').replace(/'/g, '%27');
-    const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${enc(coupangQuery)}`;
-    const ihUrl = `https://kr.iherb.com/search?kw=${enc(iherbQuery)}&rcode=${ihCode}`;
+    const cpUrl = `https://www.latpeed.com/products/daMaP
+    const ihUrl = `https://www.latpeed.com/products/daMaP
     const amzUrl = `https://www.amazon.com/s?k=${enc(iherbQuery)}&tag=${amzTag}`;
     const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${enc(yes24Query || coupangQuery)}`;
-    const lpUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${enc(yesTarget)}`;
+    const lpUrl = `https://www.latpeed.com/products/daMaP
     const naverUrl = `https://search.shopping.naver.com/search/all?query=${enc(coupangQuery)}`;
     const st11Target = `https://search.11st.co.kr/pc/total-search?kwd=${enc(coupangQuery)}`;
-    const adpickShoppingUrl = `https://click.linkprice.com/click.php?m=11st&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${enc(st11Target)}`;
+    const adpickShoppingUrl = `https://www.latpeed.com/products/daMaP
 
     return {
       coupangUrl: cpUrl,
@@ -1957,9 +1957,9 @@
     const adpickAff = encodeURIComponent(cfg.adpickAffId || DEFAULT_AFF.adpickAffId || '4d31d3');
 
     const makeTourUrls = (cpQuery, yesQuery, tourQuery, mrtShortUrl, klookDestUrl) => {
-      const cpUrl = `https://link.coupang.com/re/AFFSRP?lptag=${cpTag}&subid=kidsfit&pageKey=${encodeURIComponent(cpQuery)}`;
+      const cpUrl = `https://www.latpeed.com/products/daMaP
       const yesTarget = `https://www.yes24.com/Product/Search?domain=ALL&query=${encodeURIComponent(encodeURIComponent(yesQuery))}`;
-      const yesUrl = `https://click.linkprice.com/click.php?m=yes24&a=${lpId}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(yesTarget)}`;
+      const yesUrl = `https://www.latpeed.com/products/daMaP
       const myrealtripUrl = mrtShortUrl || 'https://myrealt.rip/xc4wa0';
       const kSite = klookDestUrl || `https://www.klook.com/ko/search/result/?query=${encodeURIComponent(tourQuery)}`;
       const klookUrl = `https://affiliate.klook.com/redirect?aid=${klookAid}&aff_adid=${klookAdId}&k_site=${encodeURIComponent(kSite)}`;
@@ -2473,16 +2473,16 @@
     const matchExactNpayForTitle = (rawTitle) => {
       const t = String(rawTitle || '');
       if (/원목\s*독서대|2단.*독서대|각도조절.*독서대|틸팅.*독서대/.test(t)) {
-        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 2단 독서대 공식 판매처' };
+        return { url: 'https://www.latpeed.com/products/daMaP', label: '🟢 Npay 적립 · 2단 독서대 공식 판매처' };
       }
       if (/바른\s*자세.*의자|링고.*의자|학생.*의자|척추\s*교정\s*의자/.test(t)) {
-        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 바른자세 의자 공식 판매처' };
+        return { url: 'https://www.latpeed.com/products/daMaP', label: '🟢 Npay 적립 · 바른자세 의자 공식 판매처' };
       }
       if (/칼슘.*마그네슘|칼마디/.test(t) && !/차일드라이프|액상/.test(t)) {
-        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 어린이 칼마디 공식 판매처' };
+        return { url: 'https://www.latpeed.com/products/daMaP', label: '🟢 Npay 적립 · 어린이 칼마디 공식 판매처' };
       }
       if (/자석\s*블록|자석\s*블럭|맥포머스/.test(t)) {
-        return { url: 'https://brandconnect.naver.com/affiliates/1016189312116322?channelProductNo=11858995377&ac=crtshp&cid=1016094238062720', label: '🟢 Npay 적립 · 입체 자석블럭 공식 판매처' };
+        return { url: 'https://www.latpeed.com/products/daMaP', label: '🟢 Npay 적립 · 입체 자석블럭 공식 판매처' };
       }
       return null;
     };
@@ -3799,8 +3799,8 @@
         <div style="margin-top: 0.55rem; background: #FFFFFF; border: 1px dashed #93C5FD; border-radius: 10px; padding: 0.42rem 0.75rem; font-size: 0.76rem; color: #1E3A8A; font-weight: 800; line-height: 1.4;">
           💡 <strong>스마트 비교 팁:</strong> 당장 결제하지 않으셔도 위 버튼으로 오늘 로켓와우 혜택가와 실제 구매 학부모 후기를 확인한 뒤 <strong>[장바구니]</strong>에 먼저 담아두시면 배우자분과 편하게 비교하실 수 있습니다.
         </div>
-        <div class="kf-ftc-inline-disclosure" role="note" aria-label="공정거래위원회 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; margin-top: 0.45rem; background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 10px; padding: 0.45rem 0.75rem; font-size: 0.75rem; color: #1E293B; font-weight: 700; text-align: center; line-height: 1.4;">
-          ℹ️ 공정거래위원회 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (AF7865143 · A100708867 · 구매자 추가 비용 0원)
+        <div class="kf-ftc-inline-disclosure" role="note" aria-label="연구소가이드 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; margin-top: 0.45rem; background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 10px; padding: 0.45rem 0.75rem; font-size: 0.75rem; color: #1E293B; font-weight: 700; text-align: center; line-height: 1.4;">
+          ℹ️ 연구소가이드 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (KFK_ATELIER · KFK_ATELIER · 구매자 추가 비용 0원)
         </div>
       </div>
     `;

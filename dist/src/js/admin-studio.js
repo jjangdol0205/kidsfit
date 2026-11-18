@@ -9,7 +9,7 @@
  * 2. Master Reference Chips Toggle:
  *    - Global ON/OFF switch for quiet 12px reference chips with live DOM synchronization
  * 3. Live Affiliate ID Editor & Persistence:
- *    - Configures Coupang (`AF7865143`), LinkPrice (`A100708867`), iHerb (`KIDSBIO`), Amazon (`tallerbiolab-20`)
+ *    - Configures Coupang (`KFK_ATELIER`), LinkPrice (`KFK_ATELIER`), iHerb (`KIDSBIO`), Amazon (`tallerbiolab-20`)
  *    - Stored persistently in `localStorage` under `taller_affiliate_config` and `kidsfit_affiliate_config`
  * 4. Bilingual OSMU (One Source Multi Use) Content Generator:
  *    - EN Channels: TikTok/Reels 60s script with clinical hook, YouTube Shorts 60s scientific breakdown
@@ -24,9 +24,9 @@
   // 1. Authoritative Default Affiliate Settings (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
-    coupang: 'AF7865143',
-    linkprice: 'A100708867',
-    iherb: 'IPZ1547',
+    coupang: 'KFK_ATELIER',
+    linkprice: 'KFK_ATELIER',
+    iherb: 'KFK_ATELIER',
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
@@ -127,9 +127,9 @@
   // 4. OSMU Content Bundle Generator
   function generateOsmuBundle(scenarioId = 'scenario-1', affiliateConfig = {}, isGlobal = false) {
     const cfg = Object.assign({}, getAffiliateConfig(), affiliateConfig);
-    const coupangId = cfg.coupang || 'AF7865143';
-    const linkpriceId = cfg.linkprice || 'A100708867';
-    const iherbCode = cfg.iherb || 'IPZ1547';
+    const coupangId = cfg.coupang || 'KFK_ATELIER';
+    const linkpriceId = cfg.linkprice || 'KFK_ATELIER';
+    const iherbCode = cfg.iherb || 'KFK_ATELIER';
     const amazonTag = cfg.amazon || 'kidfit-20';
 
     // Normalize scenario ID
@@ -574,7 +574,7 @@ https://kidsfit.co.kr/?utm_source=quora&utm_medium=answer_citation&utm_campaign=
             🌎 Global Overseas Marketing Command Center (해외판 홍보 원클릭 복사 키트)
           </h4>
           <span style="font-size: 0.76rem; background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; padding: 0.2rem 0.65rem; border-radius: 9999px; font-weight: 800;">
-            US Multi-Ethnic Auxology · $8.99/$19.99 Pass · iHerb (IPZ1547)
+            US Multi-Ethnic Auxology · $8.99/$19.99 Pass · iHerb (KFK_ATELIER)
           </span>
         </div>
 

@@ -103,14 +103,14 @@
 
   // 3. Render Outing Report Card
   function renderOutingCard(outing, affiliateConfig = {}) {
-    const coupangId = affiliateConfig.coupang || 'AF7865143';
+    const coupangId = affiliateConfig.coupang || 'KFK_ATELIER';
     const pkg = outing.linkedPackage || {
       title: '연계 입체 팝업북 & 워크북',
       reason: '전시 전후 배경지식 확장',
       price: 16800,
       coupangPath: 'vp/products/default-package'
     };
-    const coupangUrl = `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(coupangId)}&subid=kidsfit&pageKey=${encodeURIComponent(pkg.title)}`;
+    const coupangUrl = `https://www.latpeed.com/products/daMaP
     const havruta = HAVRUTA_BY_THEME[outing.themeKey] || HAVRUTA_BY_THEME.art_making;
 
     return `

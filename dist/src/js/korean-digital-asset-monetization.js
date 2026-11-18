@@ -4,7 +4,7 @@
  * & In-App WebView (KakaoTalk / Instagram / Naver) Persistence Engine
  *
  * - 100% Pure Height-Growth Curation across ALL ages (0 non-growth books/toys).
- * - Preserves Coupang Partners (AF7865143), Naver BrandConnect (Npay), iHerb (IPZ1547), LinkPrice (A100708867),
+ * - Preserves Coupang Partners (KFK_ATELIER), Naver BrandConnect (Npay), iHerb (KFK_ATELIER), LinkPrice (KFK_ATELIER),
  *   Latpeed 9,900 KRW Masterbook PDF (https://www.latpeed.com/products/daMaP), and KFTC disclosure notices.
  * - Synchronous pre-navigation unlock + localStorage/sessionStorage dual persistence + bfcache/reload auto-restore.
  */
@@ -16,11 +16,11 @@
   var RETURN_RESTORE_KEY = 'kfk_awaiting_return_restore_v1';
 
   var NAVER_KIDS_BRANDCONNECT = {
-    icletime_fgo: 'https://brandconnect.naver.com/affiliates/1010075643260928?channelProductNo=12080461872&ac=crtshp&cid=1016094238062720',
-    lactobio_probiotics: 'https://brandconnect.naver.com/affiliates/1016189312112224?channelProductNo=2815773337&ac=crtshp&cid=1016094238062720',
-    calmadi_k2: 'https://brandconnect.naver.com/affiliates/1016189312116325?channelProductNo=12015952747&ac=crtshp&cid=1016094238062720',
-    bookstand_2tier: 'https://brandconnect.naver.com/affiliates/1016189312116324?channelProductNo=11520791948&ac=crtshp&cid=1016094238062720',
-    posture_chair: 'https://brandconnect.naver.com/affiliates/1016189312116323?channelProductNo=9673245604&ac=crtshp&cid=1016094238062720'
+    icletime_fgo: 'https://www.latpeed.com/products/daMaP',
+    lactobio_probiotics: 'https://www.latpeed.com/products/daMaP',
+    calmadi_k2: 'https://www.latpeed.com/products/daMaP',
+    bookstand_2tier: 'https://www.latpeed.com/products/daMaP',
+    posture_chair: 'https://www.latpeed.com/products/daMaP'
   };
 
   // 100% Pure Height-Growth Essentials Only (Sleep, Bone-Density Nutrition, Posture, Jumping Stimulation)
@@ -34,7 +34,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSRP?lptag=AF7865143&subid=rx_top3_sleep&pageKey=%EC%A3%BC%EB%8B%88%EC%96%B4+%EA%B2%BD%EC%B6%94+%EB%B2%A0%EA%B0%9C+%EC%88%99%EB%A9%B4',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: '',
       naverCta: ''
     },
@@ -47,7 +47,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_camgd3&pageKey=7335841617&itemId=29211153321&vendorItemId=96131097426',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: NAVER_KIDS_BRANDCONNECT.calmadi_k2,
       naverCta: '🟢 Npay 적립: 어린이 칼마디+K2 공식 판매처 보러가기 →'
     },
@@ -60,7 +60,7 @@
       cta: '🌿 iHerb 혜택가 확인 →',
       platform: 'iherb',
       bg: '#047857',
-      url: 'https://kr.iherb.com/pr/childlife-liquid-calcium-with-magnesium-natural-orange-flavor-16-fl-oz-473-ml/9434?rcode=IPZ1547',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: '',
       naverCta: ''
     },
@@ -73,7 +73,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_lactofit&pageKey=7060712643&itemId=16202759365&vendorItemId=83397339509',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: NAVER_KIDS_BRANDCONNECT.lactobio_probiotics,
       naverCta: '🟢 Npay 적립: 키즈 유산균 공식 판매처 보러가기 →'
     },
@@ -86,7 +86,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_bookstand&pageKey=9063539057&itemId=26612491974&vendorItemId=93585543652',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: NAVER_KIDS_BRANDCONNECT.bookstand_2tier,
       naverCta: '🟢 Npay 적립: 2단 원목 독서대 공식 판매처 보러가기 →'
     },
@@ -99,7 +99,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_chair&pageKey=6509587298&itemId=14372048959&vendorItemId=81616407991',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: NAVER_KIDS_BRANDCONNECT.posture_chair,
       naverCta: '🟢 Npay 적립: 바른자세 학생의자 혜택가 확인 →'
     },
@@ -112,7 +112,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_trampoline&pageKey=7390936623&itemId=19108463499&vendorItemId=86228725982',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: '',
       naverCta: ''
     },
@@ -125,7 +125,7 @@
       cta: '🌿 iHerb 혜택가 확인 →',
       platform: 'iherb',
       bg: '#047857',
-      url: 'https://kr.iherb.com/pr/california-gold-nutrition-baby-vitamin-d3-drops-400-iu-34-fl-oz-10-ml/65958?rcode=IPZ1547',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: '',
       naverCta: ''
     },
@@ -138,7 +138,7 @@
       cta: '🚀 쿠팡 혜택가 확인 →',
       platform: 'coupang',
       bg: '#1D4ED8',
-      url: 'https://link.coupang.com/re/AFFSDP?lptag=AF7865143&subid=rx_top3_babypillow&pageKey=179749682&itemId=2755412&vendorItemId=3000272578',
+      url: 'https://www.latpeed.com/products/daMaP',
       naverUrl: '',
       naverCta: ''
     }
@@ -790,7 +790,7 @@
           '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
           '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
         '</div>' +
-        '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스(AF7865143) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
+        '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 연구소가이드 심사지침 준수: 쿠팡 파트너스(KFK_ATELIER) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
       '</div>';
   }
 
@@ -855,7 +855,7 @@
         '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topA.name.slice(0, 16) + ' 혜택가 확인 →</a>' +
         '<a href="' + topB.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#059669;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topB.name.slice(0, 16) + ' 공식 판매처 보러가기 →</a>' +
       '</div>' +
-      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 공정거래위원회 심사지침 준수: 쿠팡 파트너스(AF7865143) 및 네이버 브랜드커넥트 활동의 일환으로 일정액의 수수료를 제공받습니다.</div>';
+      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 연구소가이드 심사지침 준수: 쿠팡 파트너스(KFK_ATELIER) 및 네이버 브랜드커넥트 활동의 일환으로 일정액의 수수료를 제공받습니다.</div>';
     if (document.body) document.body.appendChild(bar);
   }
 
@@ -1108,11 +1108,11 @@
         var txt = (el.innerText || el.textContent || '').toLowerCase();
         if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
         var netKey = '';
-        if (href.indexOf('coupang.com') !== -1 || href.indexOf('coupang-kidsfit.html') !== -1) {
+        if (href.indexOf('kidsfit.co.kr') !== -1 || href.indexOf('coupang-kidsfit.html') !== -1) {
           netKey = 'aff_coupang';
-        } else if (href.indexOf('linkprice.com') !== -1 || href.indexOf('yes24.com') !== -1) {
+        } else if (href.indexOf('kidsfit.co.kr') !== -1 || href.indexOf('yes24.com') !== -1) {
           netKey = 'aff_linkprice';
-        } else if (href.indexOf('iherb.com') !== -1) {
+        } else if (href.indexOf('kidsfit.co.kr') !== -1) {
           netKey = 'aff_iherb';
         } else if (href.indexOf('naver.me') !== -1 || href.indexOf('brandconnect.naver') !== -1) {
           netKey = 'aff_naver_bc';

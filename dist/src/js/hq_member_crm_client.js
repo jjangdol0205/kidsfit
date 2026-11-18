@@ -285,11 +285,128 @@
     });
   }
 
+  function enrollKfkPaidVip(opts) {
+    var email = String((opts && opts.email) || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      return Promise.resolve({ ok: false, error: 'INVALID_EMAIL' });
+    }
+    var payload = {
+      action: 'enroll_kfk_paid_vip',
+      div: 'KFK',
+      email: email,
+      child_sex: String((opts && opts.child_sex) || 'M').trim().toUpperCase(),
+      child_age_years: Number((opts && opts.child_age_years) || 10),
+      baseline_height_cm: Number((opts && opts.baseline_height_cm) || 138.8),
+      plan_tier: String((opts && opts.plan_tier) || 'KFK_Paid_VIP_19900').trim(),
+      months_remaining: Number((opts && opts.months_remaining) || 6),
+      order_ref: String((opts && opts.order_ref) || 'LATPEED-KFK').trim(),
+      client_ts: new Date().toISOString()
+    };
+    try {
+      localStorage.setItem('dc_kfk_paid_vip', JSON.stringify(payload));
+    } catch (_) {}
+    return resolveEndpointUrl().then(function (execUrl) {
+      if (!execUrl) {
+        var q = readQueue();
+        q.push(payload);
+        writeQueue(q);
+        return { ok: true, queued_for_sync: true, baseline_height_cm: payload.baseline_height_cm };
+      }
+      return postToAppsScript(execUrl, payload).catch(function () {
+        var q2 = readQueue();
+        q2.push(payload);
+        writeQueue(q2);
+        return { ok: true, queued_for_sync: true, baseline_height_cm: payload.baseline_height_cm };
+      });
+    });
+  }
+
+  function computeLocalKfkCommentary(payload) {
+    var prevH = Number(payload.prev_height_cm) || (Number(payload.current_height_cm) - 0.45);
+    var curH = Number(payload.current_height_cm) || 139.0;
+    var age = Number(payload.child_age_years) || 10;
+    var isF = String(payload.child_sex || 'M').toUpperCase().charAt(0) === 'F';
+    var targetVel = age < 5 ? 7.0 : (age < 9 ? 5.8 : (age < 11.5 ? (isF ? 7.3 : 5.5) : (age < 14 ? (isF ? 5.4 : 8.0) : 3.2)));
+    var delta = Math.round((curH - prevH) * 100) / 100;
+    var annVel = Math.round(((delta / 30) * 365) * 10) / 10;
+    var habits = [
+      { key: '밤 10시 전 소등 및 초기 서파수면 깊이', score: Number(payload.sleep_score) || 3, tip: '취침 40분 전 거실 조도를 낮추고 잠들기 2시간 전 음식 섭취를 마무리하여 초기 90분 서파수면 성장호르몬 분비를 지켜 주세요.' },
+      { key: '저녁 단백질 · 칼슘 · 비타민D3 균형 식탁', score: Number(payload.nutrition_score) || 3, tip: '저녁 식탁에 살코기·생선·두부 등 양질의 단백질과 흡수율 높은 칼슘·비타민D3 급원을 규칙적으로 곁들여 주세요.' },
+      { key: '책상 시야각 정렬 및 저녁 척추 이완', score: Number(payload.posture_score) || 3, tip: '공부할 때 책 각도를 높여 경추 숙임을 줄이고 잠들기 전 가벼운 기지개·신전 스트레칭으로 눌린 척추 마디를 펴 주세요.' },
+      { key: '수직 점프 및 야외 신체 활동 리듬', score: Number(payload.exercise_score) || 3, tip: '주 4회 이상 하루 15분 내외의 줄넘기나 가벼운 제자리 점프로 하지 성장판 연골에 건강한 자극을 더해 주세요.' }
+    ].sort(function (a, b) { return a.score - b.score; });
+
+    var verdict = '';
+    if (delta <= 0) {
+      verdict = '이번 30일 구간은 ' + curH.toFixed(1) + ' cm로 잠시 숨을 고르는 계단식 휴지기입니다. 기상 직후 동일한 벽면에서 측정 시각을 일정하게 맞추고 밤 10시 수면 리듬을 먼저 점검해 주세요.';
+    } else if (annVel < 4.0 && age < 14) {
+      verdict = '최근 30일 +' + delta.toFixed(2) + ' cm (연간 환산 약 ' + annVel.toFixed(1) + ' cm/yr · 질병관리청 만 ' + age + '세 기준 ' + targetVel.toFixed(1) + ' cm/yr). 3개월 연속 연간 4.0 cm/yr 미만이 지속될 경우 소아청소년과 성장 진료를 권장합니다.';
+    } else {
+      verdict = '최근 30일 +' + delta.toFixed(2) + ' cm (연간 환산 약 ' + annVel.toFixed(1) + ' cm/yr · 질병관리청 만 ' + age + '세 표준 ' + targetVel.toFixed(1) + ' cm/yr 대비 안정적인 성장 흐름입니다).';
+    }
+    return {
+      ok: true,
+      prev_height_cm: prevH,
+      current_height_cm: curH,
+      delta_cm: delta,
+      annualized_cm_yr: annVel,
+      kdca_target_cm_yr: targetVel,
+      velocity_verdict: verdict,
+      strongest_habit: habits[habits.length - 1],
+      priority_bottleneck: habits[0]
+    };
+  }
+
+  function submitKfkVipCheckin(opts) {
+    var payload = {
+      action: 'submit_kfk_vip_checkin',
+      div: 'KFK',
+      email: String((opts && opts.email) || '').trim().toLowerCase(),
+      order_ref: String((opts && opts.order_ref) || '').trim(),
+      child_sex: String((opts && opts.child_sex) || 'M').trim().toUpperCase(),
+      child_age_years: Number((opts && opts.child_age_years) || 10),
+      prev_height_cm: Number((opts && opts.prev_height_cm) || 0),
+      current_height_cm: Number((opts && opts.current_height_cm) || 0),
+      sleep_score: Number((opts && opts.sleep_score) || 3),
+      nutrition_score: Number((opts && opts.nutrition_score) || 3),
+      posture_score: Number((opts && opts.posture_score) || 3),
+      exercise_score: Number((opts && opts.exercise_score) || 3),
+      client_ts: new Date().toISOString()
+    };
+    var localFallback = computeLocalKfkCommentary(payload);
+    return resolveEndpointUrl().then(function (execUrl) {
+      if (!execUrl) {
+        var q = readQueue();
+        q.push(payload);
+        writeQueue(q);
+        return localFallback;
+      }
+      return postToAppsScript(execUrl, payload).then(function (res) {
+        if (res && typeof res === 'object') {
+          var merged = {};
+          var k;
+          for (k in localFallback) { if (Object.prototype.hasOwnProperty.call(localFallback, k)) merged[k] = localFallback[k]; }
+          for (k in res) { if (Object.prototype.hasOwnProperty.call(res, k) && res[k] !== undefined && res[k] !== null) merged[k] = res[k]; }
+          return merged;
+        }
+        return localFallback;
+      }).catch(function () {
+        var q2 = readQueue();
+        q2.push(payload);
+        writeQueue(q2);
+        return localFallback;
+      });
+    });
+  }
+
   global.DreamCompanyCRM = {
     registerMember: registerMember,
     fireSignupBeacon: fireDivisionSignupBeacon,
     enrollKfgPaidVip: enrollKfgPaidVip,
     submitKfgVipCheckin: submitKfgVipCheckin,
+    enrollKfkPaidVip: enrollKfkPaidVip,
+    submitKfkVipCheckin: submitKfkVipCheckin,
+    computeLocalKfkCommentary: computeLocalKfkCommentary,
     getLocalMember: getLocalMember,
     flushPendingQueue: flushPendingQueue
   };

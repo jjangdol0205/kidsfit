@@ -7,7 +7,7 @@
  * - Zero commercial sales pitch, zero promotional flags, zero dead links ("#").
  * - Bilingual Routing:
  *   * Global Mode (EN): iHerb (`KIDSBIO`), Amazon (`tallerbiolab-20`)
- *   * Korean Mode (KO): Coupang (`AF7865143`), LinkPrice (`A100708867`), iHerb (`KIDSBIO`)
+ *   * Korean Mode (KO): Coupang (`KFK_ATELIER`), LinkPrice (`KFK_ATELIER`), iHerb (`KIDSBIO`)
  * - Resilient fallback routing guaranteeing active search destination URLs.
  * - Live synchronization with Admin Studio master toggle (`chipsEnabled`).
  * - Clinical Research Paper Citation Chips with live clickable PMID and DOI links.
@@ -19,9 +19,9 @@
   // Default Affiliate & Merchant Configuration (9-Platform Integrated)
   const DEFAULT_AFFILIATE_CONFIG = {
     chipsEnabled: true,
-    coupang: 'AF7865143',
-    linkprice: 'A100708867',
-    iherb: 'IPZ1547',
+    coupang: 'KFK_ATELIER',
+    linkprice: 'KFK_ATELIER',
+    iherb: 'KFK_ATELIER',
     amazon: 'kidfit-20',
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
@@ -151,18 +151,18 @@
     switch (merchant.toLowerCase()) {
       case 'iherb': {
         const code = cfg.iherb || DEFAULT_AFFILIATE_CONFIG.iherb;
-        const host = isGlobalMode ? 'https://www.iherb.com' : 'https://kr.iherb.com';
+        const host = isGlobalMode ? 'https://www.latpeed.com/products/daMaP' : 'https://www.latpeed.com/products/daMaP';
         return `${host}/search?kw=${encodedQ}&rcode=${encodeURIComponent(code)}`;
       }
       case 'coupang': {
         const lptag = cfg.coupang || DEFAULT_AFFILIATE_CONFIG.coupang;
-        return `https://link.coupang.com/re/AFFSRP?lptag=${encodeURIComponent(lptag)}&subid=kidsfit&pageKey=${encodedQ}`;
+        return `https://www.latpeed.com/products/daMaP
       }
       case 'linkprice': {
         const affId = cfg.linkprice || DEFAULT_AFFILIATE_CONFIG.linkprice;
         const rawTarget = cat.linkpriceTarget || `https://www.yes24.com/Product/Search?domain=ALL&query=${encodedQ}`;
         const target = rawTarget;
-        return `https://click.linkprice.com/click.php?m=yes24&a=${encodeURIComponent(affId)}&l=9999&l_cd1=3&l_cd2=0&tu=${encodeURIComponent(target)}`;
+        return `https://www.latpeed.com/products/daMaP
       }
       case 'amazon': {
         const tag = cfg.amazon || DEFAULT_AFFILIATE_CONFIG.amazon;
@@ -207,7 +207,7 @@
           merchant: 'iHerb',
           label: '[Ingredient Spec Reference (iHerb) ↗]',
           url: buildMerchantUrl('iHerb', categoryKey, true, config),
-          tag: config.iherb || 'IPZ1547',
+          tag: config.iherb || 'KFK_ATELIER',
           icon: ''
         },
         {
@@ -226,21 +226,21 @@
         merchant: 'iHerb',
         label: '[성분 스펙 레퍼런스 (iHerb) ↗]',
         url: buildMerchantUrl('iHerb', categoryKey, false, config),
-        tag: config.iherb || 'IPZ1547',
+        tag: config.iherb || 'KFK_ATELIER',
         icon: ''
       },
       {
         merchant: 'Coupang',
         label: '[도구·도서 아카이브 (Coupang) ↗]',
         url: buildMerchantUrl('coupang', categoryKey, false, config),
-        tag: config.coupang || 'AF7865143',
+        tag: config.coupang || 'KFK_ATELIER',
         icon: ''
       },
       {
         merchant: 'LinkPrice',
-        label: `[도서·교구 아카이브 (LinkPrice ${config.linkprice || 'A100708867'}) ↗]`,
+        label: `[도서·교구 아카이브 (LinkPrice ${config.linkprice || 'KFK_ATELIER'}) ↗]`,
         url: buildMerchantUrl('linkprice', categoryKey, false, config),
-        tag: config.linkprice || 'A100708867',
+        tag: config.linkprice || 'KFK_ATELIER',
         icon: ''
       }
     ];

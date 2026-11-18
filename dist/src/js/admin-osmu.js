@@ -32,8 +32,8 @@
   };
 
   function generateOsmuBundle(scenarioId = 'scenario-1', affiliateConfig = {}) {
-    const coupangId = affiliateConfig.coupang || 'AF7865143';
-    const linkpriceId = affiliateConfig.linkprice || 'A100708867';
+    const coupangId = affiliateConfig.coupang || 'KFK_ATELIER';
+    const linkpriceId = affiliateConfig.linkprice || 'KFK_ATELIER';
     const cafeUrl = affiliateConfig.cafeUrl || 'https://cafe.naver.com/kidsfitgrowth';
     const blogUrl = affiliateConfig.blogUrl || 'https://blog.naver.com/kidsfit_studio';
 
