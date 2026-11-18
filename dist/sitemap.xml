@@ -73,6 +73,12 @@
     <priority>0.84</priority>
   </url>
   <url>
+    <loc>https://kidsfit.co.kr/qna/essay-quiet-night-growth-note.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.84</priority>
+  </url>
+  <url>
     <loc>https://kidsfit.co.kr/qna/free-worksheets.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -509,10 +515,5 @@
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.84</priority>
-  </url>
-  <url>
-    <loc>https://kidsfit.co.kr/qna/essay-quiet-night-growth-note.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>

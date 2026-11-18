@@ -2006,22 +2006,21 @@ BLOG_GROWTH_EDITORIAL_BANK: List[Dict[str, Any]] = [
 def build_blog_bottom_bridge_text(seq_num: int, item: Dict[str, Any]) -> str:
     """
     본문 최하단(Image 3 아래, 전문 해설 85% 이후)에만 배치되는 에디터 맺음말 & 자연 전환 브릿지.
-    - 무료 1분 질병관리청(KDCA) 백분위·뼈나이 해석기 (https://kidsfit.co.kr)
-    - 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF』 (https://kidsfit.co.kr/#kfk-latpeed-ebook-slot)
+    - 『키즈핏 성장 서재』 풀버전 에세이 이메일 무료 구독 (#kfk-passwordless-club-box) & 5단계 뼈나이(Δt) 해석기
+    - 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF』 (#kfk-latpeed-ebook-slot / daMaP)
     - 연령·단계별 에디터 큐레이션 (https://kidsfit.co.kr/coupang-kidsfit.html) + 공정위 고지문
     """
     return (
-        "■ 키즈핏 소아성장 연구소 에디터의 맺음말 & 가정용 실전 점검 안내\n"
-        "우리 아이가 또래보다 탄탄하고 반듯하게 자라는 힘은 매일 밤 지켜주는 침실 조도, 식탁 위 영양 흡수 시너지, 그리고 책상 앞 바른 시선 각도에서 시작됩니다.\n\n"
-        "조급한 비교 대신 오늘 밤 우리 집에서 가장 실천하기 쉬운 작은 루틴 한 가지부터 아이와 기분 좋게 시작해 보세요.\n\n"
-        "1. 우리 아이 질병관리청(KDCA) 표준키 백분위 & 병원 뼈나이(골연령) 1분 무료 해석기\n"
-        "생년월일(개월수)과 현재 키·몸무게, 또는 소아과 손목 X-ray 뼈나이 판독 결과를 넣으시면 또래 100명 중 위치와 연간 성장속도를 바로 확인하실 수 있습니다.\n"
-        "https://kidsfit.co.kr\n\n"
-        "2. 가정 비치용 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF (+30일 체크표 번들)』\n"
-        "급성장기(PHV) 골든타임 로드맵부터 뼈나이 편차별 식단·수면·병원 진료 질문지까지 한 권으로 정리한 실전 마스터북 안내도 함께 살펴보세요.\n"
-        f"{LATPEED_MASTERBOOK_SLOT_URL}\n\n"
+        "■ 키즈핏 성장 서재 에세이 이메일 구독 & 가정용 실전 점검 안내\n"
+        "조급한 비교 대신 오늘 밤 우리 집에서 실천하기 쉬운 루틴 한 가지부터 아이와 기분 좋게 시작해 보세요.\n\n"
+        "1. 풀버전 성장 에세이 이메일 무료 구독 & 5단계 병원 뼈나이(Δt) 맞춤 해석기\n"
+        "매주 깊은 소아성장 에세이를 이메일로 받아보시고(무비밀번호 3초 구독), 우리 아이 백분위와 골연령 편차를 확인해 보세요.\n"
+        "https://kidsfit.co.kr/#kfk-passwordless-club-box | https://kidsfit.co.kr/#kfk-bone-age-interpreter\n\n"
+        "2. 가정 비치용 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF (+30일 체크표)』\n"
+        "급성장기 로드맵부터 뼈나이 편차별 식단·수면·진료 질문지까지 정리한 실전 마스터북 안내도 함께 살펴보세요.\n"
+        f"{LATPEED_MASTERBOOK_SLOT_URL} (https://www.latpeed.com/products/daMaP)\n\n"
         "3. 연령·단계별 수면·영양·바른자세 성장 환경 에디터 큐레이션\n"
-        "유아·초등 저학년부터 초등 고학년 급성장기, 중·고등 마무리 시기까지 단계별 숙면·구연산 칼슘/D3/K2/아연·15도 독서대 구성을 공식 판매처 보러가기 및 혜택가 확인으로 만나보실 수 있습니다.\n"
+        "단계별 숙면·칼슘/D3/K2/아연·15도 독서대 구성을 공식 판매처 보러가기 및 혜택가 확인으로 만나보실 수 있습니다.\n"
         "https://kidsfit.co.kr/coupang-kidsfit.html\n\n"
         f"{KFTC_DISCLOSURE_KO}"
     )
