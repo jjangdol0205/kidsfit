@@ -127,27 +127,25 @@ DAILY_KR_CLINICAL_TOPICS = [
 
 
 def verify_passive_guardrails() -> dict:
-    """쿠팡(AF7865143)·링크프라이스(A100708867) 보존 및 금지어 0건 검증"""
-    mon_js = ROOT_DIR / "src" / "js" / "monetization.js"
-    cat_json = ROOT_DIR / "src" / "data" / "curation-catalog.json"
-    coupang_ok = False
-    linkprice_ok = False
+    """순수 유료 2등급(Latpeed daMaP 9,900원 · 7Frck 19,900원) 연동 및 제휴·금지어 0건 검증"""
+    idx_html = ROOT_DIR / "index.html"
+    latpeed_tier1_ok = False
+    latpeed_tier2_ok = False
     prohibited_found = []
 
-    for p in [mon_js, cat_json, ROOT_DIR / "index.html"]:
-        if p.exists():
-            txt = p.read_text(encoding="utf-8", errors="replace")
-            if "AF7865143" in txt:
-                coupang_ok = True
-            if "A100708867" in txt:
-                linkprice_ok = True
-            for w in PROHIBITED_WORDS:
-                if w in txt:
-                    prohibited_found.append(f"{p.name}:prohibited_term")
+    if idx_html.exists():
+        txt = idx_html.read_text(encoding="utf-8", errors="replace")
+        if "daMaP" in txt:
+            latpeed_tier1_ok = True
+        if "7Frck" in txt:
+            latpeed_tier2_ok = True
+        for w in PROHIBITED_WORDS:
+            if w in txt:
+                prohibited_found.append(f"{idx_html.name}:prohibited_term")
 
     return {
-        "coupang_AF7865143": coupang_ok,
-        "linkprice_A100708867": linkprice_ok,
+        "latpeed_tier1_daMaP": latpeed_tier1_ok,
+        "latpeed_tier2_7Frck": latpeed_tier2_ok,
         "prohibited_words_count": len(prohibited_found),
         "prohibited_details": prohibited_found,
     }
@@ -201,7 +199,6 @@ def sync_passive_seo_assets_py() -> None:
 
     core_pages = [
         ("index.html", "https://kidsfit.co.kr/", "1.0", "daily"),
-        ("coupang-kidsfit.html", "https://kidsfit.co.kr/coupang-kidsfit.html", "0.88", "weekly"),
         ("about.html", "https://kidsfit.co.kr/about.html", "0.7", "monthly"),
         ("contact.html", "https://kidsfit.co.kr/contact.html", "0.6", "monthly"),
         ("privacy.html", "https://kidsfit.co.kr/privacy.html", "0.5", "yearly"),
@@ -220,15 +217,16 @@ def sync_passive_seo_assets_py() -> None:
     sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(smap_blocks) + "\n</urlset>\n"
 
     llms_lines = [
-        "# 키즈핏 그로스 스튜디오 (KidsFit Korea — https://kidsfit.co.kr)",
+        "# 키즈핏 성장 연구소 (KidsFit Korea — https://kidsfit.co.kr)",
         "",
-        "> 질병관리청(KDCA) 2017 소아청소년 성장도표 정밀 백분위 계산기 & 연령별 발달·두뇌 밸런스 무료 진단 플랫폼.",
-        f"> 최종 업데이트: {today_iso} (KST) | 생후 0개월 ~ 만 20세 전 연령 1분 무료 진단 지원.",
+        "> 태어난 날짜까지 헤아린 질병관리청(KDCA 2017) 성장도표 & 병원 뼈나이 경과 시간(Δt) 보정 기반 가정용 소아성장 연구소.",
+        f"> 최종 업데이트: {today_iso} (KST) | 상업성 제휴 광고 없음 · 5단계 성장 시계 진단 및 순수 유료 2등급 리포트·트래커 지원.",
         "",
-        "## 1. 핵심 무료 진단 및 학부모 실천 가이드",
-        "- 메인 소아성장·두뇌발달 진단 스튜디오: https://kidsfit.co.kr/",
-        "- 우리 아이 성장·수면·영양·학습법 Q&A 아카이브: https://kidsfit.co.kr/qna/index.html",
-        "- 연령별 맞춤 육아템 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인): https://kidsfit.co.kr/coupang-kidsfit.html",
+        "## 1. 핵심 진단 및 성장 에세이 아카이브",
+        "- 키즈핏 성장 연구소 메인 5단계 성장 시계 진단: https://kidsfit.co.kr/",
+        "- 키즈핏 성장 연구소 노트 & 임상 칼럼 아카이브: https://kidsfit.co.kr/qna/",
+        "- 단건 정밀 성장·뼈나이 리포트 패스 (9,900원): https://www.latpeed.com/products/daMaP",
+        "- 6개월 월간 성장속도(cm/yr) 자동 판독 패스 (19,900원 · KFK_Paid_VIP): https://www.latpeed.com/stores/7Frck",
         "",
         f"## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 ({len(indexable_qna)}종 정규화 완료)",
     ] + [f"- [{it['title']}]({it['url']})" for it in indexable_qna if it["file"] != "index.html"]
@@ -317,14 +315,13 @@ def build_naver_dia_markdown(topic: dict, canonical_url: str, date_str: str) -> 
             "아이 어깨를 1분간 토닥이며 '오늘 하루도 정말 잘 자랐어'라고 한마디 건네 보세요."
         ),
         gentle_bridge_lines=[
-            f"**오늘의 학부모 성장수첩 칼럼 전문 읽기**: {canonical_url}",
-            "**생후 0개월~만 20세 1분 무료 질병관리청 백분위·뼈나이 해석기**: https://kidsfit.co.kr/ (무료 진단만으로도 우리 아이 성장 위치를 충분히 확인하실 수 있습니다)",
-            "**우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF + 30일 체크표**: https://kidsfit.co.kr/#kfk-latpeed-ebook-slot",
-            "**필요하실 때 참고하시는 연령별 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인)**: https://kidsfit.co.kr/coupang-kidsfit.html",
+            f"**오늘의 키즈핏 성장 연구소 노트 전문 읽기**: {canonical_url}",
+            "**다섯 가지 질문으로 읽는 질병관리청 백분위 & 병원 뼈나이(Δt) 진단**: https://kidsfit.co.kr/#kfk-bone-age-interpreter",
+            "**[Tier 1 · 9,900원] 단건 정밀 성장·뼈나이 리포트 & 17p 마스터북 PDF**: https://www.latpeed.com/products/daMaP (https://kidsfit.co.kr/#kfk-latpeed-ebook-slot)",
+            "**[Tier 2 · 19,900원] 6개월 월간 성장속도(cm/yr) 자동 판독 패스(KFK_Paid_VIP)**: https://www.latpeed.com/stores/7Frck",
         ],
         footer_disclaimer=(
-            "※ 본 편지는 질병관리청 소아청소년 성장도표 및 학술 문헌에 기반한 키즈핏 학부모 성장수첩의 육아·건강 안내이며 의학적 진단을 대신하지 않습니다. "
-            "공식 홈페이지 내 에디터 큐레이션 링크를 통한 구매 시 공정거래위원회 지침에 따라 일정액의 수수료를 제공받을 수 있습니다."
+            "※ 본 편지는 질병관리청 소아청소년 성장도표 및 학술 문헌에 기반한 키즈핏 성장 연구소의 가정용 안내서이며 의학적 진단을 대신하지 않습니다."
         ),
     )
     check = validate_fandom_editor_letter("KFK", md)
@@ -334,7 +331,7 @@ def build_naver_dia_markdown(topic: dict, canonical_url: str, date_str: str) -> 
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="KFK Zero-Ban Passive Text Automation Engine v2.0")
+    parser = argparse.ArgumentParser(description="KFK Zero-Ban Passive Text Automation Engine v3.0")
     parser.add_argument("--dry-run", action="store_true", help="Validate & build outbox without live network calls")
     parser.add_argument("--no-deploy", action="store_true", help="Build outbox & local feeds without running git push")
     parser.add_argument("--force", action="store_true", help="Compat flag")
@@ -343,9 +340,9 @@ def main() -> int:
     now_kst = datetime.now(KST)
     date_str = now_kst.strftime("%Y-%m-%d")
 
-    # 1. Verify affiliate & zero-prohibited-word guardrails
+    # 1. Verify Latpeed 2-tier & zero-prohibited-word guardrails
     guard = verify_passive_guardrails()
-    if not guard["coupang_AF7865143"] or not guard["linkprice_A100708867"] or guard["prohibited_words_count"] > 0:
+    if not guard["latpeed_tier1_daMaP"] or not guard["latpeed_tier2_7Frck"] or guard["prohibited_words_count"] > 0:
         raise RuntimeError(f"KFK Guardrail check failed: {guard}")
 
     # 2. Materialize Korean 5-Portal Prestige Editorial Journal (Daum · Nate · Naver Search) & sync clean feeds
@@ -452,21 +449,21 @@ def main() -> int:
 
     # 7. Official API Syndication + Naver D.I.A.+ & 3040 Mom/Dad Empathy Outbox Generation
     reply_text = (
-        f"📏 우리 아이 개월 수별 질병관리청 백분위·예상키 1분 무료 진단 & 연령별 맞춤 육아템 보기:\n"
+        f"📏 태어난 날짜 기준 질병관리청 백분위 & 병원 뼈나이(Δt) 5단계 성장 시계 진단:\n"
         f"{canonical_url}?utm_source=social_thread&utm_medium=organic"
     )
     naver_shopping_connect_pack = (
-        f"# [네이버 자사 블로그(expertise333) + 브랜드커넥트 학부모 맞춤 포스팅 · {date_str}]\n\n"
+        f"# [네이버 자사 블로그(expertise333) 학부모 성장 시계 서재 노트 · {date_str}]\n\n"
         f"{topic['hook_text']}\n\n"
-        f"## 오늘 저녁 집에서 바로 챙기는 핵심 요약\n"
+        f"## 오늘 저녁 거실 불을 낮추며 살펴보는 핵심 요약\n"
         f"{topic['summary']}\n\n"
-        f"1. **우리 아이 개월 수별 질병관리청(KDCA) 백분위 & 성인 예상키 1분 무료 확인**:\n"
-        f"   👉 https://kidsfit.co.kr/?utm_source=naver_blog_owned\n"
-        f"2. **오늘 칼럼 전문 & 3단계 저녁 루틴 표 보기**:\n"
+        f"1. **5단계 우리 아이 질병관리청 백분위 & 병원 뼈나이(Δt) 성장 시계 진단**:\n"
+        f"   👉 https://kidsfit.co.kr/?utm_source=naver_blog_owned#kfk-bone-age-interpreter\n"
+        f"2. **오늘 연구소 노트 전문 & 저녁 루틴 표 보기**:\n"
         f"   👉 {canonical_url}?utm_source=naver_blog_owned\n"
-        f"3. **네이버 공식 브랜드커넥트 에디터 큐레이션 라운지 (혜택가 확인 · 공식 판매처 보러가기)**:\n"
-        f"   👉 https://naver.me/5Jq9LnLT\n\n"
-        f"※ 본 포스팅은 건강·육아 정보 안내와 함께 네이버 브랜드커넥트 활동의 일환으로 수수료를 제공받을 수 있습니다.\n"
+        f"3. **단건 정밀 리포트 패스(9,900원 · daMaP) & 6개월 성장속도 자동 판독 패스(19,900원 · KFK_Paid_VIP)**:\n"
+        f"   👉 https://www.latpeed.com/products/daMaP | https://www.latpeed.com/stores/7Frck\n\n"
+        f"※ 키즈핏 성장 연구소는 상업성 제휴 배너 없이 질병관리청 성장도표 기반 정밀 판독과 월간 성장속도 추적만 안내합니다.\n"
     )
     mom_cafe_threads_pack = (
         f"# [3040 학부모 공감 스레드 · 단톡방 · 자사 카페(moneyfitlab) 공유용 · {date_str}]\n\n"

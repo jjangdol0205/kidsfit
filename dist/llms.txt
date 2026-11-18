@@ -1,12 +1,13 @@
-# 키즈핏 그로스 스튜디오 (KidsFit Korea — https://kidsfit.co.kr)
+# 키즈핏 성장 연구소 (KidsFit Korea — https://kidsfit.co.kr)
 
-> 질병관리청(KDCA) 2017 소아청소년 성장도표 정밀 백분위 계산기 & 연령별 발달·두뇌 밸런스 무료 진단 플랫폼.
-> 최종 업데이트: 2026-11-18 (KST) | 생후 0개월 ~ 만 20세 전 연령 1분 무료 진단 지원.
+> 태어난 날짜까지 헤아린 질병관리청(KDCA 2017) 성장도표 & 병원 뼈나이 경과 시간(Δt) 보정 기반 가정용 소아성장 연구소.
+> 최종 업데이트: 2026-11-18 (KST) | 상업성 제휴 광고 없음 · 5단계 성장 시계 진단 및 순수 유료 2등급 리포트·트래커 지원.
 
-## 1. 핵심 무료 진단 및 학부모 실천 가이드
-- 메인 소아성장·두뇌발달 진단 스튜디오: https://kidsfit.co.kr/
-- 우리 아이 성장·수면·영양·학습법 Q&A 아카이브: https://kidsfit.co.kr/qna/index.html
-- 연령별 맞춤 육아템 에디터 큐레이션 (공식 판매처 보러가기 / 혜택가 확인): https://kidsfit.co.kr/coupang-kidsfit.html
+## 1. 핵심 진단 및 성장 에세이 아카이브
+- 키즈핏 성장 연구소 메인 5단계 성장 시계 진단: https://kidsfit.co.kr/
+- 키즈핏 성장 연구소 노트 & 임상 칼럼 아카이브: https://kidsfit.co.kr/qna/
+- 단건 정밀 성장·뼈나이 리포트 패스 (9,900원): https://www.latpeed.com/products/daMaP
+- 6개월 월간 성장속도(cm/yr) 자동 판독 패스 (19,900원 · KFK_Paid_VIP): https://www.latpeed.com/stores/7Frck
 
 ## 2. 정규 임상 Q&A · 연령별 예상키 계산기 전체 목록 (80종 정규화 완료)
 - [잠드는 시계 바늘보다 중요한 것: 입면 후 첫 90분 서파수면과 거실 조도 30Lux의 성장생리학 | 키즈핏 소아성장 연구소](https://kidsfit.co.kr/qna/editorial-01-slow-wave-sleep-melatonin-30lux-growth-hormone.html)

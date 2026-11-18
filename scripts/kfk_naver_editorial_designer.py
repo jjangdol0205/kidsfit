@@ -25,8 +25,8 @@ D:\드림컴퍼니\5사업부\scripts\kfk_naver_editorial_designer.py
    - Cafe Image (cafe_seq_XXX_card.png): 에메랄드 민트 소통형 실천 미션 카드
 4. D.I.A.+ 상업성 감점 차단 & 수익화 가드레일:
    - 첫 문단 외부링크 노출 0건 (구 top_inflow_box 영구 폐지)
-   - 본문 3개 섹션 사이사이에 이미지 3장을 교차 배치한 뒤 맨 하단에만 무료 성장진단·뼈나이 해석기 및
-     연령단계별 에디터 큐레이션(쿠팡 AF7865143 · 링크프라이스 A100708867 · 공정위 고지문) 자연 연결
+   - 본문 3개 섹션 사이사이에 이미지 3장을 교차 배치한 뒤 맨 하단에만 5단계 성장 시계·뼈나이(Δt) 진단 및
+     순수 유료 2등급(래피드 9,900원 단건 리포트 daMaP / 19,900원 6개월 성장속도 트래커 패스 stores/7Frck · 제휴 0건) 자연 연결
    - 금지어 4종 및 해외 PG 문자열 혼입 0건
 ================================================================================
 """
@@ -67,13 +67,14 @@ NON_GROWTH_OFF_TOPIC_KEYWORDS = (
     "사자 갈기",
 )
 
-KFTC_DISCLOSURE_KO = (
-    "※ 공정거래위원회 경제적 이해관계 고지: 본 칼럼 하단의 성장 환경 큐레이션 안내를 통해 "
-    "제휴 파트너사(쿠팡 파트너스 AF7865143 · 링크프라이스 A100708867)로부터 소정의 수수료를 "
-    "제공받을 수 있으나, 학부모님께 추가 비용은 일절 발생하지 않습니다."
+STUDIO_PURE_PAID_NOTE_KO = (
+    "※ 키즈핏 성장 연구소(kidsfit.co.kr)는 상업성 쇼핑 제휴 광고 없이 질병관리청(KDCA 2017) 성장도표와 "
+    "병원 뼈나이 경과 시간(Δt) 보정을 바탕으로 가정용 성장 시계와 월간 성장속도를 차분히 안내합니다."
 )
 
 LATPEED_MASTERBOOK_SLOT_URL = "https://kidsfit.co.kr/#kfk-latpeed-ebook-slot"
+LATPEED_TIER1_URL = "https://www.latpeed.com/products/daMaP"
+LATPEED_TIER2_URL = "https://www.latpeed.com/stores/7Frck"
 
 # 질병관리청(KDCA) 2017 소아청소년 성장도표 공식 50백분위(중앙값) 공신력 데이터 박스
 KDCA_OFFICIAL_DATA_BOX_KO = (
@@ -2005,24 +2006,25 @@ BLOG_GROWTH_EDITORIAL_BANK: List[Dict[str, Any]] = [
 
 def build_blog_bottom_bridge_text(seq_num: int, item: Dict[str, Any]) -> str:
     """
-    본문 최하단(Image 3 아래, 전문 해설 85% 이후)에만 배치되는 에디터 맺음말 & 자연 전환 브릿지.
-    - 『키즈핏 성장 서재』 풀버전 에세이 이메일 무료 구독 (#kfk-passwordless-club-box) & 5단계 뼈나이(Δt) 해석기
-    - 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF』 (#kfk-latpeed-ebook-slot / daMaP)
-    - 연령·단계별 에디터 큐레이션 (https://kidsfit.co.kr/coupang-kidsfit.html) + 공정위 고지문
+    본문 최하단(Image 3 아래, 전문 해설 85% 이후)에만 배치되는 키즈핏 성장 연구소 에디터 맺음말 & 자연 전환 브릿지.
+    - 『키즈핏 성장 연구소 노트』 풀버전 에세이 이메일 무료 구독 (#kfk-passwordless-club-box) & 5단계 성장 시계(Δt) 진단
+    - Tier 1 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF』 (9,900원 · #kfk-latpeed-ebook-slot / daMaP)
+    - Tier 2 『6개월 성장속도 집중 관리 패스』 (19,900원 · 월간 KDCA cm/yr 자동 판독 KFK_Paid_VIP · stores/7Frck)
+    (상업성 제휴 상품 링크 0건)
     """
     return (
-        "■ 키즈핏 성장 서재 에세이 이메일 구독 & 가정용 실전 점검 안내\n"
-        "조급한 비교 대신 오늘 밤 우리 집에서 실천하기 쉬운 루틴 한 가지부터 아이와 기분 좋게 시작해 보세요.\n\n"
-        "1. 풀버전 성장 에세이 이메일 무료 구독 & 5단계 병원 뼈나이(Δt) 맞춤 해석기\n"
-        "매주 깊은 소아성장 에세이를 이메일로 받아보시고(무비밀번호 3초 구독), 우리 아이 백분위와 골연령 편차를 확인해 보세요.\n"
+        "■ 키즈핏 성장 연구소 에디터의 밤 편지 & 가정용 성장 시계 점검 안내\n"
+        "거실 기둥의 연필 눈금 앞에서 조급해하기보다, 오늘 저녁 거실 불을 10분 일찍 낮추는 작은 습관부터 아이와 편안하게 시작해 보세요.\n\n"
+        "1. 풀버전 성장 에세이 이메일 무료 구독 & 5단계 우리 아이 성장 시계·뼈나이(Δt) 진단\n"
+        "태어난 날짜까지 헤아린 질병관리청 백분위와 예전 병원 손목 뼈나이 이후 흐른 시간까지 차분히 확인하고 조용한 저녁 에세이를 받아보세요.\n"
         "https://kidsfit.co.kr/#kfk-passwordless-club-box | https://kidsfit.co.kr/#kfk-bone-age-interpreter\n\n"
-        "2. 가정 비치용 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF (+30일 체크표)』\n"
-        "급성장기 로드맵부터 뼈나이 편차별 식단·수면·진료 질문지까지 정리한 실전 마스터북 안내도 함께 살펴보세요.\n"
-        f"{LATPEED_MASTERBOOK_SLOT_URL} (https://www.latpeed.com/products/daMaP)\n\n"
-        "3. 연령·단계별 수면·영양·바른자세 성장 환경 에디터 큐레이션\n"
-        "단계별 숙면·칼슘/D3/K2/아연·15도 독서대 구성을 공식 판매처 보러가기 및 혜택가 확인으로 만나보실 수 있습니다.\n"
-        "https://kidsfit.co.kr/coupang-kidsfit.html\n\n"
-        f"{KFTC_DISCLOSURE_KO}"
+        "2. [Tier 1 · 9,900원] 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF (단건 정밀 리포트 패스)』\n"
+        "뼈나이 시차(Δt) 보정 성인 예상키·생활 병목 진단과 가정 비치용 17페이지 실전 마스터북 안내도 함께 살펴보세요.\n"
+        f"{LATPEED_MASTERBOOK_SLOT_URL} ({LATPEED_TIER1_URL})\n\n"
+        "3. [Tier 2 · 19,900원] 『6개월 성장속도 집중 관리 패스 (월간 질병관리청 cm/yr 자동 판독 KFK_Paid_VIP)』\n"
+        "매월 30일 주기로 아침 맨발 키 변화를 입력하면 질병관리청 기준 연간 성장속도 정상 여부를 자동 판독해 드립니다.\n"
+        f"{LATPEED_TIER2_URL}\n\n"
+        f"{STUDIO_PURE_PAID_NOTE_KO}"
     )
 
 
