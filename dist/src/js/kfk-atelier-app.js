@@ -832,7 +832,12 @@
     if ((!profile.heightCm || profile.heightCm < 65) && savedRaw) {
       try { profile = JSON.parse(savedRaw); } catch (_) {}
     }
+    if (nickname) profile.nickname = nickname;
+    profile.parentEmail = email;
+    safeSetStorage(PROFILE_KEY, profile);
+
     var analysis = state.lastAnalysis || analyzeGrowthClock(profile);
+    analysis.profile = profile;
     state.lastAnalysis = analysis;
 
     safeSetStorage(EMAIL_UNLOCK_KEY, 'true');
@@ -1422,6 +1427,30 @@
     }
   }
 
+  function downloadCustomChildReportPdf() {
+    var savedRaw = safeGetStorage(PROFILE_KEY);
+    var savedProfile = null;
+    if (savedRaw) {
+      try { savedProfile = JSON.parse(savedRaw); } catch (_) {}
+    }
+    var formProfile = readFormProfile();
+    var profile = (formProfile && formProfile.heightCm >= 65) ? formProfile : (savedProfile || formProfile);
+    if (savedProfile && savedProfile.nickname && !profile.nickname) {
+      profile.nickname = savedProfile.nickname;
+    }
+    var nickInput = (typeof document !== 'undefined') ? document.getElementById('kfk-stepup-nickname-input') : null;
+    if (nickInput && String(nickInput.value || '').trim()) {
+      profile.nickname = String(nickInput.value || '').trim();
+    }
+    var analysis = state.lastAnalysis || analyzeGrowthClock(profile);
+    var paidPass = getVerifiedPaidPass();
+    if (global.KfkPersonalizedPdf && typeof global.KfkPersonalizedPdf.downloadPersonalizedChildPdf === 'function') {
+      return global.KfkPersonalizedPdf.downloadPersonalizedChildPdf(analysis, profile, paidPass);
+    }
+    if (typeof global.print === 'function') global.print();
+    return false;
+  }
+
   var api = {
     calculateKdcaPercentile: calculateKdcaPercentile,
     computeExactAgeFromDob: computeExactAgeFromDob,
@@ -1441,7 +1470,8 @@
     selectQuickLagChip: selectQuickLagChip,
     selectVerbalStageChip: selectVerbalStageChip,
     fillKoreanAverageParents: fillKoreanAverageParents,
-    fillStandard6MoGain: fillStandard6MoGain
+    fillStandard6MoGain: fillStandard6MoGain,
+    downloadCustomChildReportPdf: downloadCustomChildReportPdf
   };
 
   global.KfkAtelierApp = api;

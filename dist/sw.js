@@ -3,7 +3,7 @@
  * Strictly Network-First for HTML/JS/CSS with automatic purge of all legacy caches.
  */
 
-const CACHE_NAME = 'kidsfit-kr-human-v20261118-v3';
+const CACHE_NAME = 'kidsfit-kr-human-v20261118-v4';
 const APP_SHELL = [
   '/manifest.json',
   '/samples/app-icon-192.png',
