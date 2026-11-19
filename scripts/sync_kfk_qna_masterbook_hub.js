@@ -1,9 +1,9 @@
 /**
  * scripts/sync_kfk_qna_masterbook_hub.js
- * Idempotently injects the Latpeed 9,900 KRW Masterbook PDF + 30-Day Checklist CTA button
- * into all 73 indexable /qna/*.html KFK_QNA_CONVERSION_HUB blocks and adds Brand Partnership
- * inquiry contact (mailto:beable9489@gmail.com) to QnA footers while preserving 100% of
- * existing Coupang (AF7865143), Naver Npay, LinkPrice YES24 (A100708867) cards & FTC disclosures.
+ * Idempotently synchronizes the Pure Boutique Pediatric Growth Atelier Conversion Hub,
+ * Organization sameAs JSON-LD (@kidsfit01 YouTube & @kids_fit1 Instagram),
+ * understated official SNS footer links, and mobile table scroll wrappers across /qna/*.html.
+ * Strictly zero affiliate links or commercial commission disclosures.
  */
 'use strict';
 
@@ -13,91 +13,73 @@ const path = require('path');
 const ROOT_DIR = path.resolve(__dirname, '..');
 const QNA_DIR = path.join(ROOT_DIR, 'qna');
 
-const MASTERBOOK_BLOCK = [
-  '  <!-- KFK_QNA_MASTERBOOK_SLOT_START -->',
-  '  <div style="background:#FFFFFF;border:1.5px solid #93C5FD;border-radius:18px;padding:15px 16px;margin-bottom:16px;box-shadow:0 6px 18px rgba(30,64,175,0.07);">',
-  '    <a href="https://kidsfit.co.kr/#kfk-latpeed-ebook-slot" data-kfk-paid-ebook="1" style="display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 16px;border-radius:14px;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 55%,#1D4ED8 100%);color:#FDE047;font-size:14.5px;font-weight:900;line-height:1.4;text-decoration:none;text-align:center;border:1.5px solid #1E40AF;box-shadow:0 8px 20px rgba(29,78,216,0.22);word-break:keep-all;">📘 [창립 혜택가 9,900원] 우리아이 키성장·뼈나이 실전 마스터북 PDF + 30일 체크표 보러가기 →</a>',
-  '  </div>',
-  '  <!-- KFK_QNA_MASTERBOOK_SLOT_END -->'
-].join('\n');
+const ORG_JSON_LD = '<script type="application/ld+json" id="kfk-org-sameas-ld">{"@context":"https://schema.org","@type":"Organization","@id":"https://kidsfit.co.kr/#organization","name":"키즈핏 소아성장 아틀리에 (KidsFit Korea)","url":"https://kidsfit.co.kr/","email":"beable9489@gmail.com","sameAs":["https://www.youtube.com/@kidsfit01","https://www.instagram.com/kids_fit1/"]}</script>';
 
-const HUB_PARTNERSHIP_BAR = [
-  '  <!-- KFK_QNA_PARTNERSHIP_BAR_START -->',
-  '  <div style="margin-top:12px;text-align:center;font-size:12.5px;font-weight:800;color:#334155;">',
-  '    🤝 브랜드 협찬·광고 제휴 문의: <a href="mailto:beable9489@gmail.com" style="color:#1D4ED8;text-decoration:underline;font-weight:900;">beable9489@gmail.com</a>',
-  '  </div>',
-  '  <!-- KFK_QNA_PARTNERSHIP_BAR_END -->'
-].join('\n');
-
-const FOOTER_PARTNERSHIP_LINE = '    <div class="kfk-qna-footer-partnership" style="margin-bottom:0.45rem;font-weight:800;color:#334155;">🤝 브랜드 협찬·광고 제휴 문의: <a href="mailto:beable9489@gmail.com" style="color:#1D4ED8;text-decoration:underline;margin:0;">beable9489@gmail.com</a></div>';
+function buildPureAtelierHub(defaultSeg) {
+  const seg = defaultSeg || 'kr_upper_golden_time';
+  return [
+    '<!-- KFK_QNA_CONVERSION_HUB_START -->',
+    `<section id="kfk-qna-conversion-hub" class="no-print" data-default-segment="${seg}" data-active-segment="${seg}" aria-label="키즈핏 성장 연구소 노트 무료 구독 및 성장 시계 진단 안내" style="max-width:820px;margin:32px auto 28px;padding:26px 22px;border-radius:14px;background:#FFFFFF;border:1px solid #E7E5E0;color:#1C1917;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;">`,
+    '  <div style="padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #E7E5E0;">',
+    '    <p style="margin:0 0 6px;font-size:12.5px;font-weight:700;color:#2F5241;letter-spacing:0.03em;">키즈핏 성장 연구소 우편함 · 상업성 광고 없음</p>',
+    '    <h2 style="margin:0 0 8px;font-size:20px;font-weight:700;line-height:1.42;color:#1C1917;">다음 성장 에세이를 조용한 저녁 편지로 받아보세요</h2>',
+    '    <p style="margin:0 0 14px;font-size:14.5px;color:#57534E;line-height:1.65;">비밀번호 없이 이메일 주소만 남겨 두시면, 질병관리청(KDCA 2017) 성장도표와 저녁 생활 습관을 다룬 연구소 노트를 차분히 보내드립니다 (언제든 1클릭 수신거부).</p>',
+    '    <form onsubmit="return window.submitKfkQnaHubSignup ? window.submitKfkQnaHubSignup(event) : false;" style="display:flex;flex-wrap:wrap;gap:8px;">',
+    '      <input type="text" id="kfk-qna-hub-hp" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">',
+    '      <input type="email" id="kfk-qna-hub-email" required aria-label="학부모 이메일 주소" placeholder="학부모님 이메일 입력..." style="flex:1;min-width:210px;min-height:46px;padding:10px 14px;border:1px solid #D6D3D1;border-radius:8px;font-size:15px;background:#FAF7F2;color:#1C1917;">',
+    '      <button type="submit" id="btn-kfk-qna-hub-submit" style="min-height:46px;padding:10px 20px;border:none;border-radius:8px;background:#2F5241;color:#FFFFFF;font-size:14.5px;font-weight:700;cursor:pointer;white-space:nowrap;">무료 구독하기</button>',
+    '    </form>',
+    '    <div id="kfk-qna-hub-feedback" role="status" aria-live="polite" style="display:none;margin-top:10px;padding:10px 12px;border-radius:8px;font-size:13.5px;line-height:1.5;"></div>',
+    '  </div>',
+    '  <div>',
+    '    <p style="margin:0 0 10px;font-size:13px;font-weight:700;color:#78716C;">에디터의 추신 (P.S.) · 우리 아이 성장 시계 살펴보기</p>',
+    '    <div style="display:flex;flex-direction:column;gap:10px;">',
+    '      <a href="https://kidsfit.co.kr/?autostart=1" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-radius:10px;background:#FAF7F2;border:1px solid #E7E5E0;color:#1C1917;font-size:15px;font-weight:700;text-decoration:none;">',
+    '        <span>5단계 우리 아이 질병관리청 백분위 &amp; 병원 뼈나이 시차(&Delta;t) 무료 진단 시작하기</span>',
+    '        <span style="color:#2F5241;">&rarr;</span>',
+    '      </a>',
+    '      <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer" data-kfk-paid-ebook="1" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-radius:10px;background:#FAF7F2;border:1px solid #E7E5E0;color:#1C1917;font-size:15px;font-weight:700;text-decoration:none;">',
+    '        <span>[Tier 1 · 9,900원] 단건 정밀 성장·뼈나이 리포트 패스 &amp; 17p 실전 마스터북 PDF</span>',
+    '        <span style="color:#2F5241;">&rarr;</span>',
+    '      </a>',
+    '      <a href="https://www.latpeed.com/stores/7Frck" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-radius:10px;background:#FAF7F2;border:1px solid #E7E5E0;color:#1C1917;font-size:15px;font-weight:700;text-decoration:none;">',
+    '        <span>[Tier 2 · 19,900원] 6개월 월간 성장속도(cm/yr) 자동 판독 트래커 패스 (KFK_Paid_VIP)</span>',
+    '        <span style="color:#2F5241;">&rarr;</span>',
+    '      </a>',
+    '    </div>',
+    '  </div>',
+    '  <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E7E5E0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px;color:#78716C;">',
+    '    <span>공식 채널: <a href="https://www.youtube.com/@kidsfit01" target="_blank" rel="noopener" style="color:#2F5241;text-decoration:underline;">공식 유튜브 (@kidsfit01)</a> · <a href="https://www.instagram.com/kids_fit1/" target="_blank" rel="noopener" style="color:#2F5241;text-decoration:underline;">공식 인스타그램 (@kids_fit1)</a></span>',
+    '    <span>연구소 문의: <a href="mailto:beable9489@gmail.com" style="color:#2F5241;text-decoration:underline;">beable9489@gmail.com</a></span>',
+    '  </div>',
+    '</section>',
+    '<!-- KFK_QNA_CONVERSION_HUB_END -->'
+  ].join('\n');
+}
 
 function run() {
   const files = fs.readdirSync(QNA_DIR).filter((f) => f.endsWith('.html')).sort();
   let updatedHubCount = 0;
-  let updatedFooterCount = 0;
 
   for (const file of files) {
     const filePath = path.join(QNA_DIR, file);
     let html = fs.readFileSync(filePath, 'utf8');
     const orig = html;
 
-    if (html.includes('<!-- KFK_QNA_CONVERSION_HUB_START -->') && html.includes('<!-- KFK_QNA_CONVERSION_HUB_END -->')) {
-      html = html.replace(
-        /<!-- KFK_QNA_CONVERSION_HUB_START -->[\s\S]*?<!-- KFK_QNA_CONVERSION_HUB_END -->/,
-        (hubBlock) => {
-          let nextHub = hubBlock;
-
-          // 1. Masterbook CTA button inside #kfk-qna-conversion-hub
-          if (nextHub.includes('<!-- KFK_QNA_MASTERBOOK_SLOT_START -->')) {
-            nextHub = nextHub.replace(
-              /\s*<!-- KFK_QNA_MASTERBOOK_SLOT_START -->[\s\S]*?<!-- KFK_QNA_MASTERBOOK_SLOT_END -->/,
-              '\n\n' + MASTERBOOK_BLOCK
-            );
-          } else {
-            const curationTarget = '  <div style="background:#FFFFFF;border:1.5px solid #A7F3D0;border-radius:18px;padding:18px 16px;">';
-            if (nextHub.includes(curationTarget)) {
-              nextHub = nextHub.replace(curationTarget, MASTERBOOK_BLOCK + '\n\n' + curationTarget);
-            } else {
-              nextHub = nextHub.replace('</section>\n<!-- KFK_QNA_CONVERSION_HUB_END -->', MASTERBOOK_BLOCK + '\n</section>\n<!-- KFK_QNA_CONVERSION_HUB_END -->');
-            }
-          }
-
-          // 2. If page has no <footer class="site-footer">, include clean partnership contact bar at bottom of hub
-          const hasSiteFooter = /<footer[^>]*class="site-footer"/i.test(orig);
-          if (!hasSiteFooter) {
-            if (nextHub.includes('<!-- KFK_QNA_PARTNERSHIP_BAR_START -->')) {
-              nextHub = nextHub.replace(
-                /\s*<!-- KFK_QNA_PARTNERSHIP_BAR_START -->[\s\S]*?<!-- KFK_QNA_PARTNERSHIP_BAR_END -->/,
-                '\n' + HUB_PARTNERSHIP_BAR
-              );
-            } else {
-              nextHub = nextHub.replace(
-                /<\/section>\s*<!-- KFK_QNA_CONVERSION_HUB_END -->/,
-                HUB_PARTNERSHIP_BAR + '\n</section>\n<!-- KFK_QNA_CONVERSION_HUB_END -->'
-              );
-            }
-          }
-
-          return nextHub;
-        }
-      );
-      updatedHubCount++;
+    if (!html.includes('https://www.youtube.com/@kidsfit01') || !html.includes('"sameAs"')) {
+      if (!html.includes('id="kfk-org-sameas-ld"') && html.includes('</head>')) {
+        html = html.replace('</head>', '  ' + ORG_JSON_LD + '\n</head>');
+      }
     }
 
-    // 3. Add Brand Partnership & Ad Inquiry to <footer class="site-footer"> if present
-    if (/<footer[^>]*class="site-footer"/i.test(html)) {
-      if (html.includes('kfk-qna-footer-partnership')) {
-        html = html.replace(
-          /[ \t]*<div class="kfk-qna-footer-partnership"[\s\S]*?<\/div>/,
-          FOOTER_PARTNERSHIP_LINE
-        );
-      } else {
-        html = html.replace(
-          /([ \t]*<div>&copy; 2026 KIDS-FIT Growth &amp; Brain Development Studio \(kidsfit\.co\.kr\)\. All rights reserved\.<\/div>)/,
-          FOOTER_PARTNERSHIP_LINE + '\n$1'
-        );
-      }
-      updatedFooterCount++;
+    if (html.includes('<!-- KFK_QNA_CONVERSION_HUB_START -->') && html.includes('<!-- KFK_QNA_CONVERSION_HUB_END -->')) {
+      const segMatch = html.match(/data-default-segment="([^"]+)"/);
+      const defaultSeg = segMatch ? segMatch[1] : 'kr_upper_golden_time';
+      html = html.replace(
+        /<!-- KFK_QNA_CONVERSION_HUB_START -->[\s\S]*?<!-- KFK_QNA_CONVERSION_HUB_END -->/,
+        buildPureAtelierHub(defaultSeg)
+      );
+      updatedHubCount++;
     }
 
     if (html !== orig) {
@@ -105,7 +87,11 @@ function run() {
     }
   }
 
-  console.log(`[sync_kfk_qna_masterbook_hub] Processed ${updatedHubCount} QnA conversion hubs and ${updatedFooterCount} QnA footers.`);
+  console.log(`[sync_kfk_qna_masterbook_hub] Synchronized ${updatedHubCount} pure Boutique Atelier QnA hubs.`);
 }
 
-run();
+if (require.main === module) {
+  run();
+}
+
+module.exports = { buildPureAtelierHub, ORG_JSON_LD };

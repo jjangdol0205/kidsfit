@@ -23,7 +23,7 @@
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
     adpickAffId: '4d31d3',
     adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=4d31d3&os=&adtype=&category=notgame&order=rand',
-    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectHealth: 'https://www.latpeed.com/products/daMaP',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
     myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
     myrealtripMylinkId: '6226316',
@@ -35,23 +35,44 @@
    * 1. Exact Chronological Age Calculator from Date of Birth (YYYY, MM, DD)
    */
   function calculateExactAgeFromDob(birthYear, birthMonth, birthDay, refDateObj = null) {
-    const now = refDateObj instanceof Date ? refDateObj : new Date();
-    const y = parseInt(birthYear, 10) || (now.getFullYear() - 10);
+    let ny, nm, nd;
+    if (typeof birthYear === 'string' && /^\d{4}-\d{1,2}-\d{1,2}$/.test(birthYear.trim())) {
+      const bParts = birthYear.trim().split('-').map((v) => parseInt(v, 10));
+      if (typeof birthMonth === 'string' || birthMonth instanceof Date) refDateObj = birthMonth;
+      birthYear = bParts[0];
+      birthMonth = bParts[1];
+      birthDay = bParts[2];
+    }
+    if (typeof refDateObj === 'string' && /^\d{4}-\d{1,2}-\d{1,2}$/.test(refDateObj.trim())) {
+      const rParts = refDateObj.trim().split('-').map((v) => parseInt(v, 10));
+      ny = rParts[0];
+      nm = rParts[1];
+      nd = rParts[2];
+    } else {
+      const now = refDateObj instanceof Date ? refDateObj : new Date();
+      ny = now.getFullYear();
+      nm = now.getMonth() + 1;
+      nd = now.getDate();
+    }
+    const y = parseInt(birthYear, 10) || (ny - 10);
     const m = Math.max(1, Math.min(12, parseInt(birthMonth, 10) || 5));
     const maxDayInMonth = new Date(y, m, 0).getDate();
     const d = Math.max(1, Math.min(maxDayInMonth, parseInt(birthDay, 10) || 15));
 
     const dob = new Date(y, m - 1, d);
-    const diffMs = Math.max(0, now.getTime() - dob.getTime());
-    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const nowLocal = new Date(ny, nm - 1, nd);
+    const diffMs = Math.max(0, nowLocal.getTime() - dob.getTime());
+    const totalDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
-    // Calculate calendar months + remaining days
-    let months = (now.getFullYear() - y) * 12 + (now.getMonth() - (m - 1));
-    let remainderDays = now.getDate() - d;
+    // Calculate exact calendar months + remaining days (timezone-safe)
+    const maxRefDay = new Date(ny, nm, 0).getDate();
+    const effectiveBirthDay = Math.min(d, maxRefDay);
+    let months = (ny - y) * 12 + (nm - m);
+    let remainderDays = nd - effectiveBirthDay;
     if (remainderDays < 0) {
       months -= 1;
-      const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      remainderDays += prevMonthLastDay;
+      const prevMonthLastDay = new Date(ny, nm - 1, 0).getDate();
+      remainderDays = Math.max(0, prevMonthLastDay - Math.min(d, prevMonthLastDay) + nd);
     }
 
     const clampedMonths = Math.max(12, Math.min(240, months));

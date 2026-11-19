@@ -26,7 +26,7 @@
     tenping: '010-****-2370',
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
     adpickAffId: '',
-    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectHealth: 'https://www.latpeed.com/products/daMaP',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
     myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
     myrealtripMylinkId: '6226316',
@@ -181,7 +181,7 @@
         return cfg.tenpingUrl || DEFAULT_AFFILIATE_CONFIG.tenpingUrl || 'https://iryan.kr/t8g8qxgcc2';
       }
       case 'naver_brandconnect': {
-        return cfg.naverBrandConnectHealth || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectHealth || 'https://naver.me/5Jq9LnLT';
+        return cfg.naverBrandConnectHealth || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectHealth || 'https://www.latpeed.com/products/daMaP';
       }
       case 'naver_brandconnect_tour': {
         return cfg.naverBrandConnectTour || DEFAULT_AFFILIATE_CONFIG.naverBrandConnectTour || 'https://naver.me/xJcOADhA';

@@ -35,6 +35,7 @@
       { m: 96, L: 1.0, M: 127.9, S: 0.0410, p3: 117.7, p25: 124.3, p50: 127.9, p75: 131.5, p97: 137.4, wM: 27.6, wS: 0.175 },
       { m: 108, L: 1.0, M: 133.4, S: 0.0415, p3: 122.8, p25: 129.5, p50: 133.4, p75: 137.3, p97: 143.6, wM: 31.3, wS: 0.184 },
       { m: 120, L: 1.0, M: 138.8, S: 0.0437, p3: 128.4, p25: 134.8, p50: 138.8, p75: 143.0, p97: 150.2, wM: 35.5, wS: 0.190 },
+      { m: 126, L: 1.0, M: 141.7, S: 0.0490, p3: 129.5, p25: 137.3, p50: 141.7, p75: 146.5, p97: 155.2, wM: 37.8, wS: 0.192 },
       { m: 132, L: 1.0, M: 144.7, S: 0.0544, p3: 130.6, p25: 139.8, p50: 144.7, p75: 150.0, p97: 160.2, wM: 40.2, wS: 0.193 },
       { m: 144, L: 1.0, M: 151.4, S: 0.0576, p3: 135.1, p25: 145.6, p50: 151.4, p75: 157.3, p97: 167.9, wM: 45.4, wS: 0.191 },
       { m: 156, L: 1.0, M: 158.6, S: 0.0562, p3: 140.5, p25: 152.3, p50: 158.6, p75: 164.6, p97: 174.9, wM: 51.0, wS: 0.185 },
@@ -57,6 +58,7 @@
       { m: 96, L: 1.0, M: 126.7, S: 0.0478, p3: 117.5, p25: 123.5, p50: 126.7, p75: 130.2, p97: 137.1, wM: 26.8, wS: 0.175 },
       { m: 108, L: 1.0, M: 132.6, S: 0.0501, p3: 122.8, p25: 129.2, p50: 132.6, p75: 136.5, p97: 144.1, wM: 30.5, wS: 0.183 },
       { m: 120, L: 1.0, M: 139.1, S: 0.0526, p3: 128.2, p25: 135.2, p50: 139.1, p75: 143.5, p97: 151.2, wM: 34.8, wS: 0.187 },
+      { m: 126, L: 1.0, M: 142.5, S: 0.0529, p3: 131.0, p25: 138.4, p50: 142.5, p75: 146.9, p97: 154.4, wM: 37.2, wS: 0.187 },
       { m: 132, L: 1.0, M: 145.8, S: 0.0532, p3: 133.8, p25: 141.5, p50: 145.8, p75: 150.3, p97: 157.6, wM: 39.7, wS: 0.186 },
       { m: 144, L: 1.0, M: 151.7, S: 0.0494, p3: 139.5, p25: 147.3, p50: 151.7, p75: 156.1, p97: 162.6, wM: 44.5, wS: 0.180 },
       { m: 156, L: 1.0, M: 155.9, S: 0.0438, p3: 144.7, p25: 151.9, p50: 155.9, p75: 160.0, p97: 166.0, wM: 48.6, wS: 0.171 },
@@ -185,22 +187,80 @@
     return (L === undefined || L === null) ? 1.0 : Number(L);
   }
 
+  function daysInCalendarMonth(year, month1To12) {
+    return new Date(year, month1To12, 0).getDate();
+  }
+
+  function parseCalendarYmd(input, fallbackDate) {
+    if (typeof input === 'string') {
+      var m = input.trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+      if (m) {
+        return { y: parseInt(m[1], 10), m: parseInt(m[2], 10), d: parseInt(m[3], 10) };
+      }
+    }
+    var dt = (input instanceof Date && !isNaN(input.getTime())) ? input : (fallbackDate || new Date());
+    if (
+      input instanceof Date &&
+      dt.getUTCHours() === 0 &&
+      dt.getUTCMinutes() === 0 &&
+      dt.getUTCSeconds() === 0 &&
+      dt.getUTCMilliseconds() === 0 &&
+      dt.getTimezoneOffset() > 0 &&
+      dt.getHours() !== 0
+    ) {
+      return { y: dt.getUTCFullYear(), m: dt.getUTCMonth() + 1, d: dt.getUTCDate() };
+    }
+    return { y: dt.getFullYear(), m: dt.getMonth() + 1, d: dt.getDate() };
+  }
+
   function computeExactAgeFromDob(birthYear, birthMonth, birthDay, nowOverride) {
-    var now = (nowOverride instanceof Date && !isNaN(nowOverride.getTime())) ? nowOverride : new Date();
-    var y = parseInt(birthYear, 10) || (now.getFullYear() - 10);
-    var m = clamp(parseInt(birthMonth, 10) || 5, 1, 12);
-    var d = clamp(parseInt(birthDay, 10) || 15, 1, 31);
-    var dob = new Date(y, m - 1, d);
-    var diffMs = Math.max(0, now.getTime() - dob.getTime());
-    var exactMonths = clamp(diffMs / (1000 * 60 * 60 * 24 * 30.4375), 12, 228);
-    var wholeMonths = Math.floor(exactMonths);
+    var refInput = nowOverride;
+    var y1, m1, d1;
+    if (typeof birthYear === 'string' && /^\d{4}-\d{1,2}-\d{1,2}/.test(birthYear.trim())) {
+      var parsedDob = parseCalendarYmd(birthYear);
+      y1 = parsedDob.y;
+      m1 = clamp(parsedDob.m, 1, 12);
+      d1 = clamp(parsedDob.d, 1, daysInCalendarMonth(y1, m1));
+      if (refInput === undefined && birthMonth !== undefined) {
+        refInput = birthMonth;
+      }
+    } else {
+      var refTmp = parseCalendarYmd(refInput);
+      y1 = parseInt(birthYear, 10) || (refTmp.y - 10);
+      m1 = clamp(parseInt(birthMonth, 10) || 5, 1, 12);
+      d1 = clamp(parseInt(birthDay, 10) || 15, 1, daysInCalendarMonth(y1, m1));
+    }
+
+    var nowYmd = parseCalendarYmd(refInput);
+    var y2 = nowYmd.y;
+    var m2 = nowYmd.m;
+    var d2 = nowYmd.d;
+
+    var d1InCurrMonth = Math.min(d1, daysInCalendarMonth(y2, m2));
+    var calendarMonths = (y2 - y1) * 12 + (m2 - m1) - (d2 < d1InCurrMonth ? 1 : 0);
+    var remDays = 0;
+    if (d2 >= d1InCurrMonth) {
+      remDays = d2 - d1InCurrMonth;
+    } else {
+      var prevY = m2 === 1 ? (y2 - 1) : y2;
+      var prevM = m2 === 1 ? 12 : (m2 - 1);
+      var prevMaxD = daysInCalendarMonth(prevY, prevM);
+      remDays = Math.max(0, prevMaxD - Math.min(d1, prevMaxD) + d2);
+    }
+
+    var fracMonth = Math.min(0.9, Math.round((remDays / 30.4375) * 10) / 10);
+    var clampedWhole = clamp(calendarMonths, 12, 228);
+    var clampedExact = clamp(Math.round((calendarMonths + fracMonth) * 10) / 10, 12, 228);
+
     return {
-      birthYear: y,
-      birthMonth: m,
-      birthDay: d,
-      exactMonths: Math.round(exactMonths * 10) / 10,
-      ageYears: Math.floor(wholeMonths / 12),
-      remMonths: wholeMonths % 12
+      birthYear: y1,
+      birthMonth: m1,
+      birthDay: d1,
+      ageMonths: clampedWhole,
+      calendarMonths: clampedWhole,
+      exactMonths: clampedExact,
+      ageYears: Math.floor(clampedWhole / 12),
+      remMonths: clampedWhole % 12
     };
   }
 
@@ -595,9 +655,10 @@
     var row = getKdcaRow(p.sex, age.exactMonths);
     var el = document.getElementById('dob-live-readout');
     if (el) {
+      var medianDisplay = (Math.round(row.M * 10) / 10).toFixed(1);
       el.innerHTML =
         '오늘 기준 <strong>만 ' + age.ageYears + '세 ' + age.remMonths + '개월</strong> · ' +
-        '같은 개월 수 ' + (p.sex === 'girl' ? '여자아이' : '남자아이') + ' 질병관리청 중간 키는 <strong>' + row.M.toFixed(1) + ' cm</strong>입니다.';
+        '같은 개월 수 ' + (p.sex === 'girl' ? '여자아이' : '남자아이') + ' 질병관리청 중간 키는 <strong>' + medianDisplay + ' cm</strong>입니다.';
     }
   }
 
@@ -1403,10 +1464,62 @@
     // Handle deep-link URL hashes or query params cleanly
     var hash = (global.location && global.location.hash) ? global.location.hash : '';
     var search = (global.location && global.location.search) ? global.location.search : '';
-    if (hash === '#quiz-section' || hash === '#kfk-bone-age-interpreter' || search.indexOf('autostart=1') !== -1) {
+    var wantsAutoStart = false;
+    try {
+      if (search) {
+        var qs = new URLSearchParams(search);
+        var qGender = String(qs.get('gender') || qs.get('sex') || '').toLowerCase();
+        if (qGender === 'boy' || qGender === 'girl') {
+          var targetRadio = document.querySelector('input[name="child-sex"][value="' + qGender + '"]');
+          if (targetRadio) {
+            targetRadio.checked = true;
+            syncChoiceCardHighlights();
+          }
+        }
+        var presetMap = { infant_1: 1, toddler_2_3: 3, child_4_5: 5, elem_low: 8, elem_high: 11 };
+        var qPreset = String(qs.get('preset') || '').toLowerCase();
+        var qAge = parseInt(qs.get('age'), 10);
+        if (isNaN(qAge) && presetMap[qPreset]) {
+          qAge = presetMap[qPreset];
+        }
+        if (!isNaN(qAge) && qAge >= 1 && qAge <= 18) {
+          var nowDt = new Date();
+          var bySelect = document.getElementById('dob-year');
+          var bmSelect = document.getElementById('dob-month');
+          var bdSelect = document.getElementById('dob-day');
+          if (bySelect) bySelect.value = String(nowDt.getFullYear() - qAge);
+          if (bmSelect) bmSelect.value = String(nowDt.getMonth() + 1);
+          if (bdSelect) bdSelect.value = String(nowDt.getDate());
+          updateStep1AgeReadout();
+          updateStep2MphReadout();
+        }
+        if (qs.get('autostart') === '1' || Boolean(presetMap[qPreset])) {
+          wantsAutoStart = true;
+        }
+      }
+    } catch (_) {}
+
+    if (wantsAutoStart || hash === '#quiz-section' || hash === '#kfk-bone-age-interpreter' || /^#preset-/i.test(hash)) {
       showScreen(1);
       showSurveyStep(hash === '#kfk-bone-age-interpreter' ? 4 : 1);
-    } else if (hash === '#kfk-latpeed-ebook-slot' || hash === '#kfk-vip-monthly-checkin') {
+    } else if (hash === '#kfk-latpeed-ebook-slot') {
+      try {
+        var baseProf = savedRaw ? JSON.parse(savedRaw) : readFormProfile();
+        if (!baseProf.heightCm || baseProf.heightCm < 65) {
+          baseProf.heightCm = 138.8;
+          baseProf.weightKg = 35.0;
+        }
+        state.lastAnalysis = analyzeGrowthClock(baseProf);
+        renderScreen3Results(state.lastAnalysis);
+        showScreen(3);
+        setTimeout(function () {
+          var slotEl = document.getElementById('kfk-latpeed-ebook-slot');
+          if (slotEl && slotEl.scrollIntoView) slotEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      } catch (_) {
+        openHeaderCheckinStudio();
+      }
+    } else if (hash === '#kfk-vip-monthly-checkin') {
       openHeaderCheckinStudio();
     } else if (safeGetStorage('kfk_pending_checkout_tier') && savedRaw) {
       // Parent returning from Latpeed checkout tab -> show Screen 3 so they can verify or review

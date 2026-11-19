@@ -183,7 +183,6 @@ function build() {
     'privacy.html',
     'terms.html',
     'contact.html',
-    'coupang-kidsfit.html',
     'hq-mailing-endpoint.json'
   ].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
@@ -201,6 +200,12 @@ function build() {
       console.log(`Copied ${file} -> dist/${file}`);
     }
   });
+
+  // Ensure legacy coupang-kidsfit.html is permanently purged from dist/
+  const legacyCoupangDist = path.join(DIST_DIR, 'coupang-kidsfit.html');
+  if (fs.existsSync(legacyCoupangDist)) {
+    try { fs.unlinkSync(legacyCoupangDist); } catch (_) {}
+  }
 
   if (process.env.SYNC_DIST_GLOBAL === '1') {
     try {

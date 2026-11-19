@@ -3711,7 +3711,7 @@
 
         <!-- Mandatory FTC & Coupang Partners Affiliate Disclosure (Always visible inside the report) -->
         <div id="affiliate-ftc-disclosure" style="margin-bottom: 1.1rem; padding: 0.7rem 0.95rem; background: #FFFFFF; border: 1px solid #BFDBFE; border-radius: 12px; font-size: 0.78rem; color: #475569; text-align: center; line-height: 1.45;">
-          ℹ️ 연구소가이드 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+          ℹ️ 연구소가이드 심사지침 준수 안내: 본 리포트는 질병관리청(KDCA 2017) 성장도표에 기반한 가정용 성장 시계 분석 자료이며 전문의의 진료를 대신하지 않습니다.
         </div>
 
         <!-- ================================================================== -->

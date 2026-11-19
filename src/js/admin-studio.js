@@ -32,7 +32,7 @@
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
     adpickAffId: '',
     adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
-    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectHealth: 'https://www.latpeed.com/products/daMaP',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
     myrealtripKey: '',
     myrealtripMylinkId: '6226316',

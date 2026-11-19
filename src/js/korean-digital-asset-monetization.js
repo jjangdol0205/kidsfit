@@ -790,7 +790,7 @@
           '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
           '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
         '</div>' +
-        '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 연구소가이드 심사지침 준수: 쿠팡 파트너스(KFK_ATELIER) 및 제휴 마케팅 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
+        '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 연구소가이드 심사지침 준수: 질병관리청(KDCA 2017) 공개 성장도표에 기반한 가정용 참고 자료이며 전문의의 진료를 대신하지 않습니다.</div>' +
       '</div>';
   }
 
@@ -855,7 +855,7 @@
         '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topA.name.slice(0, 16) + ' 혜택가 확인 →</a>' +
         '<a href="' + topB.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#059669;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topB.name.slice(0, 16) + ' 공식 판매처 보러가기 →</a>' +
       '</div>' +
-      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 연구소가이드 심사지침 준수: 쿠팡 파트너스(KFK_ATELIER) 및 네이버 브랜드커넥트 활동의 일환으로 일정액의 수수료를 제공받습니다.</div>';
+      '<div style="margin-top:6px;font-size:0.68rem;color:#94A3B8;">※ 연구소가이드 심사지침 준수: 질병관리청(KDCA 2017) 공개 성장도표에 기반한 가정용 참고 자료이며 전문의의 진료를 대신하지 않습니다.</div>';
     if (document.body) document.body.appendChild(bar);
   }
 

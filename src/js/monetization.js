@@ -23,7 +23,7 @@
     tenpingUrl: 'https://iryan.kr/t8g8qxgcc2',
     adpickAffId: '',
     adpickApiUrl: 'https://adpick.co.kr/apis/offers.php?affid=&os=&adtype=&category=notgame&order=rand',
-    naverBrandConnectHealth: 'https://naver.me/5Jq9LnLT',
+    naverBrandConnectHealth: 'https://www.latpeed.com/products/daMaP',
     naverBrandConnectTour: 'https://naver.me/xJcOADhA',
     myrealtripKey: 'mAGXbDg5IJOskYOJT37C9R0K9X4JLQ2Cqc6I1GbQSTQBxylFekE4FwWXQeXRtvo0',
     myrealtripMylinkId: '6226316',
@@ -126,7 +126,7 @@
   function renderFtcDisclosureBanner() {
     return `
       <div class="kf-ftc-inline-disclosure" role="note" aria-label="연구소가이드 경제적 이해관계 고지" style="min-height: 48px; display: flex; align-items: center; justify-content: center; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 10px; padding: 0.55rem 0.9rem; margin: 0.5rem 0; font-size: 0.8rem; font-weight: 700; color: #1E293B; text-align: center; line-height: 1.45;">
-        ℹ️ 연구소가이드 심사지침 준수 안내: 이 포스팅은 쿠팡 파트너스 및 네이버 쇼핑 커넥트 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (KFK_ATELIER · KFK_ATELIER · 구매자 추가 비용 0원 · 공식 판매처 보러가기 및 혜택가 확인 지원)
+        ℹ️ 연구소가이드 심사지침 준수 안내: 본 서비스는 질병관리청(KDCA 2017) 공개 성장도표에 기반한 가정용 성장 시계 가이드이며 전문의의 진료를 대신하지 않습니다.
       </div>
     `.trim();
   }

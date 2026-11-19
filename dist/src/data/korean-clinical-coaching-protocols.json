@@ -4,9 +4,7 @@
   "organization": "키즈핏 코리아 임상 R&D 본부 (KidsFit Korea Clinical R&D Division)",
   "domain": "https://kidsfit.co.kr",
   "affiliateCompliance": {
-    "coupangPartnerId": "AF7865143",
-    "linkpriceAffiliateId": "A100708867",
-    "ftcDisclaimerKo": "이 정보는 키즈핏 임상 큐레이션 가이드이며, 쿠팡 파트너스(AF7865143) 및 링크프라이스(A100708867) 제휴 활동의 일환으로 이에 따른 일정액의 수수료를 제공받습니다."
+    "editorialDisclaimerKo": "본 정보는 질병관리청(KDCA 2017) 성장도표 및 학술 문헌에 기반한 가정용 성장 시계 안내이며 전문의의 진료를 대신하지 않습니다."
   },
   "totalProtocols": 12,
   "protocols": [
