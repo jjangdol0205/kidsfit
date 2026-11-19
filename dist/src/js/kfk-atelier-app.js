@@ -1081,6 +1081,10 @@
       if (unlockedReport) {
         unlockedReport.style.display = 'block';
         populateFullUnlockedReportDom(analysis, paidPass);
+        if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.mountSatisfactionBar === 'function') {
+          var satFull = document.getElementById('kfk-full-report-sat-mount');
+          if (satFull) global.DreamCompanyCRM.mountSatisfactionBar(satFull, { div: 'KFK', context: 'full_report', email: paidPass.email });
+        }
       }
       if (paidPass.tier === 'tier2') {
         switchCheckinTab('tracker');
@@ -1221,13 +1225,8 @@
       }
       return false;
     }
-    if (!orderRef || orderRef.length < 2) {
-      if (msgEl) {
-        msgEl.style.display = 'block';
-        msgEl.style.color = '#9B3B32';
-        msgEl.textContent = '래피드 알림톡·이메일에 안내된 주문자 성함 또는 주문번호(2자 이상)를 입력해 주세요.';
-      }
-      return false;
+    if (!orderRef) {
+      orderRef = 'LATPEED-EMAIL-' + Date.now().toString(36).toUpperCase();
     }
 
     var passRecord = {
@@ -1251,6 +1250,17 @@
     state.lastAnalysis = analysis;
 
     if (global.DreamCompanyCRM) {
+      if (typeof global.DreamCompanyCRM.deliverPaidMagicPack === 'function') {
+        global.DreamCompanyCRM.deliverPaidMagicPack({
+          div: 'KFK',
+          email: email,
+          plan_tier: passRecord.tier === 'tier2' ? '2등급 6개월 성장속도 패스 (19,900원)' : '1등급 단건 정밀 리포트 패스 (9,900원)',
+          order_ref: orderRef,
+          base_url: 'https://kidsfit.co.kr/',
+          hash_anchor: 'kfk-full-unlocked-report',
+          profile_state: profile
+        }).catch(function () {});
+      }
       if (typeof global.DreamCompanyCRM.registerMember === 'function') {
         global.DreamCompanyCRM.registerMember({
           div: 'KFK',
@@ -1331,6 +1341,7 @@
 
     var renderVelocityResult = function (res) {
       if (!outEl || !res) return;
+      var logsForChart = [];
       try {
         var rawLogs = safeGetStorage(VELOCITY_LOGS_KEY);
         var logs = rawLogs ? JSON.parse(rawLogs) : [];
@@ -1342,21 +1353,53 @@
           deltaCm: res.delta_cm,
           annVel: res.annualized_cm_yr
         });
+        logsForChart = logs.slice(-6);
         safeSetStorage(VELOCITY_LOGS_KEY, logs.slice(-12));
       } catch (_) {}
 
+      var pts = logsForChart.length ? logsForChart.slice() : [{ date: '출발', curH: prevH }, { date: '오늘', curH: curH }];
+      if (pts.length === 1) pts.unshift({ date: '30일 전', curH: prevH });
+      var minH = pts[0].curH - 0.5;
+      var maxH = pts[pts.length - 1].curH + 1.5;
+      if (maxH - minH < 2) maxH = minH + 2.5;
+      var svgCoords = [];
+      for (var gi = 0; gi < pts.length; gi++) {
+        var gx = Math.round(36 + (gi / Math.max(1, pts.length - 1)) * 420);
+        var gy = Math.round(108 - ((pts[gi].curH - minH) / (maxH - minH)) * 78);
+        svgCoords.push(gx + ',' + gy);
+      }
+      var startCmGrad = pts[0].curH;
+      var endCmGrad = pts[pts.length - 1].curH;
+
       outEl.style.display = 'block';
       outEl.innerHTML =
-        '<strong>이번 달 30일 성장속도(cm/yr) 자동 판독 결과</strong><br>' +
+        '<strong>이번 달 30일 성장속도(cm/yr) &amp; 6개월 누적 궤적 판독 결과</strong><br>' +
         '<div style="margin:8px 0;font-size:15.5px;">' +
           '30일 신장 변화: <strong>' + (res.delta_cm >= 0 ? '+' : '') + Number(res.delta_cm).toFixed(2) + ' cm</strong> · ' +
           '연간 환산 성장속도: <strong>' + Number(res.annualized_cm_yr).toFixed(1) + ' cm/yr</strong> ' +
           '(질병관리청 만 ' + ageY + '세 표준 ' + Number(res.kdca_target_cm_yr || 5.6).toFixed(1) + ' cm/yr)' +
         '</div>' +
-        '<p style="margin:6px 0 8px;">' + res.velocity_verdict + '</p>' +
+        '<div style="margin:12px 0;padding:12px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:8px;">' +
+          '<div style="font-size:13px;font-weight:700;color:#2F5241;margin-bottom:4px;">6개월 누적 신장 성장 그래프 (Day 30 · 60 · 90 · 120 · 150 · 180)</div>' +
+          '<svg viewBox="0 0 490 124" style="width:100%;height:auto;max-height:130px;display:block;" role="img" aria-label="6개월 누적 신장 성장 그래프">' +
+            '<line x1="36" y1="108" x2="456" y2="108" stroke="#CBD5E1" stroke-width="1.5"/>' +
+            '<polyline fill="none" stroke="#2F5241" stroke-width="3" points="' + svgCoords.join(' ') + '"/>' +
+          '</svg>' +
+          '<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;">' +
+            '<span style="font-size:13px;color:#5C544D;">출발 ' + startCmGrad.toFixed(1) + ' cm &rarr; 현재 ' + endCmGrad.toFixed(1) + ' cm</span>' +
+            '<button type="button" onclick="window.KfkPersonalizedPdf && window.KfkPersonalizedPdf.downloadGraduationAlbumPdf(\'우리아이\',' + startCmGrad + ',' + endCmGrad + ')" style="padding:7px 14px;border-radius:6px;border:none;background:#2F5241;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">Day 165 6개월 성장 졸업장 앨범 PDF 받기 &rarr;</button>' +
+          '</div>' +
+        '</div>' +
+        '<p style="margin:6px 0 8px;">' + (res.velocity_verdict || '') + '</p>' +
         (res.priority_bottleneck
           ? ('<p style="margin:0;color:#3A3430;"><strong>다음 30일 최우선 보완 습관 (' + res.priority_bottleneck.key + '):</strong> ' + res.priority_bottleneck.tip + '</p>')
-          : '');
+          : '') +
+        '<div id="kfk-vip-checkin-sat-mount"></div>';
+
+      if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.mountSatisfactionBar === 'function') {
+        var satV = document.getElementById('kfk-vip-checkin-sat-mount');
+        if (satV) global.DreamCompanyCRM.mountSatisfactionBar(satV, { div: 'KFK', context: 'vip_monthly_checkin', email: email });
+      }
     };
 
     if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.submitKfkVipCheckin === 'function') {
@@ -1522,8 +1565,45 @@
     var search = (global.location && global.location.search) ? global.location.search : '';
     var wantsAutoStart = false;
     try {
+      if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.decodeMagicRestoreParam === 'function' && search) {
+        var mObj = global.DreamCompanyCRM.decodeMagicRestoreParam(search);
+        if (mObj && typeof mObj === 'object') {
+          var profM = Object.assign(readFormProfile(), mObj);
+          if (!profM.heightCm || profM.heightCm < 65) profM.heightCm = Number(mObj.h0 || mObj.baseline_height_cm || 138.8);
+          safeSetStorage(PROFILE_KEY, profM);
+          safeSetStorage(PAID_PASS_KEY, {
+            email: mObj.email || 'magic@kidsfit.co.kr',
+            tier: (mObj.tier && /19,?900|tier2|6개월/i.test(String(mObj.tier))) ? 'tier2' : 'tier1',
+            orderRef: mObj.order_ref || 'MAGIC-RESTORE',
+            verifiedAt: new Date().toISOString()
+          });
+          state.lastAnalysis = analyzeGrowthClock(profM);
+          renderScreen3Results(state.lastAnalysis);
+          showScreen(3);
+          if (global.DreamCompanyCRM.mountSatisfactionBar) {
+            var smTop = document.getElementById('kfk-full-report-sat-mount');
+            if (smTop) global.DreamCompanyCRM.mountSatisfactionBar(smTop, { div: 'KFK', context: 'full_report', email: mObj.email });
+          }
+          return;
+        }
+      }
       if (search) {
         var qs = new URLSearchParams(search);
+        var urlPrevH = Number(qs.get('prev_h') || 0);
+        var urlVipEm = String(qs.get('vip_email') || '').trim();
+        if (urlPrevH >= 65 && urlPrevH <= 210) {
+          var prevInp = document.getElementById('kfk-vip-prev-height');
+          var curInp = document.getElementById('kfk-vip-cur-height');
+          if (prevInp) prevInp.value = urlPrevH.toFixed(1);
+          if (curInp) curInp.value = (urlPrevH + 0.5).toFixed(1);
+        }
+        if (urlVipEm) {
+          var emInp = document.getElementById('kfk-vip-checkin-email');
+          if (emInp) emInp.value = urlVipEm;
+        }
+        if (qs.get('vip_checkin') === '1') {
+          openHeaderCheckinStudio(null, 'tracker');
+        }
         var qGender = String(qs.get('gender') || qs.get('sex') || '').toLowerCase();
         if (qGender === 'boy' || qGender === 'girl') {
           var targetRadio = document.querySelector('input[name="child-sex"][value="' + qGender + '"]');

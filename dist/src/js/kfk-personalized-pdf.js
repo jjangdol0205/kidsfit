@@ -135,7 +135,7 @@
     var buyerEmail = (paidPass && paidPass.email) ? paidPass.email : '확인된 결제 회원';
 
     // ==================== PAGE 1 ====================
-    var p1 = createPageCanvas(1, 3, shortChildLabel);
+    var p1 = createPageCanvas(1, 4, shortChildLabel);
     var c1 = p1.ctx;
 
     // Header Banner
@@ -281,7 +281,7 @@
     c1.fillText('현재 ' + analysis.heightCm.toFixed(1) + ' cm → 목표 ' + analysis.optimizedAdultCm.toFixed(1) + ' cm', 666, 1510);
 
     // ==================== PAGE 2 ====================
-    var p2 = createPageCanvas(2, 3, shortChildLabel);
+    var p2 = createPageCanvas(2, 4, shortChildLabel);
     var c2 = p2.ctx;
 
     // Page 2 Top Strip
@@ -381,7 +381,7 @@
     }
 
     // ==================== PAGE 3 ====================
-    var p3 = createPageCanvas(3, 3, shortChildLabel);
+    var p3 = createPageCanvas(3, 4, shortChildLabel);
     var c3 = p3.ctx;
 
     drawRoundedRect(c3, 84, 84, PAGE_W - 168, 96, 12, '#2F5241', null, 0);
@@ -471,7 +471,171 @@
       c3.fillText('□ 밤잠   □ 식탁   □ 자세', cx + 16, cy + Math.min(cellH - 14, 68));
     }
 
-    return [p1.canvas, p2.canvas, p3.canvas];
+    // ==================== PAGE 4 (소아과·성장클리닉 진료실 지참용 1장 요약 & 30일 스티커 달력) ====================
+    var p4 = createPageCanvas(4, 4, shortChildLabel);
+    var c4 = p4.ctx;
+
+    drawRoundedRect(c4, 84, 84, PAGE_W - 168, 96, 12, '#2F5241', null, 0);
+    c4.fillStyle = '#FFFFFF';
+    c4.font = '700 27px ' + SERIF_FONT;
+    c4.fillText('소아과·성장클리닉 진료실 지참용 1장 요약 & 아이와 함께 붙이는 30일 키성장 달력', 118, 143);
+
+    drawRoundedRect(c4, 84, 204, PAGE_W - 168, 636, 14, '#FFFFFF', '#DFD7CC', 2);
+    c4.fillStyle = '#2F5241';
+    c4.font = '700 21px ' + SANS_FONT;
+    c4.fillText('제 7 장 · 소아청소년과·성장클리닉 진료실 지참용 1장 요약 & 의사 선생님 필수 질문 3가지', 118, 248);
+
+    drawRoundedRect(c4, 118, 270, PAGE_W - 236, 118, 10, '#FAF7F2', '#E5DDD2', 1.5);
+    c4.fillStyle = '#231F1D';
+    c4.font = '700 20px ' + SANS_FONT;
+    c4.fillText('진료실 제시용 핵심 계측 요약 (' + dateStr + ') · 대상: ' + childDisplay, 142, 308);
+    c4.fillStyle = '#4A433E';
+    c4.font = '400 19px ' + SANS_FONT;
+    c4.fillText('현재 키: ' + analysis.heightCm.toFixed(1) + ' cm / 체중: ' + analysis.weightKg.toFixed(1) + ' kg  |  질병관리청 백분위: ' + analysis.kdca.percentile.toFixed(1) + '백분위  |  유전 중심값: ' + analysis.mphCm.toFixed(1) + ' cm', 142, 344);
+    c4.fillText('골연령 참고: ' + (analysis.hasBoneAge && analysis.boneAgeCalibration ? ('과거 검사일 이후 +' + analysis.boneAgeCalibration.deltaMonths + '개월 시차 반영 완료') : '손목 골연령 미검사 · 정밀 생후 월령 모델 기준'), 142, 374);
+
+    var docQs = [
+      {
+        q: '필수 질문 1 · 연간 성장속도(cm/yr) 궤도 점검',
+        body: '"현재 아이의 질병관리청 백분위와 부모 신장 중심값을 고려할 때, 최근 6~12개월 연간 성장속도(cm/yr)가 안정적인 자기 성장 곡선을 따라가고 있나요?"'
+      },
+      {
+        q: '필수 질문 2 · 사춘기 성숙 속도 및 손목 골연령 확인 시점',
+        body: '"현재 신체 성숙 진행 속도가 실제 만 나이와 조화로운 편인지, 향후 6~12개월 내 손목 골연령(X-ray) 촬영으로 성장판 잔여 여력을 확인해 두는 것이 좋을까요?"'
+      },
+      {
+        q: '필수 질문 3 · 골무기질 영양 및 수면 컨디션 기초 혈액 지표',
+        body: '"체중 대비 신장 균형과 평소 밤잠·식사 리듬을 볼 때, 혈중 비타민D(25-OH-D), 저장철(페리틴), 아연 수치를 함께 점검해 두는 것이 도움이 될까요?"'
+      }
+    ];
+    var qY = 408;
+    for (var qi = 0; qi < docQs.length; qi++) {
+      drawRoundedRect(c4, 118, qY, PAGE_W - 236, 126, 10, qi === 0 ? '#EEF3F0' : '#FAF7F2', '#DFD7CC', 1.5);
+      c4.fillStyle = '#2F5241';
+      c4.font = '700 20px ' + SANS_FONT;
+      c4.fillText(docQs[qi].q, 142, qY + 34);
+      c4.fillStyle = '#3A3430';
+      c4.font = '400 18.5px ' + SANS_FONT;
+      var qlines = wrapKoreanText(c4, docQs[qi].body, PAGE_W - 284).slice(0, 3);
+      for (var ql = 0; ql < qlines.length; ql++) {
+        c4.fillText(qlines[ql], 142, qY + 66 + ql * 26);
+      }
+      qY += 138;
+    }
+
+    // Bottom half of Page 4: 냉장고 부착용 아이와 함께 스티커 붙이는 30일 키성장 달력
+    var calY = 864;
+    var calH = PAGE_H - calY - 116;
+    drawRoundedRect(c4, 84, calY, PAGE_W - 168, calH, 14, '#FFFFFF', '#2F5241', 2);
+    c4.fillStyle = '#2F5241';
+    c4.font = '700 21px ' + SANS_FONT;
+    c4.fillText('냉장고 부착용 · 아이와 함께 칭찬 스티커 붙이는 30일 키성장 달력', 118, calY + 42);
+    c4.fillStyle = '#6E665E';
+    c4.font = '400 18px ' + SANS_FONT;
+    c4.fillText('매일 밤 [밤 10시 전 불 끄기 + 단백질·칼슘 저녁 + 15분 줄넘기/스트레칭] 실천 후 동그라미에 스티커를 붙여 주세요!', 118, calY + 74);
+
+    var sCols = 6;
+    var sRows = 5;
+    var sGap = 12;
+    var sGridW = PAGE_W - 236;
+    var sCellW = Math.floor((sGridW - sGap * (sCols - 1)) / sCols);
+    var sCellH = Math.floor((calH - 116 - sGap * (sRows - 1)) / sRows);
+    for (var sDay = 1; sDay <= 30; sDay++) {
+      var sr = Math.floor((sDay - 1) / sCols);
+      var sc = (sDay - 1) % sCols;
+      var sx = 118 + sc * (sCellW + sGap);
+      var sy = calY + 94 + sr * (sCellH + sGap);
+      drawRoundedRect(c4, sx, sy, sCellW, sCellH, 10, '#FAF7F2', '#D8CFC2', 1.5);
+      c4.fillStyle = '#8C5E3C';
+      c4.font = '700 16px ' + SANS_FONT;
+      c4.fillText('DAY ' + (sDay < 10 ? '0' + sDay : sDay), sx + 14, sy + 26);
+      c4.beginPath();
+      c4.arc(sx + sCellW / 2, sy + sCellH / 2 + 12, Math.min(26, Math.floor(sCellH * 0.27)), 0, Math.PI * 2);
+      c4.strokeStyle = '#2F5241';
+      c4.setLineDash([4, 4]);
+      c4.lineWidth = 2;
+      c4.stroke();
+      c4.setLineDash([]);
+      c4.fillStyle = '#7A7168';
+      c4.font = '600 14px ' + SANS_FONT;
+      c4.textAlign = 'center';
+      c4.fillText('스티커', sx + sCellW / 2, sy + sCellH / 2 + 17);
+      c4.textAlign = 'left';
+    }
+
+    return [p1.canvas, p2.canvas, p3.canvas, p4.canvas];
+  }
+
+  function downloadGraduationAlbumPdf(childName, startCm, latestCm, historyLogs) {
+    if (typeof document === 'undefined') return false;
+    var label = String(childName || '우리아이').trim();
+    var sCm = Number(startCm) || 135.0;
+    var eCm = Number(latestCm) || (sCm + 3.2);
+    var gainCm = Math.max(0, eCm - sCm);
+    var pg = createPageCanvas(1, 1, label + ' · 6개월 성장 졸업장 앨범');
+    var ctx = pg.ctx;
+
+    drawRoundedRect(ctx, 84, 84, PAGE_W - 168, 220, 18, '#2F5241', null, 0);
+    ctx.fillStyle = '#DCE8E1';
+    ctx.font = '700 20px ' + SANS_FONT;
+    ctx.fillText('KIDSFIT PEDIATRIC GROWTH ATELIER · DAY 165 GRADUATION ALBUM', 124, 140);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '700 42px ' + SERIF_FONT;
+    ctx.fillText('6개월 성장 마라톤 완주 졸업장 & 기록 앨범', 124, 204);
+    ctx.fillStyle = '#E6EFEA';
+    ctx.font = '400 21px ' + SANS_FONT;
+    ctx.fillText('수여 대상: ' + label + ' 어린이 & 가족   |   발급일: ' + formatTodayKst(), 124, 258);
+
+    drawRoundedRect(ctx, 84, 340, PAGE_W - 168, 420, 16, '#FFFFFF', '#2F5241', 2.5);
+    ctx.fillStyle = '#8C5E3C';
+    ctx.font = '700 22px ' + SANS_FONT;
+    ctx.fillText('지난 6개월 누적 신장 성장 성취 요약', 124, 396);
+    ctx.fillStyle = '#231F1D';
+    ctx.font = '700 50px ' + SANS_FONT;
+    ctx.fillText('총 +' + gainCm.toFixed(2) + ' cm 성장 달성!', 124, 476);
+    ctx.fillStyle = '#4A433E';
+    ctx.font = '500 24px ' + SANS_FONT;
+    ctx.fillText('출발 신장: ' + sCm.toFixed(1) + ' cm   →   현재 측정 신장: ' + eCm.toFixed(1) + ' cm', 124, 542);
+    ctx.font = '400 21px ' + SANS_FONT;
+    ctx.fillText('6개월 연간 환산 성장속도: 약 ' + (gainCm * 2).toFixed(1) + ' cm/yr (꾸준한 밤 10시 수면·식탁·자세 실천 결실)', 124, 596);
+    ctx.fillStyle = '#2F5241';
+    ctx.font = '600 21px ' + SANS_FONT;
+    ctx.fillText('완주 칭찬 배지: 첫 90분 깊은 밤잠  ·  단백질·칼슘 저녁 식탁  ·  매일 바른자세 스트레칭', 124, 670);
+
+    drawRoundedRect(ctx, 84, 800, PAGE_W - 168, 760, 16, '#FFFFFF', '#DFD7CC', 2);
+    ctx.fillStyle = '#2F5241';
+    ctx.font = '700 22px ' + SANS_FONT;
+    ctx.fillText('30일 주기 월간 성장 체크인 발자취', 124, 854);
+    var rows = Array.isArray(historyLogs) && historyLogs.length ? historyLogs.slice(0, 6) : [
+      { date: 'Day 30 (1회차)', curH: sCm + gainCm * 0.17 },
+      { date: 'Day 60 (2회차)', curH: sCm + gainCm * 0.34 },
+      { date: 'Day 90 (3회차)', curH: sCm + gainCm * 0.50 },
+      { date: 'Day 120 (4회차)', curH: sCm + gainCm * 0.67 },
+      { date: 'Day 150 (5회차)', curH: sCm + gainCm * 0.84 },
+      { date: 'Day 180 (6회차 완주)', curH: eCm }
+    ];
+    for (var idx = 0; idx < rows.length; idx++) {
+      var ry = 890 + idx * 96;
+      drawRoundedRect(ctx, 124, ry, PAGE_W - 248, 78, 10, idx === rows.length - 1 ? '#EEF3F0' : '#FAF7F2', '#DFD7CC', 1.5);
+      ctx.fillStyle = '#231F1D';
+      ctx.font = '700 21px ' + SANS_FONT;
+      ctx.fillText('제 ' + (idx + 1) + '회차 기록 (' + String(rows[idx].date || '') + ')', 152, ry + 48);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#2F5241';
+      ctx.fillText(Number(rows[idx].curH || rows[idx].height_cm || eCm).toFixed(1) + ' cm', PAGE_W - 152, ry + 48);
+      ctx.textAlign = 'left';
+    }
+
+    var bytes = buildPdfFromCanvases([pg.canvas]);
+    var blob = new Blob([bytes], { type: 'application/pdf' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = label + '_키즈핏_6개월_성장졸업장_앨범_' + formatTodayKst().replace(/-/g, '') + '.pdf';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { if (a.parentNode) a.parentNode.removeChild(a); URL.revokeObjectURL(url); }, 3500);
+    return { ok: true };
   }
 
   function dataUrlToBytes(dataUrl) {
@@ -605,7 +769,8 @@
   global.KfkPersonalizedPdf = {
     renderPersonalizedPages: renderPersonalizedPages,
     buildPdfFromCanvases: buildPdfFromCanvases,
-    downloadPersonalizedChildPdf: downloadPersonalizedChildPdf
+    downloadPersonalizedChildPdf: downloadPersonalizedChildPdf,
+    downloadGraduationAlbumPdf: downloadGraduationAlbumPdf
   };
 
   if (typeof module !== 'undefined' && module.exports) {
