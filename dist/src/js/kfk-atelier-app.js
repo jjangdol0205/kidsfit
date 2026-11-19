@@ -713,23 +713,32 @@
     }
   }
 
+  function escHtml(str) {
+    return String(str === undefined || str === null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function showScreen(screenIdx) {
     if (typeof document === 'undefined') return;
-    state.currentScreen = screenIdx;
+    var resolvedIdx = screenIdx === 2 ? 3 : screenIdx;
+    state.currentScreen = resolvedIdx;
     var mainEl = document.getElementById('atelier-main-shell');
     if (mainEl) {
-      mainEl.classList.toggle('is-opening-view', screenIdx === 0);
-      mainEl.classList.toggle('is-wide-view', screenIdx === 3);
+      mainEl.classList.toggle('is-opening-view', resolvedIdx === 0);
+      mainEl.classList.toggle('is-wide-view', resolvedIdx === 3);
     }
-    var ids = [
-      'kfk-peer-growth-editorial',
-      'quiz-section',
-      'kfk-parent-habit-notebook',
-      'kfk-results-atelier-screen'
+    var screenMap = [
+      { idx: 0, id: 'kfk-peer-growth-editorial' },
+      { idx: 1, id: 'quiz-section' },
+      { idx: 3, id: 'kfk-results-atelier-screen' }
     ];
-    for (var i = 0; i < ids.length; i++) {
-      var sec = document.getElementById(ids[i]);
-      if (sec) sec.classList.toggle('is-active', i === screenIdx);
+    for (var i = 0; i < screenMap.length; i++) {
+      var sec = document.getElementById(screenMap[i].id);
+      if (sec) sec.classList.toggle('is-active', screenMap[i].idx === resolvedIdx);
     }
     try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (_) { window.scrollTo(0, 0); }
   }
@@ -829,37 +838,52 @@
 
   function completeSurveyAndMoveToEmailGate() {
     var profile = readFormProfile();
+    var prevRaw = safeGetStorage(PROFILE_KEY);
+    if (prevRaw) {
+      try {
+        var prevParsed = JSON.parse(prevRaw);
+        if (prevParsed && prevParsed.parentEmail && !profile.parentEmail) {
+          profile.parentEmail = prevParsed.parentEmail;
+        }
+        if (prevParsed && prevParsed.nickname && !profile.nickname) {
+          profile.nickname = prevParsed.nickname;
+        }
+      } catch (_) {}
+    }
     safeSetStorage(PROFILE_KEY, profile);
     var analysis = analyzeGrowthClock(profile);
+    analysis.profile = profile;
     state.lastAnalysis = analysis;
-
-    // Pre-populate Screen 2 summary tag & saved email if any
-    var pill = document.getElementById('screen2-child-pill');
-    if (pill) {
-      pill.textContent =
-        '만 ' + analysis.ageYears + '세 ' + analysis.remMonths + '개월 ' + analysis.sexLabel +
-        ' · 현재 키 ' + analysis.heightCm.toFixed(1) + ' cm 기준 기초 산출 완료';
-    }
 
     try {
       var savedMember = (global.DreamCompanyCRM && global.DreamCompanyCRM.getLocalMember)
         ? global.DreamCompanyCRM.getLocalMember('KFK')
         : null;
       var emailInput = document.getElementById('kfk-stepup-email-input');
-      if (savedMember && savedMember.email && emailInput && !emailInput.value) {
-        emailInput.value = savedMember.email;
+      var chosenEmail = (savedMember && savedMember.email) || profile.parentEmail || '';
+      if (chosenEmail && emailInput && !emailInput.value) {
+        emailInput.value = chosenEmail;
+      }
+      var nickInput = document.getElementById('kfk-stepup-nickname-input');
+      if (profile.nickname && nickInput && !nickInput.value) {
+        nickInput.value = profile.nickname;
       }
     } catch (_) {}
 
-    // If paid pass is already verified on this device, jump straight to Screen 3 full report
-    var paidRaw = safeGetStorage(PAID_PASS_KEY);
-    if (paidRaw) {
-      renderScreen3Results(analysis);
-      showScreen(3);
-      return;
-    }
+    // Immediately reveal Free Baseline KDCA 2017 Height Percentile & Growth-Clock Summary (Zero Email Wall)
+    renderScreen3Results(analysis);
+    showScreen(3);
+  }
 
-    showScreen(2);
+  function reopenEmailSaveForm() {
+    if (typeof document === 'undefined') return;
+    safeSetStorage(EMAIL_UNLOCK_KEY, 'false');
+    var formWrap = document.getElementById('kfk-stepup-email-form-wrap');
+    var savedBanner = document.getElementById('kfk-email-saved-banner');
+    if (formWrap) formWrap.style.display = 'block';
+    if (savedBanner) savedBanner.style.display = 'none';
+    var emailEl = document.getElementById('kfk-stepup-email-input');
+    if (emailEl && emailEl.focus) emailEl.focus();
   }
 
   function submitEmailForBasicSummary(ev) {
@@ -876,7 +900,7 @@
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       if (errEl) {
-        errEl.textContent = '기본 요약을 열어보실 학부모님 이메일 주소를 정확히 입력해 주세요.';
+        errEl.textContent = '맞춤 성장 요약을 저장하고 월간 리포트 안내를 받으실 이메일 주소를 정확히 입력해 주세요.';
         errEl.style.display = 'block';
       }
       if (emailEl) emailEl.focus();
@@ -885,7 +909,7 @@
     if (errEl) errEl.style.display = 'none';
     if (btnEl) {
       btnEl.disabled = true;
-      btnEl.textContent = '기본 성장 요약 준비 중...';
+      btnEl.textContent = '맞춤 성장 요약 저장 중...';
     }
 
     var profile = readFormProfile();
@@ -913,10 +937,12 @@
     var finishTransition = function () {
       if (btnEl) {
         btnEl.disabled = false;
-        btnEl.textContent = '기본 백분위 요약 무료로 열어보기 →';
+        btnEl.textContent = '맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 →';
       }
       renderScreen3Results(analysis);
-      showScreen(3);
+      if (state.currentScreen !== 3) {
+        showScreen(3);
+      }
     };
 
     if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.registerMember === 'function') {
@@ -958,16 +984,25 @@
       } else if (paidPass && paidPass.tier === 'tier1') {
         statusBadge.textContent = '1등급 · 단건 정밀 리포트 패스 열람 중';
       } else {
-        statusBadge.textContent = '무료 기본 요약 열람 중 (일부 공개)';
+        statusBadge.textContent = '무료 기본 요약 즉시 공개';
       }
     }
 
-    // 1. Free Email Basic Summary Block
+    var savedProf = analysis.profile || null;
+    if (!savedProf) {
+      var profStr = safeGetStorage(PROFILE_KEY);
+      if (profStr) {
+        try { savedProf = JSON.parse(profStr); } catch (_) {}
+      }
+    }
+    var nickPrefix = (savedProf && savedProf.nickname) ? (String(savedProf.nickname).trim() + ' · ') : '';
+
+    // 1. Immediate Free Baseline KDCA 2017 Percentile & Growth-Clock Summary Block
     var titleEl = document.getElementById('result-child-headline');
     if (titleEl) {
       titleEl.textContent =
-        '만 ' + analysis.ageYears + '세 ' + analysis.remMonths + '개월 ' + analysis.sexLabel +
-        ' (' + analysis.heightCm.toFixed(1) + ' cm · ' + analysis.weightKg.toFixed(1) + ' kg) 기본 성장 위치';
+        nickPrefix + '만 ' + analysis.ageYears + '세 ' + analysis.remMonths + '개월 ' + analysis.sexLabel +
+        ' (' + analysis.heightCm.toFixed(1) + ' cm · ' + analysis.weightKg.toFixed(1) + ' kg) 기본 성장 시계 요약';
     }
 
     var pctValEl = document.getElementById('result-free-percentile');
@@ -998,6 +1033,36 @@
     var obsEl = document.getElementById('result-free-observation');
     if (obsEl) {
       obsEl.textContent = analysis.freePositionNote;
+    }
+
+    var clockNoteEl = document.getElementById('result-free-growth-clock-note');
+    if (clockNoteEl) {
+      if (analysis.hasBoneAge && analysis.boneAgeCalibration) {
+        clockNoteEl.innerHTML =
+          '<strong>성장 시계 기준선 (병원 뼈나이 경과 시간 보정):</strong> ' +
+          escHtml(analysis.boneAgeCalibration.summaryText) +
+          '<br><span style="font-size:14px;color:#3B3530;">우선 돌볼 저녁 생활 영역: <strong>' + escHtml(analysis.primaryBottleneckTitle) + '</strong></span>';
+      } else {
+        clockNoteEl.innerHTML =
+          '<strong>성장 시계 기준선 (태어난 날 기준 질병관리청 2017 곡선):</strong> 생후 ' +
+          analysis.exactMonths.toFixed(1) + '개월 표준 성숙도(성인 신장 대비 약 ' + analysis.maturePct.toFixed(1) + '% 진행 구간)를 바탕으로 살펴보았습니다.' +
+          '<br><span style="font-size:14px;color:#3B3530;">우선 돌볼 저녁 생활 영역: <strong>' + escHtml(analysis.primaryBottleneckTitle) + '</strong></span>';
+      }
+    }
+
+    // Natural Passwordless Email Save Card State
+    var formWrapEl = document.getElementById('kfk-stepup-email-form-wrap');
+    var savedBannerEl = document.getElementById('kfk-email-saved-banner');
+    var savedEmailAddr = (savedProf && savedProf.parentEmail) ? String(savedProf.parentEmail).trim() : '';
+    var isEmailSaved = safeGetStorage(EMAIL_UNLOCK_KEY) === 'true' && Boolean(savedEmailAddr);
+    if (formWrapEl && savedBannerEl) {
+      formWrapEl.style.display = isEmailSaved ? 'none' : 'block';
+      savedBannerEl.style.display = isEmailSaved ? 'block' : 'none';
+      if (isEmailSaved) {
+        savedBannerEl.innerHTML =
+          '<strong>' + escHtml(savedEmailAddr) + ' 주소로 맞춤 성장 요약 저장 및 월간 성장 리포트 안내 등록이 완료되었습니다.</strong> ' +
+          '<button type="button" class="atelier-text-btn" style="margin-left:8px;" onclick="window.KfkAtelierApp.reopenEmailSaveForm();">이메일 변경</button>';
+      }
     }
 
     // 2. Differential Vault vs Full Unlocked Report
@@ -1564,6 +1629,7 @@
     showSurveyStep: showSurveyStep,
     advanceFromStep: advanceFromStep,
     goBackInSurvey: goBackInSurvey,
+    reopenEmailSaveForm: reopenEmailSaveForm,
     submitEmailForBasicSummary: submitEmailForBasicSummary,
     openKfkLatpeedCheckout: openKfkLatpeedCheckout,
     switchCheckinTab: switchCheckinTab,

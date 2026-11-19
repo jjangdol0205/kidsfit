@@ -151,6 +151,8 @@ check('index.html implements 4-Screen Single-Breath Step-Up Architecture & prese
   requiredIds.forEach((id) => {
     assert(html.includes(`id="${id}"`), `index.html missing required DOM id="#${id}"`);
   });
+  assert(html.includes('질병관리청·뼈나이 기준 우리 아이 예상키 1분 무료 진단'), 'Screen 0 Phase 2-B direct clarity H1 missing');
+  assert(html.includes('1분 무료 성장 진단 시작하기'), 'Screen 0 above-the-fold primary start CTA missing');
   assert(html.includes('왜 이 성장 시계 연구소를 만들었나요'), 'Screen 0 founding letter headline missing');
   assert(html.includes('우리 아이 성장 시계 진단 시작하기'), 'Screen 0 single start CTA missing');
   assert(html.includes('전문의의 진료를 대신하지 않습니다') && html.includes('beable9489@gmail.com'), 'Minimal 1-line legal footer disclaimer missing');

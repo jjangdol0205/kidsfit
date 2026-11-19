@@ -249,11 +249,33 @@ body {
 
 .atelier-subheadline {
   font-family: var(--font-serif);
-  font-size: 17.5px;
-  line-height: 1.68;
+  font-size: 17px;
+  line-height: 1.64;
   color: var(--atelier-muted);
   font-weight: 400;
+  margin: 0 0 18px;
+}
+
+.atelier-hero-cta-wrap {
   margin: 0 0 28px;
+  max-width: 460px;
+}
+
+.atelier-hero-reassurance {
+  margin: 9px 0 0;
+  font-size: 13.5px;
+  line-height: 1.56;
+  color: var(--atelier-muted);
+}
+
+.atelier-letter-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(21px, 2.6vw, 25px);
+  font-weight: 700;
+  line-height: 1.44;
+  letter-spacing: -0.02em;
+  color: var(--atelier-ink);
+  margin: 0 0 16px;
 }
 
 .atelier-letter p {
@@ -373,13 +395,20 @@ body {
     line-height: 1.78;
   }
   .atelier-header-inner {
-    padding: 14px 18px;
+    padding: 12px 16px;
   }
   .atelier-brand-note {
     display: none;
   }
   .atelier-main {
-    padding: 22px 16px 48px;
+    padding: 18px 16px 48px;
+  }
+  .atelier-main.is-opening-view {
+    padding-top: 18px;
+  }
+  .atelier-hero-cta-wrap {
+    max-width: 100%;
+    margin-bottom: 22px;
   }
   .atelier-card {
     padding: 30px 20px;
@@ -845,7 +874,25 @@ body {
   box-shadow: 0 2px 6px rgba(36, 32, 29, 0.22);
 }
 
-/* Differential Locked Preview Card */
+/* Differential Locked Preview Card & Natural Email Save Card */
+.atelier-save-club-card {
+  margin: 22px 0 26px;
+  padding: 24px 24px;
+  background: var(--atelier-bg);
+  border: 1px solid var(--atelier-border-solid);
+  border-radius: 14px;
+}
+
+.atelier-email-saved-banner {
+  padding: 14px 16px;
+  background: var(--atelier-sage-soft);
+  border: 1px solid var(--atelier-sage-border);
+  border-radius: 10px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--atelier-ink);
+}
+
 .vault-preview-card {
   margin: 26px 0 32px;
   padding: 26px 24px;
