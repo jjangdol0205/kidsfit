@@ -1,7 +1,7 @@
 # 키즈핏 성장 연구소 (KidsFit Korea — https://kidsfit.co.kr)
 
 > 태어난 날짜까지 헤아린 질병관리청(KDCA 2017) 성장도표 & 병원 뼈나이 경과 시간(Δt) 보정 기반 가정용 소아성장 연구소.
-> 최종 업데이트: 2026-11-18 (KST) | 상업성 제휴 광고 없음 · 5단계 성장 시계 진단 및 순수 유료 2등급 리포트·트래커 지원.
+> 최종 업데이트: 2026-11-19 (KST) | 상업성 제휴 광고 없음 · 5단계 성장 시계 진단 및 순수 유료 2등급 리포트·트래커 지원.
 
 ## 1. 핵심 진단 및 성장 에세이 아카이브
 - 키즈핏 성장 연구소 메인 5단계 성장 시계 진단: https://kidsfit.co.kr/
@@ -62,7 +62,7 @@
 - [부모 키가 작아도 아이는 클 수 있을까? 유전키(MPH) 공식의 한계(±8.5cm)와 Khamis-Roche 후성유전 환경 변수 +7cm의 과학 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-18-mph-genetic-height-vs-khamis-roche-epigenetic-plus-7cm.html)
 - [어린이 키성장 영양제 성분 완전 분석: 식약처 인정 HT042(황기추출물) vs L-아르기닌 vs 칼마디K2 연령별·체질별 선택 기준 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-19-ht042-astragalus-extract-vs-arginine-calcium-supplement-guide.html)
 - [초등 공부방 환경 의학 가이드: 눈 피로 막는 CRI 95·4000K 조명 세팅과 AI 스마트학습(웅진스마트올·엘리하이) 0원 무료체험 비교 | 키즈핏(KidsFit) 소아성장·두뇌 연구소](https://kidsfit.co.kr/qna/kr-deep-20-elementary-study-room-lighting-cri95-smart-learning-free-trial-guide.html)
-- [[생후 12~216개월] 설문 없이 바로 보는 월령별 영양제·운동기구·두뇌교구·필독서 추천템 전용관 | 키즈핏](https://kidsfit.co.kr/qna/monthly-curation.html)
+- [[생후 12~216개월] 월령별 성장 시계 이정표 &amp; 저녁 수면·영양·바른자세 루틴 총람 | 키즈핏 소아성장 아틀리에](https://kidsfit.co.kr/qna/monthly-curation.html)
 - [탈(脫)네이버 6대 외부채널 자동 발행 &amp; 커뮤니티 확산 스튜디오 | KIDS-FIT](https://kidsfit.co.kr/qna/omni-channel-kit.html)
 - [초등 아이 키 백분위 & 부모 유전 예상키(MPH) 계산법과 밤 10시 수면 골든타임 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-01.html)
 - [밤마다 무릎·종아리 아파하는 어린이 야간 성장통 원인과 5분 온찜질·칼슘·마그네슘 처방 | KIDS-FIT 아동발달·소아성장 연구소](https://kidsfit.co.kr/qna/topic-02.html)
