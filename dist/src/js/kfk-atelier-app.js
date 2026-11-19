@@ -1079,7 +1079,7 @@
     if (ebookBtn) {
       var cfg = global.KFK_EBOOK_CONFIG || {};
       ebookBtn.href = paidPass && paidPass.tier === 'tier2'
-        ? (cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/stores/7Frck')
+        ? (cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4')
         : (cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP');
     }
     var passLabel = document.getElementById('full-report-pass-badge');
@@ -1092,17 +1092,8 @@
 
   function sendPaidClickBeacon(tier) {
     try {
-      if (typeof fetch !== 'function') return;
-      var nav = typeof navigator !== 'undefined' ? navigator : null;
-      var ua = (nav && nav.userAgent) ? nav.userAgent : '';
-      if ((nav && nav.webdriver) || /bot|crawl|spider|slurp|headless|lighthouse|python|curl|node|jsdom/i.test(ua)) return;
-      var host = (global.location && global.location.hostname) || '';
-      if (!host || host === 'localhost' || host === '127.0.0.1') return;
-      var kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-      fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/paid_click_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-      fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/paid_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
-      if (tier === 'tier2') {
-        fetch('https://abacus.jasoncameron.dev/hit/kfk_kidsfitkr/paid_tier2_click_total', { mode: 'cors', keepalive: true }).catch(function () {});
+      if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.recordCommunityEvent === 'function') {
+        global.DreamCompanyCRM.recordCommunityEvent('KFK', 'latpeed_checkout_click', tier || 'tier1');
       }
     } catch (_) {}
   }
@@ -1121,7 +1112,7 @@
 
     var cfg = global.KFK_EBOOK_CONFIG || {};
     var targetUrl = tier === 'tier2'
-      ? String(cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || cfg.LATPEED_STORE_URL || 'https://www.latpeed.com/stores/7Frck').trim()
+      ? String(cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4').trim()
       : String(cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP').trim();
 
     if (targetUrl) {
