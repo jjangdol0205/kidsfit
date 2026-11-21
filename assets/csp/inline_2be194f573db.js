@@ -5,6 +5,8 @@ window.KFK_EBOOK_CONFIG = {
       TIER1_9900_URL: 'https://www.latpeed.com/products/daMaP',
       LATPEED_TIER2_URL: 'https://www.latpeed.com/products/_5Nq4',
       TIER2_19900_URL: 'https://www.latpeed.com/products/_5Nq4',
+      LATPEED_TIER3_URL: 'https://www.latpeed.com/products/88DyN',
+      TIER3_39000_URL: 'https://www.latpeed.com/products/88DyN',
       LATPEED_STORE_URL: 'https://www.latpeed.com/stores/7Frck',
       PRICE_KRW: 9900,
       TIER1_PRICE_KRW: 9900,

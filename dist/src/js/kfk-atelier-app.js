@@ -967,7 +967,7 @@
     if (!raw) return null;
     try {
       var parsed = JSON.parse(raw);
-      if (parsed && parsed.email && (parsed.tier === 'tier1' || parsed.tier === 'tier2')) {
+      if (parsed && parsed.email && (parsed.tier === 'tier1' || parsed.tier === 'tier2' || parsed.tier === 'tier3')) {
         return parsed;
       }
     } catch (_) {}
@@ -979,12 +979,15 @@
     var paidPass = getVerifiedPaidPass();
     var statusBadge = document.getElementById('screen3-access-status');
     if (statusBadge) {
-      if (paidPass && paidPass.tier === 'tier2') {
+      if (paidPass && paidPass.tier === 'tier3') {
+        statusBadge.textContent = '3등급(프리미엄) · 12개월 형제자매 마스터 패스 열람 중';
+      } else if (paidPass && (paidPass.tier === 'tier2' || paidPass.tier === 'tier3')) {
         statusBadge.textContent = '2등급 · 6개월 성장속도 관리 패스 열람 중';
       } else if (paidPass && paidPass.tier === 'tier1') {
         statusBadge.textContent = '1등급 · 단건 정밀 리포트 패스 열람 중';
       } else {
         statusBadge.textContent = '무료 기본 요약 즉시 공개';
+      try { if (!global.__kfkQuizCompleteTracked && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') { global.__kfkQuizCompleteTracked = true; global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_complete'); } } catch (_) {}
       }
     }
 
@@ -1086,7 +1089,7 @@
           if (satFull) global.DreamCompanyCRM.mountSatisfactionBar(satFull, { div: 'KFK', context: 'full_report', email: paidPass.email });
         }
       }
-      if (paidPass.tier === 'tier2') {
+      if ((paidPass.tier === 'tier2' || paidPass.tier === 'tier3')) {
         switchCheckinTab('tracker');
       }
     } else {
@@ -1147,15 +1150,19 @@
     var ebookBtn = document.getElementById('full-report-masterbook-link');
     if (ebookBtn) {
       var cfg = global.KFK_EBOOK_CONFIG || {};
-      ebookBtn.href = paidPass && paidPass.tier === 'tier2'
-        ? (cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4')
-        : (cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP');
+      ebookBtn.href = paidPass && paidPass.tier === 'tier3'
+        ? (cfg.TIER3_39000_URL || 'https://www.latpeed.com/products/88DyN')
+        : (paidPass && (paidPass.tier === 'tier2' || paidPass.tier === 'tier3')
+          ? (cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4')
+          : (cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP'));
     }
     var passLabel = document.getElementById('full-report-pass-badge');
     if (passLabel && paidPass) {
-      passLabel.textContent = paidPass.tier === 'tier2'
-        ? ('열람 등급: 2등급 6개월 성장속도 집중 관리 패스 (' + paidPass.email + ')')
-        : ('열람 등급: 1등급 단건 정밀 리포트 패스 (' + paidPass.email + ')');
+      passLabel.textContent = paidPass.tier === 'tier3'
+        ? ('열람 등급: 3등급(프리미엄) 12개월 연간 형제자매 성장 마스터 패스 (' + paidPass.email + ')')
+        : ((paidPass.tier === 'tier2' || paidPass.tier === 'tier3')
+          ? ('열람 등급: 2등급 6개월 성장속도 집중 관리 패스 (' + paidPass.email + ')')
+          : ('열람 등급: 1등급 단건 정밀 리포트 패스 (' + paidPass.email + ')'));
     }
   }
 
@@ -1168,7 +1175,12 @@
   }
 
   function openKfkLatpeedCheckout(tierKey) {
-    var tier = (tierKey === 'tier2') ? 'tier2' : 'tier1';
+    var tier = (tierKey === 'tier3') ? 'tier3' : ((tierKey === 'tier2') ? 'tier2' : 'tier1');
+    try {
+      if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
+        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'checkout_click');
+      }
+    } catch (_) {}
     try {
       var profile = readFormProfile();
       if (profile && profile.heightCm >= 65) {
@@ -1180,9 +1192,11 @@
     sendPaidClickBeacon(tier);
 
     var cfg = global.KFK_EBOOK_CONFIG || {};
-    var targetUrl = tier === 'tier2'
-      ? String(cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4').trim()
-      : String(cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP').trim();
+    var targetUrl = tier === 'tier3'
+      ? String(cfg.TIER3_39000_URL || 'https://www.latpeed.com/products/88DyN').trim()
+      : (tier === 'tier2'
+        ? String(cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4').trim()
+        : String(cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP').trim());
 
     if (targetUrl) {
       var win = null;
@@ -1196,7 +1210,7 @@
   function switchCheckinTab(tabName) {
     if (typeof document === 'undefined') return;
     var paidPass = getVerifiedPaidPass();
-    var isTier2 = Boolean(paidPass && paidPass.tier === 'tier2');
+    var isTier2 = Boolean(paidPass && (paidPass.tier === 'tier2' || paidPass.tier === 'tier3'));
     var isTracker = tabName === 'tracker';
     var btnRestore = document.getElementById('tab-btn-restore');
     var btnTracker = document.getElementById('tab-btn-tracker');
@@ -1271,7 +1285,7 @@
         return;
       }
 
-      var verifiedTier = vres.tier === 'tier2' ? 'tier2' : 'tier1';
+      var verifiedTier = vres.tier === 'tier3' ? 'tier3' : (vres.tier === 'tier2' ? 'tier2' : 'tier1');
       var passRecord = {
         email: email,
         tier: verifiedTier,
@@ -1311,7 +1325,7 @@
   function submitKfkMonthlyVelocityCheckin(ev) {
     if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
     var paidCheck = getVerifiedPaidPass();
-    if (!paidCheck || paidCheck.tier !== 'tier2') {
+    if (!paidCheck || (paidCheck.tier !== 'tier2' && paidCheck.tier !== 'tier3')) {
       var outGuard = document.getElementById('kfk-vip-velocity-output');
       if (outGuard) { outGuard.style.display = 'block'; outGuard.innerHTML = '<span style="color:#9B3B32;">2등급(19,900원) 구매 인증 완료 후 월간 성장속도 판독기를 이용하실 수 있습니다.</span>'; }
       return false;
@@ -1787,7 +1801,7 @@
     }
     if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.openProtectedPdfDownload === 'function') {
       if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
-      var docKey = paidPass.tier === 'tier2' ? 'kfk_tier2_fullpackage' : 'kfk_tier1_masterbook';
+      var docKey = (paidPass.tier === 'tier2' || paidPass.tier === 'tier3') ? 'kfk_tier2_fullpackage' : 'kfk_tier1_masterbook';
       global.DreamCompanyCRM.openProtectedPdfDownload('KFK', docKey, function () {
         openHeaderCheckinStudio();
       });

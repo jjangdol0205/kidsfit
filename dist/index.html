@@ -562,12 +562,12 @@
           </div>
 
           <div class="percentile-bar-wrap" aria-label="질병관리청 백분위 위치 표시">
-            <div class="percentile-scale-labels">
-              <span>3백분위</span>
-              <span>25백분위</span>
-              <span>50백분위 (중간)</span>
-              <span>75백분위</span>
-              <span>97백분위</span>
+            <div class="percentile-scale-labels" style="display:flex;justify-content:space-between;gap:6px;font-size:11.5px;white-space:nowrap;">
+              <span>3%</span>
+              <span>25%</span>
+              <span>50%(중간)</span>
+              <span>75%</span>
+              <span>97%</span>
             </div>
             <div class="percentile-track">
               <div id="result-percentile-fill" class="percentile-fill" style="width: 50%;"></div>
@@ -577,6 +577,11 @@
 
           <p id="result-free-observation" style="margin: 0 0 14px; font-size: 16px; line-height: 1.8; color: var(--atelier-body);"></p>
           <div id="result-free-growth-clock-note" class="atelier-readout-box"></div>
+        </div>
+
+        <div class="no-print" style="margin:0 0 18px;padding:13px 16px;background:#FFFFFF;border:1px solid #DFD7CC;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+          <span style="font-size:14.5px;color:#3A3430;"><strong>배우자나 엄마 친구에게도 보여주시겠어요?</strong> 무료 1분 질병관리청 성장 진단을 공유해 보세요:</span>
+          <button type="button" class="atelier-btn-secondary" style="min-height:42px;padding:8px 14px;font-size:13.5px;border-color:#2F5241;color:#2F5241;background:#FFFFFF;font-weight:700;" data-csp-act="dc-share-site" data-share-div="KFK" data-share-url="https://kidsfit.co.kr/" data-share-title="키즈핏 성장 연구소 — 질병관리청·뼈나이 1분 무료 예상키 진단">카톡·링크 공유하기 &rarr;</button>
         </div>
 
         <!-- 1) 자연스러운 무비밀번호 이메일 요약 저장 카드 (#kfk-parent-habit-notebook / #kfk-passwordless-club-box) -->
@@ -708,6 +713,9 @@
 
           <div class="no-print" style="margin-top: 16px; padding: 14px 16px; background: #FAF7F2; border: 1px solid #DFD7CC; border-radius: 10px; font-size: 13.5px; color: #4A433E;">
             <strong>기기변경 복원 &amp; 디지털 표준 환불 안내:</strong> 미열람·미다운로드 시 결제 후 7일 내 전액 환불, 디지털 PDF 열람·다운로드 개시 후 단순 변심 환불 불가, 파일 오류·중복 결제 시 100% 환불해 드립니다. 문의: <a href="mailto:help@kidsfit.co.kr?subject=KidsFit%20%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90" style="color:#2F5241;font-weight:700;text-decoration:underline;">help@kidsfit.co.kr</a>
+            <div id="kfk-unlocked-ladder-upgrade" style="margin-top:10px;padding:10px 12px;background:#FEFCE8;border:1px solid #FCD34D;border-radius:8px;font-size:13.5px;color:#78350F;">
+              <strong>다음 단계로 확장하기:</strong> 1등급(9,900원) 이용 중이시라면 <a href="https://www.latpeed.com/products/_5Nq4" target="_blank" rel="noopener noreferrer" style="color:#2F5241;font-weight:800;text-decoration:underline;">6개월 성장속도 패스(19,900원)</a>로, 형제자매 1년 사계절 관리가 필요하시면 <a href="https://www.latpeed.com/products/88DyN" target="_blank" rel="noopener noreferrer" style="color:#92400E;font-weight:800;text-decoration:underline;">12개월 가족 마스터 패스(39,000원) &rarr;</a>로 언제든 확장하실 수 있습니다.
+            </div>
             <div id="kfk-full-report-sat-mount"></div>
           </div>
           </div>
@@ -716,71 +724,97 @@
         <hr class="atelier-rule no-print">
 
         <!-- 유료 2등급 가격 선택 카드 (#kfk-latpeed-ebook-slot) -->
-        <div id="kfk-latpeed-ebook-slot" class="no-print" role="region" aria-label="키즈핏 유료 2등급 패스 선택">
-          <span class="atelier-note-label">유료 리포트 등급 선택</span>
-          <h3 class="step-question-title">필요한 깊이만큼 골라 여는 두 가지 패스</h3>
-          <p class="step-question-desc" style="margin-bottom: 0;">
-            어떠한 상품 광고나 권유 없이, 설문에 적으신 아이 수치로 작성된 『1:1 맞춤형 정밀 성장 보고서 PDF』와 월간 성장속도 기록장만 정성껏 열어 드립니다.
+        <div id="kfk-latpeed-ebook-slot" class="no-print" role="region" aria-label="키즈핏 4단계 가치사다리 패스 선택">
+          <span class="atelier-note-label">4단계 성장 가치사다리 &middot; 필요한 깊이만큼 선택</span>
+          <h3 class="step-question-title">무료 진단에서 12개월 형제자매 관리까지, 단계별로 열어 보세요</h3>
+          <p class="step-question-desc" style="margin-bottom: 14px;">
+            상업성 상품 광고 없이 설문 수치로 작성된 1:1 맞춤형 정밀 성장 보고서와 월간 성장속도 기록장만 정성껏 열어 드립니다.
           </p>
 
-          <div class="pass-grid-2col">
-            <!-- 1등급: 9,900원 단건 정밀 리포트 패스 -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:0 0 14px;padding:12px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:10px;font-size:12.5px;">
+            <div style="padding:8px;border-radius:8px;background:#ECFDF5;border:1px solid #86EFAC;color:#14532D;"><strong>1단계 · 무료 (0원)</strong><br>또래 백분위·2p 샘플 ✓</div>
+            <div style="padding:8px;border-radius:8px;background:#FFFFFF;border:1px solid #DFD7CC;color:#2C2724;"><strong>2단계 · 저가 (9,900원)</strong><br>4p 맞춤 PDF·17p 북</div>
+            <div style="padding:8px;border-radius:8px;background:#FFFFFF;border:1px solid #DFD7CC;color:#2C2724;"><strong>3단계 · 핵심 (19,900원)</strong><br>6개월 속도 추적 풀팩</div>
+            <div style="padding:8px;border-radius:8px;background:#FEFCE8;border:1px solid #FCD34D;color:#78350F;"><strong>4단계 · 프리미엄 (39,000원)</strong><br>12개월 형제자매 4명</div>
+          </div>
+
+          <div style="margin:0 0 16px;padding:14px 16px;background:#FFFFFF;border:1px solid #DFD7CC;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+            <div style="font-size:14px;color:#3A3430;max-width:500px;line-height:1.55;">
+              <strong>결제 전 먼저 확인하세요:</strong> 소아과 진료실 질문지와 30일 실천 달력이 담긴 <strong>2페이지 무료 샘플 PDF</strong>를 먼저 열어보실 수 있습니다.
+            </div>
+            <a href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener" class="atelier-btn-secondary" style="text-decoration:none;border-color:#2F5241;color:#2F5241;background:#FAF7F2;font-weight:700;padding:9px 16px;font-size:13.5px;">
+              2p 무료 샘플 PDF 미리보기 &rarr;
+            </a>
+          </div>
+
+          <div class="pass-grid-2col" style="grid-template-columns:repeat(auto-fit,minmax(225px,1fr));">
+            <!-- 2단계(1등급): 9,900원 단건 정밀 리포트 패스 -->
             <div class="pass-card">
               <div>
-                <span class="pass-tier-kicker">1등급 · 단건 정밀 열람</span>
-                <h4 class="pass-title">단건 정밀 성장·뼈나이 리포트 패스</h4>
+                <span class="pass-tier-kicker">2단계 · 저가 단건 정밀 열람</span>
+                <h4 class="pass-title">단건 정밀 성장·뼈나이 리포트</h4>
                 <div class="pass-price-row">
                   <strong class="pass-price-amount">9,900원</strong>
                   <span class="pass-price-cycle">1회 결제 · 영구 소장</span>
                 </div>
                 <ul class="pass-feature-list">
-                  <li>우리 아이 키·뼈나이·부모 키·습관이 모두 적힌 <strong>『4페이지 맞춤형 정밀 성장 보고서 PDF』</strong> 즉시 생성·다운로드</li>
-                  <li><strong>[4페이지 신규 수록] 소아과·성장클리닉 진료실 지참용 1장 요약표 &amp; 의사 선생님 필수 질문 3가지</strong></li>
-                  <li>『우리아이 키성장 골든타임 실전 마스터북』 17페이지 양장본 PDF 함께 제공</li>
-                  <li>냉장고 부착용 <strong>아이와 함께 칭찬 스티커 붙이는 30일 키성장 달력</strong> 수록</li>
+                  <li>우리 아이 키·뼈나이·습관이 모두 적힌 <strong>『4페이지 맞춤형 정밀 보고서 PDF』</strong> 즉시 생성</li>
+                  <li>소아과·성장클리닉 진료실 지참용 <strong>1장 요약표 &amp; 의사 필수 질문 3가지</strong></li>
+                  <li>『우리아이 키성장 골든타임 실전 마스터북』 17p PDF + <strong>30일 냉장고 달력</strong></li>
                 </ul>
               </div>
-              <button type="button" id="btn-kfk-latpeed-ebook-main" class="atelier-btn-secondary" style="width: 100%; min-height: 54px;" data-kfk-paid-ebook="1" data-csp-click="h_528cab863ff9" data-csp-tag="openkfklatpeedcheckout">
-                단건 정밀 리포트 패스 열기 (9,900원) &rarr;
+              <button type="button" id="btn-kfk-latpeed-ebook-main" class="atelier-btn-secondary" style="width: 100%; min-height: 52px;" data-kfk-paid-ebook="1" data-csp-act="kfk-open-latpeed" data-csp-arg="tier1" data-csp-tag="openkfklatpeedcheckout">
+                단건 정밀 리포트 열기 (9,900원) &rarr;
               </button>
             </div>
 
-            <!-- 2등급: 19,900원 6개월 성장속도 집중 관리 패스 -->
+            <!-- 3단계(2등급): 19,900원 6개월 성장속도 집중 관리 패스 -->
             <div class="pass-card is-featured">
               <div>
-                <span class="pass-tier-kicker">2등급 · 6개월 성장속도 집중 관리</span>
-                <h4 class="pass-title">6개월 성장속도 집중 관리 풀패키지 패스</h4>
+                <span class="pass-tier-kicker">3단계 · 핵심 6개월 집중 관리</span>
+                <h4 class="pass-title">6개월 성장속도 집중 관리 패스</h4>
                 <div class="pass-price-row">
                   <strong class="pass-price-amount">19,900원</strong>
-                  <span class="pass-price-cycle">6개월 관리 · 맞춤 로드맵 PDF 포함</span>
+                  <span class="pass-price-cycle">6개월 관리 · 로드맵 PDF 포함</span>
                 </div>
                 <ul class="pass-feature-list">
-                  <li>1등급 4페이지 맞춤 보고서에 <strong>『향후 6개월 월별 기대 신장(cm) 로드맵 표』가 추가된 전용 PDF</strong> 다운로드</li>
-                  <li>Day 30·60·90·120·150·180 직전 키 자동채움 30초 체크인 및 <strong>6개월 누적 성장속도(cm/yr) 실측 그래프</strong></li>
-                  <li>20페이지 성장속도 트래커 풀패키지 마스터북 PDF + <strong>Day 165 『6개월 성장 졸업장 앨범 PDF』</strong> 증정</li>
-                  <li>계절과 학기 일정 변화에 맞춘 월별 최우선 저녁 보완 습관 안내</li>
+                  <li>1등급 전체 + <strong>『향후 6개월 월별 기대 신장(cm) 로드맵 표』</strong> 전용 PDF</li>
+                  <li>Day 30·60·90·120·150·180 자동채움 30초 체크인 및 <strong>연간 성장속도(cm/yr) 그래프</strong></li>
+                  <li>20p 풀패키지 마스터북 PDF + <strong>Day 165 6개월 성장 졸업장 앨범 PDF</strong></li>
                 </ul>
               </div>
-              <button type="button" id="btn-kfk-latpeed-tier2" class="atelier-btn-primary" style="min-height: 54px;" data-kfk-paid-ebook="1" data-csp-click="h_d9c81cc9f37a" data-csp-tag="openkfklatpeedcheckout">
-                6개월 성장속도 관리 패스 열기 (19,900원) &rarr;
+              <button type="button" id="btn-kfk-latpeed-tier2" class="atelier-btn-primary" style="min-height: 52px;" data-kfk-paid-ebook="1" data-csp-act="kfk-open-latpeed" data-csp-arg="tier2" data-csp-tag="openkfklatpeedcheckout">
+                6개월 성장속도 패스 열기 (19,900원) &rarr;
+              </button>
+            </div>
+
+            <!-- 4단계(3등급 프리미엄): 39,000원 12개월 형제자매 성장 마스터 패스 -->
+            <div class="pass-card" style="border: 2px solid #B45309; background: #FFFDF7;">
+              <div>
+                <span class="pass-tier-kicker" style="color: #92400E;">4단계 · 프리미엄 연간 가족 패스</span>
+                <h4 class="pass-title">12개월 형제자매 성장 마스터 패스</h4>
+                <div class="pass-price-row">
+                  <strong class="pass-price-amount">39,000원</strong>
+                  <span class="pass-price-cycle">12개월 사계절 · 최대 4명</span>
+                </div>
+                <ul class="pass-feature-list">
+                  <li><strong>최대 4명 형제자매 통합 관리</strong> + 각 아이별 4p 맞춤형 정밀 보고서 PDF</li>
+                  <li><strong>12개월 사계절(봄·여름·가을·겨울) 월간 성장속도 추적</strong> &amp; 1년 누적 진료 브리핑 PDF</li>
+                  <li>20p 풀패키지 마스터북 + <strong>1년 성장 졸업장 앨범 PDF</strong> 영구 소장</li>
+                </ul>
+              </div>
+              <button type="button" id="btn-kfk-latpeed-tier3" class="atelier-btn-primary" style="min-height: 52px; background: #92400E;" data-kfk-paid-ebook="1" data-csp-act="kfk-open-latpeed" data-csp-arg="tier3" data-csp-tag="openkfklatpeedcheckout">
+                12개월 가족 마스터 패스 (39,000원) &rarr;
               </button>
             </div>
           </div>
 
-                    <div style="margin:18px 0 14px;padding:16px 18px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
-            <div style="font-size:14.5px;color:#3A3430;max-width:520px;line-height:1.6;">
-              <strong>결제 전 먼저 확인하세요:</strong> 질병관리청 성장도표 구성, 소아과 진료실 질문지, 30일 실천 달력이 담긴 <strong>2페이지 무료 샘플 PDF</strong>를 결제 전에 먼저 열어보실 수 있습니다.
-            </div>
-            <a href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener" class="atelier-btn-secondary" style="text-decoration:none;border-color:#2F5241;color:#2F5241;background:#FFFFFF;font-weight:700;padding:10px 18px;">
-              2p 무료 샘플 PDF 미리보기 &rarr;
-            </a>
-          </div>
-          <p style="margin:0 0 14px;font-size:13px;line-height:1.7;color:#6E665E;">
-            <strong>디지털 콘텐츠 표준 환불 안내:</strong> ① 미열람·미다운로드 시 결제 후 7일 내 100% 전액 환불 ② 디지털 PDF·콘텐츠 열람 및 다운로드 개시 후 단순 변심 환불 불가 (결제 전 위 2p 무료 샘플 PDF를 먼저 확인해 주세요) ③ 파일 오류·시스템 장애·중복 결제 시 100% 신속 환불. 고객지원: <a href="mailto:help@kidsfit.co.kr" style="color:#2F5241;text-decoration:underline;">help@kidsfit.co.kr</a>
+          <p style="margin:14px 0 8px;padding:10px 14px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;font-size:13.5px;color:#065F46;line-height:1.55;">
+            <strong>안심 자동 연동:</strong> 래피드 결제 완료 즉시 1초 만에 6자리 인증코드와 마스터북이 이메일로 발송되며, 이 화면 상단 [결제 내역 · 월간 성장 기록]에 입력하시면 맞춤 4p PDF가 바로 열립니다.
           </p>
-          <div style="margin:0 0 14px;padding:12px 16px;background:#FFFFFF;border:1px solid #E6DFD3;border-radius:10px;font-size:13.5px;color:#4A433E;">
-            <strong>초기 이용 학부모 후기 모집:</strong> 키즈핏 성장 시계나 2p 샘플·정밀 보고서를 이용해 보셨다면 <a href="mailto:help@kidsfit.co.kr?subject=%ED%82%A4%EC%A6%88%ED%95%8F%20%ED%95%99%EB%B6%80%EB%AA%A8%20%ED%9B%84%EA%B8%B0" style="color:#2F5241;font-weight:700;text-decoration:underline;">짧은 2줄 후기 보내기 &rarr;</a>
-          </div>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.7;color:#6E665E;">
+            <strong>디지털 콘텐츠 표준 환불 안내:</strong> ① 미열람·미다운로드 시 결제 후 7일 내 100% 전액 환불 ② 디지털 PDF·콘텐츠 열람·다운로드 개시 후 단순 변심 환불 불가 (결제 전 위 2p 무료 샘플 PDF 확인 권장) ③ 파일 오류·시스템 장애·중복 결제 시 100% 신속 환불. 고객지원: <a href="mailto:help@kidsfit.co.kr" style="color:#2F5241;text-decoration:underline;">help@kidsfit.co.kr</a>
+          </p>
           <p class="quiet-restore-row">
             이미 래피드에서 결제를 마치셨나요?
             <button type="button" class="atelier-text-btn" data-csp-click="h_cec9c09d0a51">
@@ -788,7 +822,7 @@
             </button>
             &middot;
             <button type="button" class="atelier-text-btn" data-csp-click="h_d78fb6813ffe">
-              2등급 30일 월간 성장 기록장 열기
+              2·3등급 30일 월간 성장 기록장 열기
             </button>
           </p>
         </div>
@@ -849,6 +883,7 @@
                 <select id="kfk-restore-tier" class="atelier-select">
                   <option value="tier1">1등급 · 단건 정밀 리포트 (9,900원)</option>
                   <option value="tier2">2등급 · 6개월 성장속도 패스 (19,900원)</option>
+                  <option value="tier3">3등급 · 12개월 형제자매 마스터 패스 (39,000원)</option>
                 </select>
               </div>
             </div>

@@ -1,0 +1,8 @@
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c1_b0_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c1_b1_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c2_b0_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c2_b1_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c3_b0_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c3_b1_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c4_b0_v.mp4'
+file 'd:/사업아이템/samples/shorts_10eps/_work/ep13/c4_b1_v.mp4'
