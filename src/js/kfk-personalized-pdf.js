@@ -366,7 +366,7 @@
     var curY = 988;
     for (var rIdx = 0; rIdx < rxs.length; rIdx++) {
       var item = rxs[rIdx];
-      var descLines = wrapKoreanText(c2, item.detail, PAGE_W - 292).slice(0, 3);
+      var descLines = wrapKoreanText(c2, item.detail, PAGE_W - 292).slice(0, 6);
       var boxH = 88 + descLines.length * 30;
       drawRoundedRect(c2, 118, curY, PAGE_W - 236, boxH, 10, '#FAF7F2', '#E5DDD2', 1.5);
       c2.fillStyle = '#8C5E3C';
@@ -494,19 +494,25 @@
     c4.fillText('현재 키: ' + analysis.heightCm.toFixed(1) + ' cm / 체중: ' + analysis.weightKg.toFixed(1) + ' kg  |  질병관리청 백분위: ' + analysis.kdca.percentile.toFixed(1) + '백분위  |  유전 중심값: ' + analysis.mphCm.toFixed(1) + ' cm', 142, 344);
     c4.fillText('골연령 참고: ' + (analysis.hasBoneAge && analysis.boneAgeCalibration ? ('과거 검사일 이후 +' + analysis.boneAgeCalibration.deltaMonths + '개월 시차 반영 완료') : '손목 골연령 미검사 · 정밀 생후 월령 모델 기준'), 142, 374);
 
+    var isEarlyPub = Boolean(analysis.profile && analysis.profile.pubertyTempo === 'early_accel');
+    var baLagMos = (analysis.hasBoneAge && analysis.boneAgeCalibration) ? Number(analysis.boneAgeCalibration.deltaMonths || 0) : -1;
+    var q1BodyK = analysis.kdca.percentile < 25
+      ? ('"현재 만 ' + analysis.ageYears + '세 ' + analysis.kdca.percentile.toFixed(1) + '백분위(' + analysis.heightCm.toFixed(1) + 'cm)로 또래 하위 구간인데, 부모 중심값(' + analysis.mphCm.toFixed(1) + 'cm) 대비 최근 6~12개월 성장속도가 하향 이탈하고 있지 않은지 점검받고 싶습니다."')
+      : ('"현재 만 ' + analysis.ageYears + '세 ' + analysis.kdca.percentile.toFixed(1) + '백분위(' + analysis.heightCm.toFixed(1) + 'cm)와 유전 중심값(' + analysis.mphCm.toFixed(1) + 'cm)을 기준으로 최근 6~12개월 연간 성장속도(cm/yr)가 안정적인지 확인 부탁드립니다."');
+    var q2BodyK = baLagMos >= 12
+      ? ('"과거 손목 뼈나이 촬영 후 이미 ' + baLagMos + '개월이 지났습니다. 현재 성장판 진행 속도를 정확히 파악하기 위해 추적 골연령(X-ray) 재촬영이 필요한 시점일까요?"')
+      : (baLagMos >= 0
+        ? ('"최근 촬영한 손목 골연령(' + baLagMos + '개월 전)과 실제 만 나이를 비교했을 때, 현재 사춘기 진행 속도상 앞으로 남은 성장 기간과 주의해야 할 징후는 무엇인가요?"')
+        : (isEarlyPub || analysis.ageYears >= 9
+          ? ('"만 ' + analysis.ageYears + '세에 접어들며 사춘기·체중 변화가 신경 쓰이는데, 지금 시점에 기준선 확인용 손목 골연령(X-ray)과 성성숙도 평가를 받아두는 것이 좋을까요?"')
+          : ('"만 ' + analysis.ageYears + '세로 아직 골연령 촬영 전인데, 현재 키·체중 추이만 정기 추적해도 충분한지 아니면 향후 X-ray 확인 시점을 언제로 잡으면 좋을까요?"')));
+    var q3BodyK = (analysis.profile && analysis.profile.sleepBreathing === 'mouth')
+      ? '"수면 중 구강호흡이나 코막힘이 잦은 편입니다. 깊은 수면 회복을 위한 이비인후과 점검과 함께 혈중 비타민D(25-OH-D)·저장철(페리틴) 확인이 도움이 될까요?"'
+      : ('"현재 체중(' + analysis.weightKg.toFixed(1) + 'kg)과 식사·수면 리듬을 고려할 때, 정기 검진 시 혈중 비타민D(25-OH-D), 저장철(페리틴), 아연 수치를 함께 점검해 두면 좋을까요?"');
     var docQs = [
-      {
-        q: '필수 질문 1 · 연간 성장속도(cm/yr) 궤도 점검',
-        body: '"현재 아이의 질병관리청 백분위와 부모 신장 중심값을 고려할 때, 최근 6~12개월 연간 성장속도(cm/yr)가 안정적인 자기 성장 곡선을 따라가고 있나요?"'
-      },
-      {
-        q: '필수 질문 2 · 사춘기 성숙 속도 및 손목 골연령 확인 시점',
-        body: '"현재 신체 성숙 진행 속도가 실제 만 나이와 조화로운 편인지, 향후 6~12개월 내 손목 골연령(X-ray) 촬영으로 성장판 잔여 여력을 확인해 두는 것이 좋을까요?"'
-      },
-      {
-        q: '필수 질문 3 · 골무기질 영양 및 수면 컨디션 기초 혈액 지표',
-        body: '"체중 대비 신장 균형과 평소 밤잠·식사 리듬을 볼 때, 혈중 비타민D(25-OH-D), 저장철(페리틴), 아연 수치를 함께 점검해 두는 것이 도움이 될까요?"'
-      }
+      { q: '필수 질문 1 · 아이 백분위(' + analysis.kdca.percentile.toFixed(1) + '%) 맞춤 성장속도 점검', body: q1BodyK },
+      { q: '필수 질문 2 · 만 ' + analysis.ageYears + '세 골연령·사춘기 진행 속도 확인', body: q2BodyK },
+      { q: '필수 질문 3 · 수면 회복 & 골무기질 기초 지표 확인', body: q3BodyK }
     ];
     var qY = 408;
     for (var qi = 0; qi < docQs.length; qi++) {
@@ -516,7 +522,7 @@
       c4.fillText(docQs[qi].q, 142, qY + 34);
       c4.fillStyle = '#3A3430';
       c4.font = '400 18.5px ' + SANS_FONT;
-      var qlines = wrapKoreanText(c4, docQs[qi].body, PAGE_W - 284).slice(0, 3);
+      var qlines = wrapKoreanText(c4, docQs[qi].body, PAGE_W - 284).slice(0, 4);
       for (var ql = 0; ql < qlines.length; ql++) {
         c4.fillText(qlines[ql], 142, qY + 66 + ql * 26);
       }
@@ -568,7 +574,7 @@
 
   function downloadGraduationAlbumPdf(childName, startCm, latestCm, historyLogs) {
     if (typeof document === 'undefined') return false;
-    var label = String(childName || '우리아이').trim();
+    var label = String(childName || '우리 아이').trim();
     var sCm = Number(startCm) || 135.0;
     var eCm = Number(latestCm) || (sCm + 3.2);
     var gainCm = Math.max(0, eCm - sCm);
@@ -584,7 +590,7 @@
     ctx.fillText('6개월 성장 마라톤 완주 졸업장 & 기록 앨범', 124, 204);
     ctx.fillStyle = '#E6EFEA';
     ctx.font = '400 21px ' + SANS_FONT;
-    ctx.fillText('수여 대상: ' + label + ' 어린이 & 가족   |   발급일: ' + formatTodayKst(), 124, 258);
+    ctx.fillText('수여 대상: ' + label + ' & 가족   |   발급일: ' + formatTodayKst(), 124, 258);
 
     drawRoundedRect(ctx, 84, 340, PAGE_W - 168, 420, 16, '#FFFFFF', '#2F5241', 2.5);
     ctx.fillStyle = '#8C5E3C';
@@ -606,14 +612,9 @@
     ctx.fillStyle = '#2F5241';
     ctx.font = '700 22px ' + SANS_FONT;
     ctx.fillText('30일 주기 월간 성장 체크인 발자취', 124, 854);
-    var rows = Array.isArray(historyLogs) && historyLogs.length ? historyLogs.slice(0, 6) : [
-      { date: 'Day 30 (1회차)', curH: sCm + gainCm * 0.17 },
-      { date: 'Day 60 (2회차)', curH: sCm + gainCm * 0.34 },
-      { date: 'Day 90 (3회차)', curH: sCm + gainCm * 0.50 },
-      { date: 'Day 120 (4회차)', curH: sCm + gainCm * 0.67 },
-      { date: 'Day 150 (5회차)', curH: sCm + gainCm * 0.84 },
-      { date: 'Day 180 (6회차 완주)', curH: eCm }
-    ];
+    var rows = (Array.isArray(historyLogs) && historyLogs.length)
+      ? historyLogs.slice(-6)
+      : [{ date: formatTodayKst() + ' (최초 실측 기록)', curH: eCm }];
     for (var idx = 0; idx < rows.length; idx++) {
       var ry = 890 + idx * 96;
       drawRoundedRect(ctx, 124, ry, PAGE_W - 248, 78, 10, idx === rows.length - 1 ? '#EEF3F0' : '#FAF7F2', '#DFD7CC', 1.5);

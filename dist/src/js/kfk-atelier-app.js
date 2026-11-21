@@ -1195,11 +1195,22 @@
 
   function switchCheckinTab(tabName) {
     if (typeof document === 'undefined') return;
+    var paidPass = getVerifiedPaidPass();
+    var isTier2 = Boolean(paidPass && paidPass.tier === 'tier2');
     var isTracker = tabName === 'tracker';
     var btnRestore = document.getElementById('tab-btn-restore');
     var btnTracker = document.getElementById('tab-btn-tracker');
     var paneRestore = document.getElementById('pane-paid-restore');
     var paneTracker = document.getElementById('pane-vip-tracker');
+    if (isTracker && !isTier2) {
+      var msgEl = document.getElementById('kfk-restore-feedback');
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#9B3B32';
+        msgEl.textContent = '30일 월간 성장 기록장 및 졸업장 앨범은 2등급(19,900원) 구매 인증 완료 후 이용하실 수 있습니다.';
+      }
+      isTracker = false;
+    }
     if (btnRestore) btnRestore.classList.toggle('is-active', !isTracker);
     if (btnTracker) btnTracker.classList.toggle('is-active', isTracker);
     if (paneRestore) paneRestore.style.display = isTracker ? 'none' : 'block';
@@ -1214,8 +1225,8 @@
     var msgEl = document.getElementById('kfk-restore-feedback');
 
     var email = emailEl ? String(emailEl.value || '').trim().toLowerCase() : '';
-    var tier = tierEl ? String(tierEl.value || 'tier1') : 'tier1';
-    var orderRef = refEl ? String(refEl.value || '').trim() : '';
+    var requestedTier = tierEl ? String(tierEl.value || 'tier1') : 'tier1';
+    var orderRef = refEl ? String(refEl.value || '').trim().toUpperCase() : '';
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       if (msgEl) {
@@ -1225,82 +1236,82 @@
       }
       return false;
     }
-    if (!orderRef) {
-      orderRef = 'LATPEED-EMAIL-' + Date.now().toString(36).toUpperCase();
-    }
-
-    var passRecord = {
-      email: email,
-      tier: tier === 'tier2' ? 'tier2' : 'tier1',
-      orderRef: orderRef,
-      verifiedAt: new Date().toISOString()
-    };
-    safeSetStorage(PAID_PASS_KEY, passRecord);
-
-    var savedRaw = safeGetStorage(PROFILE_KEY);
-    var profile = readFormProfile();
-    if ((!profile.heightCm || profile.heightCm < 65) && savedRaw) {
-      try { profile = JSON.parse(savedRaw); } catch (_) {}
-    }
-    if (!profile.heightCm || profile.heightCm < 65) {
-      profile.heightCm = 138.8;
-      profile.weightKg = 35.0;
-    }
-    var analysis = state.lastAnalysis || analyzeGrowthClock(profile);
-    state.lastAnalysis = analysis;
-
-    if (global.DreamCompanyCRM) {
-      if (typeof global.DreamCompanyCRM.deliverPaidMagicPack === 'function') {
-        global.DreamCompanyCRM.deliverPaidMagicPack({
-          div: 'KFK',
-          email: email,
-          plan_tier: passRecord.tier === 'tier2' ? '2등급 6개월 성장속도 패스 (19,900원)' : '1등급 단건 정밀 리포트 패스 (9,900원)',
-          order_ref: orderRef,
-          base_url: 'https://kidsfit.co.kr/',
-          hash_anchor: 'kfk-full-unlocked-report',
-          profile_state: profile
-        }).catch(function () {});
+    if (!orderRef || orderRef.length < 4) {
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#9B3B32';
+        msgEl.textContent = '결제 완료 메일로 발급된 인증코드(또는 래피드 주문번호)를 함께 입력해 주세요.';
       }
-      if (typeof global.DreamCompanyCRM.registerMember === 'function') {
-        global.DreamCompanyCRM.registerMember({
-          div: 'KFK',
-          email: email,
-          segment: passRecord.tier === 'tier2' ? 'KFK_Paid_VIP' : 'KFK_Paid_Tier1',
-          notes: 'order:' + orderRef,
-          lang: 'ko'
-        }).catch(function () {});
-      }
-      if (passRecord.tier === 'tier2' && typeof global.DreamCompanyCRM.enrollKfkPaidVip === 'function') {
-        global.DreamCompanyCRM.enrollKfkPaidVip({
-          email: email,
-          child_sex: analysis.sex === 'girl' ? 'F' : 'M',
-          child_age_years: analysis.ageYears,
-          baseline_height_cm: analysis.heightCm,
-          plan_tier: 'Tier 2 6개월 성장속도 트래커 (19,900원)',
-          months_remaining: 6,
-          order_ref: orderRef
-        }).catch(function () {});
-      }
+      return false;
     }
 
     if (msgEl) {
       msgEl.style.display = 'block';
-      msgEl.style.color = '#2F5241';
-      msgEl.textContent = '결제 확인이 완료되어 전체 정밀 리포트가 열렸습니다.';
+      msgEl.style.color = '#3A3430';
+      msgEl.textContent = '서버에서 래피드 구매 내역을 확인하고 있습니다...';
     }
 
-    closeCheckinModal();
-    renderScreen3Results(analysis);
-    showScreen(3);
-    var reportBox = document.getElementById('kfk-full-unlocked-report');
-    if (reportBox && reportBox.scrollIntoView) {
-      reportBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    var vp = (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.verifyEntitlement === 'function')
+      ? global.DreamCompanyCRM.verifyEntitlement({ div: 'KFK', email: email, access_code: orderRef, tier: requestedTier })
+      : Promise.resolve({ authorized: false });
+
+    vp.then(function (vres) {
+      if (!vres || !vres.authorized) {
+        if (msgEl) {
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#9B3B32';
+          msgEl.textContent = (vres && vres.reason === 'tier2_upgrade_required')
+            ? '입력하신 내역은 1등급(9,900원) 패스입니다. 1등급을 선택해 열어 주세요.'
+            : '일치하는 래피드 결제 내역을 찾지 못했습니다. 결제 직후라면 1분 뒤 다시 시도하거나 help@kidsfit.co.kr 로 문의해 주세요.';
+        }
+        return;
+      }
+
+      var verifiedTier = vres.tier === 'tier2' ? 'tier2' : 'tier1';
+      var passRecord = {
+        email: email,
+        tier: verifiedTier,
+        orderRef: vres.access_code || orderRef,
+        verifiedAt: new Date().toISOString()
+      };
+      safeSetStorage(PAID_PASS_KEY, passRecord);
+
+      var savedRaw = safeGetStorage(PROFILE_KEY);
+      var profile = readFormProfile();
+      if ((!profile.heightCm || profile.heightCm < 65) && savedRaw) {
+        try { profile = JSON.parse(savedRaw); } catch (_) {}
+      }
+      if (!profile.heightCm || profile.heightCm < 65) {
+        profile.heightCm = 138.8;
+        profile.weightKg = 35.0;
+      }
+      var analysis = state.lastAnalysis || analyzeGrowthClock(profile);
+      state.lastAnalysis = analysis;
+
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#2F5241';
+        msgEl.textContent = '래피드 구매 인증이 완료되어 전체 정밀 리포트가 열렸습니다.';
+      }
+      closeCheckinModal();
+      renderScreen3Results(analysis);
+      showScreen(3);
+      var reportBox = document.getElementById('kfk-full-unlocked-report');
+      if (reportBox && reportBox.scrollIntoView) {
+        reportBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
     return false;
   }
 
   function submitKfkMonthlyVelocityCheckin(ev) {
     if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+    var paidCheck = getVerifiedPaidPass();
+    if (!paidCheck || paidCheck.tier !== 'tier2') {
+      var outGuard = document.getElementById('kfk-vip-velocity-output');
+      if (outGuard) { outGuard.style.display = 'block'; outGuard.innerHTML = '<span style="color:#9B3B32;">2등급(19,900원) 구매 인증 완료 후 월간 성장속도 판독기를 이용하실 수 있습니다.</span>'; }
+      return false;
+    }
     var email = String((document.getElementById('kfk-vip-checkin-email') || {}).value || '').trim().toLowerCase();
     var sex = String((document.getElementById('kfk-vip-sex') || {}).value || 'M');
     var ageY = Number((document.getElementById('kfk-vip-age') || {}).value) || 10;
@@ -1387,7 +1398,7 @@
           '</svg>' +
           '<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;">' +
             '<span style="font-size:13px;color:#5C544D;">출발 ' + startCmGrad.toFixed(1) + ' cm &rarr; 현재 ' + endCmGrad.toFixed(1) + ' cm</span>' +
-            '<button type="button" onclick="window.KfkPersonalizedPdf && window.KfkPersonalizedPdf.downloadGraduationAlbumPdf(\'우리아이\',' + startCmGrad + ',' + endCmGrad + ')" style="padding:7px 14px;border-radius:6px;border:none;background:#2F5241;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">Day 165 6개월 성장 졸업장 앨범 PDF 받기 &rarr;</button>' +
+            '<button type="button" onclick="window.KfkAtelierApp && window.KfkAtelierApp.downloadRealGraduationAlbumPdf()" style="padding:7px 14px;border-radius:6px;border:none;background:#2F5241;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">Day 165 6개월 성장 졸업장 앨범 PDF 받기 &rarr;</button>' +
           '</div>' +
         '</div>' +
         '<p style="margin:6px 0 8px;">' + (res.velocity_verdict || '') + '</p>' +
@@ -1418,6 +1429,29 @@
         velocity_verdict: '최근 30일 +' + delta.toFixed(2) + ' cm (연간 환산 ' + ann.toFixed(1) + ' cm/yr) 기록이 저장되었습니다.',
         priority_bottleneck: { key: '밤 10시 서파수면 및 저녁 식탁', tip: '동일한 아침 기상 직후 벽면 측정 원칙과 밤 10시 이전 소등 리듬을 꾸준히 이어가 주세요.' }
       });
+    }
+    return false;
+  }
+
+  function downloadRealGraduationAlbumPdf() {
+    var paidCheck = getVerifiedPaidPass();
+    if (!paidCheck || paidCheck.tier !== 'tier2') {
+      alert('6개월 성장 졸업장 앨범 PDF는 2등급(19,900원) 인증 회원 전용입니다.');
+      return false;
+    }
+    var savedProf = null;
+    try { savedProf = JSON.parse(safeGetStorage(PROFILE_KEY) || 'null'); } catch (_) {}
+    var realChildName = (savedProf && savedProf.nickname && String(savedProf.nickname).trim()) ? String(savedProf.nickname).trim() : '우리 아이';
+    var realLogs = [];
+    try {
+      var rawL = safeGetStorage(VELOCITY_LOGS_KEY);
+      realLogs = rawL ? JSON.parse(rawL) : [];
+      if (!Array.isArray(realLogs)) realLogs = [];
+    } catch (_) {}
+    var startCm = realLogs.length ? Number(realLogs[0].prevH || realLogs[0].curH) : Number((savedProf && savedProf.heightCm) || 135.0);
+    var latestCm = realLogs.length ? Number(realLogs[realLogs.length - 1].curH) : startCm;
+    if (global.KfkPersonalizedPdf && typeof global.KfkPersonalizedPdf.downloadGraduationAlbumPdf === 'function') {
+      return global.KfkPersonalizedPdf.downloadGraduationAlbumPdf(realChildName, startCm, latestCm, realLogs);
     }
     return false;
   }
@@ -1714,6 +1748,7 @@
     openKfkLatpeedCheckout: openKfkLatpeedCheckout,
     switchCheckinTab: switchCheckinTab,
     verifyAndUnlockKfkPaidPass: verifyAndUnlockKfkPaidPass,
+    downloadRealGraduationAlbumPdf: downloadRealGraduationAlbumPdf,
     submitKfkMonthlyVelocityCheckin: submitKfkMonthlyVelocityCheckin,
     openHeaderCheckinStudio: openHeaderCheckinStudio,
     closeCheckinModal: closeCheckinModal,
