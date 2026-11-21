@@ -976,6 +976,12 @@
 
   function renderScreen3Results(analysis) {
     if (typeof document === 'undefined' || !analysis) return;
+    try {
+      if (!global.__kfkQuizCompleteTracked && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
+        global.__kfkQuizCompleteTracked = true;
+        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_complete', { event_meta: 'kdca_step5_complete' });
+      }
+    } catch (_) {}
     var paidPass = getVerifiedPaidPass();
     var statusBadge = document.getElementById('screen3-access-status');
     if (statusBadge) {
@@ -987,7 +993,6 @@
         statusBadge.textContent = '1등급 · 단건 정밀 리포트 패스 열람 중';
       } else {
         statusBadge.textContent = '무료 기본 요약 즉시 공개';
-      try { if (!global.__kfkQuizCompleteTracked && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') { global.__kfkQuizCompleteTracked = true; global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_complete'); } } catch (_) {}
       }
     }
 
@@ -1177,8 +1182,10 @@
   function openKfkLatpeedCheckout(tierKey, opts) {
     var tier = (tierKey === 'tier3') ? 'tier3' : ((tierKey === 'tier2') ? 'tier2' : 'tier1');
     try {
-      if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
-        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'checkout_click');
+      var nowCcTs = Date.now();
+      if ((!global.__kfkLastCheckoutTrackTs || nowCcTs - global.__kfkLastCheckoutTrackTs > 800) && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
+        global.__kfkLastCheckoutTrackTs = nowCcTs;
+        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'checkout_click', { event_meta: tier });
       }
     } catch (_) {}
     try {
