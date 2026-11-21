@@ -1,58 +1,30 @@
 User-agent: *
 Allow: /
+Disallow: /.git/
+Disallow: /.env
+Disallow: /api/
+Disallow: /products/
+Disallow: /assets/downloads/*master*
+Disallow: /assets/downloads/*full*
+Disallow: /assets/downloads/*guide*
+Disallow: /jp/downloads/*full*
 
-# Korean Major Search Portal Crawlers (Naver, Daum/Kakao, Nate/SK Comms, Zum)
-User-agent: Yeti
-Allow: /
+# AI Crawler Boundary Governance (OWASP A06:2025)
+User-agent: CCBot
+Disallow: /
 
-User-agent: NaverBot
-Allow: /
-
-User-agent: Daumoa
-Allow: /
-
-User-agent: Daum
-Allow: /
-
-User-agent: kakaotalk-scrap
-Allow: /
-
-User-agent: NATE
-Allow: /
-
-User-agent: Cowbot
-Allow: /
-
-User-agent: NateBot
-Allow: /
-
-User-agent: ZumBot
-Allow: /
-
-# Global Search & AI Grounding Crawlers (Google, Bing/IndexNow, ChatGPT, Perplexity, Claude)
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+User-agent: Bytespider
+Disallow: /
 
 User-agent: GPTBot
 Allow: /
+Disallow: /products/
+Disallow: /api/
 
 User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: ClaudeBot
-Allow: /
-
 Sitemap: https://kidsfit.co.kr/sitemap.xml
-# Syndication & AI Grounding Feeds:
-# RSS 2.0: https://kidsfit.co.kr/rss.xml
-# JSON Feed: https://kidsfit.co.kr/feed.json
-# LLMs Guide: https://kidsfit.co.kr/llms.txt
