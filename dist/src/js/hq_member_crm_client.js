@@ -20,11 +20,11 @@
     global.fetch = function (input, init) {
       try {
         var reqUrl = typeof input === 'string' ? input : (input && input.url ? String(input.url) : '');
-        if (reqUrl.indexOf('abacus.jasoncameron.dev') >= 0) {
+        if (reqUrl.indexOf('abacus.jasoncameron.dev') >= 0 || reqUrl.indexOf('script.google.com/macros/s/') >= 0) {
           if (typeof Response === 'function') {
-            return Promise.resolve(new Response('{"value":0}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+            return Promise.resolve(new Response('{"ok":true,"value":0}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
           }
-          return Promise.resolve({ ok: true, status: 200, json: function () { return Promise.resolve({ value: 0 }); } });
+          return Promise.resolve({ ok: true, status: 200, json: function () { return Promise.resolve({ ok: true, value: 0 }); } });
         }
       } catch (_e) {}
       return _origFetch(input, init);

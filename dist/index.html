@@ -99,15 +99,11 @@
         var ns = 'kfk_kidsfitkr';
         if (!window.__HQ_BEACON_SENT_kfk_kidsfitkr__) {
           window.__HQ_BEACON_SENT_kfk_kidsfitkr__ = true;
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
-          fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/pv_total', { mode: 'cors', keepalive: true }).catch(function () {});
           if (localStorage.getItem('hq_uv_' + ns + '_' + kst) !== '1') {
             localStorage.setItem('hq_uv_' + ns + '_' + kst, '1');
-            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_' + kst, { mode: 'cors', keepalive: true }).catch(function () {});
           }
           if (localStorage.getItem('hq_uv_ever_' + ns) !== '1') {
             localStorage.setItem('hq_uv_ever_' + ns, '1');
-            fetch('https://abacus.jasoncameron.dev/hit/' + ns + '/uv_total', { mode: 'cors', keepalive: true }).catch(function () {});
           }
         }
       } catch (_) {}
