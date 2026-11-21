@@ -1174,7 +1174,7 @@
     } catch (_) {}
   }
 
-  function openKfkLatpeedCheckout(tierKey) {
+  function openKfkLatpeedCheckout(tierKey, opts) {
     var tier = (tierKey === 'tier3') ? 'tier3' : ((tierKey === 'tier2') ? 'tier2' : 'tier1');
     try {
       if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
@@ -1198,7 +1198,7 @@
         ? String(cfg.TIER2_19900_URL || cfg.LATPEED_TIER2_URL || 'https://www.latpeed.com/products/_5Nq4').trim()
         : String(cfg.TIER1_9900_URL || cfg.LATPEED_LIVE_URL || 'https://www.latpeed.com/products/daMaP').trim());
 
-    if (targetUrl) {
+    if (targetUrl && !(opts && opts.skipWindowOpen)) {
       var win = null;
       try { win = global.open(targetUrl, '_blank', 'noopener,noreferrer'); } catch (_) {}
       if (!win && global.location) {
