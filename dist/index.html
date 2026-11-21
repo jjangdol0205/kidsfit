@@ -538,12 +538,12 @@
           <span id="screen3-access-status" class="step-counter">무료 기본 요약 즉시 공개</span>
         </div>
 
-        <!-- 결과 화면 최상단 1탭 공유 바 (카카오톡 공유 / 링크 복사 ?ref=<vid>) -->
-        <div id="kfk-top-share-bar" class="no-print" style="margin:0 0 18px;padding:13px 16px;background:#FFFFFF;border:1.5px solid #2F5241;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
-          <span style="font-size:14.5px;color:#2C2724;line-height:1.45;"><strong>배우자나 엄마 친구에게도 보여주시겠어요?</strong> (무료 1분 질병관리청 성장 진단)</span>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <button type="button" id="btn-kfk-share-kakao" class="atelier-btn-secondary" style="min-height:42px;padding:8px 14px;font-size:13.5px;border-color:#E5C700;background:#FEE500;color:#191919;font-weight:800;" data-csp-act="dc-share-site" data-share-div="KFK" data-share-mode="kakao" data-share-url="https://kidsfit.co.kr/" data-share-title="키즈핏 성장 아틀리에 — 질병관리청·뼈나이 1분 무료 예상키 진단" data-share-text="우리 아이 질병관리청 백분위와 성장 시계를 1분 만에 무료로 확인해 보세요:">카카오톡 공유 &rarr;</button>
-            <button type="button" id="btn-kfk-share-copy" class="atelier-btn-secondary" style="min-height:42px;padding:8px 14px;font-size:13.5px;border-color:#2F5241;background:#FFFFFF;color:#2F5241;font-weight:700;" data-csp-act="dc-share-site" data-share-div="KFK" data-share-mode="copy" data-share-url="https://kidsfit.co.kr/" data-share-title="키즈핏 성장 아틀리에 — 질병관리청·뼈나이 1분 무료 예상키 진단">링크 복사</button>
+        <!-- 결과 화면 최상단 1탭 공유 바 (컴팩트 1줄 · 카톡/링크복사 ?ref=<vid>) -->
+        <div id="kfk-top-share-bar" class="no-print" style="margin:0 0 10px;padding:8px 10px;background:#FFFFFF;border:1px solid #DFD7CC;border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;">
+          <span style="font-size:12.5px;color:#2C2724;font-weight:700;">가족·엄마 친구에게 무료 진단 공유:</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <button type="button" id="btn-kfk-share-kakao" class="atelier-btn-secondary" style="min-height:36px;padding:4px 10px;font-size:12.5px;border-color:#E5C700;background:#FEE500;color:#191919;font-weight:800;" data-csp-act="dc-share-site" data-share-div="KFK" data-share-mode="kakao" data-share-url="https://kidsfit.co.kr/" data-share-title="키즈핏 성장 아틀리에 — 질병관리청·뼈나이 1분 무료 예상키 진단" data-share-text="우리 아이 질병관리청 백분위와 성장 시계를 1분 만에 무료로 확인해 보세요:">카카오톡 공유</button>
+            <button type="button" id="btn-kfk-share-copy" class="atelier-btn-secondary" style="min-height:36px;padding:4px 10px;font-size:12.5px;border-color:#2F5241;background:#FFFFFF;color:#2F5241;font-weight:700;" data-csp-act="dc-share-site" data-share-div="KFK" data-share-mode="copy" data-share-url="https://kidsfit.co.kr/" data-share-title="키즈핏 성장 아틀리에 — 질병관리청·뼈나이 1분 무료 예상키 진단">링크 복사</button>
           </div>
         </div>
 
@@ -588,72 +588,6 @@
           <div id="result-free-growth-clock-note" class="atelier-readout-box"></div>
         </div>
 
-        <!-- 1) 자연스러운 무비밀번호 이메일 요약 저장 카드 (#kfk-parent-habit-notebook / #kfk-passwordless-club-box) -->
-        <div id="kfk-parent-habit-notebook" class="atelier-save-club-card no-print" aria-label="맞춤 성장 요약 저장 및 월간 성장 리포트 무료 안내">
-          <span class="atelier-note-label" style="margin-bottom: 8px;">무료 요약 보관 · 월간 성장 편지</span>
-          <h3 class="step-question-title" style="font-size: 21px; margin-bottom: 8px;">맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 (무료)</h3>
-          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.72; color: var(--atelier-muted);">
-            비밀번호 설정 없이 학부모님 이메일 주소만 적어 두시면 방금 확인하신 우리 아이 백분위·성장 시계 요약을 저장하고, 매월 키 변화 점검 알림과 계절별 저녁 수면·식탁 편지를 보내드립니다.
-          </p>
-
-          <div id="kfk-passwordless-club-box">
-            <div id="kfk-stepup-email-form-wrap">
-              <div id="kfk-stepup-email-error" class="atelier-error-msg" role="alert"></div>
-              <form id="kfk-stepup-email-form" data-csp-submit="h_f0152083842c">
-                <input type="text" id="kfk-stepup-hp-input" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
-                <div class="field-row-2" style="margin-bottom: 14px;">
-                  <div>
-                    <label class="field-label" for="kfk-stepup-email-input">학부모님 이메일 주소</label>
-                    <input type="email" id="kfk-stepup-email-input" class="atelier-input" style="background: #FFFFFF;" required placeholder="예: parent@naver.com" autocomplete="email">
-                  </div>
-                  <div>
-                    <label class="field-label" for="kfk-stepup-nickname-input">아이 애칭 또는 메모 (선택)</label>
-                    <input type="text" id="kfk-stepup-nickname-input" class="atelier-input" style="background: #FFFFFF;" maxlength="30" placeholder="예: 첫째 민준이">
-                  </div>
-                </div>
-                <button type="submit" id="btn-kfk-stepup-email-submit" class="atelier-btn-secondary" style="width: 100%; min-height: 52px; border-color: var(--atelier-sage); color: var(--atelier-sage); background: #FFFFFF;">
-                  맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 &rarr;
-                </button>
-              </form>
-              <p class="field-subnote" style="margin-top: 10px; text-align: center;">
-                비밀번호 없음 &middot; 광고성 스팸 발송 없음 &middot; 편지 하단에서 언제든 수신 해지 가능
-              </p>
-            </div>
-            <div id="kfk-email-saved-banner" class="atelier-email-saved-banner" style="display: none;"></div>
-          </div>
-        </div>
-
-        <!-- 미결제 시: 가격 등급별로 열리는 나머지 정밀 분석 안내 -->
-        <div id="kfk-locked-vault-preview" class="vault-preview-card" aria-label="가격 등급별 개방 항목 안내">
-          <span class="atelier-note-label" style="margin-bottom: 8px;">가격 등급에 따라 열리는 정밀 분석 내역</span>
-          <p id="vault-ba-context-line" style="margin: 0 0 12px; font-size: 14.5px; color: var(--atelier-muted);">
-            적어 주신 내용을 바탕으로 아래 정밀 항목들의 계산이 준비되었습니다.
-          </p>
-
-          <div class="vault-row">
-            <div>
-              <p class="vault-row-title">첫째 · 뼈나이 시간 흐름을 반영한 최종 성인 예상 키 세 가지 경로</p>
-              <span class="vault-row-masked">현재 습관 유지 시 <span class="vault-masked-blur">[결제 후 개방]</span> / 저녁 습관 정돈 시 <span class="vault-masked-blur">[결제 후 맞춤 산출]</span></span>
-            </div>
-            <span class="vault-tier-tag">9,900원 이상 개방</span>
-          </div>
-
-          <div class="vault-row">
-            <div>
-              <p class="vault-row-title">둘째 · 우리 아이 수치가 그대로 적힌 『1:1 맞춤형 정밀 성장 보고서 PDF』 다운로드</p>
-              <span class="vault-row-masked">아이 키·뼈나이·체중별 단백질/칼슘 정량·90일 맞춤 저녁 처방이 담긴 전용 3쪽 PDF + 17쪽 마스터북</span>
-            </div>
-            <span class="vault-tier-tag">9,900원 이상 개방</span>
-          </div>
-
-          <div class="vault-row">
-            <div>
-              <p class="vault-row-title">셋째 · 우리 아이 향후 6개월 목표 키(cm) 로드맵 PDF &amp; 매월 성장속도 자동 판독</p>
-              <span class="vault-row-masked">현재 키 출발 1~6개월차 기대 신장표가 담긴 맞춤 PDF + 6개월 매달 성장속도(cm/년) 자동 판독</span>
-            </div>
-            <span class="vault-tier-tag">19,900원 전용 개방</span>
-          </div>
-        </div>
 
         <!-- 유료 결제 확인 시 열리는 전체 정밀 리포트 화면 -->
         <div id="kfk-full-unlocked-report" class="full-report-section" style="display: none;" aria-label="열람 중인 정밀 성장·뼈나이 리포트">
@@ -725,71 +659,28 @@
           </div>
         </div>
 
-        <hr class="atelier-rule no-print">
+        
 
         <!-- 유료 2등급 가격 선택 카드 (#kfk-latpeed-ebook-slot) -->
-        <div id="kfk-latpeed-ebook-slot" class="no-print" role="region" aria-label="키즈핏 4단계 가치사다리 패스 선택">
-          <span class="atelier-note-label">4단계 성장 가치사다리 &middot; 필요한 깊이만큼 선택</span>
-          <h3 class="step-question-title">무료 진단에서 12개월 형제자매 관리까지, 단계별로 열어 보세요</h3>
-          <p class="step-question-desc" style="margin-bottom: 14px;">
-            상업성 상품 광고 없이 설문 수치로 작성된 1:1 맞춤형 정밀 성장 보고서와 월간 성장속도 기록장만 정성껏 열어 드립니다.
-          </p>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:0 0 14px;padding:12px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:10px;font-size:12.5px;">
-            <div style="padding:8px;border-radius:8px;background:#ECFDF5;border:1px solid #86EFAC;color:#14532D;"><strong>1단계 · 무료 (0원)</strong><br>또래 백분위·2p 샘플 ✓</div>
-            <div style="padding:8px;border-radius:8px;background:#FFFFFF;border:1px solid #DFD7CC;color:#2C2724;"><strong>2단계 · 저가 (9,900원)</strong><br>4p 맞춤 PDF·17p 북</div>
-            <div style="padding:8px;border-radius:8px;background:#FFFFFF;border:1px solid #DFD7CC;color:#2C2724;"><strong>3단계 · 핵심 (19,900원)</strong><br>6개월 속도 추적 풀팩</div>
-            <div style="padding:8px;border-radius:8px;background:#FEFCE8;border:1px solid #FCD34D;color:#78350F;"><strong>4단계 · 프리미엄 (39,000원)</strong><br>12개월 형제자매 4명</div>
-          </div>
-
-          <!-- 블러 처리된 PDF 1쪽 시각 미리보기 카드 (A4 정밀 보고서 시트) -->
-          <div id="kfk-blurred-pdf-preview" class="no-print" aria-label="4페이지 맞춤형 정밀 보고서 PDF 1쪽 시각 미리보기" style="position:relative;margin:0 0 18px;background:#FFFFFF;border:1.5px solid #D6CEC3;border-radius:12px;padding:18px 18px 16px;box-shadow:0 10px 26px rgba(44,39,36,0.08);overflow:hidden;">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;padding-bottom:10px;border-bottom:2px solid #2F5241;margin-bottom:12px;">
-              <div>
-                <div style="font-size:11.5px;font-weight:800;letter-spacing:0.04em;color:#2F5241;">PAGE 1 / 4 &middot; 질병관리청 2017 기준 우리 아이 1:1 정밀 성장·뼈나이 보고서</div>
-                <div style="font-size:16.5px;font-weight:800;color:#2C2724;margin-top:2px;">뼈나이 시차(&Delta;t) 보정 최종 예상키 3경로 ＆ 30일 실천 달력</div>
-              </div>
-              <span style="font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;">PDF 1쪽 미리보기</span>
+        <div id="kfk-latpeed-ebook-slot" class="no-print" role="region" aria-label="키즈핏 4단계 가치사다리 패스 선택" style="margin-top:8px;">
+          <!-- 실제 질병관리청 4쪽 PDF 1쪽 블러 썸네일 미리보기 카드 -->
+          <div id="kfk-blurred-pdf-preview" class="no-print" aria-label="4페이지 맞춤형 정밀 보고서 PDF 1쪽 실제 블러 썸네일" style="position:relative;margin:0 0 10px;background:#FFFFFF;border:1.5px solid #D6CEC3;border-radius:10px;padding:10px;box-shadow:0 8px 20px rgba(44,39,36,0.08);overflow:hidden;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="font-size:11.5px;font-weight:800;color:#2F5241;">PAGE 1 / 4 &middot; 실제 맞춤 성장 보고서 PDF 1쪽 미리보기</span>
+              <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;">블러 썸네일</span>
             </div>
-
-            <div style="position:relative;min-height:210px;">
-              <div aria-hidden="true" style="filter:blur(4.5px);-webkit-filter:blur(4.5px);user-select:none;pointer-events:none;padding:4px 0 6px;">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:8px;margin-bottom:10px;">
-                  <div style="padding:10px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:8px;">
-                    <div style="font-size:11.5px;color:#6B635B;">뼈나이 보정 현재 경로</div>
-                    <div style="font-size:18px;font-weight:800;color:#1B4332;">172.4 cm</div>
-                  </div>
-                  <div style="padding:10px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:8px;">
-                    <div style="font-size:11.5px;color:#6B635B;">저녁 습관 개선 여력</div>
-                    <div style="font-size:18px;font-weight:800;color:#9A3412;">+3.8 cm (176.2 cm)</div>
-                  </div>
-                  <div style="padding:10px;background:#FAF7F2;border:1px solid #DFD7CC;border-radius:8px;">
-                    <div style="font-size:11.5px;color:#6B635B;">권장 연간 성장속도</div>
-                    <div style="font-size:18px;font-weight:800;color:#0F172A;">6.1 cm / 년</div>
-                  </div>
-                </div>
-                <div style="padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;line-height:1.68;color:#334155;">
-                  <div><strong>1. 최우선 성장 병목 진단:</strong> 취침 시각 40분 앞당기기(밤 10시 전 깊은 수면) 및 저녁 단백질 45g 배분표.</div>
-                  <div><strong>2. 소아과 진료실 지참 1장 요약표 (Page 3):</strong> 뼈나이 재촬영 시점 판단 질문 3가지 수록.</div>
-                  <div><strong>3. 30일 냉장고 실천 달력 (Page 4):</strong> 매일 밤 아이와 함께 체크하는 수면·식탁·줄넘기 기록표 (상업성 제휴 광고 0건).</div>
-                </div>
-              </div>
-
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;background:rgba(250,247,242,0.55);text-align:center;">
-                <span style="display:inline-block;padding:6px 14px;border-radius:999px;background:#1B4332;color:#FFFFFF;font-size:12.5px;font-weight:800;box-shadow:0 4px 12px rgba(27,67,50,0.25);">입력하신 우리 아이 수치로 자동 생성되는 정밀 보고서</span>
-                <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
-                  <a href="https://www.latpeed.com/products/daMaP" target="_blank" rel="noopener noreferrer" data-kfk-paid-ebook="1" data-csp-act="kfk-open-latpeed" data-csp-arg="tier1" data-csp-tag="openkfklatpeedcheckout" class="atelier-btn-primary" style="min-height:42px;padding:8px 14px;font-size:13px;width:auto;display:inline-flex;align-items:center;text-decoration:none;">단건 정밀 리포트 열기 (9,900원) &rarr;</a>
-                  <a href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener" class="atelier-btn-secondary" style="min-height:42px;padding:8px 14px;font-size:13px;background:#FFFFFF;border-color:#2F5241;color:#2F5241;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;">2p 무료 샘플 먼저 보기 &rarr;</a>
-                </div>
+            <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #DFD7CC;">
+              <img src="/assets/kfk_pdf_p1_blur.png?v=20261122abc" alt="질병관리청 2017 기준 우리 아이 4페이지 정밀 성장 보고서 PDF 1쪽 블러 미리보기" width="780" height="520" loading="lazy" style="display:block;width:100%;max-height:175px;object-fit:cover;object-position:top center;">
+              <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:10px;background:linear-gradient(180deg, rgba(250,247,242,0.05) 0%, rgba(250,247,242,0.84) 100%);">
+                <span style="display:inline-block;padding:5px 12px;border-radius:999px;background:#1B4332;color:#FFFFFF;font-size:12px;font-weight:800;box-shadow:0 4px 10px rgba(27,67,50,0.28);">뼈나이 보정 예상키 &middot; 30일 냉장고 달력 &mdash; 아래 패스에서 즉시 개방</span>
               </div>
             </div>
           </div>
 
-          <div style="margin:0 0 16px;padding:14px 16px;background:#FFFFFF;border:1px solid #DFD7CC;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
-            <div style="font-size:14px;color:#3A3430;max-width:500px;line-height:1.55;">
-              <strong>결제 전 먼저 확인하세요:</strong> 소아과 진료실 질문지와 30일 실천 달력이 담긴 <strong>2페이지 무료 샘플 PDF</strong>를 먼저 열어보실 수 있습니다.
-            </div>
-            <a href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener" class="atelier-btn-secondary" style="text-decoration:none;border-color:#2F5241;color:#2F5241;background:#FAF7F2;font-weight:700;padding:9px 16px;font-size:13.5px;">
+          <!-- 결제 버튼 바로 위: 2p 무료 샘플 PDF 미리보기 바 -->
+          <div id="kfk-sample-above-cta" style="margin:0 0 12px;padding:9px 12px;background:#FAF7F2;border:1px solid #2F5241;border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
+            <span style="font-size:13px;color:#2C2724;"><strong>결제 전 먼저 확인:</strong> 소아과 질문지 &middot; 30일 달력 포함 2p 무료 샘플</span>
+            <a href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener" class="atelier-btn-secondary" style="text-decoration:none;border-color:#2F5241;color:#2F5241;background:#FFFFFF;font-weight:700;padding:6px 12px;min-height:36px;font-size:12.5px;display:inline-flex;align-items:center;">
               2p 무료 샘플 PDF 미리보기 &rarr;
             </a>
           </div>
@@ -873,6 +764,79 @@
             </button>
           </p>
         </div>
+
+        <div style="margin-top:16px;">
+<!-- 1) 자연스러운 무비밀번호 이메일 요약 저장 카드 (#kfk-parent-habit-notebook / #kfk-passwordless-club-box) -->
+        <div id="kfk-parent-habit-notebook" class="atelier-save-club-card no-print" aria-label="맞춤 성장 요약 저장 및 월간 성장 리포트 무료 안내">
+          <span class="atelier-note-label" style="margin-bottom: 8px;">무료 요약 보관 · 월간 성장 편지</span>
+          <h3 class="step-question-title" style="font-size: 21px; margin-bottom: 8px;">맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 (무료)</h3>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.72; color: var(--atelier-muted);">
+            비밀번호 설정 없이 학부모님 이메일 주소만 적어 두시면 방금 확인하신 우리 아이 백분위·성장 시계 요약을 저장하고, 매월 키 변화 점검 알림과 계절별 저녁 수면·식탁 편지를 보내드립니다.
+          </p>
+
+          <div id="kfk-passwordless-club-box">
+            <div id="kfk-stepup-email-form-wrap">
+              <div id="kfk-stepup-email-error" class="atelier-error-msg" role="alert"></div>
+              <form id="kfk-stepup-email-form" data-csp-submit="h_f0152083842c">
+                <input type="text" id="kfk-stepup-hp-input" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
+                <div class="field-row-2" style="margin-bottom: 14px;">
+                  <div>
+                    <label class="field-label" for="kfk-stepup-email-input">학부모님 이메일 주소</label>
+                    <input type="email" id="kfk-stepup-email-input" class="atelier-input" style="background: #FFFFFF;" required placeholder="예: parent@naver.com" autocomplete="email">
+                  </div>
+                  <div>
+                    <label class="field-label" for="kfk-stepup-nickname-input">아이 애칭 또는 메모 (선택)</label>
+                    <input type="text" id="kfk-stepup-nickname-input" class="atelier-input" style="background: #FFFFFF;" maxlength="30" placeholder="예: 첫째 민준이">
+                  </div>
+                </div>
+                <button type="submit" id="btn-kfk-stepup-email-submit" class="atelier-btn-secondary" style="width: 100%; min-height: 52px; border-color: var(--atelier-sage); color: var(--atelier-sage); background: #FFFFFF;">
+                  맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 &rarr;
+                </button>
+              </form>
+              <p class="field-subnote" style="margin-top: 10px; text-align: center;">
+                비밀번호 없음 &middot; 광고성 스팸 발송 없음 &middot; 편지 하단에서 언제든 수신 해지 가능
+              </p>
+            </div>
+            <div id="kfk-email-saved-banner" class="atelier-email-saved-banner" style="display: none;"></div>
+          </div>
+        </div>
+        </div>
+        <details id="kfk-more-details-accordion" class="kfk-details-accordion no-print">
+          <summary><span>가격 등급별 개방 항목 상세 &amp; 4단계 안내 펼쳐보기</span><span>&#9662;</span></summary>
+          <div style="margin-top:10px;">
+<!-- 미결제 시: 가격 등급별로 열리는 나머지 정밀 분석 안내 -->
+        <div id="kfk-locked-vault-preview" class="vault-preview-card" aria-label="가격 등급별 개방 항목 안내">
+          <span class="atelier-note-label" style="margin-bottom: 8px;">가격 등급에 따라 열리는 정밀 분석 내역</span>
+          <p id="vault-ba-context-line" style="margin: 0 0 12px; font-size: 14.5px; color: var(--atelier-muted);">
+            적어 주신 내용을 바탕으로 아래 정밀 항목들의 계산이 준비되었습니다.
+          </p>
+
+          <div class="vault-row">
+            <div>
+              <p class="vault-row-title">첫째 · 뼈나이 시간 흐름을 반영한 최종 성인 예상 키 세 가지 경로</p>
+              <span class="vault-row-masked">현재 습관 유지 시 <span class="vault-masked-blur">[결제 후 개방]</span> / 저녁 습관 정돈 시 <span class="vault-masked-blur">[결제 후 맞춤 산출]</span></span>
+            </div>
+            <span class="vault-tier-tag">9,900원 이상 개방</span>
+          </div>
+
+          <div class="vault-row">
+            <div>
+              <p class="vault-row-title">둘째 · 우리 아이 수치가 그대로 적힌 『1:1 맞춤형 정밀 성장 보고서 PDF』 다운로드</p>
+              <span class="vault-row-masked">아이 키·뼈나이·체중별 단백질/칼슘 정량·90일 맞춤 저녁 처방이 담긴 전용 3쪽 PDF + 17쪽 마스터북</span>
+            </div>
+            <span class="vault-tier-tag">9,900원 이상 개방</span>
+          </div>
+
+          <div class="vault-row">
+            <div>
+              <p class="vault-row-title">셋째 · 우리 아이 향후 6개월 목표 키(cm) 로드맵 PDF &amp; 매월 성장속도 자동 판독</p>
+              <span class="vault-row-masked">현재 키 출발 1~6개월차 기대 신장표가 담긴 맞춤 PDF + 6개월 매달 성장속도(cm/년) 자동 판독</span>
+            </div>
+            <span class="vault-tier-tag">19,900원 전용 개방</span>
+          </div>
+        </div>
+          </div>
+        </details>
       </div>
     </section>
 
