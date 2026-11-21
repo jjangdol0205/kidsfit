@@ -13,7 +13,7 @@
  *    - `/deploy` (`배포`)        : Rebuild `dist/`, run verification checks (R5 remote push guarded)
  * 3. Direct Antigravity AI Remote Control (`language_server.exe` / `agentapi.bat` Bridge):
  *    - Any natural language message sent on Telegram automatically wakes up Google Antigravity
- *      in conversation `73f230e4-d0b1-4732-b378-27fedb0c9c83` (Telegram Unified Channel), executes the task in `D:\드림컴퍼니\5사업부`,
+ *      in conversation `1921e31e-ab59-4720-9419-93cac770374d` (Telegram Unified Channel), executes the task in `D:\드림컴퍼니\5사업부`,
  *      and replies back to Telegram when finished! (PC Direct Channel `dbc61f0a-76cb-48e3-b617-a616c069564c` is isolated)
  */
 
@@ -26,8 +26,8 @@ const telegramNotifier = require('./telegram-notify.js');
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const STATE_PATH = path.join(PROJECT_ROOT, 'logs', 'telegram_bridge_state.json');
 
-// Telegram Unified Conversation: '73f230e4-d0b1-4732-b378-27fedb0c9c83' (PC Direct: 'dbc61f0a-76cb-48e3-b617-a616c069564c')
-const DEFAULT_CONVERSATION_ID = '73f230e4-d0b1-4732-b378-27fedb0c9c83';
+// Telegram Unified Conversation: '1921e31e-ab59-4720-9419-93cac770374d' (PC Direct: 'dbc61f0a-76cb-48e3-b617-a616c069564c')
+const DEFAULT_CONVERSATION_ID = '1921e31e-ab59-4720-9419-93cac770374d';
 const PC_DIRECT_CONVERSATION_ID = 'dbc61f0a-76cb-48e3-b617-a616c069564c';
 const AGENTAPI_BAT = 'C:\\Users\\jjang\\.gemini\\antigravity\\bin\\agentapi.bat';
 const LANGUAGE_SERVER_EXE = 'C:\\Users\\jjang\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe';

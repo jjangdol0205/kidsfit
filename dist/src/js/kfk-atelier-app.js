@@ -1251,8 +1251,12 @@
       msgEl.textContent = '서버에서 래피드 구매 내역을 확인하고 있습니다...';
     }
 
+    var isSixDigitOtp = /^\d{6}$/.test(orderRef);
+    var reqOpts = isSixDigitOtp
+      ? { div: 'KFK', email: email, otp: orderRef, tier: requestedTier }
+      : { div: 'KFK', email: email, access_code: orderRef, tier: requestedTier };
     var vp = (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.verifyEntitlement === 'function')
-      ? global.DreamCompanyCRM.verifyEntitlement({ div: 'KFK', email: email, access_code: orderRef, tier: requestedTier })
+      ? global.DreamCompanyCRM.verifyEntitlement(reqOpts)
       : Promise.resolve({ authorized: false });
 
     vp.then(function (vres) {
@@ -1601,23 +1605,34 @@
     try {
       if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.decodeMagicRestoreParam === 'function' && search) {
         var mObj = global.DreamCompanyCRM.decodeMagicRestoreParam(search);
-        if (mObj && typeof mObj === 'object') {
+        if (mObj && typeof mObj === 'object' && mObj.email && mObj.access_code && typeof global.DreamCompanyCRM.verifyEntitlement === 'function') {
           var profM = Object.assign(readFormProfile(), mObj);
           if (!profM.heightCm || profM.heightCm < 65) profM.heightCm = Number(mObj.h0 || mObj.baseline_height_cm || 138.8);
           safeSetStorage(PROFILE_KEY, profM);
-          safeSetStorage(PAID_PASS_KEY, {
-            email: mObj.email || 'magic@kidsfit.co.kr',
-            tier: (mObj.tier && /19,?900|tier2|6개월/i.test(String(mObj.tier))) ? 'tier2' : 'tier1',
-            orderRef: mObj.order_ref || 'MAGIC-RESTORE',
-            verifiedAt: new Date().toISOString()
+          global.DreamCompanyCRM.verifyEntitlement({
+            div: 'KFK',
+            email: mObj.email,
+            access_code: mObj.access_code,
+            magic_restore: true
+          }).then(function (vres) {
+            if (vres && vres.authorized) {
+              safeSetStorage(PAID_PASS_KEY, {
+                email: mObj.email,
+                tier: vres.tier === 'tier2' ? 'tier2' : 'tier1',
+                orderRef: mObj.access_code,
+                verifiedAt: new Date().toISOString()
+              });
+              state.lastAnalysis = analyzeGrowthClock(profM);
+              renderScreen3Results(state.lastAnalysis);
+              showScreen(3);
+              if (global.DreamCompanyCRM.mountSatisfactionBar) {
+                var smTop = document.getElementById('kfk-full-report-sat-mount');
+                if (smTop) global.DreamCompanyCRM.mountSatisfactionBar(smTop, { div: 'KFK', context: 'full_report', email: mObj.email });
+              }
+            } else {
+              openHeaderCheckinStudio();
+            }
           });
-          state.lastAnalysis = analyzeGrowthClock(profM);
-          renderScreen3Results(state.lastAnalysis);
-          showScreen(3);
-          if (global.DreamCompanyCRM.mountSatisfactionBar) {
-            var smTop = document.getElementById('kfk-full-report-sat-mount');
-            if (smTop) global.DreamCompanyCRM.mountSatisfactionBar(smTop, { div: 'KFK', context: 'full_report', email: mObj.email });
-          }
           return;
         }
       }
@@ -1734,6 +1749,53 @@
     return false;
   }
 
+  function requestKfkOtp() {
+    var emailEl = document.getElementById('kfk-restore-email');
+    var msgEl = document.getElementById('kfk-restore-feedback');
+    var email = emailEl ? String(emailEl.value || '').trim().toLowerCase() : '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#9B3B32';
+        msgEl.textContent = '먼저 래피드 결제 시 사용하신 이메일 주소를 입력해 주세요.';
+      }
+      return false;
+    }
+    if (msgEl) {
+      msgEl.style.display = 'block';
+      msgEl.style.color = '#3A3430';
+      msgEl.textContent = '결제 이메일로 6자리 일회용 인증번호를 발송하고 있습니다...';
+    }
+    if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.requestAuthOtp === 'function') {
+      global.DreamCompanyCRM.requestAuthOtp({ div: 'KFK', email: email }).then(function () {
+        if (msgEl) {
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#2F5241';
+          msgEl.textContent = '결제 이력이 확인되면 6자리 인증번호가 메일로 발송됩니다 (10분 유효). 위 칸에 입력해 주세요.';
+        }
+      });
+    }
+    return false;
+  }
+
+  function downloadProtectedMasterbookPdf(ev) {
+    var paidPass = getVerifiedPaidPass();
+    if (!paidPass) {
+      if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+      openHeaderCheckinStudio();
+      return false;
+    }
+    if (global.DreamCompanyCRM && typeof global.DreamCompanyCRM.openProtectedPdfDownload === 'function') {
+      if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+      var docKey = paidPass.tier === 'tier2' ? 'kfk_tier2_fullpackage' : 'kfk_tier1_masterbook';
+      global.DreamCompanyCRM.openProtectedPdfDownload('KFK', docKey, function () {
+        openHeaderCheckinStudio();
+      });
+      return false;
+    }
+    return true;
+  }
+
   var api = {
     calculateKdcaPercentile: calculateKdcaPercentile,
     computeExactAgeFromDob: computeExactAgeFromDob,
@@ -1748,6 +1810,8 @@
     openKfkLatpeedCheckout: openKfkLatpeedCheckout,
     switchCheckinTab: switchCheckinTab,
     verifyAndUnlockKfkPaidPass: verifyAndUnlockKfkPaidPass,
+    requestKfkOtp: requestKfkOtp,
+    downloadProtectedMasterbookPdf: downloadProtectedMasterbookPdf,
     downloadRealGraduationAlbumPdf: downloadRealGraduationAlbumPdf,
     submitKfkMonthlyVelocityCheckin: submitKfkMonthlyVelocityCheckin,
     openHeaderCheckinStudio: openHeaderCheckinStudio,

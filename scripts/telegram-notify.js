@@ -46,7 +46,7 @@ function getTelegramConfig() {
     dotEnv.DIVISION_CONVERSATION_ID ||
     dotEnv.ANTIGRAVITY_CONVERSATION_ID ||
     process.env.ANTIGRAVITY_CONVERSATION_ID ||
-    '73f230e4-d0b1-4732-b378-27fedb0c9c83'
+    '1921e31e-ab59-4720-9419-93cac770374d'
   ).trim();
   const siteUrl = 'https://kidsfit.co.kr';
   const isConfigured = Boolean(
