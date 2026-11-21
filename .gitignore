@@ -24,3 +24,7 @@ cf_dist/
 flow_shorts_studio/
 *.zip
 *.mp4
+
+# Security ignores (Chrome profiles, wrangler cache, env)
+.naver-headless-owned-profile/
+*.env

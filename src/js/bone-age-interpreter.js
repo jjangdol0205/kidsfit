@@ -538,7 +538,7 @@
       html +=
         '<div class="kfk-ba-curation-card">' +
           '<div class="kfk-ba-curation-top">' +
-            '<img class="kfk-ba-curation-thumb" src="' + item.img + '" alt="' + item.title + '" loading="lazy" onerror="this.onerror=null;this.src=\'' + item.fallback + '\';">' +
+            '<img class="kfk-ba-curation-thumb" src="' + item.img + '" alt="' + item.title + '" loading="lazy" data-csp-fallback-src="' + item.fallback + '">' +
             '<div>' +
               '<span class="kfk-ba-curation-tag">' + item.tag + '</span>' +
               '<strong class="kfk-ba-curation-title">' + item.title + '</strong>' +

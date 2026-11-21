@@ -1061,7 +1061,7 @@
       if (isEmailSaved) {
         savedBannerEl.innerHTML =
           '<strong>' + escHtml(savedEmailAddr) + ' 주소로 맞춤 성장 요약 저장 및 월간 성장 리포트 안내 등록이 완료되었습니다.</strong> ' +
-          '<button type="button" class="atelier-text-btn" style="margin-left:8px;" onclick="window.KfkAtelierApp.reopenEmailSaveForm();">이메일 변경</button>';
+          '<button type="button" class="atelier-text-btn" style="margin-left:8px;" data-csp-act="kfk-reopen-email">이메일 변경</button>';
       }
     }
 
@@ -1402,7 +1402,7 @@
           '</svg>' +
           '<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;">' +
             '<span style="font-size:13px;color:#5C544D;">출발 ' + startCmGrad.toFixed(1) + ' cm &rarr; 현재 ' + endCmGrad.toFixed(1) + ' cm</span>' +
-            '<button type="button" onclick="window.KfkAtelierApp && window.KfkAtelierApp.downloadRealGraduationAlbumPdf()" style="padding:7px 14px;border-radius:6px;border:none;background:#2F5241;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">Day 165 6개월 성장 졸업장 앨범 PDF 받기 &rarr;</button>' +
+            '<button type="button" data-csp-act="kfk-download-album-pdf" style="padding:7px 14px;border-radius:6px;border:none;background:#2F5241;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">Day 165 6개월 성장 졸업장 앨범 PDF 받기 &rarr;</button>' +
           '</div>' +
         '</div>' +
         '<p style="margin:6px 0 8px;">' + (res.velocity_verdict || '') + '</p>' +

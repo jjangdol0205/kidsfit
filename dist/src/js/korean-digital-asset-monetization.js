@@ -762,17 +762,17 @@
             '<span style="display:inline-block;background:#DBEAFE;color:#1D4ED8;font-size:12px;font-weight:900;padding:3px 10px;border-radius:999px;margin-bottom:4px;">📱 카톡·인스타·네이버 앱 내 전체보기 전용 모드</span>' +
             '<h3 style="margin:0;font-size:18px;font-weight:900;line-height:1.35;color:#0F172A;">인앱 브라우저에서도 멈춤 없이 바로 보는 성장 워크북 &amp; 이메일 즉시 발송</h3>' +
           '</div>' +
-          '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="background:#F1F5F9;border:none;border-radius:999px;width:34px;height:34px;font-size:16px;font-weight:900;cursor:pointer;color:#334155;flex-shrink:0;">✕</button>' +
+          '<button type="button" data-csp-hide="#kfk-inapp-workbook-modal" style="background:#F1F5F9;border:none;border-radius:999px;width:34px;height:34px;font-size:16px;font-weight:900;cursor:pointer;color:#334155;flex-shrink:0;">✕</button>' +
         '</div>' +
         '<div style="background:linear-gradient(135deg,#EFF6FF 0%,#ECFDF5 100%);border:1.5px solid #93C5FD;border-radius:16px;padding:15px;margin-bottom:16px;">' +
           '<div style="font-size:15px;font-weight:900;color:#0F172A;margin-bottom:6px;">📩 내 이메일로 성장 워크북/가이드 즉시 받기 (3초 무료 정회원 자동 등록)</div>' +
           '<p style="margin:0 0 10px;font-size:13px;color:#334155;line-height:1.5;">앱 내 브라우저에서는 종이 인쇄창이 제한됩니다. 이메일만 입력하시면 비밀번호 없이 <strong>성장 워크북·골든타임 가이드</strong>를 보내드리고 아래 전체 시트도 바로 확인하실 수 있습니다.</p>' +
           '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
-            '<button type="button" data-kfk-inapp-seg="kr_early_elementary" onclick="window.selectKidsFitInAppSeg(\'kr_early_elementary\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_early_elementary' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">유아·초등 저학년</button>' +
-            '<button type="button" data-kfk-inapp-seg="kr_upper_golden_time" onclick="window.selectKidsFitInAppSeg(\'kr_upper_golden_time\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">초등 고학년 급성장기</button>' +
-            '<button type="button" data-kfk-inapp-seg="kr_teen_closing_care" onclick="window.selectKidsFitInAppSeg(\'kr_teen_closing_care\')" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">중·고등 마무리</button>' +
+            '<button type="button" data-kfk-inapp-seg="kr_early_elementary" data-csp-act="kfk-select-inapp-seg" data-csp-arg="kr_early_elementary" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_early_elementary' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_early_elementary' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">유아·초등 저학년</button>' +
+            '<button type="button" data-kfk-inapp-seg="kr_upper_golden_time" data-csp-act="kfk-select-inapp-seg" data-csp-arg="kr_upper_golden_time" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_upper_golden_time' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">초등 고학년 급성장기</button>' +
+            '<button type="button" data-kfk-inapp-seg="kr_teen_closing_care" data-csp-act="kfk-select-inapp-seg" data-csp-arg="kr_teen_closing_care" style="padding:7px 11px;border-radius:999px;border:1.5px solid ' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#CBD5E1') + ';background:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#1D4ED8' : '#F8FAFC') + ';color:' + (activeInAppSeg === 'kr_teen_closing_care' ? '#FFFFFF' : '#1E293B') + ';font-size:12.5px;font-weight:800;cursor:pointer;">중·고등 마무리</button>' +
           '</div>' +
-          '<form onsubmit="return window.submitKidsFitInAppWorkbookEmail(event);" style="display:flex;flex-wrap:wrap;gap:8px;">' +
+          '<form data-csp-submit-act="kfk-submit-inapp-email" style="display:flex;flex-wrap:wrap;gap:8px;">' +
             '<input type="email" id="kfk-inapp-wb-email" required placeholder="학부모님 이메일 주소 입력 (비밀번호 없음)" style="flex:1;min-width:210px;min-height:46px;padding:10px 13px;border:1.5px solid #93C5FD;border-radius:11px;font-size:14px;">' +
             '<button type="submit" id="btn-kfk-inapp-wb-submit" style="min-height:46px;padding:10px 16px;border:none;border-radius:11px;background:#1D4ED8;color:#FFFFFF;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;">내 이메일로 성장 워크북/가이드 즉시 받기 →</button>' +
           '</form>' +
@@ -788,7 +788,7 @@
         '</div>' +
         '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">' +
           '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" data-shop-click="1" target="_blank" rel="noopener noreferrer sponsored" style="flex:1;min-width:200px;display:flex;min-height:44px;align-items:center;justify-content:center;background:#059669;color:#FFFFFF;border-radius:11px;padding:8px 12px;font-size:13.5px;font-weight:900;text-decoration:none;text-align:center;">🛍️ ' + topA.name + ' 혜택가 확인 →</a>' +
-          '<button type="button" onclick="var m=document.getElementById(\'kfk-inapp-workbook-modal\');if(m)m.style.display=\'none\';" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
+          '<button type="button" data-csp-hide="#kfk-inapp-workbook-modal" style="min-height:44px;padding:8px 16px;border-radius:11px;border:1px solid #CBD5E1;background:#FFFFFF;color:#334155;font-size:13.5px;font-weight:800;cursor:pointer;">화면 닫기</button>' +
         '</div>' +
         '<div style="margin-top:8px;font-size:11.5px;color:#64748B;">※ 연구소가이드 심사지침 준수: 질병관리청(KDCA 2017) 공개 성장도표에 기반한 가정용 참고 자료이며 전문의의 진료를 대신하지 않습니다.</div>' +
       '</div>';
@@ -849,7 +849,7 @@
     bar.innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">' +
         '<div style="font-size:0.86rem;font-weight:900;line-height:1.4;">🖨️ 90일 키성장 실전 워크북 인쇄 준비 완료! <span style="color:#93C5FD;display:block;font-size:0.76rem;font-weight:700;">가정 실천에 바로 쓰는 에디터 큐레이션 준비물 혜택가 확인</span></div>' +
-        '<button type="button" onclick="var el=document.getElementById(\'kf-workbook-prep-bridge\');if(el)el.remove();" style="background:rgba(255,255,255,0.14);border:none;color:#FFFFFF;border-radius:999px;width:28px;height:28px;cursor:pointer;font-weight:900;">✕</button>' +
+        '<button type="button" data-csp-remove="kf-workbook-prep-bridge" style="background:rgba(255,255,255,0.14);border:none;color:#FFFFFF;border-radius:999px;width:28px;height:28px;cursor:pointer;font-weight:900;">✕</button>' +
       '</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;">' +
         '<a href="' + topA.url + '" data-kfk-unlock-trigger="1" target="_blank" rel="noopener noreferrer sponsored" style="display:flex;align-items:center;justify-content:center;min-height:40px;background:#2563EB;color:#FFFFFF;text-decoration:none;border-radius:10px;padding:6px 10px;font-size:0.78rem;font-weight:800;">' + topA.name.slice(0, 16) + ' 혜택가 확인 →</a>' +
@@ -950,7 +950,7 @@
         if (!el) return;
         var isExplicitTrigger = el.getAttribute('data-kfk-unlock-trigger') === '1';
         var href = String(el.getAttribute('href') || '').toLowerCase();
-        var onclick = String(el.getAttribute('onclick') || '').toLowerCase();
+        var onclick = String(el.getAttribute('onclick') || el.getAttribute('data-csp-tag') || el.getAttribute('data-csp-act') || '').toLowerCase();
         var isAffiliateHref = /coupang\.com|brandconnect\.naver\.com|iherb\.com|linkprice\.com|yes24\.com|latpeed\.com\/products\/damap/.test(href) ||
           (href.indexOf('naver.me/') !== -1 && href.indexOf('naver.me/g2ysidq1') === -1) ||
           onclick.indexOf('openkfklatpeedcheckout') !== -1;
@@ -1104,7 +1104,7 @@
         var el = e.target && e.target.closest ? e.target.closest('a, button, [role="button"]') : null;
         if (!el) return;
         var href = (el.getAttribute('href') || '').toLowerCase();
-        var onclick = (el.getAttribute('onclick') || '').toLowerCase();
+        var onclick = (el.getAttribute('onclick') || el.getAttribute('data-csp-tag') || el.getAttribute('data-csp-act') || '').toLowerCase();
         var txt = (el.innerText || el.textContent || '').toLowerCase();
         if (href.indexOf('naver.me/g2ysidq1') !== -1) return;
         var netKey = '';
