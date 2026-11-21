@@ -870,6 +870,14 @@
       }
     } catch (_) {}
 
+    // Record D1 AARRR Activation event on every genuine Step-5 completion (1500ms dedupe)
+    try {
+      var nowQcTs = Date.now();
+      if ((!global.__kfkLastQuizCompleteTs || nowQcTs - global.__kfkLastQuizCompleteTs > 1500) && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
+        global.__kfkLastQuizCompleteTs = nowQcTs;
+        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_complete', { event_meta: 'kdca_step5_submit' });
+      }
+    } catch (_) {}
     // Immediately reveal Free Baseline KDCA 2017 Height Percentile & Growth-Clock Summary (Zero Email Wall)
     renderScreen3Results(analysis);
     showScreen(3);
@@ -976,12 +984,6 @@
 
   function renderScreen3Results(analysis) {
     if (typeof document === 'undefined' || !analysis) return;
-    try {
-      if (!global.__kfkQuizCompleteTracked && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
-        global.__kfkQuizCompleteTracked = true;
-        global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_complete', { event_meta: 'kdca_step5_complete' });
-      }
-    } catch (_) {}
     var paidPass = getVerifiedPaidPass();
     var statusBadge = document.getElementById('screen3-access-status');
     if (statusBadge) {
