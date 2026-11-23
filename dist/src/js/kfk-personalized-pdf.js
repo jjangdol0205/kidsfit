@@ -360,9 +360,9 @@
     drawRoundedRect(c2, 84, 914, PAGE_W - 168, 700, 14, '#FFFFFF', '#DFD7CC', 2);
     c2.fillStyle = '#2F5241';
     c2.font = '700 22px ' + SANS_FONT;
-    c2.fillText('제 5 장 · 설문 응답 기반 우리 아이 1:1 맞춤 90일 저녁 처방전', 118, 960);
+    c2.fillText('제 5 장 · 설문 응답 기반 우리 아이 자동 맞춤 90일 저녁 루틴 가이드', 118, 960);
 
-    var rxs = (analysis.bottlenecks || []).slice(0, 3);
+    var rxs = (analysis.bottlenecks || []);
     var curY = 988;
     for (var rIdx = 0; rIdx < rxs.length; rIdx++) {
       var item = rxs[rIdx];

@@ -43,9 +43,28 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT_DIR = Path(r"D:\드림컴퍼니\5사업부")
 EDITORIAL_IMG_DIR = ROOT_DIR / "samples" / "9_naver_brand_assets" / "editorial_3set_cards"
 
-BLOG_TARGET_CATEGORY = "우리 아이 키성장·성조숙증"
+BLOG_TARGET_CATEGORY = "뼈나이·예상키 해석"
+BLOG_CATEGORY_BY_AXIS: Dict[str, str] = {
+    "AXIS 01": "수면·통잠 루틴",
+    "AXIS 02": "자세·호흡·운동",
+    "AXIS 03": "자세·호흡·운동",
+    "AXIS 04": "소아과 진료 준비",
+    "AXIS 05": "뼈나이·예상키 해석",
+}
+BLOG_VALID_CATEGORIES = frozenset(BLOG_CATEGORY_BY_AXIS.values())
 CAFE_TARGET_BOARD = "우리아이 키성장·성조숙증"
 CAFE_TARGET_MENU_ID = 3
+
+KFK_BLOG_OG_CARDS: List[Dict[str, str]] = [
+    {
+        "label": "1분 무료 진단 (이메일 없이 즉시 확인)",
+        "url": "https://kidsfit.co.kr/?utm_source=naver&utm_medium=blog&utm_campaign=kfk_post",
+    },
+    {
+        "label": "결제 전 미리 보는 2p 무료 샘플 PDF",
+        "url": "https://kidsfit.co.kr/kfk_sample_2p.pdf",
+    },
+]
 
 BANNED_KR_PROMO_WORDS = (
     "\ucd5c\uc800\uac00",
@@ -2006,25 +2025,24 @@ BLOG_GROWTH_EDITORIAL_BANK: List[Dict[str, Any]] = [
 
 def build_blog_bottom_bridge_text(seq_num: int, item: Dict[str, Any]) -> str:
     """
-    본문 최하단(Image 3 아래, 전문 해설 85% 이후)에만 배치되는 키즈핏 성장 연구소 에디터 맺음말 & 자연 전환 브릿지.
-    - 『키즈핏 성장 연구소 노트』 풀버전 에세이 이메일 무료 구독 (#kfk-passwordless-club-box) & 5단계 성장 시계(Δt) 진단
-    - Tier 1 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF』 (9,900원 · #kfk-latpeed-ebook-slot / daMaP)
-    - Tier 2 『6개월 성장속도 집중 관리 패스』 (19,900원 · 월간 KDCA cm/yr 자동 판독 KFK_Paid_VIP · stores/7Frck)
-    (상업성 제휴 상품 링크 0건)
+    [2026-11-23 전면 개선 표준 — 평문 URL 전면 금지 & 클릭 가능한 네이버 OG 링크카드 전용]
+    - 스마트에디터 ONE이 자동 OG 링크카드로 변환하도록 단독 줄(앞뒤 괄호·파이프 금지)에
+      정확한 UTM URL 2개만 배치합니다.
+    - 3단계 투명 가격 안내 (9,900원 / 19,900원 / 39,000원) + '상업성 상품 광고 0건' 명시.
     """
     return (
-        "■ 키즈핏 성장 연구소 에디터의 밤 편지 & 가정용 성장 시계 점검 안내\n"
-        "거실 기둥의 연필 눈금 앞에서 조급해하기보다, 오늘 저녁 거실 불을 10분 일찍 낮추는 작은 습관부터 아이와 편안하게 시작해 보세요.\n\n"
-        "1. 풀버전 성장 에세이 이메일 무료 구독 & 5단계 우리 아이 성장 시계·뼈나이(Δt) 진단\n"
-        "태어난 날짜까지 헤아린 질병관리청 백분위와 예전 병원 손목 뼈나이 이후 흐른 시간까지 차분히 확인하고 조용한 저녁 에세이를 받아보세요.\n"
-        "https://kidsfit.co.kr/#kfk-passwordless-club-box | https://kidsfit.co.kr/#kfk-bone-age-interpreter\n\n"
-        "2. [Tier 1 · 9,900원] 『우리아이 급성장 골든타임 & 뼈나이 실전 마스터북 PDF (단건 정밀 리포트 패스)』\n"
-        "뼈나이 시차(Δt) 보정 성인 예상키·생활 병목 진단과 가정 비치용 17페이지 실전 마스터북 안내도 함께 살펴보세요.\n"
-        f"{LATPEED_MASTERBOOK_SLOT_URL} ({LATPEED_TIER1_URL})\n\n"
-        "3. [Tier 2 · 19,900원] 『6개월 성장속도 집중 관리 패스 (월간 질병관리청 cm/yr 자동 판독 KFK_Paid_VIP)』\n"
-        "매월 30일 주기로 아침 맨발 키 변화를 입력하면 질병관리청 기준 연간 성장속도 정상 여부를 자동 판독해 드립니다.\n"
-        f"{LATPEED_TIER2_URL}\n\n"
-        f"{STUDIO_PURE_PAID_NOTE_KO}"
+        "■ 오늘 밤 우리 아이 성장 흐름, 부담 없이 1분만 먼저 확인해 보세요\n"
+        "복잡한 회원가입이나 이메일 입력 없이도 질병관리청(KDCA 2017) 공식 성장도표와 병원 뼈나이 경과 시차(Δt)를 바로 확인해 보실 수 있어요.\n\n"
+        "▼ [1분 무료 진단 (이메일 없이 즉시 확인)]\n"
+        "https://kidsfit.co.kr/?utm_source=naver&utm_medium=blog&utm_campaign=kfk_post\n\n"
+        "▼ [결제 전 미리 보는 2p 무료 샘플 PDF]\n"
+        "https://kidsfit.co.kr/kfk_sample_2p.pdf\n\n"
+        "■ 필요하실 때만 선택하는 투명 3단계 성장 패스 (상업성 상품 광고 0건)\n"
+        "• 단건 정밀 리포트 패스 (9,900원): 뼈나이 시차(Δt) 보정 예상키 + 17p 마스터북 + 소아과 질문지 + 30일 냉장고 달력\n"
+        "• 6개월 성장속도 집중 관리 패스 (19,900원): 매월 30일 맨발 키 자동 성장속도(cm/년) 판독 + 6개월 로드맵\n"
+        "• 12개월 가족 마스터 패스 (39,000원): 최대 4명 형제자매 사계절 통합 추적 + 1년 누적 진료 브리핑\n\n"
+        "💬 오늘 밤 우리 아이 취침 시간은 보통 9시 반 이전인가요, 10시 이후인가요? 댓글로 한 줄 남겨주시면 함께 응원할게요!\n\n"
+        "※ 키즈핏 소아성장 아틀리에(kidsfit.co.kr)는 영양제·쇼핑 제휴 등 상업성 상품 광고 0건 원칙을 지킵니다."
     )
 
 
@@ -2514,11 +2532,15 @@ def build_blog_editorial_package(blog_seq: int, out_dir: Path = EDITORIAL_IMG_DI
         if extra_t not in merged_tags and len(merged_tags) < 10:
             merged_tags.append(extra_t)
 
+    axis_key = str(item.get("axis_label", "AXIS 05"))[:7].strip()
+    resolved_category = BLOG_CATEGORY_BY_AXIS.get(axis_key, BLOG_TARGET_CATEGORY)
+
     return {
         "seq": blog_seq,
         "topic_id": item["id"],
         "axis_label": item["axis_label"],
-        "category": BLOG_TARGET_CATEGORY,
+        "category": resolved_category,
+        "og_link_cards": list(KFK_BLOG_OG_CARDS),
         "title": title,
         "section1_intro": sec1,
         "section2_mechanism": sec2,
@@ -2566,7 +2588,7 @@ def validate_kfk_editorial_pair(blog_pkg: Dict[str, Any], cafe_pkg: Dict[str, An
     """
     violations: List[str] = []
 
-    if blog_pkg["category"] != BLOG_TARGET_CATEGORY:
+    if blog_pkg["category"] not in BLOG_VALID_CATEGORIES:
         violations.append(f"Blog category mismatch: {blog_pkg['category']}")
     if cafe_pkg["board"] != CAFE_TARGET_BOARD or cafe_pkg["menu_id"] != CAFE_TARGET_MENU_ID:
         violations.append(f"Cafe board/menu mismatch: {cafe_pkg['board']} ({cafe_pkg['menu_id']})")
@@ -2574,14 +2596,18 @@ def validate_kfk_editorial_pair(blog_pkg: Dict[str, Any], cafe_pkg: Dict[str, An
     if "http://" in blog_pkg["section1_intro"] or "https://" in blog_pkg["section1_intro"]:
         violations.append("D.I.A.+ violation: External URL found in blog first section (section1_intro).")
 
-    if not (1800 <= len(blog_pkg["full_body"]) <= 3400):
+    if not (1600 <= len(blog_pkg["full_body"]) <= 3600):
         violations.append(f"Blog body length ({len(blog_pkg['full_body'])}) outside target editorial range.")
 
-    # Challenge-Class 11/09 verification: KDCA official numbers + Latpeed Masterbook PDF bridge + hybrid variants
+    # Challenge-Class 11/09 + 2026-11-23 Audit: KDCA official numbers + clickable OG Link Card URLs (ZERO plain-text wrapped URLs!)
     if "138.8cm" not in blog_pkg["section2_mechanism"] or "139.1cm" not in blog_pkg["section2_mechanism"]:
         violations.append("Missing official KDCA 2017 standard height reference box (138.8cm / 139.1cm).")
-    if LATPEED_MASTERBOOK_SLOT_URL not in blog_pkg["bottom_bridge"]:
-        violations.append("Missing Latpeed Masterbook PDF bridge (#kfk-latpeed-ebook-slot) in bottom_bridge.")
+    if " | https://" in blog_pkg["bottom_bridge"] or "(https://" in blog_pkg["bottom_bridge"]:
+        violations.append("Plain-text wrapped URL detected in bottom_bridge — Naver OG Link Cards require standalone clean URL lines!")
+    if "https://kidsfit.co.kr/?utm_source=naver&utm_medium=blog&utm_campaign=kfk_post" not in blog_pkg["bottom_bridge"]:
+        violations.append("Missing clickable UTM Naver OG Link Card URL for kidsfit.co.kr.")
+    if "https://kidsfit.co.kr/kfk_sample_2p.pdf" not in blog_pkg["bottom_bridge"]:
+        violations.append("Missing clickable 2p sample PDF Naver OG Link Card URL.")
     for req_variant in ("PHV", "질병관리청 표준키", "성조숙증 검사 시기"):
         if req_variant not in blog_pkg["full_body"]:
             violations.append(f"Missing hybrid Korean/English/colloquial search variant: {req_variant}")

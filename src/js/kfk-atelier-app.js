@@ -1462,8 +1462,8 @@
 
   function downloadRealGraduationAlbumPdf() {
     var paidCheck = getVerifiedPaidPass();
-    if (!paidCheck || paidCheck.tier !== 'tier2') {
-      alert('6개월 성장 졸업장 앨범 PDF는 2등급(19,900원) 인증 회원 전용입니다.');
+    if (!paidCheck || (paidCheck.tier !== 'tier2' && paidCheck.tier !== 'tier3')) {
+      alert('성장 졸업장 앨범 PDF는 2등급(19,900원)·3등급(39,000원) 인증 회원 전용입니다.');
       return false;
     }
     var savedProf = null;

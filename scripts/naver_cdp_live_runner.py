@@ -197,17 +197,31 @@ async def publish_naver_blog_via_cdp(cdp: CDPClient, topic_idx: int = None) -> d
                 last_idx = 0
         topic_idx = (last_idx + 1) % len(DEEP_PARENTING_TOPICS)
 
-    topic = DEEP_PARENTING_TOPICS[topic_idx % len(DEEP_PARENTING_TOPICS)]
-    seq_num = topic_idx + 1
-    image_paths = [str(Path(p).resolve()) for p in generate_all_blog_images(topic, seq_num)]
-    clean_body = sanitize_se_one_body(topic["body"])
-    deep_link = topic.get("deep_link", "https://kidsfit.co.kr/?ep=1")
-    inflow_prefix = (
-        f"⚡ [오늘의 키즈핏 교육 코칭 & 추천 육아템 공식 혜택가 + 1:1 발달진단 무료 오픈]\n"
-        f"공식 판매처 1회 확인 시 4대 발달·성장 정밀 진단과 A4 코칭 워크북이 즉시 무료로 열립니다 👇\n"
-        f"{deep_link}\n\n"
-    )
-    full_body = clean_body + "\n\n" + inflow_prefix
+    from kfk_naver_editorial_designer import build_blog_editorial_package, validate_kfk_editorial_pair, build_cafe_coaching_package
+
+    # Anti-duplicate guard (prevents #34 double-posting on consecutive days!)
+    recent_titles_path = ROOT / "logs" / "naver_blog_published_titles.json"
+    recent_titles = []
+    if recent_titles_path.exists():
+        try:
+            recent_titles = json.loads(recent_titles_path.read_text(encoding="utf-8"))
+        except Exception:
+            recent_titles = []
+
+    seq_num = (topic_idx % 20) + 1
+    blog_pkg = build_blog_editorial_package(seq_num)
+    if blog_pkg["title"] in recent_titles[-14:]:
+        seq_num = (seq_num % 20) + 1
+        blog_pkg = build_blog_editorial_package(seq_num)
+
+    topic = {
+        "title": blog_pkg["title"],
+        "category": blog_pkg["category"],
+        "tags": blog_pkg["tags"],
+    }
+    image_paths = [str(Path(p).resolve()) for p in blog_pkg["images"]]
+    clean_body = sanitize_se_one_body(blog_pkg["full_body"])
+    full_body = clean_body
 
     print(f"📝 [네이버 블로그 자동 발행 시작] ({topic['category']}) {topic['title']}")
     await cdp.call("Page.enable")
@@ -276,11 +290,10 @@ async def publish_naver_blog_via_cdp(cdp: CDPClient, topic_idx: int = None) -> d
         cl = line.strip()
         if cl:
             await cdp.insert_text(cl)
-            if cl.startswith("https://"):
-                await cdp.press_space()
-                await asyncio.sleep(0.2)
+            if cl.startswith("https://") and " " not in cl:
+                # Standalone clean URL + Enter + 2.5s wait triggers Naver SmartEditor ONE clickable OG Link Card!
                 await cdp.press_enter()
-                await asyncio.sleep(0.8)
+                await asyncio.sleep(2.5)
                 continue
         await cdp.press_enter()
         await asyncio.sleep(0.015)
@@ -455,11 +468,10 @@ async def publish_naver_cafe_via_cdp(cdp: CDPClient, topic_idx: int = None) -> d
         cl = line.strip()
         if cl:
             await cdp.insert_text(cl)
-            if cl.startswith("https://"):
-                await cdp.press_space()
-                await asyncio.sleep(0.2)
+            if cl.startswith("https://") and " " not in cl:
+                # Standalone clean URL + Enter + 2.5s wait triggers Naver SmartEditor ONE clickable OG Link Card!
                 await cdp.press_enter()
-                await asyncio.sleep(0.8)
+                await asyncio.sleep(2.5)
                 continue
         await cdp.press_enter()
         await asyncio.sleep(0.015)
