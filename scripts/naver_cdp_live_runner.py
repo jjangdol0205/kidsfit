@@ -847,6 +847,10 @@ async def run_kin_and_blog_tour_via_cdp(cdp: CDPClient) -> dict:
 
 
 async def main_async():
+    # 2026-11-25 Hard Gate (`docs/HQ_5DIV_PROMO_BREAKTHROUGH_20261125.md`):
+    # Naver Blog (`expertise333`), Cafe, Kin & unofficial bots are PERMANENTLY FROZEN (replaced by kidsfit.co.kr/growth-chart/ pSEO).
+    print("RESULT_JSON=" + json.dumps({"frozen_20261125": True, "reason": "NAVER_MANUAL_AND_BOT_FROZEN"}, ensure_ascii=False))
+    return
     parser = argparse.ArgumentParser()
     parser.add_argument("--blog", action="store_true", help="Publish 1 Naver Blog post")
     parser.add_argument("--cafe", action="store_true", help="Publish 1 Naver Cafe post")
