@@ -1,6 +1,7 @@
 {
   "version": 1,
   "include": [
+    "/go/*",
     "/api/*",
     "/hq-mailing-endpoint.json",
     "/assets/downloads/kfg_cdc_growth_guide.pdf",
