@@ -385,7 +385,7 @@
     var maturePct = interpolateBpMaturePct(sex, effectiveSkeletalYears);
     var bpAdultCm = clamp(heightCm / (maturePct / 100), sex === 'girl' ? 145 : 156, sex === 'girl' ? 182 : 196);
 
-    // Base clinical blend (Bone-Age weighted when measured, else KDCA curve + MPH weighted)
+    // Base reference blend (Bone-Age weighted when measured, else KDCA curve + MPH weighted)
     var baselineAdult = hasBoneAge
       ? (bpAdultCm * 0.62 + mphCm * 0.23 + curveAdultCm * 0.15)
       : (curveAdultCm * 0.58 + mphCm * 0.42);

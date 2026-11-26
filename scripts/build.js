@@ -167,6 +167,39 @@ function build() {
     console.log('Copied qna/ -> dist/qna/');
   }
 
+  // Normalize sitemap.xml to Cloudflare Pages Clean URLs (0 .html 308 redirects) & preserve /growth-chart/*
+  const rootSitemapKfk = path.join(ROOT_DIR, 'sitemap.xml');
+  if (fs.existsSync(rootSitemapKfk)) {
+    try {
+      const todayIso = new Date().toISOString().slice(0, 10);
+      const rawXml = fs.readFileSync(rootSitemapKfk, 'utf8');
+      const rawLocs = [...rawXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+      const cleanSet = new Set();
+      rawLocs.forEach((u) => {
+        if (u.endsWith('/index.html')) cleanSet.add(u.slice(0, -'index.html'.length));
+        else if (u.endsWith('.html')) cleanSet.add(u.slice(0, -5));
+        else cleanSet.add(u);
+      });
+      const gcDir = path.join(DIST_DIR, 'growth-chart');
+      if (fs.existsSync(gcDir)) {
+        cleanSet.add('https://kidsfit.co.kr/growth-chart/');
+        fs.readdirSync(gcDir).sort().forEach((fn) => {
+          if (fn.endsWith('.html') && fn !== 'index.html') {
+            cleanSet.add(`https://kidsfit.co.kr/growth-chart/${fn.slice(0, -5)}`);
+          }
+        });
+      }
+      const blocks = [...cleanSet].map(
+        (loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${loc === 'https://kidsfit.co.kr/' ? '1.0' : '0.80'}</priority>\n  </url>`
+      );
+      fs.writeFileSync(
+        rootSitemapKfk,
+        `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${blocks.join('\n')}\n</urlset>\n`,
+        'utf8'
+      );
+    } catch (_) {}
+  }
+
   [
     'robots.txt',
     'sitemap.xml',

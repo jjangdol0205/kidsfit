@@ -1,6 +1,6 @@
 /**
  * 키즈핏 코리아 (KidsFit Korea · 5사업부)
- * 1:1 아이 맞춤형 정밀 성장·뼈나이 진단 보고서 PDF 생성 엔진 (외부 의존성 0 · 한글 폰트 깨짐 0건)
+ * 아이 맞춤형 정밀 성장·뼈나이 진단 보고서 PDF 생성 엔진 (외부 의존성 0 · 한글 폰트 깨짐 0건)
  * 유료 패스(1등급 9,900원 / 2등급 19,900원) 열람 시 설문 입력값과 분석 결과를 바탕으로
  * 고해상도 A4 3페이지 맞춤형 PDF 파일을 브라우저에서 즉시 생성·다운로드합니다.
  */
@@ -142,10 +142,10 @@
     drawRoundedRect(c1, 84, 84, PAGE_W - 168, 178, 16, '#2F5241', null, 0);
     c1.fillStyle = '#DCE8E1';
     c1.font = '600 20px ' + SANS_FONT;
-    c1.fillText('KIDSFIT PEDIATRIC GROWTH ATELIER · 1:1 PERSONALIZED DOSSIER', 120, 132);
+    c1.fillText('KIDSFIT PEDIATRIC GROWTH ATELIER · PERSONALIZED DOSSIER', 120, 132);
     c1.fillStyle = '#FFFFFF';
     c1.font = '700 40px ' + SERIF_FONT;
-    c1.fillText('우리 아이 1:1 맞춤형 정밀 성장 · 뼈나이 분석 보고서', 120, 190);
+    c1.fillText('우리 아이 맞춤형 정밀 성장 · 뼈나이 분석 보고서', 120, 190);
     c1.fillStyle = '#E6EFEA';
     c1.font = '400 21px ' + SANS_FONT;
     c1.fillText('발급일: ' + dateStr + '   |   열람 등급: ' + tierName + '   |   계정: ' + buyerEmail, 120, 234);
