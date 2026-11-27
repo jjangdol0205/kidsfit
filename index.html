@@ -788,34 +788,31 @@
 
         <div style="margin-top:16px;">
 <!-- 1) 자연스러운 무비밀번호 이메일 요약 저장 카드 (#kfk-parent-habit-notebook / #kfk-passwordless-club-box) -->
-        <div id="kfk-parent-habit-notebook" class="atelier-save-club-card no-print" aria-label="맞춤 성장 요약 저장 및 월간 성장 리포트 무료 안내">
-          <span class="atelier-note-label" style="margin-bottom: 8px;">무료 요약 보관 · 월간 성장 편지</span>
-          <h3 class="step-question-title" style="font-size: 21px; margin-bottom: 8px;">맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 (무료)</h3>
+        <div id="kfk-parent-habit-notebook" class="atelier-save-club-card no-print" aria-label="방금 계산된 내 맞춤 수치표 및 2p 샘플 PDF 무료 이메일 보관">
+          <span class="atelier-note-label" style="margin-bottom: 8px;">무료 결과 보관 · 2p 샘플 PDF 즉시 발송</span>
+          <h3 class="step-question-title" style="font-size: 21px; margin-bottom: 8px;">방금 계산된 내 맞춤 수치표 + 2p 샘플 PDF 내 이메일로 무료 받아두기</h3>
           <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.72; color: var(--atelier-muted);">
-            비밀번호 설정 없이 학부모님 이메일 주소만 적어 두시면 방금 확인하신 우리 아이 백분위·성장 시계 요약을 저장하고, 매월 키 변화 점검 알림과 계절별 저녁 수면·식탁 편지를 보내드립니다.
+            비밀번호·회원가입 없이 이메일 주소만 남겨 두시면 방금 계산된 우리 아이 맞춤 수치표와 2p 무료 샘플 PDF를 메일함으로 바로 보내드립니다.
           </p>
 
           <div id="kfk-passwordless-club-box">
             <div id="kfk-stepup-email-form-wrap">
               <div id="kfk-stepup-email-error" class="atelier-error-msg" role="alert"></div>
               <form id="kfk-stepup-email-form" data-csp-submit="h_f0152083842c">
-                <input type="text" id="kfk-stepup-hp-input" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
-                <div class="field-row-2" style="margin-bottom: 14px;">
-                  <div>
-                    <label class="field-label" for="kfk-stepup-email-input">학부모님 이메일 주소</label>
-                    <input type="email" id="kfk-stepup-email-input" class="atelier-input" style="background: #FFFFFF;" required placeholder="예: parent@naver.com" autocomplete="email">
-                  </div>
-                  <div>
-                    <label class="field-label" for="kfk-stepup-nickname-input">아이 애칭 또는 메모 (선택)</label>
-                    <input type="text" id="kfk-stepup-nickname-input" class="atelier-input" style="background: #FFFFFF;" maxlength="30" placeholder="예: 첫째 민준이">
-                  </div>
+                <input type="text" id="kfk-stepup-hp-input" name="website_hp" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true" />
+                <div style="margin-bottom: 14px;">
+                  <label class="field-label" for="kfk-stepup-email-input">이메일 주소</label>
+                  <input type="email" id="kfk-stepup-email-input" class="atelier-input" style="background: #FFFFFF;" required placeholder="example@naver.com" autocomplete="email" />
                 </div>
-                <button type="submit" id="btn-kfk-stepup-email-submit" class="atelier-btn-secondary" style="width: 100%; min-height: 52px; border-color: var(--atelier-sage); color: var(--atelier-sage); background: #FFFFFF;">
-                  맞춤 성장 요약 저장 · 월간 성장 리포트 안내받기 &rarr;
+                <div style="display:none;" aria-hidden="true">
+                  <input type="text" id="kfk-stepup-nickname-input" class="atelier-input" maxlength="30" tabindex="-1" autocomplete="off" />
+                </div>
+                <button type="submit" id="btn-kfk-stepup-email-submit" class="atelier-btn-secondary" style="width: 100%; min-height: 52px; background: #FFFFFF;">
+                  방금 계산된 내 맞춤 수치표 + 2p 샘플 PDF 내 이메일로 무료 받아두기 &rarr;
                 </button>
               </form>
               <p class="field-subnote" style="margin-top: 10px; text-align: center;">
-                비밀번호 없음 &middot; 광고성 스팸 발송 없음 &middot; 편지 하단에서 언제든 수신 해지 가능
+                비밀번호 없음 &middot; 광고성 스팸 발송 없음 &middot; 메일 하단에서 언제든 수신 해지 가능
               </p>
             </div>
             <div id="kfk-email-saved-banner" class="atelier-email-saved-banner" style="display: none;"></div>
@@ -1009,10 +1006,10 @@
     </div>
   </div>
 
-  <script src="src/js/hq_member_crm_client.js?v=20261122aarrr2" defer></script>
+  <script src="src/js/hq_member_crm_client.js?v=20261127nt" defer></script>
   <script src="src/js/kfk-personalized-pdf.js?v=20261123a" defer></script>
   <script src="src/js/kfk-atelier-app.js?v=20261123a" defer></script>
-  <script defer src="/src/js/dc-ux-addons.js?v=20261125"></script>
+  <script defer src="/src/js/dc-ux-addons.js?v=20261127nt"></script>
   <script defer src="/src/js/dc-share-card.js?v=20261125"></script>
 </body>
 </html>
