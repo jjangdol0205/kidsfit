@@ -1,0 +1,189 @@
+{
+  "description": "보건복지부 한국 영유아 발달선별검사(K-DST) 6대 영역 루브릭, 교육법 판정 매트릭스 및 핫템 교구 카탈로그",
+  "domains": {
+    "fineMotor": {
+      "key": "fineMotor",
+      "name": "소근육운동",
+      "axisIndex": 0,
+      "angleDeg": -90,
+      "icon": "✂️",
+      "description": "손가락 정밀 조작, 가위질, 젓가락 파지, 단추 끼우기, 블록 정밀 결합"
+    },
+    "cognitive": {
+      "key": "cognitive",
+      "name": "인지발달",
+      "axisIndex": 1,
+      "angleDeg": -30,
+      "icon": "🧩",
+      "description": "2D·3D 도형 변별, 수량 개념, 공간지각, 인과관계 추론, 문제해결력"
+    },
+    "language": {
+      "key": "language",
+      "name": "언어발달",
+      "axisIndex": 2,
+      "angleDeg": 30,
+      "icon": "📚",
+      "description": "어휘력 확장, 복문 구사, 문해력 기초, 의사표현, 독서 이해도"
+    },
+    "social": {
+      "key": "social",
+      "name": "사회성·정서",
+      "axisIndex": 3,
+      "angleDeg": 90,
+      "icon": "🤝",
+      "description": "또래 상호작용, 차례 지키기, 감정 공감, 오감 표현 및 정서 안정"
+    },
+    "daily": {
+      "key": "daily",
+      "name": "자조기능",
+      "axisIndex": 4,
+      "angleDeg": 150,
+      "icon": "🥣",
+      "description": "식사 도구 자율 사용, 혼자 옷 입기, 신발 신기, 손 씻기 및 정리정돈"
+    },
+    "grossMotor": {
+      "key": "grossMotor",
+      "name": "대근육운동",
+      "axisIndex": 5,
+      "angleDeg": 210,
+      "icon": "🏃",
+      "description": "신체 중심 균형, 달리기, 뜀뛰기, 계단 오르내리기, 자세 제어력"
+    }
+  },
+  "pedagogies": {
+    "WALDORF": {
+      "id": "WALDORF",
+      "name": "발도르프 / 오감 예술놀이",
+      "targetAge": "만 1~2세 (12~23개월)",
+      "badge": "만 1~2세 오감·정서 최적",
+      "focusArea": "자연 친화 감각 자극, 정서적 애착 형성, 부드러운 오감 순화",
+      "verdictReason": "언어 폭발 이전 신체 감각과 정서적 애착이 형성되는 시기로, 정형화되지 않은 자연 원목, 실크, 천연 점토가 촉각 방어를 완화하고 정서적 안정감을 줍니다.",
+      "preventOverspendingTip": "플라스틱 전자 사운드 장난감에 과노출되면 감각 피로와 산만함이 생깁니다. 이 시기에는 부드러운 자연 촉감 교구로 오감을 열어주세요."
+    },
+    "MONTESSORI": {
+      "id": "MONTESSORI",
+      "name": "몬테소리 (Montessori)",
+      "targetAge": "만 2~3세 (24~47개월)",
+      "badge": "만 2~3세 소근육 골든타임",
+      "focusArea": "손끝 소근육 삼지창 협응, 일상 자율성, 감각 탐색, 질서감",
+      "verdictReason": "손가락 삼지창(엄지·검지·중지) 협응력이 형성되는 민감기로, 스스로 따르고 집고 끼우는 일상·감각 교구가 두뇌 전두엽을 직접 자극합니다.",
+      "preventOverspendingTip": "만 2~3세에 추상적 입체 도형인 가베를 들이면 아이가 조작하지 못해 엄마표 스트레스만 받고 방치됩니다. 몬테소리 소근육부터 시작하세요."
+    },
+    "GABE": {
+      "id": "GABE",
+      "name": "프뢰벨 은물 / 가베 (Froebel Gabe)",
+      "targetAge": "만 4~5세 (48~71개월)",
+      "badge": "만 4~5세 공간·수리 최적",
+      "focusArea": "3차원 공간지각, 입체 기하 도형, 분할과 합성, 수학적 사고력",
+      "verdictReason": "2차원 평면에서 3차원 입체로 공간 인지능력이 비약적으로 확장되는 시기입니다. 점·선·면의 분할·합성을 통해 초등 기하 수학의 기초를 다집니다.",
+      "preventOverspendingTip": "소근육이 다져지지 않은 상태의 조기 도입은 비효율적입니다. 만 4세 이후 손끝 힘이 완성되었을 때 들여야 분해·조립 창의력이 폭발합니다."
+    },
+    "CREATIVE_SCIENCE": {
+      "id": "CREATIVE_SCIENCE",
+      "name": "창의과학 / 융합 STEAM",
+      "targetAge": "만 6세 이상 (72개월~)",
+      "badge": "만 6세 이상 탐구·과학 최적",
+      "focusArea": "물리적 메커니즘, 기어·도르래, 논리적 문제해결력, 코딩 기초",
+      "verdictReason": "인과관계와 기계적 원리에 호기심이 급증하는 초등 준비기입니다. 기어, 자석, 간단한 코딩 블록을 통해 가설 설정과 문제해결력을 기릅니다.",
+      "preventOverspendingTip": "수동적 키트 조립보다는 '왜 돌아갈까?'를 스스로 질문하는 프로젝트형 교구로 접근해야 초등 과학 탐구 토론 수업에 직결됩니다."
+    }
+  },
+  "curatedToys": [
+    {
+      "id": "TOY_01",
+      "name": "몬테소리 꼭지원기둥 원목 실린더 4종 세트",
+      "targetAge": "만 2~4세 (24~48개월)",
+      "ageMonthsMin": 20,
+      "ageMonthsMax": 54,
+      "concerns": ["fine_motor", "math_space"],
+      "benefit": "손가락 삼지창 파지법 훈련 및 굵기·높이의 3차원 시각적 변별력 완성",
+      "price": 31500,
+      "coupangPath": "vp/products/montessori-cylinder-4set",
+      "cpaTitle": "몬테소리 1:1 방문 발달진단 & 원목 실린더 무료체험 수업"
+    },
+    {
+      "id": "TOY_02",
+      "name": "일상 조작 원목 핀셋 & 단추 끼우기 집중력 세트",
+      "targetAge": "만 2~4세 (24~48개월)",
+      "ageMonthsMin": 18,
+      "ageMonthsMax": 48,
+      "concerns": ["fine_motor", "daily"],
+      "benefit": "손끝 악력 강화와 눈-손 협응 촉진으로 연필 잡기 거부감 사전 예방",
+      "price": 24800,
+      "coupangPath": "vp/products/montessori-pincer-button",
+      "cpaTitle": "유아 소근육 홈케어 1:1 코칭 상담"
+    },
+    {
+      "id": "TOY_03",
+      "name": "프뢰벨 은물 가베 입체 기하 10종 스타터 세트",
+      "targetAge": "만 4~6세 (48~72개월)",
+      "ageMonthsMin": 42,
+      "ageMonthsMax": 78,
+      "concerns": ["math_space", "cognitive"],
+      "benefit": "구, 원기둥, 정육면체의 점·선·면 분할을 통한 초등 도형 감각 직관 체득",
+      "price": 38900,
+      "coupangPath": "vp/products/froebel-gabe-starter",
+      "cpaTitle": "프뢰벨 가베 창의수학 1:1 방문 무료 체험 수업"
+    },
+    {
+      "id": "TOY_04",
+      "name": "3D 자석 마그네틱 빌딩 블록 100P 메가팩",
+      "targetAge": "만 3~6세 (36~72개월)",
+      "ageMonthsMin": 30,
+      "ageMonthsMax": 84,
+      "concerns": ["math_space", "fine_motor", "cognitive"],
+      "benefit": "자력을 이용한 다차원 구조 결합으로 공간지각력과 창의 건축 논리 확장",
+      "price": 29800,
+      "coupangPath": "vp/products/magnetic-blocks-100p",
+      "cpaTitle": "창의 블록 에듀케이션 무료 가이드북 증정"
+    },
+    {
+      "id": "TOY_05",
+      "name": "발도르프 천연 무독성 12색 밀랍 크레용 & 양모 롤러",
+      "targetAge": "만 1~3세 (12~36개월)",
+      "ageMonthsMin": 12,
+      "ageMonthsMax": 36,
+      "concerns": ["emotion_art", "fine_motor"],
+      "benefit": "천연 밀랍의 온기와 은은한 꿀 향기로 촉각 방어 완화 및 자유로운 색채 표현",
+      "price": 22000,
+      "coupangPath": "vp/products/waldorf-beeswax-crayons",
+      "cpaTitle": "영유아 오감 미술놀이 키트 무료 샘플 신청"
+    },
+    {
+      "id": "TOY_06",
+      "name": "초등 연계 수연산 원목 주사위 보드게임 세트",
+      "targetAge": "만 5~8세 (60~96개월)",
+      "ageMonthsMin": 54,
+      "ageMonthsMax": 108,
+      "concerns": ["math_space", "language_reading", "social"],
+      "benefit": "놀이를 통한 가감승제 수 감각 습득 및 규칙 준수와 또래 전략 상호작용",
+      "price": 26500,
+      "coupangPath": "vp/products/math-dice-boardgame",
+      "cpaTitle": "사고력 수학 1:1 레벨 진단 & 맞춤 진도 상담"
+    },
+    {
+      "id": "TOY_07",
+      "name": "스마트 기어 회전 톱니바퀴 조립 세트 (STEM)",
+      "targetAge": "만 5세 이상 (60개월~)",
+      "ageMonthsMin": 54,
+      "ageMonthsMax": 144,
+      "concerns": ["cognitive", "math_space"],
+      "benefit": "회전 동력 전달과 기어 맞물림 원리를 손으로 직접 실험하며 공학적 직관 배양",
+      "price": 33000,
+      "coupangPath": "vp/products/smart-gears-stem-kit",
+      "cpaTitle": "어린이 코딩·로봇 무료 체험 클래스 신청"
+    },
+    {
+      "id": "TOY_08",
+      "name": "무독성 친환경 안전 가위 & 입체 선긋기 워크북 세트",
+      "targetAge": "만 2~5세 (24~60개월)",
+      "ageMonthsMin": 24,
+      "ageMonthsMax": 60,
+      "concerns": ["fine_motor", "cognitive"],
+      "benefit": "아동 손 크기에 최적화된 스프링 손잡이로 올바른 가위질 근육 기억 형성",
+      "price": 14500,
+      "coupangPath": "vp/products/safety-scissors-workbook",
+      "cpaTitle": "가위질·선긋기 워크지 50종 PDF 네이버 카페 무료 다운로드"
+    }
+  ]
+}

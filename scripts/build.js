@@ -310,7 +310,7 @@ function generateStaticApiEndpoints() {
       offers: [],
       passes: [
         { tier: 'tier1', title: '단건 정밀 성장·뼈나이 리포트 패스', price_krw: 9900, url: 'https://www.latpeed.com/products/daMaP' },
-        { tier: 'tier2', title: '6개월 성장속도 트래커 풀패키지 패스', price_krw: 19900, url: 'https://www.latpeed.com/stores/7Frck' }
+        { tier: 'tier2', title: '6개월 성장속도 트래커 풀패키지 패스', price_krw: 19900, url: 'https://www.latpeed.com/products/_5Nq4' }
       ]
     }, null, 2);
     fs.writeFileSync(path.join(apiDir, 'adpick-offers'), passesJson, 'utf8');
