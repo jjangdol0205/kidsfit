@@ -29,4 +29,4 @@ Allow: /
 
 Sitemap: https://kidsfit.co.kr/sitemap.xml
 
-# DaumWebMasterTool: READY_FOR_PIN_INJECTION
+#DaumWebMasterTool:1c7998a597348207ce15a13365f7e5882e269e3d9c63affd95432bbee1c9fe4a:wRgbLNgPvWQylyHAj1bNag==
