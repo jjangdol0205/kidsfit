@@ -1,6 +1,7 @@
 /**
- * Dream Company OWASP 2025 Edge Security & Paywall Guard Middleware
- * Blocks direct public access to paid vault PDFs, retired GAS configs, dotfiles, lockfiles, and retired legacy APIs.
+ * Dream Company OWASP 2025 Edge Security, Paywall Guard & Fail-Open CRO Slot SSR Middleware (KFK — Division 5)
+ * - Blocks direct public access to paid vault PDFs, retired GAS configs, dotfiles, lockfiles, and retired legacy APIs.
+ * - For GET / only: applies Sanctuary-safe text-only (html:false) Edge HTMLRewriter slots from R2 with 450ms Fail-Open timeout.
  */
 const BLOCKED_EXACT = new Set([
   '/hq-mailing-endpoint.json',
@@ -29,6 +30,46 @@ const BLOCKED_PREFIXES = [
   '/products/',
 ];
 
+const R2_CRO_BASE = 'https://pub-c1592ad8d860431c9bf3d4dd12c228ef.r2.dev/cro';
+const ALLOWED_DENSITY = new Set(['cro-pad-compact', 'cro-pad-airy']);
+const KFK_FORBIDDEN_RE = /(?:최저가|할인율|특가|폭탄세일|coupang\.com|coupa\.ng|brandconnect\.naver\.com|cshop\.naver\.com|lemonsqueezy|\bclinical\b|\b1:1\b)/i;
+const SLOT_SELECTORS_KFK = [
+  ['hero_h1', 'h1.atelier-headline'],
+  ['cta_primary', '#btn-start-atelier-hero'],
+  ['cta_bottom', '#btn-start-atelier-stepup'],
+  ['gate_sub', '#kfk-sample-above-cta'],
+];
+
+async function fetchCroSlotConfig(div, previewId, bypassCache) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 450);
+  try {
+    const targetUrl = previewId
+      ? `${R2_CRO_BASE}/${div}_staging_${previewId}.json?nc=${Date.now()}`
+      : (bypassCache
+          ? `${R2_CRO_BASE}/${div}_active.json?nc=${Date.now()}`
+          : `${R2_CRO_BASE}/${div}_active.json`);
+    const opts = {
+      signal: ctrl.signal,
+      headers: { Accept: 'application/json' },
+    };
+    if (previewId || bypassCache) {
+      opts.cf = { cacheTtl: 0 };
+    } else {
+      opts.cf = { cacheTtl: 30, cacheEverything: true };
+    }
+    const r = await fetch(targetUrl, opts);
+    if (!r || !r.ok) return null;
+    const j = await r.json();
+    if (!j || typeof j !== 'object') return null;
+    return j;
+  } catch (_) {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const p = url.pathname.toLowerCase();
@@ -48,5 +89,73 @@ export async function onRequest(context) {
     });
   }
 
-  return context.next();
+  const resp = await context.next();
+
+  // Fail-Open Edge CRO Slot SSR — strictly GET / or /index.html returning 200 text/html only
+  if (context.request.method !== 'GET' || (p !== '/' && p !== '/index.html')) {
+    return resp;
+  }
+  const ct = String(resp.headers.get('Content-Type') || '').toLowerCase();
+  if (resp.status !== 200 || !ct.includes('text/html')) {
+    return resp;
+  }
+
+  const rawPreview = String(url.searchParams.get('cro_preview') || '').trim();
+  const previewId = /^[A-Za-z0-9_\-]{4,64}$/.test(rawPreview) ? rawPreview : '';
+  const bypassCache = Boolean(
+    previewId ||
+    url.searchParams.has('nocache') ||
+    String(context.request.headers.get('Cache-Control') || '').toLowerCase().includes('no-cache')
+  );
+
+  const cfg = await fetchCroSlotConfig('KFK', previewId, bypassCache);
+  if (!cfg) return resp;
+
+  const slots = (cfg.slots && typeof cfg.slots === 'object') ? cfg.slots : {};
+  const density = ALLOWED_DENSITY.has(String(cfg.density || '')) ? String(cfg.density) : '';
+  const expId = String(cfg.active_exp_id || '').replace(/[^A-Za-z0-9_,\-]/g, '').slice(0, 100);
+  const hasAnySlot = SLOT_SELECTORS_KFK.some(([k]) => typeof slots[k] === 'string' && slots[k].trim().length >= 3);
+
+  if (!hasAnySlot && !density) {
+    return resp;
+  }
+
+  try {
+    let rewriter = new HTMLRewriter();
+    if (expId) {
+      rewriter = rewriter.on('head', {
+        element(el) {
+          el.append(`<meta name="dc-cro-exp" content="${expId}">`, { html: true });
+        },
+      });
+    }
+    if (density) {
+      rewriter = rewriter.on('body', {
+        element(el) {
+          el.setAttribute('data-cro-density', density);
+        },
+      });
+    }
+    for (const [slotKey, selector] of SLOT_SELECTORS_KFK) {
+      const val = typeof slots[slotKey] === 'string' ? slots[slotKey].trim() : '';
+      if (val && val.length <= 220 && !/[<>]/.test(val) && !KFK_FORBIDDEN_RE.test(val)) {
+        rewriter = rewriter.on(selector, {
+          element(el) {
+            el.setInnerContent(val, { html: false });
+          },
+        });
+      }
+    }
+    const transformed = rewriter.transform(resp);
+    const outHeaders = new Headers(transformed.headers);
+    if (expId) outHeaders.set('X-DC-CRO-Exp', expId);
+    if (previewId) outHeaders.set('Cache-Control', 'no-store, max-age=0');
+    return new Response(transformed.body, {
+      status: transformed.status,
+      statusText: transformed.statusText,
+      headers: outHeaders,
+    });
+  } catch (_) {
+    return resp;
+  }
 }

@@ -241,7 +241,8 @@ function build() {
     'privacy.html',
     'terms.html',
     'contact.html',
-    'hq-mailing-endpoint.json'
+    'hq-mailing-endpoint.json',
+    '_routes.json'
   ].forEach((file) => {
     const fPath = path.join(ROOT_DIR, file);
     if (fs.existsSync(fPath)) {
