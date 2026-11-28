@@ -491,6 +491,8 @@
       exactMonths: ageInfo.exactMonths,
       heightCm: heightCm,
       weightKg: weightKg,
+      weightRawStr: weightRawStr,
+      weightEstimated: weightEstimated,
       fatherCm: fatherCm,
       motherCm: motherCm,
       mphCm: mphCm,
@@ -595,6 +597,20 @@
     }
   }
 
+  var KDCA_MEDIAN_WT_BOY = { 1: 9.8, 2: 12.4, 3: 14.5, 4: 16.6, 5: 19.0, 6: 21.7, 7: 24.8, 8: 28.4, 9: 32.3, 10: 36.6, 11: 41.3, 12: 46.5, 13: 52.2, 14: 57.6, 15: 62.0, 16: 65.1, 17: 67.3, 18: 68.7 };
+  var KDCA_MEDIAN_WT_GIRL = { 1: 9.2, 2: 11.8, 3: 14.0, 4: 16.1, 5: 18.4, 6: 20.9, 7: 23.8, 8: 27.1, 9: 30.8, 10: 35.1, 11: 39.8, 12: 44.6, 13: 48.6, 14: 51.3, 15: 53.0, 16: 54.0, 17: 54.6, 18: 54.9 };
+
+  function getKdcaMedianWeightKg(sex, exactMonths) {
+    var yrs = clamp((Number(exactMonths) || 96) / 12, 1, 18);
+    var lo = Math.floor(yrs);
+    var hi = Math.min(18, lo + 1);
+    var frac = yrs - lo;
+    var tbl = sex === 'girl' ? KDCA_MEDIAN_WT_GIRL : KDCA_MEDIAN_WT_BOY;
+    var vLo = tbl[lo] || 30.0;
+    var vHi = tbl[hi] || vLo;
+    return Number((vLo + (vHi - vLo) * frac).toFixed(1));
+  }
+
   function readFormProfile() {
     if (typeof document === 'undefined') return {};
     var sexRadio = document.querySelector('input[name="child-sex"]:checked');
@@ -603,7 +619,12 @@
     var birthMonth = Number((document.getElementById('dob-month') || {}).value) || 5;
     var birthDay = Number((document.getElementById('dob-day') || {}).value) || 15;
     var heightCm = Number((document.getElementById('child-height') || {}).value) || 0;
-    var weightKg = Number((document.getElementById('child-weight') || {}).value) || 0;
+    var weightInputEl = document.getElementById('child-weight');
+    var weightRawStr = weightInputEl ? String(weightInputEl.value || '').trim() : '';
+    var weightRawNum = weightRawStr ? Number(weightRawStr) : 0;
+    var ageForWt = computeExactAgeFromDob(birthYear, birthMonth, birthDay);
+    var weightEstimated = !weightRawStr;
+    var weightKg = weightEstimated ? getKdcaMedianWeightKg(sex, ageForWt.exactMonths) : weightRawNum;
     var fatherCm = Number((document.getElementById('father-height') || {}).value) || 174;
     var motherCm = Number((document.getElementById('mother-height') || {}).value) || 161;
 
@@ -788,8 +809,8 @@
         if (hInput) hInput.focus();
         return;
       }
-      if (!p.weightKg || p.weightKg < 7 || p.weightKg > 130) {
-        showStepValidationError('아이의 현재 체중(kg)을 7 ~ 130 kg 사이로 입력해 주세요.');
+      if (p.weightRawStr && (!p.weightKg || p.weightKg < 7 || p.weightKg > 130)) {
+        showStepValidationError('체중을 입력하실 경우 7 ~ 130 kg 사이로 적어 주세요. 모르실 경우 비워 두시면 또래 중간 체중이 자동 적용됩니다.');
         var wInput = document.getElementById('child-weight');
         if (wInput) wInput.focus();
         return;
@@ -1042,7 +1063,10 @@
 
     var obsEl = document.getElementById('result-free-observation');
     if (obsEl) {
-      obsEl.textContent = analysis.freePositionNote;
+      var wtNote = (savedProf && savedProf.weightEstimated)
+        ? ' (몸무게 미입력으로 해당 월령 질병관리청 또래 중간 체중 기준 참고)'
+        : '';
+      obsEl.textContent = analysis.freePositionNote + wtNote;
     }
 
     var clockNoteEl = document.getElementById('result-free-growth-clock-note');
@@ -1706,6 +1730,59 @@
         }
       }
     } catch (_) {}
+
+
+    // Show 1-line reassurance context bar on YouTube / Shorts arrival
+    try {
+      var ytBar = document.getElementById('kfk-yt-context-bar');
+      var spCtx = (global.location && global.location.search) ? new URLSearchParams(global.location.search) : null;
+      var srcLower = spCtx ? String(spCtx.get('utm_source') || '').toLowerCase() : '';
+      var medLower = spCtx ? String(spCtx.get('utm_medium') || '').toLowerCase() : '';
+      var refLower = String((document && document.referrer) || '').toLowerCase();
+      if (ytBar && (srcLower.indexOf('youtube') >= 0 || srcLower.indexOf('yt') >= 0 || medLower.indexOf('short') >= 0 || refLower.indexOf('youtube') >= 0 || refLower.indexOf('youtu.be') >= 0 || (spCtx && spCtx.get('from') === 'yt'))) {
+        ytBar.style.display = 'block';
+      }
+    } catch (_) {}
+
+    // Bind Screen 0 One-Tap Age Quick-Start Chips -> quiz_start + KDCA median preview + Step 1
+    var ageChips = document.querySelectorAll('[data-kfk-age-chip]');
+    if (ageChips && ageChips.length) {
+      ageChips.forEach(function (chip) {
+        if (chip._kfkChipBound) return;
+        chip._kfkChipBound = true;
+        chip.addEventListener('click', function () {
+          var presetKey = chip.getAttribute('data-kfk-age-chip') || 'elem_low';
+          var ageNum = parseInt(chip.getAttribute('data-age'), 10) || 8;
+          ageChips.forEach(function (c) { c.classList.toggle('is-active', c === chip); });
+
+          var boyRow = getKdcaRow('boy', ageNum * 12);
+          var girlRow = getKdcaRow('girl', ageNum * 12);
+          var medEl = document.getElementById('kfk-chip-median-preview');
+          if (medEl && boyRow && girlRow) {
+            medEl.textContent = '질병관리청 또래 중간 키 미리보기 · 만 ' + ageNum + '세 남아 ' + boyRow.M.toFixed(1) + ' cm · 여아 ' + girlRow.M.toFixed(1) + ' cm';
+          }
+
+          try {
+            if (sessionStorage.getItem('dc_quiz_start_KFK') !== '1' && global.DreamCompanyCRM && typeof global.DreamCompanyCRM.trackFunnelEvent === 'function') {
+              sessionStorage.setItem('dc_quiz_start_KFK', '1');
+              global.DreamCompanyCRM.trackFunnelEvent('KFK', 'quiz_start', { event_meta: 'age_chip_' + presetKey });
+            }
+          } catch (_) {}
+
+          var nowDt = new Date();
+          var bySelect = document.getElementById('dob-year');
+          var bmSelect = document.getElementById('dob-month');
+          var bdSelect = document.getElementById('dob-day');
+          if (bySelect) bySelect.value = String(nowDt.getFullYear() - ageNum);
+          if (bmSelect) bmSelect.value = String(nowDt.getMonth() + 1);
+          if (bdSelect) bdSelect.value = String(nowDt.getDate());
+          updateStep1AgeReadout();
+          updateStep2MphReadout();
+          showScreen(1);
+          showSurveyStep(1);
+        });
+      });
+    }
 
     if (wantsAutoStart || hash === '#quiz-section' || hash === '#kfk-bone-age-interpreter' || /^#preset-/i.test(hash)) {
       showScreen(1);

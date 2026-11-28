@@ -32,15 +32,15 @@
   <meta name="twitter:image" content="https://kidsfit.co.kr/assets/og/og-share-kfk-result.png">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F5241'/%3E%3Cpath d='M9 21 C13 18, 18 13, 23 9' fill='none' stroke='%23FAF7F2' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='9' r='2.2' fill='%23FAF7F2'/%3E%3C/svg%3E">
-  <link rel="manifest" href="manifest.json?v=20261118_e3a46c02">
+  <link rel="manifest" href="manifest.json?v=20261128sw_6ddfb344">
   <meta name="theme-color" content="#FAF7F2">
-  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261118_e3a46c02">
+  <link rel="apple-touch-icon" href="samples/apple-touch-icon.png?v=20261128sw_6ddfb344">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="src/css/style.css?v=20261118_e3a46c02">
+  <link rel="stylesheet" href="src/css/style.css?v=20261128sw_6ddfb344">
 
   <script type="application/ld+json">
   {
@@ -70,8 +70,8 @@
   }
   </script>
 
-  <script src="/assets/csp/inline_2be194f573db.js?v=20261121vl2"></script>
-  <script src="/assets/csp/csp-events.js?v=20261122sprint"></script>
+  <script src="/assets/csp/inline_2be194f573db.js?v=20261128sw_6ddfb344"></script>
+  <script src="/assets/csp/csp-events.js?v=20261128sw_6ddfb344"></script>
   <style>
     /* OPTION_A_KFK_COMPACT_SCREEN3 */
     @media (max-width: 640px) {
@@ -93,6 +93,13 @@
     .kfk-details-accordion { margin-top: 12px; border: 1px solid #DFD7CC; border-radius: 10px; background: #FAF7F2; padding: 10px 12px; }
     .kfk-details-accordion > summary { cursor: pointer; font-weight: 700; font-size: 14px; color: #2F5241; list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 40px; }
     .kfk-details-accordion > summary::-webkit-details-marker { display: none; }
+    .kfk-yt-context-bar { display: none; margin: 0 0 12px; padding: 10px 13px; border-radius: 10px; background: #EEF3F0; border: 1px solid #B7CEBF; color: #1F3D2F; font-size: 13.5px; font-weight: 700; line-height: 1.48; }
+    .kfk-age-chip-wrap { margin: 14px 0 12px; padding: 12px 13px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DFD7CC; }
+    .kfk-age-chip-label { font-size: 12.5px; font-weight: 700; color: #2F5241; margin: 0 0 8px; letter-spacing: 0.01em; }
+    .kfk-age-chip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+    .kfk-age-chip-btn { appearance: none; min-height: 46px; padding: 8px 6px; border-radius: 9px; border: 1.5px solid #2F5241; background: #FAF7F2; color: #2F5241; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; line-height: 1.25; transition: all 0.15s ease; }
+    .kfk-age-chip-btn:hover, .kfk-age-chip-btn.is-active { background: #2F5241; color: #FAF7F2; }
+    .kfk-chip-median-note { margin: 9px 0 0; font-size: 12.8px; color: #4A433E; line-height: 1.45; font-variant-numeric: tabular-nums; }
   </style>
 </head>
 <body>
@@ -117,11 +124,25 @@
     <section id="kfk-peer-growth-editorial" class="atelier-screen is-active" aria-label="설립 취지 및 성장 시계 서비스 안내">
       <article class="editorial-opening-spread">
         <div class="editorial-opening-intro">
+          <div id="kfk-yt-context-bar" class="kfk-yt-context-bar" role="status">
+            영상에서 확인하신 수면·신발·뼈나이 성장 리듬을 우리 아이 생년월일 기준 질병관리청 성장도표로 1분 만에 차분히 점검해 보세요.
+          </div>
           <span class="atelier-note-label">가정용 소아성장 시계 연구소</span>
           <h1 class="atelier-headline">질병관리청·뼈나이 기준 우리 아이 예상키 1분 무료 진단</h1>
           <p class="atelier-subheadline">
             태어난 날짜별 질병관리청 성장도표와 병원 뼈나이 경과 시간까지 반영해 오늘 또래 백분위를 바로 확인합니다.
           </p>
+          <div id="kfk-screen0-age-chips" class="kfk-age-chip-wrap" aria-label="연령대 원탭 빠른 시작">
+            <p class="kfk-age-chip-label">아이 연령대를 누르면 바로 1분 무료 진단이 시작됩니다</p>
+            <div class="kfk-age-chip-grid">
+              <button type="button" id="btn-kfk-chip-child" class="kfk-age-chip-btn" data-kfk-age-chip="child_4_5" data-age="5">유아 4~6세</button>
+              <button type="button" id="btn-kfk-chip-elem-low" class="kfk-age-chip-btn" data-kfk-age-chip="elem_low" data-age="8">초등 저학년<br>7~9세</button>
+              <button type="button" id="btn-kfk-chip-elem-high" class="kfk-age-chip-btn" data-kfk-age-chip="elem_high" data-age="11">초등 고학년<br>10~12세</button>
+            </div>
+            <p id="kfk-chip-median-preview" class="kfk-chip-median-note">
+              질병관리청 또래 중간 키 미리보기 · 만 8세 남아 128.1 cm · 여아 127.0 cm (몸무게 몰라도 키만으로 바로 진행)
+            </p>
+          </div>
           <div class="atelier-hero-cta-wrap">
             <button type="button" id="btn-start-atelier-hero" class="atelier-btn-primary" data-csp-click="h_9598c13b14b7">
               1분 무료 성장 진단 시작하기 &rarr;
@@ -134,7 +155,7 @@
 
         <aside class="editorial-opening-art" aria-label="거실 기둥에서 아이 키를 재어 보는 저녁 풍경">
           <figure class="editorial-art-frame">
-            <img src="samples/kfk-warm-story.jpg?v=20261118_e3a46c02" width="920" height="920" alt="따뜻한 저녁 거실 기둥에 그어 둔 연필 눈금 앞에서 아이의 키를 살펴보는 모습">
+            <img src="samples/kfk-warm-story.jpg?v=20261128sw_6ddfb344" width="920" height="920" alt="따뜻한 저녁 거실 기둥에 그어 둔 연필 눈금 앞에서 아이의 키를 살펴보는 모습">
             <figcaption class="editorial-art-caption">
               거실 기둥에 연필로 키를 재어 보던 어느 저녁의 기록
             </figcaption>
@@ -148,7 +169,9 @@
         <div class="editorial-opening-body">
           <span class="atelier-note-label">부모님께 드리는 첫 인사</span>
           <h2 class="atelier-letter-heading">왜 이 성장 시계 연구소를 만들었나요</h2>
-          <div class="atelier-letter">
+          <details id="kfk-founding-letter-accordion" class="kfk-details-accordion" style="margin-bottom:14px;">
+            <summary><span>부모님께 드리는 설립 편지 전문 읽기</span><span>+</span></summary>
+            <div class="atelier-letter" style="margin-top:10px;">
             <p>
               짧은 진료실 상담 끝에 &ldquo;일단 반년쯤 더 지켜보시죠&rdquo;라는 말을 듣고 병원 복도를 걸어 나오던 날, 혹은 밤 9시가 넘어 무거운 가방을 현관에 내려놓는 아이의 조금 굽은 어깨를 바라보며 &lsquo;우리 아이가 클 수 있는 계절이 지금 어디쯤 지나고 있을까&rsquo; 혼자 마음 졸여 본 부모님들께 이 작은 연구소의 문을 열어 드립니다.
             </p>
@@ -158,7 +181,8 @@
             <p>
               이곳에서는 다섯 가지 짧은 질문을 통해 아이가 태어난 날까지 헤아린 <strong>질병관리청 소아청소년 성장 기준</strong> 위에서 오늘 우리 아이가 어디쯤 서 있는지 먼저 살펴 드립니다. 예전에 병원에서 들으신 뼈나이가 있다면 그때부터 오늘까지 흐른 시간까지 헤아려 드리고, 아직 검사를 받아보지 않으셨더라도 전혀 괜찮습니다. 남들과 조급하게 비교하기 위해서가 아니라, 오늘 저녁 거실 불을 10분 일찍 낮추어 줄 수 있는 편안한 이정표 하나를 부모님 손에 건네드리고 싶었습니다.
             </p>
-          </div>
+            </div>
+          </details>
 
           <div class="atelier-promise-sheet" aria-label="이곳에서 살펴드리는 세 가지 약속">
             <p class="atelier-promise-title">이곳에서 차근차근 살펴드리는 세 가지</p>
@@ -256,14 +280,14 @@
                 </div>
               </div>
               <div>
-                <label class="field-label" for="child-weight">최근 몸무게</label>
+                <label class="field-label" for="child-weight">최근 몸무게 <span style="font-weight:500;color:#6E6760;">(선택 · 모르면 비워 두세요)</span></label>
                 <div class="input-unit-wrap">
                   <input type="number" id="child-weight" class="atelier-input" step="0.1" min="7" max="130" placeholder="예: 34.5" inputmode="decimal">
                   <span class="input-unit-tag">kg</span>
                 </div>
               </div>
             </div>
-            <span class="field-subnote">집에서 아침에 재어 본 대략적인 수치도 괜찮습니다. 소수점 첫째 자리까지 적어 주세요.</span>
+            <span class="field-subnote">집에서 아침에 재어 본 키(cm)만 입력하셔도 바로 진행됩니다. 몸무게 미입력 시 해당 월령 질병관리청 또래 중간 체중이 자동 적용됩니다.</span>
           </div>
 
           <button type="button" id="btn-step1-next" class="atelier-btn-primary" data-csp-click="h_d71159520724">
@@ -691,7 +715,7 @@
               <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;">블러 썸네일</span>
             </div>
             <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #DFD7CC;">
-              <img src="/assets/kfk_pdf_p1_blur.png?v=20261122abc" alt="질병관리청 2017 기준 우리 아이 4페이지 정밀 성장 보고서 PDF 1쪽 블러 미리보기" width="780" height="520" loading="lazy" style="display:block;width:100%;max-height:175px;object-fit:cover;object-position:top center;">
+              <img src="/assets/kfk_pdf_p1_blur.png?v=20261128sw_6ddfb344" alt="질병관리청 2017 기준 우리 아이 4페이지 정밀 성장 보고서 PDF 1쪽 블러 미리보기" width="780" height="520" loading="lazy" style="display:block;width:100%;max-height:175px;object-fit:cover;object-position:top center;">
               <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:10px;background:linear-gradient(180deg, rgba(250,247,242,0.05) 0%, rgba(250,247,242,0.84) 100%);">
                 <span style="display:inline-block;padding:5px 12px;border-radius:999px;background:#1B4332;color:#FFFFFF;font-size:12px;font-weight:800;box-shadow:0 4px 10px rgba(27,67,50,0.28);">뼈나이 보정 예상키 &middot; 30일 냉장고 달력 &mdash; 아래 패스에서 즉시 개방</span>
               </div>
@@ -1011,10 +1035,10 @@
     </div>
   </div>
 
-  <script src="src/js/hq_member_crm_client.js?v=20261128ta" defer></script>
-  <script src="src/js/kfk-personalized-pdf.js?v=20261123a" defer></script>
-  <script src="src/js/kfk-atelier-app.js?v=20261123a" defer></script>
-  <script defer src="/src/js/dc-ux-addons.js?v=20261128ta"></script>
-  <script defer src="/src/js/dc-share-card.js?v=20261125"></script>
+  <script src="src/js/hq_member_crm_client.js?v=20261128sw_6ddfb344" defer></script>
+  <script src="src/js/kfk-personalized-pdf.js?v=20261128sw_6ddfb344" defer></script>
+  <script src="src/js/kfk-atelier-app.js?v=20261128sw_6ddfb344" defer></script>
+  <script defer src="/src/js/dc-ux-addons.js?v=20261128sw_6ddfb344"></script>
+  <script defer src="/src/js/dc-share-card.js?v=20261128sw_6ddfb344"></script>
 </body>
 </html>

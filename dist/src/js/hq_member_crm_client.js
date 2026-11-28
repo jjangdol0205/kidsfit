@@ -137,13 +137,38 @@
     }
   }
 
-  function postCloudJson(path, payload) {
-    return fetch(CLOUD_API_BASE + path, {
+  function postCloudJson(path, payload, opts) {
+    var isAnalytics = String(path || '').indexOf('/api/analytics/event') >= 0;
+    if (isAnalytics && isInternalOrBotTraffic()) {
+      return Promise.resolve({ ok: true, skipped: 'internal_test' });
+    }
+    var bodyStr = JSON.stringify(payload || {});
+    var fullUrl = CLOUD_API_BASE + path;
+    var tryBeaconFallback = function () {
+      try {
+        if (isAnalytics && isInternalOrBotTraffic()) return false;
+        if (global.navigator && typeof global.navigator.sendBeacon === 'function' && typeof Blob === 'function') {
+          return global.navigator.sendBeacon(fullUrl, new Blob([bodyStr], { type: 'text/plain;charset=UTF-8' }));
+        }
+      } catch (_be) {}
+      return false;
+    };
+    if (opts && opts.beaconOnly) {
+      var sentOnly = tryBeaconFallback();
+      if (sentOnly) return Promise.resolve({ ok: true, transport: 'beacon' });
+    }
+    return fetch(fullUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload || {})
+      body: bodyStr,
+      keepalive: true
     }).then(function (res) {
       return res.json().catch(function () { return { ok: res.ok, status: res.status }; });
+    }).catch(function (err) {
+      if (isAnalytics && tryBeaconFallback()) {
+        return { ok: true, transport: 'beacon_fallback' };
+      }
+      throw err;
     });
   }
 
@@ -713,7 +738,7 @@
   }
 
   /* ==========================================================================
-   * 3. Standard Digital Refund & Support Link (Replaces legacy 14-Day copy!)
+   * 3. Standard Digital Refund & Support Link (Replaces legacy 7-Day copy!)
    * ========================================================================== */
   function buildRefundSupportMailto(div, email, orderRef) {
     var d = String(div || detectDivFromHost()).toUpperCase();
@@ -905,8 +930,8 @@
           submitSatisfactionVote({ div: div, vote: v, context: contextKey, email: opts && opts.email });
           var wrap = el.querySelector('.dc-sat-vote-bar');
           if (v === 'up' && !isHero && wrap) {
-            var askTxt = div === 'KFK' ? '도움이 되셨다면 한 줄 소감을 남겨 주세요 (선택 · 익명/닉네임):' : (div === 'GBA' ? 'よろしければ一言ご感想をお聞かせください（任意・匿名可）：' : 'Optional: share a 1-line voluntary reflection (verified members only):');
-            var btnLbl = div === 'KFK' ? '소감 저장' : (div === 'GBA' ? '送信' : 'Save Note');
+            var askTxt = div === 'KFK' ? '\ub3c4\uc6c0\uc774 \ub418\uc168\ub2e4\uba74 \ud55c \uc904 \uc18c\uac10\uc744 \ub0a8\uaca8 \uc8fc\uc138\uc694 (\uc120\ud0dd · \uc775\uba85/\ub2c9\ub124\uc784):' : (div === 'GBA' ? 'よろしければ一言ご感想をお聞かせください（任意・匿名可）：' : 'Optional: share a 1-line voluntary reflection (verified members only):');
+            var btnLbl = div === 'KFK' ? '\uc18c\uac10 \uc800\uc7a5' : (div === 'GBA' ? '送信' : 'Save Note');
             wrap.innerHTML = '<div style="width:100%;"><div style="font-weight:700;margin-bottom:6px;">' + askTxt + '</div><div style="display:flex;flex-wrap:wrap;gap:6px;"><input type="text" class="dc-sat-nick" maxlength="32" placeholder="Nickname" style="flex:0 1 130px;padding:7px 9px;border:1px solid #CBD5E1;border-radius:6px;font-size:13px;"><input type="text" class="dc-sat-comment-box" maxlength="220" placeholder="..." style="flex:1 1 200px;padding:7px 9px;border:1px solid #CBD5E1;border-radius:6px;font-size:13px;"><button type="button" class="dc-sat-send-btn" style="padding:7px 14px;border-radius:6px;border:none;background:#0F2C22;color:#FFF;font-weight:700;cursor:pointer;">' + btnLbl + '</button></div></div>';
             var sBtn = wrap.querySelector('.dc-sat-send-btn');
             if (sBtn) sBtn.addEventListener('click', function () {
@@ -1240,18 +1265,19 @@
             return;
           }
           // 2. Quiz / Interactive Tool Start (Micro-Activation signal, 1x/session)
-          if (id === 'btnStartPwStepUp' || id === 'btnPwStartStepUp' || id === 'btn-kfg-begin-atelier-top' || id === 'btn-kfg-begin-atelier' || id === 'btnStartPwStepUpJp' || id === 'btnPwStartStepUpJp' || id === 'btn-start-atelier-hero' || id === 'btn-start-atelier-stepup' || id === 'btn-kfk-begin-atelier' || a.getAttribute('data-csp-act') === 'kfg-begin-atelier') {
+          if (id === 'btnStartPwStepUp' || id === 'btnStartPwStepUpBottom' || id === 'btnPwStartStepUp' || id === 'btn-kfg-begin-atelier-top' || id === 'btn-kfg-begin-atelier' || id === 'btnStartPwStepUpJp' || id === 'btnPwStartStepUpJp' || id === 'btn-start-atelier-hero' || id === 'btn-start-atelier-stepup' || id === 'btn-kfk-begin-atelier' || a.getAttribute('data-csp-act') === 'kfg-begin-atelier' || a.getAttribute('data-pw-start-stepup') === '1' || a.hasAttribute('data-kfk-age-chip') || a.hasAttribute('data-kfg-mini-start') || a.hasAttribute('data-tom-stress-btn')) {
             try {
               if (sessionStorage.getItem('dc_quiz_start_' + div) !== '1') {
                 sessionStorage.setItem('dc_quiz_start_' + div, '1');
-                trackFunnelEvent(div, 'quiz_start', { event_meta: id || 'start_btn' });
+                trackFunnelEvent(div, 'quiz_start', { event_meta: id || a.getAttribute('data-kfk-age-chip') || a.getAttribute('data-tom-stress-btn') || 'start_btn' });
               }
             } catch (_) {}
             return;
           }
-          // 3. HERO Affiliate Store Click (distinct Revenue event)
-          if (/cshop\.naver\.com|coupang\.com/i.test(href)) {
-            trackFunnelEvent(div, 'affiliate_click', { event_meta: /naver/i.test(href) ? 'naver_cshop' : 'coupang' });
+          // 3. HERO Affiliate Store Click (distinct Revenue event — covers Naver CShop, BrandConnect & Coupang)
+          if (/cshop\.naver\.com|brandconnect\.naver\.com|coupang\.com/i.test(href)) {
+            var affMeta = /brandconnect\.naver\.com/i.test(href) ? 'naver_brandconnect' : (/naver/i.test(href) ? 'naver_cshop' : 'coupang');
+            trackFunnelEvent(div, 'affiliate_click', { event_meta: affMeta });
             return;
           }
           // 4. Paid PG Checkout Click with Value-Ladder step tag (step2_low / step3_core / step4_premium)

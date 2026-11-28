@@ -25,7 +25,7 @@ function computeDeterministicBuildStamp() {
       hash.update(fs.readFileSync(fp));
     }
   }
-  return `20261118_${hash.digest('hex').slice(0, 8)}`;
+  return `20261128sw_${hash.digest('hex').slice(0, 8)}`;
 }
 
 function copyRecursiveSync(src, dest) {
