@@ -28,3 +28,5 @@ User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://kidsfit.co.kr/sitemap.xml
+
+# DaumWebMasterTool: READY_FOR_PIN_INJECTION

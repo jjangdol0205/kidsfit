@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2027 예비 초1 (2020년생) 만 6~7세 평균키 &amp; 영유아 건강검진 차수 계산기 | 키즈핏</title>
+  <meta name="description" content="2027학년도 초등 입학(2020년생) 전 질병관리청(KDCA 2017) 만 6~7세 평균키·백분위 확인과 영유아 건강검진(1~8차) 개월수 자동 계산기. 광고·제휴 배너 0건." />
+  <link rel="canonical" href="https://kidsfit.co.kr/tools/school-ready-growth" />
+  <link rel="alternate" type="application/rss+xml" title="키즈핏 소아성장 연구소 RSS" href="https://kidsfit.co.kr/rss.xml" />
+  <meta name="naver-site-verification" content="6ee0a2cacdc41d952878d221be995b155f5266ab" data-slot="naver-search-advisor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="2027 예비 초1 (2020년생) 평균키 &amp; 영유아검진 차수 계산기 | 키즈핏" />
+  <meta property="og:description" content="질병관리청 만 6~7세 평균키 백분위 + 7차·8차 영유아검진 개월수 자동 계산 + 입학 전 4대 생활습관 체크판." />
+  <meta property="og:url" content="https://kidsfit.co.kr/tools/school-ready-growth" />
+  <meta property="og:image" content="https://kidsfit.co.kr/assets/og/og-tool-school-ready.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kidsfit.co.kr/assets/og/og-tool-school-ready.png" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "2027 예비 초1 (2020년생) KDCA 만 6~7세 평균키 & 영유아 건강검진 차수 계산기", "url": "https://kidsfit.co.kr/tools/school-ready-growth", "applicationCategory": "HealthApplication", "operatingSystem": "Web", "inLanguage": "ko", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}, "description": "2027학년도 초등학교 입학 예정(2020년생) 아이의 질병관리청(KDCA 2017) 만 6~7세 키 백분위와 영유아 건강검진 1~8차 개월수, 입학 전 4대 생활습관을 무료로 확인하는 부모 전용 계산기."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "2020년생 예비 초1 아이의 마지막 8차 영유아 건강검진 시기는 언제인가요?", "acceptedAnswer": {"@type": "Answer", "text": "8차 영유아 건강검진은 생후 66개월부터 71개월 사이에 수검하는 초등학교 입학 전 마지막 국가 검진입니다. 생년월일을 입력하면 현재 개월수와 해당 차수를 바로 확인할 수 있습니다."}}, {"@type": "Question", "name": "질병관리청 기준 만 6세~7세 남아·여아 평균키는 몇 cm인가요?", "acceptedAnswer": {"@type": "Answer", "text": "질병관리청(KDCA 2017) 50백분위 기준 만 6세(72개월) 남아는 116.4cm·여아는 115.2cm이며, 만 7세(84개월) 남아는 122.5cm·여아는 121.2cm입니다."}}]}]}</script>
+  <style>
+    :root { --bg:#FAF7F2; --card:#FFFFFF; --ink:#111827; --muted:#4B5563; --brand:#0F2C22; --line:#E5E0D5; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:'Pretendard','Malgun Gothic',sans-serif; line-height:1.7; }
+    header { background:#FFF; border-bottom:1px solid var(--line); padding:14px 20px; }
+    .hd-in { max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .brand { font-size:1.15rem; font-weight:800; color:var(--brand); text-decoration:none; }
+    .nav { display:flex; gap:14px; flex-wrap:wrap; align-items:center; font-size:0.92rem; }
+    .nav a { color:var(--muted); text-decoration:none; font-weight:700; }
+    .nav .cta { background:var(--brand); color:#FFF; padding:8px 14px; border-radius:8px; }
+    main { max-width:960px; margin:0 auto; padding:30px 20px 64px; }
+    .eyebrow { display:inline-block; background:#ECFDF5; color:#065F46; padding:4px 12px; border-radius:999px; font-size:0.82rem; font-weight:800; }
+    h1 { font-size:clamp(1.6rem,3.8vw,2.25rem); color:var(--brand); margin:12px 0 10px; line-height:1.32; }
+    .answer-box { background:#F3F7F5; border-left:4px solid var(--brand); border-radius:10px; padding:16px 18px; margin:18px 0; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; margin:20px 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+    label { display:block; font-weight:700; font-size:0.9rem; color:var(--brand); margin-bottom:6px; }
+    input[type="number"], input[type="date"], select { width:100%; padding:12px; font-size:1rem; border:1.5px solid #CBD5E1; border-radius:10px; font-variant-numeric:tabular-nums; }
+    .chk-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-top:16px; }
+    .chk-row label { display:flex; align-items:center; gap:8px; background:#FAF7F2; border:1px solid var(--line); padding:11px 14px; border-radius:10px; cursor:pointer; font-weight:600; }
+    .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-top:20px; }
+    .kpi { background:#FAF7F2; border:1px solid var(--line); border-radius:12px; padding:14px; }
+    .kpi-l { font-size:0.8rem; color:var(--muted); font-weight:700; }
+    .kpi-v { font-size:1.2rem; font-weight:800; color:var(--brand); margin-top:4px; font-variant-numeric:tabular-nums; }
+    .share-bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; background:#0F2C22; color:#FFF; border-radius:14px; padding:16px 20px; margin-bottom:18px; }
+    .btn-share { background:#F59E0B; color:#111827; border:none; border-radius:10px; padding:12px 20px; font-weight:800; font-size:0.98rem; cursor:pointer; min-height:48px; }
+    .btn-primary { display:inline-block; background:#0F2C22; color:#FFF; text-decoration:none; padding:14px 22px; border-radius:10px; font-weight:800; }
+    .btn-secondary { display:inline-block; background:#FFF; color:#0F2C22; border:2px solid #0F2C22; text-decoration:none; padding:12px 20px; border-radius:10px; font-weight:800; }
+    .toast { display:none; margin-top:10px; padding:10px 14px; background:#ECFDF5; color:#065F46; border-radius:8px; font-weight:700; font-size:0.9rem; }
+    .disc { font-size:0.84rem; color:var(--muted); border-top:1px solid var(--line); padding-top:16px; margin-top:28px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hd-in">
+      <a class="brand" href="/">키즈핏 KidsFit 성장 아틀리에</a>
+      <nav class="nav">
+        <a href="/">60초 뼈나이 정밀 진단</a>
+        <a href="/growth-chart/">연령별 평균키표</a>
+        <a href="/qna/">성장 Q&amp;A</a>
+        <a class="cta" href="/?utm_source=school_tool&amp;utm_medium=nav">무료 예상키 진단 &rarr;</a>
+      </nav>
+    </div>
+  </header>
+  <main id="dcSeasonalToolApp" data-div="KFK">
+    <span class="eyebrow">2027학년도 예비 초1 (2020년생) &middot; 질병관리청 KDCA 2017</span>
+    <h1>예비 초1 만 6~7세 평균키 백분위 &amp; 영유아 건강검진 차수 계산기</h1>
+    <section class="answer-box">
+      <h2 style="margin:0 0 6px;font-size:1.1rem;color:#0F2C22;">2020년생 예비 초1 평균키와 8차 영유아검진 시기는 어떻게 되나요?</h2>
+      <p style="margin:0;"><strong>질병관리청(KDCA 2017) 기준 만 6세(72개월) 평균키는 남아 116.4cm·여아 115.2cm, 만 7세(84개월)는 남아 122.5cm·여아 121.2cm입니다. 초등 입학 전 마지막 8차 영유아 건강검진은 생후 66~71개월 사이에 수검합니다.</strong></p>
+    </section>
+
+    <div class="share-bar">
+      <div>
+        <div style="font-weight:800;font-size:1.05rem;">아이 아빠·엄마에게 예상키 점검 카드 보내기</div>
+        <div style="font-size:0.86rem;color:#D1FAE5;">회원가입 없이 배우자와 입학 전 성장 체크 결과를 1터치로 공유하세요.</div>
+      </div>
+      <button type="button" id="btnKfkSeasonalShare" class="btn-share">아빠·엄마에게 결과 카드 보내기 &rarr;</button>
+    </div>
+    <div id="kfkSeasonalShareToast" class="toast" role="status" aria-live="polite"></div>
+
+    <section class="card" aria-label="예비 초1 성장 및 영유아검진 계산">
+      <div class="grid">
+        <div>
+          <label for="kfkSex">아이 성별</label>
+          <select id="kfkSex"><option value="M">남아</option><option value="F">여아</option></select>
+        </div>
+        <div>
+          <label for="kfkDob">아이 생년월일 (2020년생 기본)</label>
+          <input id="kfkDob" type="date" value="2020-05-15" />
+        </div>
+        <div>
+          <label for="kfkHeight">현재 아침 맨발 키 (cm)</label>
+          <input id="kfkHeight" type="number" min="90" max="160" step="0.1" value="119.5" />
+        </div>
+      </div>
+
+      <h3 style="margin:20px 0 8px;font-size:1.02rem;color:#0F2C22;">입학 전 4대 성장 생활습관 체크판</h3>
+      <div class="chk-row">
+        <label><input type="checkbox" id="kfkH1" checked /> 밤 9시 30분 이전 취침·어두운 침실</label>
+        <label><input type="checkbox" id="kfkH2" checked /> 저녁 단백질 반찬 + 취침 2시간 전 공복</label>
+        <label><input type="checkbox" id="kfkH3" checked /> 입호흡·코골이 없이 코호흡 숙면</label>
+        <label><input type="checkbox" id="kfkH4" checked /> 하루 15분 이상 줄넘기·뛰어놀기</label>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-l">현재 만 나이 / 개월수</div><div class="kpi-v" id="kfkOutAge">만 6세</div></div>
+        <div class="kpi"><div class="kpi-l">또래 키 백분위 (KDCA)</div><div class="kpi-v" id="kfkOutPct">50%</div></div>
+        <div class="kpi"><div class="kpi-l">동일 개월 평균키</div><div class="kpi-v" id="kfkOutAvg">119.5 cm</div></div>
+        <div class="kpi"><div class="kpi-l">생활습관 준비도</div><div class="kpi-v" id="kfkOutHabit">100 / 100점</div></div>
+      </div>
+      <p id="kfkOutCheckup" style="margin:16px 0 0;padding:12px 14px;background:#F8FAFC;border-radius:10px;font-weight:700;color:#0F2C22;"></p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;">
+        <a class="btn-primary" href="/?utm_source=school_tool&amp;utm_medium=cta#kfk-bone-age-interpreter">뼈나이 시차(Δt) 반영 60초 정밀 예상키 진단 &rarr;</a>
+        <a class="btn-secondary" href="/assets/downloads/kfk_sample_2p.pdf" target="_blank" rel="noopener">무료 2p 샘플 리포트 PDF 보기 &rarr;</a>
+      </div>
+    </section>
+
+    <p class="disc">
+      <strong>비의료 참고 안내:</strong> 본 도구는 질병관리청(KDCA 2017) 공개 성장도표 및 국가 영유아 건강검진 월령 기준을 정리한 부모용 자가 참고 계산기이며, 의학적 진단·치료를 대체하지 않습니다. 상업성 광고·영양제 제휴 링크는 0건입니다. &middot; <a href="/terms">이용약관</a> &middot; <a href="/privacy">개인정보처리방침</a>
+    </p>
+  </main>
+  <script defer src="/src/js/hq_member_crm_client.js?v=20261128ta"></script>
+  <script defer src="/src/js/dc-school-ready-tool.js?v=20261128ta"></script>
+</body>
+</html>

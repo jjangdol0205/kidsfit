@@ -15,3 +15,8 @@
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600
   X-Robots-Tag: all
+
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  Cache-Control: public, max-age=1800
+  X-Robots-Tag: all

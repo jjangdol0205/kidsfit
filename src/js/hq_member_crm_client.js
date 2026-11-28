@@ -257,6 +257,9 @@
       var base = String(rawUrl || (global.location ? (global.location.origin + global.location.pathname) : '')).trim();
       var prof = getOrCreateVisitorProfile();
       var u = new URL(base);
+      ['internal_check', 'owner_device', 'internal_test', 'smoke_test', 'nocache'].forEach(function (k) {
+        u.searchParams.delete(k);
+      });
       if (prof.visitor_id) u.searchParams.set('ref', prof.visitor_id);
       if (!u.searchParams.get('utm_source')) u.searchParams.set('utm_source', 'referral');
       if (!u.searchParams.get('utm_medium')) u.searchParams.set('utm_medium', 'share');
