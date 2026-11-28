@@ -106,7 +106,7 @@ function build() {
     try {
       const latpeedJsonPath = path.resolve(ROOT_DIR, '..', 'data', 'latpeed_kfk_live.json');
       let tier1Url = 'https://www.latpeed.com/products/daMaP';
-      let tier2Url = 'https://www.latpeed.com/stores/7Frck';
+      let tier2Url = 'https://www.latpeed.com/products/_5Nq4';
       if (fs.existsSync(latpeedJsonPath)) {
         const latData = JSON.parse(fs.readFileSync(latpeedJsonPath, 'utf8'));
         const t1Candidate = String(
@@ -148,11 +148,36 @@ function build() {
     console.log(`[3/5] Copied index.html -> dist/index.html (cache-bust: ?v=${buildStamp})`);
   }
 
-  // 5. Copy Assets / Source, Samples & QnA directories
+  // 5. Copy strict-allowlist src/ -> dist/src/ (zero legacy coupang/admin/brain-lq files)
   const srcDir = path.join(ROOT_DIR, 'src');
   if (fs.existsSync(srcDir)) {
-    copyRecursiveSync(srcDir, path.join(DIST_DIR, 'src'));
-    console.log('[4/5] Copied src/ -> dist/src/');
+    const ACTIVE_KFK_JS = new Set([
+      'dc-school-ready-tool.js',
+      'dc-share-card.js',
+      'dc-ux-addons.js',
+      'hq_member_crm_client.js',
+      'kfk-atelier-app.js',
+      'kfk-personalized-pdf.js',
+      'pseo-mini-calc.js',
+      'qna-human-rl-curator.js'
+    ]);
+    const ACTIVE_KFK_CSS = new Set(['style.css']);
+    const targetSrc = path.join(DIST_DIR, 'src');
+    const staleDataDir = path.join(targetSrc, 'data');
+    if (fs.existsSync(staleDataDir)) fs.rmSync(staleDataDir, { recursive: true, force: true });
+    const cssDest = path.join(targetSrc, 'css');
+    fs.mkdirSync(cssDest, { recursive: true });
+    fs.readdirSync(cssDest).forEach((fn) => { if (!ACTIVE_KFK_CSS.has(fn)) fs.rmSync(path.join(cssDest, fn), { recursive: true, force: true }); });
+    ACTIVE_KFK_CSS.forEach((fn) => { const sf = path.join(srcDir, 'css', fn); if (fs.existsSync(sf)) copyRecursiveSync(sf, path.join(cssDest, fn)); });
+    const jsDest = path.join(targetSrc, 'js');
+    fs.mkdirSync(jsDest, { recursive: true });
+    fs.readdirSync(jsDest).forEach((fn) => { if (!ACTIVE_KFK_JS.has(fn)) fs.rmSync(path.join(jsDest, fn), { recursive: true, force: true }); });
+    ACTIVE_KFK_JS.forEach((fn) => { const sf = path.join(srcDir, 'js', fn); if (fs.existsSync(sf)) copyRecursiveSync(sf, path.join(jsDest, fn)); });
+    ['assets', 'fonts', 'images'].forEach((sub) => {
+      const s = path.join(srcDir, sub);
+      if (fs.existsSync(s)) copyRecursiveSync(s, path.join(targetSrc, sub));
+    });
+    console.log('[4/5] Synced strict-allowlist src/ -> dist/src/ (zero legacy coupang/admin files)');
   }
 
   const samplesDir = path.join(ROOT_DIR, 'samples');
