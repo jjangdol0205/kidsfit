@@ -26,8 +26,18 @@ export async function onRequestGet(context) {
     : (DEFAULT_PREFIX + encodeURIComponent(slug));
 
   const reqUrl = new URL(context.request.url);
-  const isTest = reqUrl.searchParams.get('internal_test') === '1'
-    || String(context.request.headers.get('x-internal-test') || '').trim() === '1';
+  const ic = reqUrl.searchParams.get('internal_check');
+  const od = reqUrl.searchParams.get('owner_device');
+  const cookieHeader = String(context.request.headers.get('cookie') || '');
+  const hasOwnerCookie = /(?:^|;\s*)dc_internal_exclude=1(?:;|$)/.test(cookieHeader);
+  const isOwnerParam = ic === '1' || od === '1';
+  const isOwnerReset = ic === '0' || od === '0';
+  const isOwnerDevice = isOwnerParam || (!isOwnerReset && hasOwnerCookie);
+  const isTest = isOwnerDevice
+    || reqUrl.searchParams.get('internal_test') === '1'
+    || reqUrl.searchParams.get('smoke_test') === '1'
+    || String(context.request.headers.get('x-internal-test') || '').trim() === '1'
+    || String(context.request.headers.get('x-owner-device') || '').trim() === '1';
   let utmContent = '';
   try {
     utmContent = new URL(dest).searchParams.get('utm_content') || '';
@@ -48,6 +58,7 @@ export async function onRequestGet(context) {
           slug: slug,
           utm_content: utmContent,
           is_test: isTest,
+          owner_device: isOwnerDevice,
           ref: ref,
           ua: ua,
           ts: new Date().toISOString()
@@ -56,13 +67,19 @@ export async function onRequestGet(context) {
     );
   }
 
+  const respHeaders = {
+    'Location': dest,
+    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+    'X-Robots-Tag': 'noindex, nofollow',
+    'X-Content-Type-Options': 'nosniff'
+  };
+  if (isOwnerParam) {
+    respHeaders['Set-Cookie'] = 'dc_internal_exclude=1; Max-Age=31536000; Path=/; SameSite=Lax; Secure';
+  } else if (isOwnerReset) {
+    respHeaders['Set-Cookie'] = 'dc_internal_exclude=; Max-Age=0; Path=/; SameSite=Lax; Secure';
+  }
   return new Response(null, {
     status: 302,
-    headers: {
-      'Location': dest,
-      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
-      'X-Robots-Tag': 'noindex, nofollow',
-      'X-Content-Type-Options': 'nosniff'
-    }
+    headers: respHeaders
   });
 }

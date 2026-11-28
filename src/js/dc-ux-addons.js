@@ -18,16 +18,30 @@
     try {
       if (typeof window.__dcIsInternalOrBot === 'function' && window.__dcIsInternalOrBot()) return true;
       var sp = new URLSearchParams((window.location && window.location.search) || '');
-      if (sp.get('internal_test') === '1') {
+      var isHttps = !!(window.location && window.location.protocol === 'https:');
+      var ic = sp.get('internal_check');
+      var od = sp.get('owner_device');
+      if (ic === '0' || od === '0') {
+        try { window.localStorage && window.localStorage.removeItem('dc_internal_exclude'); } catch (_r1) {}
+        try { document.cookie = 'dc_internal_exclude=; Max-Age=0; Path=/; SameSite=Lax' + (isHttps ? '; Secure' : ''); } catch (_r2) {}
+      } else if (ic === '1' || od === '1') {
+        try { window.localStorage && window.localStorage.setItem('dc_internal_exclude', '1'); } catch (_w1) {}
+        try { document.cookie = 'dc_internal_exclude=1; Max-Age=31536000; Path=/; SameSite=Lax' + (isHttps ? '; Secure' : ''); } catch (_w2) {}
+        return true;
+      }
+      try { if (window.localStorage && window.localStorage.getItem('dc_internal_exclude') === '1') return true; } catch (_l1) {}
+      try { if (/(?:^|;\s*)dc_internal_exclude=1(?:;|$)/.test(document.cookie || '')) return true; } catch (_c1) {}
+      if (sp.get('internal_test') === '1' || sp.get('smoke_test') === '1') {
         try { window.sessionStorage && window.sessionStorage.setItem('dc_internal_test', '1'); } catch (_s1) {}
         return true;
       }
       try { if (window.sessionStorage && window.sessionStorage.getItem('dc_internal_test') === '1') return true; } catch (_s2) {}
       if (window.navigator && window.navigator.webdriver === true) return true;
-      if (/HeadlessChrome|Playwright|Puppeteer|Selenium/i.test(String((window.navigator && window.navigator.userAgent) || ''))) return true;
+      if (/HeadlessChrome|Playwright|Puppeteer|Selenium|LiveAudit|Watchdog|GitHub-Actions/i.test(String((window.navigator && window.navigator.userAgent) || ''))) return true;
     } catch (_g) {}
     return false;
   }
+  isInternalOrBotTraffic();
 
 
   function detectDiv() {
@@ -349,7 +363,7 @@
     var details = wrap.querySelectorAll('details');
     for (var i = 0; i < details.length; i++) {
       details[i].addEventListener('toggle', function () {
-        if (this.open && window.DreamCompanyCRM && typeof window.DreamCompanyCRM.trackFunnelEvent === 'function') {
+        if (this.open && !isInternalOrBotTraffic() && window.DreamCompanyCRM && typeof window.DreamCompanyCRM.trackFunnelEvent === 'function') {
           window.DreamCompanyCRM.trackFunnelEvent(DIV, 'faq_open');
         }
       });

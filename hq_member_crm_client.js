@@ -13,6 +13,51 @@
 (function (global) {
   'use strict';
 
+  // Universal Internal QA / Owner Device / Playwright / Bot Traffic Guard (Zero-Pollution Client Gate)
+  function isInternalOrBotTraffic() {
+    try {
+      var sp = new URLSearchParams((global.location && global.location.search) || '');
+      var isHttps = !!(global.location && global.location.protocol === 'https:');
+      var ic = sp.get('internal_check');
+      var od = sp.get('owner_device');
+      if (ic === '0' || od === '0') {
+        try { if (global.localStorage) global.localStorage.removeItem('dc_internal_exclude'); } catch (_r1) {}
+        try {
+          if (global.document) {
+            global.document.cookie = 'dc_internal_exclude=; Max-Age=0; Path=/; SameSite=Lax' + (isHttps ? '; Secure' : '');
+          }
+        } catch (_r2) {}
+      } else if (ic === '1' || od === '1') {
+        try { if (global.localStorage) global.localStorage.setItem('dc_internal_exclude', '1'); } catch (_w1) {}
+        try {
+          if (global.document) {
+            global.document.cookie = 'dc_internal_exclude=1; Max-Age=31536000; Path=/; SameSite=Lax' + (isHttps ? '; Secure' : '');
+          }
+        } catch (_w2) {}
+        return true;
+      }
+      try {
+        if (global.localStorage && global.localStorage.getItem('dc_internal_exclude') === '1') return true;
+      } catch (_l1) {}
+      try {
+        if (global.document && /(?:^|;\s*)dc_internal_exclude=1(?:;|$)/.test(global.document.cookie || '')) return true;
+      } catch (_c1) {}
+      if (sp.get('internal_test') === '1' || sp.get('smoke_test') === '1') {
+        try { if (global.sessionStorage) global.sessionStorage.setItem('dc_internal_test', '1'); } catch (_s1) {}
+        return true;
+      }
+      try {
+        if (global.sessionStorage && global.sessionStorage.getItem('dc_internal_test') === '1') return true;
+      } catch (_s2) {}
+      if (global.navigator && global.navigator.webdriver === true) return true;
+      var ua = String((global.navigator && global.navigator.userAgent) || '');
+      if (/HeadlessChrome|Playwright|Puppeteer|Selenium|LiveAudit|Watchdog|GitHub-Actions/i.test(ua)) return true;
+    } catch (_g) {}
+    return false;
+  }
+  global.__dcIsInternalOrBot = isInternalOrBotTraffic;
+  isInternalOrBotTraffic();
+
   // Neutralize flaky deprecated third-party hit counter (replaced by Cloudflare D1 funnel_events)
   if (typeof global.fetch === 'function' && !global.__dcAbacusFetchGuarded) {
     global.__dcAbacusFetchGuarded = true;
@@ -240,6 +285,7 @@
   }
 
   function trackFunnelEvent(div, eventName, extra) {
+    if (isInternalOrBotTraffic()) return Promise.resolve({ ok: true, skipped: 'internal_test' });
     try {
       var d = String(div || detectDivFromHost()).toUpperCase();
       var utm = captureUtmParams();
